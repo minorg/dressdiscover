@@ -47,10 +47,14 @@ public final class Closure implements org.thryft.Struct, org.dressdiscover.api.m
         }
 
         public Builder readAsList(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
-            iprot.readListBegin();
-            placement = org.dressdiscover.api.models.closure.ClosurePlacement.readAsStruct(iprot);
-            type = org.dressdiscover.api.models.closure.ClosureType.readAsStruct(iprot);
-            iprot.readListEnd();
+            try {
+                iprot.readListBegin();
+                placement = org.dressdiscover.api.models.closure.ClosurePlacement.readAsStruct(iprot);
+                type = org.dressdiscover.api.models.closure.ClosureType.readAsStruct(iprot);
+                iprot.readListEnd();
+            } catch (final RuntimeException e) {
+                throw new IllegalStateException(e);
+            }
             return this;
         }
 
@@ -59,34 +63,38 @@ public final class Closure implements org.thryft.Struct, org.dressdiscover.api.m
         }
 
         public Builder readAsStruct(final org.thryft.protocol.InputProtocol iprot, final com.google.common.base.Optional<UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
-            iprot.readStructBegin();
-            while (true) {
-                final org.thryft.protocol.FieldBegin ifield = iprot.readFieldBegin();
-                if (ifield.getType() == org.thryft.protocol.Type.STOP) {
-                    break;
-                }
-                switch (ifield.getName()) {
-                case "placement": {
-                    if (!ifield.hasId() || ifield.getId() == 1) {
-                        placement = org.dressdiscover.api.models.closure.ClosurePlacement.readAsStruct(iprot);
+            try {
+                iprot.readStructBegin();
+                while (true) {
+                    final org.thryft.protocol.FieldBegin ifield = iprot.readFieldBegin();
+                    if (ifield.getType() == org.thryft.protocol.Type.STOP) {
+                        break;
                     }
-                    break;
-                }
-                case "type": {
-                    if (!ifield.hasId() || ifield.getId() == 2) {
-                        type = org.dressdiscover.api.models.closure.ClosureType.readAsStruct(iprot);
+                    switch (ifield.getName()) {
+                    case "placement": {
+                        if (!ifield.hasId() || ifield.getId() == 1) {
+                            placement = org.dressdiscover.api.models.closure.ClosurePlacement.readAsStruct(iprot);
+                        }
+                        break;
                     }
-                    break;
-                }
-                default:
-                    if (unknownFieldCallback.isPresent()) {
-                        unknownFieldCallback.get().apply(ifield);
+                    case "type": {
+                        if (!ifield.hasId() || ifield.getId() == 2) {
+                            type = org.dressdiscover.api.models.closure.ClosureType.readAsStruct(iprot);
+                        }
+                        break;
                     }
-                    break;
+                    default:
+                        if (unknownFieldCallback.isPresent()) {
+                            unknownFieldCallback.get().apply(ifield);
+                        }
+                        break;
+                    }
+                    iprot.readFieldEnd();
                 }
-                iprot.readFieldEnd();
+                iprot.readStructEnd();
+            } catch (final RuntimeException e) {
+                throw new IllegalStateException(e);
             }
-            iprot.readStructEnd();
             return this;
         }
 
@@ -492,10 +500,14 @@ public final class Closure implements org.thryft.Struct, org.dressdiscover.api.m
         org.dressdiscover.api.models.closure.ClosurePlacement placement = null;
         org.dressdiscover.api.models.closure.ClosureType type = null;
 
-        iprot.readListBegin();
-        placement = org.dressdiscover.api.models.closure.ClosurePlacement.readAsStruct(iprot);
-        type = org.dressdiscover.api.models.closure.ClosureType.readAsStruct(iprot);
-        iprot.readListEnd();
+        try {
+            iprot.readListBegin();
+            placement = org.dressdiscover.api.models.closure.ClosurePlacement.readAsStruct(iprot);
+            type = org.dressdiscover.api.models.closure.ClosureType.readAsStruct(iprot);
+            iprot.readListEnd();
+        } catch (final RuntimeException e) {
+            throw new IllegalStateException(e);
+        }
         return new Closure(DefaultReadValidator.getInstance().validatePlacement(placement), DefaultReadValidator.getInstance().validateType(type), NopConstructionValidator.getInstance());
     }
 
@@ -507,34 +519,38 @@ public final class Closure implements org.thryft.Struct, org.dressdiscover.api.m
         org.dressdiscover.api.models.closure.ClosurePlacement placement = null;
         org.dressdiscover.api.models.closure.ClosureType type = null;
 
-        iprot.readStructBegin();
-        while (true) {
-            final org.thryft.protocol.FieldBegin ifield = iprot.readFieldBegin();
-            if (ifield.getType() == org.thryft.protocol.Type.STOP) {
-                break;
-            }
-            switch (ifield.getName()) {
-            case "placement": {
-                if (!ifield.hasId() || ifield.getId() == 1) {
-                    placement = org.dressdiscover.api.models.closure.ClosurePlacement.readAsStruct(iprot);
+        try {
+            iprot.readStructBegin();
+            while (true) {
+                final org.thryft.protocol.FieldBegin ifield = iprot.readFieldBegin();
+                if (ifield.getType() == org.thryft.protocol.Type.STOP) {
+                    break;
                 }
-                break;
-            }
-            case "type": {
-                if (!ifield.hasId() || ifield.getId() == 2) {
-                    type = org.dressdiscover.api.models.closure.ClosureType.readAsStruct(iprot);
+                switch (ifield.getName()) {
+                case "placement": {
+                    if (!ifield.hasId() || ifield.getId() == 1) {
+                        placement = org.dressdiscover.api.models.closure.ClosurePlacement.readAsStruct(iprot);
+                    }
+                    break;
                 }
-                break;
-            }
-            default:
-                if (unknownFieldCallback.isPresent()) {
-                    unknownFieldCallback.get().apply(ifield);
+                case "type": {
+                    if (!ifield.hasId() || ifield.getId() == 2) {
+                        type = org.dressdiscover.api.models.closure.ClosureType.readAsStruct(iprot);
+                    }
+                    break;
                 }
-                break;
+                default:
+                    if (unknownFieldCallback.isPresent()) {
+                        unknownFieldCallback.get().apply(ifield);
+                    }
+                    break;
+                }
+                iprot.readFieldEnd();
             }
-            iprot.readFieldEnd();
+            iprot.readStructEnd();
+        } catch (final RuntimeException e) {
+            throw new IllegalStateException(e);
         }
-        iprot.readStructEnd();
         return new Closure(DefaultReadValidator.getInstance().validatePlacement(placement), DefaultReadValidator.getInstance().validateType(type), NopConstructionValidator.getInstance());
     }
 

@@ -9,9 +9,9 @@ import org.python.util.PythonInterpreter;
 import org.slf4j.Marker;
 import org.thryft.waf.cli.Command;
 import org.thryft.waf.cli.CommandParser;
-import org.thryft.waf.lib.PropertiesModule;
 import org.thryft.waf.lib.logging.LoggingUtils;
 
+import com.google.inject.AbstractModule;
 import com.google.inject.Guice;
 import com.google.inject.Injector;
 
@@ -35,8 +35,12 @@ public final class CliMain extends org.thryft.waf.lib.AbstractMain {
         final DressDiscoverProperties properties = DressDiscoverProperties.load();
         _getLogger().debug(_getLogMarker(), "properties: {}", properties);
 
-        final Injector injector = Guice.createInjector(new PropertiesModule<>(properties),
-                new ServicesModule(properties));
+        final Injector injector = Guice.createInjector(new AbstractModule() {
+            @Override
+            protected void configure() {
+                bind(DressDiscoverProperties.class).toInstance(properties);
+            }
+        }, new ServicesModule(properties));
 
         final PythonInterpreter pythonInterpreter = injector.getInstance(PythonInterpreterFactory.class)
                 .createPythonInterpreter();

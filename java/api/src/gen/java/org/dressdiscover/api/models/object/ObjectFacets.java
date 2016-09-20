@@ -98,300 +98,9 @@ public final class ObjectFacets implements org.thryft.Struct {
         }
 
         public Builder readAsList(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
-            iprot.readListBegin();
-            categories = (new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger>>() {
-                @Override
-                public com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger> apply(final org.thryft.protocol.InputProtocol iprot) {
-                    try {
-                        final org.thryft.protocol.MapBegin mapBegin = iprot.readMapBegin();
-                        final com.google.common.collect.ImmutableMap.Builder<String, com.google.common.primitives.UnsignedInteger> map = com.google.common.collect.ImmutableMap.builder();
-                        for (int entryI = 0; entryI < mapBegin.getSize(); entryI++) {
-                            final String key;
-                            key = iprot.readString();
-                            final com.google.common.primitives.UnsignedInteger value;
-                            try {
-                                value = iprot.readU32();
-                            } catch (final NumberFormatException e) {
-                                 throw new org.thryft.protocol.InputProtocolException(e);
-                            }
-                            map.put(key, value);
-                        }
-                        iprot.readMapEnd();
-                        return map.build();
-                    } catch (final org.thryft.protocol.InputProtocolException e) {
-                        return com.google.common.collect.ImmutableMap.of();
-                    }
-                }
-            }).apply(iprot);
-            collections = (new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableMap<org.dressdiscover.api.models.collection.CollectionId, com.google.common.primitives.UnsignedInteger>>() {
-                @Override
-                public com.google.common.collect.ImmutableMap<org.dressdiscover.api.models.collection.CollectionId, com.google.common.primitives.UnsignedInteger> apply(final org.thryft.protocol.InputProtocol iprot) {
-                    try {
-                        final org.thryft.protocol.MapBegin mapBegin = iprot.readMapBegin();
-                        final com.google.common.collect.ImmutableMap.Builder<org.dressdiscover.api.models.collection.CollectionId, com.google.common.primitives.UnsignedInteger> map = com.google.common.collect.ImmutableMap.builder();
-                        for (int entryI = 0; entryI < mapBegin.getSize(); entryI++) {
-                            final org.dressdiscover.api.models.collection.CollectionId key;
-                            try {
-                                key = org.dressdiscover.api.models.collection.CollectionId.parse(iprot.readString());
-                            } catch (final org.dressdiscover.api.models.collection.InvalidCollectionIdException e) {
-                                 throw new org.thryft.protocol.InputProtocolException(e);
-                            }
-                            final com.google.common.primitives.UnsignedInteger value;
-                            try {
-                                value = iprot.readU32();
-                            } catch (final NumberFormatException e) {
-                                 throw new org.thryft.protocol.InputProtocolException(e);
-                            }
-                            map.put(key, value);
-                        }
-                        iprot.readMapEnd();
-                        return map.build();
-                    } catch (final org.thryft.protocol.InputProtocolException e) {
-                        return com.google.common.collect.ImmutableMap.of();
-                    }
-                }
-            }).apply(iprot);
-            colorTexts = (new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger>>() {
-                @Override
-                public com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger> apply(final org.thryft.protocol.InputProtocol iprot) {
-                    try {
-                        final org.thryft.protocol.MapBegin mapBegin = iprot.readMapBegin();
-                        final com.google.common.collect.ImmutableMap.Builder<String, com.google.common.primitives.UnsignedInteger> map = com.google.common.collect.ImmutableMap.builder();
-                        for (int entryI = 0; entryI < mapBegin.getSize(); entryI++) {
-                            final String key;
-                            key = iprot.readString();
-                            final com.google.common.primitives.UnsignedInteger value;
-                            try {
-                                value = iprot.readU32();
-                            } catch (final NumberFormatException e) {
-                                 throw new org.thryft.protocol.InputProtocolException(e);
-                            }
-                            map.put(key, value);
-                        }
-                        iprot.readMapEnd();
-                        return map.build();
-                    } catch (final org.thryft.protocol.InputProtocolException e) {
-                        return com.google.common.collect.ImmutableMap.of();
-                    }
-                }
-            }).apply(iprot);
-            culturalContextTexts = (new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger>>() {
-                @Override
-                public com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger> apply(final org.thryft.protocol.InputProtocol iprot) {
-                    try {
-                        final org.thryft.protocol.MapBegin mapBegin = iprot.readMapBegin();
-                        final com.google.common.collect.ImmutableMap.Builder<String, com.google.common.primitives.UnsignedInteger> map = com.google.common.collect.ImmutableMap.builder();
-                        for (int entryI = 0; entryI < mapBegin.getSize(); entryI++) {
-                            final String key;
-                            key = iprot.readString();
-                            final com.google.common.primitives.UnsignedInteger value;
-                            try {
-                                value = iprot.readU32();
-                            } catch (final NumberFormatException e) {
-                                 throw new org.thryft.protocol.InputProtocolException(e);
-                            }
-                            map.put(key, value);
-                        }
-                        iprot.readMapEnd();
-                        return map.build();
-                    } catch (final org.thryft.protocol.InputProtocolException e) {
-                        return com.google.common.collect.ImmutableMap.of();
-                    }
-                }
-            }).apply(iprot);
-            genders = (new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableMap<org.dressdiscover.api.models.gender.Gender, com.google.common.primitives.UnsignedInteger>>() {
-                @Override
-                public com.google.common.collect.ImmutableMap<org.dressdiscover.api.models.gender.Gender, com.google.common.primitives.UnsignedInteger> apply(final org.thryft.protocol.InputProtocol iprot) {
-                    try {
-                        final org.thryft.protocol.MapBegin mapBegin = iprot.readMapBegin();
-                        final com.google.common.collect.ImmutableMap.Builder<org.dressdiscover.api.models.gender.Gender, com.google.common.primitives.UnsignedInteger> map = com.google.common.collect.ImmutableMap.builder();
-                        for (int entryI = 0; entryI < mapBegin.getSize(); entryI++) {
-                            final org.dressdiscover.api.models.gender.Gender key;
-                            try {
-                                key = iprot.readEnum(org.dressdiscover.api.models.gender.Gender.class);
-                            } catch (final IllegalArgumentException e) {
-                                 throw new org.thryft.protocol.InputProtocolException(e);
-                            }
-                            final com.google.common.primitives.UnsignedInteger value;
-                            try {
-                                value = iprot.readU32();
-                            } catch (final NumberFormatException e) {
-                                 throw new org.thryft.protocol.InputProtocolException(e);
-                            }
-                            map.put(key, value);
-                        }
-                        iprot.readMapEnd();
-                        return map.build();
-                    } catch (final org.thryft.protocol.InputProtocolException e) {
-                        return com.google.common.collect.ImmutableMap.of();
-                    }
-                }
-            }).apply(iprot);
-            institutions = (new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableMap<org.dressdiscover.api.models.institution.InstitutionId, com.google.common.primitives.UnsignedInteger>>() {
-                @Override
-                public com.google.common.collect.ImmutableMap<org.dressdiscover.api.models.institution.InstitutionId, com.google.common.primitives.UnsignedInteger> apply(final org.thryft.protocol.InputProtocol iprot) {
-                    try {
-                        final org.thryft.protocol.MapBegin mapBegin = iprot.readMapBegin();
-                        final com.google.common.collect.ImmutableMap.Builder<org.dressdiscover.api.models.institution.InstitutionId, com.google.common.primitives.UnsignedInteger> map = com.google.common.collect.ImmutableMap.builder();
-                        for (int entryI = 0; entryI < mapBegin.getSize(); entryI++) {
-                            final org.dressdiscover.api.models.institution.InstitutionId key;
-                            try {
-                                key = org.dressdiscover.api.models.institution.InstitutionId.parse(iprot.readString());
-                            } catch (final org.dressdiscover.api.models.institution.InvalidInstitutionIdException e) {
-                                 throw new org.thryft.protocol.InputProtocolException(e);
-                            }
-                            final com.google.common.primitives.UnsignedInteger value;
-                            try {
-                                value = iprot.readU32();
-                            } catch (final NumberFormatException e) {
-                                 throw new org.thryft.protocol.InputProtocolException(e);
-                            }
-                            map.put(key, value);
-                        }
-                        iprot.readMapEnd();
-                        return map.build();
-                    } catch (final org.thryft.protocol.InputProtocolException e) {
-                        return com.google.common.collect.ImmutableMap.of();
-                    }
-                }
-            }).apply(iprot);
-            locationNameTexts = (new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger>>() {
-                @Override
-                public com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger> apply(final org.thryft.protocol.InputProtocol iprot) {
-                    try {
-                        final org.thryft.protocol.MapBegin mapBegin = iprot.readMapBegin();
-                        final com.google.common.collect.ImmutableMap.Builder<String, com.google.common.primitives.UnsignedInteger> map = com.google.common.collect.ImmutableMap.builder();
-                        for (int entryI = 0; entryI < mapBegin.getSize(); entryI++) {
-                            final String key;
-                            key = iprot.readString();
-                            final com.google.common.primitives.UnsignedInteger value;
-                            try {
-                                value = iprot.readU32();
-                            } catch (final NumberFormatException e) {
-                                 throw new org.thryft.protocol.InputProtocolException(e);
-                            }
-                            map.put(key, value);
-                        }
-                        iprot.readMapEnd();
-                        return map.build();
-                    } catch (final org.thryft.protocol.InputProtocolException e) {
-                        return com.google.common.collect.ImmutableMap.of();
-                    }
-                }
-            }).apply(iprot);
-            materialTexts = (new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger>>() {
-                @Override
-                public com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger> apply(final org.thryft.protocol.InputProtocol iprot) {
-                    try {
-                        final org.thryft.protocol.MapBegin mapBegin = iprot.readMapBegin();
-                        final com.google.common.collect.ImmutableMap.Builder<String, com.google.common.primitives.UnsignedInteger> map = com.google.common.collect.ImmutableMap.builder();
-                        for (int entryI = 0; entryI < mapBegin.getSize(); entryI++) {
-                            final String key;
-                            key = iprot.readString();
-                            final com.google.common.primitives.UnsignedInteger value;
-                            try {
-                                value = iprot.readU32();
-                            } catch (final NumberFormatException e) {
-                                 throw new org.thryft.protocol.InputProtocolException(e);
-                            }
-                            map.put(key, value);
-                        }
-                        iprot.readMapEnd();
-                        return map.build();
-                    } catch (final org.thryft.protocol.InputProtocolException e) {
-                        return com.google.common.collect.ImmutableMap.of();
-                    }
-                }
-            }).apply(iprot);
-            subjectTermTexts = (new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger>>() {
-                @Override
-                public com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger> apply(final org.thryft.protocol.InputProtocol iprot) {
-                    try {
-                        final org.thryft.protocol.MapBegin mapBegin = iprot.readMapBegin();
-                        final com.google.common.collect.ImmutableMap.Builder<String, com.google.common.primitives.UnsignedInteger> map = com.google.common.collect.ImmutableMap.builder();
-                        for (int entryI = 0; entryI < mapBegin.getSize(); entryI++) {
-                            final String key;
-                            key = iprot.readString();
-                            final com.google.common.primitives.UnsignedInteger value;
-                            try {
-                                value = iprot.readU32();
-                            } catch (final NumberFormatException e) {
-                                 throw new org.thryft.protocol.InputProtocolException(e);
-                            }
-                            map.put(key, value);
-                        }
-                        iprot.readMapEnd();
-                        return map.build();
-                    } catch (final org.thryft.protocol.InputProtocolException e) {
-                        return com.google.common.collect.ImmutableMap.of();
-                    }
-                }
-            }).apply(iprot);
-            techniqueTexts = (new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger>>() {
-                @Override
-                public com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger> apply(final org.thryft.protocol.InputProtocol iprot) {
-                    try {
-                        final org.thryft.protocol.MapBegin mapBegin = iprot.readMapBegin();
-                        final com.google.common.collect.ImmutableMap.Builder<String, com.google.common.primitives.UnsignedInteger> map = com.google.common.collect.ImmutableMap.builder();
-                        for (int entryI = 0; entryI < mapBegin.getSize(); entryI++) {
-                            final String key;
-                            key = iprot.readString();
-                            final com.google.common.primitives.UnsignedInteger value;
-                            try {
-                                value = iprot.readU32();
-                            } catch (final NumberFormatException e) {
-                                 throw new org.thryft.protocol.InputProtocolException(e);
-                            }
-                            map.put(key, value);
-                        }
-                        iprot.readMapEnd();
-                        return map.build();
-                    } catch (final org.thryft.protocol.InputProtocolException e) {
-                        return com.google.common.collect.ImmutableMap.of();
-                    }
-                }
-            }).apply(iprot);
-            workTypeTexts = (new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger>>() {
-                @Override
-                public com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger> apply(final org.thryft.protocol.InputProtocol iprot) {
-                    try {
-                        final org.thryft.protocol.MapBegin mapBegin = iprot.readMapBegin();
-                        final com.google.common.collect.ImmutableMap.Builder<String, com.google.common.primitives.UnsignedInteger> map = com.google.common.collect.ImmutableMap.builder();
-                        for (int entryI = 0; entryI < mapBegin.getSize(); entryI++) {
-                            final String key;
-                            key = iprot.readString();
-                            final com.google.common.primitives.UnsignedInteger value;
-                            try {
-                                value = iprot.readU32();
-                            } catch (final NumberFormatException e) {
-                                 throw new org.thryft.protocol.InputProtocolException(e);
-                            }
-                            map.put(key, value);
-                        }
-                        iprot.readMapEnd();
-                        return map.build();
-                    } catch (final org.thryft.protocol.InputProtocolException e) {
-                        return com.google.common.collect.ImmutableMap.of();
-                    }
-                }
-            }).apply(iprot);
-            iprot.readListEnd();
-            return this;
-        }
-
-        public Builder readAsStruct(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
-            return readAsStruct(iprot, com.google.common.base.Optional.<UnknownFieldCallback> absent());
-        }
-
-        public Builder readAsStruct(final org.thryft.protocol.InputProtocol iprot, final com.google.common.base.Optional<UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
-            iprot.readStructBegin();
-            while (true) {
-                final org.thryft.protocol.FieldBegin ifield = iprot.readFieldBegin();
-                if (ifield.getType() == org.thryft.protocol.Type.STOP) {
-                    break;
-                }
-                switch (ifield.getName()) {
-                case "categories": {
+            try {
+                iprot.readListBegin();
+                try {
                     categories = (new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger>>() {
                         @Override
                         public com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger> apply(final org.thryft.protocol.InputProtocol iprot) {
@@ -412,13 +121,14 @@ public final class ObjectFacets implements org.thryft.Struct {
                                 iprot.readMapEnd();
                                 return map.build();
                             } catch (final org.thryft.protocol.InputProtocolException e) {
-                                return com.google.common.collect.ImmutableMap.of();
+                                throw new org.thryft.protocol.UncheckedInputProtocolException(e);
                             }
                         }
                     }).apply(iprot);
-                    break;
+                } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
+                     throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.CATEGORIES, e.getCause());
                 }
-                case "collections": {
+                try {
                     collections = (new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableMap<org.dressdiscover.api.models.collection.CollectionId, com.google.common.primitives.UnsignedInteger>>() {
                         @Override
                         public com.google.common.collect.ImmutableMap<org.dressdiscover.api.models.collection.CollectionId, com.google.common.primitives.UnsignedInteger> apply(final org.thryft.protocol.InputProtocol iprot) {
@@ -443,13 +153,14 @@ public final class ObjectFacets implements org.thryft.Struct {
                                 iprot.readMapEnd();
                                 return map.build();
                             } catch (final org.thryft.protocol.InputProtocolException e) {
-                                return com.google.common.collect.ImmutableMap.of();
+                                throw new org.thryft.protocol.UncheckedInputProtocolException(e);
                             }
                         }
                     }).apply(iprot);
-                    break;
+                } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
+                     throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.COLLECTIONS, e.getCause());
                 }
-                case "color_texts": {
+                try {
                     colorTexts = (new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger>>() {
                         @Override
                         public com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger> apply(final org.thryft.protocol.InputProtocol iprot) {
@@ -470,13 +181,14 @@ public final class ObjectFacets implements org.thryft.Struct {
                                 iprot.readMapEnd();
                                 return map.build();
                             } catch (final org.thryft.protocol.InputProtocolException e) {
-                                return com.google.common.collect.ImmutableMap.of();
+                                throw new org.thryft.protocol.UncheckedInputProtocolException(e);
                             }
                         }
                     }).apply(iprot);
-                    break;
+                } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
+                     throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.COLOR_TEXTS, e.getCause());
                 }
-                case "cultural_context_texts": {
+                try {
                     culturalContextTexts = (new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger>>() {
                         @Override
                         public com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger> apply(final org.thryft.protocol.InputProtocol iprot) {
@@ -497,13 +209,14 @@ public final class ObjectFacets implements org.thryft.Struct {
                                 iprot.readMapEnd();
                                 return map.build();
                             } catch (final org.thryft.protocol.InputProtocolException e) {
-                                return com.google.common.collect.ImmutableMap.of();
+                                throw new org.thryft.protocol.UncheckedInputProtocolException(e);
                             }
                         }
                     }).apply(iprot);
-                    break;
+                } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
+                     throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.CULTURAL_CONTEXT_TEXTS, e.getCause());
                 }
-                case "genders": {
+                try {
                     genders = (new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableMap<org.dressdiscover.api.models.gender.Gender, com.google.common.primitives.UnsignedInteger>>() {
                         @Override
                         public com.google.common.collect.ImmutableMap<org.dressdiscover.api.models.gender.Gender, com.google.common.primitives.UnsignedInteger> apply(final org.thryft.protocol.InputProtocol iprot) {
@@ -512,11 +225,7 @@ public final class ObjectFacets implements org.thryft.Struct {
                                 final com.google.common.collect.ImmutableMap.Builder<org.dressdiscover.api.models.gender.Gender, com.google.common.primitives.UnsignedInteger> map = com.google.common.collect.ImmutableMap.builder();
                                 for (int entryI = 0; entryI < mapBegin.getSize(); entryI++) {
                                     final org.dressdiscover.api.models.gender.Gender key;
-                                    try {
-                                        key = iprot.readEnum(org.dressdiscover.api.models.gender.Gender.class);
-                                    } catch (final IllegalArgumentException e) {
-                                         throw new org.thryft.protocol.InputProtocolException(e);
-                                    }
+                                    key = iprot.readEnum(org.dressdiscover.api.models.gender.Gender.class);
                                     final com.google.common.primitives.UnsignedInteger value;
                                     try {
                                         value = iprot.readU32();
@@ -528,13 +237,14 @@ public final class ObjectFacets implements org.thryft.Struct {
                                 iprot.readMapEnd();
                                 return map.build();
                             } catch (final org.thryft.protocol.InputProtocolException e) {
-                                return com.google.common.collect.ImmutableMap.of();
+                                throw new org.thryft.protocol.UncheckedInputProtocolException(e);
                             }
                         }
                     }).apply(iprot);
-                    break;
+                } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
+                     throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.GENDERS, e.getCause());
                 }
-                case "institutions": {
+                try {
                     institutions = (new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableMap<org.dressdiscover.api.models.institution.InstitutionId, com.google.common.primitives.UnsignedInteger>>() {
                         @Override
                         public com.google.common.collect.ImmutableMap<org.dressdiscover.api.models.institution.InstitutionId, com.google.common.primitives.UnsignedInteger> apply(final org.thryft.protocol.InputProtocol iprot) {
@@ -559,13 +269,14 @@ public final class ObjectFacets implements org.thryft.Struct {
                                 iprot.readMapEnd();
                                 return map.build();
                             } catch (final org.thryft.protocol.InputProtocolException e) {
-                                return com.google.common.collect.ImmutableMap.of();
+                                throw new org.thryft.protocol.UncheckedInputProtocolException(e);
                             }
                         }
                     }).apply(iprot);
-                    break;
+                } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
+                     throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.INSTITUTIONS, e.getCause());
                 }
-                case "location_name_texts": {
+                try {
                     locationNameTexts = (new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger>>() {
                         @Override
                         public com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger> apply(final org.thryft.protocol.InputProtocol iprot) {
@@ -586,13 +297,14 @@ public final class ObjectFacets implements org.thryft.Struct {
                                 iprot.readMapEnd();
                                 return map.build();
                             } catch (final org.thryft.protocol.InputProtocolException e) {
-                                return com.google.common.collect.ImmutableMap.of();
+                                throw new org.thryft.protocol.UncheckedInputProtocolException(e);
                             }
                         }
                     }).apply(iprot);
-                    break;
+                } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
+                     throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.LOCATION_NAME_TEXTS, e.getCause());
                 }
-                case "material_texts": {
+                try {
                     materialTexts = (new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger>>() {
                         @Override
                         public com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger> apply(final org.thryft.protocol.InputProtocol iprot) {
@@ -613,13 +325,14 @@ public final class ObjectFacets implements org.thryft.Struct {
                                 iprot.readMapEnd();
                                 return map.build();
                             } catch (final org.thryft.protocol.InputProtocolException e) {
-                                return com.google.common.collect.ImmutableMap.of();
+                                throw new org.thryft.protocol.UncheckedInputProtocolException(e);
                             }
                         }
                     }).apply(iprot);
-                    break;
+                } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
+                     throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.MATERIAL_TEXTS, e.getCause());
                 }
-                case "subject_term_texts": {
+                try {
                     subjectTermTexts = (new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger>>() {
                         @Override
                         public com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger> apply(final org.thryft.protocol.InputProtocol iprot) {
@@ -640,13 +353,14 @@ public final class ObjectFacets implements org.thryft.Struct {
                                 iprot.readMapEnd();
                                 return map.build();
                             } catch (final org.thryft.protocol.InputProtocolException e) {
-                                return com.google.common.collect.ImmutableMap.of();
+                                throw new org.thryft.protocol.UncheckedInputProtocolException(e);
                             }
                         }
                     }).apply(iprot);
-                    break;
+                } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
+                     throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.SUBJECT_TERM_TEXTS, e.getCause());
                 }
-                case "technique_texts": {
+                try {
                     techniqueTexts = (new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger>>() {
                         @Override
                         public com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger> apply(final org.thryft.protocol.InputProtocol iprot) {
@@ -667,13 +381,14 @@ public final class ObjectFacets implements org.thryft.Struct {
                                 iprot.readMapEnd();
                                 return map.build();
                             } catch (final org.thryft.protocol.InputProtocolException e) {
-                                return com.google.common.collect.ImmutableMap.of();
+                                throw new org.thryft.protocol.UncheckedInputProtocolException(e);
                             }
                         }
                     }).apply(iprot);
-                    break;
+                } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
+                     throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.TECHNIQUE_TEXTS, e.getCause());
                 }
-                case "work_type_texts": {
+                try {
                     workTypeTexts = (new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger>>() {
                         @Override
                         public com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger> apply(final org.thryft.protocol.InputProtocol iprot) {
@@ -694,21 +409,394 @@ public final class ObjectFacets implements org.thryft.Struct {
                                 iprot.readMapEnd();
                                 return map.build();
                             } catch (final org.thryft.protocol.InputProtocolException e) {
-                                return com.google.common.collect.ImmutableMap.of();
+                                throw new org.thryft.protocol.UncheckedInputProtocolException(e);
                             }
                         }
                     }).apply(iprot);
-                    break;
+                } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
+                     throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.WORK_TYPE_TEXTS, e.getCause());
                 }
-                default:
-                    if (unknownFieldCallback.isPresent()) {
-                        unknownFieldCallback.get().apply(ifield);
-                    }
-                    break;
-                }
-                iprot.readFieldEnd();
+                iprot.readListEnd();
+            } catch (final RuntimeException e) {
+                throw new IllegalStateException(e);
             }
-            iprot.readStructEnd();
+            return this;
+        }
+
+        public Builder readAsStruct(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
+            return readAsStruct(iprot, com.google.common.base.Optional.<UnknownFieldCallback> absent());
+        }
+
+        public Builder readAsStruct(final org.thryft.protocol.InputProtocol iprot, final com.google.common.base.Optional<UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
+            try {
+                iprot.readStructBegin();
+                while (true) {
+                    final org.thryft.protocol.FieldBegin ifield = iprot.readFieldBegin();
+                    if (ifield.getType() == org.thryft.protocol.Type.STOP) {
+                        break;
+                    }
+                    switch (ifield.getName()) {
+                    case "categories": {
+                        try {
+                            categories = (new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger>>() {
+                                @Override
+                                public com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger> apply(final org.thryft.protocol.InputProtocol iprot) {
+                                    try {
+                                        final org.thryft.protocol.MapBegin mapBegin = iprot.readMapBegin();
+                                        final com.google.common.collect.ImmutableMap.Builder<String, com.google.common.primitives.UnsignedInteger> map = com.google.common.collect.ImmutableMap.builder();
+                                        for (int entryI = 0; entryI < mapBegin.getSize(); entryI++) {
+                                            final String key;
+                                            key = iprot.readString();
+                                            final com.google.common.primitives.UnsignedInteger value;
+                                            try {
+                                                value = iprot.readU32();
+                                            } catch (final NumberFormatException e) {
+                                                 throw new org.thryft.protocol.InputProtocolException(e);
+                                            }
+                                            map.put(key, value);
+                                        }
+                                        iprot.readMapEnd();
+                                        return map.build();
+                                    } catch (final org.thryft.protocol.InputProtocolException e) {
+                                        throw new org.thryft.protocol.UncheckedInputProtocolException(e);
+                                    }
+                                }
+                            }).apply(iprot);
+                        } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
+                             throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.CATEGORIES, e.getCause());
+                        }
+                        break;
+                    }
+                    case "collections": {
+                        try {
+                            collections = (new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableMap<org.dressdiscover.api.models.collection.CollectionId, com.google.common.primitives.UnsignedInteger>>() {
+                                @Override
+                                public com.google.common.collect.ImmutableMap<org.dressdiscover.api.models.collection.CollectionId, com.google.common.primitives.UnsignedInteger> apply(final org.thryft.protocol.InputProtocol iprot) {
+                                    try {
+                                        final org.thryft.protocol.MapBegin mapBegin = iprot.readMapBegin();
+                                        final com.google.common.collect.ImmutableMap.Builder<org.dressdiscover.api.models.collection.CollectionId, com.google.common.primitives.UnsignedInteger> map = com.google.common.collect.ImmutableMap.builder();
+                                        for (int entryI = 0; entryI < mapBegin.getSize(); entryI++) {
+                                            final org.dressdiscover.api.models.collection.CollectionId key;
+                                            try {
+                                                key = org.dressdiscover.api.models.collection.CollectionId.parse(iprot.readString());
+                                            } catch (final org.dressdiscover.api.models.collection.InvalidCollectionIdException e) {
+                                                 throw new org.thryft.protocol.InputProtocolException(e);
+                                            }
+                                            final com.google.common.primitives.UnsignedInteger value;
+                                            try {
+                                                value = iprot.readU32();
+                                            } catch (final NumberFormatException e) {
+                                                 throw new org.thryft.protocol.InputProtocolException(e);
+                                            }
+                                            map.put(key, value);
+                                        }
+                                        iprot.readMapEnd();
+                                        return map.build();
+                                    } catch (final org.thryft.protocol.InputProtocolException e) {
+                                        throw new org.thryft.protocol.UncheckedInputProtocolException(e);
+                                    }
+                                }
+                            }).apply(iprot);
+                        } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
+                             throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.COLLECTIONS, e.getCause());
+                        }
+                        break;
+                    }
+                    case "color_texts": {
+                        try {
+                            colorTexts = (new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger>>() {
+                                @Override
+                                public com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger> apply(final org.thryft.protocol.InputProtocol iprot) {
+                                    try {
+                                        final org.thryft.protocol.MapBegin mapBegin = iprot.readMapBegin();
+                                        final com.google.common.collect.ImmutableMap.Builder<String, com.google.common.primitives.UnsignedInteger> map = com.google.common.collect.ImmutableMap.builder();
+                                        for (int entryI = 0; entryI < mapBegin.getSize(); entryI++) {
+                                            final String key;
+                                            key = iprot.readString();
+                                            final com.google.common.primitives.UnsignedInteger value;
+                                            try {
+                                                value = iprot.readU32();
+                                            } catch (final NumberFormatException e) {
+                                                 throw new org.thryft.protocol.InputProtocolException(e);
+                                            }
+                                            map.put(key, value);
+                                        }
+                                        iprot.readMapEnd();
+                                        return map.build();
+                                    } catch (final org.thryft.protocol.InputProtocolException e) {
+                                        throw new org.thryft.protocol.UncheckedInputProtocolException(e);
+                                    }
+                                }
+                            }).apply(iprot);
+                        } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
+                             throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.COLOR_TEXTS, e.getCause());
+                        }
+                        break;
+                    }
+                    case "cultural_context_texts": {
+                        try {
+                            culturalContextTexts = (new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger>>() {
+                                @Override
+                                public com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger> apply(final org.thryft.protocol.InputProtocol iprot) {
+                                    try {
+                                        final org.thryft.protocol.MapBegin mapBegin = iprot.readMapBegin();
+                                        final com.google.common.collect.ImmutableMap.Builder<String, com.google.common.primitives.UnsignedInteger> map = com.google.common.collect.ImmutableMap.builder();
+                                        for (int entryI = 0; entryI < mapBegin.getSize(); entryI++) {
+                                            final String key;
+                                            key = iprot.readString();
+                                            final com.google.common.primitives.UnsignedInteger value;
+                                            try {
+                                                value = iprot.readU32();
+                                            } catch (final NumberFormatException e) {
+                                                 throw new org.thryft.protocol.InputProtocolException(e);
+                                            }
+                                            map.put(key, value);
+                                        }
+                                        iprot.readMapEnd();
+                                        return map.build();
+                                    } catch (final org.thryft.protocol.InputProtocolException e) {
+                                        throw new org.thryft.protocol.UncheckedInputProtocolException(e);
+                                    }
+                                }
+                            }).apply(iprot);
+                        } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
+                             throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.CULTURAL_CONTEXT_TEXTS, e.getCause());
+                        }
+                        break;
+                    }
+                    case "genders": {
+                        try {
+                            genders = (new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableMap<org.dressdiscover.api.models.gender.Gender, com.google.common.primitives.UnsignedInteger>>() {
+                                @Override
+                                public com.google.common.collect.ImmutableMap<org.dressdiscover.api.models.gender.Gender, com.google.common.primitives.UnsignedInteger> apply(final org.thryft.protocol.InputProtocol iprot) {
+                                    try {
+                                        final org.thryft.protocol.MapBegin mapBegin = iprot.readMapBegin();
+                                        final com.google.common.collect.ImmutableMap.Builder<org.dressdiscover.api.models.gender.Gender, com.google.common.primitives.UnsignedInteger> map = com.google.common.collect.ImmutableMap.builder();
+                                        for (int entryI = 0; entryI < mapBegin.getSize(); entryI++) {
+                                            final org.dressdiscover.api.models.gender.Gender key;
+                                            key = iprot.readEnum(org.dressdiscover.api.models.gender.Gender.class);
+                                            final com.google.common.primitives.UnsignedInteger value;
+                                            try {
+                                                value = iprot.readU32();
+                                            } catch (final NumberFormatException e) {
+                                                 throw new org.thryft.protocol.InputProtocolException(e);
+                                            }
+                                            map.put(key, value);
+                                        }
+                                        iprot.readMapEnd();
+                                        return map.build();
+                                    } catch (final org.thryft.protocol.InputProtocolException e) {
+                                        throw new org.thryft.protocol.UncheckedInputProtocolException(e);
+                                    }
+                                }
+                            }).apply(iprot);
+                        } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
+                             throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.GENDERS, e.getCause());
+                        }
+                        break;
+                    }
+                    case "institutions": {
+                        try {
+                            institutions = (new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableMap<org.dressdiscover.api.models.institution.InstitutionId, com.google.common.primitives.UnsignedInteger>>() {
+                                @Override
+                                public com.google.common.collect.ImmutableMap<org.dressdiscover.api.models.institution.InstitutionId, com.google.common.primitives.UnsignedInteger> apply(final org.thryft.protocol.InputProtocol iprot) {
+                                    try {
+                                        final org.thryft.protocol.MapBegin mapBegin = iprot.readMapBegin();
+                                        final com.google.common.collect.ImmutableMap.Builder<org.dressdiscover.api.models.institution.InstitutionId, com.google.common.primitives.UnsignedInteger> map = com.google.common.collect.ImmutableMap.builder();
+                                        for (int entryI = 0; entryI < mapBegin.getSize(); entryI++) {
+                                            final org.dressdiscover.api.models.institution.InstitutionId key;
+                                            try {
+                                                key = org.dressdiscover.api.models.institution.InstitutionId.parse(iprot.readString());
+                                            } catch (final org.dressdiscover.api.models.institution.InvalidInstitutionIdException e) {
+                                                 throw new org.thryft.protocol.InputProtocolException(e);
+                                            }
+                                            final com.google.common.primitives.UnsignedInteger value;
+                                            try {
+                                                value = iprot.readU32();
+                                            } catch (final NumberFormatException e) {
+                                                 throw new org.thryft.protocol.InputProtocolException(e);
+                                            }
+                                            map.put(key, value);
+                                        }
+                                        iprot.readMapEnd();
+                                        return map.build();
+                                    } catch (final org.thryft.protocol.InputProtocolException e) {
+                                        throw new org.thryft.protocol.UncheckedInputProtocolException(e);
+                                    }
+                                }
+                            }).apply(iprot);
+                        } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
+                             throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.INSTITUTIONS, e.getCause());
+                        }
+                        break;
+                    }
+                    case "location_name_texts": {
+                        try {
+                            locationNameTexts = (new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger>>() {
+                                @Override
+                                public com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger> apply(final org.thryft.protocol.InputProtocol iprot) {
+                                    try {
+                                        final org.thryft.protocol.MapBegin mapBegin = iprot.readMapBegin();
+                                        final com.google.common.collect.ImmutableMap.Builder<String, com.google.common.primitives.UnsignedInteger> map = com.google.common.collect.ImmutableMap.builder();
+                                        for (int entryI = 0; entryI < mapBegin.getSize(); entryI++) {
+                                            final String key;
+                                            key = iprot.readString();
+                                            final com.google.common.primitives.UnsignedInteger value;
+                                            try {
+                                                value = iprot.readU32();
+                                            } catch (final NumberFormatException e) {
+                                                 throw new org.thryft.protocol.InputProtocolException(e);
+                                            }
+                                            map.put(key, value);
+                                        }
+                                        iprot.readMapEnd();
+                                        return map.build();
+                                    } catch (final org.thryft.protocol.InputProtocolException e) {
+                                        throw new org.thryft.protocol.UncheckedInputProtocolException(e);
+                                    }
+                                }
+                            }).apply(iprot);
+                        } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
+                             throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.LOCATION_NAME_TEXTS, e.getCause());
+                        }
+                        break;
+                    }
+                    case "material_texts": {
+                        try {
+                            materialTexts = (new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger>>() {
+                                @Override
+                                public com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger> apply(final org.thryft.protocol.InputProtocol iprot) {
+                                    try {
+                                        final org.thryft.protocol.MapBegin mapBegin = iprot.readMapBegin();
+                                        final com.google.common.collect.ImmutableMap.Builder<String, com.google.common.primitives.UnsignedInteger> map = com.google.common.collect.ImmutableMap.builder();
+                                        for (int entryI = 0; entryI < mapBegin.getSize(); entryI++) {
+                                            final String key;
+                                            key = iprot.readString();
+                                            final com.google.common.primitives.UnsignedInteger value;
+                                            try {
+                                                value = iprot.readU32();
+                                            } catch (final NumberFormatException e) {
+                                                 throw new org.thryft.protocol.InputProtocolException(e);
+                                            }
+                                            map.put(key, value);
+                                        }
+                                        iprot.readMapEnd();
+                                        return map.build();
+                                    } catch (final org.thryft.protocol.InputProtocolException e) {
+                                        throw new org.thryft.protocol.UncheckedInputProtocolException(e);
+                                    }
+                                }
+                            }).apply(iprot);
+                        } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
+                             throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.MATERIAL_TEXTS, e.getCause());
+                        }
+                        break;
+                    }
+                    case "subject_term_texts": {
+                        try {
+                            subjectTermTexts = (new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger>>() {
+                                @Override
+                                public com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger> apply(final org.thryft.protocol.InputProtocol iprot) {
+                                    try {
+                                        final org.thryft.protocol.MapBegin mapBegin = iprot.readMapBegin();
+                                        final com.google.common.collect.ImmutableMap.Builder<String, com.google.common.primitives.UnsignedInteger> map = com.google.common.collect.ImmutableMap.builder();
+                                        for (int entryI = 0; entryI < mapBegin.getSize(); entryI++) {
+                                            final String key;
+                                            key = iprot.readString();
+                                            final com.google.common.primitives.UnsignedInteger value;
+                                            try {
+                                                value = iprot.readU32();
+                                            } catch (final NumberFormatException e) {
+                                                 throw new org.thryft.protocol.InputProtocolException(e);
+                                            }
+                                            map.put(key, value);
+                                        }
+                                        iprot.readMapEnd();
+                                        return map.build();
+                                    } catch (final org.thryft.protocol.InputProtocolException e) {
+                                        throw new org.thryft.protocol.UncheckedInputProtocolException(e);
+                                    }
+                                }
+                            }).apply(iprot);
+                        } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
+                             throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.SUBJECT_TERM_TEXTS, e.getCause());
+                        }
+                        break;
+                    }
+                    case "technique_texts": {
+                        try {
+                            techniqueTexts = (new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger>>() {
+                                @Override
+                                public com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger> apply(final org.thryft.protocol.InputProtocol iprot) {
+                                    try {
+                                        final org.thryft.protocol.MapBegin mapBegin = iprot.readMapBegin();
+                                        final com.google.common.collect.ImmutableMap.Builder<String, com.google.common.primitives.UnsignedInteger> map = com.google.common.collect.ImmutableMap.builder();
+                                        for (int entryI = 0; entryI < mapBegin.getSize(); entryI++) {
+                                            final String key;
+                                            key = iprot.readString();
+                                            final com.google.common.primitives.UnsignedInteger value;
+                                            try {
+                                                value = iprot.readU32();
+                                            } catch (final NumberFormatException e) {
+                                                 throw new org.thryft.protocol.InputProtocolException(e);
+                                            }
+                                            map.put(key, value);
+                                        }
+                                        iprot.readMapEnd();
+                                        return map.build();
+                                    } catch (final org.thryft.protocol.InputProtocolException e) {
+                                        throw new org.thryft.protocol.UncheckedInputProtocolException(e);
+                                    }
+                                }
+                            }).apply(iprot);
+                        } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
+                             throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.TECHNIQUE_TEXTS, e.getCause());
+                        }
+                        break;
+                    }
+                    case "work_type_texts": {
+                        try {
+                            workTypeTexts = (new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger>>() {
+                                @Override
+                                public com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger> apply(final org.thryft.protocol.InputProtocol iprot) {
+                                    try {
+                                        final org.thryft.protocol.MapBegin mapBegin = iprot.readMapBegin();
+                                        final com.google.common.collect.ImmutableMap.Builder<String, com.google.common.primitives.UnsignedInteger> map = com.google.common.collect.ImmutableMap.builder();
+                                        for (int entryI = 0; entryI < mapBegin.getSize(); entryI++) {
+                                            final String key;
+                                            key = iprot.readString();
+                                            final com.google.common.primitives.UnsignedInteger value;
+                                            try {
+                                                value = iprot.readU32();
+                                            } catch (final NumberFormatException e) {
+                                                 throw new org.thryft.protocol.InputProtocolException(e);
+                                            }
+                                            map.put(key, value);
+                                        }
+                                        iprot.readMapEnd();
+                                        return map.build();
+                                    } catch (final org.thryft.protocol.InputProtocolException e) {
+                                        throw new org.thryft.protocol.UncheckedInputProtocolException(e);
+                                    }
+                                }
+                            }).apply(iprot);
+                        } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
+                             throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.WORK_TYPE_TEXTS, e.getCause());
+                        }
+                        break;
+                    }
+                    default:
+                        if (unknownFieldCallback.isPresent()) {
+                            unknownFieldCallback.get().apply(ifield);
+                        }
+                        break;
+                    }
+                    iprot.readFieldEnd();
+                }
+                iprot.readStructEnd();
+            } catch (final RuntimeException e) {
+                throw new IllegalStateException(e);
+            }
             return this;
         }
 
@@ -1601,312 +1689,9 @@ public final class ObjectFacets implements org.thryft.Struct {
         com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger> techniqueTexts = null;
         com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger> workTypeTexts = null;
 
-        iprot.readListBegin();
-        categories = (new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger>>() {
-            @Override
-            public com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger> apply(final org.thryft.protocol.InputProtocol iprot) {
-                try {
-                    final org.thryft.protocol.MapBegin mapBegin = iprot.readMapBegin();
-                    final com.google.common.collect.ImmutableMap.Builder<String, com.google.common.primitives.UnsignedInteger> map = com.google.common.collect.ImmutableMap.builder();
-                    for (int entryI = 0; entryI < mapBegin.getSize(); entryI++) {
-                        final String key;
-                        key = iprot.readString();
-                        final com.google.common.primitives.UnsignedInteger value;
-                        try {
-                            value = iprot.readU32();
-                        } catch (final NumberFormatException e) {
-                             throw new org.thryft.protocol.InputProtocolException(e);
-                        }
-                        map.put(key, value);
-                    }
-                    iprot.readMapEnd();
-                    return map.build();
-                } catch (final org.thryft.protocol.InputProtocolException e) {
-                    return com.google.common.collect.ImmutableMap.of();
-                }
-            }
-        }).apply(iprot);
-        collections = (new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableMap<org.dressdiscover.api.models.collection.CollectionId, com.google.common.primitives.UnsignedInteger>>() {
-            @Override
-            public com.google.common.collect.ImmutableMap<org.dressdiscover.api.models.collection.CollectionId, com.google.common.primitives.UnsignedInteger> apply(final org.thryft.protocol.InputProtocol iprot) {
-                try {
-                    final org.thryft.protocol.MapBegin mapBegin = iprot.readMapBegin();
-                    final com.google.common.collect.ImmutableMap.Builder<org.dressdiscover.api.models.collection.CollectionId, com.google.common.primitives.UnsignedInteger> map = com.google.common.collect.ImmutableMap.builder();
-                    for (int entryI = 0; entryI < mapBegin.getSize(); entryI++) {
-                        final org.dressdiscover.api.models.collection.CollectionId key;
-                        try {
-                            key = org.dressdiscover.api.models.collection.CollectionId.parse(iprot.readString());
-                        } catch (final org.dressdiscover.api.models.collection.InvalidCollectionIdException e) {
-                             throw new org.thryft.protocol.InputProtocolException(e);
-                        }
-                        final com.google.common.primitives.UnsignedInteger value;
-                        try {
-                            value = iprot.readU32();
-                        } catch (final NumberFormatException e) {
-                             throw new org.thryft.protocol.InputProtocolException(e);
-                        }
-                        map.put(key, value);
-                    }
-                    iprot.readMapEnd();
-                    return map.build();
-                } catch (final org.thryft.protocol.InputProtocolException e) {
-                    return com.google.common.collect.ImmutableMap.of();
-                }
-            }
-        }).apply(iprot);
-        colorTexts = (new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger>>() {
-            @Override
-            public com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger> apply(final org.thryft.protocol.InputProtocol iprot) {
-                try {
-                    final org.thryft.protocol.MapBegin mapBegin = iprot.readMapBegin();
-                    final com.google.common.collect.ImmutableMap.Builder<String, com.google.common.primitives.UnsignedInteger> map = com.google.common.collect.ImmutableMap.builder();
-                    for (int entryI = 0; entryI < mapBegin.getSize(); entryI++) {
-                        final String key;
-                        key = iprot.readString();
-                        final com.google.common.primitives.UnsignedInteger value;
-                        try {
-                            value = iprot.readU32();
-                        } catch (final NumberFormatException e) {
-                             throw new org.thryft.protocol.InputProtocolException(e);
-                        }
-                        map.put(key, value);
-                    }
-                    iprot.readMapEnd();
-                    return map.build();
-                } catch (final org.thryft.protocol.InputProtocolException e) {
-                    return com.google.common.collect.ImmutableMap.of();
-                }
-            }
-        }).apply(iprot);
-        culturalContextTexts = (new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger>>() {
-            @Override
-            public com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger> apply(final org.thryft.protocol.InputProtocol iprot) {
-                try {
-                    final org.thryft.protocol.MapBegin mapBegin = iprot.readMapBegin();
-                    final com.google.common.collect.ImmutableMap.Builder<String, com.google.common.primitives.UnsignedInteger> map = com.google.common.collect.ImmutableMap.builder();
-                    for (int entryI = 0; entryI < mapBegin.getSize(); entryI++) {
-                        final String key;
-                        key = iprot.readString();
-                        final com.google.common.primitives.UnsignedInteger value;
-                        try {
-                            value = iprot.readU32();
-                        } catch (final NumberFormatException e) {
-                             throw new org.thryft.protocol.InputProtocolException(e);
-                        }
-                        map.put(key, value);
-                    }
-                    iprot.readMapEnd();
-                    return map.build();
-                } catch (final org.thryft.protocol.InputProtocolException e) {
-                    return com.google.common.collect.ImmutableMap.of();
-                }
-            }
-        }).apply(iprot);
-        genders = (new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableMap<org.dressdiscover.api.models.gender.Gender, com.google.common.primitives.UnsignedInteger>>() {
-            @Override
-            public com.google.common.collect.ImmutableMap<org.dressdiscover.api.models.gender.Gender, com.google.common.primitives.UnsignedInteger> apply(final org.thryft.protocol.InputProtocol iprot) {
-                try {
-                    final org.thryft.protocol.MapBegin mapBegin = iprot.readMapBegin();
-                    final com.google.common.collect.ImmutableMap.Builder<org.dressdiscover.api.models.gender.Gender, com.google.common.primitives.UnsignedInteger> map = com.google.common.collect.ImmutableMap.builder();
-                    for (int entryI = 0; entryI < mapBegin.getSize(); entryI++) {
-                        final org.dressdiscover.api.models.gender.Gender key;
-                        try {
-                            key = iprot.readEnum(org.dressdiscover.api.models.gender.Gender.class);
-                        } catch (final IllegalArgumentException e) {
-                             throw new org.thryft.protocol.InputProtocolException(e);
-                        }
-                        final com.google.common.primitives.UnsignedInteger value;
-                        try {
-                            value = iprot.readU32();
-                        } catch (final NumberFormatException e) {
-                             throw new org.thryft.protocol.InputProtocolException(e);
-                        }
-                        map.put(key, value);
-                    }
-                    iprot.readMapEnd();
-                    return map.build();
-                } catch (final org.thryft.protocol.InputProtocolException e) {
-                    return com.google.common.collect.ImmutableMap.of();
-                }
-            }
-        }).apply(iprot);
-        institutions = (new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableMap<org.dressdiscover.api.models.institution.InstitutionId, com.google.common.primitives.UnsignedInteger>>() {
-            @Override
-            public com.google.common.collect.ImmutableMap<org.dressdiscover.api.models.institution.InstitutionId, com.google.common.primitives.UnsignedInteger> apply(final org.thryft.protocol.InputProtocol iprot) {
-                try {
-                    final org.thryft.protocol.MapBegin mapBegin = iprot.readMapBegin();
-                    final com.google.common.collect.ImmutableMap.Builder<org.dressdiscover.api.models.institution.InstitutionId, com.google.common.primitives.UnsignedInteger> map = com.google.common.collect.ImmutableMap.builder();
-                    for (int entryI = 0; entryI < mapBegin.getSize(); entryI++) {
-                        final org.dressdiscover.api.models.institution.InstitutionId key;
-                        try {
-                            key = org.dressdiscover.api.models.institution.InstitutionId.parse(iprot.readString());
-                        } catch (final org.dressdiscover.api.models.institution.InvalidInstitutionIdException e) {
-                             throw new org.thryft.protocol.InputProtocolException(e);
-                        }
-                        final com.google.common.primitives.UnsignedInteger value;
-                        try {
-                            value = iprot.readU32();
-                        } catch (final NumberFormatException e) {
-                             throw new org.thryft.protocol.InputProtocolException(e);
-                        }
-                        map.put(key, value);
-                    }
-                    iprot.readMapEnd();
-                    return map.build();
-                } catch (final org.thryft.protocol.InputProtocolException e) {
-                    return com.google.common.collect.ImmutableMap.of();
-                }
-            }
-        }).apply(iprot);
-        locationNameTexts = (new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger>>() {
-            @Override
-            public com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger> apply(final org.thryft.protocol.InputProtocol iprot) {
-                try {
-                    final org.thryft.protocol.MapBegin mapBegin = iprot.readMapBegin();
-                    final com.google.common.collect.ImmutableMap.Builder<String, com.google.common.primitives.UnsignedInteger> map = com.google.common.collect.ImmutableMap.builder();
-                    for (int entryI = 0; entryI < mapBegin.getSize(); entryI++) {
-                        final String key;
-                        key = iprot.readString();
-                        final com.google.common.primitives.UnsignedInteger value;
-                        try {
-                            value = iprot.readU32();
-                        } catch (final NumberFormatException e) {
-                             throw new org.thryft.protocol.InputProtocolException(e);
-                        }
-                        map.put(key, value);
-                    }
-                    iprot.readMapEnd();
-                    return map.build();
-                } catch (final org.thryft.protocol.InputProtocolException e) {
-                    return com.google.common.collect.ImmutableMap.of();
-                }
-            }
-        }).apply(iprot);
-        materialTexts = (new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger>>() {
-            @Override
-            public com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger> apply(final org.thryft.protocol.InputProtocol iprot) {
-                try {
-                    final org.thryft.protocol.MapBegin mapBegin = iprot.readMapBegin();
-                    final com.google.common.collect.ImmutableMap.Builder<String, com.google.common.primitives.UnsignedInteger> map = com.google.common.collect.ImmutableMap.builder();
-                    for (int entryI = 0; entryI < mapBegin.getSize(); entryI++) {
-                        final String key;
-                        key = iprot.readString();
-                        final com.google.common.primitives.UnsignedInteger value;
-                        try {
-                            value = iprot.readU32();
-                        } catch (final NumberFormatException e) {
-                             throw new org.thryft.protocol.InputProtocolException(e);
-                        }
-                        map.put(key, value);
-                    }
-                    iprot.readMapEnd();
-                    return map.build();
-                } catch (final org.thryft.protocol.InputProtocolException e) {
-                    return com.google.common.collect.ImmutableMap.of();
-                }
-            }
-        }).apply(iprot);
-        subjectTermTexts = (new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger>>() {
-            @Override
-            public com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger> apply(final org.thryft.protocol.InputProtocol iprot) {
-                try {
-                    final org.thryft.protocol.MapBegin mapBegin = iprot.readMapBegin();
-                    final com.google.common.collect.ImmutableMap.Builder<String, com.google.common.primitives.UnsignedInteger> map = com.google.common.collect.ImmutableMap.builder();
-                    for (int entryI = 0; entryI < mapBegin.getSize(); entryI++) {
-                        final String key;
-                        key = iprot.readString();
-                        final com.google.common.primitives.UnsignedInteger value;
-                        try {
-                            value = iprot.readU32();
-                        } catch (final NumberFormatException e) {
-                             throw new org.thryft.protocol.InputProtocolException(e);
-                        }
-                        map.put(key, value);
-                    }
-                    iprot.readMapEnd();
-                    return map.build();
-                } catch (final org.thryft.protocol.InputProtocolException e) {
-                    return com.google.common.collect.ImmutableMap.of();
-                }
-            }
-        }).apply(iprot);
-        techniqueTexts = (new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger>>() {
-            @Override
-            public com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger> apply(final org.thryft.protocol.InputProtocol iprot) {
-                try {
-                    final org.thryft.protocol.MapBegin mapBegin = iprot.readMapBegin();
-                    final com.google.common.collect.ImmutableMap.Builder<String, com.google.common.primitives.UnsignedInteger> map = com.google.common.collect.ImmutableMap.builder();
-                    for (int entryI = 0; entryI < mapBegin.getSize(); entryI++) {
-                        final String key;
-                        key = iprot.readString();
-                        final com.google.common.primitives.UnsignedInteger value;
-                        try {
-                            value = iprot.readU32();
-                        } catch (final NumberFormatException e) {
-                             throw new org.thryft.protocol.InputProtocolException(e);
-                        }
-                        map.put(key, value);
-                    }
-                    iprot.readMapEnd();
-                    return map.build();
-                } catch (final org.thryft.protocol.InputProtocolException e) {
-                    return com.google.common.collect.ImmutableMap.of();
-                }
-            }
-        }).apply(iprot);
-        workTypeTexts = (new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger>>() {
-            @Override
-            public com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger> apply(final org.thryft.protocol.InputProtocol iprot) {
-                try {
-                    final org.thryft.protocol.MapBegin mapBegin = iprot.readMapBegin();
-                    final com.google.common.collect.ImmutableMap.Builder<String, com.google.common.primitives.UnsignedInteger> map = com.google.common.collect.ImmutableMap.builder();
-                    for (int entryI = 0; entryI < mapBegin.getSize(); entryI++) {
-                        final String key;
-                        key = iprot.readString();
-                        final com.google.common.primitives.UnsignedInteger value;
-                        try {
-                            value = iprot.readU32();
-                        } catch (final NumberFormatException e) {
-                             throw new org.thryft.protocol.InputProtocolException(e);
-                        }
-                        map.put(key, value);
-                    }
-                    iprot.readMapEnd();
-                    return map.build();
-                } catch (final org.thryft.protocol.InputProtocolException e) {
-                    return com.google.common.collect.ImmutableMap.of();
-                }
-            }
-        }).apply(iprot);
-        iprot.readListEnd();
-        return new ObjectFacets(DefaultReadValidator.getInstance().validateCategories(categories), DefaultReadValidator.getInstance().validateCollections(collections), DefaultReadValidator.getInstance().validateColorTexts(colorTexts), DefaultReadValidator.getInstance().validateCulturalContextTexts(culturalContextTexts), DefaultReadValidator.getInstance().validateGenders(genders), DefaultReadValidator.getInstance().validateInstitutions(institutions), DefaultReadValidator.getInstance().validateLocationNameTexts(locationNameTexts), DefaultReadValidator.getInstance().validateMaterialTexts(materialTexts), DefaultReadValidator.getInstance().validateSubjectTermTexts(subjectTermTexts), DefaultReadValidator.getInstance().validateTechniqueTexts(techniqueTexts), DefaultReadValidator.getInstance().validateWorkTypeTexts(workTypeTexts), NopConstructionValidator.getInstance());
-    }
-
-    public static ObjectFacets readAsStruct(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
-        return readAsStruct(iprot, com.google.common.base.Optional.<UnknownFieldCallback> absent());
-    }
-
-    public static ObjectFacets readAsStruct(final org.thryft.protocol.InputProtocol iprot, final com.google.common.base.Optional<UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
-        com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger> categories = null;
-        com.google.common.collect.ImmutableMap<org.dressdiscover.api.models.collection.CollectionId, com.google.common.primitives.UnsignedInteger> collections = null;
-        com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger> colorTexts = null;
-        com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger> culturalContextTexts = null;
-        com.google.common.collect.ImmutableMap<org.dressdiscover.api.models.gender.Gender, com.google.common.primitives.UnsignedInteger> genders = null;
-        com.google.common.collect.ImmutableMap<org.dressdiscover.api.models.institution.InstitutionId, com.google.common.primitives.UnsignedInteger> institutions = null;
-        com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger> locationNameTexts = null;
-        com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger> materialTexts = null;
-        com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger> subjectTermTexts = null;
-        com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger> techniqueTexts = null;
-        com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger> workTypeTexts = null;
-
-        iprot.readStructBegin();
-        while (true) {
-            final org.thryft.protocol.FieldBegin ifield = iprot.readFieldBegin();
-            if (ifield.getType() == org.thryft.protocol.Type.STOP) {
-                break;
-            }
-            switch (ifield.getName()) {
-            case "categories": {
+        try {
+            iprot.readListBegin();
+            try {
                 categories = (new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger>>() {
                     @Override
                     public com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger> apply(final org.thryft.protocol.InputProtocol iprot) {
@@ -1927,13 +1712,14 @@ public final class ObjectFacets implements org.thryft.Struct {
                             iprot.readMapEnd();
                             return map.build();
                         } catch (final org.thryft.protocol.InputProtocolException e) {
-                            return com.google.common.collect.ImmutableMap.of();
+                            throw new org.thryft.protocol.UncheckedInputProtocolException(e);
                         }
                     }
                 }).apply(iprot);
-                break;
+            } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
+                 throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.CATEGORIES, e.getCause());
             }
-            case "collections": {
+            try {
                 collections = (new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableMap<org.dressdiscover.api.models.collection.CollectionId, com.google.common.primitives.UnsignedInteger>>() {
                     @Override
                     public com.google.common.collect.ImmutableMap<org.dressdiscover.api.models.collection.CollectionId, com.google.common.primitives.UnsignedInteger> apply(final org.thryft.protocol.InputProtocol iprot) {
@@ -1958,13 +1744,14 @@ public final class ObjectFacets implements org.thryft.Struct {
                             iprot.readMapEnd();
                             return map.build();
                         } catch (final org.thryft.protocol.InputProtocolException e) {
-                            return com.google.common.collect.ImmutableMap.of();
+                            throw new org.thryft.protocol.UncheckedInputProtocolException(e);
                         }
                     }
                 }).apply(iprot);
-                break;
+            } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
+                 throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.COLLECTIONS, e.getCause());
             }
-            case "color_texts": {
+            try {
                 colorTexts = (new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger>>() {
                     @Override
                     public com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger> apply(final org.thryft.protocol.InputProtocol iprot) {
@@ -1985,13 +1772,14 @@ public final class ObjectFacets implements org.thryft.Struct {
                             iprot.readMapEnd();
                             return map.build();
                         } catch (final org.thryft.protocol.InputProtocolException e) {
-                            return com.google.common.collect.ImmutableMap.of();
+                            throw new org.thryft.protocol.UncheckedInputProtocolException(e);
                         }
                     }
                 }).apply(iprot);
-                break;
+            } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
+                 throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.COLOR_TEXTS, e.getCause());
             }
-            case "cultural_context_texts": {
+            try {
                 culturalContextTexts = (new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger>>() {
                     @Override
                     public com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger> apply(final org.thryft.protocol.InputProtocol iprot) {
@@ -2012,13 +1800,14 @@ public final class ObjectFacets implements org.thryft.Struct {
                             iprot.readMapEnd();
                             return map.build();
                         } catch (final org.thryft.protocol.InputProtocolException e) {
-                            return com.google.common.collect.ImmutableMap.of();
+                            throw new org.thryft.protocol.UncheckedInputProtocolException(e);
                         }
                     }
                 }).apply(iprot);
-                break;
+            } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
+                 throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.CULTURAL_CONTEXT_TEXTS, e.getCause());
             }
-            case "genders": {
+            try {
                 genders = (new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableMap<org.dressdiscover.api.models.gender.Gender, com.google.common.primitives.UnsignedInteger>>() {
                     @Override
                     public com.google.common.collect.ImmutableMap<org.dressdiscover.api.models.gender.Gender, com.google.common.primitives.UnsignedInteger> apply(final org.thryft.protocol.InputProtocol iprot) {
@@ -2027,11 +1816,7 @@ public final class ObjectFacets implements org.thryft.Struct {
                             final com.google.common.collect.ImmutableMap.Builder<org.dressdiscover.api.models.gender.Gender, com.google.common.primitives.UnsignedInteger> map = com.google.common.collect.ImmutableMap.builder();
                             for (int entryI = 0; entryI < mapBegin.getSize(); entryI++) {
                                 final org.dressdiscover.api.models.gender.Gender key;
-                                try {
-                                    key = iprot.readEnum(org.dressdiscover.api.models.gender.Gender.class);
-                                } catch (final IllegalArgumentException e) {
-                                     throw new org.thryft.protocol.InputProtocolException(e);
-                                }
+                                key = iprot.readEnum(org.dressdiscover.api.models.gender.Gender.class);
                                 final com.google.common.primitives.UnsignedInteger value;
                                 try {
                                     value = iprot.readU32();
@@ -2043,13 +1828,14 @@ public final class ObjectFacets implements org.thryft.Struct {
                             iprot.readMapEnd();
                             return map.build();
                         } catch (final org.thryft.protocol.InputProtocolException e) {
-                            return com.google.common.collect.ImmutableMap.of();
+                            throw new org.thryft.protocol.UncheckedInputProtocolException(e);
                         }
                     }
                 }).apply(iprot);
-                break;
+            } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
+                 throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.GENDERS, e.getCause());
             }
-            case "institutions": {
+            try {
                 institutions = (new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableMap<org.dressdiscover.api.models.institution.InstitutionId, com.google.common.primitives.UnsignedInteger>>() {
                     @Override
                     public com.google.common.collect.ImmutableMap<org.dressdiscover.api.models.institution.InstitutionId, com.google.common.primitives.UnsignedInteger> apply(final org.thryft.protocol.InputProtocol iprot) {
@@ -2074,13 +1860,14 @@ public final class ObjectFacets implements org.thryft.Struct {
                             iprot.readMapEnd();
                             return map.build();
                         } catch (final org.thryft.protocol.InputProtocolException e) {
-                            return com.google.common.collect.ImmutableMap.of();
+                            throw new org.thryft.protocol.UncheckedInputProtocolException(e);
                         }
                     }
                 }).apply(iprot);
-                break;
+            } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
+                 throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.INSTITUTIONS, e.getCause());
             }
-            case "location_name_texts": {
+            try {
                 locationNameTexts = (new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger>>() {
                     @Override
                     public com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger> apply(final org.thryft.protocol.InputProtocol iprot) {
@@ -2101,13 +1888,14 @@ public final class ObjectFacets implements org.thryft.Struct {
                             iprot.readMapEnd();
                             return map.build();
                         } catch (final org.thryft.protocol.InputProtocolException e) {
-                            return com.google.common.collect.ImmutableMap.of();
+                            throw new org.thryft.protocol.UncheckedInputProtocolException(e);
                         }
                     }
                 }).apply(iprot);
-                break;
+            } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
+                 throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.LOCATION_NAME_TEXTS, e.getCause());
             }
-            case "material_texts": {
+            try {
                 materialTexts = (new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger>>() {
                     @Override
                     public com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger> apply(final org.thryft.protocol.InputProtocol iprot) {
@@ -2128,13 +1916,14 @@ public final class ObjectFacets implements org.thryft.Struct {
                             iprot.readMapEnd();
                             return map.build();
                         } catch (final org.thryft.protocol.InputProtocolException e) {
-                            return com.google.common.collect.ImmutableMap.of();
+                            throw new org.thryft.protocol.UncheckedInputProtocolException(e);
                         }
                     }
                 }).apply(iprot);
-                break;
+            } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
+                 throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.MATERIAL_TEXTS, e.getCause());
             }
-            case "subject_term_texts": {
+            try {
                 subjectTermTexts = (new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger>>() {
                     @Override
                     public com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger> apply(final org.thryft.protocol.InputProtocol iprot) {
@@ -2155,13 +1944,14 @@ public final class ObjectFacets implements org.thryft.Struct {
                             iprot.readMapEnd();
                             return map.build();
                         } catch (final org.thryft.protocol.InputProtocolException e) {
-                            return com.google.common.collect.ImmutableMap.of();
+                            throw new org.thryft.protocol.UncheckedInputProtocolException(e);
                         }
                     }
                 }).apply(iprot);
-                break;
+            } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
+                 throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.SUBJECT_TERM_TEXTS, e.getCause());
             }
-            case "technique_texts": {
+            try {
                 techniqueTexts = (new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger>>() {
                     @Override
                     public com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger> apply(final org.thryft.protocol.InputProtocol iprot) {
@@ -2182,13 +1972,14 @@ public final class ObjectFacets implements org.thryft.Struct {
                             iprot.readMapEnd();
                             return map.build();
                         } catch (final org.thryft.protocol.InputProtocolException e) {
-                            return com.google.common.collect.ImmutableMap.of();
+                            throw new org.thryft.protocol.UncheckedInputProtocolException(e);
                         }
                     }
                 }).apply(iprot);
-                break;
+            } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
+                 throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.TECHNIQUE_TEXTS, e.getCause());
             }
-            case "work_type_texts": {
+            try {
                 workTypeTexts = (new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger>>() {
                     @Override
                     public com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger> apply(final org.thryft.protocol.InputProtocol iprot) {
@@ -2209,21 +2000,406 @@ public final class ObjectFacets implements org.thryft.Struct {
                             iprot.readMapEnd();
                             return map.build();
                         } catch (final org.thryft.protocol.InputProtocolException e) {
-                            return com.google.common.collect.ImmutableMap.of();
+                            throw new org.thryft.protocol.UncheckedInputProtocolException(e);
                         }
                     }
                 }).apply(iprot);
-                break;
+            } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
+                 throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.WORK_TYPE_TEXTS, e.getCause());
             }
-            default:
-                if (unknownFieldCallback.isPresent()) {
-                    unknownFieldCallback.get().apply(ifield);
-                }
-                break;
-            }
-            iprot.readFieldEnd();
+            iprot.readListEnd();
+        } catch (final RuntimeException e) {
+            throw new IllegalStateException(e);
         }
-        iprot.readStructEnd();
+        return new ObjectFacets(DefaultReadValidator.getInstance().validateCategories(categories), DefaultReadValidator.getInstance().validateCollections(collections), DefaultReadValidator.getInstance().validateColorTexts(colorTexts), DefaultReadValidator.getInstance().validateCulturalContextTexts(culturalContextTexts), DefaultReadValidator.getInstance().validateGenders(genders), DefaultReadValidator.getInstance().validateInstitutions(institutions), DefaultReadValidator.getInstance().validateLocationNameTexts(locationNameTexts), DefaultReadValidator.getInstance().validateMaterialTexts(materialTexts), DefaultReadValidator.getInstance().validateSubjectTermTexts(subjectTermTexts), DefaultReadValidator.getInstance().validateTechniqueTexts(techniqueTexts), DefaultReadValidator.getInstance().validateWorkTypeTexts(workTypeTexts), NopConstructionValidator.getInstance());
+    }
+
+    public static ObjectFacets readAsStruct(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
+        return readAsStruct(iprot, com.google.common.base.Optional.<UnknownFieldCallback> absent());
+    }
+
+    public static ObjectFacets readAsStruct(final org.thryft.protocol.InputProtocol iprot, final com.google.common.base.Optional<UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
+        com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger> categories = null;
+        com.google.common.collect.ImmutableMap<org.dressdiscover.api.models.collection.CollectionId, com.google.common.primitives.UnsignedInteger> collections = null;
+        com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger> colorTexts = null;
+        com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger> culturalContextTexts = null;
+        com.google.common.collect.ImmutableMap<org.dressdiscover.api.models.gender.Gender, com.google.common.primitives.UnsignedInteger> genders = null;
+        com.google.common.collect.ImmutableMap<org.dressdiscover.api.models.institution.InstitutionId, com.google.common.primitives.UnsignedInteger> institutions = null;
+        com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger> locationNameTexts = null;
+        com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger> materialTexts = null;
+        com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger> subjectTermTexts = null;
+        com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger> techniqueTexts = null;
+        com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger> workTypeTexts = null;
+
+        try {
+            iprot.readStructBegin();
+            while (true) {
+                final org.thryft.protocol.FieldBegin ifield = iprot.readFieldBegin();
+                if (ifield.getType() == org.thryft.protocol.Type.STOP) {
+                    break;
+                }
+                switch (ifield.getName()) {
+                case "categories": {
+                    try {
+                        categories = (new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger>>() {
+                            @Override
+                            public com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger> apply(final org.thryft.protocol.InputProtocol iprot) {
+                                try {
+                                    final org.thryft.protocol.MapBegin mapBegin = iprot.readMapBegin();
+                                    final com.google.common.collect.ImmutableMap.Builder<String, com.google.common.primitives.UnsignedInteger> map = com.google.common.collect.ImmutableMap.builder();
+                                    for (int entryI = 0; entryI < mapBegin.getSize(); entryI++) {
+                                        final String key;
+                                        key = iprot.readString();
+                                        final com.google.common.primitives.UnsignedInteger value;
+                                        try {
+                                            value = iprot.readU32();
+                                        } catch (final NumberFormatException e) {
+                                             throw new org.thryft.protocol.InputProtocolException(e);
+                                        }
+                                        map.put(key, value);
+                                    }
+                                    iprot.readMapEnd();
+                                    return map.build();
+                                } catch (final org.thryft.protocol.InputProtocolException e) {
+                                    throw new org.thryft.protocol.UncheckedInputProtocolException(e);
+                                }
+                            }
+                        }).apply(iprot);
+                    } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
+                         throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.CATEGORIES, e.getCause());
+                    }
+                    break;
+                }
+                case "collections": {
+                    try {
+                        collections = (new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableMap<org.dressdiscover.api.models.collection.CollectionId, com.google.common.primitives.UnsignedInteger>>() {
+                            @Override
+                            public com.google.common.collect.ImmutableMap<org.dressdiscover.api.models.collection.CollectionId, com.google.common.primitives.UnsignedInteger> apply(final org.thryft.protocol.InputProtocol iprot) {
+                                try {
+                                    final org.thryft.protocol.MapBegin mapBegin = iprot.readMapBegin();
+                                    final com.google.common.collect.ImmutableMap.Builder<org.dressdiscover.api.models.collection.CollectionId, com.google.common.primitives.UnsignedInteger> map = com.google.common.collect.ImmutableMap.builder();
+                                    for (int entryI = 0; entryI < mapBegin.getSize(); entryI++) {
+                                        final org.dressdiscover.api.models.collection.CollectionId key;
+                                        try {
+                                            key = org.dressdiscover.api.models.collection.CollectionId.parse(iprot.readString());
+                                        } catch (final org.dressdiscover.api.models.collection.InvalidCollectionIdException e) {
+                                             throw new org.thryft.protocol.InputProtocolException(e);
+                                        }
+                                        final com.google.common.primitives.UnsignedInteger value;
+                                        try {
+                                            value = iprot.readU32();
+                                        } catch (final NumberFormatException e) {
+                                             throw new org.thryft.protocol.InputProtocolException(e);
+                                        }
+                                        map.put(key, value);
+                                    }
+                                    iprot.readMapEnd();
+                                    return map.build();
+                                } catch (final org.thryft.protocol.InputProtocolException e) {
+                                    throw new org.thryft.protocol.UncheckedInputProtocolException(e);
+                                }
+                            }
+                        }).apply(iprot);
+                    } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
+                         throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.COLLECTIONS, e.getCause());
+                    }
+                    break;
+                }
+                case "color_texts": {
+                    try {
+                        colorTexts = (new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger>>() {
+                            @Override
+                            public com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger> apply(final org.thryft.protocol.InputProtocol iprot) {
+                                try {
+                                    final org.thryft.protocol.MapBegin mapBegin = iprot.readMapBegin();
+                                    final com.google.common.collect.ImmutableMap.Builder<String, com.google.common.primitives.UnsignedInteger> map = com.google.common.collect.ImmutableMap.builder();
+                                    for (int entryI = 0; entryI < mapBegin.getSize(); entryI++) {
+                                        final String key;
+                                        key = iprot.readString();
+                                        final com.google.common.primitives.UnsignedInteger value;
+                                        try {
+                                            value = iprot.readU32();
+                                        } catch (final NumberFormatException e) {
+                                             throw new org.thryft.protocol.InputProtocolException(e);
+                                        }
+                                        map.put(key, value);
+                                    }
+                                    iprot.readMapEnd();
+                                    return map.build();
+                                } catch (final org.thryft.protocol.InputProtocolException e) {
+                                    throw new org.thryft.protocol.UncheckedInputProtocolException(e);
+                                }
+                            }
+                        }).apply(iprot);
+                    } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
+                         throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.COLOR_TEXTS, e.getCause());
+                    }
+                    break;
+                }
+                case "cultural_context_texts": {
+                    try {
+                        culturalContextTexts = (new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger>>() {
+                            @Override
+                            public com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger> apply(final org.thryft.protocol.InputProtocol iprot) {
+                                try {
+                                    final org.thryft.protocol.MapBegin mapBegin = iprot.readMapBegin();
+                                    final com.google.common.collect.ImmutableMap.Builder<String, com.google.common.primitives.UnsignedInteger> map = com.google.common.collect.ImmutableMap.builder();
+                                    for (int entryI = 0; entryI < mapBegin.getSize(); entryI++) {
+                                        final String key;
+                                        key = iprot.readString();
+                                        final com.google.common.primitives.UnsignedInteger value;
+                                        try {
+                                            value = iprot.readU32();
+                                        } catch (final NumberFormatException e) {
+                                             throw new org.thryft.protocol.InputProtocolException(e);
+                                        }
+                                        map.put(key, value);
+                                    }
+                                    iprot.readMapEnd();
+                                    return map.build();
+                                } catch (final org.thryft.protocol.InputProtocolException e) {
+                                    throw new org.thryft.protocol.UncheckedInputProtocolException(e);
+                                }
+                            }
+                        }).apply(iprot);
+                    } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
+                         throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.CULTURAL_CONTEXT_TEXTS, e.getCause());
+                    }
+                    break;
+                }
+                case "genders": {
+                    try {
+                        genders = (new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableMap<org.dressdiscover.api.models.gender.Gender, com.google.common.primitives.UnsignedInteger>>() {
+                            @Override
+                            public com.google.common.collect.ImmutableMap<org.dressdiscover.api.models.gender.Gender, com.google.common.primitives.UnsignedInteger> apply(final org.thryft.protocol.InputProtocol iprot) {
+                                try {
+                                    final org.thryft.protocol.MapBegin mapBegin = iprot.readMapBegin();
+                                    final com.google.common.collect.ImmutableMap.Builder<org.dressdiscover.api.models.gender.Gender, com.google.common.primitives.UnsignedInteger> map = com.google.common.collect.ImmutableMap.builder();
+                                    for (int entryI = 0; entryI < mapBegin.getSize(); entryI++) {
+                                        final org.dressdiscover.api.models.gender.Gender key;
+                                        key = iprot.readEnum(org.dressdiscover.api.models.gender.Gender.class);
+                                        final com.google.common.primitives.UnsignedInteger value;
+                                        try {
+                                            value = iprot.readU32();
+                                        } catch (final NumberFormatException e) {
+                                             throw new org.thryft.protocol.InputProtocolException(e);
+                                        }
+                                        map.put(key, value);
+                                    }
+                                    iprot.readMapEnd();
+                                    return map.build();
+                                } catch (final org.thryft.protocol.InputProtocolException e) {
+                                    throw new org.thryft.protocol.UncheckedInputProtocolException(e);
+                                }
+                            }
+                        }).apply(iprot);
+                    } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
+                         throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.GENDERS, e.getCause());
+                    }
+                    break;
+                }
+                case "institutions": {
+                    try {
+                        institutions = (new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableMap<org.dressdiscover.api.models.institution.InstitutionId, com.google.common.primitives.UnsignedInteger>>() {
+                            @Override
+                            public com.google.common.collect.ImmutableMap<org.dressdiscover.api.models.institution.InstitutionId, com.google.common.primitives.UnsignedInteger> apply(final org.thryft.protocol.InputProtocol iprot) {
+                                try {
+                                    final org.thryft.protocol.MapBegin mapBegin = iprot.readMapBegin();
+                                    final com.google.common.collect.ImmutableMap.Builder<org.dressdiscover.api.models.institution.InstitutionId, com.google.common.primitives.UnsignedInteger> map = com.google.common.collect.ImmutableMap.builder();
+                                    for (int entryI = 0; entryI < mapBegin.getSize(); entryI++) {
+                                        final org.dressdiscover.api.models.institution.InstitutionId key;
+                                        try {
+                                            key = org.dressdiscover.api.models.institution.InstitutionId.parse(iprot.readString());
+                                        } catch (final org.dressdiscover.api.models.institution.InvalidInstitutionIdException e) {
+                                             throw new org.thryft.protocol.InputProtocolException(e);
+                                        }
+                                        final com.google.common.primitives.UnsignedInteger value;
+                                        try {
+                                            value = iprot.readU32();
+                                        } catch (final NumberFormatException e) {
+                                             throw new org.thryft.protocol.InputProtocolException(e);
+                                        }
+                                        map.put(key, value);
+                                    }
+                                    iprot.readMapEnd();
+                                    return map.build();
+                                } catch (final org.thryft.protocol.InputProtocolException e) {
+                                    throw new org.thryft.protocol.UncheckedInputProtocolException(e);
+                                }
+                            }
+                        }).apply(iprot);
+                    } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
+                         throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.INSTITUTIONS, e.getCause());
+                    }
+                    break;
+                }
+                case "location_name_texts": {
+                    try {
+                        locationNameTexts = (new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger>>() {
+                            @Override
+                            public com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger> apply(final org.thryft.protocol.InputProtocol iprot) {
+                                try {
+                                    final org.thryft.protocol.MapBegin mapBegin = iprot.readMapBegin();
+                                    final com.google.common.collect.ImmutableMap.Builder<String, com.google.common.primitives.UnsignedInteger> map = com.google.common.collect.ImmutableMap.builder();
+                                    for (int entryI = 0; entryI < mapBegin.getSize(); entryI++) {
+                                        final String key;
+                                        key = iprot.readString();
+                                        final com.google.common.primitives.UnsignedInteger value;
+                                        try {
+                                            value = iprot.readU32();
+                                        } catch (final NumberFormatException e) {
+                                             throw new org.thryft.protocol.InputProtocolException(e);
+                                        }
+                                        map.put(key, value);
+                                    }
+                                    iprot.readMapEnd();
+                                    return map.build();
+                                } catch (final org.thryft.protocol.InputProtocolException e) {
+                                    throw new org.thryft.protocol.UncheckedInputProtocolException(e);
+                                }
+                            }
+                        }).apply(iprot);
+                    } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
+                         throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.LOCATION_NAME_TEXTS, e.getCause());
+                    }
+                    break;
+                }
+                case "material_texts": {
+                    try {
+                        materialTexts = (new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger>>() {
+                            @Override
+                            public com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger> apply(final org.thryft.protocol.InputProtocol iprot) {
+                                try {
+                                    final org.thryft.protocol.MapBegin mapBegin = iprot.readMapBegin();
+                                    final com.google.common.collect.ImmutableMap.Builder<String, com.google.common.primitives.UnsignedInteger> map = com.google.common.collect.ImmutableMap.builder();
+                                    for (int entryI = 0; entryI < mapBegin.getSize(); entryI++) {
+                                        final String key;
+                                        key = iprot.readString();
+                                        final com.google.common.primitives.UnsignedInteger value;
+                                        try {
+                                            value = iprot.readU32();
+                                        } catch (final NumberFormatException e) {
+                                             throw new org.thryft.protocol.InputProtocolException(e);
+                                        }
+                                        map.put(key, value);
+                                    }
+                                    iprot.readMapEnd();
+                                    return map.build();
+                                } catch (final org.thryft.protocol.InputProtocolException e) {
+                                    throw new org.thryft.protocol.UncheckedInputProtocolException(e);
+                                }
+                            }
+                        }).apply(iprot);
+                    } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
+                         throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.MATERIAL_TEXTS, e.getCause());
+                    }
+                    break;
+                }
+                case "subject_term_texts": {
+                    try {
+                        subjectTermTexts = (new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger>>() {
+                            @Override
+                            public com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger> apply(final org.thryft.protocol.InputProtocol iprot) {
+                                try {
+                                    final org.thryft.protocol.MapBegin mapBegin = iprot.readMapBegin();
+                                    final com.google.common.collect.ImmutableMap.Builder<String, com.google.common.primitives.UnsignedInteger> map = com.google.common.collect.ImmutableMap.builder();
+                                    for (int entryI = 0; entryI < mapBegin.getSize(); entryI++) {
+                                        final String key;
+                                        key = iprot.readString();
+                                        final com.google.common.primitives.UnsignedInteger value;
+                                        try {
+                                            value = iprot.readU32();
+                                        } catch (final NumberFormatException e) {
+                                             throw new org.thryft.protocol.InputProtocolException(e);
+                                        }
+                                        map.put(key, value);
+                                    }
+                                    iprot.readMapEnd();
+                                    return map.build();
+                                } catch (final org.thryft.protocol.InputProtocolException e) {
+                                    throw new org.thryft.protocol.UncheckedInputProtocolException(e);
+                                }
+                            }
+                        }).apply(iprot);
+                    } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
+                         throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.SUBJECT_TERM_TEXTS, e.getCause());
+                    }
+                    break;
+                }
+                case "technique_texts": {
+                    try {
+                        techniqueTexts = (new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger>>() {
+                            @Override
+                            public com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger> apply(final org.thryft.protocol.InputProtocol iprot) {
+                                try {
+                                    final org.thryft.protocol.MapBegin mapBegin = iprot.readMapBegin();
+                                    final com.google.common.collect.ImmutableMap.Builder<String, com.google.common.primitives.UnsignedInteger> map = com.google.common.collect.ImmutableMap.builder();
+                                    for (int entryI = 0; entryI < mapBegin.getSize(); entryI++) {
+                                        final String key;
+                                        key = iprot.readString();
+                                        final com.google.common.primitives.UnsignedInteger value;
+                                        try {
+                                            value = iprot.readU32();
+                                        } catch (final NumberFormatException e) {
+                                             throw new org.thryft.protocol.InputProtocolException(e);
+                                        }
+                                        map.put(key, value);
+                                    }
+                                    iprot.readMapEnd();
+                                    return map.build();
+                                } catch (final org.thryft.protocol.InputProtocolException e) {
+                                    throw new org.thryft.protocol.UncheckedInputProtocolException(e);
+                                }
+                            }
+                        }).apply(iprot);
+                    } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
+                         throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.TECHNIQUE_TEXTS, e.getCause());
+                    }
+                    break;
+                }
+                case "work_type_texts": {
+                    try {
+                        workTypeTexts = (new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger>>() {
+                            @Override
+                            public com.google.common.collect.ImmutableMap<String, com.google.common.primitives.UnsignedInteger> apply(final org.thryft.protocol.InputProtocol iprot) {
+                                try {
+                                    final org.thryft.protocol.MapBegin mapBegin = iprot.readMapBegin();
+                                    final com.google.common.collect.ImmutableMap.Builder<String, com.google.common.primitives.UnsignedInteger> map = com.google.common.collect.ImmutableMap.builder();
+                                    for (int entryI = 0; entryI < mapBegin.getSize(); entryI++) {
+                                        final String key;
+                                        key = iprot.readString();
+                                        final com.google.common.primitives.UnsignedInteger value;
+                                        try {
+                                            value = iprot.readU32();
+                                        } catch (final NumberFormatException e) {
+                                             throw new org.thryft.protocol.InputProtocolException(e);
+                                        }
+                                        map.put(key, value);
+                                    }
+                                    iprot.readMapEnd();
+                                    return map.build();
+                                } catch (final org.thryft.protocol.InputProtocolException e) {
+                                    throw new org.thryft.protocol.UncheckedInputProtocolException(e);
+                                }
+                            }
+                        }).apply(iprot);
+                    } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
+                         throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.WORK_TYPE_TEXTS, e.getCause());
+                    }
+                    break;
+                }
+                default:
+                    if (unknownFieldCallback.isPresent()) {
+                        unknownFieldCallback.get().apply(ifield);
+                    }
+                    break;
+                }
+                iprot.readFieldEnd();
+            }
+            iprot.readStructEnd();
+        } catch (final RuntimeException e) {
+            throw new IllegalStateException(e);
+        }
         return new ObjectFacets(DefaultReadValidator.getInstance().validateCategories(categories), DefaultReadValidator.getInstance().validateCollections(collections), DefaultReadValidator.getInstance().validateColorTexts(colorTexts), DefaultReadValidator.getInstance().validateCulturalContextTexts(culturalContextTexts), DefaultReadValidator.getInstance().validateGenders(genders), DefaultReadValidator.getInstance().validateInstitutions(institutions), DefaultReadValidator.getInstance().validateLocationNameTexts(locationNameTexts), DefaultReadValidator.getInstance().validateMaterialTexts(materialTexts), DefaultReadValidator.getInstance().validateSubjectTermTexts(subjectTermTexts), DefaultReadValidator.getInstance().validateTechniqueTexts(techniqueTexts), DefaultReadValidator.getInstance().validateWorkTypeTexts(workTypeTexts), NopConstructionValidator.getInstance());
     }
 

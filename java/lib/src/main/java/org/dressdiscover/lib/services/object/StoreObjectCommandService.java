@@ -46,7 +46,7 @@ public class StoreObjectCommandService implements ObjectCommandService {
         this.objectSummariesResultCache = checkNotNull(objectSummariesResultCache);
         this.objectSummaryCache = checkNotNull(objectSummaryCache);
         this.objectSummaryElasticSearchIndex = checkNotNull(objectSummaryElasticSearchIndex);
-        resummarizeObjectsBulkRequestSize = properties.getResummarizeObjectsBulkRequestSize().intValue();
+        resummarizeObjectsBulkRequestSize = properties.getResummarizeObjectsBulkRequestSize();
     }
 
     @Override

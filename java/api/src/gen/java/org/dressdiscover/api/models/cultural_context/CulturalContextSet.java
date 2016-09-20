@@ -53,30 +53,38 @@ public final class CulturalContextSet implements org.thryft.Struct, org.dressdis
         }
 
         public Builder readAsList(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
-            final org.thryft.protocol.ListBegin __list = iprot.readListBegin();
-            elements = (new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableList<org.dressdiscover.api.models.cultural_context.CulturalContext>>() {
-                @Override
-                public com.google.common.collect.ImmutableList<org.dressdiscover.api.models.cultural_context.CulturalContext> apply(final org.thryft.protocol.InputProtocol iprot) {
-                    try {
-                        final org.thryft.protocol.ListBegin sequenceBegin = iprot.readListBegin();
-                        final com.google.common.collect.ImmutableList.Builder<org.dressdiscover.api.models.cultural_context.CulturalContext> sequenceBuilder = com.google.common.collect.ImmutableList.builder();
-                        for (int elementI = 0; elementI < sequenceBegin.getSize(); elementI++) {
-                            sequenceBuilder.add(org.dressdiscover.api.models.cultural_context.CulturalContext.readAsStruct(iprot));
+            try {
+                final org.thryft.protocol.ListBegin __list = iprot.readListBegin();
+                try {
+                    elements = (new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableList<org.dressdiscover.api.models.cultural_context.CulturalContext>>() {
+                        @Override
+                        public com.google.common.collect.ImmutableList<org.dressdiscover.api.models.cultural_context.CulturalContext> apply(final org.thryft.protocol.InputProtocol iprot) {
+                            try {
+                                final org.thryft.protocol.ListBegin sequenceBegin = iprot.readListBegin();
+                                final com.google.common.collect.ImmutableList.Builder<org.dressdiscover.api.models.cultural_context.CulturalContext> sequenceBuilder = com.google.common.collect.ImmutableList.builder();
+                                for (int elementI = 0; elementI < sequenceBegin.getSize(); elementI++) {
+                                    sequenceBuilder.add(org.dressdiscover.api.models.cultural_context.CulturalContext.readAsStruct(iprot));
+                                }
+                                iprot.readListEnd();
+                                return sequenceBuilder.build();
+                            } catch (final org.thryft.protocol.InputProtocolException e) {
+                                throw new org.thryft.protocol.UncheckedInputProtocolException(e);
+                            }
                         }
-                        iprot.readListEnd();
-                        return sequenceBuilder.build();
-                    } catch (final org.thryft.protocol.InputProtocolException e) {
-                        throw new org.thryft.protocol.UncheckedInputProtocolException(e);
-                    }
+                    }).apply(iprot);
+                } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
+                     throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.ELEMENTS, e.getCause());
                 }
-            }).apply(iprot);
-            if (__list.getSize() > 1) {
-                display = com.google.common.base.Optional.of(iprot.readString());
+                if (__list.getSize() > 1) {
+                    display = com.google.common.base.Optional.of(iprot.readString());
+                }
+                if (__list.getSize() > 2) {
+                    notes = com.google.common.base.Optional.of(iprot.readString());
+                }
+                iprot.readListEnd();
+            } catch (final RuntimeException e) {
+                throw new IllegalStateException(e);
             }
-            if (__list.getSize() > 2) {
-                notes = com.google.common.base.Optional.of(iprot.readString());
-            }
-            iprot.readListEnd();
             return this;
         }
 
@@ -85,55 +93,63 @@ public final class CulturalContextSet implements org.thryft.Struct, org.dressdis
         }
 
         public Builder readAsStruct(final org.thryft.protocol.InputProtocol iprot, final com.google.common.base.Optional<UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
-            iprot.readStructBegin();
-            while (true) {
-                final org.thryft.protocol.FieldBegin ifield = iprot.readFieldBegin();
-                if (ifield.getType() == org.thryft.protocol.Type.STOP) {
-                    break;
-                }
-                switch (ifield.getName()) {
-                case "elements": {
-                    if (!ifield.hasId() || ifield.getId() == 1) {
-                        elements = (new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableList<org.dressdiscover.api.models.cultural_context.CulturalContext>>() {
-                            @Override
-                            public com.google.common.collect.ImmutableList<org.dressdiscover.api.models.cultural_context.CulturalContext> apply(final org.thryft.protocol.InputProtocol iprot) {
-                                try {
-                                    final org.thryft.protocol.ListBegin sequenceBegin = iprot.readListBegin();
-                                    final com.google.common.collect.ImmutableList.Builder<org.dressdiscover.api.models.cultural_context.CulturalContext> sequenceBuilder = com.google.common.collect.ImmutableList.builder();
-                                    for (int elementI = 0; elementI < sequenceBegin.getSize(); elementI++) {
-                                        sequenceBuilder.add(org.dressdiscover.api.models.cultural_context.CulturalContext.readAsStruct(iprot));
+            try {
+                iprot.readStructBegin();
+                while (true) {
+                    final org.thryft.protocol.FieldBegin ifield = iprot.readFieldBegin();
+                    if (ifield.getType() == org.thryft.protocol.Type.STOP) {
+                        break;
+                    }
+                    switch (ifield.getName()) {
+                    case "elements": {
+                        if (!ifield.hasId() || ifield.getId() == 1) {
+                            try {
+                                elements = (new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableList<org.dressdiscover.api.models.cultural_context.CulturalContext>>() {
+                                    @Override
+                                    public com.google.common.collect.ImmutableList<org.dressdiscover.api.models.cultural_context.CulturalContext> apply(final org.thryft.protocol.InputProtocol iprot) {
+                                        try {
+                                            final org.thryft.protocol.ListBegin sequenceBegin = iprot.readListBegin();
+                                            final com.google.common.collect.ImmutableList.Builder<org.dressdiscover.api.models.cultural_context.CulturalContext> sequenceBuilder = com.google.common.collect.ImmutableList.builder();
+                                            for (int elementI = 0; elementI < sequenceBegin.getSize(); elementI++) {
+                                                sequenceBuilder.add(org.dressdiscover.api.models.cultural_context.CulturalContext.readAsStruct(iprot));
+                                            }
+                                            iprot.readListEnd();
+                                            return sequenceBuilder.build();
+                                        } catch (final org.thryft.protocol.InputProtocolException e) {
+                                            throw new org.thryft.protocol.UncheckedInputProtocolException(e);
+                                        }
                                     }
-                                    iprot.readListEnd();
-                                    return sequenceBuilder.build();
-                                } catch (final org.thryft.protocol.InputProtocolException e) {
-                                    throw new org.thryft.protocol.UncheckedInputProtocolException(e);
-                                }
+                                }).apply(iprot);
+                            } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
+                                 throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.ELEMENTS, e.getCause());
                             }
-                        }).apply(iprot);
+                        }
+                        break;
                     }
-                    break;
-                }
-                case "display": {
-                    if (!ifield.hasId() || ifield.getId() == 2) {
-                        display = com.google.common.base.Optional.of(iprot.readString());
+                    case "display": {
+                        if (!ifield.hasId() || ifield.getId() == 2) {
+                            display = com.google.common.base.Optional.of(iprot.readString());
+                        }
+                        break;
                     }
-                    break;
-                }
-                case "notes": {
-                    if (!ifield.hasId() || ifield.getId() == 3) {
-                        notes = com.google.common.base.Optional.of(iprot.readString());
+                    case "notes": {
+                        if (!ifield.hasId() || ifield.getId() == 3) {
+                            notes = com.google.common.base.Optional.of(iprot.readString());
+                        }
+                        break;
                     }
-                    break;
-                }
-                default:
-                    if (unknownFieldCallback.isPresent()) {
-                        unknownFieldCallback.get().apply(ifield);
+                    default:
+                        if (unknownFieldCallback.isPresent()) {
+                            unknownFieldCallback.get().apply(ifield);
+                        }
+                        break;
                     }
-                    break;
+                    iprot.readFieldEnd();
                 }
-                iprot.readFieldEnd();
+                iprot.readStructEnd();
+            } catch (final RuntimeException e) {
+                throw new IllegalStateException(e);
             }
-            iprot.readStructEnd();
             return this;
         }
 
@@ -654,30 +670,38 @@ public final class CulturalContextSet implements org.thryft.Struct, org.dressdis
         com.google.common.base.Optional<String> display = com.google.common.base.Optional.<String> absent();
         com.google.common.base.Optional<String> notes = com.google.common.base.Optional.<String> absent();
 
-        final org.thryft.protocol.ListBegin __list = iprot.readListBegin();
-        elements = (new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableList<org.dressdiscover.api.models.cultural_context.CulturalContext>>() {
-            @Override
-            public com.google.common.collect.ImmutableList<org.dressdiscover.api.models.cultural_context.CulturalContext> apply(final org.thryft.protocol.InputProtocol iprot) {
-                try {
-                    final org.thryft.protocol.ListBegin sequenceBegin = iprot.readListBegin();
-                    final com.google.common.collect.ImmutableList.Builder<org.dressdiscover.api.models.cultural_context.CulturalContext> sequenceBuilder = com.google.common.collect.ImmutableList.builder();
-                    for (int elementI = 0; elementI < sequenceBegin.getSize(); elementI++) {
-                        sequenceBuilder.add(org.dressdiscover.api.models.cultural_context.CulturalContext.readAsStruct(iprot));
+        try {
+            final org.thryft.protocol.ListBegin __list = iprot.readListBegin();
+            try {
+                elements = (new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableList<org.dressdiscover.api.models.cultural_context.CulturalContext>>() {
+                    @Override
+                    public com.google.common.collect.ImmutableList<org.dressdiscover.api.models.cultural_context.CulturalContext> apply(final org.thryft.protocol.InputProtocol iprot) {
+                        try {
+                            final org.thryft.protocol.ListBegin sequenceBegin = iprot.readListBegin();
+                            final com.google.common.collect.ImmutableList.Builder<org.dressdiscover.api.models.cultural_context.CulturalContext> sequenceBuilder = com.google.common.collect.ImmutableList.builder();
+                            for (int elementI = 0; elementI < sequenceBegin.getSize(); elementI++) {
+                                sequenceBuilder.add(org.dressdiscover.api.models.cultural_context.CulturalContext.readAsStruct(iprot));
+                            }
+                            iprot.readListEnd();
+                            return sequenceBuilder.build();
+                        } catch (final org.thryft.protocol.InputProtocolException e) {
+                            throw new org.thryft.protocol.UncheckedInputProtocolException(e);
+                        }
                     }
-                    iprot.readListEnd();
-                    return sequenceBuilder.build();
-                } catch (final org.thryft.protocol.InputProtocolException e) {
-                    throw new org.thryft.protocol.UncheckedInputProtocolException(e);
-                }
+                }).apply(iprot);
+            } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
+                 throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.ELEMENTS, e.getCause());
             }
-        }).apply(iprot);
-        if (__list.getSize() > 1) {
-            display = com.google.common.base.Optional.of(iprot.readString());
+            if (__list.getSize() > 1) {
+                display = com.google.common.base.Optional.of(iprot.readString());
+            }
+            if (__list.getSize() > 2) {
+                notes = com.google.common.base.Optional.of(iprot.readString());
+            }
+            iprot.readListEnd();
+        } catch (final RuntimeException e) {
+            throw new IllegalStateException(e);
         }
-        if (__list.getSize() > 2) {
-            notes = com.google.common.base.Optional.of(iprot.readString());
-        }
-        iprot.readListEnd();
         return new CulturalContextSet(DefaultReadValidator.getInstance().validateElements(elements), DefaultReadValidator.getInstance().validateDisplay(display), DefaultReadValidator.getInstance().validateNotes(notes), NopConstructionValidator.getInstance());
     }
 
@@ -690,55 +714,63 @@ public final class CulturalContextSet implements org.thryft.Struct, org.dressdis
         com.google.common.base.Optional<String> display = com.google.common.base.Optional.<String> absent();
         com.google.common.base.Optional<String> notes = com.google.common.base.Optional.<String> absent();
 
-        iprot.readStructBegin();
-        while (true) {
-            final org.thryft.protocol.FieldBegin ifield = iprot.readFieldBegin();
-            if (ifield.getType() == org.thryft.protocol.Type.STOP) {
-                break;
-            }
-            switch (ifield.getName()) {
-            case "elements": {
-                if (!ifield.hasId() || ifield.getId() == 1) {
-                    elements = (new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableList<org.dressdiscover.api.models.cultural_context.CulturalContext>>() {
-                        @Override
-                        public com.google.common.collect.ImmutableList<org.dressdiscover.api.models.cultural_context.CulturalContext> apply(final org.thryft.protocol.InputProtocol iprot) {
-                            try {
-                                final org.thryft.protocol.ListBegin sequenceBegin = iprot.readListBegin();
-                                final com.google.common.collect.ImmutableList.Builder<org.dressdiscover.api.models.cultural_context.CulturalContext> sequenceBuilder = com.google.common.collect.ImmutableList.builder();
-                                for (int elementI = 0; elementI < sequenceBegin.getSize(); elementI++) {
-                                    sequenceBuilder.add(org.dressdiscover.api.models.cultural_context.CulturalContext.readAsStruct(iprot));
+        try {
+            iprot.readStructBegin();
+            while (true) {
+                final org.thryft.protocol.FieldBegin ifield = iprot.readFieldBegin();
+                if (ifield.getType() == org.thryft.protocol.Type.STOP) {
+                    break;
+                }
+                switch (ifield.getName()) {
+                case "elements": {
+                    if (!ifield.hasId() || ifield.getId() == 1) {
+                        try {
+                            elements = (new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableList<org.dressdiscover.api.models.cultural_context.CulturalContext>>() {
+                                @Override
+                                public com.google.common.collect.ImmutableList<org.dressdiscover.api.models.cultural_context.CulturalContext> apply(final org.thryft.protocol.InputProtocol iprot) {
+                                    try {
+                                        final org.thryft.protocol.ListBegin sequenceBegin = iprot.readListBegin();
+                                        final com.google.common.collect.ImmutableList.Builder<org.dressdiscover.api.models.cultural_context.CulturalContext> sequenceBuilder = com.google.common.collect.ImmutableList.builder();
+                                        for (int elementI = 0; elementI < sequenceBegin.getSize(); elementI++) {
+                                            sequenceBuilder.add(org.dressdiscover.api.models.cultural_context.CulturalContext.readAsStruct(iprot));
+                                        }
+                                        iprot.readListEnd();
+                                        return sequenceBuilder.build();
+                                    } catch (final org.thryft.protocol.InputProtocolException e) {
+                                        throw new org.thryft.protocol.UncheckedInputProtocolException(e);
+                                    }
                                 }
-                                iprot.readListEnd();
-                                return sequenceBuilder.build();
-                            } catch (final org.thryft.protocol.InputProtocolException e) {
-                                throw new org.thryft.protocol.UncheckedInputProtocolException(e);
-                            }
+                            }).apply(iprot);
+                        } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
+                             throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.ELEMENTS, e.getCause());
                         }
-                    }).apply(iprot);
+                    }
+                    break;
                 }
-                break;
-            }
-            case "display": {
-                if (!ifield.hasId() || ifield.getId() == 2) {
-                    display = com.google.common.base.Optional.of(iprot.readString());
+                case "display": {
+                    if (!ifield.hasId() || ifield.getId() == 2) {
+                        display = com.google.common.base.Optional.of(iprot.readString());
+                    }
+                    break;
                 }
-                break;
-            }
-            case "notes": {
-                if (!ifield.hasId() || ifield.getId() == 3) {
-                    notes = com.google.common.base.Optional.of(iprot.readString());
+                case "notes": {
+                    if (!ifield.hasId() || ifield.getId() == 3) {
+                        notes = com.google.common.base.Optional.of(iprot.readString());
+                    }
+                    break;
                 }
-                break;
-            }
-            default:
-                if (unknownFieldCallback.isPresent()) {
-                    unknownFieldCallback.get().apply(ifield);
+                default:
+                    if (unknownFieldCallback.isPresent()) {
+                        unknownFieldCallback.get().apply(ifield);
+                    }
+                    break;
                 }
-                break;
+                iprot.readFieldEnd();
             }
-            iprot.readFieldEnd();
+            iprot.readStructEnd();
+        } catch (final RuntimeException e) {
+            throw new IllegalStateException(e);
         }
-        iprot.readStructEnd();
         return new CulturalContextSet(DefaultReadValidator.getInstance().validateElements(elements), DefaultReadValidator.getInstance().validateDisplay(display), DefaultReadValidator.getInstance().validateNotes(notes), NopConstructionValidator.getInstance());
     }
 

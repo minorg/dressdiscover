@@ -1,10 +1,9 @@
 package org.dressdiscover.lib.services;
 
 import org.dressdiscover.lib.DressDiscoverProperties;
-import org.dressdiscover.lib.services.ServicesModule;
 import org.junit.Before;
-import org.thryft.waf.lib.PropertiesModule;
 
+import com.google.inject.AbstractModule;
 import com.google.inject.Guice;
 import com.google.inject.Injector;
 
@@ -18,8 +17,12 @@ public abstract class ServiceTest {
 
         properties = DressDiscoverProperties.load();
 
-        injector = Guice.createInjector(new PropertiesModule<DressDiscoverProperties>(properties),
-                _newServicesModule(properties));
+        injector = Guice.createInjector(new AbstractModule() {
+            @Override
+            protected void configure() {
+                bind(DressDiscoverProperties.class).toInstance(properties);
+            }
+        }, _newServicesModule(properties));
     }
 
     @Before

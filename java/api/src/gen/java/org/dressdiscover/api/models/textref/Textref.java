@@ -47,10 +47,14 @@ public final class Textref implements org.thryft.Struct, org.dressdiscover.api.m
         }
 
         public Builder readAsList(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
-            iprot.readListBegin();
-            name = org.dressdiscover.api.models.textref.TextrefName.readAsStruct(iprot);
-            refid = org.dressdiscover.api.models.textref.TextrefRefid.readAsStruct(iprot);
-            iprot.readListEnd();
+            try {
+                iprot.readListBegin();
+                name = org.dressdiscover.api.models.textref.TextrefName.readAsStruct(iprot);
+                refid = org.dressdiscover.api.models.textref.TextrefRefid.readAsStruct(iprot);
+                iprot.readListEnd();
+            } catch (final RuntimeException e) {
+                throw new IllegalStateException(e);
+            }
             return this;
         }
 
@@ -59,34 +63,38 @@ public final class Textref implements org.thryft.Struct, org.dressdiscover.api.m
         }
 
         public Builder readAsStruct(final org.thryft.protocol.InputProtocol iprot, final com.google.common.base.Optional<UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
-            iprot.readStructBegin();
-            while (true) {
-                final org.thryft.protocol.FieldBegin ifield = iprot.readFieldBegin();
-                if (ifield.getType() == org.thryft.protocol.Type.STOP) {
-                    break;
-                }
-                switch (ifield.getName()) {
-                case "name": {
-                    if (!ifield.hasId() || ifield.getId() == 1) {
-                        name = org.dressdiscover.api.models.textref.TextrefName.readAsStruct(iprot);
+            try {
+                iprot.readStructBegin();
+                while (true) {
+                    final org.thryft.protocol.FieldBegin ifield = iprot.readFieldBegin();
+                    if (ifield.getType() == org.thryft.protocol.Type.STOP) {
+                        break;
                     }
-                    break;
-                }
-                case "refid": {
-                    if (!ifield.hasId() || ifield.getId() == 2) {
-                        refid = org.dressdiscover.api.models.textref.TextrefRefid.readAsStruct(iprot);
+                    switch (ifield.getName()) {
+                    case "name": {
+                        if (!ifield.hasId() || ifield.getId() == 1) {
+                            name = org.dressdiscover.api.models.textref.TextrefName.readAsStruct(iprot);
+                        }
+                        break;
                     }
-                    break;
-                }
-                default:
-                    if (unknownFieldCallback.isPresent()) {
-                        unknownFieldCallback.get().apply(ifield);
+                    case "refid": {
+                        if (!ifield.hasId() || ifield.getId() == 2) {
+                            refid = org.dressdiscover.api.models.textref.TextrefRefid.readAsStruct(iprot);
+                        }
+                        break;
                     }
-                    break;
+                    default:
+                        if (unknownFieldCallback.isPresent()) {
+                            unknownFieldCallback.get().apply(ifield);
+                        }
+                        break;
+                    }
+                    iprot.readFieldEnd();
                 }
-                iprot.readFieldEnd();
+                iprot.readStructEnd();
+            } catch (final RuntimeException e) {
+                throw new IllegalStateException(e);
             }
-            iprot.readStructEnd();
             return this;
         }
 
@@ -492,10 +500,14 @@ public final class Textref implements org.thryft.Struct, org.dressdiscover.api.m
         org.dressdiscover.api.models.textref.TextrefName name = null;
         org.dressdiscover.api.models.textref.TextrefRefid refid = null;
 
-        iprot.readListBegin();
-        name = org.dressdiscover.api.models.textref.TextrefName.readAsStruct(iprot);
-        refid = org.dressdiscover.api.models.textref.TextrefRefid.readAsStruct(iprot);
-        iprot.readListEnd();
+        try {
+            iprot.readListBegin();
+            name = org.dressdiscover.api.models.textref.TextrefName.readAsStruct(iprot);
+            refid = org.dressdiscover.api.models.textref.TextrefRefid.readAsStruct(iprot);
+            iprot.readListEnd();
+        } catch (final RuntimeException e) {
+            throw new IllegalStateException(e);
+        }
         return new Textref(DefaultReadValidator.getInstance().validateName(name), DefaultReadValidator.getInstance().validateRefid(refid), NopConstructionValidator.getInstance());
     }
 
@@ -507,34 +519,38 @@ public final class Textref implements org.thryft.Struct, org.dressdiscover.api.m
         org.dressdiscover.api.models.textref.TextrefName name = null;
         org.dressdiscover.api.models.textref.TextrefRefid refid = null;
 
-        iprot.readStructBegin();
-        while (true) {
-            final org.thryft.protocol.FieldBegin ifield = iprot.readFieldBegin();
-            if (ifield.getType() == org.thryft.protocol.Type.STOP) {
-                break;
-            }
-            switch (ifield.getName()) {
-            case "name": {
-                if (!ifield.hasId() || ifield.getId() == 1) {
-                    name = org.dressdiscover.api.models.textref.TextrefName.readAsStruct(iprot);
+        try {
+            iprot.readStructBegin();
+            while (true) {
+                final org.thryft.protocol.FieldBegin ifield = iprot.readFieldBegin();
+                if (ifield.getType() == org.thryft.protocol.Type.STOP) {
+                    break;
                 }
-                break;
-            }
-            case "refid": {
-                if (!ifield.hasId() || ifield.getId() == 2) {
-                    refid = org.dressdiscover.api.models.textref.TextrefRefid.readAsStruct(iprot);
+                switch (ifield.getName()) {
+                case "name": {
+                    if (!ifield.hasId() || ifield.getId() == 1) {
+                        name = org.dressdiscover.api.models.textref.TextrefName.readAsStruct(iprot);
+                    }
+                    break;
                 }
-                break;
-            }
-            default:
-                if (unknownFieldCallback.isPresent()) {
-                    unknownFieldCallback.get().apply(ifield);
+                case "refid": {
+                    if (!ifield.hasId() || ifield.getId() == 2) {
+                        refid = org.dressdiscover.api.models.textref.TextrefRefid.readAsStruct(iprot);
+                    }
+                    break;
                 }
-                break;
+                default:
+                    if (unknownFieldCallback.isPresent()) {
+                        unknownFieldCallback.get().apply(ifield);
+                    }
+                    break;
+                }
+                iprot.readFieldEnd();
             }
-            iprot.readFieldEnd();
+            iprot.readStructEnd();
+        } catch (final RuntimeException e) {
+            throw new IllegalStateException(e);
         }
-        iprot.readStructEnd();
         return new Textref(DefaultReadValidator.getInstance().validateName(name), DefaultReadValidator.getInstance().validateRefid(refid), NopConstructionValidator.getInstance());
     }
 

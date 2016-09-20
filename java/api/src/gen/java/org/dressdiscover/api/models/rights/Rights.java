@@ -65,19 +65,23 @@ public final class Rights implements org.thryft.Struct, org.dressdiscover.api.mo
         }
 
         public Builder readAsList(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
-            final org.thryft.protocol.ListBegin __list = iprot.readListBegin();
-            text = iprot.readString();
-            type = iprot.readEnum(org.dressdiscover.api.models.rights.RightsType.class);
-            if (__list.getSize() > 2) {
-                licenseVocabRef = com.google.common.base.Optional.of(org.dressdiscover.api.models.VocabRef.readAsStruct(iprot));
+            try {
+                final org.thryft.protocol.ListBegin __list = iprot.readListBegin();
+                text = iprot.readString();
+                type = iprot.readEnum(org.dressdiscover.api.models.rights.RightsType.class);
+                if (__list.getSize() > 2) {
+                    licenseVocabRef = com.google.common.base.Optional.of(org.dressdiscover.api.models.VocabRef.readAsStruct(iprot));
+                }
+                if (__list.getSize() > 3) {
+                    notes = com.google.common.base.Optional.of(iprot.readString());
+                }
+                if (__list.getSize() > 4) {
+                    rightsHolder = com.google.common.base.Optional.of(iprot.readString());
+                }
+                iprot.readListEnd();
+            } catch (final RuntimeException e) {
+                throw new IllegalStateException(e);
             }
-            if (__list.getSize() > 3) {
-                notes = com.google.common.base.Optional.of(iprot.readString());
-            }
-            if (__list.getSize() > 4) {
-                rightsHolder = com.google.common.base.Optional.of(iprot.readString());
-            }
-            iprot.readListEnd();
             return this;
         }
 
@@ -86,52 +90,56 @@ public final class Rights implements org.thryft.Struct, org.dressdiscover.api.mo
         }
 
         public Builder readAsStruct(final org.thryft.protocol.InputProtocol iprot, final com.google.common.base.Optional<UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
-            iprot.readStructBegin();
-            while (true) {
-                final org.thryft.protocol.FieldBegin ifield = iprot.readFieldBegin();
-                if (ifield.getType() == org.thryft.protocol.Type.STOP) {
-                    break;
-                }
-                switch (ifield.getName()) {
-                case "text": {
-                    if (!ifield.hasId() || ifield.getId() == 2) {
-                        text = iprot.readString();
+            try {
+                iprot.readStructBegin();
+                while (true) {
+                    final org.thryft.protocol.FieldBegin ifield = iprot.readFieldBegin();
+                    if (ifield.getType() == org.thryft.protocol.Type.STOP) {
+                        break;
                     }
-                    break;
-                }
-                case "type": {
-                    if (!ifield.hasId() || ifield.getId() == 3) {
-                        type = iprot.readEnum(org.dressdiscover.api.models.rights.RightsType.class);
+                    switch (ifield.getName()) {
+                    case "text": {
+                        if (!ifield.hasId() || ifield.getId() == 2) {
+                            text = iprot.readString();
+                        }
+                        break;
                     }
-                    break;
-                }
-                case "license_vocab_ref": {
-                    if (!ifield.hasId() || ifield.getId() == 5) {
-                        licenseVocabRef = com.google.common.base.Optional.of(org.dressdiscover.api.models.VocabRef.readAsStruct(iprot));
+                    case "type": {
+                        if (!ifield.hasId() || ifield.getId() == 3) {
+                            type = iprot.readEnum(org.dressdiscover.api.models.rights.RightsType.class);
+                        }
+                        break;
                     }
-                    break;
-                }
-                case "notes": {
-                    if (!ifield.hasId() || ifield.getId() == 4) {
-                        notes = com.google.common.base.Optional.of(iprot.readString());
+                    case "license_vocab_ref": {
+                        if (!ifield.hasId() || ifield.getId() == 5) {
+                            licenseVocabRef = com.google.common.base.Optional.of(org.dressdiscover.api.models.VocabRef.readAsStruct(iprot));
+                        }
+                        break;
                     }
-                    break;
-                }
-                case "rights_holder": {
-                    if (!ifield.hasId() || ifield.getId() == 1) {
-                        rightsHolder = com.google.common.base.Optional.of(iprot.readString());
+                    case "notes": {
+                        if (!ifield.hasId() || ifield.getId() == 4) {
+                            notes = com.google.common.base.Optional.of(iprot.readString());
+                        }
+                        break;
                     }
-                    break;
-                }
-                default:
-                    if (unknownFieldCallback.isPresent()) {
-                        unknownFieldCallback.get().apply(ifield);
+                    case "rights_holder": {
+                        if (!ifield.hasId() || ifield.getId() == 1) {
+                            rightsHolder = com.google.common.base.Optional.of(iprot.readString());
+                        }
+                        break;
                     }
-                    break;
+                    default:
+                        if (unknownFieldCallback.isPresent()) {
+                            unknownFieldCallback.get().apply(ifield);
+                        }
+                        break;
+                    }
+                    iprot.readFieldEnd();
                 }
-                iprot.readFieldEnd();
+                iprot.readStructEnd();
+            } catch (final RuntimeException e) {
+                throw new IllegalStateException(e);
             }
-            iprot.readStructEnd();
             return this;
         }
 
@@ -773,19 +781,23 @@ public final class Rights implements org.thryft.Struct, org.dressdiscover.api.mo
         com.google.common.base.Optional<String> notes = com.google.common.base.Optional.<String> absent();
         com.google.common.base.Optional<String> rightsHolder = com.google.common.base.Optional.<String> absent();
 
-        final org.thryft.protocol.ListBegin __list = iprot.readListBegin();
-        text = iprot.readString();
-        type = iprot.readEnum(org.dressdiscover.api.models.rights.RightsType.class);
-        if (__list.getSize() > 2) {
-            licenseVocabRef = com.google.common.base.Optional.of(org.dressdiscover.api.models.VocabRef.readAsStruct(iprot));
+        try {
+            final org.thryft.protocol.ListBegin __list = iprot.readListBegin();
+            text = iprot.readString();
+            type = iprot.readEnum(org.dressdiscover.api.models.rights.RightsType.class);
+            if (__list.getSize() > 2) {
+                licenseVocabRef = com.google.common.base.Optional.of(org.dressdiscover.api.models.VocabRef.readAsStruct(iprot));
+            }
+            if (__list.getSize() > 3) {
+                notes = com.google.common.base.Optional.of(iprot.readString());
+            }
+            if (__list.getSize() > 4) {
+                rightsHolder = com.google.common.base.Optional.of(iprot.readString());
+            }
+            iprot.readListEnd();
+        } catch (final RuntimeException e) {
+            throw new IllegalStateException(e);
         }
-        if (__list.getSize() > 3) {
-            notes = com.google.common.base.Optional.of(iprot.readString());
-        }
-        if (__list.getSize() > 4) {
-            rightsHolder = com.google.common.base.Optional.of(iprot.readString());
-        }
-        iprot.readListEnd();
         return new Rights(DefaultReadValidator.getInstance().validateText(text), DefaultReadValidator.getInstance().validateType(type), DefaultReadValidator.getInstance().validateLicenseVocabRef(licenseVocabRef), DefaultReadValidator.getInstance().validateNotes(notes), DefaultReadValidator.getInstance().validateRightsHolder(rightsHolder), NopConstructionValidator.getInstance());
     }
 
@@ -800,52 +812,56 @@ public final class Rights implements org.thryft.Struct, org.dressdiscover.api.mo
         com.google.common.base.Optional<String> notes = com.google.common.base.Optional.<String> absent();
         com.google.common.base.Optional<String> rightsHolder = com.google.common.base.Optional.<String> absent();
 
-        iprot.readStructBegin();
-        while (true) {
-            final org.thryft.protocol.FieldBegin ifield = iprot.readFieldBegin();
-            if (ifield.getType() == org.thryft.protocol.Type.STOP) {
-                break;
-            }
-            switch (ifield.getName()) {
-            case "text": {
-                if (!ifield.hasId() || ifield.getId() == 2) {
-                    text = iprot.readString();
+        try {
+            iprot.readStructBegin();
+            while (true) {
+                final org.thryft.protocol.FieldBegin ifield = iprot.readFieldBegin();
+                if (ifield.getType() == org.thryft.protocol.Type.STOP) {
+                    break;
                 }
-                break;
-            }
-            case "type": {
-                if (!ifield.hasId() || ifield.getId() == 3) {
-                    type = iprot.readEnum(org.dressdiscover.api.models.rights.RightsType.class);
+                switch (ifield.getName()) {
+                case "text": {
+                    if (!ifield.hasId() || ifield.getId() == 2) {
+                        text = iprot.readString();
+                    }
+                    break;
                 }
-                break;
-            }
-            case "license_vocab_ref": {
-                if (!ifield.hasId() || ifield.getId() == 5) {
-                    licenseVocabRef = com.google.common.base.Optional.of(org.dressdiscover.api.models.VocabRef.readAsStruct(iprot));
+                case "type": {
+                    if (!ifield.hasId() || ifield.getId() == 3) {
+                        type = iprot.readEnum(org.dressdiscover.api.models.rights.RightsType.class);
+                    }
+                    break;
                 }
-                break;
-            }
-            case "notes": {
-                if (!ifield.hasId() || ifield.getId() == 4) {
-                    notes = com.google.common.base.Optional.of(iprot.readString());
+                case "license_vocab_ref": {
+                    if (!ifield.hasId() || ifield.getId() == 5) {
+                        licenseVocabRef = com.google.common.base.Optional.of(org.dressdiscover.api.models.VocabRef.readAsStruct(iprot));
+                    }
+                    break;
                 }
-                break;
-            }
-            case "rights_holder": {
-                if (!ifield.hasId() || ifield.getId() == 1) {
-                    rightsHolder = com.google.common.base.Optional.of(iprot.readString());
+                case "notes": {
+                    if (!ifield.hasId() || ifield.getId() == 4) {
+                        notes = com.google.common.base.Optional.of(iprot.readString());
+                    }
+                    break;
                 }
-                break;
-            }
-            default:
-                if (unknownFieldCallback.isPresent()) {
-                    unknownFieldCallback.get().apply(ifield);
+                case "rights_holder": {
+                    if (!ifield.hasId() || ifield.getId() == 1) {
+                        rightsHolder = com.google.common.base.Optional.of(iprot.readString());
+                    }
+                    break;
                 }
-                break;
+                default:
+                    if (unknownFieldCallback.isPresent()) {
+                        unknownFieldCallback.get().apply(ifield);
+                    }
+                    break;
+                }
+                iprot.readFieldEnd();
             }
-            iprot.readFieldEnd();
+            iprot.readStructEnd();
+        } catch (final RuntimeException e) {
+            throw new IllegalStateException(e);
         }
-        iprot.readStructEnd();
         return new Rights(DefaultReadValidator.getInstance().validateText(text), DefaultReadValidator.getInstance().validateType(type), DefaultReadValidator.getInstance().validateLicenseVocabRef(licenseVocabRef), DefaultReadValidator.getInstance().validateNotes(notes), DefaultReadValidator.getInstance().validateRightsHolder(rightsHolder), NopConstructionValidator.getInstance());
     }
 

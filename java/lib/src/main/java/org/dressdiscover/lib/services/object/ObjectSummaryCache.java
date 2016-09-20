@@ -16,7 +16,7 @@ import com.google.inject.Singleton;
 class ObjectSummaryCache {
     @Inject
     public ObjectSummaryCache(final DressDiscoverProperties properties) {
-        cache = CacheBuilder.newBuilder().maximumSize(properties.getObjectSummaryCacheSize().intValue()).build();
+        cache = CacheBuilder.newBuilder().maximumSize(properties.getObjectSummaryCacheSize()).build();
     }
 
     public final ObjectSummaryEntry get(final ObjectId key, final Callable<ObjectSummaryEntry> valueLoader)

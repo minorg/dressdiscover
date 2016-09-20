@@ -5,6 +5,8 @@ import java.util.concurrent.ExecutionException;
 
 import org.apache.commons.lang3.tuple.ImmutablePair;
 import org.dressdiscover.api.models.object.ObjectQuery;
+import org.dressdiscover.api.services.object.GetObjectSummariesOptions;
+import org.dressdiscover.api.services.object.GetObjectSummariesResult;
 import org.dressdiscover.lib.DressDiscoverProperties;
 
 import com.google.common.base.Optional;
@@ -13,15 +15,11 @@ import com.google.common.cache.CacheBuilder;
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
 
-import org.dressdiscover.api.services.object.GetObjectSummariesOptions;
-import org.dressdiscover.api.services.object.GetObjectSummariesResult;
-
 @Singleton
 class ObjectSummariesResultCache {
     @Inject
     public ObjectSummariesResultCache(final DressDiscoverProperties properties) {
-        cache = CacheBuilder.newBuilder().maximumSize(properties.getObjectSummariesResultCacheSize().intValue())
-                .build();
+        cache = CacheBuilder.newBuilder().maximumSize(properties.getObjectSummariesResultCacheSize()).build();
     }
 
     public final GetObjectSummariesResult get(

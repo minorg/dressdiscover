@@ -53,16 +53,20 @@ public final class TextrefRefid implements org.thryft.Struct {
         }
 
         public Builder readAsList(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
-            final org.thryft.protocol.ListBegin __list = iprot.readListBegin();
-            text = iprot.readString();
-            type = iprot.readEnum(org.dressdiscover.api.models.textref.TextrefRefidType.class);
-            if (__list.getSize() > 2) {
-                try {
-                    href = com.google.common.base.Optional.of(org.thryft.native_.Url.parse(iprot.readString()));
-                } catch (final java.lang.IllegalArgumentException e) {
+            try {
+                final org.thryft.protocol.ListBegin __list = iprot.readListBegin();
+                text = iprot.readString();
+                type = iprot.readEnum(org.dressdiscover.api.models.textref.TextrefRefidType.class);
+                if (__list.getSize() > 2) {
+                    try {
+                        href = com.google.common.base.Optional.of(org.thryft.native_.Url.parse(iprot.readString()));
+                    } catch (final java.lang.IllegalArgumentException e) {
+                    }
                 }
+                iprot.readListEnd();
+            } catch (final RuntimeException e) {
+                throw new IllegalStateException(e);
             }
-            iprot.readListEnd();
             return this;
         }
 
@@ -71,43 +75,47 @@ public final class TextrefRefid implements org.thryft.Struct {
         }
 
         public Builder readAsStruct(final org.thryft.protocol.InputProtocol iprot, final com.google.common.base.Optional<UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
-            iprot.readStructBegin();
-            while (true) {
-                final org.thryft.protocol.FieldBegin ifield = iprot.readFieldBegin();
-                if (ifield.getType() == org.thryft.protocol.Type.STOP) {
-                    break;
-                }
-                switch (ifield.getName()) {
-                case "text": {
-                    if (!ifield.hasId() || ifield.getId() == 1) {
-                        text = iprot.readString();
+            try {
+                iprot.readStructBegin();
+                while (true) {
+                    final org.thryft.protocol.FieldBegin ifield = iprot.readFieldBegin();
+                    if (ifield.getType() == org.thryft.protocol.Type.STOP) {
+                        break;
                     }
-                    break;
-                }
-                case "type": {
-                    if (!ifield.hasId() || ifield.getId() == 2) {
-                        type = iprot.readEnum(org.dressdiscover.api.models.textref.TextrefRefidType.class);
-                    }
-                    break;
-                }
-                case "href": {
-                    if (!ifield.hasId() || ifield.getId() == 3) {
-                        try {
-                            href = com.google.common.base.Optional.of(org.thryft.native_.Url.parse(iprot.readString()));
-                        } catch (final java.lang.IllegalArgumentException e) {
+                    switch (ifield.getName()) {
+                    case "text": {
+                        if (!ifield.hasId() || ifield.getId() == 1) {
+                            text = iprot.readString();
                         }
+                        break;
                     }
-                    break;
-                }
-                default:
-                    if (unknownFieldCallback.isPresent()) {
-                        unknownFieldCallback.get().apply(ifield);
+                    case "type": {
+                        if (!ifield.hasId() || ifield.getId() == 2) {
+                            type = iprot.readEnum(org.dressdiscover.api.models.textref.TextrefRefidType.class);
+                        }
+                        break;
                     }
-                    break;
+                    case "href": {
+                        if (!ifield.hasId() || ifield.getId() == 3) {
+                            try {
+                                href = com.google.common.base.Optional.of(org.thryft.native_.Url.parse(iprot.readString()));
+                            } catch (final java.lang.IllegalArgumentException e) {
+                            }
+                        }
+                        break;
+                    }
+                    default:
+                        if (unknownFieldCallback.isPresent()) {
+                            unknownFieldCallback.get().apply(ifield);
+                        }
+                        break;
+                    }
+                    iprot.readFieldEnd();
                 }
-                iprot.readFieldEnd();
+                iprot.readStructEnd();
+            } catch (final RuntimeException e) {
+                throw new IllegalStateException(e);
             }
-            iprot.readStructEnd();
             return this;
         }
 
@@ -601,16 +609,20 @@ public final class TextrefRefid implements org.thryft.Struct {
         org.dressdiscover.api.models.textref.TextrefRefidType type = null;
         com.google.common.base.Optional<org.thryft.native_.Url> href = com.google.common.base.Optional.<org.thryft.native_.Url> absent();
 
-        final org.thryft.protocol.ListBegin __list = iprot.readListBegin();
-        text = iprot.readString();
-        type = iprot.readEnum(org.dressdiscover.api.models.textref.TextrefRefidType.class);
-        if (__list.getSize() > 2) {
-            try {
-                href = com.google.common.base.Optional.of(org.thryft.native_.Url.parse(iprot.readString()));
-            } catch (final java.lang.IllegalArgumentException e) {
+        try {
+            final org.thryft.protocol.ListBegin __list = iprot.readListBegin();
+            text = iprot.readString();
+            type = iprot.readEnum(org.dressdiscover.api.models.textref.TextrefRefidType.class);
+            if (__list.getSize() > 2) {
+                try {
+                    href = com.google.common.base.Optional.of(org.thryft.native_.Url.parse(iprot.readString()));
+                } catch (final java.lang.IllegalArgumentException e) {
+                }
             }
+            iprot.readListEnd();
+        } catch (final RuntimeException e) {
+            throw new IllegalStateException(e);
         }
-        iprot.readListEnd();
         return new TextrefRefid(DefaultReadValidator.getInstance().validateText(text), DefaultReadValidator.getInstance().validateType(type), DefaultReadValidator.getInstance().validateHref(href), NopConstructionValidator.getInstance());
     }
 
@@ -623,43 +635,47 @@ public final class TextrefRefid implements org.thryft.Struct {
         org.dressdiscover.api.models.textref.TextrefRefidType type = null;
         com.google.common.base.Optional<org.thryft.native_.Url> href = com.google.common.base.Optional.<org.thryft.native_.Url> absent();
 
-        iprot.readStructBegin();
-        while (true) {
-            final org.thryft.protocol.FieldBegin ifield = iprot.readFieldBegin();
-            if (ifield.getType() == org.thryft.protocol.Type.STOP) {
-                break;
-            }
-            switch (ifield.getName()) {
-            case "text": {
-                if (!ifield.hasId() || ifield.getId() == 1) {
-                    text = iprot.readString();
+        try {
+            iprot.readStructBegin();
+            while (true) {
+                final org.thryft.protocol.FieldBegin ifield = iprot.readFieldBegin();
+                if (ifield.getType() == org.thryft.protocol.Type.STOP) {
+                    break;
                 }
-                break;
-            }
-            case "type": {
-                if (!ifield.hasId() || ifield.getId() == 2) {
-                    type = iprot.readEnum(org.dressdiscover.api.models.textref.TextrefRefidType.class);
-                }
-                break;
-            }
-            case "href": {
-                if (!ifield.hasId() || ifield.getId() == 3) {
-                    try {
-                        href = com.google.common.base.Optional.of(org.thryft.native_.Url.parse(iprot.readString()));
-                    } catch (final java.lang.IllegalArgumentException e) {
+                switch (ifield.getName()) {
+                case "text": {
+                    if (!ifield.hasId() || ifield.getId() == 1) {
+                        text = iprot.readString();
                     }
+                    break;
                 }
-                break;
-            }
-            default:
-                if (unknownFieldCallback.isPresent()) {
-                    unknownFieldCallback.get().apply(ifield);
+                case "type": {
+                    if (!ifield.hasId() || ifield.getId() == 2) {
+                        type = iprot.readEnum(org.dressdiscover.api.models.textref.TextrefRefidType.class);
+                    }
+                    break;
                 }
-                break;
+                case "href": {
+                    if (!ifield.hasId() || ifield.getId() == 3) {
+                        try {
+                            href = com.google.common.base.Optional.of(org.thryft.native_.Url.parse(iprot.readString()));
+                        } catch (final java.lang.IllegalArgumentException e) {
+                        }
+                    }
+                    break;
+                }
+                default:
+                    if (unknownFieldCallback.isPresent()) {
+                        unknownFieldCallback.get().apply(ifield);
+                    }
+                    break;
+                }
+                iprot.readFieldEnd();
             }
-            iprot.readFieldEnd();
+            iprot.readStructEnd();
+        } catch (final RuntimeException e) {
+            throw new IllegalStateException(e);
         }
-        iprot.readStructEnd();
         return new TextrefRefid(DefaultReadValidator.getInstance().validateText(text), DefaultReadValidator.getInstance().validateType(type), DefaultReadValidator.getInstance().validateHref(href), NopConstructionValidator.getInstance());
     }
 

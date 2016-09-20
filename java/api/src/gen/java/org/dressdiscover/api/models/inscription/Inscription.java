@@ -53,30 +53,38 @@ public final class Inscription implements org.thryft.Struct, org.dressdiscover.a
         }
 
         public Builder readAsList(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
-            final org.thryft.protocol.ListBegin __list = iprot.readListBegin();
-            texts = (new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableList<org.dressdiscover.api.models.inscription.InscriptionText>>() {
-                @Override
-                public com.google.common.collect.ImmutableList<org.dressdiscover.api.models.inscription.InscriptionText> apply(final org.thryft.protocol.InputProtocol iprot) {
-                    try {
-                        final org.thryft.protocol.ListBegin sequenceBegin = iprot.readListBegin();
-                        final com.google.common.collect.ImmutableList.Builder<org.dressdiscover.api.models.inscription.InscriptionText> sequenceBuilder = com.google.common.collect.ImmutableList.builder();
-                        for (int elementI = 0; elementI < sequenceBegin.getSize(); elementI++) {
-                            sequenceBuilder.add(org.dressdiscover.api.models.inscription.InscriptionText.readAsStruct(iprot));
+            try {
+                final org.thryft.protocol.ListBegin __list = iprot.readListBegin();
+                try {
+                    texts = (new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableList<org.dressdiscover.api.models.inscription.InscriptionText>>() {
+                        @Override
+                        public com.google.common.collect.ImmutableList<org.dressdiscover.api.models.inscription.InscriptionText> apply(final org.thryft.protocol.InputProtocol iprot) {
+                            try {
+                                final org.thryft.protocol.ListBegin sequenceBegin = iprot.readListBegin();
+                                final com.google.common.collect.ImmutableList.Builder<org.dressdiscover.api.models.inscription.InscriptionText> sequenceBuilder = com.google.common.collect.ImmutableList.builder();
+                                for (int elementI = 0; elementI < sequenceBegin.getSize(); elementI++) {
+                                    sequenceBuilder.add(org.dressdiscover.api.models.inscription.InscriptionText.readAsStruct(iprot));
+                                }
+                                iprot.readListEnd();
+                                return sequenceBuilder.build();
+                            } catch (final org.thryft.protocol.InputProtocolException e) {
+                                throw new org.thryft.protocol.UncheckedInputProtocolException(e);
+                            }
                         }
-                        iprot.readListEnd();
-                        return sequenceBuilder.build();
-                    } catch (final org.thryft.protocol.InputProtocolException e) {
-                        throw new org.thryft.protocol.UncheckedInputProtocolException(e);
-                    }
+                    }).apply(iprot);
+                } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
+                     throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.TEXTS, e.getCause());
                 }
-            }).apply(iprot);
-            if (__list.getSize() > 1) {
-                author = com.google.common.base.Optional.of(org.dressdiscover.api.models.inscription.InscriptionAuthor.readAsStruct(iprot));
+                if (__list.getSize() > 1) {
+                    author = com.google.common.base.Optional.of(org.dressdiscover.api.models.inscription.InscriptionAuthor.readAsStruct(iprot));
+                }
+                if (__list.getSize() > 2) {
+                    position = com.google.common.base.Optional.of(iprot.readString());
+                }
+                iprot.readListEnd();
+            } catch (final RuntimeException e) {
+                throw new IllegalStateException(e);
             }
-            if (__list.getSize() > 2) {
-                position = com.google.common.base.Optional.of(iprot.readString());
-            }
-            iprot.readListEnd();
             return this;
         }
 
@@ -85,55 +93,63 @@ public final class Inscription implements org.thryft.Struct, org.dressdiscover.a
         }
 
         public Builder readAsStruct(final org.thryft.protocol.InputProtocol iprot, final com.google.common.base.Optional<UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
-            iprot.readStructBegin();
-            while (true) {
-                final org.thryft.protocol.FieldBegin ifield = iprot.readFieldBegin();
-                if (ifield.getType() == org.thryft.protocol.Type.STOP) {
-                    break;
-                }
-                switch (ifield.getName()) {
-                case "texts": {
-                    if (!ifield.hasId() || ifield.getId() == 1) {
-                        texts = (new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableList<org.dressdiscover.api.models.inscription.InscriptionText>>() {
-                            @Override
-                            public com.google.common.collect.ImmutableList<org.dressdiscover.api.models.inscription.InscriptionText> apply(final org.thryft.protocol.InputProtocol iprot) {
-                                try {
-                                    final org.thryft.protocol.ListBegin sequenceBegin = iprot.readListBegin();
-                                    final com.google.common.collect.ImmutableList.Builder<org.dressdiscover.api.models.inscription.InscriptionText> sequenceBuilder = com.google.common.collect.ImmutableList.builder();
-                                    for (int elementI = 0; elementI < sequenceBegin.getSize(); elementI++) {
-                                        sequenceBuilder.add(org.dressdiscover.api.models.inscription.InscriptionText.readAsStruct(iprot));
+            try {
+                iprot.readStructBegin();
+                while (true) {
+                    final org.thryft.protocol.FieldBegin ifield = iprot.readFieldBegin();
+                    if (ifield.getType() == org.thryft.protocol.Type.STOP) {
+                        break;
+                    }
+                    switch (ifield.getName()) {
+                    case "texts": {
+                        if (!ifield.hasId() || ifield.getId() == 1) {
+                            try {
+                                texts = (new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableList<org.dressdiscover.api.models.inscription.InscriptionText>>() {
+                                    @Override
+                                    public com.google.common.collect.ImmutableList<org.dressdiscover.api.models.inscription.InscriptionText> apply(final org.thryft.protocol.InputProtocol iprot) {
+                                        try {
+                                            final org.thryft.protocol.ListBegin sequenceBegin = iprot.readListBegin();
+                                            final com.google.common.collect.ImmutableList.Builder<org.dressdiscover.api.models.inscription.InscriptionText> sequenceBuilder = com.google.common.collect.ImmutableList.builder();
+                                            for (int elementI = 0; elementI < sequenceBegin.getSize(); elementI++) {
+                                                sequenceBuilder.add(org.dressdiscover.api.models.inscription.InscriptionText.readAsStruct(iprot));
+                                            }
+                                            iprot.readListEnd();
+                                            return sequenceBuilder.build();
+                                        } catch (final org.thryft.protocol.InputProtocolException e) {
+                                            throw new org.thryft.protocol.UncheckedInputProtocolException(e);
+                                        }
                                     }
-                                    iprot.readListEnd();
-                                    return sequenceBuilder.build();
-                                } catch (final org.thryft.protocol.InputProtocolException e) {
-                                    throw new org.thryft.protocol.UncheckedInputProtocolException(e);
-                                }
+                                }).apply(iprot);
+                            } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
+                                 throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.TEXTS, e.getCause());
                             }
-                        }).apply(iprot);
+                        }
+                        break;
                     }
-                    break;
-                }
-                case "author": {
-                    if (!ifield.hasId() || ifield.getId() == 2) {
-                        author = com.google.common.base.Optional.of(org.dressdiscover.api.models.inscription.InscriptionAuthor.readAsStruct(iprot));
+                    case "author": {
+                        if (!ifield.hasId() || ifield.getId() == 2) {
+                            author = com.google.common.base.Optional.of(org.dressdiscover.api.models.inscription.InscriptionAuthor.readAsStruct(iprot));
+                        }
+                        break;
                     }
-                    break;
-                }
-                case "position": {
-                    if (!ifield.hasId() || ifield.getId() == 3) {
-                        position = com.google.common.base.Optional.of(iprot.readString());
+                    case "position": {
+                        if (!ifield.hasId() || ifield.getId() == 3) {
+                            position = com.google.common.base.Optional.of(iprot.readString());
+                        }
+                        break;
                     }
-                    break;
-                }
-                default:
-                    if (unknownFieldCallback.isPresent()) {
-                        unknownFieldCallback.get().apply(ifield);
+                    default:
+                        if (unknownFieldCallback.isPresent()) {
+                            unknownFieldCallback.get().apply(ifield);
+                        }
+                        break;
                     }
-                    break;
+                    iprot.readFieldEnd();
                 }
-                iprot.readFieldEnd();
+                iprot.readStructEnd();
+            } catch (final RuntimeException e) {
+                throw new IllegalStateException(e);
             }
-            iprot.readStructEnd();
             return this;
         }
 
@@ -648,30 +664,38 @@ public final class Inscription implements org.thryft.Struct, org.dressdiscover.a
         com.google.common.base.Optional<org.dressdiscover.api.models.inscription.InscriptionAuthor> author = com.google.common.base.Optional.<org.dressdiscover.api.models.inscription.InscriptionAuthor> absent();
         com.google.common.base.Optional<String> position = com.google.common.base.Optional.<String> absent();
 
-        final org.thryft.protocol.ListBegin __list = iprot.readListBegin();
-        texts = (new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableList<org.dressdiscover.api.models.inscription.InscriptionText>>() {
-            @Override
-            public com.google.common.collect.ImmutableList<org.dressdiscover.api.models.inscription.InscriptionText> apply(final org.thryft.protocol.InputProtocol iprot) {
-                try {
-                    final org.thryft.protocol.ListBegin sequenceBegin = iprot.readListBegin();
-                    final com.google.common.collect.ImmutableList.Builder<org.dressdiscover.api.models.inscription.InscriptionText> sequenceBuilder = com.google.common.collect.ImmutableList.builder();
-                    for (int elementI = 0; elementI < sequenceBegin.getSize(); elementI++) {
-                        sequenceBuilder.add(org.dressdiscover.api.models.inscription.InscriptionText.readAsStruct(iprot));
+        try {
+            final org.thryft.protocol.ListBegin __list = iprot.readListBegin();
+            try {
+                texts = (new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableList<org.dressdiscover.api.models.inscription.InscriptionText>>() {
+                    @Override
+                    public com.google.common.collect.ImmutableList<org.dressdiscover.api.models.inscription.InscriptionText> apply(final org.thryft.protocol.InputProtocol iprot) {
+                        try {
+                            final org.thryft.protocol.ListBegin sequenceBegin = iprot.readListBegin();
+                            final com.google.common.collect.ImmutableList.Builder<org.dressdiscover.api.models.inscription.InscriptionText> sequenceBuilder = com.google.common.collect.ImmutableList.builder();
+                            for (int elementI = 0; elementI < sequenceBegin.getSize(); elementI++) {
+                                sequenceBuilder.add(org.dressdiscover.api.models.inscription.InscriptionText.readAsStruct(iprot));
+                            }
+                            iprot.readListEnd();
+                            return sequenceBuilder.build();
+                        } catch (final org.thryft.protocol.InputProtocolException e) {
+                            throw new org.thryft.protocol.UncheckedInputProtocolException(e);
+                        }
                     }
-                    iprot.readListEnd();
-                    return sequenceBuilder.build();
-                } catch (final org.thryft.protocol.InputProtocolException e) {
-                    throw new org.thryft.protocol.UncheckedInputProtocolException(e);
-                }
+                }).apply(iprot);
+            } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
+                 throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.TEXTS, e.getCause());
             }
-        }).apply(iprot);
-        if (__list.getSize() > 1) {
-            author = com.google.common.base.Optional.of(org.dressdiscover.api.models.inscription.InscriptionAuthor.readAsStruct(iprot));
+            if (__list.getSize() > 1) {
+                author = com.google.common.base.Optional.of(org.dressdiscover.api.models.inscription.InscriptionAuthor.readAsStruct(iprot));
+            }
+            if (__list.getSize() > 2) {
+                position = com.google.common.base.Optional.of(iprot.readString());
+            }
+            iprot.readListEnd();
+        } catch (final RuntimeException e) {
+            throw new IllegalStateException(e);
         }
-        if (__list.getSize() > 2) {
-            position = com.google.common.base.Optional.of(iprot.readString());
-        }
-        iprot.readListEnd();
         return new Inscription(DefaultReadValidator.getInstance().validateTexts(texts), DefaultReadValidator.getInstance().validateAuthor(author), DefaultReadValidator.getInstance().validatePosition(position), NopConstructionValidator.getInstance());
     }
 
@@ -684,55 +708,63 @@ public final class Inscription implements org.thryft.Struct, org.dressdiscover.a
         com.google.common.base.Optional<org.dressdiscover.api.models.inscription.InscriptionAuthor> author = com.google.common.base.Optional.<org.dressdiscover.api.models.inscription.InscriptionAuthor> absent();
         com.google.common.base.Optional<String> position = com.google.common.base.Optional.<String> absent();
 
-        iprot.readStructBegin();
-        while (true) {
-            final org.thryft.protocol.FieldBegin ifield = iprot.readFieldBegin();
-            if (ifield.getType() == org.thryft.protocol.Type.STOP) {
-                break;
-            }
-            switch (ifield.getName()) {
-            case "texts": {
-                if (!ifield.hasId() || ifield.getId() == 1) {
-                    texts = (new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableList<org.dressdiscover.api.models.inscription.InscriptionText>>() {
-                        @Override
-                        public com.google.common.collect.ImmutableList<org.dressdiscover.api.models.inscription.InscriptionText> apply(final org.thryft.protocol.InputProtocol iprot) {
-                            try {
-                                final org.thryft.protocol.ListBegin sequenceBegin = iprot.readListBegin();
-                                final com.google.common.collect.ImmutableList.Builder<org.dressdiscover.api.models.inscription.InscriptionText> sequenceBuilder = com.google.common.collect.ImmutableList.builder();
-                                for (int elementI = 0; elementI < sequenceBegin.getSize(); elementI++) {
-                                    sequenceBuilder.add(org.dressdiscover.api.models.inscription.InscriptionText.readAsStruct(iprot));
+        try {
+            iprot.readStructBegin();
+            while (true) {
+                final org.thryft.protocol.FieldBegin ifield = iprot.readFieldBegin();
+                if (ifield.getType() == org.thryft.protocol.Type.STOP) {
+                    break;
+                }
+                switch (ifield.getName()) {
+                case "texts": {
+                    if (!ifield.hasId() || ifield.getId() == 1) {
+                        try {
+                            texts = (new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableList<org.dressdiscover.api.models.inscription.InscriptionText>>() {
+                                @Override
+                                public com.google.common.collect.ImmutableList<org.dressdiscover.api.models.inscription.InscriptionText> apply(final org.thryft.protocol.InputProtocol iprot) {
+                                    try {
+                                        final org.thryft.protocol.ListBegin sequenceBegin = iprot.readListBegin();
+                                        final com.google.common.collect.ImmutableList.Builder<org.dressdiscover.api.models.inscription.InscriptionText> sequenceBuilder = com.google.common.collect.ImmutableList.builder();
+                                        for (int elementI = 0; elementI < sequenceBegin.getSize(); elementI++) {
+                                            sequenceBuilder.add(org.dressdiscover.api.models.inscription.InscriptionText.readAsStruct(iprot));
+                                        }
+                                        iprot.readListEnd();
+                                        return sequenceBuilder.build();
+                                    } catch (final org.thryft.protocol.InputProtocolException e) {
+                                        throw new org.thryft.protocol.UncheckedInputProtocolException(e);
+                                    }
                                 }
-                                iprot.readListEnd();
-                                return sequenceBuilder.build();
-                            } catch (final org.thryft.protocol.InputProtocolException e) {
-                                throw new org.thryft.protocol.UncheckedInputProtocolException(e);
-                            }
+                            }).apply(iprot);
+                        } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
+                             throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.TEXTS, e.getCause());
                         }
-                    }).apply(iprot);
+                    }
+                    break;
                 }
-                break;
-            }
-            case "author": {
-                if (!ifield.hasId() || ifield.getId() == 2) {
-                    author = com.google.common.base.Optional.of(org.dressdiscover.api.models.inscription.InscriptionAuthor.readAsStruct(iprot));
+                case "author": {
+                    if (!ifield.hasId() || ifield.getId() == 2) {
+                        author = com.google.common.base.Optional.of(org.dressdiscover.api.models.inscription.InscriptionAuthor.readAsStruct(iprot));
+                    }
+                    break;
                 }
-                break;
-            }
-            case "position": {
-                if (!ifield.hasId() || ifield.getId() == 3) {
-                    position = com.google.common.base.Optional.of(iprot.readString());
+                case "position": {
+                    if (!ifield.hasId() || ifield.getId() == 3) {
+                        position = com.google.common.base.Optional.of(iprot.readString());
+                    }
+                    break;
                 }
-                break;
-            }
-            default:
-                if (unknownFieldCallback.isPresent()) {
-                    unknownFieldCallback.get().apply(ifield);
+                default:
+                    if (unknownFieldCallback.isPresent()) {
+                        unknownFieldCallback.get().apply(ifield);
+                    }
+                    break;
                 }
-                break;
+                iprot.readFieldEnd();
             }
-            iprot.readFieldEnd();
+            iprot.readStructEnd();
+        } catch (final RuntimeException e) {
+            throw new IllegalStateException(e);
         }
-        iprot.readStructEnd();
         return new Inscription(DefaultReadValidator.getInstance().validateTexts(texts), DefaultReadValidator.getInstance().validateAuthor(author), DefaultReadValidator.getInstance().validatePosition(position), NopConstructionValidator.getInstance());
     }
 

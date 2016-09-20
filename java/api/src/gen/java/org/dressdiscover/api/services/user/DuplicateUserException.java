@@ -48,14 +48,18 @@ public final class DuplicateUserException extends org.thryft.Exception {
         }
 
         public Builder readAsList(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
-            iprot.readListBegin();
-            causeMessage = iprot.readString();
             try {
-                userId = org.dressdiscover.api.models.user.UserId.parse(iprot.readString());
-            } catch (final org.dressdiscover.api.models.user.InvalidUserIdException e) {
-                 throw new org.thryft.protocol.InputProtocolException(e);
+                iprot.readListBegin();
+                causeMessage = iprot.readString();
+                try {
+                    userId = org.dressdiscover.api.models.user.UserId.parse(iprot.readString());
+                } catch (final org.dressdiscover.api.models.user.InvalidUserIdException e) {
+                     throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.USER_ID, e);
+                }
+                iprot.readListEnd();
+            } catch (final RuntimeException e) {
+                throw new IllegalStateException(e);
             }
-            iprot.readListEnd();
             return this;
         }
 
@@ -64,34 +68,38 @@ public final class DuplicateUserException extends org.thryft.Exception {
         }
 
         public Builder readAsStruct(final org.thryft.protocol.InputProtocol iprot, final com.google.common.base.Optional<UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
-            iprot.readStructBegin();
-            while (true) {
-                final org.thryft.protocol.FieldBegin ifield = iprot.readFieldBegin();
-                if (ifield.getType() == org.thryft.protocol.Type.STOP) {
-                    break;
-                }
-                switch (ifield.getName()) {
-                case "cause_message": {
-                    causeMessage = iprot.readString();
-                    break;
-                }
-                case "user_id": {
-                    try {
-                        userId = org.dressdiscover.api.models.user.UserId.parse(iprot.readString());
-                    } catch (final org.dressdiscover.api.models.user.InvalidUserIdException e) {
-                         throw new org.thryft.protocol.InputProtocolException(e);
+            try {
+                iprot.readStructBegin();
+                while (true) {
+                    final org.thryft.protocol.FieldBegin ifield = iprot.readFieldBegin();
+                    if (ifield.getType() == org.thryft.protocol.Type.STOP) {
+                        break;
                     }
-                    break;
-                }
-                default:
-                    if (unknownFieldCallback.isPresent()) {
-                        unknownFieldCallback.get().apply(ifield);
+                    switch (ifield.getName()) {
+                    case "cause_message": {
+                        causeMessage = iprot.readString();
+                        break;
                     }
-                    break;
+                    case "user_id": {
+                        try {
+                            userId = org.dressdiscover.api.models.user.UserId.parse(iprot.readString());
+                        } catch (final org.dressdiscover.api.models.user.InvalidUserIdException e) {
+                             throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.USER_ID, e);
+                        }
+                        break;
+                    }
+                    default:
+                        if (unknownFieldCallback.isPresent()) {
+                            unknownFieldCallback.get().apply(ifield);
+                        }
+                        break;
+                    }
+                    iprot.readFieldEnd();
                 }
-                iprot.readFieldEnd();
+                iprot.readStructEnd();
+            } catch (final RuntimeException e) {
+                throw new IllegalStateException(e);
             }
-            iprot.readStructEnd();
             return this;
         }
 
@@ -512,14 +520,18 @@ public final class DuplicateUserException extends org.thryft.Exception {
         String causeMessage = null;
         org.dressdiscover.api.models.user.UserId userId = null;
 
-        iprot.readListBegin();
-        causeMessage = iprot.readString();
         try {
-            userId = org.dressdiscover.api.models.user.UserId.parse(iprot.readString());
-        } catch (final org.dressdiscover.api.models.user.InvalidUserIdException e) {
-             throw new org.thryft.protocol.InputProtocolException(e);
+            iprot.readListBegin();
+            causeMessage = iprot.readString();
+            try {
+                userId = org.dressdiscover.api.models.user.UserId.parse(iprot.readString());
+            } catch (final org.dressdiscover.api.models.user.InvalidUserIdException e) {
+                 throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.USER_ID, e);
+            }
+            iprot.readListEnd();
+        } catch (final RuntimeException e) {
+            throw new IllegalStateException(e);
         }
-        iprot.readListEnd();
         return new DuplicateUserException(DefaultReadValidator.getInstance().validateCauseMessage(causeMessage), DefaultReadValidator.getInstance().validateUserId(userId), NopConstructionValidator.getInstance());
     }
 
@@ -531,34 +543,38 @@ public final class DuplicateUserException extends org.thryft.Exception {
         String causeMessage = null;
         org.dressdiscover.api.models.user.UserId userId = null;
 
-        iprot.readStructBegin();
-        while (true) {
-            final org.thryft.protocol.FieldBegin ifield = iprot.readFieldBegin();
-            if (ifield.getType() == org.thryft.protocol.Type.STOP) {
-                break;
-            }
-            switch (ifield.getName()) {
-            case "cause_message": {
-                causeMessage = iprot.readString();
-                break;
-            }
-            case "user_id": {
-                try {
-                    userId = org.dressdiscover.api.models.user.UserId.parse(iprot.readString());
-                } catch (final org.dressdiscover.api.models.user.InvalidUserIdException e) {
-                     throw new org.thryft.protocol.InputProtocolException(e);
+        try {
+            iprot.readStructBegin();
+            while (true) {
+                final org.thryft.protocol.FieldBegin ifield = iprot.readFieldBegin();
+                if (ifield.getType() == org.thryft.protocol.Type.STOP) {
+                    break;
                 }
-                break;
-            }
-            default:
-                if (unknownFieldCallback.isPresent()) {
-                    unknownFieldCallback.get().apply(ifield);
+                switch (ifield.getName()) {
+                case "cause_message": {
+                    causeMessage = iprot.readString();
+                    break;
                 }
-                break;
+                case "user_id": {
+                    try {
+                        userId = org.dressdiscover.api.models.user.UserId.parse(iprot.readString());
+                    } catch (final org.dressdiscover.api.models.user.InvalidUserIdException e) {
+                         throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.USER_ID, e);
+                    }
+                    break;
+                }
+                default:
+                    if (unknownFieldCallback.isPresent()) {
+                        unknownFieldCallback.get().apply(ifield);
+                    }
+                    break;
+                }
+                iprot.readFieldEnd();
             }
-            iprot.readFieldEnd();
+            iprot.readStructEnd();
+        } catch (final RuntimeException e) {
+            throw new IllegalStateException(e);
         }
-        iprot.readStructEnd();
         return new DuplicateUserException(DefaultReadValidator.getInstance().validateCauseMessage(causeMessage), DefaultReadValidator.getInstance().validateUserId(userId), NopConstructionValidator.getInstance());
     }
 

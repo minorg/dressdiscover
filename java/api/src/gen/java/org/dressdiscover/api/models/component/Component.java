@@ -47,12 +47,16 @@ public final class Component implements org.thryft.Struct, org.dressdiscover.api
         }
 
         public Builder readAsList(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
-            final org.thryft.protocol.ListBegin __list = iprot.readListBegin();
-            term = org.dressdiscover.api.models.component.ComponentTerm.readAsStruct(iprot);
-            if (__list.getSize() > 1) {
-                structures = com.google.common.base.Optional.of(org.dressdiscover.api.models.structure.StructureSet.readAsStruct(iprot));
+            try {
+                final org.thryft.protocol.ListBegin __list = iprot.readListBegin();
+                term = org.dressdiscover.api.models.component.ComponentTerm.readAsStruct(iprot);
+                if (__list.getSize() > 1) {
+                    structures = com.google.common.base.Optional.of(org.dressdiscover.api.models.structure.StructureSet.readAsStruct(iprot));
+                }
+                iprot.readListEnd();
+            } catch (final RuntimeException e) {
+                throw new IllegalStateException(e);
             }
-            iprot.readListEnd();
             return this;
         }
 
@@ -61,34 +65,38 @@ public final class Component implements org.thryft.Struct, org.dressdiscover.api
         }
 
         public Builder readAsStruct(final org.thryft.protocol.InputProtocol iprot, final com.google.common.base.Optional<UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
-            iprot.readStructBegin();
-            while (true) {
-                final org.thryft.protocol.FieldBegin ifield = iprot.readFieldBegin();
-                if (ifield.getType() == org.thryft.protocol.Type.STOP) {
-                    break;
-                }
-                switch (ifield.getName()) {
-                case "term": {
-                    if (!ifield.hasId() || ifield.getId() == 1) {
-                        term = org.dressdiscover.api.models.component.ComponentTerm.readAsStruct(iprot);
+            try {
+                iprot.readStructBegin();
+                while (true) {
+                    final org.thryft.protocol.FieldBegin ifield = iprot.readFieldBegin();
+                    if (ifield.getType() == org.thryft.protocol.Type.STOP) {
+                        break;
                     }
-                    break;
-                }
-                case "structures": {
-                    if (!ifield.hasId() || ifield.getId() == 2) {
-                        structures = com.google.common.base.Optional.of(org.dressdiscover.api.models.structure.StructureSet.readAsStruct(iprot));
+                    switch (ifield.getName()) {
+                    case "term": {
+                        if (!ifield.hasId() || ifield.getId() == 1) {
+                            term = org.dressdiscover.api.models.component.ComponentTerm.readAsStruct(iprot);
+                        }
+                        break;
                     }
-                    break;
-                }
-                default:
-                    if (unknownFieldCallback.isPresent()) {
-                        unknownFieldCallback.get().apply(ifield);
+                    case "structures": {
+                        if (!ifield.hasId() || ifield.getId() == 2) {
+                            structures = com.google.common.base.Optional.of(org.dressdiscover.api.models.structure.StructureSet.readAsStruct(iprot));
+                        }
+                        break;
                     }
-                    break;
+                    default:
+                        if (unknownFieldCallback.isPresent()) {
+                            unknownFieldCallback.get().apply(ifield);
+                        }
+                        break;
+                    }
+                    iprot.readFieldEnd();
                 }
-                iprot.readFieldEnd();
+                iprot.readStructEnd();
+            } catch (final RuntimeException e) {
+                throw new IllegalStateException(e);
             }
-            iprot.readStructEnd();
             return this;
         }
 
@@ -522,12 +530,16 @@ public final class Component implements org.thryft.Struct, org.dressdiscover.api
         org.dressdiscover.api.models.component.ComponentTerm term = null;
         com.google.common.base.Optional<org.dressdiscover.api.models.structure.StructureSet> structures = com.google.common.base.Optional.<org.dressdiscover.api.models.structure.StructureSet> absent();
 
-        final org.thryft.protocol.ListBegin __list = iprot.readListBegin();
-        term = org.dressdiscover.api.models.component.ComponentTerm.readAsStruct(iprot);
-        if (__list.getSize() > 1) {
-            structures = com.google.common.base.Optional.of(org.dressdiscover.api.models.structure.StructureSet.readAsStruct(iprot));
+        try {
+            final org.thryft.protocol.ListBegin __list = iprot.readListBegin();
+            term = org.dressdiscover.api.models.component.ComponentTerm.readAsStruct(iprot);
+            if (__list.getSize() > 1) {
+                structures = com.google.common.base.Optional.of(org.dressdiscover.api.models.structure.StructureSet.readAsStruct(iprot));
+            }
+            iprot.readListEnd();
+        } catch (final RuntimeException e) {
+            throw new IllegalStateException(e);
         }
-        iprot.readListEnd();
         return new Component(DefaultReadValidator.getInstance().validateTerm(term), DefaultReadValidator.getInstance().validateStructures(structures), NopConstructionValidator.getInstance());
     }
 
@@ -539,34 +551,38 @@ public final class Component implements org.thryft.Struct, org.dressdiscover.api
         org.dressdiscover.api.models.component.ComponentTerm term = null;
         com.google.common.base.Optional<org.dressdiscover.api.models.structure.StructureSet> structures = com.google.common.base.Optional.<org.dressdiscover.api.models.structure.StructureSet> absent();
 
-        iprot.readStructBegin();
-        while (true) {
-            final org.thryft.protocol.FieldBegin ifield = iprot.readFieldBegin();
-            if (ifield.getType() == org.thryft.protocol.Type.STOP) {
-                break;
-            }
-            switch (ifield.getName()) {
-            case "term": {
-                if (!ifield.hasId() || ifield.getId() == 1) {
-                    term = org.dressdiscover.api.models.component.ComponentTerm.readAsStruct(iprot);
+        try {
+            iprot.readStructBegin();
+            while (true) {
+                final org.thryft.protocol.FieldBegin ifield = iprot.readFieldBegin();
+                if (ifield.getType() == org.thryft.protocol.Type.STOP) {
+                    break;
                 }
-                break;
-            }
-            case "structures": {
-                if (!ifield.hasId() || ifield.getId() == 2) {
-                    structures = com.google.common.base.Optional.of(org.dressdiscover.api.models.structure.StructureSet.readAsStruct(iprot));
+                switch (ifield.getName()) {
+                case "term": {
+                    if (!ifield.hasId() || ifield.getId() == 1) {
+                        term = org.dressdiscover.api.models.component.ComponentTerm.readAsStruct(iprot);
+                    }
+                    break;
                 }
-                break;
-            }
-            default:
-                if (unknownFieldCallback.isPresent()) {
-                    unknownFieldCallback.get().apply(ifield);
+                case "structures": {
+                    if (!ifield.hasId() || ifield.getId() == 2) {
+                        structures = com.google.common.base.Optional.of(org.dressdiscover.api.models.structure.StructureSet.readAsStruct(iprot));
+                    }
+                    break;
                 }
-                break;
+                default:
+                    if (unknownFieldCallback.isPresent()) {
+                        unknownFieldCallback.get().apply(ifield);
+                    }
+                    break;
+                }
+                iprot.readFieldEnd();
             }
-            iprot.readFieldEnd();
+            iprot.readStructEnd();
+        } catch (final RuntimeException e) {
+            throw new IllegalStateException(e);
         }
-        iprot.readStructEnd();
         return new Component(DefaultReadValidator.getInstance().validateTerm(term), DefaultReadValidator.getInstance().validateStructures(structures), NopConstructionValidator.getInstance());
     }
 

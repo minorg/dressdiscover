@@ -50,21 +50,29 @@ public final class ImageVersion implements org.thryft.Struct {
         }
 
         public Builder readAsList(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
-            final org.thryft.protocol.ListBegin __list = iprot.readListBegin();
-            url = org.thryft.native_.Url.parse(iprot.readString());
-            if (__list.getSize() > 1) {
+            try {
+                final org.thryft.protocol.ListBegin __list = iprot.readListBegin();
                 try {
-                    heightPx = com.google.common.base.Optional.of(iprot.readU32());
-                } catch (final NumberFormatException e) {
+                    url = org.thryft.native_.Url.parse(iprot.readString());
+                } catch (final java.lang.IllegalArgumentException e) {
+                     throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.URL, e);
                 }
-            }
-            if (__list.getSize() > 2) {
-                try {
-                    widthPx = com.google.common.base.Optional.of(iprot.readU32());
-                } catch (final NumberFormatException e) {
+                if (__list.getSize() > 1) {
+                    try {
+                        heightPx = com.google.common.base.Optional.of(iprot.readU32());
+                    } catch (final NumberFormatException e) {
+                    }
                 }
+                if (__list.getSize() > 2) {
+                    try {
+                        widthPx = com.google.common.base.Optional.of(iprot.readU32());
+                    } catch (final NumberFormatException e) {
+                    }
+                }
+                iprot.readListEnd();
+            } catch (final RuntimeException e) {
+                throw new IllegalStateException(e);
             }
-            iprot.readListEnd();
             return this;
         }
 
@@ -73,46 +81,54 @@ public final class ImageVersion implements org.thryft.Struct {
         }
 
         public Builder readAsStruct(final org.thryft.protocol.InputProtocol iprot, final com.google.common.base.Optional<UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
-            iprot.readStructBegin();
-            while (true) {
-                final org.thryft.protocol.FieldBegin ifield = iprot.readFieldBegin();
-                if (ifield.getType() == org.thryft.protocol.Type.STOP) {
-                    break;
-                }
-                switch (ifield.getName()) {
-                case "url": {
-                    if (!ifield.hasId() || ifield.getId() == 1) {
-                        url = org.thryft.native_.Url.parse(iprot.readString());
+            try {
+                iprot.readStructBegin();
+                while (true) {
+                    final org.thryft.protocol.FieldBegin ifield = iprot.readFieldBegin();
+                    if (ifield.getType() == org.thryft.protocol.Type.STOP) {
+                        break;
                     }
-                    break;
-                }
-                case "height_px": {
-                    if (!ifield.hasId() || ifield.getId() == 2) {
-                        try {
-                            heightPx = com.google.common.base.Optional.of(iprot.readU32());
-                        } catch (final NumberFormatException e) {
+                    switch (ifield.getName()) {
+                    case "url": {
+                        if (!ifield.hasId() || ifield.getId() == 1) {
+                            try {
+                                url = org.thryft.native_.Url.parse(iprot.readString());
+                            } catch (final java.lang.IllegalArgumentException e) {
+                                 throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.URL, e);
+                            }
                         }
+                        break;
                     }
-                    break;
-                }
-                case "width_px": {
-                    if (!ifield.hasId() || ifield.getId() == 3) {
-                        try {
-                            widthPx = com.google.common.base.Optional.of(iprot.readU32());
-                        } catch (final NumberFormatException e) {
+                    case "height_px": {
+                        if (!ifield.hasId() || ifield.getId() == 2) {
+                            try {
+                                heightPx = com.google.common.base.Optional.of(iprot.readU32());
+                            } catch (final NumberFormatException e) {
+                            }
                         }
+                        break;
                     }
-                    break;
-                }
-                default:
-                    if (unknownFieldCallback.isPresent()) {
-                        unknownFieldCallback.get().apply(ifield);
+                    case "width_px": {
+                        if (!ifield.hasId() || ifield.getId() == 3) {
+                            try {
+                                widthPx = com.google.common.base.Optional.of(iprot.readU32());
+                            } catch (final NumberFormatException e) {
+                            }
+                        }
+                        break;
                     }
-                    break;
+                    default:
+                        if (unknownFieldCallback.isPresent()) {
+                            unknownFieldCallback.get().apply(ifield);
+                        }
+                        break;
+                    }
+                    iprot.readFieldEnd();
                 }
-                iprot.readFieldEnd();
+                iprot.readStructEnd();
+            } catch (final RuntimeException e) {
+                throw new IllegalStateException(e);
             }
-            iprot.readStructEnd();
             return this;
         }
 
@@ -614,21 +630,29 @@ public final class ImageVersion implements org.thryft.Struct {
         com.google.common.base.Optional<com.google.common.primitives.UnsignedInteger> heightPx = com.google.common.base.Optional.<com.google.common.primitives.UnsignedInteger> absent();
         com.google.common.base.Optional<com.google.common.primitives.UnsignedInteger> widthPx = com.google.common.base.Optional.<com.google.common.primitives.UnsignedInteger> absent();
 
-        final org.thryft.protocol.ListBegin __list = iprot.readListBegin();
-        url = org.thryft.native_.Url.parse(iprot.readString());
-        if (__list.getSize() > 1) {
+        try {
+            final org.thryft.protocol.ListBegin __list = iprot.readListBegin();
             try {
-                heightPx = com.google.common.base.Optional.of(iprot.readU32());
-            } catch (final NumberFormatException e) {
+                url = org.thryft.native_.Url.parse(iprot.readString());
+            } catch (final java.lang.IllegalArgumentException e) {
+                 throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.URL, e);
             }
-        }
-        if (__list.getSize() > 2) {
-            try {
-                widthPx = com.google.common.base.Optional.of(iprot.readU32());
-            } catch (final NumberFormatException e) {
+            if (__list.getSize() > 1) {
+                try {
+                    heightPx = com.google.common.base.Optional.of(iprot.readU32());
+                } catch (final NumberFormatException e) {
+                }
             }
+            if (__list.getSize() > 2) {
+                try {
+                    widthPx = com.google.common.base.Optional.of(iprot.readU32());
+                } catch (final NumberFormatException e) {
+                }
+            }
+            iprot.readListEnd();
+        } catch (final RuntimeException e) {
+            throw new IllegalStateException(e);
         }
-        iprot.readListEnd();
         return new ImageVersion(DefaultReadValidator.getInstance().validateUrl(url), DefaultReadValidator.getInstance().validateHeightPx(heightPx), DefaultReadValidator.getInstance().validateWidthPx(widthPx), NopConstructionValidator.getInstance());
     }
 
@@ -641,46 +665,54 @@ public final class ImageVersion implements org.thryft.Struct {
         com.google.common.base.Optional<com.google.common.primitives.UnsignedInteger> heightPx = com.google.common.base.Optional.<com.google.common.primitives.UnsignedInteger> absent();
         com.google.common.base.Optional<com.google.common.primitives.UnsignedInteger> widthPx = com.google.common.base.Optional.<com.google.common.primitives.UnsignedInteger> absent();
 
-        iprot.readStructBegin();
-        while (true) {
-            final org.thryft.protocol.FieldBegin ifield = iprot.readFieldBegin();
-            if (ifield.getType() == org.thryft.protocol.Type.STOP) {
-                break;
-            }
-            switch (ifield.getName()) {
-            case "url": {
-                if (!ifield.hasId() || ifield.getId() == 1) {
-                    url = org.thryft.native_.Url.parse(iprot.readString());
+        try {
+            iprot.readStructBegin();
+            while (true) {
+                final org.thryft.protocol.FieldBegin ifield = iprot.readFieldBegin();
+                if (ifield.getType() == org.thryft.protocol.Type.STOP) {
+                    break;
                 }
-                break;
-            }
-            case "height_px": {
-                if (!ifield.hasId() || ifield.getId() == 2) {
-                    try {
-                        heightPx = com.google.common.base.Optional.of(iprot.readU32());
-                    } catch (final NumberFormatException e) {
+                switch (ifield.getName()) {
+                case "url": {
+                    if (!ifield.hasId() || ifield.getId() == 1) {
+                        try {
+                            url = org.thryft.native_.Url.parse(iprot.readString());
+                        } catch (final java.lang.IllegalArgumentException e) {
+                             throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.URL, e);
+                        }
                     }
+                    break;
                 }
-                break;
-            }
-            case "width_px": {
-                if (!ifield.hasId() || ifield.getId() == 3) {
-                    try {
-                        widthPx = com.google.common.base.Optional.of(iprot.readU32());
-                    } catch (final NumberFormatException e) {
+                case "height_px": {
+                    if (!ifield.hasId() || ifield.getId() == 2) {
+                        try {
+                            heightPx = com.google.common.base.Optional.of(iprot.readU32());
+                        } catch (final NumberFormatException e) {
+                        }
                     }
+                    break;
                 }
-                break;
-            }
-            default:
-                if (unknownFieldCallback.isPresent()) {
-                    unknownFieldCallback.get().apply(ifield);
+                case "width_px": {
+                    if (!ifield.hasId() || ifield.getId() == 3) {
+                        try {
+                            widthPx = com.google.common.base.Optional.of(iprot.readU32());
+                        } catch (final NumberFormatException e) {
+                        }
+                    }
+                    break;
                 }
-                break;
+                default:
+                    if (unknownFieldCallback.isPresent()) {
+                        unknownFieldCallback.get().apply(ifield);
+                    }
+                    break;
+                }
+                iprot.readFieldEnd();
             }
-            iprot.readFieldEnd();
+            iprot.readStructEnd();
+        } catch (final RuntimeException e) {
+            throw new IllegalStateException(e);
         }
-        iprot.readStructEnd();
         return new ImageVersion(DefaultReadValidator.getInstance().validateUrl(url), DefaultReadValidator.getInstance().validateHeightPx(heightPx), DefaultReadValidator.getInstance().validateWidthPx(widthPx), NopConstructionValidator.getInstance());
     }
 

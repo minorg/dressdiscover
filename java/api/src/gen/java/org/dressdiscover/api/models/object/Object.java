@@ -209,147 +209,142 @@ public final class Object implements org.thryft.Struct, org.thryft.waf.api.model
         }
 
         public Builder readAsList(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
-            final org.thryft.protocol.ListBegin __list = iprot.readListBegin();
             try {
-                collectionId = org.dressdiscover.api.models.collection.CollectionId.parse(iprot.readString());
-            } catch (final org.dressdiscover.api.models.collection.InvalidCollectionIdException e) {
-                 throw new org.thryft.protocol.InputProtocolException(e);
-            }
-            try {
-                institutionId = org.dressdiscover.api.models.institution.InstitutionId.parse(iprot.readString());
-            } catch (final org.dressdiscover.api.models.institution.InvalidInstitutionIdException e) {
-                 throw new org.thryft.protocol.InputProtocolException(e);
-            }
-            titles = org.dressdiscover.api.models.title.TitleSet.readAsStruct(iprot);
-            if (__list.getSize() > 3) {
-                agents = com.google.common.base.Optional.of(org.dressdiscover.api.models.agent.AgentSet.readAsStruct(iprot));
-            }
-            if (__list.getSize() > 4) {
+                final org.thryft.protocol.ListBegin __list = iprot.readListBegin();
                 try {
-                    categories = com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableList<String>>() {
-                        @Override
-                        public com.google.common.collect.ImmutableList<String> apply(final org.thryft.protocol.InputProtocol iprot) {
-                            try {
-                                final org.thryft.protocol.ListBegin sequenceBegin = iprot.readListBegin();
-                                final com.google.common.collect.ImmutableList.Builder<String> sequenceBuilder = com.google.common.collect.ImmutableList.builder();
-                                for (int elementI = 0; elementI < sequenceBegin.getSize(); elementI++) {
-                                    sequenceBuilder.add(iprot.readString());
-                                }
-                                iprot.readListEnd();
-                                return sequenceBuilder.build();
-                            } catch (final org.thryft.protocol.InputProtocolException e) {
-                                throw new org.thryft.protocol.UncheckedInputProtocolException(e);
-                            }
-                        }
-                    }).apply(iprot));
-                } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
-                     throw e.getCause();
+                    collectionId = org.dressdiscover.api.models.collection.CollectionId.parse(iprot.readString());
+                } catch (final org.dressdiscover.api.models.collection.InvalidCollectionIdException e) {
+                     throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.COLLECTION_ID, e);
                 }
-            }
-            if (__list.getSize() > 5) {
-                closures = com.google.common.base.Optional.of(org.dressdiscover.api.models.closure.ClosureSet.readAsStruct(iprot));
-            }
-            if (__list.getSize() > 6) {
-                colors = com.google.common.base.Optional.of(org.dressdiscover.api.models.color.ColorSet.readAsStruct(iprot));
-            }
-            if (__list.getSize() > 7) {
-                components = com.google.common.base.Optional.of(org.dressdiscover.api.models.component.ComponentSet.readAsStruct(iprot));
-            }
-            if (__list.getSize() > 8) {
                 try {
+                    institutionId = org.dressdiscover.api.models.institution.InstitutionId.parse(iprot.readString());
+                } catch (final org.dressdiscover.api.models.institution.InvalidInstitutionIdException e) {
+                     throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.INSTITUTION_ID, e);
+                }
+                titles = org.dressdiscover.api.models.title.TitleSet.readAsStruct(iprot);
+                if (__list.getSize() > 3) {
+                    agents = com.google.common.base.Optional.of(org.dressdiscover.api.models.agent.AgentSet.readAsStruct(iprot));
+                }
+                if (__list.getSize() > 4) {
+                    try {
+                        categories = com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableList<String>>() {
+                            @Override
+                            public com.google.common.collect.ImmutableList<String> apply(final org.thryft.protocol.InputProtocol iprot) {
+                                try {
+                                    final org.thryft.protocol.ListBegin sequenceBegin = iprot.readListBegin();
+                                    final com.google.common.collect.ImmutableList.Builder<String> sequenceBuilder = com.google.common.collect.ImmutableList.builder();
+                                    for (int elementI = 0; elementI < sequenceBegin.getSize(); elementI++) {
+                                        sequenceBuilder.add(iprot.readString());
+                                    }
+                                    iprot.readListEnd();
+                                    return sequenceBuilder.build();
+                                } catch (final org.thryft.protocol.InputProtocolException e) {
+                                    throw new org.thryft.protocol.UncheckedInputProtocolException(e);
+                                }
+                            }
+                        }).apply(iprot));
+                    } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
+                         throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.CATEGORIES, e.getCause());
+                    }
+                }
+                if (__list.getSize() > 5) {
+                    closures = com.google.common.base.Optional.of(org.dressdiscover.api.models.closure.ClosureSet.readAsStruct(iprot));
+                }
+                if (__list.getSize() > 6) {
+                    colors = com.google.common.base.Optional.of(org.dressdiscover.api.models.color.ColorSet.readAsStruct(iprot));
+                }
+                if (__list.getSize() > 7) {
+                    components = com.google.common.base.Optional.of(org.dressdiscover.api.models.component.ComponentSet.readAsStruct(iprot));
+                }
+                if (__list.getSize() > 8) {
                     condition = com.google.common.base.Optional.of(iprot.readEnum(org.dressdiscover.api.models.condition.Condition.class));
-                } catch (final IllegalArgumentException e) {
                 }
-            }
-            if (__list.getSize() > 9) {
-                culturalContexts = com.google.common.base.Optional.of(org.dressdiscover.api.models.cultural_context.CulturalContextSet.readAsStruct(iprot));
-            }
-            if (__list.getSize() > 10) {
-                dates = com.google.common.base.Optional.of(org.dressdiscover.api.models.date.DateSet.readAsStruct(iprot));
-            }
-            if (__list.getSize() > 11) {
-                descriptions = com.google.common.base.Optional.of(org.dressdiscover.api.models.description.DescriptionSet.readAsStruct(iprot));
-            }
-            if (__list.getSize() > 12) {
-                try {
+                if (__list.getSize() > 9) {
+                    culturalContexts = com.google.common.base.Optional.of(org.dressdiscover.api.models.cultural_context.CulturalContextSet.readAsStruct(iprot));
+                }
+                if (__list.getSize() > 10) {
+                    dates = com.google.common.base.Optional.of(org.dressdiscover.api.models.date.DateSet.readAsStruct(iprot));
+                }
+                if (__list.getSize() > 11) {
+                    descriptions = com.google.common.base.Optional.of(org.dressdiscover.api.models.description.DescriptionSet.readAsStruct(iprot));
+                }
+                if (__list.getSize() > 12) {
                     gender = com.google.common.base.Optional.of(iprot.readEnum(org.dressdiscover.api.models.gender.Gender.class));
-                } catch (final IllegalArgumentException e) {
                 }
-            }
-            if (__list.getSize() > 13) {
-                hidden = com.google.common.base.Optional.of(iprot.readBool());
-            }
-            if (__list.getSize() > 14) {
-                try {
-                    images = com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableList<org.dressdiscover.api.models.image.Image>>() {
-                        @Override
-                        public com.google.common.collect.ImmutableList<org.dressdiscover.api.models.image.Image> apply(final org.thryft.protocol.InputProtocol iprot) {
-                            try {
-                                final org.thryft.protocol.ListBegin sequenceBegin = iprot.readListBegin();
-                                final com.google.common.collect.ImmutableList.Builder<org.dressdiscover.api.models.image.Image> sequenceBuilder = com.google.common.collect.ImmutableList.builder();
-                                for (int elementI = 0; elementI < sequenceBegin.getSize(); elementI++) {
-                                    sequenceBuilder.add(org.dressdiscover.api.models.image.Image.readAsStruct(iprot));
+                if (__list.getSize() > 13) {
+                    hidden = com.google.common.base.Optional.of(iprot.readBool());
+                }
+                if (__list.getSize() > 14) {
+                    try {
+                        images = com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableList<org.dressdiscover.api.models.image.Image>>() {
+                            @Override
+                            public com.google.common.collect.ImmutableList<org.dressdiscover.api.models.image.Image> apply(final org.thryft.protocol.InputProtocol iprot) {
+                                try {
+                                    final org.thryft.protocol.ListBegin sequenceBegin = iprot.readListBegin();
+                                    final com.google.common.collect.ImmutableList.Builder<org.dressdiscover.api.models.image.Image> sequenceBuilder = com.google.common.collect.ImmutableList.builder();
+                                    for (int elementI = 0; elementI < sequenceBegin.getSize(); elementI++) {
+                                        sequenceBuilder.add(org.dressdiscover.api.models.image.Image.readAsStruct(iprot));
+                                    }
+                                    iprot.readListEnd();
+                                    return sequenceBuilder.build();
+                                } catch (final org.thryft.protocol.InputProtocolException e) {
+                                    throw new org.thryft.protocol.UncheckedInputProtocolException(e);
                                 }
-                                iprot.readListEnd();
-                                return sequenceBuilder.build();
-                            } catch (final org.thryft.protocol.InputProtocolException e) {
-                                throw new org.thryft.protocol.UncheckedInputProtocolException(e);
                             }
-                        }
-                    }).apply(iprot));
-                } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
-                     throw e.getCause();
+                        }).apply(iprot));
+                    } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
+                         throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.IMAGES, e.getCause());
+                    }
                 }
-            }
-            if (__list.getSize() > 15) {
-                inscriptions = com.google.common.base.Optional.of(org.dressdiscover.api.models.inscription.InscriptionSet.readAsStruct(iprot));
-            }
-            if (__list.getSize() > 16) {
-                locations = com.google.common.base.Optional.of(org.dressdiscover.api.models.location.LocationSet.readAsStruct(iprot));
-            }
-            if (__list.getSize() > 17) {
-                materials = com.google.common.base.Optional.of(org.dressdiscover.api.models.material.MaterialSet.readAsStruct(iprot));
-            }
-            if (__list.getSize() > 18) {
-                measurements = com.google.common.base.Optional.of(org.dressdiscover.api.models.measurements.MeasurementsSet.readAsStruct(iprot));
-            }
-            if (__list.getSize() > 19) {
-                provenance = com.google.common.base.Optional.of(iprot.readString());
-            }
-            if (__list.getSize() > 20) {
-                try {
-                    quantity = com.google.common.base.Optional.of(iprot.readU32());
-                } catch (final NumberFormatException e) {
+                if (__list.getSize() > 15) {
+                    inscriptions = com.google.common.base.Optional.of(org.dressdiscover.api.models.inscription.InscriptionSet.readAsStruct(iprot));
                 }
-            }
-            if (__list.getSize() > 21) {
-                relations = com.google.common.base.Optional.of(org.dressdiscover.api.models.relation.RelationSet.readAsStruct(iprot));
-            }
-            if (__list.getSize() > 22) {
-                rights = com.google.common.base.Optional.of(org.dressdiscover.api.models.rights.RightsSet.readAsStruct(iprot));
-            }
-            if (__list.getSize() > 23) {
-                structures = com.google.common.base.Optional.of(org.dressdiscover.api.models.structure.StructureSet.readAsStruct(iprot));
-            }
-            if (__list.getSize() > 24) {
-                subjects = com.google.common.base.Optional.of(org.dressdiscover.api.models.subject.SubjectSet.readAsStruct(iprot));
-            }
-            if (__list.getSize() > 25) {
-                techniques = com.google.common.base.Optional.of(org.dressdiscover.api.models.technique.TechniqueSet.readAsStruct(iprot));
-            }
-            if (__list.getSize() > 26) {
-                textrefs = com.google.common.base.Optional.of(org.dressdiscover.api.models.textref.TextrefSet.readAsStruct(iprot));
-            }
-            if (__list.getSize() > 27) {
-                try {
+                if (__list.getSize() > 16) {
+                    locations = com.google.common.base.Optional.of(org.dressdiscover.api.models.location.LocationSet.readAsStruct(iprot));
+                }
+                if (__list.getSize() > 17) {
+                    materials = com.google.common.base.Optional.of(org.dressdiscover.api.models.material.MaterialSet.readAsStruct(iprot));
+                }
+                if (__list.getSize() > 18) {
+                    measurements = com.google.common.base.Optional.of(org.dressdiscover.api.models.measurements.MeasurementsSet.readAsStruct(iprot));
+                }
+                if (__list.getSize() > 19) {
+                    provenance = com.google.common.base.Optional.of(iprot.readString());
+                }
+                if (__list.getSize() > 20) {
+                    try {
+                        quantity = com.google.common.base.Optional.of(iprot.readU32());
+                    } catch (final NumberFormatException e) {
+                    }
+                }
+                if (__list.getSize() > 21) {
+                    relations = com.google.common.base.Optional.of(org.dressdiscover.api.models.relation.RelationSet.readAsStruct(iprot));
+                }
+                if (__list.getSize() > 22) {
+                    rights = com.google.common.base.Optional.of(org.dressdiscover.api.models.rights.RightsSet.readAsStruct(iprot));
+                }
+                if (__list.getSize() > 23) {
+                    structures = com.google.common.base.Optional.of(org.dressdiscover.api.models.structure.StructureSet.readAsStruct(iprot));
+                }
+                if (__list.getSize() > 24) {
+                    subjects = com.google.common.base.Optional.of(org.dressdiscover.api.models.subject.SubjectSet.readAsStruct(iprot));
+                }
+                if (__list.getSize() > 25) {
+                    techniques = com.google.common.base.Optional.of(org.dressdiscover.api.models.technique.TechniqueSet.readAsStruct(iprot));
+                }
+                if (__list.getSize() > 26) {
+                    textrefs = com.google.common.base.Optional.of(org.dressdiscover.api.models.textref.TextrefSet.readAsStruct(iprot));
+                }
+                if (__list.getSize() > 27) {
                     viewType = com.google.common.base.Optional.of(iprot.readEnum(org.dressdiscover.api.models.view_type.ViewType.class));
-                } catch (final IllegalArgumentException e) {
                 }
+                if (__list.getSize() > 28) {
+                    workTypes = com.google.common.base.Optional.of(org.dressdiscover.api.models.work_type.WorkTypeSet.readAsStruct(iprot));
+                }
+                iprot.readListEnd();
+            } catch (final RuntimeException e) {
+                throw new IllegalStateException(e);
             }
-            if (__list.getSize() > 28) {
-                workTypes = com.google.common.base.Optional.of(org.dressdiscover.api.models.work_type.WorkTypeSet.readAsStruct(iprot));
-            }
-            iprot.readListEnd();
             return this;
         }
 
@@ -358,254 +353,249 @@ public final class Object implements org.thryft.Struct, org.thryft.waf.api.model
         }
 
         public Builder readAsStruct(final org.thryft.protocol.InputProtocol iprot, final com.google.common.base.Optional<UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
-            iprot.readStructBegin();
-            while (true) {
-                final org.thryft.protocol.FieldBegin ifield = iprot.readFieldBegin();
-                if (ifield.getType() == org.thryft.protocol.Type.STOP) {
-                    break;
-                }
-                switch (ifield.getName()) {
-                case "collection_id": {
-                    if (!ifield.hasId() || ifield.getId() == 1) {
-                        try {
-                            collectionId = org.dressdiscover.api.models.collection.CollectionId.parse(iprot.readString());
-                        } catch (final org.dressdiscover.api.models.collection.InvalidCollectionIdException e) {
-                             throw new org.thryft.protocol.InputProtocolException(e);
+            try {
+                iprot.readStructBegin();
+                while (true) {
+                    final org.thryft.protocol.FieldBegin ifield = iprot.readFieldBegin();
+                    if (ifield.getType() == org.thryft.protocol.Type.STOP) {
+                        break;
+                    }
+                    switch (ifield.getName()) {
+                    case "collection_id": {
+                        if (!ifield.hasId() || ifield.getId() == 1) {
+                            try {
+                                collectionId = org.dressdiscover.api.models.collection.CollectionId.parse(iprot.readString());
+                            } catch (final org.dressdiscover.api.models.collection.InvalidCollectionIdException e) {
+                                 throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.COLLECTION_ID, e);
+                            }
                         }
+                        break;
                     }
-                    break;
-                }
-                case "institution_id": {
-                    if (!ifield.hasId() || ifield.getId() == 2) {
-                        try {
-                            institutionId = org.dressdiscover.api.models.institution.InstitutionId.parse(iprot.readString());
-                        } catch (final org.dressdiscover.api.models.institution.InvalidInstitutionIdException e) {
-                             throw new org.thryft.protocol.InputProtocolException(e);
+                    case "institution_id": {
+                        if (!ifield.hasId() || ifield.getId() == 2) {
+                            try {
+                                institutionId = org.dressdiscover.api.models.institution.InstitutionId.parse(iprot.readString());
+                            } catch (final org.dressdiscover.api.models.institution.InvalidInstitutionIdException e) {
+                                 throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.INSTITUTION_ID, e);
+                            }
                         }
+                        break;
                     }
-                    break;
-                }
-                case "titles": {
-                    if (!ifield.hasId() || ifield.getId() == 3) {
-                        titles = org.dressdiscover.api.models.title.TitleSet.readAsStruct(iprot);
+                    case "titles": {
+                        if (!ifield.hasId() || ifield.getId() == 3) {
+                            titles = org.dressdiscover.api.models.title.TitleSet.readAsStruct(iprot);
+                        }
+                        break;
                     }
-                    break;
-                }
-                case "agents": {
-                    if (!ifield.hasId() || ifield.getId() == 20) {
-                        agents = com.google.common.base.Optional.of(org.dressdiscover.api.models.agent.AgentSet.readAsStruct(iprot));
+                    case "agents": {
+                        if (!ifield.hasId() || ifield.getId() == 20) {
+                            agents = com.google.common.base.Optional.of(org.dressdiscover.api.models.agent.AgentSet.readAsStruct(iprot));
+                        }
+                        break;
                     }
-                    break;
-                }
-                case "categories": {
-                    if (!ifield.hasId() || ifield.getId() == 18) {
-                        try {
-                            categories = com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableList<String>>() {
-                                @Override
-                                public com.google.common.collect.ImmutableList<String> apply(final org.thryft.protocol.InputProtocol iprot) {
-                                    try {
-                                        final org.thryft.protocol.ListBegin sequenceBegin = iprot.readListBegin();
-                                        final com.google.common.collect.ImmutableList.Builder<String> sequenceBuilder = com.google.common.collect.ImmutableList.builder();
-                                        for (int elementI = 0; elementI < sequenceBegin.getSize(); elementI++) {
-                                            sequenceBuilder.add(iprot.readString());
+                    case "categories": {
+                        if (!ifield.hasId() || ifield.getId() == 18) {
+                            try {
+                                categories = com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableList<String>>() {
+                                    @Override
+                                    public com.google.common.collect.ImmutableList<String> apply(final org.thryft.protocol.InputProtocol iprot) {
+                                        try {
+                                            final org.thryft.protocol.ListBegin sequenceBegin = iprot.readListBegin();
+                                            final com.google.common.collect.ImmutableList.Builder<String> sequenceBuilder = com.google.common.collect.ImmutableList.builder();
+                                            for (int elementI = 0; elementI < sequenceBegin.getSize(); elementI++) {
+                                                sequenceBuilder.add(iprot.readString());
+                                            }
+                                            iprot.readListEnd();
+                                            return sequenceBuilder.build();
+                                        } catch (final org.thryft.protocol.InputProtocolException e) {
+                                            throw new org.thryft.protocol.UncheckedInputProtocolException(e);
                                         }
-                                        iprot.readListEnd();
-                                        return sequenceBuilder.build();
-                                    } catch (final org.thryft.protocol.InputProtocolException e) {
-                                        throw new org.thryft.protocol.UncheckedInputProtocolException(e);
                                     }
-                                }
-                            }).apply(iprot));
-                        } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
-                             throw e.getCause();
+                                }).apply(iprot));
+                            } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
+                                 throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.CATEGORIES, e.getCause());
+                            }
                         }
+                        break;
                     }
-                    break;
-                }
-                case "closures": {
-                    if (!ifield.hasId() || ifield.getId() == 34) {
-                        closures = com.google.common.base.Optional.of(org.dressdiscover.api.models.closure.ClosureSet.readAsStruct(iprot));
+                    case "closures": {
+                        if (!ifield.hasId() || ifield.getId() == 34) {
+                            closures = com.google.common.base.Optional.of(org.dressdiscover.api.models.closure.ClosureSet.readAsStruct(iprot));
+                        }
+                        break;
                     }
-                    break;
-                }
-                case "colors": {
-                    if (!ifield.hasId() || ifield.getId() == 30) {
-                        colors = com.google.common.base.Optional.of(org.dressdiscover.api.models.color.ColorSet.readAsStruct(iprot));
+                    case "colors": {
+                        if (!ifield.hasId() || ifield.getId() == 30) {
+                            colors = com.google.common.base.Optional.of(org.dressdiscover.api.models.color.ColorSet.readAsStruct(iprot));
+                        }
+                        break;
                     }
-                    break;
-                }
-                case "components": {
-                    if (!ifield.hasId() || ifield.getId() == 32) {
-                        components = com.google.common.base.Optional.of(org.dressdiscover.api.models.component.ComponentSet.readAsStruct(iprot));
+                    case "components": {
+                        if (!ifield.hasId() || ifield.getId() == 32) {
+                            components = com.google.common.base.Optional.of(org.dressdiscover.api.models.component.ComponentSet.readAsStruct(iprot));
+                        }
+                        break;
                     }
-                    break;
-                }
-                case "condition": {
-                    if (!ifield.hasId() || ifield.getId() == 27) {
-                        try {
+                    case "condition": {
+                        if (!ifield.hasId() || ifield.getId() == 27) {
                             condition = com.google.common.base.Optional.of(iprot.readEnum(org.dressdiscover.api.models.condition.Condition.class));
-                        } catch (final IllegalArgumentException e) {
                         }
+                        break;
                     }
-                    break;
-                }
-                case "cultural_contexts": {
-                    if (!ifield.hasId() || ifield.getId() == 35) {
-                        culturalContexts = com.google.common.base.Optional.of(org.dressdiscover.api.models.cultural_context.CulturalContextSet.readAsStruct(iprot));
+                    case "cultural_contexts": {
+                        if (!ifield.hasId() || ifield.getId() == 35) {
+                            culturalContexts = com.google.common.base.Optional.of(org.dressdiscover.api.models.cultural_context.CulturalContextSet.readAsStruct(iprot));
+                        }
+                        break;
                     }
-                    break;
-                }
-                case "dates": {
-                    if (!ifield.hasId() || ifield.getId() == 10) {
-                        dates = com.google.common.base.Optional.of(org.dressdiscover.api.models.date.DateSet.readAsStruct(iprot));
+                    case "dates": {
+                        if (!ifield.hasId() || ifield.getId() == 10) {
+                            dates = com.google.common.base.Optional.of(org.dressdiscover.api.models.date.DateSet.readAsStruct(iprot));
+                        }
+                        break;
                     }
-                    break;
-                }
-                case "descriptions": {
-                    if (!ifield.hasId() || ifield.getId() == 4) {
-                        descriptions = com.google.common.base.Optional.of(org.dressdiscover.api.models.description.DescriptionSet.readAsStruct(iprot));
+                    case "descriptions": {
+                        if (!ifield.hasId() || ifield.getId() == 4) {
+                            descriptions = com.google.common.base.Optional.of(org.dressdiscover.api.models.description.DescriptionSet.readAsStruct(iprot));
+                        }
+                        break;
                     }
-                    break;
-                }
-                case "gender": {
-                    if (!ifield.hasId() || ifield.getId() == 25) {
-                        try {
+                    case "gender": {
+                        if (!ifield.hasId() || ifield.getId() == 25) {
                             gender = com.google.common.base.Optional.of(iprot.readEnum(org.dressdiscover.api.models.gender.Gender.class));
-                        } catch (final IllegalArgumentException e) {
                         }
+                        break;
                     }
-                    break;
-                }
-                case "hidden": {
-                    if (!ifield.hasId() || ifield.getId() == 37) {
-                        hidden = com.google.common.base.Optional.of(iprot.readBool());
+                    case "hidden": {
+                        if (!ifield.hasId() || ifield.getId() == 37) {
+                            hidden = com.google.common.base.Optional.of(iprot.readBool());
+                        }
+                        break;
                     }
-                    break;
-                }
-                case "images": {
-                    if (!ifield.hasId() || ifield.getId() == 23) {
-                        try {
-                            images = com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableList<org.dressdiscover.api.models.image.Image>>() {
-                                @Override
-                                public com.google.common.collect.ImmutableList<org.dressdiscover.api.models.image.Image> apply(final org.thryft.protocol.InputProtocol iprot) {
-                                    try {
-                                        final org.thryft.protocol.ListBegin sequenceBegin = iprot.readListBegin();
-                                        final com.google.common.collect.ImmutableList.Builder<org.dressdiscover.api.models.image.Image> sequenceBuilder = com.google.common.collect.ImmutableList.builder();
-                                        for (int elementI = 0; elementI < sequenceBegin.getSize(); elementI++) {
-                                            sequenceBuilder.add(org.dressdiscover.api.models.image.Image.readAsStruct(iprot));
+                    case "images": {
+                        if (!ifield.hasId() || ifield.getId() == 23) {
+                            try {
+                                images = com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableList<org.dressdiscover.api.models.image.Image>>() {
+                                    @Override
+                                    public com.google.common.collect.ImmutableList<org.dressdiscover.api.models.image.Image> apply(final org.thryft.protocol.InputProtocol iprot) {
+                                        try {
+                                            final org.thryft.protocol.ListBegin sequenceBegin = iprot.readListBegin();
+                                            final com.google.common.collect.ImmutableList.Builder<org.dressdiscover.api.models.image.Image> sequenceBuilder = com.google.common.collect.ImmutableList.builder();
+                                            for (int elementI = 0; elementI < sequenceBegin.getSize(); elementI++) {
+                                                sequenceBuilder.add(org.dressdiscover.api.models.image.Image.readAsStruct(iprot));
+                                            }
+                                            iprot.readListEnd();
+                                            return sequenceBuilder.build();
+                                        } catch (final org.thryft.protocol.InputProtocolException e) {
+                                            throw new org.thryft.protocol.UncheckedInputProtocolException(e);
                                         }
-                                        iprot.readListEnd();
-                                        return sequenceBuilder.build();
-                                    } catch (final org.thryft.protocol.InputProtocolException e) {
-                                        throw new org.thryft.protocol.UncheckedInputProtocolException(e);
                                     }
-                                }
-                            }).apply(iprot));
-                        } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
-                             throw e.getCause();
+                                }).apply(iprot));
+                            } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
+                                 throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.IMAGES, e.getCause());
+                            }
                         }
+                        break;
                     }
-                    break;
-                }
-                case "inscriptions": {
-                    if (!ifield.hasId() || ifield.getId() == 17) {
-                        inscriptions = com.google.common.base.Optional.of(org.dressdiscover.api.models.inscription.InscriptionSet.readAsStruct(iprot));
-                    }
-                    break;
-                }
-                case "locations": {
-                    if (!ifield.hasId() || ifield.getId() == 36) {
-                        locations = com.google.common.base.Optional.of(org.dressdiscover.api.models.location.LocationSet.readAsStruct(iprot));
-                    }
-                    break;
-                }
-                case "materials": {
-                    if (!ifield.hasId() || ifield.getId() == 15) {
-                        materials = com.google.common.base.Optional.of(org.dressdiscover.api.models.material.MaterialSet.readAsStruct(iprot));
-                    }
-                    break;
-                }
-                case "measurements": {
-                    if (!ifield.hasId() || ifield.getId() == 31) {
-                        measurements = com.google.common.base.Optional.of(org.dressdiscover.api.models.measurements.MeasurementsSet.readAsStruct(iprot));
-                    }
-                    break;
-                }
-                case "provenance": {
-                    if (!ifield.hasId() || ifield.getId() == 5) {
-                        provenance = com.google.common.base.Optional.of(iprot.readString());
-                    }
-                    break;
-                }
-                case "quantity": {
-                    if (!ifield.hasId() || ifield.getId() == 26) {
-                        try {
-                            quantity = com.google.common.base.Optional.of(iprot.readU32());
-                        } catch (final NumberFormatException e) {
+                    case "inscriptions": {
+                        if (!ifield.hasId() || ifield.getId() == 17) {
+                            inscriptions = com.google.common.base.Optional.of(org.dressdiscover.api.models.inscription.InscriptionSet.readAsStruct(iprot));
                         }
+                        break;
                     }
-                    break;
-                }
-                case "relations": {
-                    if (!ifield.hasId() || ifield.getId() == 29) {
-                        relations = com.google.common.base.Optional.of(org.dressdiscover.api.models.relation.RelationSet.readAsStruct(iprot));
+                    case "locations": {
+                        if (!ifield.hasId() || ifield.getId() == 36) {
+                            locations = com.google.common.base.Optional.of(org.dressdiscover.api.models.location.LocationSet.readAsStruct(iprot));
+                        }
+                        break;
                     }
-                    break;
-                }
-                case "rights": {
-                    if (!ifield.hasId() || ifield.getId() == 22) {
-                        rights = com.google.common.base.Optional.of(org.dressdiscover.api.models.rights.RightsSet.readAsStruct(iprot));
+                    case "materials": {
+                        if (!ifield.hasId() || ifield.getId() == 15) {
+                            materials = com.google.common.base.Optional.of(org.dressdiscover.api.models.material.MaterialSet.readAsStruct(iprot));
+                        }
+                        break;
                     }
-                    break;
-                }
-                case "structures": {
-                    if (!ifield.hasId() || ifield.getId() == 33) {
-                        structures = com.google.common.base.Optional.of(org.dressdiscover.api.models.structure.StructureSet.readAsStruct(iprot));
+                    case "measurements": {
+                        if (!ifield.hasId() || ifield.getId() == 31) {
+                            measurements = com.google.common.base.Optional.of(org.dressdiscover.api.models.measurements.MeasurementsSet.readAsStruct(iprot));
+                        }
+                        break;
                     }
-                    break;
-                }
-                case "subjects": {
-                    if (!ifield.hasId() || ifield.getId() == 21) {
-                        subjects = com.google.common.base.Optional.of(org.dressdiscover.api.models.subject.SubjectSet.readAsStruct(iprot));
+                    case "provenance": {
+                        if (!ifield.hasId() || ifield.getId() == 5) {
+                            provenance = com.google.common.base.Optional.of(iprot.readString());
+                        }
+                        break;
                     }
-                    break;
-                }
-                case "techniques": {
-                    if (!ifield.hasId() || ifield.getId() == 16) {
-                        techniques = com.google.common.base.Optional.of(org.dressdiscover.api.models.technique.TechniqueSet.readAsStruct(iprot));
+                    case "quantity": {
+                        if (!ifield.hasId() || ifield.getId() == 26) {
+                            try {
+                                quantity = com.google.common.base.Optional.of(iprot.readU32());
+                            } catch (final NumberFormatException e) {
+                            }
+                        }
+                        break;
                     }
-                    break;
-                }
-                case "textrefs": {
-                    if (!ifield.hasId() || ifield.getId() == 9) {
-                        textrefs = com.google.common.base.Optional.of(org.dressdiscover.api.models.textref.TextrefSet.readAsStruct(iprot));
+                    case "relations": {
+                        if (!ifield.hasId() || ifield.getId() == 29) {
+                            relations = com.google.common.base.Optional.of(org.dressdiscover.api.models.relation.RelationSet.readAsStruct(iprot));
+                        }
+                        break;
                     }
-                    break;
-                }
-                case "view_type": {
-                    if (!ifield.hasId() || ifield.getId() == 28) {
-                        try {
+                    case "rights": {
+                        if (!ifield.hasId() || ifield.getId() == 22) {
+                            rights = com.google.common.base.Optional.of(org.dressdiscover.api.models.rights.RightsSet.readAsStruct(iprot));
+                        }
+                        break;
+                    }
+                    case "structures": {
+                        if (!ifield.hasId() || ifield.getId() == 33) {
+                            structures = com.google.common.base.Optional.of(org.dressdiscover.api.models.structure.StructureSet.readAsStruct(iprot));
+                        }
+                        break;
+                    }
+                    case "subjects": {
+                        if (!ifield.hasId() || ifield.getId() == 21) {
+                            subjects = com.google.common.base.Optional.of(org.dressdiscover.api.models.subject.SubjectSet.readAsStruct(iprot));
+                        }
+                        break;
+                    }
+                    case "techniques": {
+                        if (!ifield.hasId() || ifield.getId() == 16) {
+                            techniques = com.google.common.base.Optional.of(org.dressdiscover.api.models.technique.TechniqueSet.readAsStruct(iprot));
+                        }
+                        break;
+                    }
+                    case "textrefs": {
+                        if (!ifield.hasId() || ifield.getId() == 9) {
+                            textrefs = com.google.common.base.Optional.of(org.dressdiscover.api.models.textref.TextrefSet.readAsStruct(iprot));
+                        }
+                        break;
+                    }
+                    case "view_type": {
+                        if (!ifield.hasId() || ifield.getId() == 28) {
                             viewType = com.google.common.base.Optional.of(iprot.readEnum(org.dressdiscover.api.models.view_type.ViewType.class));
-                        } catch (final IllegalArgumentException e) {
                         }
+                        break;
                     }
-                    break;
-                }
-                case "work_types": {
-                    if (!ifield.hasId() || ifield.getId() == 24) {
-                        workTypes = com.google.common.base.Optional.of(org.dressdiscover.api.models.work_type.WorkTypeSet.readAsStruct(iprot));
+                    case "work_types": {
+                        if (!ifield.hasId() || ifield.getId() == 24) {
+                            workTypes = com.google.common.base.Optional.of(org.dressdiscover.api.models.work_type.WorkTypeSet.readAsStruct(iprot));
+                        }
+                        break;
                     }
-                    break;
-                }
-                default:
-                    if (unknownFieldCallback.isPresent()) {
-                        unknownFieldCallback.get().apply(ifield);
+                    default:
+                        if (unknownFieldCallback.isPresent()) {
+                            unknownFieldCallback.get().apply(ifield);
+                        }
+                        break;
                     }
-                    break;
+                    iprot.readFieldEnd();
                 }
-                iprot.readFieldEnd();
+                iprot.readStructEnd();
+            } catch (final RuntimeException e) {
+                throw new IllegalStateException(e);
             }
-            iprot.readStructEnd();
             return this;
         }
 
@@ -2872,147 +2862,142 @@ public final class Object implements org.thryft.Struct, org.thryft.waf.api.model
         com.google.common.base.Optional<org.dressdiscover.api.models.view_type.ViewType> viewType = com.google.common.base.Optional.<org.dressdiscover.api.models.view_type.ViewType> absent();
         com.google.common.base.Optional<org.dressdiscover.api.models.work_type.WorkTypeSet> workTypes = com.google.common.base.Optional.<org.dressdiscover.api.models.work_type.WorkTypeSet> absent();
 
-        final org.thryft.protocol.ListBegin __list = iprot.readListBegin();
         try {
-            collectionId = org.dressdiscover.api.models.collection.CollectionId.parse(iprot.readString());
-        } catch (final org.dressdiscover.api.models.collection.InvalidCollectionIdException e) {
-             throw new org.thryft.protocol.InputProtocolException(e);
-        }
-        try {
-            institutionId = org.dressdiscover.api.models.institution.InstitutionId.parse(iprot.readString());
-        } catch (final org.dressdiscover.api.models.institution.InvalidInstitutionIdException e) {
-             throw new org.thryft.protocol.InputProtocolException(e);
-        }
-        titles = org.dressdiscover.api.models.title.TitleSet.readAsStruct(iprot);
-        if (__list.getSize() > 3) {
-            agents = com.google.common.base.Optional.of(org.dressdiscover.api.models.agent.AgentSet.readAsStruct(iprot));
-        }
-        if (__list.getSize() > 4) {
+            final org.thryft.protocol.ListBegin __list = iprot.readListBegin();
             try {
-                categories = com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableList<String>>() {
-                    @Override
-                    public com.google.common.collect.ImmutableList<String> apply(final org.thryft.protocol.InputProtocol iprot) {
-                        try {
-                            final org.thryft.protocol.ListBegin sequenceBegin = iprot.readListBegin();
-                            final com.google.common.collect.ImmutableList.Builder<String> sequenceBuilder = com.google.common.collect.ImmutableList.builder();
-                            for (int elementI = 0; elementI < sequenceBegin.getSize(); elementI++) {
-                                sequenceBuilder.add(iprot.readString());
-                            }
-                            iprot.readListEnd();
-                            return sequenceBuilder.build();
-                        } catch (final org.thryft.protocol.InputProtocolException e) {
-                            throw new org.thryft.protocol.UncheckedInputProtocolException(e);
-                        }
-                    }
-                }).apply(iprot));
-            } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
-                 throw e.getCause();
+                collectionId = org.dressdiscover.api.models.collection.CollectionId.parse(iprot.readString());
+            } catch (final org.dressdiscover.api.models.collection.InvalidCollectionIdException e) {
+                 throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.COLLECTION_ID, e);
             }
-        }
-        if (__list.getSize() > 5) {
-            closures = com.google.common.base.Optional.of(org.dressdiscover.api.models.closure.ClosureSet.readAsStruct(iprot));
-        }
-        if (__list.getSize() > 6) {
-            colors = com.google.common.base.Optional.of(org.dressdiscover.api.models.color.ColorSet.readAsStruct(iprot));
-        }
-        if (__list.getSize() > 7) {
-            components = com.google.common.base.Optional.of(org.dressdiscover.api.models.component.ComponentSet.readAsStruct(iprot));
-        }
-        if (__list.getSize() > 8) {
             try {
+                institutionId = org.dressdiscover.api.models.institution.InstitutionId.parse(iprot.readString());
+            } catch (final org.dressdiscover.api.models.institution.InvalidInstitutionIdException e) {
+                 throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.INSTITUTION_ID, e);
+            }
+            titles = org.dressdiscover.api.models.title.TitleSet.readAsStruct(iprot);
+            if (__list.getSize() > 3) {
+                agents = com.google.common.base.Optional.of(org.dressdiscover.api.models.agent.AgentSet.readAsStruct(iprot));
+            }
+            if (__list.getSize() > 4) {
+                try {
+                    categories = com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableList<String>>() {
+                        @Override
+                        public com.google.common.collect.ImmutableList<String> apply(final org.thryft.protocol.InputProtocol iprot) {
+                            try {
+                                final org.thryft.protocol.ListBegin sequenceBegin = iprot.readListBegin();
+                                final com.google.common.collect.ImmutableList.Builder<String> sequenceBuilder = com.google.common.collect.ImmutableList.builder();
+                                for (int elementI = 0; elementI < sequenceBegin.getSize(); elementI++) {
+                                    sequenceBuilder.add(iprot.readString());
+                                }
+                                iprot.readListEnd();
+                                return sequenceBuilder.build();
+                            } catch (final org.thryft.protocol.InputProtocolException e) {
+                                throw new org.thryft.protocol.UncheckedInputProtocolException(e);
+                            }
+                        }
+                    }).apply(iprot));
+                } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
+                     throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.CATEGORIES, e.getCause());
+                }
+            }
+            if (__list.getSize() > 5) {
+                closures = com.google.common.base.Optional.of(org.dressdiscover.api.models.closure.ClosureSet.readAsStruct(iprot));
+            }
+            if (__list.getSize() > 6) {
+                colors = com.google.common.base.Optional.of(org.dressdiscover.api.models.color.ColorSet.readAsStruct(iprot));
+            }
+            if (__list.getSize() > 7) {
+                components = com.google.common.base.Optional.of(org.dressdiscover.api.models.component.ComponentSet.readAsStruct(iprot));
+            }
+            if (__list.getSize() > 8) {
                 condition = com.google.common.base.Optional.of(iprot.readEnum(org.dressdiscover.api.models.condition.Condition.class));
-            } catch (final IllegalArgumentException e) {
             }
-        }
-        if (__list.getSize() > 9) {
-            culturalContexts = com.google.common.base.Optional.of(org.dressdiscover.api.models.cultural_context.CulturalContextSet.readAsStruct(iprot));
-        }
-        if (__list.getSize() > 10) {
-            dates = com.google.common.base.Optional.of(org.dressdiscover.api.models.date.DateSet.readAsStruct(iprot));
-        }
-        if (__list.getSize() > 11) {
-            descriptions = com.google.common.base.Optional.of(org.dressdiscover.api.models.description.DescriptionSet.readAsStruct(iprot));
-        }
-        if (__list.getSize() > 12) {
-            try {
+            if (__list.getSize() > 9) {
+                culturalContexts = com.google.common.base.Optional.of(org.dressdiscover.api.models.cultural_context.CulturalContextSet.readAsStruct(iprot));
+            }
+            if (__list.getSize() > 10) {
+                dates = com.google.common.base.Optional.of(org.dressdiscover.api.models.date.DateSet.readAsStruct(iprot));
+            }
+            if (__list.getSize() > 11) {
+                descriptions = com.google.common.base.Optional.of(org.dressdiscover.api.models.description.DescriptionSet.readAsStruct(iprot));
+            }
+            if (__list.getSize() > 12) {
                 gender = com.google.common.base.Optional.of(iprot.readEnum(org.dressdiscover.api.models.gender.Gender.class));
-            } catch (final IllegalArgumentException e) {
             }
-        }
-        if (__list.getSize() > 13) {
-            hidden = com.google.common.base.Optional.of(iprot.readBool());
-        }
-        if (__list.getSize() > 14) {
-            try {
-                images = com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableList<org.dressdiscover.api.models.image.Image>>() {
-                    @Override
-                    public com.google.common.collect.ImmutableList<org.dressdiscover.api.models.image.Image> apply(final org.thryft.protocol.InputProtocol iprot) {
-                        try {
-                            final org.thryft.protocol.ListBegin sequenceBegin = iprot.readListBegin();
-                            final com.google.common.collect.ImmutableList.Builder<org.dressdiscover.api.models.image.Image> sequenceBuilder = com.google.common.collect.ImmutableList.builder();
-                            for (int elementI = 0; elementI < sequenceBegin.getSize(); elementI++) {
-                                sequenceBuilder.add(org.dressdiscover.api.models.image.Image.readAsStruct(iprot));
+            if (__list.getSize() > 13) {
+                hidden = com.google.common.base.Optional.of(iprot.readBool());
+            }
+            if (__list.getSize() > 14) {
+                try {
+                    images = com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableList<org.dressdiscover.api.models.image.Image>>() {
+                        @Override
+                        public com.google.common.collect.ImmutableList<org.dressdiscover.api.models.image.Image> apply(final org.thryft.protocol.InputProtocol iprot) {
+                            try {
+                                final org.thryft.protocol.ListBegin sequenceBegin = iprot.readListBegin();
+                                final com.google.common.collect.ImmutableList.Builder<org.dressdiscover.api.models.image.Image> sequenceBuilder = com.google.common.collect.ImmutableList.builder();
+                                for (int elementI = 0; elementI < sequenceBegin.getSize(); elementI++) {
+                                    sequenceBuilder.add(org.dressdiscover.api.models.image.Image.readAsStruct(iprot));
+                                }
+                                iprot.readListEnd();
+                                return sequenceBuilder.build();
+                            } catch (final org.thryft.protocol.InputProtocolException e) {
+                                throw new org.thryft.protocol.UncheckedInputProtocolException(e);
                             }
-                            iprot.readListEnd();
-                            return sequenceBuilder.build();
-                        } catch (final org.thryft.protocol.InputProtocolException e) {
-                            throw new org.thryft.protocol.UncheckedInputProtocolException(e);
                         }
-                    }
-                }).apply(iprot));
-            } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
-                 throw e.getCause();
+                    }).apply(iprot));
+                } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
+                     throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.IMAGES, e.getCause());
+                }
             }
-        }
-        if (__list.getSize() > 15) {
-            inscriptions = com.google.common.base.Optional.of(org.dressdiscover.api.models.inscription.InscriptionSet.readAsStruct(iprot));
-        }
-        if (__list.getSize() > 16) {
-            locations = com.google.common.base.Optional.of(org.dressdiscover.api.models.location.LocationSet.readAsStruct(iprot));
-        }
-        if (__list.getSize() > 17) {
-            materials = com.google.common.base.Optional.of(org.dressdiscover.api.models.material.MaterialSet.readAsStruct(iprot));
-        }
-        if (__list.getSize() > 18) {
-            measurements = com.google.common.base.Optional.of(org.dressdiscover.api.models.measurements.MeasurementsSet.readAsStruct(iprot));
-        }
-        if (__list.getSize() > 19) {
-            provenance = com.google.common.base.Optional.of(iprot.readString());
-        }
-        if (__list.getSize() > 20) {
-            try {
-                quantity = com.google.common.base.Optional.of(iprot.readU32());
-            } catch (final NumberFormatException e) {
+            if (__list.getSize() > 15) {
+                inscriptions = com.google.common.base.Optional.of(org.dressdiscover.api.models.inscription.InscriptionSet.readAsStruct(iprot));
             }
-        }
-        if (__list.getSize() > 21) {
-            relations = com.google.common.base.Optional.of(org.dressdiscover.api.models.relation.RelationSet.readAsStruct(iprot));
-        }
-        if (__list.getSize() > 22) {
-            rights = com.google.common.base.Optional.of(org.dressdiscover.api.models.rights.RightsSet.readAsStruct(iprot));
-        }
-        if (__list.getSize() > 23) {
-            structures = com.google.common.base.Optional.of(org.dressdiscover.api.models.structure.StructureSet.readAsStruct(iprot));
-        }
-        if (__list.getSize() > 24) {
-            subjects = com.google.common.base.Optional.of(org.dressdiscover.api.models.subject.SubjectSet.readAsStruct(iprot));
-        }
-        if (__list.getSize() > 25) {
-            techniques = com.google.common.base.Optional.of(org.dressdiscover.api.models.technique.TechniqueSet.readAsStruct(iprot));
-        }
-        if (__list.getSize() > 26) {
-            textrefs = com.google.common.base.Optional.of(org.dressdiscover.api.models.textref.TextrefSet.readAsStruct(iprot));
-        }
-        if (__list.getSize() > 27) {
-            try {
+            if (__list.getSize() > 16) {
+                locations = com.google.common.base.Optional.of(org.dressdiscover.api.models.location.LocationSet.readAsStruct(iprot));
+            }
+            if (__list.getSize() > 17) {
+                materials = com.google.common.base.Optional.of(org.dressdiscover.api.models.material.MaterialSet.readAsStruct(iprot));
+            }
+            if (__list.getSize() > 18) {
+                measurements = com.google.common.base.Optional.of(org.dressdiscover.api.models.measurements.MeasurementsSet.readAsStruct(iprot));
+            }
+            if (__list.getSize() > 19) {
+                provenance = com.google.common.base.Optional.of(iprot.readString());
+            }
+            if (__list.getSize() > 20) {
+                try {
+                    quantity = com.google.common.base.Optional.of(iprot.readU32());
+                } catch (final NumberFormatException e) {
+                }
+            }
+            if (__list.getSize() > 21) {
+                relations = com.google.common.base.Optional.of(org.dressdiscover.api.models.relation.RelationSet.readAsStruct(iprot));
+            }
+            if (__list.getSize() > 22) {
+                rights = com.google.common.base.Optional.of(org.dressdiscover.api.models.rights.RightsSet.readAsStruct(iprot));
+            }
+            if (__list.getSize() > 23) {
+                structures = com.google.common.base.Optional.of(org.dressdiscover.api.models.structure.StructureSet.readAsStruct(iprot));
+            }
+            if (__list.getSize() > 24) {
+                subjects = com.google.common.base.Optional.of(org.dressdiscover.api.models.subject.SubjectSet.readAsStruct(iprot));
+            }
+            if (__list.getSize() > 25) {
+                techniques = com.google.common.base.Optional.of(org.dressdiscover.api.models.technique.TechniqueSet.readAsStruct(iprot));
+            }
+            if (__list.getSize() > 26) {
+                textrefs = com.google.common.base.Optional.of(org.dressdiscover.api.models.textref.TextrefSet.readAsStruct(iprot));
+            }
+            if (__list.getSize() > 27) {
                 viewType = com.google.common.base.Optional.of(iprot.readEnum(org.dressdiscover.api.models.view_type.ViewType.class));
-            } catch (final IllegalArgumentException e) {
             }
+            if (__list.getSize() > 28) {
+                workTypes = com.google.common.base.Optional.of(org.dressdiscover.api.models.work_type.WorkTypeSet.readAsStruct(iprot));
+            }
+            iprot.readListEnd();
+        } catch (final RuntimeException e) {
+            throw new IllegalStateException(e);
         }
-        if (__list.getSize() > 28) {
-            workTypes = com.google.common.base.Optional.of(org.dressdiscover.api.models.work_type.WorkTypeSet.readAsStruct(iprot));
-        }
-        iprot.readListEnd();
         return new Object(DefaultReadValidator.getInstance().validateCollectionId(collectionId), DefaultReadValidator.getInstance().validateInstitutionId(institutionId), DefaultReadValidator.getInstance().validateTitles(titles), DefaultReadValidator.getInstance().validateAgents(agents), DefaultReadValidator.getInstance().validateCategories(categories), DefaultReadValidator.getInstance().validateClosures(closures), DefaultReadValidator.getInstance().validateColors(colors), DefaultReadValidator.getInstance().validateComponents(components), DefaultReadValidator.getInstance().validateCondition(condition), DefaultReadValidator.getInstance().validateCulturalContexts(culturalContexts), DefaultReadValidator.getInstance().validateDates(dates), DefaultReadValidator.getInstance().validateDescriptions(descriptions), DefaultReadValidator.getInstance().validateGender(gender), DefaultReadValidator.getInstance().validateHidden(hidden), DefaultReadValidator.getInstance().validateImages(images), DefaultReadValidator.getInstance().validateInscriptions(inscriptions), DefaultReadValidator.getInstance().validateLocations(locations), DefaultReadValidator.getInstance().validateMaterials(materials), DefaultReadValidator.getInstance().validateMeasurements(measurements), DefaultReadValidator.getInstance().validateProvenance(provenance), DefaultReadValidator.getInstance().validateQuantity(quantity), DefaultReadValidator.getInstance().validateRelations(relations), DefaultReadValidator.getInstance().validateRights(rights), DefaultReadValidator.getInstance().validateStructures(structures), DefaultReadValidator.getInstance().validateSubjects(subjects), DefaultReadValidator.getInstance().validateTechniques(techniques), DefaultReadValidator.getInstance().validateTextrefs(textrefs), DefaultReadValidator.getInstance().validateViewType(viewType), DefaultReadValidator.getInstance().validateWorkTypes(workTypes), NopConstructionValidator.getInstance());
     }
 
@@ -3051,254 +3036,249 @@ public final class Object implements org.thryft.Struct, org.thryft.waf.api.model
         com.google.common.base.Optional<org.dressdiscover.api.models.view_type.ViewType> viewType = com.google.common.base.Optional.<org.dressdiscover.api.models.view_type.ViewType> absent();
         com.google.common.base.Optional<org.dressdiscover.api.models.work_type.WorkTypeSet> workTypes = com.google.common.base.Optional.<org.dressdiscover.api.models.work_type.WorkTypeSet> absent();
 
-        iprot.readStructBegin();
-        while (true) {
-            final org.thryft.protocol.FieldBegin ifield = iprot.readFieldBegin();
-            if (ifield.getType() == org.thryft.protocol.Type.STOP) {
-                break;
-            }
-            switch (ifield.getName()) {
-            case "collection_id": {
-                if (!ifield.hasId() || ifield.getId() == 1) {
-                    try {
-                        collectionId = org.dressdiscover.api.models.collection.CollectionId.parse(iprot.readString());
-                    } catch (final org.dressdiscover.api.models.collection.InvalidCollectionIdException e) {
-                         throw new org.thryft.protocol.InputProtocolException(e);
+        try {
+            iprot.readStructBegin();
+            while (true) {
+                final org.thryft.protocol.FieldBegin ifield = iprot.readFieldBegin();
+                if (ifield.getType() == org.thryft.protocol.Type.STOP) {
+                    break;
+                }
+                switch (ifield.getName()) {
+                case "collection_id": {
+                    if (!ifield.hasId() || ifield.getId() == 1) {
+                        try {
+                            collectionId = org.dressdiscover.api.models.collection.CollectionId.parse(iprot.readString());
+                        } catch (final org.dressdiscover.api.models.collection.InvalidCollectionIdException e) {
+                             throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.COLLECTION_ID, e);
+                        }
                     }
+                    break;
                 }
-                break;
-            }
-            case "institution_id": {
-                if (!ifield.hasId() || ifield.getId() == 2) {
-                    try {
-                        institutionId = org.dressdiscover.api.models.institution.InstitutionId.parse(iprot.readString());
-                    } catch (final org.dressdiscover.api.models.institution.InvalidInstitutionIdException e) {
-                         throw new org.thryft.protocol.InputProtocolException(e);
+                case "institution_id": {
+                    if (!ifield.hasId() || ifield.getId() == 2) {
+                        try {
+                            institutionId = org.dressdiscover.api.models.institution.InstitutionId.parse(iprot.readString());
+                        } catch (final org.dressdiscover.api.models.institution.InvalidInstitutionIdException e) {
+                             throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.INSTITUTION_ID, e);
+                        }
                     }
+                    break;
                 }
-                break;
-            }
-            case "titles": {
-                if (!ifield.hasId() || ifield.getId() == 3) {
-                    titles = org.dressdiscover.api.models.title.TitleSet.readAsStruct(iprot);
+                case "titles": {
+                    if (!ifield.hasId() || ifield.getId() == 3) {
+                        titles = org.dressdiscover.api.models.title.TitleSet.readAsStruct(iprot);
+                    }
+                    break;
                 }
-                break;
-            }
-            case "agents": {
-                if (!ifield.hasId() || ifield.getId() == 20) {
-                    agents = com.google.common.base.Optional.of(org.dressdiscover.api.models.agent.AgentSet.readAsStruct(iprot));
+                case "agents": {
+                    if (!ifield.hasId() || ifield.getId() == 20) {
+                        agents = com.google.common.base.Optional.of(org.dressdiscover.api.models.agent.AgentSet.readAsStruct(iprot));
+                    }
+                    break;
                 }
-                break;
-            }
-            case "categories": {
-                if (!ifield.hasId() || ifield.getId() == 18) {
-                    try {
-                        categories = com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableList<String>>() {
-                            @Override
-                            public com.google.common.collect.ImmutableList<String> apply(final org.thryft.protocol.InputProtocol iprot) {
-                                try {
-                                    final org.thryft.protocol.ListBegin sequenceBegin = iprot.readListBegin();
-                                    final com.google.common.collect.ImmutableList.Builder<String> sequenceBuilder = com.google.common.collect.ImmutableList.builder();
-                                    for (int elementI = 0; elementI < sequenceBegin.getSize(); elementI++) {
-                                        sequenceBuilder.add(iprot.readString());
+                case "categories": {
+                    if (!ifield.hasId() || ifield.getId() == 18) {
+                        try {
+                            categories = com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableList<String>>() {
+                                @Override
+                                public com.google.common.collect.ImmutableList<String> apply(final org.thryft.protocol.InputProtocol iprot) {
+                                    try {
+                                        final org.thryft.protocol.ListBegin sequenceBegin = iprot.readListBegin();
+                                        final com.google.common.collect.ImmutableList.Builder<String> sequenceBuilder = com.google.common.collect.ImmutableList.builder();
+                                        for (int elementI = 0; elementI < sequenceBegin.getSize(); elementI++) {
+                                            sequenceBuilder.add(iprot.readString());
+                                        }
+                                        iprot.readListEnd();
+                                        return sequenceBuilder.build();
+                                    } catch (final org.thryft.protocol.InputProtocolException e) {
+                                        throw new org.thryft.protocol.UncheckedInputProtocolException(e);
                                     }
-                                    iprot.readListEnd();
-                                    return sequenceBuilder.build();
-                                } catch (final org.thryft.protocol.InputProtocolException e) {
-                                    throw new org.thryft.protocol.UncheckedInputProtocolException(e);
                                 }
-                            }
-                        }).apply(iprot));
-                    } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
-                         throw e.getCause();
+                            }).apply(iprot));
+                        } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
+                             throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.CATEGORIES, e.getCause());
+                        }
                     }
+                    break;
                 }
-                break;
-            }
-            case "closures": {
-                if (!ifield.hasId() || ifield.getId() == 34) {
-                    closures = com.google.common.base.Optional.of(org.dressdiscover.api.models.closure.ClosureSet.readAsStruct(iprot));
+                case "closures": {
+                    if (!ifield.hasId() || ifield.getId() == 34) {
+                        closures = com.google.common.base.Optional.of(org.dressdiscover.api.models.closure.ClosureSet.readAsStruct(iprot));
+                    }
+                    break;
                 }
-                break;
-            }
-            case "colors": {
-                if (!ifield.hasId() || ifield.getId() == 30) {
-                    colors = com.google.common.base.Optional.of(org.dressdiscover.api.models.color.ColorSet.readAsStruct(iprot));
+                case "colors": {
+                    if (!ifield.hasId() || ifield.getId() == 30) {
+                        colors = com.google.common.base.Optional.of(org.dressdiscover.api.models.color.ColorSet.readAsStruct(iprot));
+                    }
+                    break;
                 }
-                break;
-            }
-            case "components": {
-                if (!ifield.hasId() || ifield.getId() == 32) {
-                    components = com.google.common.base.Optional.of(org.dressdiscover.api.models.component.ComponentSet.readAsStruct(iprot));
+                case "components": {
+                    if (!ifield.hasId() || ifield.getId() == 32) {
+                        components = com.google.common.base.Optional.of(org.dressdiscover.api.models.component.ComponentSet.readAsStruct(iprot));
+                    }
+                    break;
                 }
-                break;
-            }
-            case "condition": {
-                if (!ifield.hasId() || ifield.getId() == 27) {
-                    try {
+                case "condition": {
+                    if (!ifield.hasId() || ifield.getId() == 27) {
                         condition = com.google.common.base.Optional.of(iprot.readEnum(org.dressdiscover.api.models.condition.Condition.class));
-                    } catch (final IllegalArgumentException e) {
                     }
+                    break;
                 }
-                break;
-            }
-            case "cultural_contexts": {
-                if (!ifield.hasId() || ifield.getId() == 35) {
-                    culturalContexts = com.google.common.base.Optional.of(org.dressdiscover.api.models.cultural_context.CulturalContextSet.readAsStruct(iprot));
+                case "cultural_contexts": {
+                    if (!ifield.hasId() || ifield.getId() == 35) {
+                        culturalContexts = com.google.common.base.Optional.of(org.dressdiscover.api.models.cultural_context.CulturalContextSet.readAsStruct(iprot));
+                    }
+                    break;
                 }
-                break;
-            }
-            case "dates": {
-                if (!ifield.hasId() || ifield.getId() == 10) {
-                    dates = com.google.common.base.Optional.of(org.dressdiscover.api.models.date.DateSet.readAsStruct(iprot));
+                case "dates": {
+                    if (!ifield.hasId() || ifield.getId() == 10) {
+                        dates = com.google.common.base.Optional.of(org.dressdiscover.api.models.date.DateSet.readAsStruct(iprot));
+                    }
+                    break;
                 }
-                break;
-            }
-            case "descriptions": {
-                if (!ifield.hasId() || ifield.getId() == 4) {
-                    descriptions = com.google.common.base.Optional.of(org.dressdiscover.api.models.description.DescriptionSet.readAsStruct(iprot));
+                case "descriptions": {
+                    if (!ifield.hasId() || ifield.getId() == 4) {
+                        descriptions = com.google.common.base.Optional.of(org.dressdiscover.api.models.description.DescriptionSet.readAsStruct(iprot));
+                    }
+                    break;
                 }
-                break;
-            }
-            case "gender": {
-                if (!ifield.hasId() || ifield.getId() == 25) {
-                    try {
+                case "gender": {
+                    if (!ifield.hasId() || ifield.getId() == 25) {
                         gender = com.google.common.base.Optional.of(iprot.readEnum(org.dressdiscover.api.models.gender.Gender.class));
-                    } catch (final IllegalArgumentException e) {
                     }
+                    break;
                 }
-                break;
-            }
-            case "hidden": {
-                if (!ifield.hasId() || ifield.getId() == 37) {
-                    hidden = com.google.common.base.Optional.of(iprot.readBool());
+                case "hidden": {
+                    if (!ifield.hasId() || ifield.getId() == 37) {
+                        hidden = com.google.common.base.Optional.of(iprot.readBool());
+                    }
+                    break;
                 }
-                break;
-            }
-            case "images": {
-                if (!ifield.hasId() || ifield.getId() == 23) {
-                    try {
-                        images = com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableList<org.dressdiscover.api.models.image.Image>>() {
-                            @Override
-                            public com.google.common.collect.ImmutableList<org.dressdiscover.api.models.image.Image> apply(final org.thryft.protocol.InputProtocol iprot) {
-                                try {
-                                    final org.thryft.protocol.ListBegin sequenceBegin = iprot.readListBegin();
-                                    final com.google.common.collect.ImmutableList.Builder<org.dressdiscover.api.models.image.Image> sequenceBuilder = com.google.common.collect.ImmutableList.builder();
-                                    for (int elementI = 0; elementI < sequenceBegin.getSize(); elementI++) {
-                                        sequenceBuilder.add(org.dressdiscover.api.models.image.Image.readAsStruct(iprot));
+                case "images": {
+                    if (!ifield.hasId() || ifield.getId() == 23) {
+                        try {
+                            images = com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableList<org.dressdiscover.api.models.image.Image>>() {
+                                @Override
+                                public com.google.common.collect.ImmutableList<org.dressdiscover.api.models.image.Image> apply(final org.thryft.protocol.InputProtocol iprot) {
+                                    try {
+                                        final org.thryft.protocol.ListBegin sequenceBegin = iprot.readListBegin();
+                                        final com.google.common.collect.ImmutableList.Builder<org.dressdiscover.api.models.image.Image> sequenceBuilder = com.google.common.collect.ImmutableList.builder();
+                                        for (int elementI = 0; elementI < sequenceBegin.getSize(); elementI++) {
+                                            sequenceBuilder.add(org.dressdiscover.api.models.image.Image.readAsStruct(iprot));
+                                        }
+                                        iprot.readListEnd();
+                                        return sequenceBuilder.build();
+                                    } catch (final org.thryft.protocol.InputProtocolException e) {
+                                        throw new org.thryft.protocol.UncheckedInputProtocolException(e);
                                     }
-                                    iprot.readListEnd();
-                                    return sequenceBuilder.build();
-                                } catch (final org.thryft.protocol.InputProtocolException e) {
-                                    throw new org.thryft.protocol.UncheckedInputProtocolException(e);
                                 }
-                            }
-                        }).apply(iprot));
-                    } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
-                         throw e.getCause();
+                            }).apply(iprot));
+                        } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
+                             throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.IMAGES, e.getCause());
+                        }
                     }
+                    break;
                 }
-                break;
-            }
-            case "inscriptions": {
-                if (!ifield.hasId() || ifield.getId() == 17) {
-                    inscriptions = com.google.common.base.Optional.of(org.dressdiscover.api.models.inscription.InscriptionSet.readAsStruct(iprot));
-                }
-                break;
-            }
-            case "locations": {
-                if (!ifield.hasId() || ifield.getId() == 36) {
-                    locations = com.google.common.base.Optional.of(org.dressdiscover.api.models.location.LocationSet.readAsStruct(iprot));
-                }
-                break;
-            }
-            case "materials": {
-                if (!ifield.hasId() || ifield.getId() == 15) {
-                    materials = com.google.common.base.Optional.of(org.dressdiscover.api.models.material.MaterialSet.readAsStruct(iprot));
-                }
-                break;
-            }
-            case "measurements": {
-                if (!ifield.hasId() || ifield.getId() == 31) {
-                    measurements = com.google.common.base.Optional.of(org.dressdiscover.api.models.measurements.MeasurementsSet.readAsStruct(iprot));
-                }
-                break;
-            }
-            case "provenance": {
-                if (!ifield.hasId() || ifield.getId() == 5) {
-                    provenance = com.google.common.base.Optional.of(iprot.readString());
-                }
-                break;
-            }
-            case "quantity": {
-                if (!ifield.hasId() || ifield.getId() == 26) {
-                    try {
-                        quantity = com.google.common.base.Optional.of(iprot.readU32());
-                    } catch (final NumberFormatException e) {
+                case "inscriptions": {
+                    if (!ifield.hasId() || ifield.getId() == 17) {
+                        inscriptions = com.google.common.base.Optional.of(org.dressdiscover.api.models.inscription.InscriptionSet.readAsStruct(iprot));
                     }
+                    break;
                 }
-                break;
-            }
-            case "relations": {
-                if (!ifield.hasId() || ifield.getId() == 29) {
-                    relations = com.google.common.base.Optional.of(org.dressdiscover.api.models.relation.RelationSet.readAsStruct(iprot));
+                case "locations": {
+                    if (!ifield.hasId() || ifield.getId() == 36) {
+                        locations = com.google.common.base.Optional.of(org.dressdiscover.api.models.location.LocationSet.readAsStruct(iprot));
+                    }
+                    break;
                 }
-                break;
-            }
-            case "rights": {
-                if (!ifield.hasId() || ifield.getId() == 22) {
-                    rights = com.google.common.base.Optional.of(org.dressdiscover.api.models.rights.RightsSet.readAsStruct(iprot));
+                case "materials": {
+                    if (!ifield.hasId() || ifield.getId() == 15) {
+                        materials = com.google.common.base.Optional.of(org.dressdiscover.api.models.material.MaterialSet.readAsStruct(iprot));
+                    }
+                    break;
                 }
-                break;
-            }
-            case "structures": {
-                if (!ifield.hasId() || ifield.getId() == 33) {
-                    structures = com.google.common.base.Optional.of(org.dressdiscover.api.models.structure.StructureSet.readAsStruct(iprot));
+                case "measurements": {
+                    if (!ifield.hasId() || ifield.getId() == 31) {
+                        measurements = com.google.common.base.Optional.of(org.dressdiscover.api.models.measurements.MeasurementsSet.readAsStruct(iprot));
+                    }
+                    break;
                 }
-                break;
-            }
-            case "subjects": {
-                if (!ifield.hasId() || ifield.getId() == 21) {
-                    subjects = com.google.common.base.Optional.of(org.dressdiscover.api.models.subject.SubjectSet.readAsStruct(iprot));
+                case "provenance": {
+                    if (!ifield.hasId() || ifield.getId() == 5) {
+                        provenance = com.google.common.base.Optional.of(iprot.readString());
+                    }
+                    break;
                 }
-                break;
-            }
-            case "techniques": {
-                if (!ifield.hasId() || ifield.getId() == 16) {
-                    techniques = com.google.common.base.Optional.of(org.dressdiscover.api.models.technique.TechniqueSet.readAsStruct(iprot));
+                case "quantity": {
+                    if (!ifield.hasId() || ifield.getId() == 26) {
+                        try {
+                            quantity = com.google.common.base.Optional.of(iprot.readU32());
+                        } catch (final NumberFormatException e) {
+                        }
+                    }
+                    break;
                 }
-                break;
-            }
-            case "textrefs": {
-                if (!ifield.hasId() || ifield.getId() == 9) {
-                    textrefs = com.google.common.base.Optional.of(org.dressdiscover.api.models.textref.TextrefSet.readAsStruct(iprot));
+                case "relations": {
+                    if (!ifield.hasId() || ifield.getId() == 29) {
+                        relations = com.google.common.base.Optional.of(org.dressdiscover.api.models.relation.RelationSet.readAsStruct(iprot));
+                    }
+                    break;
                 }
-                break;
-            }
-            case "view_type": {
-                if (!ifield.hasId() || ifield.getId() == 28) {
-                    try {
+                case "rights": {
+                    if (!ifield.hasId() || ifield.getId() == 22) {
+                        rights = com.google.common.base.Optional.of(org.dressdiscover.api.models.rights.RightsSet.readAsStruct(iprot));
+                    }
+                    break;
+                }
+                case "structures": {
+                    if (!ifield.hasId() || ifield.getId() == 33) {
+                        structures = com.google.common.base.Optional.of(org.dressdiscover.api.models.structure.StructureSet.readAsStruct(iprot));
+                    }
+                    break;
+                }
+                case "subjects": {
+                    if (!ifield.hasId() || ifield.getId() == 21) {
+                        subjects = com.google.common.base.Optional.of(org.dressdiscover.api.models.subject.SubjectSet.readAsStruct(iprot));
+                    }
+                    break;
+                }
+                case "techniques": {
+                    if (!ifield.hasId() || ifield.getId() == 16) {
+                        techniques = com.google.common.base.Optional.of(org.dressdiscover.api.models.technique.TechniqueSet.readAsStruct(iprot));
+                    }
+                    break;
+                }
+                case "textrefs": {
+                    if (!ifield.hasId() || ifield.getId() == 9) {
+                        textrefs = com.google.common.base.Optional.of(org.dressdiscover.api.models.textref.TextrefSet.readAsStruct(iprot));
+                    }
+                    break;
+                }
+                case "view_type": {
+                    if (!ifield.hasId() || ifield.getId() == 28) {
                         viewType = com.google.common.base.Optional.of(iprot.readEnum(org.dressdiscover.api.models.view_type.ViewType.class));
-                    } catch (final IllegalArgumentException e) {
                     }
+                    break;
                 }
-                break;
-            }
-            case "work_types": {
-                if (!ifield.hasId() || ifield.getId() == 24) {
-                    workTypes = com.google.common.base.Optional.of(org.dressdiscover.api.models.work_type.WorkTypeSet.readAsStruct(iprot));
+                case "work_types": {
+                    if (!ifield.hasId() || ifield.getId() == 24) {
+                        workTypes = com.google.common.base.Optional.of(org.dressdiscover.api.models.work_type.WorkTypeSet.readAsStruct(iprot));
+                    }
+                    break;
                 }
-                break;
-            }
-            default:
-                if (unknownFieldCallback.isPresent()) {
-                    unknownFieldCallback.get().apply(ifield);
+                default:
+                    if (unknownFieldCallback.isPresent()) {
+                        unknownFieldCallback.get().apply(ifield);
+                    }
+                    break;
                 }
-                break;
+                iprot.readFieldEnd();
             }
-            iprot.readFieldEnd();
+            iprot.readStructEnd();
+        } catch (final RuntimeException e) {
+            throw new IllegalStateException(e);
         }
-        iprot.readStructEnd();
         return new Object(DefaultReadValidator.getInstance().validateCollectionId(collectionId), DefaultReadValidator.getInstance().validateInstitutionId(institutionId), DefaultReadValidator.getInstance().validateTitles(titles), DefaultReadValidator.getInstance().validateAgents(agents), DefaultReadValidator.getInstance().validateCategories(categories), DefaultReadValidator.getInstance().validateClosures(closures), DefaultReadValidator.getInstance().validateColors(colors), DefaultReadValidator.getInstance().validateComponents(components), DefaultReadValidator.getInstance().validateCondition(condition), DefaultReadValidator.getInstance().validateCulturalContexts(culturalContexts), DefaultReadValidator.getInstance().validateDates(dates), DefaultReadValidator.getInstance().validateDescriptions(descriptions), DefaultReadValidator.getInstance().validateGender(gender), DefaultReadValidator.getInstance().validateHidden(hidden), DefaultReadValidator.getInstance().validateImages(images), DefaultReadValidator.getInstance().validateInscriptions(inscriptions), DefaultReadValidator.getInstance().validateLocations(locations), DefaultReadValidator.getInstance().validateMaterials(materials), DefaultReadValidator.getInstance().validateMeasurements(measurements), DefaultReadValidator.getInstance().validateProvenance(provenance), DefaultReadValidator.getInstance().validateQuantity(quantity), DefaultReadValidator.getInstance().validateRelations(relations), DefaultReadValidator.getInstance().validateRights(rights), DefaultReadValidator.getInstance().validateStructures(structures), DefaultReadValidator.getInstance().validateSubjects(subjects), DefaultReadValidator.getInstance().validateTechniques(techniques), DefaultReadValidator.getInstance().validateTextrefs(textrefs), DefaultReadValidator.getInstance().validateViewType(viewType), DefaultReadValidator.getInstance().validateWorkTypes(workTypes), NopConstructionValidator.getInstance());
     }
 

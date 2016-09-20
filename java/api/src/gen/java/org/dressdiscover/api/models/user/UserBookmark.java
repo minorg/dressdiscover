@@ -62,26 +62,30 @@ public final class UserBookmark implements org.thryft.Struct, org.thryft.waf.api
         }
 
         public Builder readAsList(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
-            final org.thryft.protocol.ListBegin __list = iprot.readListBegin();
-            name = iprot.readString();
             try {
-                userId = org.dressdiscover.api.models.user.UserId.parse(iprot.readString());
-            } catch (final org.dressdiscover.api.models.user.InvalidUserIdException e) {
-                 throw new org.thryft.protocol.InputProtocolException(e);
-            }
-            if (__list.getSize() > 2) {
-                folder = com.google.common.base.Optional.of(iprot.readString());
-            }
-            if (__list.getSize() > 3) {
+                final org.thryft.protocol.ListBegin __list = iprot.readListBegin();
+                name = iprot.readString();
                 try {
-                    objectId = com.google.common.base.Optional.of(org.dressdiscover.api.models.object.ObjectId.parse(iprot.readString()));
-                } catch (final org.dressdiscover.api.models.object.InvalidObjectIdException e) {
+                    userId = org.dressdiscover.api.models.user.UserId.parse(iprot.readString());
+                } catch (final org.dressdiscover.api.models.user.InvalidUserIdException e) {
+                     throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.USER_ID, e);
                 }
+                if (__list.getSize() > 2) {
+                    folder = com.google.common.base.Optional.of(iprot.readString());
+                }
+                if (__list.getSize() > 3) {
+                    try {
+                        objectId = com.google.common.base.Optional.of(org.dressdiscover.api.models.object.ObjectId.parse(iprot.readString()));
+                    } catch (final org.dressdiscover.api.models.object.InvalidObjectIdException e) {
+                    }
+                }
+                if (__list.getSize() > 4) {
+                    objectQuery = com.google.common.base.Optional.of(org.dressdiscover.api.models.object.ObjectQuery.readAsStruct(iprot));
+                }
+                iprot.readListEnd();
+            } catch (final RuntimeException e) {
+                throw new IllegalStateException(e);
             }
-            if (__list.getSize() > 4) {
-                objectQuery = com.google.common.base.Optional.of(org.dressdiscover.api.models.object.ObjectQuery.readAsStruct(iprot));
-            }
-            iprot.readListEnd();
             return this;
         }
 
@@ -90,49 +94,53 @@ public final class UserBookmark implements org.thryft.Struct, org.thryft.waf.api
         }
 
         public Builder readAsStruct(final org.thryft.protocol.InputProtocol iprot, final com.google.common.base.Optional<UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
-            iprot.readStructBegin();
-            while (true) {
-                final org.thryft.protocol.FieldBegin ifield = iprot.readFieldBegin();
-                if (ifield.getType() == org.thryft.protocol.Type.STOP) {
-                    break;
-                }
-                switch (ifield.getName()) {
-                case "name": {
-                    name = iprot.readString();
-                    break;
-                }
-                case "user_id": {
-                    try {
-                        userId = org.dressdiscover.api.models.user.UserId.parse(iprot.readString());
-                    } catch (final org.dressdiscover.api.models.user.InvalidUserIdException e) {
-                         throw new org.thryft.protocol.InputProtocolException(e);
+            try {
+                iprot.readStructBegin();
+                while (true) {
+                    final org.thryft.protocol.FieldBegin ifield = iprot.readFieldBegin();
+                    if (ifield.getType() == org.thryft.protocol.Type.STOP) {
+                        break;
                     }
-                    break;
-                }
-                case "folder": {
-                    folder = com.google.common.base.Optional.of(iprot.readString());
-                    break;
-                }
-                case "object_id": {
-                    try {
-                        objectId = com.google.common.base.Optional.of(org.dressdiscover.api.models.object.ObjectId.parse(iprot.readString()));
-                    } catch (final org.dressdiscover.api.models.object.InvalidObjectIdException e) {
+                    switch (ifield.getName()) {
+                    case "name": {
+                        name = iprot.readString();
+                        break;
                     }
-                    break;
-                }
-                case "object_query": {
-                    objectQuery = com.google.common.base.Optional.of(org.dressdiscover.api.models.object.ObjectQuery.readAsStruct(iprot));
-                    break;
-                }
-                default:
-                    if (unknownFieldCallback.isPresent()) {
-                        unknownFieldCallback.get().apply(ifield);
+                    case "user_id": {
+                        try {
+                            userId = org.dressdiscover.api.models.user.UserId.parse(iprot.readString());
+                        } catch (final org.dressdiscover.api.models.user.InvalidUserIdException e) {
+                             throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.USER_ID, e);
+                        }
+                        break;
                     }
-                    break;
+                    case "folder": {
+                        folder = com.google.common.base.Optional.of(iprot.readString());
+                        break;
+                    }
+                    case "object_id": {
+                        try {
+                            objectId = com.google.common.base.Optional.of(org.dressdiscover.api.models.object.ObjectId.parse(iprot.readString()));
+                        } catch (final org.dressdiscover.api.models.object.InvalidObjectIdException e) {
+                        }
+                        break;
+                    }
+                    case "object_query": {
+                        objectQuery = com.google.common.base.Optional.of(org.dressdiscover.api.models.object.ObjectQuery.readAsStruct(iprot));
+                        break;
+                    }
+                    default:
+                        if (unknownFieldCallback.isPresent()) {
+                            unknownFieldCallback.get().apply(ifield);
+                        }
+                        break;
+                    }
+                    iprot.readFieldEnd();
                 }
-                iprot.readFieldEnd();
+                iprot.readStructEnd();
+            } catch (final RuntimeException e) {
+                throw new IllegalStateException(e);
             }
-            iprot.readStructEnd();
             return this;
         }
 
@@ -768,26 +776,30 @@ public final class UserBookmark implements org.thryft.Struct, org.thryft.waf.api
         com.google.common.base.Optional<org.dressdiscover.api.models.object.ObjectId> objectId = com.google.common.base.Optional.<org.dressdiscover.api.models.object.ObjectId> absent();
         com.google.common.base.Optional<org.dressdiscover.api.models.object.ObjectQuery> objectQuery = com.google.common.base.Optional.<org.dressdiscover.api.models.object.ObjectQuery> absent();
 
-        final org.thryft.protocol.ListBegin __list = iprot.readListBegin();
-        name = iprot.readString();
         try {
-            userId = org.dressdiscover.api.models.user.UserId.parse(iprot.readString());
-        } catch (final org.dressdiscover.api.models.user.InvalidUserIdException e) {
-             throw new org.thryft.protocol.InputProtocolException(e);
-        }
-        if (__list.getSize() > 2) {
-            folder = com.google.common.base.Optional.of(iprot.readString());
-        }
-        if (__list.getSize() > 3) {
+            final org.thryft.protocol.ListBegin __list = iprot.readListBegin();
+            name = iprot.readString();
             try {
-                objectId = com.google.common.base.Optional.of(org.dressdiscover.api.models.object.ObjectId.parse(iprot.readString()));
-            } catch (final org.dressdiscover.api.models.object.InvalidObjectIdException e) {
+                userId = org.dressdiscover.api.models.user.UserId.parse(iprot.readString());
+            } catch (final org.dressdiscover.api.models.user.InvalidUserIdException e) {
+                 throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.USER_ID, e);
             }
+            if (__list.getSize() > 2) {
+                folder = com.google.common.base.Optional.of(iprot.readString());
+            }
+            if (__list.getSize() > 3) {
+                try {
+                    objectId = com.google.common.base.Optional.of(org.dressdiscover.api.models.object.ObjectId.parse(iprot.readString()));
+                } catch (final org.dressdiscover.api.models.object.InvalidObjectIdException e) {
+                }
+            }
+            if (__list.getSize() > 4) {
+                objectQuery = com.google.common.base.Optional.of(org.dressdiscover.api.models.object.ObjectQuery.readAsStruct(iprot));
+            }
+            iprot.readListEnd();
+        } catch (final RuntimeException e) {
+            throw new IllegalStateException(e);
         }
-        if (__list.getSize() > 4) {
-            objectQuery = com.google.common.base.Optional.of(org.dressdiscover.api.models.object.ObjectQuery.readAsStruct(iprot));
-        }
-        iprot.readListEnd();
         return new UserBookmark(DefaultReadValidator.getInstance().validateName(name), DefaultReadValidator.getInstance().validateUserId(userId), DefaultReadValidator.getInstance().validateFolder(folder), DefaultReadValidator.getInstance().validateObjectId(objectId), DefaultReadValidator.getInstance().validateObjectQuery(objectQuery), NopConstructionValidator.getInstance());
     }
 
@@ -802,49 +814,53 @@ public final class UserBookmark implements org.thryft.Struct, org.thryft.waf.api
         com.google.common.base.Optional<org.dressdiscover.api.models.object.ObjectId> objectId = com.google.common.base.Optional.<org.dressdiscover.api.models.object.ObjectId> absent();
         com.google.common.base.Optional<org.dressdiscover.api.models.object.ObjectQuery> objectQuery = com.google.common.base.Optional.<org.dressdiscover.api.models.object.ObjectQuery> absent();
 
-        iprot.readStructBegin();
-        while (true) {
-            final org.thryft.protocol.FieldBegin ifield = iprot.readFieldBegin();
-            if (ifield.getType() == org.thryft.protocol.Type.STOP) {
-                break;
-            }
-            switch (ifield.getName()) {
-            case "name": {
-                name = iprot.readString();
-                break;
-            }
-            case "user_id": {
-                try {
-                    userId = org.dressdiscover.api.models.user.UserId.parse(iprot.readString());
-                } catch (final org.dressdiscover.api.models.user.InvalidUserIdException e) {
-                     throw new org.thryft.protocol.InputProtocolException(e);
+        try {
+            iprot.readStructBegin();
+            while (true) {
+                final org.thryft.protocol.FieldBegin ifield = iprot.readFieldBegin();
+                if (ifield.getType() == org.thryft.protocol.Type.STOP) {
+                    break;
                 }
-                break;
-            }
-            case "folder": {
-                folder = com.google.common.base.Optional.of(iprot.readString());
-                break;
-            }
-            case "object_id": {
-                try {
-                    objectId = com.google.common.base.Optional.of(org.dressdiscover.api.models.object.ObjectId.parse(iprot.readString()));
-                } catch (final org.dressdiscover.api.models.object.InvalidObjectIdException e) {
+                switch (ifield.getName()) {
+                case "name": {
+                    name = iprot.readString();
+                    break;
                 }
-                break;
-            }
-            case "object_query": {
-                objectQuery = com.google.common.base.Optional.of(org.dressdiscover.api.models.object.ObjectQuery.readAsStruct(iprot));
-                break;
-            }
-            default:
-                if (unknownFieldCallback.isPresent()) {
-                    unknownFieldCallback.get().apply(ifield);
+                case "user_id": {
+                    try {
+                        userId = org.dressdiscover.api.models.user.UserId.parse(iprot.readString());
+                    } catch (final org.dressdiscover.api.models.user.InvalidUserIdException e) {
+                         throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.USER_ID, e);
+                    }
+                    break;
                 }
-                break;
+                case "folder": {
+                    folder = com.google.common.base.Optional.of(iprot.readString());
+                    break;
+                }
+                case "object_id": {
+                    try {
+                        objectId = com.google.common.base.Optional.of(org.dressdiscover.api.models.object.ObjectId.parse(iprot.readString()));
+                    } catch (final org.dressdiscover.api.models.object.InvalidObjectIdException e) {
+                    }
+                    break;
+                }
+                case "object_query": {
+                    objectQuery = com.google.common.base.Optional.of(org.dressdiscover.api.models.object.ObjectQuery.readAsStruct(iprot));
+                    break;
+                }
+                default:
+                    if (unknownFieldCallback.isPresent()) {
+                        unknownFieldCallback.get().apply(ifield);
+                    }
+                    break;
+                }
+                iprot.readFieldEnd();
             }
-            iprot.readFieldEnd();
+            iprot.readStructEnd();
+        } catch (final RuntimeException e) {
+            throw new IllegalStateException(e);
         }
-        iprot.readStructEnd();
         return new UserBookmark(DefaultReadValidator.getInstance().validateName(name), DefaultReadValidator.getInstance().validateUserId(userId), DefaultReadValidator.getInstance().validateFolder(folder), DefaultReadValidator.getInstance().validateObjectId(objectId), DefaultReadValidator.getInstance().validateObjectQuery(objectQuery), NopConstructionValidator.getInstance());
     }
 

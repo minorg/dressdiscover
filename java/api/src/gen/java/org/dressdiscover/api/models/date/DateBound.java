@@ -59,24 +59,25 @@ public final class DateBound implements org.thryft.Struct {
         }
 
         public Builder readAsList(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
-            final org.thryft.protocol.ListBegin __list = iprot.readListBegin();
-            text = iprot.readString();
-            if (__list.getSize() > 1) {
-                circa = com.google.common.base.Optional.of(iprot.readBool());
-            }
-            if (__list.getSize() > 2) {
-                try {
-                    parsedDateTime = com.google.common.base.Optional.of(iprot.readDateTime());
-                } catch (final IllegalArgumentException e) {
+            try {
+                final org.thryft.protocol.ListBegin __list = iprot.readListBegin();
+                text = iprot.readString();
+                if (__list.getSize() > 1) {
+                    circa = com.google.common.base.Optional.of(iprot.readBool());
                 }
-            }
-            if (__list.getSize() > 3) {
-                try {
+                if (__list.getSize() > 2) {
+                    try {
+                        parsedDateTime = com.google.common.base.Optional.of(iprot.readDateTime());
+                    } catch (final IllegalArgumentException e) {
+                    }
+                }
+                if (__list.getSize() > 3) {
                     parsedDateTimeGranularity = com.google.common.base.Optional.of(iprot.readEnum(org.dressdiscover.api.models.date.DateTimeGranularity.class));
-                } catch (final IllegalArgumentException e) {
                 }
+                iprot.readListEnd();
+            } catch (final RuntimeException e) {
+                throw new IllegalStateException(e);
             }
-            iprot.readListEnd();
             return this;
         }
 
@@ -85,52 +86,53 @@ public final class DateBound implements org.thryft.Struct {
         }
 
         public Builder readAsStruct(final org.thryft.protocol.InputProtocol iprot, final com.google.common.base.Optional<UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
-            iprot.readStructBegin();
-            while (true) {
-                final org.thryft.protocol.FieldBegin ifield = iprot.readFieldBegin();
-                if (ifield.getType() == org.thryft.protocol.Type.STOP) {
-                    break;
-                }
-                switch (ifield.getName()) {
-                case "text": {
-                    if (!ifield.hasId() || ifield.getId() == 1) {
-                        text = iprot.readString();
+            try {
+                iprot.readStructBegin();
+                while (true) {
+                    final org.thryft.protocol.FieldBegin ifield = iprot.readFieldBegin();
+                    if (ifield.getType() == org.thryft.protocol.Type.STOP) {
+                        break;
                     }
-                    break;
-                }
-                case "circa": {
-                    if (!ifield.hasId() || ifield.getId() == 2) {
-                        circa = com.google.common.base.Optional.of(iprot.readBool());
-                    }
-                    break;
-                }
-                case "parsed_date_time": {
-                    if (!ifield.hasId() || ifield.getId() == 3) {
-                        try {
-                            parsedDateTime = com.google.common.base.Optional.of(iprot.readDateTime());
-                        } catch (final IllegalArgumentException e) {
+                    switch (ifield.getName()) {
+                    case "text": {
+                        if (!ifield.hasId() || ifield.getId() == 1) {
+                            text = iprot.readString();
                         }
+                        break;
                     }
-                    break;
-                }
-                case "parsed_date_time_granularity": {
-                    if (!ifield.hasId() || ifield.getId() == 4) {
-                        try {
+                    case "circa": {
+                        if (!ifield.hasId() || ifield.getId() == 2) {
+                            circa = com.google.common.base.Optional.of(iprot.readBool());
+                        }
+                        break;
+                    }
+                    case "parsed_date_time": {
+                        if (!ifield.hasId() || ifield.getId() == 3) {
+                            try {
+                                parsedDateTime = com.google.common.base.Optional.of(iprot.readDateTime());
+                            } catch (final IllegalArgumentException e) {
+                            }
+                        }
+                        break;
+                    }
+                    case "parsed_date_time_granularity": {
+                        if (!ifield.hasId() || ifield.getId() == 4) {
                             parsedDateTimeGranularity = com.google.common.base.Optional.of(iprot.readEnum(org.dressdiscover.api.models.date.DateTimeGranularity.class));
-                        } catch (final IllegalArgumentException e) {
                         }
+                        break;
                     }
-                    break;
-                }
-                default:
-                    if (unknownFieldCallback.isPresent()) {
-                        unknownFieldCallback.get().apply(ifield);
+                    default:
+                        if (unknownFieldCallback.isPresent()) {
+                            unknownFieldCallback.get().apply(ifield);
+                        }
+                        break;
                     }
-                    break;
+                    iprot.readFieldEnd();
                 }
-                iprot.readFieldEnd();
+                iprot.readStructEnd();
+            } catch (final RuntimeException e) {
+                throw new IllegalStateException(e);
             }
-            iprot.readStructEnd();
             return this;
         }
 
@@ -700,24 +702,25 @@ public final class DateBound implements org.thryft.Struct {
         com.google.common.base.Optional<java.util.Date> parsedDateTime = com.google.common.base.Optional.<java.util.Date> absent();
         com.google.common.base.Optional<org.dressdiscover.api.models.date.DateTimeGranularity> parsedDateTimeGranularity = com.google.common.base.Optional.<org.dressdiscover.api.models.date.DateTimeGranularity> absent();
 
-        final org.thryft.protocol.ListBegin __list = iprot.readListBegin();
-        text = iprot.readString();
-        if (__list.getSize() > 1) {
-            circa = com.google.common.base.Optional.of(iprot.readBool());
-        }
-        if (__list.getSize() > 2) {
-            try {
-                parsedDateTime = com.google.common.base.Optional.of(iprot.readDateTime());
-            } catch (final IllegalArgumentException e) {
+        try {
+            final org.thryft.protocol.ListBegin __list = iprot.readListBegin();
+            text = iprot.readString();
+            if (__list.getSize() > 1) {
+                circa = com.google.common.base.Optional.of(iprot.readBool());
             }
-        }
-        if (__list.getSize() > 3) {
-            try {
+            if (__list.getSize() > 2) {
+                try {
+                    parsedDateTime = com.google.common.base.Optional.of(iprot.readDateTime());
+                } catch (final IllegalArgumentException e) {
+                }
+            }
+            if (__list.getSize() > 3) {
                 parsedDateTimeGranularity = com.google.common.base.Optional.of(iprot.readEnum(org.dressdiscover.api.models.date.DateTimeGranularity.class));
-            } catch (final IllegalArgumentException e) {
             }
+            iprot.readListEnd();
+        } catch (final RuntimeException e) {
+            throw new IllegalStateException(e);
         }
-        iprot.readListEnd();
         return new DateBound(DefaultReadValidator.getInstance().validateText(text), DefaultReadValidator.getInstance().validateCirca(circa), DefaultReadValidator.getInstance().validateParsedDateTime(parsedDateTime), DefaultReadValidator.getInstance().validateParsedDateTimeGranularity(parsedDateTimeGranularity), NopConstructionValidator.getInstance());
     }
 
@@ -731,52 +734,53 @@ public final class DateBound implements org.thryft.Struct {
         com.google.common.base.Optional<java.util.Date> parsedDateTime = com.google.common.base.Optional.<java.util.Date> absent();
         com.google.common.base.Optional<org.dressdiscover.api.models.date.DateTimeGranularity> parsedDateTimeGranularity = com.google.common.base.Optional.<org.dressdiscover.api.models.date.DateTimeGranularity> absent();
 
-        iprot.readStructBegin();
-        while (true) {
-            final org.thryft.protocol.FieldBegin ifield = iprot.readFieldBegin();
-            if (ifield.getType() == org.thryft.protocol.Type.STOP) {
-                break;
-            }
-            switch (ifield.getName()) {
-            case "text": {
-                if (!ifield.hasId() || ifield.getId() == 1) {
-                    text = iprot.readString();
+        try {
+            iprot.readStructBegin();
+            while (true) {
+                final org.thryft.protocol.FieldBegin ifield = iprot.readFieldBegin();
+                if (ifield.getType() == org.thryft.protocol.Type.STOP) {
+                    break;
                 }
-                break;
-            }
-            case "circa": {
-                if (!ifield.hasId() || ifield.getId() == 2) {
-                    circa = com.google.common.base.Optional.of(iprot.readBool());
-                }
-                break;
-            }
-            case "parsed_date_time": {
-                if (!ifield.hasId() || ifield.getId() == 3) {
-                    try {
-                        parsedDateTime = com.google.common.base.Optional.of(iprot.readDateTime());
-                    } catch (final IllegalArgumentException e) {
+                switch (ifield.getName()) {
+                case "text": {
+                    if (!ifield.hasId() || ifield.getId() == 1) {
+                        text = iprot.readString();
                     }
+                    break;
                 }
-                break;
-            }
-            case "parsed_date_time_granularity": {
-                if (!ifield.hasId() || ifield.getId() == 4) {
-                    try {
+                case "circa": {
+                    if (!ifield.hasId() || ifield.getId() == 2) {
+                        circa = com.google.common.base.Optional.of(iprot.readBool());
+                    }
+                    break;
+                }
+                case "parsed_date_time": {
+                    if (!ifield.hasId() || ifield.getId() == 3) {
+                        try {
+                            parsedDateTime = com.google.common.base.Optional.of(iprot.readDateTime());
+                        } catch (final IllegalArgumentException e) {
+                        }
+                    }
+                    break;
+                }
+                case "parsed_date_time_granularity": {
+                    if (!ifield.hasId() || ifield.getId() == 4) {
                         parsedDateTimeGranularity = com.google.common.base.Optional.of(iprot.readEnum(org.dressdiscover.api.models.date.DateTimeGranularity.class));
-                    } catch (final IllegalArgumentException e) {
                     }
+                    break;
                 }
-                break;
-            }
-            default:
-                if (unknownFieldCallback.isPresent()) {
-                    unknownFieldCallback.get().apply(ifield);
+                default:
+                    if (unknownFieldCallback.isPresent()) {
+                        unknownFieldCallback.get().apply(ifield);
+                    }
+                    break;
                 }
-                break;
+                iprot.readFieldEnd();
             }
-            iprot.readFieldEnd();
+            iprot.readStructEnd();
+        } catch (final RuntimeException e) {
+            throw new IllegalStateException(e);
         }
-        iprot.readStructEnd();
         return new DateBound(DefaultReadValidator.getInstance().validateText(text), DefaultReadValidator.getInstance().validateCirca(circa), DefaultReadValidator.getInstance().validateParsedDateTime(parsedDateTime), DefaultReadValidator.getInstance().validateParsedDateTimeGranularity(parsedDateTimeGranularity), NopConstructionValidator.getInstance());
     }
 

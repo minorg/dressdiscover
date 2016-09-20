@@ -57,13 +57,17 @@ public interface ObjectCommandService {
                 }
 
                 public Builder readAsList(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
-                    iprot.readListBegin();
                     try {
-                        collectionId = org.dressdiscover.api.models.collection.CollectionId.parse(iprot.readString());
-                    } catch (final org.dressdiscover.api.models.collection.InvalidCollectionIdException e) {
-                         throw new org.thryft.protocol.InputProtocolException(e);
+                        iprot.readListBegin();
+                        try {
+                            collectionId = org.dressdiscover.api.models.collection.CollectionId.parse(iprot.readString());
+                        } catch (final org.dressdiscover.api.models.collection.InvalidCollectionIdException e) {
+                             throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.COLLECTION_ID, e);
+                        }
+                        iprot.readListEnd();
+                    } catch (final RuntimeException e) {
+                        throw new IllegalStateException(e);
                     }
-                    iprot.readListEnd();
                     return this;
                 }
 
@@ -72,30 +76,34 @@ public interface ObjectCommandService {
                 }
 
                 public Builder readAsStruct(final org.thryft.protocol.InputProtocol iprot, final com.google.common.base.Optional<UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
-                    iprot.readStructBegin();
-                    while (true) {
-                        final org.thryft.protocol.FieldBegin ifield = iprot.readFieldBegin();
-                        if (ifield.getType() == org.thryft.protocol.Type.STOP) {
-                            break;
-                        }
-                        switch (ifield.getName()) {
-                        case "collection_id": {
-                            try {
-                                collectionId = org.dressdiscover.api.models.collection.CollectionId.parse(iprot.readString());
-                            } catch (final org.dressdiscover.api.models.collection.InvalidCollectionIdException e) {
-                                 throw new org.thryft.protocol.InputProtocolException(e);
+                    try {
+                        iprot.readStructBegin();
+                        while (true) {
+                            final org.thryft.protocol.FieldBegin ifield = iprot.readFieldBegin();
+                            if (ifield.getType() == org.thryft.protocol.Type.STOP) {
+                                break;
                             }
-                            break;
-                        }
-                        default:
-                            if (unknownFieldCallback.isPresent()) {
-                                unknownFieldCallback.get().apply(ifield);
+                            switch (ifield.getName()) {
+                            case "collection_id": {
+                                try {
+                                    collectionId = org.dressdiscover.api.models.collection.CollectionId.parse(iprot.readString());
+                                } catch (final org.dressdiscover.api.models.collection.InvalidCollectionIdException e) {
+                                     throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.COLLECTION_ID, e);
+                                }
+                                break;
                             }
-                            break;
+                            default:
+                                if (unknownFieldCallback.isPresent()) {
+                                    unknownFieldCallback.get().apply(ifield);
+                                }
+                                break;
+                            }
+                            iprot.readFieldEnd();
                         }
-                        iprot.readFieldEnd();
+                        iprot.readStructEnd();
+                    } catch (final RuntimeException e) {
+                        throw new IllegalStateException(e);
                     }
-                    iprot.readStructEnd();
                     return this;
                 }
 
@@ -447,13 +455,17 @@ public interface ObjectCommandService {
             public static DeleteObjectsByCollectionIdRequest readAsList(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
                 org.dressdiscover.api.models.collection.CollectionId collectionId = null;
 
-                iprot.readListBegin();
                 try {
-                    collectionId = org.dressdiscover.api.models.collection.CollectionId.parse(iprot.readString());
-                } catch (final org.dressdiscover.api.models.collection.InvalidCollectionIdException e) {
-                     throw new org.thryft.protocol.InputProtocolException(e);
+                    iprot.readListBegin();
+                    try {
+                        collectionId = org.dressdiscover.api.models.collection.CollectionId.parse(iprot.readString());
+                    } catch (final org.dressdiscover.api.models.collection.InvalidCollectionIdException e) {
+                         throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.COLLECTION_ID, e);
+                    }
+                    iprot.readListEnd();
+                } catch (final RuntimeException e) {
+                    throw new IllegalStateException(e);
                 }
-                iprot.readListEnd();
                 return new DeleteObjectsByCollectionIdRequest(DefaultReadValidator.getInstance().validateCollectionId(collectionId), NopConstructionValidator.getInstance());
             }
 
@@ -464,30 +476,34 @@ public interface ObjectCommandService {
             public static DeleteObjectsByCollectionIdRequest readAsStruct(final org.thryft.protocol.InputProtocol iprot, final com.google.common.base.Optional<UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
                 org.dressdiscover.api.models.collection.CollectionId collectionId = null;
 
-                iprot.readStructBegin();
-                while (true) {
-                    final org.thryft.protocol.FieldBegin ifield = iprot.readFieldBegin();
-                    if (ifield.getType() == org.thryft.protocol.Type.STOP) {
-                        break;
-                    }
-                    switch (ifield.getName()) {
-                    case "collection_id": {
-                        try {
-                            collectionId = org.dressdiscover.api.models.collection.CollectionId.parse(iprot.readString());
-                        } catch (final org.dressdiscover.api.models.collection.InvalidCollectionIdException e) {
-                             throw new org.thryft.protocol.InputProtocolException(e);
+                try {
+                    iprot.readStructBegin();
+                    while (true) {
+                        final org.thryft.protocol.FieldBegin ifield = iprot.readFieldBegin();
+                        if (ifield.getType() == org.thryft.protocol.Type.STOP) {
+                            break;
                         }
-                        break;
-                    }
-                    default:
-                        if (unknownFieldCallback.isPresent()) {
-                            unknownFieldCallback.get().apply(ifield);
+                        switch (ifield.getName()) {
+                        case "collection_id": {
+                            try {
+                                collectionId = org.dressdiscover.api.models.collection.CollectionId.parse(iprot.readString());
+                            } catch (final org.dressdiscover.api.models.collection.InvalidCollectionIdException e) {
+                                 throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.COLLECTION_ID, e);
+                            }
+                            break;
                         }
-                        break;
+                        default:
+                            if (unknownFieldCallback.isPresent()) {
+                                unknownFieldCallback.get().apply(ifield);
+                            }
+                            break;
+                        }
+                        iprot.readFieldEnd();
                     }
-                    iprot.readFieldEnd();
+                    iprot.readStructEnd();
+                } catch (final RuntimeException e) {
+                    throw new IllegalStateException(e);
                 }
-                iprot.readStructEnd();
                 return new DeleteObjectsByCollectionIdRequest(DefaultReadValidator.getInstance().validateCollectionId(collectionId), NopConstructionValidator.getInstance());
             }
 
@@ -566,9 +582,17 @@ public interface ObjectCommandService {
                 }
 
                 public Builder readAsList(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
-                    iprot.readListBegin();
-                    returnValue = iprot.readU32();
-                    iprot.readListEnd();
+                    try {
+                        iprot.readListBegin();
+                        try {
+                            returnValue = iprot.readU32();
+                        } catch (final NumberFormatException e) {
+                             throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.RETURN_VALUE, e);
+                        }
+                        iprot.readListEnd();
+                    } catch (final RuntimeException e) {
+                        throw new IllegalStateException(e);
+                    }
                     return this;
                 }
 
@@ -577,26 +601,34 @@ public interface ObjectCommandService {
                 }
 
                 public Builder readAsStruct(final org.thryft.protocol.InputProtocol iprot, final com.google.common.base.Optional<UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
-                    iprot.readStructBegin();
-                    while (true) {
-                        final org.thryft.protocol.FieldBegin ifield = iprot.readFieldBegin();
-                        if (ifield.getType() == org.thryft.protocol.Type.STOP) {
-                            break;
-                        }
-                        switch (ifield.getName()) {
-                        case "return_value": {
-                            returnValue = iprot.readU32();
-                            break;
-                        }
-                        default:
-                            if (unknownFieldCallback.isPresent()) {
-                                unknownFieldCallback.get().apply(ifield);
+                    try {
+                        iprot.readStructBegin();
+                        while (true) {
+                            final org.thryft.protocol.FieldBegin ifield = iprot.readFieldBegin();
+                            if (ifield.getType() == org.thryft.protocol.Type.STOP) {
+                                break;
                             }
-                            break;
+                            switch (ifield.getName()) {
+                            case "return_value": {
+                                try {
+                                    returnValue = iprot.readU32();
+                                } catch (final NumberFormatException e) {
+                                     throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.RETURN_VALUE, e);
+                                }
+                                break;
+                            }
+                            default:
+                                if (unknownFieldCallback.isPresent()) {
+                                    unknownFieldCallback.get().apply(ifield);
+                                }
+                                break;
+                            }
+                            iprot.readFieldEnd();
                         }
-                        iprot.readFieldEnd();
+                        iprot.readStructEnd();
+                    } catch (final RuntimeException e) {
+                        throw new IllegalStateException(e);
                     }
-                    iprot.readStructEnd();
                     return this;
                 }
 
@@ -948,9 +980,17 @@ public interface ObjectCommandService {
             public static DeleteObjectsByCollectionIdResponse readAsList(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
                 com.google.common.primitives.UnsignedInteger returnValue = com.google.common.primitives.UnsignedInteger.ZERO;
 
-                iprot.readListBegin();
-                returnValue = iprot.readU32();
-                iprot.readListEnd();
+                try {
+                    iprot.readListBegin();
+                    try {
+                        returnValue = iprot.readU32();
+                    } catch (final NumberFormatException e) {
+                         throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.RETURN_VALUE, e);
+                    }
+                    iprot.readListEnd();
+                } catch (final RuntimeException e) {
+                    throw new IllegalStateException(e);
+                }
                 return new DeleteObjectsByCollectionIdResponse(DefaultReadValidator.getInstance().validateReturnValue(returnValue), NopConstructionValidator.getInstance());
             }
 
@@ -961,26 +1001,34 @@ public interface ObjectCommandService {
             public static DeleteObjectsByCollectionIdResponse readAsStruct(final org.thryft.protocol.InputProtocol iprot, final com.google.common.base.Optional<UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
                 com.google.common.primitives.UnsignedInteger returnValue = com.google.common.primitives.UnsignedInteger.ZERO;
 
-                iprot.readStructBegin();
-                while (true) {
-                    final org.thryft.protocol.FieldBegin ifield = iprot.readFieldBegin();
-                    if (ifield.getType() == org.thryft.protocol.Type.STOP) {
-                        break;
-                    }
-                    switch (ifield.getName()) {
-                    case "return_value": {
-                        returnValue = iprot.readU32();
-                        break;
-                    }
-                    default:
-                        if (unknownFieldCallback.isPresent()) {
-                            unknownFieldCallback.get().apply(ifield);
+                try {
+                    iprot.readStructBegin();
+                    while (true) {
+                        final org.thryft.protocol.FieldBegin ifield = iprot.readFieldBegin();
+                        if (ifield.getType() == org.thryft.protocol.Type.STOP) {
+                            break;
                         }
-                        break;
+                        switch (ifield.getName()) {
+                        case "return_value": {
+                            try {
+                                returnValue = iprot.readU32();
+                            } catch (final NumberFormatException e) {
+                                 throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.RETURN_VALUE, e);
+                            }
+                            break;
+                        }
+                        default:
+                            if (unknownFieldCallback.isPresent()) {
+                                unknownFieldCallback.get().apply(ifield);
+                            }
+                            break;
+                        }
+                        iprot.readFieldEnd();
                     }
-                    iprot.readFieldEnd();
+                    iprot.readStructEnd();
+                } catch (final RuntimeException e) {
+                    throw new IllegalStateException(e);
                 }
-                iprot.readStructEnd();
                 return new DeleteObjectsByCollectionIdResponse(DefaultReadValidator.getInstance().validateReturnValue(returnValue), NopConstructionValidator.getInstance());
             }
 
@@ -1065,14 +1113,18 @@ public interface ObjectCommandService {
                 }
 
                 public Builder readAsList(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
-                    iprot.readListBegin();
                     try {
-                        id = org.dressdiscover.api.models.object.ObjectId.parse(iprot.readString());
-                    } catch (final org.dressdiscover.api.models.object.InvalidObjectIdException e) {
-                         throw new org.thryft.protocol.InputProtocolException(e);
+                        iprot.readListBegin();
+                        try {
+                            id = org.dressdiscover.api.models.object.ObjectId.parse(iprot.readString());
+                        } catch (final org.dressdiscover.api.models.object.InvalidObjectIdException e) {
+                             throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.ID, e);
+                        }
+                        object = org.dressdiscover.api.models.object.Object.readAsStruct(iprot);
+                        iprot.readListEnd();
+                    } catch (final RuntimeException e) {
+                        throw new IllegalStateException(e);
                     }
-                    object = org.dressdiscover.api.models.object.Object.readAsStruct(iprot);
-                    iprot.readListEnd();
                     return this;
                 }
 
@@ -1081,34 +1133,38 @@ public interface ObjectCommandService {
                 }
 
                 public Builder readAsStruct(final org.thryft.protocol.InputProtocol iprot, final com.google.common.base.Optional<UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
-                    iprot.readStructBegin();
-                    while (true) {
-                        final org.thryft.protocol.FieldBegin ifield = iprot.readFieldBegin();
-                        if (ifield.getType() == org.thryft.protocol.Type.STOP) {
-                            break;
-                        }
-                        switch (ifield.getName()) {
-                        case "id": {
-                            try {
-                                id = org.dressdiscover.api.models.object.ObjectId.parse(iprot.readString());
-                            } catch (final org.dressdiscover.api.models.object.InvalidObjectIdException e) {
-                                 throw new org.thryft.protocol.InputProtocolException(e);
+                    try {
+                        iprot.readStructBegin();
+                        while (true) {
+                            final org.thryft.protocol.FieldBegin ifield = iprot.readFieldBegin();
+                            if (ifield.getType() == org.thryft.protocol.Type.STOP) {
+                                break;
                             }
-                            break;
-                        }
-                        case "object": {
-                            object = org.dressdiscover.api.models.object.Object.readAsStruct(iprot);
-                            break;
-                        }
-                        default:
-                            if (unknownFieldCallback.isPresent()) {
-                                unknownFieldCallback.get().apply(ifield);
+                            switch (ifield.getName()) {
+                            case "id": {
+                                try {
+                                    id = org.dressdiscover.api.models.object.ObjectId.parse(iprot.readString());
+                                } catch (final org.dressdiscover.api.models.object.InvalidObjectIdException e) {
+                                     throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.ID, e);
+                                }
+                                break;
                             }
-                            break;
+                            case "object": {
+                                object = org.dressdiscover.api.models.object.Object.readAsStruct(iprot);
+                                break;
+                            }
+                            default:
+                                if (unknownFieldCallback.isPresent()) {
+                                    unknownFieldCallback.get().apply(ifield);
+                                }
+                                break;
+                            }
+                            iprot.readFieldEnd();
                         }
-                        iprot.readFieldEnd();
+                        iprot.readStructEnd();
+                    } catch (final RuntimeException e) {
+                        throw new IllegalStateException(e);
                     }
-                    iprot.readStructEnd();
                     return this;
                 }
 
@@ -1514,14 +1570,18 @@ public interface ObjectCommandService {
                 org.dressdiscover.api.models.object.ObjectId id = null;
                 org.dressdiscover.api.models.object.Object object = null;
 
-                iprot.readListBegin();
                 try {
-                    id = org.dressdiscover.api.models.object.ObjectId.parse(iprot.readString());
-                } catch (final org.dressdiscover.api.models.object.InvalidObjectIdException e) {
-                     throw new org.thryft.protocol.InputProtocolException(e);
+                    iprot.readListBegin();
+                    try {
+                        id = org.dressdiscover.api.models.object.ObjectId.parse(iprot.readString());
+                    } catch (final org.dressdiscover.api.models.object.InvalidObjectIdException e) {
+                         throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.ID, e);
+                    }
+                    object = org.dressdiscover.api.models.object.Object.readAsStruct(iprot);
+                    iprot.readListEnd();
+                } catch (final RuntimeException e) {
+                    throw new IllegalStateException(e);
                 }
-                object = org.dressdiscover.api.models.object.Object.readAsStruct(iprot);
-                iprot.readListEnd();
                 return new PutObjectRequest(DefaultReadValidator.getInstance().validateId(id), DefaultReadValidator.getInstance().validateObject(object), NopConstructionValidator.getInstance());
             }
 
@@ -1533,34 +1593,38 @@ public interface ObjectCommandService {
                 org.dressdiscover.api.models.object.ObjectId id = null;
                 org.dressdiscover.api.models.object.Object object = null;
 
-                iprot.readStructBegin();
-                while (true) {
-                    final org.thryft.protocol.FieldBegin ifield = iprot.readFieldBegin();
-                    if (ifield.getType() == org.thryft.protocol.Type.STOP) {
-                        break;
-                    }
-                    switch (ifield.getName()) {
-                    case "id": {
-                        try {
-                            id = org.dressdiscover.api.models.object.ObjectId.parse(iprot.readString());
-                        } catch (final org.dressdiscover.api.models.object.InvalidObjectIdException e) {
-                             throw new org.thryft.protocol.InputProtocolException(e);
+                try {
+                    iprot.readStructBegin();
+                    while (true) {
+                        final org.thryft.protocol.FieldBegin ifield = iprot.readFieldBegin();
+                        if (ifield.getType() == org.thryft.protocol.Type.STOP) {
+                            break;
                         }
-                        break;
-                    }
-                    case "object": {
-                        object = org.dressdiscover.api.models.object.Object.readAsStruct(iprot);
-                        break;
-                    }
-                    default:
-                        if (unknownFieldCallback.isPresent()) {
-                            unknownFieldCallback.get().apply(ifield);
+                        switch (ifield.getName()) {
+                        case "id": {
+                            try {
+                                id = org.dressdiscover.api.models.object.ObjectId.parse(iprot.readString());
+                            } catch (final org.dressdiscover.api.models.object.InvalidObjectIdException e) {
+                                 throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.ID, e);
+                            }
+                            break;
                         }
-                        break;
+                        case "object": {
+                            object = org.dressdiscover.api.models.object.Object.readAsStruct(iprot);
+                            break;
+                        }
+                        default:
+                            if (unknownFieldCallback.isPresent()) {
+                                unknownFieldCallback.get().apply(ifield);
+                            }
+                            break;
+                        }
+                        iprot.readFieldEnd();
                     }
-                    iprot.readFieldEnd();
+                    iprot.readStructEnd();
+                } catch (final RuntimeException e) {
+                    throw new IllegalStateException(e);
                 }
-                iprot.readStructEnd();
                 return new PutObjectRequest(DefaultReadValidator.getInstance().validateId(id), DefaultReadValidator.getInstance().validateObject(object), NopConstructionValidator.getInstance());
             }
 
@@ -1645,8 +1709,12 @@ public interface ObjectCommandService {
                 }
 
                 public Builder readAsList(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
-                    iprot.readListBegin();
-                    iprot.readListEnd();
+                    try {
+                        iprot.readListBegin();
+                        iprot.readListEnd();
+                    } catch (final RuntimeException e) {
+                        throw new IllegalStateException(e);
+                    }
                     return this;
                 }
 
@@ -1655,22 +1723,26 @@ public interface ObjectCommandService {
                 }
 
                 public Builder readAsStruct(final org.thryft.protocol.InputProtocol iprot, final com.google.common.base.Optional<UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
-                    iprot.readStructBegin();
-                    while (true) {
-                        final org.thryft.protocol.FieldBegin ifield = iprot.readFieldBegin();
-                        if (ifield.getType() == org.thryft.protocol.Type.STOP) {
-                            break;
-                        }
-                        switch (ifield.getName()) {
-                        default:
-                            if (unknownFieldCallback.isPresent()) {
-                                unknownFieldCallback.get().apply(ifield);
+                    try {
+                        iprot.readStructBegin();
+                        while (true) {
+                            final org.thryft.protocol.FieldBegin ifield = iprot.readFieldBegin();
+                            if (ifield.getType() == org.thryft.protocol.Type.STOP) {
+                                break;
                             }
-                            break;
+                            switch (ifield.getName()) {
+                            default:
+                                if (unknownFieldCallback.isPresent()) {
+                                    unknownFieldCallback.get().apply(ifield);
+                                }
+                                break;
+                            }
+                            iprot.readFieldEnd();
                         }
-                        iprot.readFieldEnd();
+                        iprot.readStructEnd();
+                    } catch (final RuntimeException e) {
+                        throw new IllegalStateException(e);
                     }
-                    iprot.readStructEnd();
                     return this;
                 }
 
@@ -1849,8 +1921,12 @@ public interface ObjectCommandService {
             }
 
             public static PutObjectResponse readAsList(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
-                iprot.readListBegin();
-                iprot.readListEnd();
+                try {
+                    iprot.readListBegin();
+                    iprot.readListEnd();
+                } catch (final RuntimeException e) {
+                    throw new IllegalStateException(e);
+                }
                 return new PutObjectResponse();
             }
 
@@ -1859,22 +1935,26 @@ public interface ObjectCommandService {
             }
 
             public static PutObjectResponse readAsStruct(final org.thryft.protocol.InputProtocol iprot, final com.google.common.base.Optional<UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
-                iprot.readStructBegin();
-                while (true) {
-                    final org.thryft.protocol.FieldBegin ifield = iprot.readFieldBegin();
-                    if (ifield.getType() == org.thryft.protocol.Type.STOP) {
-                        break;
-                    }
-                    switch (ifield.getName()) {
-                    default:
-                        if (unknownFieldCallback.isPresent()) {
-                            unknownFieldCallback.get().apply(ifield);
+                try {
+                    iprot.readStructBegin();
+                    while (true) {
+                        final org.thryft.protocol.FieldBegin ifield = iprot.readFieldBegin();
+                        if (ifield.getType() == org.thryft.protocol.Type.STOP) {
+                            break;
                         }
-                        break;
+                        switch (ifield.getName()) {
+                        default:
+                            if (unknownFieldCallback.isPresent()) {
+                                unknownFieldCallback.get().apply(ifield);
+                            }
+                            break;
+                        }
+                        iprot.readFieldEnd();
                     }
-                    iprot.readFieldEnd();
+                    iprot.readStructEnd();
+                } catch (final RuntimeException e) {
+                    throw new IllegalStateException(e);
                 }
-                iprot.readStructEnd();
                 return new PutObjectResponse();
             }
 
@@ -1940,40 +2020,9 @@ public interface ObjectCommandService {
                 }
 
                 public Builder readAsList(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
-                    iprot.readListBegin();
-                    objects = (new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableList<org.dressdiscover.api.models.object.ObjectEntry>>() {
-                        @Override
-                        public com.google.common.collect.ImmutableList<org.dressdiscover.api.models.object.ObjectEntry> apply(final org.thryft.protocol.InputProtocol iprot) {
-                            try {
-                                final org.thryft.protocol.ListBegin sequenceBegin = iprot.readListBegin();
-                                final com.google.common.collect.ImmutableList.Builder<org.dressdiscover.api.models.object.ObjectEntry> sequenceBuilder = com.google.common.collect.ImmutableList.builder();
-                                for (int elementI = 0; elementI < sequenceBegin.getSize(); elementI++) {
-                                    sequenceBuilder.add(org.dressdiscover.api.models.object.ObjectEntry.readAsStruct(iprot));
-                                }
-                                iprot.readListEnd();
-                                return sequenceBuilder.build();
-                            } catch (final org.thryft.protocol.InputProtocolException e) {
-                                throw new org.thryft.protocol.UncheckedInputProtocolException(e);
-                            }
-                        }
-                    }).apply(iprot);
-                    iprot.readListEnd();
-                    return this;
-                }
-
-                public Builder readAsStruct(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
-                    return readAsStruct(iprot, com.google.common.base.Optional.<UnknownFieldCallback> absent());
-                }
-
-                public Builder readAsStruct(final org.thryft.protocol.InputProtocol iprot, final com.google.common.base.Optional<UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
-                    iprot.readStructBegin();
-                    while (true) {
-                        final org.thryft.protocol.FieldBegin ifield = iprot.readFieldBegin();
-                        if (ifield.getType() == org.thryft.protocol.Type.STOP) {
-                            break;
-                        }
-                        switch (ifield.getName()) {
-                        case "objects": {
+                    try {
+                        iprot.readListBegin();
+                        try {
                             objects = (new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableList<org.dressdiscover.api.models.object.ObjectEntry>>() {
                                 @Override
                                 public com.google.common.collect.ImmutableList<org.dressdiscover.api.models.object.ObjectEntry> apply(final org.thryft.protocol.InputProtocol iprot) {
@@ -1990,17 +2039,64 @@ public interface ObjectCommandService {
                                     }
                                 }
                             }).apply(iprot);
-                            break;
+                        } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
+                             throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.OBJECTS, e.getCause());
                         }
-                        default:
-                            if (unknownFieldCallback.isPresent()) {
-                                unknownFieldCallback.get().apply(ifield);
-                            }
-                            break;
-                        }
-                        iprot.readFieldEnd();
+                        iprot.readListEnd();
+                    } catch (final RuntimeException e) {
+                        throw new IllegalStateException(e);
                     }
-                    iprot.readStructEnd();
+                    return this;
+                }
+
+                public Builder readAsStruct(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
+                    return readAsStruct(iprot, com.google.common.base.Optional.<UnknownFieldCallback> absent());
+                }
+
+                public Builder readAsStruct(final org.thryft.protocol.InputProtocol iprot, final com.google.common.base.Optional<UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
+                    try {
+                        iprot.readStructBegin();
+                        while (true) {
+                            final org.thryft.protocol.FieldBegin ifield = iprot.readFieldBegin();
+                            if (ifield.getType() == org.thryft.protocol.Type.STOP) {
+                                break;
+                            }
+                            switch (ifield.getName()) {
+                            case "objects": {
+                                try {
+                                    objects = (new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableList<org.dressdiscover.api.models.object.ObjectEntry>>() {
+                                        @Override
+                                        public com.google.common.collect.ImmutableList<org.dressdiscover.api.models.object.ObjectEntry> apply(final org.thryft.protocol.InputProtocol iprot) {
+                                            try {
+                                                final org.thryft.protocol.ListBegin sequenceBegin = iprot.readListBegin();
+                                                final com.google.common.collect.ImmutableList.Builder<org.dressdiscover.api.models.object.ObjectEntry> sequenceBuilder = com.google.common.collect.ImmutableList.builder();
+                                                for (int elementI = 0; elementI < sequenceBegin.getSize(); elementI++) {
+                                                    sequenceBuilder.add(org.dressdiscover.api.models.object.ObjectEntry.readAsStruct(iprot));
+                                                }
+                                                iprot.readListEnd();
+                                                return sequenceBuilder.build();
+                                            } catch (final org.thryft.protocol.InputProtocolException e) {
+                                                throw new org.thryft.protocol.UncheckedInputProtocolException(e);
+                                            }
+                                        }
+                                    }).apply(iprot);
+                                } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
+                                     throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.OBJECTS, e.getCause());
+                                }
+                                break;
+                            }
+                            default:
+                                if (unknownFieldCallback.isPresent()) {
+                                    unknownFieldCallback.get().apply(ifield);
+                                }
+                                break;
+                            }
+                            iprot.readFieldEnd();
+                        }
+                        iprot.readStructEnd();
+                    } catch (final RuntimeException e) {
+                        throw new IllegalStateException(e);
+                    }
                     return this;
                 }
 
@@ -2353,42 +2449,9 @@ public interface ObjectCommandService {
             public static PutObjectsRequest readAsList(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
                 com.google.common.collect.ImmutableList<org.dressdiscover.api.models.object.ObjectEntry> objects = null;
 
-                iprot.readListBegin();
-                objects = (new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableList<org.dressdiscover.api.models.object.ObjectEntry>>() {
-                    @Override
-                    public com.google.common.collect.ImmutableList<org.dressdiscover.api.models.object.ObjectEntry> apply(final org.thryft.protocol.InputProtocol iprot) {
-                        try {
-                            final org.thryft.protocol.ListBegin sequenceBegin = iprot.readListBegin();
-                            final com.google.common.collect.ImmutableList.Builder<org.dressdiscover.api.models.object.ObjectEntry> sequenceBuilder = com.google.common.collect.ImmutableList.builder();
-                            for (int elementI = 0; elementI < sequenceBegin.getSize(); elementI++) {
-                                sequenceBuilder.add(org.dressdiscover.api.models.object.ObjectEntry.readAsStruct(iprot));
-                            }
-                            iprot.readListEnd();
-                            return sequenceBuilder.build();
-                        } catch (final org.thryft.protocol.InputProtocolException e) {
-                            throw new org.thryft.protocol.UncheckedInputProtocolException(e);
-                        }
-                    }
-                }).apply(iprot);
-                iprot.readListEnd();
-                return new PutObjectsRequest(DefaultReadValidator.getInstance().validateObjects(objects), NopConstructionValidator.getInstance());
-            }
-
-            public static PutObjectsRequest readAsStruct(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
-                return readAsStruct(iprot, com.google.common.base.Optional.<UnknownFieldCallback> absent());
-            }
-
-            public static PutObjectsRequest readAsStruct(final org.thryft.protocol.InputProtocol iprot, final com.google.common.base.Optional<UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
-                com.google.common.collect.ImmutableList<org.dressdiscover.api.models.object.ObjectEntry> objects = null;
-
-                iprot.readStructBegin();
-                while (true) {
-                    final org.thryft.protocol.FieldBegin ifield = iprot.readFieldBegin();
-                    if (ifield.getType() == org.thryft.protocol.Type.STOP) {
-                        break;
-                    }
-                    switch (ifield.getName()) {
-                    case "objects": {
+                try {
+                    iprot.readListBegin();
+                    try {
                         objects = (new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableList<org.dressdiscover.api.models.object.ObjectEntry>>() {
                             @Override
                             public com.google.common.collect.ImmutableList<org.dressdiscover.api.models.object.ObjectEntry> apply(final org.thryft.protocol.InputProtocol iprot) {
@@ -2405,17 +2468,66 @@ public interface ObjectCommandService {
                                 }
                             }
                         }).apply(iprot);
-                        break;
+                    } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
+                         throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.OBJECTS, e.getCause());
                     }
-                    default:
-                        if (unknownFieldCallback.isPresent()) {
-                            unknownFieldCallback.get().apply(ifield);
-                        }
-                        break;
-                    }
-                    iprot.readFieldEnd();
+                    iprot.readListEnd();
+                } catch (final RuntimeException e) {
+                    throw new IllegalStateException(e);
                 }
-                iprot.readStructEnd();
+                return new PutObjectsRequest(DefaultReadValidator.getInstance().validateObjects(objects), NopConstructionValidator.getInstance());
+            }
+
+            public static PutObjectsRequest readAsStruct(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
+                return readAsStruct(iprot, com.google.common.base.Optional.<UnknownFieldCallback> absent());
+            }
+
+            public static PutObjectsRequest readAsStruct(final org.thryft.protocol.InputProtocol iprot, final com.google.common.base.Optional<UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
+                com.google.common.collect.ImmutableList<org.dressdiscover.api.models.object.ObjectEntry> objects = null;
+
+                try {
+                    iprot.readStructBegin();
+                    while (true) {
+                        final org.thryft.protocol.FieldBegin ifield = iprot.readFieldBegin();
+                        if (ifield.getType() == org.thryft.protocol.Type.STOP) {
+                            break;
+                        }
+                        switch (ifield.getName()) {
+                        case "objects": {
+                            try {
+                                objects = (new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableList<org.dressdiscover.api.models.object.ObjectEntry>>() {
+                                    @Override
+                                    public com.google.common.collect.ImmutableList<org.dressdiscover.api.models.object.ObjectEntry> apply(final org.thryft.protocol.InputProtocol iprot) {
+                                        try {
+                                            final org.thryft.protocol.ListBegin sequenceBegin = iprot.readListBegin();
+                                            final com.google.common.collect.ImmutableList.Builder<org.dressdiscover.api.models.object.ObjectEntry> sequenceBuilder = com.google.common.collect.ImmutableList.builder();
+                                            for (int elementI = 0; elementI < sequenceBegin.getSize(); elementI++) {
+                                                sequenceBuilder.add(org.dressdiscover.api.models.object.ObjectEntry.readAsStruct(iprot));
+                                            }
+                                            iprot.readListEnd();
+                                            return sequenceBuilder.build();
+                                        } catch (final org.thryft.protocol.InputProtocolException e) {
+                                            throw new org.thryft.protocol.UncheckedInputProtocolException(e);
+                                        }
+                                    }
+                                }).apply(iprot);
+                            } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
+                                 throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.OBJECTS, e.getCause());
+                            }
+                            break;
+                        }
+                        default:
+                            if (unknownFieldCallback.isPresent()) {
+                                unknownFieldCallback.get().apply(ifield);
+                            }
+                            break;
+                        }
+                        iprot.readFieldEnd();
+                    }
+                    iprot.readStructEnd();
+                } catch (final RuntimeException e) {
+                    throw new IllegalStateException(e);
+                }
                 return new PutObjectsRequest(DefaultReadValidator.getInstance().validateObjects(objects), NopConstructionValidator.getInstance());
             }
 
@@ -2496,8 +2608,12 @@ public interface ObjectCommandService {
                 }
 
                 public Builder readAsList(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
-                    iprot.readListBegin();
-                    iprot.readListEnd();
+                    try {
+                        iprot.readListBegin();
+                        iprot.readListEnd();
+                    } catch (final RuntimeException e) {
+                        throw new IllegalStateException(e);
+                    }
                     return this;
                 }
 
@@ -2506,22 +2622,26 @@ public interface ObjectCommandService {
                 }
 
                 public Builder readAsStruct(final org.thryft.protocol.InputProtocol iprot, final com.google.common.base.Optional<UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
-                    iprot.readStructBegin();
-                    while (true) {
-                        final org.thryft.protocol.FieldBegin ifield = iprot.readFieldBegin();
-                        if (ifield.getType() == org.thryft.protocol.Type.STOP) {
-                            break;
-                        }
-                        switch (ifield.getName()) {
-                        default:
-                            if (unknownFieldCallback.isPresent()) {
-                                unknownFieldCallback.get().apply(ifield);
+                    try {
+                        iprot.readStructBegin();
+                        while (true) {
+                            final org.thryft.protocol.FieldBegin ifield = iprot.readFieldBegin();
+                            if (ifield.getType() == org.thryft.protocol.Type.STOP) {
+                                break;
                             }
-                            break;
+                            switch (ifield.getName()) {
+                            default:
+                                if (unknownFieldCallback.isPresent()) {
+                                    unknownFieldCallback.get().apply(ifield);
+                                }
+                                break;
+                            }
+                            iprot.readFieldEnd();
                         }
-                        iprot.readFieldEnd();
+                        iprot.readStructEnd();
+                    } catch (final RuntimeException e) {
+                        throw new IllegalStateException(e);
                     }
-                    iprot.readStructEnd();
                     return this;
                 }
 
@@ -2700,8 +2820,12 @@ public interface ObjectCommandService {
             }
 
             public static PutObjectsResponse readAsList(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
-                iprot.readListBegin();
-                iprot.readListEnd();
+                try {
+                    iprot.readListBegin();
+                    iprot.readListEnd();
+                } catch (final RuntimeException e) {
+                    throw new IllegalStateException(e);
+                }
                 return new PutObjectsResponse();
             }
 
@@ -2710,22 +2834,26 @@ public interface ObjectCommandService {
             }
 
             public static PutObjectsResponse readAsStruct(final org.thryft.protocol.InputProtocol iprot, final com.google.common.base.Optional<UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
-                iprot.readStructBegin();
-                while (true) {
-                    final org.thryft.protocol.FieldBegin ifield = iprot.readFieldBegin();
-                    if (ifield.getType() == org.thryft.protocol.Type.STOP) {
-                        break;
-                    }
-                    switch (ifield.getName()) {
-                    default:
-                        if (unknownFieldCallback.isPresent()) {
-                            unknownFieldCallback.get().apply(ifield);
+                try {
+                    iprot.readStructBegin();
+                    while (true) {
+                        final org.thryft.protocol.FieldBegin ifield = iprot.readFieldBegin();
+                        if (ifield.getType() == org.thryft.protocol.Type.STOP) {
+                            break;
                         }
-                        break;
+                        switch (ifield.getName()) {
+                        default:
+                            if (unknownFieldCallback.isPresent()) {
+                                unknownFieldCallback.get().apply(ifield);
+                            }
+                            break;
+                        }
+                        iprot.readFieldEnd();
                     }
-                    iprot.readFieldEnd();
+                    iprot.readStructEnd();
+                } catch (final RuntimeException e) {
+                    throw new IllegalStateException(e);
                 }
-                iprot.readStructEnd();
                 return new PutObjectsResponse();
             }
 
@@ -2785,8 +2913,12 @@ public interface ObjectCommandService {
                 }
 
                 public Builder readAsList(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
-                    iprot.readListBegin();
-                    iprot.readListEnd();
+                    try {
+                        iprot.readListBegin();
+                        iprot.readListEnd();
+                    } catch (final RuntimeException e) {
+                        throw new IllegalStateException(e);
+                    }
                     return this;
                 }
 
@@ -2795,22 +2927,26 @@ public interface ObjectCommandService {
                 }
 
                 public Builder readAsStruct(final org.thryft.protocol.InputProtocol iprot, final com.google.common.base.Optional<UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
-                    iprot.readStructBegin();
-                    while (true) {
-                        final org.thryft.protocol.FieldBegin ifield = iprot.readFieldBegin();
-                        if (ifield.getType() == org.thryft.protocol.Type.STOP) {
-                            break;
-                        }
-                        switch (ifield.getName()) {
-                        default:
-                            if (unknownFieldCallback.isPresent()) {
-                                unknownFieldCallback.get().apply(ifield);
+                    try {
+                        iprot.readStructBegin();
+                        while (true) {
+                            final org.thryft.protocol.FieldBegin ifield = iprot.readFieldBegin();
+                            if (ifield.getType() == org.thryft.protocol.Type.STOP) {
+                                break;
                             }
-                            break;
+                            switch (ifield.getName()) {
+                            default:
+                                if (unknownFieldCallback.isPresent()) {
+                                    unknownFieldCallback.get().apply(ifield);
+                                }
+                                break;
+                            }
+                            iprot.readFieldEnd();
                         }
-                        iprot.readFieldEnd();
+                        iprot.readStructEnd();
+                    } catch (final RuntimeException e) {
+                        throw new IllegalStateException(e);
                     }
-                    iprot.readStructEnd();
                     return this;
                 }
 
@@ -2989,8 +3125,12 @@ public interface ObjectCommandService {
             }
 
             public static ResummarizeObjectsRequest readAsList(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
-                iprot.readListBegin();
-                iprot.readListEnd();
+                try {
+                    iprot.readListBegin();
+                    iprot.readListEnd();
+                } catch (final RuntimeException e) {
+                    throw new IllegalStateException(e);
+                }
                 return new ResummarizeObjectsRequest();
             }
 
@@ -2999,22 +3139,26 @@ public interface ObjectCommandService {
             }
 
             public static ResummarizeObjectsRequest readAsStruct(final org.thryft.protocol.InputProtocol iprot, final com.google.common.base.Optional<UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
-                iprot.readStructBegin();
-                while (true) {
-                    final org.thryft.protocol.FieldBegin ifield = iprot.readFieldBegin();
-                    if (ifield.getType() == org.thryft.protocol.Type.STOP) {
-                        break;
-                    }
-                    switch (ifield.getName()) {
-                    default:
-                        if (unknownFieldCallback.isPresent()) {
-                            unknownFieldCallback.get().apply(ifield);
+                try {
+                    iprot.readStructBegin();
+                    while (true) {
+                        final org.thryft.protocol.FieldBegin ifield = iprot.readFieldBegin();
+                        if (ifield.getType() == org.thryft.protocol.Type.STOP) {
+                            break;
                         }
-                        break;
+                        switch (ifield.getName()) {
+                        default:
+                            if (unknownFieldCallback.isPresent()) {
+                                unknownFieldCallback.get().apply(ifield);
+                            }
+                            break;
+                        }
+                        iprot.readFieldEnd();
                     }
-                    iprot.readFieldEnd();
+                    iprot.readStructEnd();
+                } catch (final RuntimeException e) {
+                    throw new IllegalStateException(e);
                 }
-                iprot.readStructEnd();
                 return new ResummarizeObjectsRequest();
             }
 
@@ -3074,8 +3218,12 @@ public interface ObjectCommandService {
                 }
 
                 public Builder readAsList(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
-                    iprot.readListBegin();
-                    iprot.readListEnd();
+                    try {
+                        iprot.readListBegin();
+                        iprot.readListEnd();
+                    } catch (final RuntimeException e) {
+                        throw new IllegalStateException(e);
+                    }
                     return this;
                 }
 
@@ -3084,22 +3232,26 @@ public interface ObjectCommandService {
                 }
 
                 public Builder readAsStruct(final org.thryft.protocol.InputProtocol iprot, final com.google.common.base.Optional<UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
-                    iprot.readStructBegin();
-                    while (true) {
-                        final org.thryft.protocol.FieldBegin ifield = iprot.readFieldBegin();
-                        if (ifield.getType() == org.thryft.protocol.Type.STOP) {
-                            break;
-                        }
-                        switch (ifield.getName()) {
-                        default:
-                            if (unknownFieldCallback.isPresent()) {
-                                unknownFieldCallback.get().apply(ifield);
+                    try {
+                        iprot.readStructBegin();
+                        while (true) {
+                            final org.thryft.protocol.FieldBegin ifield = iprot.readFieldBegin();
+                            if (ifield.getType() == org.thryft.protocol.Type.STOP) {
+                                break;
                             }
-                            break;
+                            switch (ifield.getName()) {
+                            default:
+                                if (unknownFieldCallback.isPresent()) {
+                                    unknownFieldCallback.get().apply(ifield);
+                                }
+                                break;
+                            }
+                            iprot.readFieldEnd();
                         }
-                        iprot.readFieldEnd();
+                        iprot.readStructEnd();
+                    } catch (final RuntimeException e) {
+                        throw new IllegalStateException(e);
                     }
-                    iprot.readStructEnd();
                     return this;
                 }
 
@@ -3278,8 +3430,12 @@ public interface ObjectCommandService {
             }
 
             public static ResummarizeObjectsResponse readAsList(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
-                iprot.readListBegin();
-                iprot.readListEnd();
+                try {
+                    iprot.readListBegin();
+                    iprot.readListEnd();
+                } catch (final RuntimeException e) {
+                    throw new IllegalStateException(e);
+                }
                 return new ResummarizeObjectsResponse();
             }
 
@@ -3288,22 +3444,26 @@ public interface ObjectCommandService {
             }
 
             public static ResummarizeObjectsResponse readAsStruct(final org.thryft.protocol.InputProtocol iprot, final com.google.common.base.Optional<UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
-                iprot.readStructBegin();
-                while (true) {
-                    final org.thryft.protocol.FieldBegin ifield = iprot.readFieldBegin();
-                    if (ifield.getType() == org.thryft.protocol.Type.STOP) {
-                        break;
-                    }
-                    switch (ifield.getName()) {
-                    default:
-                        if (unknownFieldCallback.isPresent()) {
-                            unknownFieldCallback.get().apply(ifield);
+                try {
+                    iprot.readStructBegin();
+                    while (true) {
+                        final org.thryft.protocol.FieldBegin ifield = iprot.readFieldBegin();
+                        if (ifield.getType() == org.thryft.protocol.Type.STOP) {
+                            break;
                         }
-                        break;
+                        switch (ifield.getName()) {
+                        default:
+                            if (unknownFieldCallback.isPresent()) {
+                                unknownFieldCallback.get().apply(ifield);
+                            }
+                            break;
+                        }
+                        iprot.readFieldEnd();
                     }
-                    iprot.readFieldEnd();
+                    iprot.readStructEnd();
+                } catch (final RuntimeException e) {
+                    throw new IllegalStateException(e);
                 }
-                iprot.readStructEnd();
                 return new ResummarizeObjectsResponse();
             }
 

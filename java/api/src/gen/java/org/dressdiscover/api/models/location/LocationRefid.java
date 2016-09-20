@@ -47,10 +47,14 @@ public final class LocationRefid implements org.thryft.Struct {
         }
 
         public Builder readAsList(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
-            iprot.readListBegin();
-            text = iprot.readString();
-            type = iprot.readEnum(org.dressdiscover.api.models.location.LocationRefidType.class);
-            iprot.readListEnd();
+            try {
+                iprot.readListBegin();
+                text = iprot.readString();
+                type = iprot.readEnum(org.dressdiscover.api.models.location.LocationRefidType.class);
+                iprot.readListEnd();
+            } catch (final RuntimeException e) {
+                throw new IllegalStateException(e);
+            }
             return this;
         }
 
@@ -59,34 +63,38 @@ public final class LocationRefid implements org.thryft.Struct {
         }
 
         public Builder readAsStruct(final org.thryft.protocol.InputProtocol iprot, final com.google.common.base.Optional<UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
-            iprot.readStructBegin();
-            while (true) {
-                final org.thryft.protocol.FieldBegin ifield = iprot.readFieldBegin();
-                if (ifield.getType() == org.thryft.protocol.Type.STOP) {
-                    break;
-                }
-                switch (ifield.getName()) {
-                case "text": {
-                    if (!ifield.hasId() || ifield.getId() == 1) {
-                        text = iprot.readString();
+            try {
+                iprot.readStructBegin();
+                while (true) {
+                    final org.thryft.protocol.FieldBegin ifield = iprot.readFieldBegin();
+                    if (ifield.getType() == org.thryft.protocol.Type.STOP) {
+                        break;
                     }
-                    break;
-                }
-                case "type": {
-                    if (!ifield.hasId() || ifield.getId() == 2) {
-                        type = iprot.readEnum(org.dressdiscover.api.models.location.LocationRefidType.class);
+                    switch (ifield.getName()) {
+                    case "text": {
+                        if (!ifield.hasId() || ifield.getId() == 1) {
+                            text = iprot.readString();
+                        }
+                        break;
                     }
-                    break;
-                }
-                default:
-                    if (unknownFieldCallback.isPresent()) {
-                        unknownFieldCallback.get().apply(ifield);
+                    case "type": {
+                        if (!ifield.hasId() || ifield.getId() == 2) {
+                            type = iprot.readEnum(org.dressdiscover.api.models.location.LocationRefidType.class);
+                        }
+                        break;
                     }
-                    break;
+                    default:
+                        if (unknownFieldCallback.isPresent()) {
+                            unknownFieldCallback.get().apply(ifield);
+                        }
+                        break;
+                    }
+                    iprot.readFieldEnd();
                 }
-                iprot.readFieldEnd();
+                iprot.readStructEnd();
+            } catch (final RuntimeException e) {
+                throw new IllegalStateException(e);
             }
-            iprot.readStructEnd();
             return this;
         }
 
@@ -498,10 +506,14 @@ public final class LocationRefid implements org.thryft.Struct {
         String text = null;
         org.dressdiscover.api.models.location.LocationRefidType type = null;
 
-        iprot.readListBegin();
-        text = iprot.readString();
-        type = iprot.readEnum(org.dressdiscover.api.models.location.LocationRefidType.class);
-        iprot.readListEnd();
+        try {
+            iprot.readListBegin();
+            text = iprot.readString();
+            type = iprot.readEnum(org.dressdiscover.api.models.location.LocationRefidType.class);
+            iprot.readListEnd();
+        } catch (final RuntimeException e) {
+            throw new IllegalStateException(e);
+        }
         return new LocationRefid(DefaultReadValidator.getInstance().validateText(text), DefaultReadValidator.getInstance().validateType(type), NopConstructionValidator.getInstance());
     }
 
@@ -513,34 +525,38 @@ public final class LocationRefid implements org.thryft.Struct {
         String text = null;
         org.dressdiscover.api.models.location.LocationRefidType type = null;
 
-        iprot.readStructBegin();
-        while (true) {
-            final org.thryft.protocol.FieldBegin ifield = iprot.readFieldBegin();
-            if (ifield.getType() == org.thryft.protocol.Type.STOP) {
-                break;
-            }
-            switch (ifield.getName()) {
-            case "text": {
-                if (!ifield.hasId() || ifield.getId() == 1) {
-                    text = iprot.readString();
+        try {
+            iprot.readStructBegin();
+            while (true) {
+                final org.thryft.protocol.FieldBegin ifield = iprot.readFieldBegin();
+                if (ifield.getType() == org.thryft.protocol.Type.STOP) {
+                    break;
                 }
-                break;
-            }
-            case "type": {
-                if (!ifield.hasId() || ifield.getId() == 2) {
-                    type = iprot.readEnum(org.dressdiscover.api.models.location.LocationRefidType.class);
+                switch (ifield.getName()) {
+                case "text": {
+                    if (!ifield.hasId() || ifield.getId() == 1) {
+                        text = iprot.readString();
+                    }
+                    break;
                 }
-                break;
-            }
-            default:
-                if (unknownFieldCallback.isPresent()) {
-                    unknownFieldCallback.get().apply(ifield);
+                case "type": {
+                    if (!ifield.hasId() || ifield.getId() == 2) {
+                        type = iprot.readEnum(org.dressdiscover.api.models.location.LocationRefidType.class);
+                    }
+                    break;
                 }
-                break;
+                default:
+                    if (unknownFieldCallback.isPresent()) {
+                        unknownFieldCallback.get().apply(ifield);
+                    }
+                    break;
+                }
+                iprot.readFieldEnd();
             }
-            iprot.readFieldEnd();
+            iprot.readStructEnd();
+        } catch (final RuntimeException e) {
+            throw new IllegalStateException(e);
         }
-        iprot.readStructEnd();
         return new LocationRefid(DefaultReadValidator.getInstance().validateText(text), DefaultReadValidator.getInstance().validateType(type), NopConstructionValidator.getInstance());
     }
 

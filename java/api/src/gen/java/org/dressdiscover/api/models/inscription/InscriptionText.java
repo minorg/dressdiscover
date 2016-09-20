@@ -50,13 +50,17 @@ public final class InscriptionText implements org.thryft.Struct {
         }
 
         public Builder readAsList(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
-            final org.thryft.protocol.ListBegin __list = iprot.readListBegin();
-            text = iprot.readString();
-            type = iprot.readEnum(org.dressdiscover.api.models.inscription.InscriptionTextType.class);
-            if (__list.getSize() > 2) {
-                lang = com.google.common.base.Optional.of(iprot.readString());
+            try {
+                final org.thryft.protocol.ListBegin __list = iprot.readListBegin();
+                text = iprot.readString();
+                type = iprot.readEnum(org.dressdiscover.api.models.inscription.InscriptionTextType.class);
+                if (__list.getSize() > 2) {
+                    lang = com.google.common.base.Optional.of(iprot.readString());
+                }
+                iprot.readListEnd();
+            } catch (final RuntimeException e) {
+                throw new IllegalStateException(e);
             }
-            iprot.readListEnd();
             return this;
         }
 
@@ -65,40 +69,44 @@ public final class InscriptionText implements org.thryft.Struct {
         }
 
         public Builder readAsStruct(final org.thryft.protocol.InputProtocol iprot, final com.google.common.base.Optional<UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
-            iprot.readStructBegin();
-            while (true) {
-                final org.thryft.protocol.FieldBegin ifield = iprot.readFieldBegin();
-                if (ifield.getType() == org.thryft.protocol.Type.STOP) {
-                    break;
-                }
-                switch (ifield.getName()) {
-                case "text": {
-                    if (!ifield.hasId() || ifield.getId() == 2) {
-                        text = iprot.readString();
+            try {
+                iprot.readStructBegin();
+                while (true) {
+                    final org.thryft.protocol.FieldBegin ifield = iprot.readFieldBegin();
+                    if (ifield.getType() == org.thryft.protocol.Type.STOP) {
+                        break;
                     }
-                    break;
-                }
-                case "type": {
-                    if (!ifield.hasId() || ifield.getId() == 1) {
-                        type = iprot.readEnum(org.dressdiscover.api.models.inscription.InscriptionTextType.class);
+                    switch (ifield.getName()) {
+                    case "text": {
+                        if (!ifield.hasId() || ifield.getId() == 2) {
+                            text = iprot.readString();
+                        }
+                        break;
                     }
-                    break;
-                }
-                case "lang": {
-                    if (!ifield.hasId() || ifield.getId() == 3) {
-                        lang = com.google.common.base.Optional.of(iprot.readString());
+                    case "type": {
+                        if (!ifield.hasId() || ifield.getId() == 1) {
+                            type = iprot.readEnum(org.dressdiscover.api.models.inscription.InscriptionTextType.class);
+                        }
+                        break;
                     }
-                    break;
-                }
-                default:
-                    if (unknownFieldCallback.isPresent()) {
-                        unknownFieldCallback.get().apply(ifield);
+                    case "lang": {
+                        if (!ifield.hasId() || ifield.getId() == 3) {
+                            lang = com.google.common.base.Optional.of(iprot.readString());
+                        }
+                        break;
                     }
-                    break;
+                    default:
+                        if (unknownFieldCallback.isPresent()) {
+                            unknownFieldCallback.get().apply(ifield);
+                        }
+                        break;
+                    }
+                    iprot.readFieldEnd();
                 }
-                iprot.readFieldEnd();
+                iprot.readStructEnd();
+            } catch (final RuntimeException e) {
+                throw new IllegalStateException(e);
             }
-            iprot.readStructEnd();
             return this;
         }
 
@@ -604,13 +612,17 @@ public final class InscriptionText implements org.thryft.Struct {
         org.dressdiscover.api.models.inscription.InscriptionTextType type = null;
         com.google.common.base.Optional<String> lang = com.google.common.base.Optional.<String> absent();
 
-        final org.thryft.protocol.ListBegin __list = iprot.readListBegin();
-        text = iprot.readString();
-        type = iprot.readEnum(org.dressdiscover.api.models.inscription.InscriptionTextType.class);
-        if (__list.getSize() > 2) {
-            lang = com.google.common.base.Optional.of(iprot.readString());
+        try {
+            final org.thryft.protocol.ListBegin __list = iprot.readListBegin();
+            text = iprot.readString();
+            type = iprot.readEnum(org.dressdiscover.api.models.inscription.InscriptionTextType.class);
+            if (__list.getSize() > 2) {
+                lang = com.google.common.base.Optional.of(iprot.readString());
+            }
+            iprot.readListEnd();
+        } catch (final RuntimeException e) {
+            throw new IllegalStateException(e);
         }
-        iprot.readListEnd();
         return new InscriptionText(DefaultReadValidator.getInstance().validateText(text), DefaultReadValidator.getInstance().validateType(type), DefaultReadValidator.getInstance().validateLang(lang), NopConstructionValidator.getInstance());
     }
 
@@ -623,40 +635,44 @@ public final class InscriptionText implements org.thryft.Struct {
         org.dressdiscover.api.models.inscription.InscriptionTextType type = null;
         com.google.common.base.Optional<String> lang = com.google.common.base.Optional.<String> absent();
 
-        iprot.readStructBegin();
-        while (true) {
-            final org.thryft.protocol.FieldBegin ifield = iprot.readFieldBegin();
-            if (ifield.getType() == org.thryft.protocol.Type.STOP) {
-                break;
-            }
-            switch (ifield.getName()) {
-            case "text": {
-                if (!ifield.hasId() || ifield.getId() == 2) {
-                    text = iprot.readString();
+        try {
+            iprot.readStructBegin();
+            while (true) {
+                final org.thryft.protocol.FieldBegin ifield = iprot.readFieldBegin();
+                if (ifield.getType() == org.thryft.protocol.Type.STOP) {
+                    break;
                 }
-                break;
-            }
-            case "type": {
-                if (!ifield.hasId() || ifield.getId() == 1) {
-                    type = iprot.readEnum(org.dressdiscover.api.models.inscription.InscriptionTextType.class);
+                switch (ifield.getName()) {
+                case "text": {
+                    if (!ifield.hasId() || ifield.getId() == 2) {
+                        text = iprot.readString();
+                    }
+                    break;
                 }
-                break;
-            }
-            case "lang": {
-                if (!ifield.hasId() || ifield.getId() == 3) {
-                    lang = com.google.common.base.Optional.of(iprot.readString());
+                case "type": {
+                    if (!ifield.hasId() || ifield.getId() == 1) {
+                        type = iprot.readEnum(org.dressdiscover.api.models.inscription.InscriptionTextType.class);
+                    }
+                    break;
                 }
-                break;
-            }
-            default:
-                if (unknownFieldCallback.isPresent()) {
-                    unknownFieldCallback.get().apply(ifield);
+                case "lang": {
+                    if (!ifield.hasId() || ifield.getId() == 3) {
+                        lang = com.google.common.base.Optional.of(iprot.readString());
+                    }
+                    break;
                 }
-                break;
+                default:
+                    if (unknownFieldCallback.isPresent()) {
+                        unknownFieldCallback.get().apply(ifield);
+                    }
+                    break;
+                }
+                iprot.readFieldEnd();
             }
-            iprot.readFieldEnd();
+            iprot.readStructEnd();
+        } catch (final RuntimeException e) {
+            throw new IllegalStateException(e);
         }
-        iprot.readStructEnd();
         return new InscriptionText(DefaultReadValidator.getInstance().validateText(text), DefaultReadValidator.getInstance().validateType(type), DefaultReadValidator.getInstance().validateLang(lang), NopConstructionValidator.getInstance());
     }
 

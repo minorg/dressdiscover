@@ -50,44 +50,9 @@ public final class GetObjectSummariesResult implements org.thryft.Struct {
         }
 
         public Builder readAsList(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
-            final org.thryft.protocol.ListBegin __list = iprot.readListBegin();
-            hits = (new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableList<org.dressdiscover.api.models.object.ObjectSummaryEntry>>() {
-                @Override
-                public com.google.common.collect.ImmutableList<org.dressdiscover.api.models.object.ObjectSummaryEntry> apply(final org.thryft.protocol.InputProtocol iprot) {
-                    try {
-                        final org.thryft.protocol.ListBegin sequenceBegin = iprot.readListBegin();
-                        final com.google.common.collect.ImmutableList.Builder<org.dressdiscover.api.models.object.ObjectSummaryEntry> sequenceBuilder = com.google.common.collect.ImmutableList.builder();
-                        for (int elementI = 0; elementI < sequenceBegin.getSize(); elementI++) {
-                            sequenceBuilder.add(org.dressdiscover.api.models.object.ObjectSummaryEntry.readAsStruct(iprot));
-                        }
-                        iprot.readListEnd();
-                        return sequenceBuilder.build();
-                    } catch (final org.thryft.protocol.InputProtocolException e) {
-                        throw new org.thryft.protocol.UncheckedInputProtocolException(e);
-                    }
-                }
-            }).apply(iprot);
-            totalHits = iprot.readU32();
-            if (__list.getSize() > 2) {
-                facets = com.google.common.base.Optional.of(org.dressdiscover.api.models.object.ObjectFacets.readAsStruct(iprot));
-            }
-            iprot.readListEnd();
-            return this;
-        }
-
-        public Builder readAsStruct(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
-            return readAsStruct(iprot, com.google.common.base.Optional.<UnknownFieldCallback> absent());
-        }
-
-        public Builder readAsStruct(final org.thryft.protocol.InputProtocol iprot, final com.google.common.base.Optional<UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
-            iprot.readStructBegin();
-            while (true) {
-                final org.thryft.protocol.FieldBegin ifield = iprot.readFieldBegin();
-                if (ifield.getType() == org.thryft.protocol.Type.STOP) {
-                    break;
-                }
-                switch (ifield.getName()) {
-                case "hits": {
+            try {
+                final org.thryft.protocol.ListBegin __list = iprot.readListBegin();
+                try {
                     hits = (new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableList<org.dressdiscover.api.models.object.ObjectSummaryEntry>>() {
                         @Override
                         public com.google.common.collect.ImmutableList<org.dressdiscover.api.models.object.ObjectSummaryEntry> apply(final org.thryft.protocol.InputProtocol iprot) {
@@ -104,25 +69,84 @@ public final class GetObjectSummariesResult implements org.thryft.Struct {
                             }
                         }
                     }).apply(iprot);
-                    break;
+                } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
+                     throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.HITS, e.getCause());
                 }
-                case "total_hits": {
+                try {
                     totalHits = iprot.readU32();
-                    break;
+                } catch (final NumberFormatException e) {
+                     throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.TOTAL_HITS, e);
                 }
-                case "facets": {
+                if (__list.getSize() > 2) {
                     facets = com.google.common.base.Optional.of(org.dressdiscover.api.models.object.ObjectFacets.readAsStruct(iprot));
-                    break;
                 }
-                default:
-                    if (unknownFieldCallback.isPresent()) {
-                        unknownFieldCallback.get().apply(ifield);
-                    }
-                    break;
-                }
-                iprot.readFieldEnd();
+                iprot.readListEnd();
+            } catch (final RuntimeException e) {
+                throw new IllegalStateException(e);
             }
-            iprot.readStructEnd();
+            return this;
+        }
+
+        public Builder readAsStruct(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
+            return readAsStruct(iprot, com.google.common.base.Optional.<UnknownFieldCallback> absent());
+        }
+
+        public Builder readAsStruct(final org.thryft.protocol.InputProtocol iprot, final com.google.common.base.Optional<UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
+            try {
+                iprot.readStructBegin();
+                while (true) {
+                    final org.thryft.protocol.FieldBegin ifield = iprot.readFieldBegin();
+                    if (ifield.getType() == org.thryft.protocol.Type.STOP) {
+                        break;
+                    }
+                    switch (ifield.getName()) {
+                    case "hits": {
+                        try {
+                            hits = (new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableList<org.dressdiscover.api.models.object.ObjectSummaryEntry>>() {
+                                @Override
+                                public com.google.common.collect.ImmutableList<org.dressdiscover.api.models.object.ObjectSummaryEntry> apply(final org.thryft.protocol.InputProtocol iprot) {
+                                    try {
+                                        final org.thryft.protocol.ListBegin sequenceBegin = iprot.readListBegin();
+                                        final com.google.common.collect.ImmutableList.Builder<org.dressdiscover.api.models.object.ObjectSummaryEntry> sequenceBuilder = com.google.common.collect.ImmutableList.builder();
+                                        for (int elementI = 0; elementI < sequenceBegin.getSize(); elementI++) {
+                                            sequenceBuilder.add(org.dressdiscover.api.models.object.ObjectSummaryEntry.readAsStruct(iprot));
+                                        }
+                                        iprot.readListEnd();
+                                        return sequenceBuilder.build();
+                                    } catch (final org.thryft.protocol.InputProtocolException e) {
+                                        throw new org.thryft.protocol.UncheckedInputProtocolException(e);
+                                    }
+                                }
+                            }).apply(iprot);
+                        } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
+                             throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.HITS, e.getCause());
+                        }
+                        break;
+                    }
+                    case "total_hits": {
+                        try {
+                            totalHits = iprot.readU32();
+                        } catch (final NumberFormatException e) {
+                             throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.TOTAL_HITS, e);
+                        }
+                        break;
+                    }
+                    case "facets": {
+                        facets = com.google.common.base.Optional.of(org.dressdiscover.api.models.object.ObjectFacets.readAsStruct(iprot));
+                        break;
+                    }
+                    default:
+                        if (unknownFieldCallback.isPresent()) {
+                            unknownFieldCallback.get().apply(ifield);
+                        }
+                        break;
+                    }
+                    iprot.readFieldEnd();
+                }
+                iprot.readStructEnd();
+            } catch (final RuntimeException e) {
+                throw new IllegalStateException(e);
+            }
             return this;
         }
 
@@ -611,48 +635,9 @@ public final class GetObjectSummariesResult implements org.thryft.Struct {
         com.google.common.primitives.UnsignedInteger totalHits = com.google.common.primitives.UnsignedInteger.ZERO;
         com.google.common.base.Optional<org.dressdiscover.api.models.object.ObjectFacets> facets = com.google.common.base.Optional.<org.dressdiscover.api.models.object.ObjectFacets> absent();
 
-        final org.thryft.protocol.ListBegin __list = iprot.readListBegin();
-        hits = (new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableList<org.dressdiscover.api.models.object.ObjectSummaryEntry>>() {
-            @Override
-            public com.google.common.collect.ImmutableList<org.dressdiscover.api.models.object.ObjectSummaryEntry> apply(final org.thryft.protocol.InputProtocol iprot) {
-                try {
-                    final org.thryft.protocol.ListBegin sequenceBegin = iprot.readListBegin();
-                    final com.google.common.collect.ImmutableList.Builder<org.dressdiscover.api.models.object.ObjectSummaryEntry> sequenceBuilder = com.google.common.collect.ImmutableList.builder();
-                    for (int elementI = 0; elementI < sequenceBegin.getSize(); elementI++) {
-                        sequenceBuilder.add(org.dressdiscover.api.models.object.ObjectSummaryEntry.readAsStruct(iprot));
-                    }
-                    iprot.readListEnd();
-                    return sequenceBuilder.build();
-                } catch (final org.thryft.protocol.InputProtocolException e) {
-                    throw new org.thryft.protocol.UncheckedInputProtocolException(e);
-                }
-            }
-        }).apply(iprot);
-        totalHits = iprot.readU32();
-        if (__list.getSize() > 2) {
-            facets = com.google.common.base.Optional.of(org.dressdiscover.api.models.object.ObjectFacets.readAsStruct(iprot));
-        }
-        iprot.readListEnd();
-        return new GetObjectSummariesResult(DefaultReadValidator.getInstance().validateHits(hits), DefaultReadValidator.getInstance().validateTotalHits(totalHits), DefaultReadValidator.getInstance().validateFacets(facets), NopConstructionValidator.getInstance());
-    }
-
-    public static GetObjectSummariesResult readAsStruct(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
-        return readAsStruct(iprot, com.google.common.base.Optional.<UnknownFieldCallback> absent());
-    }
-
-    public static GetObjectSummariesResult readAsStruct(final org.thryft.protocol.InputProtocol iprot, final com.google.common.base.Optional<UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
-        com.google.common.collect.ImmutableList<org.dressdiscover.api.models.object.ObjectSummaryEntry> hits = null;
-        com.google.common.primitives.UnsignedInteger totalHits = com.google.common.primitives.UnsignedInteger.ZERO;
-        com.google.common.base.Optional<org.dressdiscover.api.models.object.ObjectFacets> facets = com.google.common.base.Optional.<org.dressdiscover.api.models.object.ObjectFacets> absent();
-
-        iprot.readStructBegin();
-        while (true) {
-            final org.thryft.protocol.FieldBegin ifield = iprot.readFieldBegin();
-            if (ifield.getType() == org.thryft.protocol.Type.STOP) {
-                break;
-            }
-            switch (ifield.getName()) {
-            case "hits": {
+        try {
+            final org.thryft.protocol.ListBegin __list = iprot.readListBegin();
+            try {
                 hits = (new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableList<org.dressdiscover.api.models.object.ObjectSummaryEntry>>() {
                     @Override
                     public com.google.common.collect.ImmutableList<org.dressdiscover.api.models.object.ObjectSummaryEntry> apply(final org.thryft.protocol.InputProtocol iprot) {
@@ -669,25 +654,88 @@ public final class GetObjectSummariesResult implements org.thryft.Struct {
                         }
                     }
                 }).apply(iprot);
-                break;
+            } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
+                 throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.HITS, e.getCause());
             }
-            case "total_hits": {
+            try {
                 totalHits = iprot.readU32();
-                break;
+            } catch (final NumberFormatException e) {
+                 throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.TOTAL_HITS, e);
             }
-            case "facets": {
+            if (__list.getSize() > 2) {
                 facets = com.google.common.base.Optional.of(org.dressdiscover.api.models.object.ObjectFacets.readAsStruct(iprot));
-                break;
             }
-            default:
-                if (unknownFieldCallback.isPresent()) {
-                    unknownFieldCallback.get().apply(ifield);
-                }
-                break;
-            }
-            iprot.readFieldEnd();
+            iprot.readListEnd();
+        } catch (final RuntimeException e) {
+            throw new IllegalStateException(e);
         }
-        iprot.readStructEnd();
+        return new GetObjectSummariesResult(DefaultReadValidator.getInstance().validateHits(hits), DefaultReadValidator.getInstance().validateTotalHits(totalHits), DefaultReadValidator.getInstance().validateFacets(facets), NopConstructionValidator.getInstance());
+    }
+
+    public static GetObjectSummariesResult readAsStruct(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
+        return readAsStruct(iprot, com.google.common.base.Optional.<UnknownFieldCallback> absent());
+    }
+
+    public static GetObjectSummariesResult readAsStruct(final org.thryft.protocol.InputProtocol iprot, final com.google.common.base.Optional<UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
+        com.google.common.collect.ImmutableList<org.dressdiscover.api.models.object.ObjectSummaryEntry> hits = null;
+        com.google.common.primitives.UnsignedInteger totalHits = com.google.common.primitives.UnsignedInteger.ZERO;
+        com.google.common.base.Optional<org.dressdiscover.api.models.object.ObjectFacets> facets = com.google.common.base.Optional.<org.dressdiscover.api.models.object.ObjectFacets> absent();
+
+        try {
+            iprot.readStructBegin();
+            while (true) {
+                final org.thryft.protocol.FieldBegin ifield = iprot.readFieldBegin();
+                if (ifield.getType() == org.thryft.protocol.Type.STOP) {
+                    break;
+                }
+                switch (ifield.getName()) {
+                case "hits": {
+                    try {
+                        hits = (new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableList<org.dressdiscover.api.models.object.ObjectSummaryEntry>>() {
+                            @Override
+                            public com.google.common.collect.ImmutableList<org.dressdiscover.api.models.object.ObjectSummaryEntry> apply(final org.thryft.protocol.InputProtocol iprot) {
+                                try {
+                                    final org.thryft.protocol.ListBegin sequenceBegin = iprot.readListBegin();
+                                    final com.google.common.collect.ImmutableList.Builder<org.dressdiscover.api.models.object.ObjectSummaryEntry> sequenceBuilder = com.google.common.collect.ImmutableList.builder();
+                                    for (int elementI = 0; elementI < sequenceBegin.getSize(); elementI++) {
+                                        sequenceBuilder.add(org.dressdiscover.api.models.object.ObjectSummaryEntry.readAsStruct(iprot));
+                                    }
+                                    iprot.readListEnd();
+                                    return sequenceBuilder.build();
+                                } catch (final org.thryft.protocol.InputProtocolException e) {
+                                    throw new org.thryft.protocol.UncheckedInputProtocolException(e);
+                                }
+                            }
+                        }).apply(iprot);
+                    } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
+                         throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.HITS, e.getCause());
+                    }
+                    break;
+                }
+                case "total_hits": {
+                    try {
+                        totalHits = iprot.readU32();
+                    } catch (final NumberFormatException e) {
+                         throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.TOTAL_HITS, e);
+                    }
+                    break;
+                }
+                case "facets": {
+                    facets = com.google.common.base.Optional.of(org.dressdiscover.api.models.object.ObjectFacets.readAsStruct(iprot));
+                    break;
+                }
+                default:
+                    if (unknownFieldCallback.isPresent()) {
+                        unknownFieldCallback.get().apply(ifield);
+                    }
+                    break;
+                }
+                iprot.readFieldEnd();
+            }
+            iprot.readStructEnd();
+        } catch (final RuntimeException e) {
+            throw new IllegalStateException(e);
+        }
         return new GetObjectSummariesResult(DefaultReadValidator.getInstance().validateHits(hits), DefaultReadValidator.getInstance().validateTotalHits(totalHits), DefaultReadValidator.getInstance().validateFacets(facets), NopConstructionValidator.getInstance());
     }
 

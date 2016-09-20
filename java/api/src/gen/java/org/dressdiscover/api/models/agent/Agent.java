@@ -65,40 +65,44 @@ public final class Agent implements org.thryft.Struct, org.dressdiscover.api.mod
         }
 
         public Builder readAsList(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
-            final org.thryft.protocol.ListBegin __list = iprot.readListBegin();
-            name = org.dressdiscover.api.models.agent.AgentName.readAsStruct(iprot);
-            if (__list.getSize() > 1) {
-                attribution = com.google.common.base.Optional.of(iprot.readString());
-            }
-            if (__list.getSize() > 2) {
-                culture = com.google.common.base.Optional.of(iprot.readString());
-            }
-            if (__list.getSize() > 3) {
-                try {
-                    dates = com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableList<org.dressdiscover.api.models.agent.AgentDates>>() {
-                        @Override
-                        public com.google.common.collect.ImmutableList<org.dressdiscover.api.models.agent.AgentDates> apply(final org.thryft.protocol.InputProtocol iprot) {
-                            try {
-                                final org.thryft.protocol.ListBegin sequenceBegin = iprot.readListBegin();
-                                final com.google.common.collect.ImmutableList.Builder<org.dressdiscover.api.models.agent.AgentDates> sequenceBuilder = com.google.common.collect.ImmutableList.builder();
-                                for (int elementI = 0; elementI < sequenceBegin.getSize(); elementI++) {
-                                    sequenceBuilder.add(org.dressdiscover.api.models.agent.AgentDates.readAsStruct(iprot));
-                                }
-                                iprot.readListEnd();
-                                return sequenceBuilder.build();
-                            } catch (final org.thryft.protocol.InputProtocolException e) {
-                                throw new org.thryft.protocol.UncheckedInputProtocolException(e);
-                            }
-                        }
-                    }).apply(iprot));
-                } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
-                     throw e.getCause();
+            try {
+                final org.thryft.protocol.ListBegin __list = iprot.readListBegin();
+                name = org.dressdiscover.api.models.agent.AgentName.readAsStruct(iprot);
+                if (__list.getSize() > 1) {
+                    attribution = com.google.common.base.Optional.of(iprot.readString());
                 }
+                if (__list.getSize() > 2) {
+                    culture = com.google.common.base.Optional.of(iprot.readString());
+                }
+                if (__list.getSize() > 3) {
+                    try {
+                        dates = com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableList<org.dressdiscover.api.models.agent.AgentDates>>() {
+                            @Override
+                            public com.google.common.collect.ImmutableList<org.dressdiscover.api.models.agent.AgentDates> apply(final org.thryft.protocol.InputProtocol iprot) {
+                                try {
+                                    final org.thryft.protocol.ListBegin sequenceBegin = iprot.readListBegin();
+                                    final com.google.common.collect.ImmutableList.Builder<org.dressdiscover.api.models.agent.AgentDates> sequenceBuilder = com.google.common.collect.ImmutableList.builder();
+                                    for (int elementI = 0; elementI < sequenceBegin.getSize(); elementI++) {
+                                        sequenceBuilder.add(org.dressdiscover.api.models.agent.AgentDates.readAsStruct(iprot));
+                                    }
+                                    iprot.readListEnd();
+                                    return sequenceBuilder.build();
+                                } catch (final org.thryft.protocol.InputProtocolException e) {
+                                    throw new org.thryft.protocol.UncheckedInputProtocolException(e);
+                                }
+                            }
+                        }).apply(iprot));
+                    } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
+                         throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.DATES, e.getCause());
+                    }
+                }
+                if (__list.getSize() > 4) {
+                    role = com.google.common.base.Optional.of(org.dressdiscover.api.models.agent.AgentRole.readAsStruct(iprot));
+                }
+                iprot.readListEnd();
+            } catch (final RuntimeException e) {
+                throw new IllegalStateException(e);
             }
-            if (__list.getSize() > 4) {
-                role = com.google.common.base.Optional.of(org.dressdiscover.api.models.agent.AgentRole.readAsStruct(iprot));
-            }
-            iprot.readListEnd();
             return this;
         }
 
@@ -107,71 +111,75 @@ public final class Agent implements org.thryft.Struct, org.dressdiscover.api.mod
         }
 
         public Builder readAsStruct(final org.thryft.protocol.InputProtocol iprot, final com.google.common.base.Optional<UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
-            iprot.readStructBegin();
-            while (true) {
-                final org.thryft.protocol.FieldBegin ifield = iprot.readFieldBegin();
-                if (ifield.getType() == org.thryft.protocol.Type.STOP) {
-                    break;
-                }
-                switch (ifield.getName()) {
-                case "name": {
-                    if (!ifield.hasId() || ifield.getId() == 1) {
-                        name = org.dressdiscover.api.models.agent.AgentName.readAsStruct(iprot);
+            try {
+                iprot.readStructBegin();
+                while (true) {
+                    final org.thryft.protocol.FieldBegin ifield = iprot.readFieldBegin();
+                    if (ifield.getType() == org.thryft.protocol.Type.STOP) {
+                        break;
                     }
-                    break;
-                }
-                case "attribution": {
-                    if (!ifield.hasId() || ifield.getId() == 2) {
-                        attribution = com.google.common.base.Optional.of(iprot.readString());
-                    }
-                    break;
-                }
-                case "culture": {
-                    if (!ifield.hasId() || ifield.getId() == 3) {
-                        culture = com.google.common.base.Optional.of(iprot.readString());
-                    }
-                    break;
-                }
-                case "dates": {
-                    if (!ifield.hasId() || ifield.getId() == 4) {
-                        try {
-                            dates = com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableList<org.dressdiscover.api.models.agent.AgentDates>>() {
-                                @Override
-                                public com.google.common.collect.ImmutableList<org.dressdiscover.api.models.agent.AgentDates> apply(final org.thryft.protocol.InputProtocol iprot) {
-                                    try {
-                                        final org.thryft.protocol.ListBegin sequenceBegin = iprot.readListBegin();
-                                        final com.google.common.collect.ImmutableList.Builder<org.dressdiscover.api.models.agent.AgentDates> sequenceBuilder = com.google.common.collect.ImmutableList.builder();
-                                        for (int elementI = 0; elementI < sequenceBegin.getSize(); elementI++) {
-                                            sequenceBuilder.add(org.dressdiscover.api.models.agent.AgentDates.readAsStruct(iprot));
-                                        }
-                                        iprot.readListEnd();
-                                        return sequenceBuilder.build();
-                                    } catch (final org.thryft.protocol.InputProtocolException e) {
-                                        throw new org.thryft.protocol.UncheckedInputProtocolException(e);
-                                    }
-                                }
-                            }).apply(iprot));
-                        } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
-                             throw e.getCause();
+                    switch (ifield.getName()) {
+                    case "name": {
+                        if (!ifield.hasId() || ifield.getId() == 1) {
+                            name = org.dressdiscover.api.models.agent.AgentName.readAsStruct(iprot);
                         }
+                        break;
                     }
-                    break;
-                }
-                case "role": {
-                    if (!ifield.hasId() || ifield.getId() == 5) {
-                        role = com.google.common.base.Optional.of(org.dressdiscover.api.models.agent.AgentRole.readAsStruct(iprot));
+                    case "attribution": {
+                        if (!ifield.hasId() || ifield.getId() == 2) {
+                            attribution = com.google.common.base.Optional.of(iprot.readString());
+                        }
+                        break;
                     }
-                    break;
-                }
-                default:
-                    if (unknownFieldCallback.isPresent()) {
-                        unknownFieldCallback.get().apply(ifield);
+                    case "culture": {
+                        if (!ifield.hasId() || ifield.getId() == 3) {
+                            culture = com.google.common.base.Optional.of(iprot.readString());
+                        }
+                        break;
                     }
-                    break;
+                    case "dates": {
+                        if (!ifield.hasId() || ifield.getId() == 4) {
+                            try {
+                                dates = com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableList<org.dressdiscover.api.models.agent.AgentDates>>() {
+                                    @Override
+                                    public com.google.common.collect.ImmutableList<org.dressdiscover.api.models.agent.AgentDates> apply(final org.thryft.protocol.InputProtocol iprot) {
+                                        try {
+                                            final org.thryft.protocol.ListBegin sequenceBegin = iprot.readListBegin();
+                                            final com.google.common.collect.ImmutableList.Builder<org.dressdiscover.api.models.agent.AgentDates> sequenceBuilder = com.google.common.collect.ImmutableList.builder();
+                                            for (int elementI = 0; elementI < sequenceBegin.getSize(); elementI++) {
+                                                sequenceBuilder.add(org.dressdiscover.api.models.agent.AgentDates.readAsStruct(iprot));
+                                            }
+                                            iprot.readListEnd();
+                                            return sequenceBuilder.build();
+                                        } catch (final org.thryft.protocol.InputProtocolException e) {
+                                            throw new org.thryft.protocol.UncheckedInputProtocolException(e);
+                                        }
+                                    }
+                                }).apply(iprot));
+                            } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
+                                 throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.DATES, e.getCause());
+                            }
+                        }
+                        break;
+                    }
+                    case "role": {
+                        if (!ifield.hasId() || ifield.getId() == 5) {
+                            role = com.google.common.base.Optional.of(org.dressdiscover.api.models.agent.AgentRole.readAsStruct(iprot));
+                        }
+                        break;
+                    }
+                    default:
+                        if (unknownFieldCallback.isPresent()) {
+                            unknownFieldCallback.get().apply(ifield);
+                        }
+                        break;
+                    }
+                    iprot.readFieldEnd();
                 }
-                iprot.readFieldEnd();
+                iprot.readStructEnd();
+            } catch (final RuntimeException e) {
+                throw new IllegalStateException(e);
             }
-            iprot.readStructEnd();
             return this;
         }
 
@@ -828,40 +836,44 @@ public final class Agent implements org.thryft.Struct, org.dressdiscover.api.mod
         com.google.common.base.Optional<com.google.common.collect.ImmutableList<org.dressdiscover.api.models.agent.AgentDates>> dates = com.google.common.base.Optional.<com.google.common.collect.ImmutableList<org.dressdiscover.api.models.agent.AgentDates>> absent();
         com.google.common.base.Optional<org.dressdiscover.api.models.agent.AgentRole> role = com.google.common.base.Optional.<org.dressdiscover.api.models.agent.AgentRole> absent();
 
-        final org.thryft.protocol.ListBegin __list = iprot.readListBegin();
-        name = org.dressdiscover.api.models.agent.AgentName.readAsStruct(iprot);
-        if (__list.getSize() > 1) {
-            attribution = com.google.common.base.Optional.of(iprot.readString());
-        }
-        if (__list.getSize() > 2) {
-            culture = com.google.common.base.Optional.of(iprot.readString());
-        }
-        if (__list.getSize() > 3) {
-            try {
-                dates = com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableList<org.dressdiscover.api.models.agent.AgentDates>>() {
-                    @Override
-                    public com.google.common.collect.ImmutableList<org.dressdiscover.api.models.agent.AgentDates> apply(final org.thryft.protocol.InputProtocol iprot) {
-                        try {
-                            final org.thryft.protocol.ListBegin sequenceBegin = iprot.readListBegin();
-                            final com.google.common.collect.ImmutableList.Builder<org.dressdiscover.api.models.agent.AgentDates> sequenceBuilder = com.google.common.collect.ImmutableList.builder();
-                            for (int elementI = 0; elementI < sequenceBegin.getSize(); elementI++) {
-                                sequenceBuilder.add(org.dressdiscover.api.models.agent.AgentDates.readAsStruct(iprot));
-                            }
-                            iprot.readListEnd();
-                            return sequenceBuilder.build();
-                        } catch (final org.thryft.protocol.InputProtocolException e) {
-                            throw new org.thryft.protocol.UncheckedInputProtocolException(e);
-                        }
-                    }
-                }).apply(iprot));
-            } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
-                 throw e.getCause();
+        try {
+            final org.thryft.protocol.ListBegin __list = iprot.readListBegin();
+            name = org.dressdiscover.api.models.agent.AgentName.readAsStruct(iprot);
+            if (__list.getSize() > 1) {
+                attribution = com.google.common.base.Optional.of(iprot.readString());
             }
+            if (__list.getSize() > 2) {
+                culture = com.google.common.base.Optional.of(iprot.readString());
+            }
+            if (__list.getSize() > 3) {
+                try {
+                    dates = com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableList<org.dressdiscover.api.models.agent.AgentDates>>() {
+                        @Override
+                        public com.google.common.collect.ImmutableList<org.dressdiscover.api.models.agent.AgentDates> apply(final org.thryft.protocol.InputProtocol iprot) {
+                            try {
+                                final org.thryft.protocol.ListBegin sequenceBegin = iprot.readListBegin();
+                                final com.google.common.collect.ImmutableList.Builder<org.dressdiscover.api.models.agent.AgentDates> sequenceBuilder = com.google.common.collect.ImmutableList.builder();
+                                for (int elementI = 0; elementI < sequenceBegin.getSize(); elementI++) {
+                                    sequenceBuilder.add(org.dressdiscover.api.models.agent.AgentDates.readAsStruct(iprot));
+                                }
+                                iprot.readListEnd();
+                                return sequenceBuilder.build();
+                            } catch (final org.thryft.protocol.InputProtocolException e) {
+                                throw new org.thryft.protocol.UncheckedInputProtocolException(e);
+                            }
+                        }
+                    }).apply(iprot));
+                } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
+                     throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.DATES, e.getCause());
+                }
+            }
+            if (__list.getSize() > 4) {
+                role = com.google.common.base.Optional.of(org.dressdiscover.api.models.agent.AgentRole.readAsStruct(iprot));
+            }
+            iprot.readListEnd();
+        } catch (final RuntimeException e) {
+            throw new IllegalStateException(e);
         }
-        if (__list.getSize() > 4) {
-            role = com.google.common.base.Optional.of(org.dressdiscover.api.models.agent.AgentRole.readAsStruct(iprot));
-        }
-        iprot.readListEnd();
         return new Agent(DefaultReadValidator.getInstance().validateName(name), DefaultReadValidator.getInstance().validateAttribution(attribution), DefaultReadValidator.getInstance().validateCulture(culture), DefaultReadValidator.getInstance().validateDates(dates), DefaultReadValidator.getInstance().validateRole(role), NopConstructionValidator.getInstance());
     }
 
@@ -876,71 +888,75 @@ public final class Agent implements org.thryft.Struct, org.dressdiscover.api.mod
         com.google.common.base.Optional<com.google.common.collect.ImmutableList<org.dressdiscover.api.models.agent.AgentDates>> dates = com.google.common.base.Optional.<com.google.common.collect.ImmutableList<org.dressdiscover.api.models.agent.AgentDates>> absent();
         com.google.common.base.Optional<org.dressdiscover.api.models.agent.AgentRole> role = com.google.common.base.Optional.<org.dressdiscover.api.models.agent.AgentRole> absent();
 
-        iprot.readStructBegin();
-        while (true) {
-            final org.thryft.protocol.FieldBegin ifield = iprot.readFieldBegin();
-            if (ifield.getType() == org.thryft.protocol.Type.STOP) {
-                break;
-            }
-            switch (ifield.getName()) {
-            case "name": {
-                if (!ifield.hasId() || ifield.getId() == 1) {
-                    name = org.dressdiscover.api.models.agent.AgentName.readAsStruct(iprot);
+        try {
+            iprot.readStructBegin();
+            while (true) {
+                final org.thryft.protocol.FieldBegin ifield = iprot.readFieldBegin();
+                if (ifield.getType() == org.thryft.protocol.Type.STOP) {
+                    break;
                 }
-                break;
-            }
-            case "attribution": {
-                if (!ifield.hasId() || ifield.getId() == 2) {
-                    attribution = com.google.common.base.Optional.of(iprot.readString());
-                }
-                break;
-            }
-            case "culture": {
-                if (!ifield.hasId() || ifield.getId() == 3) {
-                    culture = com.google.common.base.Optional.of(iprot.readString());
-                }
-                break;
-            }
-            case "dates": {
-                if (!ifield.hasId() || ifield.getId() == 4) {
-                    try {
-                        dates = com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableList<org.dressdiscover.api.models.agent.AgentDates>>() {
-                            @Override
-                            public com.google.common.collect.ImmutableList<org.dressdiscover.api.models.agent.AgentDates> apply(final org.thryft.protocol.InputProtocol iprot) {
-                                try {
-                                    final org.thryft.protocol.ListBegin sequenceBegin = iprot.readListBegin();
-                                    final com.google.common.collect.ImmutableList.Builder<org.dressdiscover.api.models.agent.AgentDates> sequenceBuilder = com.google.common.collect.ImmutableList.builder();
-                                    for (int elementI = 0; elementI < sequenceBegin.getSize(); elementI++) {
-                                        sequenceBuilder.add(org.dressdiscover.api.models.agent.AgentDates.readAsStruct(iprot));
-                                    }
-                                    iprot.readListEnd();
-                                    return sequenceBuilder.build();
-                                } catch (final org.thryft.protocol.InputProtocolException e) {
-                                    throw new org.thryft.protocol.UncheckedInputProtocolException(e);
-                                }
-                            }
-                        }).apply(iprot));
-                    } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
-                         throw e.getCause();
+                switch (ifield.getName()) {
+                case "name": {
+                    if (!ifield.hasId() || ifield.getId() == 1) {
+                        name = org.dressdiscover.api.models.agent.AgentName.readAsStruct(iprot);
                     }
+                    break;
                 }
-                break;
-            }
-            case "role": {
-                if (!ifield.hasId() || ifield.getId() == 5) {
-                    role = com.google.common.base.Optional.of(org.dressdiscover.api.models.agent.AgentRole.readAsStruct(iprot));
+                case "attribution": {
+                    if (!ifield.hasId() || ifield.getId() == 2) {
+                        attribution = com.google.common.base.Optional.of(iprot.readString());
+                    }
+                    break;
                 }
-                break;
-            }
-            default:
-                if (unknownFieldCallback.isPresent()) {
-                    unknownFieldCallback.get().apply(ifield);
+                case "culture": {
+                    if (!ifield.hasId() || ifield.getId() == 3) {
+                        culture = com.google.common.base.Optional.of(iprot.readString());
+                    }
+                    break;
                 }
-                break;
+                case "dates": {
+                    if (!ifield.hasId() || ifield.getId() == 4) {
+                        try {
+                            dates = com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableList<org.dressdiscover.api.models.agent.AgentDates>>() {
+                                @Override
+                                public com.google.common.collect.ImmutableList<org.dressdiscover.api.models.agent.AgentDates> apply(final org.thryft.protocol.InputProtocol iprot) {
+                                    try {
+                                        final org.thryft.protocol.ListBegin sequenceBegin = iprot.readListBegin();
+                                        final com.google.common.collect.ImmutableList.Builder<org.dressdiscover.api.models.agent.AgentDates> sequenceBuilder = com.google.common.collect.ImmutableList.builder();
+                                        for (int elementI = 0; elementI < sequenceBegin.getSize(); elementI++) {
+                                            sequenceBuilder.add(org.dressdiscover.api.models.agent.AgentDates.readAsStruct(iprot));
+                                        }
+                                        iprot.readListEnd();
+                                        return sequenceBuilder.build();
+                                    } catch (final org.thryft.protocol.InputProtocolException e) {
+                                        throw new org.thryft.protocol.UncheckedInputProtocolException(e);
+                                    }
+                                }
+                            }).apply(iprot));
+                        } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
+                             throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.DATES, e.getCause());
+                        }
+                    }
+                    break;
+                }
+                case "role": {
+                    if (!ifield.hasId() || ifield.getId() == 5) {
+                        role = com.google.common.base.Optional.of(org.dressdiscover.api.models.agent.AgentRole.readAsStruct(iprot));
+                    }
+                    break;
+                }
+                default:
+                    if (unknownFieldCallback.isPresent()) {
+                        unknownFieldCallback.get().apply(ifield);
+                    }
+                    break;
+                }
+                iprot.readFieldEnd();
             }
-            iprot.readFieldEnd();
+            iprot.readStructEnd();
+        } catch (final RuntimeException e) {
+            throw new IllegalStateException(e);
         }
-        iprot.readStructEnd();
         return new Agent(DefaultReadValidator.getInstance().validateName(name), DefaultReadValidator.getInstance().validateAttribution(attribution), DefaultReadValidator.getInstance().validateCulture(culture), DefaultReadValidator.getInstance().validateDates(dates), DefaultReadValidator.getInstance().validateRole(role), NopConstructionValidator.getInstance());
     }
 

@@ -86,41 +86,45 @@ public final class Collection implements org.thryft.Struct, org.thryft.waf.api.m
         }
 
         public Builder readAsList(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
-            final org.thryft.protocol.ListBegin __list = iprot.readListBegin();
             try {
-                institutionId = org.dressdiscover.api.models.institution.InstitutionId.parse(iprot.readString());
-            } catch (final org.dressdiscover.api.models.institution.InvalidInstitutionIdException e) {
-                 throw new org.thryft.protocol.InputProtocolException(e);
-            }
-            title = iprot.readString();
-            if (__list.getSize() > 2) {
-                description = com.google.common.base.Optional.of(iprot.readString());
-            }
-            if (__list.getSize() > 3) {
-                external = com.google.common.base.Optional.of(iprot.readBool());
-            }
-            if (__list.getSize() > 4) {
-                hidden = com.google.common.base.Optional.of(iprot.readBool());
-            }
-            if (__list.getSize() > 5) {
-                locations = com.google.common.base.Optional.of(org.dressdiscover.api.models.location.LocationSet.readAsStruct(iprot));
-            }
-            if (__list.getSize() > 6) {
+                final org.thryft.protocol.ListBegin __list = iprot.readListBegin();
                 try {
-                    objectStoreUri = com.google.common.base.Optional.of(org.thryft.native_.Uri.parse(iprot.readString()));
-                } catch (final java.lang.IllegalArgumentException e) {
+                    institutionId = org.dressdiscover.api.models.institution.InstitutionId.parse(iprot.readString());
+                } catch (final org.dressdiscover.api.models.institution.InvalidInstitutionIdException e) {
+                     throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.INSTITUTION_ID, e);
                 }
-            }
-            if (__list.getSize() > 7) {
-                try {
-                    url = com.google.common.base.Optional.of(org.thryft.native_.Url.parse(iprot.readString()));
-                } catch (final java.lang.IllegalArgumentException e) {
+                title = iprot.readString();
+                if (__list.getSize() > 2) {
+                    description = com.google.common.base.Optional.of(iprot.readString());
                 }
+                if (__list.getSize() > 3) {
+                    external = com.google.common.base.Optional.of(iprot.readBool());
+                }
+                if (__list.getSize() > 4) {
+                    hidden = com.google.common.base.Optional.of(iprot.readBool());
+                }
+                if (__list.getSize() > 5) {
+                    locations = com.google.common.base.Optional.of(org.dressdiscover.api.models.location.LocationSet.readAsStruct(iprot));
+                }
+                if (__list.getSize() > 6) {
+                    try {
+                        objectStoreUri = com.google.common.base.Optional.of(org.thryft.native_.Uri.parse(iprot.readString()));
+                    } catch (final java.lang.IllegalArgumentException e) {
+                    }
+                }
+                if (__list.getSize() > 7) {
+                    try {
+                        url = com.google.common.base.Optional.of(org.thryft.native_.Url.parse(iprot.readString()));
+                    } catch (final java.lang.IllegalArgumentException e) {
+                    }
+                }
+                if (__list.getSize() > 8) {
+                    workTypes = com.google.common.base.Optional.of(org.dressdiscover.api.models.work_type.WorkTypeSet.readAsStruct(iprot));
+                }
+                iprot.readListEnd();
+            } catch (final RuntimeException e) {
+                throw new IllegalStateException(e);
             }
-            if (__list.getSize() > 8) {
-                workTypes = com.google.common.base.Optional.of(org.dressdiscover.api.models.work_type.WorkTypeSet.readAsStruct(iprot));
-            }
-            iprot.readListEnd();
             return this;
         }
 
@@ -129,86 +133,90 @@ public final class Collection implements org.thryft.Struct, org.thryft.waf.api.m
         }
 
         public Builder readAsStruct(final org.thryft.protocol.InputProtocol iprot, final com.google.common.base.Optional<UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
-            iprot.readStructBegin();
-            while (true) {
-                final org.thryft.protocol.FieldBegin ifield = iprot.readFieldBegin();
-                if (ifield.getType() == org.thryft.protocol.Type.STOP) {
-                    break;
-                }
-                switch (ifield.getName()) {
-                case "institution_id": {
-                    if (!ifield.hasId() || ifield.getId() == 1) {
-                        try {
-                            institutionId = org.dressdiscover.api.models.institution.InstitutionId.parse(iprot.readString());
-                        } catch (final org.dressdiscover.api.models.institution.InvalidInstitutionIdException e) {
-                             throw new org.thryft.protocol.InputProtocolException(e);
+            try {
+                iprot.readStructBegin();
+                while (true) {
+                    final org.thryft.protocol.FieldBegin ifield = iprot.readFieldBegin();
+                    if (ifield.getType() == org.thryft.protocol.Type.STOP) {
+                        break;
+                    }
+                    switch (ifield.getName()) {
+                    case "institution_id": {
+                        if (!ifield.hasId() || ifield.getId() == 1) {
+                            try {
+                                institutionId = org.dressdiscover.api.models.institution.InstitutionId.parse(iprot.readString());
+                            } catch (final org.dressdiscover.api.models.institution.InvalidInstitutionIdException e) {
+                                 throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.INSTITUTION_ID, e);
+                            }
                         }
+                        break;
                     }
-                    break;
-                }
-                case "title": {
-                    if (!ifield.hasId() || ifield.getId() == 2) {
-                        title = iprot.readString();
-                    }
-                    break;
-                }
-                case "description": {
-                    if (!ifield.hasId() || ifield.getId() == 4) {
-                        description = com.google.common.base.Optional.of(iprot.readString());
-                    }
-                    break;
-                }
-                case "external": {
-                    if (!ifield.hasId() || ifield.getId() == 7) {
-                        external = com.google.common.base.Optional.of(iprot.readBool());
-                    }
-                    break;
-                }
-                case "hidden": {
-                    if (!ifield.hasId() || ifield.getId() == 5) {
-                        hidden = com.google.common.base.Optional.of(iprot.readBool());
-                    }
-                    break;
-                }
-                case "locations": {
-                    if (!ifield.hasId() || ifield.getId() == 8) {
-                        locations = com.google.common.base.Optional.of(org.dressdiscover.api.models.location.LocationSet.readAsStruct(iprot));
-                    }
-                    break;
-                }
-                case "object_store_uri": {
-                    if (!ifield.hasId() || ifield.getId() == 10) {
-                        try {
-                            objectStoreUri = com.google.common.base.Optional.of(org.thryft.native_.Uri.parse(iprot.readString()));
-                        } catch (final java.lang.IllegalArgumentException e) {
+                    case "title": {
+                        if (!ifield.hasId() || ifield.getId() == 2) {
+                            title = iprot.readString();
                         }
+                        break;
                     }
-                    break;
-                }
-                case "url": {
-                    if (!ifield.hasId() || ifield.getId() == 9) {
-                        try {
-                            url = com.google.common.base.Optional.of(org.thryft.native_.Url.parse(iprot.readString()));
-                        } catch (final java.lang.IllegalArgumentException e) {
+                    case "description": {
+                        if (!ifield.hasId() || ifield.getId() == 4) {
+                            description = com.google.common.base.Optional.of(iprot.readString());
                         }
+                        break;
                     }
-                    break;
-                }
-                case "work_types": {
-                    if (!ifield.hasId() || ifield.getId() == 6) {
-                        workTypes = com.google.common.base.Optional.of(org.dressdiscover.api.models.work_type.WorkTypeSet.readAsStruct(iprot));
+                    case "external": {
+                        if (!ifield.hasId() || ifield.getId() == 7) {
+                            external = com.google.common.base.Optional.of(iprot.readBool());
+                        }
+                        break;
                     }
-                    break;
-                }
-                default:
-                    if (unknownFieldCallback.isPresent()) {
-                        unknownFieldCallback.get().apply(ifield);
+                    case "hidden": {
+                        if (!ifield.hasId() || ifield.getId() == 5) {
+                            hidden = com.google.common.base.Optional.of(iprot.readBool());
+                        }
+                        break;
                     }
-                    break;
+                    case "locations": {
+                        if (!ifield.hasId() || ifield.getId() == 8) {
+                            locations = com.google.common.base.Optional.of(org.dressdiscover.api.models.location.LocationSet.readAsStruct(iprot));
+                        }
+                        break;
+                    }
+                    case "object_store_uri": {
+                        if (!ifield.hasId() || ifield.getId() == 10) {
+                            try {
+                                objectStoreUri = com.google.common.base.Optional.of(org.thryft.native_.Uri.parse(iprot.readString()));
+                            } catch (final java.lang.IllegalArgumentException e) {
+                            }
+                        }
+                        break;
+                    }
+                    case "url": {
+                        if (!ifield.hasId() || ifield.getId() == 9) {
+                            try {
+                                url = com.google.common.base.Optional.of(org.thryft.native_.Url.parse(iprot.readString()));
+                            } catch (final java.lang.IllegalArgumentException e) {
+                            }
+                        }
+                        break;
+                    }
+                    case "work_types": {
+                        if (!ifield.hasId() || ifield.getId() == 6) {
+                            workTypes = com.google.common.base.Optional.of(org.dressdiscover.api.models.work_type.WorkTypeSet.readAsStruct(iprot));
+                        }
+                        break;
+                    }
+                    default:
+                        if (unknownFieldCallback.isPresent()) {
+                            unknownFieldCallback.get().apply(ifield);
+                        }
+                        break;
+                    }
+                    iprot.readFieldEnd();
                 }
-                iprot.readFieldEnd();
+                iprot.readStructEnd();
+            } catch (final RuntimeException e) {
+                throw new IllegalStateException(e);
             }
-            iprot.readStructEnd();
             return this;
         }
 
@@ -1116,41 +1124,45 @@ public final class Collection implements org.thryft.Struct, org.thryft.waf.api.m
         com.google.common.base.Optional<org.thryft.native_.Url> url = com.google.common.base.Optional.<org.thryft.native_.Url> absent();
         com.google.common.base.Optional<org.dressdiscover.api.models.work_type.WorkTypeSet> workTypes = com.google.common.base.Optional.<org.dressdiscover.api.models.work_type.WorkTypeSet> absent();
 
-        final org.thryft.protocol.ListBegin __list = iprot.readListBegin();
         try {
-            institutionId = org.dressdiscover.api.models.institution.InstitutionId.parse(iprot.readString());
-        } catch (final org.dressdiscover.api.models.institution.InvalidInstitutionIdException e) {
-             throw new org.thryft.protocol.InputProtocolException(e);
-        }
-        title = iprot.readString();
-        if (__list.getSize() > 2) {
-            description = com.google.common.base.Optional.of(iprot.readString());
-        }
-        if (__list.getSize() > 3) {
-            external = com.google.common.base.Optional.of(iprot.readBool());
-        }
-        if (__list.getSize() > 4) {
-            hidden = com.google.common.base.Optional.of(iprot.readBool());
-        }
-        if (__list.getSize() > 5) {
-            locations = com.google.common.base.Optional.of(org.dressdiscover.api.models.location.LocationSet.readAsStruct(iprot));
-        }
-        if (__list.getSize() > 6) {
+            final org.thryft.protocol.ListBegin __list = iprot.readListBegin();
             try {
-                objectStoreUri = com.google.common.base.Optional.of(org.thryft.native_.Uri.parse(iprot.readString()));
-            } catch (final java.lang.IllegalArgumentException e) {
+                institutionId = org.dressdiscover.api.models.institution.InstitutionId.parse(iprot.readString());
+            } catch (final org.dressdiscover.api.models.institution.InvalidInstitutionIdException e) {
+                 throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.INSTITUTION_ID, e);
             }
-        }
-        if (__list.getSize() > 7) {
-            try {
-                url = com.google.common.base.Optional.of(org.thryft.native_.Url.parse(iprot.readString()));
-            } catch (final java.lang.IllegalArgumentException e) {
+            title = iprot.readString();
+            if (__list.getSize() > 2) {
+                description = com.google.common.base.Optional.of(iprot.readString());
             }
+            if (__list.getSize() > 3) {
+                external = com.google.common.base.Optional.of(iprot.readBool());
+            }
+            if (__list.getSize() > 4) {
+                hidden = com.google.common.base.Optional.of(iprot.readBool());
+            }
+            if (__list.getSize() > 5) {
+                locations = com.google.common.base.Optional.of(org.dressdiscover.api.models.location.LocationSet.readAsStruct(iprot));
+            }
+            if (__list.getSize() > 6) {
+                try {
+                    objectStoreUri = com.google.common.base.Optional.of(org.thryft.native_.Uri.parse(iprot.readString()));
+                } catch (final java.lang.IllegalArgumentException e) {
+                }
+            }
+            if (__list.getSize() > 7) {
+                try {
+                    url = com.google.common.base.Optional.of(org.thryft.native_.Url.parse(iprot.readString()));
+                } catch (final java.lang.IllegalArgumentException e) {
+                }
+            }
+            if (__list.getSize() > 8) {
+                workTypes = com.google.common.base.Optional.of(org.dressdiscover.api.models.work_type.WorkTypeSet.readAsStruct(iprot));
+            }
+            iprot.readListEnd();
+        } catch (final RuntimeException e) {
+            throw new IllegalStateException(e);
         }
-        if (__list.getSize() > 8) {
-            workTypes = com.google.common.base.Optional.of(org.dressdiscover.api.models.work_type.WorkTypeSet.readAsStruct(iprot));
-        }
-        iprot.readListEnd();
         return new Collection(DefaultReadValidator.getInstance().validateInstitutionId(institutionId), DefaultReadValidator.getInstance().validateTitle(title), DefaultReadValidator.getInstance().validateDescription(description), DefaultReadValidator.getInstance().validateExternal(external), DefaultReadValidator.getInstance().validateHidden(hidden), DefaultReadValidator.getInstance().validateLocations(locations), DefaultReadValidator.getInstance().validateObjectStoreUri(objectStoreUri), DefaultReadValidator.getInstance().validateUrl(url), DefaultReadValidator.getInstance().validateWorkTypes(workTypes), NopConstructionValidator.getInstance());
     }
 
@@ -1169,86 +1181,90 @@ public final class Collection implements org.thryft.Struct, org.thryft.waf.api.m
         com.google.common.base.Optional<org.thryft.native_.Url> url = com.google.common.base.Optional.<org.thryft.native_.Url> absent();
         com.google.common.base.Optional<org.dressdiscover.api.models.work_type.WorkTypeSet> workTypes = com.google.common.base.Optional.<org.dressdiscover.api.models.work_type.WorkTypeSet> absent();
 
-        iprot.readStructBegin();
-        while (true) {
-            final org.thryft.protocol.FieldBegin ifield = iprot.readFieldBegin();
-            if (ifield.getType() == org.thryft.protocol.Type.STOP) {
-                break;
-            }
-            switch (ifield.getName()) {
-            case "institution_id": {
-                if (!ifield.hasId() || ifield.getId() == 1) {
-                    try {
-                        institutionId = org.dressdiscover.api.models.institution.InstitutionId.parse(iprot.readString());
-                    } catch (final org.dressdiscover.api.models.institution.InvalidInstitutionIdException e) {
-                         throw new org.thryft.protocol.InputProtocolException(e);
+        try {
+            iprot.readStructBegin();
+            while (true) {
+                final org.thryft.protocol.FieldBegin ifield = iprot.readFieldBegin();
+                if (ifield.getType() == org.thryft.protocol.Type.STOP) {
+                    break;
+                }
+                switch (ifield.getName()) {
+                case "institution_id": {
+                    if (!ifield.hasId() || ifield.getId() == 1) {
+                        try {
+                            institutionId = org.dressdiscover.api.models.institution.InstitutionId.parse(iprot.readString());
+                        } catch (final org.dressdiscover.api.models.institution.InvalidInstitutionIdException e) {
+                             throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.INSTITUTION_ID, e);
+                        }
                     }
+                    break;
                 }
-                break;
-            }
-            case "title": {
-                if (!ifield.hasId() || ifield.getId() == 2) {
-                    title = iprot.readString();
-                }
-                break;
-            }
-            case "description": {
-                if (!ifield.hasId() || ifield.getId() == 4) {
-                    description = com.google.common.base.Optional.of(iprot.readString());
-                }
-                break;
-            }
-            case "external": {
-                if (!ifield.hasId() || ifield.getId() == 7) {
-                    external = com.google.common.base.Optional.of(iprot.readBool());
-                }
-                break;
-            }
-            case "hidden": {
-                if (!ifield.hasId() || ifield.getId() == 5) {
-                    hidden = com.google.common.base.Optional.of(iprot.readBool());
-                }
-                break;
-            }
-            case "locations": {
-                if (!ifield.hasId() || ifield.getId() == 8) {
-                    locations = com.google.common.base.Optional.of(org.dressdiscover.api.models.location.LocationSet.readAsStruct(iprot));
-                }
-                break;
-            }
-            case "object_store_uri": {
-                if (!ifield.hasId() || ifield.getId() == 10) {
-                    try {
-                        objectStoreUri = com.google.common.base.Optional.of(org.thryft.native_.Uri.parse(iprot.readString()));
-                    } catch (final java.lang.IllegalArgumentException e) {
+                case "title": {
+                    if (!ifield.hasId() || ifield.getId() == 2) {
+                        title = iprot.readString();
                     }
+                    break;
                 }
-                break;
-            }
-            case "url": {
-                if (!ifield.hasId() || ifield.getId() == 9) {
-                    try {
-                        url = com.google.common.base.Optional.of(org.thryft.native_.Url.parse(iprot.readString()));
-                    } catch (final java.lang.IllegalArgumentException e) {
+                case "description": {
+                    if (!ifield.hasId() || ifield.getId() == 4) {
+                        description = com.google.common.base.Optional.of(iprot.readString());
                     }
+                    break;
                 }
-                break;
-            }
-            case "work_types": {
-                if (!ifield.hasId() || ifield.getId() == 6) {
-                    workTypes = com.google.common.base.Optional.of(org.dressdiscover.api.models.work_type.WorkTypeSet.readAsStruct(iprot));
+                case "external": {
+                    if (!ifield.hasId() || ifield.getId() == 7) {
+                        external = com.google.common.base.Optional.of(iprot.readBool());
+                    }
+                    break;
                 }
-                break;
-            }
-            default:
-                if (unknownFieldCallback.isPresent()) {
-                    unknownFieldCallback.get().apply(ifield);
+                case "hidden": {
+                    if (!ifield.hasId() || ifield.getId() == 5) {
+                        hidden = com.google.common.base.Optional.of(iprot.readBool());
+                    }
+                    break;
                 }
-                break;
+                case "locations": {
+                    if (!ifield.hasId() || ifield.getId() == 8) {
+                        locations = com.google.common.base.Optional.of(org.dressdiscover.api.models.location.LocationSet.readAsStruct(iprot));
+                    }
+                    break;
+                }
+                case "object_store_uri": {
+                    if (!ifield.hasId() || ifield.getId() == 10) {
+                        try {
+                            objectStoreUri = com.google.common.base.Optional.of(org.thryft.native_.Uri.parse(iprot.readString()));
+                        } catch (final java.lang.IllegalArgumentException e) {
+                        }
+                    }
+                    break;
+                }
+                case "url": {
+                    if (!ifield.hasId() || ifield.getId() == 9) {
+                        try {
+                            url = com.google.common.base.Optional.of(org.thryft.native_.Url.parse(iprot.readString()));
+                        } catch (final java.lang.IllegalArgumentException e) {
+                        }
+                    }
+                    break;
+                }
+                case "work_types": {
+                    if (!ifield.hasId() || ifield.getId() == 6) {
+                        workTypes = com.google.common.base.Optional.of(org.dressdiscover.api.models.work_type.WorkTypeSet.readAsStruct(iprot));
+                    }
+                    break;
+                }
+                default:
+                    if (unknownFieldCallback.isPresent()) {
+                        unknownFieldCallback.get().apply(ifield);
+                    }
+                    break;
+                }
+                iprot.readFieldEnd();
             }
-            iprot.readFieldEnd();
+            iprot.readStructEnd();
+        } catch (final RuntimeException e) {
+            throw new IllegalStateException(e);
         }
-        iprot.readStructEnd();
         return new Collection(DefaultReadValidator.getInstance().validateInstitutionId(institutionId), DefaultReadValidator.getInstance().validateTitle(title), DefaultReadValidator.getInstance().validateDescription(description), DefaultReadValidator.getInstance().validateExternal(external), DefaultReadValidator.getInstance().validateHidden(hidden), DefaultReadValidator.getInstance().validateLocations(locations), DefaultReadValidator.getInstance().validateObjectStoreUri(objectStoreUri), DefaultReadValidator.getInstance().validateUrl(url), DefaultReadValidator.getInstance().validateWorkTypes(workTypes), NopConstructionValidator.getInstance());
     }
 

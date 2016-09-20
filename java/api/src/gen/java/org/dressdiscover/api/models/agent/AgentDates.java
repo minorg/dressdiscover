@@ -53,21 +53,25 @@ public final class AgentDates implements org.thryft.Struct {
         }
 
         public Builder readAsList(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
-            final org.thryft.protocol.ListBegin __list = iprot.readListBegin();
-            type = iprot.readEnum(org.dressdiscover.api.models.agent.AgentDatesType.class);
-            if (__list.getSize() > 1) {
-                try {
-                    earliestDate = com.google.common.base.Optional.of(iprot.readDateTime());
-                } catch (final IllegalArgumentException e) {
+            try {
+                final org.thryft.protocol.ListBegin __list = iprot.readListBegin();
+                type = iprot.readEnum(org.dressdiscover.api.models.agent.AgentDatesType.class);
+                if (__list.getSize() > 1) {
+                    try {
+                        earliestDate = com.google.common.base.Optional.of(iprot.readDateTime());
+                    } catch (final IllegalArgumentException e) {
+                    }
                 }
-            }
-            if (__list.getSize() > 2) {
-                try {
-                    latestDate = com.google.common.base.Optional.of(iprot.readDateTime());
-                } catch (final IllegalArgumentException e) {
+                if (__list.getSize() > 2) {
+                    try {
+                        latestDate = com.google.common.base.Optional.of(iprot.readDateTime());
+                    } catch (final IllegalArgumentException e) {
+                    }
                 }
+                iprot.readListEnd();
+            } catch (final RuntimeException e) {
+                throw new IllegalStateException(e);
             }
-            iprot.readListEnd();
             return this;
         }
 
@@ -76,46 +80,50 @@ public final class AgentDates implements org.thryft.Struct {
         }
 
         public Builder readAsStruct(final org.thryft.protocol.InputProtocol iprot, final com.google.common.base.Optional<UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
-            iprot.readStructBegin();
-            while (true) {
-                final org.thryft.protocol.FieldBegin ifield = iprot.readFieldBegin();
-                if (ifield.getType() == org.thryft.protocol.Type.STOP) {
-                    break;
-                }
-                switch (ifield.getName()) {
-                case "type": {
-                    if (!ifield.hasId() || ifield.getId() == 1) {
-                        type = iprot.readEnum(org.dressdiscover.api.models.agent.AgentDatesType.class);
+            try {
+                iprot.readStructBegin();
+                while (true) {
+                    final org.thryft.protocol.FieldBegin ifield = iprot.readFieldBegin();
+                    if (ifield.getType() == org.thryft.protocol.Type.STOP) {
+                        break;
                     }
-                    break;
-                }
-                case "earliest_date": {
-                    if (!ifield.hasId() || ifield.getId() == 2) {
-                        try {
-                            earliestDate = com.google.common.base.Optional.of(iprot.readDateTime());
-                        } catch (final IllegalArgumentException e) {
+                    switch (ifield.getName()) {
+                    case "type": {
+                        if (!ifield.hasId() || ifield.getId() == 1) {
+                            type = iprot.readEnum(org.dressdiscover.api.models.agent.AgentDatesType.class);
                         }
+                        break;
                     }
-                    break;
-                }
-                case "latest_date": {
-                    if (!ifield.hasId() || ifield.getId() == 3) {
-                        try {
-                            latestDate = com.google.common.base.Optional.of(iprot.readDateTime());
-                        } catch (final IllegalArgumentException e) {
+                    case "earliest_date": {
+                        if (!ifield.hasId() || ifield.getId() == 2) {
+                            try {
+                                earliestDate = com.google.common.base.Optional.of(iprot.readDateTime());
+                            } catch (final IllegalArgumentException e) {
+                            }
                         }
+                        break;
                     }
-                    break;
-                }
-                default:
-                    if (unknownFieldCallback.isPresent()) {
-                        unknownFieldCallback.get().apply(ifield);
+                    case "latest_date": {
+                        if (!ifield.hasId() || ifield.getId() == 3) {
+                            try {
+                                latestDate = com.google.common.base.Optional.of(iprot.readDateTime());
+                            } catch (final IllegalArgumentException e) {
+                            }
+                        }
+                        break;
                     }
-                    break;
+                    default:
+                        if (unknownFieldCallback.isPresent()) {
+                            unknownFieldCallback.get().apply(ifield);
+                        }
+                        break;
+                    }
+                    iprot.readFieldEnd();
                 }
-                iprot.readFieldEnd();
+                iprot.readStructEnd();
+            } catch (final RuntimeException e) {
+                throw new IllegalStateException(e);
             }
-            iprot.readStructEnd();
             return this;
         }
 
@@ -617,21 +625,25 @@ public final class AgentDates implements org.thryft.Struct {
         com.google.common.base.Optional<java.util.Date> earliestDate = com.google.common.base.Optional.<java.util.Date> absent();
         com.google.common.base.Optional<java.util.Date> latestDate = com.google.common.base.Optional.<java.util.Date> absent();
 
-        final org.thryft.protocol.ListBegin __list = iprot.readListBegin();
-        type = iprot.readEnum(org.dressdiscover.api.models.agent.AgentDatesType.class);
-        if (__list.getSize() > 1) {
-            try {
-                earliestDate = com.google.common.base.Optional.of(iprot.readDateTime());
-            } catch (final IllegalArgumentException e) {
+        try {
+            final org.thryft.protocol.ListBegin __list = iprot.readListBegin();
+            type = iprot.readEnum(org.dressdiscover.api.models.agent.AgentDatesType.class);
+            if (__list.getSize() > 1) {
+                try {
+                    earliestDate = com.google.common.base.Optional.of(iprot.readDateTime());
+                } catch (final IllegalArgumentException e) {
+                }
             }
-        }
-        if (__list.getSize() > 2) {
-            try {
-                latestDate = com.google.common.base.Optional.of(iprot.readDateTime());
-            } catch (final IllegalArgumentException e) {
+            if (__list.getSize() > 2) {
+                try {
+                    latestDate = com.google.common.base.Optional.of(iprot.readDateTime());
+                } catch (final IllegalArgumentException e) {
+                }
             }
+            iprot.readListEnd();
+        } catch (final RuntimeException e) {
+            throw new IllegalStateException(e);
         }
-        iprot.readListEnd();
         return new AgentDates(DefaultReadValidator.getInstance().validateType(type), DefaultReadValidator.getInstance().validateEarliestDate(earliestDate), DefaultReadValidator.getInstance().validateLatestDate(latestDate), NopConstructionValidator.getInstance());
     }
 
@@ -644,46 +656,50 @@ public final class AgentDates implements org.thryft.Struct {
         com.google.common.base.Optional<java.util.Date> earliestDate = com.google.common.base.Optional.<java.util.Date> absent();
         com.google.common.base.Optional<java.util.Date> latestDate = com.google.common.base.Optional.<java.util.Date> absent();
 
-        iprot.readStructBegin();
-        while (true) {
-            final org.thryft.protocol.FieldBegin ifield = iprot.readFieldBegin();
-            if (ifield.getType() == org.thryft.protocol.Type.STOP) {
-                break;
-            }
-            switch (ifield.getName()) {
-            case "type": {
-                if (!ifield.hasId() || ifield.getId() == 1) {
-                    type = iprot.readEnum(org.dressdiscover.api.models.agent.AgentDatesType.class);
+        try {
+            iprot.readStructBegin();
+            while (true) {
+                final org.thryft.protocol.FieldBegin ifield = iprot.readFieldBegin();
+                if (ifield.getType() == org.thryft.protocol.Type.STOP) {
+                    break;
                 }
-                break;
-            }
-            case "earliest_date": {
-                if (!ifield.hasId() || ifield.getId() == 2) {
-                    try {
-                        earliestDate = com.google.common.base.Optional.of(iprot.readDateTime());
-                    } catch (final IllegalArgumentException e) {
+                switch (ifield.getName()) {
+                case "type": {
+                    if (!ifield.hasId() || ifield.getId() == 1) {
+                        type = iprot.readEnum(org.dressdiscover.api.models.agent.AgentDatesType.class);
                     }
+                    break;
                 }
-                break;
-            }
-            case "latest_date": {
-                if (!ifield.hasId() || ifield.getId() == 3) {
-                    try {
-                        latestDate = com.google.common.base.Optional.of(iprot.readDateTime());
-                    } catch (final IllegalArgumentException e) {
+                case "earliest_date": {
+                    if (!ifield.hasId() || ifield.getId() == 2) {
+                        try {
+                            earliestDate = com.google.common.base.Optional.of(iprot.readDateTime());
+                        } catch (final IllegalArgumentException e) {
+                        }
                     }
+                    break;
                 }
-                break;
-            }
-            default:
-                if (unknownFieldCallback.isPresent()) {
-                    unknownFieldCallback.get().apply(ifield);
+                case "latest_date": {
+                    if (!ifield.hasId() || ifield.getId() == 3) {
+                        try {
+                            latestDate = com.google.common.base.Optional.of(iprot.readDateTime());
+                        } catch (final IllegalArgumentException e) {
+                        }
+                    }
+                    break;
                 }
-                break;
+                default:
+                    if (unknownFieldCallback.isPresent()) {
+                        unknownFieldCallback.get().apply(ifield);
+                    }
+                    break;
+                }
+                iprot.readFieldEnd();
             }
-            iprot.readFieldEnd();
+            iprot.readStructEnd();
+        } catch (final RuntimeException e) {
+            throw new IllegalStateException(e);
         }
-        iprot.readStructEnd();
         return new AgentDates(DefaultReadValidator.getInstance().validateType(type), DefaultReadValidator.getInstance().validateEarliestDate(earliestDate), DefaultReadValidator.getInstance().validateLatestDate(latestDate), NopConstructionValidator.getInstance());
     }
 

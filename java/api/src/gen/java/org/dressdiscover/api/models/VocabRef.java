@@ -50,18 +50,22 @@ public final class VocabRef implements org.thryft.Struct {
         }
 
         public Builder readAsList(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
-            final org.thryft.protocol.ListBegin __list = iprot.readListBegin();
-            vocab = iprot.readEnum(org.dressdiscover.api.models.Vocab.class);
-            if (__list.getSize() > 1) {
-                refid = com.google.common.base.Optional.of(iprot.readString());
-            }
-            if (__list.getSize() > 2) {
-                try {
-                    uri = com.google.common.base.Optional.of(org.thryft.native_.Uri.parse(iprot.readString()));
-                } catch (final java.lang.IllegalArgumentException e) {
+            try {
+                final org.thryft.protocol.ListBegin __list = iprot.readListBegin();
+                vocab = iprot.readEnum(org.dressdiscover.api.models.Vocab.class);
+                if (__list.getSize() > 1) {
+                    refid = com.google.common.base.Optional.of(iprot.readString());
                 }
+                if (__list.getSize() > 2) {
+                    try {
+                        uri = com.google.common.base.Optional.of(org.thryft.native_.Uri.parse(iprot.readString()));
+                    } catch (final java.lang.IllegalArgumentException e) {
+                    }
+                }
+                iprot.readListEnd();
+            } catch (final RuntimeException e) {
+                throw new IllegalStateException(e);
             }
-            iprot.readListEnd();
             return this;
         }
 
@@ -70,43 +74,47 @@ public final class VocabRef implements org.thryft.Struct {
         }
 
         public Builder readAsStruct(final org.thryft.protocol.InputProtocol iprot, final com.google.common.base.Optional<UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
-            iprot.readStructBegin();
-            while (true) {
-                final org.thryft.protocol.FieldBegin ifield = iprot.readFieldBegin();
-                if (ifield.getType() == org.thryft.protocol.Type.STOP) {
-                    break;
-                }
-                switch (ifield.getName()) {
-                case "vocab": {
-                    if (!ifield.hasId() || ifield.getId() == 2) {
-                        vocab = iprot.readEnum(org.dressdiscover.api.models.Vocab.class);
+            try {
+                iprot.readStructBegin();
+                while (true) {
+                    final org.thryft.protocol.FieldBegin ifield = iprot.readFieldBegin();
+                    if (ifield.getType() == org.thryft.protocol.Type.STOP) {
+                        break;
                     }
-                    break;
-                }
-                case "refid": {
-                    if (!ifield.hasId() || ifield.getId() == 1) {
-                        refid = com.google.common.base.Optional.of(iprot.readString());
-                    }
-                    break;
-                }
-                case "uri": {
-                    if (!ifield.hasId() || ifield.getId() == 3) {
-                        try {
-                            uri = com.google.common.base.Optional.of(org.thryft.native_.Uri.parse(iprot.readString()));
-                        } catch (final java.lang.IllegalArgumentException e) {
+                    switch (ifield.getName()) {
+                    case "vocab": {
+                        if (!ifield.hasId() || ifield.getId() == 2) {
+                            vocab = iprot.readEnum(org.dressdiscover.api.models.Vocab.class);
                         }
+                        break;
                     }
-                    break;
-                }
-                default:
-                    if (unknownFieldCallback.isPresent()) {
-                        unknownFieldCallback.get().apply(ifield);
+                    case "refid": {
+                        if (!ifield.hasId() || ifield.getId() == 1) {
+                            refid = com.google.common.base.Optional.of(iprot.readString());
+                        }
+                        break;
                     }
-                    break;
+                    case "uri": {
+                        if (!ifield.hasId() || ifield.getId() == 3) {
+                            try {
+                                uri = com.google.common.base.Optional.of(org.thryft.native_.Uri.parse(iprot.readString()));
+                            } catch (final java.lang.IllegalArgumentException e) {
+                            }
+                        }
+                        break;
+                    }
+                    default:
+                        if (unknownFieldCallback.isPresent()) {
+                            unknownFieldCallback.get().apply(ifield);
+                        }
+                        break;
+                    }
+                    iprot.readFieldEnd();
                 }
-                iprot.readFieldEnd();
+                iprot.readStructEnd();
+            } catch (final RuntimeException e) {
+                throw new IllegalStateException(e);
             }
-            iprot.readStructEnd();
             return this;
         }
 
@@ -614,18 +622,22 @@ public final class VocabRef implements org.thryft.Struct {
         com.google.common.base.Optional<String> refid = com.google.common.base.Optional.<String> absent();
         com.google.common.base.Optional<org.thryft.native_.Uri> uri = com.google.common.base.Optional.<org.thryft.native_.Uri> absent();
 
-        final org.thryft.protocol.ListBegin __list = iprot.readListBegin();
-        vocab = iprot.readEnum(org.dressdiscover.api.models.Vocab.class);
-        if (__list.getSize() > 1) {
-            refid = com.google.common.base.Optional.of(iprot.readString());
-        }
-        if (__list.getSize() > 2) {
-            try {
-                uri = com.google.common.base.Optional.of(org.thryft.native_.Uri.parse(iprot.readString()));
-            } catch (final java.lang.IllegalArgumentException e) {
+        try {
+            final org.thryft.protocol.ListBegin __list = iprot.readListBegin();
+            vocab = iprot.readEnum(org.dressdiscover.api.models.Vocab.class);
+            if (__list.getSize() > 1) {
+                refid = com.google.common.base.Optional.of(iprot.readString());
             }
+            if (__list.getSize() > 2) {
+                try {
+                    uri = com.google.common.base.Optional.of(org.thryft.native_.Uri.parse(iprot.readString()));
+                } catch (final java.lang.IllegalArgumentException e) {
+                }
+            }
+            iprot.readListEnd();
+        } catch (final RuntimeException e) {
+            throw new IllegalStateException(e);
         }
-        iprot.readListEnd();
         return new VocabRef(DefaultReadValidator.getInstance().validateVocab(vocab), DefaultReadValidator.getInstance().validateRefid(refid), DefaultReadValidator.getInstance().validateUri(uri), NopConstructionValidator.getInstance());
     }
 
@@ -638,43 +650,47 @@ public final class VocabRef implements org.thryft.Struct {
         com.google.common.base.Optional<String> refid = com.google.common.base.Optional.<String> absent();
         com.google.common.base.Optional<org.thryft.native_.Uri> uri = com.google.common.base.Optional.<org.thryft.native_.Uri> absent();
 
-        iprot.readStructBegin();
-        while (true) {
-            final org.thryft.protocol.FieldBegin ifield = iprot.readFieldBegin();
-            if (ifield.getType() == org.thryft.protocol.Type.STOP) {
-                break;
-            }
-            switch (ifield.getName()) {
-            case "vocab": {
-                if (!ifield.hasId() || ifield.getId() == 2) {
-                    vocab = iprot.readEnum(org.dressdiscover.api.models.Vocab.class);
+        try {
+            iprot.readStructBegin();
+            while (true) {
+                final org.thryft.protocol.FieldBegin ifield = iprot.readFieldBegin();
+                if (ifield.getType() == org.thryft.protocol.Type.STOP) {
+                    break;
                 }
-                break;
-            }
-            case "refid": {
-                if (!ifield.hasId() || ifield.getId() == 1) {
-                    refid = com.google.common.base.Optional.of(iprot.readString());
-                }
-                break;
-            }
-            case "uri": {
-                if (!ifield.hasId() || ifield.getId() == 3) {
-                    try {
-                        uri = com.google.common.base.Optional.of(org.thryft.native_.Uri.parse(iprot.readString()));
-                    } catch (final java.lang.IllegalArgumentException e) {
+                switch (ifield.getName()) {
+                case "vocab": {
+                    if (!ifield.hasId() || ifield.getId() == 2) {
+                        vocab = iprot.readEnum(org.dressdiscover.api.models.Vocab.class);
                     }
+                    break;
                 }
-                break;
-            }
-            default:
-                if (unknownFieldCallback.isPresent()) {
-                    unknownFieldCallback.get().apply(ifield);
+                case "refid": {
+                    if (!ifield.hasId() || ifield.getId() == 1) {
+                        refid = com.google.common.base.Optional.of(iprot.readString());
+                    }
+                    break;
                 }
-                break;
+                case "uri": {
+                    if (!ifield.hasId() || ifield.getId() == 3) {
+                        try {
+                            uri = com.google.common.base.Optional.of(org.thryft.native_.Uri.parse(iprot.readString()));
+                        } catch (final java.lang.IllegalArgumentException e) {
+                        }
+                    }
+                    break;
+                }
+                default:
+                    if (unknownFieldCallback.isPresent()) {
+                        unknownFieldCallback.get().apply(ifield);
+                    }
+                    break;
+                }
+                iprot.readFieldEnd();
             }
-            iprot.readFieldEnd();
+            iprot.readStructEnd();
+        } catch (final RuntimeException e) {
+            throw new IllegalStateException(e);
         }
-        iprot.readStructEnd();
         return new VocabRef(DefaultReadValidator.getInstance().validateVocab(vocab), DefaultReadValidator.getInstance().validateRefid(refid), DefaultReadValidator.getInstance().validateUri(uri), NopConstructionValidator.getInstance());
     }
 

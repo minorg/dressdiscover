@@ -44,10 +44,14 @@ public final class ObjectSummarySort implements org.thryft.Struct {
         }
 
         public Builder readAsList(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
-            iprot.readListBegin();
-            field = iprot.readEnum(org.dressdiscover.api.services.object.ObjectSummarySortField.class);
-            order = iprot.readEnum(org.dressdiscover.api.models.SortOrder.class);
-            iprot.readListEnd();
+            try {
+                iprot.readListBegin();
+                field = iprot.readEnum(org.dressdiscover.api.services.object.ObjectSummarySortField.class);
+                order = iprot.readEnum(org.dressdiscover.api.models.SortOrder.class);
+                iprot.readListEnd();
+            } catch (final RuntimeException e) {
+                throw new IllegalStateException(e);
+            }
             return this;
         }
 
@@ -56,30 +60,34 @@ public final class ObjectSummarySort implements org.thryft.Struct {
         }
 
         public Builder readAsStruct(final org.thryft.protocol.InputProtocol iprot, final com.google.common.base.Optional<UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
-            iprot.readStructBegin();
-            while (true) {
-                final org.thryft.protocol.FieldBegin ifield = iprot.readFieldBegin();
-                if (ifield.getType() == org.thryft.protocol.Type.STOP) {
-                    break;
-                }
-                switch (ifield.getName()) {
-                case "field": {
-                    field = iprot.readEnum(org.dressdiscover.api.services.object.ObjectSummarySortField.class);
-                    break;
-                }
-                case "order": {
-                    order = iprot.readEnum(org.dressdiscover.api.models.SortOrder.class);
-                    break;
-                }
-                default:
-                    if (unknownFieldCallback.isPresent()) {
-                        unknownFieldCallback.get().apply(ifield);
+            try {
+                iprot.readStructBegin();
+                while (true) {
+                    final org.thryft.protocol.FieldBegin ifield = iprot.readFieldBegin();
+                    if (ifield.getType() == org.thryft.protocol.Type.STOP) {
+                        break;
                     }
-                    break;
+                    switch (ifield.getName()) {
+                    case "field": {
+                        field = iprot.readEnum(org.dressdiscover.api.services.object.ObjectSummarySortField.class);
+                        break;
+                    }
+                    case "order": {
+                        order = iprot.readEnum(org.dressdiscover.api.models.SortOrder.class);
+                        break;
+                    }
+                    default:
+                        if (unknownFieldCallback.isPresent()) {
+                            unknownFieldCallback.get().apply(ifield);
+                        }
+                        break;
+                    }
+                    iprot.readFieldEnd();
                 }
-                iprot.readFieldEnd();
+                iprot.readStructEnd();
+            } catch (final RuntimeException e) {
+                throw new IllegalStateException(e);
             }
-            iprot.readStructEnd();
             return this;
         }
 
@@ -485,10 +493,14 @@ public final class ObjectSummarySort implements org.thryft.Struct {
         org.dressdiscover.api.services.object.ObjectSummarySortField field = null;
         org.dressdiscover.api.models.SortOrder order = null;
 
-        iprot.readListBegin();
-        field = iprot.readEnum(org.dressdiscover.api.services.object.ObjectSummarySortField.class);
-        order = iprot.readEnum(org.dressdiscover.api.models.SortOrder.class);
-        iprot.readListEnd();
+        try {
+            iprot.readListBegin();
+            field = iprot.readEnum(org.dressdiscover.api.services.object.ObjectSummarySortField.class);
+            order = iprot.readEnum(org.dressdiscover.api.models.SortOrder.class);
+            iprot.readListEnd();
+        } catch (final RuntimeException e) {
+            throw new IllegalStateException(e);
+        }
         return new ObjectSummarySort(DefaultReadValidator.getInstance().validateField(field), DefaultReadValidator.getInstance().validateOrder(order), NopConstructionValidator.getInstance());
     }
 
@@ -500,30 +512,34 @@ public final class ObjectSummarySort implements org.thryft.Struct {
         org.dressdiscover.api.services.object.ObjectSummarySortField field = null;
         org.dressdiscover.api.models.SortOrder order = null;
 
-        iprot.readStructBegin();
-        while (true) {
-            final org.thryft.protocol.FieldBegin ifield = iprot.readFieldBegin();
-            if (ifield.getType() == org.thryft.protocol.Type.STOP) {
-                break;
-            }
-            switch (ifield.getName()) {
-            case "field": {
-                field = iprot.readEnum(org.dressdiscover.api.services.object.ObjectSummarySortField.class);
-                break;
-            }
-            case "order": {
-                order = iprot.readEnum(org.dressdiscover.api.models.SortOrder.class);
-                break;
-            }
-            default:
-                if (unknownFieldCallback.isPresent()) {
-                    unknownFieldCallback.get().apply(ifield);
+        try {
+            iprot.readStructBegin();
+            while (true) {
+                final org.thryft.protocol.FieldBegin ifield = iprot.readFieldBegin();
+                if (ifield.getType() == org.thryft.protocol.Type.STOP) {
+                    break;
                 }
-                break;
+                switch (ifield.getName()) {
+                case "field": {
+                    field = iprot.readEnum(org.dressdiscover.api.services.object.ObjectSummarySortField.class);
+                    break;
+                }
+                case "order": {
+                    order = iprot.readEnum(org.dressdiscover.api.models.SortOrder.class);
+                    break;
+                }
+                default:
+                    if (unknownFieldCallback.isPresent()) {
+                        unknownFieldCallback.get().apply(ifield);
+                    }
+                    break;
+                }
+                iprot.readFieldEnd();
             }
-            iprot.readFieldEnd();
+            iprot.readStructEnd();
+        } catch (final RuntimeException e) {
+            throw new IllegalStateException(e);
         }
-        iprot.readStructEnd();
         return new ObjectSummarySort(DefaultReadValidator.getInstance().validateField(field), DefaultReadValidator.getInstance().validateOrder(order), NopConstructionValidator.getInstance());
     }
 

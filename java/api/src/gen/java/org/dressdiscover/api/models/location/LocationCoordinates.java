@@ -44,10 +44,22 @@ public final class LocationCoordinates implements org.thryft.Struct {
         }
 
         public Builder readAsList(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
-            iprot.readListBegin();
-            latitude = iprot.readDecimal();
-            longitude = iprot.readDecimal();
-            iprot.readListEnd();
+            try {
+                iprot.readListBegin();
+                try {
+                    latitude = iprot.readDecimal();
+                } catch (final NumberFormatException e) {
+                     throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.LATITUDE, e);
+                }
+                try {
+                    longitude = iprot.readDecimal();
+                } catch (final NumberFormatException e) {
+                     throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.LONGITUDE, e);
+                }
+                iprot.readListEnd();
+            } catch (final RuntimeException e) {
+                throw new IllegalStateException(e);
+            }
             return this;
         }
 
@@ -56,34 +68,46 @@ public final class LocationCoordinates implements org.thryft.Struct {
         }
 
         public Builder readAsStruct(final org.thryft.protocol.InputProtocol iprot, final com.google.common.base.Optional<UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
-            iprot.readStructBegin();
-            while (true) {
-                final org.thryft.protocol.FieldBegin ifield = iprot.readFieldBegin();
-                if (ifield.getType() == org.thryft.protocol.Type.STOP) {
-                    break;
-                }
-                switch (ifield.getName()) {
-                case "latitude": {
-                    if (!ifield.hasId() || ifield.getId() == 1) {
-                        latitude = iprot.readDecimal();
+            try {
+                iprot.readStructBegin();
+                while (true) {
+                    final org.thryft.protocol.FieldBegin ifield = iprot.readFieldBegin();
+                    if (ifield.getType() == org.thryft.protocol.Type.STOP) {
+                        break;
                     }
-                    break;
-                }
-                case "longitude": {
-                    if (!ifield.hasId() || ifield.getId() == 2) {
-                        longitude = iprot.readDecimal();
+                    switch (ifield.getName()) {
+                    case "latitude": {
+                        if (!ifield.hasId() || ifield.getId() == 1) {
+                            try {
+                                latitude = iprot.readDecimal();
+                            } catch (final NumberFormatException e) {
+                                 throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.LATITUDE, e);
+                            }
+                        }
+                        break;
                     }
-                    break;
-                }
-                default:
-                    if (unknownFieldCallback.isPresent()) {
-                        unknownFieldCallback.get().apply(ifield);
+                    case "longitude": {
+                        if (!ifield.hasId() || ifield.getId() == 2) {
+                            try {
+                                longitude = iprot.readDecimal();
+                            } catch (final NumberFormatException e) {
+                                 throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.LONGITUDE, e);
+                            }
+                        }
+                        break;
                     }
-                    break;
+                    default:
+                        if (unknownFieldCallback.isPresent()) {
+                            unknownFieldCallback.get().apply(ifield);
+                        }
+                        break;
+                    }
+                    iprot.readFieldEnd();
                 }
-                iprot.readFieldEnd();
+                iprot.readStructEnd();
+            } catch (final RuntimeException e) {
+                throw new IllegalStateException(e);
             }
-            iprot.readStructEnd();
             return this;
         }
 
@@ -489,10 +513,22 @@ public final class LocationCoordinates implements org.thryft.Struct {
         java.math.BigDecimal latitude = null;
         java.math.BigDecimal longitude = null;
 
-        iprot.readListBegin();
-        latitude = iprot.readDecimal();
-        longitude = iprot.readDecimal();
-        iprot.readListEnd();
+        try {
+            iprot.readListBegin();
+            try {
+                latitude = iprot.readDecimal();
+            } catch (final NumberFormatException e) {
+                 throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.LATITUDE, e);
+            }
+            try {
+                longitude = iprot.readDecimal();
+            } catch (final NumberFormatException e) {
+                 throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.LONGITUDE, e);
+            }
+            iprot.readListEnd();
+        } catch (final RuntimeException e) {
+            throw new IllegalStateException(e);
+        }
         return new LocationCoordinates(DefaultReadValidator.getInstance().validateLatitude(latitude), DefaultReadValidator.getInstance().validateLongitude(longitude), NopConstructionValidator.getInstance());
     }
 
@@ -504,34 +540,46 @@ public final class LocationCoordinates implements org.thryft.Struct {
         java.math.BigDecimal latitude = null;
         java.math.BigDecimal longitude = null;
 
-        iprot.readStructBegin();
-        while (true) {
-            final org.thryft.protocol.FieldBegin ifield = iprot.readFieldBegin();
-            if (ifield.getType() == org.thryft.protocol.Type.STOP) {
-                break;
-            }
-            switch (ifield.getName()) {
-            case "latitude": {
-                if (!ifield.hasId() || ifield.getId() == 1) {
-                    latitude = iprot.readDecimal();
+        try {
+            iprot.readStructBegin();
+            while (true) {
+                final org.thryft.protocol.FieldBegin ifield = iprot.readFieldBegin();
+                if (ifield.getType() == org.thryft.protocol.Type.STOP) {
+                    break;
                 }
-                break;
-            }
-            case "longitude": {
-                if (!ifield.hasId() || ifield.getId() == 2) {
-                    longitude = iprot.readDecimal();
+                switch (ifield.getName()) {
+                case "latitude": {
+                    if (!ifield.hasId() || ifield.getId() == 1) {
+                        try {
+                            latitude = iprot.readDecimal();
+                        } catch (final NumberFormatException e) {
+                             throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.LATITUDE, e);
+                        }
+                    }
+                    break;
                 }
-                break;
-            }
-            default:
-                if (unknownFieldCallback.isPresent()) {
-                    unknownFieldCallback.get().apply(ifield);
+                case "longitude": {
+                    if (!ifield.hasId() || ifield.getId() == 2) {
+                        try {
+                            longitude = iprot.readDecimal();
+                        } catch (final NumberFormatException e) {
+                             throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.LONGITUDE, e);
+                        }
+                    }
+                    break;
                 }
-                break;
+                default:
+                    if (unknownFieldCallback.isPresent()) {
+                        unknownFieldCallback.get().apply(ifield);
+                    }
+                    break;
+                }
+                iprot.readFieldEnd();
             }
-            iprot.readFieldEnd();
+            iprot.readStructEnd();
+        } catch (final RuntimeException e) {
+            throw new IllegalStateException(e);
         }
-        iprot.readStructEnd();
         return new LocationCoordinates(DefaultReadValidator.getInstance().validateLatitude(latitude), DefaultReadValidator.getInstance().validateLongitude(longitude), NopConstructionValidator.getInstance());
     }
 

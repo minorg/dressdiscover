@@ -62,23 +62,27 @@ public final class Image implements org.thryft.Struct {
         }
 
         public Builder readAsList(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
-            final org.thryft.protocol.ListBegin __list = iprot.readListBegin();
-            if (__list.getSize() > 0) {
-                fullSize = com.google.common.base.Optional.of(org.dressdiscover.api.models.image.ImageVersion.readAsStruct(iprot));
+            try {
+                final org.thryft.protocol.ListBegin __list = iprot.readListBegin();
+                if (__list.getSize() > 0) {
+                    fullSize = com.google.common.base.Optional.of(org.dressdiscover.api.models.image.ImageVersion.readAsStruct(iprot));
+                }
+                if (__list.getSize() > 1) {
+                    original = com.google.common.base.Optional.of(org.dressdiscover.api.models.image.ImageVersion.readAsStruct(iprot));
+                }
+                if (__list.getSize() > 2) {
+                    rights = com.google.common.base.Optional.of(org.dressdiscover.api.models.rights.RightsSet.readAsStruct(iprot));
+                }
+                if (__list.getSize() > 3) {
+                    squareThumbnail = com.google.common.base.Optional.of(org.dressdiscover.api.models.image.ImageVersion.readAsStruct(iprot));
+                }
+                if (__list.getSize() > 4) {
+                    thumbnail = com.google.common.base.Optional.of(org.dressdiscover.api.models.image.ImageVersion.readAsStruct(iprot));
+                }
+                iprot.readListEnd();
+            } catch (final RuntimeException e) {
+                throw new IllegalStateException(e);
             }
-            if (__list.getSize() > 1) {
-                original = com.google.common.base.Optional.of(org.dressdiscover.api.models.image.ImageVersion.readAsStruct(iprot));
-            }
-            if (__list.getSize() > 2) {
-                rights = com.google.common.base.Optional.of(org.dressdiscover.api.models.rights.RightsSet.readAsStruct(iprot));
-            }
-            if (__list.getSize() > 3) {
-                squareThumbnail = com.google.common.base.Optional.of(org.dressdiscover.api.models.image.ImageVersion.readAsStruct(iprot));
-            }
-            if (__list.getSize() > 4) {
-                thumbnail = com.google.common.base.Optional.of(org.dressdiscover.api.models.image.ImageVersion.readAsStruct(iprot));
-            }
-            iprot.readListEnd();
             return this;
         }
 
@@ -87,52 +91,56 @@ public final class Image implements org.thryft.Struct {
         }
 
         public Builder readAsStruct(final org.thryft.protocol.InputProtocol iprot, final com.google.common.base.Optional<UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
-            iprot.readStructBegin();
-            while (true) {
-                final org.thryft.protocol.FieldBegin ifield = iprot.readFieldBegin();
-                if (ifield.getType() == org.thryft.protocol.Type.STOP) {
-                    break;
-                }
-                switch (ifield.getName()) {
-                case "full_size": {
-                    if (!ifield.hasId() || ifield.getId() == 2) {
-                        fullSize = com.google.common.base.Optional.of(org.dressdiscover.api.models.image.ImageVersion.readAsStruct(iprot));
+            try {
+                iprot.readStructBegin();
+                while (true) {
+                    final org.thryft.protocol.FieldBegin ifield = iprot.readFieldBegin();
+                    if (ifield.getType() == org.thryft.protocol.Type.STOP) {
+                        break;
                     }
-                    break;
-                }
-                case "original": {
-                    if (!ifield.hasId() || ifield.getId() == 3) {
-                        original = com.google.common.base.Optional.of(org.dressdiscover.api.models.image.ImageVersion.readAsStruct(iprot));
+                    switch (ifield.getName()) {
+                    case "full_size": {
+                        if (!ifield.hasId() || ifield.getId() == 2) {
+                            fullSize = com.google.common.base.Optional.of(org.dressdiscover.api.models.image.ImageVersion.readAsStruct(iprot));
+                        }
+                        break;
                     }
-                    break;
-                }
-                case "rights": {
-                    if (!ifield.hasId() || ifield.getId() == 6) {
-                        rights = com.google.common.base.Optional.of(org.dressdiscover.api.models.rights.RightsSet.readAsStruct(iprot));
+                    case "original": {
+                        if (!ifield.hasId() || ifield.getId() == 3) {
+                            original = com.google.common.base.Optional.of(org.dressdiscover.api.models.image.ImageVersion.readAsStruct(iprot));
+                        }
+                        break;
                     }
-                    break;
-                }
-                case "square_thumbnail": {
-                    if (!ifield.hasId() || ifield.getId() == 4) {
-                        squareThumbnail = com.google.common.base.Optional.of(org.dressdiscover.api.models.image.ImageVersion.readAsStruct(iprot));
+                    case "rights": {
+                        if (!ifield.hasId() || ifield.getId() == 6) {
+                            rights = com.google.common.base.Optional.of(org.dressdiscover.api.models.rights.RightsSet.readAsStruct(iprot));
+                        }
+                        break;
                     }
-                    break;
-                }
-                case "thumbnail": {
-                    if (!ifield.hasId() || ifield.getId() == 5) {
-                        thumbnail = com.google.common.base.Optional.of(org.dressdiscover.api.models.image.ImageVersion.readAsStruct(iprot));
+                    case "square_thumbnail": {
+                        if (!ifield.hasId() || ifield.getId() == 4) {
+                            squareThumbnail = com.google.common.base.Optional.of(org.dressdiscover.api.models.image.ImageVersion.readAsStruct(iprot));
+                        }
+                        break;
                     }
-                    break;
-                }
-                default:
-                    if (unknownFieldCallback.isPresent()) {
-                        unknownFieldCallback.get().apply(ifield);
+                    case "thumbnail": {
+                        if (!ifield.hasId() || ifield.getId() == 5) {
+                            thumbnail = com.google.common.base.Optional.of(org.dressdiscover.api.models.image.ImageVersion.readAsStruct(iprot));
+                        }
+                        break;
                     }
-                    break;
+                    default:
+                        if (unknownFieldCallback.isPresent()) {
+                            unknownFieldCallback.get().apply(ifield);
+                        }
+                        break;
+                    }
+                    iprot.readFieldEnd();
                 }
-                iprot.readFieldEnd();
+                iprot.readStructEnd();
+            } catch (final RuntimeException e) {
+                throw new IllegalStateException(e);
             }
-            iprot.readStructEnd();
             return this;
         }
 
@@ -792,23 +800,27 @@ public final class Image implements org.thryft.Struct {
         com.google.common.base.Optional<org.dressdiscover.api.models.image.ImageVersion> squareThumbnail = com.google.common.base.Optional.<org.dressdiscover.api.models.image.ImageVersion> absent();
         com.google.common.base.Optional<org.dressdiscover.api.models.image.ImageVersion> thumbnail = com.google.common.base.Optional.<org.dressdiscover.api.models.image.ImageVersion> absent();
 
-        final org.thryft.protocol.ListBegin __list = iprot.readListBegin();
-        if (__list.getSize() > 0) {
-            fullSize = com.google.common.base.Optional.of(org.dressdiscover.api.models.image.ImageVersion.readAsStruct(iprot));
+        try {
+            final org.thryft.protocol.ListBegin __list = iprot.readListBegin();
+            if (__list.getSize() > 0) {
+                fullSize = com.google.common.base.Optional.of(org.dressdiscover.api.models.image.ImageVersion.readAsStruct(iprot));
+            }
+            if (__list.getSize() > 1) {
+                original = com.google.common.base.Optional.of(org.dressdiscover.api.models.image.ImageVersion.readAsStruct(iprot));
+            }
+            if (__list.getSize() > 2) {
+                rights = com.google.common.base.Optional.of(org.dressdiscover.api.models.rights.RightsSet.readAsStruct(iprot));
+            }
+            if (__list.getSize() > 3) {
+                squareThumbnail = com.google.common.base.Optional.of(org.dressdiscover.api.models.image.ImageVersion.readAsStruct(iprot));
+            }
+            if (__list.getSize() > 4) {
+                thumbnail = com.google.common.base.Optional.of(org.dressdiscover.api.models.image.ImageVersion.readAsStruct(iprot));
+            }
+            iprot.readListEnd();
+        } catch (final RuntimeException e) {
+            throw new IllegalStateException(e);
         }
-        if (__list.getSize() > 1) {
-            original = com.google.common.base.Optional.of(org.dressdiscover.api.models.image.ImageVersion.readAsStruct(iprot));
-        }
-        if (__list.getSize() > 2) {
-            rights = com.google.common.base.Optional.of(org.dressdiscover.api.models.rights.RightsSet.readAsStruct(iprot));
-        }
-        if (__list.getSize() > 3) {
-            squareThumbnail = com.google.common.base.Optional.of(org.dressdiscover.api.models.image.ImageVersion.readAsStruct(iprot));
-        }
-        if (__list.getSize() > 4) {
-            thumbnail = com.google.common.base.Optional.of(org.dressdiscover.api.models.image.ImageVersion.readAsStruct(iprot));
-        }
-        iprot.readListEnd();
         return new Image(DefaultReadValidator.getInstance().validateFullSize(fullSize), DefaultReadValidator.getInstance().validateOriginal(original), DefaultReadValidator.getInstance().validateRights(rights), DefaultReadValidator.getInstance().validateSquareThumbnail(squareThumbnail), DefaultReadValidator.getInstance().validateThumbnail(thumbnail), NopConstructionValidator.getInstance());
     }
 
@@ -823,52 +835,56 @@ public final class Image implements org.thryft.Struct {
         com.google.common.base.Optional<org.dressdiscover.api.models.image.ImageVersion> squareThumbnail = com.google.common.base.Optional.<org.dressdiscover.api.models.image.ImageVersion> absent();
         com.google.common.base.Optional<org.dressdiscover.api.models.image.ImageVersion> thumbnail = com.google.common.base.Optional.<org.dressdiscover.api.models.image.ImageVersion> absent();
 
-        iprot.readStructBegin();
-        while (true) {
-            final org.thryft.protocol.FieldBegin ifield = iprot.readFieldBegin();
-            if (ifield.getType() == org.thryft.protocol.Type.STOP) {
-                break;
-            }
-            switch (ifield.getName()) {
-            case "full_size": {
-                if (!ifield.hasId() || ifield.getId() == 2) {
-                    fullSize = com.google.common.base.Optional.of(org.dressdiscover.api.models.image.ImageVersion.readAsStruct(iprot));
+        try {
+            iprot.readStructBegin();
+            while (true) {
+                final org.thryft.protocol.FieldBegin ifield = iprot.readFieldBegin();
+                if (ifield.getType() == org.thryft.protocol.Type.STOP) {
+                    break;
                 }
-                break;
-            }
-            case "original": {
-                if (!ifield.hasId() || ifield.getId() == 3) {
-                    original = com.google.common.base.Optional.of(org.dressdiscover.api.models.image.ImageVersion.readAsStruct(iprot));
+                switch (ifield.getName()) {
+                case "full_size": {
+                    if (!ifield.hasId() || ifield.getId() == 2) {
+                        fullSize = com.google.common.base.Optional.of(org.dressdiscover.api.models.image.ImageVersion.readAsStruct(iprot));
+                    }
+                    break;
                 }
-                break;
-            }
-            case "rights": {
-                if (!ifield.hasId() || ifield.getId() == 6) {
-                    rights = com.google.common.base.Optional.of(org.dressdiscover.api.models.rights.RightsSet.readAsStruct(iprot));
+                case "original": {
+                    if (!ifield.hasId() || ifield.getId() == 3) {
+                        original = com.google.common.base.Optional.of(org.dressdiscover.api.models.image.ImageVersion.readAsStruct(iprot));
+                    }
+                    break;
                 }
-                break;
-            }
-            case "square_thumbnail": {
-                if (!ifield.hasId() || ifield.getId() == 4) {
-                    squareThumbnail = com.google.common.base.Optional.of(org.dressdiscover.api.models.image.ImageVersion.readAsStruct(iprot));
+                case "rights": {
+                    if (!ifield.hasId() || ifield.getId() == 6) {
+                        rights = com.google.common.base.Optional.of(org.dressdiscover.api.models.rights.RightsSet.readAsStruct(iprot));
+                    }
+                    break;
                 }
-                break;
-            }
-            case "thumbnail": {
-                if (!ifield.hasId() || ifield.getId() == 5) {
-                    thumbnail = com.google.common.base.Optional.of(org.dressdiscover.api.models.image.ImageVersion.readAsStruct(iprot));
+                case "square_thumbnail": {
+                    if (!ifield.hasId() || ifield.getId() == 4) {
+                        squareThumbnail = com.google.common.base.Optional.of(org.dressdiscover.api.models.image.ImageVersion.readAsStruct(iprot));
+                    }
+                    break;
                 }
-                break;
-            }
-            default:
-                if (unknownFieldCallback.isPresent()) {
-                    unknownFieldCallback.get().apply(ifield);
+                case "thumbnail": {
+                    if (!ifield.hasId() || ifield.getId() == 5) {
+                        thumbnail = com.google.common.base.Optional.of(org.dressdiscover.api.models.image.ImageVersion.readAsStruct(iprot));
+                    }
+                    break;
                 }
-                break;
+                default:
+                    if (unknownFieldCallback.isPresent()) {
+                        unknownFieldCallback.get().apply(ifield);
+                    }
+                    break;
+                }
+                iprot.readFieldEnd();
             }
-            iprot.readFieldEnd();
+            iprot.readStructEnd();
+        } catch (final RuntimeException e) {
+            throw new IllegalStateException(e);
         }
-        iprot.readStructEnd();
         return new Image(DefaultReadValidator.getInstance().validateFullSize(fullSize), DefaultReadValidator.getInstance().validateOriginal(original), DefaultReadValidator.getInstance().validateRights(rights), DefaultReadValidator.getInstance().validateSquareThumbnail(squareThumbnail), DefaultReadValidator.getInstance().validateThumbnail(thumbnail), NopConstructionValidator.getInstance());
     }
 

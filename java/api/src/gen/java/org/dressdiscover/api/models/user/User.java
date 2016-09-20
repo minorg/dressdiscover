@@ -44,10 +44,18 @@ public final class User implements org.thryft.Struct, org.thryft.waf.api.models.
         }
 
         public Builder readAsList(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
-            iprot.readListBegin();
-            ctime = iprot.readDateTime();
-            emailAddress = new org.thryft.native_.EmailAddress(iprot.readString());
-            iprot.readListEnd();
+            try {
+                iprot.readListBegin();
+                try {
+                    ctime = iprot.readDateTime();
+                } catch (final IllegalArgumentException e) {
+                     throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.CTIME, e);
+                }
+                emailAddress = new org.thryft.native_.EmailAddress(iprot.readString());
+                iprot.readListEnd();
+            } catch (final RuntimeException e) {
+                throw new IllegalStateException(e);
+            }
             return this;
         }
 
@@ -56,30 +64,38 @@ public final class User implements org.thryft.Struct, org.thryft.waf.api.models.
         }
 
         public Builder readAsStruct(final org.thryft.protocol.InputProtocol iprot, final com.google.common.base.Optional<UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
-            iprot.readStructBegin();
-            while (true) {
-                final org.thryft.protocol.FieldBegin ifield = iprot.readFieldBegin();
-                if (ifield.getType() == org.thryft.protocol.Type.STOP) {
-                    break;
-                }
-                switch (ifield.getName()) {
-                case "ctime": {
-                    ctime = iprot.readDateTime();
-                    break;
-                }
-                case "email_address": {
-                    emailAddress = new org.thryft.native_.EmailAddress(iprot.readString());
-                    break;
-                }
-                default:
-                    if (unknownFieldCallback.isPresent()) {
-                        unknownFieldCallback.get().apply(ifield);
+            try {
+                iprot.readStructBegin();
+                while (true) {
+                    final org.thryft.protocol.FieldBegin ifield = iprot.readFieldBegin();
+                    if (ifield.getType() == org.thryft.protocol.Type.STOP) {
+                        break;
                     }
-                    break;
+                    switch (ifield.getName()) {
+                    case "ctime": {
+                        try {
+                            ctime = iprot.readDateTime();
+                        } catch (final IllegalArgumentException e) {
+                             throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.CTIME, e);
+                        }
+                        break;
+                    }
+                    case "email_address": {
+                        emailAddress = new org.thryft.native_.EmailAddress(iprot.readString());
+                        break;
+                    }
+                    default:
+                        if (unknownFieldCallback.isPresent()) {
+                            unknownFieldCallback.get().apply(ifield);
+                        }
+                        break;
+                    }
+                    iprot.readFieldEnd();
                 }
-                iprot.readFieldEnd();
+                iprot.readStructEnd();
+            } catch (final RuntimeException e) {
+                throw new IllegalStateException(e);
             }
-            iprot.readStructEnd();
             return this;
         }
 
@@ -485,10 +501,18 @@ public final class User implements org.thryft.Struct, org.thryft.waf.api.models.
         java.util.Date ctime = null;
         org.thryft.native_.EmailAddress emailAddress = null;
 
-        iprot.readListBegin();
-        ctime = iprot.readDateTime();
-        emailAddress = new org.thryft.native_.EmailAddress(iprot.readString());
-        iprot.readListEnd();
+        try {
+            iprot.readListBegin();
+            try {
+                ctime = iprot.readDateTime();
+            } catch (final IllegalArgumentException e) {
+                 throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.CTIME, e);
+            }
+            emailAddress = new org.thryft.native_.EmailAddress(iprot.readString());
+            iprot.readListEnd();
+        } catch (final RuntimeException e) {
+            throw new IllegalStateException(e);
+        }
         return new User(DefaultReadValidator.getInstance().validateCtime(ctime), DefaultReadValidator.getInstance().validateEmailAddress(emailAddress), NopConstructionValidator.getInstance());
     }
 
@@ -500,30 +524,38 @@ public final class User implements org.thryft.Struct, org.thryft.waf.api.models.
         java.util.Date ctime = null;
         org.thryft.native_.EmailAddress emailAddress = null;
 
-        iprot.readStructBegin();
-        while (true) {
-            final org.thryft.protocol.FieldBegin ifield = iprot.readFieldBegin();
-            if (ifield.getType() == org.thryft.protocol.Type.STOP) {
-                break;
-            }
-            switch (ifield.getName()) {
-            case "ctime": {
-                ctime = iprot.readDateTime();
-                break;
-            }
-            case "email_address": {
-                emailAddress = new org.thryft.native_.EmailAddress(iprot.readString());
-                break;
-            }
-            default:
-                if (unknownFieldCallback.isPresent()) {
-                    unknownFieldCallback.get().apply(ifield);
+        try {
+            iprot.readStructBegin();
+            while (true) {
+                final org.thryft.protocol.FieldBegin ifield = iprot.readFieldBegin();
+                if (ifield.getType() == org.thryft.protocol.Type.STOP) {
+                    break;
                 }
-                break;
+                switch (ifield.getName()) {
+                case "ctime": {
+                    try {
+                        ctime = iprot.readDateTime();
+                    } catch (final IllegalArgumentException e) {
+                         throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.CTIME, e);
+                    }
+                    break;
+                }
+                case "email_address": {
+                    emailAddress = new org.thryft.native_.EmailAddress(iprot.readString());
+                    break;
+                }
+                default:
+                    if (unknownFieldCallback.isPresent()) {
+                        unknownFieldCallback.get().apply(ifield);
+                    }
+                    break;
+                }
+                iprot.readFieldEnd();
             }
-            iprot.readFieldEnd();
+            iprot.readStructEnd();
+        } catch (final RuntimeException e) {
+            throw new IllegalStateException(e);
         }
-        iprot.readStructEnd();
         return new User(DefaultReadValidator.getInstance().validateCtime(ctime), DefaultReadValidator.getInstance().validateEmailAddress(emailAddress), NopConstructionValidator.getInstance());
     }
 

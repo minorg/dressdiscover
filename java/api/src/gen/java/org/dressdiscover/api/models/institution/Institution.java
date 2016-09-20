@@ -80,59 +80,63 @@ public final class Institution implements org.thryft.Struct, org.thryft.waf.api.
         }
 
         public Builder readAsList(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
-            final org.thryft.protocol.ListBegin __list = iprot.readListBegin();
-            title = iprot.readString();
-            if (__list.getSize() > 1) {
-                try {
-                    collectionStoreUri = com.google.common.base.Optional.of(org.thryft.native_.Uri.parse(iprot.readString()));
-                } catch (final java.lang.IllegalArgumentException e) {
+            try {
+                final org.thryft.protocol.ListBegin __list = iprot.readListBegin();
+                title = iprot.readString();
+                if (__list.getSize() > 1) {
+                    try {
+                        collectionStoreUri = com.google.common.base.Optional.of(org.thryft.native_.Uri.parse(iprot.readString()));
+                    } catch (final java.lang.IllegalArgumentException e) {
+                    }
                 }
-            }
-            if (__list.getSize() > 2) {
-                dataRights = com.google.common.base.Optional.of(org.dressdiscover.api.models.rights.RightsSet.readAsStruct(iprot));
-            }
-            if (__list.getSize() > 3) {
-                external = com.google.common.base.Optional.of(iprot.readBool());
-            }
-            if (__list.getSize() > 4) {
-                hidden = com.google.common.base.Optional.of(iprot.readBool());
-            }
-            if (__list.getSize() > 5) {
-                locations = com.google.common.base.Optional.of(org.dressdiscover.api.models.location.LocationSet.readAsStruct(iprot));
-            }
-            if (__list.getSize() > 6) {
-                try {
-                    storeParameters = com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableMap<String, String>>() {
-                        @Override
-                        public com.google.common.collect.ImmutableMap<String, String> apply(final org.thryft.protocol.InputProtocol iprot) {
-                            try {
-                                final org.thryft.protocol.MapBegin mapBegin = iprot.readMapBegin();
-                                final com.google.common.collect.ImmutableMap.Builder<String, String> map = com.google.common.collect.ImmutableMap.builder();
-                                for (int entryI = 0; entryI < mapBegin.getSize(); entryI++) {
-                                    final String key;
-                                    key = iprot.readString();
-                                    final String value;
-                                    value = iprot.readString();
-                                    map.put(key, value);
+                if (__list.getSize() > 2) {
+                    dataRights = com.google.common.base.Optional.of(org.dressdiscover.api.models.rights.RightsSet.readAsStruct(iprot));
+                }
+                if (__list.getSize() > 3) {
+                    external = com.google.common.base.Optional.of(iprot.readBool());
+                }
+                if (__list.getSize() > 4) {
+                    hidden = com.google.common.base.Optional.of(iprot.readBool());
+                }
+                if (__list.getSize() > 5) {
+                    locations = com.google.common.base.Optional.of(org.dressdiscover.api.models.location.LocationSet.readAsStruct(iprot));
+                }
+                if (__list.getSize() > 6) {
+                    try {
+                        storeParameters = com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableMap<String, String>>() {
+                            @Override
+                            public com.google.common.collect.ImmutableMap<String, String> apply(final org.thryft.protocol.InputProtocol iprot) {
+                                try {
+                                    final org.thryft.protocol.MapBegin mapBegin = iprot.readMapBegin();
+                                    final com.google.common.collect.ImmutableMap.Builder<String, String> map = com.google.common.collect.ImmutableMap.builder();
+                                    for (int entryI = 0; entryI < mapBegin.getSize(); entryI++) {
+                                        final String key;
+                                        key = iprot.readString();
+                                        final String value;
+                                        value = iprot.readString();
+                                        map.put(key, value);
+                                    }
+                                    iprot.readMapEnd();
+                                    return map.build();
+                                } catch (final org.thryft.protocol.InputProtocolException e) {
+                                    throw new org.thryft.protocol.UncheckedInputProtocolException(e);
                                 }
-                                iprot.readMapEnd();
-                                return map.build();
-                            } catch (final org.thryft.protocol.InputProtocolException e) {
-                                return com.google.common.collect.ImmutableMap.of();
                             }
-                        }
-                    }).apply(iprot));
-                } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
-                     throw e.getCause();
+                        }).apply(iprot));
+                    } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
+                         throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.STORE_PARAMETERS, e.getCause());
+                    }
                 }
-            }
-            if (__list.getSize() > 7) {
-                try {
-                    url = com.google.common.base.Optional.of(org.thryft.native_.Url.parse(iprot.readString()));
-                } catch (final java.lang.IllegalArgumentException e) {
+                if (__list.getSize() > 7) {
+                    try {
+                        url = com.google.common.base.Optional.of(org.thryft.native_.Url.parse(iprot.readString()));
+                    } catch (final java.lang.IllegalArgumentException e) {
+                    }
                 }
+                iprot.readListEnd();
+            } catch (final RuntimeException e) {
+                throw new IllegalStateException(e);
             }
-            iprot.readListEnd();
             return this;
         }
 
@@ -141,99 +145,103 @@ public final class Institution implements org.thryft.Struct, org.thryft.waf.api.
         }
 
         public Builder readAsStruct(final org.thryft.protocol.InputProtocol iprot, final com.google.common.base.Optional<UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
-            iprot.readStructBegin();
-            while (true) {
-                final org.thryft.protocol.FieldBegin ifield = iprot.readFieldBegin();
-                if (ifield.getType() == org.thryft.protocol.Type.STOP) {
-                    break;
-                }
-                switch (ifield.getName()) {
-                case "title": {
-                    if (!ifield.hasId() || ifield.getId() == 1) {
-                        title = iprot.readString();
+            try {
+                iprot.readStructBegin();
+                while (true) {
+                    final org.thryft.protocol.FieldBegin ifield = iprot.readFieldBegin();
+                    if (ifield.getType() == org.thryft.protocol.Type.STOP) {
+                        break;
                     }
-                    break;
-                }
-                case "collection_store_uri": {
-                    if (!ifield.hasId() || ifield.getId() == 9) {
-                        try {
-                            collectionStoreUri = com.google.common.base.Optional.of(org.thryft.native_.Uri.parse(iprot.readString()));
-                        } catch (final java.lang.IllegalArgumentException e) {
+                    switch (ifield.getName()) {
+                    case "title": {
+                        if (!ifield.hasId() || ifield.getId() == 1) {
+                            title = iprot.readString();
                         }
+                        break;
                     }
-                    break;
-                }
-                case "data_rights": {
-                    if (!ifield.hasId() || ifield.getId() == 5) {
-                        dataRights = com.google.common.base.Optional.of(org.dressdiscover.api.models.rights.RightsSet.readAsStruct(iprot));
+                    case "collection_store_uri": {
+                        if (!ifield.hasId() || ifield.getId() == 9) {
+                            try {
+                                collectionStoreUri = com.google.common.base.Optional.of(org.thryft.native_.Uri.parse(iprot.readString()));
+                            } catch (final java.lang.IllegalArgumentException e) {
+                            }
+                        }
+                        break;
                     }
-                    break;
-                }
-                case "external": {
-                    if (!ifield.hasId() || ifield.getId() == 7) {
-                        external = com.google.common.base.Optional.of(iprot.readBool());
+                    case "data_rights": {
+                        if (!ifield.hasId() || ifield.getId() == 5) {
+                            dataRights = com.google.common.base.Optional.of(org.dressdiscover.api.models.rights.RightsSet.readAsStruct(iprot));
+                        }
+                        break;
                     }
-                    break;
-                }
-                case "hidden": {
-                    if (!ifield.hasId() || ifield.getId() == 6) {
-                        hidden = com.google.common.base.Optional.of(iprot.readBool());
+                    case "external": {
+                        if (!ifield.hasId() || ifield.getId() == 7) {
+                            external = com.google.common.base.Optional.of(iprot.readBool());
+                        }
+                        break;
                     }
-                    break;
-                }
-                case "locations": {
-                    if (!ifield.hasId() || ifield.getId() == 8) {
-                        locations = com.google.common.base.Optional.of(org.dressdiscover.api.models.location.LocationSet.readAsStruct(iprot));
+                    case "hidden": {
+                        if (!ifield.hasId() || ifield.getId() == 6) {
+                            hidden = com.google.common.base.Optional.of(iprot.readBool());
+                        }
+                        break;
                     }
-                    break;
-                }
-                case "store_parameters": {
-                    if (!ifield.hasId() || ifield.getId() == 10) {
-                        try {
-                            storeParameters = com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableMap<String, String>>() {
-                                @Override
-                                public com.google.common.collect.ImmutableMap<String, String> apply(final org.thryft.protocol.InputProtocol iprot) {
-                                    try {
-                                        final org.thryft.protocol.MapBegin mapBegin = iprot.readMapBegin();
-                                        final com.google.common.collect.ImmutableMap.Builder<String, String> map = com.google.common.collect.ImmutableMap.builder();
-                                        for (int entryI = 0; entryI < mapBegin.getSize(); entryI++) {
-                                            final String key;
-                                            key = iprot.readString();
-                                            final String value;
-                                            value = iprot.readString();
-                                            map.put(key, value);
+                    case "locations": {
+                        if (!ifield.hasId() || ifield.getId() == 8) {
+                            locations = com.google.common.base.Optional.of(org.dressdiscover.api.models.location.LocationSet.readAsStruct(iprot));
+                        }
+                        break;
+                    }
+                    case "store_parameters": {
+                        if (!ifield.hasId() || ifield.getId() == 10) {
+                            try {
+                                storeParameters = com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableMap<String, String>>() {
+                                    @Override
+                                    public com.google.common.collect.ImmutableMap<String, String> apply(final org.thryft.protocol.InputProtocol iprot) {
+                                        try {
+                                            final org.thryft.protocol.MapBegin mapBegin = iprot.readMapBegin();
+                                            final com.google.common.collect.ImmutableMap.Builder<String, String> map = com.google.common.collect.ImmutableMap.builder();
+                                            for (int entryI = 0; entryI < mapBegin.getSize(); entryI++) {
+                                                final String key;
+                                                key = iprot.readString();
+                                                final String value;
+                                                value = iprot.readString();
+                                                map.put(key, value);
+                                            }
+                                            iprot.readMapEnd();
+                                            return map.build();
+                                        } catch (final org.thryft.protocol.InputProtocolException e) {
+                                            throw new org.thryft.protocol.UncheckedInputProtocolException(e);
                                         }
-                                        iprot.readMapEnd();
-                                        return map.build();
-                                    } catch (final org.thryft.protocol.InputProtocolException e) {
-                                        return com.google.common.collect.ImmutableMap.of();
                                     }
-                                }
-                            }).apply(iprot));
-                        } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
-                             throw e.getCause();
+                                }).apply(iprot));
+                            } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
+                                 throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.STORE_PARAMETERS, e.getCause());
+                            }
                         }
+                        break;
                     }
-                    break;
-                }
-                case "url": {
-                    if (!ifield.hasId() || ifield.getId() == 3) {
-                        try {
-                            url = com.google.common.base.Optional.of(org.thryft.native_.Url.parse(iprot.readString()));
-                        } catch (final java.lang.IllegalArgumentException e) {
+                    case "url": {
+                        if (!ifield.hasId() || ifield.getId() == 3) {
+                            try {
+                                url = com.google.common.base.Optional.of(org.thryft.native_.Url.parse(iprot.readString()));
+                            } catch (final java.lang.IllegalArgumentException e) {
+                            }
                         }
+                        break;
                     }
-                    break;
-                }
-                default:
-                    if (unknownFieldCallback.isPresent()) {
-                        unknownFieldCallback.get().apply(ifield);
+                    default:
+                        if (unknownFieldCallback.isPresent()) {
+                            unknownFieldCallback.get().apply(ifield);
+                        }
+                        break;
                     }
-                    break;
+                    iprot.readFieldEnd();
                 }
-                iprot.readFieldEnd();
+                iprot.readStructEnd();
+            } catch (final RuntimeException e) {
+                throw new IllegalStateException(e);
             }
-            iprot.readStructEnd();
             return this;
         }
 
@@ -1082,59 +1090,63 @@ public final class Institution implements org.thryft.Struct, org.thryft.waf.api.
         com.google.common.base.Optional<com.google.common.collect.ImmutableMap<String, String>> storeParameters = com.google.common.base.Optional.<com.google.common.collect.ImmutableMap<String, String>> absent();
         com.google.common.base.Optional<org.thryft.native_.Url> url = com.google.common.base.Optional.<org.thryft.native_.Url> absent();
 
-        final org.thryft.protocol.ListBegin __list = iprot.readListBegin();
-        title = iprot.readString();
-        if (__list.getSize() > 1) {
-            try {
-                collectionStoreUri = com.google.common.base.Optional.of(org.thryft.native_.Uri.parse(iprot.readString()));
-            } catch (final java.lang.IllegalArgumentException e) {
+        try {
+            final org.thryft.protocol.ListBegin __list = iprot.readListBegin();
+            title = iprot.readString();
+            if (__list.getSize() > 1) {
+                try {
+                    collectionStoreUri = com.google.common.base.Optional.of(org.thryft.native_.Uri.parse(iprot.readString()));
+                } catch (final java.lang.IllegalArgumentException e) {
+                }
             }
-        }
-        if (__list.getSize() > 2) {
-            dataRights = com.google.common.base.Optional.of(org.dressdiscover.api.models.rights.RightsSet.readAsStruct(iprot));
-        }
-        if (__list.getSize() > 3) {
-            external = com.google.common.base.Optional.of(iprot.readBool());
-        }
-        if (__list.getSize() > 4) {
-            hidden = com.google.common.base.Optional.of(iprot.readBool());
-        }
-        if (__list.getSize() > 5) {
-            locations = com.google.common.base.Optional.of(org.dressdiscover.api.models.location.LocationSet.readAsStruct(iprot));
-        }
-        if (__list.getSize() > 6) {
-            try {
-                storeParameters = com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableMap<String, String>>() {
-                    @Override
-                    public com.google.common.collect.ImmutableMap<String, String> apply(final org.thryft.protocol.InputProtocol iprot) {
-                        try {
-                            final org.thryft.protocol.MapBegin mapBegin = iprot.readMapBegin();
-                            final com.google.common.collect.ImmutableMap.Builder<String, String> map = com.google.common.collect.ImmutableMap.builder();
-                            for (int entryI = 0; entryI < mapBegin.getSize(); entryI++) {
-                                final String key;
-                                key = iprot.readString();
-                                final String value;
-                                value = iprot.readString();
-                                map.put(key, value);
+            if (__list.getSize() > 2) {
+                dataRights = com.google.common.base.Optional.of(org.dressdiscover.api.models.rights.RightsSet.readAsStruct(iprot));
+            }
+            if (__list.getSize() > 3) {
+                external = com.google.common.base.Optional.of(iprot.readBool());
+            }
+            if (__list.getSize() > 4) {
+                hidden = com.google.common.base.Optional.of(iprot.readBool());
+            }
+            if (__list.getSize() > 5) {
+                locations = com.google.common.base.Optional.of(org.dressdiscover.api.models.location.LocationSet.readAsStruct(iprot));
+            }
+            if (__list.getSize() > 6) {
+                try {
+                    storeParameters = com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableMap<String, String>>() {
+                        @Override
+                        public com.google.common.collect.ImmutableMap<String, String> apply(final org.thryft.protocol.InputProtocol iprot) {
+                            try {
+                                final org.thryft.protocol.MapBegin mapBegin = iprot.readMapBegin();
+                                final com.google.common.collect.ImmutableMap.Builder<String, String> map = com.google.common.collect.ImmutableMap.builder();
+                                for (int entryI = 0; entryI < mapBegin.getSize(); entryI++) {
+                                    final String key;
+                                    key = iprot.readString();
+                                    final String value;
+                                    value = iprot.readString();
+                                    map.put(key, value);
+                                }
+                                iprot.readMapEnd();
+                                return map.build();
+                            } catch (final org.thryft.protocol.InputProtocolException e) {
+                                throw new org.thryft.protocol.UncheckedInputProtocolException(e);
                             }
-                            iprot.readMapEnd();
-                            return map.build();
-                        } catch (final org.thryft.protocol.InputProtocolException e) {
-                            return com.google.common.collect.ImmutableMap.of();
                         }
-                    }
-                }).apply(iprot));
-            } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
-                 throw e.getCause();
+                    }).apply(iprot));
+                } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
+                     throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.STORE_PARAMETERS, e.getCause());
+                }
             }
-        }
-        if (__list.getSize() > 7) {
-            try {
-                url = com.google.common.base.Optional.of(org.thryft.native_.Url.parse(iprot.readString()));
-            } catch (final java.lang.IllegalArgumentException e) {
+            if (__list.getSize() > 7) {
+                try {
+                    url = com.google.common.base.Optional.of(org.thryft.native_.Url.parse(iprot.readString()));
+                } catch (final java.lang.IllegalArgumentException e) {
+                }
             }
+            iprot.readListEnd();
+        } catch (final RuntimeException e) {
+            throw new IllegalStateException(e);
         }
-        iprot.readListEnd();
         return new Institution(DefaultReadValidator.getInstance().validateTitle(title), DefaultReadValidator.getInstance().validateCollectionStoreUri(collectionStoreUri), DefaultReadValidator.getInstance().validateDataRights(dataRights), DefaultReadValidator.getInstance().validateExternal(external), DefaultReadValidator.getInstance().validateHidden(hidden), DefaultReadValidator.getInstance().validateLocations(locations), DefaultReadValidator.getInstance().validateStoreParameters(storeParameters), DefaultReadValidator.getInstance().validateUrl(url), NopConstructionValidator.getInstance());
     }
 
@@ -1152,99 +1164,103 @@ public final class Institution implements org.thryft.Struct, org.thryft.waf.api.
         com.google.common.base.Optional<com.google.common.collect.ImmutableMap<String, String>> storeParameters = com.google.common.base.Optional.<com.google.common.collect.ImmutableMap<String, String>> absent();
         com.google.common.base.Optional<org.thryft.native_.Url> url = com.google.common.base.Optional.<org.thryft.native_.Url> absent();
 
-        iprot.readStructBegin();
-        while (true) {
-            final org.thryft.protocol.FieldBegin ifield = iprot.readFieldBegin();
-            if (ifield.getType() == org.thryft.protocol.Type.STOP) {
-                break;
-            }
-            switch (ifield.getName()) {
-            case "title": {
-                if (!ifield.hasId() || ifield.getId() == 1) {
-                    title = iprot.readString();
+        try {
+            iprot.readStructBegin();
+            while (true) {
+                final org.thryft.protocol.FieldBegin ifield = iprot.readFieldBegin();
+                if (ifield.getType() == org.thryft.protocol.Type.STOP) {
+                    break;
                 }
-                break;
-            }
-            case "collection_store_uri": {
-                if (!ifield.hasId() || ifield.getId() == 9) {
-                    try {
-                        collectionStoreUri = com.google.common.base.Optional.of(org.thryft.native_.Uri.parse(iprot.readString()));
-                    } catch (final java.lang.IllegalArgumentException e) {
+                switch (ifield.getName()) {
+                case "title": {
+                    if (!ifield.hasId() || ifield.getId() == 1) {
+                        title = iprot.readString();
                     }
+                    break;
                 }
-                break;
-            }
-            case "data_rights": {
-                if (!ifield.hasId() || ifield.getId() == 5) {
-                    dataRights = com.google.common.base.Optional.of(org.dressdiscover.api.models.rights.RightsSet.readAsStruct(iprot));
+                case "collection_store_uri": {
+                    if (!ifield.hasId() || ifield.getId() == 9) {
+                        try {
+                            collectionStoreUri = com.google.common.base.Optional.of(org.thryft.native_.Uri.parse(iprot.readString()));
+                        } catch (final java.lang.IllegalArgumentException e) {
+                        }
+                    }
+                    break;
                 }
-                break;
-            }
-            case "external": {
-                if (!ifield.hasId() || ifield.getId() == 7) {
-                    external = com.google.common.base.Optional.of(iprot.readBool());
+                case "data_rights": {
+                    if (!ifield.hasId() || ifield.getId() == 5) {
+                        dataRights = com.google.common.base.Optional.of(org.dressdiscover.api.models.rights.RightsSet.readAsStruct(iprot));
+                    }
+                    break;
                 }
-                break;
-            }
-            case "hidden": {
-                if (!ifield.hasId() || ifield.getId() == 6) {
-                    hidden = com.google.common.base.Optional.of(iprot.readBool());
+                case "external": {
+                    if (!ifield.hasId() || ifield.getId() == 7) {
+                        external = com.google.common.base.Optional.of(iprot.readBool());
+                    }
+                    break;
                 }
-                break;
-            }
-            case "locations": {
-                if (!ifield.hasId() || ifield.getId() == 8) {
-                    locations = com.google.common.base.Optional.of(org.dressdiscover.api.models.location.LocationSet.readAsStruct(iprot));
+                case "hidden": {
+                    if (!ifield.hasId() || ifield.getId() == 6) {
+                        hidden = com.google.common.base.Optional.of(iprot.readBool());
+                    }
+                    break;
                 }
-                break;
-            }
-            case "store_parameters": {
-                if (!ifield.hasId() || ifield.getId() == 10) {
-                    try {
-                        storeParameters = com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableMap<String, String>>() {
-                            @Override
-                            public com.google.common.collect.ImmutableMap<String, String> apply(final org.thryft.protocol.InputProtocol iprot) {
-                                try {
-                                    final org.thryft.protocol.MapBegin mapBegin = iprot.readMapBegin();
-                                    final com.google.common.collect.ImmutableMap.Builder<String, String> map = com.google.common.collect.ImmutableMap.builder();
-                                    for (int entryI = 0; entryI < mapBegin.getSize(); entryI++) {
-                                        final String key;
-                                        key = iprot.readString();
-                                        final String value;
-                                        value = iprot.readString();
-                                        map.put(key, value);
+                case "locations": {
+                    if (!ifield.hasId() || ifield.getId() == 8) {
+                        locations = com.google.common.base.Optional.of(org.dressdiscover.api.models.location.LocationSet.readAsStruct(iprot));
+                    }
+                    break;
+                }
+                case "store_parameters": {
+                    if (!ifield.hasId() || ifield.getId() == 10) {
+                        try {
+                            storeParameters = com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableMap<String, String>>() {
+                                @Override
+                                public com.google.common.collect.ImmutableMap<String, String> apply(final org.thryft.protocol.InputProtocol iprot) {
+                                    try {
+                                        final org.thryft.protocol.MapBegin mapBegin = iprot.readMapBegin();
+                                        final com.google.common.collect.ImmutableMap.Builder<String, String> map = com.google.common.collect.ImmutableMap.builder();
+                                        for (int entryI = 0; entryI < mapBegin.getSize(); entryI++) {
+                                            final String key;
+                                            key = iprot.readString();
+                                            final String value;
+                                            value = iprot.readString();
+                                            map.put(key, value);
+                                        }
+                                        iprot.readMapEnd();
+                                        return map.build();
+                                    } catch (final org.thryft.protocol.InputProtocolException e) {
+                                        throw new org.thryft.protocol.UncheckedInputProtocolException(e);
                                     }
-                                    iprot.readMapEnd();
-                                    return map.build();
-                                } catch (final org.thryft.protocol.InputProtocolException e) {
-                                    return com.google.common.collect.ImmutableMap.of();
                                 }
-                            }
-                        }).apply(iprot));
-                    } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
-                         throw e.getCause();
+                            }).apply(iprot));
+                        } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
+                             throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.STORE_PARAMETERS, e.getCause());
+                        }
                     }
+                    break;
                 }
-                break;
-            }
-            case "url": {
-                if (!ifield.hasId() || ifield.getId() == 3) {
-                    try {
-                        url = com.google.common.base.Optional.of(org.thryft.native_.Url.parse(iprot.readString()));
-                    } catch (final java.lang.IllegalArgumentException e) {
+                case "url": {
+                    if (!ifield.hasId() || ifield.getId() == 3) {
+                        try {
+                            url = com.google.common.base.Optional.of(org.thryft.native_.Url.parse(iprot.readString()));
+                        } catch (final java.lang.IllegalArgumentException e) {
+                        }
                     }
+                    break;
                 }
-                break;
-            }
-            default:
-                if (unknownFieldCallback.isPresent()) {
-                    unknownFieldCallback.get().apply(ifield);
+                default:
+                    if (unknownFieldCallback.isPresent()) {
+                        unknownFieldCallback.get().apply(ifield);
+                    }
+                    break;
                 }
-                break;
+                iprot.readFieldEnd();
             }
-            iprot.readFieldEnd();
+            iprot.readStructEnd();
+        } catch (final RuntimeException e) {
+            throw new IllegalStateException(e);
         }
-        iprot.readStructEnd();
         return new Institution(DefaultReadValidator.getInstance().validateTitle(title), DefaultReadValidator.getInstance().validateCollectionStoreUri(collectionStoreUri), DefaultReadValidator.getInstance().validateDataRights(dataRights), DefaultReadValidator.getInstance().validateExternal(external), DefaultReadValidator.getInstance().validateHidden(hidden), DefaultReadValidator.getInstance().validateLocations(locations), DefaultReadValidator.getInstance().validateStoreParameters(storeParameters), DefaultReadValidator.getInstance().validateUrl(url), NopConstructionValidator.getInstance());
     }
 
