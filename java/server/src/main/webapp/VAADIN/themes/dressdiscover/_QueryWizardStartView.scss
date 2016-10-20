@@ -1,7 +1,0 @@
-@import "WizardStartView";
-
-@mixin QueryWizardStartView {
-    .query-wizard-start-view {
-        @include WizardStartView;
-    }
-}
