@@ -1,4 +1,4 @@
-namespace * dressdiscover.api.models.subject
+namespace * dressdiscover.vocabularies.vra_core.subject
 
 include "dressdiscover/api/models/subject/subject_term.thrift"
 

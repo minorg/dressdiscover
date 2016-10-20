@@ -1,4 +1,4 @@
-namespace * dressdiscover.api.models.measurements
+namespace * dressdiscover.vocabularies.vra_core.measurements
 
 include "dressdiscover/api/models/measurements/measurements_type.thrift"
 include "dressdiscover/api/models/measurements/measurements_unit.thrift"

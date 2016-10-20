@@ -1,4 +1,4 @@
-namespace * dressdiscover.api.models.work_type
+namespace * dressdiscover.vocabularies.vra_core.work_type
 
 include "dressdiscover/api/models/vocab_ref.thrift"
 

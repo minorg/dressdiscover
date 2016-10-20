@@ -1,4 +1,4 @@
-namespace * dressdiscover.api.models.closure
+namespace * dressdiscover.vocabularies.costume_core.closure
 
 include "dressdiscover/api/models/closure/closure_placement.thrift"
 include "dressdiscover/api/models/closure/closure_type.thrift"

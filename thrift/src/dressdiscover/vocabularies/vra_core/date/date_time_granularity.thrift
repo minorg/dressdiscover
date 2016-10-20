@@ -1,4 +1,4 @@
-namespace * dressdiscover.api.models.date
+namespace * dressdiscover.vocabularies.vra_core.date
 
 enum DateTimeGranularity {
 	DAY,

@@ -1,4 +1,4 @@
-namespace * dressdiscover.api.models.inscription
+namespace * dressdiscover.vocabularies.vra_core.inscription
 
 include "dressdiscover/api/models/inscription/inscription_author.thrift"
 include "dressdiscover/api/models/inscription/inscription_text.thrift"

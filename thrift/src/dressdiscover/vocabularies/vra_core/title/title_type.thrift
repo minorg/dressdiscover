@@ -1,4 +1,4 @@
-namespace * dressdiscover.api.models.title
+namespace * dressdiscover.vocabularies.vra_core.title
 
 enum TitleType {
 	BRAND_NAME,

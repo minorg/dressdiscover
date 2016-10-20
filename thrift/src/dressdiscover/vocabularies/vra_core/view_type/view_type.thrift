@@ -1,4 +1,4 @@
-namespace * dressdiscover.api.models.view_type
+namespace * dressdiscover.vocabularies.vra_core.view_type
 
 enum ViewType {
     ACTION,

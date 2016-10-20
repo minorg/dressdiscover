@@ -1,4 +1,4 @@
-namespace * dressdiscover.api.models.textref
+namespace * dressdiscover.vocabularies.vra_core.textref
 
 include "dressdiscover/api/models/textref/textref_refid_type.thrift"
 include "thryft/native/url.thrift"

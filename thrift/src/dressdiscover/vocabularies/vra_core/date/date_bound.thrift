@@ -1,4 +1,4 @@
-namespace * dressdiscover.api.models.date
+namespace * dressdiscover.vocabularies.vra_core.date
 
 include "dressdiscover/api/models/date/date_time_granularity.thrift"
 include "thryft/native/date_time.thrift"

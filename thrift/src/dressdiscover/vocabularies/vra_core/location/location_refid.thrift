@@ -1,4 +1,4 @@
-namespace * dressdiscover.api.models.location
+namespace * dressdiscover.vocabularies.vra_core.location
 
 include "dressdiscover/api/models/location/location_refid_type.thrift"
 

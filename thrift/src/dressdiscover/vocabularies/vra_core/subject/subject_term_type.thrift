@@ -1,4 +1,4 @@
-namespace * dressdiscover.api.models.subject
+namespace * dressdiscover.vocabularies.vra_core.subject
 
 // VRA Core 4.0 subject term type= attribute
 enum SubjectTermType {

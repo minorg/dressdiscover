@@ -1,4 +1,4 @@
-namespace * dressdiscover.api.models.rights
+namespace * dressdiscover.vocabularies.vra_core.rights
 
 include "dressdiscover/api/models/rights/rights_type.thrift"
 include "dressdiscover/api/models/vocab_ref.thrift"

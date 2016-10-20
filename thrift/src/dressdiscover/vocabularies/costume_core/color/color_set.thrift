@@ -1,4 +1,4 @@
-namespace * dressdiscover.api.models.color
+namespace * dressdiscover.vocabularies.costume_core.color
 
 include "dressdiscover/api/models/color/color.thrift"
 

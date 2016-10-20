@@ -4,6 +4,18 @@ import os.path
 root_src_dir_path = os.path.join(os.path.dirname(__file__), '..', 'src')
 include_src_dir_path = os.path.join(root_src_dir_path, 'dressdiscover', 'vocabularies')
 
+
+subdir_mappings = {}
+for root_dir_path, subdir_names, _ in os.walk(root_src_dir_path):
+    for subdir_name in subdir_names:
+        subdir_path = os.path.join(root_dir_path, subdir_name)
+        if not subdir_path.startswith(include_src_dir_path):
+            continue
+        root_dir_name = os.path.split(root_dir_path)[1]
+        if not root_dir_name in ('costume_core', 'vra_core'):
+            continue
+        subdir_mappings[subdir_name] = root_dir_name
+
 for root_dir_path, _, file_names in os.walk(root_src_dir_path):
     for file_name in file_names:
         file_path = os.path.join(root_dir_path, file_name)
@@ -20,6 +32,9 @@ for root_dir_path, _, file_names in os.walk(root_src_dir_path):
                 continue
             elif file_line.startswith('namespace java'):
                 continue
+            elif file_line.startswith('namespace * dressdiscover.api.models.'):
+                head, tail = file_line.rsplit('.', 1)
+                file_line = "namespace * dressdiscover.vocabularies.%s.%s" % (subdir_mappings[tail], tail)
             out_file_lines.append(file_line)
         if len(out_file_lines[-1]) > 0:
             out_file_lines.append("")

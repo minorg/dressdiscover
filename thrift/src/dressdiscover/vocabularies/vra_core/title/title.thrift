@@ -1,4 +1,4 @@
-namespace * dressdiscover.api.models.title
+namespace * dressdiscover.vocabularies.vra_core.title
 
 include "dressdiscover/api/models/title/title_type.thrift"
 

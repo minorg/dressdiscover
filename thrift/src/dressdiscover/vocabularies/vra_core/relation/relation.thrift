@@ -1,4 +1,4 @@
-namespace * dressdiscover.api.models.relation
+namespace * dressdiscover.vocabularies.vra_core.relation
 
 include "dressdiscover/api/models/object/object_id.thrift"
 include "dressdiscover/api/models/relation/relation_type.thrift"

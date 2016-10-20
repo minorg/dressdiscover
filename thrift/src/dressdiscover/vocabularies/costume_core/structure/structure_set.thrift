@@ -1,4 +1,4 @@
-namespace * dressdiscover.api.models.structure
+namespace * dressdiscover.vocabularies.costume_core.structure
 
 include "dressdiscover/api/models/structure/structure.thrift"
 

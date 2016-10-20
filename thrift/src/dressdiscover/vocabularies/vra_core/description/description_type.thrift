@@ -1,4 +1,4 @@
-namespace * dressdiscover.api.models.description
+namespace * dressdiscover.vocabularies.vra_core.description
 
 enum DescriptionType {
 	BIBLIOGRAPHY,

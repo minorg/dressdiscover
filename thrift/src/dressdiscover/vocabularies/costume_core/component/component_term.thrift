@@ -1,4 +1,4 @@
-namespace * dressdiscover.api.models.component
+namespace * dressdiscover.vocabularies.costume_core.component
 
 include "dressdiscover/api/models/vocab_ref.thrift"
 

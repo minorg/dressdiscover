@@ -1,4 +1,4 @@
-namespace * dressdiscover.api.models.material
+namespace * dressdiscover.vocabularies.vra_core.material
 
 include "dressdiscover/api/models/material/material.thrift"
 

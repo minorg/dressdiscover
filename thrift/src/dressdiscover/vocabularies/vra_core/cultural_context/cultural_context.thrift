@@ -1,4 +1,4 @@
-namespace * dressdiscover.api.models.cultural_context
+namespace * dressdiscover.vocabularies.vra_core.cultural_context
 
 include "dressdiscover/api/models/vocab_ref.thrift"
 

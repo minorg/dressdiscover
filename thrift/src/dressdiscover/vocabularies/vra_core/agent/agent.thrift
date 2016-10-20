@@ -1,4 +1,4 @@
-namespace * dressdiscover.api.models.agent
+namespace * dressdiscover.vocabularies.vra_core.agent
 
 include "dressdiscover/api/models/agent/agent_dates.thrift"
 include "dressdiscover/api/models/agent/agent_name.thrift"

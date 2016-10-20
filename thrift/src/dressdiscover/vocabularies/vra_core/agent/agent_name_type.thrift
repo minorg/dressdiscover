@@ -1,4 +1,4 @@
-namespace * dressdiscover.api.models.agent
+namespace * dressdiscover.vocabularies.vra_core.agent
 
 // VRA Core 4.0 agent.name.type values
 enum AgentNameType {

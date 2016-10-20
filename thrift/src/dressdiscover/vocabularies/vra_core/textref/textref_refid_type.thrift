@@ -1,4 +1,4 @@
-namespace * dressdiscover.api.models.textref
+namespace * dressdiscover.vocabularies.vra_core.textref
 
 // VRA Core 4.0 textref.refid.type attribute values
 enum TextrefRefidType {

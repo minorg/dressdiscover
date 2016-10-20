@@ -1,4 +1,4 @@
-namespace * dressdiscover.api.models.location
+namespace * dressdiscover.vocabularies.vra_core.location
 
 // VRA Core 4.0 location type= attribute
 enum LocationType {
