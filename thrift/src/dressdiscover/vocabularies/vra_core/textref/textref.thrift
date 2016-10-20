@@ -1,7 +1,7 @@
 namespace * dressdiscover.vocabularies.vra_core.textref
 
-include "dressdiscover/api/models/textref/textref_name.thrift"
-include "dressdiscover/api/models/textref/textref_refid.thrift"
+include "dressdiscover/vocabularies/vra_core/textref/textref_name.thrift"
+include "dressdiscover/vocabularies/vra_core/textref/textref_refid.thrift"
 
 // VRA Core 4.0 textref element
 // @java_implements org.dressdiscover.api.models.Element

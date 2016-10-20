@@ -1,6 +1,6 @@
 namespace * dressdiscover.vocabularies.costume_core.component
 
-include "dressdiscover/api/models/component/component.thrift"
+include "dressdiscover/vocabularies/costume_core/component/component.thrift"
 
 // Costume Core componentSet element
 // @java_implements org.dressdiscover.api.models.ElementSet<org.dressdiscover.api.models.component.Component>

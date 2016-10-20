@@ -1,6 +1,6 @@
 namespace * dressdiscover.vocabularies.vra_core.inscription
 
-include "dressdiscover/api/models/inscription/inscription_text_type.thrift"
+include "dressdiscover/vocabularies/vra_core/inscription/inscription_text_type.thrift"
 
 struct InscriptionText {
 	// @validation {"minLength": 1}

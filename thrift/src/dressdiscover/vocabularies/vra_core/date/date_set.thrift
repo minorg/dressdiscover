@@ -1,6 +1,6 @@
 namespace * dressdiscover.vocabularies.vra_core.date
 
-include "dressdiscover/api/models/date/date.thrift"
+include "dressdiscover/vocabularies/vra_core/date/date.thrift"
 
 // VRA Core 4.0 dateSet element
 // @java_implements org.dressdiscover.api.models.ElementSet<org.dressdiscover.api.models.date.Date>

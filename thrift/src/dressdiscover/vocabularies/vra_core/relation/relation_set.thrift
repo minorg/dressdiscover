@@ -1,6 +1,6 @@
 namespace * dressdiscover.vocabularies.vra_core.relation
 
-include "dressdiscover/api/models/relation/relation.thrift"
+include "dressdiscover/vocabularies/vra_core/relation/relation.thrift"
 
 // VRA Core 4.0 relationSet element
 // @java_implements org.dressdiscover.api.models.ElementSet<org.dressdiscover.api.models.relation.Relation>

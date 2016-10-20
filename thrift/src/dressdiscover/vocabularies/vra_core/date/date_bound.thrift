@@ -1,6 +1,6 @@
 namespace * dressdiscover.vocabularies.vra_core.date
 
-include "dressdiscover/api/models/date/date_time_granularity.thrift"
+include "dressdiscover/vocabularies/vra_core/date/date_time_granularity.thrift"
 include "thryft/native/date_time.thrift"
 
 // VRA Core 4.0 date earliestDate or latestDate subelement

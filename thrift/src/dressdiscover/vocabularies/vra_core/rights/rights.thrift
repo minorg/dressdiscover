@@ -1,6 +1,6 @@
 namespace * dressdiscover.vocabularies.vra_core.rights
 
-include "dressdiscover/api/models/rights/rights_type.thrift"
+include "dressdiscover/vocabularies/vra_core/rights/rights_type.thrift"
 include "dressdiscover/vocabularies/vra_core/vocab_ref.thrift"
 
 // VRA Core 4.0 rights element

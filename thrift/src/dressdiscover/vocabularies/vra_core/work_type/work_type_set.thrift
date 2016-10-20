@@ -1,6 +1,6 @@
 namespace * dressdiscover.vocabularies.vra_core.work_type
 
-include "dressdiscover/api/models/work_type/work_type.thrift"
+include "dressdiscover/vocabularies/vra_core/work_type/work_type.thrift"
 
 // VRA Core 4.0 workTypeSet element
 // @java_implements org.dressdiscover.api.models.ElementSet<org.dressdiscover.api.models.work_type.WorkType>

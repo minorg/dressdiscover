@@ -39,6 +39,12 @@ for root_dir_path, _, file_names in os.walk(root_src_dir_path):
                 file_line = 'include "dressdiscover/vocabularies/vra_core/vocab.thrift"'
             elif file_line == 'include "dressdiscover/api/models/vocab_ref.thrift"':
                 file_line = 'include "dressdiscover/vocabularies/vra_core/vocab_ref.thrift"'
+            elif file_line.startswith('include "dressdiscover/api/models/'):
+                split = file_line.split('/')
+                try:
+                    file_line = 'include "dressdiscover/vocabularies/%s/%s/%s' % (subdir_mappings[split[-2]], split[-2], split[-1])
+                except KeyError:
+                    print split
             out_file_lines.append(file_line)
         if len(out_file_lines[-1]) > 0:
             out_file_lines.append("")

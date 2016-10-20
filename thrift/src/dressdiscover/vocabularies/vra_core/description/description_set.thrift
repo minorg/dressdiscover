@@ -1,6 +1,6 @@
 namespace * dressdiscover.vocabularies.vra_core.description
 
-include "dressdiscover/api/models/description/description.thrift"
+include "dressdiscover/vocabularies/vra_core/description/description.thrift"
 
 // VRA Core 4.0 descriptionSet element
 // @java_implements org.dressdiscover.api.models.ElementSet<org.dressdiscover.api.models.description.Description>

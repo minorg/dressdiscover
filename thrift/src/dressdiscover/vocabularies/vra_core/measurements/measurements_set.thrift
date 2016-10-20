@@ -1,6 +1,6 @@
 namespace * dressdiscover.vocabularies.vra_core.measurements
 
-include "dressdiscover/api/models/measurements/measurements.thrift"
+include "dressdiscover/vocabularies/vra_core/measurements/measurements.thrift"
 
 // VRA Core 4.0 measurementsSet element
 // @java_implements org.dressdiscover.api.models.ElementSet<org.dressdiscover.api.models.measurements.Measurements>

@@ -1,6 +1,6 @@
 namespace * dressdiscover.vocabularies.vra_core.location
 
-include "dressdiscover/api/models/location/location.thrift"
+include "dressdiscover/vocabularies/vra_core/location/location.thrift"
 
 // VRA Core 4.0 locationSet element
 // @java_implements org.dressdiscover.api.models.ElementSet<org.dressdiscover.api.models.location.Location>

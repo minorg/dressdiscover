@@ -1,6 +1,6 @@
 namespace * dressdiscover.vocabularies.vra_core.cultural_context
 
-include "dressdiscover/api/models/cultural_context/cultural_context.thrift"
+include "dressdiscover/vocabularies/vra_core/cultural_context/cultural_context.thrift"
 
 // VRA Core 4.0 culturalContextSet element
 // @java_implements org.dressdiscover.api.models.ElementSet<org.dressdiscover.api.models.cultural_context.CulturalContext>

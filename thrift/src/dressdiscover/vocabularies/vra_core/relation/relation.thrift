@@ -1,7 +1,7 @@
 namespace * dressdiscover.vocabularies.vra_core.relation
 
 include "dressdiscover/api/models/object/object_id.thrift"
-include "dressdiscover/api/models/relation/relation_type.thrift"
+include "dressdiscover/vocabularies/vra_core/relation/relation_type.thrift"
 include "thryft/native/url.thrift"
 
 // VRA Core 4.0 relation element

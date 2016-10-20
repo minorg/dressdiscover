@@ -1,7 +1,7 @@
 namespace * dressdiscover.vocabularies.costume_core.structure
 
 include "dressdiscover/vocabularies/vra_core/vocab_ref.thrift"
-include "dressdiscover/api/models/structure/structure_type.thrift"
+include "dressdiscover/vocabularies/costume_core/structure/structure_type.thrift"
 
 // Costume Core structure* elements
 // @java_implements org.dressdiscover.api.models.Element

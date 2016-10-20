@@ -1,6 +1,6 @@
 namespace * dressdiscover.vocabularies.costume_core.color
 
-include "dressdiscover/api/models/color/color_type.thrift"
+include "dressdiscover/vocabularies/costume_core/color/color_type.thrift"
 include "dressdiscover/vocabularies/vra_core/vocab_ref.thrift"
 
 // Costume Core color element

@@ -1,7 +1,7 @@
 namespace * dressdiscover.vocabularies.costume_core.closure
 
-include "dressdiscover/api/models/closure/closure_placement.thrift"
-include "dressdiscover/api/models/closure/closure_type.thrift"
+include "dressdiscover/vocabularies/costume_core/closure/closure_placement.thrift"
+include "dressdiscover/vocabularies/costume_core/closure/closure_type.thrift"
 
 // Costume Core closure* elements
 // @java_implements org.dressdiscover.api.models.Element

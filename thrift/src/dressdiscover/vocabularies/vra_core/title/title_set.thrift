@@ -1,6 +1,6 @@
 namespace * dressdiscover.vocabularies.vra_core.title
 
-include "dressdiscover/api/models/title/title.thrift"
+include "dressdiscover/vocabularies/vra_core/title/title.thrift"
 
 // VRA Core 4.0 titleSet element
 // @java_implements org.dressdiscover.api.models.ElementSet<org.dressdiscover.api.models.title.Title>

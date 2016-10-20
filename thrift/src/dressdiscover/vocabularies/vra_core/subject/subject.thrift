@@ -1,6 +1,6 @@
 namespace * dressdiscover.vocabularies.vra_core.subject
 
-include "dressdiscover/api/models/subject/subject_term.thrift"
+include "dressdiscover/vocabularies/vra_core/subject/subject_term.thrift"
 
 // VRA Core 4.0 subject element
 // @java_implements org.dressdiscover.api.models.Element
