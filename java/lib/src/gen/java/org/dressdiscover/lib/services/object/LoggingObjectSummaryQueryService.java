@@ -33,7 +33,7 @@ public class LoggingObjectSummaryQueryService implements org.dressdiscover.api.s
             __logMessageStringBuilder.append(" -> {}");
             __logMessageArgs.add(__returnValue);
 
-            logger.debug(Markers.GET_OBJECT_SUMMARIES, __logMessageStringBuilder.toString(), __logMessageArgs.toArray());
+            logger.info(Markers.GET_OBJECT_SUMMARIES, __logMessageStringBuilder.toString(), __logMessageArgs.toArray());
 
             return __returnValue;
         } catch (final org.dressdiscover.api.services.IoException e) {

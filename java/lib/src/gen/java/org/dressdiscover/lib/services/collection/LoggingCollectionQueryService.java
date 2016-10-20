@@ -37,7 +37,7 @@ public class LoggingCollectionQueryService implements org.dressdiscover.api.serv
             __logMessageStringBuilder.append(" -> {}");
             __logMessageArgs.add(__returnValue);
 
-            logger.debug(Markers.GET_COLLECTION_BY_ID, __logMessageStringBuilder.toString(), __logMessageArgs.toArray());
+            logger.info(Markers.GET_COLLECTION_BY_ID, __logMessageStringBuilder.toString(), __logMessageArgs.toArray());
 
             return __returnValue;
         } catch (final org.dressdiscover.api.services.IoException e) {
@@ -73,7 +73,7 @@ public class LoggingCollectionQueryService implements org.dressdiscover.api.serv
             __logMessageStringBuilder.append(" -> {}");
             __logMessageArgs.add(__returnValue);
 
-            logger.debug(Markers.GET_COLLECTIONS_BY_IDS, __logMessageStringBuilder.toString(), __logMessageArgs.toArray());
+            logger.info(Markers.GET_COLLECTIONS_BY_IDS, __logMessageStringBuilder.toString(), __logMessageArgs.toArray());
 
             return __returnValue;
         } catch (final org.dressdiscover.api.services.IoException e) {
@@ -109,7 +109,7 @@ public class LoggingCollectionQueryService implements org.dressdiscover.api.serv
             __logMessageStringBuilder.append(" -> {}");
             __logMessageArgs.add(__returnValue);
 
-            logger.debug(Markers.GET_COLLECTIONS_BY_INSTITUTION_ID, __logMessageStringBuilder.toString(), __logMessageArgs.toArray());
+            logger.info(Markers.GET_COLLECTIONS_BY_INSTITUTION_ID, __logMessageStringBuilder.toString(), __logMessageArgs.toArray());
 
             return __returnValue;
         } catch (final org.dressdiscover.api.services.IoException e) {

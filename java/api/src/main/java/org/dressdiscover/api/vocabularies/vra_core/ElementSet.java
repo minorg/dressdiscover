@@ -1,4 +1,4 @@
-package org.dressdiscover.api.models;
+package org.dressdiscover.api.vocabularies.vra_core;
 
 import com.google.common.base.Optional;
 import com.google.common.collect.ImmutableList;

@@ -34,7 +34,7 @@ public class LoggingCollectionCommandService implements org.dressdiscover.api.se
         try {
             delegate.deleteCollectionById(id);
 
-            logger.debug(Markers.DELETE_COLLECTION_BY_ID, __logMessageStringBuilder.toString(), __logMessageArgs.toArray());
+            logger.info(Markers.DELETE_COLLECTION_BY_ID, __logMessageStringBuilder.toString(), __logMessageArgs.toArray());
         } catch (final org.dressdiscover.api.services.IoException e) {
             __logMessageStringBuilder.append(" -> {}");
             __logMessageArgs.add(e.toString());
@@ -65,7 +65,7 @@ public class LoggingCollectionCommandService implements org.dressdiscover.api.se
         try {
             delegate.deleteCollectionsByInstitutionId(institutionId);
 
-            logger.debug(Markers.DELETE_COLLECTIONS_BY_INSTITUTION_ID, __logMessageStringBuilder.toString(), __logMessageArgs.toArray());
+            logger.info(Markers.DELETE_COLLECTIONS_BY_INSTITUTION_ID, __logMessageStringBuilder.toString(), __logMessageArgs.toArray());
         } catch (final org.dressdiscover.api.services.IoException e) {
             __logMessageStringBuilder.append(" -> {}");
             __logMessageArgs.add(e.toString());
@@ -91,7 +91,7 @@ public class LoggingCollectionCommandService implements org.dressdiscover.api.se
         try {
             delegate.putCollection(id, collection);
 
-            logger.debug(Markers.PUT_COLLECTION, __logMessageStringBuilder.toString(), __logMessageArgs.toArray());
+            logger.info(Markers.PUT_COLLECTION, __logMessageStringBuilder.toString(), __logMessageArgs.toArray());
         } catch (final org.dressdiscover.api.services.IoException e) {
             __logMessageStringBuilder.append(" -> {}");
             __logMessageArgs.add(e.toString());

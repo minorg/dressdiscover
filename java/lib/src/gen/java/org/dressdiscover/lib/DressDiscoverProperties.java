@@ -1146,25 +1146,66 @@ public final class DressDiscoverProperties implements org.thryft.Struct, org.thr
     public boolean equals(final java.lang.Object otherObject) {
         if (otherObject == this) {
             return true;
-        } else if (!(otherObject instanceof DressDiscoverProperties)) {
+        }
+        if (!(otherObject instanceof DressDiscoverProperties)) {
             return false;
         }
 
         final DressDiscoverProperties other = (DressDiscoverProperties)otherObject;
-        return
-            getApiUrl().equals(other.getApiUrl()) &&
-            getCacheCollections() == other.getCacheCollections() &&
-            getCacheInstitutions() == other.getCacheInstitutions() &&
-            getElasticSearchHost().equals(other.getElasticSearchHost()) &&
-            getElasticSearchPort() == other.getElasticSearchPort() &&
-            getEnvironment().equals(other.getEnvironment()) &&
-            getGoogleApiKey().equals(other.getGoogleApiKey()) &&
-            getGoogleOauthKey().equals(other.getGoogleOauthKey()) &&
-            getGoogleOauthSecret().equals(other.getGoogleOauthSecret()) &&
-            getHomeDirectoryPath().equals(other.getHomeDirectoryPath()) &&
-            getObjectSummariesResultCacheSize() == other.getObjectSummariesResultCacheSize() &&
-            getObjectSummaryCacheSize() == other.getObjectSummaryCacheSize() &&
-            getResummarizeObjectsBulkRequestSize() == other.getResummarizeObjectsBulkRequestSize();
+
+        if (!(getApiUrl().equals(other.getApiUrl()))) {
+            return false;
+        }
+
+        if (!(getCacheCollections() == other.getCacheCollections())) {
+            return false;
+        }
+
+        if (!(getCacheInstitutions() == other.getCacheInstitutions())) {
+            return false;
+        }
+
+        if (!(getElasticSearchHost().equals(other.getElasticSearchHost()))) {
+            return false;
+        }
+
+        if (!(getElasticSearchPort() == other.getElasticSearchPort())) {
+            return false;
+        }
+
+        if (!(getEnvironment().equals(other.getEnvironment()))) {
+            return false;
+        }
+
+        if (!(getGoogleApiKey().equals(other.getGoogleApiKey()))) {
+            return false;
+        }
+
+        if (!(getGoogleOauthKey().equals(other.getGoogleOauthKey()))) {
+            return false;
+        }
+
+        if (!(getGoogleOauthSecret().equals(other.getGoogleOauthSecret()))) {
+            return false;
+        }
+
+        if (!(getHomeDirectoryPath().equals(other.getHomeDirectoryPath()))) {
+            return false;
+        }
+
+        if (!(getObjectSummariesResultCacheSize() == other.getObjectSummariesResultCacheSize())) {
+            return false;
+        }
+
+        if (!(getObjectSummaryCacheSize() == other.getObjectSummaryCacheSize())) {
+            return false;
+        }
+
+        if (!(getResummarizeObjectsBulkRequestSize() == other.getResummarizeObjectsBulkRequestSize())) {
+            return false;
+        }
+
+        return true;
     }
 
     @Override

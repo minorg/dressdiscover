@@ -37,7 +37,7 @@ public class LoggingInstitutionQueryService implements org.dressdiscover.api.ser
             __logMessageStringBuilder.append(" -> {}");
             __logMessageArgs.add(__returnValue);
 
-            logger.debug(Markers.GET_INSTITUTION_BY_ID, __logMessageStringBuilder.toString(), __logMessageArgs.toArray());
+            logger.info(Markers.GET_INSTITUTION_BY_ID, __logMessageStringBuilder.toString(), __logMessageArgs.toArray());
 
             return __returnValue;
         } catch (final org.dressdiscover.api.services.IoException e) {
@@ -66,7 +66,7 @@ public class LoggingInstitutionQueryService implements org.dressdiscover.api.ser
             __logMessageStringBuilder.append(" -> {}");
             __logMessageArgs.add(__returnValue);
 
-            logger.debug(Markers.GET_INSTITUTIONS, __logMessageStringBuilder.toString(), __logMessageArgs.toArray());
+            logger.info(Markers.GET_INSTITUTIONS, __logMessageStringBuilder.toString(), __logMessageArgs.toArray());
 
             return __returnValue;
         } catch (final org.dressdiscover.api.services.IoException e) {
@@ -92,7 +92,7 @@ public class LoggingInstitutionQueryService implements org.dressdiscover.api.ser
             __logMessageStringBuilder.append(" -> {}");
             __logMessageArgs.add(__returnValue);
 
-            logger.debug(Markers.GET_INSTITUTIONS_BY_IDS, __logMessageStringBuilder.toString(), __logMessageArgs.toArray());
+            logger.info(Markers.GET_INSTITUTIONS_BY_IDS, __logMessageStringBuilder.toString(), __logMessageArgs.toArray());
 
             return __returnValue;
         } catch (final org.dressdiscover.api.services.IoException e) {

@@ -40,7 +40,7 @@ public class LoggingUserCommandService implements org.dressdiscover.api.services
         try {
             delegate.deleteUserBookmarkById(id);
 
-            logger.debug(Markers.DELETE_USER_BOOKMARK_BY_ID, __logMessageStringBuilder.toString(), __logMessageArgs.toArray());
+            logger.info(Markers.DELETE_USER_BOOKMARK_BY_ID, __logMessageStringBuilder.toString(), __logMessageArgs.toArray());
         } catch (final org.dressdiscover.api.services.IoException e) {
             __logMessageStringBuilder.append(" -> {}");
             __logMessageArgs.add(e.toString());
@@ -66,7 +66,7 @@ public class LoggingUserCommandService implements org.dressdiscover.api.services
         try {
             delegate.deleteUserById(id);
 
-            logger.debug(Markers.DELETE_USER_BY_ID, __logMessageStringBuilder.toString(), __logMessageArgs.toArray());
+            logger.info(Markers.DELETE_USER_BY_ID, __logMessageStringBuilder.toString(), __logMessageArgs.toArray());
         } catch (final org.dressdiscover.api.services.IoException e) {
             __logMessageStringBuilder.append(" -> {}");
             __logMessageArgs.add(e.toString());
@@ -90,7 +90,7 @@ public class LoggingUserCommandService implements org.dressdiscover.api.services
         try {
             delegate.deleteUsers();
 
-            logger.debug(Markers.DELETE_USERS, __logMessageStringBuilder.toString(), __logMessageArgs.toArray());
+            logger.info(Markers.DELETE_USERS, __logMessageStringBuilder.toString(), __logMessageArgs.toArray());
         } catch (final org.dressdiscover.api.services.IoException e) {
             __logMessageStringBuilder.append(" -> {}");
             __logMessageArgs.add(e.toString());
@@ -114,7 +114,7 @@ public class LoggingUserCommandService implements org.dressdiscover.api.services
             __logMessageStringBuilder.append(" -> {}");
             __logMessageArgs.add(__returnValue);
 
-            logger.debug(Markers.POST_USER, __logMessageStringBuilder.toString(), __logMessageArgs.toArray());
+            logger.info(Markers.POST_USER, __logMessageStringBuilder.toString(), __logMessageArgs.toArray());
 
             return __returnValue;
         } catch (final org.dressdiscover.api.services.user.DuplicateUserException e) {
@@ -145,7 +145,7 @@ public class LoggingUserCommandService implements org.dressdiscover.api.services
             __logMessageStringBuilder.append(" -> {}");
             __logMessageArgs.add(__returnValue);
 
-            logger.debug(Markers.POST_USER_BOOKMARK, __logMessageStringBuilder.toString(), __logMessageArgs.toArray());
+            logger.info(Markers.POST_USER_BOOKMARK, __logMessageStringBuilder.toString(), __logMessageArgs.toArray());
 
             return __returnValue;
         } catch (final org.dressdiscover.api.services.user.DuplicateUserBookmarkException e) {
@@ -173,7 +173,7 @@ public class LoggingUserCommandService implements org.dressdiscover.api.services
         try {
             delegate.putUser(id, user);
 
-            logger.debug(Markers.PUT_USER, __logMessageStringBuilder.toString(), __logMessageArgs.toArray());
+            logger.info(Markers.PUT_USER, __logMessageStringBuilder.toString(), __logMessageArgs.toArray());
         } catch (final org.dressdiscover.api.services.IoException e) {
             __logMessageStringBuilder.append(" -> {}");
             __logMessageArgs.add(e.toString());

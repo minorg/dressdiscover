@@ -37,7 +37,7 @@ public class LoggingUserQueryService implements org.dressdiscover.api.services.u
             __logMessageStringBuilder.append(" -> {}");
             __logMessageArgs.add(__returnValue);
 
-            logger.debug(Markers.GET_USER_BOOKMARKS_BY_USER_ID, __logMessageStringBuilder.toString(), __logMessageArgs.toArray());
+            logger.info(Markers.GET_USER_BOOKMARKS_BY_USER_ID, __logMessageStringBuilder.toString(), __logMessageArgs.toArray());
 
             return __returnValue;
         } catch (final org.dressdiscover.api.services.IoException e) {
@@ -68,7 +68,7 @@ public class LoggingUserQueryService implements org.dressdiscover.api.services.u
             __logMessageStringBuilder.append(" -> {}");
             __logMessageArgs.add(__returnValue);
 
-            logger.debug(Markers.GET_USER_BY_EMAIL_ADDRESS, __logMessageStringBuilder.toString(), __logMessageArgs.toArray());
+            logger.info(Markers.GET_USER_BY_EMAIL_ADDRESS, __logMessageStringBuilder.toString(), __logMessageArgs.toArray());
 
             return __returnValue;
         } catch (final org.dressdiscover.api.services.IoException e) {
@@ -99,7 +99,7 @@ public class LoggingUserQueryService implements org.dressdiscover.api.services.u
             __logMessageStringBuilder.append(" -> {}");
             __logMessageArgs.add(__returnValue);
 
-            logger.debug(Markers.GET_USER_BY_ID, __logMessageStringBuilder.toString(), __logMessageArgs.toArray());
+            logger.info(Markers.GET_USER_BY_ID, __logMessageStringBuilder.toString(), __logMessageArgs.toArray());
 
             return __returnValue;
         } catch (final org.dressdiscover.api.services.IoException e) {

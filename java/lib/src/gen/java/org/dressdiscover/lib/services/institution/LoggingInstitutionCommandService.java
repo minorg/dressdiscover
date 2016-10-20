@@ -32,7 +32,7 @@ public class LoggingInstitutionCommandService implements org.dressdiscover.api.s
         try {
             delegate.deleteInstitutionById(id);
 
-            logger.debug(Markers.DELETE_INSTITUTION_BY_ID, __logMessageStringBuilder.toString(), __logMessageArgs.toArray());
+            logger.info(Markers.DELETE_INSTITUTION_BY_ID, __logMessageStringBuilder.toString(), __logMessageArgs.toArray());
         } catch (final org.dressdiscover.api.services.IoException e) {
             __logMessageStringBuilder.append(" -> {}");
             __logMessageArgs.add(e.toString());
@@ -58,7 +58,7 @@ public class LoggingInstitutionCommandService implements org.dressdiscover.api.s
         try {
             delegate.putInstitution(id, institution);
 
-            logger.debug(Markers.PUT_INSTITUTION, __logMessageStringBuilder.toString(), __logMessageArgs.toArray());
+            logger.info(Markers.PUT_INSTITUTION, __logMessageStringBuilder.toString(), __logMessageArgs.toArray());
         } catch (final org.dressdiscover.api.services.IoException e) {
             __logMessageStringBuilder.append(" -> {}");
             __logMessageArgs.add(e.toString());
