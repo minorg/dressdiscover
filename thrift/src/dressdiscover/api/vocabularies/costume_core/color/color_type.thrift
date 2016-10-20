@@ -1,4 +1,4 @@
-namespace * dressdiscover.vocabularies.costume_core.color
+namespace * dressdiscover.api.vocabularies.costume_core.color
 
 enum ColorType {
 	PRIMARY,

@@ -1,4 +1,4 @@
-namespace * dressdiscover.vocabularies.costume_core.gender
+namespace * dressdiscover.api.vocabularies.costume_core.gender
 
 enum Gender {
 	FEMALE,

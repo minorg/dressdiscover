@@ -1,6 +1,6 @@
-namespace * dressdiscover.vocabularies.vra_core.location
+namespace * dressdiscover.api.vocabularies.vra_core.location
 
-include "dressdiscover/vocabularies/vra_core/location/location_refid_type.thrift"
+include "dressdiscover/api/vocabularies/vra_core/location/location_refid_type.thrift"
 
 // VRA Core 4.0 location.refid subelement
 struct LocationRefid {

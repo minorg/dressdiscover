@@ -1,6 +1,6 @@
-namespace * dressdiscover.vocabularies.vra_core.textref
+namespace * dressdiscover.api.vocabularies.vra_core.textref
 
-include "dressdiscover/vocabularies/vra_core/textref/textref_refid_type.thrift"
+include "dressdiscover/api/vocabularies/vra_core/textref/textref_refid_type.thrift"
 include "thryft/native/url.thrift"
 
 // VRA Core 4.0 textref.refid subelement

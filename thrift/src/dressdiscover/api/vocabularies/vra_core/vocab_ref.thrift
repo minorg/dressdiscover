@@ -1,6 +1,6 @@
 namespace * dressdiscover.api.models
 
-include "dressdiscover/vocabularies/vra_core/vocab.thrift"
+include "dressdiscover/api/vocabularies/vra_core/vocab.thrift"
 include "thryft/native/uri.thrift"
 
 struct VocabRef {

@@ -1,7 +1,7 @@
-namespace * dressdiscover.vocabularies.vra_core.measurements
+namespace * dressdiscover.api.vocabularies.vra_core.measurements
 
-include "dressdiscover/vocabularies/vra_core/measurements/measurements_type.thrift"
-include "dressdiscover/vocabularies/vra_core/measurements/measurements_unit.thrift"
+include "dressdiscover/api/vocabularies/vra_core/measurements/measurements_type.thrift"
+include "dressdiscover/api/vocabularies/vra_core/measurements/measurements_unit.thrift"
 
 // VRA Core 4.0 measurements element
 // @java_implements org.dressdiscover.api.models.Element

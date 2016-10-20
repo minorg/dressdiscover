@@ -1,6 +1,6 @@
-namespace * dressdiscover.vocabularies.vra_core.inscription
+namespace * dressdiscover.api.vocabularies.vra_core.inscription
 
-include "dressdiscover/vocabularies/vra_core/inscription/inscription.thrift"
+include "dressdiscover/api/vocabularies/vra_core/inscription/inscription.thrift"
 
 // VRA Core 4.0 inscriptionSet element
 // @java_implements org.dressdiscover.api.models.ElementSet<org.dressdiscover.api.models.inscription.Inscription>

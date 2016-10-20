@@ -1,4 +1,4 @@
-namespace * dressdiscover.vocabularies.vra_core.rights
+namespace * dressdiscover.api.vocabularies.vra_core.rights
 
 // VRA Core 4.0 rights type= attribute
 enum RightsType {

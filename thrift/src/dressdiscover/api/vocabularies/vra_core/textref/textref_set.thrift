@@ -1,6 +1,6 @@
-namespace * dressdiscover.vocabularies.vra_core.textref
+namespace * dressdiscover.api.vocabularies.vra_core.textref
 
-include "dressdiscover/vocabularies/vra_core/textref/textref.thrift"
+include "dressdiscover/api/vocabularies/vra_core/textref/textref.thrift"
 
 // VRA Core 4.0 textrefSet element
 // @java_implements org.dressdiscover.api.models.ElementSet<org.dressdiscover.api.models.textref.Textref>

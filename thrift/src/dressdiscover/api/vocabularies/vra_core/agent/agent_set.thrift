@@ -1,6 +1,6 @@
-namespace * dressdiscover.vocabularies.vra_core.agent
+namespace * dressdiscover.api.vocabularies.vra_core.agent
 
-include "dressdiscover/vocabularies/vra_core/agent/agent.thrift"
+include "dressdiscover/api/vocabularies/vra_core/agent/agent.thrift"
 
 // VRA Core 4.0 agentSet element
 // @java_implements org.dressdiscover.api.models.ElementSet<org.dressdiscover.api.models.agent.Agent>

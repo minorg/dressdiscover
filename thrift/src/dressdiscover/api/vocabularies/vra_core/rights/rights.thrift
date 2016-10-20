@@ -1,7 +1,7 @@
-namespace * dressdiscover.vocabularies.vra_core.rights
+namespace * dressdiscover.api.vocabularies.vra_core.rights
 
-include "dressdiscover/vocabularies/vra_core/rights/rights_type.thrift"
-include "dressdiscover/vocabularies/vra_core/vocab_ref.thrift"
+include "dressdiscover/api/vocabularies/vra_core/rights/rights_type.thrift"
+include "dressdiscover/api/vocabularies/vra_core/vocab_ref.thrift"
 
 // VRA Core 4.0 rights element
 // @java_implements org.dressdiscover.api.models.Element

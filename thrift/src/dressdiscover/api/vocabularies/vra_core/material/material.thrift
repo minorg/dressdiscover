@@ -1,7 +1,7 @@
-namespace * dressdiscover.vocabularies.vra_core.material
+namespace * dressdiscover.api.vocabularies.vra_core.material
 
-include "dressdiscover/vocabularies/vra_core/vocab_ref.thrift"
-include "dressdiscover/vocabularies/vra_core/material/material_type.thrift"
+include "dressdiscover/api/vocabularies/vra_core/vocab_ref.thrift"
+include "dressdiscover/api/vocabularies/vra_core/material/material_type.thrift"
 
 // VRA Core 4.0 material element
 // @java_implements org.dressdiscover.api.models.Element

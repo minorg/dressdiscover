@@ -1,6 +1,6 @@
-namespace * dressdiscover.vocabularies.vra_core.technique
+namespace * dressdiscover.api.vocabularies.vra_core.technique
 
-include "dressdiscover/vocabularies/vra_core/vocab_ref.thrift"
+include "dressdiscover/api/vocabularies/vra_core/vocab_ref.thrift"
 
 // VRA Core 4.0 technique element
 // @java_implements org.dressdiscover.api.models.Element

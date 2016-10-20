@@ -1,4 +1,4 @@
-namespace * dressdiscover.vocabularies.vra_core.location
+namespace * dressdiscover.api.vocabularies.vra_core.location
 
 include "thryft/native/decimal.thrift"
 

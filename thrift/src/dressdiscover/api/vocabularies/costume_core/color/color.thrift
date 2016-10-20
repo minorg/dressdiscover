@@ -1,7 +1,7 @@
-namespace * dressdiscover.vocabularies.costume_core.color
+namespace * dressdiscover.api.vocabularies.costume_core.color
 
-include "dressdiscover/vocabularies/costume_core/color/color_type.thrift"
-include "dressdiscover/vocabularies/vra_core/vocab_ref.thrift"
+include "dressdiscover/api/vocabularies/costume_core/color/color_type.thrift"
+include "dressdiscover/api/vocabularies/vra_core/vocab_ref.thrift"
 
 // Costume Core color element
 // @java_implements org.dressdiscover.api.models.Element

@@ -1,6 +1,6 @@
-namespace * dressdiscover.vocabularies.vra_core.inscription
+namespace * dressdiscover.api.vocabularies.vra_core.inscription
 
-include "dressdiscover/vocabularies/vra_core/vocab_ref.thrift"
+include "dressdiscover/api/vocabularies/vra_core/vocab_ref.thrift"
 
 struct InscriptionAuthor {
 	// @validation {"minLength": 1}

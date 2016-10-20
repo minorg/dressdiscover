@@ -1,6 +1,6 @@
-namespace * dressdiscover.vocabularies.vra_core.agent
+namespace * dressdiscover.api.vocabularies.vra_core.agent
 
-include "dressdiscover/vocabularies/vra_core/vocab_ref.thrift"
+include "dressdiscover/api/vocabularies/vra_core/vocab_ref.thrift"
 
 // VRA Core 4.0 agent role= attribute
 struct AgentRole {

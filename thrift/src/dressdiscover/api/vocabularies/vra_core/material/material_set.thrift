@@ -1,6 +1,6 @@
-namespace * dressdiscover.vocabularies.vra_core.material
+namespace * dressdiscover.api.vocabularies.vra_core.material
 
-include "dressdiscover/vocabularies/vra_core/material/material.thrift"
+include "dressdiscover/api/vocabularies/vra_core/material/material.thrift"
 
 // VRA Core 4.0 materialSet element
 // @java_implements org.dressdiscover.api.models.ElementSet<org.dressdiscover.api.models.material.Material>

@@ -1,6 +1,6 @@
-namespace * dressdiscover.vocabularies.costume_core.color
+namespace * dressdiscover.api.vocabularies.costume_core.color
 
-include "dressdiscover/vocabularies/costume_core/color/color.thrift"
+include "dressdiscover/api/vocabularies/costume_core/color/color.thrift"
 
 // Costume Core colorSet element
 // @java_implements org.dressdiscover.api.models.ElementSet<org.dressdiscover.api.models.color.Color>

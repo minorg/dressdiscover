@@ -1,4 +1,4 @@
-namespace * dressdiscover.vocabularies.vra_core.textref
+namespace * dressdiscover.api.vocabularies.vra_core.textref
 
 // VRA Core 4.0 textref.name.type attribute values
 enum TextrefNameType {

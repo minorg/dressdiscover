@@ -1,6 +1,6 @@
-namespace * dressdiscover.vocabularies.vra_core.textref
+namespace * dressdiscover.api.vocabularies.vra_core.textref
 
-include "dressdiscover/vocabularies/vra_core/textref/textref_name_type.thrift"
+include "dressdiscover/api/vocabularies/vra_core/textref/textref_name_type.thrift"
 
 // VRA Core 4.0 textref.name subelement
 struct TextrefName {

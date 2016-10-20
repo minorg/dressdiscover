@@ -1,7 +1,7 @@
-namespace * dressdiscover.vocabularies.vra_core.date
+namespace * dressdiscover.api.vocabularies.vra_core.date
 
-include "dressdiscover/vocabularies/vra_core/date/date_bound.thrift"
-include "dressdiscover/vocabularies/vra_core/date/date_type.thrift"
+include "dressdiscover/api/vocabularies/vra_core/date/date_bound.thrift"
+include "dressdiscover/api/vocabularies/vra_core/date/date_type.thrift"
 include "thryft/native/url.thrift"
 
 // VRA Core 4.0 date element

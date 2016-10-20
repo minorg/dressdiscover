@@ -1,4 +1,4 @@
-namespace * dressdiscover.vocabularies.costume_core.condition
+namespace * dressdiscover.api.vocabularies.costume_core.condition
 
 enum Condition {
 	EXCELLENT,

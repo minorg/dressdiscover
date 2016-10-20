@@ -1,9 +1,9 @@
-namespace * dressdiscover.vocabularies.vra_core.location
+namespace * dressdiscover.api.vocabularies.vra_core.location
 
-include "dressdiscover/vocabularies/vra_core/location/location_coordinates.thrift"
-include "dressdiscover/vocabularies/vra_core/location/location_name.thrift"
-include "dressdiscover/vocabularies/vra_core/location/location_refid.thrift"
-include "dressdiscover/vocabularies/vra_core/location/location_type.thrift"
+include "dressdiscover/api/vocabularies/vra_core/location/location_coordinates.thrift"
+include "dressdiscover/api/vocabularies/vra_core/location/location_name.thrift"
+include "dressdiscover/api/vocabularies/vra_core/location/location_refid.thrift"
+include "dressdiscover/api/vocabularies/vra_core/location/location_type.thrift"
 
 // VRA Core 4.0 location element
 // @java_implements org.dressdiscover.api.models.Element

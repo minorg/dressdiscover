@@ -1,4 +1,4 @@
-namespace * dressdiscover.vocabularies.vra_core.relation
+namespace * dressdiscover.api.vocabularies.vra_core.relation
 
 // VRA Core 4.0 relation type= attribute
 enum RelationType {
