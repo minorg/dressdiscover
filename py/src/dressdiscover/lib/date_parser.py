@@ -1,7 +1,7 @@
 from datetime import datetime
-from java.util import Date
 
-from org.dressdiscover.api.models.date import DateTimeGranularity
+from dressdiscover.api.vocabularies.vra_core.date.date import Date
+from dressdiscover.api.vocabularies.vra_core.date.date_time_granularity import DateTimeGranularity
 
 
 try:
