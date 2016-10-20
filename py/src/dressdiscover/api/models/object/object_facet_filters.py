@@ -276,6 +276,8 @@ class ObjectFacetFilters(object):
             if exclude_all is not None:
                 if not isinstance(exclude_all, bool):
                     raise TypeError("expected exclude_all to be a bool but it is a %s" % getattr(__builtin__, 'type')(exclude_all))
+                if exclude_all is not True:
+                    raise ValueError("expected exclude_all to be True, was %s" % exclude_all)
             self.__exclude_all = exclude_all
             return self
 
@@ -932,6 +934,8 @@ class ObjectFacetFilters(object):
         if exclude_all is not None:
             if not isinstance(exclude_all, bool):
                 raise TypeError("expected exclude_all to be a bool but it is a %s" % getattr(__builtin__, 'type')(exclude_all))
+            if exclude_all is not True:
+                raise ValueError("expected exclude_all to be True, was %s" % exclude_all)
         self.__exclude_all = exclude_all
 
         if exclude_categories is not None:

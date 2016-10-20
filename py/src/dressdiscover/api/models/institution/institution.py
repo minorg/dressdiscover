@@ -110,6 +110,8 @@ class Institution(object):
             if external is not None:
                 if not isinstance(external, bool):
                     raise TypeError("expected external to be a bool but it is a %s" % getattr(__builtin__, 'type')(external))
+                if external is not True:
+                    raise ValueError("expected external to be True, was %s" % external)
             self.__external = external
             return self
 
@@ -121,6 +123,8 @@ class Institution(object):
             if hidden is not None:
                 if not isinstance(hidden, bool):
                     raise TypeError("expected hidden to be a bool but it is a %s" % getattr(__builtin__, 'type')(hidden))
+                if hidden is not True:
+                    raise ValueError("expected hidden to be True, was %s" % hidden)
             self.__hidden = hidden
             return self
 
@@ -368,11 +372,15 @@ class Institution(object):
         if external is not None:
             if not isinstance(external, bool):
                 raise TypeError("expected external to be a bool but it is a %s" % getattr(__builtin__, 'type')(external))
+            if external is not True:
+                raise ValueError("expected external to be True, was %s" % external)
         self.__external = external
 
         if hidden is not None:
             if not isinstance(hidden, bool):
                 raise TypeError("expected hidden to be a bool but it is a %s" % getattr(__builtin__, 'type')(hidden))
+            if hidden is not True:
+                raise ValueError("expected hidden to be True, was %s" % hidden)
         self.__hidden = hidden
 
         if locations is not None:

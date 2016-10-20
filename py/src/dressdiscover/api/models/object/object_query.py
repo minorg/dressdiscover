@@ -139,6 +139,8 @@ class ObjectQuery(object):
             if include_hidden is not None:
                 if not isinstance(include_hidden, bool):
                     raise TypeError("expected include_hidden to be a bool but it is a %s" % getattr(__builtin__, 'type')(include_hidden))
+                if include_hidden is not True:
+                    raise ValueError("expected include_hidden to be True, was %s" % include_hidden)
             self.__include_hidden = include_hidden
             return self
 
@@ -438,6 +440,8 @@ class ObjectQuery(object):
         if include_hidden is not None:
             if not isinstance(include_hidden, bool):
                 raise TypeError("expected include_hidden to be a bool but it is a %s" % getattr(__builtin__, 'type')(include_hidden))
+            if include_hidden is not True:
+                raise ValueError("expected include_hidden to be True, was %s" % include_hidden)
         self.__include_hidden = include_hidden
 
         if institution_id is not None:

@@ -39,6 +39,8 @@ class Title(object):
             if pref is not None:
                 if not isinstance(pref, bool):
                     raise TypeError("expected pref to be a bool but it is a %s" % getattr(__builtin__, 'type')(pref))
+                if pref is not True:
+                    raise ValueError("expected pref to be True, was %s" % pref)
             self.__pref = pref
             return self
 
@@ -185,6 +187,8 @@ class Title(object):
         if pref is not None:
             if not isinstance(pref, bool):
                 raise TypeError("expected pref to be a bool but it is a %s" % getattr(__builtin__, 'type')(pref))
+            if pref is not True:
+                raise ValueError("expected pref to be True, was %s" % pref)
         self.__pref = pref
 
     def __eq__(self, other):

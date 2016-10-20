@@ -62,6 +62,8 @@ class GetObjectSummariesOptions(object):
             if include_facets is not None:
                 if not isinstance(include_facets, bool):
                     raise TypeError("expected include_facets to be a bool but it is a %s" % getattr(__builtin__, 'type')(include_facets))
+                if include_facets is not True:
+                    raise ValueError("expected include_facets to be True, was %s" % include_facets)
             self.__include_facets = include_facets
             return self
 
@@ -211,6 +213,8 @@ class GetObjectSummariesOptions(object):
         if include_facets is not None:
             if not isinstance(include_facets, bool):
                 raise TypeError("expected include_facets to be a bool but it is a %s" % getattr(__builtin__, 'type')(include_facets))
+            if include_facets is not True:
+                raise ValueError("expected include_facets to be True, was %s" % include_facets)
         self.__include_facets = include_facets
 
         if size is not None:

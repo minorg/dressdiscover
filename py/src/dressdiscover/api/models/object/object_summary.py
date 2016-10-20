@@ -297,6 +297,8 @@ class ObjectSummary(object):
             if hidden is not None:
                 if not isinstance(hidden, bool):
                     raise TypeError("expected hidden to be a bool but it is a %s" % getattr(__builtin__, 'type')(hidden))
+                if hidden is not True:
+                    raise ValueError("expected hidden to be True, was %s" % hidden)
             self.__hidden = hidden
             return self
 
@@ -879,6 +881,8 @@ class ObjectSummary(object):
         if hidden is not None:
             if not isinstance(hidden, bool):
                 raise TypeError("expected hidden to be a bool but it is a %s" % getattr(__builtin__, 'type')(hidden))
+            if hidden is not True:
+                raise ValueError("expected hidden to be True, was %s" % hidden)
         self.__hidden = hidden
 
         if image is not None:
