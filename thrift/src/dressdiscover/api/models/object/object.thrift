@@ -1,14 +1,12 @@
-namespace bean_java org.dressdiscover.gui.models.object
-namespace java org.dressdiscover.api.models.object
 namespace * dressdiscover.api.models.object
 
 include "dressdiscover/api/models/collection/collection_id.thrift"
 include "dressdiscover/api/models/image/image.thrift"
 include "dressdiscover/api/models/institution/institution_id.thrift"
 include "dressdiscover/api/vocabularies/costume_core/closure/closure_set.thrift"
+include "dressdiscover/api/vocabularies/costume_core/color/color_set.thrift"
 include "dressdiscover/api/vocabularies/costume_core/component/component_set.thrift"
 include "dressdiscover/api/vocabularies/costume_core/condition/condition.thrift"
-include "dressdiscover/api/vocabularies/costume_core/color/color_set.thrift"
 include "dressdiscover/api/vocabularies/costume_core/gender/gender.thrift"
 include "dressdiscover/api/vocabularies/costume_core/structure/structure_set.thrift"
 include "dressdiscover/api/vocabularies/vra_core/agent/agent_set.thrift"

@@ -1,4 +1,3 @@
-namespace java org.dressdiscover.api.services.user
 namespace * dressdiscover.api.services.user
 
 include "dressdiscover/api/models/user/user_id.thrift"

@@ -1,5 +1,3 @@
-namespace bean_java org.dressdiscover.gui.models.image
-namespace java org.dressdiscover.api.models.image
 namespace * dressdiscover.api.models.image
 
 include "dressdiscover/api/models/image/image_version.thrift"

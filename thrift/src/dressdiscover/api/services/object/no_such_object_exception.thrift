@@ -1,4 +1,3 @@
-namespace java org.dressdiscover.api.services.object
 namespace * dressdiscover.api.services.object
 
 include "dressdiscover/api/models/object/object_id.thrift"

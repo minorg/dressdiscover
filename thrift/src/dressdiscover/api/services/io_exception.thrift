@@ -1,4 +1,3 @@
-namespace java org.dressdiscover.api.services
 namespace * dressdiscover.api.services
 
 exception IoException {

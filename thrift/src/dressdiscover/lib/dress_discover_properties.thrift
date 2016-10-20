@@ -1,4 +1,3 @@
-namespace java org.dressdiscover.lib
 namespace * dressdiscover.lib
 
 include "thryft/native/url.thrift"

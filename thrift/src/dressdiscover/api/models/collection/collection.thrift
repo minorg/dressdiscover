@@ -1,5 +1,3 @@
-namespace bean_java org.dressdiscover.gui.models.collection
-namespace java org.dressdiscover.api.models.collection
 namespace * dressdiscover.api.models.collection
 
 include "dressdiscover/api/models/institution/institution_id.thrift"
