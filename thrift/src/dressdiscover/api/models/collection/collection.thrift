@@ -3,8 +3,8 @@ namespace java org.dressdiscover.api.models.collection
 namespace * dressdiscover.api.models.collection
 
 include "dressdiscover/api/models/institution/institution_id.thrift"
-include "dressdiscover/api/models/location/location_set.thrift"
-include "dressdiscover/api/models/work_type/work_type_set.thrift"
+include "dressdiscover/api/vocabularies/vra_core/location/location_set.thrift"
+include "dressdiscover/api/vocabularies/vra_core/work_type/work_type_set.thrift"
 include "thryft/native/uri.thrift"
 include "thryft/native/url.thrift"
 

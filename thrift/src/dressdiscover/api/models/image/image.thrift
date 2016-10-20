@@ -3,7 +3,7 @@ namespace java org.dressdiscover.api.models.image
 namespace * dressdiscover.api.models.image
 
 include "dressdiscover/api/models/image/image_version.thrift"
-include "dressdiscover/api/models/rights/rights_set.thrift"
+include "dressdiscover/api/vocabularies/vra_core/rights/rights_set.thrift"
 
 struct Image {
 	2: optional image_version.ImageVersion full_size;

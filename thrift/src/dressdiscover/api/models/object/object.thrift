@@ -2,32 +2,31 @@ namespace bean_java org.dressdiscover.gui.models.object
 namespace java org.dressdiscover.api.models.object
 namespace * dressdiscover.api.models.object
 
-include "dressdiscover/api/models/agent/agent_set.thrift"
-include "dressdiscover/api/models/closure/closure_set.thrift"
 include "dressdiscover/api/models/collection/collection_id.thrift"
-include "dressdiscover/api/models/component/component_set.thrift"
-include "dressdiscover/api/models/condition/condition.thrift"
-include "dressdiscover/api/models/color/color_set.thrift"
-include "dressdiscover/api/models/cultural_context/cultural_context_set.thrift"
-include "dressdiscover/api/models/date/date_set.thrift"
-include "dressdiscover/api/models/description/description_set.thrift"
-include "dressdiscover/api/models/gender/gender.thrift"
 include "dressdiscover/api/models/image/image.thrift"
-include "dressdiscover/api/models/inscription/inscription_set.thrift"
 include "dressdiscover/api/models/institution/institution_id.thrift"
-include "dressdiscover/api/models/location/location_set.thrift"
-include "dressdiscover/api/models/material/material_set.thrift"
-include "dressdiscover/api/models/measurements/measurements_set.thrift"
-include "dressdiscover/api/models/relation/relation_set.thrift"
-include "dressdiscover/api/models/rights/rights_set.thrift"
-include "dressdiscover/api/models/structure/structure_set.thrift"
-include "dressdiscover/api/models/subject/subject_set.thrift"
-include "dressdiscover/api/models/technique/technique_set.thrift"
-include "dressdiscover/api/models/textref/textref_set.thrift"
-include "dressdiscover/api/models/title/title_set.thrift"
-include "dressdiscover/api/models/view_type/view_type.thrift"
-include "dressdiscover/api/models/work_type/work_type_set.thrift"
-include "thryft/native/u32.thrift"
+include "dressdiscover/api/vocabularies/costume_core/closure/closure_set.thrift"
+include "dressdiscover/api/vocabularies/costume_core/component/component_set.thrift"
+include "dressdiscover/api/vocabularies/costume_core/condition/condition.thrift"
+include "dressdiscover/api/vocabularies/costume_core/color/color_set.thrift"
+include "dressdiscover/api/vocabularies/costume_core/gender/gender.thrift"
+include "dressdiscover/api/vocabularies/costume_core/structure/structure_set.thrift"
+include "dressdiscover/api/vocabularies/vra_core/agent/agent_set.thrift"
+include "dressdiscover/api/vocabularies/vra_core/cultural_context/cultural_context_set.thrift"
+include "dressdiscover/api/vocabularies/vra_core/date/date_set.thrift"
+include "dressdiscover/api/vocabularies/vra_core/description/description_set.thrift"
+include "dressdiscover/api/vocabularies/vra_core/inscription/inscription_set.thrift"
+include "dressdiscover/api/vocabularies/vra_core/location/location_set.thrift"
+include "dressdiscover/api/vocabularies/vra_core/material/material_set.thrift"
+include "dressdiscover/api/vocabularies/vra_core/measurements/measurements_set.thrift"
+include "dressdiscover/api/vocabularies/vra_core/relation/relation_set.thrift"
+include "dressdiscover/api/vocabularies/vra_core/rights/rights_set.thrift"
+include "dressdiscover/api/vocabularies/vra_core/subject/subject_set.thrift"
+include "dressdiscover/api/vocabularies/vra_core/technique/technique_set.thrift"
+include "dressdiscover/api/vocabularies/vra_core/textref/textref_set.thrift"
+include "dressdiscover/api/vocabularies/vra_core/title/title_set.thrift"
+include "dressdiscover/api/vocabularies/vra_core/view_type/view_type.thrift"
+include "dressdiscover/api/vocabularies/vra_core/work_type/work_type_set.thrift"
 
 // @java_implements org.thryft.waf.api.models.Model
 struct Object {
@@ -76,7 +75,8 @@ struct Object {
 	// @validation {"minLength": 1}
 	5: optional string provenance;
 
-	26: optional u32.u32 quantity;
+    // @validation {"min": 1}
+	26: optional i32 quantity;
 
 	29: optional relation_set.RelationSet relations;
 
