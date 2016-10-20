@@ -4,7 +4,7 @@ include "dressdiscover/api/vocabularies/vra_core/inscription/inscription_author.
 include "dressdiscover/api/vocabularies/vra_core/inscription/inscription_text.thrift"
 
 // VRA Core 4.0 inscription element
-// @java_implements org.dressdiscover.api.models.Element
+// @java_implements org.dressdiscover.api.vocabularies.vra_core.Element
 struct Inscription {
 	// @validation {"minLength": 1}
 	1: list<inscription_text.InscriptionText> texts;

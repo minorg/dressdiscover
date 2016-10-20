@@ -4,7 +4,7 @@ include "dressdiscover/api/vocabularies/vra_core/rights/rights_type.thrift"
 include "dressdiscover/api/vocabularies/vra_core/vocab_ref.thrift"
 
 // VRA Core 4.0 rights element
-// @java_implements org.dressdiscover.api.models.Element
+// @java_implements org.dressdiscover.api.vocabularies.vra_core.Element
 struct Rights {
 	// @elastic_search_mapping {"index": "not_analyzed"}
 	// @validation {"minLength": 1}

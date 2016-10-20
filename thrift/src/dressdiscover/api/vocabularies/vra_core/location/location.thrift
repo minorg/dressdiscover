@@ -6,7 +6,7 @@ include "dressdiscover/api/vocabularies/vra_core/location/location_refid.thrift"
 include "dressdiscover/api/vocabularies/vra_core/location/location_type.thrift"
 
 // VRA Core 4.0 location element
-// @java_implements org.dressdiscover.api.models.Element
+// @java_implements org.dressdiscover.api.vocabularies.vra_core.Element
 struct Location {
 	1: location_type.LocationType type;
 

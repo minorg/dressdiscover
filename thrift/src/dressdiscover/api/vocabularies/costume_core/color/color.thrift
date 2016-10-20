@@ -4,7 +4,7 @@ include "dressdiscover/api/vocabularies/costume_core/color/color_type.thrift"
 include "dressdiscover/api/vocabularies/vra_core/vocab_ref.thrift"
 
 // Costume Core color element
-// @java_implements org.dressdiscover.api.models.Element
+// @java_implements org.dressdiscover.api.vocabularies.vra_core.Element
 struct Color {
 	// @validation {"minLength": 1}
 	1: string text;

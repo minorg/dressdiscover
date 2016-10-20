@@ -5,7 +5,7 @@ include "dressdiscover/api/vocabularies/vra_core/agent/agent_name.thrift"
 include "dressdiscover/api/vocabularies/vra_core/agent/agent_role.thrift"
 
 // VRA Core 4.0 agent element
-// @java_implements org.dressdiscover.api.models.Element
+// @java_implements org.dressdiscover.api.vocabularies.vra_core.Element
 struct Agent {
 	1: agent_name.AgentName name;
 

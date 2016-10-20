@@ -4,7 +4,7 @@ include "dressdiscover/api/vocabularies/vra_core/measurements/measurements_type.
 include "dressdiscover/api/vocabularies/vra_core/measurements/measurements_unit.thrift"
 
 // VRA Core 4.0 measurements element
-// @java_implements org.dressdiscover.api.models.Element
+// @java_implements org.dressdiscover.api.vocabularies.vra_core.Element
 struct Measurements {
 	// @validation {"minLength": 1}
 	1: string text;

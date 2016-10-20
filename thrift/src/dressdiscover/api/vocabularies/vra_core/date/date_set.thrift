@@ -3,7 +3,7 @@ namespace * dressdiscover.api.vocabularies.vra_core.date
 include "dressdiscover/api/vocabularies/vra_core/date/date.thrift"
 
 // VRA Core 4.0 dateSet element
-// @java_implements org.dressdiscover.api.models.ElementSet<org.dressdiscover.api.models.date.Date>
+// @java_implements org.dressdiscover.api.vocabularies.vra_core.ElementSet<org.dressdiscover.api.vocabularies.vra_core.date.Date>
 struct DateSet {
 	// @validation {"minLength": 1}
 	1: list<date.Date> elements;

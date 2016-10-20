@@ -4,7 +4,7 @@ include "dressdiscover/api/vocabularies/vra_core/vocab_ref.thrift"
 include "dressdiscover/api/vocabularies/costume_core/structure/structure_type.thrift"
 
 // Costume Core structure* elements
-// @java_implements org.dressdiscover.api.models.Element
+// @java_implements org.dressdiscover.api.vocabularies.vra_core.Element
 struct Structure {
 	// @validation {"minLength": 1}
 	1: string text;
