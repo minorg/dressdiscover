@@ -12,8 +12,8 @@ include "dressdiscover/api/models/user/user_id.thrift"
 include "dressdiscover/api/services/io_exception.thrift"
 include "dressdiscover/api/services/user/duplicate_user_bookmark_exception.thrift"
 include "dressdiscover/api/services/user/duplicate_user_exception.thrift"
-include "dressdiscover/api/services/user/no_such_user_exception.thrift"
 include "dressdiscover/api/services/user/no_such_user_bookmark_exception.thrift"
+include "dressdiscover/api/services/user/no_such_user_exception.thrift"
 
 service UserCommandService {
 	void

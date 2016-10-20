@@ -7,9 +7,9 @@ namespace * dressdiscover.api.services.object
 
 include "dressdiscover/api/models/object/object.thrift"
 include "dressdiscover/api/models/object/object_id.thrift"
-include "dressdiscover/api/services/io_exception.thrift"
 include "dressdiscover/api/services/collection/no_such_collection_exception.thrift"
 include "dressdiscover/api/services/institution/no_such_institution_exception.thrift"
+include "dressdiscover/api/services/io_exception.thrift"
 include "dressdiscover/api/services/object/no_such_object_exception.thrift"
 
 service ObjectQueryService {

@@ -527,6 +527,8 @@ class Object(object):
             if quantity is not None:
                 if not isinstance(quantity, int):
                     raise TypeError("expected quantity to be a int but it is a %s" % getattr(__builtin__, 'type')(quantity))
+                if quantity < 1:
+                    raise ValueError("expected quantity to be >= 1, was %s" % quantity)
             self.__quantity = quantity
             return self
 
@@ -1248,6 +1250,8 @@ class Object(object):
         if quantity is not None:
             if not isinstance(quantity, int):
                 raise TypeError("expected quantity to be a int but it is a %s" % getattr(__builtin__, 'type')(quantity))
+            if quantity < 1:
+                raise ValueError("expected quantity to be >= 1, was %s" % quantity)
         self.__quantity = quantity
 
         if relations is not None:

@@ -2,8 +2,8 @@ namespace * dressdiscover.api.models.object
 
 include "dressdiscover/api/models/collection/collection_id.thrift"
 include "dressdiscover/api/models/institution/institution_id.thrift"
-include "dressdiscover/api/models/object/object_id.thrift"
 include "dressdiscover/api/models/object/object_facet_filters.thrift"
+include "dressdiscover/api/models/object/object_id.thrift"
 
 struct ObjectQuery {
 	optional collection_id.CollectionId collection_id;
