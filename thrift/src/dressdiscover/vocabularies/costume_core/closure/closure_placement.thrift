@@ -1,6 +1,6 @@
 namespace * dressdiscover.vocabularies.costume_core.closure
 
-include "dressdiscover/api/models/vocab_ref.thrift"
+include "dressdiscover/vocabularies/vra_core/vocab_ref.thrift"
 
 struct ClosurePlacement {
 	// @validation {"minLength": 1}

@@ -1,6 +1,6 @@
 namespace * dressdiscover.vocabularies.vra_core.subject
 
-include "dressdiscover/api/models/vocab_ref.thrift"
+include "dressdiscover/vocabularies/vra_core/vocab_ref.thrift"
 include "dressdiscover/api/models/subject/subject_term_type.thrift"
 
 // VRA Core 4.0 subject term element

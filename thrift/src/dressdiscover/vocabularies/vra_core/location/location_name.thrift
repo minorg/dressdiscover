@@ -1,6 +1,6 @@
 namespace * dressdiscover.vocabularies.vra_core.location
 
-include "dressdiscover/api/models/vocab_ref.thrift"
+include "dressdiscover/vocabularies/vra_core/vocab_ref.thrift"
 include "dressdiscover/api/models/location/location_name_type.thrift"
 
 // VRA Core 4.0 location.name subelement

@@ -1,6 +1,6 @@
 namespace * dressdiscover.vocabularies.costume_core.component
 
-include "dressdiscover/api/models/vocab_ref.thrift"
+include "dressdiscover/vocabularies/vra_core/vocab_ref.thrift"
 
 struct ComponentTerm {
 	// @validation {"minLength": 1}

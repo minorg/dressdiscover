@@ -35,6 +35,10 @@ for root_dir_path, _, file_names in os.walk(root_src_dir_path):
             elif file_line.startswith('namespace * dressdiscover.api.models.'):
                 head, tail = file_line.rsplit('.', 1)
                 file_line = "namespace * dressdiscover.vocabularies.%s.%s" % (subdir_mappings[tail], tail)
+            elif file_line == 'include "dressdiscover/api/models/vocab.thrift"':
+                file_line = 'include "dressdiscover/vocabularies/vra_core/vocab.thrift"'
+            elif file_line == 'include "dressdiscover/api/models/vocab_ref.thrift"':
+                file_line = 'include "dressdiscover/vocabularies/vra_core/vocab_ref.thrift"'
             out_file_lines.append(file_line)
         if len(out_file_lines[-1]) > 0:
             out_file_lines.append("")
