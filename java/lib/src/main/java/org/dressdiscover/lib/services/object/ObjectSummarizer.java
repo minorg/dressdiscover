@@ -5,33 +5,32 @@ import java.util.Map;
 
 import javax.annotation.Nullable;
 
+import org.dressdiscover.api.models.image.Image;
 import org.dressdiscover.api.models.object.Object;
 import org.dressdiscover.api.models.object.ObjectSummary;
+import org.dressdiscover.api.vocabularies.costume_core.color.Color;
+import org.dressdiscover.api.vocabularies.costume_core.structure.Structure;
+import org.dressdiscover.api.vocabularies.vra_core.agent.Agent;
+import org.dressdiscover.api.vocabularies.vra_core.cultural_context.CulturalContext;
+import org.dressdiscover.api.vocabularies.vra_core.date.Date;
+import org.dressdiscover.api.vocabularies.vra_core.date.DateType;
+import org.dressdiscover.api.vocabularies.vra_core.description.Description;
+import org.dressdiscover.api.vocabularies.vra_core.description.DescriptionType;
+import org.dressdiscover.api.vocabularies.vra_core.location.Location;
+import org.dressdiscover.api.vocabularies.vra_core.location.LocationName;
+import org.dressdiscover.api.vocabularies.vra_core.material.Material;
+import org.dressdiscover.api.vocabularies.vra_core.relation.Relation;
+import org.dressdiscover.api.vocabularies.vra_core.subject.Subject;
+import org.dressdiscover.api.vocabularies.vra_core.subject.SubjectTerm;
+import org.dressdiscover.api.vocabularies.vra_core.technique.Technique;
+import org.dressdiscover.api.vocabularies.vra_core.textref.Textref;
+import org.dressdiscover.api.vocabularies.vra_core.textref.TextrefRefidType;
+import org.dressdiscover.api.vocabularies.vra_core.title.Title;
+import org.dressdiscover.api.vocabularies.vra_core.work_type.WorkType;
 import org.thryft.native_.Url;
 
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
-
-import org.dressdiscover.api.models.agent.Agent;
-import org.dressdiscover.api.models.color.Color;
-import org.dressdiscover.api.models.cultural_context.CulturalContext;
-import org.dressdiscover.api.models.date.Date;
-import org.dressdiscover.api.models.date.DateType;
-import org.dressdiscover.api.models.description.Description;
-import org.dressdiscover.api.models.description.DescriptionType;
-import org.dressdiscover.api.models.image.Image;
-import org.dressdiscover.api.models.location.Location;
-import org.dressdiscover.api.models.location.LocationName;
-import org.dressdiscover.api.models.material.Material;
-import org.dressdiscover.api.models.relation.Relation;
-import org.dressdiscover.api.models.structure.Structure;
-import org.dressdiscover.api.models.subject.Subject;
-import org.dressdiscover.api.models.subject.SubjectTerm;
-import org.dressdiscover.api.models.technique.Technique;
-import org.dressdiscover.api.models.textref.Textref;
-import org.dressdiscover.api.models.textref.TextrefRefidType;
-import org.dressdiscover.api.models.title.Title;
-import org.dressdiscover.api.models.work_type.WorkType;
 
 public final class ObjectSummarizer {
     public static ObjectSummarizer getInstance() {

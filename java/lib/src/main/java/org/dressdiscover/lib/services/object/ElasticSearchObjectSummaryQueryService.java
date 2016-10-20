@@ -13,7 +13,6 @@ import java.util.concurrent.ExecutionException;
 import org.apache.commons.lang3.tuple.ImmutablePair;
 import org.dressdiscover.api.models.collection.CollectionId;
 import org.dressdiscover.api.models.collection.InvalidCollectionIdException;
-import org.dressdiscover.api.models.gender.Gender;
 import org.dressdiscover.api.models.institution.InstitutionId;
 import org.dressdiscover.api.models.institution.InvalidInstitutionIdException;
 import org.dressdiscover.api.models.object.InvalidObjectIdException;
@@ -30,6 +29,7 @@ import org.dressdiscover.api.services.object.GetObjectSummariesOptions;
 import org.dressdiscover.api.services.object.GetObjectSummariesResult;
 import org.dressdiscover.api.services.object.ObjectSummaryQueryService;
 import org.dressdiscover.api.services.object.ObjectSummarySort;
+import org.dressdiscover.api.vocabularies.costume_core.gender.Gender;
 import org.dressdiscover.lib.services.object.LoggingObjectSummaryQueryService.Markers;
 import org.dressdiscover.lib.stores.object.ObjectSummaryElasticSearchIndex;
 import org.elasticsearch.action.search.SearchRequestBuilder;
@@ -214,20 +214,20 @@ public class ElasticSearchObjectSummaryQueryService implements ObjectSummaryQuer
             return aggregations;
         }
 
-        private <IdT> ImmutableMap<IdT, UnsignedInteger> __getIdFacet(final Aggregations aggregations,
+        private <IdT> ImmutableMap<IdT, Integer> __getIdFacet(final Aggregations aggregations,
                 final ObjectSummary.FieldMetadata field, final Function<String, IdT> idFactory) {
-            final ImmutableMap.Builder<IdT, UnsignedInteger> idsBuilder = ImmutableMap.builder();
+            final ImmutableMap.Builder<IdT, Integer> idsBuilder = ImmutableMap.builder();
             for (final Bucket bucket : ((StringTerms) aggregations.get(field.getThriftName())).getBuckets()) {
-                idsBuilder.put(idFactory.apply(bucket.getKeyAsString()), UnsignedInteger.valueOf(bucket.getDocCount()));
+                idsBuilder.put(idFactory.apply(bucket.getKeyAsString()), (int) bucket.getDocCount());
             }
             return idsBuilder.build();
         }
 
-        private ImmutableMap<String, UnsignedInteger> __getTextsFacet(final Aggregations aggregations,
+        private ImmutableMap<String, Integer> __getTextsFacet(final Aggregations aggregations,
                 final ObjectSummary.FieldMetadata field) {
-            final ImmutableMap.Builder<String, UnsignedInteger> textsBuilder = ImmutableMap.builder();
+            final ImmutableMap.Builder<String, Integer> textsBuilder = ImmutableMap.builder();
             for (final Bucket bucket : ((Terms) aggregations.get(field.getThriftName())).getBuckets()) {
-                textsBuilder.put(bucket.getKeyAsString(), UnsignedInteger.valueOf(bucket.getDocCount()));
+                textsBuilder.put(bucket.getKeyAsString(), (int) bucket.getDocCount());
             }
             return textsBuilder.build();
         }
