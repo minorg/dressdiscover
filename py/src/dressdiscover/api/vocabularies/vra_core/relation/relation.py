@@ -246,7 +246,7 @@ class Relation(object):
         return hash((self.type,self.href,self.relids,self.text,))
 
     def __iter__(self):
-        return iter(self.as_tuple())
+        return iter((self.type, self.href, self.relids, self.text,))
 
     def __ne__(self, other):
         return not self.__eq__(other)
@@ -272,24 +272,6 @@ class Relation(object):
         if self.text is not None:
             field_reprs.append('text=' + "'" + self.text.encode('ascii', 'replace') + "'")
         return 'Relation(' + ', '.join(field_reprs) + ')'
-
-    def as_dict(self):
-        '''
-        Return the fields of this object as a dictionary.
-
-        :rtype: dict
-        '''
-
-        return {'type': self.type, 'href': self.href, 'relids': self.relids, 'text': self.text}
-
-    def as_tuple(self):
-        '''
-        Return the fields of this object in declaration order as a tuple.
-
-        :rtype: tuple
-        '''
-
-        return (self.type, self.href, self.relids, self.text,)
 
     @property
     def href(self):

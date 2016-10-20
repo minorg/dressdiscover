@@ -200,7 +200,7 @@ class TextrefRefid(object):
         return hash((self.text,self.type,self.href,))
 
     def __iter__(self):
-        return iter(self.as_tuple())
+        return iter((self.text, self.type, self.href,))
 
     def __ne__(self, other):
         return not self.__eq__(other)
@@ -220,24 +220,6 @@ class TextrefRefid(object):
         if self.href is not None:
             field_reprs.append('href=' + "'" + self.href.encode('ascii', 'replace') + "'")
         return 'TextrefRefid(' + ', '.join(field_reprs) + ')'
-
-    def as_dict(self):
-        '''
-        Return the fields of this object as a dictionary.
-
-        :rtype: dict
-        '''
-
-        return {'text': self.text, 'type': self.type, 'href': self.href}
-
-    def as_tuple(self):
-        '''
-        Return the fields of this object in declaration order as a tuple.
-
-        :rtype: tuple
-        '''
-
-        return (self.text, self.type, self.href,)
 
     @property
     def href(self):

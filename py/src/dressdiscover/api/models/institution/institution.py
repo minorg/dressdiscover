@@ -423,7 +423,7 @@ class Institution(object):
         return hash((self.title,self.collection_store_uri,self.data_rights,self.external,self.hidden,self.locations,self.store_parameters,self.url,))
 
     def __iter__(self):
-        return iter(self.as_tuple())
+        return iter((self.title, self.collection_store_uri, self.data_rights, self.external, self.hidden, self.locations, self.store_parameters, self.url,))
 
     def __ne__(self, other):
         return not self.__eq__(other)
@@ -465,24 +465,6 @@ class Institution(object):
         if self.url is not None:
             field_reprs.append('url=' + "'" + self.url.encode('ascii', 'replace') + "'")
         return 'Institution(' + ', '.join(field_reprs) + ')'
-
-    def as_dict(self):
-        '''
-        Return the fields of this object as a dictionary.
-
-        :rtype: dict
-        '''
-
-        return {'title': self.title, 'collection_store_uri': self.collection_store_uri, 'data_rights': self.data_rights, 'external': self.external, 'hidden': self.hidden, 'locations': self.locations, 'store_parameters': self.store_parameters, 'url': self.url}
-
-    def as_tuple(self):
-        '''
-        Return the fields of this object in declaration order as a tuple.
-
-        :rtype: tuple
-        '''
-
-        return (self.title, self.collection_store_uri, self.data_rights, self.external, self.hidden, self.locations, self.store_parameters, self.url,)
 
     @property
     def collection_store_uri(self):

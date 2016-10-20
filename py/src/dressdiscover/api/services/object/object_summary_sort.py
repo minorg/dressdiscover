@@ -154,7 +154,7 @@ class ObjectSummarySort(object):
         return hash((self.field,self.order,))
 
     def __iter__(self):
-        return iter(self.as_tuple())
+        return iter((self.field, self.order,))
 
     def __ne__(self, other):
         return not self.__eq__(other)
@@ -170,24 +170,6 @@ class ObjectSummarySort(object):
         field_reprs.append('field=' + repr(self.field))
         field_reprs.append('order=' + repr(self.order))
         return 'ObjectSummarySort(' + ', '.join(field_reprs) + ')'
-
-    def as_dict(self):
-        '''
-        Return the fields of this object as a dictionary.
-
-        :rtype: dict
-        '''
-
-        return {'field': self.field, 'order': self.order}
-
-    def as_tuple(self):
-        '''
-        Return the fields of this object in declaration order as a tuple.
-
-        :rtype: tuple
-        '''
-
-        return (self.field, self.order,)
 
     @property
     def field(self):

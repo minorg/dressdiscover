@@ -153,7 +153,7 @@ class LocationCoordinates(object):
         return hash((self.latitude,self.longitude,))
 
     def __iter__(self):
-        return iter(self.as_tuple())
+        return iter((self.latitude, self.longitude,))
 
     def __ne__(self, other):
         return not self.__eq__(other)
@@ -169,24 +169,6 @@ class LocationCoordinates(object):
         field_reprs.append('latitude=' + repr(self.latitude))
         field_reprs.append('longitude=' + repr(self.longitude))
         return 'LocationCoordinates(' + ', '.join(field_reprs) + ')'
-
-    def as_dict(self):
-        '''
-        Return the fields of this object as a dictionary.
-
-        :rtype: dict
-        '''
-
-        return {'latitude': self.latitude, 'longitude': self.longitude}
-
-    def as_tuple(self):
-        '''
-        Return the fields of this object in declaration order as a tuple.
-
-        :rtype: tuple
-        '''
-
-        return (self.latitude, self.longitude,)
 
     @property
     def latitude(self):

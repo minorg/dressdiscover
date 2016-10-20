@@ -202,7 +202,7 @@ class Description(object):
         return hash((self.text,self.source,self.type,))
 
     def __iter__(self):
-        return iter(self.as_tuple())
+        return iter((self.text, self.source, self.type,))
 
     def __ne__(self, other):
         return not self.__eq__(other)
@@ -224,24 +224,6 @@ class Description(object):
         if self.type is not None:
             field_reprs.append('type=' + repr(self.type))
         return 'Description(' + ', '.join(field_reprs) + ')'
-
-    def as_dict(self):
-        '''
-        Return the fields of this object as a dictionary.
-
-        :rtype: dict
-        '''
-
-        return {'text': self.text, 'source': self.source, 'type': self.type}
-
-    def as_tuple(self):
-        '''
-        Return the fields of this object in declaration order as a tuple.
-
-        :rtype: tuple
-        '''
-
-        return (self.text, self.source, self.type,)
 
     @classmethod
     def read(cls, iprot):

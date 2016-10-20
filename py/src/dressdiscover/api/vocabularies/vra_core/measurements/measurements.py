@@ -248,7 +248,7 @@ class Measurements(object):
         return hash((self.text,self.type,self.extent,self.unit,))
 
     def __iter__(self):
-        return iter(self.as_tuple())
+        return iter((self.text, self.type, self.extent, self.unit,))
 
     def __ne__(self, other):
         return not self.__eq__(other)
@@ -272,24 +272,6 @@ class Measurements(object):
         if self.unit is not None:
             field_reprs.append('unit=' + repr(self.unit))
         return 'Measurements(' + ', '.join(field_reprs) + ')'
-
-    def as_dict(self):
-        '''
-        Return the fields of this object as a dictionary.
-
-        :rtype: dict
-        '''
-
-        return {'text': self.text, 'type': self.type, 'extent': self.extent, 'unit': self.unit}
-
-    def as_tuple(self):
-        '''
-        Return the fields of this object in declaration order as a tuple.
-
-        :rtype: tuple
-        '''
-
-        return (self.text, self.type, self.extent, self.unit,)
 
     @property
     def extent(self):

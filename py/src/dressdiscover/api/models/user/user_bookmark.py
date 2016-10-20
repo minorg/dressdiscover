@@ -290,7 +290,7 @@ class UserBookmark(object):
         return hash((self.name,self.user_id,self.folder,self.object_id,self.object_query,))
 
     def __iter__(self):
-        return iter(self.as_tuple())
+        return iter((self.name, self.user_id, self.folder, self.object_id, self.object_query,))
 
     def __ne__(self, other):
         return not self.__eq__(other)
@@ -318,24 +318,6 @@ class UserBookmark(object):
         if self.object_query is not None:
             field_reprs.append('object_query=' + repr(self.object_query))
         return 'UserBookmark(' + ', '.join(field_reprs) + ')'
-
-    def as_dict(self):
-        '''
-        Return the fields of this object as a dictionary.
-
-        :rtype: dict
-        '''
-
-        return {'name': self.name, 'user_id': self.user_id, 'folder': self.folder, 'object_id': self.object_id, 'object_query': self.object_query}
-
-    def as_tuple(self):
-        '''
-        Return the fields of this object in declaration order as a tuple.
-
-        :rtype: tuple
-        '''
-
-        return (self.name, self.user_id, self.folder, self.object_id, self.object_query,)
 
     @property
     def folder(self):

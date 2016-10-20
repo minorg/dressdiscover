@@ -660,7 +660,7 @@ class DressDiscoverProperties(object):
         return hash((self.api_url,self.cache_collections,self.cache_institutions,self.elastic_search_host,self.elastic_search_port,self.environment,self.google_api_key,self.google_oauth_key,self.google_oauth_secret,self.home_directory_path,self.object_summaries_result_cache_size,self.object_summary_cache_size,self.resummarize_objects_bulk_request_size,))
 
     def __iter__(self):
-        return iter(self.as_tuple())
+        return iter((self.api_url, self.cache_collections, self.cache_institutions, self.elastic_search_host, self.elastic_search_port, self.environment, self.google_api_key, self.google_oauth_key, self.google_oauth_secret, self.home_directory_path, self.object_summaries_result_cache_size, self.object_summary_cache_size, self.resummarize_objects_bulk_request_size,))
 
     def __ne__(self, other):
         return not self.__eq__(other)
@@ -706,24 +706,6 @@ class DressDiscoverProperties(object):
         '''
 
         return self.__api_url
-
-    def as_dict(self):
-        '''
-        Return the fields of this object as a dictionary.
-
-        :rtype: dict
-        '''
-
-        return {'api_url': self.api_url, 'cache_collections': self.cache_collections, 'cache_institutions': self.cache_institutions, 'elastic_search_host': self.elastic_search_host, 'elastic_search_port': self.elastic_search_port, 'environment': self.environment, 'google_api_key': self.google_api_key, 'google_oauth_key': self.google_oauth_key, 'google_oauth_secret': self.google_oauth_secret, 'home_directory_path': self.home_directory_path, 'object_summaries_result_cache_size': self.object_summaries_result_cache_size, 'object_summary_cache_size': self.object_summary_cache_size, 'resummarize_objects_bulk_request_size': self.resummarize_objects_bulk_request_size}
-
-    def as_tuple(self):
-        '''
-        Return the fields of this object in declaration order as a tuple.
-
-        :rtype: tuple
-        '''
-
-        return (self.api_url, self.cache_collections, self.cache_institutions, self.elastic_search_host, self.elastic_search_port, self.environment, self.google_api_key, self.google_oauth_key, self.google_oauth_secret, self.home_directory_path, self.object_summaries_result_cache_size, self.object_summary_cache_size, self.resummarize_objects_bulk_request_size,)
 
     @property
     def cache_collections(self):

@@ -289,7 +289,7 @@ class Date(object):
         return hash((self.earliest_date,self.latest_date,self.type,self.href,self.source,))
 
     def __iter__(self):
-        return iter(self.as_tuple())
+        return iter((self.earliest_date, self.latest_date, self.type, self.href, self.source,))
 
     def __ne__(self, other):
         return not self.__eq__(other)
@@ -315,24 +315,6 @@ class Date(object):
         if self.source is not None:
             field_reprs.append('source=' + "'" + self.source.encode('ascii', 'replace') + "'")
         return 'Date(' + ', '.join(field_reprs) + ')'
-
-    def as_dict(self):
-        '''
-        Return the fields of this object as a dictionary.
-
-        :rtype: dict
-        '''
-
-        return {'earliest_date': self.earliest_date, 'latest_date': self.latest_date, 'type': self.type, 'href': self.href, 'source': self.source}
-
-    def as_tuple(self):
-        '''
-        Return the fields of this object in declaration order as a tuple.
-
-        :rtype: tuple
-        '''
-
-        return (self.earliest_date, self.latest_date, self.type, self.href, self.source,)
 
     @property
     def earliest_date(self):

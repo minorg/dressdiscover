@@ -249,7 +249,7 @@ class Location(object):
         return hash((self.type,self.coordinates,self.names,self.refids,))
 
     def __iter__(self):
-        return iter(self.as_tuple())
+        return iter((self.type, self.coordinates, self.names, self.refids,))
 
     def __ne__(self, other):
         return not self.__eq__(other)
@@ -275,24 +275,6 @@ class Location(object):
         if self.refids is not None:
             field_reprs.append('refids=' + repr(self.refids))
         return 'Location(' + ', '.join(field_reprs) + ')'
-
-    def as_dict(self):
-        '''
-        Return the fields of this object as a dictionary.
-
-        :rtype: dict
-        '''
-
-        return {'type': self.type, 'coordinates': self.coordinates, 'names': self.names, 'refids': self.refids}
-
-    def as_tuple(self):
-        '''
-        Return the fields of this object in declaration order as a tuple.
-
-        :rtype: tuple
-        '''
-
-        return (self.type, self.coordinates, self.names, self.refids,)
 
     @property
     def coordinates(self):

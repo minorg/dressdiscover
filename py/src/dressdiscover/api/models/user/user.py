@@ -153,7 +153,7 @@ class User(object):
         return hash((self.ctime,self.email_address,))
 
     def __iter__(self):
-        return iter(self.as_tuple())
+        return iter((self.ctime, self.email_address,))
 
     def __ne__(self, other):
         return not self.__eq__(other)
@@ -169,24 +169,6 @@ class User(object):
         field_reprs.append('ctime=' + repr(self.ctime))
         field_reprs.append('email_address=' + "'" + self.email_address.encode('ascii', 'replace') + "'")
         return 'User(' + ', '.join(field_reprs) + ')'
-
-    def as_dict(self):
-        '''
-        Return the fields of this object as a dictionary.
-
-        :rtype: dict
-        '''
-
-        return {'ctime': self.ctime, 'email_address': self.email_address}
-
-    def as_tuple(self):
-        '''
-        Return the fields of this object in declaration order as a tuple.
-
-        :rtype: tuple
-        '''
-
-        return (self.ctime, self.email_address,)
 
     @property
     def ctime(self):

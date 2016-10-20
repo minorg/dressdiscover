@@ -198,7 +198,7 @@ class GetObjectSummariesResult(object):
         return hash((self.hits,self.total_hits,self.facets,))
 
     def __iter__(self):
-        return iter(self.as_tuple())
+        return iter((self.hits, self.total_hits, self.facets,))
 
     def __ne__(self, other):
         return not self.__eq__(other)
@@ -218,24 +218,6 @@ class GetObjectSummariesResult(object):
         if self.facets is not None:
             field_reprs.append('facets=' + repr(self.facets))
         return 'GetObjectSummariesResult(' + ', '.join(field_reprs) + ')'
-
-    def as_dict(self):
-        '''
-        Return the fields of this object as a dictionary.
-
-        :rtype: dict
-        '''
-
-        return {'hits': self.hits, 'total_hits': self.total_hits, 'facets': self.facets}
-
-    def as_tuple(self):
-        '''
-        Return the fields of this object in declaration order as a tuple.
-
-        :rtype: tuple
-        '''
-
-        return (self.hits, self.total_hits, self.facets,)
 
     @property
     def facets(self):

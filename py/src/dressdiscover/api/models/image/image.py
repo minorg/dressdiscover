@@ -279,7 +279,7 @@ class Image(object):
         return hash((self.full_size,self.original,self.rights,self.square_thumbnail,self.thumbnail,))
 
     def __iter__(self):
-        return iter(self.as_tuple())
+        return iter((self.full_size, self.original, self.rights, self.square_thumbnail, self.thumbnail,))
 
     def __ne__(self, other):
         return not self.__eq__(other)
@@ -311,24 +311,6 @@ class Image(object):
         if self.thumbnail is not None:
             field_reprs.append('thumbnail=' + repr(self.thumbnail))
         return 'Image(' + ', '.join(field_reprs) + ')'
-
-    def as_dict(self):
-        '''
-        Return the fields of this object as a dictionary.
-
-        :rtype: dict
-        '''
-
-        return {'full_size': self.full_size, 'original': self.original, 'rights': self.rights, 'square_thumbnail': self.square_thumbnail, 'thumbnail': self.thumbnail}
-
-    def as_tuple(self):
-        '''
-        Return the fields of this object in declaration order as a tuple.
-
-        :rtype: tuple
-        '''
-
-        return (self.full_size, self.original, self.rights, self.square_thumbnail, self.thumbnail,)
 
     @property
     def full_size(self):

@@ -1145,7 +1145,7 @@ class ObjectFacetFilters(object):
         return hash((self.exclude_all,self.exclude_categories,self.exclude_collections,self.exclude_color_texts,self.exclude_cultural_context_texts,self.exclude_genders,self.exclude_institutions,self.exclude_location_name_texts,self.exclude_material_texts,self.exclude_subject_term_texts,self.exclude_technique_texts,self.exclude_work_type_texts,self.include_categories,self.include_collections,self.include_color_texts,self.include_cultural_context_texts,self.include_genders,self.include_institutions,self.include_location_name_texts,self.include_material_texts,self.include_subject_term_texts,self.include_technique_texts,self.include_work_type_texts,))
 
     def __iter__(self):
-        return iter(self.as_tuple())
+        return iter((self.exclude_all, self.exclude_categories, self.exclude_collections, self.exclude_color_texts, self.exclude_cultural_context_texts, self.exclude_genders, self.exclude_institutions, self.exclude_location_name_texts, self.exclude_material_texts, self.exclude_subject_term_texts, self.exclude_technique_texts, self.exclude_work_type_texts, self.include_categories, self.include_collections, self.include_color_texts, self.include_cultural_context_texts, self.include_genders, self.include_institutions, self.include_location_name_texts, self.include_material_texts, self.include_subject_term_texts, self.include_technique_texts, self.include_work_type_texts,))
 
     def __ne__(self, other):
         return not self.__eq__(other)
@@ -1249,24 +1249,6 @@ class ObjectFacetFilters(object):
         if self.include_work_type_texts is not None:
             field_reprs.append('include_work_type_texts=' + repr(self.include_work_type_texts))
         return 'ObjectFacetFilters(' + ', '.join(field_reprs) + ')'
-
-    def as_dict(self):
-        '''
-        Return the fields of this object as a dictionary.
-
-        :rtype: dict
-        '''
-
-        return {'exclude_all': self.exclude_all, 'exclude_categories': self.exclude_categories, 'exclude_collections': self.exclude_collections, 'exclude_color_texts': self.exclude_color_texts, 'exclude_cultural_context_texts': self.exclude_cultural_context_texts, 'exclude_genders': self.exclude_genders, 'exclude_institutions': self.exclude_institutions, 'exclude_location_name_texts': self.exclude_location_name_texts, 'exclude_material_texts': self.exclude_material_texts, 'exclude_subject_term_texts': self.exclude_subject_term_texts, 'exclude_technique_texts': self.exclude_technique_texts, 'exclude_work_type_texts': self.exclude_work_type_texts, 'include_categories': self.include_categories, 'include_collections': self.include_collections, 'include_color_texts': self.include_color_texts, 'include_cultural_context_texts': self.include_cultural_context_texts, 'include_genders': self.include_genders, 'include_institutions': self.include_institutions, 'include_location_name_texts': self.include_location_name_texts, 'include_material_texts': self.include_material_texts, 'include_subject_term_texts': self.include_subject_term_texts, 'include_technique_texts': self.include_technique_texts, 'include_work_type_texts': self.include_work_type_texts}
-
-    def as_tuple(self):
-        '''
-        Return the fields of this object in declaration order as a tuple.
-
-        :rtype: tuple
-        '''
-
-        return (self.exclude_all, self.exclude_categories, self.exclude_collections, self.exclude_color_texts, self.exclude_cultural_context_texts, self.exclude_genders, self.exclude_institutions, self.exclude_location_name_texts, self.exclude_material_texts, self.exclude_subject_term_texts, self.exclude_technique_texts, self.exclude_work_type_texts, self.include_categories, self.include_collections, self.include_color_texts, self.include_cultural_context_texts, self.include_genders, self.include_institutions, self.include_location_name_texts, self.include_material_texts, self.include_subject_term_texts, self.include_technique_texts, self.include_work_type_texts,)
 
     @property
     def exclude_all(self):

@@ -204,7 +204,7 @@ class Title(object):
         return hash((self.text,self.type,self.pref,))
 
     def __iter__(self):
-        return iter(self.as_tuple())
+        return iter((self.text, self.type, self.pref,))
 
     def __ne__(self, other):
         return not self.__eq__(other)
@@ -224,24 +224,6 @@ class Title(object):
         if self.pref is not None:
             field_reprs.append('pref=' + repr(self.pref))
         return 'Title(' + ', '.join(field_reprs) + ')'
-
-    def as_dict(self):
-        '''
-        Return the fields of this object as a dictionary.
-
-        :rtype: dict
-        '''
-
-        return {'text': self.text, 'type': self.type, 'pref': self.pref}
-
-    def as_tuple(self):
-        '''
-        Return the fields of this object in declaration order as a tuple.
-
-        :rtype: tuple
-        '''
-
-        return (self.text, self.type, self.pref,)
 
     @property
     def pref(self):

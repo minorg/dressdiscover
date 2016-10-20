@@ -514,7 +514,7 @@ class ObjectQuery(object):
         return hash((self.collection_id,self.facet_filters,self.include_hidden,self.institution_id,self.more_like_object_id,self.object_ids,self.query_string,self.relation_text,self.structure_texts,self.work_type_text,))
 
     def __iter__(self):
-        return iter(self.as_tuple())
+        return iter((self.collection_id, self.facet_filters, self.include_hidden, self.institution_id, self.more_like_object_id, self.object_ids, self.query_string, self.relation_text, self.structure_texts, self.work_type_text,))
 
     def __ne__(self, other):
         return not self.__eq__(other)
@@ -566,24 +566,6 @@ class ObjectQuery(object):
         if self.work_type_text is not None:
             field_reprs.append('work_type_text=' + "'" + self.work_type_text.encode('ascii', 'replace') + "'")
         return 'ObjectQuery(' + ', '.join(field_reprs) + ')'
-
-    def as_dict(self):
-        '''
-        Return the fields of this object as a dictionary.
-
-        :rtype: dict
-        '''
-
-        return {'collection_id': self.collection_id, 'facet_filters': self.facet_filters, 'include_hidden': self.include_hidden, 'institution_id': self.institution_id, 'more_like_object_id': self.more_like_object_id, 'object_ids': self.object_ids, 'query_string': self.query_string, 'relation_text': self.relation_text, 'structure_texts': self.structure_texts, 'work_type_text': self.work_type_text}
-
-    def as_tuple(self):
-        '''
-        Return the fields of this object in declaration order as a tuple.
-
-        :rtype: tuple
-        '''
-
-        return (self.collection_id, self.facet_filters, self.include_hidden, self.institution_id, self.more_like_object_id, self.object_ids, self.query_string, self.relation_text, self.structure_texts, self.work_type_text,)
 
     @property
     def collection_id(self):

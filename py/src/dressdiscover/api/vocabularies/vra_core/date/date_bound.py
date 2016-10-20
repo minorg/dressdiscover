@@ -242,7 +242,7 @@ class DateBound(object):
         return hash((self.text,self.circa,self.parsed_date_time,self.parsed_date_time_granularity,))
 
     def __iter__(self):
-        return iter(self.as_tuple())
+        return iter((self.text, self.circa, self.parsed_date_time, self.parsed_date_time_granularity,))
 
     def __ne__(self, other):
         return not self.__eq__(other)
@@ -268,24 +268,6 @@ class DateBound(object):
         if self.parsed_date_time_granularity is not None:
             field_reprs.append('parsed_date_time_granularity=' + repr(self.parsed_date_time_granularity))
         return 'DateBound(' + ', '.join(field_reprs) + ')'
-
-    def as_dict(self):
-        '''
-        Return the fields of this object as a dictionary.
-
-        :rtype: dict
-        '''
-
-        return {'text': self.text, 'circa': self.circa, 'parsed_date_time': self.parsed_date_time, 'parsed_date_time_granularity': self.parsed_date_time_granularity}
-
-    def as_tuple(self):
-        '''
-        Return the fields of this object in declaration order as a tuple.
-
-        :rtype: tuple
-        '''
-
-        return (self.text, self.circa, self.parsed_date_time, self.parsed_date_time_granularity,)
 
     @property
     def circa(self):

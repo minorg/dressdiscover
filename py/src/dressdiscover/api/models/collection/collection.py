@@ -471,7 +471,7 @@ class Collection(object):
         return hash((self.institution_id,self.title,self.description,self.external,self.hidden,self.locations,self.object_store_uri,self.url,self.work_types,))
 
     def __iter__(self):
-        return iter(self.as_tuple())
+        return iter((self.institution_id, self.title, self.description, self.external, self.hidden, self.locations, self.object_store_uri, self.url, self.work_types,))
 
     def __ne__(self, other):
         return not self.__eq__(other)
@@ -515,24 +515,6 @@ class Collection(object):
         if self.work_types is not None:
             field_reprs.append('work_types=' + repr(self.work_types))
         return 'Collection(' + ', '.join(field_reprs) + ')'
-
-    def as_dict(self):
-        '''
-        Return the fields of this object as a dictionary.
-
-        :rtype: dict
-        '''
-
-        return {'institution_id': self.institution_id, 'title': self.title, 'description': self.description, 'external': self.external, 'hidden': self.hidden, 'locations': self.locations, 'object_store_uri': self.object_store_uri, 'url': self.url, 'work_types': self.work_types}
-
-    def as_tuple(self):
-        '''
-        Return the fields of this object in declaration order as a tuple.
-
-        :rtype: tuple
-        '''
-
-        return (self.institution_id, self.title, self.description, self.external, self.hidden, self.locations, self.object_store_uri, self.url, self.work_types,)
 
     @property
     def description(self):

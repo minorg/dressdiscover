@@ -193,7 +193,7 @@ class ImageVersion(object):
         return hash((self.url,self.height_px,self.width_px,))
 
     def __iter__(self):
-        return iter(self.as_tuple())
+        return iter((self.url, self.height_px, self.width_px,))
 
     def __ne__(self, other):
         return not self.__eq__(other)
@@ -215,24 +215,6 @@ class ImageVersion(object):
         if self.width_px is not None:
             field_reprs.append('width_px=' + repr(self.width_px))
         return 'ImageVersion(' + ', '.join(field_reprs) + ')'
-
-    def as_dict(self):
-        '''
-        Return the fields of this object as a dictionary.
-
-        :rtype: dict
-        '''
-
-        return {'url': self.url, 'height_px': self.height_px, 'width_px': self.width_px}
-
-    def as_tuple(self):
-        '''
-        Return the fields of this object in declaration order as a tuple.
-
-        :rtype: tuple
-        '''
-
-        return (self.url, self.height_px, self.width_px,)
 
     @property
     def height_px(self):

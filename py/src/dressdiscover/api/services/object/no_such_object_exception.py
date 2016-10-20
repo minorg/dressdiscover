@@ -105,7 +105,7 @@ class NoSuchObjectException(Exception):
         return hash(self.id)
 
     def __iter__(self):
-        return iter(self.as_tuple())
+        return iter((self.id,))
 
     def __ne__(self, other):
         return not self.__eq__(other)
@@ -121,24 +121,6 @@ class NoSuchObjectException(Exception):
         if self.id is not None:
             field_reprs.append('id=' + "'" + self.id.encode('ascii', 'replace') + "'")
         return 'NoSuchObjectException(' + ', '.join(field_reprs) + ')'
-
-    def as_dict(self):
-        '''
-        Return the fields of this object as a dictionary.
-
-        :rtype: dict
-        '''
-
-        return {'id': self.id}
-
-    def as_tuple(self):
-        '''
-        Return the fields of this object in declaration order as a tuple.
-
-        :rtype: tuple
-        '''
-
-        return (self.id,)
 
     @property
     def id(self):  # @ReservedAssignment

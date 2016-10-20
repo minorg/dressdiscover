@@ -153,7 +153,7 @@ class UserEntry(object):
         return hash((self.id,self.model,))
 
     def __iter__(self):
-        return iter(self.as_tuple())
+        return iter((self.id, self.model,))
 
     def __ne__(self, other):
         return not self.__eq__(other)
@@ -169,24 +169,6 @@ class UserEntry(object):
         field_reprs.append('id=' + "'" + self.id.encode('ascii', 'replace') + "'")
         field_reprs.append('model=' + repr(self.model))
         return 'UserEntry(' + ', '.join(field_reprs) + ')'
-
-    def as_dict(self):
-        '''
-        Return the fields of this object as a dictionary.
-
-        :rtype: dict
-        '''
-
-        return {'id': self.id, 'model': self.model}
-
-    def as_tuple(self):
-        '''
-        Return the fields of this object in declaration order as a tuple.
-
-        :rtype: tuple
-        '''
-
-        return (self.id, self.model,)
 
     @property
     def id(self):  # @ReservedAssignment

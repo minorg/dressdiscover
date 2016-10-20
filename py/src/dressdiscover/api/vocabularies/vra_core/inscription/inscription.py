@@ -204,7 +204,7 @@ class Inscription(object):
         return hash((self.texts,self.author,self.position,))
 
     def __iter__(self):
-        return iter(self.as_tuple())
+        return iter((self.texts, self.author, self.position,))
 
     def __ne__(self, other):
         return not self.__eq__(other)
@@ -226,24 +226,6 @@ class Inscription(object):
         if self.position is not None:
             field_reprs.append('position=' + "'" + self.position.encode('ascii', 'replace') + "'")
         return 'Inscription(' + ', '.join(field_reprs) + ')'
-
-    def as_dict(self):
-        '''
-        Return the fields of this object as a dictionary.
-
-        :rtype: dict
-        '''
-
-        return {'texts': self.texts, 'author': self.author, 'position': self.position}
-
-    def as_tuple(self):
-        '''
-        Return the fields of this object in declaration order as a tuple.
-
-        :rtype: tuple
-        '''
-
-        return (self.texts, self.author, self.position,)
 
     @property
     def author(self):

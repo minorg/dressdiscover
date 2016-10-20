@@ -152,7 +152,7 @@ class DuplicateUserException(Exception):
         return hash((self.cause_message,self.user_id,))
 
     def __iter__(self):
-        return iter(self.as_tuple())
+        return iter((self.cause_message, self.user_id,))
 
     def __ne__(self, other):
         return not self.__eq__(other)
@@ -168,24 +168,6 @@ class DuplicateUserException(Exception):
         field_reprs.append('cause_message=' + "'" + self.cause_message.encode('ascii', 'replace') + "'")
         field_reprs.append('user_id=' + "'" + self.user_id.encode('ascii', 'replace') + "'")
         return 'DuplicateUserException(' + ', '.join(field_reprs) + ')'
-
-    def as_dict(self):
-        '''
-        Return the fields of this object as a dictionary.
-
-        :rtype: dict
-        '''
-
-        return {'cause_message': self.cause_message, 'user_id': self.user_id}
-
-    def as_tuple(self):
-        '''
-        Return the fields of this object in declaration order as a tuple.
-
-        :rtype: tuple
-        '''
-
-        return (self.cause_message, self.user_id,)
 
     @property
     def cause_message(self):

@@ -295,7 +295,7 @@ class Agent(object):
         return hash((self.name,self.attribution,self.culture,self.dates,self.role,))
 
     def __iter__(self):
-        return iter(self.as_tuple())
+        return iter((self.name, self.attribution, self.culture, self.dates, self.role,))
 
     def __ne__(self, other):
         return not self.__eq__(other)
@@ -325,24 +325,6 @@ class Agent(object):
         if self.role is not None:
             field_reprs.append('role=' + repr(self.role))
         return 'Agent(' + ', '.join(field_reprs) + ')'
-
-    def as_dict(self):
-        '''
-        Return the fields of this object as a dictionary.
-
-        :rtype: dict
-        '''
-
-        return {'name': self.name, 'attribution': self.attribution, 'culture': self.culture, 'dates': self.dates, 'role': self.role}
-
-    def as_tuple(self):
-        '''
-        Return the fields of this object in declaration order as a tuple.
-
-        :rtype: tuple
-        '''
-
-        return (self.name, self.attribution, self.culture, self.dates, self.role,)
 
     @property
     def attribution(self):

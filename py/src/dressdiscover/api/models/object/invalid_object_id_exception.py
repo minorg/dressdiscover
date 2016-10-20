@@ -107,7 +107,7 @@ class InvalidObjectIdException(Exception):
         return hash(self.cause_message)
 
     def __iter__(self):
-        return iter(self.as_tuple())
+        return iter((self.cause_message,))
 
     def __ne__(self, other):
         return not self.__eq__(other)
@@ -121,24 +121,6 @@ class InvalidObjectIdException(Exception):
         field_reprs = []
         field_reprs.append('cause_message=' + "'" + self.cause_message.encode('ascii', 'replace') + "'")
         return 'InvalidObjectIdException(' + ', '.join(field_reprs) + ')'
-
-    def as_dict(self):
-        '''
-        Return the fields of this object as a dictionary.
-
-        :rtype: dict
-        '''
-
-        return {'cause_message': self.cause_message}
-
-    def as_tuple(self):
-        '''
-        Return the fields of this object in declaration order as a tuple.
-
-        :rtype: tuple
-        '''
-
-        return (self.cause_message,)
 
     @property
     def cause_message(self):

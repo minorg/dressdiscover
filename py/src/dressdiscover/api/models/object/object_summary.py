@@ -991,7 +991,7 @@ class ObjectSummary(object):
         return hash((self.collection_id,self.institution_id,self.title,self.agent_name_texts,self.categories,self.color_texts,self.cultural_context_texts,self.date,self.description,self.gender,self.hidden,self.image,self.location_name_texts,self.material_texts,self.relation_texts,self.structure_texts,self.subject_term_texts,self.technique_texts,self.url,self.work_type_texts,))
 
     def __iter__(self):
-        return iter(self.as_tuple())
+        return iter((self.collection_id, self.institution_id, self.title, self.agent_name_texts, self.categories, self.color_texts, self.cultural_context_texts, self.date, self.description, self.gender, self.hidden, self.image, self.location_name_texts, self.material_texts, self.relation_texts, self.structure_texts, self.subject_term_texts, self.technique_texts, self.url, self.work_type_texts,))
 
     def __ne__(self, other):
         return not self.__eq__(other)
@@ -1085,24 +1085,6 @@ class ObjectSummary(object):
         '''
 
         return self.__agent_name_texts
-
-    def as_dict(self):
-        '''
-        Return the fields of this object as a dictionary.
-
-        :rtype: dict
-        '''
-
-        return {'collection_id': self.collection_id, 'institution_id': self.institution_id, 'title': self.title, 'agent_name_texts': self.agent_name_texts, 'categories': self.categories, 'color_texts': self.color_texts, 'cultural_context_texts': self.cultural_context_texts, 'date': self.date, 'description': self.description, 'gender': self.gender, 'hidden': self.hidden, 'image': self.image, 'location_name_texts': self.location_name_texts, 'material_texts': self.material_texts, 'relation_texts': self.relation_texts, 'structure_texts': self.structure_texts, 'subject_term_texts': self.subject_term_texts, 'technique_texts': self.technique_texts, 'url': self.url, 'work_type_texts': self.work_type_texts}
-
-    def as_tuple(self):
-        '''
-        Return the fields of this object in declaration order as a tuple.
-
-        :rtype: tuple
-        '''
-
-        return (self.collection_id, self.institution_id, self.title, self.agent_name_texts, self.categories, self.color_texts, self.cultural_context_texts, self.date, self.description, self.gender, self.hidden, self.image, self.location_name_texts, self.material_texts, self.relation_texts, self.structure_texts, self.subject_term_texts, self.technique_texts, self.url, self.work_type_texts,)
 
     @property
     def categories(self):

@@ -155,7 +155,7 @@ class AgentRole(object):
         return hash((self.text,self.vocab_ref,))
 
     def __iter__(self):
-        return iter(self.as_tuple())
+        return iter((self.text, self.vocab_ref,))
 
     def __ne__(self, other):
         return not self.__eq__(other)
@@ -173,24 +173,6 @@ class AgentRole(object):
         if self.vocab_ref is not None:
             field_reprs.append('vocab_ref=' + repr(self.vocab_ref))
         return 'AgentRole(' + ', '.join(field_reprs) + ')'
-
-    def as_dict(self):
-        '''
-        Return the fields of this object as a dictionary.
-
-        :rtype: dict
-        '''
-
-        return {'text': self.text, 'vocab_ref': self.vocab_ref}
-
-    def as_tuple(self):
-        '''
-        Return the fields of this object in declaration order as a tuple.
-
-        :rtype: tuple
-        '''
-
-        return (self.text, self.vocab_ref,)
 
     @classmethod
     def read(cls, iprot):

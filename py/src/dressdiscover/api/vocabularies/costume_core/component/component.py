@@ -152,7 +152,7 @@ class Component(object):
         return hash((self.term,self.structures,))
 
     def __iter__(self):
-        return iter(self.as_tuple())
+        return iter((self.term, self.structures,))
 
     def __ne__(self, other):
         return not self.__eq__(other)
@@ -170,24 +170,6 @@ class Component(object):
         if self.structures is not None:
             field_reprs.append('structures=' + repr(self.structures))
         return 'Component(' + ', '.join(field_reprs) + ')'
-
-    def as_dict(self):
-        '''
-        Return the fields of this object as a dictionary.
-
-        :rtype: dict
-        '''
-
-        return {'term': self.term, 'structures': self.structures}
-
-    def as_tuple(self):
-        '''
-        Return the fields of this object in declaration order as a tuple.
-
-        :rtype: tuple
-        '''
-
-        return (self.term, self.structures,)
 
     @classmethod
     def read(cls, iprot):

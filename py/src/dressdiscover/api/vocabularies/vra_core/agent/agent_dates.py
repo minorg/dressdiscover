@@ -195,7 +195,7 @@ class AgentDates(object):
         return hash((self.type,self.earliest_date,self.latest_date,))
 
     def __iter__(self):
-        return iter(self.as_tuple())
+        return iter((self.type, self.earliest_date, self.latest_date,))
 
     def __ne__(self, other):
         return not self.__eq__(other)
@@ -217,24 +217,6 @@ class AgentDates(object):
         if self.latest_date is not None:
             field_reprs.append('latest_date=' + repr(self.latest_date))
         return 'AgentDates(' + ', '.join(field_reprs) + ')'
-
-    def as_dict(self):
-        '''
-        Return the fields of this object as a dictionary.
-
-        :rtype: dict
-        '''
-
-        return {'type': self.type, 'earliest_date': self.earliest_date, 'latest_date': self.latest_date}
-
-    def as_tuple(self):
-        '''
-        Return the fields of this object in declaration order as a tuple.
-
-        :rtype: tuple
-        '''
-
-        return (self.type, self.earliest_date, self.latest_date,)
 
     @property
     def earliest_date(self):

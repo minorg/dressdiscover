@@ -559,7 +559,7 @@ class ObjectFacets(object):
         return hash((self.categories,self.collections,self.color_texts,self.cultural_context_texts,self.genders,self.institutions,self.location_name_texts,self.material_texts,self.subject_term_texts,self.technique_texts,self.work_type_texts,))
 
     def __iter__(self):
-        return iter(self.as_tuple())
+        return iter((self.categories, self.collections, self.color_texts, self.cultural_context_texts, self.genders, self.institutions, self.location_name_texts, self.material_texts, self.subject_term_texts, self.technique_texts, self.work_type_texts,))
 
     def __ne__(self, other):
         return not self.__eq__(other)
@@ -593,24 +593,6 @@ class ObjectFacets(object):
         field_reprs.append('technique_texts=' + repr(self.technique_texts))
         field_reprs.append('work_type_texts=' + repr(self.work_type_texts))
         return 'ObjectFacets(' + ', '.join(field_reprs) + ')'
-
-    def as_dict(self):
-        '''
-        Return the fields of this object as a dictionary.
-
-        :rtype: dict
-        '''
-
-        return {'categories': self.categories, 'collections': self.collections, 'color_texts': self.color_texts, 'cultural_context_texts': self.cultural_context_texts, 'genders': self.genders, 'institutions': self.institutions, 'location_name_texts': self.location_name_texts, 'material_texts': self.material_texts, 'subject_term_texts': self.subject_term_texts, 'technique_texts': self.technique_texts, 'work_type_texts': self.work_type_texts}
-
-    def as_tuple(self):
-        '''
-        Return the fields of this object in declaration order as a tuple.
-
-        :rtype: tuple
-        '''
-
-        return (self.categories, self.collections, self.color_texts, self.cultural_context_texts, self.genders, self.institutions, self.location_name_texts, self.material_texts, self.subject_term_texts, self.technique_texts, self.work_type_texts,)
 
     @property
     def categories(self):

@@ -295,7 +295,7 @@ class Rights(object):
         return hash((self.text,self.type,self.license_vocab_ref,self.notes,self.rights_holder,))
 
     def __iter__(self):
-        return iter(self.as_tuple())
+        return iter((self.text, self.type, self.license_vocab_ref, self.notes, self.rights_holder,))
 
     def __ne__(self, other):
         return not self.__eq__(other)
@@ -323,24 +323,6 @@ class Rights(object):
         if self.rights_holder is not None:
             field_reprs.append('rights_holder=' + "'" + self.rights_holder.encode('ascii', 'replace') + "'")
         return 'Rights(' + ', '.join(field_reprs) + ')'
-
-    def as_dict(self):
-        '''
-        Return the fields of this object as a dictionary.
-
-        :rtype: dict
-        '''
-
-        return {'text': self.text, 'type': self.type, 'license_vocab_ref': self.license_vocab_ref, 'notes': self.notes, 'rights_holder': self.rights_holder}
-
-    def as_tuple(self):
-        '''
-        Return the fields of this object in declaration order as a tuple.
-
-        :rtype: tuple
-        '''
-
-        return (self.text, self.type, self.license_vocab_ref, self.notes, self.rights_holder,)
 
     @property
     def license_vocab_ref(self):

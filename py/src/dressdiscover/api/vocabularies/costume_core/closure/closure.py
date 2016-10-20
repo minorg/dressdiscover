@@ -154,7 +154,7 @@ class Closure(object):
         return hash((self.placement,self.type,))
 
     def __iter__(self):
-        return iter(self.as_tuple())
+        return iter((self.placement, self.type,))
 
     def __ne__(self, other):
         return not self.__eq__(other)
@@ -170,24 +170,6 @@ class Closure(object):
         field_reprs.append('placement=' + repr(self.placement))
         field_reprs.append('type=' + repr(self.type))
         return 'Closure(' + ', '.join(field_reprs) + ')'
-
-    def as_dict(self):
-        '''
-        Return the fields of this object as a dictionary.
-
-        :rtype: dict
-        '''
-
-        return {'placement': self.placement, 'type': self.type}
-
-    def as_tuple(self):
-        '''
-        Return the fields of this object in declaration order as a tuple.
-
-        :rtype: tuple
-        '''
-
-        return (self.placement, self.type,)
 
     @property
     def placement(self):

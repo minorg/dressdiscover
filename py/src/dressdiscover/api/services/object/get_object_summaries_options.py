@@ -244,7 +244,7 @@ class GetObjectSummariesOptions(object):
         return hash((self.from_,self.include_facets,self.size,self.sorts,))
 
     def __iter__(self):
-        return iter(self.as_tuple())
+        return iter((self.from_, self.include_facets, self.size, self.sorts,))
 
     def __ne__(self, other):
         return not self.__eq__(other)
@@ -272,24 +272,6 @@ class GetObjectSummariesOptions(object):
         if self.sorts is not None:
             field_reprs.append('sorts=' + repr(self.sorts))
         return 'GetObjectSummariesOptions(' + ', '.join(field_reprs) + ')'
-
-    def as_dict(self):
-        '''
-        Return the fields of this object as a dictionary.
-
-        :rtype: dict
-        '''
-
-        return {'from_': self.from_, 'include_facets': self.include_facets, 'size': self.size, 'sorts': self.sorts}
-
-    def as_tuple(self):
-        '''
-        Return the fields of this object in declaration order as a tuple.
-
-        :rtype: tuple
-        '''
-
-        return (self.from_, self.include_facets, self.size, self.sorts,)
 
     @property
     def from_(self):
