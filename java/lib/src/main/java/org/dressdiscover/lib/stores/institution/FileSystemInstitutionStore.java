@@ -2,6 +2,7 @@ package org.dressdiscover.lib.stores.institution;
 
 import java.io.File;
 
+import org.apache.commons.lang3.exception.ExceptionUtils;
 import org.dressdiscover.api.models.institution.Institution;
 import org.dressdiscover.api.models.institution.InstitutionEntry;
 import org.dressdiscover.api.models.institution.InstitutionId;
@@ -19,8 +20,6 @@ import org.thryft.waf.lib.stores.InvalidModelException;
 import com.google.common.collect.ImmutableList;
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
-
-import net.logstash.logback.encoder.org.apache.commons.lang.exception.ExceptionUtils;
 
 @Singleton
 public class FileSystemInstitutionStore

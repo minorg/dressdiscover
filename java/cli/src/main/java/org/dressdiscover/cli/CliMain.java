@@ -15,7 +15,7 @@ import com.google.inject.AbstractModule;
 import com.google.inject.Guice;
 import com.google.inject.Injector;
 
-public final class CliMain extends org.thryft.waf.lib.AbstractMain {
+public final class CliMain extends org.thryft.waf.cli.CliMain {
     public static void main(final String[] argv) throws Exception {
         new CliMain().__main(argv);
     }

@@ -9,12 +9,12 @@ import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
 import java.net.URLEncoder;
 
+import org.apache.commons.lang3.StringUtils;
+import org.dressdiscover.api.models.object.ObjectQuery;
+
 import com.google.common.base.Charsets;
 import com.google.common.collect.ImmutableList;
 import com.opencsv.CSVWriter;
-
-import org.dressdiscover.api.models.object.ObjectQuery;
-import net.logstash.logback.encoder.org.apache.commons.lang.StringUtils;
 
 public abstract class WizardFeatureSet {
     public WizardFeatureSet(final ImmutableList<WizardFeature> features) {

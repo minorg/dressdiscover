@@ -3,13 +3,13 @@ package org.dressdiscover.gui.models.wizard;
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
 
+import org.apache.commons.lang3.StringUtils;
+import org.dressdiscover.api.services.IoException;
+
 import com.google.common.base.Charsets;
 import com.google.common.collect.ImmutableMap;
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
-
-import org.dressdiscover.api.services.IoException;
-import net.logstash.logback.encoder.org.apache.commons.lang.StringUtils;
 
 @Singleton
 public class WizardFeatureSetFactories {

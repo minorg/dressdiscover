@@ -73,12 +73,7 @@ class Main(thryft.main.Main):
 
     def _clean(self):
         for dir_path in (
-             os.path.join(ROOT_DIR_PATH, 'java', 'api', 'src', 'gen', 'java', 'net'),
-             os.path.join(ROOT_DIR_PATH, 'java', 'gui', 'src', 'gen', 'java', 'net'),
-             os.path.join(ROOT_DIR_PATH, 'java', 'lib', 'src', 'gen', 'java', 'net'),
-             os.path.join(ROOT_DIR_PATH, 'java', 'server', 'src', 'gen', 'java', 'net'),
-             os.path.join(ROOT_DIR_PATH, 'py', 'src', 'dressdiscover', 'api'),
-             os.path.join(ROOT_DIR_PATH, 'py', 'src', 'dressdiscover', 'client'),
+             os.path.join(ROOT_DIR_PATH, 'py', 'src', 'dressdiscover', 'models'),
              os.path.join(ROOT_DIR_PATH, 'sql'),
         ):
             if os.path.isdir(dir_path):
