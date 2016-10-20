@@ -1,4 +1,3 @@
-namespace java org.dressdiscover.api.models.description
 namespace * dressdiscover.api.models.description
 
 enum DescriptionType {

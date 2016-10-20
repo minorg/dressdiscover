@@ -1,5 +1,3 @@
-namespace bean_java org.dressdiscover.gui.models.work_type
-namespace java org.dressdiscover.api.models.work_type
 namespace * dressdiscover.api.models.work_type
 
 include "dressdiscover/api/models/vocab_ref.thrift"

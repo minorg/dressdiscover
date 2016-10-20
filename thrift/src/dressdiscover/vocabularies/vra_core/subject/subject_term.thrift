@@ -1,5 +1,3 @@
-namespace bean_java org.dressdiscover.gui.models.subject
-namespace java org.dressdiscover.api.models.subject
 namespace * dressdiscover.api.models.subject
 
 include "dressdiscover/api/models/vocab_ref.thrift"

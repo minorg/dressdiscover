@@ -1,4 +1,3 @@
-namespace java org.dressdiscover.api.models.inscription
 namespace * dressdiscover.api.models.inscription
 
 enum InscriptionTextType {

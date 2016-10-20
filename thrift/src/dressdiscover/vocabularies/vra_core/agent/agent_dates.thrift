@@ -1,5 +1,3 @@
-namespace bean_java org.dressdiscover.gui.models.agent
-namespace java org.dressdiscover.api.models.agent
 namespace * dressdiscover.api.models.agent
 
 include "dressdiscover/api/models/agent/agent_dates_type.thrift"

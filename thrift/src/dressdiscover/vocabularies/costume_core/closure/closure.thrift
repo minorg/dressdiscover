@@ -1,5 +1,3 @@
-namespace bean_java org.dressdiscover.gui.models.closure
-namespace java org.dressdiscover.api.models.closure
 namespace * dressdiscover.api.models.closure
 
 include "dressdiscover/api/models/closure/closure_placement.thrift"

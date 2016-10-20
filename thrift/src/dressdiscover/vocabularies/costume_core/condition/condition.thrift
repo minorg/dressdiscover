@@ -1,4 +1,3 @@
-namespace java org.dressdiscover.api.models.condition
 namespace * dressdiscover.api.models.condition
 
 enum Condition {

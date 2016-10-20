@@ -1,4 +1,3 @@
-namespace java org.dressdiscover.api.models
 namespace * dressdiscover.api.models
 
 enum Vocab {

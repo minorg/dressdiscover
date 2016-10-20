@@ -1,5 +1,3 @@
-namespace bean_java org.dressdiscover.gui.models.location
-namespace java org.dressdiscover.api.models.location
 namespace * dressdiscover.api.models.location
 
 include "thryft/native/decimal.thrift"

@@ -1,5 +1,3 @@
-namespace bean_java org.dressdiscover.gui.models.date
-namespace java org.dressdiscover.api.models.date
 namespace * dressdiscover.api.models.date
 
 include "dressdiscover/api/models/date/date.thrift"

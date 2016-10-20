@@ -1,4 +1,3 @@
-namespace java org.dressdiscover.api.models.title
 namespace * dressdiscover.api.models.title
 
 enum TitleType {

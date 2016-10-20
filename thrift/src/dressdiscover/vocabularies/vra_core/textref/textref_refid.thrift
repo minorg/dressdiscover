@@ -1,5 +1,3 @@
-namespace bean_java org.dressdiscover.gui.models.textref
-namespace java org.dressdiscover.api.models.textref
 namespace * dressdiscover.api.models.textref
 
 include "dressdiscover/api/models/textref/textref_refid_type.thrift"

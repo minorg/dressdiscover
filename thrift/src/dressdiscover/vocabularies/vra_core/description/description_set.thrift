@@ -1,5 +1,3 @@
-namespace bean_java org.dressdiscover.gui.models.description
-namespace java org.dressdiscover.api.models.description
 namespace * dressdiscover.api.models.description
 
 include "dressdiscover/api/models/description/description.thrift"
