@@ -27,7 +27,7 @@ from dressdiscover.api.models.vocab import Vocab
 from dressdiscover.api.models.vocab_ref import VocabRef
 from dressdiscover.api.models.work_type.work_type import WorkType
 from dressdiscover.etl.costume_core.costume_core_omeka_loader import CostumeCoreOmekaLoader
-from dressdiscover.etl.dcmi_types import DCMI_TYPES_BASE_URL
+from dressdiscover.lib.mappers.dcmi_types import DCMI_TYPES_BASE_URL
 
 
 class HistoricDressOmekaLoader(CostumeCoreOmekaLoader):

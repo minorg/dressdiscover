@@ -18,9 +18,9 @@ from dressdiscover.lib.stores.collection.omeka.omeka_fs_collection_store import 
 from dressdiscover.lib.stores.object.oai_pmh.oai_pmh_fs_object_store import OaiPmhFsObjectStore
 from dressdiscover.lib.stores.object.omeka.omeka_api_object_store import OmekaApiObjectStore  # Force registration # @UnusedImport
 from dressdiscover.lib.stores.object.omeka.omeka_fs_object_store import OmekaFsObjectStore  # Force registration # @UnusedImport
-from dressdiscover.etl.txfc.txfc_oai_pmh_record_mapper import TxfcOaiPmhRecordMapper
-from dressdiscover.etl.vccc.vccc_omeka_resource_mapper import VcccOmekaResourceMapper
-from dressdiscover.etl.wizard.wizard_omeka_resource_mapper import WizardOmekaResourceMapper  # @UnusedImport
+from dressdiscover.lib.mappers.txfc.txfc_oai_pmh_record_mapper import TxfcOaiPmhRecordMapper
+from dressdiscover.lib.mappers.vccc.vccc_omeka_resource_mapper import VcccOmekaResourceMapper
+from dressdiscover.lib.mappers.wizard.wizard_omeka_resource_mapper import WizardOmekaResourceMapper  # @UnusedImport
 
 
 def put_collection(collection_id, institution_id, title, hidden=None, object_store_uri=None):

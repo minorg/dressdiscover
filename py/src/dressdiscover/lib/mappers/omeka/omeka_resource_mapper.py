@@ -32,7 +32,7 @@ from org.dressdiscover.api.models.title import TitleSet, Title, TitleType
 from org.dressdiscover.api.models.work_type import WorkTypeSet, WorkType
 from org.thryft.native_ import Url, Uri
 
-from dressdiscover.etl.date_parser import DateParser
+from dressdiscover.lib.mappers.date_parser import DateParser
 from dressdiscover.lib.stores.object.omeka.dcmi_types import DCMI_TYPES, \
     DCMI_TYPES_BASE_URL
 

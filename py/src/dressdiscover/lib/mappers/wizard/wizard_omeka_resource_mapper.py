@@ -15,7 +15,7 @@ from org.dressdiscover.api.models.title import TitleSet, Title, TitleType
 from org.dressdiscover.api.models.view_type import ViewType
 from org.thryft.native_ import Uri, Url
 
-from dressdiscover.etl.omeka.omeka_resource_mapper import OmekaResourceMapper
+from dressdiscover.lib.mappers.omeka.omeka_resource_mapper import OmekaResourceMapper
 
 
 class WizardOmekaResourceMapper(OmekaResourceMapper):
