@@ -1,4 +1,5 @@
 import __builtin__
+import dressdiscover.api.models.object.object_service_configuration
 import dressdiscover.api.vocabularies.vra_core.location.location_set
 import dressdiscover.api.vocabularies.vra_core.work_type.work_type_set
 
@@ -13,7 +14,7 @@ class Collection(object):
             external=None,
             hidden=None,
             locations=None,
-            object_store_uri=None,
+            object_service_configuration=None,
             url=None,
             work_types=None,
         ):
@@ -24,7 +25,7 @@ class Collection(object):
             :type external: bool or None
             :type hidden: bool or None
             :type locations: dressdiscover.api.vocabularies.vra_core.location.location_set.LocationSet or None
-            :type object_store_uri: str or None
+            :type object_service_configuration: dressdiscover.api.models.object.object_service_configuration.ObjectServiceConfiguration or None
             :type url: str or None
             :type work_types: dressdiscover.api.vocabularies.vra_core.work_type.work_type_set.WorkTypeSet or None
             '''
@@ -35,12 +36,12 @@ class Collection(object):
             self.__external = external
             self.__hidden = hidden
             self.__locations = locations
-            self.__object_store_uri = object_store_uri
+            self.__object_service_configuration = object_service_configuration
             self.__url = url
             self.__work_types = work_types
 
         def build(self):
-            return Collection(institution_id=self.__institution_id, title=self.__title, description=self.__description, external=self.__external, hidden=self.__hidden, locations=self.__locations, object_store_uri=self.__object_store_uri, url=self.__url, work_types=self.__work_types)
+            return Collection(institution_id=self.__institution_id, title=self.__title, description=self.__description, external=self.__external, hidden=self.__hidden, locations=self.__locations, object_service_configuration=self.__object_service_configuration, url=self.__url, work_types=self.__work_types)
 
         @property
         def description(self):
@@ -83,12 +84,12 @@ class Collection(object):
             return self.__locations
 
         @property
-        def object_store_uri(self):
+        def object_service_configuration(self):
             '''
-            :rtype: str
+            :rtype: dressdiscover.api.models.object.object_service_configuration.ObjectServiceConfiguration
             '''
 
-            return self.__object_store_uri
+            return self.__object_service_configuration
 
         def set_description(self, description):
             '''
@@ -152,15 +153,15 @@ class Collection(object):
             self.__locations = locations
             return self
 
-        def set_object_store_uri(self, object_store_uri):
+        def set_object_service_configuration(self, object_service_configuration):
             '''
-            :type object_store_uri: str or None
+            :type object_service_configuration: dressdiscover.api.models.object.object_service_configuration.ObjectServiceConfiguration or None
             '''
 
-            if object_store_uri is not None:
-                if not isinstance(object_store_uri, basestring):
-                    raise TypeError("expected object_store_uri to be a str but it is a %s" % getattr(__builtin__, 'type')(object_store_uri))
-            self.__object_store_uri = object_store_uri
+            if object_service_configuration is not None:
+                if not isinstance(object_service_configuration, dressdiscover.api.models.object.object_service_configuration.ObjectServiceConfiguration):
+                    raise TypeError("expected object_service_configuration to be a dressdiscover.api.models.object.object_service_configuration.ObjectServiceConfiguration but it is a %s" % getattr(__builtin__, 'type')(object_service_configuration))
+            self.__object_service_configuration = object_service_configuration
             return self
 
         def set_title(self, title):
@@ -215,7 +216,7 @@ class Collection(object):
             :type external: bool or None
             :type hidden: bool or None
             :type locations: dressdiscover.api.vocabularies.vra_core.location.location_set.LocationSet or None
-            :type object_store_uri: str or None
+            :type object_service_configuration: dressdiscover.api.models.object.object_service_configuration.ObjectServiceConfiguration or None
             :type url: str or None
             :type work_types: dressdiscover.api.vocabularies.vra_core.work_type.work_type_set.WorkTypeSet or None
             '''
@@ -227,7 +228,7 @@ class Collection(object):
                 self.set_external(collection.external)
                 self.set_hidden(collection.hidden)
                 self.set_locations(collection.locations)
-                self.set_object_store_uri(collection.object_store_uri)
+                self.set_object_service_configuration(collection.object_service_configuration)
                 self.set_url(collection.url)
                 self.set_work_types(collection.work_types)
             elif isinstance(collection, dict):
@@ -293,13 +294,13 @@ class Collection(object):
 
             self.set_locations(locations)
 
-        @object_store_uri.setter
-        def object_store_uri(self, object_store_uri):
+        @object_service_configuration.setter
+        def object_service_configuration(self, object_service_configuration):
             '''
-            :type object_store_uri: str or None
+            :type object_service_configuration: dressdiscover.api.models.object.object_service_configuration.ObjectServiceConfiguration or None
             '''
 
-            self.set_object_store_uri(object_store_uri)
+            self.set_object_service_configuration(object_service_configuration)
 
         @title.setter
         def title(self, title):
@@ -332,7 +333,7 @@ class Collection(object):
         EXTERNAL = None
         HIDDEN = None
         LOCATIONS = None
-        OBJECT_STORE_URI = None
+        OBJECT_SERVICE_CONFIGURATION = None
         URL = None
         WORK_TYPES = None
 
@@ -355,7 +356,7 @@ class Collection(object):
 
         @classmethod
         def values(cls):
-            return (cls.INSTITUTION_ID, cls.TITLE, cls.DESCRIPTION, cls.EXTERNAL, cls.HIDDEN, cls.LOCATIONS, cls.OBJECT_STORE_URI, cls.URL, cls.WORK_TYPES,)
+            return (cls.INSTITUTION_ID, cls.TITLE, cls.DESCRIPTION, cls.EXTERNAL, cls.HIDDEN, cls.LOCATIONS, cls.OBJECT_SERVICE_CONFIGURATION, cls.URL, cls.WORK_TYPES,)
 
     FieldMetadata.INSTITUTION_ID = FieldMetadata('institution_id', dressdiscover.api.models.institution.institution_id.InstitutionId, None)
     FieldMetadata.TITLE = FieldMetadata('title', str, {u'minLength': 1})
@@ -363,7 +364,7 @@ class Collection(object):
     FieldMetadata.EXTERNAL = FieldMetadata('external', bool, {u'acceptance': True})
     FieldMetadata.HIDDEN = FieldMetadata('hidden', bool, {u'acceptance': True})
     FieldMetadata.LOCATIONS = FieldMetadata('locations', dressdiscover.api.vocabularies.vra_core.location.location_set.LocationSet, None)
-    FieldMetadata.OBJECT_STORE_URI = FieldMetadata('object_store_uri', str, None)
+    FieldMetadata.OBJECT_SERVICE_CONFIGURATION = FieldMetadata('object_service_configuration', dressdiscover.api.models.object.object_service_configuration.ObjectServiceConfiguration, None)
     FieldMetadata.URL = FieldMetadata('url', str, None)
     FieldMetadata.WORK_TYPES = FieldMetadata('work_types', dressdiscover.api.vocabularies.vra_core.work_type.work_type_set.WorkTypeSet, None)
 
@@ -375,7 +376,7 @@ class Collection(object):
         external=None,
         hidden=None,
         locations=None,
-        object_store_uri=None,
+        object_service_configuration=None,
         url=None,
         work_types=None,
     ):
@@ -386,7 +387,7 @@ class Collection(object):
         :type external: bool or None
         :type hidden: bool or None
         :type locations: dressdiscover.api.vocabularies.vra_core.location.location_set.LocationSet or None
-        :type object_store_uri: str or None
+        :type object_service_configuration: dressdiscover.api.models.object.object_service_configuration.ObjectServiceConfiguration or None
         :type url: str or None
         :type work_types: dressdiscover.api.vocabularies.vra_core.work_type.work_type_set.WorkTypeSet or None
         '''
@@ -431,10 +432,10 @@ class Collection(object):
                 raise TypeError("expected locations to be a dressdiscover.api.vocabularies.vra_core.location.location_set.LocationSet but it is a %s" % getattr(__builtin__, 'type')(locations))
         self.__locations = locations
 
-        if object_store_uri is not None:
-            if not isinstance(object_store_uri, basestring):
-                raise TypeError("expected object_store_uri to be a str but it is a %s" % getattr(__builtin__, 'type')(object_store_uri))
-        self.__object_store_uri = object_store_uri
+        if object_service_configuration is not None:
+            if not isinstance(object_service_configuration, dressdiscover.api.models.object.object_service_configuration.ObjectServiceConfiguration):
+                raise TypeError("expected object_service_configuration to be a dressdiscover.api.models.object.object_service_configuration.ObjectServiceConfiguration but it is a %s" % getattr(__builtin__, 'type')(object_service_configuration))
+        self.__object_service_configuration = object_service_configuration
 
         if url is not None:
             if not isinstance(url, basestring):
@@ -459,7 +460,7 @@ class Collection(object):
             return False
         if self.locations != other.locations:
             return False
-        if self.object_store_uri != other.object_store_uri:
+        if self.object_service_configuration != other.object_service_configuration:
             return False
         if self.url != other.url:
             return False
@@ -468,10 +469,10 @@ class Collection(object):
         return True
 
     def __hash__(self):
-        return hash((self.institution_id,self.title,self.description,self.external,self.hidden,self.locations,self.object_store_uri,self.url,self.work_types,))
+        return hash((self.institution_id,self.title,self.description,self.external,self.hidden,self.locations,self.object_service_configuration,self.url,self.work_types,))
 
     def __iter__(self):
-        return iter((self.institution_id, self.title, self.description, self.external, self.hidden, self.locations, self.object_store_uri, self.url, self.work_types,))
+        return iter((self.institution_id, self.title, self.description, self.external, self.hidden, self.locations, self.object_service_configuration, self.url, self.work_types,))
 
     def __ne__(self, other):
         return not self.__eq__(other)
@@ -488,8 +489,8 @@ class Collection(object):
             field_reprs.append('hidden=' + repr(self.hidden))
         if self.locations is not None:
             field_reprs.append('locations=' + repr(self.locations))
-        if self.object_store_uri is not None:
-            field_reprs.append('object_store_uri=' + "'" + self.object_store_uri.encode('ascii', 'replace') + "'")
+        if self.object_service_configuration is not None:
+            field_reprs.append('object_service_configuration=' + repr(self.object_service_configuration))
         if self.url is not None:
             field_reprs.append('url=' + "'" + self.url.encode('ascii', 'replace') + "'")
         if self.work_types is not None:
@@ -508,8 +509,8 @@ class Collection(object):
             field_reprs.append('hidden=' + repr(self.hidden))
         if self.locations is not None:
             field_reprs.append('locations=' + repr(self.locations))
-        if self.object_store_uri is not None:
-            field_reprs.append('object_store_uri=' + "'" + self.object_store_uri.encode('ascii', 'replace') + "'")
+        if self.object_service_configuration is not None:
+            field_reprs.append('object_service_configuration=' + repr(self.object_service_configuration))
         if self.url is not None:
             field_reprs.append('url=' + "'" + self.url.encode('ascii', 'replace') + "'")
         if self.work_types is not None:
@@ -557,12 +558,12 @@ class Collection(object):
         return self.__locations
 
     @property
-    def object_store_uri(self):
+    def object_service_configuration(self):
         '''
-        :rtype: str
+        :rtype: dressdiscover.api.models.object.object_service_configuration.ObjectServiceConfiguration
         '''
 
-        return self.__object_store_uri
+        return self.__object_service_configuration
 
     @classmethod
     def read(cls, iprot):
@@ -601,11 +602,8 @@ class Collection(object):
                     pass
             elif ifield_name == 'locations' and ifield_id == 8:
                 init_kwds['locations'] = dressdiscover.api.vocabularies.vra_core.location.location_set.LocationSet.read(iprot)
-            elif ifield_name == 'object_store_uri' and ifield_id == 10:
-                try:
-                    init_kwds['object_store_uri'] = iprot.read_string()
-                except (TypeError, ValueError,):
-                    pass
+            elif ifield_name == 'object_service_configuration' and ifield_id == 10:
+                init_kwds['object_service_configuration'] = dressdiscover.api.models.object.object_service_configuration.ObjectServiceConfiguration.read(iprot)
             elif ifield_name == 'url' and ifield_id == 9:
                 try:
                     init_kwds['url'] = iprot.read_string()
@@ -626,7 +624,7 @@ class Collection(object):
         external=None,
         hidden=None,
         locations=None,
-        object_store_uri=None,
+        object_service_configuration=None,
         url=None,
         work_types=None,
     ):
@@ -639,7 +637,7 @@ class Collection(object):
         :type external: bool or None
         :type hidden: bool or None
         :type locations: dressdiscover.api.vocabularies.vra_core.location.location_set.LocationSet or None
-        :type object_store_uri: str or None
+        :type object_service_configuration: dressdiscover.api.models.object.object_service_configuration.ObjectServiceConfiguration or None
         :type url: str or None
         :type work_types: dressdiscover.api.vocabularies.vra_core.work_type.work_type_set.WorkTypeSet or None
         :rtype: dressdiscover.api.models.collection.collection.Collection
@@ -657,13 +655,13 @@ class Collection(object):
             hidden = self.hidden
         if locations is None:
             locations = self.locations
-        if object_store_uri is None:
-            object_store_uri = self.object_store_uri
+        if object_service_configuration is None:
+            object_service_configuration = self.object_service_configuration
         if url is None:
             url = self.url
         if work_types is None:
             work_types = self.work_types
-        return self.__class__(institution_id=institution_id, title=title, description=description, external=external, hidden=hidden, locations=locations, object_store_uri=object_store_uri, url=url, work_types=work_types)
+        return self.__class__(institution_id=institution_id, title=title, description=description, external=external, hidden=hidden, locations=locations, object_service_configuration=object_service_configuration, url=url, work_types=work_types)
 
     @property
     def title(self):
@@ -727,9 +725,9 @@ class Collection(object):
             self.locations.write(oprot)
             oprot.write_field_end()
 
-        if self.object_store_uri is not None:
-            oprot.write_field_begin(name='object_store_uri', type=11, id=10)
-            oprot.write_string(self.object_store_uri)
+        if self.object_service_configuration is not None:
+            oprot.write_field_begin(name='object_service_configuration', type=12, id=10)
+            self.object_service_configuration.write(oprot)
             oprot.write_field_end()
 
         if self.url is not None:

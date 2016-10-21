@@ -1,9 +1,9 @@
 namespace * dressdiscover.api.models.collection
 
 include "dressdiscover/api/models/institution/institution_id.thrift"
+include "dressdiscover/api/models/object/object_service_configuration.thrift"
 include "dressdiscover/api/vocabularies/vra_core/location/location_set.thrift"
 include "dressdiscover/api/vocabularies/vra_core/work_type/work_type_set.thrift"
-include "thryft/native/uri.thrift"
 include "thryft/native/url.thrift"
 
 // @java_implements org.thryft.waf.api.models.Model
@@ -24,7 +24,7 @@ struct Collection {
 
     8: optional location_set.LocationSet locations;
 
-    10: optional uri.Uri object_store_uri;
+    10: optional object_service_configuration.ObjectServiceConfiguration object_service_configuration;
 
     9: optional url.Url url;
 

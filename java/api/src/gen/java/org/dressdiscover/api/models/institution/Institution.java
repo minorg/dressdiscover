@@ -4,36 +4,34 @@ public final class Institution implements org.thryft.Struct, org.thryft.waf.api.
     public final static class Builder {
         public Builder() {
             title = null;
-            collectionStoreUri = com.google.common.base.Optional.<org.thryft.native_.Uri> absent();
+            collectionServiceConfiguration = com.google.common.base.Optional.<org.dressdiscover.api.models.collection.CollectionServiceConfiguration> absent();
             dataRights = com.google.common.base.Optional.<org.dressdiscover.api.vocabularies.vra_core.rights.RightsSet> absent();
             external = com.google.common.base.Optional.<Boolean> absent();
             hidden = com.google.common.base.Optional.<Boolean> absent();
             locations = com.google.common.base.Optional.<org.dressdiscover.api.vocabularies.vra_core.location.LocationSet> absent();
-            storeParameters = com.google.common.base.Optional.<com.google.common.collect.ImmutableMap<String, String>> absent();
             url = com.google.common.base.Optional.<org.thryft.native_.Url> absent();
         }
 
         public Builder(final Institution other) {
             this.title = other.getTitle();
-            this.collectionStoreUri = other.getCollectionStoreUri();
+            this.collectionServiceConfiguration = other.getCollectionServiceConfiguration();
             this.dataRights = other.getDataRights();
             this.external = other.getExternal();
             this.hidden = other.getHidden();
             this.locations = other.getLocations();
-            this.storeParameters = other.getStoreParameters();
             this.url = other.getUrl();
         }
 
-        protected Institution _build(final String title, final com.google.common.base.Optional<org.thryft.native_.Uri> collectionStoreUri, final com.google.common.base.Optional<org.dressdiscover.api.vocabularies.vra_core.rights.RightsSet> dataRights, final com.google.common.base.Optional<Boolean> external, final com.google.common.base.Optional<Boolean> hidden, final com.google.common.base.Optional<org.dressdiscover.api.vocabularies.vra_core.location.LocationSet> locations, final com.google.common.base.Optional<com.google.common.collect.ImmutableMap<String, String>> storeParameters, final com.google.common.base.Optional<org.thryft.native_.Url> url) {
-            return new Institution(title, collectionStoreUri, dataRights, external, hidden, locations, storeParameters, url, DefaultConstructionValidator.getInstance());
+        protected Institution _build(final String title, final com.google.common.base.Optional<org.dressdiscover.api.models.collection.CollectionServiceConfiguration> collectionServiceConfiguration, final com.google.common.base.Optional<org.dressdiscover.api.vocabularies.vra_core.rights.RightsSet> dataRights, final com.google.common.base.Optional<Boolean> external, final com.google.common.base.Optional<Boolean> hidden, final com.google.common.base.Optional<org.dressdiscover.api.vocabularies.vra_core.location.LocationSet> locations, final com.google.common.base.Optional<org.thryft.native_.Url> url) {
+            return new Institution(title, collectionServiceConfiguration, dataRights, external, hidden, locations, url, DefaultConstructionValidator.getInstance());
         }
 
         public Institution build() {
-            return _build(title, collectionStoreUri, dataRights, external, hidden, locations, storeParameters, url);
+            return _build(title, collectionServiceConfiguration, dataRights, external, hidden, locations, url);
         }
 
-        public final com.google.common.base.Optional<org.thryft.native_.Uri> getCollectionStoreUri() {
-            return collectionStoreUri;
+        public final com.google.common.base.Optional<org.dressdiscover.api.models.collection.CollectionServiceConfiguration> getCollectionServiceConfiguration() {
+            return collectionServiceConfiguration;
         }
 
         public final com.google.common.base.Optional<org.dressdiscover.api.vocabularies.vra_core.rights.RightsSet> getDataRights() {
@@ -50,10 +48,6 @@ public final class Institution implements org.thryft.Struct, org.thryft.waf.api.
 
         public final com.google.common.base.Optional<org.dressdiscover.api.vocabularies.vra_core.location.LocationSet> getLocations() {
             return locations;
-        }
-
-        public final com.google.common.base.Optional<com.google.common.collect.ImmutableMap<String, String>> getStoreParameters() {
-            return storeParameters;
         }
 
         public final String getTitle() {
@@ -84,10 +78,7 @@ public final class Institution implements org.thryft.Struct, org.thryft.waf.api.
                 final org.thryft.protocol.ListBegin __list = iprot.readListBegin();
                 title = iprot.readString();
                 if (__list.getSize() > 1) {
-                    try {
-                        collectionStoreUri = com.google.common.base.Optional.of(org.thryft.native_.Uri.parse(iprot.readString()));
-                    } catch (final java.lang.IllegalArgumentException e) {
-                    }
+                    collectionServiceConfiguration = com.google.common.base.Optional.of(org.dressdiscover.api.models.collection.CollectionServiceConfiguration.readAsStruct(iprot));
                 }
                 if (__list.getSize() > 2) {
                     dataRights = com.google.common.base.Optional.of(org.dressdiscover.api.vocabularies.vra_core.rights.RightsSet.readAsStruct(iprot));
@@ -102,32 +93,6 @@ public final class Institution implements org.thryft.Struct, org.thryft.waf.api.
                     locations = com.google.common.base.Optional.of(org.dressdiscover.api.vocabularies.vra_core.location.LocationSet.readAsStruct(iprot));
                 }
                 if (__list.getSize() > 6) {
-                    try {
-                        storeParameters = com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableMap<String, String>>() {
-                            @Override
-                            public com.google.common.collect.ImmutableMap<String, String> apply(final org.thryft.protocol.InputProtocol iprot) {
-                                try {
-                                    final org.thryft.protocol.MapBegin mapBegin = iprot.readMapBegin();
-                                    final com.google.common.collect.ImmutableMap.Builder<String, String> map = com.google.common.collect.ImmutableMap.builder();
-                                    for (int entryI = 0; entryI < mapBegin.getSize(); entryI++) {
-                                        final String key;
-                                        key = iprot.readString();
-                                        final String value;
-                                        value = iprot.readString();
-                                        map.put(key, value);
-                                    }
-                                    iprot.readMapEnd();
-                                    return map.build();
-                                } catch (final org.thryft.protocol.InputProtocolException e) {
-                                    throw new org.thryft.protocol.UncheckedInputProtocolException(e);
-                                }
-                            }
-                        }).apply(iprot));
-                    } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
-                         throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.STORE_PARAMETERS, e.getCause());
-                    }
-                }
-                if (__list.getSize() > 7) {
                     try {
                         url = com.google.common.base.Optional.of(org.thryft.native_.Url.parse(iprot.readString()));
                     } catch (final java.lang.IllegalArgumentException e) {
@@ -159,12 +124,9 @@ public final class Institution implements org.thryft.Struct, org.thryft.waf.api.
                         }
                         break;
                     }
-                    case "collection_store_uri": {
+                    case "collection_service_configuration": {
                         if (!ifield.hasId() || ifield.getId() == 9) {
-                            try {
-                                collectionStoreUri = com.google.common.base.Optional.of(org.thryft.native_.Uri.parse(iprot.readString()));
-                            } catch (final java.lang.IllegalArgumentException e) {
-                            }
+                            collectionServiceConfiguration = com.google.common.base.Optional.of(org.dressdiscover.api.models.collection.CollectionServiceConfiguration.readAsStruct(iprot));
                         }
                         break;
                     }
@@ -189,35 +151,6 @@ public final class Institution implements org.thryft.Struct, org.thryft.waf.api.
                     case "locations": {
                         if (!ifield.hasId() || ifield.getId() == 8) {
                             locations = com.google.common.base.Optional.of(org.dressdiscover.api.vocabularies.vra_core.location.LocationSet.readAsStruct(iprot));
-                        }
-                        break;
-                    }
-                    case "store_parameters": {
-                        if (!ifield.hasId() || ifield.getId() == 10) {
-                            try {
-                                storeParameters = com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableMap<String, String>>() {
-                                    @Override
-                                    public com.google.common.collect.ImmutableMap<String, String> apply(final org.thryft.protocol.InputProtocol iprot) {
-                                        try {
-                                            final org.thryft.protocol.MapBegin mapBegin = iprot.readMapBegin();
-                                            final com.google.common.collect.ImmutableMap.Builder<String, String> map = com.google.common.collect.ImmutableMap.builder();
-                                            for (int entryI = 0; entryI < mapBegin.getSize(); entryI++) {
-                                                final String key;
-                                                key = iprot.readString();
-                                                final String value;
-                                                value = iprot.readString();
-                                                map.put(key, value);
-                                            }
-                                            iprot.readMapEnd();
-                                            return map.build();
-                                        } catch (final org.thryft.protocol.InputProtocolException e) {
-                                            throw new org.thryft.protocol.UncheckedInputProtocolException(e);
-                                        }
-                                    }
-                                }).apply(iprot));
-                            } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
-                                 throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.STORE_PARAMETERS, e.getCause());
-                            }
                         }
                         break;
                     }
@@ -256,31 +189,29 @@ public final class Institution implements org.thryft.Struct, org.thryft.waf.api.
             return set((FieldMetadata)fieldMetadata, value);
         }
 
-        @SuppressWarnings({"unchecked"})
         public Builder set(final FieldMetadata fieldMetadata, @javax.annotation.Nullable final java.lang.Object value) {
             com.google.common.base.Preconditions.checkNotNull(fieldMetadata);
 
             switch (fieldMetadata) {
             case TITLE: setTitle((String)value); return this;
-            case COLLECTION_STORE_URI: setCollectionStoreUri((org.thryft.native_.Uri)value); return this;
+            case COLLECTION_SERVICE_CONFIGURATION: setCollectionServiceConfiguration((org.dressdiscover.api.models.collection.CollectionServiceConfiguration)value); return this;
             case DATA_RIGHTS: setDataRights((org.dressdiscover.api.vocabularies.vra_core.rights.RightsSet)value); return this;
             case EXTERNAL: setExternal((Boolean)value); return this;
             case HIDDEN: setHidden((Boolean)value); return this;
             case LOCATIONS: setLocations((org.dressdiscover.api.vocabularies.vra_core.location.LocationSet)value); return this;
-            case STORE_PARAMETERS: setStoreParameters((com.google.common.collect.ImmutableMap<String, String>)value); return this;
             case URL: setUrl((org.thryft.native_.Url)value); return this;
             default:
                 throw new IllegalStateException();
             }
         }
 
-        public Builder setCollectionStoreUri(final com.google.common.base.Optional<org.thryft.native_.Uri> collectionStoreUri) {
-            this.collectionStoreUri = DefaultConstructionValidator.getInstance().validateCollectionStoreUri(collectionStoreUri);
+        public Builder setCollectionServiceConfiguration(final com.google.common.base.Optional<org.dressdiscover.api.models.collection.CollectionServiceConfiguration> collectionServiceConfiguration) {
+            this.collectionServiceConfiguration = DefaultConstructionValidator.getInstance().validateCollectionServiceConfiguration(collectionServiceConfiguration);
             return this;
         }
 
-        public Builder setCollectionStoreUri(@javax.annotation.Nullable final org.thryft.native_.Uri collectionStoreUri) {
-            return setCollectionStoreUri(com.google.common.base.Optional.fromNullable(collectionStoreUri));
+        public Builder setCollectionServiceConfiguration(@javax.annotation.Nullable final org.dressdiscover.api.models.collection.CollectionServiceConfiguration collectionServiceConfiguration) {
+            return setCollectionServiceConfiguration(com.google.common.base.Optional.fromNullable(collectionServiceConfiguration));
         }
 
         public Builder setDataRights(final com.google.common.base.Optional<org.dressdiscover.api.vocabularies.vra_core.rights.RightsSet> dataRights) {
@@ -314,8 +245,8 @@ public final class Institution implements org.thryft.Struct, org.thryft.waf.api.
             com.google.common.base.Preconditions.checkNotNull(other);
 
             setTitle(other.getTitle());
-            if (other.getCollectionStoreUri().isPresent()) {
-                setCollectionStoreUri(other.getCollectionStoreUri());
+            if (other.getCollectionServiceConfiguration().isPresent()) {
+                setCollectionServiceConfiguration(other.getCollectionServiceConfiguration());
             }
             if (other.getDataRights().isPresent()) {
                 setDataRights(other.getDataRights());
@@ -328,9 +259,6 @@ public final class Institution implements org.thryft.Struct, org.thryft.waf.api.
             }
             if (other.getLocations().isPresent()) {
                 setLocations(other.getLocations());
-            }
-            if (other.getStoreParameters().isPresent()) {
-                setStoreParameters(other.getStoreParameters());
             }
             if (other.getUrl().isPresent()) {
                 setUrl(other.getUrl());
@@ -346,15 +274,6 @@ public final class Institution implements org.thryft.Struct, org.thryft.waf.api.
 
         public Builder setLocations(@javax.annotation.Nullable final org.dressdiscover.api.vocabularies.vra_core.location.LocationSet locations) {
             return setLocations(com.google.common.base.Optional.fromNullable(locations));
-        }
-
-        public Builder setStoreParameters(final com.google.common.base.Optional<com.google.common.collect.ImmutableMap<String, String>> storeParameters) {
-            this.storeParameters = DefaultConstructionValidator.getInstance().validateStoreParameters(storeParameters);
-            return this;
-        }
-
-        public Builder setStoreParameters(@javax.annotation.Nullable final com.google.common.collect.ImmutableMap<String, String> storeParameters) {
-            return setStoreParameters(com.google.common.base.Optional.fromNullable(storeParameters));
         }
 
         public Builder setTitle(final String title) {
@@ -387,20 +306,19 @@ public final class Institution implements org.thryft.Struct, org.thryft.waf.api.
 
             switch (fieldMetadata) {
             case TITLE: return unsetTitle();
-            case COLLECTION_STORE_URI: return unsetCollectionStoreUri();
+            case COLLECTION_SERVICE_CONFIGURATION: return unsetCollectionServiceConfiguration();
             case DATA_RIGHTS: return unsetDataRights();
             case EXTERNAL: return unsetExternal();
             case HIDDEN: return unsetHidden();
             case LOCATIONS: return unsetLocations();
-            case STORE_PARAMETERS: return unsetStoreParameters();
             case URL: return unsetUrl();
             default:
                 throw new IllegalStateException();
             }
         }
 
-        public Builder unsetCollectionStoreUri() {
-            this.collectionStoreUri = com.google.common.base.Optional.<org.thryft.native_.Uri> absent();
+        public Builder unsetCollectionServiceConfiguration() {
+            this.collectionServiceConfiguration = com.google.common.base.Optional.<org.dressdiscover.api.models.collection.CollectionServiceConfiguration> absent();
             return this;
         }
 
@@ -424,11 +342,6 @@ public final class Institution implements org.thryft.Struct, org.thryft.waf.api.
             return this;
         }
 
-        public Builder unsetStoreParameters() {
-            this.storeParameters = com.google.common.base.Optional.<com.google.common.collect.ImmutableMap<String, String>> absent();
-            return this;
-        }
-
         public Builder unsetTitle() {
             this.title = null;
             return this;
@@ -440,12 +353,11 @@ public final class Institution implements org.thryft.Struct, org.thryft.waf.api.
         }
 
         private String title;
-        private com.google.common.base.Optional<org.thryft.native_.Uri> collectionStoreUri;
+        private com.google.common.base.Optional<org.dressdiscover.api.models.collection.CollectionServiceConfiguration> collectionServiceConfiguration;
         private com.google.common.base.Optional<org.dressdiscover.api.vocabularies.vra_core.rights.RightsSet> dataRights;
         private com.google.common.base.Optional<Boolean> external;
         private com.google.common.base.Optional<Boolean> hidden;
         private com.google.common.base.Optional<org.dressdiscover.api.vocabularies.vra_core.location.LocationSet> locations;
-        private com.google.common.base.Optional<com.google.common.collect.ImmutableMap<String, String>> storeParameters;
         private com.google.common.base.Optional<org.thryft.native_.Url> url;
     }
 
@@ -481,12 +393,11 @@ public final class Institution implements org.thryft.Struct, org.thryft.waf.api.
     @SuppressWarnings("serial")
     public enum FieldMetadata implements org.thryft.CompoundType.FieldMetadata {
         TITLE("title", new com.google.common.reflect.TypeToken<String>() {}, true, 1, "title", org.thryft.protocol.Type.STRING),
-        COLLECTION_STORE_URI("collectionStoreUri", new com.google.common.reflect.TypeToken<org.thryft.native_.Uri>() {}, false, 9, "collection_store_uri", org.thryft.protocol.Type.STRING),
+        COLLECTION_SERVICE_CONFIGURATION("collectionServiceConfiguration", new com.google.common.reflect.TypeToken<org.dressdiscover.api.models.collection.CollectionServiceConfiguration>() {}, false, 9, "collection_service_configuration", org.thryft.protocol.Type.STRUCT),
         DATA_RIGHTS("dataRights", new com.google.common.reflect.TypeToken<org.dressdiscover.api.vocabularies.vra_core.rights.RightsSet>() {}, false, 5, "data_rights", org.thryft.protocol.Type.STRUCT),
         EXTERNAL("external", new com.google.common.reflect.TypeToken<Boolean>() {}, false, 7, "external", org.thryft.protocol.Type.BOOL),
         HIDDEN("hidden", new com.google.common.reflect.TypeToken<Boolean>() {}, false, 6, "hidden", org.thryft.protocol.Type.BOOL),
         LOCATIONS("locations", new com.google.common.reflect.TypeToken<org.dressdiscover.api.vocabularies.vra_core.location.LocationSet>() {}, false, 8, "locations", org.thryft.protocol.Type.STRUCT),
-        STORE_PARAMETERS("storeParameters", new com.google.common.reflect.TypeToken<com.google.common.collect.ImmutableMap<String, String>>() {}, false, 10, "store_parameters", org.thryft.protocol.Type.MAP),
         URL("url", new com.google.common.reflect.TypeToken<org.thryft.native_.Url>() {}, false, 3, "url", org.thryft.protocol.Type.STRING);
 
         @Override
@@ -532,12 +443,11 @@ public final class Institution implements org.thryft.Struct, org.thryft.waf.api.
         public static FieldMetadata valueOfJavaName(final String javaName) {
             switch (javaName) {
             case "title": return TITLE;
-            case "collectionStoreUri": return COLLECTION_STORE_URI;
+            case "collectionServiceConfiguration": return COLLECTION_SERVICE_CONFIGURATION;
             case "dataRights": return DATA_RIGHTS;
             case "external": return EXTERNAL;
             case "hidden": return HIDDEN;
             case "locations": return LOCATIONS;
-            case "storeParameters": return STORE_PARAMETERS;
             case "url": return URL;
             default:
                 throw new IllegalArgumentException(javaName);
@@ -547,12 +457,11 @@ public final class Institution implements org.thryft.Struct, org.thryft.waf.api.
         public static FieldMetadata valueOfThriftName(final String thriftName) {
             switch (thriftName) {
             case "title": return TITLE;
-            case "collection_store_uri": return COLLECTION_STORE_URI;
+            case "collection_service_configuration": return COLLECTION_SERVICE_CONFIGURATION;
             case "data_rights": return DATA_RIGHTS;
             case "external": return EXTERNAL;
             case "hidden": return HIDDEN;
             case "locations": return LOCATIONS;
-            case "store_parameters": return STORE_PARAMETERS;
             case "url": return URL;
             default:
                 throw new IllegalArgumentException(thriftName);
@@ -585,7 +494,7 @@ public final class Institution implements org.thryft.Struct, org.thryft.waf.api.
     public interface Validator<ExceptionT extends Exception> {
         public String validateTitle(final String title) throws ExceptionT;
 
-        public com.google.common.base.Optional<org.thryft.native_.Uri> validateCollectionStoreUri(final com.google.common.base.Optional<org.thryft.native_.Uri> collectionStoreUri) throws ExceptionT;
+        public com.google.common.base.Optional<org.dressdiscover.api.models.collection.CollectionServiceConfiguration> validateCollectionServiceConfiguration(final com.google.common.base.Optional<org.dressdiscover.api.models.collection.CollectionServiceConfiguration> collectionServiceConfiguration) throws ExceptionT;
 
         public com.google.common.base.Optional<org.dressdiscover.api.vocabularies.vra_core.rights.RightsSet> validateDataRights(final com.google.common.base.Optional<org.dressdiscover.api.vocabularies.vra_core.rights.RightsSet> dataRights) throws ExceptionT;
 
@@ -594,8 +503,6 @@ public final class Institution implements org.thryft.Struct, org.thryft.waf.api.
         public com.google.common.base.Optional<Boolean> validateHidden(final com.google.common.base.Optional<Boolean> hidden) throws ExceptionT;
 
         public com.google.common.base.Optional<org.dressdiscover.api.vocabularies.vra_core.location.LocationSet> validateLocations(final com.google.common.base.Optional<org.dressdiscover.api.vocabularies.vra_core.location.LocationSet> locations) throws ExceptionT;
-
-        public com.google.common.base.Optional<com.google.common.collect.ImmutableMap<String, String>> validateStoreParameters(final com.google.common.base.Optional<com.google.common.collect.ImmutableMap<String, String>> storeParameters) throws ExceptionT;
 
         public com.google.common.base.Optional<org.thryft.native_.Url> validateUrl(final com.google.common.base.Optional<org.thryft.native_.Url> url) throws ExceptionT;
     }
@@ -620,14 +527,14 @@ public final class Institution implements org.thryft.Struct, org.thryft.waf.api.
         }
 
         @Override
-        public com.google.common.base.Optional<org.thryft.native_.Uri> validateCollectionStoreUri(final com.google.common.base.Optional<org.thryft.native_.Uri> collectionStoreUri) throws RuntimeException {
-            if (collectionStoreUri == null) {
-                throw new NullPointerException("org.dressdiscover.api.models.institution.Institution: collectionStoreUri is null");
+        public com.google.common.base.Optional<org.dressdiscover.api.models.collection.CollectionServiceConfiguration> validateCollectionServiceConfiguration(final com.google.common.base.Optional<org.dressdiscover.api.models.collection.CollectionServiceConfiguration> collectionServiceConfiguration) throws RuntimeException {
+            if (collectionServiceConfiguration == null) {
+                throw new NullPointerException("org.dressdiscover.api.models.institution.Institution: collectionServiceConfiguration is null");
             }
-            if (!collectionStoreUri.isPresent()) {
-                return collectionStoreUri;
+            if (!collectionServiceConfiguration.isPresent()) {
+                return collectionServiceConfiguration;
             }
-            return collectionStoreUri;
+            return collectionServiceConfiguration;
         }
 
         @Override
@@ -675,20 +582,6 @@ public final class Institution implements org.thryft.Struct, org.thryft.waf.api.
         }
 
         @Override
-        public com.google.common.base.Optional<com.google.common.collect.ImmutableMap<String, String>> validateStoreParameters(final com.google.common.base.Optional<com.google.common.collect.ImmutableMap<String, String>> storeParameters) throws RuntimeException {
-            if (storeParameters == null) {
-                throw new NullPointerException("org.dressdiscover.api.models.institution.Institution: storeParameters is null");
-            }
-            if (!storeParameters.isPresent()) {
-                return storeParameters;
-            }
-            if (storeParameters.get().isEmpty()) {
-                throw new IllegalArgumentException("org.dressdiscover.api.models.institution.Institution: storeParameters is less than min length 1");
-            }
-            return storeParameters;
-        }
-
-        @Override
         public com.google.common.base.Optional<org.thryft.native_.Url> validateUrl(final com.google.common.base.Optional<org.thryft.native_.Url> url) throws RuntimeException {
             if (url == null) {
                 throw new NullPointerException("org.dressdiscover.api.models.institution.Institution: url is null");
@@ -716,8 +609,8 @@ public final class Institution implements org.thryft.Struct, org.thryft.waf.api.
         }
 
         @Override
-        public com.google.common.base.Optional<org.thryft.native_.Uri> validateCollectionStoreUri(final com.google.common.base.Optional<org.thryft.native_.Uri> collectionStoreUri) {
-            return collectionStoreUri;
+        public com.google.common.base.Optional<org.dressdiscover.api.models.collection.CollectionServiceConfiguration> validateCollectionServiceConfiguration(final com.google.common.base.Optional<org.dressdiscover.api.models.collection.CollectionServiceConfiguration> collectionServiceConfiguration) {
+            return collectionServiceConfiguration;
         }
 
         @Override
@@ -738,11 +631,6 @@ public final class Institution implements org.thryft.Struct, org.thryft.waf.api.
         @Override
         public com.google.common.base.Optional<org.dressdiscover.api.vocabularies.vra_core.location.LocationSet> validateLocations(final com.google.common.base.Optional<org.dressdiscover.api.vocabularies.vra_core.location.LocationSet> locations) {
             return locations;
-        }
-
-        @Override
-        public com.google.common.base.Optional<com.google.common.collect.ImmutableMap<String, String>> validateStoreParameters(final com.google.common.base.Optional<com.google.common.collect.ImmutableMap<String, String>> storeParameters) {
-            return storeParameters;
         }
 
         @Override
@@ -773,14 +661,14 @@ public final class Institution implements org.thryft.Struct, org.thryft.waf.api.
         }
 
         @Override
-        public com.google.common.base.Optional<org.thryft.native_.Uri> validateCollectionStoreUri(final com.google.common.base.Optional<org.thryft.native_.Uri> collectionStoreUri) throws org.thryft.protocol.InputProtocolException {
-            if (collectionStoreUri == null) {
-                throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.COLLECTION_STORE_URI, "org.dressdiscover.api.models.institution.Institution: collectionStoreUri is null");
+        public com.google.common.base.Optional<org.dressdiscover.api.models.collection.CollectionServiceConfiguration> validateCollectionServiceConfiguration(final com.google.common.base.Optional<org.dressdiscover.api.models.collection.CollectionServiceConfiguration> collectionServiceConfiguration) throws org.thryft.protocol.InputProtocolException {
+            if (collectionServiceConfiguration == null) {
+                throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.COLLECTION_SERVICE_CONFIGURATION, "org.dressdiscover.api.models.institution.Institution: collectionServiceConfiguration is null");
             }
-            if (!collectionStoreUri.isPresent()) {
-                return collectionStoreUri;
+            if (!collectionServiceConfiguration.isPresent()) {
+                return collectionServiceConfiguration;
             }
-            return collectionStoreUri;
+            return collectionServiceConfiguration;
         }
 
         @Override
@@ -828,20 +716,6 @@ public final class Institution implements org.thryft.Struct, org.thryft.waf.api.
         }
 
         @Override
-        public com.google.common.base.Optional<com.google.common.collect.ImmutableMap<String, String>> validateStoreParameters(final com.google.common.base.Optional<com.google.common.collect.ImmutableMap<String, String>> storeParameters) throws org.thryft.protocol.InputProtocolException {
-            if (storeParameters == null) {
-                throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.STORE_PARAMETERS, "org.dressdiscover.api.models.institution.Institution: storeParameters is null");
-            }
-            if (!storeParameters.isPresent()) {
-                return storeParameters;
-            }
-            if (storeParameters.get().isEmpty()) {
-                throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.STORE_PARAMETERS, "org.dressdiscover.api.models.institution.Institution: storeParameters is less than min length 1");
-            }
-            return storeParameters;
-        }
-
-        @Override
         public com.google.common.base.Optional<org.thryft.native_.Url> validateUrl(final com.google.common.base.Optional<org.thryft.native_.Url> url) throws org.thryft.protocol.InputProtocolException {
             if (url == null) {
                 throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.URL, "org.dressdiscover.api.models.institution.Institution: url is null");
@@ -869,8 +743,8 @@ public final class Institution implements org.thryft.Struct, org.thryft.waf.api.
         }
 
         @Override
-        public com.google.common.base.Optional<org.thryft.native_.Uri> validateCollectionStoreUri(final com.google.common.base.Optional<org.thryft.native_.Uri> collectionStoreUri) {
-            return collectionStoreUri;
+        public com.google.common.base.Optional<org.dressdiscover.api.models.collection.CollectionServiceConfiguration> validateCollectionServiceConfiguration(final com.google.common.base.Optional<org.dressdiscover.api.models.collection.CollectionServiceConfiguration> collectionServiceConfiguration) {
+            return collectionServiceConfiguration;
         }
 
         @Override
@@ -894,11 +768,6 @@ public final class Institution implements org.thryft.Struct, org.thryft.waf.api.
         }
 
         @Override
-        public com.google.common.base.Optional<com.google.common.collect.ImmutableMap<String, String>> validateStoreParameters(final com.google.common.base.Optional<com.google.common.collect.ImmutableMap<String, String>> storeParameters) {
-            return storeParameters;
-        }
-
-        @Override
         public com.google.common.base.Optional<org.thryft.native_.Url> validateUrl(final com.google.common.base.Optional<org.thryft.native_.Url> url) {
             return url;
         }
@@ -910,17 +779,16 @@ public final class Institution implements org.thryft.Struct, org.thryft.waf.api.
      * Copy constructor
      */
     public Institution(final Institution other) {
-        this(other.getTitle(), other.getCollectionStoreUri(), other.getDataRights(), other.getExternal(), other.getHidden(), other.getLocations(), other.getStoreParameters(), other.getUrl(), NopConstructionValidator.getInstance());
+        this(other.getTitle(), other.getCollectionServiceConfiguration(), other.getDataRights(), other.getExternal(), other.getHidden(), other.getLocations(), other.getUrl(), NopConstructionValidator.getInstance());
     }
 
-    protected Institution(final String title, final com.google.common.base.Optional<org.thryft.native_.Uri> collectionStoreUri, final com.google.common.base.Optional<org.dressdiscover.api.vocabularies.vra_core.rights.RightsSet> dataRights, final com.google.common.base.Optional<Boolean> external, final com.google.common.base.Optional<Boolean> hidden, final com.google.common.base.Optional<org.dressdiscover.api.vocabularies.vra_core.location.LocationSet> locations, final com.google.common.base.Optional<com.google.common.collect.ImmutableMap<String, String>> storeParameters, final com.google.common.base.Optional<org.thryft.native_.Url> url, ConstructionValidator validator) {
+    protected Institution(final String title, final com.google.common.base.Optional<org.dressdiscover.api.models.collection.CollectionServiceConfiguration> collectionServiceConfiguration, final com.google.common.base.Optional<org.dressdiscover.api.vocabularies.vra_core.rights.RightsSet> dataRights, final com.google.common.base.Optional<Boolean> external, final com.google.common.base.Optional<Boolean> hidden, final com.google.common.base.Optional<org.dressdiscover.api.vocabularies.vra_core.location.LocationSet> locations, final com.google.common.base.Optional<org.thryft.native_.Url> url, ConstructionValidator validator) {
         this.title = validator.validateTitle(title);
-        this.collectionStoreUri = validator.validateCollectionStoreUri(collectionStoreUri);
+        this.collectionServiceConfiguration = validator.validateCollectionServiceConfiguration(collectionServiceConfiguration);
         this.dataRights = validator.validateDataRights(dataRights);
         this.external = validator.validateExternal(external);
         this.hidden = validator.validateHidden(hidden);
         this.locations = validator.validateLocations(locations);
-        this.storeParameters = validator.validateStoreParameters(storeParameters);
         this.url = validator.validateUrl(url);
     }
 
@@ -940,21 +808,21 @@ public final class Institution implements org.thryft.Struct, org.thryft.waf.api.
      * Required factory method
      */
     public static Institution create(final String title) {
-        return new Institution(title, com.google.common.base.Optional.<org.thryft.native_.Uri> absent(), com.google.common.base.Optional.<org.dressdiscover.api.vocabularies.vra_core.rights.RightsSet> absent(), com.google.common.base.Optional.<Boolean> absent(), com.google.common.base.Optional.<Boolean> absent(), com.google.common.base.Optional.<org.dressdiscover.api.vocabularies.vra_core.location.LocationSet> absent(), com.google.common.base.Optional.<com.google.common.collect.ImmutableMap<String, String>> absent(), com.google.common.base.Optional.<org.thryft.native_.Url> absent(), DefaultConstructionValidator.getInstance());
+        return new Institution(title, com.google.common.base.Optional.<org.dressdiscover.api.models.collection.CollectionServiceConfiguration> absent(), com.google.common.base.Optional.<org.dressdiscover.api.vocabularies.vra_core.rights.RightsSet> absent(), com.google.common.base.Optional.<Boolean> absent(), com.google.common.base.Optional.<Boolean> absent(), com.google.common.base.Optional.<org.dressdiscover.api.vocabularies.vra_core.location.LocationSet> absent(), com.google.common.base.Optional.<org.thryft.native_.Url> absent(), DefaultConstructionValidator.getInstance());
     }
 
     /**
      * Total Nullable factory method
      */
-    public static Institution create(final String title, final @javax.annotation.Nullable org.thryft.native_.Uri collectionStoreUri, final @javax.annotation.Nullable org.dressdiscover.api.vocabularies.vra_core.rights.RightsSet dataRights, final @javax.annotation.Nullable Boolean external, final @javax.annotation.Nullable Boolean hidden, final @javax.annotation.Nullable org.dressdiscover.api.vocabularies.vra_core.location.LocationSet locations, final @javax.annotation.Nullable com.google.common.collect.ImmutableMap<String, String> storeParameters, final @javax.annotation.Nullable org.thryft.native_.Url url) {
-        return new Institution(title, com.google.common.base.Optional.fromNullable(collectionStoreUri), com.google.common.base.Optional.fromNullable(dataRights), com.google.common.base.Optional.fromNullable(external), com.google.common.base.Optional.fromNullable(hidden), com.google.common.base.Optional.fromNullable(locations), com.google.common.base.Optional.fromNullable(storeParameters), com.google.common.base.Optional.fromNullable(url), DefaultConstructionValidator.getInstance());
+    public static Institution create(final String title, final @javax.annotation.Nullable org.dressdiscover.api.models.collection.CollectionServiceConfiguration collectionServiceConfiguration, final @javax.annotation.Nullable org.dressdiscover.api.vocabularies.vra_core.rights.RightsSet dataRights, final @javax.annotation.Nullable Boolean external, final @javax.annotation.Nullable Boolean hidden, final @javax.annotation.Nullable org.dressdiscover.api.vocabularies.vra_core.location.LocationSet locations, final @javax.annotation.Nullable org.thryft.native_.Url url) {
+        return new Institution(title, com.google.common.base.Optional.fromNullable(collectionServiceConfiguration), com.google.common.base.Optional.fromNullable(dataRights), com.google.common.base.Optional.fromNullable(external), com.google.common.base.Optional.fromNullable(hidden), com.google.common.base.Optional.fromNullable(locations), com.google.common.base.Optional.fromNullable(url), DefaultConstructionValidator.getInstance());
     }
 
     /**
      * Optional factory method
      */
-    public static Institution create(final String title, final com.google.common.base.Optional<org.thryft.native_.Uri> collectionStoreUri, final com.google.common.base.Optional<org.dressdiscover.api.vocabularies.vra_core.rights.RightsSet> dataRights, final com.google.common.base.Optional<Boolean> external, final com.google.common.base.Optional<Boolean> hidden, final com.google.common.base.Optional<org.dressdiscover.api.vocabularies.vra_core.location.LocationSet> locations, final com.google.common.base.Optional<com.google.common.collect.ImmutableMap<String, String>> storeParameters, final com.google.common.base.Optional<org.thryft.native_.Url> url) {
-        return new Institution(title, collectionStoreUri, dataRights, external, hidden, locations, storeParameters, url, DefaultConstructionValidator.getInstance());
+    public static Institution create(final String title, final com.google.common.base.Optional<org.dressdiscover.api.models.collection.CollectionServiceConfiguration> collectionServiceConfiguration, final com.google.common.base.Optional<org.dressdiscover.api.vocabularies.vra_core.rights.RightsSet> dataRights, final com.google.common.base.Optional<Boolean> external, final com.google.common.base.Optional<Boolean> hidden, final com.google.common.base.Optional<org.dressdiscover.api.vocabularies.vra_core.location.LocationSet> locations, final com.google.common.base.Optional<org.thryft.native_.Url> url) {
+        return new Institution(title, collectionServiceConfiguration, dataRights, external, hidden, locations, url, DefaultConstructionValidator.getInstance());
     }
 
     @Override
@@ -972,7 +840,7 @@ public final class Institution implements org.thryft.Struct, org.thryft.waf.api.
             return false;
         }
 
-        if (!(((getCollectionStoreUri().isPresent() && other.getCollectionStoreUri().isPresent()) ? (getCollectionStoreUri().get().equals(other.getCollectionStoreUri().get())) : (!getCollectionStoreUri().isPresent() && !other.getCollectionStoreUri().isPresent())))) {
+        if (!(((getCollectionServiceConfiguration().isPresent() && other.getCollectionServiceConfiguration().isPresent()) ? (getCollectionServiceConfiguration().get().equals(other.getCollectionServiceConfiguration().get())) : (!getCollectionServiceConfiguration().isPresent() && !other.getCollectionServiceConfiguration().isPresent())))) {
             return false;
         }
 
@@ -989,10 +857,6 @@ public final class Institution implements org.thryft.Struct, org.thryft.waf.api.
         }
 
         if (!(((getLocations().isPresent() && other.getLocations().isPresent()) ? (getLocations().get().equals(other.getLocations().get())) : (!getLocations().isPresent() && !other.getLocations().isPresent())))) {
-            return false;
-        }
-
-        if (!(((getStoreParameters().isPresent() && other.getStoreParameters().isPresent()) ? (getStoreParameters().get().equals(other.getStoreParameters().get())) : (!getStoreParameters().isPresent() && !other.getStoreParameters().isPresent())))) {
             return false;
         }
 
@@ -1019,20 +883,19 @@ public final class Institution implements org.thryft.Struct, org.thryft.waf.api.
     public java.lang.Object get(final FieldMetadata fieldMetadata) {
         switch (fieldMetadata) {
         case TITLE: return getTitle();
-        case COLLECTION_STORE_URI: return getCollectionStoreUri();
+        case COLLECTION_SERVICE_CONFIGURATION: return getCollectionServiceConfiguration();
         case DATA_RIGHTS: return getDataRights();
         case EXTERNAL: return getExternal();
         case HIDDEN: return getHidden();
         case LOCATIONS: return getLocations();
-        case STORE_PARAMETERS: return getStoreParameters();
         case URL: return getUrl();
         default:
             throw new IllegalStateException();
         }
     }
 
-    public final com.google.common.base.Optional<org.thryft.native_.Uri> getCollectionStoreUri() {
-        return collectionStoreUri;
+    public final com.google.common.base.Optional<org.dressdiscover.api.models.collection.CollectionServiceConfiguration> getCollectionServiceConfiguration() {
+        return collectionServiceConfiguration;
     }
 
     public final com.google.common.base.Optional<org.dressdiscover.api.vocabularies.vra_core.rights.RightsSet> getDataRights() {
@@ -1051,10 +914,6 @@ public final class Institution implements org.thryft.Struct, org.thryft.waf.api.
         return locations;
     }
 
-    public final com.google.common.base.Optional<com.google.common.collect.ImmutableMap<String, String>> getStoreParameters() {
-        return storeParameters;
-    }
-
     public final String getTitle() {
         return title;
     }
@@ -1067,8 +926,8 @@ public final class Institution implements org.thryft.Struct, org.thryft.waf.api.
     public int hashCode() {
         int hashCode = 17;
         hashCode = 31 * hashCode + getTitle().hashCode();
-        if (getCollectionStoreUri().isPresent()) {
-            hashCode = 31 * hashCode + getCollectionStoreUri().get().hashCode();
+        if (getCollectionServiceConfiguration().isPresent()) {
+            hashCode = 31 * hashCode + getCollectionServiceConfiguration().get().hashCode();
         }
         if (getDataRights().isPresent()) {
             hashCode = 31 * hashCode + getDataRights().get().hashCode();
@@ -1081,9 +940,6 @@ public final class Institution implements org.thryft.Struct, org.thryft.waf.api.
         }
         if (getLocations().isPresent()) {
             hashCode = 31 * hashCode + getLocations().get().hashCode();
-        }
-        if (getStoreParameters().isPresent()) {
-            hashCode = 31 * hashCode + getStoreParameters().get().hashCode();
         }
         if (getUrl().isPresent()) {
             hashCode = 31 * hashCode + getUrl().get().hashCode();
@@ -1108,22 +964,18 @@ public final class Institution implements org.thryft.Struct, org.thryft.waf.api.
 
     public static Institution readAsList(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
         String title = null;
-        com.google.common.base.Optional<org.thryft.native_.Uri> collectionStoreUri = com.google.common.base.Optional.<org.thryft.native_.Uri> absent();
+        com.google.common.base.Optional<org.dressdiscover.api.models.collection.CollectionServiceConfiguration> collectionServiceConfiguration = com.google.common.base.Optional.<org.dressdiscover.api.models.collection.CollectionServiceConfiguration> absent();
         com.google.common.base.Optional<org.dressdiscover.api.vocabularies.vra_core.rights.RightsSet> dataRights = com.google.common.base.Optional.<org.dressdiscover.api.vocabularies.vra_core.rights.RightsSet> absent();
         com.google.common.base.Optional<Boolean> external = com.google.common.base.Optional.<Boolean> absent();
         com.google.common.base.Optional<Boolean> hidden = com.google.common.base.Optional.<Boolean> absent();
         com.google.common.base.Optional<org.dressdiscover.api.vocabularies.vra_core.location.LocationSet> locations = com.google.common.base.Optional.<org.dressdiscover.api.vocabularies.vra_core.location.LocationSet> absent();
-        com.google.common.base.Optional<com.google.common.collect.ImmutableMap<String, String>> storeParameters = com.google.common.base.Optional.<com.google.common.collect.ImmutableMap<String, String>> absent();
         com.google.common.base.Optional<org.thryft.native_.Url> url = com.google.common.base.Optional.<org.thryft.native_.Url> absent();
 
         try {
             final org.thryft.protocol.ListBegin __list = iprot.readListBegin();
             title = iprot.readString();
             if (__list.getSize() > 1) {
-                try {
-                    collectionStoreUri = com.google.common.base.Optional.of(org.thryft.native_.Uri.parse(iprot.readString()));
-                } catch (final java.lang.IllegalArgumentException e) {
-                }
+                collectionServiceConfiguration = com.google.common.base.Optional.of(org.dressdiscover.api.models.collection.CollectionServiceConfiguration.readAsStruct(iprot));
             }
             if (__list.getSize() > 2) {
                 dataRights = com.google.common.base.Optional.of(org.dressdiscover.api.vocabularies.vra_core.rights.RightsSet.readAsStruct(iprot));
@@ -1139,32 +991,6 @@ public final class Institution implements org.thryft.Struct, org.thryft.waf.api.
             }
             if (__list.getSize() > 6) {
                 try {
-                    storeParameters = com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableMap<String, String>>() {
-                        @Override
-                        public com.google.common.collect.ImmutableMap<String, String> apply(final org.thryft.protocol.InputProtocol iprot) {
-                            try {
-                                final org.thryft.protocol.MapBegin mapBegin = iprot.readMapBegin();
-                                final com.google.common.collect.ImmutableMap.Builder<String, String> map = com.google.common.collect.ImmutableMap.builder();
-                                for (int entryI = 0; entryI < mapBegin.getSize(); entryI++) {
-                                    final String key;
-                                    key = iprot.readString();
-                                    final String value;
-                                    value = iprot.readString();
-                                    map.put(key, value);
-                                }
-                                iprot.readMapEnd();
-                                return map.build();
-                            } catch (final org.thryft.protocol.InputProtocolException e) {
-                                throw new org.thryft.protocol.UncheckedInputProtocolException(e);
-                            }
-                        }
-                    }).apply(iprot));
-                } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
-                     throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.STORE_PARAMETERS, e.getCause());
-                }
-            }
-            if (__list.getSize() > 7) {
-                try {
                     url = com.google.common.base.Optional.of(org.thryft.native_.Url.parse(iprot.readString()));
                 } catch (final java.lang.IllegalArgumentException e) {
                 }
@@ -1173,7 +999,7 @@ public final class Institution implements org.thryft.Struct, org.thryft.waf.api.
         } catch (final RuntimeException e) {
             throw new IllegalStateException(e);
         }
-        return new Institution(DefaultReadValidator.getInstance().validateTitle(title), DefaultReadValidator.getInstance().validateCollectionStoreUri(collectionStoreUri), DefaultReadValidator.getInstance().validateDataRights(dataRights), DefaultReadValidator.getInstance().validateExternal(external), DefaultReadValidator.getInstance().validateHidden(hidden), DefaultReadValidator.getInstance().validateLocations(locations), DefaultReadValidator.getInstance().validateStoreParameters(storeParameters), DefaultReadValidator.getInstance().validateUrl(url), NopConstructionValidator.getInstance());
+        return new Institution(DefaultReadValidator.getInstance().validateTitle(title), DefaultReadValidator.getInstance().validateCollectionServiceConfiguration(collectionServiceConfiguration), DefaultReadValidator.getInstance().validateDataRights(dataRights), DefaultReadValidator.getInstance().validateExternal(external), DefaultReadValidator.getInstance().validateHidden(hidden), DefaultReadValidator.getInstance().validateLocations(locations), DefaultReadValidator.getInstance().validateUrl(url), NopConstructionValidator.getInstance());
     }
 
     public static Institution readAsStruct(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
@@ -1182,12 +1008,11 @@ public final class Institution implements org.thryft.Struct, org.thryft.waf.api.
 
     public static Institution readAsStruct(final org.thryft.protocol.InputProtocol iprot, final com.google.common.base.Optional<UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
         String title = null;
-        com.google.common.base.Optional<org.thryft.native_.Uri> collectionStoreUri = com.google.common.base.Optional.<org.thryft.native_.Uri> absent();
+        com.google.common.base.Optional<org.dressdiscover.api.models.collection.CollectionServiceConfiguration> collectionServiceConfiguration = com.google.common.base.Optional.<org.dressdiscover.api.models.collection.CollectionServiceConfiguration> absent();
         com.google.common.base.Optional<org.dressdiscover.api.vocabularies.vra_core.rights.RightsSet> dataRights = com.google.common.base.Optional.<org.dressdiscover.api.vocabularies.vra_core.rights.RightsSet> absent();
         com.google.common.base.Optional<Boolean> external = com.google.common.base.Optional.<Boolean> absent();
         com.google.common.base.Optional<Boolean> hidden = com.google.common.base.Optional.<Boolean> absent();
         com.google.common.base.Optional<org.dressdiscover.api.vocabularies.vra_core.location.LocationSet> locations = com.google.common.base.Optional.<org.dressdiscover.api.vocabularies.vra_core.location.LocationSet> absent();
-        com.google.common.base.Optional<com.google.common.collect.ImmutableMap<String, String>> storeParameters = com.google.common.base.Optional.<com.google.common.collect.ImmutableMap<String, String>> absent();
         com.google.common.base.Optional<org.thryft.native_.Url> url = com.google.common.base.Optional.<org.thryft.native_.Url> absent();
 
         try {
@@ -1204,12 +1029,9 @@ public final class Institution implements org.thryft.Struct, org.thryft.waf.api.
                     }
                     break;
                 }
-                case "collection_store_uri": {
+                case "collection_service_configuration": {
                     if (!ifield.hasId() || ifield.getId() == 9) {
-                        try {
-                            collectionStoreUri = com.google.common.base.Optional.of(org.thryft.native_.Uri.parse(iprot.readString()));
-                        } catch (final java.lang.IllegalArgumentException e) {
-                        }
+                        collectionServiceConfiguration = com.google.common.base.Optional.of(org.dressdiscover.api.models.collection.CollectionServiceConfiguration.readAsStruct(iprot));
                     }
                     break;
                 }
@@ -1237,35 +1059,6 @@ public final class Institution implements org.thryft.Struct, org.thryft.waf.api.
                     }
                     break;
                 }
-                case "store_parameters": {
-                    if (!ifield.hasId() || ifield.getId() == 10) {
-                        try {
-                            storeParameters = com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableMap<String, String>>() {
-                                @Override
-                                public com.google.common.collect.ImmutableMap<String, String> apply(final org.thryft.protocol.InputProtocol iprot) {
-                                    try {
-                                        final org.thryft.protocol.MapBegin mapBegin = iprot.readMapBegin();
-                                        final com.google.common.collect.ImmutableMap.Builder<String, String> map = com.google.common.collect.ImmutableMap.builder();
-                                        for (int entryI = 0; entryI < mapBegin.getSize(); entryI++) {
-                                            final String key;
-                                            key = iprot.readString();
-                                            final String value;
-                                            value = iprot.readString();
-                                            map.put(key, value);
-                                        }
-                                        iprot.readMapEnd();
-                                        return map.build();
-                                    } catch (final org.thryft.protocol.InputProtocolException e) {
-                                        throw new org.thryft.protocol.UncheckedInputProtocolException(e);
-                                    }
-                                }
-                            }).apply(iprot));
-                        } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
-                             throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.STORE_PARAMETERS, e.getCause());
-                        }
-                    }
-                    break;
-                }
                 case "url": {
                     if (!ifield.hasId() || ifield.getId() == 3) {
                         try {
@@ -1287,19 +1080,19 @@ public final class Institution implements org.thryft.Struct, org.thryft.waf.api.
         } catch (final RuntimeException e) {
             throw new IllegalStateException(e);
         }
-        return new Institution(DefaultReadValidator.getInstance().validateTitle(title), DefaultReadValidator.getInstance().validateCollectionStoreUri(collectionStoreUri), DefaultReadValidator.getInstance().validateDataRights(dataRights), DefaultReadValidator.getInstance().validateExternal(external), DefaultReadValidator.getInstance().validateHidden(hidden), DefaultReadValidator.getInstance().validateLocations(locations), DefaultReadValidator.getInstance().validateStoreParameters(storeParameters), DefaultReadValidator.getInstance().validateUrl(url), NopConstructionValidator.getInstance());
+        return new Institution(DefaultReadValidator.getInstance().validateTitle(title), DefaultReadValidator.getInstance().validateCollectionServiceConfiguration(collectionServiceConfiguration), DefaultReadValidator.getInstance().validateDataRights(dataRights), DefaultReadValidator.getInstance().validateExternal(external), DefaultReadValidator.getInstance().validateHidden(hidden), DefaultReadValidator.getInstance().validateLocations(locations), DefaultReadValidator.getInstance().validateUrl(url), NopConstructionValidator.getInstance());
     }
 
-    public Institution replaceCollectionStoreUri(final com.google.common.base.Optional<org.thryft.native_.Uri> collectionStoreUri) {
-        return new Institution(this.title, DefaultConstructionValidator.getInstance().validateCollectionStoreUri(collectionStoreUri), this.dataRights, this.external, this.hidden, this.locations, this.storeParameters, this.url, NopConstructionValidator.getInstance());
+    public Institution replaceCollectionServiceConfiguration(final com.google.common.base.Optional<org.dressdiscover.api.models.collection.CollectionServiceConfiguration> collectionServiceConfiguration) {
+        return new Institution(this.title, DefaultConstructionValidator.getInstance().validateCollectionServiceConfiguration(collectionServiceConfiguration), this.dataRights, this.external, this.hidden, this.locations, this.url, NopConstructionValidator.getInstance());
     }
 
-    public Institution replaceCollectionStoreUri(final org.thryft.native_.Uri collectionStoreUri) {
-        return replaceCollectionStoreUri(com.google.common.base.Optional.fromNullable(collectionStoreUri));
+    public Institution replaceCollectionServiceConfiguration(final org.dressdiscover.api.models.collection.CollectionServiceConfiguration collectionServiceConfiguration) {
+        return replaceCollectionServiceConfiguration(com.google.common.base.Optional.fromNullable(collectionServiceConfiguration));
     }
 
     public Institution replaceDataRights(final com.google.common.base.Optional<org.dressdiscover.api.vocabularies.vra_core.rights.RightsSet> dataRights) {
-        return new Institution(this.title, this.collectionStoreUri, DefaultConstructionValidator.getInstance().validateDataRights(dataRights), this.external, this.hidden, this.locations, this.storeParameters, this.url, NopConstructionValidator.getInstance());
+        return new Institution(this.title, this.collectionServiceConfiguration, DefaultConstructionValidator.getInstance().validateDataRights(dataRights), this.external, this.hidden, this.locations, this.url, NopConstructionValidator.getInstance());
     }
 
     public Institution replaceDataRights(final org.dressdiscover.api.vocabularies.vra_core.rights.RightsSet dataRights) {
@@ -1307,7 +1100,7 @@ public final class Institution implements org.thryft.Struct, org.thryft.waf.api.
     }
 
     public Institution replaceExternal(final com.google.common.base.Optional<Boolean> external) {
-        return new Institution(this.title, this.collectionStoreUri, this.dataRights, DefaultConstructionValidator.getInstance().validateExternal(external), this.hidden, this.locations, this.storeParameters, this.url, NopConstructionValidator.getInstance());
+        return new Institution(this.title, this.collectionServiceConfiguration, this.dataRights, DefaultConstructionValidator.getInstance().validateExternal(external), this.hidden, this.locations, this.url, NopConstructionValidator.getInstance());
     }
 
     public Institution replaceExternal(final boolean external) {
@@ -1315,7 +1108,7 @@ public final class Institution implements org.thryft.Struct, org.thryft.waf.api.
     }
 
     public Institution replaceHidden(final com.google.common.base.Optional<Boolean> hidden) {
-        return new Institution(this.title, this.collectionStoreUri, this.dataRights, this.external, DefaultConstructionValidator.getInstance().validateHidden(hidden), this.locations, this.storeParameters, this.url, NopConstructionValidator.getInstance());
+        return new Institution(this.title, this.collectionServiceConfiguration, this.dataRights, this.external, DefaultConstructionValidator.getInstance().validateHidden(hidden), this.locations, this.url, NopConstructionValidator.getInstance());
     }
 
     public Institution replaceHidden(final boolean hidden) {
@@ -1323,27 +1116,19 @@ public final class Institution implements org.thryft.Struct, org.thryft.waf.api.
     }
 
     public Institution replaceLocations(final com.google.common.base.Optional<org.dressdiscover.api.vocabularies.vra_core.location.LocationSet> locations) {
-        return new Institution(this.title, this.collectionStoreUri, this.dataRights, this.external, this.hidden, DefaultConstructionValidator.getInstance().validateLocations(locations), this.storeParameters, this.url, NopConstructionValidator.getInstance());
+        return new Institution(this.title, this.collectionServiceConfiguration, this.dataRights, this.external, this.hidden, DefaultConstructionValidator.getInstance().validateLocations(locations), this.url, NopConstructionValidator.getInstance());
     }
 
     public Institution replaceLocations(final org.dressdiscover.api.vocabularies.vra_core.location.LocationSet locations) {
         return replaceLocations(com.google.common.base.Optional.fromNullable(locations));
     }
 
-    public Institution replaceStoreParameters(final com.google.common.base.Optional<com.google.common.collect.ImmutableMap<String, String>> storeParameters) {
-        return new Institution(this.title, this.collectionStoreUri, this.dataRights, this.external, this.hidden, this.locations, DefaultConstructionValidator.getInstance().validateStoreParameters(storeParameters), this.url, NopConstructionValidator.getInstance());
-    }
-
-    public Institution replaceStoreParameters(final com.google.common.collect.ImmutableMap<String, String> storeParameters) {
-        return replaceStoreParameters(com.google.common.base.Optional.fromNullable(storeParameters));
-    }
-
     public Institution replaceTitle(final String title) {
-        return new Institution(DefaultConstructionValidator.getInstance().validateTitle(title), this.collectionStoreUri, this.dataRights, this.external, this.hidden, this.locations, this.storeParameters, this.url, NopConstructionValidator.getInstance());
+        return new Institution(DefaultConstructionValidator.getInstance().validateTitle(title), this.collectionServiceConfiguration, this.dataRights, this.external, this.hidden, this.locations, this.url, NopConstructionValidator.getInstance());
     }
 
     public Institution replaceUrl(final com.google.common.base.Optional<org.thryft.native_.Url> url) {
-        return new Institution(this.title, this.collectionStoreUri, this.dataRights, this.external, this.hidden, this.locations, this.storeParameters, DefaultConstructionValidator.getInstance().validateUrl(url), NopConstructionValidator.getInstance());
+        return new Institution(this.title, this.collectionServiceConfiguration, this.dataRights, this.external, this.hidden, this.locations, DefaultConstructionValidator.getInstance().validateUrl(url), NopConstructionValidator.getInstance());
     }
 
     public Institution replaceUrl(final org.thryft.native_.Url url) {
@@ -1352,17 +1137,17 @@ public final class Institution implements org.thryft.Struct, org.thryft.waf.api.
 
     @Override
     public String toString() {
-        return com.google.common.base.MoreObjects.toStringHelper(this).omitNullValues().add("title", getTitle()).add("collection_store_uri", getCollectionStoreUri().orNull()).add("data_rights", getDataRights().orNull()).add("external", getExternal().orNull()).add("hidden", getHidden().orNull()).add("locations", getLocations().orNull()).add("store_parameters", getStoreParameters().orNull()).add("url", getUrl().orNull()).toString();
+        return com.google.common.base.MoreObjects.toStringHelper(this).omitNullValues().add("title", getTitle()).add("collection_service_configuration", getCollectionServiceConfiguration().orNull()).add("data_rights", getDataRights().orNull()).add("external", getExternal().orNull()).add("hidden", getHidden().orNull()).add("locations", getLocations().orNull()).add("url", getUrl().orNull()).toString();
     }
 
     @Override
     public void writeAsList(final org.thryft.protocol.OutputProtocol oprot) throws org.thryft.protocol.OutputProtocolException {
-        oprot.writeListBegin(org.thryft.protocol.Type.VOID_, 8);
+        oprot.writeListBegin(org.thryft.protocol.Type.VOID_, 7);
 
         oprot.writeString(getTitle());
 
-        if (getCollectionStoreUri().isPresent()) {
-            oprot.writeString(getCollectionStoreUri().get().toString());
+        if (getCollectionServiceConfiguration().isPresent()) {
+            getCollectionServiceConfiguration().get().writeAsStruct(oprot);
         } else {
             oprot.writeNull();
         }
@@ -1391,17 +1176,6 @@ public final class Institution implements org.thryft.Struct, org.thryft.waf.api.
             oprot.writeNull();
         }
 
-        if (getStoreParameters().isPresent()) {
-            oprot.writeMapBegin(org.thryft.protocol.Type.STRING, org.thryft.protocol.Type.STRING, getStoreParameters().get().size());
-            for (com.google.common.collect.ImmutableMap.Entry<String, String> _iter0 : getStoreParameters().get().entrySet()) {
-                oprot.writeString(_iter0.getKey());
-                oprot.writeString(_iter0.getValue());
-            }
-            oprot.writeMapEnd();
-        } else {
-            oprot.writeNull();
-        }
-
         if (getUrl().isPresent()) {
             oprot.writeString(getUrl().get().toString());
         } else {
@@ -1424,9 +1198,9 @@ public final class Institution implements org.thryft.Struct, org.thryft.waf.api.
         oprot.writeString(getTitle());
         oprot.writeFieldEnd();
 
-        if (getCollectionStoreUri().isPresent()) {
-            oprot.writeFieldBegin("collection_store_uri", org.thryft.protocol.Type.STRING, (short)9);
-            oprot.writeString(getCollectionStoreUri().get().toString());
+        if (getCollectionServiceConfiguration().isPresent()) {
+            oprot.writeFieldBegin("collection_service_configuration", org.thryft.protocol.Type.STRUCT, (short)9);
+            getCollectionServiceConfiguration().get().writeAsStruct(oprot);
             oprot.writeFieldEnd();
         }
 
@@ -1454,17 +1228,6 @@ public final class Institution implements org.thryft.Struct, org.thryft.waf.api.
             oprot.writeFieldEnd();
         }
 
-        if (getStoreParameters().isPresent()) {
-            oprot.writeFieldBegin("store_parameters", org.thryft.protocol.Type.MAP, (short)10);
-            oprot.writeMapBegin(org.thryft.protocol.Type.STRING, org.thryft.protocol.Type.STRING, getStoreParameters().get().size());
-            for (com.google.common.collect.ImmutableMap.Entry<String, String> _iter0 : getStoreParameters().get().entrySet()) {
-                oprot.writeString(_iter0.getKey());
-                oprot.writeString(_iter0.getValue());
-            }
-            oprot.writeMapEnd();
-            oprot.writeFieldEnd();
-        }
-
         if (getUrl().isPresent()) {
             oprot.writeFieldBegin("url", org.thryft.protocol.Type.STRING, (short)3);
             oprot.writeString(getUrl().get().toString());
@@ -1476,7 +1239,7 @@ public final class Institution implements org.thryft.Struct, org.thryft.waf.api.
 
     private final String title;
 
-    private final com.google.common.base.Optional<org.thryft.native_.Uri> collectionStoreUri;
+    private final com.google.common.base.Optional<org.dressdiscover.api.models.collection.CollectionServiceConfiguration> collectionServiceConfiguration;
 
     private final com.google.common.base.Optional<org.dressdiscover.api.vocabularies.vra_core.rights.RightsSet> dataRights;
 
@@ -1485,8 +1248,6 @@ public final class Institution implements org.thryft.Struct, org.thryft.waf.api.
     private final com.google.common.base.Optional<Boolean> hidden;
 
     private final com.google.common.base.Optional<org.dressdiscover.api.vocabularies.vra_core.location.LocationSet> locations;
-
-    private final com.google.common.base.Optional<com.google.common.collect.ImmutableMap<String, String>> storeParameters;
 
     private final com.google.common.base.Optional<org.thryft.native_.Url> url;
 }

@@ -1,5 +1,5 @@
-from itertools import ifilterfalse
 import __builtin__
+import dressdiscover.api.models.collection.collection_service_configuration
 import dressdiscover.api.vocabularies.vra_core.location.location_set
 import dressdiscover.api.vocabularies.vra_core.rights.rights_set
 
@@ -9,44 +9,41 @@ class Institution(object):
         def __init__(
             self,
             title=None,
-            collection_store_uri=None,
+            collection_service_configuration=None,
             data_rights=None,
             external=None,
             hidden=None,
             locations=None,
-            store_parameters=None,
             url=None,
         ):
             '''
             :type title: str
-            :type collection_store_uri: str or None
+            :type collection_service_configuration: dressdiscover.api.models.collection.collection_service_configuration.CollectionServiceConfiguration or None
             :type data_rights: dressdiscover.api.vocabularies.vra_core.rights.rights_set.RightsSet or None
             :type external: bool or None
             :type hidden: bool or None
             :type locations: dressdiscover.api.vocabularies.vra_core.location.location_set.LocationSet or None
-            :type store_parameters: dict(str: str) or None
             :type url: str or None
             '''
 
             self.__title = title
-            self.__collection_store_uri = collection_store_uri
+            self.__collection_service_configuration = collection_service_configuration
             self.__data_rights = data_rights
             self.__external = external
             self.__hidden = hidden
             self.__locations = locations
-            self.__store_parameters = store_parameters
             self.__url = url
 
         def build(self):
-            return Institution(title=self.__title, collection_store_uri=self.__collection_store_uri, data_rights=self.__data_rights, external=self.__external, hidden=self.__hidden, locations=self.__locations, store_parameters=self.__store_parameters, url=self.__url)
+            return Institution(title=self.__title, collection_service_configuration=self.__collection_service_configuration, data_rights=self.__data_rights, external=self.__external, hidden=self.__hidden, locations=self.__locations, url=self.__url)
 
         @property
-        def collection_store_uri(self):
+        def collection_service_configuration(self):
             '''
-            :rtype: str
+            :rtype: dressdiscover.api.models.collection.collection_service_configuration.CollectionServiceConfiguration
             '''
 
-            return self.__collection_store_uri
+            return self.__collection_service_configuration
 
         @property
         def data_rights(self):
@@ -80,15 +77,15 @@ class Institution(object):
 
             return self.__locations
 
-        def set_collection_store_uri(self, collection_store_uri):
+        def set_collection_service_configuration(self, collection_service_configuration):
             '''
-            :type collection_store_uri: str or None
+            :type collection_service_configuration: dressdiscover.api.models.collection.collection_service_configuration.CollectionServiceConfiguration or None
             '''
 
-            if collection_store_uri is not None:
-                if not isinstance(collection_store_uri, basestring):
-                    raise TypeError("expected collection_store_uri to be a str but it is a %s" % getattr(__builtin__, 'type')(collection_store_uri))
-            self.__collection_store_uri = collection_store_uri
+            if collection_service_configuration is not None:
+                if not isinstance(collection_service_configuration, dressdiscover.api.models.collection.collection_service_configuration.CollectionServiceConfiguration):
+                    raise TypeError("expected collection_service_configuration to be a dressdiscover.api.models.collection.collection_service_configuration.CollectionServiceConfiguration but it is a %s" % getattr(__builtin__, 'type')(collection_service_configuration))
+            self.__collection_service_configuration = collection_service_configuration
             return self
 
         def set_data_rights(self, data_rights):
@@ -139,19 +136,6 @@ class Institution(object):
             self.__locations = locations
             return self
 
-        def set_store_parameters(self, store_parameters):
-            '''
-            :type store_parameters: dict(str: str) or None
-            '''
-
-            if store_parameters is not None:
-                if not (isinstance(store_parameters, dict) and len(list(ifilterfalse(lambda __item: isinstance(__item[0], basestring) and isinstance(__item[1], basestring), store_parameters.iteritems()))) == 0):
-                    raise TypeError("expected store_parameters to be a dict(str: str) but it is a %s" % getattr(__builtin__, 'type')(store_parameters))
-                if len(store_parameters) < 1:
-                    raise ValueError("expected len(store_parameters) to be >= 1, was %d" % len(store_parameters))
-            self.__store_parameters = store_parameters
-            return self
-
         def set_title(self, title):
             '''
             :type title: str
@@ -176,14 +160,6 @@ class Institution(object):
             return self
 
         @property
-        def store_parameters(self):
-            '''
-            :rtype: dict(str: str)
-            '''
-
-            return self.__store_parameters.copy() if self.__store_parameters is not None else None
-
-        @property
         def title(self):
             '''
             :rtype: str
@@ -194,23 +170,21 @@ class Institution(object):
         def update(self, institution):
             '''
             :type title: str
-            :type collection_store_uri: str or None
+            :type collection_service_configuration: dressdiscover.api.models.collection.collection_service_configuration.CollectionServiceConfiguration or None
             :type data_rights: dressdiscover.api.vocabularies.vra_core.rights.rights_set.RightsSet or None
             :type external: bool or None
             :type hidden: bool or None
             :type locations: dressdiscover.api.vocabularies.vra_core.location.location_set.LocationSet or None
-            :type store_parameters: dict(str: str) or None
             :type url: str or None
             '''
 
             if isinstance(institution, Institution):
                 self.set_title(institution.title)
-                self.set_collection_store_uri(institution.collection_store_uri)
+                self.set_collection_service_configuration(institution.collection_service_configuration)
                 self.set_data_rights(institution.data_rights)
                 self.set_external(institution.external)
                 self.set_hidden(institution.hidden)
                 self.set_locations(institution.locations)
-                self.set_store_parameters(institution.store_parameters)
                 self.set_url(institution.url)
             elif isinstance(institution, dict):
                 for key, value in institution.iteritems():
@@ -227,13 +201,13 @@ class Institution(object):
 
             return self.__url
 
-        @collection_store_uri.setter
-        def collection_store_uri(self, collection_store_uri):
+        @collection_service_configuration.setter
+        def collection_service_configuration(self, collection_service_configuration):
             '''
-            :type collection_store_uri: str or None
+            :type collection_service_configuration: dressdiscover.api.models.collection.collection_service_configuration.CollectionServiceConfiguration or None
             '''
 
-            self.set_collection_store_uri(collection_store_uri)
+            self.set_collection_service_configuration(collection_service_configuration)
 
         @data_rights.setter
         def data_rights(self, data_rights):
@@ -267,14 +241,6 @@ class Institution(object):
 
             self.set_locations(locations)
 
-        @store_parameters.setter
-        def store_parameters(self, store_parameters):
-            '''
-            :type store_parameters: dict(str: str) or None
-            '''
-
-            self.set_store_parameters(store_parameters)
-
         @title.setter
         def title(self, title):
             '''
@@ -293,12 +259,11 @@ class Institution(object):
 
     class FieldMetadata(object):
         TITLE = None
-        COLLECTION_STORE_URI = None
+        COLLECTION_SERVICE_CONFIGURATION = None
         DATA_RIGHTS = None
         EXTERNAL = None
         HIDDEN = None
         LOCATIONS = None
-        STORE_PARAMETERS = None
         URL = None
 
         def __init__(self, name, type_, validation):
@@ -320,36 +285,33 @@ class Institution(object):
 
         @classmethod
         def values(cls):
-            return (cls.TITLE, cls.COLLECTION_STORE_URI, cls.DATA_RIGHTS, cls.EXTERNAL, cls.HIDDEN, cls.LOCATIONS, cls.STORE_PARAMETERS, cls.URL,)
+            return (cls.TITLE, cls.COLLECTION_SERVICE_CONFIGURATION, cls.DATA_RIGHTS, cls.EXTERNAL, cls.HIDDEN, cls.LOCATIONS, cls.URL,)
 
     FieldMetadata.TITLE = FieldMetadata('title', str, None)
-    FieldMetadata.COLLECTION_STORE_URI = FieldMetadata('collection_store_uri', str, None)
+    FieldMetadata.COLLECTION_SERVICE_CONFIGURATION = FieldMetadata('collection_service_configuration', dressdiscover.api.models.collection.collection_service_configuration.CollectionServiceConfiguration, None)
     FieldMetadata.DATA_RIGHTS = FieldMetadata('data_rights', dressdiscover.api.vocabularies.vra_core.rights.rights_set.RightsSet, None)
     FieldMetadata.EXTERNAL = FieldMetadata('external', bool, {u'acceptance': True})
     FieldMetadata.HIDDEN = FieldMetadata('hidden', bool, {u'acceptance': True})
     FieldMetadata.LOCATIONS = FieldMetadata('locations', dressdiscover.api.vocabularies.vra_core.location.location_set.LocationSet, None)
-    FieldMetadata.STORE_PARAMETERS = FieldMetadata('store_parameters', dict, {u'minLength': 1})
     FieldMetadata.URL = FieldMetadata('url', str, None)
 
     def __init__(
         self,
         title,
-        collection_store_uri=None,
+        collection_service_configuration=None,
         data_rights=None,
         external=None,
         hidden=None,
         locations=None,
-        store_parameters=None,
         url=None,
     ):
         '''
         :type title: str
-        :type collection_store_uri: str or None
+        :type collection_service_configuration: dressdiscover.api.models.collection.collection_service_configuration.CollectionServiceConfiguration or None
         :type data_rights: dressdiscover.api.vocabularies.vra_core.rights.rights_set.RightsSet or None
         :type external: bool or None
         :type hidden: bool or None
         :type locations: dressdiscover.api.vocabularies.vra_core.location.location_set.LocationSet or None
-        :type store_parameters: dict(str: str) or None
         :type url: str or None
         '''
 
@@ -359,10 +321,10 @@ class Institution(object):
             raise TypeError("expected title to be a str but it is a %s" % getattr(__builtin__, 'type')(title))
         self.__title = title
 
-        if collection_store_uri is not None:
-            if not isinstance(collection_store_uri, basestring):
-                raise TypeError("expected collection_store_uri to be a str but it is a %s" % getattr(__builtin__, 'type')(collection_store_uri))
-        self.__collection_store_uri = collection_store_uri
+        if collection_service_configuration is not None:
+            if not isinstance(collection_service_configuration, dressdiscover.api.models.collection.collection_service_configuration.CollectionServiceConfiguration):
+                raise TypeError("expected collection_service_configuration to be a dressdiscover.api.models.collection.collection_service_configuration.CollectionServiceConfiguration but it is a %s" % getattr(__builtin__, 'type')(collection_service_configuration))
+        self.__collection_service_configuration = collection_service_configuration
 
         if data_rights is not None:
             if not isinstance(data_rights, dressdiscover.api.vocabularies.vra_core.rights.rights_set.RightsSet):
@@ -388,13 +350,6 @@ class Institution(object):
                 raise TypeError("expected locations to be a dressdiscover.api.vocabularies.vra_core.location.location_set.LocationSet but it is a %s" % getattr(__builtin__, 'type')(locations))
         self.__locations = locations
 
-        if store_parameters is not None:
-            if not (isinstance(store_parameters, dict) and len(list(ifilterfalse(lambda __item: isinstance(__item[0], basestring) and isinstance(__item[1], basestring), store_parameters.iteritems()))) == 0):
-                raise TypeError("expected store_parameters to be a dict(str: str) but it is a %s" % getattr(__builtin__, 'type')(store_parameters))
-            if len(store_parameters) < 1:
-                raise ValueError("expected len(store_parameters) to be >= 1, was %d" % len(store_parameters))
-        self.__store_parameters = store_parameters.copy() if store_parameters is not None else None
-
         if url is not None:
             if not isinstance(url, basestring):
                 raise TypeError("expected url to be a str but it is a %s" % getattr(__builtin__, 'type')(url))
@@ -403,7 +358,7 @@ class Institution(object):
     def __eq__(self, other):
         if self.title != other.title:
             return False
-        if self.collection_store_uri != other.collection_store_uri:
+        if self.collection_service_configuration != other.collection_service_configuration:
             return False
         if self.data_rights != other.data_rights:
             return False
@@ -413,17 +368,15 @@ class Institution(object):
             return False
         if self.locations != other.locations:
             return False
-        if self.store_parameters != other.store_parameters:
-            return False
         if self.url != other.url:
             return False
         return True
 
     def __hash__(self):
-        return hash((self.title,self.collection_store_uri,self.data_rights,self.external,self.hidden,self.locations,self.store_parameters,self.url,))
+        return hash((self.title,self.collection_service_configuration,self.data_rights,self.external,self.hidden,self.locations,self.url,))
 
     def __iter__(self):
-        return iter((self.title, self.collection_store_uri, self.data_rights, self.external, self.hidden, self.locations, self.store_parameters, self.url,))
+        return iter((self.title, self.collection_service_configuration, self.data_rights, self.external, self.hidden, self.locations, self.url,))
 
     def __ne__(self, other):
         return not self.__eq__(other)
@@ -431,8 +384,8 @@ class Institution(object):
     def __repr__(self):
         field_reprs = []
         field_reprs.append('title=' + "'" + self.title.encode('ascii', 'replace') + "'")
-        if self.collection_store_uri is not None:
-            field_reprs.append('collection_store_uri=' + "'" + self.collection_store_uri.encode('ascii', 'replace') + "'")
+        if self.collection_service_configuration is not None:
+            field_reprs.append('collection_service_configuration=' + repr(self.collection_service_configuration))
         if self.data_rights is not None:
             field_reprs.append('data_rights=' + repr(self.data_rights))
         if self.external is not None:
@@ -441,8 +394,6 @@ class Institution(object):
             field_reprs.append('hidden=' + repr(self.hidden))
         if self.locations is not None:
             field_reprs.append('locations=' + repr(self.locations))
-        if self.store_parameters is not None:
-            field_reprs.append('store_parameters=' + repr(self.store_parameters))
         if self.url is not None:
             field_reprs.append('url=' + "'" + self.url.encode('ascii', 'replace') + "'")
         return 'Institution(' + ', '.join(field_reprs) + ')'
@@ -450,8 +401,8 @@ class Institution(object):
     def __str__(self):
         field_reprs = []
         field_reprs.append('title=' + "'" + self.title.encode('ascii', 'replace') + "'")
-        if self.collection_store_uri is not None:
-            field_reprs.append('collection_store_uri=' + "'" + self.collection_store_uri.encode('ascii', 'replace') + "'")
+        if self.collection_service_configuration is not None:
+            field_reprs.append('collection_service_configuration=' + repr(self.collection_service_configuration))
         if self.data_rights is not None:
             field_reprs.append('data_rights=' + repr(self.data_rights))
         if self.external is not None:
@@ -460,19 +411,17 @@ class Institution(object):
             field_reprs.append('hidden=' + repr(self.hidden))
         if self.locations is not None:
             field_reprs.append('locations=' + repr(self.locations))
-        if self.store_parameters is not None:
-            field_reprs.append('store_parameters=' + repr(self.store_parameters))
         if self.url is not None:
             field_reprs.append('url=' + "'" + self.url.encode('ascii', 'replace') + "'")
         return 'Institution(' + ', '.join(field_reprs) + ')'
 
     @property
-    def collection_store_uri(self):
+    def collection_service_configuration(self):
         '''
-        :rtype: str
+        :rtype: dressdiscover.api.models.collection.collection_service_configuration.CollectionServiceConfiguration
         '''
 
-        return self.__collection_store_uri
+        return self.__collection_service_configuration
 
     @property
     def data_rights(self):
@@ -524,11 +473,8 @@ class Institution(object):
                 break
             elif ifield_name == 'title' and ifield_id == 1:
                 init_kwds['title'] = iprot.read_string()
-            elif ifield_name == 'collection_store_uri' and ifield_id == 9:
-                try:
-                    init_kwds['collection_store_uri'] = iprot.read_string()
-                except (TypeError, ValueError,):
-                    pass
+            elif ifield_name == 'collection_service_configuration' and ifield_id == 9:
+                init_kwds['collection_service_configuration'] = dressdiscover.api.models.collection.collection_service_configuration.CollectionServiceConfiguration.read(iprot)
             elif ifield_name == 'data_rights' and ifield_id == 5:
                 init_kwds['data_rights'] = dressdiscover.api.vocabularies.vra_core.rights.rights_set.RightsSet.read(iprot)
             elif ifield_name == 'external' and ifield_id == 7:
@@ -543,8 +489,6 @@ class Institution(object):
                     pass
             elif ifield_name == 'locations' and ifield_id == 8:
                 init_kwds['locations'] = dressdiscover.api.vocabularies.vra_core.location.location_set.LocationSet.read(iprot)
-            elif ifield_name == 'store_parameters' and ifield_id == 10:
-                init_kwds['store_parameters'] = dict([(iprot.read_string(), iprot.read_string()) for _ in xrange(iprot.read_map_begin()[2])] + (iprot.read_map_end() is None and []))
             elif ifield_name == 'url' and ifield_id == 3:
                 try:
                     init_kwds['url'] = iprot.read_string()
@@ -558,32 +502,30 @@ class Institution(object):
     def replace(
         self,
         title=None,
-        collection_store_uri=None,
+        collection_service_configuration=None,
         data_rights=None,
         external=None,
         hidden=None,
         locations=None,
-        store_parameters=None,
         url=None,
     ):
         '''
         Copy this object, replace one or more fields, and return the copy.
 
         :type title: str or None
-        :type collection_store_uri: str or None
+        :type collection_service_configuration: dressdiscover.api.models.collection.collection_service_configuration.CollectionServiceConfiguration or None
         :type data_rights: dressdiscover.api.vocabularies.vra_core.rights.rights_set.RightsSet or None
         :type external: bool or None
         :type hidden: bool or None
         :type locations: dressdiscover.api.vocabularies.vra_core.location.location_set.LocationSet or None
-        :type store_parameters: dict(str: str) or None
         :type url: str or None
         :rtype: dressdiscover.api.models.institution.institution.Institution
         '''
 
         if title is None:
             title = self.title
-        if collection_store_uri is None:
-            collection_store_uri = self.collection_store_uri
+        if collection_service_configuration is None:
+            collection_service_configuration = self.collection_service_configuration
         if data_rights is None:
             data_rights = self.data_rights
         if external is None:
@@ -592,19 +534,9 @@ class Institution(object):
             hidden = self.hidden
         if locations is None:
             locations = self.locations
-        if store_parameters is None:
-            store_parameters = self.store_parameters
         if url is None:
             url = self.url
-        return self.__class__(title=title, collection_store_uri=collection_store_uri, data_rights=data_rights, external=external, hidden=hidden, locations=locations, store_parameters=store_parameters, url=url)
-
-    @property
-    def store_parameters(self):
-        '''
-        :rtype: dict(str: str)
-        '''
-
-        return self.__store_parameters.copy() if self.__store_parameters is not None else None
+        return self.__class__(title=title, collection_service_configuration=collection_service_configuration, data_rights=data_rights, external=external, hidden=hidden, locations=locations, url=url)
 
     @property
     def title(self):
@@ -636,9 +568,9 @@ class Institution(object):
         oprot.write_string(self.title)
         oprot.write_field_end()
 
-        if self.collection_store_uri is not None:
-            oprot.write_field_begin(name='collection_store_uri', type=11, id=9)
-            oprot.write_string(self.collection_store_uri)
+        if self.collection_service_configuration is not None:
+            oprot.write_field_begin(name='collection_service_configuration', type=12, id=9)
+            self.collection_service_configuration.write(oprot)
             oprot.write_field_end()
 
         if self.data_rights is not None:
@@ -659,15 +591,6 @@ class Institution(object):
         if self.locations is not None:
             oprot.write_field_begin(name='locations', type=12, id=8)
             self.locations.write(oprot)
-            oprot.write_field_end()
-
-        if self.store_parameters is not None:
-            oprot.write_field_begin(name='store_parameters', type=13, id=10)
-            oprot.write_map_begin(11, len(self.store_parameters), 11)
-            for __key0, __value0 in self.store_parameters.iteritems():
-                oprot.write_string(__key0)
-                oprot.write_string(__value0)
-            oprot.write_map_end()
             oprot.write_field_end()
 
         if self.url is not None:
