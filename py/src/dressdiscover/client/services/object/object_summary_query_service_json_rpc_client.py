@@ -3,9 +3,9 @@ import base64
 import dressdiscover.api.services.io_exception  # @UnusedImport
 import dressdiscover.api.services.object.get_object_summaries_result
 import dressdiscover.api.services.object.object_summary_query_service
+import dressdiscover.thirdparty.thryft.protocol.json_input_protocol
+import dressdiscover.thirdparty.thryft.protocol.json_output_protocol
 import json
-import thryft.protocol.json_input_protocol
-import thryft.protocol.json_output_protocol
 import urllib2
 
 
@@ -102,7 +102,7 @@ class ObjectSummaryQueryServiceJsonRpcClient(dressdiscover.api.services.object.o
                 if exception_class is not None and issubclass(exception_class, Exception):
                     data = error.get('data')
                     if isinstance(data, dict):
-                        data_iprot = thryft.protocol.json_input_protocol.JsonInputProtocol(data)
+                        data_iprot = dressdiscover.thirdparty.thryft.protocol.json_input_protocol.JsonInputProtocol(data)
                         exception_ = exception_class.read(data_iprot)
                         raise exception_
                     else:
@@ -117,7 +117,7 @@ class ObjectSummaryQueryServiceJsonRpcClient(dressdiscover.api.services.object.o
         options,
         query,
     ):
-        oprot = thryft.protocol.json_output_protocol.JsonOutputProtocol()
+        oprot = dressdiscover.thirdparty.thryft.protocol.json_output_protocol.JsonOutputProtocol()
         oprot.write_struct_begin()
         if options is not None:
             oprot.write_field_begin(name='options', type=12, id=None)
@@ -130,6 +130,6 @@ class ObjectSummaryQueryServiceJsonRpcClient(dressdiscover.api.services.object.o
         oprot.write_struct_end()
 
         return_value = self.__request(method='get_object_summaries', params=oprot.value)
-        iprot = thryft.protocol.json_input_protocol.JsonInputProtocol(return_value)
+        iprot = dressdiscover.thirdparty.thryft.protocol.json_input_protocol.JsonInputProtocol(return_value)
         return dressdiscover.api.services.object.get_object_summaries_result.GetObjectSummariesResult.read(iprot)
 

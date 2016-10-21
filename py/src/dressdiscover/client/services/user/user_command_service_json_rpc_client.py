@@ -6,9 +6,9 @@ import dressdiscover.api.services.user.duplicate_user_exception  # @UnusedImport
 import dressdiscover.api.services.user.no_such_user_bookmark_exception  # @UnusedImport
 import dressdiscover.api.services.user.no_such_user_exception  # @UnusedImport
 import dressdiscover.api.services.user.user_command_service
+import dressdiscover.thirdparty.thryft.protocol.json_input_protocol
+import dressdiscover.thirdparty.thryft.protocol.json_output_protocol
 import json
-import thryft.protocol.json_input_protocol
-import thryft.protocol.json_output_protocol
 import urllib2
 
 
@@ -105,7 +105,7 @@ class UserCommandServiceJsonRpcClient(dressdiscover.api.services.user.user_comma
                 if exception_class is not None and issubclass(exception_class, Exception):
                     data = error.get('data')
                     if isinstance(data, dict):
-                        data_iprot = thryft.protocol.json_input_protocol.JsonInputProtocol(data)
+                        data_iprot = dressdiscover.thirdparty.thryft.protocol.json_input_protocol.JsonInputProtocol(data)
                         exception_ = exception_class.read(data_iprot)
                         raise exception_
                     else:
@@ -119,7 +119,7 @@ class UserCommandServiceJsonRpcClient(dressdiscover.api.services.user.user_comma
         self,
         id,  # @ReservedAssignment
     ):
-        oprot = thryft.protocol.json_output_protocol.JsonOutputProtocol()
+        oprot = dressdiscover.thirdparty.thryft.protocol.json_output_protocol.JsonOutputProtocol()
         oprot.write_struct_begin()
         oprot.write_field_begin(name='id', type=11, id=None)
         oprot.write_string(id)
@@ -132,7 +132,7 @@ class UserCommandServiceJsonRpcClient(dressdiscover.api.services.user.user_comma
         self,
         id,  # @ReservedAssignment
     ):
-        oprot = thryft.protocol.json_output_protocol.JsonOutputProtocol()
+        oprot = dressdiscover.thirdparty.thryft.protocol.json_output_protocol.JsonOutputProtocol()
         oprot.write_struct_begin()
         oprot.write_field_begin(name='id', type=11, id=None)
         oprot.write_string(id)
@@ -150,7 +150,7 @@ class UserCommandServiceJsonRpcClient(dressdiscover.api.services.user.user_comma
         self,
         user,
     ):
-        oprot = thryft.protocol.json_output_protocol.JsonOutputProtocol()
+        oprot = dressdiscover.thirdparty.thryft.protocol.json_output_protocol.JsonOutputProtocol()
         oprot.write_struct_begin()
         oprot.write_field_begin(name='user', type=12, id=None)
         user.write(oprot)
@@ -158,14 +158,14 @@ class UserCommandServiceJsonRpcClient(dressdiscover.api.services.user.user_comma
         oprot.write_struct_end()
 
         return_value = self.__request(method='post_user', params=oprot.value)
-        iprot = thryft.protocol.json_input_protocol.JsonInputProtocol(return_value)
+        iprot = dressdiscover.thirdparty.thryft.protocol.json_input_protocol.JsonInputProtocol(return_value)
         return iprot.read_string()
 
     def _post_user_bookmark(
         self,
         user_bookmark,
     ):
-        oprot = thryft.protocol.json_output_protocol.JsonOutputProtocol()
+        oprot = dressdiscover.thirdparty.thryft.protocol.json_output_protocol.JsonOutputProtocol()
         oprot.write_struct_begin()
         oprot.write_field_begin(name='user_bookmark', type=12, id=None)
         user_bookmark.write(oprot)
@@ -173,7 +173,7 @@ class UserCommandServiceJsonRpcClient(dressdiscover.api.services.user.user_comma
         oprot.write_struct_end()
 
         return_value = self.__request(method='post_user_bookmark', params=oprot.value)
-        iprot = thryft.protocol.json_input_protocol.JsonInputProtocol(return_value)
+        iprot = dressdiscover.thirdparty.thryft.protocol.json_input_protocol.JsonInputProtocol(return_value)
         return iprot.read_string()
 
     def _put_user(
@@ -181,7 +181,7 @@ class UserCommandServiceJsonRpcClient(dressdiscover.api.services.user.user_comma
         id,  # @ReservedAssignment
         user,
     ):
-        oprot = thryft.protocol.json_output_protocol.JsonOutputProtocol()
+        oprot = dressdiscover.thirdparty.thryft.protocol.json_output_protocol.JsonOutputProtocol()
         oprot.write_struct_begin()
         oprot.write_field_begin(name='id', type=11, id=None)
         oprot.write_string(id)

@@ -5,9 +5,9 @@ import dressdiscover.api.models.user.user_entry
 import dressdiscover.api.services.io_exception  # @UnusedImport
 import dressdiscover.api.services.user.no_such_user_exception  # @UnusedImport
 import dressdiscover.api.services.user.user_query_service
+import dressdiscover.thirdparty.thryft.protocol.json_input_protocol
+import dressdiscover.thirdparty.thryft.protocol.json_output_protocol
 import json
-import thryft.protocol.json_input_protocol
-import thryft.protocol.json_output_protocol
 import urllib2
 
 
@@ -104,7 +104,7 @@ class UserQueryServiceJsonRpcClient(dressdiscover.api.services.user.user_query_s
                 if exception_class is not None and issubclass(exception_class, Exception):
                     data = error.get('data')
                     if isinstance(data, dict):
-                        data_iprot = thryft.protocol.json_input_protocol.JsonInputProtocol(data)
+                        data_iprot = dressdiscover.thirdparty.thryft.protocol.json_input_protocol.JsonInputProtocol(data)
                         exception_ = exception_class.read(data_iprot)
                         raise exception_
                     else:
@@ -119,7 +119,7 @@ class UserQueryServiceJsonRpcClient(dressdiscover.api.services.user.user_query_s
         user_id,
         object_ids_only,
     ):
-        oprot = thryft.protocol.json_output_protocol.JsonOutputProtocol()
+        oprot = dressdiscover.thirdparty.thryft.protocol.json_output_protocol.JsonOutputProtocol()
         oprot.write_struct_begin()
         oprot.write_field_begin(name='user_id', type=11, id=None)
         oprot.write_string(user_id)
@@ -131,14 +131,14 @@ class UserQueryServiceJsonRpcClient(dressdiscover.api.services.user.user_query_s
         oprot.write_struct_end()
 
         return_value = self.__request(method='get_user_bookmarks_by_user_id', params=oprot.value)
-        iprot = thryft.protocol.json_input_protocol.JsonInputProtocol(return_value)
+        iprot = dressdiscover.thirdparty.thryft.protocol.json_input_protocol.JsonInputProtocol(return_value)
         return tuple([dressdiscover.api.models.user.user_bookmark_entry.UserBookmarkEntry.read(iprot) for _ in xrange(iprot.read_list_begin()[1])] + (iprot.read_list_end() is None and []))
 
     def _get_user_by_email_address(
         self,
         email_address,
     ):
-        oprot = thryft.protocol.json_output_protocol.JsonOutputProtocol()
+        oprot = dressdiscover.thirdparty.thryft.protocol.json_output_protocol.JsonOutputProtocol()
         oprot.write_struct_begin()
         oprot.write_field_begin(name='email_address', type=11, id=None)
         oprot.write_string(email_address)
@@ -146,14 +146,14 @@ class UserQueryServiceJsonRpcClient(dressdiscover.api.services.user.user_query_s
         oprot.write_struct_end()
 
         return_value = self.__request(method='get_user_by_email_address', params=oprot.value)
-        iprot = thryft.protocol.json_input_protocol.JsonInputProtocol(return_value)
+        iprot = dressdiscover.thirdparty.thryft.protocol.json_input_protocol.JsonInputProtocol(return_value)
         return dressdiscover.api.models.user.user_entry.UserEntry.read(iprot)
 
     def _get_user_by_id(
         self,
         id,  # @ReservedAssignment
     ):
-        oprot = thryft.protocol.json_output_protocol.JsonOutputProtocol()
+        oprot = dressdiscover.thirdparty.thryft.protocol.json_output_protocol.JsonOutputProtocol()
         oprot.write_struct_begin()
         oprot.write_field_begin(name='id', type=11, id=None)
         oprot.write_string(id)
@@ -161,6 +161,6 @@ class UserQueryServiceJsonRpcClient(dressdiscover.api.services.user.user_query_s
         oprot.write_struct_end()
 
         return_value = self.__request(method='get_user_by_id', params=oprot.value)
-        iprot = thryft.protocol.json_input_protocol.JsonInputProtocol(return_value)
+        iprot = dressdiscover.thirdparty.thryft.protocol.json_input_protocol.JsonInputProtocol(return_value)
         return dressdiscover.api.models.user.user.User.read(iprot)
 

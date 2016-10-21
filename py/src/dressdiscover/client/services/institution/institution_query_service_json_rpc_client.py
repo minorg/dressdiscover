@@ -4,9 +4,9 @@ import dressdiscover.api.models.institution.institution
 import dressdiscover.api.services.institution.institution_query_service
 import dressdiscover.api.services.institution.no_such_institution_exception  # @UnusedImport
 import dressdiscover.api.services.io_exception  # @UnusedImport
+import dressdiscover.thirdparty.thryft.protocol.json_input_protocol
+import dressdiscover.thirdparty.thryft.protocol.json_output_protocol
 import json
-import thryft.protocol.json_input_protocol
-import thryft.protocol.json_output_protocol
 import urllib2
 
 
@@ -103,7 +103,7 @@ class InstitutionQueryServiceJsonRpcClient(dressdiscover.api.services.institutio
                 if exception_class is not None and issubclass(exception_class, Exception):
                     data = error.get('data')
                     if isinstance(data, dict):
-                        data_iprot = thryft.protocol.json_input_protocol.JsonInputProtocol(data)
+                        data_iprot = dressdiscover.thirdparty.thryft.protocol.json_input_protocol.JsonInputProtocol(data)
                         exception_ = exception_class.read(data_iprot)
                         raise exception_
                     else:
@@ -117,7 +117,7 @@ class InstitutionQueryServiceJsonRpcClient(dressdiscover.api.services.institutio
         self,
         id,  # @ReservedAssignment
     ):
-        oprot = thryft.protocol.json_output_protocol.JsonOutputProtocol()
+        oprot = dressdiscover.thirdparty.thryft.protocol.json_output_protocol.JsonOutputProtocol()
         oprot.write_struct_begin()
         oprot.write_field_begin(name='id', type=11, id=None)
         oprot.write_string(id)
@@ -125,21 +125,21 @@ class InstitutionQueryServiceJsonRpcClient(dressdiscover.api.services.institutio
         oprot.write_struct_end()
 
         return_value = self.__request(method='get_institution_by_id', params=oprot.value)
-        iprot = thryft.protocol.json_input_protocol.JsonInputProtocol(return_value)
+        iprot = dressdiscover.thirdparty.thryft.protocol.json_input_protocol.JsonInputProtocol(return_value)
         return dressdiscover.api.models.institution.institution.Institution.read(iprot)
 
     def _get_institutions(
         self,
     ):
         return_value = self.__request(method='get_institutions', params={})
-        iprot = thryft.protocol.json_input_protocol.JsonInputProtocol(return_value)
+        iprot = dressdiscover.thirdparty.thryft.protocol.json_input_protocol.JsonInputProtocol(return_value)
         return tuple([dressdiscover.api.models.institution.institution_entry.InstitutionEntry.read(iprot) for _ in xrange(iprot.read_list_begin()[1])] + (iprot.read_list_end() is None and []))
 
     def _get_institutions_by_ids(
         self,
         ids,
     ):
-        oprot = thryft.protocol.json_output_protocol.JsonOutputProtocol()
+        oprot = dressdiscover.thirdparty.thryft.protocol.json_output_protocol.JsonOutputProtocol()
         oprot.write_struct_begin()
         oprot.write_field_begin(name='ids', type=15, id=None)
         oprot.write_list_begin(11, len(ids))
@@ -150,6 +150,6 @@ class InstitutionQueryServiceJsonRpcClient(dressdiscover.api.services.institutio
         oprot.write_struct_end()
 
         return_value = self.__request(method='get_institutions_by_ids', params=oprot.value)
-        iprot = thryft.protocol.json_input_protocol.JsonInputProtocol(return_value)
+        iprot = dressdiscover.thirdparty.thryft.protocol.json_input_protocol.JsonInputProtocol(return_value)
         return tuple([dressdiscover.api.models.institution.institution.Institution.read(iprot) for _ in xrange(iprot.read_list_begin()[1])] + (iprot.read_list_end() is None and []))
 

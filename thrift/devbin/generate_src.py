@@ -198,7 +198,7 @@ class Main(thryft.main.Main):
                         )
 
                         self._compile_thrift_file(
-                            generator=JsonRpcClientPyGenerator(),
+                            generator=JsonRpcClientPyGenerator(libthryft_module_qname='dressdiscover.thirdparty.thryft'),
                             out=os.path.join(ROOT_DIR_PATH, 'py', 'src'),
                             **compile_kwds
                         )

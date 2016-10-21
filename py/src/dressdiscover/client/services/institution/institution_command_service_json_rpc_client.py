@@ -3,9 +3,9 @@ import base64
 import dressdiscover.api.services.institution.institution_command_service
 import dressdiscover.api.services.institution.no_such_institution_exception  # @UnusedImport
 import dressdiscover.api.services.io_exception  # @UnusedImport
+import dressdiscover.thirdparty.thryft.protocol.json_input_protocol
+import dressdiscover.thirdparty.thryft.protocol.json_output_protocol
 import json
-import thryft.protocol.json_input_protocol
-import thryft.protocol.json_output_protocol
 import urllib2
 
 
@@ -102,7 +102,7 @@ class InstitutionCommandServiceJsonRpcClient(dressdiscover.api.services.institut
                 if exception_class is not None and issubclass(exception_class, Exception):
                     data = error.get('data')
                     if isinstance(data, dict):
-                        data_iprot = thryft.protocol.json_input_protocol.JsonInputProtocol(data)
+                        data_iprot = dressdiscover.thirdparty.thryft.protocol.json_input_protocol.JsonInputProtocol(data)
                         exception_ = exception_class.read(data_iprot)
                         raise exception_
                     else:
@@ -116,7 +116,7 @@ class InstitutionCommandServiceJsonRpcClient(dressdiscover.api.services.institut
         self,
         id,  # @ReservedAssignment
     ):
-        oprot = thryft.protocol.json_output_protocol.JsonOutputProtocol()
+        oprot = dressdiscover.thirdparty.thryft.protocol.json_output_protocol.JsonOutputProtocol()
         oprot.write_struct_begin()
         oprot.write_field_begin(name='id', type=11, id=None)
         oprot.write_string(id)
@@ -130,7 +130,7 @@ class InstitutionCommandServiceJsonRpcClient(dressdiscover.api.services.institut
         id,  # @ReservedAssignment
         institution,
     ):
-        oprot = thryft.protocol.json_output_protocol.JsonOutputProtocol()
+        oprot = dressdiscover.thirdparty.thryft.protocol.json_output_protocol.JsonOutputProtocol()
         oprot.write_struct_begin()
         oprot.write_field_begin(name='id', type=11, id=None)
         oprot.write_string(id)
