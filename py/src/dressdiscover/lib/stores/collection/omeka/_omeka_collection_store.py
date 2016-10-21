@@ -1,7 +1,7 @@
 from com.google.common.collect import ImmutableList
 from org.dressdiscover.lib.stores.collection import AbstractReadOnlyCollectionStore
 
-from dressdiscover.lib.stores.omeka_resource_mapper import OmekaResourceMapper
+from dressdiscover.etl.omeka.omeka_resource_mapper import OmekaResourceMapper
 
 
 class _OmekaCollectionStore(AbstractReadOnlyCollectionStore):

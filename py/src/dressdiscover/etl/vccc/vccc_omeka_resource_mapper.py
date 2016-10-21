@@ -1,6 +1,6 @@
 from org.dressdiscover.api.models.color import ColorType
 
-from dressdiscover.lib.stores.object.costume_core.costume_core_omeka_resource_mapper import CostumeCoreOmekaResourceMapper
+from dressdiscover.etl.omeka.costume_core_omeka_resource_mapper import CostumeCoreOmekaResourceMapper
 
 
 class VcccOmekaResourceMapper(CostumeCoreOmekaResourceMapper):

@@ -8,7 +8,7 @@ from org.slf4j import LoggerFactory, MarkerFactory
 from org.thryft.native_ import Uri
 
 from dressdiscover.lib.stores.object.oai_pmh.oai_pmh_fs_object_store import OaiPmhFsObjectStore
-from dressdiscover.lib.stores.object.txfc.txfc_oai_pmh_record_mapper import TxfcOaiPmhRecordMapper
+from dressdiscover.etl.txfc.txfc_oai_pmh_record_mapper import TxfcOaiPmhRecordMapper
 
 
 class OaiPmhFsObjectStoreTest(unittest.TestCase):

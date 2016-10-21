@@ -25,8 +25,8 @@ from org.dressdiscover.api.models.title import TitleSet, TitleType, Title
 from org.dressdiscover.api.models.work_type import WorkTypeSet, WorkType
 from org.thryft.native_ import Uri, Url
 
-from dressdiscover.lib.date_parser import DateParser
-from dressdiscover.lib.stores.object.oai_pmh._oai_pmh_record_mapper import _OaiPmhRecordMapper
+from dressdiscover.etl.date_parser import DateParser
+from dressdiscover.etl.oai_pmh._oai_pmh_record_mapper import _OaiPmhRecordMapper
 from dressdiscover.lib.stores.object.omeka.dcmi_types import DCMI_TYPES_BASE_URL
 
 

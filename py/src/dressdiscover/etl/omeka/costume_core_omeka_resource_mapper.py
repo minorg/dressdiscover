@@ -50,7 +50,7 @@ from org.dressdiscover.api.models.textref import TextrefRefid
 from org.dressdiscover.api.models.textref import TextrefRefidType
 from org.dressdiscover.api.models.view_type import ViewType
 
-from dressdiscover.lib.stores.omeka_resource_mapper import OmekaResourceMapper
+from dressdiscover.etl.omeka.omeka_resource_mapper import OmekaResourceMapper
 
 
 class CostumeCoreOmekaResourceMapper(OmekaResourceMapper):
