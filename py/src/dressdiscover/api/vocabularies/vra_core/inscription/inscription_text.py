@@ -39,10 +39,10 @@ class InscriptionText(object):
             if lang is not None:
                 if not isinstance(lang, basestring):
                     raise TypeError("expected lang to be a str but it is a %s" % getattr(__builtin__, 'type')(lang))
+                if len(lang) > 3:
+                    raise ValueError("expected len(lang) to be <= 3, was %d" % len(lang))
                 if len(lang) < 2:
                     raise ValueError("expected len(lang) to be >= 2, was %d" % len(lang))
-                if len(lang) > 3:
-                    raise ValueError("expected len(lang) to be <= 2, was %d" % len(lang))
             self.__lang = lang
             return self
 
@@ -189,10 +189,10 @@ class InscriptionText(object):
         if lang is not None:
             if not isinstance(lang, basestring):
                 raise TypeError("expected lang to be a str but it is a %s" % getattr(__builtin__, 'type')(lang))
+            if len(lang) > 3:
+                raise ValueError("expected len(lang) to be <= 3, was %d" % len(lang))
             if len(lang) < 2:
                 raise ValueError("expected len(lang) to be >= 2, was %d" % len(lang))
-            if len(lang) > 3:
-                raise ValueError("expected len(lang) to be <= 2, was %d" % len(lang))
         self.__lang = lang
 
     def __eq__(self, other):
