@@ -3,6 +3,7 @@ import __builtin__
 import dressdiscover.api.models.collection.collection_id
 import dressdiscover.api.models.institution.institution_id
 import dressdiscover.api.models.object.object_facet_filters
+import dressdiscover.api.models.object.object_id
 
 
 class ObjectQuery(object):
@@ -117,7 +118,7 @@ class ObjectQuery(object):
             '''
 
             if collection_id is not None:
-                if not isinstance(collection_id, basestring):
+                if not isinstance(collection_id, dressdiscover.api.models.collection.collection_id.CollectionId):
                     raise TypeError("expected collection_id to be a str but it is a %s" % getattr(__builtin__, 'type')(collection_id))
             self.__collection_id = collection_id
             return self
@@ -152,7 +153,7 @@ class ObjectQuery(object):
             '''
 
             if institution_id is not None:
-                if not isinstance(institution_id, basestring):
+                if not isinstance(institution_id, dressdiscover.api.models.institution.institution_id.InstitutionId):
                     raise TypeError("expected institution_id to be a str but it is a %s" % getattr(__builtin__, 'type')(institution_id))
             self.__institution_id = institution_id
             return self
@@ -163,7 +164,7 @@ class ObjectQuery(object):
             '''
 
             if more_like_object_id is not None:
-                if not isinstance(more_like_object_id, basestring):
+                if not isinstance(more_like_object_id, dressdiscover.api.models.object.object_id.ObjectId):
                     raise TypeError("expected more_like_object_id to be a str but it is a %s" % getattr(__builtin__, 'type')(more_like_object_id))
             self.__more_like_object_id = more_like_object_id
             return self
@@ -174,7 +175,7 @@ class ObjectQuery(object):
             '''
 
             if object_ids is not None:
-                if not (isinstance(object_ids, frozenset) and len(list(ifilterfalse(lambda _: isinstance(_, basestring), object_ids))) == 0):
+                if not (isinstance(object_ids, frozenset) and len(list(ifilterfalse(lambda _: isinstance(_, dressdiscover.api.models.object.object_id.ObjectId), object_ids))) == 0):
                     raise TypeError("expected object_ids to be a frozenset(str) but it is a %s" % getattr(__builtin__, 'type')(object_ids))
             self.__object_ids = object_ids
             return self
@@ -430,7 +431,7 @@ class ObjectQuery(object):
         '''
 
         if collection_id is not None:
-            if not isinstance(collection_id, basestring):
+            if not isinstance(collection_id, dressdiscover.api.models.collection.collection_id.CollectionId):
                 raise TypeError("expected collection_id to be a str but it is a %s" % getattr(__builtin__, 'type')(collection_id))
         self.__collection_id = collection_id
 
@@ -447,17 +448,17 @@ class ObjectQuery(object):
         self.__include_hidden = include_hidden
 
         if institution_id is not None:
-            if not isinstance(institution_id, basestring):
+            if not isinstance(institution_id, dressdiscover.api.models.institution.institution_id.InstitutionId):
                 raise TypeError("expected institution_id to be a str but it is a %s" % getattr(__builtin__, 'type')(institution_id))
         self.__institution_id = institution_id
 
         if more_like_object_id is not None:
-            if not isinstance(more_like_object_id, basestring):
+            if not isinstance(more_like_object_id, dressdiscover.api.models.object.object_id.ObjectId):
                 raise TypeError("expected more_like_object_id to be a str but it is a %s" % getattr(__builtin__, 'type')(more_like_object_id))
         self.__more_like_object_id = more_like_object_id
 
         if object_ids is not None:
-            if not (isinstance(object_ids, frozenset) and len(list(ifilterfalse(lambda _: isinstance(_, basestring), object_ids))) == 0):
+            if not (isinstance(object_ids, frozenset) and len(list(ifilterfalse(lambda _: isinstance(_, dressdiscover.api.models.object.object_id.ObjectId), object_ids))) == 0):
                 raise TypeError("expected object_ids to be a frozenset(str) but it is a %s" % getattr(__builtin__, 'type')(object_ids))
         self.__object_ids = object_ids
 

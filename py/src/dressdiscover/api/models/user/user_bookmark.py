@@ -1,4 +1,5 @@
 import __builtin__
+import dressdiscover.api.models.object.object_id
 import dressdiscover.api.models.object.object_query
 
 
@@ -94,7 +95,7 @@ class UserBookmark(object):
             '''
 
             if object_id is not None:
-                if not isinstance(object_id, basestring):
+                if not isinstance(object_id, dressdiscover.api.models.object.object_id.ObjectId):
                     raise TypeError("expected object_id to be a str but it is a %s" % getattr(__builtin__, 'type')(object_id))
             self.__object_id = object_id
             return self
@@ -264,7 +265,7 @@ class UserBookmark(object):
         self.__folder = folder
 
         if object_id is not None:
-            if not isinstance(object_id, basestring):
+            if not isinstance(object_id, dressdiscover.api.models.object.object_id.ObjectId):
                 raise TypeError("expected object_id to be a str but it is a %s" % getattr(__builtin__, 'type')(object_id))
         self.__object_id = object_id
 

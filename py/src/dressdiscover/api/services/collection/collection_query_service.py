@@ -16,7 +16,7 @@ class CollectionQueryService(object):
 
         if id is None:
             raise ValueError('id is required')
-        if not isinstance(id, basestring):
+        if not isinstance(id, dressdiscover.api.models.collection.collection_id.CollectionId):
             raise TypeError("expected id to be a str but it is a %s" % getattr(__builtin__, 'type')(id))
 
         get_collection_by_id_return_value = self._get_collection_by_id(id=id)
@@ -43,7 +43,7 @@ class CollectionQueryService(object):
 
         if ids is None:
             raise ValueError('ids is required')
-        if not (isinstance(ids, tuple) and len(list(ifilterfalse(lambda _: isinstance(_, basestring), ids))) == 0):
+        if not (isinstance(ids, tuple) and len(list(ifilterfalse(lambda _: isinstance(_, dressdiscover.api.models.collection.collection_id.CollectionId), ids))) == 0):
             raise TypeError("expected ids to be a tuple(str) but it is a %s" % getattr(__builtin__, 'type')(ids))
 
         get_collections_by_ids_return_value = self._get_collections_by_ids(ids=ids)
@@ -70,7 +70,7 @@ class CollectionQueryService(object):
 
         if institution_id is None:
             raise ValueError('institution_id is required')
-        if not isinstance(institution_id, basestring):
+        if not isinstance(institution_id, dressdiscover.api.models.institution.institution_id.InstitutionId):
             raise TypeError("expected institution_id to be a str but it is a %s" % getattr(__builtin__, 'type')(institution_id))
 
         get_collections_by_institution_id_return_value = self._get_collections_by_institution_id(institution_id=institution_id)

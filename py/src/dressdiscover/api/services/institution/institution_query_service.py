@@ -16,7 +16,7 @@ class InstitutionQueryService(object):
 
         if id is None:
             raise ValueError('id is required')
-        if not isinstance(id, basestring):
+        if not isinstance(id, dressdiscover.api.models.institution.institution_id.InstitutionId):
             raise TypeError("expected id to be a str but it is a %s" % getattr(__builtin__, 'type')(id))
 
         get_institution_by_id_return_value = self._get_institution_by_id(id=id)
@@ -62,7 +62,7 @@ class InstitutionQueryService(object):
 
         if ids is None:
             raise ValueError('ids is required')
-        if not (isinstance(ids, tuple) and len(list(ifilterfalse(lambda _: isinstance(_, basestring), ids))) == 0):
+        if not (isinstance(ids, tuple) and len(list(ifilterfalse(lambda _: isinstance(_, dressdiscover.api.models.institution.institution_id.InstitutionId), ids))) == 0):
             raise TypeError("expected ids to be a tuple(str) but it is a %s" % getattr(__builtin__, 'type')(ids))
 
         get_institutions_by_ids_return_value = self._get_institutions_by_ids(ids=ids)

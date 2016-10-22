@@ -13,7 +13,7 @@ class InstitutionCommandService(object):
 
         if id is None:
             raise ValueError('id is required')
-        if not isinstance(id, basestring):
+        if not isinstance(id, dressdiscover.api.models.institution.institution_id.InstitutionId):
             raise TypeError("expected id to be a str but it is a %s" % getattr(__builtin__, 'type')(id))
 
         self._delete_institution_by_id(id=id)
@@ -36,7 +36,7 @@ class InstitutionCommandService(object):
 
         if id is None:
             raise ValueError('id is required')
-        if not isinstance(id, basestring):
+        if not isinstance(id, dressdiscover.api.models.institution.institution_id.InstitutionId):
             raise TypeError("expected id to be a str but it is a %s" % getattr(__builtin__, 'type')(id))
         if institution is None:
             raise ValueError('institution is required')

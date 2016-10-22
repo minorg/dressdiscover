@@ -60,7 +60,7 @@ class Relation(object):
             '''
 
             if relids is not None:
-                if not (isinstance(relids, frozenset) and len(list(ifilterfalse(lambda _: isinstance(_, basestring), relids))) == 0):
+                if not (isinstance(relids, frozenset) and len(list(ifilterfalse(lambda _: isinstance(_, dressdiscover.api.models.object.object_id.ObjectId), relids))) == 0):
                     raise TypeError("expected relids to be a frozenset(str) but it is a %s" % getattr(__builtin__, 'type')(relids))
                 if len(relids) < 1:
                     raise ValueError("expected len(relids) to be >= 1, was %d" % len(relids))
@@ -218,7 +218,7 @@ class Relation(object):
         self.__href = href
 
         if relids is not None:
-            if not (isinstance(relids, frozenset) and len(list(ifilterfalse(lambda _: isinstance(_, basestring), relids))) == 0):
+            if not (isinstance(relids, frozenset) and len(list(ifilterfalse(lambda _: isinstance(_, dressdiscover.api.models.object.object_id.ObjectId), relids))) == 0):
                 raise TypeError("expected relids to be a frozenset(str) but it is a %s" % getattr(__builtin__, 'type')(relids))
             if len(relids) < 1:
                 raise ValueError("expected len(relids) to be >= 1, was %d" % len(relids))

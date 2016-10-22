@@ -223,7 +223,7 @@ class ObjectSummary(object):
 
             if collection_id is None:
                 raise ValueError('collection_id is required')
-            if not isinstance(collection_id, basestring):
+            if not isinstance(collection_id, dressdiscover.api.models.collection.collection_id.CollectionId):
                 raise TypeError("expected collection_id to be a str but it is a %s" % getattr(__builtin__, 'type')(collection_id))
             self.__collection_id = collection_id
             return self
@@ -322,7 +322,7 @@ class ObjectSummary(object):
 
             if institution_id is None:
                 raise ValueError('institution_id is required')
-            if not isinstance(institution_id, basestring):
+            if not isinstance(institution_id, dressdiscover.api.models.institution.institution_id.InstitutionId):
                 raise TypeError("expected institution_id to be a str but it is a %s" % getattr(__builtin__, 'type')(institution_id))
             self.__institution_id = institution_id
             return self
@@ -815,13 +815,13 @@ class ObjectSummary(object):
 
         if collection_id is None:
             raise ValueError('collection_id is required')
-        if not isinstance(collection_id, basestring):
+        if not isinstance(collection_id, dressdiscover.api.models.collection.collection_id.CollectionId):
             raise TypeError("expected collection_id to be a str but it is a %s" % getattr(__builtin__, 'type')(collection_id))
         self.__collection_id = collection_id
 
         if institution_id is None:
             raise ValueError('institution_id is required')
-        if not isinstance(institution_id, basestring):
+        if not isinstance(institution_id, dressdiscover.api.models.institution.institution_id.InstitutionId):
             raise TypeError("expected institution_id to be a str but it is a %s" % getattr(__builtin__, 'type')(institution_id))
         self.__institution_id = institution_id
 

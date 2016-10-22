@@ -300,7 +300,7 @@ class ObjectFacetFilters(object):
             '''
 
             if exclude_collections is not None:
-                if not (isinstance(exclude_collections, frozenset) and len(list(ifilterfalse(lambda _: isinstance(_, basestring), exclude_collections))) == 0):
+                if not (isinstance(exclude_collections, frozenset) and len(list(ifilterfalse(lambda _: isinstance(_, dressdiscover.api.models.collection.collection_id.CollectionId), exclude_collections))) == 0):
                     raise TypeError("expected exclude_collections to be a frozenset(str) but it is a %s" % getattr(__builtin__, 'type')(exclude_collections))
                 if len(exclude_collections) < 1:
                     raise ValueError("expected len(exclude_collections) to be >= 1, was %d" % len(exclude_collections))
@@ -352,7 +352,7 @@ class ObjectFacetFilters(object):
             '''
 
             if exclude_institutions is not None:
-                if not (isinstance(exclude_institutions, frozenset) and len(list(ifilterfalse(lambda _: isinstance(_, basestring), exclude_institutions))) == 0):
+                if not (isinstance(exclude_institutions, frozenset) and len(list(ifilterfalse(lambda _: isinstance(_, dressdiscover.api.models.institution.institution_id.InstitutionId), exclude_institutions))) == 0):
                     raise TypeError("expected exclude_institutions to be a frozenset(str) but it is a %s" % getattr(__builtin__, 'type')(exclude_institutions))
                 if len(exclude_institutions) < 1:
                     raise ValueError("expected len(exclude_institutions) to be >= 1, was %d" % len(exclude_institutions))
@@ -443,7 +443,7 @@ class ObjectFacetFilters(object):
             '''
 
             if include_collections is not None:
-                if not (isinstance(include_collections, frozenset) and len(list(ifilterfalse(lambda _: isinstance(_, basestring), include_collections))) == 0):
+                if not (isinstance(include_collections, frozenset) and len(list(ifilterfalse(lambda _: isinstance(_, dressdiscover.api.models.collection.collection_id.CollectionId), include_collections))) == 0):
                     raise TypeError("expected include_collections to be a frozenset(str) but it is a %s" % getattr(__builtin__, 'type')(include_collections))
                 if len(include_collections) < 1:
                     raise ValueError("expected len(include_collections) to be >= 1, was %d" % len(include_collections))
@@ -495,7 +495,7 @@ class ObjectFacetFilters(object):
             '''
 
             if include_institutions is not None:
-                if not (isinstance(include_institutions, frozenset) and len(list(ifilterfalse(lambda _: isinstance(_, basestring), include_institutions))) == 0):
+                if not (isinstance(include_institutions, frozenset) and len(list(ifilterfalse(lambda _: isinstance(_, dressdiscover.api.models.institution.institution_id.InstitutionId), include_institutions))) == 0):
                     raise TypeError("expected include_institutions to be a frozenset(str) but it is a %s" % getattr(__builtin__, 'type')(include_institutions))
                 if len(include_institutions) < 1:
                     raise ValueError("expected len(include_institutions) to be >= 1, was %d" % len(include_institutions))
@@ -946,7 +946,7 @@ class ObjectFacetFilters(object):
         self.__exclude_categories = exclude_categories
 
         if exclude_collections is not None:
-            if not (isinstance(exclude_collections, frozenset) and len(list(ifilterfalse(lambda _: isinstance(_, basestring), exclude_collections))) == 0):
+            if not (isinstance(exclude_collections, frozenset) and len(list(ifilterfalse(lambda _: isinstance(_, dressdiscover.api.models.collection.collection_id.CollectionId), exclude_collections))) == 0):
                 raise TypeError("expected exclude_collections to be a frozenset(str) but it is a %s" % getattr(__builtin__, 'type')(exclude_collections))
             if len(exclude_collections) < 1:
                 raise ValueError("expected len(exclude_collections) to be >= 1, was %d" % len(exclude_collections))
@@ -974,7 +974,7 @@ class ObjectFacetFilters(object):
         self.__exclude_genders = exclude_genders
 
         if exclude_institutions is not None:
-            if not (isinstance(exclude_institutions, frozenset) and len(list(ifilterfalse(lambda _: isinstance(_, basestring), exclude_institutions))) == 0):
+            if not (isinstance(exclude_institutions, frozenset) and len(list(ifilterfalse(lambda _: isinstance(_, dressdiscover.api.models.institution.institution_id.InstitutionId), exclude_institutions))) == 0):
                 raise TypeError("expected exclude_institutions to be a frozenset(str) but it is a %s" % getattr(__builtin__, 'type')(exclude_institutions))
             if len(exclude_institutions) < 1:
                 raise ValueError("expected len(exclude_institutions) to be >= 1, was %d" % len(exclude_institutions))
@@ -1023,7 +1023,7 @@ class ObjectFacetFilters(object):
         self.__include_categories = include_categories
 
         if include_collections is not None:
-            if not (isinstance(include_collections, frozenset) and len(list(ifilterfalse(lambda _: isinstance(_, basestring), include_collections))) == 0):
+            if not (isinstance(include_collections, frozenset) and len(list(ifilterfalse(lambda _: isinstance(_, dressdiscover.api.models.collection.collection_id.CollectionId), include_collections))) == 0):
                 raise TypeError("expected include_collections to be a frozenset(str) but it is a %s" % getattr(__builtin__, 'type')(include_collections))
             if len(include_collections) < 1:
                 raise ValueError("expected len(include_collections) to be >= 1, was %d" % len(include_collections))
@@ -1051,7 +1051,7 @@ class ObjectFacetFilters(object):
         self.__include_genders = include_genders
 
         if include_institutions is not None:
-            if not (isinstance(include_institutions, frozenset) and len(list(ifilterfalse(lambda _: isinstance(_, basestring), include_institutions))) == 0):
+            if not (isinstance(include_institutions, frozenset) and len(list(ifilterfalse(lambda _: isinstance(_, dressdiscover.api.models.institution.institution_id.InstitutionId), include_institutions))) == 0):
                 raise TypeError("expected include_institutions to be a frozenset(str) but it is a %s" % getattr(__builtin__, 'type')(include_institutions))
             if len(include_institutions) < 1:
                 raise ValueError("expected len(include_institutions) to be >= 1, was %d" % len(include_institutions))

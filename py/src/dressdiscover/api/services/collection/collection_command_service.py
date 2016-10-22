@@ -13,7 +13,7 @@ class CollectionCommandService(object):
 
         if id is None:
             raise ValueError('id is required')
-        if not isinstance(id, basestring):
+        if not isinstance(id, dressdiscover.api.models.collection.collection_id.CollectionId):
             raise TypeError("expected id to be a str but it is a %s" % getattr(__builtin__, 'type')(id))
 
         self._delete_collection_by_id(id=id)
@@ -34,7 +34,7 @@ class CollectionCommandService(object):
 
         if institution_id is None:
             raise ValueError('institution_id is required')
-        if not isinstance(institution_id, basestring):
+        if not isinstance(institution_id, dressdiscover.api.models.institution.institution_id.InstitutionId):
             raise TypeError("expected institution_id to be a str but it is a %s" % getattr(__builtin__, 'type')(institution_id))
 
         self._delete_collections_by_institution_id(institution_id=institution_id)
@@ -57,7 +57,7 @@ class CollectionCommandService(object):
 
         if id is None:
             raise ValueError('id is required')
-        if not isinstance(id, basestring):
+        if not isinstance(id, dressdiscover.api.models.collection.collection_id.CollectionId):
             raise TypeError("expected id to be a str but it is a %s" % getattr(__builtin__, 'type')(id))
         if collection is None:
             raise ValueError('collection is required')

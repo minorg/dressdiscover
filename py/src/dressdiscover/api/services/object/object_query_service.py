@@ -15,7 +15,7 @@ class ObjectQueryService(object):
 
         if id is None:
             raise ValueError('id is required')
-        if not isinstance(id, basestring):
+        if not isinstance(id, dressdiscover.api.models.object.object_id.ObjectId):
             raise TypeError("expected id to be a str but it is a %s" % getattr(__builtin__, 'type')(id))
 
         get_object_by_id_return_value = self._get_object_by_id(id=id)
@@ -42,7 +42,7 @@ class ObjectQueryService(object):
 
         if id is None:
             raise ValueError('id is required')
-        if not isinstance(id, basestring):
+        if not isinstance(id, dressdiscover.api.models.collection.collection_id.CollectionId):
             raise TypeError("expected id to be a str but it is a %s" % getattr(__builtin__, 'type')(id))
 
         get_objects_by_collection_id_return_value = self._get_objects_by_collection_id(id=id)

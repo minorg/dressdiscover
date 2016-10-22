@@ -44,7 +44,7 @@ class CollectionEntry(object):
 
             if id is None:
                 raise ValueError('id is required')
-            if not isinstance(id, basestring):
+            if not isinstance(id, dressdiscover.api.models.collection.collection_id.CollectionId):
                 raise TypeError("expected id to be a str but it is a %s" % getattr(__builtin__, 'type')(id))
             self.__id = id
             return self
@@ -133,7 +133,7 @@ class CollectionEntry(object):
 
         if id is None:
             raise ValueError('id is required')
-        if not isinstance(id, basestring):
+        if not isinstance(id, dressdiscover.api.models.collection.collection_id.CollectionId):
             raise TypeError("expected id to be a str but it is a %s" % getattr(__builtin__, 'type')(id))
         self.__id = id
 

@@ -9,6 +9,10 @@ def decamelize(str_):
 
 
 class _StringId(_Id):
+    def py_check(self, value):
+        qname = self.py_qname()
+        return "isinstance(%(value)s, %(qname)s)" % locals()
+
     def py_imports_use(self, caller_stack):
         return ['import ' + self.py_qname().rsplit('.', 1)[0]]
 

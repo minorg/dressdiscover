@@ -1,4 +1,5 @@
 import __builtin__
+import dressdiscover.api.models.object.object_id
 
 
 class NoSuchObjectException(Exception):
@@ -30,7 +31,7 @@ class NoSuchObjectException(Exception):
             '''
 
             if id is not None:
-                if not isinstance(id, basestring):
+                if not isinstance(id, dressdiscover.api.models.object.object_id.ObjectId):
                     raise TypeError("expected id to be a str but it is a %s" % getattr(__builtin__, 'type')(id))
             self.__id = id
             return self
@@ -92,7 +93,7 @@ class NoSuchObjectException(Exception):
         '''
 
         if id is not None:
-            if not isinstance(id, basestring):
+            if not isinstance(id, dressdiscover.api.models.object.object_id.ObjectId):
                 raise TypeError("expected id to be a str but it is a %s" % getattr(__builtin__, 'type')(id))
         self.__id = id
 

@@ -1,5 +1,6 @@
 import __builtin__
 import dressdiscover.api.models.object.object
+import dressdiscover.api.models.object.object_id
 
 
 class ObjectEntry(object):
@@ -43,7 +44,7 @@ class ObjectEntry(object):
 
             if id is None:
                 raise ValueError('id is required')
-            if not isinstance(id, basestring):
+            if not isinstance(id, dressdiscover.api.models.object.object_id.ObjectId):
                 raise TypeError("expected id to be a str but it is a %s" % getattr(__builtin__, 'type')(id))
             self.__id = id
             return self
@@ -132,7 +133,7 @@ class ObjectEntry(object):
 
         if id is None:
             raise ValueError('id is required')
-        if not isinstance(id, basestring):
+        if not isinstance(id, dressdiscover.api.models.object.object_id.ObjectId):
             raise TypeError("expected id to be a str but it is a %s" % getattr(__builtin__, 'type')(id))
         self.__id = id
 

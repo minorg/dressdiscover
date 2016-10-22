@@ -131,7 +131,7 @@ class ObjectFacets(object):
 
             if collections is None:
                 raise ValueError('collections is required')
-            if not (isinstance(collections, dict) and len(list(ifilterfalse(lambda __item: isinstance(__item[0], basestring) and isinstance(__item[1], int), collections.iteritems()))) == 0):
+            if not (isinstance(collections, dict) and len(list(ifilterfalse(lambda __item: isinstance(__item[0], dressdiscover.api.models.collection.collection_id.CollectionId) and isinstance(__item[1], int), collections.iteritems()))) == 0):
                 raise TypeError("expected collections to be a dict(str: int) but it is a %s" % getattr(__builtin__, 'type')(collections))
             self.__collections = collections
             return self
@@ -179,7 +179,7 @@ class ObjectFacets(object):
 
             if institutions is None:
                 raise ValueError('institutions is required')
-            if not (isinstance(institutions, dict) and len(list(ifilterfalse(lambda __item: isinstance(__item[0], basestring) and isinstance(__item[1], int), institutions.iteritems()))) == 0):
+            if not (isinstance(institutions, dict) and len(list(ifilterfalse(lambda __item: isinstance(__item[0], dressdiscover.api.models.institution.institution_id.InstitutionId) and isinstance(__item[1], int), institutions.iteritems()))) == 0):
                 raise TypeError("expected institutions to be a dict(str: int) but it is a %s" % getattr(__builtin__, 'type')(institutions))
             self.__institutions = institutions
             return self
@@ -472,7 +472,7 @@ class ObjectFacets(object):
 
         if collections is None:
             raise ValueError('collections is required')
-        if not (isinstance(collections, dict) and len(list(ifilterfalse(lambda __item: isinstance(__item[0], basestring) and isinstance(__item[1], int), collections.iteritems()))) == 0):
+        if not (isinstance(collections, dict) and len(list(ifilterfalse(lambda __item: isinstance(__item[0], dressdiscover.api.models.collection.collection_id.CollectionId) and isinstance(__item[1], int), collections.iteritems()))) == 0):
             raise TypeError("expected collections to be a dict(str: int) but it is a %s" % getattr(__builtin__, 'type')(collections))
         self.__collections = collections.copy() if collections is not None else None
 
@@ -496,7 +496,7 @@ class ObjectFacets(object):
 
         if institutions is None:
             raise ValueError('institutions is required')
-        if not (isinstance(institutions, dict) and len(list(ifilterfalse(lambda __item: isinstance(__item[0], basestring) and isinstance(__item[1], int), institutions.iteritems()))) == 0):
+        if not (isinstance(institutions, dict) and len(list(ifilterfalse(lambda __item: isinstance(__item[0], dressdiscover.api.models.institution.institution_id.InstitutionId) and isinstance(__item[1], int), institutions.iteritems()))) == 0):
             raise TypeError("expected institutions to be a dict(str: int) but it is a %s" % getattr(__builtin__, 'type')(institutions))
         self.__institutions = institutions.copy() if institutions is not None else None
 
