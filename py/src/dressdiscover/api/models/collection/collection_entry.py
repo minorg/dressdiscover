@@ -1,6 +1,6 @@
 import __builtin__
-import dressdiscover.api.models.collection.CollectionId
 import dressdiscover.api.models.collection.collection
+import dressdiscover.api.models.collection.collection_id
 
 
 class CollectionEntry(object):
@@ -118,7 +118,7 @@ class CollectionEntry(object):
         def values(cls):
             return (cls.ID, cls.MODEL,)
 
-    FieldMetadata.ID = FieldMetadata('id', dressdiscover.api.models.collection.CollectionId, None)
+    FieldMetadata.ID = FieldMetadata('id', dressdiscover.api.models.collection.collection_id.CollectionId, None)
     FieldMetadata.MODEL = FieldMetadata('model', dressdiscover.api.models.collection.collection.Collection, None)
 
     def __init__(
@@ -204,7 +204,7 @@ class CollectionEntry(object):
             if ifield_type == 0: # STOP
                 break
             elif ifield_name == 'id':
-                init_kwds['id'] = dressdiscover.api.models.collection.CollectionId.parse(iprot.read_string())
+                init_kwds['id'] = dressdiscover.api.models.collection.collection_id.CollectionId.parse(iprot.read_string())
             elif ifield_name == 'model':
                 init_kwds['model'] = dressdiscover.api.models.collection.collection.Collection.read(iprot)
             iprot.read_field_end()

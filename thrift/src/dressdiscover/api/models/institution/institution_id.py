@@ -11,7 +11,7 @@ class InstitutionId(_StringId):
         return 'org.dressdiscover.api.models.institution.InstitutionId'
 
     def py_qname(self):
-        return 'dressdiscover.api.models.institution.InstitutionId'
+        return 'dressdiscover.api.models.institution.institution_id.InstitutionId'
 
     def py_read_protocol_throws(self):
         return ['dressdiscover.api.models.institution.InvalidInstitutionIdException']

@@ -1,5 +1,5 @@
 import __builtin__
-import dressdiscover.api.models.institution.InstitutionId
+import dressdiscover.api.models.institution.institution_id
 import dressdiscover.api.vocabularies.vra_core.location.location_set
 import dressdiscover.api.vocabularies.vra_core.work_type.work_type_set
 
@@ -325,7 +325,7 @@ class Collection(object):
         def values(cls):
             return (cls.INSTITUTION_ID, cls.TITLE, cls.DESCRIPTION, cls.EXTERNAL, cls.HIDDEN, cls.LOCATIONS, cls.URL, cls.WORK_TYPES,)
 
-    FieldMetadata.INSTITUTION_ID = FieldMetadata('institution_id', dressdiscover.api.models.institution.InstitutionId, None)
+    FieldMetadata.INSTITUTION_ID = FieldMetadata('institution_id', dressdiscover.api.models.institution.institution_id.InstitutionId, None)
     FieldMetadata.TITLE = FieldMetadata('title', str, {u'minLength': 1})
     FieldMetadata.DESCRIPTION = FieldMetadata('description', str, {u'minLength': 1})
     FieldMetadata.EXTERNAL = FieldMetadata('external', bool, {u'acceptance': True})
@@ -527,7 +527,7 @@ class Collection(object):
             if ifield_type == 0: # STOP
                 break
             elif ifield_name == 'institution_id' and ifield_id == 1:
-                init_kwds['institution_id'] = dressdiscover.api.models.institution.InstitutionId.parse(iprot.read_string())
+                init_kwds['institution_id'] = dressdiscover.api.models.institution.institution_id.InstitutionId.parse(iprot.read_string())
             elif ifield_name == 'title' and ifield_id == 2:
                 init_kwds['title'] = iprot.read_string()
             elif ifield_name == 'description' and ifield_id == 4:

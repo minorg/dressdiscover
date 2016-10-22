@@ -11,7 +11,7 @@ class ObjectId(_Id):
         return 'org.dressdiscover.api.models.object.ObjectId'
 
     def py_qname(self):
-        return 'dressdiscover.api.models.object.ObjectId'
+        return 'dressdiscover.api.models.object.object_id.ObjectId'
 
     def py_read_protocol(self):
         qname = self.py_qname()

@@ -117,7 +117,7 @@ class ObjectSummaryEntry(object):
         def values(cls):
             return (cls.ID, cls.MODEL,)
 
-    FieldMetadata.ID = FieldMetadata('id', dressdiscover.api.models.object.ObjectId, None)
+    FieldMetadata.ID = FieldMetadata('id', dressdiscover.api.models.object.object_id.ObjectId, None)
     FieldMetadata.MODEL = FieldMetadata('model', dressdiscover.api.models.object.object_summary.ObjectSummary, None)
 
     def __init__(
@@ -203,7 +203,7 @@ class ObjectSummaryEntry(object):
             if ifield_type == 0: # STOP
                 break
             elif ifield_name == 'id':
-                init_kwds['id'] = dressdiscover.api.models.object.ObjectId.parse(iprot.read_string())
+                init_kwds['id'] = dressdiscover.api.models.object.object_id.ObjectId.parse(iprot.read_string())
             elif ifield_name == 'model':
                 init_kwds['model'] = dressdiscover.api.models.object.object_summary.ObjectSummary.read(iprot)
             iprot.read_field_end()

@@ -11,7 +11,7 @@ class CollectionId(_StringId):
         return 'org.dressdiscover.api.models.collection.CollectionId'
 
     def py_qname(self):
-        return 'dressdiscover.api.models.collection.CollectionId'
+        return 'dressdiscover.api.models.collection.collection_id.CollectionId'
 
     def py_read_protocol_throws(self):
         return ['dressdiscover.api.models.collection.InvalidCollectionIdException']

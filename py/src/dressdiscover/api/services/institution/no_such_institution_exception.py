@@ -1,5 +1,5 @@
 import __builtin__
-import dressdiscover.api.models.institution.InstitutionId
+import dressdiscover.api.models.institution.institution_id
 
 
 class NoSuchInstitutionException(Exception):
@@ -82,7 +82,7 @@ class NoSuchInstitutionException(Exception):
         def values(cls):
             return (cls.ID,)
 
-    FieldMetadata.ID = FieldMetadata('id', dressdiscover.api.models.institution.InstitutionId, None)
+    FieldMetadata.ID = FieldMetadata('id', dressdiscover.api.models.institution.institution_id.InstitutionId, None)
 
     def __init__(
         self,
@@ -149,7 +149,7 @@ class NoSuchInstitutionException(Exception):
                 break
             elif ifield_name == 'id':
                 try:
-                    init_kwds['id'] = dressdiscover.api.models.institution.InstitutionId.parse(iprot.read_string())
+                    init_kwds['id'] = dressdiscover.api.models.institution.institution_id.InstitutionId.parse(iprot.read_string())
                 except (dressdiscover.api.models.institution.InvalidInstitutionIdException,):
                     pass
             iprot.read_field_end()

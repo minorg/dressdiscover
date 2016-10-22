@@ -1458,7 +1458,7 @@ class ObjectFacetFilters(object):
             elif ifield_name == 'exclude_categories':
                 init_kwds['exclude_categories'] = frozenset([iprot.read_string() for _ in xrange(iprot.read_set_begin()[1])] + (iprot.read_set_end() is None and []))
             elif ifield_name == 'exclude_collections':
-                init_kwds['exclude_collections'] = frozenset([dressdiscover.api.models.collection.CollectionId.parse(iprot.read_string()) for _ in xrange(iprot.read_set_begin()[1])] + (iprot.read_set_end() is None and []))
+                init_kwds['exclude_collections'] = frozenset([dressdiscover.api.models.collection.collection_id.CollectionId.parse(iprot.read_string()) for _ in xrange(iprot.read_set_begin()[1])] + (iprot.read_set_end() is None and []))
             elif ifield_name == 'exclude_color_texts':
                 init_kwds['exclude_color_texts'] = frozenset([iprot.read_string() for _ in xrange(iprot.read_set_begin()[1])] + (iprot.read_set_end() is None and []))
             elif ifield_name == 'exclude_cultural_context_texts':
@@ -1466,7 +1466,7 @@ class ObjectFacetFilters(object):
             elif ifield_name == 'exclude_genders':
                 init_kwds['exclude_genders'] = frozenset([dressdiscover.api.vocabularies.costume_core.gender.gender.Gender.value_of(iprot.read_string().strip().upper()) for _ in xrange(iprot.read_set_begin()[1])] + (iprot.read_set_end() is None and []))
             elif ifield_name == 'exclude_institutions':
-                init_kwds['exclude_institutions'] = frozenset([dressdiscover.api.models.institution.InstitutionId.parse(iprot.read_string()) for _ in xrange(iprot.read_set_begin()[1])] + (iprot.read_set_end() is None and []))
+                init_kwds['exclude_institutions'] = frozenset([dressdiscover.api.models.institution.institution_id.InstitutionId.parse(iprot.read_string()) for _ in xrange(iprot.read_set_begin()[1])] + (iprot.read_set_end() is None and []))
             elif ifield_name == 'exclude_location_name_texts':
                 init_kwds['exclude_location_name_texts'] = frozenset([iprot.read_string() for _ in xrange(iprot.read_set_begin()[1])] + (iprot.read_set_end() is None and []))
             elif ifield_name == 'exclude_material_texts':
@@ -1480,7 +1480,7 @@ class ObjectFacetFilters(object):
             elif ifield_name == 'include_categories':
                 init_kwds['include_categories'] = frozenset([iprot.read_string() for _ in xrange(iprot.read_set_begin()[1])] + (iprot.read_set_end() is None and []))
             elif ifield_name == 'include_collections':
-                init_kwds['include_collections'] = frozenset([dressdiscover.api.models.collection.CollectionId.parse(iprot.read_string()) for _ in xrange(iprot.read_set_begin()[1])] + (iprot.read_set_end() is None and []))
+                init_kwds['include_collections'] = frozenset([dressdiscover.api.models.collection.collection_id.CollectionId.parse(iprot.read_string()) for _ in xrange(iprot.read_set_begin()[1])] + (iprot.read_set_end() is None and []))
             elif ifield_name == 'include_color_texts':
                 init_kwds['include_color_texts'] = frozenset([iprot.read_string() for _ in xrange(iprot.read_set_begin()[1])] + (iprot.read_set_end() is None and []))
             elif ifield_name == 'include_cultural_context_texts':
@@ -1488,7 +1488,7 @@ class ObjectFacetFilters(object):
             elif ifield_name == 'include_genders':
                 init_kwds['include_genders'] = frozenset([dressdiscover.api.vocabularies.costume_core.gender.gender.Gender.value_of(iprot.read_string().strip().upper()) for _ in xrange(iprot.read_set_begin()[1])] + (iprot.read_set_end() is None and []))
             elif ifield_name == 'include_institutions':
-                init_kwds['include_institutions'] = frozenset([dressdiscover.api.models.institution.InstitutionId.parse(iprot.read_string()) for _ in xrange(iprot.read_set_begin()[1])] + (iprot.read_set_end() is None and []))
+                init_kwds['include_institutions'] = frozenset([dressdiscover.api.models.institution.institution_id.InstitutionId.parse(iprot.read_string()) for _ in xrange(iprot.read_set_begin()[1])] + (iprot.read_set_end() is None and []))
             elif ifield_name == 'include_location_name_texts':
                 init_kwds['include_location_name_texts'] = frozenset([iprot.read_string() for _ in xrange(iprot.read_set_begin()[1])] + (iprot.read_set_end() is None and []))
             elif ifield_name == 'include_material_texts':
