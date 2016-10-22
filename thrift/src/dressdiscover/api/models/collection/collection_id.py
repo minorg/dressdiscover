@@ -10,6 +10,9 @@ class CollectionId(_Id):
     def java_qname(self):
         return 'org.dressdiscover.api.models.collection.CollectionId'
 
+    def py_imports_use(self, caller_stack):
+        return ['import ' + self.py_qname()]
+
     def py_qname(self):
         return 'dressdiscover.api.models.collection.CollectionId'
 

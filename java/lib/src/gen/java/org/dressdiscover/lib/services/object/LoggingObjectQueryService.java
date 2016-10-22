@@ -4,10 +4,12 @@ package org.dressdiscover.lib.services.object;
 public class LoggingObjectQueryService implements org.dressdiscover.api.services.object.ObjectQueryService {
     public static class Markers {
         public final static org.slf4j.Marker GET_OBJECT_BY_ID = org.slf4j.MarkerFactory.getMarker("GET_OBJECT_BY_ID");
+        public final static org.slf4j.Marker GET_OBJECTS_BY_COLLECTION_ID = org.slf4j.MarkerFactory.getMarker("GET_OBJECTS_BY_COLLECTION_ID");
 
         public final static org.slf4j.Marker OBJECT_QUERY_SERVICE = org.slf4j.MarkerFactory.getMarker("OBJECT_QUERY_SERVICE");
         static {
             OBJECT_QUERY_SERVICE.add(GET_OBJECT_BY_ID);
+            OBJECT_QUERY_SERVICE.add(GET_OBJECTS_BY_COLLECTION_ID);
         }
     }
 
@@ -55,6 +57,32 @@ public class LoggingObjectQueryService implements org.dressdiscover.api.services
             __logMessageStringBuilder.append(" -> {}");
             __logMessageArgs.add(e.toString());
             logger.error(Markers.GET_OBJECT_BY_ID, __logMessageStringBuilder.toString(), __logMessageArgs.toArray());
+            throw e;
+        }
+    }
+
+    public com.google.common.collect.ImmutableList<org.dressdiscover.api.models.object.Object> getObjectsByCollectionId(final org.dressdiscover.api.models.collection.CollectionId id) throws org.dressdiscover.api.services.IoException {
+        final StringBuilder __logMessageStringBuilder = new StringBuilder();
+        final java.util.List<Object> __logMessageArgs = new java.util.ArrayList<Object>();
+
+        __logMessageStringBuilder.append("get_objects_by_collection_id(");
+        __logMessageStringBuilder.append("{}");
+        __logMessageArgs.add(Messages.GetObjectsByCollectionIdRequest.create(id));
+        __logMessageStringBuilder.append(")");
+
+        try {
+            com.google.common.collect.ImmutableList<org.dressdiscover.api.models.object.Object> __returnValue = delegate.getObjectsByCollectionId(id);
+
+            __logMessageStringBuilder.append(" -> {}");
+            __logMessageArgs.add(__returnValue);
+
+            logger.info(Markers.GET_OBJECTS_BY_COLLECTION_ID, __logMessageStringBuilder.toString(), __logMessageArgs.toArray());
+
+            return __returnValue;
+        } catch (final org.dressdiscover.api.services.IoException e) {
+            __logMessageStringBuilder.append(" -> {}");
+            __logMessageArgs.add(e.toString());
+            logger.error(Markers.GET_OBJECTS_BY_COLLECTION_ID, __logMessageStringBuilder.toString(), __logMessageArgs.toArray());
             throw e;
         }
     }

@@ -5,6 +5,7 @@ namespace servlet_java org.dressdiscover.server.controllers.object
 namespace validating_service_java org.dressdiscover.lib.services.object
 namespace * dressdiscover.api.services.object
 
+include "dressdiscover/api/models/collection/collection_id.thrift"
 include "dressdiscover/api/models/object/object.thrift"
 include "dressdiscover/api/models/object/object_id.thrift"
 include "dressdiscover/api/services/collection/no_such_collection_exception.thrift"
@@ -22,4 +23,11 @@ service ObjectQueryService {
         no_such_institution_exception.NoSuchInstitutionException e3,
 		no_such_object_exception.NoSuchObjectException e4
 	);
+
+	list<object.Object>
+    get_objects_by_collection_id(
+        collection_id.CollectionId id
+    ) throws (
+        io_exception.IoException e
+    );
 }

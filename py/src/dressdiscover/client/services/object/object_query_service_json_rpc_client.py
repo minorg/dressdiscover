@@ -130,3 +130,18 @@ class ObjectQueryServiceJsonRpcClient(dressdiscover.api.services.object.object_q
         iprot = dressdiscover.thirdparty.thryft.protocol.json_input_protocol.JsonInputProtocol(return_value)
         return dressdiscover.api.models.object.object.Object.read(iprot)
 
+    def _get_objects_by_collection_id(
+        self,
+        id,  # @ReservedAssignment
+    ):
+        oprot = dressdiscover.thirdparty.thryft.protocol.json_output_protocol.JsonOutputProtocol()
+        oprot.write_struct_begin()
+        oprot.write_field_begin(name='id', type=11, id=None)
+        oprot.write_string(id)
+        oprot.write_field_end()
+        oprot.write_struct_end()
+
+        return_value = self.__request(method='get_objects_by_collection_id', params=oprot.value)
+        iprot = dressdiscover.thirdparty.thryft.protocol.json_input_protocol.JsonInputProtocol(return_value)
+        return tuple([dressdiscover.api.models.object.object.Object.read(iprot) for _ in xrange(iprot.read_list_begin()[1])] + (iprot.read_list_end() is None and []))
+

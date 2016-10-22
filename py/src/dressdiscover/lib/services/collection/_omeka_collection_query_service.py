@@ -1,11 +1,9 @@
-from com.google.common.collect import ImmutableList
-from org.dressdiscover.lib.stores.collection import AbstractReadOnlyCollectionStore
-
+from dressdiscover.api.services.collection.collection_query_service import CollectionQueryService
 from dressdiscover.lib.mappers.omeka.omeka_resource_mapper import OmekaResourceMapper
 
 
-class _OmekaCollectionStore(AbstractReadOnlyCollectionStore):
-    def __init__(self, endpoint_url, properties, uri, resource_mapper=None, **kwds):
+class _OmekaCollectionQueryService(CollectionQueryService):
+    def __init__(self, endpoint_url, resource_mapper=None, **kwds):
         self.__endpoint_url = endpoint_url
         if resource_mapper is None:
             resource_mapper = OmekaResourceMapper()
@@ -16,7 +14,6 @@ class _OmekaCollectionStore(AbstractReadOnlyCollectionStore):
                 resource_mapper_class = getattr(resource_mapper_class, component)
             resource_mapper = resource_mapper_class()
         self.__resource_mapper = resource_mapper
-        self.__uri = uri
 
     @property
     def _endpoint_url(self):
@@ -40,12 +37,8 @@ class _OmekaCollectionStore(AbstractReadOnlyCollectionStore):
                 )
             if collection is not None:
                 collections.append(collection)
-        return ImmutableList.copyOf(collections)
+        return tuple(collections)
 
     @property
     def _resource_mapper(self):
         return self.__resource_mapper
-
-    @property
-    def _uri(self):
-        return self.__uri
