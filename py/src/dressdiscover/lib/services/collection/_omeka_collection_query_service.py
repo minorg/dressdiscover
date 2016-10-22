@@ -22,7 +22,6 @@ class _OmekaCollectionQueryService(CollectionQueryService):
     def _map_omeka_collection(self, institution_id, omeka_collection):
         return \
             self._resource_mapper.map_omeka_collection(
-                collection_store_uri=self._uri,
                 institution_id=institution_id,
                 omeka_collection=omeka_collection,
             )

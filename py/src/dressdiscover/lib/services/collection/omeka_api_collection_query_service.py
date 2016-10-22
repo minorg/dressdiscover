@@ -9,12 +9,12 @@ class OmekaApiCollectionQueryService(_OmekaCollectionQueryService):
         _OmekaCollectionQueryService.__init__(self, endpoint_url=endpoint_url, **kwds)
         self.__api_client = OmekaRestApiClient(api_key=api_key, endpoint_url=endpoint_url)
 
-    def _get_collection_by_id(self, collection_id):
+    def _get_collection_by_id(self, id):  # @ReservedAssignment
         try:
-            omeka_collection = self.__api_client.get_collection(int(collection_id.unqualified_collection_id))
+            omeka_collection = self.__api_client.get_collection(int(id.unqualified_collection_id))
         except NoSuchOmekaCollectionException:
             raise NoSuchCollectionException
-        collection_entry = self._map_omeka_collection(institution_id=collection_id.institution_id, omeka_collection=omeka_collection)
+        collection_entry = self._map_omeka_collection(institution_id=id.institution_id, omeka_collection=omeka_collection)
         if collection_entry is not None:
             return collection_entry.model
         else:

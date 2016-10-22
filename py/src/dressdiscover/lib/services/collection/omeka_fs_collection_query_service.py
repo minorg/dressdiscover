@@ -10,7 +10,7 @@ from dressdiscover.lib.stores.collection.py_collection_store_factory import PyCo
 from yomeka.client.omeka_json_parser import OmekaJsonParser
 
 
-class OmekaFsCollectionStore(_OmekaCollectionStore, _FsStore):
+class OmekaFsCollectionQueryService(_OmekaCollectionStore, _FsStore):
     URI_SCHEME = 'omekafs'
 
     def __init__(self, *args, **kwds):
