@@ -1,5 +1,7 @@
 from itertools import ifilterfalse
 import __builtin__
+import dressdiscover.api.models.collection.CollectionId
+import dressdiscover.api.models.institution.InstitutionId
 import dressdiscover.api.models.object.object_facet_filters
 
 

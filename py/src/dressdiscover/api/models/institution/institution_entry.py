@@ -1,4 +1,5 @@
 import __builtin__
+import dressdiscover.api.models.institution.InstitutionId
 import dressdiscover.api.models.institution.institution
 
 
