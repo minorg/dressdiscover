@@ -81,7 +81,7 @@ class NoSuchCollectionException(Exception):
         def values(cls):
             return (cls.ID,)
 
-    FieldMetadata.ID = FieldMetadata('id', dressdiscover.api.models.collection.collection_id.CollectionId, None)
+    FieldMetadata.ID = FieldMetadata('id', dressdiscover.api.models.collection.CollectionId, None)
 
     def __init__(
         self,
@@ -148,8 +148,8 @@ class NoSuchCollectionException(Exception):
                 break
             elif ifield_name == 'id':
                 try:
-                    init_kwds['id'] = iprot.read_string()
-                except (TypeError, ValueError,):
+                    init_kwds['id'] = dressdiscover.api.models.collection.CollectionId.parse(iprot.read_string())
+                except (dressdiscover.api.models.collection.InvalidCollectionIdException,):
                     pass
             iprot.read_field_end()
         iprot.read_struct_end()

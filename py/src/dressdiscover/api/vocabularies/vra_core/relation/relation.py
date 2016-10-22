@@ -305,7 +305,7 @@ class Relation(object):
                 except (TypeError, ValueError,):
                     pass
             elif ifield_name == 'relids' and ifield_id == 3:
-                init_kwds['relids'] = frozenset([iprot.read_string() for _ in xrange(iprot.read_set_begin()[1])] + (iprot.read_set_end() is None and []))
+                init_kwds['relids'] = frozenset([dressdiscover.api.models.object.ObjectId.parse(iprot.read_string()) for _ in xrange(iprot.read_set_begin()[1])] + (iprot.read_set_end() is None and []))
             elif ifield_name == 'text' and ifield_id == 4:
                 try:
                     init_kwds['text'] = iprot.read_string()

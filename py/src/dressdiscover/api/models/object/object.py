@@ -1042,8 +1042,8 @@ class Object(object):
         def values(cls):
             return (cls.COLLECTION_ID, cls.INSTITUTION_ID, cls.TITLES, cls.AGENTS, cls.CATEGORIES, cls.CLOSURES, cls.COLORS, cls.COMPONENTS, cls.CONDITION, cls.CULTURAL_CONTEXTS, cls.DATES, cls.DESCRIPTIONS, cls.GENDER, cls.HIDDEN, cls.IMAGES, cls.INSCRIPTIONS, cls.LOCATIONS, cls.MATERIALS, cls.MEASUREMENTS, cls.PROVENANCE, cls.QUANTITY, cls.RELATIONS, cls.RIGHTS, cls.STRUCTURES, cls.SUBJECTS, cls.TECHNIQUES, cls.TEXTREFS, cls.VIEW_TYPE, cls.WORK_TYPES,)
 
-    FieldMetadata.COLLECTION_ID = FieldMetadata('collection_id', dressdiscover.api.models.collection.collection_id.CollectionId, None)
-    FieldMetadata.INSTITUTION_ID = FieldMetadata('institution_id', dressdiscover.api.models.institution.institution_id.InstitutionId, None)
+    FieldMetadata.COLLECTION_ID = FieldMetadata('collection_id', dressdiscover.api.models.collection.CollectionId, None)
+    FieldMetadata.INSTITUTION_ID = FieldMetadata('institution_id', dressdiscover.api.models.institution.InstitutionId, None)
     FieldMetadata.TITLES = FieldMetadata('titles', dressdiscover.api.vocabularies.vra_core.title.title_set.TitleSet, None)
     FieldMetadata.AGENTS = FieldMetadata('agents', dressdiscover.api.vocabularies.vra_core.agent.agent_set.AgentSet, None)
     FieldMetadata.CATEGORIES = FieldMetadata('categories', tuple, {u'minLength': 1})
@@ -1659,9 +1659,9 @@ class Object(object):
             if ifield_type == 0: # STOP
                 break
             elif ifield_name == 'collection_id' and ifield_id == 1:
-                init_kwds['collection_id'] = iprot.read_string()
+                init_kwds['collection_id'] = dressdiscover.api.models.collection.CollectionId.parse(iprot.read_string())
             elif ifield_name == 'institution_id' and ifield_id == 2:
-                init_kwds['institution_id'] = iprot.read_string()
+                init_kwds['institution_id'] = dressdiscover.api.models.institution.InstitutionId.parse(iprot.read_string())
             elif ifield_name == 'titles' and ifield_id == 3:
                 init_kwds['titles'] = dressdiscover.api.vocabularies.vra_core.title.title_set.TitleSet.read(iprot)
             elif ifield_name == 'agents' and ifield_id == 20:

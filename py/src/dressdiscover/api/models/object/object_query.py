@@ -390,11 +390,11 @@ class ObjectQuery(object):
         def values(cls):
             return (cls.COLLECTION_ID, cls.FACET_FILTERS, cls.INCLUDE_HIDDEN, cls.INSTITUTION_ID, cls.MORE_LIKE_OBJECT_ID, cls.OBJECT_IDS, cls.QUERY_STRING, cls.RELATION_TEXT, cls.STRUCTURE_TEXTS, cls.WORK_TYPE_TEXT,)
 
-    FieldMetadata.COLLECTION_ID = FieldMetadata('collection_id', dressdiscover.api.models.collection.collection_id.CollectionId, None)
+    FieldMetadata.COLLECTION_ID = FieldMetadata('collection_id', dressdiscover.api.models.collection.CollectionId, None)
     FieldMetadata.FACET_FILTERS = FieldMetadata('facet_filters', dressdiscover.api.models.object.object_facet_filters.ObjectFacetFilters, None)
     FieldMetadata.INCLUDE_HIDDEN = FieldMetadata('include_hidden', bool, {u'acceptance': True})
-    FieldMetadata.INSTITUTION_ID = FieldMetadata('institution_id', dressdiscover.api.models.institution.institution_id.InstitutionId, None)
-    FieldMetadata.MORE_LIKE_OBJECT_ID = FieldMetadata('more_like_object_id', dressdiscover.api.models.object.object_id.ObjectId, None)
+    FieldMetadata.INSTITUTION_ID = FieldMetadata('institution_id', dressdiscover.api.models.institution.InstitutionId, None)
+    FieldMetadata.MORE_LIKE_OBJECT_ID = FieldMetadata('more_like_object_id', dressdiscover.api.models.object.ObjectId, None)
     FieldMetadata.OBJECT_IDS = FieldMetadata('object_ids', frozenset, None)
     FieldMetadata.QUERY_STRING = FieldMetadata('query_string', str, {u'minLength': 1})
     FieldMetadata.RELATION_TEXT = FieldMetadata('relation_text', str, {u'minLength': 1})
@@ -641,8 +641,8 @@ class ObjectQuery(object):
                 break
             elif ifield_name == 'collection_id':
                 try:
-                    init_kwds['collection_id'] = iprot.read_string()
-                except (TypeError, ValueError,):
+                    init_kwds['collection_id'] = dressdiscover.api.models.collection.CollectionId.parse(iprot.read_string())
+                except (dressdiscover.api.models.collection.InvalidCollectionIdException,):
                     pass
             elif ifield_name == 'facet_filters':
                 init_kwds['facet_filters'] = dressdiscover.api.models.object.object_facet_filters.ObjectFacetFilters.read(iprot)
@@ -653,16 +653,16 @@ class ObjectQuery(object):
                     pass
             elif ifield_name == 'institution_id':
                 try:
-                    init_kwds['institution_id'] = iprot.read_string()
-                except (TypeError, ValueError,):
+                    init_kwds['institution_id'] = dressdiscover.api.models.institution.InstitutionId.parse(iprot.read_string())
+                except (dressdiscover.api.models.institution.InvalidInstitutionIdException,):
                     pass
             elif ifield_name == 'more_like_object_id':
                 try:
-                    init_kwds['more_like_object_id'] = iprot.read_string()
-                except (TypeError, ValueError,):
+                    init_kwds['more_like_object_id'] = dressdiscover.api.models.object.ObjectId.parse(iprot.read_string())
+                except (dressdiscover.api.models.object.InvalidObjectIdException,):
                     pass
             elif ifield_name == 'object_ids':
-                init_kwds['object_ids'] = frozenset([iprot.read_string() for _ in xrange(iprot.read_set_begin()[1])] + (iprot.read_set_end() is None and []))
+                init_kwds['object_ids'] = frozenset([dressdiscover.api.models.object.ObjectId.parse(iprot.read_string()) for _ in xrange(iprot.read_set_begin()[1])] + (iprot.read_set_end() is None and []))
             elif ifield_name == 'query_string':
                 try:
                     init_kwds['query_string'] = iprot.read_string()

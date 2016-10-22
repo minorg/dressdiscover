@@ -744,8 +744,8 @@ class ObjectSummary(object):
         def values(cls):
             return (cls.COLLECTION_ID, cls.INSTITUTION_ID, cls.TITLE, cls.AGENT_NAME_TEXTS, cls.CATEGORIES, cls.COLOR_TEXTS, cls.CULTURAL_CONTEXT_TEXTS, cls.DATE, cls.DESCRIPTION, cls.GENDER, cls.HIDDEN, cls.IMAGE, cls.LOCATION_NAME_TEXTS, cls.MATERIAL_TEXTS, cls.RELATION_TEXTS, cls.STRUCTURE_TEXTS, cls.SUBJECT_TERM_TEXTS, cls.TECHNIQUE_TEXTS, cls.URL, cls.WORK_TYPE_TEXTS,)
 
-    FieldMetadata.COLLECTION_ID = FieldMetadata('collection_id', dressdiscover.api.models.collection.collection_id.CollectionId, None)
-    FieldMetadata.INSTITUTION_ID = FieldMetadata('institution_id', dressdiscover.api.models.institution.institution_id.InstitutionId, None)
+    FieldMetadata.COLLECTION_ID = FieldMetadata('collection_id', dressdiscover.api.models.collection.CollectionId, None)
+    FieldMetadata.INSTITUTION_ID = FieldMetadata('institution_id', dressdiscover.api.models.institution.InstitutionId, None)
     FieldMetadata.TITLE = FieldMetadata('title', str, {u'minLength': 1})
     FieldMetadata.AGENT_NAME_TEXTS = FieldMetadata('agent_name_texts', tuple, {u'minLength': 1})
     FieldMetadata.CATEGORIES = FieldMetadata('categories', tuple, {u'minLength': 1})
@@ -1199,9 +1199,9 @@ class ObjectSummary(object):
             if ifield_type == 0: # STOP
                 break
             elif ifield_name == 'collection_id' and ifield_id == 1:
-                init_kwds['collection_id'] = iprot.read_string()
+                init_kwds['collection_id'] = dressdiscover.api.models.collection.CollectionId.parse(iprot.read_string())
             elif ifield_name == 'institution_id' and ifield_id == 2:
-                init_kwds['institution_id'] = iprot.read_string()
+                init_kwds['institution_id'] = dressdiscover.api.models.institution.InstitutionId.parse(iprot.read_string())
             elif ifield_name == 'title' and ifield_id == 4:
                 init_kwds['title'] = iprot.read_string()
             elif ifield_name == 'agent_name_texts' and ifield_id == 6:

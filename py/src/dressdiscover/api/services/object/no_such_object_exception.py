@@ -81,7 +81,7 @@ class NoSuchObjectException(Exception):
         def values(cls):
             return (cls.ID,)
 
-    FieldMetadata.ID = FieldMetadata('id', dressdiscover.api.models.object.object_id.ObjectId, None)
+    FieldMetadata.ID = FieldMetadata('id', dressdiscover.api.models.object.ObjectId, None)
 
     def __init__(
         self,
@@ -148,8 +148,8 @@ class NoSuchObjectException(Exception):
                 break
             elif ifield_name == 'id':
                 try:
-                    init_kwds['id'] = iprot.read_string()
-                except (TypeError, ValueError,):
+                    init_kwds['id'] = dressdiscover.api.models.object.ObjectId.parse(iprot.read_string())
+                except (dressdiscover.api.models.object.InvalidObjectIdException,):
                     pass
             iprot.read_field_end()
         iprot.read_struct_end()

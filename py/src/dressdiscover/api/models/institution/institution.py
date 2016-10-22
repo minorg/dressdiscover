@@ -1,5 +1,4 @@
 import __builtin__
-import dressdiscover.api.models.collection.collection_service_configuration
 import dressdiscover.api.vocabularies.vra_core.location.location_set
 import dressdiscover.api.vocabularies.vra_core.rights.rights_set
 
@@ -9,7 +8,6 @@ class Institution(object):
         def __init__(
             self,
             title=None,
-            collection_service_configuration=None,
             data_rights=None,
             external=None,
             hidden=None,
@@ -18,7 +16,6 @@ class Institution(object):
         ):
             '''
             :type title: str
-            :type collection_service_configuration: dressdiscover.api.models.collection.collection_service_configuration.CollectionServiceConfiguration or None
             :type data_rights: dressdiscover.api.vocabularies.vra_core.rights.rights_set.RightsSet or None
             :type external: bool or None
             :type hidden: bool or None
@@ -27,7 +24,6 @@ class Institution(object):
             '''
 
             self.__title = title
-            self.__collection_service_configuration = collection_service_configuration
             self.__data_rights = data_rights
             self.__external = external
             self.__hidden = hidden
@@ -35,15 +31,7 @@ class Institution(object):
             self.__url = url
 
         def build(self):
-            return Institution(title=self.__title, collection_service_configuration=self.__collection_service_configuration, data_rights=self.__data_rights, external=self.__external, hidden=self.__hidden, locations=self.__locations, url=self.__url)
-
-        @property
-        def collection_service_configuration(self):
-            '''
-            :rtype: dressdiscover.api.models.collection.collection_service_configuration.CollectionServiceConfiguration
-            '''
-
-            return self.__collection_service_configuration
+            return Institution(title=self.__title, data_rights=self.__data_rights, external=self.__external, hidden=self.__hidden, locations=self.__locations, url=self.__url)
 
         @property
         def data_rights(self):
@@ -76,17 +64,6 @@ class Institution(object):
             '''
 
             return self.__locations
-
-        def set_collection_service_configuration(self, collection_service_configuration):
-            '''
-            :type collection_service_configuration: dressdiscover.api.models.collection.collection_service_configuration.CollectionServiceConfiguration or None
-            '''
-
-            if collection_service_configuration is not None:
-                if not isinstance(collection_service_configuration, dressdiscover.api.models.collection.collection_service_configuration.CollectionServiceConfiguration):
-                    raise TypeError("expected collection_service_configuration to be a dressdiscover.api.models.collection.collection_service_configuration.CollectionServiceConfiguration but it is a %s" % getattr(__builtin__, 'type')(collection_service_configuration))
-            self.__collection_service_configuration = collection_service_configuration
-            return self
 
         def set_data_rights(self, data_rights):
             '''
@@ -170,7 +147,6 @@ class Institution(object):
         def update(self, institution):
             '''
             :type title: str
-            :type collection_service_configuration: dressdiscover.api.models.collection.collection_service_configuration.CollectionServiceConfiguration or None
             :type data_rights: dressdiscover.api.vocabularies.vra_core.rights.rights_set.RightsSet or None
             :type external: bool or None
             :type hidden: bool or None
@@ -180,7 +156,6 @@ class Institution(object):
 
             if isinstance(institution, Institution):
                 self.set_title(institution.title)
-                self.set_collection_service_configuration(institution.collection_service_configuration)
                 self.set_data_rights(institution.data_rights)
                 self.set_external(institution.external)
                 self.set_hidden(institution.hidden)
@@ -200,14 +175,6 @@ class Institution(object):
             '''
 
             return self.__url
-
-        @collection_service_configuration.setter
-        def collection_service_configuration(self, collection_service_configuration):
-            '''
-            :type collection_service_configuration: dressdiscover.api.models.collection.collection_service_configuration.CollectionServiceConfiguration or None
-            '''
-
-            self.set_collection_service_configuration(collection_service_configuration)
 
         @data_rights.setter
         def data_rights(self, data_rights):
@@ -259,7 +226,6 @@ class Institution(object):
 
     class FieldMetadata(object):
         TITLE = None
-        COLLECTION_SERVICE_CONFIGURATION = None
         DATA_RIGHTS = None
         EXTERNAL = None
         HIDDEN = None
@@ -285,10 +251,9 @@ class Institution(object):
 
         @classmethod
         def values(cls):
-            return (cls.TITLE, cls.COLLECTION_SERVICE_CONFIGURATION, cls.DATA_RIGHTS, cls.EXTERNAL, cls.HIDDEN, cls.LOCATIONS, cls.URL,)
+            return (cls.TITLE, cls.DATA_RIGHTS, cls.EXTERNAL, cls.HIDDEN, cls.LOCATIONS, cls.URL,)
 
     FieldMetadata.TITLE = FieldMetadata('title', str, None)
-    FieldMetadata.COLLECTION_SERVICE_CONFIGURATION = FieldMetadata('collection_service_configuration', dressdiscover.api.models.collection.collection_service_configuration.CollectionServiceConfiguration, None)
     FieldMetadata.DATA_RIGHTS = FieldMetadata('data_rights', dressdiscover.api.vocabularies.vra_core.rights.rights_set.RightsSet, None)
     FieldMetadata.EXTERNAL = FieldMetadata('external', bool, {u'acceptance': True})
     FieldMetadata.HIDDEN = FieldMetadata('hidden', bool, {u'acceptance': True})
@@ -298,7 +263,6 @@ class Institution(object):
     def __init__(
         self,
         title,
-        collection_service_configuration=None,
         data_rights=None,
         external=None,
         hidden=None,
@@ -307,7 +271,6 @@ class Institution(object):
     ):
         '''
         :type title: str
-        :type collection_service_configuration: dressdiscover.api.models.collection.collection_service_configuration.CollectionServiceConfiguration or None
         :type data_rights: dressdiscover.api.vocabularies.vra_core.rights.rights_set.RightsSet or None
         :type external: bool or None
         :type hidden: bool or None
@@ -320,11 +283,6 @@ class Institution(object):
         if not isinstance(title, basestring):
             raise TypeError("expected title to be a str but it is a %s" % getattr(__builtin__, 'type')(title))
         self.__title = title
-
-        if collection_service_configuration is not None:
-            if not isinstance(collection_service_configuration, dressdiscover.api.models.collection.collection_service_configuration.CollectionServiceConfiguration):
-                raise TypeError("expected collection_service_configuration to be a dressdiscover.api.models.collection.collection_service_configuration.CollectionServiceConfiguration but it is a %s" % getattr(__builtin__, 'type')(collection_service_configuration))
-        self.__collection_service_configuration = collection_service_configuration
 
         if data_rights is not None:
             if not isinstance(data_rights, dressdiscover.api.vocabularies.vra_core.rights.rights_set.RightsSet):
@@ -358,8 +316,6 @@ class Institution(object):
     def __eq__(self, other):
         if self.title != other.title:
             return False
-        if self.collection_service_configuration != other.collection_service_configuration:
-            return False
         if self.data_rights != other.data_rights:
             return False
         if self.external != other.external:
@@ -373,10 +329,10 @@ class Institution(object):
         return True
 
     def __hash__(self):
-        return hash((self.title,self.collection_service_configuration,self.data_rights,self.external,self.hidden,self.locations,self.url,))
+        return hash((self.title,self.data_rights,self.external,self.hidden,self.locations,self.url,))
 
     def __iter__(self):
-        return iter((self.title, self.collection_service_configuration, self.data_rights, self.external, self.hidden, self.locations, self.url,))
+        return iter((self.title, self.data_rights, self.external, self.hidden, self.locations, self.url,))
 
     def __ne__(self, other):
         return not self.__eq__(other)
@@ -384,8 +340,6 @@ class Institution(object):
     def __repr__(self):
         field_reprs = []
         field_reprs.append('title=' + "'" + self.title.encode('ascii', 'replace') + "'")
-        if self.collection_service_configuration is not None:
-            field_reprs.append('collection_service_configuration=' + repr(self.collection_service_configuration))
         if self.data_rights is not None:
             field_reprs.append('data_rights=' + repr(self.data_rights))
         if self.external is not None:
@@ -401,8 +355,6 @@ class Institution(object):
     def __str__(self):
         field_reprs = []
         field_reprs.append('title=' + "'" + self.title.encode('ascii', 'replace') + "'")
-        if self.collection_service_configuration is not None:
-            field_reprs.append('collection_service_configuration=' + repr(self.collection_service_configuration))
         if self.data_rights is not None:
             field_reprs.append('data_rights=' + repr(self.data_rights))
         if self.external is not None:
@@ -414,14 +366,6 @@ class Institution(object):
         if self.url is not None:
             field_reprs.append('url=' + "'" + self.url.encode('ascii', 'replace') + "'")
         return 'Institution(' + ', '.join(field_reprs) + ')'
-
-    @property
-    def collection_service_configuration(self):
-        '''
-        :rtype: dressdiscover.api.models.collection.collection_service_configuration.CollectionServiceConfiguration
-        '''
-
-        return self.__collection_service_configuration
 
     @property
     def data_rights(self):
@@ -473,8 +417,6 @@ class Institution(object):
                 break
             elif ifield_name == 'title' and ifield_id == 1:
                 init_kwds['title'] = iprot.read_string()
-            elif ifield_name == 'collection_service_configuration' and ifield_id == 9:
-                init_kwds['collection_service_configuration'] = dressdiscover.api.models.collection.collection_service_configuration.CollectionServiceConfiguration.read(iprot)
             elif ifield_name == 'data_rights' and ifield_id == 5:
                 init_kwds['data_rights'] = dressdiscover.api.vocabularies.vra_core.rights.rights_set.RightsSet.read(iprot)
             elif ifield_name == 'external' and ifield_id == 7:
@@ -502,7 +444,6 @@ class Institution(object):
     def replace(
         self,
         title=None,
-        collection_service_configuration=None,
         data_rights=None,
         external=None,
         hidden=None,
@@ -513,7 +454,6 @@ class Institution(object):
         Copy this object, replace one or more fields, and return the copy.
 
         :type title: str or None
-        :type collection_service_configuration: dressdiscover.api.models.collection.collection_service_configuration.CollectionServiceConfiguration or None
         :type data_rights: dressdiscover.api.vocabularies.vra_core.rights.rights_set.RightsSet or None
         :type external: bool or None
         :type hidden: bool or None
@@ -524,8 +464,6 @@ class Institution(object):
 
         if title is None:
             title = self.title
-        if collection_service_configuration is None:
-            collection_service_configuration = self.collection_service_configuration
         if data_rights is None:
             data_rights = self.data_rights
         if external is None:
@@ -536,7 +474,7 @@ class Institution(object):
             locations = self.locations
         if url is None:
             url = self.url
-        return self.__class__(title=title, collection_service_configuration=collection_service_configuration, data_rights=data_rights, external=external, hidden=hidden, locations=locations, url=url)
+        return self.__class__(title=title, data_rights=data_rights, external=external, hidden=hidden, locations=locations, url=url)
 
     @property
     def title(self):
@@ -567,11 +505,6 @@ class Institution(object):
         oprot.write_field_begin(name='title', type=11, id=1)
         oprot.write_string(self.title)
         oprot.write_field_end()
-
-        if self.collection_service_configuration is not None:
-            oprot.write_field_begin(name='collection_service_configuration', type=12, id=9)
-            self.collection_service_configuration.write(oprot)
-            oprot.write_field_end()
 
         if self.data_rights is not None:
             oprot.write_field_begin(name='data_rights', type=12, id=5)

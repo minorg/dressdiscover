@@ -81,7 +81,7 @@ class NoSuchInstitutionException(Exception):
         def values(cls):
             return (cls.ID,)
 
-    FieldMetadata.ID = FieldMetadata('id', dressdiscover.api.models.institution.institution_id.InstitutionId, None)
+    FieldMetadata.ID = FieldMetadata('id', dressdiscover.api.models.institution.InstitutionId, None)
 
     def __init__(
         self,
@@ -148,8 +148,8 @@ class NoSuchInstitutionException(Exception):
                 break
             elif ifield_name == 'id':
                 try:
-                    init_kwds['id'] = iprot.read_string()
-                except (TypeError, ValueError,):
+                    init_kwds['id'] = dressdiscover.api.models.institution.InstitutionId.parse(iprot.read_string())
+                except (dressdiscover.api.models.institution.InvalidInstitutionIdException,):
                     pass
             iprot.read_field_end()
         iprot.read_struct_end()

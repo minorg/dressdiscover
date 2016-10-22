@@ -223,7 +223,7 @@ class UserBookmark(object):
     FieldMetadata.NAME = FieldMetadata('name', str, {u'minLength': 1})
     FieldMetadata.USER_ID = FieldMetadata('user_id', dressdiscover.api.models.user.user_id.UserId, None)
     FieldMetadata.FOLDER = FieldMetadata('folder', str, {u'minLength': 1})
-    FieldMetadata.OBJECT_ID = FieldMetadata('object_id', dressdiscover.api.models.object.object_id.ObjectId, None)
+    FieldMetadata.OBJECT_ID = FieldMetadata('object_id', dressdiscover.api.models.object.ObjectId, None)
     FieldMetadata.OBJECT_QUERY = FieldMetadata('object_query', dressdiscover.api.models.object.object_query.ObjectQuery, None)
 
     def __init__(
@@ -378,8 +378,8 @@ class UserBookmark(object):
                     pass
             elif ifield_name == 'object_id':
                 try:
-                    init_kwds['object_id'] = iprot.read_string()
-                except (TypeError, ValueError,):
+                    init_kwds['object_id'] = dressdiscover.api.models.object.ObjectId.parse(iprot.read_string())
+                except (dressdiscover.api.models.object.InvalidObjectIdException,):
                     pass
             elif ifield_name == 'object_query':
                 init_kwds['object_query'] = dressdiscover.api.models.object.object_query.ObjectQuery.read(iprot)

@@ -677,7 +677,7 @@ class ObjectFacets(object):
             elif ifield_name == 'categories':
                 init_kwds['categories'] = dict([(iprot.read_string(), iprot.read_i32()) for _ in xrange(iprot.read_map_begin()[2])] + (iprot.read_map_end() is None and []))
             elif ifield_name == 'collections':
-                init_kwds['collections'] = dict([(iprot.read_string(), iprot.read_i32()) for _ in xrange(iprot.read_map_begin()[2])] + (iprot.read_map_end() is None and []))
+                init_kwds['collections'] = dict([(dressdiscover.api.models.collection.CollectionId.parse(iprot.read_string()), iprot.read_i32()) for _ in xrange(iprot.read_map_begin()[2])] + (iprot.read_map_end() is None and []))
             elif ifield_name == 'color_texts':
                 init_kwds['color_texts'] = dict([(iprot.read_string(), iprot.read_i32()) for _ in xrange(iprot.read_map_begin()[2])] + (iprot.read_map_end() is None and []))
             elif ifield_name == 'cultural_context_texts':
@@ -685,7 +685,7 @@ class ObjectFacets(object):
             elif ifield_name == 'genders':
                 init_kwds['genders'] = dict([(dressdiscover.api.vocabularies.costume_core.gender.gender.Gender.value_of(iprot.read_string().strip().upper()), iprot.read_i32()) for _ in xrange(iprot.read_map_begin()[2])] + (iprot.read_map_end() is None and []))
             elif ifield_name == 'institutions':
-                init_kwds['institutions'] = dict([(iprot.read_string(), iprot.read_i32()) for _ in xrange(iprot.read_map_begin()[2])] + (iprot.read_map_end() is None and []))
+                init_kwds['institutions'] = dict([(dressdiscover.api.models.institution.InstitutionId.parse(iprot.read_string()), iprot.read_i32()) for _ in xrange(iprot.read_map_begin()[2])] + (iprot.read_map_end() is None and []))
             elif ifield_name == 'location_name_texts':
                 init_kwds['location_name_texts'] = dict([(iprot.read_string(), iprot.read_i32()) for _ in xrange(iprot.read_map_begin()[2])] + (iprot.read_map_end() is None and []))
             elif ifield_name == 'material_texts':
