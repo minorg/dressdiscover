@@ -10,6 +10,17 @@ public class ValidatingConfigurationCommandService implements org.dressdiscover.
     }
 
     @Override
+    public final void putCollectionConfiguration(final org.dressdiscover.api.models.collection.CollectionId collectionId, final org.dressdiscover.api.models.configuration.CollectionConfiguration collectionConfiguration) throws org.dressdiscover.api.services.IoException {
+        _validatePutCollectionConfigurationParameters(collectionId, collectionConfiguration);
+        delegate.putCollectionConfiguration(collectionId, collectionConfiguration);
+    }
+
+    protected void _validatePutCollectionConfigurationParameters(final org.dressdiscover.api.models.collection.CollectionId collectionId, final org.dressdiscover.api.models.configuration.CollectionConfiguration collectionConfiguration) {
+        org.dressdiscover.api.services.configuration.ConfigurationCommandService.Messages.PutCollectionConfigurationRequest.DefaultConstructionValidator.getInstance().validateCollectionId(collectionId);
+        org.dressdiscover.api.services.configuration.ConfigurationCommandService.Messages.PutCollectionConfigurationRequest.DefaultConstructionValidator.getInstance().validateCollectionConfiguration(collectionConfiguration);
+    }
+
+    @Override
     public final void putInstitutionConfiguration(final org.dressdiscover.api.models.institution.InstitutionId institutionId, final org.dressdiscover.api.models.configuration.InstitutionConfiguration institutionConfiguration) throws org.dressdiscover.api.services.IoException {
         _validatePutInstitutionConfigurationParameters(institutionId, institutionConfiguration);
         delegate.putInstitutionConfiguration(institutionId, institutionConfiguration);

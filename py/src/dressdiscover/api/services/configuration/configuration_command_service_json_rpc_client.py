@@ -111,6 +111,23 @@ class ConfigurationCommandServiceJsonRpcClient(dressdiscover.api.services.config
 
         return response.get('result')
 
+    def _put_collection_configuration(
+        self,
+        collection_id,
+        collection_configuration,
+    ):
+        oprot = dressdiscover.thirdparty.thryft.protocol.json_output_protocol.JsonOutputProtocol()
+        oprot.write_struct_begin()
+        oprot.write_field_begin(name='collection_id', type=11, id=None)
+        oprot.write_string(collection_id)
+        oprot.write_field_end()
+        oprot.write_field_begin(name='collection_configuration', type=12, id=None)
+        collection_configuration.write(oprot)
+        oprot.write_field_end()
+        oprot.write_struct_end()
+
+        self.__request(method='put_collection_configuration', params=oprot.value)
+
     def _put_institution_configuration(
         self,
         institution_id,

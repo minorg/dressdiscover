@@ -1,4 +1,4 @@
-package org.dressdiscover.server.controllers.configuration;
+package org.dressdiscover.api.services.configuration;
 
 @com.google.inject.Singleton
 @SuppressWarnings("serial")
@@ -46,7 +46,9 @@ public class ConfigurationCommandServiceJsonRpcServlet extends javax.servlet.htt
             if (messageBegin.getType() != org.thryft.protocol.MessageType.CALL) {
                 throw new org.thryft.protocol.JsonRpcInputProtocolException(-32600, "expected request");
             }
-            if (messageBegin.getName().equals("put_institution_configuration")) {
+            if (messageBegin.getName().equals("put_collection_configuration")) {
+                doPostPutCollectionConfiguration(httpServletRequest, httpServletResponse, iprot, messageBegin.getId());
+            } else if (messageBegin.getName().equals("put_institution_configuration")) {
                 doPostPutInstitutionConfiguration(httpServletRequest, httpServletResponse, iprot, messageBegin.getId());
             } else {
                 __doPostError(httpServletRequest, httpServletResponse, new org.thryft.protocol.JsonRpcErrorResponse(-32601, String.format("the method '%s' does not exist / is not available", messageBegin.getName())), messageBegin.getId());
@@ -142,6 +144,42 @@ public class ConfigurationCommandServiceJsonRpcServlet extends javax.servlet.htt
         }
 
         httpServletResponse.getOutputStream().write(httpServletResponseBody.getBytes("UTF-8"));
+    }
+
+    public void doPostPutCollectionConfiguration(final javax.servlet.http.HttpServletRequest httpServletRequest, final javax.servlet.http.HttpServletResponse httpServletResponse, final org.thryft.protocol.JsonRpcInputProtocol iprot, final Object jsonRpcRequestId) throws java.io.IOException {
+        final org.dressdiscover.api.services.configuration.ConfigurationCommandService.Messages.PutCollectionConfigurationRequest serviceRequest;
+        try {
+            serviceRequest = org.dressdiscover.api.services.configuration.ConfigurationCommandService.Messages.PutCollectionConfigurationRequest.readAs(iprot, iprot.getCurrentFieldType(), unknownFieldCallback);
+        } catch (final IllegalArgumentException | org.thryft.protocol.InputProtocolException | NullPointerException e) {
+            logger.debug("error deserializing service request: ", e);
+            __doPostError(httpServletRequest, httpServletResponse, new org.thryft.protocol.JsonRpcErrorResponse(e, -32602, "invalid JSON-RPC request method parameters: " + String.valueOf(e.getMessage())), jsonRpcRequestId);
+            return;
+        }
+
+        try {
+            service.putCollectionConfiguration(serviceRequest.getCollectionId(), serviceRequest.getCollectionConfiguration());
+        } catch (final org.dressdiscover.api.services.IoException e) {
+            __doPostError(httpServletRequest, httpServletResponse, new org.thryft.protocol.JsonRpcErrorResponse(e, 1, e.getClass().getCanonicalName() + ": " + String.valueOf(e.getMessage())), jsonRpcRequestId);
+            return;
+        }
+
+        final String httpServletResponseBody;
+        {
+            final java.io.StringWriter httpServletResponseBodyWriter = new java.io.StringWriter();
+            try {
+                final org.thryft.protocol.JsonRpcOutputProtocol oprot = new org.thryft.protocol.JsonRpcOutputProtocol(new org.thryft.protocol.JacksonJsonOutputProtocol(httpServletResponseBodyWriter));
+                oprot.writeMessageBegin("", org.thryft.protocol.MessageType.REPLY, jsonRpcRequestId);
+                oprot.writeStructBegin("response");
+                oprot.writeStructEnd();
+                oprot.writeMessageEnd();
+                oprot.flush();
+            } catch (final org.thryft.protocol.OutputProtocolException e) {
+                logger.error("error serializing service error response: ", e);
+                throw new IllegalStateException(e);
+            }
+            httpServletResponseBody = httpServletResponseBodyWriter.toString();
+        }
+        __doPostResponse(httpServletRequest, httpServletResponse, httpServletResponseBody);
     }
 
     public void doPostPutInstitutionConfiguration(final javax.servlet.http.HttpServletRequest httpServletRequest, final javax.servlet.http.HttpServletResponse httpServletResponse, final org.thryft.protocol.JsonRpcInputProtocol iprot, final Object jsonRpcRequestId) throws java.io.IOException {
