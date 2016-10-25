@@ -5,12 +5,6 @@ from dressdiscover_test.lib.services.collection.omeka_api_test_credentials impor
 
 
 class OmekaApiCollectionQueryServiceTest(_OmekaCollectionQueryServiceTest):
-    def setUp(self):
+    def __init__(self, *args, **kwds):
+        _OmekaCollectionQueryServiceTest.__init__(self, *args, **kwds)
         self._service = OmekaApiCollectionQueryService(api_key=OMEKA_API_TEST_API_KEY, endpoint_url=OMEKA_API_TEST_ENDPOINT_URL)
-
-    def test_get_collection_by_id(self):
-        self._test_get_collection_by_id()
-
-    def test_get_collections_by_institution_id(self):
-        self._test_get_collections_by_institution_id()
-

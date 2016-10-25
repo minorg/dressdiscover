@@ -78,7 +78,7 @@ class OmekaResourceMapper(object):
             self.agents = []
             self.categories = []
             self.cultural_contexts = []
-            self.dc_date_builder = Date.Builder().set_type(DateType.CREATION)
+            self.dc_date_builder = Date.Builder().setType(DateType.CREATION)
             self.dc_date_certainty = None
             self.dates = []
             self.descriptions = []
@@ -97,17 +97,17 @@ class OmekaResourceMapper(object):
 
             self.textrefs.append(
                 Textref.Builder()
-                    .set_name(
+                    .setName(
                         TextrefName.Builder()
-                            .set_text("Omeka item URL")
-                            .set_type(TextrefNameType.ELECTRONIC)
+                            .setText("Omeka item URL")
+                            .setType(TextrefNameType.ELECTRONIC)
                             .build()
                     )
-                    .set_refid(
+                    .setRefid(
                         TextrefRefid.Builder()
-                            .set_href(str(endpoint_url) + 'items/show/' + str(omeka_item.id))
-                            .set_text(str(endpoint_url) + 'items/show/' + str(omeka_item.id))
-                            .set_type(TextrefRefidType.URI)
+                            .setHref(str(endpoint_url) + 'items/show/' + str(omeka_item.id))
+                            .setText(str(endpoint_url) + 'items/show/' + str(omeka_item.id))
+                            .setType(TextrefRefidType.URI)
                             .build()
                     )
                     .build()
@@ -115,27 +115,27 @@ class OmekaResourceMapper(object):
 
         def build(self):
             if len(self.agents) > 0:
-                self._object_builder.set_agents(AgentSet.Builder().set_elements(tuple(self.agents)).build())
+                self._object_builder.setAgents(AgentSet.Builder().setElements(tuple(self.agents)).build())
             if len(self.categories) > 0:
-                self._object_builder.set_categories(tuple(set(self.categories)))
+                self._object_builder.setCategories(tuple(set(self.categories)))
             if len(self.cultural_contexts) > 0:
-                self._object_builder.set_cultural_contexts(CulturalContextSet.Builder().set_elements(tuple(self.cultural_contexts)).build())
-            if self.dc_date_builder.earliest_date is not None and self.dc_date_builder.latest_date is not None:
+                self._object_builder.setCulturalContexts(CulturalContextSet.Builder().setElements(tuple(self.cultural_contexts)).build())
+            if self.dc_date_builder.getEarliestDate() is not None and self.dc_date_builder.getLatestDate() is not None:
                 if self.dc_date_certainty is not None:
                     assert self.dc_date_certainty == 'circa'
-                    self.dc_date_builder.set_earliest_date(
-                        DateBound.Builder(self.dc_date_builder.earliest_date)\
-                            .set_circa(True)\
+                    self.dc_date_builder.setEarliestDate(
+                        DateBound.Builder(self.dc_date_builder.earliestDate)\
+                            .setCirca(True)\
                             .build()
                         )
-                    self.dc_date_builder.set_latest_date(
-                        DateBound.Builder(self.dc_date_builder.latest_date)\
-                            .set_circa(True)\
+                    self.dc_date_builder.setLatestDate(
+                        DateBound.Builder(self.dc_date_builder.latestDate)\
+                            .setCirca(True)\
                             .build()
                     )
                 self.dates.append(self.dc_date_builder.build())
             if len(self.dates) > 0:
-                self._object_builder.set_dates(DateSet.Builder().set_elements(tuple(self.dates)).build())
+                self._object_builder.setDates(DateSet.Builder().setElements(tuple(self.dates)).build())
             if len(self.descriptions) > 0:
                 description_texts = {}
                 description_i = 0
@@ -146,34 +146,34 @@ class OmekaResourceMapper(object):
                     else:
                         description_texts[description.text] = None
                         description_i = description_i + 1
-                self._object_builder.set_descriptions(DescriptionSet.Builder().set_elements(tuple(self.descriptions)).build())
+                self._object_builder.setDescriptions(DescriptionSet.Builder().setElements(tuple(self.descriptions)).build())
             for identifier in self.identifiers:
                 self.textrefs.append(
                     Textref.Builder()
-                        .set_name(
+                        .setName(
                             TextrefName.Builder()
-                                .set_text("Identifier")
-                                .set_type(TextrefNameType.CATALOG)
+                                .setText("Identifier")
+                                .setType(TextrefNameType.CATALOG)
                                 .build()
                         )
-                        .set_refid(
+                        .setRefid(
                             TextrefRefid.Builder()
-                                .set_text(identifier)
-                                .set_type(TextrefRefidType.OTHER)
+                                .setText(identifier)
+                                .setType(TextrefRefidType.OTHER)
                                 .build()
                         )
                         .build()
                 )
             if len(self.images) > 0:
-                self._object_builder.set_images(tuple(self.images))
+                self._object_builder.setImages(tuple(self.images))
             if len(self.inscriptions) > 0:
-                self._object_builder.set_inscriptions(InscriptionSet.Builder().set_elements(tuple(self.inscriptions)).build())
+                self._object_builder.setInscriptions(InscriptionSet.Builder().setElements(tuple(self.inscriptions)).build())
             if len(self.locations) > 0:
-                self._object_builder.set_locations(LocationSet.Builder().set_elements(tuple(self.locations)).build())
+                self._object_builder.setLocations(LocationSet.Builder().setElements(tuple(self.locations)).build())
             if len(self.materials) > 0:
-                self._object_builder.set_materials(MaterialSet.Builder().set_elements(tuple(self.materials)).build())
+                self._object_builder.setMaterials(MaterialSet.Builder().setElements(tuple(self.materials)).build())
             if len(self.measurements) > 0:
-                self._object_builder.set_measurements(MeasurementsSet.Builder().set_elements(tuple(self.measurements)).build())
+                self._object_builder.setMeasurements(MeasurementsSet.Builder().setElements(tuple(self.measurements)).build())
             if len(self.relation_builders) > 0:
                 unique_relation_builders_by_text = {}
                 for relation_builder in self.relation_builders:
@@ -191,23 +191,23 @@ class OmekaResourceMapper(object):
                 unique_relation_builders = []
                 for relation_builders in unique_relation_builders_by_text.values():
                     unique_relation_builders.extend(relation_builders)
-                self._object_builder.set_relations(
+                self._object_builder.setRelations(
                         RelationSet.Builder()
-                            .set_elements(tuple(relation_builder.build()
+                            .setElements(tuple(relation_builder.build()
                                                 for relation_builder in unique_relation_builders))
                             .build())
             if len(self.subjects) > 0:
-                self._object_builder.set_subjects(SubjectSet.Builder().set_elements(tuple(self.subjects)).build())
+                self._object_builder.setSubjects(SubjectSet.Builder().setElements(tuple(self.subjects)).build())
             if len(self.techniques) > 0:
-                self._object_builder.set_techniques(TechniqueSet.Builder().set_elements(tuple(self.techniques)).build())
+                self._object_builder.setTechniques(TechniqueSet.Builder().setElements(tuple(self.techniques)).build())
             if len(self.textrefs) > 0:
-                self._object_builder.set_textrefs(TextrefSet.Builder().set_elements(tuple(self.textrefs)).build())
+                self._object_builder.setTextrefs(TextrefSet.Builder().setElements(tuple(self.textrefs)).build())
             if len(self.titles) > 0:
-                self._object_builder.set_titles(TitleSet.Builder().set_elements(tuple(self.titles)).build())
+                self._object_builder.setTitles(TitleSet.Builder().setElements(tuple(self.titles)).build())
             else:
                 raise ValueError('no titles')
             if len(self.work_types) > 0:
-                self._object_builder.set_work_types(WorkTypeSet.Builder().set_elements(tuple(self.work_types)).build())
+                self._object_builder.setWorkTypes(WorkTypeSet.Builder().setElements(tuple(self.work_types)).build())
             else:
                 raise ValueError('no work types')
 
@@ -236,11 +236,11 @@ class OmekaResourceMapper(object):
         object.__init__(self)
         self.__vocabulary_used = {}
 
-    def map_omeka_collection(self, institution_id, omeka_collection):
+    def map_omeka_collection(self, collection_store_uri, institution_id, omeka_collection):
         collection_id = CollectionId.parse(str(institution_id) + '/' + str(omeka_collection.id))
 
         collection_builder = Collection.Builder()
-        collection_builder.set_institution_id(institution_id)
+        collection_builder.setInstitutionId(institution_id)
 
         for element_text in omeka_collection.element_texts:
             if len(element_text.text) == 0:
@@ -250,9 +250,11 @@ class OmekaResourceMapper(object):
                 if element_text.element.name == 'Contributor':
                     pass
                 elif element_text.element.name == 'Description':
-                    collection_builder.set_description(element_text.text)
+                    collection_builder.setDescription(element_text.text)
                 elif element_text.element.name == 'Title':
-                    collection_builder.set_title(element_text.text)
+                    collection_builder.setTitle(element_text.text)
+
+        collection_builder.setObjectStoreUri(collection_store_uri)
 
         collection = collection_builder.build()
 
@@ -342,8 +344,8 @@ class OmekaResourceMapper(object):
     def _map_omeka_item_element_dc_alternative_title(self, object_builder, text):
         object_builder.titles.append(
             Title.Builder()
-                .set_text(text)
-                .set_type(TitleType.DESCRIPTIVE)
+                .setText(text)
+                .setType(TitleType.DESCRIPTIVE)
                 .build()
         )
 
@@ -352,12 +354,12 @@ class OmekaResourceMapper(object):
         pass
 #         object_builder.agents.append(
 #             Agent.Builder()
-#                 .set_name(AgentName.Builder().set_text(text).set_type(AgentNameType.OTHER).build())
-#                 .set_role(
+#                 .setName(AgentName.Builder().setText(text).setType(AgentNameType.OTHER).build())
+#                 .setRole(
 #                     AgentRole.Builder()
-#                         .set_text('contributor')
-#                         .set_vocab_ref(
-#                                 VocabRef.Builder().set_vocab(Vocab.DC).build()
+#                         .setText('contributor')
+#                         .setVocabRef(
+#                                 VocabRef.Builder().setVocab(Vocab.DC).build()
 #                         )
 #                         .build()
 #                     )
@@ -367,12 +369,12 @@ class OmekaResourceMapper(object):
     def _map_omeka_item_element_dc_creator(self, object_builder, text):
         object_builder.agents.append(
             Agent.Builder()
-                .set_name(AgentName.Builder().set_text(text).set_type(AgentNameType.OTHER).build())
-                .set_role(
+                .setName(AgentName.Builder().setText(text).setType(AgentNameType.OTHER).build())
+                .setRole(
                     AgentRole.Builder()
-                        .set_text('creator')
-                        .set_vocab_ref(
-                                VocabRef.Builder().set_vocab(Vocab.DC).build()
+                        .setText('creator')
+                        .setVocabRef(
+                                VocabRef.Builder().setVocab(Vocab.DC).build()
                         )
                         .build()
                     )
@@ -382,7 +384,7 @@ class OmekaResourceMapper(object):
     def _map_omeka_item_element_dc_date(self, object_builder, text):
         if object_builder.dc_date_builder.earliestDate is None:
             earliest_date, latest_date = self._parse_date_range(object_builder=object_builder, text=text)
-            object_builder.dc_date_builder.set_earliest_date(earliest_date).set_latest_date(latest_date)
+            object_builder.dc_date_builder.setEarliestDate(earliest_date).setLatestDate(latest_date)
         else:
             object_builder.logger.warn(object_builder.log_marker, "item {} in collection {} has two dates: {}", (object_builder.omeka_item.id, object_builder.object_id.getCollectionId(), text))
 
@@ -390,24 +392,24 @@ class OmekaResourceMapper(object):
         earliest_date = self._parse_date(object_builder=object_builder, text=text)
         object_builder.dates.append(
             Date.Builder()
-                .set_earliest_date(earliest_date)
-                .set_latest_date(earliest_date)
-                .set_type(DateType.CREATION)
+                .setEarliestDate(earliest_date)
+                .setLatestDate(earliest_date)
+                .setType(DateType.CREATION)
                 .build()
         )
 
     def _map_omeka_item_element_dc_description(self, object_builder, text):
         object_builder.descriptions.append(
             Description.Builder()
-                .set_text(text)
+                .setText(text)
                 .build()
         )
 
     def _map_omeka_item_element_dc_extent(self, object_builder, text):
         object_builder.measurements.append(
             Measurements.Builder()
-                .set_text(text)
-                .set_type(MeasurementsType.OTHER)
+                .setText(text)
+                .setType(MeasurementsType.OTHER)
                 .build()
         )
 
@@ -419,8 +421,8 @@ class OmekaResourceMapper(object):
             object_builder.identifiers.append(text)
         object_builder.relation_builders.append(
             Relation.Builder()
-                .set_text(text)
-                .set_type(RelationType.SOURCE_FOR)
+                .setText(text)
+                .setType(RelationType.SOURCE_FOR)
         )
 
     def _map_omeka_item_element_dc_language(self, object_builder, text):
@@ -435,8 +437,8 @@ class OmekaResourceMapper(object):
                     continue
                 object_builder.materials.append(
                     Material.Builder()
-                        .set_text(medium)
-                        .set_type(MaterialType.MEDIUM)
+                        .setText(medium)
+                        .setType(MaterialType.MEDIUM)
                         .build()
                 )
                 self._update_vocabulary_used('Dublin Core', 'Medium', medium)
@@ -447,18 +449,18 @@ class OmekaResourceMapper(object):
     def _map_omeka_item_element_dc_relation(self, object_builder, text):
         object_builder.relation_builders.append(
             Relation.Builder()
-                .set_text(text)
-                .set_type(RelationType.RELATED_TO)
+                .setText(text)
+                .setType(RelationType.RELATED_TO)
         )
 
     def _map_omeka_item_element_dc_rights(self, object_builder, text):
         object_builder.setRights(
             RightsSet.Builder()
-                .set_elements((
+                .setElements((
                     Rights.Builder()
                         # .setRightsHolder(self.__institution_title)
-                        .set_text(text)
-                        .set_type(RightsType.UNDETERMINED)
+                        .setText(text)
+                        .setType(RightsType.UNDETERMINED)
                         .build(),
                 ))
                 .build()
@@ -467,8 +469,8 @@ class OmekaResourceMapper(object):
     def _map_omeka_item_element_dc_source(self, object_builder, text):
         object_builder.relation_builders.append(
             Relation.Builder()
-                .set_text(text)
-                .set_type(RelationType.DERIVED_FROM)
+                .setText(text)
+                .setType(RelationType.DERIVED_FROM)
         )
 
     def _map_omeka_item_element_dc_spatial_coverage(self, object_builder, text):
@@ -481,10 +483,10 @@ class OmekaResourceMapper(object):
                 continue
             object_builder.subjects.append(
                 Subject.Builder()
-                    .set_terms((
+                    .setTerms((
                         SubjectTerm.Builder()
-                            .set_text(subject)
-                            .set_type(SubjectTermType.OTHER_TOPIC)
+                            .setText(subject)
+                            .setType(SubjectTermType.OTHER_TOPIC)
                             .build(),
                     ))
                     .build()
@@ -497,9 +499,9 @@ class OmekaResourceMapper(object):
     def _map_omeka_item_element_dc_title(self, object_builder, text):
         object_builder.titles.append(
             Title.Builder()
-                .set_pref(True)
-                .set_text(text)
-                .set_type(TitleType.DESCRIPTIVE)
+                .setPref(True)
+                .setText(text)
+                .setType(TitleType.DESCRIPTIVE)
                 .build()
         )
 
@@ -535,24 +537,24 @@ class OmekaResourceMapper(object):
 #                                 print 'skipping image file element', element_name
 
             image_builder = Image.Builder()
-            image_version_builder = ImageVersion.Builder().set_url(omeka_file.file_urls.original)
+            image_version_builder = ImageVersion.Builder().setUrl(omeka_file.file_urls.original)
             if original_image_height is not None:
-                image_version_builder.set_height_px(original_image_height)
+                image_version_builder.setHeightPx(original_image_height)
             if original_image_width is not None:
-                image_version_builder.set_width_px(original_image_width)
-            image_builder.set_original(image_version_builder.build())
+                image_version_builder.setWidthPx(original_image_width)
+            image_builder.setOriginal(image_version_builder.build())
             if omeka_file.file_urls.fullsize is not None:
-                image_builder.set_full_size(ImageVersion.Builder().set_url(omeka_file.file_urls.fullsize).build())
+                image_builder.setFullSize(ImageVersion.Builder().setUrl(omeka_file.file_urls.fullsize).build())
             if omeka_file.file_urls.square_thumbnail is not None:
-                image_builder.set_square_thumbnail(
+                image_builder.setSquareThumbnail(
                     ImageVersion.Builder()
-                        .set_height_px(square_thumbnail_height_px)
-                        .set_url(omeka_file.file_urls.fullsize)
-                        .set_width_px(square_thumbnail_width_px)
+                        .setHeightPx(square_thumbnail_height_px)
+                        .setUrl(omeka_file.file_urls.fullsize)
+                        .setWidthPx(square_thumbnail_width_px)
                         .build()
                 )
             if omeka_file.file_urls.thumbnail is not None:
-                image_builder.set_thumbnail(ImageVersion.Builder().set_url(omeka_file.file_urls.thumbnail).build())
+                image_builder.setThumbnail(ImageVersion.Builder().setUrl(omeka_file.file_urls.thumbnail).build())
             object_builder.images.append(image_builder.build())
 
     def _map_omeka_item_tags(self, object_builder, tag_names):
@@ -564,7 +566,7 @@ class OmekaResourceMapper(object):
             object_builder.work_types.append(work_type)
 
     def _parse_date(self, object_builder, text):
-        date_bound_builder = DateBound.Builder().set_text(text)
+        date_bound_builder = DateBound.Builder().setText(text)
 
         if text.endswith('?'):
             date_bound_builder.setCirca(True)
@@ -595,12 +597,12 @@ class OmekaResourceMapper(object):
             if text in ('Image', 'PhysicalObject', 'StillImage'):
                 return \
                     WorkType.Builder()\
-                        .set_text(text)\
-                        .set_vocab_ref(
+                        .setText(text)\
+                        .setVocabRef(
                             VocabRef.Builder()
-                                .set_refid(text)\
-                                .set_vocab(Vocab.DCMI_TYPE)\
-                                .set_uri(DCMI_TYPES_BASE_URL + text)\
+                                .setRefid(text)\
+                                .setVocab(Vocab.DCMI_TYPE)\
+                                .setUri(DCMI_TYPES_BASE_URL + text)\
                                 .build()
                         )\
                         .build()
