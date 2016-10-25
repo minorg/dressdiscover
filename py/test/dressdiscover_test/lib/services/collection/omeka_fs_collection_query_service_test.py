@@ -3,7 +3,7 @@ import urllib
 
 from org.thryft.native_ import Uri
 
-from dressdiscover.lib.services.collection.omeka_fs_collection_query_service import OmekaFsCollectionStore
+from dressdiscover.lib.stores.collection.omeka.omeka_fs_store import OmekaFsCollectionStore
 from dressdiscover_test.lib.services.collection._omeka_collection_query_service_test import _OmekaCollectionStoreTest
 
 

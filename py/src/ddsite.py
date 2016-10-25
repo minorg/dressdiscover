@@ -13,8 +13,8 @@ from org.dressdiscover.api.models.rights import RightsSet, Rights, RightsType
 from org.dressdiscover.lib.python import PythonApi
 from org.thryft.native_ import Url, Uri
 
-from dressdiscover.lib.services.collection.omeka_api_collection_query_service import OmekaApiCollectionStore  # @UnusedImport
-from dressdiscover.lib.services.collection.omeka_fs_collection_query_service import OmekaFsCollectionStore
+from dressdiscover.lib.stores.collection.omeka.omeka_api_store import OmekaApiCollectionStore  # @UnusedImport
+from dressdiscover.lib.stores.collection.omeka.omeka_fs_store import OmekaFsCollectionStore
 from dressdiscover.lib.stores.object.oai_pmh.oai_pmh_fs_object_store import OaiPmhFsObjectStore
 from dressdiscover.lib.stores.object.omeka.omeka_api_object_store import OmekaApiObjectStore  # Force registration # @UnusedImport
 from dressdiscover.lib.stores.object.omeka.omeka_fs_object_store import OmekaFsObjectStore  # Force registration # @UnusedImport

@@ -5,7 +5,7 @@ from org.dressdiscover.api.services.collection import NoSuchCollectionException
 from org.dressdiscover.lib.python import PythonApi
 
 from dressdiscover.lib.stores._fs_store import _FsStore
-from dressdiscover.lib.services.collection._omeka_collection_query_service import _OmekaCollectionStore
+from dressdiscover.lib.stores.collection.omeka._omeka_collection_query_service import _OmekaCollectionStore
 from dressdiscover.lib.stores.collection.py_collection_store_factory import PyCollectionStoreFactory
 from yomeka.client.omeka_json_parser import OmekaJsonParser
 

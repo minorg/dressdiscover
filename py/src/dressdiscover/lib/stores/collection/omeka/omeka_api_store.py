@@ -1,5 +1,5 @@
 from dressdiscover.api.services.collection.no_such_collection_exception import NoSuchCollectionException
-from dressdiscover.lib.services.collection._omeka_collection_query_service import _OmekaCollectionQueryService
+from dressdiscover.lib.stores.collection.omeka._omeka_collection_query_service import _OmekaCollectionQueryService
 from yomeka.api.no_such_omeka_collection_exception import NoSuchOmekaCollectionException
 from yomeka.client.omeka_rest_api_client import OmekaRestApiClient
 

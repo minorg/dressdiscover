@@ -1,4 +1,4 @@
-from dressdiscover.lib.services.collection.omeka_api_collection_query_service import OmekaApiCollectionQueryService
+from dressdiscover.lib.stores.collection.omeka.omeka_api_store import OmekaApiCollectionQueryService
 from dressdiscover_test.lib.services.collection._omeka_collection_query_service_test import _OmekaCollectionQueryServiceTest
 from dressdiscover_test.lib.services.collection.omeka_api_test_credentials import OMEKA_API_TEST_ENDPOINT_URL, \
     OMEKA_API_TEST_API_KEY
