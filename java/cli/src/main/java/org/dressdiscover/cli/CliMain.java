@@ -2,7 +2,7 @@ package org.dressdiscover.cli;
 
 import org.dressdiscover.cli.commands.PutElasticSearchTemplatesCommand;
 import org.dressdiscover.cli.commands.ResummarizeObjectsCommand;
-import org.dressdiscover.lib.DressDiscoverProperties;
+import org.dressdiscover.lib.properties.LibPropertiesModule;
 import org.dressdiscover.lib.python.PythonInterpreterFactory;
 import org.dressdiscover.lib.services.ServicesModule;
 import org.python.util.PythonInterpreter;
@@ -11,7 +11,6 @@ import org.thryft.waf.cli.Command;
 import org.thryft.waf.cli.CommandParser;
 import org.thryft.waf.lib.logging.LoggingUtils;
 
-import com.google.inject.AbstractModule;
 import com.google.inject.Guice;
 import com.google.inject.Injector;
 
@@ -32,15 +31,10 @@ public final class CliMain extends org.thryft.waf.cli.CliMain {
 
         _configureLogging(args, "dressdiscover");
 
-        final DressDiscoverProperties properties = DressDiscoverProperties.load();
-        _getLogger().debug(_getLogMarker(), "properties: {}", properties);
+        final LibPropertiesModule libPropertiesModule = new LibPropertiesModule();
 
-        final Injector injector = Guice.createInjector(new AbstractModule() {
-            @Override
-            protected void configure() {
-                bind(DressDiscoverProperties.class).toInstance(properties);
-            }
-        }, new ServicesModule(properties));
+        final Injector injector = Guice.createInjector(libPropertiesModule,
+                new ServicesModule(libPropertiesModule.getStoreProperties()));
 
         final PythonInterpreter pythonInterpreter = injector.getInstance(PythonInterpreterFactory.class)
                 .createPythonInterpreter();

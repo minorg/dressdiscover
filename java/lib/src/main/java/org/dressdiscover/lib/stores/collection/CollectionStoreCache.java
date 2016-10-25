@@ -7,7 +7,10 @@ import java.util.concurrent.ExecutionException;
 import org.dressdiscover.api.models.collection.CollectionId;
 import org.dressdiscover.api.models.institution.Institution;
 import org.dressdiscover.api.models.institution.InstitutionId;
-import org.dressdiscover.lib.DressDiscoverProperties;
+import org.dressdiscover.api.services.IoException;
+import org.dressdiscover.api.services.institution.InstitutionQueryService;
+import org.dressdiscover.api.services.institution.NoSuchInstitutionException;
+import org.dressdiscover.lib.properties.StoreProperties;
 
 import com.google.common.cache.CacheBuilder;
 import com.google.common.cache.CacheLoader;
@@ -16,21 +19,17 @@ import com.google.common.collect.ImmutableMap;
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
 
-import org.dressdiscover.api.services.IoException;
-import org.dressdiscover.api.services.institution.InstitutionQueryService;
-import org.dressdiscover.api.services.institution.NoSuchInstitutionException;
-
 @Singleton
 public class CollectionStoreCache {
     @Inject
     public CollectionStoreCache(final FileSystemCollectionStore defaultCollectionStore,
             final CollectionStoreFactoryRegistry collectionStoreFactoryRegistry,
-            final InstitutionQueryService institutionQueryService, final DressDiscoverProperties properties) {
-        this.defaultCollectionStore = properties.getCacheCollections()
+            final InstitutionQueryService institutionQueryService, final StoreProperties storeProperties) {
+        this.defaultCollectionStore = storeProperties.getCacheCollections()
                 ? new CachingCollectionStore(defaultCollectionStore) : defaultCollectionStore;
         this.collectionStoreFactoryRegistry = checkNotNull(collectionStoreFactoryRegistry);
         this.institutionQueryService = checkNotNull(institutionQueryService);
-        this.properties = checkNotNull(properties);
+        this.storeProperties = checkNotNull(storeProperties);
     }
 
     public final CollectionStore getCollectionStore(final CollectionId collectionId)
@@ -62,9 +61,9 @@ public class CollectionStoreCache {
                         final CollectionStoreFactory factory = collectionStoreFactoryRegistry
                                 .getCollectionStoreFactory(institution.getCollectionStoreUri().get());
                         CollectionStore collectionStore = factory.createCollectionStore(
-                                institution.getStoreParameters().or(ImmutableMap.of()), properties,
+                                institution.getStoreParameters().or(ImmutableMap.of()), storeProperties,
                                 institution.getCollectionStoreUri().get());
-                        if (properties.getCacheCollections()) {
+                        if (storeProperties.getCacheCollections()) {
                             collectionStore = new CachingCollectionStore(collectionStore);
                         }
                         return collectionStore;
@@ -77,5 +76,5 @@ public class CollectionStoreCache {
     private final CollectionStore defaultCollectionStore;
     private final CollectionStoreFactoryRegistry collectionStoreFactoryRegistry;
     private final InstitutionQueryService institutionQueryService;
-    private final DressDiscoverProperties properties;
+    private final StoreProperties storeProperties;
 }

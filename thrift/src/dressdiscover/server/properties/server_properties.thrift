@@ -1,4 +1,4 @@
-namespace * dressdiscover.lib.properties
+namespace * dressdiscover.server.properties
 
 // @java_implements org.thryft.waf.lib.Properties
 struct ServerProperties {

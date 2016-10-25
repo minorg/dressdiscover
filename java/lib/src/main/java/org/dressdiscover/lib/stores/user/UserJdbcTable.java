@@ -10,7 +10,9 @@ import org.apache.commons.lang3.exception.ExceptionUtils;
 import org.dressdiscover.api.models.user.User;
 import org.dressdiscover.api.models.user.UserEntry;
 import org.dressdiscover.api.models.user.UserId;
-import org.dressdiscover.lib.DressDiscoverProperties;
+import org.dressdiscover.api.services.IoException;
+import org.dressdiscover.api.services.user.NoSuchUserException;
+import org.dressdiscover.lib.properties.StoreProperties;
 import org.dressdiscover.lib.services.IoExceptions;
 import org.slf4j.Logger;
 import org.slf4j.Marker;
@@ -23,18 +25,15 @@ import com.google.common.collect.ImmutableList;
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
 
-import org.dressdiscover.api.services.IoException;
-import org.dressdiscover.api.services.user.NoSuchUserException;
-
 @Singleton
 public final class UserJdbcTable extends AbstractJdbcTable<User> implements UserStore {
     @Inject
-    public UserJdbcTable(final DressDiscoverProperties properties) throws SQLException {
+    public UserJdbcTable(final StoreProperties properties) throws SQLException {
         super(properties);
 
     }
 
-    public UserJdbcTable(final DressDiscoverProperties properties, final String url) throws SQLException {
+    public UserJdbcTable(final StoreProperties properties, final String url) throws SQLException {
         super(properties, url);
     }
 

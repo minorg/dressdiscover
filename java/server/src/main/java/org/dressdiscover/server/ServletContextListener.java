@@ -1,13 +1,12 @@
 package org.dressdiscover.server;
 
-import static com.google.common.base.Preconditions.checkState;
-
 import javax.servlet.ServletContextEvent;
 
-import org.dressdiscover.lib.DressDiscoverProperties;
+import org.dressdiscover.lib.properties.LibPropertiesModule;
 import org.dressdiscover.lib.python.PythonInterpreterFactory;
 import org.dressdiscover.lib.services.ServicesModule;
 import org.dressdiscover.server.controllers.ServerControllersModule;
+import org.dressdiscover.server.properties.ServerProperties;
 import org.python.util.PythonInterpreter;
 import org.thryft.waf.server.AbstractServletContextListener;
 
@@ -18,11 +17,10 @@ import com.google.inject.Injector;
 public final class ServletContextListener extends AbstractServletContextListener {
     @Override
     public void contextInitialized(final ServletContextEvent servletContextEvent) {
-        properties = DressDiscoverProperties.load();
-        checkState(!properties.getEnvironment().equals("dev"), "running in dev environment?");
+        libPropertiesModule = new LibPropertiesModule();
+        serverProperties = ServerProperties.load();
 
         _configureLogging("dressdiscover");
-        _createVaadinScssCache("dressdiscover", servletContextEvent);
 
         super.contextInitialized(servletContextEvent);
 
@@ -36,18 +34,17 @@ public final class ServletContextListener extends AbstractServletContextListener
         if (injector == null) {
             injector = Guice.createInjector(
                     // Order is important
-                    new AbstractModule() {
+                    libPropertiesModule, new AbstractModule() {
                         @Override
                         protected void configure() {
-                            bind(DressDiscoverProperties.class).toInstance(properties);
+                            bind(ServerProperties.class).toInstance(serverProperties);
                         }
-                    }, new ServerControllersModule(properties), new ServicesModule(properties));// ,
-                                                                                                // new
-                                                                                                // GuiModule(properties));
+                    }, new ServerControllersModule(), new ServicesModule(libPropertiesModule.getStoreProperties()));
         }
         return injector;
     }
 
     private Injector injector;
-    private DressDiscoverProperties properties;
+    private LibPropertiesModule libPropertiesModule;
+    private ServerProperties serverProperties;
 }

@@ -10,7 +10,8 @@ import org.dressdiscover.api.models.collection.InvalidCollectionIdException;
 import org.dressdiscover.api.models.institution.InstitutionId;
 import org.dressdiscover.api.services.IoException;
 import org.dressdiscover.api.services.collection.NoSuchCollectionException;
-import org.dressdiscover.lib.DressDiscoverProperties;
+import org.dressdiscover.lib.properties.GlobalProperties;
+import org.dressdiscover.lib.properties.StoreProperties;
 import org.dressdiscover.lib.stores.AbstractInstitutionCollectionObjectFileSystem;
 import org.slf4j.Logger;
 import org.slf4j.Marker;
@@ -27,8 +28,8 @@ public class FileSystemCollectionStore
         extends AbstractInstitutionCollectionObjectFileSystem<Collection, NoSuchCollectionException>
         implements CollectionStore {
     @Inject
-    public FileSystemCollectionStore(final DressDiscoverProperties properties) {
-        super(properties);
+    public FileSystemCollectionStore(final GlobalProperties globalProperties, final StoreProperties storeProperties) {
+        super(globalProperties, storeProperties);
     }
 
     @Override

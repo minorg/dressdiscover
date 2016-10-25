@@ -1,48 +1,30 @@
 package org.dressdiscover.lib.services;
 
-import org.dressdiscover.lib.DressDiscoverProperties;
-import org.junit.Before;
+import org.dressdiscover.lib.AbstractTest;
+import org.dressdiscover.lib.properties.StoreProperties;
 
-import com.google.inject.AbstractModule;
 import com.google.inject.Guice;
 import com.google.inject.Injector;
 
-public abstract class ServiceTest {
+public abstract class ServiceTest extends AbstractTest {
     protected ServiceTest() {
         this(false);
     }
 
     protected ServiceTest(final boolean readOnly) {
-        this.readOnly = readOnly;
+        super(readOnly);
 
-        properties = DressDiscoverProperties.load();
-
-        injector = Guice.createInjector(new AbstractModule() {
-            @Override
-            protected void configure() {
-                bind(DressDiscoverProperties.class).toInstance(properties);
-            }
-        }, _newServicesModule(properties));
+        injector = Guice.createInjector(_getLibPropertiesModule(),
+                _newServicesModule(_getLibPropertiesModule().getStoreProperties()));
     }
 
-    @Before
-    public final void checkReadWrite() {
-        if (!readOnly) {
-            if (!properties.getEnvironment().equals("dev") && !properties.getEnvironment().equals("jenkins")) {
-                throw new AssertionError();
-            }
-        }
-    }
-
-    protected Injector _getInjector() {
+    protected final Injector _getInjector() {
         return injector;
     }
 
-    protected ServicesModule _newServicesModule(final DressDiscoverProperties properties) {
-        return new ServicesModule(properties);
+    protected ServicesModule _newServicesModule(final StoreProperties storeProperties) {
+        return new ServicesModule(storeProperties);
     }
 
-    private final boolean readOnly;
     private final Injector injector;
-    private final DressDiscoverProperties properties;
 }

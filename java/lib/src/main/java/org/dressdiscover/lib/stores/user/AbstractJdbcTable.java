@@ -5,10 +5,9 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-import org.dressdiscover.lib.DressDiscoverProperties;
-import org.thryft.waf.api.models.Model;
-
 import org.dressdiscover.api.services.IoException;
+import org.dressdiscover.lib.properties.StoreProperties;
+import org.thryft.waf.api.models.Model;
 
 abstract class AbstractJdbcTable<ModelT extends Model> extends org.thryft.waf.lib.stores.AbstractJdbcTable<ModelT> {
     protected static IoException _wrap(final SQLException cause, final String message) {
@@ -17,12 +16,12 @@ abstract class AbstractJdbcTable<ModelT extends Model> extends org.thryft.waf.li
         return exception;
     }
 
-    protected AbstractJdbcTable(final DressDiscoverProperties properties) throws SQLException {
-        this(properties, "jdbc:h2:" + new File(new File(new File(properties.getHomeDirectoryPath()), "data"), "users")
-                + ";TRACE_LEVEL_FILE=0");
+    protected AbstractJdbcTable(final StoreProperties properties) throws SQLException {
+        this(properties,
+                "jdbc:h2:" + new File(new File(properties.getDataDirectoryPath()), "users") + ";TRACE_LEVEL_FILE=0");
     }
 
-    protected AbstractJdbcTable(final DressDiscoverProperties properties, final String url) throws SQLException {
+    protected AbstractJdbcTable(final StoreProperties properties, final String url) throws SQLException {
         super(url);
         try {
             Class.forName("org.h2.Driver");

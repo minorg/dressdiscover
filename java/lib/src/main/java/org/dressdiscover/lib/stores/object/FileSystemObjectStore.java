@@ -14,7 +14,8 @@ import org.dressdiscover.api.models.object.ObjectEntry;
 import org.dressdiscover.api.models.object.ObjectId;
 import org.dressdiscover.api.services.IoException;
 import org.dressdiscover.api.services.object.NoSuchObjectException;
-import org.dressdiscover.lib.DressDiscoverProperties;
+import org.dressdiscover.lib.properties.GlobalProperties;
+import org.dressdiscover.lib.properties.StoreProperties;
 import org.dressdiscover.lib.stores.AbstractInstitutionCollectionObjectFileSystem;
 import org.slf4j.Logger;
 import org.slf4j.Marker;
@@ -29,8 +30,8 @@ import com.google.inject.Singleton;
 public class FileSystemObjectStore extends AbstractInstitutionCollectionObjectFileSystem<Object, NoSuchObjectException>
         implements ObjectStore {
     @Inject
-    public FileSystemObjectStore(final DressDiscoverProperties properties) {
-        super(properties);
+    public FileSystemObjectStore(final GlobalProperties globalProperties, final StoreProperties storeProperties) {
+        super(globalProperties, storeProperties);
     }
 
     @Override

@@ -6,8 +6,7 @@ import static org.junit.Assert.assertTrue;
 import org.dressdiscover.api.models.collection.CollectionEntry;
 import org.dressdiscover.api.models.collection.CollectionId;
 import org.dressdiscover.api.models.object.ObjectEntry;
-import org.dressdiscover.lib.DressDiscoverProperties;
-import org.dressdiscover.lib.stores.object.FileSystemObjectStore;
+import org.dressdiscover.lib.stores.StoreTest;
 import org.dressdiscover.testdata.TestData;
 import org.junit.After;
 import org.junit.Before;
@@ -19,10 +18,10 @@ import org.thryft.waf.lib.logging.LoggingUtils;
 
 import com.google.common.collect.ImmutableList;
 
-public final class FileSystemObjectStoreTest {
+public final class FileSystemObjectStoreTest extends StoreTest {
     @Before
     public void setUp() {
-        store = new FileSystemObjectStore(DressDiscoverProperties.load());
+        store = _getInjector().getInstance(FileSystemObjectStore.class);
     }
 
     @After

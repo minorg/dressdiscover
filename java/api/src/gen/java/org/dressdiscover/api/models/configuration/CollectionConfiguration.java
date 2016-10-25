@@ -1,31 +1,25 @@
 package org.dressdiscover.api.models.configuration;
 
-public final class CollectionConfiguration implements org.thryft.Struct, org.thryft.waf.api.models.Model {
+public final class CollectionConfiguration implements org.thryft.Struct {
     public final static class Builder {
         public Builder() {
-            storeType = null;
-            storeParameters = com.google.common.base.Optional.<com.google.common.collect.ImmutableMap<String, String>> absent();
+            objectStoreConfiguration = null;
         }
 
         public Builder(final CollectionConfiguration other) {
-            this.storeType = other.getStoreType();
-            this.storeParameters = other.getStoreParameters();
+            this.objectStoreConfiguration = other.getObjectStoreConfiguration();
         }
 
-        protected CollectionConfiguration _build(final String storeType, final com.google.common.base.Optional<com.google.common.collect.ImmutableMap<String, String>> storeParameters) {
-            return new CollectionConfiguration(storeType, storeParameters, DefaultConstructionValidator.getInstance());
+        protected CollectionConfiguration _build(final org.dressdiscover.api.models.configuration.ObjectStoreConfiguration objectStoreConfiguration) {
+            return new CollectionConfiguration(objectStoreConfiguration, DefaultConstructionValidator.getInstance());
         }
 
         public CollectionConfiguration build() {
-            return _build(storeType, storeParameters);
+            return _build(objectStoreConfiguration);
         }
 
-        public final com.google.common.base.Optional<com.google.common.collect.ImmutableMap<String, String>> getStoreParameters() {
-            return storeParameters;
-        }
-
-        public final String getStoreType() {
-            return storeType;
+        public final org.dressdiscover.api.models.configuration.ObjectStoreConfiguration getObjectStoreConfiguration() {
+            return objectStoreConfiguration;
         }
 
         public Builder readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type) throws org.thryft.protocol.InputProtocolException {
@@ -45,34 +39,8 @@ public final class CollectionConfiguration implements org.thryft.Struct, org.thr
 
         public Builder readAsList(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
             try {
-                final org.thryft.protocol.ListBegin __list = iprot.readListBegin();
-                storeType = iprot.readString();
-                if (__list.getSize() > 1) {
-                    try {
-                        storeParameters = com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableMap<String, String>>() {
-                            @Override
-                            public com.google.common.collect.ImmutableMap<String, String> apply(final org.thryft.protocol.InputProtocol iprot) {
-                                try {
-                                    final org.thryft.protocol.MapBegin mapBegin = iprot.readMapBegin();
-                                    final com.google.common.collect.ImmutableMap.Builder<String, String> map = com.google.common.collect.ImmutableMap.builder();
-                                    for (int entryI = 0; entryI < mapBegin.getSize(); entryI++) {
-                                        final String key;
-                                        key = iprot.readString();
-                                        final String value;
-                                        value = iprot.readString();
-                                        map.put(key, value);
-                                    }
-                                    iprot.readMapEnd();
-                                    return map.build();
-                                } catch (final org.thryft.protocol.InputProtocolException e) {
-                                    throw new org.thryft.protocol.UncheckedInputProtocolException(e);
-                                }
-                            }
-                        }).apply(iprot));
-                    } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
-                         throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.STORE_PARAMETERS, e.getCause());
-                    }
-                }
+                iprot.readListBegin();
+                objectStoreConfiguration = org.dressdiscover.api.models.configuration.ObjectStoreConfiguration.readAsStruct(iprot);
                 iprot.readListEnd();
             } catch (final RuntimeException e) {
                 throw new IllegalStateException(e);
@@ -93,38 +61,9 @@ public final class CollectionConfiguration implements org.thryft.Struct, org.thr
                         break;
                     }
                     switch (ifield.getName()) {
-                    case "store_type": {
+                    case "object_store_configuration": {
                         if (!ifield.hasId() || ifield.getId() == 1) {
-                            storeType = iprot.readString();
-                        }
-                        break;
-                    }
-                    case "store_parameters": {
-                        if (!ifield.hasId() || ifield.getId() == 2) {
-                            try {
-                                storeParameters = com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableMap<String, String>>() {
-                                    @Override
-                                    public com.google.common.collect.ImmutableMap<String, String> apply(final org.thryft.protocol.InputProtocol iprot) {
-                                        try {
-                                            final org.thryft.protocol.MapBegin mapBegin = iprot.readMapBegin();
-                                            final com.google.common.collect.ImmutableMap.Builder<String, String> map = com.google.common.collect.ImmutableMap.builder();
-                                            for (int entryI = 0; entryI < mapBegin.getSize(); entryI++) {
-                                                final String key;
-                                                key = iprot.readString();
-                                                final String value;
-                                                value = iprot.readString();
-                                                map.put(key, value);
-                                            }
-                                            iprot.readMapEnd();
-                                            return map.build();
-                                        } catch (final org.thryft.protocol.InputProtocolException e) {
-                                            throw new org.thryft.protocol.UncheckedInputProtocolException(e);
-                                        }
-                                    }
-                                }).apply(iprot));
-                            } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
-                                 throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.STORE_PARAMETERS, e.getCause());
-                            }
+                            objectStoreConfiguration = org.dressdiscover.api.models.configuration.ObjectStoreConfiguration.readAsStruct(iprot);
                         }
                         break;
                     }
@@ -154,13 +93,11 @@ public final class CollectionConfiguration implements org.thryft.Struct, org.thr
             return set((FieldMetadata)fieldMetadata, value);
         }
 
-        @SuppressWarnings({"unchecked"})
         public Builder set(final FieldMetadata fieldMetadata, @javax.annotation.Nullable final java.lang.Object value) {
             com.google.common.base.Preconditions.checkNotNull(fieldMetadata);
 
             switch (fieldMetadata) {
-            case STORE_TYPE: setStoreType((String)value); return this;
-            case STORE_PARAMETERS: setStoreParameters((com.google.common.collect.ImmutableMap<String, String>)value); return this;
+            case OBJECT_STORE_CONFIGURATION: setObjectStoreConfiguration((org.dressdiscover.api.models.configuration.ObjectStoreConfiguration)value); return this;
             default:
                 throw new IllegalStateException();
             }
@@ -169,25 +106,13 @@ public final class CollectionConfiguration implements org.thryft.Struct, org.thr
         public Builder setIfPresent(final CollectionConfiguration other) {
             com.google.common.base.Preconditions.checkNotNull(other);
 
-            setStoreType(other.getStoreType());
-            if (other.getStoreParameters().isPresent()) {
-                setStoreParameters(other.getStoreParameters());
-            }
+            setObjectStoreConfiguration(other.getObjectStoreConfiguration());
 
             return this;
         }
 
-        public Builder setStoreParameters(final com.google.common.base.Optional<com.google.common.collect.ImmutableMap<String, String>> storeParameters) {
-            this.storeParameters = DefaultConstructionValidator.getInstance().validateStoreParameters(storeParameters);
-            return this;
-        }
-
-        public Builder setStoreParameters(@javax.annotation.Nullable final com.google.common.collect.ImmutableMap<String, String> storeParameters) {
-            return setStoreParameters(com.google.common.base.Optional.fromNullable(storeParameters));
-        }
-
-        public Builder setStoreType(final String storeType) {
-            this.storeType = DefaultConstructionValidator.getInstance().validateStoreType(storeType);
+        public Builder setObjectStoreConfiguration(final org.dressdiscover.api.models.configuration.ObjectStoreConfiguration objectStoreConfiguration) {
+            this.objectStoreConfiguration = DefaultConstructionValidator.getInstance().validateObjectStoreConfiguration(objectStoreConfiguration);
             return this;
         }
 
@@ -206,25 +131,18 @@ public final class CollectionConfiguration implements org.thryft.Struct, org.thr
             com.google.common.base.Preconditions.checkNotNull(fieldMetadata);
 
             switch (fieldMetadata) {
-            case STORE_TYPE: return unsetStoreType();
-            case STORE_PARAMETERS: return unsetStoreParameters();
+            case OBJECT_STORE_CONFIGURATION: return unsetObjectStoreConfiguration();
             default:
                 throw new IllegalStateException();
             }
         }
 
-        public Builder unsetStoreParameters() {
-            this.storeParameters = com.google.common.base.Optional.<com.google.common.collect.ImmutableMap<String, String>> absent();
+        public Builder unsetObjectStoreConfiguration() {
+            this.objectStoreConfiguration = null;
             return this;
         }
 
-        public Builder unsetStoreType() {
-            this.storeType = null;
-            return this;
-        }
-
-        private String storeType;
-        private com.google.common.base.Optional<com.google.common.collect.ImmutableMap<String, String>> storeParameters;
+        private org.dressdiscover.api.models.configuration.ObjectStoreConfiguration objectStoreConfiguration;
     }
 
     public final static class Factory implements org.thryft.CompoundType.Factory<CollectionConfiguration> {
@@ -258,8 +176,7 @@ public final class CollectionConfiguration implements org.thryft.Struct, org.thr
 
     @SuppressWarnings("serial")
     public enum FieldMetadata implements org.thryft.CompoundType.FieldMetadata {
-        STORE_TYPE("storeType", new com.google.common.reflect.TypeToken<String>() {}, true, 1, "store_type", org.thryft.protocol.Type.STRING),
-        STORE_PARAMETERS("storeParameters", new com.google.common.reflect.TypeToken<com.google.common.collect.ImmutableMap<String, String>>() {}, false, 2, "store_parameters", org.thryft.protocol.Type.MAP);
+        OBJECT_STORE_CONFIGURATION("objectStoreConfiguration", new com.google.common.reflect.TypeToken<org.dressdiscover.api.models.configuration.ObjectStoreConfiguration>() {}, true, 1, "object_store_configuration", org.thryft.protocol.Type.STRUCT);
 
         @Override
         public String getJavaName() {
@@ -303,8 +220,7 @@ public final class CollectionConfiguration implements org.thryft.Struct, org.thr
 
         public static FieldMetadata valueOfJavaName(final String javaName) {
             switch (javaName) {
-            case "storeType": return STORE_TYPE;
-            case "storeParameters": return STORE_PARAMETERS;
+            case "objectStoreConfiguration": return OBJECT_STORE_CONFIGURATION;
             default:
                 throw new IllegalArgumentException(javaName);
             }
@@ -312,8 +228,7 @@ public final class CollectionConfiguration implements org.thryft.Struct, org.thr
 
         public static FieldMetadata valueOfThriftName(final String thriftName) {
             switch (thriftName) {
-            case "store_type": return STORE_TYPE;
-            case "store_parameters": return STORE_PARAMETERS;
+            case "object_store_configuration": return OBJECT_STORE_CONFIGURATION;
             default:
                 throw new IllegalArgumentException(thriftName);
             }
@@ -343,9 +258,7 @@ public final class CollectionConfiguration implements org.thryft.Struct, org.thr
     }
 
     public interface Validator<ExceptionT extends Exception> {
-        public String validateStoreType(final String storeType) throws ExceptionT;
-
-        public com.google.common.base.Optional<com.google.common.collect.ImmutableMap<String, String>> validateStoreParameters(final com.google.common.base.Optional<com.google.common.collect.ImmutableMap<String, String>> storeParameters) throws ExceptionT;
+        public org.dressdiscover.api.models.configuration.ObjectStoreConfiguration validateObjectStoreConfiguration(final org.dressdiscover.api.models.configuration.ObjectStoreConfiguration objectStoreConfiguration) throws ExceptionT;
     }
 
     public interface ConstructionValidator extends Validator<RuntimeException> {
@@ -360,25 +273,11 @@ public final class CollectionConfiguration implements org.thryft.Struct, org.thr
         }
 
         @Override
-        public String validateStoreType(final String storeType) throws RuntimeException {
-            if (storeType == null) {
-                throw new NullPointerException("org.dressdiscover.api.models.configuration.CollectionConfiguration: storeType is null");
+        public org.dressdiscover.api.models.configuration.ObjectStoreConfiguration validateObjectStoreConfiguration(final org.dressdiscover.api.models.configuration.ObjectStoreConfiguration objectStoreConfiguration) throws RuntimeException {
+            if (objectStoreConfiguration == null) {
+                throw new NullPointerException("org.dressdiscover.api.models.configuration.CollectionConfiguration: objectStoreConfiguration is null");
             }
-            return storeType;
-        }
-
-        @Override
-        public com.google.common.base.Optional<com.google.common.collect.ImmutableMap<String, String>> validateStoreParameters(final com.google.common.base.Optional<com.google.common.collect.ImmutableMap<String, String>> storeParameters) throws RuntimeException {
-            if (storeParameters == null) {
-                throw new NullPointerException("org.dressdiscover.api.models.configuration.CollectionConfiguration: storeParameters is null");
-            }
-            if (!storeParameters.isPresent()) {
-                return storeParameters;
-            }
-            if (storeParameters.get().isEmpty()) {
-                throw new IllegalArgumentException("org.dressdiscover.api.models.configuration.CollectionConfiguration: storeParameters is less than min length 1");
-            }
-            return storeParameters;
+            return objectStoreConfiguration;
         }
 
         private final static DefaultConstructionValidator instance = new DefaultConstructionValidator();
@@ -393,13 +292,8 @@ public final class CollectionConfiguration implements org.thryft.Struct, org.thr
         }
 
         @Override
-        public String validateStoreType(final String storeType) {
-            return storeType;
-        }
-
-        @Override
-        public com.google.common.base.Optional<com.google.common.collect.ImmutableMap<String, String>> validateStoreParameters(final com.google.common.base.Optional<com.google.common.collect.ImmutableMap<String, String>> storeParameters) {
-            return storeParameters;
+        public org.dressdiscover.api.models.configuration.ObjectStoreConfiguration validateObjectStoreConfiguration(final org.dressdiscover.api.models.configuration.ObjectStoreConfiguration objectStoreConfiguration) {
+            return objectStoreConfiguration;
         }
 
         private final static NopConstructionValidator instance = new NopConstructionValidator();
@@ -417,25 +311,11 @@ public final class CollectionConfiguration implements org.thryft.Struct, org.thr
         }
 
         @Override
-        public String validateStoreType(final String storeType) throws org.thryft.protocol.InputProtocolException {
-            if (storeType == null) {
-                throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.STORE_TYPE, "org.dressdiscover.api.models.configuration.CollectionConfiguration: storeType is null");
+        public org.dressdiscover.api.models.configuration.ObjectStoreConfiguration validateObjectStoreConfiguration(final org.dressdiscover.api.models.configuration.ObjectStoreConfiguration objectStoreConfiguration) throws org.thryft.protocol.InputProtocolException {
+            if (objectStoreConfiguration == null) {
+                throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.OBJECT_STORE_CONFIGURATION, "org.dressdiscover.api.models.configuration.CollectionConfiguration: objectStoreConfiguration is null");
             }
-            return storeType;
-        }
-
-        @Override
-        public com.google.common.base.Optional<com.google.common.collect.ImmutableMap<String, String>> validateStoreParameters(final com.google.common.base.Optional<com.google.common.collect.ImmutableMap<String, String>> storeParameters) throws org.thryft.protocol.InputProtocolException {
-            if (storeParameters == null) {
-                throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.STORE_PARAMETERS, "org.dressdiscover.api.models.configuration.CollectionConfiguration: storeParameters is null");
-            }
-            if (!storeParameters.isPresent()) {
-                return storeParameters;
-            }
-            if (storeParameters.get().isEmpty()) {
-                throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.STORE_PARAMETERS, "org.dressdiscover.api.models.configuration.CollectionConfiguration: storeParameters is less than min length 1");
-            }
-            return storeParameters;
+            return objectStoreConfiguration;
         }
 
         private final static DefaultReadValidator instance = new DefaultReadValidator();
@@ -450,13 +330,8 @@ public final class CollectionConfiguration implements org.thryft.Struct, org.thr
         }
 
         @Override
-        public String validateStoreType(final String storeType) {
-            return storeType;
-        }
-
-        @Override
-        public com.google.common.base.Optional<com.google.common.collect.ImmutableMap<String, String>> validateStoreParameters(final com.google.common.base.Optional<com.google.common.collect.ImmutableMap<String, String>> storeParameters) {
-            return storeParameters;
+        public org.dressdiscover.api.models.configuration.ObjectStoreConfiguration validateObjectStoreConfiguration(final org.dressdiscover.api.models.configuration.ObjectStoreConfiguration objectStoreConfiguration) {
+            return objectStoreConfiguration;
         }
 
         private final static NopReadValidator instance = new NopReadValidator();
@@ -466,12 +341,11 @@ public final class CollectionConfiguration implements org.thryft.Struct, org.thr
      * Copy constructor
      */
     public CollectionConfiguration(final CollectionConfiguration other) {
-        this(other.getStoreType(), other.getStoreParameters(), NopConstructionValidator.getInstance());
+        this(other.getObjectStoreConfiguration(), NopConstructionValidator.getInstance());
     }
 
-    protected CollectionConfiguration(final String storeType, final com.google.common.base.Optional<com.google.common.collect.ImmutableMap<String, String>> storeParameters, ConstructionValidator validator) {
-        this.storeType = validator.validateStoreType(storeType);
-        this.storeParameters = validator.validateStoreParameters(storeParameters);
+    protected CollectionConfiguration(final org.dressdiscover.api.models.configuration.ObjectStoreConfiguration objectStoreConfiguration, ConstructionValidator validator) {
+        this.objectStoreConfiguration = validator.validateObjectStoreConfiguration(objectStoreConfiguration);
     }
 
     public static Builder builder() {
@@ -487,24 +361,10 @@ public final class CollectionConfiguration implements org.thryft.Struct, org.thr
     }
 
     /**
-     * Required factory method
-     */
-    public static CollectionConfiguration create(final String storeType) {
-        return new CollectionConfiguration(storeType, com.google.common.base.Optional.<com.google.common.collect.ImmutableMap<String, String>> absent(), DefaultConstructionValidator.getInstance());
-    }
-
-    /**
-     * Total Nullable factory method
-     */
-    public static CollectionConfiguration create(final String storeType, final @javax.annotation.Nullable com.google.common.collect.ImmutableMap<String, String> storeParameters) {
-        return new CollectionConfiguration(storeType, com.google.common.base.Optional.fromNullable(storeParameters), DefaultConstructionValidator.getInstance());
-    }
-
-    /**
      * Optional factory method
      */
-    public static CollectionConfiguration create(final String storeType, final com.google.common.base.Optional<com.google.common.collect.ImmutableMap<String, String>> storeParameters) {
-        return new CollectionConfiguration(storeType, storeParameters, DefaultConstructionValidator.getInstance());
+    public static CollectionConfiguration create(final org.dressdiscover.api.models.configuration.ObjectStoreConfiguration objectStoreConfiguration) {
+        return new CollectionConfiguration(objectStoreConfiguration, DefaultConstructionValidator.getInstance());
     }
 
     @Override
@@ -518,11 +378,7 @@ public final class CollectionConfiguration implements org.thryft.Struct, org.thr
 
         final CollectionConfiguration other = (CollectionConfiguration)otherObject;
 
-        if (!(getStoreType().equals(other.getStoreType()))) {
-            return false;
-        }
-
-        if (!(((getStoreParameters().isPresent() && other.getStoreParameters().isPresent()) ? (getStoreParameters().get().equals(other.getStoreParameters().get())) : (!getStoreParameters().isPresent() && !other.getStoreParameters().isPresent())))) {
+        if (!(getObjectStoreConfiguration().equals(other.getObjectStoreConfiguration()))) {
             return false;
         }
 
@@ -544,28 +400,20 @@ public final class CollectionConfiguration implements org.thryft.Struct, org.thr
 
     public java.lang.Object get(final FieldMetadata fieldMetadata) {
         switch (fieldMetadata) {
-        case STORE_TYPE: return getStoreType();
-        case STORE_PARAMETERS: return getStoreParameters();
+        case OBJECT_STORE_CONFIGURATION: return getObjectStoreConfiguration();
         default:
             throw new IllegalStateException();
         }
     }
 
-    public final com.google.common.base.Optional<com.google.common.collect.ImmutableMap<String, String>> getStoreParameters() {
-        return storeParameters;
-    }
-
-    public final String getStoreType() {
-        return storeType;
+    public final org.dressdiscover.api.models.configuration.ObjectStoreConfiguration getObjectStoreConfiguration() {
+        return objectStoreConfiguration;
     }
 
     @Override
     public int hashCode() {
         int hashCode = 17;
-        hashCode = 31 * hashCode + getStoreType().hashCode();
-        if (getStoreParameters().isPresent()) {
-            hashCode = 31 * hashCode + getStoreParameters().get().hashCode();
-        }
+        hashCode = 31 * hashCode + getObjectStoreConfiguration().hashCode();
         return hashCode;
     }
 
@@ -585,43 +433,16 @@ public final class CollectionConfiguration implements org.thryft.Struct, org.thr
     }
 
     public static CollectionConfiguration readAsList(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
-        String storeType = null;
-        com.google.common.base.Optional<com.google.common.collect.ImmutableMap<String, String>> storeParameters = com.google.common.base.Optional.<com.google.common.collect.ImmutableMap<String, String>> absent();
+        org.dressdiscover.api.models.configuration.ObjectStoreConfiguration objectStoreConfiguration = null;
 
         try {
-            final org.thryft.protocol.ListBegin __list = iprot.readListBegin();
-            storeType = iprot.readString();
-            if (__list.getSize() > 1) {
-                try {
-                    storeParameters = com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableMap<String, String>>() {
-                        @Override
-                        public com.google.common.collect.ImmutableMap<String, String> apply(final org.thryft.protocol.InputProtocol iprot) {
-                            try {
-                                final org.thryft.protocol.MapBegin mapBegin = iprot.readMapBegin();
-                                final com.google.common.collect.ImmutableMap.Builder<String, String> map = com.google.common.collect.ImmutableMap.builder();
-                                for (int entryI = 0; entryI < mapBegin.getSize(); entryI++) {
-                                    final String key;
-                                    key = iprot.readString();
-                                    final String value;
-                                    value = iprot.readString();
-                                    map.put(key, value);
-                                }
-                                iprot.readMapEnd();
-                                return map.build();
-                            } catch (final org.thryft.protocol.InputProtocolException e) {
-                                throw new org.thryft.protocol.UncheckedInputProtocolException(e);
-                            }
-                        }
-                    }).apply(iprot));
-                } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
-                     throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.STORE_PARAMETERS, e.getCause());
-                }
-            }
+            iprot.readListBegin();
+            objectStoreConfiguration = org.dressdiscover.api.models.configuration.ObjectStoreConfiguration.readAsStruct(iprot);
             iprot.readListEnd();
         } catch (final RuntimeException e) {
             throw new IllegalStateException(e);
         }
-        return new CollectionConfiguration(DefaultReadValidator.getInstance().validateStoreType(storeType), DefaultReadValidator.getInstance().validateStoreParameters(storeParameters), NopConstructionValidator.getInstance());
+        return new CollectionConfiguration(DefaultReadValidator.getInstance().validateObjectStoreConfiguration(objectStoreConfiguration), NopConstructionValidator.getInstance());
     }
 
     public static CollectionConfiguration readAsStruct(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
@@ -629,8 +450,7 @@ public final class CollectionConfiguration implements org.thryft.Struct, org.thr
     }
 
     public static CollectionConfiguration readAsStruct(final org.thryft.protocol.InputProtocol iprot, final com.google.common.base.Optional<UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
-        String storeType = null;
-        com.google.common.base.Optional<com.google.common.collect.ImmutableMap<String, String>> storeParameters = com.google.common.base.Optional.<com.google.common.collect.ImmutableMap<String, String>> absent();
+        org.dressdiscover.api.models.configuration.ObjectStoreConfiguration objectStoreConfiguration = null;
 
         try {
             iprot.readStructBegin();
@@ -640,38 +460,9 @@ public final class CollectionConfiguration implements org.thryft.Struct, org.thr
                     break;
                 }
                 switch (ifield.getName()) {
-                case "store_type": {
+                case "object_store_configuration": {
                     if (!ifield.hasId() || ifield.getId() == 1) {
-                        storeType = iprot.readString();
-                    }
-                    break;
-                }
-                case "store_parameters": {
-                    if (!ifield.hasId() || ifield.getId() == 2) {
-                        try {
-                            storeParameters = com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableMap<String, String>>() {
-                                @Override
-                                public com.google.common.collect.ImmutableMap<String, String> apply(final org.thryft.protocol.InputProtocol iprot) {
-                                    try {
-                                        final org.thryft.protocol.MapBegin mapBegin = iprot.readMapBegin();
-                                        final com.google.common.collect.ImmutableMap.Builder<String, String> map = com.google.common.collect.ImmutableMap.builder();
-                                        for (int entryI = 0; entryI < mapBegin.getSize(); entryI++) {
-                                            final String key;
-                                            key = iprot.readString();
-                                            final String value;
-                                            value = iprot.readString();
-                                            map.put(key, value);
-                                        }
-                                        iprot.readMapEnd();
-                                        return map.build();
-                                    } catch (final org.thryft.protocol.InputProtocolException e) {
-                                        throw new org.thryft.protocol.UncheckedInputProtocolException(e);
-                                    }
-                                }
-                            }).apply(iprot));
-                        } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
-                             throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.STORE_PARAMETERS, e.getCause());
-                        }
+                        objectStoreConfiguration = org.dressdiscover.api.models.configuration.ObjectStoreConfiguration.readAsStruct(iprot);
                     }
                     break;
                 }
@@ -687,42 +478,23 @@ public final class CollectionConfiguration implements org.thryft.Struct, org.thr
         } catch (final RuntimeException e) {
             throw new IllegalStateException(e);
         }
-        return new CollectionConfiguration(DefaultReadValidator.getInstance().validateStoreType(storeType), DefaultReadValidator.getInstance().validateStoreParameters(storeParameters), NopConstructionValidator.getInstance());
+        return new CollectionConfiguration(DefaultReadValidator.getInstance().validateObjectStoreConfiguration(objectStoreConfiguration), NopConstructionValidator.getInstance());
     }
 
-    public CollectionConfiguration replaceStoreParameters(final com.google.common.base.Optional<com.google.common.collect.ImmutableMap<String, String>> storeParameters) {
-        return new CollectionConfiguration(this.storeType, DefaultConstructionValidator.getInstance().validateStoreParameters(storeParameters), NopConstructionValidator.getInstance());
-    }
-
-    public CollectionConfiguration replaceStoreParameters(final com.google.common.collect.ImmutableMap<String, String> storeParameters) {
-        return replaceStoreParameters(com.google.common.base.Optional.fromNullable(storeParameters));
-    }
-
-    public CollectionConfiguration replaceStoreType(final String storeType) {
-        return new CollectionConfiguration(DefaultConstructionValidator.getInstance().validateStoreType(storeType), this.storeParameters, NopConstructionValidator.getInstance());
+    public CollectionConfiguration replaceObjectStoreConfiguration(final org.dressdiscover.api.models.configuration.ObjectStoreConfiguration objectStoreConfiguration) {
+        return new CollectionConfiguration(DefaultConstructionValidator.getInstance().validateObjectStoreConfiguration(objectStoreConfiguration), NopConstructionValidator.getInstance());
     }
 
     @Override
     public String toString() {
-        return com.google.common.base.MoreObjects.toStringHelper(this).omitNullValues().add("store_type", getStoreType()).add("store_parameters", getStoreParameters().orNull()).toString();
+        return com.google.common.base.MoreObjects.toStringHelper(this).omitNullValues().add("object_store_configuration", getObjectStoreConfiguration()).toString();
     }
 
     @Override
     public void writeAsList(final org.thryft.protocol.OutputProtocol oprot) throws org.thryft.protocol.OutputProtocolException {
-        oprot.writeListBegin(org.thryft.protocol.Type.VOID_, 2);
+        oprot.writeListBegin(org.thryft.protocol.Type.VOID_, 1);
 
-        oprot.writeString(getStoreType());
-
-        if (getStoreParameters().isPresent()) {
-            oprot.writeMapBegin(org.thryft.protocol.Type.STRING, org.thryft.protocol.Type.STRING, getStoreParameters().get().size());
-            for (com.google.common.collect.ImmutableMap.Entry<String, String> _iter0 : getStoreParameters().get().entrySet()) {
-                oprot.writeString(_iter0.getKey());
-                oprot.writeString(_iter0.getValue());
-            }
-            oprot.writeMapEnd();
-        } else {
-            oprot.writeNull();
-        }
+        getObjectStoreConfiguration().writeAsStruct(oprot);
 
         oprot.writeListEnd();
     }
@@ -736,25 +508,12 @@ public final class CollectionConfiguration implements org.thryft.Struct, org.thr
 
     @Override
     public void writeFields(final org.thryft.protocol.OutputProtocol oprot) throws org.thryft.protocol.OutputProtocolException {
-        oprot.writeFieldBegin("store_type", org.thryft.protocol.Type.STRING, (short)1);
-        oprot.writeString(getStoreType());
+        oprot.writeFieldBegin("object_store_configuration", org.thryft.protocol.Type.STRUCT, (short)1);
+        getObjectStoreConfiguration().writeAsStruct(oprot);
         oprot.writeFieldEnd();
-
-        if (getStoreParameters().isPresent()) {
-            oprot.writeFieldBegin("store_parameters", org.thryft.protocol.Type.MAP, (short)2);
-            oprot.writeMapBegin(org.thryft.protocol.Type.STRING, org.thryft.protocol.Type.STRING, getStoreParameters().get().size());
-            for (com.google.common.collect.ImmutableMap.Entry<String, String> _iter0 : getStoreParameters().get().entrySet()) {
-                oprot.writeString(_iter0.getKey());
-                oprot.writeString(_iter0.getValue());
-            }
-            oprot.writeMapEnd();
-            oprot.writeFieldEnd();
-        }
 
         oprot.writeFieldStop();
     }
 
-    private final String storeType;
-
-    private final com.google.common.base.Optional<com.google.common.collect.ImmutableMap<String, String>> storeParameters;
+    private final org.dressdiscover.api.models.configuration.ObjectStoreConfiguration objectStoreConfiguration;
 }

@@ -79,7 +79,7 @@ class Main(thryft.main.Main):
             if pass_i == 1:
                 self._clean()
 
-            for thrift_subdir_name in ('api', 'lib'):
+            for thrift_subdir_name in ('api', 'lib', 'server'):
                 thrift_src_dir_path = os.path.join(thrift_src_root_dir_path, 'dressdiscover', thrift_subdir_name)
                 if not os.path.isdir(thrift_src_dir_path):
                     continue
@@ -101,10 +101,10 @@ class Main(thryft.main.Main):
                     if pass_i == 0:
                         continue
 
-                    if thrift_subdir_name == 'lib' and thrift_file_name.endswith('_properties.thrift'):
+                    if thrift_subdir_name in ('lib', 'server') and thrift_file_name.endswith('_properties.thrift'):
                         self._compile_thrift_file(
                             generator=PropertiesJavaGenerator(project_name='dressdiscover', namespace_prefix='org.'),
-                            out=os.path.join(ROOT_DIR_PATH, 'java', 'lib', 'src', 'gen', 'java'),
+                            out=os.path.join(ROOT_DIR_PATH, 'java', thrift_subdir_name, 'src', 'gen', 'java'),
                             **compile_kwds
                         )
 

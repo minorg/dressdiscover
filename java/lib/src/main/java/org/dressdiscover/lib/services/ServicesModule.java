@@ -2,7 +2,16 @@ package org.dressdiscover.lib.services;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
-import org.dressdiscover.lib.DressDiscoverProperties;
+import org.dressdiscover.api.services.collection.CollectionCommandService;
+import org.dressdiscover.api.services.collection.CollectionQueryService;
+import org.dressdiscover.api.services.institution.InstitutionCommandService;
+import org.dressdiscover.api.services.institution.InstitutionQueryService;
+import org.dressdiscover.api.services.object.ObjectCommandService;
+import org.dressdiscover.api.services.object.ObjectQueryService;
+import org.dressdiscover.api.services.object.ObjectSummaryQueryService;
+import org.dressdiscover.api.services.user.UserCommandService;
+import org.dressdiscover.api.services.user.UserQueryService;
+import org.dressdiscover.lib.properties.StoreProperties;
 import org.dressdiscover.lib.services.collection.LoggingCollectionCommandService;
 import org.dressdiscover.lib.services.collection.LoggingCollectionQueryService;
 import org.dressdiscover.lib.services.collection.StoreCollectionCommandService;
@@ -37,19 +46,9 @@ import org.dressdiscover.lib.stores.institution.InstitutionStore;
 
 import com.google.inject.AbstractModule;
 
-import org.dressdiscover.api.services.collection.CollectionCommandService;
-import org.dressdiscover.api.services.collection.CollectionQueryService;
-import org.dressdiscover.api.services.institution.InstitutionCommandService;
-import org.dressdiscover.api.services.institution.InstitutionQueryService;
-import org.dressdiscover.api.services.object.ObjectCommandService;
-import org.dressdiscover.api.services.object.ObjectQueryService;
-import org.dressdiscover.api.services.object.ObjectSummaryQueryService;
-import org.dressdiscover.api.services.user.UserCommandService;
-import org.dressdiscover.api.services.user.UserQueryService;
-
 public class ServicesModule extends AbstractModule {
-    public ServicesModule(final DressDiscoverProperties properties) {
-        this.properties = checkNotNull(properties);
+    public ServicesModule(final StoreProperties storeProperties) {
+        this.storeProperties = checkNotNull(storeProperties);
     }
 
     protected void _configureCollectionCommandService() {
@@ -85,8 +84,8 @@ public class ServicesModule extends AbstractModule {
     }
 
     protected void _configureInstitutionStore() {
-        bind(InstitutionStore.class).to(
-                properties.getCacheInstitutions() ? CachingInstitutionStore.class : FileSystemInstitutionStore.class);
+        bind(InstitutionStore.class).to(storeProperties.getCacheInstitutions() ? CachingInstitutionStore.class
+                : FileSystemInstitutionStore.class);
     }
 
     protected void _configureObjectCommandService() {
@@ -145,5 +144,5 @@ public class ServicesModule extends AbstractModule {
         _configureUserQueryService();
     }
 
-    private final DressDiscoverProperties properties;
+    private final StoreProperties storeProperties;
 }

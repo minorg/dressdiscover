@@ -4,4 +4,6 @@ namespace * dressdiscover.lib.properties
 struct GlobalProperties {
 	// dev, staging, production, etc.
 	string environment;
+
+    optional list<string> python_path;
 }

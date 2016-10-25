@@ -1,8 +1,7 @@
 namespace * dressdiscover.api.models.configuration
 
-// @java_implements org.thryft.waf.api.models.Model
+include "dressdiscover/api/models/configuration/object_store_configuration.thrift"
+
 struct CollectionConfiguration {
-    1: string store_type;
-    // @validation {"minLength": 1}
-    2: optional map<string, string> store_parameters;
+    1: object_store_configuration.ObjectStoreConfiguration object_store_configuration;
 }

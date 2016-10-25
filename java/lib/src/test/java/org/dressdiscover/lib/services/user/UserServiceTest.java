@@ -9,12 +9,11 @@ import org.dressdiscover.api.models.user.UserBookmark;
 import org.dressdiscover.api.models.user.UserBookmarkEntry;
 import org.dressdiscover.api.models.user.UserEntry;
 import org.dressdiscover.api.models.user.UserId;
-import org.dressdiscover.lib.DressDiscoverProperties;
+import org.dressdiscover.api.services.user.UserCommandService;
+import org.dressdiscover.api.services.user.UserQueryService;
+import org.dressdiscover.lib.properties.StoreProperties;
 import org.dressdiscover.lib.services.ServiceTest;
 import org.dressdiscover.lib.services.ServicesModule;
-import org.dressdiscover.lib.services.user.IterableUserQueryService;
-import org.dressdiscover.lib.services.user.JdbcUserCommandService;
-import org.dressdiscover.lib.services.user.JdbcUserQueryService;
 import org.dressdiscover.lib.stores.user.UserBookmarkJdbcTable;
 import org.dressdiscover.lib.stores.user.UserJdbcTable;
 import org.dressdiscover.testdata.TestData;
@@ -23,9 +22,6 @@ import org.junit.Before;
 
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableSet;
-
-import org.dressdiscover.api.services.user.UserCommandService;
-import org.dressdiscover.api.services.user.UserQueryService;
 
 public abstract class UserServiceTest extends ServiceTest {
     public static ImmutableList<UserEntry> postUsers(final UserCommandService userCommandService) throws Exception {
@@ -53,8 +49,8 @@ public abstract class UserServiceTest extends ServiceTest {
     }
 
     @Override
-    protected final ServicesModule _newServicesModule(final DressDiscoverProperties properties) {
-        return new ServicesModule(properties) {
+    protected final ServicesModule _newServicesModule(final StoreProperties storeProperties) {
+        return new ServicesModule(storeProperties) {
             @Override
             protected void _configureUserCommandService() {
                 bind(UserCommandService.class).to(JdbcUserCommandService.class);
@@ -64,9 +60,9 @@ public abstract class UserServiceTest extends ServiceTest {
             protected void _configureUserQueryService() {
                 try {
                     bind(UserBookmarkJdbcTable.class).toInstance(
-                            new UserBookmarkJdbcTable(properties, "jdbc:h2:mem:test_mem;DB_CLOSE_DELAY=-1"));
+                            new UserBookmarkJdbcTable(storeProperties, "jdbc:h2:mem:test_mem;DB_CLOSE_DELAY=-1"));
                     bind(UserJdbcTable.class)
-                            .toInstance(new UserJdbcTable(properties, "jdbc:h2:mem:test_mem;DB_CLOSE_DELAY=-1"));
+                            .toInstance(new UserJdbcTable(storeProperties, "jdbc:h2:mem:test_mem;DB_CLOSE_DELAY=-1"));
                 } catch (final SQLException e) {
                     throw new IllegalStateException(e);
                 }
@@ -82,7 +78,8 @@ public abstract class UserServiceTest extends ServiceTest {
             final UserBookmark userBookmark = UserBookmark.builder().setFolder("My folder")
                     .setName("Test bookmark " + i).setObjectId(ObjectId.parse("institution/collection/object" + i))
                     .setUserId(userId).build();
-            resultBuilder.add(UserBookmarkEntry.create(userCommandService.postUserBookmark(userBookmark), userBookmark));
+            resultBuilder
+                    .add(UserBookmarkEntry.create(userCommandService.postUserBookmark(userBookmark), userBookmark));
         }
         return resultBuilder.build();
     }
@@ -96,13 +93,14 @@ public abstract class UserServiceTest extends ServiceTest {
                     .setObjectQuery(ObjectQuery.builder()
                             .setObjectIds(ImmutableSet.of(ObjectId.parse("institution/collection/object" + i))).build())
                     .setUserId(userId).build();
-            resultBuilder.add(UserBookmarkEntry.create(userCommandService.postUserBookmark(userBookmark), userBookmark));
+            resultBuilder
+                    .add(UserBookmarkEntry.create(userCommandService.postUserBookmark(userBookmark), userBookmark));
         }
         return resultBuilder.build();
     }
 
     protected final ImmutableList<UserBookmarkEntry> _postUserBookmarks(final UserId userId) throws Exception {
-        return ImmutableList.<UserBookmarkEntry> builder().addAll(_postObjectIdUserBookmarks(userId))
+        return ImmutableList.<UserBookmarkEntry>builder().addAll(_postObjectIdUserBookmarks(userId))
                 .addAll(_postObjectQueryUserBookmarks(userId)).build();
     }
 

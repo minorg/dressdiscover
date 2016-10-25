@@ -1,37 +1,31 @@
 package org.dressdiscover.api.models.configuration;
 
-public final class InstitutionConfiguration implements org.thryft.Struct, org.thryft.waf.api.models.Model {
+public final class InstitutionConfiguration implements org.thryft.Struct {
     public final static class Builder {
         public Builder() {
-            storeType = null;
+            collectionStoreConfiguration = null;
             defaultCollectionConfiguration = com.google.common.base.Optional.<org.dressdiscover.api.models.configuration.CollectionConfiguration> absent();
-            storeParameters = com.google.common.base.Optional.<com.google.common.collect.ImmutableMap<String, String>> absent();
         }
 
         public Builder(final InstitutionConfiguration other) {
-            this.storeType = other.getStoreType();
+            this.collectionStoreConfiguration = other.getCollectionStoreConfiguration();
             this.defaultCollectionConfiguration = other.getDefaultCollectionConfiguration();
-            this.storeParameters = other.getStoreParameters();
         }
 
-        protected InstitutionConfiguration _build(final String storeType, final com.google.common.base.Optional<org.dressdiscover.api.models.configuration.CollectionConfiguration> defaultCollectionConfiguration, final com.google.common.base.Optional<com.google.common.collect.ImmutableMap<String, String>> storeParameters) {
-            return new InstitutionConfiguration(storeType, defaultCollectionConfiguration, storeParameters, DefaultConstructionValidator.getInstance());
+        protected InstitutionConfiguration _build(final org.dressdiscover.api.models.configuration.CollectionStoreConfiguration collectionStoreConfiguration, final com.google.common.base.Optional<org.dressdiscover.api.models.configuration.CollectionConfiguration> defaultCollectionConfiguration) {
+            return new InstitutionConfiguration(collectionStoreConfiguration, defaultCollectionConfiguration, DefaultConstructionValidator.getInstance());
         }
 
         public InstitutionConfiguration build() {
-            return _build(storeType, defaultCollectionConfiguration, storeParameters);
+            return _build(collectionStoreConfiguration, defaultCollectionConfiguration);
+        }
+
+        public final org.dressdiscover.api.models.configuration.CollectionStoreConfiguration getCollectionStoreConfiguration() {
+            return collectionStoreConfiguration;
         }
 
         public final com.google.common.base.Optional<org.dressdiscover.api.models.configuration.CollectionConfiguration> getDefaultCollectionConfiguration() {
             return defaultCollectionConfiguration;
-        }
-
-        public final com.google.common.base.Optional<com.google.common.collect.ImmutableMap<String, String>> getStoreParameters() {
-            return storeParameters;
-        }
-
-        public final String getStoreType() {
-            return storeType;
         }
 
         public Builder readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type) throws org.thryft.protocol.InputProtocolException {
@@ -52,35 +46,9 @@ public final class InstitutionConfiguration implements org.thryft.Struct, org.th
         public Builder readAsList(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
             try {
                 final org.thryft.protocol.ListBegin __list = iprot.readListBegin();
-                storeType = iprot.readString();
+                collectionStoreConfiguration = org.dressdiscover.api.models.configuration.CollectionStoreConfiguration.readAsStruct(iprot);
                 if (__list.getSize() > 1) {
                     defaultCollectionConfiguration = com.google.common.base.Optional.of(org.dressdiscover.api.models.configuration.CollectionConfiguration.readAsStruct(iprot));
-                }
-                if (__list.getSize() > 2) {
-                    try {
-                        storeParameters = com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableMap<String, String>>() {
-                            @Override
-                            public com.google.common.collect.ImmutableMap<String, String> apply(final org.thryft.protocol.InputProtocol iprot) {
-                                try {
-                                    final org.thryft.protocol.MapBegin mapBegin = iprot.readMapBegin();
-                                    final com.google.common.collect.ImmutableMap.Builder<String, String> map = com.google.common.collect.ImmutableMap.builder();
-                                    for (int entryI = 0; entryI < mapBegin.getSize(); entryI++) {
-                                        final String key;
-                                        key = iprot.readString();
-                                        final String value;
-                                        value = iprot.readString();
-                                        map.put(key, value);
-                                    }
-                                    iprot.readMapEnd();
-                                    return map.build();
-                                } catch (final org.thryft.protocol.InputProtocolException e) {
-                                    throw new org.thryft.protocol.UncheckedInputProtocolException(e);
-                                }
-                            }
-                        }).apply(iprot));
-                    } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
-                         throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.STORE_PARAMETERS, e.getCause());
-                    }
                 }
                 iprot.readListEnd();
             } catch (final RuntimeException e) {
@@ -102,44 +70,15 @@ public final class InstitutionConfiguration implements org.thryft.Struct, org.th
                         break;
                     }
                     switch (ifield.getName()) {
-                    case "store_type": {
+                    case "collection_store_configuration": {
                         if (!ifield.hasId() || ifield.getId() == 1) {
-                            storeType = iprot.readString();
+                            collectionStoreConfiguration = org.dressdiscover.api.models.configuration.CollectionStoreConfiguration.readAsStruct(iprot);
                         }
                         break;
                     }
                     case "default_collection_configuration": {
                         if (!ifield.hasId() || ifield.getId() == 2) {
                             defaultCollectionConfiguration = com.google.common.base.Optional.of(org.dressdiscover.api.models.configuration.CollectionConfiguration.readAsStruct(iprot));
-                        }
-                        break;
-                    }
-                    case "store_parameters": {
-                        if (!ifield.hasId() || ifield.getId() == 3) {
-                            try {
-                                storeParameters = com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableMap<String, String>>() {
-                                    @Override
-                                    public com.google.common.collect.ImmutableMap<String, String> apply(final org.thryft.protocol.InputProtocol iprot) {
-                                        try {
-                                            final org.thryft.protocol.MapBegin mapBegin = iprot.readMapBegin();
-                                            final com.google.common.collect.ImmutableMap.Builder<String, String> map = com.google.common.collect.ImmutableMap.builder();
-                                            for (int entryI = 0; entryI < mapBegin.getSize(); entryI++) {
-                                                final String key;
-                                                key = iprot.readString();
-                                                final String value;
-                                                value = iprot.readString();
-                                                map.put(key, value);
-                                            }
-                                            iprot.readMapEnd();
-                                            return map.build();
-                                        } catch (final org.thryft.protocol.InputProtocolException e) {
-                                            throw new org.thryft.protocol.UncheckedInputProtocolException(e);
-                                        }
-                                    }
-                                }).apply(iprot));
-                            } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
-                                 throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.STORE_PARAMETERS, e.getCause());
-                            }
                         }
                         break;
                     }
@@ -169,17 +108,20 @@ public final class InstitutionConfiguration implements org.thryft.Struct, org.th
             return set((FieldMetadata)fieldMetadata, value);
         }
 
-        @SuppressWarnings({"unchecked"})
         public Builder set(final FieldMetadata fieldMetadata, @javax.annotation.Nullable final java.lang.Object value) {
             com.google.common.base.Preconditions.checkNotNull(fieldMetadata);
 
             switch (fieldMetadata) {
-            case STORE_TYPE: setStoreType((String)value); return this;
+            case COLLECTION_STORE_CONFIGURATION: setCollectionStoreConfiguration((org.dressdiscover.api.models.configuration.CollectionStoreConfiguration)value); return this;
             case DEFAULT_COLLECTION_CONFIGURATION: setDefaultCollectionConfiguration((org.dressdiscover.api.models.configuration.CollectionConfiguration)value); return this;
-            case STORE_PARAMETERS: setStoreParameters((com.google.common.collect.ImmutableMap<String, String>)value); return this;
             default:
                 throw new IllegalStateException();
             }
+        }
+
+        public Builder setCollectionStoreConfiguration(final org.dressdiscover.api.models.configuration.CollectionStoreConfiguration collectionStoreConfiguration) {
+            this.collectionStoreConfiguration = DefaultConstructionValidator.getInstance().validateCollectionStoreConfiguration(collectionStoreConfiguration);
+            return this;
         }
 
         public Builder setDefaultCollectionConfiguration(final com.google.common.base.Optional<org.dressdiscover.api.models.configuration.CollectionConfiguration> defaultCollectionConfiguration) {
@@ -194,28 +136,11 @@ public final class InstitutionConfiguration implements org.thryft.Struct, org.th
         public Builder setIfPresent(final InstitutionConfiguration other) {
             com.google.common.base.Preconditions.checkNotNull(other);
 
-            setStoreType(other.getStoreType());
+            setCollectionStoreConfiguration(other.getCollectionStoreConfiguration());
             if (other.getDefaultCollectionConfiguration().isPresent()) {
                 setDefaultCollectionConfiguration(other.getDefaultCollectionConfiguration());
             }
-            if (other.getStoreParameters().isPresent()) {
-                setStoreParameters(other.getStoreParameters());
-            }
 
-            return this;
-        }
-
-        public Builder setStoreParameters(final com.google.common.base.Optional<com.google.common.collect.ImmutableMap<String, String>> storeParameters) {
-            this.storeParameters = DefaultConstructionValidator.getInstance().validateStoreParameters(storeParameters);
-            return this;
-        }
-
-        public Builder setStoreParameters(@javax.annotation.Nullable final com.google.common.collect.ImmutableMap<String, String> storeParameters) {
-            return setStoreParameters(com.google.common.base.Optional.fromNullable(storeParameters));
-        }
-
-        public Builder setStoreType(final String storeType) {
-            this.storeType = DefaultConstructionValidator.getInstance().validateStoreType(storeType);
             return this;
         }
 
@@ -234,12 +159,16 @@ public final class InstitutionConfiguration implements org.thryft.Struct, org.th
             com.google.common.base.Preconditions.checkNotNull(fieldMetadata);
 
             switch (fieldMetadata) {
-            case STORE_TYPE: return unsetStoreType();
+            case COLLECTION_STORE_CONFIGURATION: return unsetCollectionStoreConfiguration();
             case DEFAULT_COLLECTION_CONFIGURATION: return unsetDefaultCollectionConfiguration();
-            case STORE_PARAMETERS: return unsetStoreParameters();
             default:
                 throw new IllegalStateException();
             }
+        }
+
+        public Builder unsetCollectionStoreConfiguration() {
+            this.collectionStoreConfiguration = null;
+            return this;
         }
 
         public Builder unsetDefaultCollectionConfiguration() {
@@ -247,19 +176,8 @@ public final class InstitutionConfiguration implements org.thryft.Struct, org.th
             return this;
         }
 
-        public Builder unsetStoreParameters() {
-            this.storeParameters = com.google.common.base.Optional.<com.google.common.collect.ImmutableMap<String, String>> absent();
-            return this;
-        }
-
-        public Builder unsetStoreType() {
-            this.storeType = null;
-            return this;
-        }
-
-        private String storeType;
+        private org.dressdiscover.api.models.configuration.CollectionStoreConfiguration collectionStoreConfiguration;
         private com.google.common.base.Optional<org.dressdiscover.api.models.configuration.CollectionConfiguration> defaultCollectionConfiguration;
-        private com.google.common.base.Optional<com.google.common.collect.ImmutableMap<String, String>> storeParameters;
     }
 
     public final static class Factory implements org.thryft.CompoundType.Factory<InstitutionConfiguration> {
@@ -293,9 +211,8 @@ public final class InstitutionConfiguration implements org.thryft.Struct, org.th
 
     @SuppressWarnings("serial")
     public enum FieldMetadata implements org.thryft.CompoundType.FieldMetadata {
-        STORE_TYPE("storeType", new com.google.common.reflect.TypeToken<String>() {}, true, 1, "store_type", org.thryft.protocol.Type.STRING),
-        DEFAULT_COLLECTION_CONFIGURATION("defaultCollectionConfiguration", new com.google.common.reflect.TypeToken<org.dressdiscover.api.models.configuration.CollectionConfiguration>() {}, false, 2, "default_collection_configuration", org.thryft.protocol.Type.STRUCT),
-        STORE_PARAMETERS("storeParameters", new com.google.common.reflect.TypeToken<com.google.common.collect.ImmutableMap<String, String>>() {}, false, 3, "store_parameters", org.thryft.protocol.Type.MAP);
+        COLLECTION_STORE_CONFIGURATION("collectionStoreConfiguration", new com.google.common.reflect.TypeToken<org.dressdiscover.api.models.configuration.CollectionStoreConfiguration>() {}, true, 1, "collection_store_configuration", org.thryft.protocol.Type.STRUCT),
+        DEFAULT_COLLECTION_CONFIGURATION("defaultCollectionConfiguration", new com.google.common.reflect.TypeToken<org.dressdiscover.api.models.configuration.CollectionConfiguration>() {}, false, 2, "default_collection_configuration", org.thryft.protocol.Type.STRUCT);
 
         @Override
         public String getJavaName() {
@@ -339,9 +256,8 @@ public final class InstitutionConfiguration implements org.thryft.Struct, org.th
 
         public static FieldMetadata valueOfJavaName(final String javaName) {
             switch (javaName) {
-            case "storeType": return STORE_TYPE;
+            case "collectionStoreConfiguration": return COLLECTION_STORE_CONFIGURATION;
             case "defaultCollectionConfiguration": return DEFAULT_COLLECTION_CONFIGURATION;
-            case "storeParameters": return STORE_PARAMETERS;
             default:
                 throw new IllegalArgumentException(javaName);
             }
@@ -349,9 +265,8 @@ public final class InstitutionConfiguration implements org.thryft.Struct, org.th
 
         public static FieldMetadata valueOfThriftName(final String thriftName) {
             switch (thriftName) {
-            case "store_type": return STORE_TYPE;
+            case "collection_store_configuration": return COLLECTION_STORE_CONFIGURATION;
             case "default_collection_configuration": return DEFAULT_COLLECTION_CONFIGURATION;
-            case "store_parameters": return STORE_PARAMETERS;
             default:
                 throw new IllegalArgumentException(thriftName);
             }
@@ -381,11 +296,9 @@ public final class InstitutionConfiguration implements org.thryft.Struct, org.th
     }
 
     public interface Validator<ExceptionT extends Exception> {
-        public String validateStoreType(final String storeType) throws ExceptionT;
+        public org.dressdiscover.api.models.configuration.CollectionStoreConfiguration validateCollectionStoreConfiguration(final org.dressdiscover.api.models.configuration.CollectionStoreConfiguration collectionStoreConfiguration) throws ExceptionT;
 
         public com.google.common.base.Optional<org.dressdiscover.api.models.configuration.CollectionConfiguration> validateDefaultCollectionConfiguration(final com.google.common.base.Optional<org.dressdiscover.api.models.configuration.CollectionConfiguration> defaultCollectionConfiguration) throws ExceptionT;
-
-        public com.google.common.base.Optional<com.google.common.collect.ImmutableMap<String, String>> validateStoreParameters(final com.google.common.base.Optional<com.google.common.collect.ImmutableMap<String, String>> storeParameters) throws ExceptionT;
     }
 
     public interface ConstructionValidator extends Validator<RuntimeException> {
@@ -400,11 +313,11 @@ public final class InstitutionConfiguration implements org.thryft.Struct, org.th
         }
 
         @Override
-        public String validateStoreType(final String storeType) throws RuntimeException {
-            if (storeType == null) {
-                throw new NullPointerException("org.dressdiscover.api.models.configuration.InstitutionConfiguration: storeType is null");
+        public org.dressdiscover.api.models.configuration.CollectionStoreConfiguration validateCollectionStoreConfiguration(final org.dressdiscover.api.models.configuration.CollectionStoreConfiguration collectionStoreConfiguration) throws RuntimeException {
+            if (collectionStoreConfiguration == null) {
+                throw new NullPointerException("org.dressdiscover.api.models.configuration.InstitutionConfiguration: collectionStoreConfiguration is null");
             }
-            return storeType;
+            return collectionStoreConfiguration;
         }
 
         @Override
@@ -416,20 +329,6 @@ public final class InstitutionConfiguration implements org.thryft.Struct, org.th
                 return defaultCollectionConfiguration;
             }
             return defaultCollectionConfiguration;
-        }
-
-        @Override
-        public com.google.common.base.Optional<com.google.common.collect.ImmutableMap<String, String>> validateStoreParameters(final com.google.common.base.Optional<com.google.common.collect.ImmutableMap<String, String>> storeParameters) throws RuntimeException {
-            if (storeParameters == null) {
-                throw new NullPointerException("org.dressdiscover.api.models.configuration.InstitutionConfiguration: storeParameters is null");
-            }
-            if (!storeParameters.isPresent()) {
-                return storeParameters;
-            }
-            if (storeParameters.get().isEmpty()) {
-                throw new IllegalArgumentException("org.dressdiscover.api.models.configuration.InstitutionConfiguration: storeParameters is less than min length 1");
-            }
-            return storeParameters;
         }
 
         private final static DefaultConstructionValidator instance = new DefaultConstructionValidator();
@@ -444,18 +343,13 @@ public final class InstitutionConfiguration implements org.thryft.Struct, org.th
         }
 
         @Override
-        public String validateStoreType(final String storeType) {
-            return storeType;
+        public org.dressdiscover.api.models.configuration.CollectionStoreConfiguration validateCollectionStoreConfiguration(final org.dressdiscover.api.models.configuration.CollectionStoreConfiguration collectionStoreConfiguration) {
+            return collectionStoreConfiguration;
         }
 
         @Override
         public com.google.common.base.Optional<org.dressdiscover.api.models.configuration.CollectionConfiguration> validateDefaultCollectionConfiguration(final com.google.common.base.Optional<org.dressdiscover.api.models.configuration.CollectionConfiguration> defaultCollectionConfiguration) {
             return defaultCollectionConfiguration;
-        }
-
-        @Override
-        public com.google.common.base.Optional<com.google.common.collect.ImmutableMap<String, String>> validateStoreParameters(final com.google.common.base.Optional<com.google.common.collect.ImmutableMap<String, String>> storeParameters) {
-            return storeParameters;
         }
 
         private final static NopConstructionValidator instance = new NopConstructionValidator();
@@ -473,11 +367,11 @@ public final class InstitutionConfiguration implements org.thryft.Struct, org.th
         }
 
         @Override
-        public String validateStoreType(final String storeType) throws org.thryft.protocol.InputProtocolException {
-            if (storeType == null) {
-                throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.STORE_TYPE, "org.dressdiscover.api.models.configuration.InstitutionConfiguration: storeType is null");
+        public org.dressdiscover.api.models.configuration.CollectionStoreConfiguration validateCollectionStoreConfiguration(final org.dressdiscover.api.models.configuration.CollectionStoreConfiguration collectionStoreConfiguration) throws org.thryft.protocol.InputProtocolException {
+            if (collectionStoreConfiguration == null) {
+                throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.COLLECTION_STORE_CONFIGURATION, "org.dressdiscover.api.models.configuration.InstitutionConfiguration: collectionStoreConfiguration is null");
             }
-            return storeType;
+            return collectionStoreConfiguration;
         }
 
         @Override
@@ -489,20 +383,6 @@ public final class InstitutionConfiguration implements org.thryft.Struct, org.th
                 return defaultCollectionConfiguration;
             }
             return defaultCollectionConfiguration;
-        }
-
-        @Override
-        public com.google.common.base.Optional<com.google.common.collect.ImmutableMap<String, String>> validateStoreParameters(final com.google.common.base.Optional<com.google.common.collect.ImmutableMap<String, String>> storeParameters) throws org.thryft.protocol.InputProtocolException {
-            if (storeParameters == null) {
-                throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.STORE_PARAMETERS, "org.dressdiscover.api.models.configuration.InstitutionConfiguration: storeParameters is null");
-            }
-            if (!storeParameters.isPresent()) {
-                return storeParameters;
-            }
-            if (storeParameters.get().isEmpty()) {
-                throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.STORE_PARAMETERS, "org.dressdiscover.api.models.configuration.InstitutionConfiguration: storeParameters is less than min length 1");
-            }
-            return storeParameters;
         }
 
         private final static DefaultReadValidator instance = new DefaultReadValidator();
@@ -517,18 +397,13 @@ public final class InstitutionConfiguration implements org.thryft.Struct, org.th
         }
 
         @Override
-        public String validateStoreType(final String storeType) {
-            return storeType;
+        public org.dressdiscover.api.models.configuration.CollectionStoreConfiguration validateCollectionStoreConfiguration(final org.dressdiscover.api.models.configuration.CollectionStoreConfiguration collectionStoreConfiguration) {
+            return collectionStoreConfiguration;
         }
 
         @Override
         public com.google.common.base.Optional<org.dressdiscover.api.models.configuration.CollectionConfiguration> validateDefaultCollectionConfiguration(final com.google.common.base.Optional<org.dressdiscover.api.models.configuration.CollectionConfiguration> defaultCollectionConfiguration) {
             return defaultCollectionConfiguration;
-        }
-
-        @Override
-        public com.google.common.base.Optional<com.google.common.collect.ImmutableMap<String, String>> validateStoreParameters(final com.google.common.base.Optional<com.google.common.collect.ImmutableMap<String, String>> storeParameters) {
-            return storeParameters;
         }
 
         private final static NopReadValidator instance = new NopReadValidator();
@@ -538,13 +413,12 @@ public final class InstitutionConfiguration implements org.thryft.Struct, org.th
      * Copy constructor
      */
     public InstitutionConfiguration(final InstitutionConfiguration other) {
-        this(other.getStoreType(), other.getDefaultCollectionConfiguration(), other.getStoreParameters(), NopConstructionValidator.getInstance());
+        this(other.getCollectionStoreConfiguration(), other.getDefaultCollectionConfiguration(), NopConstructionValidator.getInstance());
     }
 
-    protected InstitutionConfiguration(final String storeType, final com.google.common.base.Optional<org.dressdiscover.api.models.configuration.CollectionConfiguration> defaultCollectionConfiguration, final com.google.common.base.Optional<com.google.common.collect.ImmutableMap<String, String>> storeParameters, ConstructionValidator validator) {
-        this.storeType = validator.validateStoreType(storeType);
+    protected InstitutionConfiguration(final org.dressdiscover.api.models.configuration.CollectionStoreConfiguration collectionStoreConfiguration, final com.google.common.base.Optional<org.dressdiscover.api.models.configuration.CollectionConfiguration> defaultCollectionConfiguration, ConstructionValidator validator) {
+        this.collectionStoreConfiguration = validator.validateCollectionStoreConfiguration(collectionStoreConfiguration);
         this.defaultCollectionConfiguration = validator.validateDefaultCollectionConfiguration(defaultCollectionConfiguration);
-        this.storeParameters = validator.validateStoreParameters(storeParameters);
     }
 
     public static Builder builder() {
@@ -562,22 +436,22 @@ public final class InstitutionConfiguration implements org.thryft.Struct, org.th
     /**
      * Required factory method
      */
-    public static InstitutionConfiguration create(final String storeType) {
-        return new InstitutionConfiguration(storeType, com.google.common.base.Optional.<org.dressdiscover.api.models.configuration.CollectionConfiguration> absent(), com.google.common.base.Optional.<com.google.common.collect.ImmutableMap<String, String>> absent(), DefaultConstructionValidator.getInstance());
+    public static InstitutionConfiguration create(final org.dressdiscover.api.models.configuration.CollectionStoreConfiguration collectionStoreConfiguration) {
+        return new InstitutionConfiguration(collectionStoreConfiguration, com.google.common.base.Optional.<org.dressdiscover.api.models.configuration.CollectionConfiguration> absent(), DefaultConstructionValidator.getInstance());
     }
 
     /**
      * Total Nullable factory method
      */
-    public static InstitutionConfiguration create(final String storeType, final @javax.annotation.Nullable org.dressdiscover.api.models.configuration.CollectionConfiguration defaultCollectionConfiguration, final @javax.annotation.Nullable com.google.common.collect.ImmutableMap<String, String> storeParameters) {
-        return new InstitutionConfiguration(storeType, com.google.common.base.Optional.fromNullable(defaultCollectionConfiguration), com.google.common.base.Optional.fromNullable(storeParameters), DefaultConstructionValidator.getInstance());
+    public static InstitutionConfiguration create(final org.dressdiscover.api.models.configuration.CollectionStoreConfiguration collectionStoreConfiguration, final @javax.annotation.Nullable org.dressdiscover.api.models.configuration.CollectionConfiguration defaultCollectionConfiguration) {
+        return new InstitutionConfiguration(collectionStoreConfiguration, com.google.common.base.Optional.fromNullable(defaultCollectionConfiguration), DefaultConstructionValidator.getInstance());
     }
 
     /**
      * Optional factory method
      */
-    public static InstitutionConfiguration create(final String storeType, final com.google.common.base.Optional<org.dressdiscover.api.models.configuration.CollectionConfiguration> defaultCollectionConfiguration, final com.google.common.base.Optional<com.google.common.collect.ImmutableMap<String, String>> storeParameters) {
-        return new InstitutionConfiguration(storeType, defaultCollectionConfiguration, storeParameters, DefaultConstructionValidator.getInstance());
+    public static InstitutionConfiguration create(final org.dressdiscover.api.models.configuration.CollectionStoreConfiguration collectionStoreConfiguration, final com.google.common.base.Optional<org.dressdiscover.api.models.configuration.CollectionConfiguration> defaultCollectionConfiguration) {
+        return new InstitutionConfiguration(collectionStoreConfiguration, defaultCollectionConfiguration, DefaultConstructionValidator.getInstance());
     }
 
     @Override
@@ -591,15 +465,11 @@ public final class InstitutionConfiguration implements org.thryft.Struct, org.th
 
         final InstitutionConfiguration other = (InstitutionConfiguration)otherObject;
 
-        if (!(getStoreType().equals(other.getStoreType()))) {
+        if (!(getCollectionStoreConfiguration().equals(other.getCollectionStoreConfiguration()))) {
             return false;
         }
 
         if (!(((getDefaultCollectionConfiguration().isPresent() && other.getDefaultCollectionConfiguration().isPresent()) ? (getDefaultCollectionConfiguration().get().equals(other.getDefaultCollectionConfiguration().get())) : (!getDefaultCollectionConfiguration().isPresent() && !other.getDefaultCollectionConfiguration().isPresent())))) {
-            return false;
-        }
-
-        if (!(((getStoreParameters().isPresent() && other.getStoreParameters().isPresent()) ? (getStoreParameters().get().equals(other.getStoreParameters().get())) : (!getStoreParameters().isPresent() && !other.getStoreParameters().isPresent())))) {
             return false;
         }
 
@@ -621,35 +491,27 @@ public final class InstitutionConfiguration implements org.thryft.Struct, org.th
 
     public java.lang.Object get(final FieldMetadata fieldMetadata) {
         switch (fieldMetadata) {
-        case STORE_TYPE: return getStoreType();
+        case COLLECTION_STORE_CONFIGURATION: return getCollectionStoreConfiguration();
         case DEFAULT_COLLECTION_CONFIGURATION: return getDefaultCollectionConfiguration();
-        case STORE_PARAMETERS: return getStoreParameters();
         default:
             throw new IllegalStateException();
         }
+    }
+
+    public final org.dressdiscover.api.models.configuration.CollectionStoreConfiguration getCollectionStoreConfiguration() {
+        return collectionStoreConfiguration;
     }
 
     public final com.google.common.base.Optional<org.dressdiscover.api.models.configuration.CollectionConfiguration> getDefaultCollectionConfiguration() {
         return defaultCollectionConfiguration;
     }
 
-    public final com.google.common.base.Optional<com.google.common.collect.ImmutableMap<String, String>> getStoreParameters() {
-        return storeParameters;
-    }
-
-    public final String getStoreType() {
-        return storeType;
-    }
-
     @Override
     public int hashCode() {
         int hashCode = 17;
-        hashCode = 31 * hashCode + getStoreType().hashCode();
+        hashCode = 31 * hashCode + getCollectionStoreConfiguration().hashCode();
         if (getDefaultCollectionConfiguration().isPresent()) {
             hashCode = 31 * hashCode + getDefaultCollectionConfiguration().get().hashCode();
-        }
-        if (getStoreParameters().isPresent()) {
-            hashCode = 31 * hashCode + getStoreParameters().get().hashCode();
         }
         return hashCode;
     }
@@ -670,47 +532,20 @@ public final class InstitutionConfiguration implements org.thryft.Struct, org.th
     }
 
     public static InstitutionConfiguration readAsList(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
-        String storeType = null;
+        org.dressdiscover.api.models.configuration.CollectionStoreConfiguration collectionStoreConfiguration = null;
         com.google.common.base.Optional<org.dressdiscover.api.models.configuration.CollectionConfiguration> defaultCollectionConfiguration = com.google.common.base.Optional.<org.dressdiscover.api.models.configuration.CollectionConfiguration> absent();
-        com.google.common.base.Optional<com.google.common.collect.ImmutableMap<String, String>> storeParameters = com.google.common.base.Optional.<com.google.common.collect.ImmutableMap<String, String>> absent();
 
         try {
             final org.thryft.protocol.ListBegin __list = iprot.readListBegin();
-            storeType = iprot.readString();
+            collectionStoreConfiguration = org.dressdiscover.api.models.configuration.CollectionStoreConfiguration.readAsStruct(iprot);
             if (__list.getSize() > 1) {
                 defaultCollectionConfiguration = com.google.common.base.Optional.of(org.dressdiscover.api.models.configuration.CollectionConfiguration.readAsStruct(iprot));
-            }
-            if (__list.getSize() > 2) {
-                try {
-                    storeParameters = com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableMap<String, String>>() {
-                        @Override
-                        public com.google.common.collect.ImmutableMap<String, String> apply(final org.thryft.protocol.InputProtocol iprot) {
-                            try {
-                                final org.thryft.protocol.MapBegin mapBegin = iprot.readMapBegin();
-                                final com.google.common.collect.ImmutableMap.Builder<String, String> map = com.google.common.collect.ImmutableMap.builder();
-                                for (int entryI = 0; entryI < mapBegin.getSize(); entryI++) {
-                                    final String key;
-                                    key = iprot.readString();
-                                    final String value;
-                                    value = iprot.readString();
-                                    map.put(key, value);
-                                }
-                                iprot.readMapEnd();
-                                return map.build();
-                            } catch (final org.thryft.protocol.InputProtocolException e) {
-                                throw new org.thryft.protocol.UncheckedInputProtocolException(e);
-                            }
-                        }
-                    }).apply(iprot));
-                } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
-                     throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.STORE_PARAMETERS, e.getCause());
-                }
             }
             iprot.readListEnd();
         } catch (final RuntimeException e) {
             throw new IllegalStateException(e);
         }
-        return new InstitutionConfiguration(DefaultReadValidator.getInstance().validateStoreType(storeType), DefaultReadValidator.getInstance().validateDefaultCollectionConfiguration(defaultCollectionConfiguration), DefaultReadValidator.getInstance().validateStoreParameters(storeParameters), NopConstructionValidator.getInstance());
+        return new InstitutionConfiguration(DefaultReadValidator.getInstance().validateCollectionStoreConfiguration(collectionStoreConfiguration), DefaultReadValidator.getInstance().validateDefaultCollectionConfiguration(defaultCollectionConfiguration), NopConstructionValidator.getInstance());
     }
 
     public static InstitutionConfiguration readAsStruct(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
@@ -718,9 +553,8 @@ public final class InstitutionConfiguration implements org.thryft.Struct, org.th
     }
 
     public static InstitutionConfiguration readAsStruct(final org.thryft.protocol.InputProtocol iprot, final com.google.common.base.Optional<UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
-        String storeType = null;
+        org.dressdiscover.api.models.configuration.CollectionStoreConfiguration collectionStoreConfiguration = null;
         com.google.common.base.Optional<org.dressdiscover.api.models.configuration.CollectionConfiguration> defaultCollectionConfiguration = com.google.common.base.Optional.<org.dressdiscover.api.models.configuration.CollectionConfiguration> absent();
-        com.google.common.base.Optional<com.google.common.collect.ImmutableMap<String, String>> storeParameters = com.google.common.base.Optional.<com.google.common.collect.ImmutableMap<String, String>> absent();
 
         try {
             iprot.readStructBegin();
@@ -730,44 +564,15 @@ public final class InstitutionConfiguration implements org.thryft.Struct, org.th
                     break;
                 }
                 switch (ifield.getName()) {
-                case "store_type": {
+                case "collection_store_configuration": {
                     if (!ifield.hasId() || ifield.getId() == 1) {
-                        storeType = iprot.readString();
+                        collectionStoreConfiguration = org.dressdiscover.api.models.configuration.CollectionStoreConfiguration.readAsStruct(iprot);
                     }
                     break;
                 }
                 case "default_collection_configuration": {
                     if (!ifield.hasId() || ifield.getId() == 2) {
                         defaultCollectionConfiguration = com.google.common.base.Optional.of(org.dressdiscover.api.models.configuration.CollectionConfiguration.readAsStruct(iprot));
-                    }
-                    break;
-                }
-                case "store_parameters": {
-                    if (!ifield.hasId() || ifield.getId() == 3) {
-                        try {
-                            storeParameters = com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableMap<String, String>>() {
-                                @Override
-                                public com.google.common.collect.ImmutableMap<String, String> apply(final org.thryft.protocol.InputProtocol iprot) {
-                                    try {
-                                        final org.thryft.protocol.MapBegin mapBegin = iprot.readMapBegin();
-                                        final com.google.common.collect.ImmutableMap.Builder<String, String> map = com.google.common.collect.ImmutableMap.builder();
-                                        for (int entryI = 0; entryI < mapBegin.getSize(); entryI++) {
-                                            final String key;
-                                            key = iprot.readString();
-                                            final String value;
-                                            value = iprot.readString();
-                                            map.put(key, value);
-                                        }
-                                        iprot.readMapEnd();
-                                        return map.build();
-                                    } catch (final org.thryft.protocol.InputProtocolException e) {
-                                        throw new org.thryft.protocol.UncheckedInputProtocolException(e);
-                                    }
-                                }
-                            }).apply(iprot));
-                        } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
-                             throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.STORE_PARAMETERS, e.getCause());
-                        }
                     }
                     break;
                 }
@@ -783,53 +588,34 @@ public final class InstitutionConfiguration implements org.thryft.Struct, org.th
         } catch (final RuntimeException e) {
             throw new IllegalStateException(e);
         }
-        return new InstitutionConfiguration(DefaultReadValidator.getInstance().validateStoreType(storeType), DefaultReadValidator.getInstance().validateDefaultCollectionConfiguration(defaultCollectionConfiguration), DefaultReadValidator.getInstance().validateStoreParameters(storeParameters), NopConstructionValidator.getInstance());
+        return new InstitutionConfiguration(DefaultReadValidator.getInstance().validateCollectionStoreConfiguration(collectionStoreConfiguration), DefaultReadValidator.getInstance().validateDefaultCollectionConfiguration(defaultCollectionConfiguration), NopConstructionValidator.getInstance());
+    }
+
+    public InstitutionConfiguration replaceCollectionStoreConfiguration(final org.dressdiscover.api.models.configuration.CollectionStoreConfiguration collectionStoreConfiguration) {
+        return new InstitutionConfiguration(DefaultConstructionValidator.getInstance().validateCollectionStoreConfiguration(collectionStoreConfiguration), this.defaultCollectionConfiguration, NopConstructionValidator.getInstance());
     }
 
     public InstitutionConfiguration replaceDefaultCollectionConfiguration(final com.google.common.base.Optional<org.dressdiscover.api.models.configuration.CollectionConfiguration> defaultCollectionConfiguration) {
-        return new InstitutionConfiguration(this.storeType, DefaultConstructionValidator.getInstance().validateDefaultCollectionConfiguration(defaultCollectionConfiguration), this.storeParameters, NopConstructionValidator.getInstance());
+        return new InstitutionConfiguration(this.collectionStoreConfiguration, DefaultConstructionValidator.getInstance().validateDefaultCollectionConfiguration(defaultCollectionConfiguration), NopConstructionValidator.getInstance());
     }
 
     public InstitutionConfiguration replaceDefaultCollectionConfiguration(final org.dressdiscover.api.models.configuration.CollectionConfiguration defaultCollectionConfiguration) {
         return replaceDefaultCollectionConfiguration(com.google.common.base.Optional.fromNullable(defaultCollectionConfiguration));
     }
 
-    public InstitutionConfiguration replaceStoreParameters(final com.google.common.base.Optional<com.google.common.collect.ImmutableMap<String, String>> storeParameters) {
-        return new InstitutionConfiguration(this.storeType, this.defaultCollectionConfiguration, DefaultConstructionValidator.getInstance().validateStoreParameters(storeParameters), NopConstructionValidator.getInstance());
-    }
-
-    public InstitutionConfiguration replaceStoreParameters(final com.google.common.collect.ImmutableMap<String, String> storeParameters) {
-        return replaceStoreParameters(com.google.common.base.Optional.fromNullable(storeParameters));
-    }
-
-    public InstitutionConfiguration replaceStoreType(final String storeType) {
-        return new InstitutionConfiguration(DefaultConstructionValidator.getInstance().validateStoreType(storeType), this.defaultCollectionConfiguration, this.storeParameters, NopConstructionValidator.getInstance());
-    }
-
     @Override
     public String toString() {
-        return com.google.common.base.MoreObjects.toStringHelper(this).omitNullValues().add("store_type", getStoreType()).add("default_collection_configuration", getDefaultCollectionConfiguration().orNull()).add("store_parameters", getStoreParameters().orNull()).toString();
+        return com.google.common.base.MoreObjects.toStringHelper(this).omitNullValues().add("collection_store_configuration", getCollectionStoreConfiguration()).add("default_collection_configuration", getDefaultCollectionConfiguration().orNull()).toString();
     }
 
     @Override
     public void writeAsList(final org.thryft.protocol.OutputProtocol oprot) throws org.thryft.protocol.OutputProtocolException {
-        oprot.writeListBegin(org.thryft.protocol.Type.VOID_, 3);
+        oprot.writeListBegin(org.thryft.protocol.Type.VOID_, 2);
 
-        oprot.writeString(getStoreType());
+        getCollectionStoreConfiguration().writeAsStruct(oprot);
 
         if (getDefaultCollectionConfiguration().isPresent()) {
             getDefaultCollectionConfiguration().get().writeAsStruct(oprot);
-        } else {
-            oprot.writeNull();
-        }
-
-        if (getStoreParameters().isPresent()) {
-            oprot.writeMapBegin(org.thryft.protocol.Type.STRING, org.thryft.protocol.Type.STRING, getStoreParameters().get().size());
-            for (com.google.common.collect.ImmutableMap.Entry<String, String> _iter0 : getStoreParameters().get().entrySet()) {
-                oprot.writeString(_iter0.getKey());
-                oprot.writeString(_iter0.getValue());
-            }
-            oprot.writeMapEnd();
         } else {
             oprot.writeNull();
         }
@@ -846,8 +632,8 @@ public final class InstitutionConfiguration implements org.thryft.Struct, org.th
 
     @Override
     public void writeFields(final org.thryft.protocol.OutputProtocol oprot) throws org.thryft.protocol.OutputProtocolException {
-        oprot.writeFieldBegin("store_type", org.thryft.protocol.Type.STRING, (short)1);
-        oprot.writeString(getStoreType());
+        oprot.writeFieldBegin("collection_store_configuration", org.thryft.protocol.Type.STRUCT, (short)1);
+        getCollectionStoreConfiguration().writeAsStruct(oprot);
         oprot.writeFieldEnd();
 
         if (getDefaultCollectionConfiguration().isPresent()) {
@@ -856,23 +642,10 @@ public final class InstitutionConfiguration implements org.thryft.Struct, org.th
             oprot.writeFieldEnd();
         }
 
-        if (getStoreParameters().isPresent()) {
-            oprot.writeFieldBegin("store_parameters", org.thryft.protocol.Type.MAP, (short)3);
-            oprot.writeMapBegin(org.thryft.protocol.Type.STRING, org.thryft.protocol.Type.STRING, getStoreParameters().get().size());
-            for (com.google.common.collect.ImmutableMap.Entry<String, String> _iter0 : getStoreParameters().get().entrySet()) {
-                oprot.writeString(_iter0.getKey());
-                oprot.writeString(_iter0.getValue());
-            }
-            oprot.writeMapEnd();
-            oprot.writeFieldEnd();
-        }
-
         oprot.writeFieldStop();
     }
 
-    private final String storeType;
+    private final org.dressdiscover.api.models.configuration.CollectionStoreConfiguration collectionStoreConfiguration;
 
     private final com.google.common.base.Optional<org.dressdiscover.api.models.configuration.CollectionConfiguration> defaultCollectionConfiguration;
-
-    private final com.google.common.base.Optional<com.google.common.collect.ImmutableMap<String, String>> storeParameters;
 }

@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.Properties;
 
 import org.apache.commons.lang3.StringUtils;
-import org.dressdiscover.lib.DressDiscoverProperties;
+import org.dressdiscover.lib.properties.GlobalProperties;
 import org.python.util.PythonInterpreter;
 
 import com.google.inject.Inject;
@@ -16,11 +16,13 @@ import com.google.inject.Singleton;
 @Singleton
 public class PythonInterpreterFactory {
     @Inject
-    public PythonInterpreterFactory(final Injector injector, final DressDiscoverProperties properties) {
+    public PythonInterpreterFactory(final Injector injector, final GlobalProperties properties) {
         injector.getInstance(PythonApi.class); // Force instantiation
         final Properties pythonInterpreterProperties = new Properties();
         final List<String> pythonPath = new ArrayList<>();
-        pythonPath.add(new File(new File(new File(properties.getHomeDirectoryPath()), "py"), "src").toString());
+        if (properties.getPythonPath().isPresent()) {
+            pythonPath.addAll(properties.getPythonPath().get());
+        }
         final String jythonpath = System.getenv("JYTHONPATH");
         if (jythonpath != null) {
             pythonPath.add(jythonpath);
