@@ -19,7 +19,7 @@ import org.dressdiscover.api.services.collection.NoSuchCollectionException;
 import org.dressdiscover.api.services.institution.InstitutionQueryService;
 import org.dressdiscover.api.services.institution.NoSuchInstitutionException;
 import org.dressdiscover.api.services.object.ObjectCommandService;
-import org.dressdiscover.lib.DressDiscoverProperties;
+import org.dressdiscover.lib.properties.StoreProperties;
 import org.dressdiscover.lib.services.object.LoggingObjectCommandService.Markers;
 import org.dressdiscover.lib.stores.object.ObjectStoreCache;
 import org.dressdiscover.lib.stores.object.ObjectSummaryElasticSearchIndex;
@@ -38,8 +38,7 @@ public class StoreObjectCommandService implements ObjectCommandService {
     public StoreObjectCommandService(final CollectionQueryService collectionQueryService,
             final InstitutionQueryService institutionQueryService, final ObjectStoreCache objectStoreCache,
             final ObjectSummariesResultCache objectSummariesResultCache, final ObjectSummaryCache objectSummaryCache,
-            final ObjectSummaryElasticSearchIndex objectSummaryElasticSearchIndex,
-            final DressDiscoverProperties properties) {
+            final ObjectSummaryElasticSearchIndex objectSummaryElasticSearchIndex, final StoreProperties properties) {
         this.collectionQueryService = checkNotNull(collectionQueryService);
         this.institutionQueryService = checkNotNull(institutionQueryService);
         this.objectStoreCache = checkNotNull(objectStoreCache);

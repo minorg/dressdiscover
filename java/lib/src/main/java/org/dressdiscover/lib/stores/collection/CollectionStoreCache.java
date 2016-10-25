@@ -5,30 +5,26 @@ import static com.google.common.base.Preconditions.checkNotNull;
 import java.util.concurrent.ExecutionException;
 
 import org.dressdiscover.api.models.collection.CollectionId;
-import org.dressdiscover.api.models.institution.Institution;
+import org.dressdiscover.api.models.configuration.InstitutionConfiguration;
 import org.dressdiscover.api.models.institution.InstitutionId;
 import org.dressdiscover.api.services.IoException;
-import org.dressdiscover.api.services.institution.InstitutionQueryService;
+import org.dressdiscover.api.services.configuration.ConfigurationQueryService;
 import org.dressdiscover.api.services.institution.NoSuchInstitutionException;
 import org.dressdiscover.lib.properties.StoreProperties;
 
 import com.google.common.cache.CacheBuilder;
 import com.google.common.cache.CacheLoader;
 import com.google.common.cache.LoadingCache;
-import com.google.common.collect.ImmutableMap;
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
 
 @Singleton
 public class CollectionStoreCache {
     @Inject
-    public CollectionStoreCache(final FileSystemCollectionStore defaultCollectionStore,
-            final CollectionStoreFactoryRegistry collectionStoreFactoryRegistry,
-            final InstitutionQueryService institutionQueryService, final StoreProperties storeProperties) {
-        this.defaultCollectionStore = storeProperties.getCacheCollections()
-                ? new CachingCollectionStore(defaultCollectionStore) : defaultCollectionStore;
+    public CollectionStoreCache(final CollectionStoreFactoryRegistry collectionStoreFactoryRegistry,
+            final ConfigurationQueryService configurationQueryService, final StoreProperties storeProperties) {
         this.collectionStoreFactoryRegistry = checkNotNull(collectionStoreFactoryRegistry);
-        this.institutionQueryService = checkNotNull(institutionQueryService);
+        this.configurationQueryService = checkNotNull(configurationQueryService);
         this.storeProperties = checkNotNull(storeProperties);
     }
 
@@ -55,26 +51,21 @@ public class CollectionStoreCache {
     private final LoadingCache<InstitutionId, CollectionStore> cache = CacheBuilder.newBuilder()
             .build(new CacheLoader<InstitutionId, CollectionStore>() {
                 @Override
-                public CollectionStore load(final InstitutionId key) throws IoException, NoSuchInstitutionException {
-                    final Institution institution = institutionQueryService.getInstitutionById(key);
-                    if (institution.getCollectionStoreUri().isPresent()) {
-                        final CollectionStoreFactory factory = collectionStoreFactoryRegistry
-                                .getCollectionStoreFactory(institution.getCollectionStoreUri().get());
-                        CollectionStore collectionStore = factory.createCollectionStore(
-                                institution.getStoreParameters().or(ImmutableMap.of()), storeProperties,
-                                institution.getCollectionStoreUri().get());
-                        if (storeProperties.getCacheCollections()) {
-                            collectionStore = new CachingCollectionStore(collectionStore);
-                        }
-                        return collectionStore;
-                    } else {
-                        return defaultCollectionStore;
+                public CollectionStore load(final InstitutionId key) throws IoException {
+                    final InstitutionConfiguration institutionConfiguration = configurationQueryService
+                            .getInstitutionConfiguration(key);
+                    final CollectionStoreFactory factory = collectionStoreFactoryRegistry.getCollectionStoreFactory(
+                            institutionConfiguration.getCollectionStoreConfiguration().getType());
+                    CollectionStore collectionStore = factory
+                            .createCollectionStore(institutionConfiguration.getCollectionStoreConfiguration());
+                    if (storeProperties.getCacheCollections()) {
+                        collectionStore = new CachingCollectionStore(collectionStore);
                     }
+                    return collectionStore;
                 }
             });
 
-    private final CollectionStore defaultCollectionStore;
     private final CollectionStoreFactoryRegistry collectionStoreFactoryRegistry;
-    private final InstitutionQueryService institutionQueryService;
+    private final ConfigurationQueryService configurationQueryService;
     private final StoreProperties storeProperties;
 }
