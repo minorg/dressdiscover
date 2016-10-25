@@ -1,4 +1,5 @@
 namespace logging_service_java org.dressdiscover.lib.services.configuration
+namespace servlet_java org.dressdiscover.server.controllers.configuration
 namespace validating_service_java org.dressdiscover.lib.services.configuration
 namespace * dressdiscover.api.services.configuration
 

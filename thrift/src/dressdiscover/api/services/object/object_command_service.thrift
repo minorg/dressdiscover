@@ -1,5 +1,3 @@
-namespace java org.dressdiscover.api.services.object
-namespace json_rpc_client_py dressdiscover.client.services.object
 namespace logging_service_java org.dressdiscover.lib.services.object
 namespace servlet_java org.dressdiscover.server.controllers.object
 namespace validating_service_java org.dressdiscover.lib.services.object

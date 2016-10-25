@@ -1,4 +1,4 @@
-package org.dressdiscover.api.services.configuration;
+package org.dressdiscover.server.controllers.configuration;
 
 @com.google.inject.Singleton
 @SuppressWarnings("serial")

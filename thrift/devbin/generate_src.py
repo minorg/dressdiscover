@@ -64,19 +64,10 @@ class Main(thryft.main.Main):
              os.path.join(ROOT_DIR_PATH, 'java', 'api', 'src', 'gen', 'java', 'org', 'dressdiscover'),
              os.path.join(ROOT_DIR_PATH, 'java', 'lib', 'src', 'gen', 'java', 'org', 'dressdiscover'),
              os.path.join(ROOT_DIR_PATH, 'java', 'server', 'src', 'gen', 'java', 'org', 'dressdiscover'),
-             os.path.join(ROOT_DIR_PATH, 'py', 'src', 'dressdiscover', 'api'),
-             os.path.join(ROOT_DIR_PATH, 'py', 'src', 'dressdiscover', 'client'),
-             os.path.join(ROOT_DIR_PATH, 'py', 'src', 'dressdiscover', 'thirdparty', 'thryft'),
              os.path.join(ROOT_DIR_PATH, 'sql'),
         ):
             if os.path.isdir(dir_path):
                 shutil.rmtree(dir_path)
-
-        for file_path in (
-            os.path.join(ROOT_DIR_PATH, 'py', 'src', 'dressdiscover', 'lib', 'dress_discover_properties.py'),
-        ):
-            if os.path.isfile(file_path):
-                os.unlink(file_path)
 
     def _compile(self):
         thrift_src_root_dir_path = os.path.join(ROOT_DIR_PATH, 'thrift', 'src')
@@ -87,12 +78,6 @@ class Main(thryft.main.Main):
             # and avoids generating code when there's a compilation error
             if pass_i == 1:
                 self._clean()
-
-                # Copy libthryft in
-                shutil.copytree(
-                    os.path.join(THRYFT_ROOT_DIR_PATH, 'lib', 'py', 'src', 'thryft'),
-                    os.path.join(ROOT_DIR_PATH, 'py', 'src', 'dressdiscover', 'thirdparty', 'thryft')
-                )
 
             for thrift_subdir_name in ('api', 'lib'):
                 thrift_src_dir_path = os.path.join(thrift_src_root_dir_path, 'dressdiscover', thrift_subdir_name)
@@ -123,12 +108,6 @@ class Main(thryft.main.Main):
                             **compile_kwds
                         )
 
-                        self._compile_thrift_file(
-                            generator=PropertiesPyGenerator(project_name='dressdiscover'),
-                            out=os.path.join(ROOT_DIR_PATH, 'py', 'src'),
-                            **compile_kwds
-                        )
-
                         continue
 
                     assert thrift_subdir_name == 'api'
@@ -140,12 +119,6 @@ class Main(thryft.main.Main):
                             namespace_prefix='org.',
                         ),
                         out=os.path.join(ROOT_DIR_PATH, 'java', thrift_subdir_name, 'src', 'gen', 'java'),
-                        **compile_kwds
-                    )
-
-                    self._compile_thrift_file(
-                        generator=PyGenerator(),
-                        out=os.path.join(ROOT_DIR_PATH, 'py', 'src'),
                         **compile_kwds
                     )
 
@@ -182,12 +155,6 @@ class Main(thryft.main.Main):
                         self._compile_thrift_file(
                             generator=ValidatingServiceJavaGenerator(namespace_prefix='org.'),
                             out=os.path.join(ROOT_DIR_PATH, 'java', 'lib', 'src', 'gen', 'java'),
-                            **compile_kwds
-                        )
-
-                        self._compile_thrift_file(
-                            generator=JsonRpcClientPyGenerator(libthryft_module_qname='dressdiscover.thirdparty.thryft'),
-                            out=os.path.join(ROOT_DIR_PATH, 'py', 'src'),
                             **compile_kwds
                         )
 
