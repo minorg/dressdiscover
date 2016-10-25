@@ -8,8 +8,15 @@ import java.net.URLEncoder;
 import java.util.Date;
 
 import org.apache.shiro.SecurityUtils;
-import org.dressdiscover.lib.DressDiscoverProperties;
+import org.dressdiscover.api.models.user.User;
+import org.dressdiscover.api.models.user.UserEntry;
+import org.dressdiscover.api.services.IoException;
+import org.dressdiscover.api.services.user.DuplicateUserException;
+import org.dressdiscover.api.services.user.NoSuchUserException;
+import org.dressdiscover.api.services.user.UserCommandService;
+import org.dressdiscover.api.services.user.UserQueryService;
 import org.dressdiscover.lib.models.user.UserEntryPasswordToken;
+import org.dressdiscover.server.properties.ServerProperties;
 import org.thryft.waf.server.controllers.oauth.AbstractOauthLoginController;
 import org.thryft.waf.server.controllers.oauth.GoogleOauthServiceProvider;
 import org.thryft.waf.server.controllers.oauth.OauthUserProfile;
@@ -19,19 +26,11 @@ import com.google.common.collect.ImmutableMap;
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
 
-import org.dressdiscover.api.models.user.User;
-import org.dressdiscover.api.models.user.UserEntry;
-import org.dressdiscover.api.services.IoException;
-import org.dressdiscover.api.services.user.DuplicateUserException;
-import org.dressdiscover.api.services.user.NoSuchUserException;
-import org.dressdiscover.api.services.user.UserCommandService;
-import org.dressdiscover.api.services.user.UserQueryService;
-
 @SuppressWarnings("serial")
 @Singleton
 public class OauthLoginController extends AbstractOauthLoginController<UserEntry> {
     @Inject
-    public OauthLoginController(final DressDiscoverProperties properties, final UserCommandService userCommandService,
+    public OauthLoginController(final ServerProperties properties, final UserCommandService userCommandService,
             final UserQueryService userQueryService) {
         super(ImmutableMap.of("google",
                 new GoogleOauthServiceProvider(properties.getGoogleOauthKey(), properties.getGoogleOauthSecret())));

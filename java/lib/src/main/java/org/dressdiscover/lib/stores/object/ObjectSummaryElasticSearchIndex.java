@@ -7,7 +7,8 @@ import org.dressdiscover.api.models.object.ObjectSummary;
 import org.dressdiscover.api.models.object.ObjectSummaryEntry;
 import org.dressdiscover.api.services.IoException;
 import org.dressdiscover.api.services.object.NoSuchObjectException;
-import org.dressdiscover.lib.DressDiscoverProperties;
+import org.dressdiscover.lib.properties.GlobalProperties;
+import org.dressdiscover.lib.properties.StoreProperties;
 import org.dressdiscover.lib.services.IoExceptions;
 import org.elasticsearch.ElasticsearchException;
 import org.thryft.protocol.OutputProtocolException;
@@ -21,8 +22,9 @@ import com.google.inject.Singleton;
 public class ObjectSummaryElasticSearchIndex
         extends ElasticSearchIndex<IoException, ObjectSummary, ObjectSummaryEntry, ObjectId, NoSuchObjectException> {
     @Inject
-    public ObjectSummaryElasticSearchIndex(final DressDiscoverProperties properties) {
-        super(new ElasticSearchClient(properties.getElasticSearchHost(), properties.getElasticSearchPort()),
+    public ObjectSummaryElasticSearchIndex(final GlobalProperties globalProperties,
+            final StoreProperties storeProperties) {
+        super(new ElasticSearchClient(storeProperties.getElasticSearchHost(), storeProperties.getElasticSearchPort()),
                 DOCUMENT_TYPE, new ExceptionFactory<IoException, ObjectId, NoSuchObjectException>() {
                     @Override
                     public IoException newIoException(final ElasticsearchException cause, final String message) {
@@ -48,7 +50,7 @@ public class ObjectSummaryElasticSearchIndex
                     public NoSuchObjectException newNoSuchModelException(final ObjectId id) {
                         return new NoSuchObjectException();
                     }
-                }, INDEX_NAME_PREFIX + '_' + properties.getEnvironment());
+                }, INDEX_NAME_PREFIX + '_' + globalProperties.getEnvironment());
     }
 
     public final static String DOCUMENT_TYPE = "object_summary";

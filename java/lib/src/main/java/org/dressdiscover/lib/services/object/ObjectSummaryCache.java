@@ -5,7 +5,7 @@ import java.util.concurrent.ExecutionException;
 
 import org.dressdiscover.api.models.object.ObjectId;
 import org.dressdiscover.api.models.object.ObjectSummaryEntry;
-import org.dressdiscover.lib.DressDiscoverProperties;
+import org.dressdiscover.lib.properties.StoreProperties;
 
 import com.google.common.cache.Cache;
 import com.google.common.cache.CacheBuilder;
@@ -15,8 +15,8 @@ import com.google.inject.Singleton;
 @Singleton
 class ObjectSummaryCache {
     @Inject
-    public ObjectSummaryCache(final DressDiscoverProperties properties) {
-        cache = CacheBuilder.newBuilder().maximumSize(properties.getObjectSummaryCacheSize()).build();
+    public ObjectSummaryCache(final StoreProperties storeProperties) {
+        cache = CacheBuilder.newBuilder().maximumSize(storeProperties.getObjectSummaryCacheSize()).build();
     }
 
     public final ObjectSummaryEntry get(final ObjectId key, final Callable<ObjectSummaryEntry> valueLoader)
