@@ -33,45 +33,11 @@
 			</plugin>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-clean-plugin</artifactId>
-				<configuration>
-					<filesets>
-						<fileset>
-							<directory>
-								${basedir}/src/main/webapp/VAADIN/gwt-unitCache
-							</directory>
-						</fileset>
-						<fileset>
-							<directory>
-								${basedir}/src/main/webapp/VAADIN/widgetsets
-							</directory>
-						</fileset>
-					</filesets>
-				</configuration>
-			</plugin>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-resources-plugin</artifactId>
 			</plugin>
 			<plugin>
 				<groupId>org.codehaus.mojo</groupId>
 				<artifactId>build-helper-maven-plugin</artifactId>
-			</plugin>
-			<plugin>
-				<groupId>com.vaadin</groupId>
-				<artifactId>vaadin-maven-plugin</artifactId>
-				<configuration>
-					<strict>false</strict>
-				</configuration>
-				<executions>
-					<execution>
-						<configuration>
-							<modules>
-								<module>org.dressdiscover.gui.GuiWidgetSet</module>
-							</modules>
-						</configuration>
-					</execution>
-				</executions>
 			</plugin>
 		</plugins>
 	</build>

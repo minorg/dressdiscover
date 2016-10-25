@@ -37,7 +37,6 @@
 	<modules>
 		<module>api</module>
 		<module>cli</module>
-		<module>gui</module>
 		<module>lib</module>
 		<module>server</module>
 		<module>testdata</module>
