@@ -9,7 +9,7 @@ from yomeka.client.omeka_rest_api_client import OmekaRestApiClient
 
 
 class OmekaApiObjectStore(_OmekaObjectStore):
-    URI_SCHEME = 'omekaapi'
+    TYPE_STRING = 'omekaapi'
 
     def __init__(self, api_key, uri, **kwds):
         endpoint_url = 'http://' + str(uri.getAuthority().get()) + (uri.getPath().get() if uri.getPath().isPresent() else '')
@@ -45,4 +45,4 @@ class OmekaApiObjectStore(_OmekaObjectStore):
             )
         return ImmutableList.copyOf(objects)
 
-PythonApi.getInstance().getObjectStoreFactoryRegistry().registerObjectStoreFactory(PyObjectStoreFactory(OmekaApiObjectStore), OmekaApiObjectStore.URI_SCHEME)
+PythonApi.getInstance().getObjectStoreFactoryRegistry().registerObjectStoreFactory(PyObjectStoreFactory(OmekaApiObjectStore), OmekaApiObjectStore.TYPE_STRING)

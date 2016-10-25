@@ -12,7 +12,7 @@ from dressdiscover.lib.stores.object.py_object_store_factory import PyObjectStor
 
 
 class OaiPmhFsObjectStore(ObjectStore, _FsStore):
-    URI_SCHEME = 'oaipmhfs'
+    TYPE_STRING = 'oaipmhfs'
 
     def __init__(self, record_mapper, uri, **kwds):
         _FsStore.__init__(self, uri=uri)
@@ -67,4 +67,4 @@ class OaiPmhFsObjectStore(ObjectStore, _FsStore):
             )
 
 if PythonApi.getInstance() is not None:
-    PythonApi.getInstance().getObjectStoreFactoryRegistry().registerObjectStoreFactory(PyObjectStoreFactory(OaiPmhFsObjectStore), OaiPmhFsObjectStore.URI_SCHEME)
+    PythonApi.getInstance().getObjectStoreFactoryRegistry().registerObjectStoreFactory(PyObjectStoreFactory(OaiPmhFsObjectStore), OaiPmhFsObjectStore.TYPE_STRING)

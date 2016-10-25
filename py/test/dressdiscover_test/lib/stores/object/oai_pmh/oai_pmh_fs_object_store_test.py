@@ -30,7 +30,7 @@ class OaiPmhFsObjectStoreTest(unittest.TestCase):
         self.__store = \
             OaiPmhFsObjectStore(
                 record_mapper=TxfcOaiPmhRecordMapper(),
-                uri=Uri.parse(OaiPmhFsObjectStore.URI_SCHEME + ':/' + urllib.pathname2url(data_dir_path))
+                uri=Uri.parse(OaiPmhFsObjectStore.TYPE_STRING + ':/' + urllib.pathname2url(data_dir_path))
             )
 
     def test_getObjectById(self):

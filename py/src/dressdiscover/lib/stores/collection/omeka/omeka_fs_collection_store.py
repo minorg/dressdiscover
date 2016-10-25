@@ -5,13 +5,13 @@ from org.dressdiscover.api.services.collection import NoSuchCollectionException
 from org.dressdiscover.lib.python import PythonApi
 
 from dressdiscover.lib.stores._fs_store import _FsStore
-from dressdiscover.lib.stores.collection.omeka._omeka_collection_query_service import _OmekaCollectionStore
+from dressdiscover.lib.stores.collection.omeka._omeka_collection_store import _OmekaCollectionStore
 from dressdiscover.lib.stores.collection.py_collection_store_factory import PyCollectionStoreFactory
 from yomeka.client.omeka_json_parser import OmekaJsonParser
 
 
 class OmekaFsCollectionStore(_OmekaCollectionStore, _FsStore):
-    URI_SCHEME = 'omekafs'
+    TYPE_STRING = 'omekafs'
 
     def __init__(self, *args, **kwds):
         _OmekaCollectionStore.__init__(self, *args, **kwds)
@@ -33,4 +33,4 @@ class OmekaFsCollectionStore(_OmekaCollectionStore, _FsStore):
                     omeka_collections=OmekaJsonParser().parse_collection_dicts(json.loads(f.read()))
                 )
 
-PythonApi.getInstance().getCollectionStoreFactoryRegistry().registerCollectionStoreFactory(PyCollectionStoreFactory(OmekaFsCollectionStore), OmekaFsCollectionStore.URI_SCHEME)
+PythonApi.getInstance().getCollectionStoreFactoryRegistry().registerCollectionStoreFactory(PyCollectionStoreFactory(OmekaFsCollectionStore), OmekaFsCollectionStore.TYPE_STRING)

@@ -1,8 +1,8 @@
-from dressdiscover.api.services.collection.collection_query_service import CollectionQueryService
 from dressdiscover.lib.mappers.omeka.omeka_resource_mapper import OmekaResourceMapper
+from org.dressdiscover.lib.stores.collection import CollectionStore
 
 
-class _OmekaCollectionQueryService(CollectionQueryService):
+class _OmekaCollectionStore(CollectionStore):
     def __init__(self, endpoint_url, resource_mapper=None, **kwds):
         self.__endpoint_url = endpoint_url
         if resource_mapper is None:

@@ -4,6 +4,7 @@
 	<comment></comment>
 	<projects>
 		<project>costume-java-lib</project>
+		<project>dressdiscover-java-lib</project>
 		<project>yomeka-py</project>
 	</projects>
 	<buildSpec>

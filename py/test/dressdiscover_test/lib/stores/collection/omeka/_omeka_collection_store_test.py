@@ -1,10 +1,7 @@
 from unittest.case import TestCase
 
-from dressdiscover.api.models.collection.collection_id import CollectionId
-from dressdiscover.api.models.institution.institution_id import InstitutionId
 
-
-class _OmekaCollectionQueryServiceTest(TestCase):
+class _OmekaCollectionStoreTest(TestCase):
     INSTITUTION_ID = InstitutionId.parse('vccc')
     COLLECTION_ID = CollectionId.parse('vccc/1')
 

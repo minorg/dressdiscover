@@ -13,8 +13,8 @@ from org.dressdiscover.api.models.rights import RightsSet, Rights, RightsType
 from org.dressdiscover.lib.python import PythonApi
 from org.thryft.native_ import Url, Uri
 
-from dressdiscover.lib.stores.collection.omeka.omeka_api_store import OmekaApiCollectionStore  # @UnusedImport
-from dressdiscover.lib.stores.collection.omeka.omeka_fs_store import OmekaFsCollectionStore
+from dressdiscover.lib.stores.collection.omeka.omeka_api_collection_store import OmekaApiCollectionStore  # @UnusedImport
+from dressdiscover.lib.stores.collection.omeka.omeka_fs_collection_store import OmekaFsCollectionStore
 from dressdiscover.lib.stores.object.oai_pmh.oai_pmh_fs_object_store import OaiPmhFsObjectStore
 from dressdiscover.lib.stores.object.omeka.omeka_api_object_store import OmekaApiObjectStore  # Force registration # @UnusedImport
 from dressdiscover.lib.stores.object.omeka.omeka_fs_object_store import OmekaFsObjectStore  # Force registration # @UnusedImport
@@ -90,12 +90,12 @@ put_institution(
 put_collection(
     collection_id=CollectionId.parse('untvca/txfc'),
     institution_id=InstitutionId.parse('untvca'),
-    object_store_uri=Uri.parse(OaiPmhFsObjectStore.URI_SCHEME + ':' + data_file_uri_authority_base + '/untvca/txfc'),
+    object_store_uri=Uri.parse(OaiPmhFsObjectStore.TYPE_STRING + ':' + data_file_uri_authority_base + '/untvca/txfc'),
     title='Texas Fashion Collection'
 )
 
 put_institution(
-    collection_store_uri=Uri.parse(OmekaFsCollectionStore.URI_SCHEME + ':' + data_file_uri_authority_base),
+    collection_store_uri=Uri.parse(OmekaFsCollectionStore.TYPE_STRING + ':' + data_file_uri_authority_base),
     institution_id=InstitutionId.parse('vccc'),
     institution_title='Vassar College Costume Collection',
     institution_url=Url.parse('http://vcomeka.com/vccc/'),
@@ -106,7 +106,7 @@ put_institution(
 )
 
 put_institution(
-    collection_store_uri=Uri.parse(OmekaApiCollectionStore.URI_SCHEME + '://historicdress.org/omeka2/'),
+    collection_store_uri=Uri.parse(OmekaApiCollectionStore.TYPE_STRING + '://historicdress.org/omeka2/'),
     institution_id=InstitutionId.parse('wizard'),
     institution_title='Wizard',
     institution_url=Url.parse('http://historicdress.org/omeka2/'),

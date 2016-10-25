@@ -2,17 +2,16 @@ import json
 from os.path import os
 
 from com.google.common.collect import ImmutableList
-from org.dressdiscover.api.services.object import NoSuchObjectException
-from org.dressdiscover.lib.python import PythonApi
-
 from dressdiscover.lib.stores._fs_store import _FsStore
 from dressdiscover.lib.stores.object.omeka._omeka_object_store import _OmekaObjectStore
 from dressdiscover.lib.stores.object.py_object_store_factory import PyObjectStoreFactory
+from org.dressdiscover.api.services.object import NoSuchObjectException
+from org.dressdiscover.lib.python import PythonApi
 from yomeka.client.omeka_json_parser import OmekaJsonParser
 
 
 class OmekaFsObjectStore(_OmekaObjectStore, _FsStore):
-    URI_SCHEME = 'omekafs'
+    TYPE_STRING = 'omekafs'
 
     def __init__(self, *args, **kwds):
         _OmekaObjectStore.__init__(self, *args, **kwds)
@@ -74,4 +73,4 @@ class OmekaFsObjectStore(_OmekaObjectStore, _FsStore):
         with open(items_file_path) as f:
             return OmekaJsonParser().parse_item_dicts(json.loads(f.read()))
 
-PythonApi.getInstance().getObjectStoreFactoryRegistry().registerObjectStoreFactory(PyObjectStoreFactory(OmekaFsObjectStore), OmekaFsObjectStore.URI_SCHEME)
+PythonApi.getInstance().getObjectStoreFactoryRegistry().registerObjectStoreFactory(PyObjectStoreFactory(OmekaFsObjectStore), OmekaFsObjectStore.TYPE_STRING)

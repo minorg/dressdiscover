@@ -1,7 +1,7 @@
 from org.thryft.native_ import Uri
 
 from dressdiscover.lib.stores.object.omeka.omeka_api_object_store import OmekaApiObjectStore
-from dressdiscover_test.lib.services.collection.omeka_api_test_credentials import OMEKA_API_TEST_API_KEY, \
+from dressdiscover_test.lib.stores.collection.omeka.omeka_api_test_credentials import OMEKA_API_TEST_API_KEY, \
     OMEKA_API_TEST_ENDPOINT_URL
 from dressdiscover_test.lib.stores.object.omeka._omeka_object_store_test import _OmekaObjectStoreTest
 
