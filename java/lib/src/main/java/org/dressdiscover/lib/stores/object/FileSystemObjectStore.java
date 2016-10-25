@@ -15,7 +15,6 @@ import org.dressdiscover.api.models.object.ObjectId;
 import org.dressdiscover.api.services.IoException;
 import org.dressdiscover.api.services.object.NoSuchObjectException;
 import org.dressdiscover.lib.properties.GlobalProperties;
-import org.dressdiscover.lib.properties.StoreProperties;
 import org.dressdiscover.lib.stores.AbstractInstitutionCollectionObjectFileSystem;
 import org.slf4j.Logger;
 import org.slf4j.Marker;
@@ -23,15 +22,10 @@ import org.thryft.protocol.InputProtocol;
 import org.thryft.protocol.InputProtocolException;
 import org.thryft.waf.lib.stores.InvalidModelException;
 
-import com.google.inject.Inject;
-import com.google.inject.Singleton;
-
-@Singleton
 public class FileSystemObjectStore extends AbstractInstitutionCollectionObjectFileSystem<Object, NoSuchObjectException>
         implements ObjectStore {
-    @Inject
-    public FileSystemObjectStore(final GlobalProperties globalProperties, final StoreProperties storeProperties) {
-        super(globalProperties, storeProperties);
+    public FileSystemObjectStore(final File dataDirectoryPath, final GlobalProperties globalProperties) {
+        super(dataDirectoryPath, globalProperties);
     }
 
     @Override

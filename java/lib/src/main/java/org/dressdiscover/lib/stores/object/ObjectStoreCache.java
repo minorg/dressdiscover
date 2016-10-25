@@ -27,17 +27,12 @@ public class ObjectStoreCache {
         this.objectStoreFactoryRegistry = checkNotNull(objectStoreFactoryRegistry);
     }
 
-    public final ObjectStore getObjectStore(final CollectionId collectionId)
-            throws IoException, NoSuchCollectionException, NoSuchInstitutionException {
+    public final ObjectStore getObjectStore(final CollectionId collectionId) throws IoException {
         try {
             return cache.get(collectionId);
         } catch (final ExecutionException e) {
             if (e.getCause() instanceof IoException) {
                 throw (IoException) e.getCause();
-            } else if (e.getCause() instanceof NoSuchCollectionException) {
-                throw (NoSuchCollectionException) e.getCause();
-            } else if (e.getCause() instanceof NoSuchInstitutionException) {
-                throw (NoSuchInstitutionException) e.getCause();
             } else {
                 throw new UnsupportedOperationException(e);
             }

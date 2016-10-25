@@ -28,7 +28,7 @@ public class FileSystemInstitutionStore
         implements InstitutionStore {
     @Inject
     public FileSystemInstitutionStore(final GlobalProperties globalProperties, final StoreProperties storeProperties) {
-        super(globalProperties, storeProperties);
+        super(new File(storeProperties.getDataDirectoryPath()), globalProperties);
     }
 
     @Override

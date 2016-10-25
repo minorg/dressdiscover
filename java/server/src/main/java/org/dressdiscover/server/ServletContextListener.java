@@ -2,12 +2,11 @@ package org.dressdiscover.server;
 
 import javax.servlet.ServletContextEvent;
 
+import org.dressdiscover.lib.Site;
 import org.dressdiscover.lib.properties.LibPropertiesModule;
-import org.dressdiscover.lib.python.PythonInterpreterFactory;
 import org.dressdiscover.lib.services.ServicesModule;
 import org.dressdiscover.server.controllers.ServerControllersModule;
 import org.dressdiscover.server.properties.ServerProperties;
-import org.python.util.PythonInterpreter;
 import org.thryft.waf.server.AbstractServletContextListener;
 
 import com.google.inject.AbstractModule;
@@ -24,9 +23,7 @@ public final class ServletContextListener extends AbstractServletContextListener
 
         super.contextInitialized(servletContextEvent);
 
-        final PythonInterpreter pythonInterpreter = injector.getInstance(PythonInterpreterFactory.class)
-                .createPythonInterpreter();
-        pythonInterpreter.exec("import ddsite");
+        injector.getInstance(Site.class).init();
     }
 
     @Override

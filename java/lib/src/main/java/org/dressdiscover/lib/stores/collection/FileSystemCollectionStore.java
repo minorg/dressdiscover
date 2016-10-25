@@ -11,7 +11,6 @@ import org.dressdiscover.api.models.institution.InstitutionId;
 import org.dressdiscover.api.services.IoException;
 import org.dressdiscover.api.services.collection.NoSuchCollectionException;
 import org.dressdiscover.lib.properties.GlobalProperties;
-import org.dressdiscover.lib.properties.StoreProperties;
 import org.dressdiscover.lib.stores.AbstractInstitutionCollectionObjectFileSystem;
 import org.slf4j.Logger;
 import org.slf4j.Marker;
@@ -20,16 +19,12 @@ import org.thryft.protocol.InputProtocolException;
 import org.thryft.waf.lib.stores.InvalidModelException;
 
 import com.google.common.collect.ImmutableList;
-import com.google.inject.Inject;
-import com.google.inject.Singleton;
 
-@Singleton
 public class FileSystemCollectionStore
         extends AbstractInstitutionCollectionObjectFileSystem<Collection, NoSuchCollectionException>
         implements CollectionStore {
-    @Inject
-    public FileSystemCollectionStore(final GlobalProperties globalProperties, final StoreProperties storeProperties) {
-        super(globalProperties, storeProperties);
+    public FileSystemCollectionStore(final File dataDirectoryPath, final GlobalProperties globalProperties) {
+        super(dataDirectoryPath, globalProperties);
     }
 
     @Override

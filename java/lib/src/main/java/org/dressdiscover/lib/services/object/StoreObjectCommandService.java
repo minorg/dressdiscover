@@ -102,22 +102,18 @@ public class StoreObjectCommandService implements ObjectCommandService {
                 try {
                     for (final CollectionEntry collectionEntry : collectionQueryService
                             .getCollectionsByInstitutionId(institutionEntry.getId())) {
-                        try {
-                            for (final ObjectEntry objectEntry : objectStoreCache
-                                    .getObjectStore(collectionEntry.getId()).getObjectsByCollectionId(
-                                            collectionEntry.getId(), logger, Markers.RESUMMARIZE_OBJECTS)) {
-                                objectSummaries.add(ObjectSummaryEntry.create(objectEntry.getId(),
-                                        ObjectSummarizer.getInstance().summarizeObject(objectEntry.getModel())));
-                                if (objectSummaries.size() == resummarizeObjectsBulkRequestSize) {
-                                    objectSummaryElasticSearchIndex.putModels(logger, Markers.RESUMMARIZE_OBJECTS,
-                                            ImmutableList.copyOf(objectSummaries));
-                                    logger.info(Markers.RESUMMARIZE_OBJECTS, "put {} object summaries",
-                                            objectSummaries.size());
-                                    objectSummaries.clear();
-                                }
+                        for (final ObjectEntry objectEntry : objectStoreCache.getObjectStore(collectionEntry.getId())
+                                .getObjectsByCollectionId(collectionEntry.getId(), logger,
+                                        Markers.RESUMMARIZE_OBJECTS)) {
+                            objectSummaries.add(ObjectSummaryEntry.create(objectEntry.getId(),
+                                    ObjectSummarizer.getInstance().summarizeObject(objectEntry.getModel())));
+                            if (objectSummaries.size() == resummarizeObjectsBulkRequestSize) {
+                                objectSummaryElasticSearchIndex.putModels(logger, Markers.RESUMMARIZE_OBJECTS,
+                                        ImmutableList.copyOf(objectSummaries));
+                                logger.info(Markers.RESUMMARIZE_OBJECTS, "put {} object summaries",
+                                        objectSummaries.size());
+                                objectSummaries.clear();
                             }
-                        } catch (final NoSuchCollectionException e) {
-                            logger.warn(Markers.RESUMMARIZE_OBJECTS, "no such collection {}", collectionEntry.getId());
                         }
                     }
                 } catch (final NoSuchInstitutionException e) {
