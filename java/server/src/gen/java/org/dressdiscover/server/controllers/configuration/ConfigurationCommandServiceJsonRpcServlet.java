@@ -1,10 +1,10 @@
-package org.dressdiscover.server.controllers.object;
+package org.dressdiscover.server.controllers.configuration;
 
 @com.google.inject.Singleton
 @SuppressWarnings("serial")
-public class ObjectQueryServiceJsonRpcServlet extends javax.servlet.http.HttpServlet {
+public class ConfigurationCommandServiceJsonRpcServlet extends javax.servlet.http.HttpServlet {
     @com.google.inject.Inject
-    public ObjectQueryServiceJsonRpcServlet(final org.dressdiscover.api.services.object.ObjectQueryService service) {
+    public ConfigurationCommandServiceJsonRpcServlet(final org.dressdiscover.api.services.configuration.ConfigurationCommandService service) {
         this.service = service;
     }
 
@@ -46,8 +46,8 @@ public class ObjectQueryServiceJsonRpcServlet extends javax.servlet.http.HttpSer
             if (messageBegin.getType() != org.thryft.protocol.MessageType.CALL) {
                 throw new org.thryft.protocol.JsonRpcInputProtocolException(-32600, "expected request");
             }
-            if (messageBegin.getName().equals("get_object_by_id")) {
-                doPostGetObjectById(httpServletRequest, httpServletResponse, iprot, messageBegin.getId());
+            if (messageBegin.getName().equals("put_institution_configuration")) {
+                doPostPutInstitutionConfiguration(httpServletRequest, httpServletResponse, iprot, messageBegin.getId());
             } else {
                 __doPostError(httpServletRequest, httpServletResponse, new org.thryft.protocol.JsonRpcErrorResponse(-32601, String.format("the method '%s' does not exist / is not available", messageBegin.getName())), messageBegin.getId());
                 return;
@@ -144,29 +144,19 @@ public class ObjectQueryServiceJsonRpcServlet extends javax.servlet.http.HttpSer
         httpServletResponse.getOutputStream().write(httpServletResponseBody.getBytes("UTF-8"));
     }
 
-    public void doPostGetObjectById(final javax.servlet.http.HttpServletRequest httpServletRequest, final javax.servlet.http.HttpServletResponse httpServletResponse, final org.thryft.protocol.JsonRpcInputProtocol iprot, final Object jsonRpcRequestId) throws java.io.IOException {
-        final org.dressdiscover.api.services.object.ObjectQueryService.Messages.GetObjectByIdRequest serviceRequest;
+    public void doPostPutInstitutionConfiguration(final javax.servlet.http.HttpServletRequest httpServletRequest, final javax.servlet.http.HttpServletResponse httpServletResponse, final org.thryft.protocol.JsonRpcInputProtocol iprot, final Object jsonRpcRequestId) throws java.io.IOException {
+        final org.dressdiscover.api.services.configuration.ConfigurationCommandService.Messages.PutInstitutionConfigurationRequest serviceRequest;
         try {
-            serviceRequest = org.dressdiscover.api.services.object.ObjectQueryService.Messages.GetObjectByIdRequest.readAs(iprot, iprot.getCurrentFieldType(), unknownFieldCallback);
+            serviceRequest = org.dressdiscover.api.services.configuration.ConfigurationCommandService.Messages.PutInstitutionConfigurationRequest.readAs(iprot, iprot.getCurrentFieldType(), unknownFieldCallback);
         } catch (final IllegalArgumentException | org.thryft.protocol.InputProtocolException | NullPointerException e) {
             logger.debug("error deserializing service request: ", e);
             __doPostError(httpServletRequest, httpServletResponse, new org.thryft.protocol.JsonRpcErrorResponse(e, -32602, "invalid JSON-RPC request method parameters: " + String.valueOf(e.getMessage())), jsonRpcRequestId);
             return;
         }
 
-        final org.dressdiscover.api.models.object.Object result;
         try {
-            result = service.getObjectById(serviceRequest.getId());
+            service.putInstitutionConfiguration(serviceRequest.getInstitutionId(), serviceRequest.getInstitutionConfiguration());
         } catch (final org.dressdiscover.api.services.IoException e) {
-            __doPostError(httpServletRequest, httpServletResponse, new org.thryft.protocol.JsonRpcErrorResponse(e, 1, e.getClass().getCanonicalName() + ": " + String.valueOf(e.getMessage())), jsonRpcRequestId);
-            return;
-        } catch (final org.dressdiscover.api.services.collection.NoSuchCollectionException e) {
-            __doPostError(httpServletRequest, httpServletResponse, new org.thryft.protocol.JsonRpcErrorResponse(e, 1, e.getClass().getCanonicalName() + ": " + String.valueOf(e.getMessage())), jsonRpcRequestId);
-            return;
-        } catch (final org.dressdiscover.api.services.institution.NoSuchInstitutionException e) {
-            __doPostError(httpServletRequest, httpServletResponse, new org.thryft.protocol.JsonRpcErrorResponse(e, 1, e.getClass().getCanonicalName() + ": " + String.valueOf(e.getMessage())), jsonRpcRequestId);
-            return;
-        } catch (final org.dressdiscover.api.services.object.NoSuchObjectException e) {
             __doPostError(httpServletRequest, httpServletResponse, new org.thryft.protocol.JsonRpcErrorResponse(e, 1, e.getClass().getCanonicalName() + ": " + String.valueOf(e.getMessage())), jsonRpcRequestId);
             return;
         }
@@ -177,7 +167,8 @@ public class ObjectQueryServiceJsonRpcServlet extends javax.servlet.http.HttpSer
             try {
                 final org.thryft.protocol.JsonRpcOutputProtocol oprot = new org.thryft.protocol.JsonRpcOutputProtocol(new org.thryft.protocol.JacksonJsonOutputProtocol(httpServletResponseBodyWriter));
                 oprot.writeMessageBegin("", org.thryft.protocol.MessageType.REPLY, jsonRpcRequestId);
-                result.writeAsStruct(oprot);
+                oprot.writeStructBegin("response");
+                oprot.writeStructEnd();
                 oprot.writeMessageEnd();
                 oprot.flush();
             } catch (final org.thryft.protocol.OutputProtocolException e) {
@@ -189,7 +180,7 @@ public class ObjectQueryServiceJsonRpcServlet extends javax.servlet.http.HttpSer
         __doPostResponse(httpServletRequest, httpServletResponse, httpServletResponseBody);
     }
 
-    private final static org.slf4j.Logger logger = org.slf4j.LoggerFactory.getLogger(ObjectQueryServiceJsonRpcServlet.class);
+    private final static org.slf4j.Logger logger = org.slf4j.LoggerFactory.getLogger(ConfigurationCommandServiceJsonRpcServlet.class);
     private final static com.google.common.base.Optional<org.thryft.CompoundType.UnknownFieldCallback> unknownFieldCallback = com.google.common.base.Optional.of(new org.thryft.CompoundType.UnknownFieldCallback() { public void apply(final org.thryft.protocol.FieldBegin field) throws org.thryft.protocol.InputProtocolException { throw new org.thryft.protocol.InputProtocolException("unknown field " + field); } });
-    private final org.dressdiscover.api.services.object.ObjectQueryService service;
+    private final org.dressdiscover.api.services.configuration.ConfigurationCommandService service;
 }

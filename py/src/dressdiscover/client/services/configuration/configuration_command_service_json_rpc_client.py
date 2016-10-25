@@ -1,20 +1,16 @@
 from urlparse import urlparse
 import base64
-import dressdiscover.api.models.object.object
-import dressdiscover.api.services.collection.no_such_collection_exception  # @UnusedImport
-import dressdiscover.api.services.institution.no_such_institution_exception  # @UnusedImport
+import dressdiscover.api.services.configuration.configuration_command_service
 import dressdiscover.api.services.io_exception  # @UnusedImport
-import dressdiscover.api.services.object.no_such_object_exception  # @UnusedImport
-import dressdiscover.api.services.object.object_query_service
 import dressdiscover.thirdparty.thryft.protocol.json_input_protocol
 import dressdiscover.thirdparty.thryft.protocol.json_output_protocol
 import json
 import urllib2
 
 
-class ObjectQueryServiceJsonRpcClient(dressdiscover.api.services.object.object_query_service.ObjectQueryService):
+class ConfigurationCommandServiceJsonRpcClient(dressdiscover.api.services.configuration.configuration_command_service.ConfigurationCommandService):
     def __init__(self, api_url, headers=None):
-        dressdiscover.api.services.object.object_query_service.ObjectQueryService.__init__(self)
+        dressdiscover.api.services.configuration.configuration_command_service.ConfigurationCommandService.__init__(self)
 
         if headers is None:
             headers = {}
@@ -24,8 +20,8 @@ class ObjectQueryServiceJsonRpcClient(dressdiscover.api.services.object.object_q
             headers = headers.copy()
 
         api_url = api_url.rstrip('/')
-        if not api_url.endswith('/jsonrpc/object_query'):
-            api_url += '/jsonrpc/object_query'
+        if not api_url.endswith('/jsonrpc/configuration_command'):
+            api_url += '/jsonrpc/configuration_command'
         self.__api_url = api_url.rstrip('/')
         parsed_api_url = urlparse(api_url)
         parsed_api_url_netloc = parsed_api_url.netloc.split('@', 1)
@@ -115,18 +111,20 @@ class ObjectQueryServiceJsonRpcClient(dressdiscover.api.services.object.object_q
 
         return response.get('result')
 
-    def _get_object_by_id(
+    def _put_institution_configuration(
         self,
-        id,  # @ReservedAssignment
+        institution_id,
+        institution_configuration,
     ):
         oprot = dressdiscover.thirdparty.thryft.protocol.json_output_protocol.JsonOutputProtocol()
         oprot.write_struct_begin()
-        oprot.write_field_begin(name='id', type=11, id=None)
-        oprot.write_string(id)
+        oprot.write_field_begin(name='institution_id', type=11, id=None)
+        oprot.write_string(institution_id)
+        oprot.write_field_end()
+        oprot.write_field_begin(name='institution_configuration', type=12, id=None)
+        institution_configuration.write(oprot)
         oprot.write_field_end()
         oprot.write_struct_end()
 
-        return_value = self.__request(method='get_object_by_id', params=oprot.value)
-        iprot = dressdiscover.thirdparty.thryft.protocol.json_input_protocol.JsonInputProtocol(return_value)
-        return dressdiscover.api.models.object.object.Object.read(iprot)
+        self.__request(method='put_institution_configuration', params=oprot.value)
 
