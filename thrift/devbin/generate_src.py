@@ -48,18 +48,6 @@ ELASTIC_SEARCH_INDEX_SETTINGS = \
           }
     }
 
-EXCLUDE_COSTUME_CORE_FEATURE_NAMES = \
-    (
-        'Age',
-        'Condition Term',
-        'Function',
-        'Gender',
-        'Main Color',
-        'Record Type',
-        'Secondary Color',
-        'Socio-Economic Class',
-    )
-
 
 class Main(thryft.main.Main):
     def __init__(self, **kwds):
