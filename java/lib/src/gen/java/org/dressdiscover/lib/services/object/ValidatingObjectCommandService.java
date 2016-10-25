@@ -10,7 +10,7 @@ public class ValidatingObjectCommandService implements org.dressdiscover.api.ser
     }
 
     @Override
-    public final com.google.common.primitives.UnsignedInteger deleteObjectsByCollectionId(final org.dressdiscover.api.models.collection.CollectionId collectionId) throws org.dressdiscover.api.services.IoException, org.dressdiscover.api.services.collection.NoSuchCollectionException, org.dressdiscover.api.services.institution.NoSuchInstitutionException {
+    public final int deleteObjectsByCollectionId(final org.dressdiscover.api.models.collection.CollectionId collectionId) throws org.dressdiscover.api.services.IoException, org.dressdiscover.api.services.collection.NoSuchCollectionException, org.dressdiscover.api.services.institution.NoSuchInstitutionException {
         _validateDeleteObjectsByCollectionIdParameters(collectionId);
         return org.dressdiscover.api.services.object.ObjectCommandService.Messages.DeleteObjectsByCollectionIdResponse.DefaultConstructionValidator.getInstance().validateReturnValue(delegate.deleteObjectsByCollectionId(collectionId));
     }

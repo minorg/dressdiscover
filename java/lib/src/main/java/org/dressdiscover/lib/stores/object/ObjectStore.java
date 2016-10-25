@@ -11,8 +11,8 @@ import org.slf4j.Marker;
 import org.thryft.waf.lib.stores.InvalidModelException;
 
 public interface ObjectStore {
-    public long deleteObjectsByCollectionId(final CollectionId collectionId, final Logger logger,
-            final Marker logMarker) throws IoException;
+    public int deleteObjectsByCollectionId(final CollectionId collectionId, final Logger logger, final Marker logMarker)
+            throws IoException;
 
     public Object getObjectById(final Logger logger, final Marker logMarker, final ObjectId objectId)
             throws InvalidModelException, IoException, NoSuchObjectException;

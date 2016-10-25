@@ -65,7 +65,6 @@ import com.google.common.collect.ForwardingList;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.ImmutableSet;
-import com.google.common.primitives.UnsignedInteger;
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
 
@@ -296,9 +295,9 @@ public class ElasticSearchObjectSummaryQueryService implements ObjectSummaryQuer
                     .setMaterialTexts(ImmutableMap.of()).setSubjectTermTexts(ImmutableMap.of())
                     .setTechniqueTexts(ImmutableMap.of()).setWorkTypeTexts(ImmutableMap.of()).build();
             emptyObjectSummariesResultWithFacets = GetObjectSummariesResult.builder().setFacets(emptyObjectFacets)
-                    .setHits(ImmutableList.of()).setTotalHits(UnsignedInteger.ZERO).build();
+                    .setHits(ImmutableList.of()).setTotalHits(0).build();
             emptyObjectSummariesResultWithoutFacets = GetObjectSummariesResult.builder().setHits(ImmutableList.of())
-                    .setTotalHits(UnsignedInteger.ZERO).build();
+                    .setTotalHits(0).build();
         }
     }
 
@@ -371,8 +370,7 @@ public class ElasticSearchObjectSummaryQueryService implements ObjectSummaryQuer
                             } else {
                                 resultBuilder.setHits(ImmutableList.of());
                             }
-                            resultBuilder
-                                    .setTotalHits(UnsignedInteger.valueOf(searchResponse.getHits().getTotalHits()));
+                            resultBuilder.setTotalHits((int) searchResponse.getHits().getTotalHits());
                             return resultBuilder.build();
                         }
                     });

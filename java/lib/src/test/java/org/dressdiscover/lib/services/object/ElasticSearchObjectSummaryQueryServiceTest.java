@@ -9,15 +9,13 @@ import org.dressdiscover.api.models.institution.InstitutionEntry;
 import org.dressdiscover.api.models.object.ObjectEntry;
 import org.dressdiscover.api.models.object.ObjectFacets;
 import org.dressdiscover.api.models.object.ObjectSummaryEntry;
+import org.dressdiscover.api.services.object.GetObjectSummariesOptions;
 import org.dressdiscover.testdata.TestData;
 import org.junit.Test;
 
 import com.google.common.base.Optional;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableSet;
-import com.google.common.primitives.UnsignedInteger;
-
-import org.dressdiscover.api.services.object.GetObjectSummariesOptions;
 
 public final class ElasticSearchObjectSummaryQueryServiceTest extends ObjectServiceTest {
     @Test
@@ -56,8 +54,9 @@ public final class ElasticSearchObjectSummaryQueryServiceTest extends ObjectServ
     @Test
     public void testGetObjectFacets() throws Exception {
         _putObjects();
-        final ObjectFacets actual = objectSummaryQueryService.getObjectSummaries(Optional
-                .of(GetObjectSummariesOptions.builder().setIncludeFacets(true).setSize(UnsignedInteger.ZERO).build()))
+        final ObjectFacets actual = objectSummaryQueryService
+                .getObjectSummaries(
+                        Optional.of(GetObjectSummariesOptions.builder().setIncludeFacets(true).setSize(0).build()))
                 .getFacets().get();
         assertEquals(ImmutableSet.copyOf(TestData.getInstance().getCategories()), actual.getCategories().keySet());
         assertEquals(TestData.getInstance().getCollections().size(), actual.getCollections().size());
@@ -69,8 +68,8 @@ public final class ElasticSearchObjectSummaryQueryServiceTest extends ObjectServ
     public void testGetObjectSummaries() throws Exception {
         final ImmutableList<ObjectEntry> expected = _putObjects();
         final ImmutableList<ObjectSummaryEntry> actual = objectSummaryQueryService
-                .getObjectSummaries(Optional.of(GetObjectSummariesOptions.builder().setFrom(UnsignedInteger.ZERO)
-                        .setSize(UnsignedInteger.MAX_VALUE).build()))
+                .getObjectSummaries(
+                        Optional.of(GetObjectSummariesOptions.builder().setFrom(0).setSize(Integer.MAX_VALUE).build()))
                 .getHits();
         assertEquals(TestData.getInstance().getObjects().size(), actual.size());
         for (final ObjectEntry expectedEntry : expected) {

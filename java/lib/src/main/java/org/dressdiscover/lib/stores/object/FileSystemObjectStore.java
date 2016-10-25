@@ -35,7 +35,7 @@ public class FileSystemObjectStore extends AbstractInstitutionCollectionObjectFi
     }
 
     @Override
-    public final long deleteObjectsByCollectionId(final CollectionId collectionId, final Logger logger,
+    public final int deleteObjectsByCollectionId(final CollectionId collectionId, final Logger logger,
             final Marker logMarker) throws IoException {
         return _deleteDirectoryContents(false, _getCollectionDirectoryPath(collectionId), logger, logMarker);
     }

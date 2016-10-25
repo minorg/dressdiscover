@@ -28,7 +28,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.google.common.collect.ImmutableList;
-import com.google.common.primitives.UnsignedInteger;
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
 
@@ -49,12 +48,12 @@ public class StoreObjectCommandService implements ObjectCommandService {
     }
 
     @Override
-    public final UnsignedInteger deleteObjectsByCollectionId(final CollectionId collectionId)
+    public final int deleteObjectsByCollectionId(final CollectionId collectionId)
             throws IoException, NoSuchCollectionException, NoSuchInstitutionException {
         __invalidateCaches();
 
-        final UnsignedInteger result = UnsignedInteger.valueOf(objectStoreCache.getObjectStore(collectionId)
-                .deleteObjectsByCollectionId(collectionId, logger, Markers.DELETE_OBJECTS_BY_COLLECTION_ID));
+        final int result = objectStoreCache.getObjectStore(collectionId).deleteObjectsByCollectionId(collectionId,
+                logger, Markers.DELETE_OBJECTS_BY_COLLECTION_ID);
 
         objectSummaryElasticSearchIndex.deleteModels(logger, Markers.DELETE_OBJECTS_BY_COLLECTION_ID,
                 QueryBuilders.boolQuery().filter(QueryBuilders.termQuery(

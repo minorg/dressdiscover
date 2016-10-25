@@ -160,7 +160,7 @@ public class ObjectCommandServiceJsonRpcServlet extends javax.servlet.http.HttpS
             return;
         }
 
-        final com.google.common.primitives.UnsignedInteger result;
+        final int result;
         try {
             result = service.deleteObjectsByCollectionId(serviceRequest.getCollectionId());
         } catch (final org.dressdiscover.api.services.IoException e) {
@@ -180,7 +180,7 @@ public class ObjectCommandServiceJsonRpcServlet extends javax.servlet.http.HttpS
             try {
                 final org.thryft.protocol.JsonRpcOutputProtocol oprot = new org.thryft.protocol.JsonRpcOutputProtocol(new org.thryft.protocol.JacksonJsonOutputProtocol(httpServletResponseBodyWriter));
                 oprot.writeMessageBegin("", org.thryft.protocol.MessageType.REPLY, jsonRpcRequestId);
-                oprot.writeU32(result);
+                oprot.writeI32(result);
                 oprot.writeMessageEnd();
                 oprot.flush();
             } catch (final org.thryft.protocol.OutputProtocolException e) {

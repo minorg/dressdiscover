@@ -4,6 +4,14 @@ import org.dressdiscover.api.models.collection.CollectionId;
 import org.dressdiscover.api.models.institution.InstitutionId;
 import org.dressdiscover.api.models.object.ObjectEntry;
 import org.dressdiscover.api.models.object.ObjectQuery;
+import org.dressdiscover.api.services.collection.CollectionCommandService;
+import org.dressdiscover.api.services.collection.CollectionQueryService;
+import org.dressdiscover.api.services.institution.InstitutionCommandService;
+import org.dressdiscover.api.services.institution.InstitutionQueryService;
+import org.dressdiscover.api.services.object.GetObjectSummariesOptions;
+import org.dressdiscover.api.services.object.ObjectCommandService;
+import org.dressdiscover.api.services.object.ObjectQueryService;
+import org.dressdiscover.api.services.object.ObjectSummaryQueryService;
 import org.dressdiscover.lib.services.ServiceTest;
 import org.dressdiscover.lib.services.collection.CollectionServiceTest;
 import org.dressdiscover.lib.services.institution.InstitutionServiceTest;
@@ -14,16 +22,6 @@ import org.junit.Before;
 
 import com.google.common.base.Optional;
 import com.google.common.collect.ImmutableList;
-import com.google.common.primitives.UnsignedInteger;
-
-import org.dressdiscover.api.services.collection.CollectionCommandService;
-import org.dressdiscover.api.services.collection.CollectionQueryService;
-import org.dressdiscover.api.services.institution.InstitutionCommandService;
-import org.dressdiscover.api.services.institution.InstitutionQueryService;
-import org.dressdiscover.api.services.object.GetObjectSummariesOptions;
-import org.dressdiscover.api.services.object.ObjectCommandService;
-import org.dressdiscover.api.services.object.ObjectQueryService;
-import org.dressdiscover.api.services.object.ObjectSummaryQueryService;
 
 public abstract class ObjectServiceTest extends ServiceTest {
     @Before
@@ -54,9 +52,8 @@ public abstract class ObjectServiceTest extends ServiceTest {
 
     protected final int _getObjectCount(final Optional<ObjectQuery> query) throws Exception {
         return objectSummaryQueryService
-                .getObjectSummaries(
-                        Optional.of(GetObjectSummariesOptions.builder().setSize(UnsignedInteger.ZERO).build()), query)
-                .getTotalHits().intValue();
+                .getObjectSummaries(Optional.of(GetObjectSummariesOptions.builder().setSize(0).build()), query)
+                .getTotalHits();
     }
 
     protected final int _getObjectCountByCollectionId(final CollectionId collectionId) throws Exception {

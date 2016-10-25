@@ -10,10 +10,9 @@ include "dressdiscover/api/models/object/object_id.thrift"
 include "dressdiscover/api/services/collection/no_such_collection_exception.thrift"
 include "dressdiscover/api/services/institution/no_such_institution_exception.thrift"
 include "dressdiscover/api/services/io_exception.thrift"
-include "thryft/native/u32.thrift"
 
 service ObjectCommandService {
-	u32.u32
+	i32
 	delete_objects_by_collection_id(
 		collection_id.CollectionId collection_id
 	) throws (

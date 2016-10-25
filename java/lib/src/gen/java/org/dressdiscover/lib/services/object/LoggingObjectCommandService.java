@@ -24,7 +24,7 @@ public class LoggingObjectCommandService implements org.dressdiscover.api.servic
         this.delegate = com.google.common.base.Preconditions.checkNotNull(delegate);
     }
 
-    public com.google.common.primitives.UnsignedInteger deleteObjectsByCollectionId(final org.dressdiscover.api.models.collection.CollectionId collectionId) throws org.dressdiscover.api.services.IoException, org.dressdiscover.api.services.collection.NoSuchCollectionException, org.dressdiscover.api.services.institution.NoSuchInstitutionException {
+    public int deleteObjectsByCollectionId(final org.dressdiscover.api.models.collection.CollectionId collectionId) throws org.dressdiscover.api.services.IoException, org.dressdiscover.api.services.collection.NoSuchCollectionException, org.dressdiscover.api.services.institution.NoSuchInstitutionException {
         final StringBuilder __logMessageStringBuilder = new StringBuilder();
         final java.util.List<Object> __logMessageArgs = new java.util.ArrayList<Object>();
 
@@ -34,7 +34,7 @@ public class LoggingObjectCommandService implements org.dressdiscover.api.servic
         __logMessageStringBuilder.append(")");
 
         try {
-            com.google.common.primitives.UnsignedInteger __returnValue = delegate.deleteObjectsByCollectionId(collectionId);
+            int __returnValue = delegate.deleteObjectsByCollectionId(collectionId);
 
             __logMessageStringBuilder.append(" -> {}");
             __logMessageArgs.add(__returnValue);
