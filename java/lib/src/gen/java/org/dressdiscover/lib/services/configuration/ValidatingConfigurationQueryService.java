@@ -10,7 +10,7 @@ public class ValidatingConfigurationQueryService implements org.dressdiscover.ap
     }
 
     @Override
-    public final org.dressdiscover.api.models.configuration.CollectionConfiguration getCollectionConfiguration(final org.dressdiscover.api.models.collection.CollectionId collectionId) throws org.dressdiscover.api.services.IoException, org.dressdiscover.api.services.configuration.NoSuchCollectionConfigurationException {
+    public final org.dressdiscover.api.models.configuration.CollectionConfiguration getCollectionConfiguration(final org.dressdiscover.api.models.collection.CollectionId collectionId) throws org.dressdiscover.api.services.IoException {
         _validateGetCollectionConfigurationParameters(collectionId);
         return org.dressdiscover.api.services.configuration.ConfigurationQueryService.Messages.GetCollectionConfigurationResponse.DefaultConstructionValidator.getInstance().validateReturnValue(delegate.getCollectionConfiguration(collectionId));
     }
@@ -20,7 +20,7 @@ public class ValidatingConfigurationQueryService implements org.dressdiscover.ap
     }
 
     @Override
-    public final org.dressdiscover.api.models.configuration.InstitutionConfiguration getInstitutionConfiguration(final org.dressdiscover.api.models.institution.InstitutionId institutionId) throws org.dressdiscover.api.services.IoException, org.dressdiscover.api.services.configuration.NoSuchInstitutionConfigurationException {
+    public final org.dressdiscover.api.models.configuration.InstitutionConfiguration getInstitutionConfiguration(final org.dressdiscover.api.models.institution.InstitutionId institutionId) throws org.dressdiscover.api.services.IoException {
         _validateGetInstitutionConfigurationParameters(institutionId);
         return org.dressdiscover.api.services.configuration.ConfigurationQueryService.Messages.GetInstitutionConfigurationResponse.DefaultConstructionValidator.getInstance().validateReturnValue(delegate.getInstitutionConfiguration(institutionId));
     }

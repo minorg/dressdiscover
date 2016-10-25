@@ -162,9 +162,6 @@ public class ConfigurationQueryServiceJsonRpcServlet extends javax.servlet.http.
         } catch (final org.dressdiscover.api.services.IoException e) {
             __doPostError(httpServletRequest, httpServletResponse, new org.thryft.protocol.JsonRpcErrorResponse(e, 1, e.getClass().getCanonicalName() + ": " + String.valueOf(e.getMessage())), jsonRpcRequestId);
             return;
-        } catch (final org.dressdiscover.api.services.configuration.NoSuchCollectionConfigurationException e) {
-            __doPostError(httpServletRequest, httpServletResponse, new org.thryft.protocol.JsonRpcErrorResponse(e, 1, e.getClass().getCanonicalName() + ": " + String.valueOf(e.getMessage())), jsonRpcRequestId);
-            return;
         }
 
         final String httpServletResponseBody;
@@ -199,9 +196,6 @@ public class ConfigurationQueryServiceJsonRpcServlet extends javax.servlet.http.
         try {
             result = service.getInstitutionConfiguration(serviceRequest.getInstitutionId());
         } catch (final org.dressdiscover.api.services.IoException e) {
-            __doPostError(httpServletRequest, httpServletResponse, new org.thryft.protocol.JsonRpcErrorResponse(e, 1, e.getClass().getCanonicalName() + ": " + String.valueOf(e.getMessage())), jsonRpcRequestId);
-            return;
-        } catch (final org.dressdiscover.api.services.configuration.NoSuchInstitutionConfigurationException e) {
             __doPostError(httpServletRequest, httpServletResponse, new org.thryft.protocol.JsonRpcErrorResponse(e, 1, e.getClass().getCanonicalName() + ": " + String.valueOf(e.getMessage())), jsonRpcRequestId);
             return;
         }
