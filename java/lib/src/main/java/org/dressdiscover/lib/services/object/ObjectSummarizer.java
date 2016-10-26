@@ -7,6 +7,8 @@ import javax.annotation.Nullable;
 
 import org.dressdiscover.api.models.image.Image;
 import org.dressdiscover.api.models.object.Object;
+import org.dressdiscover.api.models.object.ObjectEntry;
+import org.dressdiscover.api.models.object.ObjectId;
 import org.dressdiscover.api.models.object.ObjectSummary;
 import org.dressdiscover.api.vocabularies.costume_core.color.Color;
 import org.dressdiscover.api.vocabularies.costume_core.structure.Structure;
@@ -40,7 +42,7 @@ public final class ObjectSummarizer {
     private ObjectSummarizer() {
     }
 
-    public ObjectSummary summarizeObject(final Object object) {
+    public ObjectSummary summarizeObject(final Object object, final ObjectId objectId) {
         final ObjectSummary.Builder builder = ObjectSummary.builder();
 
         if (object.getAgents().isPresent()) {
@@ -53,7 +55,7 @@ public final class ObjectSummarizer {
 
         builder.setCategories(object.getCategories());
 
-        builder.setCollectionId(object.getCollectionId());
+        builder.setCollectionId(objectId.getCollectionId());
 
         if (object.getColors().isPresent()) {
             final ImmutableList.Builder<String> colorTextsBuilder = ImmutableList.builder();
@@ -142,7 +144,7 @@ public final class ObjectSummarizer {
             }
         }
 
-        builder.setInstitutionId(object.getInstitutionId());
+        builder.setInstitutionId(objectId.getInstitutionId());
 
         if (object.getLocations().isPresent()) {
             final ImmutableList.Builder<String> locationNameTextsBuilder = ImmutableList.builder();
@@ -250,6 +252,10 @@ public final class ObjectSummarizer {
         }
 
         return builder.build();
+    }
+
+    public ObjectSummary summarizeObject(final ObjectEntry objectEntry) {
+        return summarizeObject(objectEntry.getModel(), objectEntry.getId());
     }
 
     private final static ObjectSummarizer instance = new ObjectSummarizer();

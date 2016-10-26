@@ -1,14 +1,11 @@
 namespace * dressdiscover.api.models.collection
 
-include "dressdiscover/api/models/institution/institution_id.thrift"
 include "dressdiscover/api/vocabularies/vra_core/location/location_set.thrift"
 include "dressdiscover/api/vocabularies/vra_core/work_type/work_type_set.thrift"
 include "thryft/native/url.thrift"
 
 // @java_implements org.thryft.waf.api.models.Model
 struct Collection {
-	1: institution_id.InstitutionId institution_id;
-
 	// @validation {"minLength": 1}
 	2: string title;
 

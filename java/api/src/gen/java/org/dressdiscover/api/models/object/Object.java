@@ -3,8 +3,6 @@ package org.dressdiscover.api.models.object;
 public final class Object implements org.thryft.Struct, org.thryft.waf.api.models.Model {
     public final static class Builder {
         public Builder() {
-            collectionId = null;
-            institutionId = null;
             titles = null;
             agents = com.google.common.base.Optional.<org.dressdiscover.api.vocabularies.vra_core.agent.AgentSet> absent();
             categories = com.google.common.base.Optional.<com.google.common.collect.ImmutableList<String>> absent();
@@ -35,8 +33,6 @@ public final class Object implements org.thryft.Struct, org.thryft.waf.api.model
         }
 
         public Builder(final Object other) {
-            this.collectionId = other.getCollectionId();
-            this.institutionId = other.getInstitutionId();
             this.titles = other.getTitles();
             this.agents = other.getAgents();
             this.categories = other.getCategories();
@@ -66,12 +62,12 @@ public final class Object implements org.thryft.Struct, org.thryft.waf.api.model
             this.workTypes = other.getWorkTypes();
         }
 
-        protected Object _build(final org.dressdiscover.api.models.collection.CollectionId collectionId, final org.dressdiscover.api.models.institution.InstitutionId institutionId, final org.dressdiscover.api.vocabularies.vra_core.title.TitleSet titles, final com.google.common.base.Optional<org.dressdiscover.api.vocabularies.vra_core.agent.AgentSet> agents, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> categories, final com.google.common.base.Optional<org.dressdiscover.api.vocabularies.costume_core.closure.ClosureSet> closures, final com.google.common.base.Optional<org.dressdiscover.api.vocabularies.costume_core.color.ColorSet> colors, final com.google.common.base.Optional<org.dressdiscover.api.vocabularies.costume_core.component.ComponentSet> components, final com.google.common.base.Optional<org.dressdiscover.api.vocabularies.costume_core.condition.Condition> condition, final com.google.common.base.Optional<org.dressdiscover.api.vocabularies.vra_core.cultural_context.CulturalContextSet> culturalContexts, final com.google.common.base.Optional<org.dressdiscover.api.vocabularies.vra_core.date.DateSet> dates, final com.google.common.base.Optional<org.dressdiscover.api.vocabularies.vra_core.description.DescriptionSet> descriptions, final com.google.common.base.Optional<org.dressdiscover.api.vocabularies.costume_core.gender.Gender> gender, final com.google.common.base.Optional<Boolean> hidden, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<org.dressdiscover.api.models.image.Image>> images, final com.google.common.base.Optional<org.dressdiscover.api.vocabularies.vra_core.inscription.InscriptionSet> inscriptions, final com.google.common.base.Optional<org.dressdiscover.api.vocabularies.vra_core.location.LocationSet> locations, final com.google.common.base.Optional<org.dressdiscover.api.vocabularies.vra_core.material.MaterialSet> materials, final com.google.common.base.Optional<org.dressdiscover.api.vocabularies.vra_core.measurements.MeasurementsSet> measurements, final com.google.common.base.Optional<String> provenance, final com.google.common.base.Optional<Integer> quantity, final com.google.common.base.Optional<org.dressdiscover.api.vocabularies.vra_core.relation.RelationSet> relations, final com.google.common.base.Optional<org.dressdiscover.api.vocabularies.vra_core.rights.RightsSet> rights, final com.google.common.base.Optional<org.dressdiscover.api.vocabularies.costume_core.structure.StructureSet> structures, final com.google.common.base.Optional<org.dressdiscover.api.vocabularies.vra_core.subject.SubjectSet> subjects, final com.google.common.base.Optional<org.dressdiscover.api.vocabularies.vra_core.technique.TechniqueSet> techniques, final com.google.common.base.Optional<org.dressdiscover.api.vocabularies.vra_core.textref.TextrefSet> textrefs, final com.google.common.base.Optional<org.dressdiscover.api.vocabularies.vra_core.view_type.ViewType> viewType, final com.google.common.base.Optional<org.dressdiscover.api.vocabularies.vra_core.work_type.WorkTypeSet> workTypes) {
-            return new Object(collectionId, institutionId, titles, agents, categories, closures, colors, components, condition, culturalContexts, dates, descriptions, gender, hidden, images, inscriptions, locations, materials, measurements, provenance, quantity, relations, rights, structures, subjects, techniques, textrefs, viewType, workTypes, DefaultConstructionValidator.getInstance());
+        protected Object _build(final org.dressdiscover.api.vocabularies.vra_core.title.TitleSet titles, final com.google.common.base.Optional<org.dressdiscover.api.vocabularies.vra_core.agent.AgentSet> agents, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> categories, final com.google.common.base.Optional<org.dressdiscover.api.vocabularies.costume_core.closure.ClosureSet> closures, final com.google.common.base.Optional<org.dressdiscover.api.vocabularies.costume_core.color.ColorSet> colors, final com.google.common.base.Optional<org.dressdiscover.api.vocabularies.costume_core.component.ComponentSet> components, final com.google.common.base.Optional<org.dressdiscover.api.vocabularies.costume_core.condition.Condition> condition, final com.google.common.base.Optional<org.dressdiscover.api.vocabularies.vra_core.cultural_context.CulturalContextSet> culturalContexts, final com.google.common.base.Optional<org.dressdiscover.api.vocabularies.vra_core.date.DateSet> dates, final com.google.common.base.Optional<org.dressdiscover.api.vocabularies.vra_core.description.DescriptionSet> descriptions, final com.google.common.base.Optional<org.dressdiscover.api.vocabularies.costume_core.gender.Gender> gender, final com.google.common.base.Optional<Boolean> hidden, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<org.dressdiscover.api.models.image.Image>> images, final com.google.common.base.Optional<org.dressdiscover.api.vocabularies.vra_core.inscription.InscriptionSet> inscriptions, final com.google.common.base.Optional<org.dressdiscover.api.vocabularies.vra_core.location.LocationSet> locations, final com.google.common.base.Optional<org.dressdiscover.api.vocabularies.vra_core.material.MaterialSet> materials, final com.google.common.base.Optional<org.dressdiscover.api.vocabularies.vra_core.measurements.MeasurementsSet> measurements, final com.google.common.base.Optional<String> provenance, final com.google.common.base.Optional<Integer> quantity, final com.google.common.base.Optional<org.dressdiscover.api.vocabularies.vra_core.relation.RelationSet> relations, final com.google.common.base.Optional<org.dressdiscover.api.vocabularies.vra_core.rights.RightsSet> rights, final com.google.common.base.Optional<org.dressdiscover.api.vocabularies.costume_core.structure.StructureSet> structures, final com.google.common.base.Optional<org.dressdiscover.api.vocabularies.vra_core.subject.SubjectSet> subjects, final com.google.common.base.Optional<org.dressdiscover.api.vocabularies.vra_core.technique.TechniqueSet> techniques, final com.google.common.base.Optional<org.dressdiscover.api.vocabularies.vra_core.textref.TextrefSet> textrefs, final com.google.common.base.Optional<org.dressdiscover.api.vocabularies.vra_core.view_type.ViewType> viewType, final com.google.common.base.Optional<org.dressdiscover.api.vocabularies.vra_core.work_type.WorkTypeSet> workTypes) {
+            return new Object(titles, agents, categories, closures, colors, components, condition, culturalContexts, dates, descriptions, gender, hidden, images, inscriptions, locations, materials, measurements, provenance, quantity, relations, rights, structures, subjects, techniques, textrefs, viewType, workTypes, DefaultConstructionValidator.getInstance());
         }
 
         public Object build() {
-            return _build(collectionId, institutionId, titles, agents, categories, closures, colors, components, condition, culturalContexts, dates, descriptions, gender, hidden, images, inscriptions, locations, materials, measurements, provenance, quantity, relations, rights, structures, subjects, techniques, textrefs, viewType, workTypes);
+            return _build(titles, agents, categories, closures, colors, components, condition, culturalContexts, dates, descriptions, gender, hidden, images, inscriptions, locations, materials, measurements, provenance, quantity, relations, rights, structures, subjects, techniques, textrefs, viewType, workTypes);
         }
 
         public final com.google.common.base.Optional<org.dressdiscover.api.vocabularies.vra_core.agent.AgentSet> getAgents() {
@@ -84,10 +80,6 @@ public final class Object implements org.thryft.Struct, org.thryft.waf.api.model
 
         public final com.google.common.base.Optional<org.dressdiscover.api.vocabularies.costume_core.closure.ClosureSet> getClosures() {
             return closures;
-        }
-
-        public final org.dressdiscover.api.models.collection.CollectionId getCollectionId() {
-            return collectionId;
         }
 
         public final com.google.common.base.Optional<org.dressdiscover.api.vocabularies.costume_core.color.ColorSet> getColors() {
@@ -128,10 +120,6 @@ public final class Object implements org.thryft.Struct, org.thryft.waf.api.model
 
         public final com.google.common.base.Optional<org.dressdiscover.api.vocabularies.vra_core.inscription.InscriptionSet> getInscriptions() {
             return inscriptions;
-        }
-
-        public final org.dressdiscover.api.models.institution.InstitutionId getInstitutionId() {
-            return institutionId;
         }
 
         public final com.google.common.base.Optional<org.dressdiscover.api.vocabularies.vra_core.location.LocationSet> getLocations() {
@@ -211,21 +199,11 @@ public final class Object implements org.thryft.Struct, org.thryft.waf.api.model
         public Builder readAsList(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
             try {
                 final org.thryft.protocol.ListBegin __list = iprot.readListBegin();
-                try {
-                    collectionId = org.dressdiscover.api.models.collection.CollectionId.parse(iprot.readString());
-                } catch (final org.dressdiscover.api.models.collection.InvalidCollectionIdException e) {
-                     throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.COLLECTION_ID, e);
-                }
-                try {
-                    institutionId = org.dressdiscover.api.models.institution.InstitutionId.parse(iprot.readString());
-                } catch (final org.dressdiscover.api.models.institution.InvalidInstitutionIdException e) {
-                     throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.INSTITUTION_ID, e);
-                }
                 titles = org.dressdiscover.api.vocabularies.vra_core.title.TitleSet.readAsStruct(iprot);
-                if (__list.getSize() > 3) {
+                if (__list.getSize() > 1) {
                     agents = com.google.common.base.Optional.of(org.dressdiscover.api.vocabularies.vra_core.agent.AgentSet.readAsStruct(iprot));
                 }
-                if (__list.getSize() > 4) {
+                if (__list.getSize() > 2) {
                     try {
                         categories = com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableList<String>>() {
                             @Override
@@ -247,34 +225,34 @@ public final class Object implements org.thryft.Struct, org.thryft.waf.api.model
                          throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.CATEGORIES, e.getCause());
                     }
                 }
-                if (__list.getSize() > 5) {
+                if (__list.getSize() > 3) {
                     closures = com.google.common.base.Optional.of(org.dressdiscover.api.vocabularies.costume_core.closure.ClosureSet.readAsStruct(iprot));
                 }
-                if (__list.getSize() > 6) {
+                if (__list.getSize() > 4) {
                     colors = com.google.common.base.Optional.of(org.dressdiscover.api.vocabularies.costume_core.color.ColorSet.readAsStruct(iprot));
                 }
-                if (__list.getSize() > 7) {
+                if (__list.getSize() > 5) {
                     components = com.google.common.base.Optional.of(org.dressdiscover.api.vocabularies.costume_core.component.ComponentSet.readAsStruct(iprot));
                 }
-                if (__list.getSize() > 8) {
+                if (__list.getSize() > 6) {
                     condition = com.google.common.base.Optional.of(iprot.readEnum(org.dressdiscover.api.vocabularies.costume_core.condition.Condition.class));
                 }
-                if (__list.getSize() > 9) {
+                if (__list.getSize() > 7) {
                     culturalContexts = com.google.common.base.Optional.of(org.dressdiscover.api.vocabularies.vra_core.cultural_context.CulturalContextSet.readAsStruct(iprot));
                 }
-                if (__list.getSize() > 10) {
+                if (__list.getSize() > 8) {
                     dates = com.google.common.base.Optional.of(org.dressdiscover.api.vocabularies.vra_core.date.DateSet.readAsStruct(iprot));
                 }
-                if (__list.getSize() > 11) {
+                if (__list.getSize() > 9) {
                     descriptions = com.google.common.base.Optional.of(org.dressdiscover.api.vocabularies.vra_core.description.DescriptionSet.readAsStruct(iprot));
                 }
-                if (__list.getSize() > 12) {
+                if (__list.getSize() > 10) {
                     gender = com.google.common.base.Optional.of(iprot.readEnum(org.dressdiscover.api.vocabularies.costume_core.gender.Gender.class));
                 }
-                if (__list.getSize() > 13) {
+                if (__list.getSize() > 11) {
                     hidden = com.google.common.base.Optional.of(iprot.readBool());
                 }
-                if (__list.getSize() > 14) {
+                if (__list.getSize() > 12) {
                     try {
                         images = com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableList<org.dressdiscover.api.models.image.Image>>() {
                             @Override
@@ -296,49 +274,49 @@ public final class Object implements org.thryft.Struct, org.thryft.waf.api.model
                          throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.IMAGES, e.getCause());
                     }
                 }
-                if (__list.getSize() > 15) {
+                if (__list.getSize() > 13) {
                     inscriptions = com.google.common.base.Optional.of(org.dressdiscover.api.vocabularies.vra_core.inscription.InscriptionSet.readAsStruct(iprot));
                 }
-                if (__list.getSize() > 16) {
+                if (__list.getSize() > 14) {
                     locations = com.google.common.base.Optional.of(org.dressdiscover.api.vocabularies.vra_core.location.LocationSet.readAsStruct(iprot));
                 }
-                if (__list.getSize() > 17) {
+                if (__list.getSize() > 15) {
                     materials = com.google.common.base.Optional.of(org.dressdiscover.api.vocabularies.vra_core.material.MaterialSet.readAsStruct(iprot));
                 }
-                if (__list.getSize() > 18) {
+                if (__list.getSize() > 16) {
                     measurements = com.google.common.base.Optional.of(org.dressdiscover.api.vocabularies.vra_core.measurements.MeasurementsSet.readAsStruct(iprot));
                 }
-                if (__list.getSize() > 19) {
+                if (__list.getSize() > 17) {
                     provenance = com.google.common.base.Optional.of(iprot.readString());
                 }
-                if (__list.getSize() > 20) {
+                if (__list.getSize() > 18) {
                     try {
                         quantity = com.google.common.base.Optional.of(iprot.readI32());
                     } catch (final NumberFormatException e) {
                     }
                 }
-                if (__list.getSize() > 21) {
+                if (__list.getSize() > 19) {
                     relations = com.google.common.base.Optional.of(org.dressdiscover.api.vocabularies.vra_core.relation.RelationSet.readAsStruct(iprot));
                 }
-                if (__list.getSize() > 22) {
+                if (__list.getSize() > 20) {
                     rights = com.google.common.base.Optional.of(org.dressdiscover.api.vocabularies.vra_core.rights.RightsSet.readAsStruct(iprot));
                 }
-                if (__list.getSize() > 23) {
+                if (__list.getSize() > 21) {
                     structures = com.google.common.base.Optional.of(org.dressdiscover.api.vocabularies.costume_core.structure.StructureSet.readAsStruct(iprot));
                 }
-                if (__list.getSize() > 24) {
+                if (__list.getSize() > 22) {
                     subjects = com.google.common.base.Optional.of(org.dressdiscover.api.vocabularies.vra_core.subject.SubjectSet.readAsStruct(iprot));
                 }
-                if (__list.getSize() > 25) {
+                if (__list.getSize() > 23) {
                     techniques = com.google.common.base.Optional.of(org.dressdiscover.api.vocabularies.vra_core.technique.TechniqueSet.readAsStruct(iprot));
                 }
-                if (__list.getSize() > 26) {
+                if (__list.getSize() > 24) {
                     textrefs = com.google.common.base.Optional.of(org.dressdiscover.api.vocabularies.vra_core.textref.TextrefSet.readAsStruct(iprot));
                 }
-                if (__list.getSize() > 27) {
+                if (__list.getSize() > 25) {
                     viewType = com.google.common.base.Optional.of(iprot.readEnum(org.dressdiscover.api.vocabularies.vra_core.view_type.ViewType.class));
                 }
-                if (__list.getSize() > 28) {
+                if (__list.getSize() > 26) {
                     workTypes = com.google.common.base.Optional.of(org.dressdiscover.api.vocabularies.vra_core.work_type.WorkTypeSet.readAsStruct(iprot));
                 }
                 iprot.readListEnd();
@@ -361,26 +339,6 @@ public final class Object implements org.thryft.Struct, org.thryft.waf.api.model
                         break;
                     }
                     switch (ifield.getName()) {
-                    case "collection_id": {
-                        if (!ifield.hasId() || ifield.getId() == 1) {
-                            try {
-                                collectionId = org.dressdiscover.api.models.collection.CollectionId.parse(iprot.readString());
-                            } catch (final org.dressdiscover.api.models.collection.InvalidCollectionIdException e) {
-                                 throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.COLLECTION_ID, e);
-                            }
-                        }
-                        break;
-                    }
-                    case "institution_id": {
-                        if (!ifield.hasId() || ifield.getId() == 2) {
-                            try {
-                                institutionId = org.dressdiscover.api.models.institution.InstitutionId.parse(iprot.readString());
-                            } catch (final org.dressdiscover.api.models.institution.InvalidInstitutionIdException e) {
-                                 throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.INSTITUTION_ID, e);
-                            }
-                        }
-                        break;
-                    }
                     case "titles": {
                         if (!ifield.hasId() || ifield.getId() == 3) {
                             titles = org.dressdiscover.api.vocabularies.vra_core.title.TitleSet.readAsStruct(iprot);
@@ -615,8 +573,6 @@ public final class Object implements org.thryft.Struct, org.thryft.waf.api.model
             com.google.common.base.Preconditions.checkNotNull(fieldMetadata);
 
             switch (fieldMetadata) {
-            case COLLECTION_ID: setCollectionId((org.dressdiscover.api.models.collection.CollectionId)value); return this;
-            case INSTITUTION_ID: setInstitutionId((org.dressdiscover.api.models.institution.InstitutionId)value); return this;
             case TITLES: setTitles((org.dressdiscover.api.vocabularies.vra_core.title.TitleSet)value); return this;
             case AGENTS: setAgents((org.dressdiscover.api.vocabularies.vra_core.agent.AgentSet)value); return this;
             case CATEGORIES: setCategories((com.google.common.collect.ImmutableList<String>)value); return this;
@@ -674,11 +630,6 @@ public final class Object implements org.thryft.Struct, org.thryft.waf.api.model
 
         public Builder setClosures(@javax.annotation.Nullable final org.dressdiscover.api.vocabularies.costume_core.closure.ClosureSet closures) {
             return setClosures(com.google.common.base.Optional.fromNullable(closures));
-        }
-
-        public Builder setCollectionId(final org.dressdiscover.api.models.collection.CollectionId collectionId) {
-            this.collectionId = DefaultConstructionValidator.getInstance().validateCollectionId(collectionId);
-            return this;
         }
 
         public Builder setColors(final com.google.common.base.Optional<org.dressdiscover.api.vocabularies.costume_core.color.ColorSet> colors) {
@@ -756,8 +707,6 @@ public final class Object implements org.thryft.Struct, org.thryft.waf.api.model
         public Builder setIfPresent(final Object other) {
             com.google.common.base.Preconditions.checkNotNull(other);
 
-            setCollectionId(other.getCollectionId());
-            setInstitutionId(other.getInstitutionId());
             setTitles(other.getTitles());
             if (other.getAgents().isPresent()) {
                 setAgents(other.getAgents());
@@ -857,11 +806,6 @@ public final class Object implements org.thryft.Struct, org.thryft.waf.api.model
 
         public Builder setInscriptions(@javax.annotation.Nullable final org.dressdiscover.api.vocabularies.vra_core.inscription.InscriptionSet inscriptions) {
             return setInscriptions(com.google.common.base.Optional.fromNullable(inscriptions));
-        }
-
-        public Builder setInstitutionId(final org.dressdiscover.api.models.institution.InstitutionId institutionId) {
-            this.institutionId = DefaultConstructionValidator.getInstance().validateInstitutionId(institutionId);
-            return this;
         }
 
         public Builder setLocations(final com.google.common.base.Optional<org.dressdiscover.api.vocabularies.vra_core.location.LocationSet> locations) {
@@ -1001,8 +945,6 @@ public final class Object implements org.thryft.Struct, org.thryft.waf.api.model
             com.google.common.base.Preconditions.checkNotNull(fieldMetadata);
 
             switch (fieldMetadata) {
-            case COLLECTION_ID: return unsetCollectionId();
-            case INSTITUTION_ID: return unsetInstitutionId();
             case TITLES: return unsetTitles();
             case AGENTS: return unsetAgents();
             case CATEGORIES: return unsetCategories();
@@ -1047,11 +989,6 @@ public final class Object implements org.thryft.Struct, org.thryft.waf.api.model
 
         public Builder unsetClosures() {
             this.closures = com.google.common.base.Optional.<org.dressdiscover.api.vocabularies.costume_core.closure.ClosureSet> absent();
-            return this;
-        }
-
-        public Builder unsetCollectionId() {
-            this.collectionId = null;
             return this;
         }
 
@@ -1102,11 +1039,6 @@ public final class Object implements org.thryft.Struct, org.thryft.waf.api.model
 
         public Builder unsetInscriptions() {
             this.inscriptions = com.google.common.base.Optional.<org.dressdiscover.api.vocabularies.vra_core.inscription.InscriptionSet> absent();
-            return this;
-        }
-
-        public Builder unsetInstitutionId() {
-            this.institutionId = null;
             return this;
         }
 
@@ -1180,8 +1112,6 @@ public final class Object implements org.thryft.Struct, org.thryft.waf.api.model
             return this;
         }
 
-        private org.dressdiscover.api.models.collection.CollectionId collectionId;
-        private org.dressdiscover.api.models.institution.InstitutionId institutionId;
         private org.dressdiscover.api.vocabularies.vra_core.title.TitleSet titles;
         private com.google.common.base.Optional<org.dressdiscover.api.vocabularies.vra_core.agent.AgentSet> agents;
         private com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> categories;
@@ -1245,8 +1175,6 @@ public final class Object implements org.thryft.Struct, org.thryft.waf.api.model
 
     @SuppressWarnings("serial")
     public enum FieldMetadata implements org.thryft.CompoundType.FieldMetadata {
-        COLLECTION_ID("collectionId", new com.google.common.reflect.TypeToken<org.dressdiscover.api.models.collection.CollectionId>() {}, true, 1, "collection_id", org.thryft.protocol.Type.STRING),
-        INSTITUTION_ID("institutionId", new com.google.common.reflect.TypeToken<org.dressdiscover.api.models.institution.InstitutionId>() {}, true, 2, "institution_id", org.thryft.protocol.Type.STRING),
         TITLES("titles", new com.google.common.reflect.TypeToken<org.dressdiscover.api.vocabularies.vra_core.title.TitleSet>() {}, true, 3, "titles", org.thryft.protocol.Type.STRUCT),
         AGENTS("agents", new com.google.common.reflect.TypeToken<org.dressdiscover.api.vocabularies.vra_core.agent.AgentSet>() {}, false, 20, "agents", org.thryft.protocol.Type.STRUCT),
         CATEGORIES("categories", new com.google.common.reflect.TypeToken<com.google.common.collect.ImmutableList<String>>() {}, false, 18, "categories", org.thryft.protocol.Type.LIST),
@@ -1317,8 +1245,6 @@ public final class Object implements org.thryft.Struct, org.thryft.waf.api.model
 
         public static FieldMetadata valueOfJavaName(final String javaName) {
             switch (javaName) {
-            case "collectionId": return COLLECTION_ID;
-            case "institutionId": return INSTITUTION_ID;
             case "titles": return TITLES;
             case "agents": return AGENTS;
             case "categories": return CATEGORIES;
@@ -1353,8 +1279,6 @@ public final class Object implements org.thryft.Struct, org.thryft.waf.api.model
 
         public static FieldMetadata valueOfThriftName(final String thriftName) {
             switch (thriftName) {
-            case "collection_id": return COLLECTION_ID;
-            case "institution_id": return INSTITUTION_ID;
             case "titles": return TITLES;
             case "agents": return AGENTS;
             case "categories": return CATEGORIES;
@@ -1411,10 +1335,6 @@ public final class Object implements org.thryft.Struct, org.thryft.waf.api.model
     }
 
     public interface Validator<ExceptionT extends Exception> {
-        public org.dressdiscover.api.models.collection.CollectionId validateCollectionId(final org.dressdiscover.api.models.collection.CollectionId collectionId) throws ExceptionT;
-
-        public org.dressdiscover.api.models.institution.InstitutionId validateInstitutionId(final org.dressdiscover.api.models.institution.InstitutionId institutionId) throws ExceptionT;
-
         public org.dressdiscover.api.vocabularies.vra_core.title.TitleSet validateTitles(final org.dressdiscover.api.vocabularies.vra_core.title.TitleSet titles) throws ExceptionT;
 
         public com.google.common.base.Optional<org.dressdiscover.api.vocabularies.vra_core.agent.AgentSet> validateAgents(final com.google.common.base.Optional<org.dressdiscover.api.vocabularies.vra_core.agent.AgentSet> agents) throws ExceptionT;
@@ -1479,22 +1399,6 @@ public final class Object implements org.thryft.Struct, org.thryft.waf.api.model
         }
 
         public DefaultConstructionValidator() {
-        }
-
-        @Override
-        public org.dressdiscover.api.models.collection.CollectionId validateCollectionId(final org.dressdiscover.api.models.collection.CollectionId collectionId) throws RuntimeException {
-            if (collectionId == null) {
-                throw new NullPointerException("org.dressdiscover.api.models.object.Object: collectionId is null");
-            }
-            return collectionId;
-        }
-
-        @Override
-        public org.dressdiscover.api.models.institution.InstitutionId validateInstitutionId(final org.dressdiscover.api.models.institution.InstitutionId institutionId) throws RuntimeException {
-            if (institutionId == null) {
-                throw new NullPointerException("org.dressdiscover.api.models.object.Object: institutionId is null");
-            }
-            return institutionId;
         }
 
         @Override
@@ -1812,16 +1716,6 @@ public final class Object implements org.thryft.Struct, org.thryft.waf.api.model
         }
 
         @Override
-        public org.dressdiscover.api.models.collection.CollectionId validateCollectionId(final org.dressdiscover.api.models.collection.CollectionId collectionId) {
-            return collectionId;
-        }
-
-        @Override
-        public org.dressdiscover.api.models.institution.InstitutionId validateInstitutionId(final org.dressdiscover.api.models.institution.InstitutionId institutionId) {
-            return institutionId;
-        }
-
-        @Override
         public org.dressdiscover.api.vocabularies.vra_core.title.TitleSet validateTitles(final org.dressdiscover.api.vocabularies.vra_core.title.TitleSet titles) {
             return titles;
         }
@@ -1968,22 +1862,6 @@ public final class Object implements org.thryft.Struct, org.thryft.waf.api.model
         }
 
         public DefaultReadValidator() {
-        }
-
-        @Override
-        public org.dressdiscover.api.models.collection.CollectionId validateCollectionId(final org.dressdiscover.api.models.collection.CollectionId collectionId) throws org.thryft.protocol.InputProtocolException {
-            if (collectionId == null) {
-                throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.COLLECTION_ID, "org.dressdiscover.api.models.object.Object: collectionId is null");
-            }
-            return collectionId;
-        }
-
-        @Override
-        public org.dressdiscover.api.models.institution.InstitutionId validateInstitutionId(final org.dressdiscover.api.models.institution.InstitutionId institutionId) throws org.thryft.protocol.InputProtocolException {
-            if (institutionId == null) {
-                throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.INSTITUTION_ID, "org.dressdiscover.api.models.object.Object: institutionId is null");
-            }
-            return institutionId;
         }
 
         @Override
@@ -2301,16 +2179,6 @@ public final class Object implements org.thryft.Struct, org.thryft.waf.api.model
         }
 
         @Override
-        public org.dressdiscover.api.models.collection.CollectionId validateCollectionId(final org.dressdiscover.api.models.collection.CollectionId collectionId) {
-            return collectionId;
-        }
-
-        @Override
-        public org.dressdiscover.api.models.institution.InstitutionId validateInstitutionId(final org.dressdiscover.api.models.institution.InstitutionId institutionId) {
-            return institutionId;
-        }
-
-        @Override
         public org.dressdiscover.api.vocabularies.vra_core.title.TitleSet validateTitles(final org.dressdiscover.api.vocabularies.vra_core.title.TitleSet titles) {
             return titles;
         }
@@ -2452,12 +2320,10 @@ public final class Object implements org.thryft.Struct, org.thryft.waf.api.model
      * Copy constructor
      */
     public Object(final Object other) {
-        this(other.getCollectionId(), other.getInstitutionId(), other.getTitles(), other.getAgents(), other.getCategories(), other.getClosures(), other.getColors(), other.getComponents(), other.getCondition(), other.getCulturalContexts(), other.getDates(), other.getDescriptions(), other.getGender(), other.getHidden(), other.getImages(), other.getInscriptions(), other.getLocations(), other.getMaterials(), other.getMeasurements(), other.getProvenance(), other.getQuantity(), other.getRelations(), other.getRights(), other.getStructures(), other.getSubjects(), other.getTechniques(), other.getTextrefs(), other.getViewType(), other.getWorkTypes(), NopConstructionValidator.getInstance());
+        this(other.getTitles(), other.getAgents(), other.getCategories(), other.getClosures(), other.getColors(), other.getComponents(), other.getCondition(), other.getCulturalContexts(), other.getDates(), other.getDescriptions(), other.getGender(), other.getHidden(), other.getImages(), other.getInscriptions(), other.getLocations(), other.getMaterials(), other.getMeasurements(), other.getProvenance(), other.getQuantity(), other.getRelations(), other.getRights(), other.getStructures(), other.getSubjects(), other.getTechniques(), other.getTextrefs(), other.getViewType(), other.getWorkTypes(), NopConstructionValidator.getInstance());
     }
 
-    protected Object(final org.dressdiscover.api.models.collection.CollectionId collectionId, final org.dressdiscover.api.models.institution.InstitutionId institutionId, final org.dressdiscover.api.vocabularies.vra_core.title.TitleSet titles, final com.google.common.base.Optional<org.dressdiscover.api.vocabularies.vra_core.agent.AgentSet> agents, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> categories, final com.google.common.base.Optional<org.dressdiscover.api.vocabularies.costume_core.closure.ClosureSet> closures, final com.google.common.base.Optional<org.dressdiscover.api.vocabularies.costume_core.color.ColorSet> colors, final com.google.common.base.Optional<org.dressdiscover.api.vocabularies.costume_core.component.ComponentSet> components, final com.google.common.base.Optional<org.dressdiscover.api.vocabularies.costume_core.condition.Condition> condition, final com.google.common.base.Optional<org.dressdiscover.api.vocabularies.vra_core.cultural_context.CulturalContextSet> culturalContexts, final com.google.common.base.Optional<org.dressdiscover.api.vocabularies.vra_core.date.DateSet> dates, final com.google.common.base.Optional<org.dressdiscover.api.vocabularies.vra_core.description.DescriptionSet> descriptions, final com.google.common.base.Optional<org.dressdiscover.api.vocabularies.costume_core.gender.Gender> gender, final com.google.common.base.Optional<Boolean> hidden, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<org.dressdiscover.api.models.image.Image>> images, final com.google.common.base.Optional<org.dressdiscover.api.vocabularies.vra_core.inscription.InscriptionSet> inscriptions, final com.google.common.base.Optional<org.dressdiscover.api.vocabularies.vra_core.location.LocationSet> locations, final com.google.common.base.Optional<org.dressdiscover.api.vocabularies.vra_core.material.MaterialSet> materials, final com.google.common.base.Optional<org.dressdiscover.api.vocabularies.vra_core.measurements.MeasurementsSet> measurements, final com.google.common.base.Optional<String> provenance, final com.google.common.base.Optional<Integer> quantity, final com.google.common.base.Optional<org.dressdiscover.api.vocabularies.vra_core.relation.RelationSet> relations, final com.google.common.base.Optional<org.dressdiscover.api.vocabularies.vra_core.rights.RightsSet> rights, final com.google.common.base.Optional<org.dressdiscover.api.vocabularies.costume_core.structure.StructureSet> structures, final com.google.common.base.Optional<org.dressdiscover.api.vocabularies.vra_core.subject.SubjectSet> subjects, final com.google.common.base.Optional<org.dressdiscover.api.vocabularies.vra_core.technique.TechniqueSet> techniques, final com.google.common.base.Optional<org.dressdiscover.api.vocabularies.vra_core.textref.TextrefSet> textrefs, final com.google.common.base.Optional<org.dressdiscover.api.vocabularies.vra_core.view_type.ViewType> viewType, final com.google.common.base.Optional<org.dressdiscover.api.vocabularies.vra_core.work_type.WorkTypeSet> workTypes, ConstructionValidator validator) {
-        this.collectionId = validator.validateCollectionId(collectionId);
-        this.institutionId = validator.validateInstitutionId(institutionId);
+    protected Object(final org.dressdiscover.api.vocabularies.vra_core.title.TitleSet titles, final com.google.common.base.Optional<org.dressdiscover.api.vocabularies.vra_core.agent.AgentSet> agents, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> categories, final com.google.common.base.Optional<org.dressdiscover.api.vocabularies.costume_core.closure.ClosureSet> closures, final com.google.common.base.Optional<org.dressdiscover.api.vocabularies.costume_core.color.ColorSet> colors, final com.google.common.base.Optional<org.dressdiscover.api.vocabularies.costume_core.component.ComponentSet> components, final com.google.common.base.Optional<org.dressdiscover.api.vocabularies.costume_core.condition.Condition> condition, final com.google.common.base.Optional<org.dressdiscover.api.vocabularies.vra_core.cultural_context.CulturalContextSet> culturalContexts, final com.google.common.base.Optional<org.dressdiscover.api.vocabularies.vra_core.date.DateSet> dates, final com.google.common.base.Optional<org.dressdiscover.api.vocabularies.vra_core.description.DescriptionSet> descriptions, final com.google.common.base.Optional<org.dressdiscover.api.vocabularies.costume_core.gender.Gender> gender, final com.google.common.base.Optional<Boolean> hidden, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<org.dressdiscover.api.models.image.Image>> images, final com.google.common.base.Optional<org.dressdiscover.api.vocabularies.vra_core.inscription.InscriptionSet> inscriptions, final com.google.common.base.Optional<org.dressdiscover.api.vocabularies.vra_core.location.LocationSet> locations, final com.google.common.base.Optional<org.dressdiscover.api.vocabularies.vra_core.material.MaterialSet> materials, final com.google.common.base.Optional<org.dressdiscover.api.vocabularies.vra_core.measurements.MeasurementsSet> measurements, final com.google.common.base.Optional<String> provenance, final com.google.common.base.Optional<Integer> quantity, final com.google.common.base.Optional<org.dressdiscover.api.vocabularies.vra_core.relation.RelationSet> relations, final com.google.common.base.Optional<org.dressdiscover.api.vocabularies.vra_core.rights.RightsSet> rights, final com.google.common.base.Optional<org.dressdiscover.api.vocabularies.costume_core.structure.StructureSet> structures, final com.google.common.base.Optional<org.dressdiscover.api.vocabularies.vra_core.subject.SubjectSet> subjects, final com.google.common.base.Optional<org.dressdiscover.api.vocabularies.vra_core.technique.TechniqueSet> techniques, final com.google.common.base.Optional<org.dressdiscover.api.vocabularies.vra_core.textref.TextrefSet> textrefs, final com.google.common.base.Optional<org.dressdiscover.api.vocabularies.vra_core.view_type.ViewType> viewType, final com.google.common.base.Optional<org.dressdiscover.api.vocabularies.vra_core.work_type.WorkTypeSet> workTypes, ConstructionValidator validator) {
         this.titles = validator.validateTitles(titles);
         this.agents = validator.validateAgents(agents);
         this.categories = validator.validateCategories(categories);
@@ -2502,22 +2368,22 @@ public final class Object implements org.thryft.Struct, org.thryft.waf.api.model
     /**
      * Required factory method
      */
-    public static Object create(final org.dressdiscover.api.models.collection.CollectionId collectionId, final org.dressdiscover.api.models.institution.InstitutionId institutionId, final org.dressdiscover.api.vocabularies.vra_core.title.TitleSet titles) {
-        return new Object(collectionId, institutionId, titles, com.google.common.base.Optional.<org.dressdiscover.api.vocabularies.vra_core.agent.AgentSet> absent(), com.google.common.base.Optional.<com.google.common.collect.ImmutableList<String>> absent(), com.google.common.base.Optional.<org.dressdiscover.api.vocabularies.costume_core.closure.ClosureSet> absent(), com.google.common.base.Optional.<org.dressdiscover.api.vocabularies.costume_core.color.ColorSet> absent(), com.google.common.base.Optional.<org.dressdiscover.api.vocabularies.costume_core.component.ComponentSet> absent(), com.google.common.base.Optional.<org.dressdiscover.api.vocabularies.costume_core.condition.Condition> absent(), com.google.common.base.Optional.<org.dressdiscover.api.vocabularies.vra_core.cultural_context.CulturalContextSet> absent(), com.google.common.base.Optional.<org.dressdiscover.api.vocabularies.vra_core.date.DateSet> absent(), com.google.common.base.Optional.<org.dressdiscover.api.vocabularies.vra_core.description.DescriptionSet> absent(), com.google.common.base.Optional.<org.dressdiscover.api.vocabularies.costume_core.gender.Gender> absent(), com.google.common.base.Optional.<Boolean> absent(), com.google.common.base.Optional.<com.google.common.collect.ImmutableList<org.dressdiscover.api.models.image.Image>> absent(), com.google.common.base.Optional.<org.dressdiscover.api.vocabularies.vra_core.inscription.InscriptionSet> absent(), com.google.common.base.Optional.<org.dressdiscover.api.vocabularies.vra_core.location.LocationSet> absent(), com.google.common.base.Optional.<org.dressdiscover.api.vocabularies.vra_core.material.MaterialSet> absent(), com.google.common.base.Optional.<org.dressdiscover.api.vocabularies.vra_core.measurements.MeasurementsSet> absent(), com.google.common.base.Optional.<String> absent(), com.google.common.base.Optional.<Integer> absent(), com.google.common.base.Optional.<org.dressdiscover.api.vocabularies.vra_core.relation.RelationSet> absent(), com.google.common.base.Optional.<org.dressdiscover.api.vocabularies.vra_core.rights.RightsSet> absent(), com.google.common.base.Optional.<org.dressdiscover.api.vocabularies.costume_core.structure.StructureSet> absent(), com.google.common.base.Optional.<org.dressdiscover.api.vocabularies.vra_core.subject.SubjectSet> absent(), com.google.common.base.Optional.<org.dressdiscover.api.vocabularies.vra_core.technique.TechniqueSet> absent(), com.google.common.base.Optional.<org.dressdiscover.api.vocabularies.vra_core.textref.TextrefSet> absent(), com.google.common.base.Optional.<org.dressdiscover.api.vocabularies.vra_core.view_type.ViewType> absent(), com.google.common.base.Optional.<org.dressdiscover.api.vocabularies.vra_core.work_type.WorkTypeSet> absent(), DefaultConstructionValidator.getInstance());
+    public static Object create(final org.dressdiscover.api.vocabularies.vra_core.title.TitleSet titles) {
+        return new Object(titles, com.google.common.base.Optional.<org.dressdiscover.api.vocabularies.vra_core.agent.AgentSet> absent(), com.google.common.base.Optional.<com.google.common.collect.ImmutableList<String>> absent(), com.google.common.base.Optional.<org.dressdiscover.api.vocabularies.costume_core.closure.ClosureSet> absent(), com.google.common.base.Optional.<org.dressdiscover.api.vocabularies.costume_core.color.ColorSet> absent(), com.google.common.base.Optional.<org.dressdiscover.api.vocabularies.costume_core.component.ComponentSet> absent(), com.google.common.base.Optional.<org.dressdiscover.api.vocabularies.costume_core.condition.Condition> absent(), com.google.common.base.Optional.<org.dressdiscover.api.vocabularies.vra_core.cultural_context.CulturalContextSet> absent(), com.google.common.base.Optional.<org.dressdiscover.api.vocabularies.vra_core.date.DateSet> absent(), com.google.common.base.Optional.<org.dressdiscover.api.vocabularies.vra_core.description.DescriptionSet> absent(), com.google.common.base.Optional.<org.dressdiscover.api.vocabularies.costume_core.gender.Gender> absent(), com.google.common.base.Optional.<Boolean> absent(), com.google.common.base.Optional.<com.google.common.collect.ImmutableList<org.dressdiscover.api.models.image.Image>> absent(), com.google.common.base.Optional.<org.dressdiscover.api.vocabularies.vra_core.inscription.InscriptionSet> absent(), com.google.common.base.Optional.<org.dressdiscover.api.vocabularies.vra_core.location.LocationSet> absent(), com.google.common.base.Optional.<org.dressdiscover.api.vocabularies.vra_core.material.MaterialSet> absent(), com.google.common.base.Optional.<org.dressdiscover.api.vocabularies.vra_core.measurements.MeasurementsSet> absent(), com.google.common.base.Optional.<String> absent(), com.google.common.base.Optional.<Integer> absent(), com.google.common.base.Optional.<org.dressdiscover.api.vocabularies.vra_core.relation.RelationSet> absent(), com.google.common.base.Optional.<org.dressdiscover.api.vocabularies.vra_core.rights.RightsSet> absent(), com.google.common.base.Optional.<org.dressdiscover.api.vocabularies.costume_core.structure.StructureSet> absent(), com.google.common.base.Optional.<org.dressdiscover.api.vocabularies.vra_core.subject.SubjectSet> absent(), com.google.common.base.Optional.<org.dressdiscover.api.vocabularies.vra_core.technique.TechniqueSet> absent(), com.google.common.base.Optional.<org.dressdiscover.api.vocabularies.vra_core.textref.TextrefSet> absent(), com.google.common.base.Optional.<org.dressdiscover.api.vocabularies.vra_core.view_type.ViewType> absent(), com.google.common.base.Optional.<org.dressdiscover.api.vocabularies.vra_core.work_type.WorkTypeSet> absent(), DefaultConstructionValidator.getInstance());
     }
 
     /**
      * Total Nullable factory method
      */
-    public static Object create(final org.dressdiscover.api.models.collection.CollectionId collectionId, final org.dressdiscover.api.models.institution.InstitutionId institutionId, final org.dressdiscover.api.vocabularies.vra_core.title.TitleSet titles, final @javax.annotation.Nullable org.dressdiscover.api.vocabularies.vra_core.agent.AgentSet agents, final @javax.annotation.Nullable com.google.common.collect.ImmutableList<String> categories, final @javax.annotation.Nullable org.dressdiscover.api.vocabularies.costume_core.closure.ClosureSet closures, final @javax.annotation.Nullable org.dressdiscover.api.vocabularies.costume_core.color.ColorSet colors, final @javax.annotation.Nullable org.dressdiscover.api.vocabularies.costume_core.component.ComponentSet components, final @javax.annotation.Nullable org.dressdiscover.api.vocabularies.costume_core.condition.Condition condition, final @javax.annotation.Nullable org.dressdiscover.api.vocabularies.vra_core.cultural_context.CulturalContextSet culturalContexts, final @javax.annotation.Nullable org.dressdiscover.api.vocabularies.vra_core.date.DateSet dates, final @javax.annotation.Nullable org.dressdiscover.api.vocabularies.vra_core.description.DescriptionSet descriptions, final @javax.annotation.Nullable org.dressdiscover.api.vocabularies.costume_core.gender.Gender gender, final @javax.annotation.Nullable Boolean hidden, final @javax.annotation.Nullable com.google.common.collect.ImmutableList<org.dressdiscover.api.models.image.Image> images, final @javax.annotation.Nullable org.dressdiscover.api.vocabularies.vra_core.inscription.InscriptionSet inscriptions, final @javax.annotation.Nullable org.dressdiscover.api.vocabularies.vra_core.location.LocationSet locations, final @javax.annotation.Nullable org.dressdiscover.api.vocabularies.vra_core.material.MaterialSet materials, final @javax.annotation.Nullable org.dressdiscover.api.vocabularies.vra_core.measurements.MeasurementsSet measurements, final @javax.annotation.Nullable String provenance, final @javax.annotation.Nullable Integer quantity, final @javax.annotation.Nullable org.dressdiscover.api.vocabularies.vra_core.relation.RelationSet relations, final @javax.annotation.Nullable org.dressdiscover.api.vocabularies.vra_core.rights.RightsSet rights, final @javax.annotation.Nullable org.dressdiscover.api.vocabularies.costume_core.structure.StructureSet structures, final @javax.annotation.Nullable org.dressdiscover.api.vocabularies.vra_core.subject.SubjectSet subjects, final @javax.annotation.Nullable org.dressdiscover.api.vocabularies.vra_core.technique.TechniqueSet techniques, final @javax.annotation.Nullable org.dressdiscover.api.vocabularies.vra_core.textref.TextrefSet textrefs, final @javax.annotation.Nullable org.dressdiscover.api.vocabularies.vra_core.view_type.ViewType viewType, final @javax.annotation.Nullable org.dressdiscover.api.vocabularies.vra_core.work_type.WorkTypeSet workTypes) {
-        return new Object(collectionId, institutionId, titles, com.google.common.base.Optional.fromNullable(agents), com.google.common.base.Optional.fromNullable(categories), com.google.common.base.Optional.fromNullable(closures), com.google.common.base.Optional.fromNullable(colors), com.google.common.base.Optional.fromNullable(components), com.google.common.base.Optional.fromNullable(condition), com.google.common.base.Optional.fromNullable(culturalContexts), com.google.common.base.Optional.fromNullable(dates), com.google.common.base.Optional.fromNullable(descriptions), com.google.common.base.Optional.fromNullable(gender), com.google.common.base.Optional.fromNullable(hidden), com.google.common.base.Optional.fromNullable(images), com.google.common.base.Optional.fromNullable(inscriptions), com.google.common.base.Optional.fromNullable(locations), com.google.common.base.Optional.fromNullable(materials), com.google.common.base.Optional.fromNullable(measurements), com.google.common.base.Optional.fromNullable(provenance), com.google.common.base.Optional.fromNullable(quantity), com.google.common.base.Optional.fromNullable(relations), com.google.common.base.Optional.fromNullable(rights), com.google.common.base.Optional.fromNullable(structures), com.google.common.base.Optional.fromNullable(subjects), com.google.common.base.Optional.fromNullable(techniques), com.google.common.base.Optional.fromNullable(textrefs), com.google.common.base.Optional.fromNullable(viewType), com.google.common.base.Optional.fromNullable(workTypes), DefaultConstructionValidator.getInstance());
+    public static Object create(final org.dressdiscover.api.vocabularies.vra_core.title.TitleSet titles, final @javax.annotation.Nullable org.dressdiscover.api.vocabularies.vra_core.agent.AgentSet agents, final @javax.annotation.Nullable com.google.common.collect.ImmutableList<String> categories, final @javax.annotation.Nullable org.dressdiscover.api.vocabularies.costume_core.closure.ClosureSet closures, final @javax.annotation.Nullable org.dressdiscover.api.vocabularies.costume_core.color.ColorSet colors, final @javax.annotation.Nullable org.dressdiscover.api.vocabularies.costume_core.component.ComponentSet components, final @javax.annotation.Nullable org.dressdiscover.api.vocabularies.costume_core.condition.Condition condition, final @javax.annotation.Nullable org.dressdiscover.api.vocabularies.vra_core.cultural_context.CulturalContextSet culturalContexts, final @javax.annotation.Nullable org.dressdiscover.api.vocabularies.vra_core.date.DateSet dates, final @javax.annotation.Nullable org.dressdiscover.api.vocabularies.vra_core.description.DescriptionSet descriptions, final @javax.annotation.Nullable org.dressdiscover.api.vocabularies.costume_core.gender.Gender gender, final @javax.annotation.Nullable Boolean hidden, final @javax.annotation.Nullable com.google.common.collect.ImmutableList<org.dressdiscover.api.models.image.Image> images, final @javax.annotation.Nullable org.dressdiscover.api.vocabularies.vra_core.inscription.InscriptionSet inscriptions, final @javax.annotation.Nullable org.dressdiscover.api.vocabularies.vra_core.location.LocationSet locations, final @javax.annotation.Nullable org.dressdiscover.api.vocabularies.vra_core.material.MaterialSet materials, final @javax.annotation.Nullable org.dressdiscover.api.vocabularies.vra_core.measurements.MeasurementsSet measurements, final @javax.annotation.Nullable String provenance, final @javax.annotation.Nullable Integer quantity, final @javax.annotation.Nullable org.dressdiscover.api.vocabularies.vra_core.relation.RelationSet relations, final @javax.annotation.Nullable org.dressdiscover.api.vocabularies.vra_core.rights.RightsSet rights, final @javax.annotation.Nullable org.dressdiscover.api.vocabularies.costume_core.structure.StructureSet structures, final @javax.annotation.Nullable org.dressdiscover.api.vocabularies.vra_core.subject.SubjectSet subjects, final @javax.annotation.Nullable org.dressdiscover.api.vocabularies.vra_core.technique.TechniqueSet techniques, final @javax.annotation.Nullable org.dressdiscover.api.vocabularies.vra_core.textref.TextrefSet textrefs, final @javax.annotation.Nullable org.dressdiscover.api.vocabularies.vra_core.view_type.ViewType viewType, final @javax.annotation.Nullable org.dressdiscover.api.vocabularies.vra_core.work_type.WorkTypeSet workTypes) {
+        return new Object(titles, com.google.common.base.Optional.fromNullable(agents), com.google.common.base.Optional.fromNullable(categories), com.google.common.base.Optional.fromNullable(closures), com.google.common.base.Optional.fromNullable(colors), com.google.common.base.Optional.fromNullable(components), com.google.common.base.Optional.fromNullable(condition), com.google.common.base.Optional.fromNullable(culturalContexts), com.google.common.base.Optional.fromNullable(dates), com.google.common.base.Optional.fromNullable(descriptions), com.google.common.base.Optional.fromNullable(gender), com.google.common.base.Optional.fromNullable(hidden), com.google.common.base.Optional.fromNullable(images), com.google.common.base.Optional.fromNullable(inscriptions), com.google.common.base.Optional.fromNullable(locations), com.google.common.base.Optional.fromNullable(materials), com.google.common.base.Optional.fromNullable(measurements), com.google.common.base.Optional.fromNullable(provenance), com.google.common.base.Optional.fromNullable(quantity), com.google.common.base.Optional.fromNullable(relations), com.google.common.base.Optional.fromNullable(rights), com.google.common.base.Optional.fromNullable(structures), com.google.common.base.Optional.fromNullable(subjects), com.google.common.base.Optional.fromNullable(techniques), com.google.common.base.Optional.fromNullable(textrefs), com.google.common.base.Optional.fromNullable(viewType), com.google.common.base.Optional.fromNullable(workTypes), DefaultConstructionValidator.getInstance());
     }
 
     /**
      * Optional factory method
      */
-    public static Object create(final org.dressdiscover.api.models.collection.CollectionId collectionId, final org.dressdiscover.api.models.institution.InstitutionId institutionId, final org.dressdiscover.api.vocabularies.vra_core.title.TitleSet titles, final com.google.common.base.Optional<org.dressdiscover.api.vocabularies.vra_core.agent.AgentSet> agents, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> categories, final com.google.common.base.Optional<org.dressdiscover.api.vocabularies.costume_core.closure.ClosureSet> closures, final com.google.common.base.Optional<org.dressdiscover.api.vocabularies.costume_core.color.ColorSet> colors, final com.google.common.base.Optional<org.dressdiscover.api.vocabularies.costume_core.component.ComponentSet> components, final com.google.common.base.Optional<org.dressdiscover.api.vocabularies.costume_core.condition.Condition> condition, final com.google.common.base.Optional<org.dressdiscover.api.vocabularies.vra_core.cultural_context.CulturalContextSet> culturalContexts, final com.google.common.base.Optional<org.dressdiscover.api.vocabularies.vra_core.date.DateSet> dates, final com.google.common.base.Optional<org.dressdiscover.api.vocabularies.vra_core.description.DescriptionSet> descriptions, final com.google.common.base.Optional<org.dressdiscover.api.vocabularies.costume_core.gender.Gender> gender, final com.google.common.base.Optional<Boolean> hidden, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<org.dressdiscover.api.models.image.Image>> images, final com.google.common.base.Optional<org.dressdiscover.api.vocabularies.vra_core.inscription.InscriptionSet> inscriptions, final com.google.common.base.Optional<org.dressdiscover.api.vocabularies.vra_core.location.LocationSet> locations, final com.google.common.base.Optional<org.dressdiscover.api.vocabularies.vra_core.material.MaterialSet> materials, final com.google.common.base.Optional<org.dressdiscover.api.vocabularies.vra_core.measurements.MeasurementsSet> measurements, final com.google.common.base.Optional<String> provenance, final com.google.common.base.Optional<Integer> quantity, final com.google.common.base.Optional<org.dressdiscover.api.vocabularies.vra_core.relation.RelationSet> relations, final com.google.common.base.Optional<org.dressdiscover.api.vocabularies.vra_core.rights.RightsSet> rights, final com.google.common.base.Optional<org.dressdiscover.api.vocabularies.costume_core.structure.StructureSet> structures, final com.google.common.base.Optional<org.dressdiscover.api.vocabularies.vra_core.subject.SubjectSet> subjects, final com.google.common.base.Optional<org.dressdiscover.api.vocabularies.vra_core.technique.TechniqueSet> techniques, final com.google.common.base.Optional<org.dressdiscover.api.vocabularies.vra_core.textref.TextrefSet> textrefs, final com.google.common.base.Optional<org.dressdiscover.api.vocabularies.vra_core.view_type.ViewType> viewType, final com.google.common.base.Optional<org.dressdiscover.api.vocabularies.vra_core.work_type.WorkTypeSet> workTypes) {
-        return new Object(collectionId, institutionId, titles, agents, categories, closures, colors, components, condition, culturalContexts, dates, descriptions, gender, hidden, images, inscriptions, locations, materials, measurements, provenance, quantity, relations, rights, structures, subjects, techniques, textrefs, viewType, workTypes, DefaultConstructionValidator.getInstance());
+    public static Object create(final org.dressdiscover.api.vocabularies.vra_core.title.TitleSet titles, final com.google.common.base.Optional<org.dressdiscover.api.vocabularies.vra_core.agent.AgentSet> agents, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> categories, final com.google.common.base.Optional<org.dressdiscover.api.vocabularies.costume_core.closure.ClosureSet> closures, final com.google.common.base.Optional<org.dressdiscover.api.vocabularies.costume_core.color.ColorSet> colors, final com.google.common.base.Optional<org.dressdiscover.api.vocabularies.costume_core.component.ComponentSet> components, final com.google.common.base.Optional<org.dressdiscover.api.vocabularies.costume_core.condition.Condition> condition, final com.google.common.base.Optional<org.dressdiscover.api.vocabularies.vra_core.cultural_context.CulturalContextSet> culturalContexts, final com.google.common.base.Optional<org.dressdiscover.api.vocabularies.vra_core.date.DateSet> dates, final com.google.common.base.Optional<org.dressdiscover.api.vocabularies.vra_core.description.DescriptionSet> descriptions, final com.google.common.base.Optional<org.dressdiscover.api.vocabularies.costume_core.gender.Gender> gender, final com.google.common.base.Optional<Boolean> hidden, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<org.dressdiscover.api.models.image.Image>> images, final com.google.common.base.Optional<org.dressdiscover.api.vocabularies.vra_core.inscription.InscriptionSet> inscriptions, final com.google.common.base.Optional<org.dressdiscover.api.vocabularies.vra_core.location.LocationSet> locations, final com.google.common.base.Optional<org.dressdiscover.api.vocabularies.vra_core.material.MaterialSet> materials, final com.google.common.base.Optional<org.dressdiscover.api.vocabularies.vra_core.measurements.MeasurementsSet> measurements, final com.google.common.base.Optional<String> provenance, final com.google.common.base.Optional<Integer> quantity, final com.google.common.base.Optional<org.dressdiscover.api.vocabularies.vra_core.relation.RelationSet> relations, final com.google.common.base.Optional<org.dressdiscover.api.vocabularies.vra_core.rights.RightsSet> rights, final com.google.common.base.Optional<org.dressdiscover.api.vocabularies.costume_core.structure.StructureSet> structures, final com.google.common.base.Optional<org.dressdiscover.api.vocabularies.vra_core.subject.SubjectSet> subjects, final com.google.common.base.Optional<org.dressdiscover.api.vocabularies.vra_core.technique.TechniqueSet> techniques, final com.google.common.base.Optional<org.dressdiscover.api.vocabularies.vra_core.textref.TextrefSet> textrefs, final com.google.common.base.Optional<org.dressdiscover.api.vocabularies.vra_core.view_type.ViewType> viewType, final com.google.common.base.Optional<org.dressdiscover.api.vocabularies.vra_core.work_type.WorkTypeSet> workTypes) {
+        return new Object(titles, agents, categories, closures, colors, components, condition, culturalContexts, dates, descriptions, gender, hidden, images, inscriptions, locations, materials, measurements, provenance, quantity, relations, rights, structures, subjects, techniques, textrefs, viewType, workTypes, DefaultConstructionValidator.getInstance());
     }
 
     @Override
@@ -2530,14 +2396,6 @@ public final class Object implements org.thryft.Struct, org.thryft.waf.api.model
         }
 
         final Object other = (Object)otherObject;
-
-        if (!(getCollectionId().equals(other.getCollectionId()))) {
-            return false;
-        }
-
-        if (!(getInstitutionId().equals(other.getInstitutionId()))) {
-            return false;
-        }
 
         if (!(getTitles().equals(other.getTitles()))) {
             return false;
@@ -2665,8 +2523,6 @@ public final class Object implements org.thryft.Struct, org.thryft.waf.api.model
 
     public java.lang.Object get(final FieldMetadata fieldMetadata) {
         switch (fieldMetadata) {
-        case COLLECTION_ID: return getCollectionId();
-        case INSTITUTION_ID: return getInstitutionId();
         case TITLES: return getTitles();
         case AGENTS: return getAgents();
         case CATEGORIES: return getCategories();
@@ -2711,10 +2567,6 @@ public final class Object implements org.thryft.Struct, org.thryft.waf.api.model
         return closures;
     }
 
-    public final org.dressdiscover.api.models.collection.CollectionId getCollectionId() {
-        return collectionId;
-    }
-
     public final com.google.common.base.Optional<org.dressdiscover.api.vocabularies.costume_core.color.ColorSet> getColors() {
         return colors;
     }
@@ -2753,10 +2605,6 @@ public final class Object implements org.thryft.Struct, org.thryft.waf.api.model
 
     public final com.google.common.base.Optional<org.dressdiscover.api.vocabularies.vra_core.inscription.InscriptionSet> getInscriptions() {
         return inscriptions;
-    }
-
-    public final org.dressdiscover.api.models.institution.InstitutionId getInstitutionId() {
-        return institutionId;
     }
 
     public final com.google.common.base.Optional<org.dressdiscover.api.vocabularies.vra_core.location.LocationSet> getLocations() {
@@ -2821,8 +2669,6 @@ public final class Object implements org.thryft.Struct, org.thryft.waf.api.model
     @Override
     public int hashCode() {
         int hashCode = 17;
-        hashCode = 31 * hashCode + getCollectionId().hashCode();
-        hashCode = 31 * hashCode + getInstitutionId().hashCode();
         hashCode = 31 * hashCode + getTitles().hashCode();
         if (getAgents().isPresent()) {
             hashCode = 31 * hashCode + getAgents().get().hashCode();
@@ -2921,8 +2767,6 @@ public final class Object implements org.thryft.Struct, org.thryft.waf.api.model
     }
 
     public static Object readAsList(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
-        org.dressdiscover.api.models.collection.CollectionId collectionId = null;
-        org.dressdiscover.api.models.institution.InstitutionId institutionId = null;
         org.dressdiscover.api.vocabularies.vra_core.title.TitleSet titles = null;
         com.google.common.base.Optional<org.dressdiscover.api.vocabularies.vra_core.agent.AgentSet> agents = com.google.common.base.Optional.<org.dressdiscover.api.vocabularies.vra_core.agent.AgentSet> absent();
         com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> categories = com.google.common.base.Optional.<com.google.common.collect.ImmutableList<String>> absent();
@@ -2953,21 +2797,11 @@ public final class Object implements org.thryft.Struct, org.thryft.waf.api.model
 
         try {
             final org.thryft.protocol.ListBegin __list = iprot.readListBegin();
-            try {
-                collectionId = org.dressdiscover.api.models.collection.CollectionId.parse(iprot.readString());
-            } catch (final org.dressdiscover.api.models.collection.InvalidCollectionIdException e) {
-                 throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.COLLECTION_ID, e);
-            }
-            try {
-                institutionId = org.dressdiscover.api.models.institution.InstitutionId.parse(iprot.readString());
-            } catch (final org.dressdiscover.api.models.institution.InvalidInstitutionIdException e) {
-                 throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.INSTITUTION_ID, e);
-            }
             titles = org.dressdiscover.api.vocabularies.vra_core.title.TitleSet.readAsStruct(iprot);
-            if (__list.getSize() > 3) {
+            if (__list.getSize() > 1) {
                 agents = com.google.common.base.Optional.of(org.dressdiscover.api.vocabularies.vra_core.agent.AgentSet.readAsStruct(iprot));
             }
-            if (__list.getSize() > 4) {
+            if (__list.getSize() > 2) {
                 try {
                     categories = com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableList<String>>() {
                         @Override
@@ -2989,34 +2823,34 @@ public final class Object implements org.thryft.Struct, org.thryft.waf.api.model
                      throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.CATEGORIES, e.getCause());
                 }
             }
-            if (__list.getSize() > 5) {
+            if (__list.getSize() > 3) {
                 closures = com.google.common.base.Optional.of(org.dressdiscover.api.vocabularies.costume_core.closure.ClosureSet.readAsStruct(iprot));
             }
-            if (__list.getSize() > 6) {
+            if (__list.getSize() > 4) {
                 colors = com.google.common.base.Optional.of(org.dressdiscover.api.vocabularies.costume_core.color.ColorSet.readAsStruct(iprot));
             }
-            if (__list.getSize() > 7) {
+            if (__list.getSize() > 5) {
                 components = com.google.common.base.Optional.of(org.dressdiscover.api.vocabularies.costume_core.component.ComponentSet.readAsStruct(iprot));
             }
-            if (__list.getSize() > 8) {
+            if (__list.getSize() > 6) {
                 condition = com.google.common.base.Optional.of(iprot.readEnum(org.dressdiscover.api.vocabularies.costume_core.condition.Condition.class));
             }
-            if (__list.getSize() > 9) {
+            if (__list.getSize() > 7) {
                 culturalContexts = com.google.common.base.Optional.of(org.dressdiscover.api.vocabularies.vra_core.cultural_context.CulturalContextSet.readAsStruct(iprot));
             }
-            if (__list.getSize() > 10) {
+            if (__list.getSize() > 8) {
                 dates = com.google.common.base.Optional.of(org.dressdiscover.api.vocabularies.vra_core.date.DateSet.readAsStruct(iprot));
             }
-            if (__list.getSize() > 11) {
+            if (__list.getSize() > 9) {
                 descriptions = com.google.common.base.Optional.of(org.dressdiscover.api.vocabularies.vra_core.description.DescriptionSet.readAsStruct(iprot));
             }
-            if (__list.getSize() > 12) {
+            if (__list.getSize() > 10) {
                 gender = com.google.common.base.Optional.of(iprot.readEnum(org.dressdiscover.api.vocabularies.costume_core.gender.Gender.class));
             }
-            if (__list.getSize() > 13) {
+            if (__list.getSize() > 11) {
                 hidden = com.google.common.base.Optional.of(iprot.readBool());
             }
-            if (__list.getSize() > 14) {
+            if (__list.getSize() > 12) {
                 try {
                     images = com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableList<org.dressdiscover.api.models.image.Image>>() {
                         @Override
@@ -3038,56 +2872,56 @@ public final class Object implements org.thryft.Struct, org.thryft.waf.api.model
                      throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.IMAGES, e.getCause());
                 }
             }
-            if (__list.getSize() > 15) {
+            if (__list.getSize() > 13) {
                 inscriptions = com.google.common.base.Optional.of(org.dressdiscover.api.vocabularies.vra_core.inscription.InscriptionSet.readAsStruct(iprot));
             }
-            if (__list.getSize() > 16) {
+            if (__list.getSize() > 14) {
                 locations = com.google.common.base.Optional.of(org.dressdiscover.api.vocabularies.vra_core.location.LocationSet.readAsStruct(iprot));
             }
-            if (__list.getSize() > 17) {
+            if (__list.getSize() > 15) {
                 materials = com.google.common.base.Optional.of(org.dressdiscover.api.vocabularies.vra_core.material.MaterialSet.readAsStruct(iprot));
             }
-            if (__list.getSize() > 18) {
+            if (__list.getSize() > 16) {
                 measurements = com.google.common.base.Optional.of(org.dressdiscover.api.vocabularies.vra_core.measurements.MeasurementsSet.readAsStruct(iprot));
             }
-            if (__list.getSize() > 19) {
+            if (__list.getSize() > 17) {
                 provenance = com.google.common.base.Optional.of(iprot.readString());
             }
-            if (__list.getSize() > 20) {
+            if (__list.getSize() > 18) {
                 try {
                     quantity = com.google.common.base.Optional.of(iprot.readI32());
                 } catch (final NumberFormatException e) {
                 }
             }
-            if (__list.getSize() > 21) {
+            if (__list.getSize() > 19) {
                 relations = com.google.common.base.Optional.of(org.dressdiscover.api.vocabularies.vra_core.relation.RelationSet.readAsStruct(iprot));
             }
-            if (__list.getSize() > 22) {
+            if (__list.getSize() > 20) {
                 rights = com.google.common.base.Optional.of(org.dressdiscover.api.vocabularies.vra_core.rights.RightsSet.readAsStruct(iprot));
             }
-            if (__list.getSize() > 23) {
+            if (__list.getSize() > 21) {
                 structures = com.google.common.base.Optional.of(org.dressdiscover.api.vocabularies.costume_core.structure.StructureSet.readAsStruct(iprot));
             }
-            if (__list.getSize() > 24) {
+            if (__list.getSize() > 22) {
                 subjects = com.google.common.base.Optional.of(org.dressdiscover.api.vocabularies.vra_core.subject.SubjectSet.readAsStruct(iprot));
             }
-            if (__list.getSize() > 25) {
+            if (__list.getSize() > 23) {
                 techniques = com.google.common.base.Optional.of(org.dressdiscover.api.vocabularies.vra_core.technique.TechniqueSet.readAsStruct(iprot));
             }
-            if (__list.getSize() > 26) {
+            if (__list.getSize() > 24) {
                 textrefs = com.google.common.base.Optional.of(org.dressdiscover.api.vocabularies.vra_core.textref.TextrefSet.readAsStruct(iprot));
             }
-            if (__list.getSize() > 27) {
+            if (__list.getSize() > 25) {
                 viewType = com.google.common.base.Optional.of(iprot.readEnum(org.dressdiscover.api.vocabularies.vra_core.view_type.ViewType.class));
             }
-            if (__list.getSize() > 28) {
+            if (__list.getSize() > 26) {
                 workTypes = com.google.common.base.Optional.of(org.dressdiscover.api.vocabularies.vra_core.work_type.WorkTypeSet.readAsStruct(iprot));
             }
             iprot.readListEnd();
         } catch (final RuntimeException e) {
             throw new IllegalStateException(e);
         }
-        return new Object(DefaultReadValidator.getInstance().validateCollectionId(collectionId), DefaultReadValidator.getInstance().validateInstitutionId(institutionId), DefaultReadValidator.getInstance().validateTitles(titles), DefaultReadValidator.getInstance().validateAgents(agents), DefaultReadValidator.getInstance().validateCategories(categories), DefaultReadValidator.getInstance().validateClosures(closures), DefaultReadValidator.getInstance().validateColors(colors), DefaultReadValidator.getInstance().validateComponents(components), DefaultReadValidator.getInstance().validateCondition(condition), DefaultReadValidator.getInstance().validateCulturalContexts(culturalContexts), DefaultReadValidator.getInstance().validateDates(dates), DefaultReadValidator.getInstance().validateDescriptions(descriptions), DefaultReadValidator.getInstance().validateGender(gender), DefaultReadValidator.getInstance().validateHidden(hidden), DefaultReadValidator.getInstance().validateImages(images), DefaultReadValidator.getInstance().validateInscriptions(inscriptions), DefaultReadValidator.getInstance().validateLocations(locations), DefaultReadValidator.getInstance().validateMaterials(materials), DefaultReadValidator.getInstance().validateMeasurements(measurements), DefaultReadValidator.getInstance().validateProvenance(provenance), DefaultReadValidator.getInstance().validateQuantity(quantity), DefaultReadValidator.getInstance().validateRelations(relations), DefaultReadValidator.getInstance().validateRights(rights), DefaultReadValidator.getInstance().validateStructures(structures), DefaultReadValidator.getInstance().validateSubjects(subjects), DefaultReadValidator.getInstance().validateTechniques(techniques), DefaultReadValidator.getInstance().validateTextrefs(textrefs), DefaultReadValidator.getInstance().validateViewType(viewType), DefaultReadValidator.getInstance().validateWorkTypes(workTypes), NopConstructionValidator.getInstance());
+        return new Object(DefaultReadValidator.getInstance().validateTitles(titles), DefaultReadValidator.getInstance().validateAgents(agents), DefaultReadValidator.getInstance().validateCategories(categories), DefaultReadValidator.getInstance().validateClosures(closures), DefaultReadValidator.getInstance().validateColors(colors), DefaultReadValidator.getInstance().validateComponents(components), DefaultReadValidator.getInstance().validateCondition(condition), DefaultReadValidator.getInstance().validateCulturalContexts(culturalContexts), DefaultReadValidator.getInstance().validateDates(dates), DefaultReadValidator.getInstance().validateDescriptions(descriptions), DefaultReadValidator.getInstance().validateGender(gender), DefaultReadValidator.getInstance().validateHidden(hidden), DefaultReadValidator.getInstance().validateImages(images), DefaultReadValidator.getInstance().validateInscriptions(inscriptions), DefaultReadValidator.getInstance().validateLocations(locations), DefaultReadValidator.getInstance().validateMaterials(materials), DefaultReadValidator.getInstance().validateMeasurements(measurements), DefaultReadValidator.getInstance().validateProvenance(provenance), DefaultReadValidator.getInstance().validateQuantity(quantity), DefaultReadValidator.getInstance().validateRelations(relations), DefaultReadValidator.getInstance().validateRights(rights), DefaultReadValidator.getInstance().validateStructures(structures), DefaultReadValidator.getInstance().validateSubjects(subjects), DefaultReadValidator.getInstance().validateTechniques(techniques), DefaultReadValidator.getInstance().validateTextrefs(textrefs), DefaultReadValidator.getInstance().validateViewType(viewType), DefaultReadValidator.getInstance().validateWorkTypes(workTypes), NopConstructionValidator.getInstance());
     }
 
     public static Object readAsStruct(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
@@ -3095,8 +2929,6 @@ public final class Object implements org.thryft.Struct, org.thryft.waf.api.model
     }
 
     public static Object readAsStruct(final org.thryft.protocol.InputProtocol iprot, final com.google.common.base.Optional<UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
-        org.dressdiscover.api.models.collection.CollectionId collectionId = null;
-        org.dressdiscover.api.models.institution.InstitutionId institutionId = null;
         org.dressdiscover.api.vocabularies.vra_core.title.TitleSet titles = null;
         com.google.common.base.Optional<org.dressdiscover.api.vocabularies.vra_core.agent.AgentSet> agents = com.google.common.base.Optional.<org.dressdiscover.api.vocabularies.vra_core.agent.AgentSet> absent();
         com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> categories = com.google.common.base.Optional.<com.google.common.collect.ImmutableList<String>> absent();
@@ -3133,26 +2965,6 @@ public final class Object implements org.thryft.Struct, org.thryft.waf.api.model
                     break;
                 }
                 switch (ifield.getName()) {
-                case "collection_id": {
-                    if (!ifield.hasId() || ifield.getId() == 1) {
-                        try {
-                            collectionId = org.dressdiscover.api.models.collection.CollectionId.parse(iprot.readString());
-                        } catch (final org.dressdiscover.api.models.collection.InvalidCollectionIdException e) {
-                             throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.COLLECTION_ID, e);
-                        }
-                    }
-                    break;
-                }
-                case "institution_id": {
-                    if (!ifield.hasId() || ifield.getId() == 2) {
-                        try {
-                            institutionId = org.dressdiscover.api.models.institution.InstitutionId.parse(iprot.readString());
-                        } catch (final org.dressdiscover.api.models.institution.InvalidInstitutionIdException e) {
-                             throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.INSTITUTION_ID, e);
-                        }
-                    }
-                    break;
-                }
                 case "titles": {
                     if (!ifield.hasId() || ifield.getId() == 3) {
                         titles = org.dressdiscover.api.vocabularies.vra_core.title.TitleSet.readAsStruct(iprot);
@@ -3368,11 +3180,11 @@ public final class Object implements org.thryft.Struct, org.thryft.waf.api.model
         } catch (final RuntimeException e) {
             throw new IllegalStateException(e);
         }
-        return new Object(DefaultReadValidator.getInstance().validateCollectionId(collectionId), DefaultReadValidator.getInstance().validateInstitutionId(institutionId), DefaultReadValidator.getInstance().validateTitles(titles), DefaultReadValidator.getInstance().validateAgents(agents), DefaultReadValidator.getInstance().validateCategories(categories), DefaultReadValidator.getInstance().validateClosures(closures), DefaultReadValidator.getInstance().validateColors(colors), DefaultReadValidator.getInstance().validateComponents(components), DefaultReadValidator.getInstance().validateCondition(condition), DefaultReadValidator.getInstance().validateCulturalContexts(culturalContexts), DefaultReadValidator.getInstance().validateDates(dates), DefaultReadValidator.getInstance().validateDescriptions(descriptions), DefaultReadValidator.getInstance().validateGender(gender), DefaultReadValidator.getInstance().validateHidden(hidden), DefaultReadValidator.getInstance().validateImages(images), DefaultReadValidator.getInstance().validateInscriptions(inscriptions), DefaultReadValidator.getInstance().validateLocations(locations), DefaultReadValidator.getInstance().validateMaterials(materials), DefaultReadValidator.getInstance().validateMeasurements(measurements), DefaultReadValidator.getInstance().validateProvenance(provenance), DefaultReadValidator.getInstance().validateQuantity(quantity), DefaultReadValidator.getInstance().validateRelations(relations), DefaultReadValidator.getInstance().validateRights(rights), DefaultReadValidator.getInstance().validateStructures(structures), DefaultReadValidator.getInstance().validateSubjects(subjects), DefaultReadValidator.getInstance().validateTechniques(techniques), DefaultReadValidator.getInstance().validateTextrefs(textrefs), DefaultReadValidator.getInstance().validateViewType(viewType), DefaultReadValidator.getInstance().validateWorkTypes(workTypes), NopConstructionValidator.getInstance());
+        return new Object(DefaultReadValidator.getInstance().validateTitles(titles), DefaultReadValidator.getInstance().validateAgents(agents), DefaultReadValidator.getInstance().validateCategories(categories), DefaultReadValidator.getInstance().validateClosures(closures), DefaultReadValidator.getInstance().validateColors(colors), DefaultReadValidator.getInstance().validateComponents(components), DefaultReadValidator.getInstance().validateCondition(condition), DefaultReadValidator.getInstance().validateCulturalContexts(culturalContexts), DefaultReadValidator.getInstance().validateDates(dates), DefaultReadValidator.getInstance().validateDescriptions(descriptions), DefaultReadValidator.getInstance().validateGender(gender), DefaultReadValidator.getInstance().validateHidden(hidden), DefaultReadValidator.getInstance().validateImages(images), DefaultReadValidator.getInstance().validateInscriptions(inscriptions), DefaultReadValidator.getInstance().validateLocations(locations), DefaultReadValidator.getInstance().validateMaterials(materials), DefaultReadValidator.getInstance().validateMeasurements(measurements), DefaultReadValidator.getInstance().validateProvenance(provenance), DefaultReadValidator.getInstance().validateQuantity(quantity), DefaultReadValidator.getInstance().validateRelations(relations), DefaultReadValidator.getInstance().validateRights(rights), DefaultReadValidator.getInstance().validateStructures(structures), DefaultReadValidator.getInstance().validateSubjects(subjects), DefaultReadValidator.getInstance().validateTechniques(techniques), DefaultReadValidator.getInstance().validateTextrefs(textrefs), DefaultReadValidator.getInstance().validateViewType(viewType), DefaultReadValidator.getInstance().validateWorkTypes(workTypes), NopConstructionValidator.getInstance());
     }
 
     public Object replaceAgents(final com.google.common.base.Optional<org.dressdiscover.api.vocabularies.vra_core.agent.AgentSet> agents) {
-        return new Object(this.collectionId, this.institutionId, this.titles, DefaultConstructionValidator.getInstance().validateAgents(agents), this.categories, this.closures, this.colors, this.components, this.condition, this.culturalContexts, this.dates, this.descriptions, this.gender, this.hidden, this.images, this.inscriptions, this.locations, this.materials, this.measurements, this.provenance, this.quantity, this.relations, this.rights, this.structures, this.subjects, this.techniques, this.textrefs, this.viewType, this.workTypes, NopConstructionValidator.getInstance());
+        return new Object(this.titles, DefaultConstructionValidator.getInstance().validateAgents(agents), this.categories, this.closures, this.colors, this.components, this.condition, this.culturalContexts, this.dates, this.descriptions, this.gender, this.hidden, this.images, this.inscriptions, this.locations, this.materials, this.measurements, this.provenance, this.quantity, this.relations, this.rights, this.structures, this.subjects, this.techniques, this.textrefs, this.viewType, this.workTypes, NopConstructionValidator.getInstance());
     }
 
     public Object replaceAgents(final org.dressdiscover.api.vocabularies.vra_core.agent.AgentSet agents) {
@@ -3380,7 +3192,7 @@ public final class Object implements org.thryft.Struct, org.thryft.waf.api.model
     }
 
     public Object replaceCategories(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> categories) {
-        return new Object(this.collectionId, this.institutionId, this.titles, this.agents, DefaultConstructionValidator.getInstance().validateCategories(categories), this.closures, this.colors, this.components, this.condition, this.culturalContexts, this.dates, this.descriptions, this.gender, this.hidden, this.images, this.inscriptions, this.locations, this.materials, this.measurements, this.provenance, this.quantity, this.relations, this.rights, this.structures, this.subjects, this.techniques, this.textrefs, this.viewType, this.workTypes, NopConstructionValidator.getInstance());
+        return new Object(this.titles, this.agents, DefaultConstructionValidator.getInstance().validateCategories(categories), this.closures, this.colors, this.components, this.condition, this.culturalContexts, this.dates, this.descriptions, this.gender, this.hidden, this.images, this.inscriptions, this.locations, this.materials, this.measurements, this.provenance, this.quantity, this.relations, this.rights, this.structures, this.subjects, this.techniques, this.textrefs, this.viewType, this.workTypes, NopConstructionValidator.getInstance());
     }
 
     public Object replaceCategories(final com.google.common.collect.ImmutableList<String> categories) {
@@ -3388,19 +3200,15 @@ public final class Object implements org.thryft.Struct, org.thryft.waf.api.model
     }
 
     public Object replaceClosures(final com.google.common.base.Optional<org.dressdiscover.api.vocabularies.costume_core.closure.ClosureSet> closures) {
-        return new Object(this.collectionId, this.institutionId, this.titles, this.agents, this.categories, DefaultConstructionValidator.getInstance().validateClosures(closures), this.colors, this.components, this.condition, this.culturalContexts, this.dates, this.descriptions, this.gender, this.hidden, this.images, this.inscriptions, this.locations, this.materials, this.measurements, this.provenance, this.quantity, this.relations, this.rights, this.structures, this.subjects, this.techniques, this.textrefs, this.viewType, this.workTypes, NopConstructionValidator.getInstance());
+        return new Object(this.titles, this.agents, this.categories, DefaultConstructionValidator.getInstance().validateClosures(closures), this.colors, this.components, this.condition, this.culturalContexts, this.dates, this.descriptions, this.gender, this.hidden, this.images, this.inscriptions, this.locations, this.materials, this.measurements, this.provenance, this.quantity, this.relations, this.rights, this.structures, this.subjects, this.techniques, this.textrefs, this.viewType, this.workTypes, NopConstructionValidator.getInstance());
     }
 
     public Object replaceClosures(final org.dressdiscover.api.vocabularies.costume_core.closure.ClosureSet closures) {
         return replaceClosures(com.google.common.base.Optional.fromNullable(closures));
     }
 
-    public Object replaceCollectionId(final org.dressdiscover.api.models.collection.CollectionId collectionId) {
-        return new Object(DefaultConstructionValidator.getInstance().validateCollectionId(collectionId), this.institutionId, this.titles, this.agents, this.categories, this.closures, this.colors, this.components, this.condition, this.culturalContexts, this.dates, this.descriptions, this.gender, this.hidden, this.images, this.inscriptions, this.locations, this.materials, this.measurements, this.provenance, this.quantity, this.relations, this.rights, this.structures, this.subjects, this.techniques, this.textrefs, this.viewType, this.workTypes, NopConstructionValidator.getInstance());
-    }
-
     public Object replaceColors(final com.google.common.base.Optional<org.dressdiscover.api.vocabularies.costume_core.color.ColorSet> colors) {
-        return new Object(this.collectionId, this.institutionId, this.titles, this.agents, this.categories, this.closures, DefaultConstructionValidator.getInstance().validateColors(colors), this.components, this.condition, this.culturalContexts, this.dates, this.descriptions, this.gender, this.hidden, this.images, this.inscriptions, this.locations, this.materials, this.measurements, this.provenance, this.quantity, this.relations, this.rights, this.structures, this.subjects, this.techniques, this.textrefs, this.viewType, this.workTypes, NopConstructionValidator.getInstance());
+        return new Object(this.titles, this.agents, this.categories, this.closures, DefaultConstructionValidator.getInstance().validateColors(colors), this.components, this.condition, this.culturalContexts, this.dates, this.descriptions, this.gender, this.hidden, this.images, this.inscriptions, this.locations, this.materials, this.measurements, this.provenance, this.quantity, this.relations, this.rights, this.structures, this.subjects, this.techniques, this.textrefs, this.viewType, this.workTypes, NopConstructionValidator.getInstance());
     }
 
     public Object replaceColors(final org.dressdiscover.api.vocabularies.costume_core.color.ColorSet colors) {
@@ -3408,7 +3216,7 @@ public final class Object implements org.thryft.Struct, org.thryft.waf.api.model
     }
 
     public Object replaceComponents(final com.google.common.base.Optional<org.dressdiscover.api.vocabularies.costume_core.component.ComponentSet> components) {
-        return new Object(this.collectionId, this.institutionId, this.titles, this.agents, this.categories, this.closures, this.colors, DefaultConstructionValidator.getInstance().validateComponents(components), this.condition, this.culturalContexts, this.dates, this.descriptions, this.gender, this.hidden, this.images, this.inscriptions, this.locations, this.materials, this.measurements, this.provenance, this.quantity, this.relations, this.rights, this.structures, this.subjects, this.techniques, this.textrefs, this.viewType, this.workTypes, NopConstructionValidator.getInstance());
+        return new Object(this.titles, this.agents, this.categories, this.closures, this.colors, DefaultConstructionValidator.getInstance().validateComponents(components), this.condition, this.culturalContexts, this.dates, this.descriptions, this.gender, this.hidden, this.images, this.inscriptions, this.locations, this.materials, this.measurements, this.provenance, this.quantity, this.relations, this.rights, this.structures, this.subjects, this.techniques, this.textrefs, this.viewType, this.workTypes, NopConstructionValidator.getInstance());
     }
 
     public Object replaceComponents(final org.dressdiscover.api.vocabularies.costume_core.component.ComponentSet components) {
@@ -3416,7 +3224,7 @@ public final class Object implements org.thryft.Struct, org.thryft.waf.api.model
     }
 
     public Object replaceCondition(final com.google.common.base.Optional<org.dressdiscover.api.vocabularies.costume_core.condition.Condition> condition) {
-        return new Object(this.collectionId, this.institutionId, this.titles, this.agents, this.categories, this.closures, this.colors, this.components, DefaultConstructionValidator.getInstance().validateCondition(condition), this.culturalContexts, this.dates, this.descriptions, this.gender, this.hidden, this.images, this.inscriptions, this.locations, this.materials, this.measurements, this.provenance, this.quantity, this.relations, this.rights, this.structures, this.subjects, this.techniques, this.textrefs, this.viewType, this.workTypes, NopConstructionValidator.getInstance());
+        return new Object(this.titles, this.agents, this.categories, this.closures, this.colors, this.components, DefaultConstructionValidator.getInstance().validateCondition(condition), this.culturalContexts, this.dates, this.descriptions, this.gender, this.hidden, this.images, this.inscriptions, this.locations, this.materials, this.measurements, this.provenance, this.quantity, this.relations, this.rights, this.structures, this.subjects, this.techniques, this.textrefs, this.viewType, this.workTypes, NopConstructionValidator.getInstance());
     }
 
     public Object replaceCondition(final org.dressdiscover.api.vocabularies.costume_core.condition.Condition condition) {
@@ -3424,7 +3232,7 @@ public final class Object implements org.thryft.Struct, org.thryft.waf.api.model
     }
 
     public Object replaceCulturalContexts(final com.google.common.base.Optional<org.dressdiscover.api.vocabularies.vra_core.cultural_context.CulturalContextSet> culturalContexts) {
-        return new Object(this.collectionId, this.institutionId, this.titles, this.agents, this.categories, this.closures, this.colors, this.components, this.condition, DefaultConstructionValidator.getInstance().validateCulturalContexts(culturalContexts), this.dates, this.descriptions, this.gender, this.hidden, this.images, this.inscriptions, this.locations, this.materials, this.measurements, this.provenance, this.quantity, this.relations, this.rights, this.structures, this.subjects, this.techniques, this.textrefs, this.viewType, this.workTypes, NopConstructionValidator.getInstance());
+        return new Object(this.titles, this.agents, this.categories, this.closures, this.colors, this.components, this.condition, DefaultConstructionValidator.getInstance().validateCulturalContexts(culturalContexts), this.dates, this.descriptions, this.gender, this.hidden, this.images, this.inscriptions, this.locations, this.materials, this.measurements, this.provenance, this.quantity, this.relations, this.rights, this.structures, this.subjects, this.techniques, this.textrefs, this.viewType, this.workTypes, NopConstructionValidator.getInstance());
     }
 
     public Object replaceCulturalContexts(final org.dressdiscover.api.vocabularies.vra_core.cultural_context.CulturalContextSet culturalContexts) {
@@ -3432,7 +3240,7 @@ public final class Object implements org.thryft.Struct, org.thryft.waf.api.model
     }
 
     public Object replaceDates(final com.google.common.base.Optional<org.dressdiscover.api.vocabularies.vra_core.date.DateSet> dates) {
-        return new Object(this.collectionId, this.institutionId, this.titles, this.agents, this.categories, this.closures, this.colors, this.components, this.condition, this.culturalContexts, DefaultConstructionValidator.getInstance().validateDates(dates), this.descriptions, this.gender, this.hidden, this.images, this.inscriptions, this.locations, this.materials, this.measurements, this.provenance, this.quantity, this.relations, this.rights, this.structures, this.subjects, this.techniques, this.textrefs, this.viewType, this.workTypes, NopConstructionValidator.getInstance());
+        return new Object(this.titles, this.agents, this.categories, this.closures, this.colors, this.components, this.condition, this.culturalContexts, DefaultConstructionValidator.getInstance().validateDates(dates), this.descriptions, this.gender, this.hidden, this.images, this.inscriptions, this.locations, this.materials, this.measurements, this.provenance, this.quantity, this.relations, this.rights, this.structures, this.subjects, this.techniques, this.textrefs, this.viewType, this.workTypes, NopConstructionValidator.getInstance());
     }
 
     public Object replaceDates(final org.dressdiscover.api.vocabularies.vra_core.date.DateSet dates) {
@@ -3440,7 +3248,7 @@ public final class Object implements org.thryft.Struct, org.thryft.waf.api.model
     }
 
     public Object replaceDescriptions(final com.google.common.base.Optional<org.dressdiscover.api.vocabularies.vra_core.description.DescriptionSet> descriptions) {
-        return new Object(this.collectionId, this.institutionId, this.titles, this.agents, this.categories, this.closures, this.colors, this.components, this.condition, this.culturalContexts, this.dates, DefaultConstructionValidator.getInstance().validateDescriptions(descriptions), this.gender, this.hidden, this.images, this.inscriptions, this.locations, this.materials, this.measurements, this.provenance, this.quantity, this.relations, this.rights, this.structures, this.subjects, this.techniques, this.textrefs, this.viewType, this.workTypes, NopConstructionValidator.getInstance());
+        return new Object(this.titles, this.agents, this.categories, this.closures, this.colors, this.components, this.condition, this.culturalContexts, this.dates, DefaultConstructionValidator.getInstance().validateDescriptions(descriptions), this.gender, this.hidden, this.images, this.inscriptions, this.locations, this.materials, this.measurements, this.provenance, this.quantity, this.relations, this.rights, this.structures, this.subjects, this.techniques, this.textrefs, this.viewType, this.workTypes, NopConstructionValidator.getInstance());
     }
 
     public Object replaceDescriptions(final org.dressdiscover.api.vocabularies.vra_core.description.DescriptionSet descriptions) {
@@ -3448,7 +3256,7 @@ public final class Object implements org.thryft.Struct, org.thryft.waf.api.model
     }
 
     public Object replaceGender(final com.google.common.base.Optional<org.dressdiscover.api.vocabularies.costume_core.gender.Gender> gender) {
-        return new Object(this.collectionId, this.institutionId, this.titles, this.agents, this.categories, this.closures, this.colors, this.components, this.condition, this.culturalContexts, this.dates, this.descriptions, DefaultConstructionValidator.getInstance().validateGender(gender), this.hidden, this.images, this.inscriptions, this.locations, this.materials, this.measurements, this.provenance, this.quantity, this.relations, this.rights, this.structures, this.subjects, this.techniques, this.textrefs, this.viewType, this.workTypes, NopConstructionValidator.getInstance());
+        return new Object(this.titles, this.agents, this.categories, this.closures, this.colors, this.components, this.condition, this.culturalContexts, this.dates, this.descriptions, DefaultConstructionValidator.getInstance().validateGender(gender), this.hidden, this.images, this.inscriptions, this.locations, this.materials, this.measurements, this.provenance, this.quantity, this.relations, this.rights, this.structures, this.subjects, this.techniques, this.textrefs, this.viewType, this.workTypes, NopConstructionValidator.getInstance());
     }
 
     public Object replaceGender(final org.dressdiscover.api.vocabularies.costume_core.gender.Gender gender) {
@@ -3456,7 +3264,7 @@ public final class Object implements org.thryft.Struct, org.thryft.waf.api.model
     }
 
     public Object replaceHidden(final com.google.common.base.Optional<Boolean> hidden) {
-        return new Object(this.collectionId, this.institutionId, this.titles, this.agents, this.categories, this.closures, this.colors, this.components, this.condition, this.culturalContexts, this.dates, this.descriptions, this.gender, DefaultConstructionValidator.getInstance().validateHidden(hidden), this.images, this.inscriptions, this.locations, this.materials, this.measurements, this.provenance, this.quantity, this.relations, this.rights, this.structures, this.subjects, this.techniques, this.textrefs, this.viewType, this.workTypes, NopConstructionValidator.getInstance());
+        return new Object(this.titles, this.agents, this.categories, this.closures, this.colors, this.components, this.condition, this.culturalContexts, this.dates, this.descriptions, this.gender, DefaultConstructionValidator.getInstance().validateHidden(hidden), this.images, this.inscriptions, this.locations, this.materials, this.measurements, this.provenance, this.quantity, this.relations, this.rights, this.structures, this.subjects, this.techniques, this.textrefs, this.viewType, this.workTypes, NopConstructionValidator.getInstance());
     }
 
     public Object replaceHidden(final boolean hidden) {
@@ -3464,7 +3272,7 @@ public final class Object implements org.thryft.Struct, org.thryft.waf.api.model
     }
 
     public Object replaceImages(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<org.dressdiscover.api.models.image.Image>> images) {
-        return new Object(this.collectionId, this.institutionId, this.titles, this.agents, this.categories, this.closures, this.colors, this.components, this.condition, this.culturalContexts, this.dates, this.descriptions, this.gender, this.hidden, DefaultConstructionValidator.getInstance().validateImages(images), this.inscriptions, this.locations, this.materials, this.measurements, this.provenance, this.quantity, this.relations, this.rights, this.structures, this.subjects, this.techniques, this.textrefs, this.viewType, this.workTypes, NopConstructionValidator.getInstance());
+        return new Object(this.titles, this.agents, this.categories, this.closures, this.colors, this.components, this.condition, this.culturalContexts, this.dates, this.descriptions, this.gender, this.hidden, DefaultConstructionValidator.getInstance().validateImages(images), this.inscriptions, this.locations, this.materials, this.measurements, this.provenance, this.quantity, this.relations, this.rights, this.structures, this.subjects, this.techniques, this.textrefs, this.viewType, this.workTypes, NopConstructionValidator.getInstance());
     }
 
     public Object replaceImages(final com.google.common.collect.ImmutableList<org.dressdiscover.api.models.image.Image> images) {
@@ -3472,19 +3280,15 @@ public final class Object implements org.thryft.Struct, org.thryft.waf.api.model
     }
 
     public Object replaceInscriptions(final com.google.common.base.Optional<org.dressdiscover.api.vocabularies.vra_core.inscription.InscriptionSet> inscriptions) {
-        return new Object(this.collectionId, this.institutionId, this.titles, this.agents, this.categories, this.closures, this.colors, this.components, this.condition, this.culturalContexts, this.dates, this.descriptions, this.gender, this.hidden, this.images, DefaultConstructionValidator.getInstance().validateInscriptions(inscriptions), this.locations, this.materials, this.measurements, this.provenance, this.quantity, this.relations, this.rights, this.structures, this.subjects, this.techniques, this.textrefs, this.viewType, this.workTypes, NopConstructionValidator.getInstance());
+        return new Object(this.titles, this.agents, this.categories, this.closures, this.colors, this.components, this.condition, this.culturalContexts, this.dates, this.descriptions, this.gender, this.hidden, this.images, DefaultConstructionValidator.getInstance().validateInscriptions(inscriptions), this.locations, this.materials, this.measurements, this.provenance, this.quantity, this.relations, this.rights, this.structures, this.subjects, this.techniques, this.textrefs, this.viewType, this.workTypes, NopConstructionValidator.getInstance());
     }
 
     public Object replaceInscriptions(final org.dressdiscover.api.vocabularies.vra_core.inscription.InscriptionSet inscriptions) {
         return replaceInscriptions(com.google.common.base.Optional.fromNullable(inscriptions));
     }
 
-    public Object replaceInstitutionId(final org.dressdiscover.api.models.institution.InstitutionId institutionId) {
-        return new Object(this.collectionId, DefaultConstructionValidator.getInstance().validateInstitutionId(institutionId), this.titles, this.agents, this.categories, this.closures, this.colors, this.components, this.condition, this.culturalContexts, this.dates, this.descriptions, this.gender, this.hidden, this.images, this.inscriptions, this.locations, this.materials, this.measurements, this.provenance, this.quantity, this.relations, this.rights, this.structures, this.subjects, this.techniques, this.textrefs, this.viewType, this.workTypes, NopConstructionValidator.getInstance());
-    }
-
     public Object replaceLocations(final com.google.common.base.Optional<org.dressdiscover.api.vocabularies.vra_core.location.LocationSet> locations) {
-        return new Object(this.collectionId, this.institutionId, this.titles, this.agents, this.categories, this.closures, this.colors, this.components, this.condition, this.culturalContexts, this.dates, this.descriptions, this.gender, this.hidden, this.images, this.inscriptions, DefaultConstructionValidator.getInstance().validateLocations(locations), this.materials, this.measurements, this.provenance, this.quantity, this.relations, this.rights, this.structures, this.subjects, this.techniques, this.textrefs, this.viewType, this.workTypes, NopConstructionValidator.getInstance());
+        return new Object(this.titles, this.agents, this.categories, this.closures, this.colors, this.components, this.condition, this.culturalContexts, this.dates, this.descriptions, this.gender, this.hidden, this.images, this.inscriptions, DefaultConstructionValidator.getInstance().validateLocations(locations), this.materials, this.measurements, this.provenance, this.quantity, this.relations, this.rights, this.structures, this.subjects, this.techniques, this.textrefs, this.viewType, this.workTypes, NopConstructionValidator.getInstance());
     }
 
     public Object replaceLocations(final org.dressdiscover.api.vocabularies.vra_core.location.LocationSet locations) {
@@ -3492,7 +3296,7 @@ public final class Object implements org.thryft.Struct, org.thryft.waf.api.model
     }
 
     public Object replaceMaterials(final com.google.common.base.Optional<org.dressdiscover.api.vocabularies.vra_core.material.MaterialSet> materials) {
-        return new Object(this.collectionId, this.institutionId, this.titles, this.agents, this.categories, this.closures, this.colors, this.components, this.condition, this.culturalContexts, this.dates, this.descriptions, this.gender, this.hidden, this.images, this.inscriptions, this.locations, DefaultConstructionValidator.getInstance().validateMaterials(materials), this.measurements, this.provenance, this.quantity, this.relations, this.rights, this.structures, this.subjects, this.techniques, this.textrefs, this.viewType, this.workTypes, NopConstructionValidator.getInstance());
+        return new Object(this.titles, this.agents, this.categories, this.closures, this.colors, this.components, this.condition, this.culturalContexts, this.dates, this.descriptions, this.gender, this.hidden, this.images, this.inscriptions, this.locations, DefaultConstructionValidator.getInstance().validateMaterials(materials), this.measurements, this.provenance, this.quantity, this.relations, this.rights, this.structures, this.subjects, this.techniques, this.textrefs, this.viewType, this.workTypes, NopConstructionValidator.getInstance());
     }
 
     public Object replaceMaterials(final org.dressdiscover.api.vocabularies.vra_core.material.MaterialSet materials) {
@@ -3500,7 +3304,7 @@ public final class Object implements org.thryft.Struct, org.thryft.waf.api.model
     }
 
     public Object replaceMeasurements(final com.google.common.base.Optional<org.dressdiscover.api.vocabularies.vra_core.measurements.MeasurementsSet> measurements) {
-        return new Object(this.collectionId, this.institutionId, this.titles, this.agents, this.categories, this.closures, this.colors, this.components, this.condition, this.culturalContexts, this.dates, this.descriptions, this.gender, this.hidden, this.images, this.inscriptions, this.locations, this.materials, DefaultConstructionValidator.getInstance().validateMeasurements(measurements), this.provenance, this.quantity, this.relations, this.rights, this.structures, this.subjects, this.techniques, this.textrefs, this.viewType, this.workTypes, NopConstructionValidator.getInstance());
+        return new Object(this.titles, this.agents, this.categories, this.closures, this.colors, this.components, this.condition, this.culturalContexts, this.dates, this.descriptions, this.gender, this.hidden, this.images, this.inscriptions, this.locations, this.materials, DefaultConstructionValidator.getInstance().validateMeasurements(measurements), this.provenance, this.quantity, this.relations, this.rights, this.structures, this.subjects, this.techniques, this.textrefs, this.viewType, this.workTypes, NopConstructionValidator.getInstance());
     }
 
     public Object replaceMeasurements(final org.dressdiscover.api.vocabularies.vra_core.measurements.MeasurementsSet measurements) {
@@ -3508,7 +3312,7 @@ public final class Object implements org.thryft.Struct, org.thryft.waf.api.model
     }
 
     public Object replaceProvenance(final com.google.common.base.Optional<String> provenance) {
-        return new Object(this.collectionId, this.institutionId, this.titles, this.agents, this.categories, this.closures, this.colors, this.components, this.condition, this.culturalContexts, this.dates, this.descriptions, this.gender, this.hidden, this.images, this.inscriptions, this.locations, this.materials, this.measurements, DefaultConstructionValidator.getInstance().validateProvenance(provenance), this.quantity, this.relations, this.rights, this.structures, this.subjects, this.techniques, this.textrefs, this.viewType, this.workTypes, NopConstructionValidator.getInstance());
+        return new Object(this.titles, this.agents, this.categories, this.closures, this.colors, this.components, this.condition, this.culturalContexts, this.dates, this.descriptions, this.gender, this.hidden, this.images, this.inscriptions, this.locations, this.materials, this.measurements, DefaultConstructionValidator.getInstance().validateProvenance(provenance), this.quantity, this.relations, this.rights, this.structures, this.subjects, this.techniques, this.textrefs, this.viewType, this.workTypes, NopConstructionValidator.getInstance());
     }
 
     public Object replaceProvenance(final String provenance) {
@@ -3516,7 +3320,7 @@ public final class Object implements org.thryft.Struct, org.thryft.waf.api.model
     }
 
     public Object replaceQuantity(final com.google.common.base.Optional<Integer> quantity) {
-        return new Object(this.collectionId, this.institutionId, this.titles, this.agents, this.categories, this.closures, this.colors, this.components, this.condition, this.culturalContexts, this.dates, this.descriptions, this.gender, this.hidden, this.images, this.inscriptions, this.locations, this.materials, this.measurements, this.provenance, DefaultConstructionValidator.getInstance().validateQuantity(quantity), this.relations, this.rights, this.structures, this.subjects, this.techniques, this.textrefs, this.viewType, this.workTypes, NopConstructionValidator.getInstance());
+        return new Object(this.titles, this.agents, this.categories, this.closures, this.colors, this.components, this.condition, this.culturalContexts, this.dates, this.descriptions, this.gender, this.hidden, this.images, this.inscriptions, this.locations, this.materials, this.measurements, this.provenance, DefaultConstructionValidator.getInstance().validateQuantity(quantity), this.relations, this.rights, this.structures, this.subjects, this.techniques, this.textrefs, this.viewType, this.workTypes, NopConstructionValidator.getInstance());
     }
 
     public Object replaceQuantity(final int quantity) {
@@ -3524,7 +3328,7 @@ public final class Object implements org.thryft.Struct, org.thryft.waf.api.model
     }
 
     public Object replaceRelations(final com.google.common.base.Optional<org.dressdiscover.api.vocabularies.vra_core.relation.RelationSet> relations) {
-        return new Object(this.collectionId, this.institutionId, this.titles, this.agents, this.categories, this.closures, this.colors, this.components, this.condition, this.culturalContexts, this.dates, this.descriptions, this.gender, this.hidden, this.images, this.inscriptions, this.locations, this.materials, this.measurements, this.provenance, this.quantity, DefaultConstructionValidator.getInstance().validateRelations(relations), this.rights, this.structures, this.subjects, this.techniques, this.textrefs, this.viewType, this.workTypes, NopConstructionValidator.getInstance());
+        return new Object(this.titles, this.agents, this.categories, this.closures, this.colors, this.components, this.condition, this.culturalContexts, this.dates, this.descriptions, this.gender, this.hidden, this.images, this.inscriptions, this.locations, this.materials, this.measurements, this.provenance, this.quantity, DefaultConstructionValidator.getInstance().validateRelations(relations), this.rights, this.structures, this.subjects, this.techniques, this.textrefs, this.viewType, this.workTypes, NopConstructionValidator.getInstance());
     }
 
     public Object replaceRelations(final org.dressdiscover.api.vocabularies.vra_core.relation.RelationSet relations) {
@@ -3532,7 +3336,7 @@ public final class Object implements org.thryft.Struct, org.thryft.waf.api.model
     }
 
     public Object replaceRights(final com.google.common.base.Optional<org.dressdiscover.api.vocabularies.vra_core.rights.RightsSet> rights) {
-        return new Object(this.collectionId, this.institutionId, this.titles, this.agents, this.categories, this.closures, this.colors, this.components, this.condition, this.culturalContexts, this.dates, this.descriptions, this.gender, this.hidden, this.images, this.inscriptions, this.locations, this.materials, this.measurements, this.provenance, this.quantity, this.relations, DefaultConstructionValidator.getInstance().validateRights(rights), this.structures, this.subjects, this.techniques, this.textrefs, this.viewType, this.workTypes, NopConstructionValidator.getInstance());
+        return new Object(this.titles, this.agents, this.categories, this.closures, this.colors, this.components, this.condition, this.culturalContexts, this.dates, this.descriptions, this.gender, this.hidden, this.images, this.inscriptions, this.locations, this.materials, this.measurements, this.provenance, this.quantity, this.relations, DefaultConstructionValidator.getInstance().validateRights(rights), this.structures, this.subjects, this.techniques, this.textrefs, this.viewType, this.workTypes, NopConstructionValidator.getInstance());
     }
 
     public Object replaceRights(final org.dressdiscover.api.vocabularies.vra_core.rights.RightsSet rights) {
@@ -3540,7 +3344,7 @@ public final class Object implements org.thryft.Struct, org.thryft.waf.api.model
     }
 
     public Object replaceStructures(final com.google.common.base.Optional<org.dressdiscover.api.vocabularies.costume_core.structure.StructureSet> structures) {
-        return new Object(this.collectionId, this.institutionId, this.titles, this.agents, this.categories, this.closures, this.colors, this.components, this.condition, this.culturalContexts, this.dates, this.descriptions, this.gender, this.hidden, this.images, this.inscriptions, this.locations, this.materials, this.measurements, this.provenance, this.quantity, this.relations, this.rights, DefaultConstructionValidator.getInstance().validateStructures(structures), this.subjects, this.techniques, this.textrefs, this.viewType, this.workTypes, NopConstructionValidator.getInstance());
+        return new Object(this.titles, this.agents, this.categories, this.closures, this.colors, this.components, this.condition, this.culturalContexts, this.dates, this.descriptions, this.gender, this.hidden, this.images, this.inscriptions, this.locations, this.materials, this.measurements, this.provenance, this.quantity, this.relations, this.rights, DefaultConstructionValidator.getInstance().validateStructures(structures), this.subjects, this.techniques, this.textrefs, this.viewType, this.workTypes, NopConstructionValidator.getInstance());
     }
 
     public Object replaceStructures(final org.dressdiscover.api.vocabularies.costume_core.structure.StructureSet structures) {
@@ -3548,7 +3352,7 @@ public final class Object implements org.thryft.Struct, org.thryft.waf.api.model
     }
 
     public Object replaceSubjects(final com.google.common.base.Optional<org.dressdiscover.api.vocabularies.vra_core.subject.SubjectSet> subjects) {
-        return new Object(this.collectionId, this.institutionId, this.titles, this.agents, this.categories, this.closures, this.colors, this.components, this.condition, this.culturalContexts, this.dates, this.descriptions, this.gender, this.hidden, this.images, this.inscriptions, this.locations, this.materials, this.measurements, this.provenance, this.quantity, this.relations, this.rights, this.structures, DefaultConstructionValidator.getInstance().validateSubjects(subjects), this.techniques, this.textrefs, this.viewType, this.workTypes, NopConstructionValidator.getInstance());
+        return new Object(this.titles, this.agents, this.categories, this.closures, this.colors, this.components, this.condition, this.culturalContexts, this.dates, this.descriptions, this.gender, this.hidden, this.images, this.inscriptions, this.locations, this.materials, this.measurements, this.provenance, this.quantity, this.relations, this.rights, this.structures, DefaultConstructionValidator.getInstance().validateSubjects(subjects), this.techniques, this.textrefs, this.viewType, this.workTypes, NopConstructionValidator.getInstance());
     }
 
     public Object replaceSubjects(final org.dressdiscover.api.vocabularies.vra_core.subject.SubjectSet subjects) {
@@ -3556,7 +3360,7 @@ public final class Object implements org.thryft.Struct, org.thryft.waf.api.model
     }
 
     public Object replaceTechniques(final com.google.common.base.Optional<org.dressdiscover.api.vocabularies.vra_core.technique.TechniqueSet> techniques) {
-        return new Object(this.collectionId, this.institutionId, this.titles, this.agents, this.categories, this.closures, this.colors, this.components, this.condition, this.culturalContexts, this.dates, this.descriptions, this.gender, this.hidden, this.images, this.inscriptions, this.locations, this.materials, this.measurements, this.provenance, this.quantity, this.relations, this.rights, this.structures, this.subjects, DefaultConstructionValidator.getInstance().validateTechniques(techniques), this.textrefs, this.viewType, this.workTypes, NopConstructionValidator.getInstance());
+        return new Object(this.titles, this.agents, this.categories, this.closures, this.colors, this.components, this.condition, this.culturalContexts, this.dates, this.descriptions, this.gender, this.hidden, this.images, this.inscriptions, this.locations, this.materials, this.measurements, this.provenance, this.quantity, this.relations, this.rights, this.structures, this.subjects, DefaultConstructionValidator.getInstance().validateTechniques(techniques), this.textrefs, this.viewType, this.workTypes, NopConstructionValidator.getInstance());
     }
 
     public Object replaceTechniques(final org.dressdiscover.api.vocabularies.vra_core.technique.TechniqueSet techniques) {
@@ -3564,7 +3368,7 @@ public final class Object implements org.thryft.Struct, org.thryft.waf.api.model
     }
 
     public Object replaceTextrefs(final com.google.common.base.Optional<org.dressdiscover.api.vocabularies.vra_core.textref.TextrefSet> textrefs) {
-        return new Object(this.collectionId, this.institutionId, this.titles, this.agents, this.categories, this.closures, this.colors, this.components, this.condition, this.culturalContexts, this.dates, this.descriptions, this.gender, this.hidden, this.images, this.inscriptions, this.locations, this.materials, this.measurements, this.provenance, this.quantity, this.relations, this.rights, this.structures, this.subjects, this.techniques, DefaultConstructionValidator.getInstance().validateTextrefs(textrefs), this.viewType, this.workTypes, NopConstructionValidator.getInstance());
+        return new Object(this.titles, this.agents, this.categories, this.closures, this.colors, this.components, this.condition, this.culturalContexts, this.dates, this.descriptions, this.gender, this.hidden, this.images, this.inscriptions, this.locations, this.materials, this.measurements, this.provenance, this.quantity, this.relations, this.rights, this.structures, this.subjects, this.techniques, DefaultConstructionValidator.getInstance().validateTextrefs(textrefs), this.viewType, this.workTypes, NopConstructionValidator.getInstance());
     }
 
     public Object replaceTextrefs(final org.dressdiscover.api.vocabularies.vra_core.textref.TextrefSet textrefs) {
@@ -3572,11 +3376,11 @@ public final class Object implements org.thryft.Struct, org.thryft.waf.api.model
     }
 
     public Object replaceTitles(final org.dressdiscover.api.vocabularies.vra_core.title.TitleSet titles) {
-        return new Object(this.collectionId, this.institutionId, DefaultConstructionValidator.getInstance().validateTitles(titles), this.agents, this.categories, this.closures, this.colors, this.components, this.condition, this.culturalContexts, this.dates, this.descriptions, this.gender, this.hidden, this.images, this.inscriptions, this.locations, this.materials, this.measurements, this.provenance, this.quantity, this.relations, this.rights, this.structures, this.subjects, this.techniques, this.textrefs, this.viewType, this.workTypes, NopConstructionValidator.getInstance());
+        return new Object(DefaultConstructionValidator.getInstance().validateTitles(titles), this.agents, this.categories, this.closures, this.colors, this.components, this.condition, this.culturalContexts, this.dates, this.descriptions, this.gender, this.hidden, this.images, this.inscriptions, this.locations, this.materials, this.measurements, this.provenance, this.quantity, this.relations, this.rights, this.structures, this.subjects, this.techniques, this.textrefs, this.viewType, this.workTypes, NopConstructionValidator.getInstance());
     }
 
     public Object replaceViewType(final com.google.common.base.Optional<org.dressdiscover.api.vocabularies.vra_core.view_type.ViewType> viewType) {
-        return new Object(this.collectionId, this.institutionId, this.titles, this.agents, this.categories, this.closures, this.colors, this.components, this.condition, this.culturalContexts, this.dates, this.descriptions, this.gender, this.hidden, this.images, this.inscriptions, this.locations, this.materials, this.measurements, this.provenance, this.quantity, this.relations, this.rights, this.structures, this.subjects, this.techniques, this.textrefs, DefaultConstructionValidator.getInstance().validateViewType(viewType), this.workTypes, NopConstructionValidator.getInstance());
+        return new Object(this.titles, this.agents, this.categories, this.closures, this.colors, this.components, this.condition, this.culturalContexts, this.dates, this.descriptions, this.gender, this.hidden, this.images, this.inscriptions, this.locations, this.materials, this.measurements, this.provenance, this.quantity, this.relations, this.rights, this.structures, this.subjects, this.techniques, this.textrefs, DefaultConstructionValidator.getInstance().validateViewType(viewType), this.workTypes, NopConstructionValidator.getInstance());
     }
 
     public Object replaceViewType(final org.dressdiscover.api.vocabularies.vra_core.view_type.ViewType viewType) {
@@ -3584,7 +3388,7 @@ public final class Object implements org.thryft.Struct, org.thryft.waf.api.model
     }
 
     public Object replaceWorkTypes(final com.google.common.base.Optional<org.dressdiscover.api.vocabularies.vra_core.work_type.WorkTypeSet> workTypes) {
-        return new Object(this.collectionId, this.institutionId, this.titles, this.agents, this.categories, this.closures, this.colors, this.components, this.condition, this.culturalContexts, this.dates, this.descriptions, this.gender, this.hidden, this.images, this.inscriptions, this.locations, this.materials, this.measurements, this.provenance, this.quantity, this.relations, this.rights, this.structures, this.subjects, this.techniques, this.textrefs, this.viewType, DefaultConstructionValidator.getInstance().validateWorkTypes(workTypes), NopConstructionValidator.getInstance());
+        return new Object(this.titles, this.agents, this.categories, this.closures, this.colors, this.components, this.condition, this.culturalContexts, this.dates, this.descriptions, this.gender, this.hidden, this.images, this.inscriptions, this.locations, this.materials, this.measurements, this.provenance, this.quantity, this.relations, this.rights, this.structures, this.subjects, this.techniques, this.textrefs, this.viewType, DefaultConstructionValidator.getInstance().validateWorkTypes(workTypes), NopConstructionValidator.getInstance());
     }
 
     public Object replaceWorkTypes(final org.dressdiscover.api.vocabularies.vra_core.work_type.WorkTypeSet workTypes) {
@@ -3593,16 +3397,12 @@ public final class Object implements org.thryft.Struct, org.thryft.waf.api.model
 
     @Override
     public String toString() {
-        return com.google.common.base.MoreObjects.toStringHelper(this).omitNullValues().add("collection_id", getCollectionId()).add("institution_id", getInstitutionId()).add("titles", getTitles()).add("agents", getAgents().orNull()).add("categories", getCategories().orNull()).add("closures", getClosures().orNull()).add("colors", getColors().orNull()).add("components", getComponents().orNull()).add("condition", getCondition().orNull()).add("cultural_contexts", getCulturalContexts().orNull()).add("dates", getDates().orNull()).add("descriptions", getDescriptions().orNull()).add("gender", getGender().orNull()).add("hidden", getHidden().orNull()).add("images", getImages().orNull()).add("inscriptions", getInscriptions().orNull()).add("locations", getLocations().orNull()).add("materials", getMaterials().orNull()).add("measurements", getMeasurements().orNull()).add("provenance", getProvenance().orNull()).add("quantity", getQuantity().orNull()).add("relations", getRelations().orNull()).add("rights", getRights().orNull()).add("structures", getStructures().orNull()).add("subjects", getSubjects().orNull()).add("techniques", getTechniques().orNull()).add("textrefs", getTextrefs().orNull()).add("view_type", getViewType().orNull()).add("work_types", getWorkTypes().orNull()).toString();
+        return com.google.common.base.MoreObjects.toStringHelper(this).omitNullValues().add("titles", getTitles()).add("agents", getAgents().orNull()).add("categories", getCategories().orNull()).add("closures", getClosures().orNull()).add("colors", getColors().orNull()).add("components", getComponents().orNull()).add("condition", getCondition().orNull()).add("cultural_contexts", getCulturalContexts().orNull()).add("dates", getDates().orNull()).add("descriptions", getDescriptions().orNull()).add("gender", getGender().orNull()).add("hidden", getHidden().orNull()).add("images", getImages().orNull()).add("inscriptions", getInscriptions().orNull()).add("locations", getLocations().orNull()).add("materials", getMaterials().orNull()).add("measurements", getMeasurements().orNull()).add("provenance", getProvenance().orNull()).add("quantity", getQuantity().orNull()).add("relations", getRelations().orNull()).add("rights", getRights().orNull()).add("structures", getStructures().orNull()).add("subjects", getSubjects().orNull()).add("techniques", getTechniques().orNull()).add("textrefs", getTextrefs().orNull()).add("view_type", getViewType().orNull()).add("work_types", getWorkTypes().orNull()).toString();
     }
 
     @Override
     public void writeAsList(final org.thryft.protocol.OutputProtocol oprot) throws org.thryft.protocol.OutputProtocolException {
-        oprot.writeListBegin(org.thryft.protocol.Type.VOID_, 29);
-
-        oprot.writeString(getCollectionId().toString());
-
-        oprot.writeString(getInstitutionId().toString());
+        oprot.writeListBegin(org.thryft.protocol.Type.VOID_, 27);
 
         getTitles().writeAsStruct(oprot);
 
@@ -3782,14 +3582,6 @@ public final class Object implements org.thryft.Struct, org.thryft.waf.api.model
 
     @Override
     public void writeFields(final org.thryft.protocol.OutputProtocol oprot) throws org.thryft.protocol.OutputProtocolException {
-        oprot.writeFieldBegin("collection_id", org.thryft.protocol.Type.STRING, (short)1);
-        oprot.writeString(getCollectionId().toString());
-        oprot.writeFieldEnd();
-
-        oprot.writeFieldBegin("institution_id", org.thryft.protocol.Type.STRING, (short)2);
-        oprot.writeString(getInstitutionId().toString());
-        oprot.writeFieldEnd();
-
         oprot.writeFieldBegin("titles", org.thryft.protocol.Type.STRUCT, (short)3);
         getTitles().writeAsStruct(oprot);
         oprot.writeFieldEnd();
@@ -3960,10 +3752,6 @@ public final class Object implements org.thryft.Struct, org.thryft.waf.api.model
 
         oprot.writeFieldStop();
     }
-
-    private final org.dressdiscover.api.models.collection.CollectionId collectionId;
-
-    private final org.dressdiscover.api.models.institution.InstitutionId institutionId;
 
     private final org.dressdiscover.api.vocabularies.vra_core.title.TitleSet titles;
 

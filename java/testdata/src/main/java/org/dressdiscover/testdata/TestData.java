@@ -78,16 +78,14 @@ public final class TestData {
                                 .build()).setTitle("Test institution").setUrl(Url.parse("http://example.com"))
                                 .build()));
 
-                final Collection collection = Collection.builder().setInstitutionId(institutionId)
-                        .setTitle("Test collection").build();
+                final Collection collection = Collection.builder().setTitle("Test collection").build();
                 final CollectionId collectionId = CollectionId.parse(institutionId.toString() + "/test_collection");
 
                 collectionsBuilder.put(institutionId, CollectionEntry.create(collectionId, collection));
 
                 {
                     final Object.Builder objectBuilder = Object.builder().setAgents(AgentSet.create(agents))
-                            .setCategories(categories).setCollectionId(collectionId).setInstitutionId(institutionId)
-                            .setSubjects(SubjectSet.create(subjects))
+                            .setCategories(categories).setSubjects(SubjectSet.create(subjects))
                             .setTitles(TitleSet.builder().setElements(ImmutableList
                                     .of(Title.builder().setText("Test object").setType(TitleType.DESCRIPTIVE).build()))
                                     .build());

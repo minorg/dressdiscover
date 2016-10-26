@@ -1,7 +1,6 @@
 from datetime import datetime
 import java.lang
 from os.path import os
-import sys
 import urllib
 
 from com.google.common.base import Optional
@@ -9,18 +8,19 @@ from com.google.common.collect import ImmutableMap, ImmutableList
 from org.dressdiscover.api.models.collection import CollectionId, Collection
 from org.dressdiscover.api.models.institution import Institution, \
     InstitutionId
-from org.dressdiscover.api.models.rights import RightsSet, Rights, RightsType
+from org.dressdiscover.api.vocabularies.vra_core.rights import RightsSet, Rights, \
+    RightsType
 from org.dressdiscover.lib.python import PythonApi
 from org.thryft.native_ import Url, Uri
 
+from dressdiscover.lib.mappers.txfc.txfc_oai_pmh_record_mapper import TxfcOaiPmhRecordMapper
+from dressdiscover.lib.mappers.vccc.vccc_omeka_resource_mapper import VcccOmekaResourceMapper
+from dressdiscover.lib.mappers.wizard.wizard_omeka_resource_mapper import WizardOmekaResourceMapper  # @UnusedImport
 from dressdiscover.lib.stores.collection.omeka.omeka_api_collection_store import OmekaApiCollectionStore  # @UnusedImport
 from dressdiscover.lib.stores.collection.omeka.omeka_fs_collection_store import OmekaFsCollectionStore
 from dressdiscover.lib.stores.object.oai_pmh.oai_pmh_fs_object_store import OaiPmhFsObjectStore
 from dressdiscover.lib.stores.object.omeka.omeka_api_object_store import OmekaApiObjectStore  # Force registration # @UnusedImport
 from dressdiscover.lib.stores.object.omeka.omeka_fs_object_store import OmekaFsObjectStore  # Force registration # @UnusedImport
-from dressdiscover.lib.mappers.txfc.txfc_oai_pmh_record_mapper import TxfcOaiPmhRecordMapper
-from dressdiscover.lib.mappers.vccc.vccc_omeka_resource_mapper import VcccOmekaResourceMapper
-from dressdiscover.lib.mappers.wizard.wizard_omeka_resource_mapper import WizardOmekaResourceMapper  # @UnusedImport
 
 
 def put_collection(collection_id, institution_id, title, hidden=None, object_store_uri=None):

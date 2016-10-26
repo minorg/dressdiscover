@@ -1,8 +1,6 @@
 namespace * dressdiscover.api.models.object
 
-include "dressdiscover/api/models/collection/collection_id.thrift"
 include "dressdiscover/api/models/image/image.thrift"
-include "dressdiscover/api/models/institution/institution_id.thrift"
 include "dressdiscover/api/vocabularies/costume_core/closure/closure_set.thrift"
 include "dressdiscover/api/vocabularies/costume_core/color/color_set.thrift"
 include "dressdiscover/api/vocabularies/costume_core/component/component_set.thrift"
@@ -28,10 +26,6 @@ include "dressdiscover/api/vocabularies/vra_core/work_type/work_type_set.thrift"
 
 // @java_implements org.thryft.waf.api.models.Model
 struct Object {
-	1: collection_id.CollectionId collection_id;
-
-	2: institution_id.InstitutionId institution_id;
-
 	3: title_set.TitleSet titles;
 
 	20: optional agent_set.AgentSet agents;
