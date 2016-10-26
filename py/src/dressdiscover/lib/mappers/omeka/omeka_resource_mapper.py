@@ -216,11 +216,10 @@ class OmekaResourceMapper(object):
         object.__init__(self)
         self.__vocabulary_used = {}
 
-    def map_omeka_collection(self, collection_store_uri, institution_id, omeka_collection):
+    def map_omeka_collection(self, institution_id, omeka_collection):
         collection_id = CollectionId.parse(str(institution_id) + '/' + str(omeka_collection.id))
 
         collection_builder = Collection.builder()
-        collection_builder.setInstitutionId(institution_id)
 
         for element_text in omeka_collection.element_texts:
             if len(element_text.text) == 0:
@@ -234,11 +233,9 @@ class OmekaResourceMapper(object):
                 elif element_text.element.name == 'Title':
                     collection_builder.setTitle(element_text.text)
 
-        collection_builder.setObjectStoreUri(collection_store_uri)
-
         collection = collection_builder.build()
 
-        return CollectionEntry(collection_id, collection)
+        return CollectionEntry.create(collection_id, collection)
 
     def map_omeka_item(
         self,
@@ -295,7 +292,7 @@ class OmekaResourceMapper(object):
                 tag_names=tuple(tag_names)
             )
 
-        return ObjectEntry(object_id, object_builder.build())
+        return ObjectEntry.create(object_id, object_builder.build())
 
     def _map_omeka_item_element(self, element_name, element_set_name, object_builder, text):
         if element_set_name == 'Dublin Core':

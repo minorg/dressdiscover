@@ -1,5 +1,5 @@
 class _FsStore(object):
-    def __init__(self, data_directory_path):
+    def __init__(self, data_directory_path, **kwds):
         self.__data_dir_path = data_directory_path
 
     @property

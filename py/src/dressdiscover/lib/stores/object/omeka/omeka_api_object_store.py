@@ -45,4 +45,5 @@ class OmekaApiObjectStore(_OmekaObjectStore):
             )
         return ImmutableList.copyOf(objects)
 
-PythonApi.getInstance().getObjectStoreFactoryRegistry().registerObjectStoreFactory(PyObjectStoreFactory(OmekaApiObjectStore), OmekaApiObjectStore.TYPE_STRING)
+if PythonApi.getInstance() is not None:
+    PythonApi.getInstance().getObjectStoreFactoryRegistry().registerObjectStoreFactory(PyObjectStoreFactory(OmekaApiObjectStore), OmekaApiObjectStore.TYPE_STRING)

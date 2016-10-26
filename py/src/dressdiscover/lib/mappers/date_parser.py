@@ -1,7 +1,7 @@
 from datetime import datetime
 
-from dressdiscover.api.vocabularies.vra_core.date.date import Date
-from dressdiscover.api.vocabularies.vra_core.date.date_time_granularity import DateTimeGranularity
+from org.dressdiscover.api.vocabularies.vra_core.date import Date, \
+    DateTimeGranularity
 
 
 try:

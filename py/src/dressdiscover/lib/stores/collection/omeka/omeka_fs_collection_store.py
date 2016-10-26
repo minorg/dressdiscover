@@ -15,7 +15,7 @@ class OmekaFsCollectionStore(_OmekaCollectionStore, _FsStore):
 
     def __init__(self, *args, **kwds):
         _OmekaCollectionStore.__init__(self, *args, **kwds)
-        _FsStore.__init__(self, uri=self._uri)
+        _FsStore.__init__(self, **kwds)
 
     def getCollectionById(self, collectionId, logger, logMarker):
         collection_entries = self.getCollectionsByInstitutionId(collectionId.institutionId, logger, logMarker)
@@ -33,4 +33,5 @@ class OmekaFsCollectionStore(_OmekaCollectionStore, _FsStore):
                     omeka_collections=OmekaJsonParser().parse_collection_dicts(json.loads(f.read()))
                 )
 
-PythonApi.getInstance().getCollectionStoreFactoryRegistry().registerCollectionStoreFactory(PyCollectionStoreFactory(OmekaFsCollectionStore), OmekaFsCollectionStore.TYPE_STRING)
+if PythonApi.getInstance() is not None:
+    PythonApi.getInstance().getCollectionStoreFactoryRegistry().registerCollectionStoreFactory(PyCollectionStoreFactory(OmekaFsCollectionStore), OmekaFsCollectionStore.TYPE_STRING)

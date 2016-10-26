@@ -73,4 +73,5 @@ class OmekaFsObjectStore(_OmekaObjectStore, _FsStore):
         with open(items_file_path) as f:
             return OmekaJsonParser().parse_item_dicts(json.loads(f.read()))
 
-PythonApi.getInstance().getObjectStoreFactoryRegistry().registerObjectStoreFactory(PyObjectStoreFactory(OmekaFsObjectStore), OmekaFsObjectStore.TYPE_STRING)
+if PythonApi.getInstance() is not None:
+    PythonApi.getInstance().getObjectStoreFactoryRegistry().registerObjectStoreFactory(PyObjectStoreFactory(OmekaFsObjectStore), OmekaFsObjectStore.TYPE_STRING)

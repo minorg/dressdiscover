@@ -7,4 +7,10 @@ from dressdiscover_test.lib.stores.collection.omeka.omeka_api_test_credentials i
 class OmekaApiCollectionStoreTest(_OmekaCollectionStoreTest):
     def __init__(self, *args, **kwds):
         _OmekaCollectionStoreTest.__init__(self, *args, **kwds)
-        self._service = OmekaApiCollectionStore(api_key=OMEKA_API_TEST_API_KEY, endpoint_url=OMEKA_API_TEST_ENDPOINT_URL)
+        self._store = OmekaApiCollectionStore(api_key=OMEKA_API_TEST_API_KEY, endpoint_url=OMEKA_API_TEST_ENDPOINT_URL)
+
+    def test_getCollectionById(self):
+        self._test_getCollectionById()
+
+    def test_getCollectionsByInstitutionId(self):
+        self._test_getCollectionsByInstitutionId()
