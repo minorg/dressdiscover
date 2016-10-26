@@ -6,6 +6,9 @@ import urllib
 from com.google.common.base import Optional
 from com.google.common.collect import ImmutableMap, ImmutableList
 from org.dressdiscover.api.models.collection import CollectionId, Collection
+from org.dressdiscover.api.models.configuration import CollectionConfiguration, \
+    ObjectStoreConfiguration, InstitutionConfiguration, \
+    CollectionStoreConfiguration
 from org.dressdiscover.api.models.institution import Institution, \
     InstitutionId
 from org.dressdiscover.api.vocabularies.vra_core.rights import RightsSet, Rights, \
@@ -23,97 +26,121 @@ from dressdiscover.lib.stores.object.omeka.omeka_api_object_store import OmekaAp
 from dressdiscover.lib.stores.object.omeka.omeka_fs_object_store import OmekaFsObjectStore  # Force registration # @UnusedImport
 
 
-def put_collection(collection_id, institution_id, title, hidden=None, object_store_uri=None):
-    PythonApi.getInstance().getCollectionCommandService().putCollection(
-        collection_id,
-        Collection.builder()
-            .setHidden(Optional.fromNullable(hidden))
-            .setInstitutionId(institution_id)
-            .setObjectStoreUri(Optional.fromNullable(object_store_uri))
-            .setTitle(title)
+data_dir_path = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..', 'data', 'extracted'))
+assert os.path.isdir(data_dir_path), data_dir_path
+print 'Data directory path:', data_dir_path
+
+
+def put_txfc():
+    institution_id = InstitutionId.parse('untvca')
+    PythonApi.getInstance().getInstitutionCommandService().putInstitution(
+        institution_id,
+        Institution.builder()
+            .setDataRights(RightsSet.builder()
+                .setElements(ImmutableList.of(
+                    Rights.builder()
+                        .setRightsHolder('University of North Texas')
+                        .setText("The contents of Texas Fashion Collection, hosted by the University of North Texas Libraries (digital content including images, text, and sound and video recordings) are made publicly available by the collection-holding partners for use in research, teaching, and private study. For the full terms of use, see http://digital.library.unt.edu/terms-of-use/")
+                        .setType(RightsType.COPYRIGHTED)
+                        .build()
+                ))
+                .build())
+            .setTitle('Texas Fashion Collection')
+            .setUrl(Url.parse('http://digital.library.unt.edu/explore/collections/TXFC/'))
             .build()
     )
 
-def put_institution(institution_id, institution_title, institution_url, store_parameters, collection_store_uri=None, data_rights=None):
-    if data_rights is None:
-        data_rights = \
-            RightsSet.builder()\
-                .setElements(ImmutableList.of(
-                    Rights.builder()
-                        .setRightsHolder(institution_title)
-                        .setText("Copyright %s %s" % (datetime.now().year, institution_title))
-                        .setType(RightsType.COPYRIGHTED)
-                        .build()
+    collection_id = CollectionId.parse('untvca/txfc')
+    PythonApi.getInstance().getCollectionCommandService().putCollection(
+        collection_id,
+        Collection.builder()
+            .setTitle('Texas Fashion Collection')
+            .build()
+    )
+    PythonApi.getInstance().getConfigurationCommandService().putCollectionConfiguration(
+        collection_id,
+        CollectionConfiguration.builder()
+            .setObjectStoreConfiguration(
+                ObjectStoreConfiguration.builder()
+                    .setType(OaiPmhFsObjectStore.TYPE_STRING)
+                    .setParameters(ImmutableMap.of(# @UndefinedVariable
+                        'data_directory_path',
+                        os.path.join(data_dir_path, 'untvca', 'txfc'),
+                        'record_mapper',
+                        TxfcOaiPmhRecordMapper.__module__ + '.' + TxfcOaiPmhRecordMapper.__name__  # @UndefinedVariable
+                    ))
+                    .build()
+            )
+            .build()
+    )
 
-                ))\
-                .build()
+
+def put_vccc():
+    institution_id = InstitutionId.parse('vccc')
+    institution_title = 'Vassar College Costume Collection'
 
     PythonApi.getInstance().getInstitutionCommandService().putInstitution(
         institution_id,
         Institution.builder()
-            .setCollectionStoreUri(Optional.fromNullable(collection_store_uri))
-            .setDataRights(data_rights)
-            .setStoreParameters(store_parameters)
+            .setDataRights(
+                RightsSet.builder()\
+                    .setElements(ImmutableList.of(
+                        Rights.builder()
+                            .setRightsHolder(institution_title)
+                            .setText("Copyright %s %s" % (datetime.now().year, institution_title))
+                            .setType(RightsType.COPYRIGHTED)
+                            .build()
+
+                    ))\
+                    .build()
+            )
             .setTitle(institution_title)
-            .setUrl(institution_url)
+            .setUrl(Url.parse('http://vcomeka.com/vccc/'))
             .build()
     )
 
-data_dir_path = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..', 'data', 'extracted'))
-assert os.path.isdir(data_dir_path), data_dir_path
-data_file_uri_authority_base = urllib.pathname2url(data_dir_path)
-platform = java.lang.System.getProperty('os.name')
-if not platform.startswith('Windows'):
-    data_file_uri_authority_base = '//' + data_file_uri_authority_base
-print 'Platform:', platform
-print 'Data directory path:', data_dir_path
-print 'Data file URI base:', data_file_uri_authority_base
-
-put_institution(
-    data_rights=\
-        RightsSet.builder()
-            .setElements(ImmutableList.of(
-                Rights.builder()
-                    .setRightsHolder('University of North Texas')
-                    .setText("The contents of Texas Fashion Collection, hosted by the University of North Texas Libraries (digital content including images, text, and sound and video recordings) are made publicly available by the collection-holding partners for use in research, teaching, and private study. For the full terms of use, see http://digital.library.unt.edu/terms-of-use/")
-                    .setType(RightsType.COPYRIGHTED)
-                    .build()
-            ))
-            .build(),
-    institution_id=InstitutionId.parse('untvca'),
-    institution_title='Texas Fashion Collection',
-    institution_url=Url.parse('http://digital.library.unt.edu/explore/collections/TXFC/'),
-    store_parameters=ImmutableMap.of(
-        'record_mapper', TxfcOaiPmhRecordMapper.__module__ + '.' + TxfcOaiPmhRecordMapper.__name__  # @UndefinedVariable
-    ),
-)
-put_collection(
-    collection_id=CollectionId.parse('untvca/txfc'),
-    institution_id=InstitutionId.parse('untvca'),
-    object_store_uri=Uri.parse(OaiPmhFsObjectStore.TYPE_STRING + ':' + data_file_uri_authority_base + '/untvca/txfc'),
-    title='Texas Fashion Collection'
-)
-
-put_institution(
-    collection_store_uri=Uri.parse(OmekaFsCollectionStore.TYPE_STRING + ':' + data_file_uri_authority_base),
-    institution_id=InstitutionId.parse('vccc'),
-    institution_title='Vassar College Costume Collection',
-    institution_url=Url.parse('http://vcomeka.com/vccc/'),
-    store_parameters=ImmutableMap.of(
+    store_parameters = ImmutableMap.of(  # @UndefinedVariable
+        'data_directory_path', data_dir_path,
         'endpoint_url', 'http://vcomeka.com/vccc',
         'resource_mapper', VcccOmekaResourceMapper.__module__ + '.' + VcccOmekaResourceMapper.__name__  # @UndefinedVariable
-    ),
-)
-
-put_institution(
-    collection_store_uri=Uri.parse(OmekaApiCollectionStore.TYPE_STRING + '://historicdress.org/omeka2/'),
-    institution_id=InstitutionId.parse('wizard'),
-    institution_title='Wizard',
-    institution_url=Url.parse('http://historicdress.org/omeka2/'),
-    store_parameters=ImmutableMap.of(
-        'api_key', open(os.path.join(os.path.dirname(__file__), 'historicdress.org-api-key.txt')).read().strip(),
-        'square_thumbnail_height_px', '200',
-        'square_thumbnail_width_px', '200',
-        'resource_mapper', WizardOmekaResourceMapper.__module__ + '.' + WizardOmekaResourceMapper.__name__  # @UndefinedVariable
     )
-)
+
+    PythonApi.getInstance().getConfigurationCommandService().putInstitutionConfiguration(
+        institution_id,
+        InstitutionConfiguration.builder()
+            .setCollectionStoreConfiguration(
+                CollectionStoreConfiguration.builder()
+                    .setType(OmekaFsCollectionStore.TYPE_STRING)
+                    .setParameters(store_parameters)
+                    .build()
+            )
+            .setDefaultCollectionConfiguration(
+                CollectionConfiguration.builder()
+                    .setObjectStoreConfiguration(
+                        ObjectStoreConfiguration.builder()
+                            .setType(OmekaFsCollectionStore.TYPE_STRING)
+                            .setParameters(store_parameters)
+                            .build()
+                    )
+                    .build()
+            )
+            .build()
+    )
+
+
+# put_institution(
+#     collection_store_uri=Uri.parse(OmekaApiCollectionStore.TYPE_STRING + '://historicdress.org/omeka2/'),
+#     institution_id=InstitutionId.parse('wizard'),
+#     institution_title='Wizard',
+#     institution_url=Url.parse('http://historicdress.org/omeka2/'),
+#     store_parameters=ImmutableMap.of(
+#         'api_key', open(os.path.join(os.path.dirname(__file__), 'historicdress.org-api-key.txt')).read().strip(),
+#         'square_thumbnail_height_px', '200',
+#         'square_thumbnail_width_px', '200',
+#         'resource_mapper', WizardOmekaResourceMapper.__module__ + '.' + WizardOmekaResourceMapper.__name__  # @UndefinedVariable
+#     )
+# )
+
+
+put_txfc()
+put_vccc()
