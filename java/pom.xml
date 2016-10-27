@@ -44,7 +44,7 @@
 
 	<properties>
 	    <jetty.version>9.3.7.v20160115</jetty.version>
-		<thryft-waf.version>1.0.0-SNAPSHOT</thryft-waf.version>
+		<thryft-waf.version>1.0.1-SNAPSHOT</thryft-waf.version>
 	</properties>
 
 	<repositories>

@@ -4,6 +4,8 @@ import static com.google.common.base.Preconditions.checkNotNull;
 
 import org.dressdiscover.api.services.collection.CollectionCommandService;
 import org.dressdiscover.api.services.collection.CollectionQueryService;
+import org.dressdiscover.api.services.configuration.ConfigurationCommandService;
+import org.dressdiscover.api.services.configuration.ConfigurationQueryService;
 import org.dressdiscover.api.services.institution.InstitutionCommandService;
 import org.dressdiscover.api.services.institution.InstitutionQueryService;
 import org.dressdiscover.api.services.object.ObjectCommandService;
@@ -18,6 +20,12 @@ import org.dressdiscover.lib.services.collection.StoreCollectionCommandService;
 import org.dressdiscover.lib.services.collection.StoreCollectionQueryService;
 import org.dressdiscover.lib.services.collection.ValidatingCollectionCommandService;
 import org.dressdiscover.lib.services.collection.ValidatingCollectionQueryService;
+import org.dressdiscover.lib.services.configuration.LoggingConfigurationCommandService;
+import org.dressdiscover.lib.services.configuration.LoggingConfigurationQueryService;
+import org.dressdiscover.lib.services.configuration.StoreConfigurationCommandService;
+import org.dressdiscover.lib.services.configuration.StoreConfigurationQueryService;
+import org.dressdiscover.lib.services.configuration.ValidatingConfigurationCommandService;
+import org.dressdiscover.lib.services.configuration.ValidatingConfigurationQueryService;
 import org.dressdiscover.lib.services.institution.LoggingInstitutionCommandService;
 import org.dressdiscover.lib.services.institution.LoggingInstitutionQueryService;
 import org.dressdiscover.lib.services.institution.StoreInstitutionCommandService;
@@ -65,6 +73,22 @@ public class ServicesModule extends AbstractModule {
         bind(CollectionQueryService.class).annotatedWith(ValidatingCollectionQueryService.DELEGATE_NAME)
                 .to(LoggingCollectionQueryService.class).asEagerSingleton();
         bind(CollectionQueryService.class).to(ValidatingCollectionQueryService.class).asEagerSingleton();
+    }
+
+    protected void _configureConfigurationCommandService() {
+        bind(ConfigurationCommandService.class).annotatedWith(LoggingConfigurationCommandService.DELEGATE_NAME)
+                .to(StoreConfigurationCommandService.class).asEagerSingleton();
+        bind(ConfigurationCommandService.class).annotatedWith(ValidatingConfigurationCommandService.DELEGATE_NAME)
+                .to(LoggingConfigurationCommandService.class).asEagerSingleton();
+        bind(ConfigurationCommandService.class).to(ValidatingConfigurationCommandService.class).asEagerSingleton();
+    }
+
+    protected void _configureConfigurationQueryService() {
+        bind(ConfigurationQueryService.class).annotatedWith(LoggingConfigurationQueryService.DELEGATE_NAME)
+                .to(StoreConfigurationQueryService.class).asEagerSingleton();
+        bind(ConfigurationQueryService.class).annotatedWith(ValidatingConfigurationQueryService.DELEGATE_NAME)
+                .to(LoggingConfigurationQueryService.class).asEagerSingleton();
+        bind(ConfigurationQueryService.class).to(ValidatingConfigurationQueryService.class).asEagerSingleton();
     }
 
     protected void _configureInstitutionCommandService() {
@@ -134,6 +158,8 @@ public class ServicesModule extends AbstractModule {
     protected void configure() {
         _configureCollectionCommandService();
         _configureCollectionQueryService();
+        _configureConfigurationCommandService();
+        _configureConfigurationQueryService();
         _configureInstitutionCommandService();
         _configureInstitutionQueryService();
         _configureInstitutionStore();

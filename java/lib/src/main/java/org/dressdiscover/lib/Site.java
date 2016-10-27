@@ -26,13 +26,17 @@ public class Site {
     }
 
     public void init() {
+        registerStoreFactories();
+
+        final PythonInterpreter pythonInterpreter = pythonInterpreterFactory.createPythonInterpreter();
+        pythonInterpreter.exec("import ddsite");
+    }
+
+    public void registerStoreFactories() {
         collectionStoreFactoryRegistry
                 .registerCollectionStoreFactory(new FileSystemCollectionStoreFactory(globalProperties), "file");
         objectStoreFactoryRegistry.registerObjectStoreFactory(new FileSystemObjectStoreFactory(globalProperties),
                 "file");
-
-        final PythonInterpreter pythonInterpreter = pythonInterpreterFactory.createPythonInterpreter();
-        pythonInterpreter.exec("import ddsite");
     }
 
     private final CollectionStoreFactoryRegistry collectionStoreFactoryRegistry;

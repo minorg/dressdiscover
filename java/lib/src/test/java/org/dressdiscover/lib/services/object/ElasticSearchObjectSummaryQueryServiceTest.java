@@ -12,6 +12,7 @@ import org.dressdiscover.api.models.object.ObjectSummaryEntry;
 import org.dressdiscover.api.services.object.GetObjectSummariesOptions;
 import org.dressdiscover.testdata.TestData;
 import org.junit.Test;
+import org.thryft.waf.lib.stores.ElasticSearchIndex;
 
 import com.google.common.base.Optional;
 import com.google.common.collect.ImmutableList;
@@ -68,8 +69,8 @@ public final class ElasticSearchObjectSummaryQueryServiceTest extends ObjectServ
     public void testGetObjectSummaries() throws Exception {
         final ImmutableList<ObjectEntry> expected = _putObjects();
         final ImmutableList<ObjectSummaryEntry> actual = objectSummaryQueryService
-                .getObjectSummaries(
-                        Optional.of(GetObjectSummariesOptions.builder().setFrom(0).setSize(Integer.MAX_VALUE).build()))
+                .getObjectSummaries(Optional.of(GetObjectSummariesOptions.builder().setFrom(0)
+                        .setSize(ElasticSearchIndex.SEARCH_REQUEST_SIZE_MAX).build()))
                 .getHits();
         assertEquals(TestData.getInstance().getObjects().size(), actual.size());
         for (final ObjectEntry expectedEntry : expected) {

@@ -1,7 +1,6 @@
 package org.dressdiscover.lib.python;
 
 import static com.google.common.base.Preconditions.checkNotNull;
-import static com.google.common.base.Preconditions.checkState;
 
 import org.dressdiscover.api.services.collection.CollectionCommandService;
 import org.dressdiscover.api.services.configuration.ConfigurationCommandService;
@@ -24,7 +23,6 @@ public class PythonApi {
             final ConfigurationCommandService configurationCommandService,
             final InstitutionCommandService institutionCommandService,
             final ObjectStoreFactoryRegistry objectStoreFactoryRegistry) {
-        checkState(instance == null);
         instance = this;
         this.collectionCommandService = checkNotNull(collectionCommandService);
         this.configurationCommandService = checkNotNull(configurationCommandService);
