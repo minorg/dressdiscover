@@ -3,9 +3,13 @@ package org.dressdiscover.lib.stores.object;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
+import java.io.File;
+
 import org.dressdiscover.api.models.collection.CollectionEntry;
 import org.dressdiscover.api.models.collection.CollectionId;
 import org.dressdiscover.api.models.object.ObjectEntry;
+import org.dressdiscover.lib.properties.GlobalProperties;
+import org.dressdiscover.lib.properties.StoreProperties;
 import org.dressdiscover.lib.stores.StoreTest;
 import org.dressdiscover.testdata.TestData;
 import org.junit.After;
@@ -21,7 +25,9 @@ import com.google.common.collect.ImmutableList;
 public final class FileSystemObjectStoreTest extends StoreTest {
     @Before
     public void setUp() {
-        store = _getInjector().getInstance(FileSystemObjectStore.class);
+        store = new FileSystemObjectStore(
+                new File(_getInjector().getInstance(StoreProperties.class).getDataDirectoryPath()),
+                _getInjector().getInstance(GlobalProperties.class));
     }
 
     @After

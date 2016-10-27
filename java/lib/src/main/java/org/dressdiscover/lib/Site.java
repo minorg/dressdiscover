@@ -8,7 +8,12 @@ import org.dressdiscover.lib.stores.collection.CollectionStoreFactoryRegistry;
 import org.dressdiscover.lib.stores.collection.FileSystemCollectionStoreFactory;
 import org.dressdiscover.lib.stores.object.FileSystemObjectStoreFactory;
 import org.dressdiscover.lib.stores.object.ObjectStoreFactoryRegistry;
+import org.python.core.PyException;
 import org.python.util.PythonInterpreter;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.slf4j.Marker;
+import org.thryft.waf.lib.logging.LoggingUtils;
 
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
@@ -28,8 +33,12 @@ public class Site {
     public void init() {
         registerStoreFactories();
 
-        final PythonInterpreter pythonInterpreter = pythonInterpreterFactory.createPythonInterpreter();
-        pythonInterpreter.exec("import ddsite");
+        try {
+            final PythonInterpreter pythonInterpreter = pythonInterpreterFactory.createPythonInterpreter();
+            pythonInterpreter.exec("import ddsite");
+        } catch (final PyException e) {
+            logger.error(logMarker, "error importing ddsite.py:", e);
+        }
     }
 
     public void registerStoreFactories() {
@@ -43,4 +52,7 @@ public class Site {
     private final GlobalProperties globalProperties;
     private final ObjectStoreFactoryRegistry objectStoreFactoryRegistry;
     private final PythonInterpreterFactory pythonInterpreterFactory;
+
+    private final static Logger logger = LoggerFactory.getLogger(Site.class);
+    private final static Marker logMarker = LoggingUtils.getMarker(Site.class);
 }
