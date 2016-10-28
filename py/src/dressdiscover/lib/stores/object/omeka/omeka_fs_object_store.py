@@ -17,7 +17,7 @@ class OmekaFsObjectStore(_OmekaObjectStore, _FsStore):
         _OmekaObjectStore.__init__(self, *args, **kwds)
         _FsStore.__init__(self, uri=self._uri)
 
-    def getObjectById(self, logger, log_marker, object_id):
+    def _get_object_by_id(self, logger, log_marker, object_id):
         for omeka_item in self.__get_omeka_items(collection_id=object_id.getCollectionId()):
             if str(omeka_item.id) == str(object_id.getUnqualifiedObjectId()):
                 try:
@@ -35,7 +35,7 @@ class OmekaFsObjectStore(_OmekaObjectStore, _FsStore):
                     raise NoSuchObjectException
         raise NoSuchObjectException
 
-    def getObjectsByCollectionId(self, collection_id, logger, log_marker):
+    def _get_objects_by_collection_id(self, collection_id, logger, log_marker):
         objects = []
         for omeka_item in self.__get_omeka_items(collection_id=collection_id):
             try:

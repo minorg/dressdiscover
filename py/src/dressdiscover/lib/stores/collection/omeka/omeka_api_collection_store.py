@@ -13,7 +13,7 @@ class OmekaApiCollectionStore(_OmekaCollectionStore):
         _OmekaCollectionStore.__init__(self, endpoint_url=endpoint_url, **kwds)
         self.__api_client = OmekaRestApiClient(api_key=api_key, endpoint_url=endpoint_url)
 
-    def getCollectionById(self, collectionId, logger, logMarker):
+    def _get_collection_by_id(self, collectionId, logger, logMarker):
         try:
             omeka_collection = self.__api_client.get_collection(int(collectionId.getUnqualifiedCollectionId()))
         except NoSuchOmekaCollectionException:
@@ -24,7 +24,7 @@ class OmekaApiCollectionStore(_OmekaCollectionStore):
         else:
             raise NoSuchCollectionException
 
-    def getCollectionsByInstitutionId(self, institutionId, logger, logMarker):
+    def _get_collections_by_institution_id(self, institutionId, logger, logMarker):
         return self._map_omeka_collections(institution_id=institutionId, omeka_collections=self.__api_client.get_all_collections())
 
 if PythonApi.getInstance() is not None:

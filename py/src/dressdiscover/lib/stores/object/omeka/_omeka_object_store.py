@@ -1,9 +1,8 @@
-from org.dressdiscover.lib.stores.object import ObjectStore
-
 from dressdiscover.lib.mappers.omeka.omeka_resource_mapper import OmekaResourceMapper
+from dressdiscover.lib.stores.object._py_object_store import _PyObjectStore
 
 
-class _OmekaObjectStore(ObjectStore):
+class _OmekaObjectStore(_PyObjectStore):
     def __init__(self, endpoint_url, uri, resource_mapper=None, square_thumbnail_height_px=150, square_thumbnail_width_px=150, **kwds):
         self.__endpoint_url = endpoint_url
         if resource_mapper is None:

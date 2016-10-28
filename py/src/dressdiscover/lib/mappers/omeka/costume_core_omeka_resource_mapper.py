@@ -38,7 +38,7 @@ from dressdiscover.lib.mappers.omeka.omeka_resource_mapper import OmekaResourceM
 
 
 class CostumeCoreOmekaResourceMapper(OmekaResourceMapper):
-    _COSTUME_CORE_VOCAB_REF = vocab_ref=VocabRef(Vocab.COSTUME_CORE)
+    _COSTUME_CORE_VOCAB_REF = VocabRef.builder().setVocab(Vocab.COSTUME_CORE).build()
 
     class _ObjectBuilder(OmekaResourceMapper._ObjectBuilder):
         def __init__(self, **kwds):

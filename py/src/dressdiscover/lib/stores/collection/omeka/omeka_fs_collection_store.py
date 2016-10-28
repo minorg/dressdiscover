@@ -17,14 +17,14 @@ class OmekaFsCollectionStore(_OmekaCollectionStore, _FsStore):
         _OmekaCollectionStore.__init__(self, *args, **kwds)
         _FsStore.__init__(self, **kwds)
 
-    def getCollectionById(self, collectionId, logger, logMarker):
+    def _get_collection_by_id(self, collectionId, logger, logMarker):
         collection_entries = self.getCollectionsByInstitutionId(collectionId.institutionId, logger, logMarker)
         for collection_entry in collection_entries:
             if collection_entry.id == collectionId:
                 return collection_entry.model
         raise NoSuchCollectionException(collectionId)
 
-    def getCollectionsByInstitutionId(self, institutionId, logger, logMarker):
+    def _get_collections_by_institution_id(self, institutionId, logger, logMarker):
         file_path = os.path.join(self._data_dir_path, str(institutionId), 'collections.json')
         with open(file_path) as f:
             return \

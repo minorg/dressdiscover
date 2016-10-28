@@ -1,9 +1,6 @@
 from datetime import datetime
-import java.lang
 from os.path import os
-import urllib
 
-from com.google.common.base import Optional
 from com.google.common.collect import ImmutableMap, ImmutableList
 from org.dressdiscover.api.models.collection import CollectionId, Collection
 from org.dressdiscover.api.models.configuration import CollectionConfiguration, \
@@ -32,7 +29,7 @@ assert os.path.isdir(data_dir_path), data_dir_path
 print 'Data directory path:', data_dir_path
 
 
-def put_historic_dress(self):
+def put_historic_dress():
     institution_id = InstitutionId.parse('historicdress')
     institution_title = 'historicdress.org'
 

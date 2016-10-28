@@ -16,7 +16,7 @@ class OmekaApiObjectStore(_OmekaObjectStore):
         _OmekaObjectStore.__init__(self, endpoint_url=endpoint_url, uri=uri, **kwds)
         self.__api_client = OmekaRestApiClient(api_key=api_key, endpoint_url=endpoint_url)
 
-    def getObjectById(self, logger, log_marker, object_id):
+    def _get_object_by_id(self, logger, log_marker, object_id):
         try:
             omeka_item = self.__api_client.get_item(id=int(object_id.getUnqualifiedObjectId()))
         except NoSuchOmekaItemException:
@@ -30,7 +30,7 @@ class OmekaApiObjectStore(_OmekaObjectStore):
                 omeka_item_files=self.__api_client.get_all_files(item=omeka_item.id)
             )
 
-    def getObjectsByCollectionId(self, collection_id, logger, log_marker):
+    def _get_objects_by_collection_id(self, collection_id, logger, log_marker):
         objects = []
         omeka_items = self.__api_client.get_all_items(collection=int(collection_id.getUnqualifiedCollectionId()))
         for omeka_item in omeka_items:

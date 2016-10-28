@@ -6,4 +6,8 @@ class PyObjectStoreFactory(ObjectStoreFactory):
         self.__object_store_class = object_store_class
 
     def createObjectStore(self, configuration):
-        return self.__object_store_class(**configuration.parameters)
+        if configuration.parameters is not None:
+            kwds = dict((entry.key, entry.value) for entry in configuration.parameters.get().entrySet())
+        else:
+            kwds = {}
+        return self.__object_store_class(**kwds)
