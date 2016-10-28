@@ -20,18 +20,18 @@
       }, 
       "dynamic": "strict", 
       "properties": {
-        "1:collection_id": {
+        "collection_id": {
           "index": "not_analyzed", 
           "type": "string"
         }, 
-        "2:institution_id": {
+        "institution_id": {
           "index": "not_analyzed", 
           "type": "string"
         }, 
-        "4:title": {
+        "title": {
           "type": "string"
         }, 
-        "6:agent_name_texts": {
+        "agent_name_texts": {
           "fields": {
             "text": {
               "type": "string"
@@ -43,7 +43,7 @@
           }, 
           "type": "multi_field"
         }, 
-        "7:categories": {
+        "categories": {
           "fields": {
             "text": {
               "type": "string"
@@ -55,7 +55,7 @@
           }, 
           "type": "multi_field"
         }, 
-        "17:color_texts": {
+        "color_texts": {
           "fields": {
             "text": {
               "type": "string"
@@ -67,7 +67,7 @@
           }, 
           "type": "multi_field"
         }, 
-        "18:cultural_context_texts": {
+        "cultural_context_texts": {
           "fields": {
             "text": {
               "type": "string"
@@ -79,20 +79,20 @@
           }, 
           "type": "multi_field"
         }, 
-        "12:date": {
+        "date": {
           "type": "string"
         }, 
-        "5:description": {
+        "description": {
           "type": "string"
         }, 
-        "8:gender": {
+        "gender": {
           "index": "not_analyzed", 
           "type": "string"
         }, 
-        "22:hidden": {
+        "hidden": {
           "type": "boolean"
         }, 
-        "21:image": {
+        "image": {
           "type": "nested", 
           "properties": {
             "2:full_size": {
@@ -207,7 +207,7 @@
             }
           }
         }, 
-        "19:location_name_texts": {
+        "location_name_texts": {
           "fields": {
             "text": {
               "type": "string"
@@ -219,7 +219,7 @@
           }, 
           "type": "multi_field"
         }, 
-        "14:material_texts": {
+        "material_texts": {
           "fields": {
             "text": {
               "type": "string"
@@ -231,7 +231,7 @@
           }, 
           "type": "multi_field"
         }, 
-        "16:relation_texts": {
+        "relation_texts": {
           "fields": {
             "text": {
               "type": "string"
@@ -243,11 +243,11 @@
           }, 
           "type": "multi_field"
         }, 
-        "20:structure_texts": {
+        "structure_texts": {
           "type": "nested", 
           "dynamic": true
         }, 
-        "9:subject_term_texts": {
+        "subject_term_texts": {
           "fields": {
             "text": {
               "type": "string"
@@ -259,7 +259,7 @@
           }, 
           "type": "multi_field"
         }, 
-        "15:technique_texts": {
+        "technique_texts": {
           "fields": {
             "text": {
               "type": "string"
@@ -271,11 +271,11 @@
           }, 
           "type": "multi_field"
         }, 
-        "13:url": {
+        "url": {
           "type": "string", 
           "analyzer": "email_and_url"
         }, 
-        "11:work_type_texts": {
+        "work_type_texts": {
           "fields": {
             "text": {
               "type": "string"

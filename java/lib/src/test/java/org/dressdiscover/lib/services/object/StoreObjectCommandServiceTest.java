@@ -41,6 +41,7 @@ public final class StoreObjectCommandServiceTest extends ObjectServiceTest {
         assertEquals(0, _getObjectCount());
         _putObjects();
         objectCommandService.resummarizeObjects();
+        objectSummaryElasticSearchIndex.refresh();
         assertEquals(TestData.getInstance().getObjects().size(), _getObjectCount());
     }
 }
