@@ -2,6 +2,9 @@ package org.dressdiscover.lib;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
+import java.io.PrintWriter;
+import java.io.StringWriter;
+
 import org.dressdiscover.lib.properties.GlobalProperties;
 import org.dressdiscover.lib.python.PythonInterpreterFactory;
 import org.dressdiscover.lib.stores.collection.CollectionStoreFactoryRegistry;
@@ -37,7 +40,12 @@ public class Site {
             final PythonInterpreter pythonInterpreter = pythonInterpreterFactory.createPythonInterpreter();
             pythonInterpreter.exec("import ddsite");
         } catch (final PyException e) {
-            logger.error(logMarker, "error importing ddsite.py:", e);
+            final StringWriter pyStackTraceStringWriter = new StringWriter();
+            final PrintWriter pyStackTracePrintWriter = new PrintWriter(pyStackTraceStringWriter);
+            e.printStackTrace(pyStackTracePrintWriter);
+            pyStackTracePrintWriter.flush();
+            final String pyStackTrace = pyStackTraceStringWriter.toString();
+            logger.error(logMarker, "error importing ddsite.py:\n{}", pyStackTrace);
         }
     }
 
