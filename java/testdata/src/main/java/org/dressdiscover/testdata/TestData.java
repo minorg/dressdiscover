@@ -15,6 +15,7 @@ import org.dressdiscover.api.models.object.Object;
 import org.dressdiscover.api.models.object.ObjectEntry;
 import org.dressdiscover.api.models.object.ObjectId;
 import org.dressdiscover.api.models.user.User;
+import org.dressdiscover.api.vocabularies.vra_core.VraCoreObject;
 import org.dressdiscover.api.vocabularies.vra_core.agent.Agent;
 import org.dressdiscover.api.vocabularies.vra_core.agent.AgentName;
 import org.dressdiscover.api.vocabularies.vra_core.agent.AgentNameType;
@@ -84,11 +85,15 @@ public final class TestData {
                 collectionsBuilder.put(institutionId, CollectionEntry.create(collectionId, collection));
 
                 {
-                    final Object.Builder objectBuilder = Object.builder().setAgents(AgentSet.create(agents))
-                            .setCategories(categories).setSubjects(SubjectSet.create(subjects))
-                            .setTitles(TitleSet.builder().setElements(ImmutableList
-                                    .of(Title.builder().setText("Test object").setType(TitleType.DESCRIPTIVE).build()))
-                                    .build());
+                    final Object.Builder objectBuilder = Object.builder()
+                            .setVraCore(
+                                    VraCoreObject.builder().setAgentSets(ImmutableList.of(AgentSet.create(agents)))
+                                            .setSubjectSets(ImmutableList.of(SubjectSet.create(subjects)))
+                                            .setTitleSets(ImmutableList.of(TitleSet.builder()
+                                                    .setElements(ImmutableList.of(Title.builder().setText("Test object")
+                                                            .setType(TitleType.DESCRIPTIVE).build()))
+                                                    .build()))
+                                            .build());
 
                     objectsBuilder.put(institutionId, collectionId, ObjectEntry
                             .create(ObjectId.parse(collectionId.toString() + "/test_object"), objectBuilder.build()));

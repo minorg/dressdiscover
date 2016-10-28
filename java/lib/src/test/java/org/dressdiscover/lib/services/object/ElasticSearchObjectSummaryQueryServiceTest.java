@@ -23,7 +23,8 @@ public final class ElasticSearchObjectSummaryQueryServiceTest extends ObjectServ
     public void testGetObjectById() throws Exception {
         final ImmutableList<ObjectEntry> expected = _putObjects();
         for (final ObjectEntry entry : expected) {
-            assertEquals(entry.getModel().getTitles(), objectQueryService.getObjectById(entry.getId()).getTitles());
+            assertEquals(entry.getModel().getVraCore().get().getTitleSets(),
+                    objectQueryService.getObjectById(entry.getId()).getVraCore().get().getTitleSets());
         }
     }
 
