@@ -86,21 +86,22 @@ public abstract class ObjectServiceTest extends ServiceTest {
     }
 
     protected final ImmutableList<ObjectEntry> _putObjects() throws Exception {
-        objectCommandService.putObjects(ImmutableList.copyOf(TestData.getInstance().getObjects().values()));
-        while (true) {
+        final ImmutableList<ObjectEntry> objects = ImmutableList.copyOf(TestData.getInstance().getObjects().values());
+        objectCommandService.putObjects(objects);
+        for (int i = 0; i < 100; i++) {
             try {
                 objectSummaryElasticSearchIndex.refresh();
             } catch (final IoException e) {
-                break;
+                return objects;
             }
 
             if (objectSummaryElasticSearchIndex.countModels(logger, logMarker) >= TestData.getInstance().getObjects()
                     .size()) {
-                break;
+                return objects;
             }
             Thread.sleep(100);
         }
-        return ImmutableList.copyOf(TestData.getInstance().getObjects().values());
+        throw IoException.create("objects never appeared");
     }
 
     protected CollectionQueryService collectionQueryService;
