@@ -79,8 +79,15 @@ public abstract class ObjectServiceTest extends ServiceTest {
     protected final ObjectEntry _putObject() throws Exception {
         for (final ObjectEntry objectEntry : TestData.getInstance().getObjects().values()) {
             objectCommandService.putObject(objectEntry.getId(), objectEntry.getModel());
-            objectSummaryElasticSearchIndex.refresh();
-            return objectEntry;
+            for (int i = 0; i < 100; i++) {
+                objectSummaryElasticSearchIndex.refresh();
+
+                if (objectSummaryElasticSearchIndex.countModels(logger, logMarker) > 0) {
+                    return objectEntry;
+                }
+                Thread.sleep(100);
+            }
+            throw IoException.create("objects never appeared");
         }
         throw new IllegalStateException();
     }
@@ -89,14 +96,9 @@ public abstract class ObjectServiceTest extends ServiceTest {
         final ImmutableList<ObjectEntry> objects = ImmutableList.copyOf(TestData.getInstance().getObjects().values());
         objectCommandService.putObjects(objects);
         for (int i = 0; i < 100; i++) {
-            try {
-                objectSummaryElasticSearchIndex.refresh();
-            } catch (final IoException e) {
-                return objects;
-            }
+            objectSummaryElasticSearchIndex.refresh();
 
-            if (objectSummaryElasticSearchIndex.countModels(logger, logMarker) >= TestData.getInstance().getObjects()
-                    .size()) {
+            if (objectSummaryElasticSearchIndex.countModels(logger, logMarker) > 0) {
                 return objects;
             }
             Thread.sleep(100);
