@@ -1,39 +1,31 @@
 from datetime import datetime
 
-import pytz
+from org.dressdiscover.api.models import VocabRef, Vocab
+from org.dressdiscover.api.vocabularies.costume_core.color import ColorType
+from org.dressdiscover.api.vocabularies.costume_core.structure import StructureType
+from org.dressdiscover.api.vocabularies.vra_core.agent import Agent, AgentName, \
+    AgentNameType, AgentRole
+from org.dressdiscover.api.vocabularies.vra_core.cultural_context import CulturalContext
+from org.dressdiscover.api.vocabularies.vra_core.date import Date, DateType, \
+    DateBound, DateTimeGranularity
+from org.dressdiscover.api.vocabularies.vra_core.description import Description, \
+    DescriptionType
+from org.dressdiscover.api.vocabularies.vra_core.inscription import Inscription, \
+    InscriptionText, InscriptionTextType
+from org.dressdiscover.api.vocabularies.vra_core.material import Material, \
+    MaterialType
+from org.dressdiscover.api.vocabularies.vra_core.measurements import Measurements, \
+    MeasurementsType, MeasurementsUnit
+from org.dressdiscover.api.vocabularies.vra_core.work_type import WorkType
 
-from dressdiscover.api.models.agent.agent import Agent
-from dressdiscover.api.models.agent.agent_name import AgentName
-from dressdiscover.api.models.agent.agent_name_type import AgentNameType
-from dressdiscover.api.models.agent.agent_role import AgentRole
-from dressdiscover.api.models.color.color_type import ColorType
-from dressdiscover.api.models.cultural_context.cultural_context import CulturalContext
-from dressdiscover.api.models.date.date import Date
-from dressdiscover.api.models.date.date_bound import DateBound
-from dressdiscover.api.models.date.date_time_granularity import DateTimeGranularity
-from dressdiscover.api.models.date.date_type import DateType
-from dressdiscover.api.models.description.description import Description
-from dressdiscover.api.models.description.description_type import DescriptionType
-from dressdiscover.api.models.inscription.inscription import Inscription
-from dressdiscover.api.models.inscription.inscription_text import InscriptionText
-from dressdiscover.api.models.inscription.inscription_text_type import InscriptionTextType
-from dressdiscover.api.models.material.material import Material
-from dressdiscover.api.models.material.material_type import MaterialType
-from dressdiscover.api.models.measurements.measurements import Measurements
-from dressdiscover.api.models.measurements.measurements_type import MeasurementsType
-from dressdiscover.api.models.measurements.measurements_unit import MeasurementsUnit
-from dressdiscover.api.models.structure.structure_type import StructureType
-from dressdiscover.api.models.vocab import Vocab
-from dressdiscover.api.models.vocab_ref import VocabRef
-from dressdiscover.api.models.work_type.work_type import WorkType
-from dressdiscover.etl.costume_core.costume_core_omeka_loader import CostumeCoreOmekaLoader
 from dressdiscover.lib.mappers.dcmi_types import DCMI_TYPES_BASE_URL
+from dressdiscover.lib.mappers.omeka.costume_core_omeka_resource_mapper import CostumeCoreOmekaResourceMapper
 
 
-class HistoricDressOmekaLoader(CostumeCoreOmekaLoader):
-    class _ObjectBuilder(CostumeCoreOmekaLoader._ObjectBuilder):
+class HistoricDressOmekaResourceMapper(CostumeCoreOmekaResourceMapper):
+    class _ObjectBuilder(CostumeCoreOmekaResourceMapper._ObjectBuilder):
         def __init__(self, **kwds):
-            CostumeCoreOmekaLoader._ObjectBuilder.__init__(self, **kwds)
+            CostumeCoreOmekaResourceMapper._ObjectBuilder.__init__(self, **kwds)
             self.earliest_date = None
             self.latest_date = None
 
@@ -52,20 +44,10 @@ class HistoricDressOmekaLoader(CostumeCoreOmekaLoader):
             elif self.latest_date is not None:
                 self._logger.warn("Omeka object %d has a Latest Date but no Earliest Date", self.omeka_item_id)
 
-            return CostumeCoreOmekaLoader._ObjectBuilder.build(self)
+            return CostumeCoreOmekaResourceMapper._ObjectBuilder.build(self)
 
-    def __init__(self, **kwds):
-        CostumeCoreOmekaLoader.__init__(
-            self,
-            endpoint_url='http://historicdress.org/omeka2',
-            institution_id='historicdress',
-            institution_title="historicdress.org",
-            institution_url="http://historicdress.org",
-            **kwds
-        )
-
-    @classmethod
-    def _add_institution_arguments(cls, argument_parser):
+    def _map_omeka_item_element_itm_transcription(self, object_builder, text):
+        # Interview transcriptions
         pass
 
     def _load_item_element_dc_is_referenced_by(self, **kwds):
@@ -311,7 +293,7 @@ class HistoricDressOmekaLoader(CostumeCoreOmekaLoader):
             self._logger.warn("unable to parse date '%s' from item %d", text, object_builder.omeka_item_id)
             return date_bound_builder.build()
 
-        parsed_date_time = parsed_date_time.replace(tzinfo=pytz.utc)
+        # parsed_date_time = parsed_date_time.replace(tzinfo=pytz.utc)
 
         if parsed_date_time.year > datetime.now().year or parsed_date_time.year < 1000:
             self._logger.debug("parsed date time has year out of range: '%s' from '%s'", parsed_date_time, text)

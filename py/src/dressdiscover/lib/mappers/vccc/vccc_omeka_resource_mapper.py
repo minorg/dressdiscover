@@ -1,4 +1,4 @@
-from org.dressdiscover.api.models.color import ColorType
+from org.dressdiscover.api.vocabularies.costume_core.color import ColorType
 
 from dressdiscover.lib.mappers.omeka.costume_core_omeka_resource_mapper import CostumeCoreOmekaResourceMapper
 

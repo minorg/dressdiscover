@@ -14,8 +14,9 @@ from org.dressdiscover.api.models.institution import Institution, \
 from org.dressdiscover.api.vocabularies.vra_core.rights import RightsSet, Rights, \
     RightsType
 from org.dressdiscover.lib.python import PythonApi
-from org.thryft.native_ import Url, Uri
+from org.thryft.native_ import Url
 
+from dressdiscover.lib.mappers.historic_dress.historic_dress_omeka_resource_mapper import HistoricDressOmekaResourceMapper
 from dressdiscover.lib.mappers.txfc.txfc_oai_pmh_record_mapper import TxfcOaiPmhRecordMapper
 from dressdiscover.lib.mappers.vccc.vccc_omeka_resource_mapper import VcccOmekaResourceMapper
 from dressdiscover.lib.mappers.wizard.wizard_omeka_resource_mapper import WizardOmekaResourceMapper  # @UnusedImport
@@ -29,6 +30,59 @@ from dressdiscover.lib.stores.object.omeka.omeka_fs_object_store import OmekaFsO
 data_dir_path = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..', 'data', 'extracted'))
 assert os.path.isdir(data_dir_path), data_dir_path
 print 'Data directory path:', data_dir_path
+
+
+def put_historic_dress(self):
+    institution_id = InstitutionId.parse('historicdress')
+    institution_title = 'historicdress.org'
+
+    PythonApi.getInstance().getInstitutionCommandService().putInstitution(
+        institution_id,
+        Institution.builder()
+            .setDataRights(
+                RightsSet.builder()\
+                    .setElements(ImmutableList.of(
+                        Rights.builder()
+                            .setRightsHolder(institution_title)
+                            .setText("Copyright %s %s" % (datetime.now().year, institution_title))
+                            .setType(RightsType.COPYRIGHTED)
+                            .build()
+
+                    ))\
+                    .build()
+            )
+            .setTitle(institution_title)
+            .setUrl(Url.parse('http://historicdress.org'))
+            .build()
+    )
+
+    store_parameters = ImmutableMap.of(  # @UndefinedVariable
+        'data_directory_path', data_dir_path,
+        'endpoint_url', 'http://historicdress.org/omeka2',
+        'resource_mapper', HistoricDressOmekaResourceMapper.__module__ + '.' + HistoricDressOmekaResourceMapper.__name__  # @UndefinedVariable
+    )
+
+    PythonApi.getInstance().getConfigurationCommandService().putInstitutionConfiguration(
+        institution_id,
+        InstitutionConfiguration.builder()
+            .setCollectionStoreConfiguration(
+                CollectionStoreConfiguration.builder()
+                    .setType(OmekaFsCollectionStore.TYPE_STRING)
+                    .setParameters(store_parameters)
+                    .build()
+            )
+            .setDefaultCollectionConfiguration(
+                CollectionConfiguration.builder()
+                    .setObjectStoreConfiguration(
+                        ObjectStoreConfiguration.builder()
+                            .setType(OmekaFsCollectionStore.TYPE_STRING)
+                            .setParameters(store_parameters)
+                            .build()
+                    )
+                    .build()
+            )
+            .build()
+    )
 
 
 def put_txfc():
@@ -142,5 +196,6 @@ def put_vccc():
 # )
 
 
+put_historic_dress()
 put_txfc()
 put_vccc()
