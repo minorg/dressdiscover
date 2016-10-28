@@ -3,8 +3,8 @@ from org.dressdiscover.api.models.object import Object
 
 class _OaiPmhRecordMapper(object):
     class _ObjectBuilder(object):
-        def __init__(self, collection_id, institution_id, logger, log_marker, record_identifier, **kwds):
-            self.__object_builder = Object.builder().setCollectionId(collection_id).setInstitutionId(institution_id)
+        def __init__(self, logger, log_marker, record_identifier, **kwds):
+            self.__object_builder = Object.builder()
             self.__logger = logger
             self.__log_marker = log_marker
             self.__record_identifier = record_identifier

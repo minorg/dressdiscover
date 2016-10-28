@@ -14,8 +14,8 @@ from dressdiscover.lib.stores.object.py_object_store_factory import PyObjectStor
 class OaiPmhFsObjectStore(ObjectStore, _FsStore):
     TYPE_STRING = 'oaipmhfs'
 
-    def __init__(self, record_mapper, uri, **kwds):
-        _FsStore.__init__(self, uri=uri)
+    def __init__(self, data_directory_path, record_mapper, **kwds):
+        _FsStore.__init__(self, data_directory_path=data_directory_path)
         if isinstance(record_mapper, basestring):
             record_mapper_class_qname_split = record_mapper.split('.')
             record_mapper_class = __import__('.'.join(record_mapper_class_qname_split[:-1]))
@@ -23,7 +23,6 @@ class OaiPmhFsObjectStore(ObjectStore, _FsStore):
                 record_mapper_class = getattr(record_mapper_class, component)
             record_mapper = record_mapper_class()
         self.__record_mapper = record_mapper
-        self.__uri = uri
 
     def getObjectById(self, logger, log_marker, object_id):
         record_identifier = object_id.getUnqualifiedObjectId()

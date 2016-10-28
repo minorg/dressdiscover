@@ -1,11 +1,9 @@
 from os.path import os
 import unittest
-import urllib
 
 from org.dressdiscover.api.models.collection import CollectionId
 from org.dressdiscover.api.models.object import ObjectId
 from org.slf4j import LoggerFactory, MarkerFactory
-from org.thryft.native_ import Uri
 
 from dressdiscover.lib.stores.object.oai_pmh.oai_pmh_fs_object_store import OaiPmhFsObjectStore
 from dressdiscover.lib.mappers.txfc.txfc_oai_pmh_record_mapper import TxfcOaiPmhRecordMapper
@@ -26,11 +24,10 @@ class OaiPmhFsObjectStoreTest(unittest.TestCase):
 
     def __init__(self, *args, **kwds):
         unittest.TestCase.__init__(self, *args, **kwds)
-        data_dir_path = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..', '..', '..', '..', '..', '..', 'data', 'extracted', 'untvca', 'txfc'))
         self.__store = \
             OaiPmhFsObjectStore(
-                record_mapper=TxfcOaiPmhRecordMapper(),
-                uri=Uri.parse(OaiPmhFsObjectStore.TYPE_STRING + ':/' + urllib.pathname2url(data_dir_path))
+                data_directory_path=os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..', '..', '..', '..', '..', '..', 'data', 'extracted', 'untvca', 'txfc')),
+                record_mapper=TxfcOaiPmhRecordMapper()
             )
 
     def test_getObjectById(self):

@@ -2,17 +2,18 @@ import urllib
 
 from com.google.common.base import Optional
 from com.google.common.collect import ImmutableList
-from com.google.common.primitives import UnsignedInteger
 from org.dressdiscover.api.models import VocabRef, Vocab
 from org.dressdiscover.api.models.collection import Collection, \
     CollectionEntry
 from org.dressdiscover.api.models.image import Image, ImageVersion
 from org.dressdiscover.api.models.object import ObjectId, Object, ObjectEntry
-from org.dressdiscover.api.models.rights import RightsType, RightsSet, Rights
-from org.dressdiscover.api.models.structure import StructureSet, Structure, \
-    StructureType
-from org.dressdiscover.api.models.title import TitleSet, Title, TitleType
-from org.dressdiscover.api.models.view_type import ViewType
+from org.dressdiscover.api.vocabularies.costume_core.structure import StructureSet, \
+    Structure, StructureType
+from org.dressdiscover.api.vocabularies.vra_core.rights import RightsType, \
+    RightsSet, Rights
+from org.dressdiscover.api.vocabularies.vra_core.title import TitleSet, Title, \
+    TitleType
+from org.dressdiscover.api.vocabularies.vra_core.view_type import ViewType
 from org.thryft.native_ import Uri, Url
 
 from dressdiscover.lib.mappers.omeka.omeka_resource_mapper import OmekaResourceMapper
@@ -64,7 +65,7 @@ class WizardOmekaResourceMapper(OmekaResourceMapper):
         if not omeka_collection.id in self.OMEKA_COLLECTIONS.values():
             return
         collection_entry = OmekaResourceMapper.map_omeka_collection(self, collection_store_uri, institution_id, omeka_collection)
-        return CollectionEntry(collection_entry.id, Collection.builder(collection_entry.model).setHidden(True).build())
+        return CollectionEntry.create(collection_entry.id, Collection.builder(collection_entry.model).setHidden(True).build())
 
     def map_omeka_item(
         self,
@@ -200,9 +201,9 @@ class WizardOmekaResourceMapper(OmekaResourceMapper):
                 continue
             image_builder.setSquareThumbnail(
                 ImageVersion.builder()
-                    .setHeightPx(UnsignedInteger.valueOf(square_thumbnail_height_px))
+                    .setHeightPx(square_thumbnail_height_px)
                     .setUrl(Url.parse(file_urls.square_thumbnail))
-                    .setWidthPx(UnsignedInteger.valueOf(square_thumbnail_width_px))
+                    .setWidthPx(square_thumbnail_width_px)
                     .build()
             )
             images.append(image_builder.build())
@@ -215,4 +216,4 @@ class WizardOmekaResourceMapper(OmekaResourceMapper):
 
         object_id = ObjectId.parse(str(collection_id) + '/' + urllib.quote(feature_value, ''))
 
-        return ObjectEntry(object_id, object_)
+        return ObjectEntry.create(object_id, object_)

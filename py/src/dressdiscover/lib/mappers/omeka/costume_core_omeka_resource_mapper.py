@@ -2,53 +2,37 @@ from collections import Counter
 import java.util.Date
 
 from com.google.common.collect import ImmutableList
-from com.google.common.primitives import UnsignedInteger
 from org.dressdiscover.api.models import Vocab
 from org.dressdiscover.api.models import VocabRef
-from org.dressdiscover.api.models.agent import Agent
-from org.dressdiscover.api.models.agent import AgentName
-from org.dressdiscover.api.models.agent import AgentNameType
-from org.dressdiscover.api.models.agent import AgentRole
-from org.dressdiscover.api.models.closure import Closure
-from org.dressdiscover.api.models.closure import ClosurePlacement
-from org.dressdiscover.api.models.closure import ClosureSet
-from org.dressdiscover.api.models.closure import ClosureType
-from org.dressdiscover.api.models.color import Color
-from org.dressdiscover.api.models.color import ColorSet
-from org.dressdiscover.api.models.component import Component
-from org.dressdiscover.api.models.component import ComponentSet
-from org.dressdiscover.api.models.component import ComponentTerm
-from org.dressdiscover.api.models.condition import Condition
-from org.dressdiscover.api.models.cultural_context import CulturalContext
-from org.dressdiscover.api.models.date import Date
-from org.dressdiscover.api.models.date import DateBound
-from org.dressdiscover.api.models.date import DateTimeGranularity
-from org.dressdiscover.api.models.date import DateType
-from org.dressdiscover.api.models.description import Description
-from org.dressdiscover.api.models.description import DescriptionType
-from org.dressdiscover.api.models.gender import Gender
-from org.dressdiscover.api.models.inscription import Inscription
-from org.dressdiscover.api.models.inscription import InscriptionText
-from org.dressdiscover.api.models.inscription import InscriptionTextType
-from org.dressdiscover.api.models.location import Location
-from org.dressdiscover.api.models.location import LocationRefid
-from org.dressdiscover.api.models.location import LocationRefidType
-from org.dressdiscover.api.models.location import LocationType
-from org.dressdiscover.api.models.measurements import Measurements
-from org.dressdiscover.api.models.measurements import MeasurementsType
-from org.dressdiscover.api.models.measurements import MeasurementsUnit
-from org.dressdiscover.api.models.relation import Relation
-from org.dressdiscover.api.models.relation import RelationType
-from org.dressdiscover.api.models.structure import Structure
-from org.dressdiscover.api.models.structure import StructureSet
-from org.dressdiscover.api.models.structure import StructureType
-from org.dressdiscover.api.models.technique import Technique
-from org.dressdiscover.api.models.textref import Textref
-from org.dressdiscover.api.models.textref import TextrefName
-from org.dressdiscover.api.models.textref import TextrefNameType
-from org.dressdiscover.api.models.textref import TextrefRefid
-from org.dressdiscover.api.models.textref import TextrefRefidType
-from org.dressdiscover.api.models.view_type import ViewType
+from org.dressdiscover.api.vocabularies.costume_core.closure import Closure, \
+    ClosureSet, ClosurePlacement, ClosureType
+from org.dressdiscover.api.vocabularies.costume_core.color import ColorSet, \
+    Color
+from org.dressdiscover.api.vocabularies.costume_core.component import ComponentSet, \
+    Component, ComponentTerm
+from org.dressdiscover.api.vocabularies.costume_core.condition import Condition
+from org.dressdiscover.api.vocabularies.costume_core.gender import Gender
+from org.dressdiscover.api.vocabularies.costume_core.structure import StructureSet, \
+    StructureType, Structure
+from org.dressdiscover.api.vocabularies.vra_core.agent import Agent, AgentName, \
+    AgentNameType, AgentRole
+from org.dressdiscover.api.vocabularies.vra_core.cultural_context import CulturalContext
+from org.dressdiscover.api.vocabularies.vra_core.date import DateBound, \
+    DateTimeGranularity, Date, DateType
+from org.dressdiscover.api.vocabularies.vra_core.description import Description, \
+    DescriptionType
+from org.dressdiscover.api.vocabularies.vra_core.inscription import Inscription, \
+    InscriptionText, InscriptionTextType
+from org.dressdiscover.api.vocabularies.vra_core.location import Location, \
+    LocationRefid, LocationRefidType, LocationType
+from org.dressdiscover.api.vocabularies.vra_core.measurements import Measurements, \
+    MeasurementsType, MeasurementsUnit
+from org.dressdiscover.api.vocabularies.vra_core.relation import Relation, \
+    RelationType
+from org.dressdiscover.api.vocabularies.vra_core.technique import Technique
+from org.dressdiscover.api.vocabularies.vra_core.textref import Textref, \
+    TextrefName, TextrefNameType, TextrefRefid, TextrefRefidType
+from org.dressdiscover.api.vocabularies.vra_core.view_type import ViewType
 
 from dressdiscover.lib.mappers.omeka.omeka_resource_mapper import OmekaResourceMapper
 
@@ -494,7 +478,7 @@ class CostumeCoreOmekaResourceMapper(OmekaResourceMapper):
             return
         if object_builder.quantity.isPresent():
             assert object_builder.quantity.get().intValue() == quantity, "%d vs. %d" % (object_builder.quantity.get().intValue(), quantity)
-        object_builder.setQuantity(UnsignedInteger.valueOf(quantity))
+        object_builder.setQuantity(quantity)
 
     def _map_omeka_item_element_itm_references(self, object_builder, text):
         object_builder.textrefs.append(

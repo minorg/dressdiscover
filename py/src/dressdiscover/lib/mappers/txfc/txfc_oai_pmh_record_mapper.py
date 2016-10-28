@@ -4,37 +4,39 @@ from xml.etree import ElementTree
 
 from com.google.common.base import Optional
 from com.google.common.collect import ImmutableList
-from com.google.common.primitives import UnsignedInteger
 from org.dressdiscover.api.models import VocabRef, Vocab
-from org.dressdiscover.api.models.agent import AgentSet, Agent, AgentRole, \
-    AgentNameType, AgentName
-from org.dressdiscover.api.models.date import DateType, DateSet, DateBound, \
-    Date
-from org.dressdiscover.api.models.description import DescriptionSet, \
-    DescriptionType, Description
 from org.dressdiscover.api.models.image import Image, ImageVersion
-from org.dressdiscover.api.models.location import LocationSet, Location, \
-    LocationName, LocationNameType, LocationType
 from org.dressdiscover.api.models.object import ObjectId, ObjectEntry
-from org.dressdiscover.api.models.rights import RightsSet, Rights, RightsType
-from org.dressdiscover.api.models.subject import SubjectSet, SubjectTerm, \
-    SubjectTermType, Subject
-from org.dressdiscover.api.models.textref import TextrefSet, Textref, \
-    TextrefName, TextrefNameType, TextrefRefid, TextrefRefidType
-from org.dressdiscover.api.models.title import TitleSet, TitleType, Title
-from org.dressdiscover.api.models.work_type import WorkTypeSet, WorkType
+from org.dressdiscover.api.vocabularies.vra_core.agent import AgentSet, Agent, \
+    AgentRole, AgentNameType, AgentName
+from org.dressdiscover.api.vocabularies.vra_core.date import Date, DateType, \
+    DateSet, DateBound
+from org.dressdiscover.api.vocabularies.vra_core.description import DescriptionSet, \
+    DescriptionType, Description
+from org.dressdiscover.api.vocabularies.vra_core.location import LocationSet, \
+    Location, LocationName, LocationNameType, LocationType
+from org.dressdiscover.api.vocabularies.vra_core.rights import RightsSet, Rights, \
+    RightsType
+from org.dressdiscover.api.vocabularies.vra_core.subject import SubjectSet, \
+    SubjectTerm, SubjectTermType, Subject
+from org.dressdiscover.api.vocabularies.vra_core.textref import TextrefSet, \
+    Textref, TextrefName, TextrefNameType, TextrefRefid, TextrefRefidType
+from org.dressdiscover.api.vocabularies.vra_core.title import TitleSet, \
+    TitleType, Title
+from org.dressdiscover.api.vocabularies.vra_core.work_type import WorkTypeSet, \
+    WorkType
 from org.thryft.native_ import Uri, Url
 
 from dressdiscover.lib.mappers.date_parser import DateParser
+from dressdiscover.lib.mappers.dcmi_types import DCMI_TYPES_BASE_URL
 from dressdiscover.lib.mappers.oai_pmh._oai_pmh_record_mapper import _OaiPmhRecordMapper
-from dressdiscover.lib.stores.object.omeka.dcmi_types import DCMI_TYPES_BASE_URL
 
 
 class TxfcOaiPmhRecordMapper(_OaiPmhRecordMapper):
     _RIGHTS_HOLDER = "University of North Texas"
     _UNTL_NS = '{http://digital2.library.unt.edu/untl/}'
-    _SQUARE_THUMBNAIL_HEIGHT_PX = UnsignedInteger.valueOf(75)
-    _SQUARE_THUMBNAIL_WIDTH_PX = UnsignedInteger.valueOf(75)
+    _SQUARE_THUMBNAIL_HEIGHT_PX = 75
+    _SQUARE_THUMBNAIL_WIDTH_PX = 75
 
     class _ObjectBuilder(_OaiPmhRecordMapper._ObjectBuilder):
         def __init__(self, **kwds):
@@ -111,8 +113,6 @@ class TxfcOaiPmhRecordMapper(_OaiPmhRecordMapper):
 
         object_builder = \
             self._ObjectBuilder(
-                collection_id=collection_id,
-                institution_id=collection_id.getInstitutionId(),
                 logger=logger,
                 log_marker=log_marker,
                 record_identifier=record_identifier
@@ -132,7 +132,7 @@ class TxfcOaiPmhRecordMapper(_OaiPmhRecordMapper):
                 object_builder=object_builder
             )
 
-        return ObjectEntry(object_id, object_builder.build())
+        return ObjectEntry.create(object_id, object_builder.build())
 
     def __parse_date(self, text, circa=None):
         date_bound_builder = DateBound.builder().setText(text)
