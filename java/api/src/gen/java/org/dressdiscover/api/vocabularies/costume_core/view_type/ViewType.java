@@ -1,4 +1,4 @@
-package org.dressdiscover.api.vocabularies.vra_core.view_type;
+package org.dressdiscover.api.vocabularies.costume_core.view_type;
 
 public enum ViewType {
     ACTION(0),

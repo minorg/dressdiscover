@@ -299,14 +299,14 @@ class OmekaResourceMapper(object):
             try:
                 method = getattr(self, method_name)
             except AttributeError:
-                object_builder.logger.warn(object_builder.log_marker, "no method {}, skipping item {} Dublin Core element {}: {}", (method_name, object_builder.omeka_item.id, element_name, text.encode('ascii', 'ignore')))
+                object_builder.logger.warn(object_builder.log_marker, "no method {} on {}, skipping item {} Dublin Core element {}: {}", (method_name, self.__class__.__name__, object_builder.omeka_item.id, element_name, text.encode('ascii', 'ignore')))
                 return
         elif element_set_name == 'Item Type Metadata':
             method_name = '_map_omeka_item_element_itm_' + element_name.lower().replace(' ', '_')
             try:
                 method = getattr(self, method_name)
             except AttributeError:
-                object_builder.logger.warn(object_builder.log_marker, "no method {}, skipping item {} Item Type Metadata element {}: {}", (method_name, object_builder.omeka_item.id, element_name, text.encode('ascii', 'ignore')))
+                object_builder.logger.warn(object_builder.log_marker, "no method {} on {}, skipping item {} Item Type Metadata element {}: {}", (method_name, self.__class__.__name__, object_builder.omeka_item.id, element_name, text.encode('ascii', 'ignore')))
                 return
         else:
             object_builder.logger.warn(object_builder.log_marker, "skipping item {} element set", element_set_name)
