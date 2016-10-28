@@ -51,6 +51,11 @@ public class LoggingUserCommandService implements org.dressdiscover.api.services
             __logMessageArgs.add(e.toString());
             logger.error(Markers.DELETE_USER_BOOKMARK_BY_ID, __logMessageStringBuilder.toString(), __logMessageArgs.toArray());
             throw e;
+        } catch (final RuntimeException e) {
+            __logMessageStringBuilder.append(" -> ");
+            __logMessageArgs.add(e);
+            logger.error(Markers.DELETE_USER_BOOKMARK_BY_ID, __logMessageStringBuilder.toString(), __logMessageArgs.toArray());
+            throw e;
         }
     }
 
@@ -77,6 +82,11 @@ public class LoggingUserCommandService implements org.dressdiscover.api.services
             __logMessageArgs.add(e.toString());
             logger.error(Markers.DELETE_USER_BY_ID, __logMessageStringBuilder.toString(), __logMessageArgs.toArray());
             throw e;
+        } catch (final RuntimeException e) {
+            __logMessageStringBuilder.append(" -> ");
+            __logMessageArgs.add(e);
+            logger.error(Markers.DELETE_USER_BY_ID, __logMessageStringBuilder.toString(), __logMessageArgs.toArray());
+            throw e;
         }
     }
 
@@ -94,6 +104,11 @@ public class LoggingUserCommandService implements org.dressdiscover.api.services
         } catch (final org.dressdiscover.api.services.IoException e) {
             __logMessageStringBuilder.append(" -> {}");
             __logMessageArgs.add(e.toString());
+            logger.error(Markers.DELETE_USERS, __logMessageStringBuilder.toString(), __logMessageArgs.toArray());
+            throw e;
+        } catch (final RuntimeException e) {
+            __logMessageStringBuilder.append(" -> ");
+            __logMessageArgs.add(e);
             logger.error(Markers.DELETE_USERS, __logMessageStringBuilder.toString(), __logMessageArgs.toArray());
             throw e;
         }
@@ -127,6 +142,11 @@ public class LoggingUserCommandService implements org.dressdiscover.api.services
             __logMessageArgs.add(e.toString());
             logger.error(Markers.POST_USER, __logMessageStringBuilder.toString(), __logMessageArgs.toArray());
             throw e;
+        } catch (final RuntimeException e) {
+            __logMessageStringBuilder.append(" -> ");
+            __logMessageArgs.add(e);
+            logger.error(Markers.POST_USER, __logMessageStringBuilder.toString(), __logMessageArgs.toArray());
+            throw e;
         }
     }
 
@@ -158,6 +178,11 @@ public class LoggingUserCommandService implements org.dressdiscover.api.services
             __logMessageArgs.add(e.toString());
             logger.error(Markers.POST_USER_BOOKMARK, __logMessageStringBuilder.toString(), __logMessageArgs.toArray());
             throw e;
+        } catch (final RuntimeException e) {
+            __logMessageStringBuilder.append(" -> ");
+            __logMessageArgs.add(e);
+            logger.error(Markers.POST_USER_BOOKMARK, __logMessageStringBuilder.toString(), __logMessageArgs.toArray());
+            throw e;
         }
     }
 
@@ -182,6 +207,11 @@ public class LoggingUserCommandService implements org.dressdiscover.api.services
         } catch (final org.dressdiscover.api.services.user.NoSuchUserException e) {
             __logMessageStringBuilder.append(" -> {}");
             __logMessageArgs.add(e.toString());
+            logger.error(Markers.PUT_USER, __logMessageStringBuilder.toString(), __logMessageArgs.toArray());
+            throw e;
+        } catch (final RuntimeException e) {
+            __logMessageStringBuilder.append(" -> ");
+            __logMessageArgs.add(e);
             logger.error(Markers.PUT_USER, __logMessageStringBuilder.toString(), __logMessageArgs.toArray());
             throw e;
         }

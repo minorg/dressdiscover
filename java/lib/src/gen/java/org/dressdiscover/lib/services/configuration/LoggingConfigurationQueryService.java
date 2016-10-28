@@ -43,6 +43,11 @@ public class LoggingConfigurationQueryService implements org.dressdiscover.api.s
             __logMessageArgs.add(e.toString());
             logger.error(Markers.GET_COLLECTION_CONFIGURATION, __logMessageStringBuilder.toString(), __logMessageArgs.toArray());
             throw e;
+        } catch (final RuntimeException e) {
+            __logMessageStringBuilder.append(" -> ");
+            __logMessageArgs.add(e);
+            logger.error(Markers.GET_COLLECTION_CONFIGURATION, __logMessageStringBuilder.toString(), __logMessageArgs.toArray());
+            throw e;
         }
     }
 
@@ -67,6 +72,11 @@ public class LoggingConfigurationQueryService implements org.dressdiscover.api.s
         } catch (final org.dressdiscover.api.services.IoException e) {
             __logMessageStringBuilder.append(" -> {}");
             __logMessageArgs.add(e.toString());
+            logger.error(Markers.GET_INSTITUTION_CONFIGURATION, __logMessageStringBuilder.toString(), __logMessageArgs.toArray());
+            throw e;
+        } catch (final RuntimeException e) {
+            __logMessageStringBuilder.append(" -> ");
+            __logMessageArgs.add(e);
             logger.error(Markers.GET_INSTITUTION_CONFIGURATION, __logMessageStringBuilder.toString(), __logMessageArgs.toArray());
             throw e;
         }

@@ -56,6 +56,11 @@ public class LoggingObjectQueryService implements org.dressdiscover.api.services
             __logMessageArgs.add(e.toString());
             logger.error(Markers.GET_OBJECT_BY_ID, __logMessageStringBuilder.toString(), __logMessageArgs.toArray());
             throw e;
+        } catch (final RuntimeException e) {
+            __logMessageStringBuilder.append(" -> ");
+            __logMessageArgs.add(e);
+            logger.error(Markers.GET_OBJECT_BY_ID, __logMessageStringBuilder.toString(), __logMessageArgs.toArray());
+            throw e;
         }
     }
 

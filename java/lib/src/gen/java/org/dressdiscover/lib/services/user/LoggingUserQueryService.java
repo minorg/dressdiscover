@@ -50,6 +50,11 @@ public class LoggingUserQueryService implements org.dressdiscover.api.services.u
             __logMessageArgs.add(e.toString());
             logger.error(Markers.GET_USER_BOOKMARKS_BY_USER_ID, __logMessageStringBuilder.toString(), __logMessageArgs.toArray());
             throw e;
+        } catch (final RuntimeException e) {
+            __logMessageStringBuilder.append(" -> ");
+            __logMessageArgs.add(e);
+            logger.error(Markers.GET_USER_BOOKMARKS_BY_USER_ID, __logMessageStringBuilder.toString(), __logMessageArgs.toArray());
+            throw e;
         }
     }
 
@@ -81,6 +86,11 @@ public class LoggingUserQueryService implements org.dressdiscover.api.services.u
             __logMessageArgs.add(e.toString());
             logger.error(Markers.GET_USER_BY_EMAIL_ADDRESS, __logMessageStringBuilder.toString(), __logMessageArgs.toArray());
             throw e;
+        } catch (final RuntimeException e) {
+            __logMessageStringBuilder.append(" -> ");
+            __logMessageArgs.add(e);
+            logger.error(Markers.GET_USER_BY_EMAIL_ADDRESS, __logMessageStringBuilder.toString(), __logMessageArgs.toArray());
+            throw e;
         }
     }
 
@@ -110,6 +120,11 @@ public class LoggingUserQueryService implements org.dressdiscover.api.services.u
         } catch (final org.dressdiscover.api.services.user.NoSuchUserException e) {
             __logMessageStringBuilder.append(" -> {}");
             __logMessageArgs.add(e.toString());
+            logger.error(Markers.GET_USER_BY_ID, __logMessageStringBuilder.toString(), __logMessageArgs.toArray());
+            throw e;
+        } catch (final RuntimeException e) {
+            __logMessageStringBuilder.append(" -> ");
+            __logMessageArgs.add(e);
             logger.error(Markers.GET_USER_BY_ID, __logMessageStringBuilder.toString(), __logMessageArgs.toArray());
             throw e;
         }

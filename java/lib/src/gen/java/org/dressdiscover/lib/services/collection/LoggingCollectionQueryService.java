@@ -55,6 +55,11 @@ public class LoggingCollectionQueryService implements org.dressdiscover.api.serv
             __logMessageArgs.add(e.toString());
             logger.error(Markers.GET_COLLECTION_BY_ID, __logMessageStringBuilder.toString(), __logMessageArgs.toArray());
             throw e;
+        } catch (final RuntimeException e) {
+            __logMessageStringBuilder.append(" -> ");
+            __logMessageArgs.add(e);
+            logger.error(Markers.GET_COLLECTION_BY_ID, __logMessageStringBuilder.toString(), __logMessageArgs.toArray());
+            throw e;
         }
     }
 
@@ -91,6 +96,11 @@ public class LoggingCollectionQueryService implements org.dressdiscover.api.serv
             __logMessageArgs.add(e.toString());
             logger.error(Markers.GET_COLLECTIONS_BY_IDS, __logMessageStringBuilder.toString(), __logMessageArgs.toArray());
             throw e;
+        } catch (final RuntimeException e) {
+            __logMessageStringBuilder.append(" -> ");
+            __logMessageArgs.add(e);
+            logger.error(Markers.GET_COLLECTIONS_BY_IDS, __logMessageStringBuilder.toString(), __logMessageArgs.toArray());
+            throw e;
         }
     }
 
@@ -120,6 +130,11 @@ public class LoggingCollectionQueryService implements org.dressdiscover.api.serv
         } catch (final org.dressdiscover.api.services.institution.NoSuchInstitutionException e) {
             __logMessageStringBuilder.append(" -> {}");
             __logMessageArgs.add(e.toString());
+            logger.error(Markers.GET_COLLECTIONS_BY_INSTITUTION_ID, __logMessageStringBuilder.toString(), __logMessageArgs.toArray());
+            throw e;
+        } catch (final RuntimeException e) {
+            __logMessageStringBuilder.append(" -> ");
+            __logMessageArgs.add(e);
             logger.error(Markers.GET_COLLECTIONS_BY_INSTITUTION_ID, __logMessageStringBuilder.toString(), __logMessageArgs.toArray());
             throw e;
         }

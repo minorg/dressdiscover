@@ -57,6 +57,11 @@ public class LoggingObjectCommandService implements org.dressdiscover.api.servic
             __logMessageArgs.add(e.toString());
             logger.error(Markers.DELETE_OBJECTS_BY_COLLECTION_ID, __logMessageStringBuilder.toString(), __logMessageArgs.toArray());
             throw e;
+        } catch (final RuntimeException e) {
+            __logMessageStringBuilder.append(" -> ");
+            __logMessageArgs.add(e);
+            logger.error(Markers.DELETE_OBJECTS_BY_COLLECTION_ID, __logMessageStringBuilder.toString(), __logMessageArgs.toArray());
+            throw e;
         }
     }
 
@@ -86,6 +91,11 @@ public class LoggingObjectCommandService implements org.dressdiscover.api.servic
         } catch (final org.dressdiscover.api.services.institution.NoSuchInstitutionException e) {
             __logMessageStringBuilder.append(" -> {}");
             __logMessageArgs.add(e.toString());
+            logger.error(Markers.PUT_OBJECT, __logMessageStringBuilder.toString(), __logMessageArgs.toArray());
+            throw e;
+        } catch (final RuntimeException e) {
+            __logMessageStringBuilder.append(" -> ");
+            __logMessageArgs.add(e);
             logger.error(Markers.PUT_OBJECT, __logMessageStringBuilder.toString(), __logMessageArgs.toArray());
             throw e;
         }
@@ -119,6 +129,11 @@ public class LoggingObjectCommandService implements org.dressdiscover.api.servic
             __logMessageArgs.add(e.toString());
             logger.error(Markers.PUT_OBJECTS, __logMessageStringBuilder.toString(), __logMessageArgs.toArray());
             throw e;
+        } catch (final RuntimeException e) {
+            __logMessageStringBuilder.append(" -> ");
+            __logMessageArgs.add(e);
+            logger.error(Markers.PUT_OBJECTS, __logMessageStringBuilder.toString(), __logMessageArgs.toArray());
+            throw e;
         }
     }
 
@@ -136,6 +151,11 @@ public class LoggingObjectCommandService implements org.dressdiscover.api.servic
         } catch (final org.dressdiscover.api.services.IoException e) {
             __logMessageStringBuilder.append(" -> {}");
             __logMessageArgs.add(e.toString());
+            logger.error(Markers.RESUMMARIZE_OBJECTS, __logMessageStringBuilder.toString(), __logMessageArgs.toArray());
+            throw e;
+        } catch (final RuntimeException e) {
+            __logMessageStringBuilder.append(" -> ");
+            __logMessageArgs.add(e);
             logger.error(Markers.RESUMMARIZE_OBJECTS, __logMessageStringBuilder.toString(), __logMessageArgs.toArray());
             throw e;
         }

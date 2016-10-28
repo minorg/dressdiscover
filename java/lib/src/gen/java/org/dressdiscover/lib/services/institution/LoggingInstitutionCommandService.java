@@ -43,6 +43,11 @@ public class LoggingInstitutionCommandService implements org.dressdiscover.api.s
             __logMessageArgs.add(e.toString());
             logger.error(Markers.DELETE_INSTITUTION_BY_ID, __logMessageStringBuilder.toString(), __logMessageArgs.toArray());
             throw e;
+        } catch (final RuntimeException e) {
+            __logMessageStringBuilder.append(" -> ");
+            __logMessageArgs.add(e);
+            logger.error(Markers.DELETE_INSTITUTION_BY_ID, __logMessageStringBuilder.toString(), __logMessageArgs.toArray());
+            throw e;
         }
     }
 
@@ -62,6 +67,11 @@ public class LoggingInstitutionCommandService implements org.dressdiscover.api.s
         } catch (final org.dressdiscover.api.services.IoException e) {
             __logMessageStringBuilder.append(" -> {}");
             __logMessageArgs.add(e.toString());
+            logger.error(Markers.PUT_INSTITUTION, __logMessageStringBuilder.toString(), __logMessageArgs.toArray());
+            throw e;
+        } catch (final RuntimeException e) {
+            __logMessageStringBuilder.append(" -> ");
+            __logMessageArgs.add(e);
             logger.error(Markers.PUT_INSTITUTION, __logMessageStringBuilder.toString(), __logMessageArgs.toArray());
             throw e;
         }

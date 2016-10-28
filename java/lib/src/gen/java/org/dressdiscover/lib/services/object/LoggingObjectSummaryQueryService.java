@@ -41,6 +41,11 @@ public class LoggingObjectSummaryQueryService implements org.dressdiscover.api.s
             __logMessageArgs.add(e.toString());
             logger.error(Markers.GET_OBJECT_SUMMARIES, __logMessageStringBuilder.toString(), __logMessageArgs.toArray());
             throw e;
+        } catch (final RuntimeException e) {
+            __logMessageStringBuilder.append(" -> ");
+            __logMessageArgs.add(e);
+            logger.error(Markers.GET_OBJECT_SUMMARIES, __logMessageStringBuilder.toString(), __logMessageArgs.toArray());
+            throw e;
         }
     }
 
