@@ -477,7 +477,7 @@ class CostumeCoreOmekaResourceMapper(OmekaResourceMapper):
             object_builder.logger.warn(object_builder.log_marker, "unparseable quantity: {}", text)
             return
         if object_builder.quantity.isPresent():
-            assert object_builder.quantity.get().intValue() == quantity, "%d vs. %d" % (object_builder.quantity.get().intValue(), quantity)
+            assert object_builder.quantity.get() == quantity, "%d vs. %d" % (object_builder.quantity.get(), quantity)
         object_builder.setQuantity(quantity)
 
     def _map_omeka_item_element_itm_references(self, object_builder, text):

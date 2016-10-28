@@ -22,7 +22,7 @@ class OmekaFsCollectionStore(_OmekaCollectionStore, _FsStore):
         for collection_entry in collection_entries:
             if collection_entry.id == collectionId:
                 return collection_entry.model
-        raise NoSuchCollectionException(collectionId)
+        raise NoSuchCollectionException.create(collectionId)
 
     def _get_collections_by_institution_id(self, institutionId, logger, logMarker):
         file_path = os.path.join(self._data_dir_path, str(institutionId), 'collections.json')

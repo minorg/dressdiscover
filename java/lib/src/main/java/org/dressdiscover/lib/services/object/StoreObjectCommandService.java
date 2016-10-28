@@ -20,10 +20,13 @@ import org.dressdiscover.api.services.institution.InstitutionQueryService;
 import org.dressdiscover.api.services.institution.NoSuchInstitutionException;
 import org.dressdiscover.api.services.object.ObjectCommandService;
 import org.dressdiscover.lib.properties.StoreProperties;
+import org.dressdiscover.lib.python.PythonUtils;
 import org.dressdiscover.lib.services.object.LoggingObjectCommandService.Markers;
+import org.dressdiscover.lib.stores.object.ObjectStore;
 import org.dressdiscover.lib.stores.object.ObjectStoreCache;
 import org.dressdiscover.lib.stores.object.ObjectSummaryElasticSearchIndex;
 import org.elasticsearch.index.query.QueryBuilders;
+import org.python.core.PyException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -52,8 +55,16 @@ public class StoreObjectCommandService implements ObjectCommandService {
             throws IoException, NoSuchCollectionException, NoSuchInstitutionException {
         __invalidateCaches();
 
-        final int result = objectStoreCache.getObjectStore(collectionId).deleteObjectsByCollectionId(collectionId,
-                logger, Markers.DELETE_OBJECTS_BY_COLLECTION_ID);
+        final ObjectStore objectStore = objectStoreCache.getObjectStore(collectionId);
+
+        final int result;
+        try {
+            result = objectStore.deleteObjectsByCollectionId(collectionId, logger,
+                    Markers.DELETE_OBJECTS_BY_COLLECTION_ID);
+        } catch (final PyException e) {
+            PythonUtils.log(logger, Markers.DELETE_OBJECTS_BY_COLLECTION_ID, e);
+            throw IoException.create("Python exception");
+        }
 
         objectSummaryElasticSearchIndex.deleteModels(logger, Markers.DELETE_OBJECTS_BY_COLLECTION_ID,
                 QueryBuilders.boolQuery().filter(QueryBuilders.termQuery(
@@ -67,7 +78,13 @@ public class StoreObjectCommandService implements ObjectCommandService {
             throws IoException, NoSuchCollectionException, NoSuchInstitutionException {
         __invalidateCaches();
 
-        objectStoreCache.getObjectStore(id).putObject(logger, Markers.PUT_OBJECT, object, id);
+        final ObjectStore objectStore = objectStoreCache.getObjectStore(id);
+        try {
+            objectStore.putObject(logger, Markers.PUT_OBJECT, object, id);
+        } catch (final PyException e) {
+            PythonUtils.log(logger, Markers.PUT_OBJECT, e);
+            throw IoException.create("Python exception");
+        }
 
         objectSummaryElasticSearchIndex.putModel(logger, Markers.PUT_OBJECT,
                 ObjectSummaryEntry.create(id, ObjectSummarizer.getInstance().summarizeObject(object, id)));
@@ -79,8 +96,13 @@ public class StoreObjectCommandService implements ObjectCommandService {
         __invalidateCaches();
 
         for (final ObjectEntry objectEntry : objects) {
-            objectStoreCache.getObjectStore(objectEntry.getId()).putObject(logger, Markers.PUT_OBJECTS,
-                    objectEntry.getModel(), objectEntry.getId());
+            final ObjectStore objectStore = objectStoreCache.getObjectStore(objectEntry.getId());
+            try {
+                objectStore.putObject(logger, Markers.PUT_OBJECTS, objectEntry.getModel(), objectEntry.getId());
+            } catch (final PyException e) {
+                PythonUtils.log(logger, Markers.PUT_OBJECTS, e);
+                throw IoException.create("Python exception");
+            }
         }
 
         final ImmutableList.Builder<ObjectSummaryEntry> objectSummariesBuilder = ImmutableList.builder();
@@ -102,18 +124,23 @@ public class StoreObjectCommandService implements ObjectCommandService {
                 try {
                     for (final CollectionEntry collectionEntry : collectionQueryService
                             .getCollectionsByInstitutionId(institutionEntry.getId())) {
-                        for (final ObjectEntry objectEntry : objectStoreCache.getObjectStore(collectionEntry.getId())
-                                .getObjectsByCollectionId(collectionEntry.getId(), logger,
-                                        Markers.RESUMMARIZE_OBJECTS)) {
-                            objectSummaries.add(ObjectSummaryEntry.create(objectEntry.getId(),
-                                    ObjectSummarizer.getInstance().summarizeObject(objectEntry)));
-                            if (objectSummaries.size() == resummarizeObjectsBulkRequestSize) {
-                                objectSummaryElasticSearchIndex.putModels(logger, Markers.RESUMMARIZE_OBJECTS,
-                                        ImmutableList.copyOf(objectSummaries));
-                                logger.info(Markers.RESUMMARIZE_OBJECTS, "put {} object summaries",
-                                        objectSummaries.size());
-                                objectSummaries.clear();
+                        final ObjectStore objectStore = objectStoreCache.getObjectStore(collectionEntry.getId());
+                        try {
+                            for (final ObjectEntry objectEntry : objectStore.getObjectsByCollectionId(
+                                    collectionEntry.getId(), logger, Markers.RESUMMARIZE_OBJECTS)) {
+                                objectSummaries.add(ObjectSummaryEntry.create(objectEntry.getId(),
+                                        ObjectSummarizer.getInstance().summarizeObject(objectEntry)));
+                                if (objectSummaries.size() == resummarizeObjectsBulkRequestSize) {
+                                    objectSummaryElasticSearchIndex.putModels(logger, Markers.RESUMMARIZE_OBJECTS,
+                                            ImmutableList.copyOf(objectSummaries));
+                                    logger.info(Markers.RESUMMARIZE_OBJECTS, "put {} object summaries",
+                                            objectSummaries.size());
+                                    objectSummaries.clear();
+                                }
                             }
+                        } catch (final PyException e) {
+                            PythonUtils.log(logger, Markers.RESUMMARIZE_OBJECTS, e);
+                            throw IoException.create("Python exception");
                         }
                     }
                 } catch (final NoSuchInstitutionException e) {

@@ -17,12 +17,12 @@ class OmekaApiCollectionStore(_OmekaCollectionStore):
         try:
             omeka_collection = self.__api_client.get_collection(int(collectionId.getUnqualifiedCollectionId()))
         except NoSuchOmekaCollectionException:
-            raise NoSuchCollectionException
+            raise NoSuchCollectionException.create(collectionId)
         collection_entry = self._map_omeka_collection(institution_id=collectionId.getInstitutionId(), omeka_collection=omeka_collection)
         if collection_entry is not None:
             return collection_entry.model
         else:
-            raise NoSuchCollectionException
+            raise NoSuchCollectionException.create(collectionId)
 
     def _get_collections_by_institution_id(self, institutionId, logger, logMarker):
         return self._map_omeka_collections(institution_id=institutionId, omeka_collections=self.__api_client.get_all_collections())

@@ -11,9 +11,8 @@ from yomeka.client.omeka_rest_api_client import OmekaRestApiClient
 class OmekaApiObjectStore(_OmekaObjectStore):
     TYPE_STRING = 'omekaapi'
 
-    def __init__(self, api_key, uri, **kwds):
-        endpoint_url = 'http://' + str(uri.getAuthority().get()) + (uri.getPath().get() if uri.getPath().isPresent() else '')
-        _OmekaObjectStore.__init__(self, endpoint_url=endpoint_url, uri=uri, **kwds)
+    def __init__(self, api_key, endpoint_url, **kwds):
+        _OmekaObjectStore.__init__(self, endpoint_url=endpoint_url, **kwds)
         self.__api_client = OmekaRestApiClient(api_key=api_key, endpoint_url=endpoint_url)
 
     def _get_object_by_id(self, logger, log_marker, object_id):

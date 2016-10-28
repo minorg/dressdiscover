@@ -11,12 +11,15 @@ import org.dressdiscover.api.services.collection.CollectionCommandService;
 import org.dressdiscover.api.services.collection.NoSuchCollectionException;
 import org.dressdiscover.api.services.institution.NoSuchInstitutionException;
 import org.dressdiscover.api.services.object.ObjectCommandService;
+import org.dressdiscover.lib.python.PythonUtils;
 import org.dressdiscover.lib.services.collection.LoggingCollectionCommandService.Markers;
 import org.dressdiscover.lib.stores.collection.CollectionStore;
 import org.dressdiscover.lib.stores.collection.CollectionStoreCache;
+import org.python.core.PyException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.google.common.collect.ImmutableList;
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
 
@@ -32,9 +35,14 @@ public class StoreCollectionCommandService implements CollectionCommandService {
     @Override
     public void deleteCollectionById(final CollectionId id)
             throws IoException, NoSuchCollectionException, NoSuchInstitutionException {
-        if (!collectionStoreCache.getCollectionStore(id).deleteCollectionById(id, logger,
-                Markers.DELETE_COLLECTION_BY_ID)) {
-            throw new NoSuchCollectionException();
+        final CollectionStore collectionStore = collectionStoreCache.getCollectionStore(id);
+        try {
+            if (!collectionStore.deleteCollectionById(id, logger, Markers.DELETE_COLLECTION_BY_ID)) {
+                throw NoSuchCollectionException.create(id);
+            }
+        } catch (final PyException e) {
+            PythonUtils.log(logger, Markers.DELETE_COLLECTION_BY_ID, e);
+            throw IoException.create("Python exception");
         }
     }
 
@@ -43,8 +51,16 @@ public class StoreCollectionCommandService implements CollectionCommandService {
             throws IoException, NoSuchInstitutionException {
         final CollectionStore collectionStore = collectionStoreCache.getCollectionStore(institutionId);
 
-        for (final CollectionEntry collectionEntry : collectionStore.getCollectionsByInstitutionId(institutionId,
-                logger, Markers.DELETE_COLLECTIONS_BY_INSTITUTION_ID)) {
+        ImmutableList<CollectionEntry> collectionEntries;
+        try {
+            collectionEntries = collectionStore.getCollectionsByInstitutionId(institutionId, logger,
+                    Markers.DELETE_COLLECTIONS_BY_INSTITUTION_ID);
+        } catch (final PyException e) {
+            PythonUtils.log(logger, Markers.DELETE_COLLECTIONS_BY_INSTITUTION_ID, e);
+            throw IoException.create("Python exception");
+        }
+
+        for (final CollectionEntry collectionEntry : collectionEntries) {
             try {
                 objectCommandService.deleteObjectsByCollectionId(collectionEntry.getId());
             } catch (final NoSuchCollectionException e) {
@@ -53,14 +69,25 @@ public class StoreCollectionCommandService implements CollectionCommandService {
             }
         }
 
-        collectionStore.deleteCollectionsByInstitutionId(institutionId, logger,
-                Markers.DELETE_COLLECTIONS_BY_INSTITUTION_ID);
+        try {
+            collectionStore.deleteCollectionsByInstitutionId(institutionId, logger,
+                    Markers.DELETE_COLLECTIONS_BY_INSTITUTION_ID);
+        } catch (final PyException e) {
+            PythonUtils.log(logger, Markers.DELETE_COLLECTIONS_BY_INSTITUTION_ID, e);
+            throw IoException.create("Python exception");
+        }
     }
 
     @Override
     public void putCollection(final CollectionId id, final Collection collection)
             throws IoException, NoSuchInstitutionException {
-        collectionStoreCache.getCollectionStore(id).putCollection(collection, id, logger, Markers.PUT_COLLECTION);
+        final CollectionStore collectionStore = collectionStoreCache.getCollectionStore(id);
+        try {
+            collectionStore.putCollection(collection, id, logger, Markers.PUT_COLLECTION);
+        } catch (final PyException e) {
+            PythonUtils.log(logger, Markers.PUT_COLLECTION, e);
+            throw IoException.create("Python exception");
+        }
     }
 
     private final CollectionStoreCache collectionStoreCache;

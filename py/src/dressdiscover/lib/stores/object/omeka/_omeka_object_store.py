@@ -3,7 +3,7 @@ from dressdiscover.lib.stores.object._py_object_store import _PyObjectStore
 
 
 class _OmekaObjectStore(_PyObjectStore):
-    def __init__(self, endpoint_url, uri, resource_mapper=None, square_thumbnail_height_px=150, square_thumbnail_width_px=150, **kwds):
+    def __init__(self, endpoint_url, resource_mapper=None, square_thumbnail_height_px=150, square_thumbnail_width_px=150, **kwds):
         self.__endpoint_url = endpoint_url
         if resource_mapper is None:
             resource_mapper = OmekaResourceMapper()
@@ -16,7 +16,6 @@ class _OmekaObjectStore(_PyObjectStore):
         self.__resource_mapper = resource_mapper
         self.__square_thumbnail_height_px = int(square_thumbnail_height_px)
         self.__square_thumbnail_width_px = int(square_thumbnail_width_px)
-        self.__uri = uri
 
     @property
     def _endpoint_url(self):
@@ -34,7 +33,3 @@ class _OmekaObjectStore(_PyObjectStore):
     @property
     def _resource_mapper(self):
         return self.__resource_mapper
-
-    @property
-    def _uri(self):
-        return self.__uri

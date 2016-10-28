@@ -13,9 +13,9 @@ from yomeka.client.omeka_json_parser import OmekaJsonParser
 class OmekaFsObjectStore(_OmekaObjectStore, _FsStore):
     TYPE_STRING = 'omekafs'
 
-    def __init__(self, *args, **kwds):
-        _OmekaObjectStore.__init__(self, *args, **kwds)
-        _FsStore.__init__(self, uri=self._uri)
+    def __init__(self, data_directory_path, **kwds):
+        _OmekaObjectStore.__init__(self, **kwds)
+        _FsStore.__init__(self, data_directory_path=data_directory_path)
 
     def _get_object_by_id(self, logger, log_marker, object_id):
         for omeka_item in self.__get_omeka_items(collection_id=object_id.getCollectionId()):

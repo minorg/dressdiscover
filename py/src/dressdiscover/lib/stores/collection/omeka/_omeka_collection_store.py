@@ -1,3 +1,5 @@
+from com.google.common.collect import ImmutableList
+
 from dressdiscover.lib.mappers.omeka.omeka_resource_mapper import OmekaResourceMapper
 from dressdiscover.lib.stores.collection._py_collection_store import _PyCollectionStore
 
@@ -36,7 +38,7 @@ class _OmekaCollectionStore(_PyCollectionStore):
                 )
             if collection is not None:
                 collections.append(collection)
-        return tuple(collections)
+        return ImmutableList.copyOf(collections)
 
     @property
     def _resource_mapper(self):
