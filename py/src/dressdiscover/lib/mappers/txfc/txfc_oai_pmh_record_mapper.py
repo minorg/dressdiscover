@@ -7,23 +7,23 @@ from com.google.common.collect import ImmutableList
 from org.dressdiscover.api.models import VocabRef, Vocab
 from org.dressdiscover.api.models.image import Image, ImageVersion
 from org.dressdiscover.api.models.object import ObjectId, ObjectEntry
-from org.dressdiscover.api.vocabularies.vra_core.agent import AgentSet, Agent, \
+from org.dressdiscover.api.vocabularies.vra_core.agent import Agent, \
     AgentRole, AgentNameType, AgentName
 from org.dressdiscover.api.vocabularies.vra_core.date import Date, DateType, \
-    DateSet, DateBound
-from org.dressdiscover.api.vocabularies.vra_core.description import DescriptionSet, \
+    DateBound
+from org.dressdiscover.api.vocabularies.vra_core.description import \
     DescriptionType, Description
-from org.dressdiscover.api.vocabularies.vra_core.location import LocationSet, \
+from org.dressdiscover.api.vocabularies.vra_core.location import  \
     Location, LocationName, LocationNameType, LocationType
-from org.dressdiscover.api.vocabularies.vra_core.rights import RightsSet, Rights, \
+from org.dressdiscover.api.vocabularies.vra_core.rights import Rights, \
     RightsType
-from org.dressdiscover.api.vocabularies.vra_core.subject import SubjectSet, \
+from org.dressdiscover.api.vocabularies.vra_core.subject import \
     SubjectTerm, SubjectTermType, Subject
-from org.dressdiscover.api.vocabularies.vra_core.textref import TextrefSet, \
+from org.dressdiscover.api.vocabularies.vra_core.textref import \
     Textref, TextrefName, TextrefNameType, TextrefRefid, TextrefRefidType
-from org.dressdiscover.api.vocabularies.vra_core.title import TitleSet, \
+from org.dressdiscover.api.vocabularies.vra_core.title import \
     TitleType, Title
-from org.dressdiscover.api.vocabularies.vra_core.work_type import WorkTypeSet, \
+from org.dressdiscover.api.vocabularies.vra_core.work_type import \
     WorkType
 from org.thryft.native_ import Uri, Url
 
@@ -41,22 +41,12 @@ class TxfcOaiPmhRecordMapper(_OaiPmhRecordMapper):
     class _ObjectBuilder(_OaiPmhRecordMapper._ObjectBuilder):
         def __init__(self, **kwds):
             _OaiPmhRecordMapper._ObjectBuilder.__init__(self, **kwds)
-            self.agents = []
-            self.dates = []
-            self.descriptions = []
             self.end_date_bound = None
-            self.images = []
-            self.locations = []
-            self.rights = []
             self.start_date_bound = None
-            self.subjects = []
-            self.textrefs = []
-            self.titles = []
-            self.work_types = []
 
         def build(self):
             if self.start_date_bound is not None and self.end_date_bound is not None:
-                self.dates.append(
+                self.vra.setdefault('date', []).append(
                     Date.builder()
                         .setEarliestDate(self.start_date_bound)
                         .setLatestDate(self.end_date_bound)
@@ -64,27 +54,7 @@ class TxfcOaiPmhRecordMapper(_OaiPmhRecordMapper):
                         .build()
                 )
 
-            if len(self.agents) > 0:
-                self._object_builder.setAgents(AgentSet.builder().setElements(ImmutableList.copyOf(self.agents)).build())
-            if len(self.dates) > 0:
-                self._object_builder.setDates(DateSet.builder().setElements(ImmutableList.copyOf(self.dates)).build())
-            if len(self.descriptions) > 0:
-                self._object_builder.setDescriptions(DescriptionSet.builder().setElements(ImmutableList.copyOf(self.descriptions)).build())
-            if len(self.images) > 0:
-                self._object_builder.setImages(ImmutableList.copyOf(self.images))
-            if len(self.locations) > 0:
-                self._object_builder.setLocations(LocationSet.builder().setElements(ImmutableList.copyOf(self.locations)).build())
-            if len(self.rights) > 0:
-                self._object_builder.setRights(RightsSet.builder().setElements(ImmutableList.copyOf(self.rights)).build())
-            if len(self.subjects) > 0:
-                self._object_builder.setSubjects(SubjectSet.builder().setElements(ImmutableList.copyOf(self.subjects)).build())
-            if len(self.textrefs) > 0:
-                self._object_builder.setTextrefs(TextrefSet.builder().setElements(ImmutableList.copyOf(self.textrefs)).build())
-            if len(self.titles) > 0:
-                self._object_builder.setTitles(TitleSet.builder().setElements(ImmutableList.copyOf(self.titles)).build())
-            if len(self.work_types) > 0:
-                self._object_builder.setWorkTypes(WorkTypeSet.builder().setElements(ImmutableList.copyOf(self.work_types)).build())
-            return self._object_builder.build()
+            return _OaiPmhRecordMapper._ObjectBuilder.build(self)
 
     def __init__(self, *args, **kwds):
         _OaiPmhRecordMapper.__init__(self, *args, **kwds)
@@ -177,7 +147,7 @@ class TxfcOaiPmhRecordMapper(_OaiPmhRecordMapper):
                 years = False
             if years:
                 date_range = \
-                    self.__parse_date(text_split[0], circa=circa),\
+                    self.__parse_date(text_split[0], circa=circa), \
                     self.__parse_date(text_split[1], circa=circa)
                 break
 
@@ -228,7 +198,7 @@ class TxfcOaiPmhRecordMapper(_OaiPmhRecordMapper):
 
         agent_builder.name = AgentName.builder().setText(name_text).setType(name_type).build()
 
-        object_builder.agents.append(agent_builder.build())
+        object_builder.vra.setdefault('agent', []).append(agent_builder.build())
 
     def _parse_record_metadata_collection_element(self, element, object_builder):
         assert element.text == 'TXFC', element.text
@@ -237,7 +207,7 @@ class TxfcOaiPmhRecordMapper(_OaiPmhRecordMapper):
         assert element.text == 'UNTCVA', element.text
 
     def _parse_record_metadata_language_element(self, element, object_builder):
-        pass # Ignore
+        pass  # Ignore
 
     def _parse_record_metadata_contributor_element(self, **kwds):
         self.__parse_record_metadata_agent_element(**kwds)
@@ -253,7 +223,7 @@ class TxfcOaiPmhRecordMapper(_OaiPmhRecordMapper):
             return
 
         if qualifier == 'date':
-            pass # Same as date element
+            pass  # Same as date element
         elif qualifier == 'eDate':
             if object_builder.end_date_bound is not None:
                 object_builder.logger.warn(object_builder.log_marker, "record {} has multiple eDate's", object_builder.record_identifier)
@@ -301,7 +271,7 @@ class TxfcOaiPmhRecordMapper(_OaiPmhRecordMapper):
                 if not text in location_names_temp:
                     location_names_temp.append(text)
 
-            object_builder.locations.append(
+            object_builder.vra.setdefault('location', []).append(
                 Location.builder()
                     .setNames(ImmutableList.copyOf(
                         LocationName.builder()
@@ -343,7 +313,7 @@ class TxfcOaiPmhRecordMapper(_OaiPmhRecordMapper):
                 object_builder.logger.warn(object_builder.log_marker, "unknown date qualifier '{}' on record {}", qualifier, object_builder.record_identifier)
 
         earliest_date, latest_date = self.__parse_date_range(object_builder=object_builder, text=text)
-        object_builder.dates.append(
+        object_builder.vra.setdefault('date', []).append(
             Date.builder()
                 .setEarliestDate(earliest_date)
                 .setLatestDate(latest_date)
@@ -366,7 +336,7 @@ class TxfcOaiPmhRecordMapper(_OaiPmhRecordMapper):
             else:
                 object_builder.logger.warn(object_builder.log_marker, "unknown description qualifier '{}'", qualifier)
 
-        object_builder.descriptions.append(
+        object_builder.vra.setdefault('description', []).append(
             Description.builder()
                 .setText(text)
                 .setType(Optional.fromNullable(description_type))
@@ -386,7 +356,7 @@ class TxfcOaiPmhRecordMapper(_OaiPmhRecordMapper):
         if qualifier in ('ARK', 'LOCAL-CONT-NO', 'OTHER'):
             pass
         elif qualifier == 'itemURL':
-            object_builder.textrefs.append(
+            object_builder.vra.setdefault('textref', []).append(
                 Textref.builder()
                     .setName(
                         TextrefName.builder()
@@ -464,14 +434,14 @@ class TxfcOaiPmhRecordMapper(_OaiPmhRecordMapper):
 
         qualifier = element.attrib.get('qualifier', None)
         if qualifier == 'digitalPreservation':
-            object_builder.descriptions.append(
+            object_builder.vra.setdefault('description', []).append(
                 Description.builder()
                     .setText(text)
                     .setType(DescriptionType.HISTORY)
                     .build()
             )
         elif qualifier == 'display':
-            object_builder.descriptions.append(
+            object_builder.vra.setdefault('description', []).append(
                 Description.builder()
                     .setText(text)
                     .setType(DescriptionType.PUBLIC)
@@ -480,7 +450,7 @@ class TxfcOaiPmhRecordMapper(_OaiPmhRecordMapper):
         elif qualifier == 'nonDisplay':
             pass
         else:
-            object_builder.descriptions.append(
+            object_builder.vra.setdefault('description', []).append(
                 Description.builder()
                     .setText(text)
                     .setType(DescriptionType.HISTORY)
@@ -489,10 +459,10 @@ class TxfcOaiPmhRecordMapper(_OaiPmhRecordMapper):
 #             object_builder.logger.warn(object_builder.log_marker, "ignoring unknown note qualifier '{}' on record {}", qualifier, object_builder.record_identifier)
 
     def _parse_record_metadata_primarySource_element(self, **kwds):
-        pass # Ignore
+        pass  # Ignore
 
     def _parse_record_metadata_publisher_element(self, **kwds):
-        pass # Ignore
+        pass  # Ignore
 
     def _parse_record_metadata_resourceType_element(self, element, object_builder):
         text = element.text.strip()
@@ -506,7 +476,7 @@ class TxfcOaiPmhRecordMapper(_OaiPmhRecordMapper):
         else:
             raise NotImplementedError(text)
 
-        object_builder.work_types.append(
+        object_builder.vra.setdefault('work_type', []).append(
             WorkType.builder()\
                 .setText(text)\
                 .setVocabRef(
@@ -542,7 +512,7 @@ class TxfcOaiPmhRecordMapper(_OaiPmhRecordMapper):
                 license_vocab_ref = None
                 object_builder.logger.warn(object_builder.log_marker, "ignoring unknown license text '{}' on record {}", text, object_builder.record_identifier)
 
-            object_builder.rights.append(
+            object_builder.vra.setdefault('rights', []).append(
                 Rights.builder()
                     .setLicenseVocabRef(license_vocab_ref)
                     .setRightsHolder(self._RIGHTS_HOLDER)
@@ -551,7 +521,7 @@ class TxfcOaiPmhRecordMapper(_OaiPmhRecordMapper):
                     .build()
             )
         elif qualifier == 'statement':
-            object_builder.rights.append(
+            object_builder.vra.setdefault('rights', []).append(
                 Rights.builder()
                     .setRightsHolder(self._RIGHTS_HOLDER)
                     .setText(text)
@@ -580,7 +550,7 @@ class TxfcOaiPmhRecordMapper(_OaiPmhRecordMapper):
                 if qualifier not in ('named_person', 'UNTL-BS',):
                     object_builder.logger.warn(object_builder.log_marker, "unknown subject vocabulary '{}'", qualifier)
 
-        object_builder.subjects.append(
+            object_builder.vra.setdefault('subject', []).append(
             Subject.builder()
                 .setTerms(ImmutableList.of(subject_term_builder.build()))
                 .build()
@@ -605,7 +575,7 @@ class TxfcOaiPmhRecordMapper(_OaiPmhRecordMapper):
             else:
                 object_builder.logger.warn(object_builder.log_marker, "unknown title qualifier '{}' on record {}", qualifier, object_builder.record_identifier)
 
-        object_builder.titles.append(
+        object_builder.vra.setdefault('title', []).append(
             Title.builder()
                 .setText(element.text)
                 .setType(title_type)
