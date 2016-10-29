@@ -1,4 +1,4 @@
-from dressdiscover.etl.wizard.wizard_extractor import WizardExtractor
+from dressdiscover.cli.wizard.wizard_extractor import WizardExtractor
 
 
 WizardExtractor.main()

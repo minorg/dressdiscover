@@ -3,7 +3,7 @@ import os.path
 import shutil
 import urllib2
 
-from dressdiscover.etl._extractor import _Extractor
+from dressdiscover.cli._extractor import _Extractor
 from yomeka.client.omeka_rest_api_client import OmekaRestApiClient
 
 

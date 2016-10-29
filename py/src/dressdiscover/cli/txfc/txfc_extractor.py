@@ -1,4 +1,4 @@
-from dressdiscover.etl.oai_pmh._oai_pmh_extractor import _OaiPmhExtractor
+from dressdiscover.cli.oai_pmh._oai_pmh_extractor import _OaiPmhExtractor
 
 
 class TxfcExtractor(_OaiPmhExtractor):

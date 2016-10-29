@@ -1,5 +1,5 @@
 import unicodecsv as csv
-from dressdiscover.etl.omeka.omeka_loader import OmekaLoader
+from dressdiscover.cli.omeka.omeka_loader import OmekaLoader
 
 
 class OmekaCsvExporter(OmekaLoader):

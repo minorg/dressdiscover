@@ -1,4 +1,4 @@
-from dressdiscover.etl.europeana.europeana_extractor import EuropeanaExtractor
+from dressdiscover.cli.europeana.europeana_extractor import EuropeanaExtractor
 
 
 EuropeanaExtractor.main()

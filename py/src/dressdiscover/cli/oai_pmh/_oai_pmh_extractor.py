@@ -2,7 +2,7 @@ from os.path import os
 import urllib2
 from xml.dom.minidom import parseString
 
-from dressdiscover.etl._extractor import _Extractor
+from dressdiscover.cli._extractor import _Extractor
 
 
 class _OaiPmhExtractor(_Extractor):

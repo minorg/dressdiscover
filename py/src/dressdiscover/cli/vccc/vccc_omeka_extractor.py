@@ -1,4 +1,4 @@
-from dressdiscover.etl.omeka.omeka_extractor import OmekaExtractor
+from dressdiscover.cli.omeka.omeka_extractor import OmekaExtractor
 
 
 class VcccOmekaExtractor(OmekaExtractor):
