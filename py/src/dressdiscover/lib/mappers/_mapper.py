@@ -26,7 +26,7 @@ class _Mapper(object):
                     for value in values:
                         if not value in unique_values:
                             unique_values.append(value)
-                    dc_builder.set(name, ImmutableList.copyOf(unique_values))
+                    dc_builder.set(name if name == 'rights' else name + 's', ImmutableList.copyOf(unique_values))
                 self._object_builder.setDublinCore(dc_builder.build())
 
             if len(self.images) > 0:

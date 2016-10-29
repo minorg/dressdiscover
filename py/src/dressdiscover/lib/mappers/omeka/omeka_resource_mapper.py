@@ -193,7 +193,7 @@ class OmekaResourceMapper(_Mapper):
         method(object_builder=object_builder, text=text)
 
     def _map_omeka_item_element_dc_abstract(self, object_builder, text):
-        object_builder.dc.setdefault('abstract_', []).append(text)
+        object_builder.dc.setdefault('abstract', []).append(text)
 
     def _map_omeka_item_element_dc_alternative_title(self, object_builder, text):
         object_builder.dc.setdefault('title', []).append(text)
