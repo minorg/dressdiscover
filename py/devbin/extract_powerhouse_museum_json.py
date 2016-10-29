@@ -1,4 +1,0 @@
-from dressdiscover.cli.powerhouse_museum.powerhouse_museum_extractor import PowerhouseMuseumExtractor
-
-
-PowerhouseMuseumExtractor.main()
