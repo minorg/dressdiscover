@@ -7,17 +7,12 @@ from argparse import ArgumentParser
 class _Main(object):
     def __init__(self, data_dir_path, debug):
         object.__init__(self)
-        self.__data_dir_path = data_dir_path
         self.__debug = debug
         self.__logger = logging.getLogger(self.__class__.__module__ + '.' + self.__class__.__name__)
 
     @classmethod
     def _add_arguments(cls, argument_parser):
         pass
-
-    @property
-    def _data_dir_path(self):
-        return self.__data_dir_path
 
     @property
     def _debug(self):
@@ -57,9 +52,4 @@ class _Main(object):
         #delattr(args, 'debug') # Pass debug= through to the command
         delattr(args, 'logging_level')
 
-        data_dir_path = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..', '..', '..', 'data'))
-        assert os.path.isdir(data_dir_path), data_dir_path
-
-        kwds = args.__dict__.copy()
-        kwds['data_dir_path'] = data_dir_path
-        cls(**kwds)._run()
+        cls(**args.__dict__)._run()
