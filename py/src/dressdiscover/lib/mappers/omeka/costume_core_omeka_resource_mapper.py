@@ -1,9 +1,9 @@
-from collections import Counter
 import java.util.Date
 
 from com.google.common.collect import ImmutableList
 from org.dressdiscover.api.models import Vocab
 from org.dressdiscover.api.models import VocabRef
+from org.dressdiscover.api.vocabularies.costume_core import CostumeCoreObject
 from org.dressdiscover.api.vocabularies.costume_core.closure import Closure, \
     ClosureSet, ClosurePlacement, ClosureType
 from org.dressdiscover.api.vocabularies.costume_core.color import ColorSet, \
@@ -32,9 +32,9 @@ from org.dressdiscover.api.vocabularies.vra_core.relation import Relation, \
 from org.dressdiscover.api.vocabularies.vra_core.technique import Technique
 from org.dressdiscover.api.vocabularies.vra_core.textref import Textref, \
     TextrefName, TextrefNameType, TextrefRefid, TextrefRefidType
-from org.dressdiscover.api.vocabularies.vra_core.view_type import ViewType
 
 from dressdiscover.lib.mappers.omeka.omeka_resource_mapper import OmekaResourceMapper
+from org.dressdiscover.api.vocabularies.costume_core.view_type import ViewType
 
 
 class CostumeCoreOmekaResourceMapper(OmekaResourceMapper):
@@ -44,6 +44,7 @@ class CostumeCoreOmekaResourceMapper(OmekaResourceMapper):
         def __init__(self, **kwds):
             OmekaResourceMapper._ObjectBuilder.__init__(self, **kwds)
 
+            self.cc = {}
             self.closure_placements = []
             self.closure_types = []
             self.component_builders_by_letter = {}
@@ -53,6 +54,13 @@ class CostumeCoreOmekaResourceMapper(OmekaResourceMapper):
             self.structures_by_extent = {}
 
         def build(self):
+            cc_builder = None
+
+            if len(self.cc) > 0:
+                cc_builder = CostumeCoreObject.builder()
+                for name, value in self.cc.iteritems():
+                    cc_builder.set(name, value)
+
             if len(self.closure_placements) > 0 and len(self.closure_types) > 0:
                 closures = []
                 if len(self.closure_placements) == len(self.closure_types):
@@ -82,7 +90,15 @@ class CostumeCoreOmekaResourceMapper(OmekaResourceMapper):
                 else:
                     self.logger.warn(self.log_marker, "item {} has different numbers of closure placements and closure types: {} vs. {}", (self.omeka_item.id, len(self.closure_placements), len(self.closure_types)))
                 if len(closures) > 0:
-                    self._object_builder.setClosures(ClosureSet.builder().setElements(ImmutableList.copyOf(closures)).build())
+                    if cc_builder is None:
+                        cc_builder = CostumeCoreObject.builder()
+                    cc_builder.setClosureSets(ImmutableList.of(ClosureSet.builder().setElements(ImmutableList.copyOf(closures)).build()))
+
+            if len(self.colors) > 0:
+                if cc_builder is None:
+                    cc_builder = CostumeCoreObject.builder()
+                cc_builder.setColorSets(ImmutableList.of(ColorSet.builder().setElements(ImmutableList.copyOf(self.colors)).build()))
+
             if len(self.component_builders_by_letter) > 0:
                 components = []
                 for letter, component_builder in self.component_builders_by_letter.iteritems():
@@ -96,26 +112,19 @@ class CostumeCoreOmekaResourceMapper(OmekaResourceMapper):
                     self.logger.warn(self.log_marker, "structure(s) specified for unknown component {} on item {}", letter, self.omeka_item.id)
                 for letter in self.structures_by_extent.iterkeys():
                     self.logger.warn(self.log_marker, "structure(s) specified for unknown extent {} on item {}", letter, self.omeka_item.id)
-                self._object_builder.setComponents(ComponentSet.builder().setElements(ImmutableList.copyOf(components)).build())
-            if len(self.colors) > 0:
-                self._object_builder.setColors(ColorSet.builder().setElements(ImmutableList.copyOf(self.colors)).build())
+                if cc_builder is None:
+                    cc_builder = CostumeCoreObject.builder()
+                cc_builder.setComponentSets(ImmutableList.of(ComponentSet.builder().setElements(ImmutableList.copyOf(components)).build()))
+
             if len(self.structures) > 0:
-                self._object_builder.setStructures(StructureSet.builder().setElements(ImmutableList.copyOf(self.structures)).build())
+                if cc_builder is None:
+                    cc_builder = CostumeCoreObject.builder()
+                cc_builder.setStructureSets(ImmutableList.of(StructureSet.builder().setElements(ImmutableList.copyOf(self.structures)).build()))
+
+            if cc_builder is not None:
+                self._object_builder.setCostumeCore(cc_builder.build())
 
             return OmekaResourceMapper._ObjectBuilder.build(self)
-
-    def __init__(self, **kwds):
-        OmekaResourceMapper.__init__(self, **kwds)
-        self.__structure_counts_by_omeka_item_id = Counter()
-
-#     def map_omeka_item(self, *args, **kwds):
-#         OmekaResourceMapper.map_omeka_item(self, *args, **kwds)
-#
-#         print "Omeka items with most structure:"
-#         structure_count_items = list(self.__structure_counts_by_omeka_item_id.items())
-#         structure_count_items.sort(lambda left, right: -1 * cmp(left[1], right[1]))
-#         for structure_count_item in structure_count_items:
-#             print "%d,%d" % structure_count_item
 
     # Components
     def _map_omeka_item_element_itm_a(self, **kwds):
@@ -137,7 +146,7 @@ class CostumeCoreOmekaResourceMapper(OmekaResourceMapper):
         self.__map_omeka_item_element_itm_component(letter='f', **kwds)
 
     def _map_omeka_item_element_itm_accession_number(self, object_builder, text):
-        object_builder.locations.append(
+        object_builder.vra.setdefault('location', []).append(
             Location.builder()
                 .setRefids(ImmutableList.of(
                     LocationRefid.builder()
@@ -161,7 +170,7 @@ class CostumeCoreOmekaResourceMapper(OmekaResourceMapper):
                 .setParsedDateTimeGranularity(DateTimeGranularity.YEAR)\
                 .setText(text)\
                 .build()
-        object_builder.dates.append(
+        object_builder.vra.setdefault('date', []).append(
             Date.builder()
                 .setEarliestDate(earliest_date)
                 .setLatestDate(earliest_date)
@@ -170,7 +179,7 @@ class CostumeCoreOmekaResourceMapper(OmekaResourceMapper):
         )
 
     def _map_omeka_item_element_itm_bibliography(self, object_builder, text):
-        object_builder.descriptions.append(
+        object_builder.vra.setdefault('description', []).append(
             Description.builder()
                 .setText(text)
                 .setType(DescriptionType.BIBLIOGRAPHY)
@@ -178,7 +187,7 @@ class CostumeCoreOmekaResourceMapper(OmekaResourceMapper):
         )
 
     def _map_omeka_item_element_itm_biographical_text(self, object_builder, text):
-        object_builder.descriptions.append(
+        object_builder.vra.setdefault('description', []).append(
             Description.builder()
                 .setText(text)
                 .setType(DescriptionType.BIOGRAPHY)
@@ -189,16 +198,12 @@ class CostumeCoreOmekaResourceMapper(OmekaResourceMapper):
         pass
 
     def _map_omeka_item_element_itm_category(self, object_builder, text):
-        object_builder.categories.append(text)
-        self._update_vocabulary_used('Item Type Metadata', 'Category', text)
+        object_builder.dc.setdefault('subject', []).append(text)
 
     def _map_omeka_item_element_itm_classification(self, object_builder, text):
-        object_builder.categories.append(text)
-        self._update_vocabulary_used('Item Type Metadata', 'Classification', text)
+        object_builder.dc.setdefault('subject', []).append(text)
 
     def _map_omeka_item_element_itm_closure_placement(self, object_builder, text):
-        self.__structure_counts_by_omeka_item_id[object_builder.omeka_item.id] += 1
-
 #         if text not in COSTUME_CORE_CONTROLLED_VOCABULARIES['Closure Placement']:
 #             object_builder.logger.warn(object_builder.log_marker, "using uncontrolled closure placement {} from item {}", text, object_builder.omeka_item.id)
         object_builder.closure_placements.append(
@@ -207,11 +212,8 @@ class CostumeCoreOmekaResourceMapper(OmekaResourceMapper):
                 .setVocabRef(self._COSTUME_CORE_VOCAB_REF)\
                 .build()
         )
-        self._update_vocabulary_used('Item Type Metadata', 'Closure Placement', text)
 
     def _map_omeka_item_element_itm_closure_type(self, object_builder, text):
-        self.__structure_counts_by_omeka_item_id[object_builder.omeka_item.id] += 1
-
 #         if text not in COSTUME_CORE_CONTROLLED_VOCABULARIES['Closure Type']:
 #             object_builder.logger.warn(object_builder.log_marker, "using uncontrolled closure type {} from item {}", text, object_builder.omeka_item.id)
         object_builder.closure_types.append(
@@ -220,7 +222,6 @@ class CostumeCoreOmekaResourceMapper(OmekaResourceMapper):
                 .setVocabRef(self._COSTUME_CORE_VOCAB_REF)\
                 .build()
         )
-        self._update_vocabulary_used('Item Type Metadata', 'Closure Type', text)
 
     def _map_omeka_item_element_itm_color(self, object_builder, text, type_):
         text = text.lower()
@@ -241,8 +242,6 @@ class CostumeCoreOmekaResourceMapper(OmekaResourceMapper):
 
         object_builder.colors.append(builder.build())
 
-        self._update_vocabulary_used('Item Type Metadata', 'Color', text)
-
     def __map_omeka_item_element_itm_component(self, letter, object_builder, text):
         letter = letter.lower()
         if letter in object_builder.component_builders_by_letter:
@@ -257,7 +256,7 @@ class CostumeCoreOmekaResourceMapper(OmekaResourceMapper):
                 )
 
     def _map_omeka_item_element_itm_condition(self, object_builder, text):
-        object_builder.descriptions.append(
+        object_builder.vra.setdefault('description', []).append(
             Description.builder()
                 .setText(text)
                 .setType(DescriptionType.CONDITION)
@@ -266,12 +265,10 @@ class CostumeCoreOmekaResourceMapper(OmekaResourceMapper):
 
     def _map_omeka_item_element_itm_condition_term(self, object_builder, text):
         condition_str = text.upper().replace(' ', '_').rstrip('.')
-        condition = getattr(Condition, condition_str)
-        object_builder.setCondition(condition)
-        self._update_vocabulary_used('Item Type Metadata', 'Condition Term', text)
+        object_builder.cc['condition'] = getattr(Condition, condition_str)
 
     def _map_omeka_item_element_itm_credit_line(self, object_builder, text):
-        object_builder.descriptions.append(
+        object_builder.vra.setdefault('description', []).append(
             Description.builder()
                 .setText(text)
                 .setType(DescriptionType.CREDIT)
@@ -279,63 +276,60 @@ class CostumeCoreOmekaResourceMapper(OmekaResourceMapper):
         )
 
     def _map_omeka_item_element_itm_culture(self, object_builder, text):
-        object_builder.cultural_contexts.append(
+        object_builder.vra.setdefault('cultural_context', []).append(
             CulturalContext.builder()
                 .setText(text)
                 .build()
         )
-        self._update_vocabulary_used('Item Type Metadata', 'Culture', text)
 
     def _map_omeka_item_element_itm_date_certainty(self, object_builder, text):
-        if text == 'circa':
-            object_builder.dc_date_certainty = text
-        elif text == 'designed in':
-            object_builder.dc_date_builder.setType(DateType.DESIGN)
-        elif text == 'worn in':
-            object_builder.dc_date_builder.setType(DateType.PERFORMANCE)
-        else:
-            object_builder.logger.warn(object_builder.log_marker, "item {} in has unrecognized Date Certainty '{}'", object_builder.omeka_item.id, text)
-        self._update_vocabulary_used('Item Type Metadata', 'Date Certainty', text)
+        pass
+#         if text == 'circa':
+#             object_builder.dc_date_certainty = text
+#         elif text == 'designed in':
+#             object_builder.dc_date_builder.setType(DateType.DESIGN)
+#         elif text == 'worn in':
+#             object_builder.dc_date_builder.setType(DateType.PERFORMANCE)
+#         else:
+#             object_builder.logger.warn(object_builder.log_marker, "item {} in has unrecognized Date Certainty '{}'", object_builder.omeka_item.id, text)
 
     def _map_omeka_item_element_itm_date_earliest(self, object_builder, text):
-        earliest_date = self._parse_date(object_builder=object_builder, text=text)
-        if object_builder.dc_date_builder.earliestDate is not None:
-            object_builder.logger.info(
-                object_builder.log_marker,
-                "replacing item {}'s earliest date ({}) from Date with Date Earliest '{}' = {}",
-                (
-                    object_builder.omeka_item.id,
-                    object_builder.dc_date_builder.earliestDate,
-                    text,
-                    earliest_date
-                )
-            )
-        object_builder.dc_date_builder.earliestDate = earliest_date
+        pass
+#         earliest_date = self._parse_date(object_builder=object_builder, text=text)
+#         if object_builder.dc_date_builder.earliestDate is not None:
+#             object_builder.logger.info(
+#                 object_builder.log_marker,
+#                 "replacing item {}'s earliest date ({}) from Date with Date Earliest '{}' = {}",
+#                 (
+#                     object_builder.omeka_item.id,
+#                     object_builder.dc_date_builder.earliestDate,
+#                     text,
+#                     earliest_date
+#                 )
+#             )
+#         object_builder.dc_date_builder.earliestDate = earliest_date
 
     def _map_omeka_item_element_itm_date_latest(self, object_builder, text):
-        latest_date = self._parse_date(object_builder=object_builder, text=text)
-        if object_builder.dc_date_builder.latestDate is not None:
-            object_builder.logger.info(
-                object_builder.log_marker,
-                "replacing item {}'s latest date ({}) from Date with Date Earliest '{}' = {}",
-                (
-                    object_builder.omeka_item.id,
-                    object_builder.dc_date_builder.latestDate,
-                    text,
-                    latest_date
-                )
-            )
-        object_builder.dc_date_builder.latestDate = latest_date
+        pass
+#         latest_date = self._parse_date(object_builder=object_builder, text=text)
+#         if object_builder.dc_date_builder.latestDate is not None:
+#             object_builder.logger.info(
+#                 object_builder.log_marker,
+#                 "replacing item {}'s latest date ({}) from Date with Date Earliest '{}' = {}",
+#                 (
+#                     object_builder.omeka_item.id,
+#                     object_builder.dc_date_builder.latestDate,
+#                     text,
+#                     latest_date
+#                 )
+#             )
+#         object_builder.dc_date_builder.latestDate = latest_date
 
     def _map_omeka_item_element_itm_description(self, object_builder, text):
-        object_builder.descriptions.append(
-            Description.builder()
-                .setText(text)
-                .build()
-        )
+        object_builder.dc.setdefault('description', []).append(text)
 
     def _map_omeka_item_element_itm_description_main(self, object_builder, text):
-        object_builder.descriptions.append(
+        object_builder.vra.setdefault('description', []).append(
             Description.builder()
                 .setText(text)
                 .setType(DescriptionType.SUMMARY)
@@ -348,7 +342,7 @@ class CostumeCoreOmekaResourceMapper(OmekaResourceMapper):
             builder.setExtent(extent)
         if unit is not None:
             builder.setUnit(unit)
-        object_builder.measurements.append(builder.build())
+        object_builder.vra.setdefault('measurements', []).append(builder.build())
 
     def _map_omeka_item_element_itm_dimensions_all(self, **kwds):
         self.__map_omeka_item_element_itm_dimensions(extent='all', type_=MeasurementsType.OTHER, **kwds)
@@ -373,7 +367,7 @@ class CostumeCoreOmekaResourceMapper(OmekaResourceMapper):
 
     def _map_omeka_item_element_itm_donation_date(self, object_builder, text):
         earliest_date = self._parse_date(object_builder=object_builder, text=text)
-        object_builder.dates.append(
+        object_builder.vra.setdefault('date', []).append(
             Date.builder()
                 .setEarliestDate(earliest_date)
                 .setLatestDate(earliest_date)
@@ -382,7 +376,7 @@ class CostumeCoreOmekaResourceMapper(OmekaResourceMapper):
         )
 
     def _map_omeka_item_element_itm_donor(self, object_builder, text):
-        object_builder.agents.append(
+        object_builder.vra.setdefault('agent', []).append(
             Agent.builder()
                 .setName(
                     AgentName.builder()
@@ -399,7 +393,7 @@ class CostumeCoreOmekaResourceMapper(OmekaResourceMapper):
         )
 
     def _map_omeka_item_element_itm_exhibition_notes(self, object_builder, text):
-        object_builder.descriptions.append(
+        object_builder.vra.setdefault('description', []).append(
             Description.builder()
                 .setText(text)
                 .setType(DescriptionType.EXHIBITION)
@@ -421,16 +415,15 @@ class CostumeCoreOmekaResourceMapper(OmekaResourceMapper):
             gender = Gender.MALE
         else:
             raise NotImplementedError(text)
-        if object_builder.gender.isPresent():
-            assert object_builder.gender.get() == gender, "%s vs. %s" % (object_builder.gender.get(), gender)
-        object_builder.setGender(gender)
-        self._update_vocabulary_used('Item Type Metadata', 'Gender', text)
+        if 'gender' in object_builder.cc:
+            assert object_builder.cc['gender'] == gender, "%s vs. %s" % (object_builder.cc['gender'], gender)
+        object_builder.cc['gender'] = gender
 
     def _map_omeka_item_element_itm_label(self, object_builder, text):
         text = text.strip("'").strip()
         if len(text) == 0:
             return
-        object_builder.inscriptions.append(
+        object_builder.vra.setdefault('inscription', []).append(
             Inscription.builder()
                 .setTexts(ImmutableList.of(
                     InscriptionText.builder()
@@ -452,10 +445,9 @@ class CostumeCoreOmekaResourceMapper(OmekaResourceMapper):
 
     def _map_omeka_item_element_itm_original_format(self, object_builder, text):
         pass # For image items, the format of the subject of the image
-        self._update_vocabulary_used('Item Type Metadata', 'Original Format', text)
 
     def _map_omeka_item_element_itm_private_information(self, object_builder, text):
-        object_builder.descriptions.append(
+        object_builder.vra.setdefault('description', []).append(
             Description.builder()
                 .setText(text)
                 .setType(DescriptionType.PRIVATE)
@@ -463,7 +455,7 @@ class CostumeCoreOmekaResourceMapper(OmekaResourceMapper):
         )
 
     def _map_omeka_item_element_itm_public_information(self, object_builder, text):
-        object_builder.descriptions.append(
+        object_builder.vra.setdefault('description', []).append(
             Description.builder()
                 .setText(text)
                 .setType(DescriptionType.PUBLIC)
@@ -476,12 +468,12 @@ class CostumeCoreOmekaResourceMapper(OmekaResourceMapper):
         except ValueError:
             object_builder.logger.warn(object_builder.log_marker, "unparseable quantity: {}", text)
             return
-        if object_builder.quantity.isPresent():
-            assert object_builder.quantity.get() == quantity, "%d vs. %d" % (object_builder.quantity.get(), quantity)
-        object_builder.setQuantity(quantity)
+        if 'quantity' in object_builder.cc:
+            assert object_builder.cc['quantity'] == quantity, "%d vs. %d" % (object_builder.cc['quantity'], quantity)
+        object_builder.cc['quantity'] = quantity
 
     def _map_omeka_item_element_itm_references(self, object_builder, text):
-        object_builder.textrefs.append(
+        object_builder.vra.setdefault('textref', []).append(
             Textref.builder()
                 .setName(
                     TextrefName.builder()
@@ -502,8 +494,7 @@ class CostumeCoreOmekaResourceMapper(OmekaResourceMapper):
         pass
 
     def _map_omeka_item_element_itm_source_identifier(self, object_builder, text):
-        if not text in object_builder.identifiers:
-            object_builder.identifiers.append(text)
+        object_builder.dc.setdefault('identifier', []).append(text)
         object_builder.relation_builders.append(
             Relation.builder()
                 .setText(text)
@@ -520,8 +511,6 @@ class CostumeCoreOmekaResourceMapper(OmekaResourceMapper):
         pass
 
     def __map_omeka_item_element_itm_structure(self, object_builder, text, type_):
-        self.__structure_counts_by_omeka_item_id[object_builder.omeka_item.id] += 1
-
         lines = text.split("\n")
         if len(lines) == 1:
             for text_part in text.split(';'):
@@ -601,19 +590,16 @@ class CostumeCoreOmekaResourceMapper(OmekaResourceMapper):
         pass # Accession number suffix
 
     def _map_omeka_item_element_itm_technique(self, object_builder, text):
-        self.__structure_counts_by_omeka_item_id[object_builder.omeka_item.id] += 1
-
         for technique in text.split(';'):
             for technique in technique.split(','):
                 technique = technique.strip()
                 if len(technique) == 0:
                     continue
-                object_builder.techniques.append(
+                object_builder.vra.setdefault('technique', []).append(
                     Technique.builder()
                         .setText(technique)
                         .build()
                 )
-                self._update_vocabulary_used('Item Type Metadata', 'Technique', technique)
 
     def _map_omeka_item_element_itm_treatment(self, object_builder, text):
         pass
@@ -622,14 +608,14 @@ class CostumeCoreOmekaResourceMapper(OmekaResourceMapper):
         pass # ObjectVR URL
 
     def _map_omeka_item_element_itm_view_type(self, object_builder, text):
-        assert not object_builder.viewType.isPresent()
+        assert 'view_type' not in object_builder.cc
         try:
-            object_builder.setViewType(getattr(ViewType, text.upper().replace(' ', '_')))
+            object_builder.cc['view_type'] = getattr(ViewType, text.upper().replace(' ', '_'))
         except AttributeError:
             object_builder.logger.error(object_builder.log_marker, "item {} has unknown View Type '{}'", object_builder.omeka_item.id, text)
 
     def _map_omeka_item_element_itm_wearer(self, object_builder, text):
-        object_builder.agents.append(
+        object_builder.vra.setdefault('agent', []).append(
             Agent.builder()
                 .setName(
                     AgentName.builder()
@@ -660,8 +646,6 @@ class CostumeCoreOmekaResourceMapper(OmekaResourceMapper):
 #                 object_builder.logger.debug(object_builder.log_marker, "structure {} from item {} has controlled text '{}' after lower-casing", type_.text, object_builder.omeka_item.id, text)
 #             else:
 #                 object_builder.logger.warn(object_builder.log_marker, "structure {} from item {} has uncontrolled text '{}'", type_.text, object_builder.omeka_item.id, text)
-
-        self._update_vocabulary_used('Item Type Metadata', type_.text, text)
 
         return \
             Structure.builder()\

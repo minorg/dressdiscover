@@ -17,8 +17,5 @@ struct Object {
 	// @validation {"minLength": 1}
 	4: optional list<image.Image> images;
 
-    // @validation {"min": 1}
-	5: optional i32 quantity;
-
     6: optional vra_core_object.VraCoreObject vra_core;
 }

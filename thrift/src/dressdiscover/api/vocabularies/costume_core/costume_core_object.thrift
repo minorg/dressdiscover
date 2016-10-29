@@ -22,6 +22,9 @@ struct CostumeCoreObject {
 
     5: optional gender.Gender gender;
 
+    // @validation {"min": 1}
+    8: optional i32 quantity;
+
     // @validation {"minLength": 1}
     6: optional list<structure_set.StructureSet> structure_sets;
 

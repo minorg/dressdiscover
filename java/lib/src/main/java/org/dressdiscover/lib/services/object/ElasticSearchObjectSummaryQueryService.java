@@ -316,9 +316,9 @@ public class ElasticSearchObjectSummaryQueryService implements ObjectSummaryQuer
                             SearchRequestBuilder searchRequestBuilder = objectSummaryElasticSearchIndex
                                     .prepareSearchModels().setQuery(__translateObjectSummaryQuery(query));
                             if (options.isPresent()) {
-                                if (options.get().getFrom().isPresent()) {
+                                if (options.get().getFrom_().isPresent()) {
                                     searchRequestBuilder = searchRequestBuilder
-                                            .setFrom(options.get().getFrom().get().intValue());
+                                            .setFrom(options.get().getFrom_().get().intValue());
                                 }
                                 if (options.get().getIncludeFacets().or(Boolean.FALSE)) {
                                     for (final AbstractAggregationBuilder aggregation : objectFacetAggregations) {

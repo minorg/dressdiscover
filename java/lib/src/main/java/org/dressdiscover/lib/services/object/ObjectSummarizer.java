@@ -281,6 +281,10 @@ public final class ObjectSummarizer {
                 titleText = object.getVraCore().get().getTitleSets().get().get(0).getElements().get(0).getText();
             }
             builder.setTitle(titleText);
+        } else if (object.getDublinCore().isPresent() && object.getDublinCore().get().getTitle().isPresent()) {
+            builder.setTitle(object.getDublinCore().get().getTitle().get().get(0));
+        } else {
+            builder.setTitle("(No title)");
         }
 
         // URL

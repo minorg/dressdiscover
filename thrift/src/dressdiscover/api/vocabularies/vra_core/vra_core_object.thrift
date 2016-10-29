@@ -39,13 +39,13 @@ struct VraCoreObject {
     7: optional list<material_set.MaterialSet> material_sets;
 
     // @validation {"minLength": 1}
-    8: optional list<measurements_set.MeasurementsSet> measurement_sets;
+    8: optional list<measurements_set.MeasurementsSet> measurements_sets;
 
     // @validation {"minLength": 1}
     9: optional list<relation_set.RelationSet> relation_sets;
 
     // @validation {"minLength": 1}
-    10: optional list<rights_set.RightsSet> right_sets;
+    10: optional list<rights_set.RightsSet> rights_sets;
 
     // @validation {"minLength": 1}
     11: optional list<subject_set.SubjectSet> subject_sets;

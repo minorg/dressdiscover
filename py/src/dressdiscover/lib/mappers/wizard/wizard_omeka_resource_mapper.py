@@ -13,7 +13,6 @@ from org.dressdiscover.api.vocabularies.vra_core.rights import RightsType, \
     RightsSet, Rights
 from org.dressdiscover.api.vocabularies.vra_core.title import TitleSet, Title, \
     TitleType
-from org.dressdiscover.api.vocabularies.vra_core.view_type import ViewType
 from org.thryft.native_ import Uri, Url
 
 from dressdiscover.lib.mappers.omeka.omeka_resource_mapper import OmekaResourceMapper

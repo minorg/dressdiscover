@@ -70,7 +70,7 @@ public final class ElasticSearchObjectSummaryQueryServiceTest extends ObjectServ
     public void testGetObjectSummaries() throws Exception {
         final ImmutableList<ObjectEntry> expected = _putObjects();
         final ImmutableList<ObjectSummaryEntry> actual = objectSummaryQueryService
-                .getObjectSummaries(Optional.of(GetObjectSummariesOptions.builder().setFrom(0)
+                .getObjectSummaries(Optional.of(GetObjectSummariesOptions.builder().setFrom_(0)
                         .setSize(ElasticSearchIndex.SEARCH_REQUEST_SIZE_MAX).build()))
                 .getHits();
         assertEquals(TestData.getInstance().getObjects().size(), actual.size());

@@ -1,28 +1,11 @@
-from org.dressdiscover.api.models.object import Object
+from dressdiscover.lib.mappers._mapper import _Mapper
 
 
-class _OaiPmhRecordMapper(object):
-    class _ObjectBuilder(object):
-        def __init__(self, logger, log_marker, record_identifier, **kwds):
-            self.__object_builder = Object.builder()
-            self.__logger = logger
-            self.__log_marker = log_marker
+class _OaiPmhRecordMapper(_Mapper):
+    class _ObjectBuilder(_Mapper._ObjectBuilder):
+        def __init__(self, record_identifier, **kwds):
+            _Mapper._ObjectBuilder.__init__(self, **kwds)
             self.__record_identifier = record_identifier
-
-        def build(self):
-            raise NotImplementedError
-
-        @property
-        def _object_builder(self):
-            return self.__object_builder
-
-        @property
-        def logger(self):
-            return self.__logger
-
-        @property
-        def log_marker(self):
-            return self.__log_marker
 
         @property
         def record_identifier(self):
