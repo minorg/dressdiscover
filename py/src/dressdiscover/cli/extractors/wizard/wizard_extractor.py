@@ -26,11 +26,11 @@ class WizardExtractor(_Extractor):
         argument_parser.add_argument('--api-key', required=True)
 
     def _clean(self):
-        out_dir_path = os.path.join(self._data_dir_path, 'extracted', 'wizard')
+        out_dir_path = os.path.join(self._data_dir_path, 'wizard')
         shutil.rmtree(out_dir_path)
 
     def _extract(self):
-        out_dir_path = os.path.join(self._data_dir_path, 'extracted', 'wizard')
+        out_dir_path = os.path.join(self._data_dir_path, 'wizard')
         if not os.path.isdir(out_dir_path):
             os.makedirs(out_dir_path)
 

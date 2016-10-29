@@ -1,11 +1,10 @@
 import logging
-import os.path
 
 from argparse import ArgumentParser
 
 
 class _Main(object):
-    def __init__(self, data_dir_path, debug):
+    def __init__(self, debug):
         object.__init__(self)
         self.__debug = debug
         self.__logger = logging.getLogger(self.__class__.__module__ + '.' + self.__class__.__name__)

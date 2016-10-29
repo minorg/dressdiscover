@@ -12,7 +12,7 @@ class _Extractor(_Main):
     @classmethod
     def _add_arguments(cls, argument_parser):
         argument_parser.add_argument('--clean', action='store_true')
-        data_dir_path_default = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..', '..', '..', 'data'))
+        data_dir_path_default = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..', '..', '..', '..', 'data', 'extracted'))
         assert os.path.isdir(data_dir_path_default), data_dir_path_default
         argument_parser.add_argument('--data-dir-path', action='store', default=data_dir_path_default)
 

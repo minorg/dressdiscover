@@ -1,4 +1,4 @@
-from dressdiscover.cli.historic_dress.historic_dress_omeka_extractor import HistoricDressOmekaExtractor
+from dressdiscover.cli.extractors.historic_dress.historic_dress_omeka_extractor import HistoricDressOmekaExtractor
 
 
 HistoricDressOmekaExtractor.main()

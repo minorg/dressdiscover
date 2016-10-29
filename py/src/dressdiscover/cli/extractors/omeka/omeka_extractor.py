@@ -25,7 +25,7 @@ class OmekaExtractor(_Extractor):
     def _extract(self):
         institution_id = self.__institution_id
 
-        out_dir_path = os.path.join(self._data_dir_path, 'extracted', institution_id)
+        out_dir_path = os.path.join(self._data_dir_path, institution_id)
         # Don't delete files, too expensive to retrieve
         # if args.clean:
         #     shutil.rmtree(out_dir_path, ignore_errors=True)

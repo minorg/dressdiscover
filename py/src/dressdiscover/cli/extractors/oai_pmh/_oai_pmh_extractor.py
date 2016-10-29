@@ -18,7 +18,7 @@ class _OaiPmhExtractor(_Extractor):
         self.__clean = True
 
     def _extract(self):
-        records_dir_path = os.path.join(self._data_dir_path, 'extracted', self.__institution_id, 'record')
+        records_dir_path = os.path.join(self._data_dir_path, self.__institution_id, 'record')
         if not os.path.isdir(records_dir_path):
             os.makedirs(records_dir_path)
 
