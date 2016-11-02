@@ -10,6 +10,6 @@ import 'wizard_component.dart';
     styleUrls: const ['app_component.css'],
     templateUrl: 'app_component.html')
 @RouteConfig(const [
-  const Route(path: '/wizard', name: 'Wizard', component: WizardComponent, useAsDefault: true)
+  const Route(path: '/', name: 'Wizard', component: WizardComponent, useAsDefault: true)
 ])
 class AppComponent {}
