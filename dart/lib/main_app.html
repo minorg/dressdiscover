@@ -1,0 +1,15 @@
+<dom-module id="main-app">
+  <style>
+    :host {
+      display: block;
+    }
+  </style>
+
+  <template>
+    <paper-input label="Type something..." value="{{text}}"></paper-input>
+    <p>
+      Text: <span>{{text}}</span><br />
+      Reversed: <span>{{reverseText(text)}}</span>
+    </p>
+  </template>
+</dom-module>
