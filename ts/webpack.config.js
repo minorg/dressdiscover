@@ -1,4 +1,4 @@
-/// <binding AfterBuild='Watch - Development' />
+/// <binding BeforeBuild='Hot' AfterBuild='Watch - Development' />
 require('es6-promise').polyfill();
 const webpack = require('webpack');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
@@ -47,7 +47,7 @@ module.exports = {
   resolve: {
     extensions: ['', '.webpack.js', '.web.js', '.ts', '.js'],
     modulesDirectories: [path.join(__dirname, './node_modules')],
-    root: path.join(__dirname, './src')
+    root: path.join(__dirname, 'src')
   },
   resolveLoader: {
     root: path.join(__dirname, './node_modules')

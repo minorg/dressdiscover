@@ -52,9 +52,11 @@
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function($) {/// <reference path="../typings/index.d.ts" />
-	// import './css/app.css';
+	"use strict";
+	__webpack_require__(3);
+	var RootView = __webpack_require__(7);
 	$(function () {
-	    alert("Hello world xx");
+	    new RootView.RootView().render();
 	});
 	
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)))
@@ -11071,6 +11073,31 @@
 	
 	return jQuery;
 	}));
+
+
+/***/ },
+/* 3 */
+/***/ function(module, exports) {
+
+	// removed by extract-text-webpack-plugin
+
+/***/ },
+/* 4 */,
+/* 5 */,
+/* 6 */,
+/* 7 */
+/***/ function(module, exports) {
+
+	"use strict";
+	var RootView = (function () {
+	    function RootView() {
+	    }
+	    RootView.prototype.render = function () {
+	        alert("Hello world xyzt");
+	    };
+	    return RootView;
+	}());
+	exports.RootView = RootView;
 
 
 /***/ }
