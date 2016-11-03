@@ -1,0 +1,5 @@
+{
+  "globalDependencies": {
+    "backbone.radio": "registry:dt/backbone.radio#0.0.0+20160524142130"
+  }
+}

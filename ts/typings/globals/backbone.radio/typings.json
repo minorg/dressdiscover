@@ -1,0 +1,8 @@
+{
+  "resolution": "main",
+  "tree": {
+    "src": "https://raw.githubusercontent.com/DefinitelyTyped/DefinitelyTyped/9d184d8b22f961c127df21f4a338e9e9d641a615/backbone.radio/backbone.radio.d.ts",
+    "raw": "registry:dt/backbone.radio#0.0.0+20160524142130",
+    "typings": "https://raw.githubusercontent.com/DefinitelyTyped/DefinitelyTyped/9d184d8b22f961c127df21f4a338e9e9d641a615/backbone.radio/backbone.radio.d.ts"
+  }
+}
