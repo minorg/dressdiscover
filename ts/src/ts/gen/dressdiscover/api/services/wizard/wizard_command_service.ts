@@ -1,4 +1,4 @@
-/// <reference path="../../../../../../typings/index.d.ts" />
+/// <reference path="../../../../../../../typings/index.d.ts" />
 module dressdiscover.api.services.wizard {
     export class WizardCommandService {
         putWizardFeatureSetStatesAsync(kwds: {wizard_feature_set_states: {[index: string]: dressdiscover.api.models.wizard.WizardFeatureSetState}, error: (jqXHR: JQueryXHR, textStatus: string, errorThrown: string) => any, success: () => void}): void {

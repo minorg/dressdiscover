@@ -1,4 +1,4 @@
-/// <reference path="../../../../../../typings/index.d.ts" />
+/// <reference path="../../../../../../../typings/index.d.ts" />
 module dressdiscover.api.services.wizard {
     export class WizardQueryService {
         getWizardFeatureSetDefinitionsAsync(kwds: {error: (jqXHR: JQueryXHR, textStatus: string, errorThrown: string) => any, success: (return_value: {[index: string]: dressdiscover.api.models.wizard.WizardFeatureSetDefinition}) => void}): void {

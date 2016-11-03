@@ -1,4 +1,4 @@
-/// <reference path="../../../../../../typings/index.d.ts" />
+/// <reference path="../../../../../../../typings/index.d.ts" />
 module dressdiscover.api.models.wizard {
     export class WizardFeatureState extends Backbone.Model {
         constructor(attributes?: {values: {[index: string]: dressdiscover.api.models.wizard.WizardFeatureValueState}}) {

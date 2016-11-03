@@ -1,4 +1,4 @@
-/// <reference path="../../../../../typings/index.d.ts" />
+/// <reference path="../../../../../../typings/index.d.ts" />
 module dressdiscover.api.services {
     export class IoException extends Backbone.Model {
         constructor(attributes?: {cause_message: string}) {
