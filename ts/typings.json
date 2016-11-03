@@ -1,6 +1,0 @@
-{
-  "globalDependencies": {
-    "backbone.radio": "registry:dt/backbone.radio#0.0.0+20160524142130",
-    "marionette": "registry:dt/marionette#0.0.0+20160317120654"
-  }
-}
