@@ -2,8 +2,9 @@
 
 import "css/app.css";
 
-import RootView = require("./view/RootView.ts");
+import AppModel = require("./model/AppModel.ts");
+import AppView = require("./view/AppView.ts");
 
 $(() => {
-    new RootView.RootView().render();
+    new AppView.AppView({ model: new AppModel.AppModel() }).render();
 });
