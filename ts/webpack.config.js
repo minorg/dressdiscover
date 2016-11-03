@@ -13,7 +13,7 @@ module.exports = {
   },
   devtool: 'source-map',
   entry: {
-    app: ['./src/app.ts']
+    app: ['./src/ts/app.ts']
   },
   module: {
     loaders: [

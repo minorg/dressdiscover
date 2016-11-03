@@ -1,9 +1,9 @@
-﻿/// <reference path="../../typings/index.d.ts" />
+﻿/// <reference path="../../../typings/index.d.ts" />
 
 import Backbone = require("backbone");
 import Mustache = require("mustache");
-import AppModel = require("../model/AppModel");
-import AppRouter = require("../AppRouter");
+import AppModel = require("../model/app_model");
+import AppRouter = require("../app_router");
 
 declare function require(moduleName: string): any;
 

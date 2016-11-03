@@ -1,9 +1,9 @@
-/// <reference path="../typings/index.d.ts" />
+/// <reference path="../../typings/index.d.ts" />
 
-import "css/app.css";
+import "../css/app.css";
 
-import AppModel = require("./model/AppModel.ts");
-import AppView = require("./view/AppView.ts");
+import AppModel = require("./model/app_model.ts");
+import AppView = require("./view/app_view.ts");
 
 $(() => {
     new AppView({ model: new AppModel() }).render();
