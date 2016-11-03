@@ -12,9 +12,12 @@ class WizardFeatureType {
     switch (name) {
     case "ENUM": return ENUM;
     case "TEXT": return TEXT;
+    default:
+      throw new ArgumentError(name);
     }
   }
 
+  @override
   String toString() {
     return name;
   }

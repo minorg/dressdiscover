@@ -2,6 +2,11 @@ import 'dart:convert' show JSON;
 import 'package:dressdiscover/src/gen/dressdiscover/api/models/wizard/WizardFeatureSetDefinition.dart';
 import 'package:dressdiscover/src/gen/dressdiscover/api/models/wizard/WizardFeatureSetState.dart';
 
+abstract class WizardQueryService {
+  Map<String, WizardFeatureSetDefinition> get_wizard_feature_set_definitions();
+  Map<String, WizardFeatureSetState> get_wizard_feature_set_states();
+}
+
 class GetWizardFeatureSetDefinitionsRequest {
   GetWizardFeatureSetDefinitionsRequest.fromJson(String json) : this.fromMap(JSON.decode(json));
 
