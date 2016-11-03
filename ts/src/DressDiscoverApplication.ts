@@ -5,15 +5,10 @@ import Marionette = require("backbone.marionette");
 import RootView = require("./view/RootView");
 
 export class DressDiscoverApplication extends Marionette.Application {
-    contentRegion: Marionette.Region;
-
     constructor() {
         super();
-        this.on("initialize:after", this.initializeAfter);
-        this.addRegions({ contentRegion: "#content" });
+        this.rootView = new RootView.RootView();
     }
 
-    initializeAfter() {
-        this.contentRegion.show(new RootView.RootView());
-    }
+    rootView: RootView.RootView;
 }
