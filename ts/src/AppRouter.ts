@@ -2,7 +2,7 @@
 
 import Backbone = require("backbone");
 
-export class AppRouter extends Backbone.Router {
+class AppRouter extends Backbone.Router {
     routes = {
     };
 
@@ -11,3 +11,5 @@ export class AppRouter extends Backbone.Router {
         (<any>this)._bindRoutes();
     }
 }
+
+export = AppRouter;

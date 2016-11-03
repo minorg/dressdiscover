@@ -2,8 +2,10 @@
 
 import Backbone = require("backbone");
 
-export class AppModel extends Backbone.Model {
+class AppModel extends Backbone.Model {
     toJSON(): any {
         return {};
     }
 }
+
+export = AppModel;

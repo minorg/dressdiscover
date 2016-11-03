@@ -7,8 +7,8 @@ import AppRouter = require("../AppRouter");
 
 declare function require(moduleName: string): any;
 
-export class AppView extends Backbone.View<AppModel.AppModel> {
-    model: AppModel.AppModel;
+class AppView extends Backbone.View<AppModel> {
+    model: AppModel;
     template: string;
 
     constructor(options?: any) {
@@ -28,3 +28,5 @@ export class AppView extends Backbone.View<AppModel.AppModel> {
         return this;
     }
 }
+
+export = AppView;

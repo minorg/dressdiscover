@@ -18,7 +18,6 @@ sys.path.insert(0, os.path.join(THRYFT_ROOT_DIR_PATH, 'compiler', 'src'))
 
 # Generate from thrift
 import thryft.main
-from thryft.generators.dart.dart_generator import DartGenerator
 from thryft.generators.elastic_search.elastic_search_mappings_generator import ElasticSearchMappingsGenerator
 from thryft.generators.java.bean_java_generator import BeanJavaGenerator
 from thryft.generators.java.java_generator import JavaGenerator
@@ -31,10 +30,12 @@ from thryft.generators.py.properties_py_generator import PropertiesPyGenerator
 from thryft.generators.py.json_rpc_client_py_generator import JsonRpcClientPyGenerator
 from thryft.generators.py.py_generator import PyGenerator
 from thryft.generators.sql.create_table_sql_generator import CreateTableSqlGenerator
+from thryft.generators.ts.ts_generator import TsGenerator
 from yutil import indent, upper_camelize
 
 
-DART_OUT_DIR_PATH = os.path.join(ROOT_DIR_PATH, 'dart', 'lib', 'src', 'gen')
+TS_OUT_DIR_PATH = os.path.join(ROOT_DIR_PATH, 'ts', 'src', 'gen')
+TS_TYPINGS_DIR_PATH = os.path.join(ROOT_DIR_PATH, 'ts', 'typings')
 
 
 ELASTIC_SEARCH_INDEX_SETTINGS = \
@@ -65,7 +66,7 @@ class Main(thryft.main.Main):
 
     def _clean(self):
         for dir_path in (
-             DART_OUT_DIR_PATH,
+             TS_OUT_DIR_PATH,
              os.path.join(ROOT_DIR_PATH, 'java', 'api', 'src', 'gen', 'java', 'org', 'dressdiscover'),
              os.path.join(ROOT_DIR_PATH, 'java', 'lib', 'src', 'gen', 'java', 'org', 'dressdiscover'),
              os.path.join(ROOT_DIR_PATH, 'java', 'server', 'src', 'gen', 'java', 'org', 'dressdiscover'),
@@ -73,7 +74,7 @@ class Main(thryft.main.Main):
         ):
             if os.path.isdir(dir_path):
                 shutil.rmtree(dir_path)
-        os.makedirs(DART_OUT_DIR_PATH)
+        os.makedirs(TS_OUT_DIR_PATH)
 
     def _compile(self):
         thrift_src_root_dir_path = os.path.join(ROOT_DIR_PATH, 'thrift', 'src')
@@ -112,8 +113,8 @@ class Main(thryft.main.Main):
                         if thrift_file_base_name == 'io_exception' or \
                            thrift_file_dir_name == 'wizard':
                             self._compile_thrift_file(
-                                generator=DartGenerator(import_base='package:dressdiscover/src/gen'),
-                                out=DART_OUT_DIR_PATH,
+                                generator=TsGenerator(ts_out_dir_path=TS_OUT_DIR_PATH, ts_typings_dir_path=TS_TYPINGS_DIR_PATH),
+                                out=TS_OUT_DIR_PATH,
                                 **compile_kwds
                             )
                             if thrift_file_dir_name == 'wizard':

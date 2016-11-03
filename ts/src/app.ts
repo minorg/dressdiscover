@@ -6,5 +6,5 @@ import AppModel = require("./model/AppModel.ts");
 import AppView = require("./view/AppView.ts");
 
 $(() => {
-    new AppView.AppView({ model: new AppModel.AppModel() }).render();
+    new AppView({ model: new AppModel() }).render();
 });
