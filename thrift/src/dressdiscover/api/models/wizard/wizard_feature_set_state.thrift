@@ -5,5 +5,5 @@ include "dressdiscover/api/models/wizard/wizard_feature_state.thrift"
 
 struct WizardFeatureSetState {
     // @validation {"minLength": 1}
-    optional map<wizard_feature_id.WizardFeatureId, wizard_feature_definition.WizardFeatureDefinition> features;
+    optional map<wizard_feature_id.WizardFeatureId, wizard_feature_state.WizardFeatureState> features;
 }

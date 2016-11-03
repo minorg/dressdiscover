@@ -1,8 +1,8 @@
 namespace * dressdiscover.api.models.wizard
 
-include "dressdiscover/api/models/wizard_feature_type.thrift"
-include "dressdiscover/api/models/wizard_feature_value_definition.thrift"
-include "dressdiscover/api/models/wizard_feature_value_id.thrift"
+include "dressdiscover/api/models/wizard/wizard_feature_type.thrift"
+include "dressdiscover/api/models/wizard/wizard_feature_value_definition.thrift"
+include "dressdiscover/api/models/wizard/wizard_feature_value_id.thrift"
 
 struct WizardFeatureDefinition {
     // @validation {"blank": false, "minLength": 1}
