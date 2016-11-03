@@ -1,10 +1,7 @@
-// Copyright (c) 2016, minorg. All rights reserved. Use of this source code
-// is governed by a BSD-style license that can be found in the LICENSE file.
-
-import 'package:dressdiscover/main_app.dart';
+import 'package:dressdiscover/feature_navigation.dart'; // ignore: unused_import
+import 'package:dressdiscover/main_app.dart'; // ignore: unused_import
 import 'package:polymer/polymer.dart';
 
-/// [MainApp] used!
 main() async {
   await initPolymer();
 }
