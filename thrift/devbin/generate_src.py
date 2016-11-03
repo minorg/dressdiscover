@@ -18,6 +18,7 @@ sys.path.insert(0, os.path.join(THRYFT_ROOT_DIR_PATH, 'compiler', 'src'))
 
 # Generate from thrift
 import thryft.main
+from thryft.generators.dart.dart_generator import DartGenerator
 from thryft.generators.elastic_search.elastic_search_mappings_generator import ElasticSearchMappingsGenerator
 from thryft.generators.java.bean_java_generator import BeanJavaGenerator
 from thryft.generators.java.java_generator import JavaGenerator
@@ -31,6 +32,9 @@ from thryft.generators.py.json_rpc_client_py_generator import JsonRpcClientPyGen
 from thryft.generators.py.py_generator import PyGenerator
 from thryft.generators.sql.create_table_sql_generator import CreateTableSqlGenerator
 from yutil import indent, upper_camelize
+
+
+DART_OUT_DIR_PATH = os.path.join(ROOT_DIR_PATH, 'dart', 'lib', 'src', 'gen')
 
 
 ELASTIC_SEARCH_INDEX_SETTINGS = \
@@ -61,6 +65,7 @@ class Main(thryft.main.Main):
 
     def _clean(self):
         for dir_path in (
+             DART_OUT_DIR_PATH,
              os.path.join(ROOT_DIR_PATH, 'java', 'api', 'src', 'gen', 'java', 'org', 'dressdiscover'),
              os.path.join(ROOT_DIR_PATH, 'java', 'lib', 'src', 'gen', 'java', 'org', 'dressdiscover'),
              os.path.join(ROOT_DIR_PATH, 'java', 'server', 'src', 'gen', 'java', 'org', 'dressdiscover'),
@@ -68,6 +73,7 @@ class Main(thryft.main.Main):
         ):
             if os.path.isdir(dir_path):
                 shutil.rmtree(dir_path)
+        os.makedirs(DART_OUT_DIR_PATH)
 
     def _compile(self):
         thrift_src_root_dir_path = os.path.join(ROOT_DIR_PATH, 'thrift', 'src')
@@ -85,8 +91,9 @@ class Main(thryft.main.Main):
                     continue
 
                 for thrift_file_path in self._get_thrift_file_paths(thrift_src_dir_path):
-                    thrift_file_name = os.path.split(thrift_file_path)[1]
+                    thrift_file_dir_path, thrift_file_name = os.path.split(thrift_file_path)
                     thrift_file_base_name = os.path.splitext(thrift_file_name)[0]
+                    thrift_file_dir_name = os.path.split(thrift_file_dir_path)[1]
 
                     compile_kwds = {
                         'document_root_dir_path': thrift_src_root_dir_path,
@@ -101,7 +108,18 @@ class Main(thryft.main.Main):
                     if pass_i == 0:
                         continue
 
-                    if thrift_subdir_name in ('lib', 'server') and thrift_file_name.endswith('_properties.thrift'):
+                    if thrift_subdir_name == 'api':
+                        if thrift_file_base_name == 'io_exception' or \
+                           thrift_file_dir_name == 'wizard':
+                            self._compile_thrift_file(
+                                generator=DartGenerator(import_base='package:dressdiscover/src/gen'),
+                                out=DART_OUT_DIR_PATH,
+                                **compile_kwds
+                            )
+                            if thrift_file_dir_name == 'wizard':
+                                continue
+
+                    if thrift_subdir_name in ('lib', 'server') and thrift_file_base_name.endswith('_properties'):
                         self._compile_thrift_file(
                             generator=PropertiesJavaGenerator(project_name='dressdiscover', namespace_prefix='org.'),
                             out=os.path.join(ROOT_DIR_PATH, 'java', thrift_subdir_name, 'src', 'gen', 'java'),
@@ -142,7 +160,7 @@ class Main(thryft.main.Main):
                             out=out_dir_path,
                             **compile_kwds
                         )
-                    elif thrift_file_path.endswith('_service.thrift'):
+                    elif thrift_file_base_name.endswith('_service'):
                         self._compile_thrift_file(
                             generator=LoggingServiceJavaGenerator(
                                 exception_log_level_default='error',
