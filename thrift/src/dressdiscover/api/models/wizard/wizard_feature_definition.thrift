@@ -11,5 +11,5 @@ struct WizardFeatureDefinition {
     wizard_feature_type.WizardFeatureType type;
 
     // @validation {"minLength": 1}
-    optional map<wizard_feature_value_id.WizardFeatureValueId, wizard_feature_value_definition.WizardFeatureValueDefinition> values;
+    optional map<wizard_feature_value_id.WizardFeatureValueId, wizard_feature_value_definition.WizardFeatureValueDefinition> feature_values;
 }

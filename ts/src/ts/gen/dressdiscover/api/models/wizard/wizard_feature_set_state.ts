@@ -26,7 +26,7 @@ module dressdiscover.api.models.wizard {
         toThryftJSON(): any {
             var json: {[index: string]: any} = {};
             if (this.has("features")) {
-                json["features"] = function (value: {[index: string]: dressdiscover.api.models.wizard.WizardFeatureState}): {[index: string]: dressdiscover.api.models.wizard.WizardFeatureState} { var outObject: {[index: string]: dressdiscover.api.models.wizard.WizardFeatureState} = {}; for (var key in value) { outObject[key] = json[key].toThryftJSON(); } return outObject; }(this.features);
+                json["features"] = function (value: {[index: string]: dressdiscover.api.models.wizard.WizardFeatureState}): {[index: string]: dressdiscover.api.models.wizard.WizardFeatureState} { var outObject: {[index: string]: dressdiscover.api.models.wizard.WizardFeatureState} = {}; for (var key in value) { outObject[key] = value[key].toThryftJSON(); } return outObject; }(this.features);
             }
             return json;
         }

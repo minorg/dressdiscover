@@ -1,7 +1,7 @@
 /// <reference path="../../../../../../../typings/index.d.ts" />
 module dressdiscover.api.models.wizard {
     export class WizardFeatureDefinition extends Backbone.Model {
-        constructor(attributes?: {display_name: string, type: dressdiscover.api.models.wizard.WizardFeatureType, values?: {[index: string]: dressdiscover.api.models.wizard.WizardFeatureValueDefinition}}) {
+        constructor(attributes?: {display_name: string, type: dressdiscover.api.models.wizard.WizardFeatureType, feature_values?: {[index: string]: dressdiscover.api.models.wizard.WizardFeatureValueDefinition}}) {
             super(attributes);
         }
 
@@ -21,12 +21,12 @@ module dressdiscover.api.models.wizard {
             this.set('type', value);
         }
 
-        get values(): {[index: string]: dressdiscover.api.models.wizard.WizardFeatureValueDefinition} {
-            return this.get('values');
+        get feature_values(): {[index: string]: dressdiscover.api.models.wizard.WizardFeatureValueDefinition} {
+            return this.get('feature_values');
         }
 
-        set values(value: {[index: string]: dressdiscover.api.models.wizard.WizardFeatureValueDefinition}) {
-            this.set('values', value);
+        set feature_values(value: {[index: string]: dressdiscover.api.models.wizard.WizardFeatureValueDefinition}) {
+            this.set('feature_values', value);
         }
 
         static fromThryftJSON(json: any): dressdiscover.api.models.wizard.WizardFeatureDefinition {
@@ -36,8 +36,8 @@ module dressdiscover.api.models.wizard {
                     out.attributes.display_name = json[fieldName];
                 } else if (fieldName == "type") {
                     out.attributes.type = dressdiscover.api.models.wizard.WizardFeatureType[json[fieldName]];
-                } else if (fieldName == "values") {
-                    out.attributes.values = function (json: any): {[index: string]: dressdiscover.api.models.wizard.WizardFeatureValueDefinition} { var map: any = {}; for (var key in json) { map[key] = dressdiscover.api.models.wizard.WizardFeatureValueDefinition.fromThryftJSON(json[key]); } return map; }(json[fieldName]);
+                } else if (fieldName == "feature_values") {
+                    out.attributes.feature_values = function (json: any): {[index: string]: dressdiscover.api.models.wizard.WizardFeatureValueDefinition} { var map: any = {}; for (var key in json) { map[key] = dressdiscover.api.models.wizard.WizardFeatureValueDefinition.fromThryftJSON(json[key]); } return map; }(json[fieldName]);
                 }
             }
             return out;
@@ -47,8 +47,8 @@ module dressdiscover.api.models.wizard {
             var json: {[index: string]: any} = {};
             json["display_name"] = this.display_name;
             json["type"] = dressdiscover.api.models.wizard.WizardFeatureType[this.type];
-            if (this.has("values")) {
-                json["values"] = function (value: {[index: string]: dressdiscover.api.models.wizard.WizardFeatureValueDefinition}): {[index: string]: dressdiscover.api.models.wizard.WizardFeatureValueDefinition} { var outObject: {[index: string]: dressdiscover.api.models.wizard.WizardFeatureValueDefinition} = {}; for (var key in value) { outObject[key] = json[key].toThryftJSON(); } return outObject; }(this.values);
+            if (this.has("feature_values")) {
+                json["feature_values"] = function (value: {[index: string]: dressdiscover.api.models.wizard.WizardFeatureValueDefinition}): {[index: string]: dressdiscover.api.models.wizard.WizardFeatureValueDefinition} { var outObject: {[index: string]: dressdiscover.api.models.wizard.WizardFeatureValueDefinition} = {}; for (var key in value) { outObject[key] = value[key].toThryftJSON(); } return outObject; }(this.feature_values);
             }
             return json;
         }

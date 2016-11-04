@@ -3,7 +3,7 @@ module dressdiscover.api.services.wizard {
     export class WizardCommandService {
         putWizardFeatureSetStatesAsync(kwds: {wizard_feature_set_states: {[index: string]: dressdiscover.api.models.wizard.WizardFeatureSetState}, error: (jqXHR: JQueryXHR, textStatus: string, errorThrown: string) => any, success: () => void}): void {
             var __jsonrpc_params: {[index: string]: any} = {};
-            __jsonrpc_params["wizard_feature_set_states"] = function (value: {[index: string]: dressdiscover.api.models.wizard.WizardFeatureSetState}): {[index: string]: dressdiscover.api.models.wizard.WizardFeatureSetState} { var outObject: {[index: string]: dressdiscover.api.models.wizard.WizardFeatureSetState} = {}; for (var key in value) { outObject[key] = json[key].toThryftJSON(); } return outObject; }(kwds.wizard_feature_set_states);
+            __jsonrpc_params["wizard_feature_set_states"] = function (value: {[index: string]: dressdiscover.api.models.wizard.WizardFeatureSetState}): {[index: string]: dressdiscover.api.models.wizard.WizardFeatureSetState} { var outObject: {[index: string]: dressdiscover.api.models.wizard.WizardFeatureSetState} = {}; for (var key in value) { outObject[key] = value[key].toThryftJSON(); } return outObject; }(kwds.wizard_feature_set_states);
 
             $.ajax({
                 async:true,
@@ -32,7 +32,7 @@ module dressdiscover.api.services.wizard {
 
         putWizardFeatureSetStatesSync(kwds: {wizard_feature_set_states: {[index: string]: dressdiscover.api.models.wizard.WizardFeatureSetState}}): void {
             var __jsonrpc_params: {[index: string]: any} = {};
-            __jsonrpc_params["wizard_feature_set_states"] = function (value: {[index: string]: dressdiscover.api.models.wizard.WizardFeatureSetState}): {[index: string]: dressdiscover.api.models.wizard.WizardFeatureSetState} { var outObject: {[index: string]: dressdiscover.api.models.wizard.WizardFeatureSetState} = {}; for (var key in value) { outObject[key] = json[key].toThryftJSON(); } return outObject; }(kwds.wizard_feature_set_states);
+            __jsonrpc_params["wizard_feature_set_states"] = function (value: {[index: string]: dressdiscover.api.models.wizard.WizardFeatureSetState}): {[index: string]: dressdiscover.api.models.wizard.WizardFeatureSetState} { var outObject: {[index: string]: dressdiscover.api.models.wizard.WizardFeatureSetState} = {}; for (var key in value) { outObject[key] = value[key].toThryftJSON(); } return outObject; }(kwds.wizard_feature_set_states);
 
             $.ajax({
                 async:false,

@@ -36,7 +36,7 @@ module dressdiscover.api.models.wizard {
         toThryftJSON(): any {
             var json: {[index: string]: any} = {};
             json["display_name"] = this.display_name;
-            json["features"] = function (value: {[index: string]: dressdiscover.api.models.wizard.WizardFeatureDefinition}): {[index: string]: dressdiscover.api.models.wizard.WizardFeatureDefinition} { var outObject: {[index: string]: dressdiscover.api.models.wizard.WizardFeatureDefinition} = {}; for (var key in value) { outObject[key] = json[key].toThryftJSON(); } return outObject; }(this.features);
+            json["features"] = function (value: {[index: string]: dressdiscover.api.models.wizard.WizardFeatureDefinition}): {[index: string]: dressdiscover.api.models.wizard.WizardFeatureDefinition} { var outObject: {[index: string]: dressdiscover.api.models.wizard.WizardFeatureDefinition} = {}; for (var key in value) { outObject[key] = value[key].toThryftJSON(); } return outObject; }(this.features);
             return json;
         }
     }

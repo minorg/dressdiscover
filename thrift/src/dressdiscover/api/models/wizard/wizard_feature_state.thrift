@@ -5,5 +5,5 @@ include "dressdiscover/api/models/wizard/wizard_feature_value_state.thrift"
 
 struct WizardFeatureState {
     // @validation {"minLength": 1}
-    map<wizard_feature_value_id.WizardFeatureValueId, wizard_feature_value_state.WizardFeatureValueState> values;
+    map<wizard_feature_value_id.WizardFeatureValueId, wizard_feature_value_state.WizardFeatureValueState> feature_values;
 }
