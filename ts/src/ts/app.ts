@@ -2,8 +2,8 @@
 
 import "../css/app.css";
 
-import AppModel = require("./model/app_model.ts");
-import AppView = require("./view/app_view.ts");
+import AppModel = require("./models/app_model");
+import AppView = require("./views/app_view");
 
 $(() => {
     new AppView({ model: new AppModel() }).render();

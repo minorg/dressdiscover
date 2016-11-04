@@ -1,15 +1,15 @@
 /// <reference path="../../../../../../../typings/index.d.ts" />
 module dressdiscover.api.services.wizard {
     export interface WizardQueryService {
-        getWizardFeatureSetDefinitionsAsync(kwds: {success: (return_value: {[index: string]: dressdiscover.api.models.wizard.WizardFeatureSetDefinition}) => void}): void;
+        getWizardFeatureSetDefinitionsAsync(kwds: {error: (jqXHR: JQueryXHR, textStatus: string, errorThrown: string) => any, success: (return_value: {[index: string]: dressdiscover.api.models.wizard.WizardFeatureSetDefinition}) => void}): void;
         getWizardFeatureSetDefinitionsSync(): {[index: string]: dressdiscover.api.models.wizard.WizardFeatureSetDefinition};
 
-        getWizardFeatureSetStatesAsync(kwds: {success: (return_value: {[index: string]: dressdiscover.api.models.wizard.WizardFeatureSetState}) => void}): void;
+        getWizardFeatureSetStatesAsync(kwds: {error: (jqXHR: JQueryXHR, textStatus: string, errorThrown: string) => any, success: (return_value: {[index: string]: dressdiscover.api.models.wizard.WizardFeatureSetState}) => void}): void;
         getWizardFeatureSetStatesSync(): {[index: string]: dressdiscover.api.models.wizard.WizardFeatureSetState};
     }
 
     export class JsonRpcWizardQueryService implements WizardQueryService {
-        getWizardFeatureSetDefinitionsAsync(kwds: {success: (return_value: {[index: string]: dressdiscover.api.models.wizard.WizardFeatureSetDefinition}) => void}): void {
+        getWizardFeatureSetDefinitionsAsync(kwds: {error: (jqXHR: JQueryXHR, textStatus: string, errorThrown: string) => any, success: (return_value: {[index: string]: dressdiscover.api.models.wizard.WizardFeatureSetDefinition}) => void}): void {
             $.ajax({
                 async:true,
                 data:JSON.stringify({
@@ -65,7 +65,7 @@ module dressdiscover.api.services.wizard {
             return returnValue;
         }
 
-        getWizardFeatureSetStatesAsync(kwds: {success: (return_value: {[index: string]: dressdiscover.api.models.wizard.WizardFeatureSetState}) => void}): void {
+        getWizardFeatureSetStatesAsync(kwds: {error: (jqXHR: JQueryXHR, textStatus: string, errorThrown: string) => any, success: (return_value: {[index: string]: dressdiscover.api.models.wizard.WizardFeatureSetState}) => void}): void {
             $.ajax({
                 async:true,
                 data:JSON.stringify({

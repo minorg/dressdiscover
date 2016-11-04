@@ -183,5 +183,21 @@ class Main(thryft.main.Main):
                             **compile_kwds
                         )
 
+        self.__generate_ts_index()
+
+    def __generate_ts_index(self):
+        references = []
+        for root_dir_path, _, file_names in os.walk(TS_OUT_DIR_PATH):
+            for file_name in file_names:
+                if not os.path.splitext(file_name)[1] == '.ts':
+                    continue
+                file_path = os.path.join(root_dir_path, file_name)
+                references.append("""/// <reference path="./%s" />""" % os.path.relpath(file_path, TS_OUT_DIR_PATH).replace(os.path.sep, '/'))
+        with open(os.path.join(TS_OUT_DIR_PATH, 'index.ts'), 'wb') as f:
+            f.write("\n".join(references) + "\n")
+
+
+
+
 assert __name__ == '__main__'
 Main.main()
