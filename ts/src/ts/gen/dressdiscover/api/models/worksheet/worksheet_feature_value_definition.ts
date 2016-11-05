@@ -1,6 +1,6 @@
 /// <reference path="../../../../../../../typings/index.d.ts" />
-module dressdiscover.api.models.wizard {
-    export class WizardFeatureValueDefinition extends Backbone.Model {
+module dressdiscover.api.models.worksheet {
+    export class WorksheetFeatureValueDefinition extends Backbone.Model {
         constructor(attributes?: {display_name: string}) {
             super(attributes);
         }
@@ -13,8 +13,8 @@ module dressdiscover.api.models.wizard {
             this.set('display_name', value);
         }
 
-        static fromThryftJSON(json: any): dressdiscover.api.models.wizard.WizardFeatureValueDefinition {
-            var out: dressdiscover.api.models.wizard.WizardFeatureValueDefinition = new dressdiscover.api.models.wizard.WizardFeatureValueDefinition;
+        static fromThryftJSON(json: any): dressdiscover.api.models.worksheet.WorksheetFeatureValueDefinition {
+            var out: dressdiscover.api.models.worksheet.WorksheetFeatureValueDefinition = new dressdiscover.api.models.worksheet.WorksheetFeatureValueDefinition;
             for (var fieldName in json) {
                 if (fieldName == "display_name") {
                     out.attributes.display_name = json[fieldName];

@@ -1,6 +1,6 @@
-namespace * dressdiscover.api.models.wizard
+namespace * dressdiscover.api.models.worksheet
 
-struct WizardFeatureValueState {
+struct WorksheetFeatureValueState {
     // @validation {"acceptance": true}
     optional bool selected;
 

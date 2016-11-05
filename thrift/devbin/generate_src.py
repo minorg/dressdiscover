@@ -111,13 +111,13 @@ class Main(thryft.main.Main):
 
                     if thrift_subdir_name == 'api':
                         if thrift_file_base_name == 'io_exception' or \
-                           thrift_file_dir_name == 'wizard':
+                           thrift_file_dir_name == 'worksheet':
                             self._compile_thrift_file(
                                 generator=TsGenerator(ts_out_dir_path=TS_OUT_DIR_PATH, ts_typings_dir_path=TS_TYPINGS_DIR_PATH),
                                 out=TS_OUT_DIR_PATH,
                                 **compile_kwds
                             )
-                            if thrift_file_dir_name == 'wizard':
+                            if thrift_file_dir_name == 'worksheet':
                                 continue
 
                     if thrift_subdir_name in ('lib', 'server') and thrift_file_base_name.endswith('_properties'):

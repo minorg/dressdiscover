@@ -1,6 +1,6 @@
 /// <reference path="../../../../../../../typings/index.d.ts" />
-module dressdiscover.api.models.wizard {
-    export class WizardFeatureValueState extends Backbone.Model {
+module dressdiscover.api.models.worksheet {
+    export class WorksheetFeatureValueState extends Backbone.Model {
         constructor(attributes?: {selected?: boolean, text?: string}) {
             super(attributes);
         }
@@ -21,8 +21,8 @@ module dressdiscover.api.models.wizard {
             this.set('text', value);
         }
 
-        static fromThryftJSON(json: any): dressdiscover.api.models.wizard.WizardFeatureValueState {
-            var out: dressdiscover.api.models.wizard.WizardFeatureValueState = new dressdiscover.api.models.wizard.WizardFeatureValueState;
+        static fromThryftJSON(json: any): dressdiscover.api.models.worksheet.WorksheetFeatureValueState {
+            var out: dressdiscover.api.models.worksheet.WorksheetFeatureValueState = new dressdiscover.api.models.worksheet.WorksheetFeatureValueState;
             for (var fieldName in json) {
                 if (fieldName == "selected") {
                     out.attributes.selected = json[fieldName];
