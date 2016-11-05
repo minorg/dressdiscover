@@ -51,7 +51,7 @@
 /* 1 */
 /***/ function(module, exports, __webpack_require__) {
 
-	/* WEBPACK VAR INJECTION */(function($) {/// <reference path="../../typings/index.d.ts" />
+	/* WEBPACK VAR INJECTION */(function($) {/// <reference path="../../../../../typings/index.d.ts" />
 	"use strict";
 	__webpack_require__(3);
 	var AppModel = __webpack_require__(7);
@@ -11089,7 +11089,7 @@
 /* 7 */
 /***/ function(module, exports, __webpack_require__) {
 
-	/// <reference path="../../../typings/index.d.ts" />
+	/// <reference path="../../../../../../typings/index.d.ts" />
 	"use strict";
 	var __extends = (this && this.__extends) || function (d, b) {
 	    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
@@ -11102,9 +11102,6 @@
 	    function AppModel() {
 	        _super.apply(this, arguments);
 	    }
-	    AppModel.prototype.toJSON = function () {
-	        return {};
-	    };
 	    return AppModel;
 	}(Backbone.Model));
 	module.exports = AppModel;
@@ -14595,7 +14592,7 @@
 /* 10 */
 /***/ function(module, exports, __webpack_require__) {
 
-	/* WEBPACK VAR INJECTION */(function($) {/// <reference path="../../../typings/index.d.ts" />
+	/* WEBPACK VAR INJECTION */(function($) {/// <reference path="../../../../../../typings/index.d.ts" />
 	"use strict";
 	var __extends = (this && this.__extends) || function (d, b) {
 	    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
@@ -14609,7 +14606,7 @@
 	    function AppView(options) {
 	        _super.call(this, options);
 	        this.setElement($('#root'), true);
-	        this.template = __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"raw!./AppView.html\""); e.code = 'MODULE_NOT_FOUND'; throw e; }()));
+	        this.template = __webpack_require__(12);
 	        //const router = new AppRouter.AppRouter();
 	        //Backbone.history.start();
 	    }
@@ -15260,6 +15257,12 @@
 	
 	}));
 
+
+/***/ },
+/* 12 */
+/***/ function(module, exports) {
+
+	module.exports = "Testing"
 
 /***/ }
 /******/ ]);

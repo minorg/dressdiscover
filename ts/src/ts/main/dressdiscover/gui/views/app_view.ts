@@ -1,4 +1,4 @@
-﻿/// <reference path="../../../typings/index.d.ts" />
+﻿/// <reference path="../../../../../../typings/index.d.ts" />
 
 import Backbone = require("backbone");
 import Mustache = require("mustache");
@@ -14,7 +14,7 @@ class AppView extends Backbone.View<AppModel> {
     constructor(options?: any) {
         super(options);
         this.setElement($('#root'), true);
-        this.template = require("raw!./AppView.html");
+        this.template = require("raw!./app_view.html");
 
         //const router = new AppRouter.AppRouter();
         //Backbone.history.start();

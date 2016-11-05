@@ -13,7 +13,7 @@ module.exports = {
   },
   devtool: 'source-map',
   entry: {
-    app: ['./src/ts/app.ts']
+    app: ['./src/ts/main/dressdiscover/gui/app.ts']
   },
   module: {
     loaders: [
