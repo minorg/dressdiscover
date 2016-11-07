@@ -9,23 +9,15 @@ declare function require(moduleName: string): any;
 
 class AppView extends Backbone.View<AppModel> {
     model: AppModel;
-    template: string;
 
     constructor(options?: any) {
         super(options);
-        this.setElement($('#root'), true);
-        this.template = require("raw!./app_view.html");
+        this.setElement($('#app'), true);
 
-        //const router = new AppRouter.AppRouter();
-        //Backbone.history.start();
-    }
-
-    render() {
-        this.$el
-            .html(Mustache.render(this.template, this.model.toJSON()));
-//            .toggleClass('completed', this.model.get('completed'));
-        //this.input = this.$('.todo-input');
-        return this;
+        const router = new AppRouter();
+        if (!Backbone.history.start()) {
+            console.error("didn't route");
+        }
     }
 }
 

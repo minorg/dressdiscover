@@ -14600,23 +14600,17 @@
 	    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 	};
 	var Backbone = __webpack_require__(8);
-	var Mustache = __webpack_require__(11);
+	var AppRouter = __webpack_require__(11);
 	var AppView = (function (_super) {
 	    __extends(AppView, _super);
 	    function AppView(options) {
 	        _super.call(this, options);
-	        this.setElement($('#root'), true);
-	        this.template = __webpack_require__(12);
-	        //const router = new AppRouter.AppRouter();
-	        //Backbone.history.start();
+	        this.setElement($('#app'), true);
+	        var router = new AppRouter();
+	        if (!Backbone.history.start()) {
+	            console.error("didn't route");
+	        }
 	    }
-	    AppView.prototype.render = function () {
-	        this.$el
-	            .html(Mustache.render(this.template, this.model.toJSON()));
-	        //            .toggleClass('completed', this.model.get('completed'));
-	        //this.input = this.$('.todo-input');
-	        return this;
-	    };
 	    return AppView;
 	}(Backbone.View));
 	module.exports = AppView;
@@ -14625,6 +14619,79 @@
 
 /***/ },
 /* 11 */
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function(_) {/// <reference path="../../../../../typings/index.d.ts" />
+	"use strict";
+	var __extends = (this && this.__extends) || function (d, b) {
+	    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
+	    function __() { this.constructor = d; }
+	    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+	};
+	var Backbone = __webpack_require__(8);
+	var WorksheetView = __webpack_require__(12);
+	var AppRouter = (function (_super) {
+	    __extends(AppRouter, _super);
+	    function AppRouter() {
+	        _super.call(this);
+	        this.routes = {
+	            "worksheet": this.worksheet,
+	            "*path": this.defaultRoute
+	        };
+	        this._bindRoutes();
+	        _.bindAll(this, "defaultRoute", "worksheet");
+	    }
+	    AppRouter.prototype.defaultRoute = function (path) {
+	        if (path === void 0) { path = ''; }
+	        this.navigate("worksheet");
+	    };
+	    AppRouter.prototype.worksheet = function (path) {
+	        if (path === void 0) { path = ''; }
+	        new WorksheetView().render();
+	    };
+	    return AppRouter;
+	}(Backbone.Router));
+	module.exports = AppRouter;
+	
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(9)))
+
+/***/ },
+/* 12 */
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function($) {/// <reference path="../../../../../../../typings/index.d.ts" />
+	"use strict";
+	var __extends = (this && this.__extends) || function (d, b) {
+	    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
+	    function __() { this.constructor = d; }
+	    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+	};
+	var Backbone = __webpack_require__(8);
+	var Mustache = __webpack_require__(13);
+	var WorksheetModel = __webpack_require__(14);
+	var WorksheetView = (function (_super) {
+	    __extends(WorksheetView, _super);
+	    function WorksheetView(options) {
+	        _super.call(this, options);
+	        this.model = new WorksheetModel();
+	        this.setElement($('#content'), true);
+	        this.template = __webpack_require__(15);
+	    }
+	    WorksheetView.prototype.render = function () {
+	        this.$el
+	            .html(Mustache.render(this.template, this.model.toJSON()));
+	        //            .toggleClass('completed', this.model.get('completed'));
+	        //this.input = this.$('.todo-input');
+	        return this;
+	    };
+	    return WorksheetView;
+	}(Backbone.View));
+	module.exports = WorksheetView;
+	
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)))
+
+/***/ },
+/* 13 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
@@ -15259,10 +15326,31 @@
 
 
 /***/ },
-/* 12 */
+/* 14 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+	var __extends = (this && this.__extends) || function (d, b) {
+	    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
+	    function __() { this.constructor = d; }
+	    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+	};
+	var Backbone = __webpack_require__(8);
+	var WorksheetModel = (function (_super) {
+	    __extends(WorksheetModel, _super);
+	    function WorksheetModel() {
+	        _super.apply(this, arguments);
+	    }
+	    return WorksheetModel;
+	}(Backbone.Model));
+	module.exports = WorksheetModel;
+
+
+/***/ },
+/* 15 */
 /***/ function(module, exports) {
 
-	module.exports = "Testing"
+	module.exports = "This is the worksheet view"
 
 /***/ }
 /******/ ]);
