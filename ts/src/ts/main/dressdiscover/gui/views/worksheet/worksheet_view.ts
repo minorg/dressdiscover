@@ -3,6 +3,8 @@
 import Backbone = require("backbone");
 import Mustache = require("mustache");
 import WorksheetModel = require("../../models/worksheet/worksheet_model");
+import "../../../../../../../node_modules/bootstrap-drawer/dist/css/bootstrap-drawer.css";
+import "../../../../../../../node_modules/bootstrap-drawer/dist/js/drawer.min.js";
 
 declare function require(moduleName: string): any;
 

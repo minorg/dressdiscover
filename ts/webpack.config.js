@@ -19,7 +19,7 @@ module.exports = {
     loaders: [
       {
         test: /\.css$/,
-        exclude: /node_modules/,
+        //exclude: /node_modules/,
         loader: ExtractTextPlugin.extract('style-loader', 'css-loader')
       },
 	  {
@@ -34,7 +34,7 @@ module.exports = {
     publicPath: '/public'
   },
   plugins: [
-    new ExtractTextPlugin('./src/css/app.css'),
+    new ExtractTextPlugin('app.css'),
     new CopyWebpackPlugin([{
       from: './src/index.html',
       to: './index.html'
