@@ -16,7 +16,7 @@ class AppRouter extends Backbone.Router {
     }
 
     defaultRoute(path: string = '') {
-        this.navigate("worksheet");
+        this.navigate("worksheet", { trigger: true });
     }
 
     worksheet(path: string = ''): void {

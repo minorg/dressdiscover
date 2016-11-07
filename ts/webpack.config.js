@@ -31,7 +31,7 @@ module.exports = {
   output: {
     filename: 'app.bundle.js',
     path: path.join(__dirname, './public'),
-    publicPath: '/public'
+    publicPath: '/devpublic'
   },
   plugins: [
     new ExtractTextPlugin('app.css'),
