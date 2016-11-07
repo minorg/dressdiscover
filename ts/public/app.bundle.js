@@ -15350,7 +15350,7 @@
 /* 15 */
 /***/ function(module, exports) {
 
-	module.exports = "This is the worksheet view"
+	module.exports = "<div class=\"row\">\r\n    <div class=\"col-md-8\">Left column</div>\r\n    <div class=\"col-md-4\">Right column</div>\r\n</div>"
 
 /***/ }
 /******/ ]);
