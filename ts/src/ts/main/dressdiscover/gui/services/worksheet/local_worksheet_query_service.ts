@@ -1,6 +1,13 @@
 ﻿/// <reference path="../../../../../gen/index.ts" />
 
-//import * as _ from "backbone";
+class LocalWorksheetQueryService extends dressdiscover.api.services.worksheet.AsyncToSyncWorksheetQueryService {
+    getWorksheetFeatureSetDefinitionsSync(): { [index: string]: dressdiscover.api.models.worksheet.WorksheetFeatureSetDefinition } {
+        return {};
+    }
 
-class LocalStorageWorksheetQueryService implements dressdiscover.api.services.worksheet.WorksheetQueryService {
+    getWorksheetFeatureSetStatesSync(): { [index: string]: dressdiscover.api.models.worksheet.WorksheetFeatureSetState } {
+        return {};
+    }
 }
+
+export = LocalWorksheetQueryService;
