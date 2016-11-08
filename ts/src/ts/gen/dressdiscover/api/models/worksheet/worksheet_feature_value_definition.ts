@@ -1,4 +1,3 @@
-/// <reference path="../../../../../../../typings/index.d.ts" />
 module dressdiscover.api.models.worksheet {
     export class WorksheetFeatureValueDefinition extends Backbone.Model {
         constructor(attributes?: {display_name: string}) {

@@ -1,5 +1,4 @@
-﻿/// <reference path="../../../../../../../typings/index.d.ts" />
-/// <reference path="../../../../../gen/index.ts" />
+﻿/// <reference path="../../../../../gen/index.ts" />
 
 import Backbone = require("backbone");
 

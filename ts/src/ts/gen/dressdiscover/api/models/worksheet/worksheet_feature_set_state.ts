@@ -1,4 +1,3 @@
-/// <reference path="../../../../../../../typings/index.d.ts" />
 module dressdiscover.api.models.worksheet {
     export class WorksheetFeatureSetState extends Backbone.Model {
         constructor(attributes?: {features?: {[index: string]: dressdiscover.api.models.worksheet.WorksheetFeatureState}}) {

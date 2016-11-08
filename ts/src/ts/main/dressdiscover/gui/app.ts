@@ -1,5 +1,3 @@
-/// <reference path="../../../../../typings/index.d.ts" />
-
 import "../../../../css/app.css";
 
 import AppModel = require("./models/app_model");

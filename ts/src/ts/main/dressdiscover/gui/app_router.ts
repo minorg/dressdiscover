@@ -1,5 +1,5 @@
 ﻿import * as Backbone from "backbone";
-//import * as _ from "_";
+import _ = require("_");
 import WorksheetView = require("./views/worksheet/worksheet_view");
 
 class AppRouter extends Backbone.Router {

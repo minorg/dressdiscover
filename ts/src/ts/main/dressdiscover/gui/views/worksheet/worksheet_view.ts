@@ -1,6 +1,4 @@
-﻿/// <reference path="../../../../../../../typings/index.d.ts" />
-
-import Backbone = require("backbone");
+﻿import Backbone = require("backbone");
 import Mustache = require("mustache");
 import WorksheetModel = require("../../models/worksheet/worksheet_model");
 import "../../../../../../../node_modules/bootstrap-drawer/dist/css/bootstrap-drawer.css";

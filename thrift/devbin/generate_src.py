@@ -35,7 +35,6 @@ from yutil import indent, upper_camelize
 
 
 TS_OUT_DIR_PATH = os.path.join(ROOT_DIR_PATH, 'ts', 'src', 'ts', 'gen')
-TS_TYPINGS_DIR_PATH = os.path.join(ROOT_DIR_PATH, 'ts', 'typings')
 
 
 ELASTIC_SEARCH_INDEX_SETTINGS = \
@@ -113,7 +112,7 @@ class Main(thryft.main.Main):
                         if thrift_file_base_name == 'io_exception' or \
                            thrift_file_dir_name == 'worksheet':
                             self._compile_thrift_file(
-                                generator=TsGenerator(ts_out_dir_path=TS_OUT_DIR_PATH, ts_typings_dir_path=TS_TYPINGS_DIR_PATH),
+                                generator=TsGenerator(ts_out_dir_path=TS_OUT_DIR_PATH),
                                 out=TS_OUT_DIR_PATH,
                                 **compile_kwds
                             )

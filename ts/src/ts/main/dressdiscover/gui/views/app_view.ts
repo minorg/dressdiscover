@@ -1,6 +1,4 @@
-﻿/// <reference path="../../../../../../typings/index.d.ts" />
-
-import Backbone = require("backbone");
+﻿import Backbone = require("backbone");
 import Mustache = require("mustache");
 import AppModel = require("../models/app_model");
 import AppRouter = require("../app_router");

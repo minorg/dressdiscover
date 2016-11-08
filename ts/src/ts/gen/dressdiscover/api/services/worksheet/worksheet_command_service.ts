@@ -1,4 +1,3 @@
-/// <reference path="../../../../../../../typings/index.d.ts" />
 module dressdiscover.api.services.worksheet {
     export interface WorksheetCommandService {
         putWorksheetFeatureSetStatesAsync(kwds: {worksheet_feature_set_states: {[index: string]: dressdiscover.api.models.worksheet.WorksheetFeatureSetState}, error: (jqXHR: JQueryXHR, textStatus: string, errorThrown: string) => any, success: () => void}): void;
@@ -61,5 +60,17 @@ module dressdiscover.api.services.worksheet {
                 url:'/api/jsonrpc/worksheet_command',
             });
         }
+    }
+
+    export abstract class AsyncToSyncWorksheetCommandService implements WorksheetCommandService {
+        putWorksheetFeatureSetStatesAsync(kwds: {worksheet_feature_set_states: {[index: string]: dressdiscover.api.models.worksheet.WorksheetFeatureSetState}, error: (jqXHR: JQueryXHR, textStatus: string, errorThrown: string) => any, success: () => void}): void {
+            try {
+                this.putWorksheetFeatureSetStatesSync({worksheet_feature_set_states: kwds.worksheet_feature_set_states});
+            } catch (e) {
+                kwds.error(null, e, null);
+            }
+        }
+
+        abstract putWorksheetFeatureSetStatesSync(kwds: {worksheet_feature_set_states: {[index: string]: dressdiscover.api.models.worksheet.WorksheetFeatureSetState}}): void;
     }
 }
