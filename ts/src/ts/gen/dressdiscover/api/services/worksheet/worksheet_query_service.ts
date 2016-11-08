@@ -1,14 +1,14 @@
 module dressdiscover.api.services.worksheet {
     export interface WorksheetQueryService {
-        getWorksheetFeatureSetDefinitionsAsync(kwds: {error: (jqXHR: JQueryXHR, textStatus: string, errorThrown: string) => any, success: (return_value: {[index: string]: dressdiscover.api.models.worksheet.WorksheetFeatureSetDefinition}) => void}): void;
-        getWorksheetFeatureSetDefinitionsSync(): {[index: string]: dressdiscover.api.models.worksheet.WorksheetFeatureSetDefinition};
+        getWorksheetFeatureSetDefinitionsAsync(kwds: {error: (jqXHR: JQueryXHR | null, textStatus: string, errorThrown: string | null) => any, success: (return_value: {[index: string]: dressdiscover.api.models.worksheet.WorksheetFeatureSetDefinition}) => void}): void;
+        getWorksheetFeatureSetDefinitionsSync(): {[index: string]: dressdiscover.api.models.worksheet.WorksheetFeatureSetDefinition} | undefined;
 
-        getWorksheetFeatureSetStatesAsync(kwds: {error: (jqXHR: JQueryXHR, textStatus: string, errorThrown: string) => any, success: (return_value: {[index: string]: dressdiscover.api.models.worksheet.WorksheetFeatureSetState}) => void}): void;
-        getWorksheetFeatureSetStatesSync(): {[index: string]: dressdiscover.api.models.worksheet.WorksheetFeatureSetState};
+        getWorksheetFeatureSetStatesAsync(kwds: {error: (jqXHR: JQueryXHR | null, textStatus: string, errorThrown: string | null) => any, success: (return_value: {[index: string]: dressdiscover.api.models.worksheet.WorksheetFeatureSetState}) => void}): void;
+        getWorksheetFeatureSetStatesSync(): {[index: string]: dressdiscover.api.models.worksheet.WorksheetFeatureSetState} | undefined;
     }
 
     export class JsonRpcWorksheetQueryService implements WorksheetQueryService {
-        getWorksheetFeatureSetDefinitionsAsync(kwds: {error: (jqXHR: JQueryXHR, textStatus: string, errorThrown: string) => any, success: (return_value: {[index: string]: dressdiscover.api.models.worksheet.WorksheetFeatureSetDefinition}) => void}): void {
+        getWorksheetFeatureSetDefinitionsAsync(kwds: {error: (jqXHR: JQueryXHR | null, textStatus: string, errorThrown: string | null) => any, success: (return_value: {[index: string]: dressdiscover.api.models.worksheet.WorksheetFeatureSetDefinition}) => void}): void {
             $.ajax({
                 async:true,
                 data:JSON.stringify({
@@ -34,8 +34,8 @@ module dressdiscover.api.services.worksheet {
             });
         }
 
-        getWorksheetFeatureSetDefinitionsSync(): {[index: string]: dressdiscover.api.models.worksheet.WorksheetFeatureSetDefinition} {
-            var returnValue: {[index: string]: dressdiscover.api.models.worksheet.WorksheetFeatureSetDefinition} = null;
+        getWorksheetFeatureSetDefinitionsSync(): {[index: string]: dressdiscover.api.models.worksheet.WorksheetFeatureSetDefinition} | undefined {
+            var returnValue: {[index: string]: dressdiscover.api.models.worksheet.WorksheetFeatureSetDefinition} | undefined = undefined;
 
             $.ajax({
                 async:false,
@@ -64,7 +64,7 @@ module dressdiscover.api.services.worksheet {
             return returnValue;
         }
 
-        getWorksheetFeatureSetStatesAsync(kwds: {error: (jqXHR: JQueryXHR, textStatus: string, errorThrown: string) => any, success: (return_value: {[index: string]: dressdiscover.api.models.worksheet.WorksheetFeatureSetState}) => void}): void {
+        getWorksheetFeatureSetStatesAsync(kwds: {error: (jqXHR: JQueryXHR | null, textStatus: string, errorThrown: string | null) => any, success: (return_value: {[index: string]: dressdiscover.api.models.worksheet.WorksheetFeatureSetState}) => void}): void {
             $.ajax({
                 async:true,
                 data:JSON.stringify({
@@ -90,8 +90,8 @@ module dressdiscover.api.services.worksheet {
             });
         }
 
-        getWorksheetFeatureSetStatesSync(): {[index: string]: dressdiscover.api.models.worksheet.WorksheetFeatureSetState} {
-            var returnValue: {[index: string]: dressdiscover.api.models.worksheet.WorksheetFeatureSetState} = null;
+        getWorksheetFeatureSetStatesSync(): {[index: string]: dressdiscover.api.models.worksheet.WorksheetFeatureSetState} | undefined {
+            var returnValue: {[index: string]: dressdiscover.api.models.worksheet.WorksheetFeatureSetState} | undefined = undefined;
 
             $.ajax({
                 async:false,
@@ -122,24 +122,24 @@ module dressdiscover.api.services.worksheet {
     }
 
     export abstract class AsyncToSyncWorksheetQueryService implements WorksheetQueryService {
-        getWorksheetFeatureSetDefinitionsAsync(kwds: {error: (jqXHR: JQueryXHR, textStatus: string, errorThrown: string) => any, success: (return_value: {[index: string]: dressdiscover.api.models.worksheet.WorksheetFeatureSetDefinition}) => void}): void {
+        getWorksheetFeatureSetDefinitionsAsync(kwds: {error: (jqXHR: JQueryXHR | null, textStatus: string, errorThrown: string | null) => any, success: (return_value: {[index: string]: dressdiscover.api.models.worksheet.WorksheetFeatureSetDefinition}) => void}): void {
             try {
                 this.getWorksheetFeatureSetDefinitionsSync();
             } catch (e) {
-                kwds.error(null, e, null);
+                kwds.error(null, e.message, e);
             }
         }
 
-        abstract getWorksheetFeatureSetDefinitionsSync(): {[index: string]: dressdiscover.api.models.worksheet.WorksheetFeatureSetDefinition};
+        abstract getWorksheetFeatureSetDefinitionsSync(): {[index: string]: dressdiscover.api.models.worksheet.WorksheetFeatureSetDefinition} | undefined;
 
-        getWorksheetFeatureSetStatesAsync(kwds: {error: (jqXHR: JQueryXHR, textStatus: string, errorThrown: string) => any, success: (return_value: {[index: string]: dressdiscover.api.models.worksheet.WorksheetFeatureSetState}) => void}): void {
+        getWorksheetFeatureSetStatesAsync(kwds: {error: (jqXHR: JQueryXHR | null, textStatus: string, errorThrown: string | null) => any, success: (return_value: {[index: string]: dressdiscover.api.models.worksheet.WorksheetFeatureSetState}) => void}): void {
             try {
                 this.getWorksheetFeatureSetStatesSync();
             } catch (e) {
-                kwds.error(null, e, null);
+                kwds.error(null, e.message, e);
             }
         }
 
-        abstract getWorksheetFeatureSetStatesSync(): {[index: string]: dressdiscover.api.models.worksheet.WorksheetFeatureSetState};
+        abstract getWorksheetFeatureSetStatesSync(): {[index: string]: dressdiscover.api.models.worksheet.WorksheetFeatureSetState} | undefined;
     }
 }
