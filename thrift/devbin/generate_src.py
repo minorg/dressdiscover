@@ -69,7 +69,7 @@ class Main(thryft.main.Main):
              os.path.join(ROOT_DIR_PATH, 'java', 'lib', 'src', 'gen', 'java', 'org', 'dressdiscover'),
              os.path.join(ROOT_DIR_PATH, 'java', 'server', 'src', 'gen', 'java', 'org', 'dressdiscover'),
              os.path.join(ROOT_DIR_PATH, 'sql'),
-             os.path.join(TS_OUT_DIR_PATH, 'dressdiscover', 'api')
+             os.path.join(TS_OUT_DIR_PATH, 'dressdiscover', 'api'),
         ):
             if os.path.isdir(dir_path):
                 shutil.rmtree(dir_path)
@@ -77,6 +77,8 @@ class Main(thryft.main.Main):
 
     def _compile(self):
         thrift_src_root_dir_path = os.path.join(ROOT_DIR_PATH, 'thrift', 'src')
+
+        self.__generate_features_js()
 
         for pass_i in xrange(2):
             # Two passes: one to test-compile all .thrift files, the other to generate them
@@ -182,6 +184,28 @@ class Main(thryft.main.Main):
                             **compile_kwds
                         )
 
+    def __generate_features_js(self):
+        out = {}
+        for feature_set_i in xrange(2):
+            feature_set_dict = {'display_name': "Feature Set %(feature_set_i)d" % locals(), 'features': {}}
+            feature_set_id = "feature-set-%(feature_set_i)d" % locals()
+            for feature_i in xrange(10):
+                feature_dict = {'display_name': feature_set_dict['display_name'] + " Feature %(feature_i)d" % locals()}
+                feature_id = feature_set_id + "-feature-%(feature_i)d" % locals()
+                if feature_i == 0:
+                    feature_dict['type'] = 'TEXT'
+                else:
+                    feature_dict['feature_values'] = {}
+                    for feature_value_i in xrange(10):
+                        feature_value_dict = {'display_name': feature_dict['display_name'] + " Value %(feature_value_i)d" % locals()}
+                        feature_dict['feature_values'][feature_id + "-value-%(feature_value_i)d" % locals()] = feature_value_dict
+                feature_set_dict['features'][feature_id] = feature_dict
+            out[feature_set_id] = feature_set_dict
+        file_path = os.path.join(ROOT_DIR_PATH, 'ts', 'data', 'features.js')
+        import json
+        with open(file_path, 'w+b') as f:
+            f.write('FEATURES = ' + json.dumps(out, indent=4))
+                
 
 assert __name__ == '__main__'
 Main.main()
