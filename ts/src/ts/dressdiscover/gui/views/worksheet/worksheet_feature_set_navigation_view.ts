@@ -1,0 +1,25 @@
+﻿import Backbone = require("backbone");
+import Mustache = require("mustache");
+import WorksheetFeatureSetModel = require("../../models/worksheet/worksheet_feature_set_model");
+
+declare function require(moduleName: string): any;
+
+class WorksheetFeatureSetNavigationView extends Backbone.View<WorksheetFeatureSetModel> {
+    template: string;
+
+    constructor(options: { model: WorksheetFeatureSetModel, tagName?: string }) {
+        options.tagName = "li";
+        super(options);
+        this.template = require("raw!./worksheet_feature_set_navigation_view.html");
+        this.listenTo(this.model, "change", this.render);
+    }
+
+    render() {
+        this.$el.attr("role", "presentation");
+        this.$el.html(Mustache.render(this.template, this.model.definition.toJSON()));
+        this.$el.toggleClass("active");
+        return this;
+    }
+}
+
+export = WorksheetFeatureSetNavigationView;

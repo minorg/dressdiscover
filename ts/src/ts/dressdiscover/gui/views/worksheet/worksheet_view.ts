@@ -1,7 +1,7 @@
 ﻿import Backbone = require("backbone");
 
 import WorksheetModel = require("../../models/worksheet/worksheet_model");
-import WorksheetFeatureNavigationView = require("./worksheet_feature_navigation_view");
+import WorksheetNavigationView = require("./worksheet_navigation_view");
 
 declare function require(moduleName: string): any;
 
@@ -22,11 +22,11 @@ class WorksheetView extends Backbone.View<WorksheetModel> {
 
         const leftColumnEl: JQuery = $("#left-column");
         leftColumnEl.empty();
-        leftColumnEl.append(new WorksheetFeatureNavigationView({ model: this.model }).render().el);
+        leftColumnEl.append(new WorksheetNavigationView({ model: this.model }).render().el);
 
         //const rightColumnEl: JQuery = $("#right-column");
         //leftColumnEl.empty();
-        //leftColumnEl.add(new WorksheetFeatureNavigationView({ model: this.model }).render().el);        
+        //leftColumnEl.add(new WorksheetNavigationView({ model: this.model }).render().el);        
 
         return this;
     }

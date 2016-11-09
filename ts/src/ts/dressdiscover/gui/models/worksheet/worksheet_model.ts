@@ -41,7 +41,7 @@ class WorksheetModel extends Backbone.Model {
     }
 
     get featureSets(): WorksheetFeatureSetCollection {
-        return this.featureSets;
+        return this._featureSets;
     }
 
     private _featureSets: WorksheetFeatureSetCollection;
