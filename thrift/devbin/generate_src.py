@@ -34,7 +34,7 @@ from thryft.generators.ts.ts_generator import TsGenerator
 from yutil import indent, upper_camelize
 
 
-TS_OUT_DIR_PATH = os.path.join(ROOT_DIR_PATH, 'ts', 'src', 'ts', 'gen')
+TS_OUT_DIR_PATH = os.path.join(ROOT_DIR_PATH, 'ts', 'src', 'ts')
 
 
 ELASTIC_SEARCH_INDEX_SETTINGS = \
@@ -65,15 +65,15 @@ class Main(thryft.main.Main):
 
     def _clean(self):
         for dir_path in (
-             TS_OUT_DIR_PATH,
              os.path.join(ROOT_DIR_PATH, 'java', 'api', 'src', 'gen', 'java', 'org', 'dressdiscover'),
              os.path.join(ROOT_DIR_PATH, 'java', 'lib', 'src', 'gen', 'java', 'org', 'dressdiscover'),
              os.path.join(ROOT_DIR_PATH, 'java', 'server', 'src', 'gen', 'java', 'org', 'dressdiscover'),
              os.path.join(ROOT_DIR_PATH, 'sql'),
+             os.path.join(TS_OUT_DIR_PATH, 'dressdiscover', 'api')
         ):
             if os.path.isdir(dir_path):
                 shutil.rmtree(dir_path)
-        os.makedirs(TS_OUT_DIR_PATH)
+        os.makedirs(os.path.join(TS_OUT_DIR_PATH, 'dressdiscover', 'api'))
 
     def _compile(self):
         thrift_src_root_dir_path = os.path.join(ROOT_DIR_PATH, 'thrift', 'src')
