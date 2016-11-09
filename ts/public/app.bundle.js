@@ -14161,7 +14161,6 @@
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
-	/// <reference path="../../../../gen/index.ts" />
 	var LocalWorksheetCommandService = __webpack_require__(16);
 	var LocalWorksheetQueryService = __webpack_require__(17);
 	var Services = (function () {
@@ -14198,15 +14197,15 @@
 
 /***/ },
 /* 16 */
-/***/ function(module, exports) {
+/***/ function(module, exports, __webpack_require__) {
 
-	/// <reference path="../../../../../gen/index.ts" />
 	"use strict";
 	var __extends = (this && this.__extends) || function (d, b) {
 	    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
 	    function __() { this.constructor = d; }
 	    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 	};
+	var worksheet_command_service_1 = __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"../../../api/services/worksheet/worksheet_command_service\""); e.code = 'MODULE_NOT_FOUND'; throw e; }()));
 	var LocalWorksheetCommandService = (function (_super) {
 	    __extends(LocalWorksheetCommandService, _super);
 	    function LocalWorksheetCommandService() {
@@ -14215,21 +14214,21 @@
 	    LocalWorksheetCommandService.prototype.putWorksheetFeatureSetStatesSync = function (kwds) {
 	    };
 	    return LocalWorksheetCommandService;
-	}(dressdiscover.api.services.worksheet.AsyncToSyncWorksheetCommandService));
+	}(worksheet_command_service_1.AsyncToSyncWorksheetCommandService));
 	module.exports = LocalWorksheetCommandService;
 
 
 /***/ },
 /* 17 */
-/***/ function(module, exports) {
+/***/ function(module, exports, __webpack_require__) {
 
-	/// <reference path="../../../../../gen/index.ts" />
 	"use strict";
 	var __extends = (this && this.__extends) || function (d, b) {
 	    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
 	    function __() { this.constructor = d; }
 	    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 	};
+	var worksheet_query_service_1 = __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"../../../api/services/worksheet/worksheet_query_service\""); e.code = 'MODULE_NOT_FOUND'; throw e; }()));
 	var LocalWorksheetQueryService = (function (_super) {
 	    __extends(LocalWorksheetQueryService, _super);
 	    function LocalWorksheetQueryService() {
@@ -14242,7 +14241,7 @@
 	        return {};
 	    };
 	    return LocalWorksheetQueryService;
-	}(dressdiscover.api.services.worksheet.AsyncToSyncWorksheetQueryService));
+	}(worksheet_query_service_1.AsyncToSyncWorksheetQueryService));
 	module.exports = LocalWorksheetQueryService;
 
 

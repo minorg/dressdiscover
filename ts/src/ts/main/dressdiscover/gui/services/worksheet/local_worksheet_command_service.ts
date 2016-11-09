@@ -1,7 +1,9 @@
-﻿/// <reference path="../../../../../gen/index.ts" />
+﻿import { AsyncToSyncWorksheetCommandService } from "../../../api/services/worksheet/worksheet_command_service";
+import { WorksheetFeatureSetState } from "../../../api/models/worksheet/worksheet_feature_set_state";
 
-class LocalWorksheetCommandService extends dressdiscover.api.services.worksheet.AsyncToSyncWorksheetCommandService {
-    putWorksheetFeatureSetStatesSync(kwds: { worksheet_feature_set_states: { [index: string]: dressdiscover.api.models.worksheet.WorksheetFeatureSetState } }): void {
+class LocalWorksheetCommandService extends AsyncToSyncWorksheetCommandService {
+    putWorksheetFeatureSetStatesSync(kwds: { worksheet_feature_set_states: { [index: string]: WorksheetFeatureSetState } }): void {
+
     }
 }
 

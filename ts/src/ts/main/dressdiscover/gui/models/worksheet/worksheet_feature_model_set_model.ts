@@ -1,21 +1,21 @@
-﻿/// <reference path="../../../../../gen/index.ts" />
-
-import Backbone = require("backbone");
+﻿import Backbone = require("backbone");
+import { WorksheetFeatureSetDefinition } from "../../../api/models/worksheet/worksheet_feature_set_definition";
+import { WorksheetFeatureSetState } from "../../../api/models/worksheet/worksheet_feature_set_state";
 
 class WorksheetFeatureSetModel extends Backbone.Model {
-    private _definition: dressdiscover.api.models.worksheet.WorksheetFeatureSetDefinition;
+    private _definition: WorksheetFeatureSetDefinition;
 
-    constructor(definition: dressdiscover.api.models.worksheet.WorksheetFeatureSetDefinition, state: dressdiscover.api.models.worksheet.WorksheetFeatureSetState) {
+    constructor(definition: WorksheetFeatureSetDefinition, state: WorksheetFeatureSetState) {
         super();
         this._definition = definition;
         this.set("state", state);
     }
 
-    get definition(): dressdiscover.api.models.worksheet.WorksheetFeatureSetDefinition {
+    get definition(): WorksheetFeatureSetDefinition {
         return this._definition;
     }
 
-    get state(): dressdiscover.api.models.worksheet.WorksheetFeatureSetState {
+    get state(): WorksheetFeatureSetState {
         return this.get("state");
     }
 }

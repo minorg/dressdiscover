@@ -1,11 +1,13 @@
-﻿/// <reference path="../../../../../gen/index.ts" />
+﻿import { AsyncToSyncWorksheetQueryService } from "../../../api/services/worksheet/worksheet_query_service";
+import { WorksheetFeatureSetDefinition } from "../../../api/models/worksheet/worksheet_feature_set_definition";
+import { WorksheetFeatureSetState } from "../../../api/models/worksheet/worksheet_feature_set_state";
 
-class LocalWorksheetQueryService extends dressdiscover.api.services.worksheet.AsyncToSyncWorksheetQueryService {
-    getWorksheetFeatureSetDefinitionsSync(): { [index: string]: dressdiscover.api.models.worksheet.WorksheetFeatureSetDefinition } {
+class LocalWorksheetQueryService extends AsyncToSyncWorksheetQueryService {
+    getWorksheetFeatureSetDefinitionsSync(): { [index: string]: WorksheetFeatureSetDefinition } {
         return {};
     }
 
-    getWorksheetFeatureSetStatesSync(): { [index: string]: dressdiscover.api.models.worksheet.WorksheetFeatureSetState } {
+    getWorksheetFeatureSetStatesSync(): { [index: string]: WorksheetFeatureSetState } {
         return {};
     }
 }
