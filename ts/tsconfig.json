@@ -8,10 +8,6 @@
         "noImplicitThis": true,
         "noFallthroughCasesInSwitch": true,
         "noUnusedLocals": true,
-        "rootDirs": [
-            "src/ts/gen",
-            "src/ts/main"
-        ],
         "sourceMap": true,
         "strictNullChecks": true,
         "target": "es5"
