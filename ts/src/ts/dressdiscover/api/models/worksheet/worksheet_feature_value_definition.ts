@@ -1,23 +1,23 @@
 import * as Backbone from "backbone";
 
 export class WorksheetFeatureValueDefinition extends Backbone.Model {
-    constructor(attributes?: {display_name: string}) {
+    constructor(attributes?: {displayName: string}) {
         super(attributes);
     }
 
-    get display_name(): string {
-        return this.get('display_name');
+    get displayName(): string {
+        return this.get('displayName');
     }
 
-    set display_name(value: string) {
-        this.set('display_name', value);
+    set displayName(value: string) {
+        this.set('displayName', value);
     }
 
     static fromThryftJSON(json: any): WorksheetFeatureValueDefinition {
         var out: WorksheetFeatureValueDefinition = new WorksheetFeatureValueDefinition;
         for (var fieldName in json) {
             if (fieldName == "display_name") {
-                out.attributes.display_name = json[fieldName];
+                out.attributes.displayName = json[fieldName];
             }
         }
         return out;
@@ -25,7 +25,7 @@ export class WorksheetFeatureValueDefinition extends Backbone.Model {
 
     toThryftJSON(): any {
         var json: {[index: string]: any} = {};
-        json["display_name"] = this.display_name;
+        json["display_name"] = this.displayName;
         return json;
     }
 }

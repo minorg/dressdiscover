@@ -8,7 +8,16 @@ class LocalWorksheetQueryService extends AsyncToSyncWorksheetQueryService {
     }
 
     getWorksheetFeatureSetStatesSync(): { [index: string]: WorksheetFeatureSetState } {
-        return {};
+        const jsonString = localStorage.getItem("worksheet-feature-set-states");
+        if (jsonString == null) {
+            return {};
+        }
+        const jsonObject = JSON.parse(jsonString);
+        var out: { [index: string]: WorksheetFeatureSetState } = {};
+        for (var key in jsonObject) {
+            out[key] = WorksheetFeatureSetState.fromThryftJSON(jsonObject[key]);            
+        }
+        return out;
     }
 }
 
