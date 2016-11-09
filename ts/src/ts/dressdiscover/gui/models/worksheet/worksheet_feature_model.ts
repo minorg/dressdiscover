@@ -3,13 +3,13 @@ import { WorksheetFeatureDefinition } from "../../../api/models/worksheet/worksh
 import { WorksheetFeatureState } from "../../../api/models/worksheet/worksheet_feature_state";
 
 class WorksheetFeatureModel extends Backbone.Model {
-    private _definition: WorksheetFeatureDefinition;
-
-    constructor(definition: WorksheetFeatureDefinition, id: string, state: WorksheetFeatureState) {
+    constructor(definition: WorksheetFeatureDefinition, id: string, state: WorksheetFeatureState | undefined) {
         super();
         this._definition = definition;
         this.set("id", id);
-        this.set("state", state);
+        if (state) {
+            this.set("state", state);
+        }
     }
 
     get definition(): WorksheetFeatureDefinition {
@@ -19,6 +19,8 @@ class WorksheetFeatureModel extends Backbone.Model {
     get state(): WorksheetFeatureState {
         return this.get("state");
     }
+
+    private _definition: WorksheetFeatureDefinition;
 }
 
 export = WorksheetFeatureModel;
