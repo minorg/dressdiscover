@@ -1,9 +1,8 @@
 ﻿import Backbone = require("backbone");
 import Mustache = require("mustache");
-import * as $ from "jquery";
-import { WorksheetFeatureSetDefinition } from "../../../api/models/worksheet/worksheet_feature_set_definition";
+import _ = require("underscore");
+//import * as $ from "jquery";
 import WorksheetModel = require("../../models/worksheet/worksheet_model");
-import Services = require("../../services/services");
 import "bootstrap-drawer/dist/css/bootstrap-drawer.css";
 import "bootstrap-drawer/dist/js/drawer.min.js";
 
@@ -17,17 +16,13 @@ class WorksheetView extends Backbone.View<WorksheetModel> {
         this.model = new WorksheetModel();
         this.setElement($('#content'), true);
         this.template = require("raw!./worksheet_view.html");
+
+        this.listenTo(this.model, "change", this.render);
+        this.model.fetchFromService();
     }
 
     render() {
-        Services.instance.worksheetQueryService.getWorksheetFeatureSetDefinitionsAsync({
-            error: function(jqXHR: JQueryXHR | null, textStatus: string, errorThrown: string | null): any {
-
-            },
-            success: function (return_value: { [index: string]: WorksheetFeatureSetDefinition }):void {
-
-            }
-        });
+        // TODO: iterate through the model, creating different child views for features etc.
         this.$el
             .html(Mustache.render(this.template, this.model.toJSON()));
 //            .toggleClass('completed', this.model.get('completed'));

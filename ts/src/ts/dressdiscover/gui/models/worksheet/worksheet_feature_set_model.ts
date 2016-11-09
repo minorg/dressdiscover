@@ -1,13 +1,14 @@
 ﻿import Backbone = require("backbone");
 import { WorksheetFeatureSetDefinition } from "../../../api/models/worksheet/worksheet_feature_set_definition";
 import { WorksheetFeatureSetState } from "../../../api/models/worksheet/worksheet_feature_set_state";
+import WorksheetFeatureCollection = require("./worksheet_feature_collection");
 
 class WorksheetFeatureSetModel extends Backbone.Model {
-    private _definition: WorksheetFeatureSetDefinition;
-
-    constructor(definition: WorksheetFeatureSetDefinition, state: WorksheetFeatureSetState) {
+    constructor(definition: WorksheetFeatureSetDefinition, features: WorksheetFeatureCollection, id: string, state: WorksheetFeatureSetState) {
         super();
         this._definition = definition;
+        this._features = features;
+        this.set("id", id);
         this.set("state", state);
     }
 
@@ -18,6 +19,9 @@ class WorksheetFeatureSetModel extends Backbone.Model {
     get state(): WorksheetFeatureSetState {
         return this.get("state");
     }
+
+    private _definition: WorksheetFeatureSetDefinition;
+    private _features: WorksheetFeatureCollection;
 }
 
 export = WorksheetFeatureSetModel;

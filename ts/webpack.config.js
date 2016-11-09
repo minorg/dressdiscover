@@ -38,6 +38,9 @@ module.exports = {
     new CopyWebpackPlugin([{
       from: './src/index.html',
       to: './index.html'
+    }, {
+    from: './data/features.js',
+    to: './features.js'
     }]),
     new webpack.ProvidePlugin({
       $: 'jquery',

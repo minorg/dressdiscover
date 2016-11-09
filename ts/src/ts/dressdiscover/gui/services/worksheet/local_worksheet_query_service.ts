@@ -2,9 +2,18 @@
 import { WorksheetFeatureSetDefinition } from "../../../api/models/worksheet/worksheet_feature_set_definition";
 import { WorksheetFeatureSetState } from "../../../api/models/worksheet/worksheet_feature_set_state";
 
+declare var FEATURES: any;
+
 class LocalWorksheetQueryService extends AsyncToSyncWorksheetQueryService {
+    constructor() {
+        super();
+        for (var key in FEATURES) {
+            this._definitions[key] = WorksheetFeatureSetDefinition.fromThryftJSON(FEATURES[key]);
+        }
+    }
+
     getWorksheetFeatureSetDefinitionsSync(): { [index: string]: WorksheetFeatureSetDefinition } {
-        return {};
+        return this._definitions;
     }
 
     getWorksheetFeatureSetStatesSync(): { [index: string]: WorksheetFeatureSetState } {
@@ -19,6 +28,8 @@ class LocalWorksheetQueryService extends AsyncToSyncWorksheetQueryService {
         }
         return out;
     }
+
+    private _definitions: { [index: string]: WorksheetFeatureSetDefinition } = {};
 }
 
 export = LocalWorksheetQueryService;

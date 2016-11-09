@@ -14212,6 +14212,12 @@
 	        _super.apply(this, arguments);
 	    }
 	    LocalWorksheetCommandService.prototype.putWorksheetFeatureSetStatesSync = function (kwds) {
+	        var jsonObject = {};
+	        for (var key in kwds.worksheetFeatureSetStates) {
+	            jsonObject[key] = kwds.worksheetFeatureSetStates[key].toThryftJSON();
+	        }
+	        var jsonString = JSON.stringify(jsonObject);
+	        localStorage.setItem("worksheet-feature-set-states", jsonString);
 	    };
 	    return LocalWorksheetCommandService;
 	}(worksheet_command_service_1.AsyncToSyncWorksheetCommandService));
@@ -14230,7 +14236,7 @@
 	        var __jsonrpc_params = {};
 	        __jsonrpc_params["worksheet_feature_set_states"] = function (value) { var outObject = {}; for (var key in value) {
 	            outObject[key] = value[key].toThryftJSON();
-	        } return outObject; }(kwds.worksheet_feature_set_states);
+	        } return outObject; }(kwds.worksheetFeatureSetStates);
 	        $.ajax({
 	            async: true,
 	            data: JSON.stringify({
@@ -14260,7 +14266,7 @@
 	        var __jsonrpc_params = {};
 	        __jsonrpc_params["worksheet_feature_set_states"] = function (value) { var outObject = {}; for (var key in value) {
 	            outObject[key] = value[key].toThryftJSON();
-	        } return outObject; }(kwds.worksheet_feature_set_states);
+	        } return outObject; }(kwds.worksheetFeatureSetStates);
 	        $.ajax({
 	            async: false,
 	            data: JSON.stringify({
@@ -14291,7 +14297,7 @@
 	    }
 	    AsyncToSyncWorksheetCommandService.prototype.putWorksheetFeatureSetStatesAsync = function (kwds) {
 	        try {
-	            this.putWorksheetFeatureSetStatesSync({ worksheet_feature_set_states: kwds.worksheet_feature_set_states });
+	            this.putWorksheetFeatureSetStatesSync({ worksheetFeatureSetStates: kwds.worksheetFeatureSetStates });
 	            kwds.success();
 	        }
 	        catch (e) {
@@ -14315,6 +14321,7 @@
 	    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 	};
 	var worksheet_query_service_1 = __webpack_require__(19);
+	var worksheet_feature_set_state_1 = __webpack_require__(24);
 	var LocalWorksheetQueryService = (function (_super) {
 	    __extends(LocalWorksheetQueryService, _super);
 	    function LocalWorksheetQueryService() {
@@ -14324,7 +14331,16 @@
 	        return {};
 	    };
 	    LocalWorksheetQueryService.prototype.getWorksheetFeatureSetStatesSync = function () {
-	        return {};
+	        var jsonString = localStorage.getItem("worksheet-feature-set-states");
+	        if (jsonString == null) {
+	            return {};
+	        }
+	        var jsonObject = JSON.parse(jsonString);
+	        var out = {};
+	        for (var key in jsonObject) {
+	            out[key] = worksheet_feature_set_state_1.WorksheetFeatureSetState.fromThryftJSON(jsonObject[key]);
+	        }
+	        return out;
 	    };
 	    return LocalWorksheetQueryService;
 	}(worksheet_query_service_1.AsyncToSyncWorksheetQueryService));
@@ -14502,12 +14518,12 @@
 	    function WorksheetFeatureSetDefinition(attributes) {
 	        _super.call(this, attributes);
 	    }
-	    Object.defineProperty(WorksheetFeatureSetDefinition.prototype, "display_name", {
+	    Object.defineProperty(WorksheetFeatureSetDefinition.prototype, "displayName", {
 	        get: function () {
-	            return this.get('display_name');
+	            return this.get('displayName');
 	        },
 	        set: function (value) {
-	            this.set('display_name', value);
+	            this.set('displayName', value);
 	        },
 	        enumerable: true,
 	        configurable: true
@@ -14526,7 +14542,7 @@
 	        var out = new WorksheetFeatureSetDefinition;
 	        for (var fieldName in json) {
 	            if (fieldName == "display_name") {
-	                out.attributes.display_name = json[fieldName];
+	                out.attributes.displayName = json[fieldName];
 	            }
 	            else if (fieldName == "features") {
 	                out.attributes.features = function (json) { var map = {}; for (var key in json) {
@@ -14538,7 +14554,7 @@
 	    };
 	    WorksheetFeatureSetDefinition.prototype.toThryftJSON = function () {
 	        var json = {};
-	        json["display_name"] = this.display_name;
+	        json["display_name"] = this.displayName;
 	        json["features"] = function (value) { var outObject = {}; for (var key in value) {
 	            outObject[key] = value[key].toThryftJSON();
 	        } return outObject; }(this.features);
@@ -14567,12 +14583,12 @@
 	    function WorksheetFeatureDefinition(attributes) {
 	        _super.call(this, attributes);
 	    }
-	    Object.defineProperty(WorksheetFeatureDefinition.prototype, "display_name", {
+	    Object.defineProperty(WorksheetFeatureDefinition.prototype, "displayName", {
 	        get: function () {
-	            return this.get('display_name');
+	            return this.get('displayName');
 	        },
 	        set: function (value) {
-	            this.set('display_name', value);
+	            this.set('displayName', value);
 	        },
 	        enumerable: true,
 	        configurable: true
@@ -14587,12 +14603,12 @@
 	        enumerable: true,
 	        configurable: true
 	    });
-	    Object.defineProperty(WorksheetFeatureDefinition.prototype, "feature_values", {
+	    Object.defineProperty(WorksheetFeatureDefinition.prototype, "featureValues", {
 	        get: function () {
-	            return this.get('feature_values');
+	            return this.get('featureValues');
 	        },
 	        set: function (value) {
-	            this.set('feature_values', value);
+	            this.set('featureValues', value);
 	        },
 	        enumerable: true,
 	        configurable: true
@@ -14601,13 +14617,13 @@
 	        var out = new WorksheetFeatureDefinition;
 	        for (var fieldName in json) {
 	            if (fieldName == "display_name") {
-	                out.attributes.display_name = json[fieldName];
+	                out.attributes.displayName = json[fieldName];
 	            }
 	            else if (fieldName == "type") {
 	                out.attributes.type = worksheet_feature_type_1.WorksheetFeatureType[json[fieldName]];
 	            }
 	            else if (fieldName == "feature_values") {
-	                out.attributes.feature_values = function (json) { var map = {}; for (var key in json) {
+	                out.attributes.featureValues = function (json) { var map = {}; for (var key in json) {
 	                    map[key] = worksheet_feature_value_definition_1.WorksheetFeatureValueDefinition.fromThryftJSON(json[key]);
 	                } return map; }(json[fieldName]);
 	            }
@@ -14616,12 +14632,12 @@
 	    };
 	    WorksheetFeatureDefinition.prototype.toThryftJSON = function () {
 	        var json = {};
-	        json["display_name"] = this.display_name;
+	        json["display_name"] = this.displayName;
 	        json["type"] = worksheet_feature_type_1.WorksheetFeatureType[this.type];
-	        if (this.has("feature_values")) {
+	        if (this.has("featureValues")) {
 	            json["feature_values"] = function (value) { var outObject = {}; for (var key in value) {
 	                outObject[key] = value[key].toThryftJSON();
-	            } return outObject; }(this.feature_values);
+	            } return outObject; }(this.featureValues);
 	        }
 	        return json;
 	    };
@@ -14658,12 +14674,12 @@
 	    function WorksheetFeatureValueDefinition(attributes) {
 	        _super.call(this, attributes);
 	    }
-	    Object.defineProperty(WorksheetFeatureValueDefinition.prototype, "display_name", {
+	    Object.defineProperty(WorksheetFeatureValueDefinition.prototype, "displayName", {
 	        get: function () {
-	            return this.get('display_name');
+	            return this.get('displayName');
 	        },
 	        set: function (value) {
-	            this.set('display_name', value);
+	            this.set('displayName', value);
 	        },
 	        enumerable: true,
 	        configurable: true
@@ -14672,14 +14688,14 @@
 	        var out = new WorksheetFeatureValueDefinition;
 	        for (var fieldName in json) {
 	            if (fieldName == "display_name") {
-	                out.attributes.display_name = json[fieldName];
+	                out.attributes.displayName = json[fieldName];
 	            }
 	        }
 	        return out;
 	    };
 	    WorksheetFeatureValueDefinition.prototype.toThryftJSON = function () {
 	        var json = {};
-	        json["display_name"] = this.display_name;
+	        json["display_name"] = this.displayName;
 	        return json;
 	    };
 	    return WorksheetFeatureValueDefinition;
@@ -14756,12 +14772,12 @@
 	    function WorksheetFeatureState(attributes) {
 	        _super.call(this, attributes);
 	    }
-	    Object.defineProperty(WorksheetFeatureState.prototype, "feature_values", {
+	    Object.defineProperty(WorksheetFeatureState.prototype, "featureValues", {
 	        get: function () {
-	            return this.get('feature_values');
+	            return this.get('featureValues');
 	        },
 	        set: function (value) {
-	            this.set('feature_values', value);
+	            this.set('featureValues', value);
 	        },
 	        enumerable: true,
 	        configurable: true
@@ -14770,7 +14786,7 @@
 	        var out = new WorksheetFeatureState;
 	        for (var fieldName in json) {
 	            if (fieldName == "feature_values") {
-	                out.attributes.feature_values = function (json) { var map = {}; for (var key in json) {
+	                out.attributes.featureValues = function (json) { var map = {}; for (var key in json) {
 	                    map[key] = worksheet_feature_value_state_1.WorksheetFeatureValueState.fromThryftJSON(json[key]);
 	                } return map; }(json[fieldName]);
 	            }
@@ -14781,7 +14797,7 @@
 	        var json = {};
 	        json["feature_values"] = function (value) { var outObject = {}; for (var key in value) {
 	            outObject[key] = value[key].toThryftJSON();
-	        } return outObject; }(this.feature_values);
+	        } return outObject; }(this.featureValues);
 	        return json;
 	    };
 	    return WorksheetFeatureState;

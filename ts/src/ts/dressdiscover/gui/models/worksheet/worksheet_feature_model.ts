@@ -5,9 +5,10 @@ import { WorksheetFeatureState } from "../../../api/models/worksheet/worksheet_f
 class WorksheetFeatureModel extends Backbone.Model {
     private _definition: WorksheetFeatureDefinition;
 
-    constructor(definition: WorksheetFeatureDefinition, state: WorksheetFeatureState) {
+    constructor(definition: WorksheetFeatureDefinition, id: string, state: WorksheetFeatureState) {
         super();
         this._definition = definition;
+        this.set("id", id);
         this.set("state", state);
     }
 
