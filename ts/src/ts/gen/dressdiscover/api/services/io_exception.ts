@@ -1,31 +1,31 @@
-module dressdiscover.api.services {
-    export class IoException extends Backbone.Model {
-        constructor(attributes?: {cause_message: string}) {
-            super(attributes);
-        }
+import * as Backbone from "backbone";
 
-        get cause_message(): string {
-            return this.get('cause_message');
-        }
+export class IoException extends Backbone.Model {
+    constructor(attributes?: {cause_message: string}) {
+        super(attributes);
+    }
 
-        set cause_message(value: string) {
-            this.set('cause_message', value);
-        }
+    get cause_message(): string {
+        return this.get('cause_message');
+    }
 
-        static fromThryftJSON(json: any): dressdiscover.api.services.IoException {
-            var out: dressdiscover.api.services.IoException = new dressdiscover.api.services.IoException;
-            for (var fieldName in json) {
-                if (fieldName == "cause_message") {
-                    out.attributes.cause_message = json[fieldName];
-                }
+    set cause_message(value: string) {
+        this.set('cause_message', value);
+    }
+
+    static fromThryftJSON(json: any): IoException {
+        var out: IoException = new IoException;
+        for (var fieldName in json) {
+            if (fieldName == "cause_message") {
+                out.attributes.cause_message = json[fieldName];
             }
-            return out;
         }
+        return out;
+    }
 
-        toThryftJSON(): any {
-            var json: {[index: string]: any} = {};
-            json["cause_message"] = this.cause_message;
-            return json;
-        }
+    toThryftJSON(): any {
+        var json: {[index: string]: any} = {};
+        json["cause_message"] = this.cause_message;
+        return json;
     }
 }

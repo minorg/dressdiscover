@@ -1,46 +1,46 @@
-module dressdiscover.api.models.worksheet {
-    export class WorksheetFeatureValueState extends Backbone.Model {
-        constructor(attributes?: {selected?: boolean, text?: string}) {
-            super(attributes);
-        }
+import * as Backbone from "backbone";
 
-        get selected(): boolean {
-            return this.get('selected');
-        }
+export class WorksheetFeatureValueState extends Backbone.Model {
+    constructor(attributes?: {selected?: boolean, text?: string}) {
+        super(attributes);
+    }
 
-        set selected(value: boolean) {
-            this.set('selected', value);
-        }
+    get selected(): boolean {
+        return this.get('selected');
+    }
 
-        get text(): string {
-            return this.get('text');
-        }
+    set selected(value: boolean) {
+        this.set('selected', value);
+    }
 
-        set text(value: string) {
-            this.set('text', value);
-        }
+    get text(): string {
+        return this.get('text');
+    }
 
-        static fromThryftJSON(json: any): dressdiscover.api.models.worksheet.WorksheetFeatureValueState {
-            var out: dressdiscover.api.models.worksheet.WorksheetFeatureValueState = new dressdiscover.api.models.worksheet.WorksheetFeatureValueState;
-            for (var fieldName in json) {
-                if (fieldName == "selected") {
-                    out.attributes.selected = json[fieldName];
-                } else if (fieldName == "text") {
-                    out.attributes.text = json[fieldName];
-                }
+    set text(value: string) {
+        this.set('text', value);
+    }
+
+    static fromThryftJSON(json: any): WorksheetFeatureValueState {
+        var out: WorksheetFeatureValueState = new WorksheetFeatureValueState;
+        for (var fieldName in json) {
+            if (fieldName == "selected") {
+                out.attributes.selected = json[fieldName];
+            } else if (fieldName == "text") {
+                out.attributes.text = json[fieldName];
             }
-            return out;
         }
+        return out;
+    }
 
-        toThryftJSON(): any {
-            var json: {[index: string]: any} = {};
-            if (this.has("selected")) {
-                json["selected"] = this.selected;
-            }
-            if (this.has("text")) {
-                json["text"] = this.text;
-            }
-            return json;
+    toThryftJSON(): any {
+        var json: {[index: string]: any} = {};
+        if (this.has("selected")) {
+            json["selected"] = this.selected;
         }
+        if (this.has("text")) {
+            json["text"] = this.text;
+        }
+        return json;
     }
 }

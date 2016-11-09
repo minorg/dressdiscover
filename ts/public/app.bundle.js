@@ -13471,17 +13471,24 @@
 	var Mustache = __webpack_require__(13);
 	var $ = __webpack_require__(2);
 	var WorksheetModel = __webpack_require__(14);
-	__webpack_require__(15);
-	__webpack_require__(17);
+	var Services = __webpack_require__(15);
+	__webpack_require__(18);
+	__webpack_require__(20);
 	var WorksheetView = (function (_super) {
 	    __extends(WorksheetView, _super);
 	    function WorksheetView(options) {
 	        _super.call(this, options);
 	        this.model = new WorksheetModel();
 	        this.setElement($('#content'), true);
-	        this.template = __webpack_require__(18);
+	        this.template = __webpack_require__(21);
 	    }
 	    WorksheetView.prototype.render = function () {
+	        Services.instance.worksheetQueryService.getWorksheetFeatureSetDefinitionsAsync({
+	            error: function (jqXHR, textStatus, errorThrown) {
+	            },
+	            success: function (return_value) {
+	            }
+	        });
 	        this.$el
 	            .html(Mustache.render(this.template, this.model.toJSON()));
 	        //            .toggleClass('completed', this.model.get('completed'));
@@ -14151,19 +14158,109 @@
 
 /***/ },
 /* 15 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+	/// <reference path="../../../../gen/index.ts" />
+	var LocalWorksheetCommandService = __webpack_require__(16);
+	var LocalWorksheetQueryService = __webpack_require__(17);
+	var Services = (function () {
+	    function Services() {
+	        this._worksheetCommandService = new LocalWorksheetCommandService;
+	        this._worksheetQueryService = new LocalWorksheetQueryService;
+	    }
+	    Object.defineProperty(Services, "instance", {
+	        get: function () {
+	            return Services._instance;
+	        },
+	        enumerable: true,
+	        configurable: true
+	    });
+	    Object.defineProperty(Services.prototype, "worksheetCommandService", {
+	        get: function () {
+	            return this._worksheetCommandService;
+	        },
+	        enumerable: true,
+	        configurable: true
+	    });
+	    Object.defineProperty(Services.prototype, "worksheetQueryService", {
+	        get: function () {
+	            return this._worksheetQueryService;
+	        },
+	        enumerable: true,
+	        configurable: true
+	    });
+	    Services._instance = new Services();
+	    return Services;
+	}());
+	module.exports = Services;
+
+
+/***/ },
+/* 16 */
+/***/ function(module, exports) {
+
+	/// <reference path="../../../../../gen/index.ts" />
+	"use strict";
+	var __extends = (this && this.__extends) || function (d, b) {
+	    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
+	    function __() { this.constructor = d; }
+	    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+	};
+	var LocalWorksheetCommandService = (function (_super) {
+	    __extends(LocalWorksheetCommandService, _super);
+	    function LocalWorksheetCommandService() {
+	        _super.apply(this, arguments);
+	    }
+	    LocalWorksheetCommandService.prototype.putWorksheetFeatureSetStatesSync = function (kwds) {
+	    };
+	    return LocalWorksheetCommandService;
+	}(dressdiscover.api.services.worksheet.AsyncToSyncWorksheetCommandService));
+	module.exports = LocalWorksheetCommandService;
+
+
+/***/ },
+/* 17 */
+/***/ function(module, exports) {
+
+	/// <reference path="../../../../../gen/index.ts" />
+	"use strict";
+	var __extends = (this && this.__extends) || function (d, b) {
+	    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
+	    function __() { this.constructor = d; }
+	    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+	};
+	var LocalWorksheetQueryService = (function (_super) {
+	    __extends(LocalWorksheetQueryService, _super);
+	    function LocalWorksheetQueryService() {
+	        _super.apply(this, arguments);
+	    }
+	    LocalWorksheetQueryService.prototype.getWorksheetFeatureSetDefinitionsSync = function () {
+	        return {};
+	    };
+	    LocalWorksheetQueryService.prototype.getWorksheetFeatureSetStatesSync = function () {
+	        return {};
+	    };
+	    return LocalWorksheetQueryService;
+	}(dressdiscover.api.services.worksheet.AsyncToSyncWorksheetQueryService));
+	module.exports = LocalWorksheetQueryService;
+
+
+/***/ },
+/* 18 */
 /***/ function(module, exports) {
 
 	// removed by extract-text-webpack-plugin
 
 /***/ },
-/* 16 */,
-/* 17 */
+/* 19 */,
+/* 20 */
 /***/ function(module, exports) {
 
 	!function(t){"use strict";function e(e){var n,a=e.attr("data-target")||(n=e.attr("href"))&&n.replace(/.*(?=#[^\s]+$)/,"");return t(a)}function n(e){return this.each(function(){var n=t(this),i=n.data("bs.drawer"),r=t.extend({},a.DEFAULTS,n.data(),"object"==typeof e&&e);!i&&r.toggle&&"show"==e&&(r.toggle=!1),i||n.data("bs.drawer",i=new a(this,r)),"string"==typeof e&&i[e]()})}var a=function(e,n){this.$element=t(e),this.options=t.extend({},a.DEFAULTS,n),this.$trigger=t(this.options.trigger).filter('[href="#'+e.id+'"], [data-target="#'+e.id+'"]'),this.transitioning=null,this.options.parent?this.$parent=this.getParent():this.addAriaAndDrawerdClass(this.$element,this.$trigger),this.options.toggle&&this.toggle()};a.VERSION="3.3.2",a.TRANSITION_DURATION=350,a.DEFAULTS={toggle:!0,trigger:'[data-toggle="drawer"]'},a.prototype.dimension=function(){var t=this.$element.hasClass("drawer-right");return t?"margin-right":"margin-left"},a.prototype.show=function(){if(!this.transitioning&&!this.$element.hasClass("open")){var e,i=this.$parent&&this.$parent.children(".panel").children(".in, .collapsing");if(!(i&&i.length&&(e=i.data("bs.drawer"),e&&e.transitioning))){var r=t.Event("show.bs.drawer");if(this.$element.trigger(r),!r.isDefaultPrevented()){i&&i.length&&(n.call(i,"hide"),e||i.data("bs.drawer",null));var s=this.dimension();this.$element.addClass("folding").css(s,0).attr("aria-expanded",!0),this.$trigger.removeClass("folded").attr("aria-expanded",!0),this.transitioning=1;var o=function(){this.$element.removeClass("folding").addClass("fold open").css(s,""),this.transitioning=0,this.$element.trigger("shown.bs.drawer")};if(!t.support.transition)return o.call(this);this.transEventName=t.support.transition.end,this.$element.one(this.transEventName,t.proxy(o,this)).emulateTransitionEnd(a.TRANSITION_DURATION).css(s,0)}}}},a.prototype.hide=function(){if(!this.transitioning&&this.$element.hasClass("open")){var e=t.Event("hide.bs.drawer");if(this.$element.trigger(e),!e.isDefaultPrevented()){var n=this.dimension();this.$element.addClass("folding").removeClass("open").attr("aria-expanded",!1),this.$trigger.addClass("folded").attr("aria-expanded",!1),this.transitioning=1;var i=function(){this.transitioning=0,this.$element.removeClass("folding").addClass("fold").trigger("hidden.bs.drawer")};if(!t.support.transition)return i.call(this);this.transEventName=t.support.transition.end,this.$element.css(n,"").one(this.transEventName,t.proxy(i,this)).emulateTransitionEnd(a.TRANSITION_DURATION)}}},a.prototype.toggle=function(){this[this.$element.hasClass("open")?"hide":"show"]()},a.prototype.getParent=function(){return t(this.options.parent).find('[data-toggle="drawer"][data-parent="'+this.options.parent+'"]').each(t.proxy(function(n,a){var i=t(a);this.addAriaAndDrawerdClass(e(i),i)},this)).end()},a.prototype.addAriaAndDrawerdClass=function(t,e){var n=t.hasClass("open");t.attr("aria-expanded",n),e.toggleClass("folded",!n).attr("aria-expanded",n)};var i=t.fn.fold;t.fn.drawer=n,t.fn.drawer.Constructor=a,t.fn.drawer.noConflict=function(){return t.fn.fold=i,this},t(document).on("click.bs.drawer.data-api",'[data-toggle="drawer"]',function(a){var i=t(this);i.attr("data-target")||a.preventDefault();var r=e(i),s=r.data("bs.drawer"),o=s?"toggle":t.extend({},i.data(),{trigger:this});n.call(r,o)})}(window.jQuery||{});
 
 /***/ },
-/* 18 */
+/* 21 */
 /***/ function(module, exports) {
 
 	module.exports = "<div class=\"container-fluid has-inner-drawer\" style=\"height: 100%\">\n    <div class=\"row\" style=\"height: 100%\">\n        <div class=\"col-md-6\" style=\"height: 100%\">\n            <div id=\"features-drawer\" class=\"drawer drawer-inside dw-xs-10 dw-sm-6 dw-md-4 fold\" aria-labelledby=\"features-drawer\">\n                <div class=\"drawer-controls\">\n                    <a href=\"#features-drawer\" data-toggle=\"drawer\" aria-foldedopen=\"false\" aria-controls=\"features-drawer\" class=\"btn btn-primary btn-sm\">Features</a>\n                </div>\n                <div class=\"drawer-contents\">\n                    <div class=\"drawer-heading\">\n                        <h2 class=\"drawer-title\">Features</h2>\n                    </div>\n                    <div class=\"drawer-body\">\n                        <p>\n                            This is a properly padded container for content in the\n                            drawer that isn't a navigation.\n                        </p>\n                        <a href=\"#\">A Regular Link</a>\n                    </div>\n                    <ul class=\"drawer-nav\" style=\"vertical-align: top\">\n                        <li role=\"presentation\" class=\"active\"><a href=\"#\">Home</a></li>\n                        <li role=\"presentation\"><a href=\"#\">Profile</a></li>\n                        <li role=\"presentation\"><a href=\"#\">Messages</a></li>\n                    </ul>\n                </div>\n            </div>\n        </div>\n        <div class=\"col-md-6\" style=\"text-align: right\">Right column</div>\n    </div>\n</div>\n"

@@ -2,6 +2,7 @@
 import Mustache = require("mustache");
 import * as $ from "jquery";
 import WorksheetModel = require("../../models/worksheet/worksheet_model");
+import Services = require("../../services/services");
 import "../../../../../../../node_modules/bootstrap-drawer/dist/css/bootstrap-drawer.css";
 import "../../../../../../../node_modules/bootstrap-drawer/dist/js/drawer.min.js";
 
@@ -18,6 +19,14 @@ class WorksheetView extends Backbone.View<WorksheetModel> {
     }
 
     render() {
+        Services.instance.worksheetQueryService.getWorksheetFeatureSetDefinitionsAsync({
+            error: function(jqXHR: JQueryXHR | null, textStatus: string, errorThrown: string | null): any {
+
+            },
+            success: function (return_value: { [index: string]: dressdiscover.api.models.worksheet.WorksheetFeatureSetDefinition }):void {
+
+            }
+        });
         this.$el
             .html(Mustache.render(this.template, this.model.toJSON()));
 //            .toggleClass('completed', this.model.get('completed'));
