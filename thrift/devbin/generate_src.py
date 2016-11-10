@@ -72,7 +72,11 @@ class Main(thryft.main.Main):
              os.path.join(TS_OUT_DIR_PATH, 'dressdiscover', 'api'),
         ):
             if os.path.isdir(dir_path):
-                shutil.rmtree(dir_path)
+                for i in xrange(10):
+                    try:
+                        shutil.rmtree(dir_path)
+                    except WindowsError:
+                        pass
         os.makedirs(os.path.join(TS_OUT_DIR_PATH, 'dressdiscover', 'api'))
 
     def _compile(self):
@@ -207,7 +211,7 @@ class Main(thryft.main.Main):
         import json
         with open(file_path, 'w+b') as f:
             f.write('FEATURES = ' + json.dumps(out, indent=4))
-                
+
 
 assert __name__ == '__main__'
 Main.main()
