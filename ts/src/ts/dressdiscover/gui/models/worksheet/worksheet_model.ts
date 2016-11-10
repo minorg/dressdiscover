@@ -28,7 +28,7 @@ class WorksheetModel extends Backbone.Model {
                             var featureSetState = state[featureSetDefinition.id];
                             const featureModels: WorksheetFeatureModel[] = [];
                             for (let featureDefinition of featureSetDefinition.features.models) {
-                                featureModels.push(new WorksheetFeatureModel(featureDefinition, featureSetState ? featureSetState.features[featureId] : undefined));
+                                featureModels.push(new WorksheetFeatureModel(featureDefinition, featureSetState ? featureSetState.features[featureDefinition.id] : undefined));
                             }
                             featureSets.push(new WorksheetFeatureSetModel(featureSetDefinition, new WorksheetFeatureCollection(featureModels), featureSetState));
                         }

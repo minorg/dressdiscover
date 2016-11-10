@@ -1,5 +1,5 @@
 ﻿import { AsyncToSyncWorksheetQueryService } from "../../../api/services/worksheet/worksheet_query_service";
-import Backbone = require("backbone");
+import * as Backbone from "backbone";
 import { WorksheetFeatureSetDefinition } from "../../../api/models/worksheet/worksheet_feature_set_definition";
 import { WorksheetFeatureSetState } from "../../../api/models/worksheet/worksheet_feature_set_state";
 
@@ -30,7 +30,7 @@ class LocalWorksheetQueryService extends AsyncToSyncWorksheetQueryService {
         return out;
     }
 
-    private _featureSetDefinitions: Backbone.Collection<WorksheetFeatureSetDefinition> = new Backbone.Collection < WorksheetFeatureSetDefinition>;
+    private _featureSetDefinitions: Backbone.Collection<WorksheetFeatureSetDefinition> = new Backbone.Collection< WorksheetFeatureSetDefinition>();
 }
 
 export = LocalWorksheetQueryService;

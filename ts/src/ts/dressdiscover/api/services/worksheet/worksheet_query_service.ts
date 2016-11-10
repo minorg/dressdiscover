@@ -1,3 +1,4 @@
+import * as Backbone from "backbone";
 import { WorksheetFeatureSetDefinition as dressdiscover_api_models_worksheet_WorksheetFeatureSetDefinition } from "../../models/worksheet/worksheet_feature_set_definition";
 import { WorksheetFeatureSetState as dressdiscover_api_models_worksheet_WorksheetFeatureSetState } from "../../models/worksheet/worksheet_feature_set_state";
 
@@ -37,7 +38,7 @@ export class JsonRpcWorksheetQueryService implements WorksheetQueryService {
     }
 
     getWorksheetFeatureSetDefinitionsSync(): Backbone.Collection<dressdiscover_api_models_worksheet_WorksheetFeatureSetDefinition> {
-        var returnValue: Backbone.Collection<dressdiscover_api_models_worksheet_WorksheetFeatureSetDefinition> = [];
+        var returnValue: Backbone.Collection<dressdiscover_api_models_worksheet_WorksheetFeatureSetDefinition> = new Backbone.Collection<dressdiscover_api_models_worksheet_WorksheetFeatureSetDefinition>();
 
         $.ajax({
             async: false,
