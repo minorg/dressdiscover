@@ -3,16 +3,16 @@ import { WorksheetFeatureType as dressdiscover_api_models_worksheet_WorksheetFea
 import { WorksheetFeatureValueDefinition as dressdiscover_api_models_worksheet_WorksheetFeatureValueDefinition } from "./worksheet_feature_value_definition";
 
 export class WorksheetFeatureDefinition extends Backbone.Model {
-    constructor(attributes?: {displayName: string, type: dressdiscover_api_models_worksheet_WorksheetFeatureType, featureValues?: {[index: string]: dressdiscover_api_models_worksheet_WorksheetFeatureValueDefinition}}) {
+    constructor(attributes?: {id: string, type: dressdiscover_api_models_worksheet_WorksheetFeatureType, displayName?: string, featureValues?: Backbone.Collection<dressdiscover_api_models_worksheet_WorksheetFeatureValueDefinition>}) {
         super(attributes);
     }
 
-    get displayName(): string {
-        return this.get('displayName');
+    get id(): string {
+        return this.get('id');
     }
 
-    set displayName(value: string) {
-        this.set('displayName', value);
+    set id(value: string) {
+        this.set('id', value);
     }
 
     get type(): dressdiscover_api_models_worksheet_WorksheetFeatureType {
@@ -23,23 +23,33 @@ export class WorksheetFeatureDefinition extends Backbone.Model {
         this.set('type', value);
     }
 
-    get featureValues(): {[index: string]: dressdiscover_api_models_worksheet_WorksheetFeatureValueDefinition} {
+    get displayName(): string {
+        return this.get('displayName');
+    }
+
+    set displayName(value: string) {
+        this.set('displayName', value);
+    }
+
+    get featureValues(): Backbone.Collection<dressdiscover_api_models_worksheet_WorksheetFeatureValueDefinition> {
         return this.get('featureValues');
     }
 
-    set featureValues(value: {[index: string]: dressdiscover_api_models_worksheet_WorksheetFeatureValueDefinition}) {
+    set featureValues(value: Backbone.Collection<dressdiscover_api_models_worksheet_WorksheetFeatureValueDefinition>) {
         this.set('featureValues', value);
     }
 
     static fromThryftJSON(json: any): WorksheetFeatureDefinition {
         var out: WorksheetFeatureDefinition = new WorksheetFeatureDefinition;
         for (var fieldName in json) {
-            if (fieldName == "display_name") {
-                out.attributes.displayName = json[fieldName];
+            if (fieldName == "id") {
+                out.attributes.id = json[fieldName];
             } else if (fieldName == "type") {
                 out.attributes.type = dressdiscover_api_models_worksheet_WorksheetFeatureType[json[fieldName]];
+            } else if (fieldName == "display_name") {
+                out.attributes.displayName = json[fieldName];
             } else if (fieldName == "feature_values") {
-                out.attributes.featureValues = function (json: any): {[index: string]: dressdiscover_api_models_worksheet_WorksheetFeatureValueDefinition} { var map: any = {}; for (var key in json) { map[key] = dressdiscover_api_models_worksheet_WorksheetFeatureValueDefinition.fromThryftJSON(json[key]); } return map; }(json[fieldName]);
+                out.attributes.featureValues = function(json: any[]): Backbone.Collection<dressdiscover_api_models_worksheet_WorksheetFeatureValueDefinition> { var sequence: dressdiscover_api_models_worksheet_WorksheetFeatureValueDefinition[] = []; for (var i = 0; i < json.length; i++) { sequence.push(dressdiscover_api_models_worksheet_WorksheetFeatureValueDefinition.fromThryftJSON(json[i])); } return new Backbone.Collection<dressdiscover_api_models_worksheet_WorksheetFeatureValueDefinition>(sequence); }(json[fieldName]);
             }
         }
         return out;
@@ -47,10 +57,13 @@ export class WorksheetFeatureDefinition extends Backbone.Model {
 
     toThryftJSON(): any {
         var json: {[index: string]: any} = {};
-        json["display_name"] = this.displayName;
+        json["id"] = this.id;
         json["type"] = dressdiscover_api_models_worksheet_WorksheetFeatureType[this.type];
+        if (this.has("displayName")) {
+            json["display_name"] = this.displayName;
+        }
         if (this.has("featureValues")) {
-            json["feature_values"] = function (value: {[index: string]: dressdiscover_api_models_worksheet_WorksheetFeatureValueDefinition}): {[index: string]: dressdiscover_api_models_worksheet_WorksheetFeatureValueDefinition} { var outObject: {[index: string]: dressdiscover_api_models_worksheet_WorksheetFeatureValueDefinition} = {}; for (var key in value) { outObject[key] = value[key].toThryftJSON(); } return outObject; }(this.featureValues);
+            json["feature_values"] = function (__inArray: dressdiscover_api_models_worksheet_WorksheetFeatureValueDefinition[]): any[] { var __outArray: any[] = []; for (var __i = 0; __i < __inArray.length; __i++) { __outArray.push(__inArray[__i].toThryftJSON()); } return __outArray; }(this.featureValues.models);
         }
         return json;
     }

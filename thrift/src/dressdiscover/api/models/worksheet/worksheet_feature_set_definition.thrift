@@ -1,11 +1,12 @@
 namespace * dressdiscover.api.models.worksheet
 
 include "dressdiscover/api/models/worksheet/worksheet_feature_definition.thrift"
-include "dressdiscover/api/models/worksheet/worksheet_feature_id.thrift"
+include "dressdiscover/api/models/worksheet/worksheet_feature_set_id.thrift"
 
 struct WorksheetFeatureSetDefinition {
-    // @validation {"blank": false, "minLength": 1}
-    string display_name;
     // @validation {"minLength": 1}
-    map<worksheet_feature_id.WorksheetFeatureId, worksheet_feature_definition.WorksheetFeatureDefinition> features;
+    list<worksheet_feature_definition.WorksheetFeatureDefinition> features;
+	worksheet_feature_set_id.WorksheetFeatureSetId id;
+    // @validation {"blank": false, "minLength": 1}
+    optional string display_name;
 }
