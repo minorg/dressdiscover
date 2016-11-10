@@ -18,6 +18,10 @@ class WorksheetFeatureSetModel extends Backbone.Model {
         return this._definition;
     }
 
+    get features(): WorksheetFeatureCollection {
+        return this._features;   
+    }
+
     get state(): WorksheetFeatureSetState {
         return this.get("state");
     }

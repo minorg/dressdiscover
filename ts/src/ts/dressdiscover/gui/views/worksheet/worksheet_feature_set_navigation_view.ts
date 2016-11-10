@@ -1,5 +1,6 @@
 ﻿import Backbone = require("backbone");
 import Mustache = require("mustache");
+import WorksheetFeatureNavigationView = require("./worksheet_feature_navigation_view");
 import WorksheetFeatureSetModel = require("../../models/worksheet/worksheet_feature_set_model");
 
 declare function require(moduleName: string): any;
@@ -11,13 +12,17 @@ class WorksheetFeatureSetNavigationView extends Backbone.View<WorksheetFeatureSe
         options.tagName = "li";
         super(options);
         this.template = require("raw!./worksheet_feature_set_navigation_view.html");
-        this.listenTo(this.model, "change", this.render);
     }
 
     render() {
         this.$el.attr("role", "presentation");
         this.$el.html(Mustache.render(this.template, this.model.definition.toJSON()));
-        this.$el.toggleClass("active");
+
+        const featuresEl = this.$el.find("#features");
+        for (let featureModel of this.model.features.models) {
+            featuresEl.append(new WorksheetFeatureNavigationView({ model: featureModel }).render().el);
+        }
+
         return this;
     }
 }
