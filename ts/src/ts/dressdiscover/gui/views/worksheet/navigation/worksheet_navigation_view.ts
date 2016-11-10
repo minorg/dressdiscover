@@ -1,5 +1,5 @@
 ﻿import Backbone = require("backbone");
-import WorksheetModel = require("../../models/worksheet/worksheet_model");
+import WorksheetModel = require("../../../models/worksheet/worksheet_model");
 import WorksheetFeatureSetNavigationView = require("./worksheet_feature_set_navigation_view");
 import _ = require("underscore");
 import "bootstrap-drawer/dist/css/bootstrap-drawer.css";

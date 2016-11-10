@@ -1,7 +1,7 @@
 ﻿import Backbone = require("backbone");
 import Mustache = require("mustache");
 import _ = require("underscore");
-import WorksheetFeatureModel = require("../../models/worksheet/worksheet_feature_model");
+import WorksheetFeatureModel = require("../../../models/worksheet/worksheet_feature_model");
 
 declare function require(moduleName: string): any;
 

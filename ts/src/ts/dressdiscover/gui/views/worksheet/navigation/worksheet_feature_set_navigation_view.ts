@@ -1,7 +1,7 @@
 ﻿import Backbone = require("backbone");
 import Mustache = require("mustache");
 import WorksheetFeatureNavigationView = require("./worksheet_feature_navigation_view");
-import WorksheetFeatureSetModel = require("../../models/worksheet/worksheet_feature_set_model");
+import WorksheetFeatureSetModel = require("../../../models/worksheet/worksheet_feature_set_model");
 
 declare function require(moduleName: string): any;
 

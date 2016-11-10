@@ -6,6 +6,8 @@ import WorksheetFeatureCollection = require("./worksheet_feature_collection");
 import WorksheetFeatureSetCollection = require("./worksheet_feature_set_collection");
 import WorksheetFeatureModel = require("./worksheet_feature_model");
 import WorksheetFeatureSetModel = require("./worksheet_feature_set_model");
+import WorksheetFeatureValueCollection = require("./worksheet_feature_value_collection");
+import WorksheetFeatureValueModel = require("./worksheet_feature_value_model");
 
 
 class WorksheetModel extends Backbone.Model {
@@ -25,10 +27,21 @@ class WorksheetModel extends Backbone.Model {
                         const featureSets: WorksheetFeatureSetModel[] = [];
                         const state = returnValue;
                         for (let featureSetDefinition of featureSetDefinitions) {
-                            var featureSetState = state[featureSetDefinition.id];
+                            const featureSetState = state[featureSetDefinition.id];
                             const featureModels: WorksheetFeatureModel[] = [];
                             for (let featureDefinition of featureSetDefinition.features.models) {
-                                featureModels.push(new WorksheetFeatureModel(featureDefinition, featureSetState ? featureSetState.features[featureDefinition.id] : undefined));
+                                const featureState = featureSetState ? featureSetState.features[featureDefinition.id] : undefined;
+                                var featureValueCollection: WorksheetFeatureValueCollection | undefined;
+                                if (featureDefinition.featureValues) {
+                                    const featureValueModels: WorksheetFeatureValueModel[] = [];
+                                    for (let featureValueDefinition of featureDefinition.featureValues.models) {
+                                        featureValueModels.push(new WorksheetFeatureValueModel(featureValueDefinition, featureState != null ? featureState.featureValues[featureValueDefinition.id] : undefined));
+                                    }
+                                    featureValueCollection = new WorksheetFeatureValueCollection(featureValueModels);
+                                } else {
+                                    featureValueCollection = undefined;
+                                }
+                                featureModels.push(new WorksheetFeatureModel(featureDefinition, featureValueCollection, featureState));
                             }
                             featureSets.push(new WorksheetFeatureSetModel(featureSetDefinition, new WorksheetFeatureCollection(featureModels), featureSetState));
                         }
