@@ -185,22 +185,24 @@ class Main(thryft.main.Main):
                         )
 
     def __generate_features_js(self):
-        out = {}
+        out = []
         for feature_set_i in xrange(2):
-            feature_set_dict = {'display_name': "Feature Set %(feature_set_i)d" % locals(), 'features': {}}
-            feature_set_id = "feature-set-%(feature_set_i)d" % locals()
+            feature_set_dict = {'id': "Feature Set %(feature_set_i)d" % locals(), 'features': []}
             for feature_i in xrange(10):
-                feature_dict = {'display_name': feature_set_dict['display_name'] + " Feature %(feature_i)d" % locals()}
-                feature_id = feature_set_id + "-feature-%(feature_i)d" % locals()
+                feature_dict = {'id': feature_set_dict['id'] + " Feature %(feature_i)d" % locals()}
                 if feature_i == 0:
+                    feature_dict['display_name'] = feature_dict['id'] + ' (text)'
                     feature_dict['type'] = 'TEXT'
                 else:
-                    feature_dict['feature_values'] = {}
+                    feature_dict['feature_values'] = []
                     for feature_value_i in xrange(10):
-                        feature_value_dict = {'display_name': feature_dict['display_name'] + " Value %(feature_value_i)d" % locals()}
-                        feature_dict['feature_values'][feature_id + "-value-%(feature_value_i)d" % locals()] = feature_value_dict
-                feature_set_dict['features'][feature_id] = feature_dict
-            out[feature_set_id] = feature_set_dict
+                        feature_value_dict = {'id': feature_dict['id'] + " Value %(feature_value_i)d" % locals()}
+                        if feature_value_i == 0:
+                            feature_value_dict['display_name'] = feature_value_dict['id'] + ' (display name)'
+                        feature_dict['feature_values'].append(feature_value_dict)
+                    feature_dict['type'] = 'ENUM'
+                feature_set_dict['features'].append(feature_dict)
+            out.append(feature_set_dict)
         file_path = os.path.join(ROOT_DIR_PATH, 'ts', 'data', 'features.js')
         import json
         with open(file_path, 'w+b') as f:
