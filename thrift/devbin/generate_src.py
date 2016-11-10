@@ -34,7 +34,7 @@ from thryft.generators.ts.ts_generator import TsGenerator
 from yutil import indent, upper_camelize
 
 
-TS_OUT_DIR_PATH = os.path.join(ROOT_DIR_PATH, 'ts', 'src', 'ts')
+TS_OUT_DIR_PATH = os.path.join(ROOT_DIR_PATH, 'ts', 'src')
 
 
 ELASTIC_SEARCH_INDEX_SETTINGS = \
