@@ -1,4 +1,5 @@
 ﻿import { AsyncToSyncWorksheetQueryService } from "../../../api/services/worksheet/worksheet_query_service";
+import Backbone = require("backbone");
 import { WorksheetFeatureSetDefinition } from "../../../api/models/worksheet/worksheet_feature_set_definition";
 import { WorksheetFeatureSetState } from "../../../api/models/worksheet/worksheet_feature_set_state";
 
@@ -7,13 +8,13 @@ declare var FEATURES: any;
 class LocalWorksheetQueryService extends AsyncToSyncWorksheetQueryService {
     constructor() {
         super();
-        for (var key in FEATURES) {
-            this._definitions[key] = WorksheetFeatureSetDefinition.fromThryftJSON(FEATURES[key]);
+        for (let featureSetDefinitionJsonObject of FEATURES) {
+            this._featureSetDefinitions.add(WorksheetFeatureSetDefinition.fromThryftJSON(featureSetDefinitionJsonObject));
         }
     }
 
-    getWorksheetFeatureSetDefinitionsSync(): { [index: string]: WorksheetFeatureSetDefinition } {
-        return this._definitions;
+    getWorksheetFeatureSetDefinitionsSync(): Backbone.Collection<WorksheetFeatureSetDefinition> {
+        return this._featureSetDefinitions;
     }
 
     getWorksheetFeatureSetStatesSync(): { [index: string]: WorksheetFeatureSetState } {
@@ -29,7 +30,7 @@ class LocalWorksheetQueryService extends AsyncToSyncWorksheetQueryService {
         return out;
     }
 
-    private _definitions: { [index: string]: WorksheetFeatureSetDefinition } = {};
+    private _featureSetDefinitions: Backbone.Collection<WorksheetFeatureSetDefinition> = new Backbone.Collection < WorksheetFeatureSetDefinition>;
 }
 
 export = LocalWorksheetQueryService;

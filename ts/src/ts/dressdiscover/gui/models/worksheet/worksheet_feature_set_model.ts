@@ -4,11 +4,11 @@ import { WorksheetFeatureSetState } from "../../../api/models/worksheet/workshee
 import WorksheetFeatureCollection = require("./worksheet_feature_collection");
 
 class WorksheetFeatureSetModel extends Backbone.Model {
-    constructor(definition: WorksheetFeatureSetDefinition, features: WorksheetFeatureCollection, id: string, state: WorksheetFeatureSetState | undefined) {
+    constructor(definition: WorksheetFeatureSetDefinition, features: WorksheetFeatureCollection, state: WorksheetFeatureSetState | undefined) {
         super();
         this._definition = definition;
         this._features = features;
-        this.set("id", id);
+        this.set("id", definition.id);
         if (state) {
             this.set("state", state);
         }

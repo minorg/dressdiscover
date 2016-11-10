@@ -15,8 +15,8 @@ class WorksheetModel extends Backbone.Model {
             error: function (jqXHR: JQueryXHR | null, textStatus: string, errorThrown: string | null): any {
                 console.error(textStatus);
             },
-            success: function (returnValue: { [index: string]: WorksheetFeatureSetDefinition }): void {
-                const definitions = returnValue;
+            success: function (returnValue: Backbone.Collection<WorksheetFeatureSetDefinition>): void {
+                const featureSetDefinitions = returnValue.models;
                 Services.instance.worksheetQueryService.getWorksheetFeatureSetStatesAsync({
                     error: function (jqXHR: JQueryXHR | null, textStatus: string, errorThrown: string | null): any {
                         console.error(textStatus);
@@ -24,14 +24,13 @@ class WorksheetModel extends Backbone.Model {
                     success: function (returnValue: { [index: string]: WorksheetFeatureSetState }): void {
                         const featureSets: WorksheetFeatureSetModel[] = [];
                         const state = returnValue;
-                        for (var featureSetId in definitions) {
-                            const featureSetDefinition = definitions[featureSetId];
-                            var featureSetState = state[featureSetId];
+                        for (let featureSetDefinition of featureSetDefinitions) {
+                            var featureSetState = state[featureSetDefinition.id];
                             const featureModels: WorksheetFeatureModel[] = [];
-                            for (var featureId in featureSetDefinition.features) {
-                                featureModels.push(new WorksheetFeatureModel(featureSetDefinition.features[featureId], featureId, featureSetState ? featureSetState.features[featureId] : undefined));
+                            for (let featureDefinition of featureSetDefinition.features.models) {
+                                featureModels.push(new WorksheetFeatureModel(featureDefinition, featureSetState ? featureSetState.features[featureId] : undefined));
                             }
-                            featureSets.push(new WorksheetFeatureSetModel(featureSetDefinition, new WorksheetFeatureCollection(featureModels), featureSetId, featureSetState));
+                            featureSets.push(new WorksheetFeatureSetModel(featureSetDefinition, new WorksheetFeatureCollection(featureModels), featureSetState));
                         }
                         modelThis._featureSets = new WorksheetFeatureSetCollection(featureSets);
                     }

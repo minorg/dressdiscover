@@ -6,7 +6,7 @@ include "dressdiscover/api/models/worksheet/worksheet_feature_set_state.thrift"
 include "dressdiscover/api/services/io_exception.thrift"
 
 service WorksheetQueryService {
-    map<worksheet_feature_set_id.WorksheetFeatureSetId, worksheet_feature_set_definition.WorksheetFeatureSetDefinition>
+    list<worksheet_feature_set_definition.WorksheetFeatureSetDefinition>
     get_worksheet_feature_set_definitions(
     ) throws (
         io_exception.IoException e

@@ -3,10 +3,10 @@ import { WorksheetFeatureDefinition } from "../../../api/models/worksheet/worksh
 import { WorksheetFeatureState } from "../../../api/models/worksheet/worksheet_feature_state";
 
 class WorksheetFeatureModel extends Backbone.Model {
-    constructor(definition: WorksheetFeatureDefinition, id: string, state: WorksheetFeatureState | undefined) {
+    constructor(definition: WorksheetFeatureDefinition, state: WorksheetFeatureState | undefined) {
         super();
         this._definition = definition;
-        this.set("id", id);
+        this.set("id", definition.id);
         if (state) {
             this.set("state", state);
         }
