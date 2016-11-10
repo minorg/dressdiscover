@@ -203,6 +203,12 @@ class Main(thryft.main.Main):
                         feature_value_dict = {'id': feature_dict['id'] + " Value %(feature_value_i)d" % locals()}
                         if feature_value_i == 0:
                             feature_value_dict['display_name'] = feature_value_dict['id'] + ' (display name)'
+                        image_text = feature_value_dict['id'].replace(' ', '+')
+                        feature_value_dict['image'] = {
+                            'full_size_url': "http://placehold.it/800x600?text=%(image_text)s" % locals(),
+                            'rights': "Placeholder rights",
+                            'thumbnail_url': "http://placehold.it/200x200?text=%(image_text)s" % locals(),
+                        }
                         feature_dict['feature_values'].append(feature_value_dict)
                     feature_dict['type'] = 'ENUM'
                 feature_set_dict['features'].append(feature_dict)
