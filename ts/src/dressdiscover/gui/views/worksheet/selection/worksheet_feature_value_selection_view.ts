@@ -14,7 +14,9 @@ class WorksheetFeatureValueSelectionView extends Backbone.View<WorksheetFeatureV
     }
 
     render() {
-        this.$el.html(Mustache.render(this.template, this.model.definition.toJSON()));
+        var scope: any = this.model.definition.toJSON();
+        scope['image'] = scope['image'].toJSON();
+        this.$el.html(Mustache.render(this.template, scope));
         return this;
     }
 }

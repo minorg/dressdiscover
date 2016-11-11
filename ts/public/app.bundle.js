@@ -13488,7 +13488,7 @@
 	        leftColumnEl.append(new WorksheetNavigationView({ model: this.model }).render().el);
 	        var rightColumnEl = $("#right-column");
 	        rightColumnEl.empty();
-	        leftColumnEl.append(new WorksheetSelectionView({ model: this.model }).render().el);
+	        rightColumnEl.append(new WorksheetSelectionView({ model: this.model }).render().el);
 	        return this;
 	    };
 	    return WorksheetView;
@@ -14639,7 +14639,7 @@
 /* 33 */
 /***/ function(module, exports, __webpack_require__) {
 
-	"use strict";
+	/* WEBPACK VAR INJECTION */(function($) {"use strict";
 	var __extends = (this && this.__extends) || function (d, b) {
 	    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
 	    function __() { this.constructor = d; }
@@ -14654,18 +14654,32 @@
 	        this.template = __webpack_require__(39);
 	    }
 	    WorksheetNavigationView.prototype.render = function () {
+	        var _this = this;
 	        this.$el.html(this.template);
 	        var featureSetsEl = this.$el.find("#feature-sets");
 	        for (var _i = 0, _a = this.model.featureSets.models; _i < _a.length; _i++) {
 	            var featureSetModel = _a[_i];
 	            featureSetsEl.append(new WorksheetFeatureSetNavigationView({ model: featureSetModel }).render().el);
 	        }
+	        var collapseEl = this.$el.find("#worksheet-navigation");
+	        collapseEl
+	            .on("shown.bs.collapse", function () {
+	            alert("Show");
+	            $(_this).parent().find(".glyphicon-plus").removeClass("glyphicon-plus").addClass("glyphicon-minus");
+	            return true;
+	        })
+	            .on("hidden.bs.collapse", function () {
+	            alert("Hide");
+	            $(_this).parent().find(".glyphicon-minus").removeClass("glyphicon-minus").addClass("glyphicon-plus");
+	            return true;
+	        });
 	        return this;
 	    };
 	    return WorksheetNavigationView;
 	}(Backbone.View));
 	module.exports = WorksheetNavigationView;
-
+	
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)))
 
 /***/ },
 /* 34 */
@@ -15390,7 +15404,7 @@
 /* 39 */
 /***/ function(module, exports) {
 
-	module.exports = "<div class=\"panel-group\" id=\"worksheet-navigation\" role=\"tablist\" aria-multiselectable=\"true\">\r\n    <div class=\"panel panel-default\">\r\n        <div class=\"panel-heading\" role=\"tab\" id=\"headingOne\">\r\n            <h4 class=\"panel-title\">\r\n                <a role=\"button\" data-toggle=\"collapse\" data-parent=\"#accordion\" href=\"#collapseOne\" aria-expanded=\"true\" aria-controls=\"collapseOne\">\r\n                    <i class=\"icon-chevron-up\" id=\"features-icon\"></i> Features\r\n                </a>\r\n            </h4>\r\n        </div>\r\n        <div id=\"collapseOne\" class=\"panel-collapse collapse in\" role=\"tabpanel\" aria-labelledby=\"headingOne\">\r\n            <ul class=\"list-group\" id=\"feature-sets\"></ul>\r\n        </div>\r\n    </div>\r\n</div>"
+	module.exports = "<div class=\"panel-group\" id=\"worksheet-navigation\" role=\"tablist\" aria-multiselectable=\"true\">\n    <div class=\"panel panel-default\">\n        <div class=\"panel-heading\" role=\"tab\" id=\"headingOne\">\n            <h4 class=\"panel-title\">\n                <a role=\"button\" data-toggle=\"collapse\" data-parent=\"#accordion\" href=\"#collapseOne\" aria-expanded=\"true\" aria-controls=\"collapseOne\">\n                Features\n                </a>\n            </h4>\n        </div>\n        <div id=\"collapseOne\" class=\"panel-collapse collapse in\" role=\"tabpanel\" aria-labelledby=\"headingOne\">\n            <ul class=\"list-group\" id=\"feature-sets\"></ul>\n        </div>\n    </div>\n</div>"
 
 /***/ },
 /* 40 */
@@ -15494,7 +15508,7 @@
 /* 44 */
 /***/ function(module, exports) {
 
-	module.exports = "<div class=\"container\">\n    <div class=\"row\">\n        <div class=\"col-lg12\">\n            <h1 class=\"page-header\">{{#displayName}}{{displayName}}{{/displayName}}{{^displayName}}{{id}}{{/displayName}}</h1>\n        </div>\n        <div class=\"feature-values\"></div>\n    </div>\n</div>\n"
+	module.exports = "<div class=\"row\">\n    <div class=\"col-lg12\">\n        <h3 class=\"page-header\" style=\"text-align: center\">{{#displayName}}{{displayName}}{{/displayName}}{{^displayName}}{{id}}{{/displayName}}</h3>\n    </div>\n    <div class=\"feature-values\"></div>\n</div>\n"
 
 /***/ },
 /* 45 */
@@ -15507,7 +15521,7 @@
 /* 47 */
 /***/ function(module, exports) {
 
-	module.exports = "<div class=\"container-fluid\" id=\"worksheet\" style=\"height: 100%\">\n    <div class=\"row\" style=\"height: 100%\">\n        <div class=\"col-md-6\" id=\"left-column\" style=\"height: 100%\"></div>\n        <div class=\"col-md-6\" id=\"right-column\" style=\"text-align: right\"></div>\n    </div>\n</div>\n"
+	module.exports = "<div class=\"container-fluid\" id=\"worksheet\" style=\"height: 100%\">\n    <div class=\"row\" style=\"height: 100%\">\n        <div class=\"col-md-4\" id=\"left-column\" style=\"height: 100%\"></div>\n        <div class=\"col-md-8\" id=\"right-column\"></div>\n    </div>\n</div>\n"
 
 /***/ }
 /******/ ]);

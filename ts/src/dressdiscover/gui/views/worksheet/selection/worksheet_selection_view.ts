@@ -12,7 +12,7 @@ class WorksheetSelectionView extends Backbone.View<WorksheetModel> {
             return this;
         }
 
-        const featureModel = this.model.featureSets.at(0).features.at(0);
+        const featureModel = this.model.featureSets.at(0).features.at(1);
         this.$el.append(new WorksheetFeatureSelectionView({ model: featureModel }).render().el);
         
         return this;
