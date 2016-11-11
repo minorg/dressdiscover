@@ -15427,7 +15427,7 @@
 	        if (this.model.featureSets.length == 0) {
 	            return this;
 	        }
-	        var featureModel = this.model.featureSets.at(0).features.at(0);
+	        var featureModel = this.model.featureSets.at(0).features.at(1);
 	        this.$el.append(new WorksheetFeatureSelectionView({ model: featureModel }).render().el);
 	        return this;
 	    };
@@ -15490,7 +15490,9 @@
 	        this.template = __webpack_require__(43);
 	    }
 	    WorksheetFeatureValueSelectionView.prototype.render = function () {
-	        this.$el.html(Mustache.render(this.template, this.model.definition.toJSON()));
+	        var scope = this.model.definition.toJSON();
+	        scope['image'] = scope['image'].toJSON();
+	        this.$el.html(Mustache.render(this.template, scope));
 	        return this;
 	    };
 	    return WorksheetFeatureValueSelectionView;
@@ -15502,13 +15504,13 @@
 /* 43 */
 /***/ function(module, exports) {
 
-	module.exports = "<div class=\"col-lg-3 col-md-4 col-xs-6 feature-value-col\">\n    {{#image}}\n    <a class=\"feature-value-image-thumbnail-link\" href=\"#\">\n        <img class=\"img-responsive\" src=\"{{image.thumbnail_url}}\" alt=\"{{#displayName}}{{displayName}}{{/displayName}}{{^displayName}}{{id}}{{/displayName}}\">\n    </a>\n    {{/image}}\n    {{^image}}\n    {{/image}}\n</div>\n"
+	module.exports = "<div class=\"col-lg-3 col-md-4 col-xs-6 feature-value-col\">\n    <a class=\"feature-value-link\">\r\n        {{#image}}\r\n        <img class=\"img-responsive\" src=\"{{image.thumbnailUrl}}\" alt=\"{{#displayName}}{{displayName}}{{/displayName}}{{^displayName}}{{id}}{{/displayName}}\">\r\n        {{/image}}\r\n        {{^image}}\r\n        {{/image}}\r\n        {{#displayName}}{{displayName}}{{/displayName}}{{^displayName}}{{id}}{{/displayName}}\r\n    </a>\r\n</div>\n"
 
 /***/ },
 /* 44 */
 /***/ function(module, exports) {
 
-	module.exports = "<div class=\"row\">\n    <div class=\"col-lg12\">\n        <h3 class=\"page-header\" style=\"text-align: center\">{{#displayName}}{{displayName}}{{/displayName}}{{^displayName}}{{id}}{{/displayName}}</h3>\n    </div>\n    <div class=\"feature-values\"></div>\n</div>\n"
+	module.exports = "<div class=\"row\">\n    <div class=\"col-lg12\">\n        <h3 class=\"page-header\" style=\"text-align: center\">{{#displayName}}{{displayName}}{{/displayName}}{{^displayName}}{{id}}{{/displayName}}</h3>\n    </div>\n    <div id=\"feature-values\"></div>\n</div>\n"
 
 /***/ },
 /* 45 */

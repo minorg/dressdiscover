@@ -23,5 +23,8 @@ h1 {
   margin-bottom: 0.5em;
   font-size: 5em;
 }
+#worksheet .feature-value-col {
+  padding-bottom: 20px;
+}
 
 /*# sourceMappingURL=app.css.map*/
