@@ -11,6 +11,7 @@ class WorksheetFeatureModel extends Backbone.Model {
         if (featureValues) {
             this.set("featureValues", featureValues);
         }
+        this.set("selected", false);
         if (state) {
             this.set("state", state);
         }
@@ -22,6 +23,14 @@ class WorksheetFeatureModel extends Backbone.Model {
 
     get featureValues(): WorksheetFeatureValueCollection {
         return this.get("featureValues");
+    }
+
+    get selected(): boolean {
+        return this.get("selected");
+    }
+
+    set selected(value: boolean) {
+        this.set("selected", value);
     }
 
     get state(): WorksheetFeatureState {

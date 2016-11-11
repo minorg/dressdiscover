@@ -1,8 +1,8 @@
 ﻿import Backbone = require("backbone");
 
 import WorksheetModel = require("../../models/worksheet/worksheet_model");
+import WorksheetInputView = require("./input/worksheet_input_view");
 import WorksheetNavigationView = require("./navigation/worksheet_navigation_view");
-import WorksheetSelectionView = require("./selection/worksheet_selection_view");
 import "./worksheet_view.less";
 
 declare function require(moduleName: string): any;
@@ -20,6 +20,8 @@ class WorksheetView extends Backbone.View<WorksheetModel> {
     }
 
     render() {
+        console.debug("re-rendering worksheet view");
+
         this.$el.html(this.template);
 
         const leftColumnEl: JQuery = $("#left-column");
@@ -28,7 +30,7 @@ class WorksheetView extends Backbone.View<WorksheetModel> {
 
         const rightColumnEl: JQuery = $("#right-column");
         rightColumnEl.empty();
-        rightColumnEl.append(new WorksheetSelectionView({ model: this.model }).render().el);
+        rightColumnEl.append(new WorksheetInputView({ model: this.model }).render().el);
 
         return this;
     }

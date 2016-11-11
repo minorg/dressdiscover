@@ -16,7 +16,7 @@ class WorksheetFeatureNavigationView extends Backbone.View<WorksheetFeatureModel
     }
 
     onClick(): void {
-        alert("Clicked a feature");
+        this.model.selected = true;
     }
 
     render() {

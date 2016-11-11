@@ -21,18 +21,18 @@ class WorksheetNavigationView extends Backbone.View<WorksheetModel> {
             featureSetsEl.append(new WorksheetFeatureSetNavigationView({ model: featureSetModel }).render().el);
         }
 
-        const collapseEl = this.$el.find("#worksheet-navigation");
-        collapseEl
-            .on("shown.bs.collapse", () => {
-                alert("Show");
-                $(this).parent().find(".glyphicon-plus").removeClass("glyphicon-plus").addClass("glyphicon-minus");
-                return true;
-            })
-            .on("hidden.bs.collapse", () => {
-                alert("Hide");
-                $(this).parent().find(".glyphicon-minus").removeClass("glyphicon-minus").addClass("glyphicon-plus");
-                return true;
-            });
+        //const collapseEl = this.$el.find("#worksheet-navigation");
+        //collapseEl
+        //    .on("shown.bs.collapse", () => {
+        //        alert("Show");
+        //        $(this).parent().find(".glyphicon-plus").removeClass("glyphicon-plus").addClass("glyphicon-minus");
+        //        return true;
+        //    })
+        //    .on("hidden.bs.collapse", () => {
+        //        alert("Hide");
+        //        $(this).parent().find(".glyphicon-minus").removeClass("glyphicon-minus").addClass("glyphicon-plus");
+        //        return true;
+        //    });
 
         return this;
     }

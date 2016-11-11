@@ -5,12 +5,12 @@ import WorksheetFeatureValueModel = require("../../../models/worksheet/worksheet
 
 declare function require(moduleName: string): any;
 
-class WorksheetFeatureValueSelectionView extends Backbone.View<WorksheetFeatureValueModel> {
+class WorksheetFeatureValueInputView extends Backbone.View<WorksheetFeatureValueModel> {
     template: string;
 
     constructor(options: { model: WorksheetFeatureValueModel }) {
         super(options);
-        this.template = require("raw!./worksheet_feature_value_selection_view.html");
+        this.template = require("raw!./worksheet_feature_value_input_view.html");
     }
 
     render() {
@@ -21,4 +21,4 @@ class WorksheetFeatureValueSelectionView extends Backbone.View<WorksheetFeatureV
     }
 }
 
-export = WorksheetFeatureValueSelectionView;
+export = WorksheetFeatureValueInputView;
