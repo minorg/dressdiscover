@@ -39,13 +39,20 @@ module.exports = {
   },
   plugins: [
     new ExtractTextPlugin('app.css'),
-    new CopyWebpackPlugin([{
+    new CopyWebpackPlugin([
+    {
       from: './src/index.html',
       to: './index.html'
-    }, {
-    from: './data/features.js',
-    to: './features.js'
-    }]),
+    },
+    {
+      from: './data/features.js',
+      to: './features.js'
+    },
+    {
+        from: './src/bootstrap.min.css',
+        to: './bootstrap.min.css'
+    }
+    ]),
     new webpack.ProvidePlugin({
       $: 'jquery',
       _: 'underscore'
