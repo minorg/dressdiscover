@@ -1,24 +1,44 @@
 import * as Backbone from "backbone";
-import { WorksheetFeatureValueState as dressdiscover_api_models_worksheet_WorksheetFeatureValueState } from "./worksheet_feature_value_state";
+import { WorksheetFeatureStateId as dressdiscover_api_models_worksheet_WorksheetFeatureStateId } from "./worksheet_feature_state_id";
 
 export class WorksheetFeatureState extends Backbone.Model {
-    constructor(attributes?: {featureValues: {[index: string]: dressdiscover_api_models_worksheet_WorksheetFeatureValueState}}) {
+    constructor(attributes?: {id: dressdiscover_api_models_worksheet_WorksheetFeatureStateId, selected?: boolean, text?: string}) {
         super(attributes);
     }
 
-    get featureValues(): {[index: string]: dressdiscover_api_models_worksheet_WorksheetFeatureValueState} {
-        return this.get('featureValues');
+    get id(): dressdiscover_api_models_worksheet_WorksheetFeatureStateId {
+        return this.get('id');
     }
 
-    set featureValues(value: {[index: string]: dressdiscover_api_models_worksheet_WorksheetFeatureValueState}) {
-        this.set('featureValues', value);
+    set id(value: dressdiscover_api_models_worksheet_WorksheetFeatureStateId) {
+        this.set('id', value);
+    }
+
+    get selected(): boolean {
+        return this.get('selected');
+    }
+
+    set selected(value: boolean) {
+        this.set('selected', value);
+    }
+
+    get text(): string {
+        return this.get('text');
+    }
+
+    set text(value: string) {
+        this.set('text', value);
     }
 
     static fromThryftJSON(json: any): WorksheetFeatureState {
         var out: WorksheetFeatureState = new WorksheetFeatureState;
         for (var fieldName in json) {
-            if (fieldName == "feature_values") {
-                out.attributes.featureValues = function (json: any): {[index: string]: dressdiscover_api_models_worksheet_WorksheetFeatureValueState} { var map: any = {}; for (var key in json) { map[key] = dressdiscover_api_models_worksheet_WorksheetFeatureValueState.fromThryftJSON(json[key]); } return map; }(json[fieldName]);
+            if (fieldName == "id") {
+                out.attributes.id = dressdiscover_api_models_worksheet_WorksheetFeatureStateId.fromThryftJSON(json[fieldName]);
+            } else if (fieldName == "selected") {
+                out.attributes.selected = json[fieldName];
+            } else if (fieldName == "text") {
+                out.attributes.text = json[fieldName];
             }
         }
         return out;
@@ -26,7 +46,13 @@ export class WorksheetFeatureState extends Backbone.Model {
 
     toThryftJSON(): any {
         var json: {[index: string]: any} = {};
-        json["feature_values"] = function (value: {[index: string]: dressdiscover_api_models_worksheet_WorksheetFeatureValueState}): {[index: string]: dressdiscover_api_models_worksheet_WorksheetFeatureValueState} { var outObject: {[index: string]: dressdiscover_api_models_worksheet_WorksheetFeatureValueState} = {}; for (var key in value) { outObject[key] = value[key].toThryftJSON(); } return outObject; }(this.featureValues);
+        json["id"] = this.id.toThryftJSON();
+        if (this.has("selected")) {
+            json["selected"] = this.selected;
+        }
+        if (this.has("text")) {
+            json["text"] = this.text;
+        }
         return json;
     }
 }

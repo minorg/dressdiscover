@@ -1,8 +1,8 @@
 import * as Backbone from "backbone";
-import { WorksheetFeatureValueImage as dressdiscover_api_models_worksheet_WorksheetFeatureValueImage } from "./worksheet_feature_value_image";
+import { WorksheetEnumFeatureValueImage as dressdiscover_api_models_worksheet_WorksheetEnumFeatureValueImage } from "./worksheet_enum_feature_value_image";
 
-export class WorksheetFeatureValueDefinition extends Backbone.Model {
-    constructor(attributes?: {id: string, displayName?: string, image?: dressdiscover_api_models_worksheet_WorksheetFeatureValueImage}) {
+export class WorksheetEnumFeatureValueDefinition extends Backbone.Model {
+    constructor(attributes?: {id: string, displayName?: string, image?: dressdiscover_api_models_worksheet_WorksheetEnumFeatureValueImage}) {
         super(attributes);
     }
 
@@ -22,23 +22,23 @@ export class WorksheetFeatureValueDefinition extends Backbone.Model {
         this.set('displayName', value);
     }
 
-    get image(): dressdiscover_api_models_worksheet_WorksheetFeatureValueImage {
+    get image(): dressdiscover_api_models_worksheet_WorksheetEnumFeatureValueImage {
         return this.get('image');
     }
 
-    set image(value: dressdiscover_api_models_worksheet_WorksheetFeatureValueImage) {
+    set image(value: dressdiscover_api_models_worksheet_WorksheetEnumFeatureValueImage) {
         this.set('image', value);
     }
 
-    static fromThryftJSON(json: any): WorksheetFeatureValueDefinition {
-        var out: WorksheetFeatureValueDefinition = new WorksheetFeatureValueDefinition;
+    static fromThryftJSON(json: any): WorksheetEnumFeatureValueDefinition {
+        var out: WorksheetEnumFeatureValueDefinition = new WorksheetEnumFeatureValueDefinition;
         for (var fieldName in json) {
             if (fieldName == "id") {
                 out.attributes.id = json[fieldName];
             } else if (fieldName == "display_name") {
                 out.attributes.displayName = json[fieldName];
             } else if (fieldName == "image") {
-                out.attributes.image = dressdiscover_api_models_worksheet_WorksheetFeatureValueImage.fromThryftJSON(json[fieldName]);
+                out.attributes.image = dressdiscover_api_models_worksheet_WorksheetEnumFeatureValueImage.fromThryftJSON(json[fieldName]);
             }
         }
         return out;

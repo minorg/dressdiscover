@@ -1,22 +1,21 @@
-import * as Backbone from "backbone";
-import { WorksheetFeatureSetDefinition as dressdiscover_api_models_worksheet_WorksheetFeatureSetDefinition } from "../../models/worksheet/worksheet_feature_set_definition";
-import { WorksheetFeatureSetState as dressdiscover_api_models_worksheet_WorksheetFeatureSetState } from "../../models/worksheet/worksheet_feature_set_state";
+import { WorksheetDefinition as dressdiscover_api_models_worksheet_WorksheetDefinition } from "../../models/worksheet/worksheet_definition";
+import { WorksheetState as dressdiscover_api_models_worksheet_WorksheetState } from "../../models/worksheet/worksheet_state";
 
 export interface WorksheetQueryService {
-    getWorksheetFeatureSetDefinitionsAsync(kwds: {error: (jqXHR: JQueryXHR | null, textStatus: string, errorThrown: string | null) => any, success: (returnValue: Backbone.Collection<dressdiscover_api_models_worksheet_WorksheetFeatureSetDefinition>) => void}): void;
-    getWorksheetFeatureSetDefinitionsSync(): Backbone.Collection<dressdiscover_api_models_worksheet_WorksheetFeatureSetDefinition>;
+    getWorksheetDefinitionAsync(kwds: {error: (jqXHR: JQueryXHR | null, textStatus: string, errorThrown: string | null) => any, success: (returnValue: dressdiscover_api_models_worksheet_WorksheetDefinition) => void}): void;
+    getWorksheetDefinitionSync(): dressdiscover_api_models_worksheet_WorksheetDefinition;
 
-    getWorksheetFeatureSetStatesAsync(kwds: {error: (jqXHR: JQueryXHR | null, textStatus: string, errorThrown: string | null) => any, success: (returnValue: {[index: string]: dressdiscover_api_models_worksheet_WorksheetFeatureSetState}) => void}): void;
-    getWorksheetFeatureSetStatesSync(): {[index: string]: dressdiscover_api_models_worksheet_WorksheetFeatureSetState};
+    getWorksheetStateAsync(kwds: {error: (jqXHR: JQueryXHR | null, textStatus: string, errorThrown: string | null) => any, success: (returnValue: dressdiscover_api_models_worksheet_WorksheetState) => void}): void;
+    getWorksheetStateSync(): dressdiscover_api_models_worksheet_WorksheetState;
 }
 
 export class JsonRpcWorksheetQueryService implements WorksheetQueryService {
-    getWorksheetFeatureSetDefinitionsAsync(kwds: {error: (jqXHR: JQueryXHR | null, textStatus: string, errorThrown: string | null) => any, success: (returnValue: Backbone.Collection<dressdiscover_api_models_worksheet_WorksheetFeatureSetDefinition>) => void}): void {
+    getWorksheetDefinitionAsync(kwds: {error: (jqXHR: JQueryXHR | null, textStatus: string, errorThrown: string | null) => any, success: (returnValue: dressdiscover_api_models_worksheet_WorksheetDefinition) => void}): void {
         $.ajax({
             async: true,
             data: JSON.stringify({
                 jsonrpc: '2.0',
-                method: 'get_worksheet_feature_set_definitions',
+                method: 'get_worksheet_definition',
                 params: {},
                 id: '1234'
             }),
@@ -28,7 +27,7 @@ export class JsonRpcWorksheetQueryService implements WorksheetQueryService {
             type: 'POST',
             success: function(__response: any) {
                 if (typeof __response.result !== "undefined") {
-                    kwds.success(function(json: any[]): Backbone.Collection<dressdiscover_api_models_worksheet_WorksheetFeatureSetDefinition> { var sequence: dressdiscover_api_models_worksheet_WorksheetFeatureSetDefinition[] = []; for (var i = 0; i < json.length; i++) { sequence.push(dressdiscover_api_models_worksheet_WorksheetFeatureSetDefinition.fromThryftJSON(json[i])); } return new Backbone.Collection<dressdiscover_api_models_worksheet_WorksheetFeatureSetDefinition>(sequence); }(__response.result));
+                    kwds.success(dressdiscover_api_models_worksheet_WorksheetDefinition.fromThryftJSON(__response.result));
                 } else {
                     kwds.error(null, __response.error.message, null);
                 }
@@ -37,14 +36,14 @@ export class JsonRpcWorksheetQueryService implements WorksheetQueryService {
         });
     }
 
-    getWorksheetFeatureSetDefinitionsSync(): Backbone.Collection<dressdiscover_api_models_worksheet_WorksheetFeatureSetDefinition> {
-        var returnValue: Backbone.Collection<dressdiscover_api_models_worksheet_WorksheetFeatureSetDefinition> = new Backbone.Collection<dressdiscover_api_models_worksheet_WorksheetFeatureSetDefinition>();
+    getWorksheetDefinitionSync(): dressdiscover_api_models_worksheet_WorksheetDefinition {
+        var returnValue: dressdiscover_api_models_worksheet_WorksheetDefinition = new dressdiscover_api_models_worksheet_WorksheetDefinition();
 
         $.ajax({
             async: false,
             data: JSON.stringify({
                 jsonrpc: '2.0',
-                method: 'get_worksheet_feature_set_definitions',
+                method: 'get_worksheet_definition',
                 params: {},
                 id: '1234'
             }),
@@ -56,7 +55,7 @@ export class JsonRpcWorksheetQueryService implements WorksheetQueryService {
             type: 'POST',
             success: function(__response: any) {
                 if (typeof __response.result !== "undefined") {
-                    returnValue = function(json: any[]): Backbone.Collection<dressdiscover_api_models_worksheet_WorksheetFeatureSetDefinition> { var sequence: dressdiscover_api_models_worksheet_WorksheetFeatureSetDefinition[] = []; for (var i = 0; i < json.length; i++) { sequence.push(dressdiscover_api_models_worksheet_WorksheetFeatureSetDefinition.fromThryftJSON(json[i])); } return new Backbone.Collection<dressdiscover_api_models_worksheet_WorksheetFeatureSetDefinition>(sequence); }(__response.result);
+                    returnValue = dressdiscover_api_models_worksheet_WorksheetDefinition.fromThryftJSON(__response.result);
                 } else {
                     throw new Error(__response.error);
                 }
@@ -67,12 +66,12 @@ export class JsonRpcWorksheetQueryService implements WorksheetQueryService {
         return returnValue;
     }
 
-    getWorksheetFeatureSetStatesAsync(kwds: {error: (jqXHR: JQueryXHR | null, textStatus: string, errorThrown: string | null) => any, success: (returnValue: {[index: string]: dressdiscover_api_models_worksheet_WorksheetFeatureSetState}) => void}): void {
+    getWorksheetStateAsync(kwds: {error: (jqXHR: JQueryXHR | null, textStatus: string, errorThrown: string | null) => any, success: (returnValue: dressdiscover_api_models_worksheet_WorksheetState) => void}): void {
         $.ajax({
             async: true,
             data: JSON.stringify({
                 jsonrpc: '2.0',
-                method: 'get_worksheet_feature_set_states',
+                method: 'get_worksheet_state',
                 params: {},
                 id: '1234'
             }),
@@ -84,7 +83,7 @@ export class JsonRpcWorksheetQueryService implements WorksheetQueryService {
             type: 'POST',
             success: function(__response: any) {
                 if (typeof __response.result !== "undefined") {
-                    kwds.success(function (json: any): {[index: string]: dressdiscover_api_models_worksheet_WorksheetFeatureSetState} { var map: any = {}; for (var key in json) { map[key] = dressdiscover_api_models_worksheet_WorksheetFeatureSetState.fromThryftJSON(json[key]); } return map; }(__response.result));
+                    kwds.success(dressdiscover_api_models_worksheet_WorksheetState.fromThryftJSON(__response.result));
                 } else {
                     kwds.error(null, __response.error.message, null);
                 }
@@ -93,14 +92,14 @@ export class JsonRpcWorksheetQueryService implements WorksheetQueryService {
         });
     }
 
-    getWorksheetFeatureSetStatesSync(): {[index: string]: dressdiscover_api_models_worksheet_WorksheetFeatureSetState} {
-        var returnValue: {[index: string]: dressdiscover_api_models_worksheet_WorksheetFeatureSetState} = {};
+    getWorksheetStateSync(): dressdiscover_api_models_worksheet_WorksheetState {
+        var returnValue: dressdiscover_api_models_worksheet_WorksheetState = new dressdiscover_api_models_worksheet_WorksheetState();
 
         $.ajax({
             async: false,
             data: JSON.stringify({
                 jsonrpc: '2.0',
-                method: 'get_worksheet_feature_set_states',
+                method: 'get_worksheet_state',
                 params: {},
                 id: '1234'
             }),
@@ -112,7 +111,7 @@ export class JsonRpcWorksheetQueryService implements WorksheetQueryService {
             type: 'POST',
             success: function(__response: any) {
                 if (typeof __response.result !== "undefined") {
-                    returnValue = function (json: any): {[index: string]: dressdiscover_api_models_worksheet_WorksheetFeatureSetState} { var map: any = {}; for (var key in json) { map[key] = dressdiscover_api_models_worksheet_WorksheetFeatureSetState.fromThryftJSON(json[key]); } return map; }(__response.result);
+                    returnValue = dressdiscover_api_models_worksheet_WorksheetState.fromThryftJSON(__response.result);
                 } else {
                     throw new Error(__response.error);
                 }
@@ -125,23 +124,23 @@ export class JsonRpcWorksheetQueryService implements WorksheetQueryService {
 }
 
 export abstract class AsyncToSyncWorksheetQueryService implements WorksheetQueryService {
-    getWorksheetFeatureSetDefinitionsAsync(kwds: {error: (jqXHR: JQueryXHR | null, textStatus: string, errorThrown: string | null) => any, success: (returnValue: Backbone.Collection<dressdiscover_api_models_worksheet_WorksheetFeatureSetDefinition>) => void}): void {
+    getWorksheetDefinitionAsync(kwds: {error: (jqXHR: JQueryXHR | null, textStatus: string, errorThrown: string | null) => any, success: (returnValue: dressdiscover_api_models_worksheet_WorksheetDefinition) => void}): void {
         try {
-            kwds.success(this.getWorksheetFeatureSetDefinitionsSync());
+            kwds.success(this.getWorksheetDefinitionSync());
         } catch (e) {
             kwds.error(null, e.message, e);
         }
     }
 
-    abstract getWorksheetFeatureSetDefinitionsSync(): Backbone.Collection<dressdiscover_api_models_worksheet_WorksheetFeatureSetDefinition>;
+    abstract getWorksheetDefinitionSync(): dressdiscover_api_models_worksheet_WorksheetDefinition;
 
-    getWorksheetFeatureSetStatesAsync(kwds: {error: (jqXHR: JQueryXHR | null, textStatus: string, errorThrown: string | null) => any, success: (returnValue: {[index: string]: dressdiscover_api_models_worksheet_WorksheetFeatureSetState}) => void}): void {
+    getWorksheetStateAsync(kwds: {error: (jqXHR: JQueryXHR | null, textStatus: string, errorThrown: string | null) => any, success: (returnValue: dressdiscover_api_models_worksheet_WorksheetState) => void}): void {
         try {
-            kwds.success(this.getWorksheetFeatureSetStatesSync());
+            kwds.success(this.getWorksheetStateSync());
         } catch (e) {
             kwds.error(null, e.message, e);
         }
     }
 
-    abstract getWorksheetFeatureSetStatesSync(): {[index: string]: dressdiscover_api_models_worksheet_WorksheetFeatureSetState};
+    abstract getWorksheetStateSync(): dressdiscover_api_models_worksheet_WorksheetState;
 }

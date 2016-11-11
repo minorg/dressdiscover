@@ -1,7 +1,7 @@
 import * as Backbone from "backbone";
 
-export class WorksheetFeatureValueImage extends Backbone.Model {
-    constructor(attributes?: {rights: string, thumbnailUrl: string, fullSizeUrl?: string}) {
+export class WorksheetEnumFeatureValueImage extends Backbone.Model {
+    constructor(attributes?: {rights: string, thumbnailUrl: URL, fullSizeUrl?: URL}) {
         super(attributes);
     }
 
@@ -13,31 +13,31 @@ export class WorksheetFeatureValueImage extends Backbone.Model {
         this.set('rights', value);
     }
 
-    get thumbnailUrl(): string {
+    get thumbnailUrl(): URL {
         return this.get('thumbnailUrl');
     }
 
-    set thumbnailUrl(value: string) {
+    set thumbnailUrl(value: URL) {
         this.set('thumbnailUrl', value);
     }
 
-    get fullSizeUrl(): string {
+    get fullSizeUrl(): URL {
         return this.get('fullSizeUrl');
     }
 
-    set fullSizeUrl(value: string) {
+    set fullSizeUrl(value: URL) {
         this.set('fullSizeUrl', value);
     }
 
-    static fromThryftJSON(json: any): WorksheetFeatureValueImage {
-        var out: WorksheetFeatureValueImage = new WorksheetFeatureValueImage;
+    static fromThryftJSON(json: any): WorksheetEnumFeatureValueImage {
+        var out: WorksheetEnumFeatureValueImage = new WorksheetEnumFeatureValueImage;
         for (var fieldName in json) {
             if (fieldName == "rights") {
                 out.attributes.rights = json[fieldName];
             } else if (fieldName == "thumbnail_url") {
-                out.attributes.thumbnailUrl = json[fieldName];
+                out.attributes.thumbnailUrl = new URL(json[fieldName]);
             } else if (fieldName == "full_size_url") {
-                out.attributes.fullSizeUrl = json[fieldName];
+                out.attributes.fullSizeUrl = new URL(json[fieldName]);
             }
         }
         return out;
@@ -46,9 +46,9 @@ export class WorksheetFeatureValueImage extends Backbone.Model {
     toThryftJSON(): any {
         var json: {[index: string]: any} = {};
         json["rights"] = this.rights;
-        json["thumbnail_url"] = this.thumbnailUrl;
+        json["thumbnail_url"] = this.thumbnailUrl.toString();
         if (this.has("fullSizeUrl")) {
-            json["full_size_url"] = this.fullSizeUrl;
+            json["full_size_url"] = this.fullSizeUrl.toString();
         }
         return json;
     }

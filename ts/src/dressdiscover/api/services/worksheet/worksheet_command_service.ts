@@ -1,20 +1,20 @@
-import { WorksheetFeatureSetState as dressdiscover_api_models_worksheet_WorksheetFeatureSetState } from "../../models/worksheet/worksheet_feature_set_state";
+import { WorksheetState as dressdiscover_api_models_worksheet_WorksheetState } from "../../models/worksheet/worksheet_state";
 
 export interface WorksheetCommandService {
-    putWorksheetFeatureSetStatesAsync(kwds: {worksheetFeatureSetStates: {[index: string]: dressdiscover_api_models_worksheet_WorksheetFeatureSetState}, error: (jqXHR: JQueryXHR | null, textStatus: string, errorThrown: string | null) => any, success: () => void}): void;
-    putWorksheetFeatureSetStatesSync(kwds: {worksheetFeatureSetStates: {[index: string]: dressdiscover_api_models_worksheet_WorksheetFeatureSetState}}): void;
+    putWorksheetStateAsync(kwds: {state: dressdiscover_api_models_worksheet_WorksheetState, error: (jqXHR: JQueryXHR | null, textStatus: string, errorThrown: string | null) => any, success: () => void}): void;
+    putWorksheetStateSync(kwds: {state: dressdiscover_api_models_worksheet_WorksheetState}): void;
 }
 
 export class JsonRpcWorksheetCommandService implements WorksheetCommandService {
-    putWorksheetFeatureSetStatesAsync(kwds: {worksheetFeatureSetStates: {[index: string]: dressdiscover_api_models_worksheet_WorksheetFeatureSetState}, error: (jqXHR: JQueryXHR | null, textStatus: string, errorThrown: string | null) => any, success: () => void}): void {
+    putWorksheetStateAsync(kwds: {state: dressdiscover_api_models_worksheet_WorksheetState, error: (jqXHR: JQueryXHR | null, textStatus: string, errorThrown: string | null) => any, success: () => void}): void {
         var __jsonrpc_params: {[index: string]: any} = {};
-        __jsonrpc_params["worksheet_feature_set_states"] = function (value: {[index: string]: dressdiscover_api_models_worksheet_WorksheetFeatureSetState}): {[index: string]: dressdiscover_api_models_worksheet_WorksheetFeatureSetState} { var outObject: {[index: string]: dressdiscover_api_models_worksheet_WorksheetFeatureSetState} = {}; for (var key in value) { outObject[key] = value[key].toThryftJSON(); } return outObject; }(kwds.worksheetFeatureSetStates);
+        __jsonrpc_params["state"] = kwds.state.toThryftJSON();
 
         $.ajax({
             async: true,
             data: JSON.stringify({
                 jsonrpc: '2.0',
-                method: 'put_worksheet_feature_set_states',
+                method: 'put_worksheet_state',
                 params: __jsonrpc_params,
                 id: '1234'
             }),
@@ -35,15 +35,15 @@ export class JsonRpcWorksheetCommandService implements WorksheetCommandService {
         });
     }
 
-    putWorksheetFeatureSetStatesSync(kwds: {worksheetFeatureSetStates: {[index: string]: dressdiscover_api_models_worksheet_WorksheetFeatureSetState}}): void {
+    putWorksheetStateSync(kwds: {state: dressdiscover_api_models_worksheet_WorksheetState}): void {
         var __jsonrpc_params: {[index: string]: any} = {};
-        __jsonrpc_params["worksheet_feature_set_states"] = function (value: {[index: string]: dressdiscover_api_models_worksheet_WorksheetFeatureSetState}): {[index: string]: dressdiscover_api_models_worksheet_WorksheetFeatureSetState} { var outObject: {[index: string]: dressdiscover_api_models_worksheet_WorksheetFeatureSetState} = {}; for (var key in value) { outObject[key] = value[key].toThryftJSON(); } return outObject; }(kwds.worksheetFeatureSetStates);
+        __jsonrpc_params["state"] = kwds.state.toThryftJSON();
 
         $.ajax({
             async: false,
             data: JSON.stringify({
                 jsonrpc: '2.0',
-                method: 'put_worksheet_feature_set_states',
+                method: 'put_worksheet_state',
                 params: __jsonrpc_params,
                 id: '1234'
             }),
@@ -64,14 +64,14 @@ export class JsonRpcWorksheetCommandService implements WorksheetCommandService {
 }
 
 export abstract class AsyncToSyncWorksheetCommandService implements WorksheetCommandService {
-    putWorksheetFeatureSetStatesAsync(kwds: {worksheetFeatureSetStates: {[index: string]: dressdiscover_api_models_worksheet_WorksheetFeatureSetState}, error: (jqXHR: JQueryXHR | null, textStatus: string, errorThrown: string | null) => any, success: () => void}): void {
+    putWorksheetStateAsync(kwds: {state: dressdiscover_api_models_worksheet_WorksheetState, error: (jqXHR: JQueryXHR | null, textStatus: string, errorThrown: string | null) => any, success: () => void}): void {
         try {
-            this.putWorksheetFeatureSetStatesSync({worksheetFeatureSetStates: kwds.worksheetFeatureSetStates});
+            this.putWorksheetStateSync({state: kwds.state});
             kwds.success();
         } catch (e) {
             kwds.error(null, e.message, e);
         }
     }
 
-    abstract putWorksheetFeatureSetStatesSync(kwds: {worksheetFeatureSetStates: {[index: string]: dressdiscover_api_models_worksheet_WorksheetFeatureSetState}}): void;
+    abstract putWorksheetStateSync(kwds: {state: dressdiscover_api_models_worksheet_WorksheetState}): void;
 }
