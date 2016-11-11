@@ -23,5 +23,91 @@ h1 {
   margin-bottom: 0.5em;
   font-size: 5em;
 }
+#worksheet div.accordion-group .panel-body {
+  padding: 15px;
+}
+#worksheet div.accordion-group.compact .panel-default {
+  border: none;
+  border-radius: 0;
+}
+#worksheet div.accordion-group.compact .panel-default .panel-heading {
+  border: none;
+  border-radius: 0 !important;
+}
+#worksheet div.accordion-group.compact .panel-default .panel-heading + .panel-collapse .panel-body {
+  border-top: none;
+}
+#worksheet div.accordion-group.compact .panel + .panel {
+  margin-top: 0;
+}
+#worksheet div.accordion-group .panel-title {
+  cursor: pointer;
+  font-weight: 400;
+}
+#worksheet div.accordion-group .panel-title:hover {
+  color: #0070c4;
+}
+#worksheet div.accordion-group .panel-title:hover:before {
+  color: #0070c4;
+}
+#worksheet div.accordion-group .panel-title:before {
+  display: inline-block;
+  margin-right: 5px;
+  color: #59595b;
+  -webkit-transition: all .2s;
+  transition: all .2s;
+  content: '\25B8';
+  -webkit-transform: rotate(0deg);
+  transform: rotate(0deg);
+}
+#worksheet div.accordion-group .panel-title.open:before {
+  content: '\25B8';
+  -webkit-transform: rotate(90deg);
+  transform: rotate(90deg);
+}
+#worksheet .no-csstransforms div.accordion-group .panel-title.open:before {
+  content: '\25BE';
+}
+#worksheet div.accordion-group .panel-title a:hover {
+  color: #0070c4;
+  text-decoration: none;
+}
+#worksheet .triangle-closed {
+  content: '\25B8';
+  -webkit-transform: rotate(0deg);
+  transform: rotate(0deg);
+}
+#worksheet .triangle-opened {
+  content: '\25B8';
+  -webkit-transform: rotate(90deg);
+  transform: rotate(90deg);
+}
+#worksheet .collapse-button {
+  cursor: pointer;
+}
+#worksheet .collapse-button:hover {
+  color: #0070c4;
+}
+#worksheet .collapse-button:hover:before {
+  color: #0070c4;
+}
+#worksheet .collapse-button:before {
+  display: inline-block;
+  margin-right: 5px;
+  color: #59595b;
+  -webkit-transition: all .2s;
+  transition: all .2s;
+  content: '\25B8';
+  -webkit-transform: rotate(0deg);
+  transform: rotate(0deg);
+}
+#worksheet .collapse-button.open:before {
+  content: '\25B8';
+  -webkit-transform: rotate(90deg);
+  transform: rotate(90deg);
+}
+#worksheet .no-csstransforms .collapse-button.open:before {
+  content: '\25BE';
+}
 
 /*# sourceMappingURL=app.css.map*/

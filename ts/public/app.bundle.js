@@ -52,11 +52,9 @@
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function($) {"use strict";
-	__webpack_require__(3);
-	var AppModel = __webpack_require__(7);
-	var AppView = __webpack_require__(10);
+	var AppView = __webpack_require__(3);
 	$(function () {
-	    new AppView({ model: new AppModel() }).render();
+	    new AppView().render();
 	});
 	
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)))
@@ -11077,35 +11075,44 @@
 
 /***/ },
 /* 3 */
-/***/ function(module, exports) {
-
-	// removed by extract-text-webpack-plugin
-
-/***/ },
-/* 4 */,
-/* 5 */,
-/* 6 */,
-/* 7 */
 /***/ function(module, exports, __webpack_require__) {
 
-	"use strict";
+	/* WEBPACK VAR INJECTION */(function($) {"use strict";
 	var __extends = (this && this.__extends) || function (d, b) {
 	    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
 	    function __() { this.constructor = d; }
 	    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 	};
+	__webpack_require__(4);
 	var Backbone = __webpack_require__(8);
-	var AppModel = (function (_super) {
-	    __extends(AppModel, _super);
-	    function AppModel() {
-	        _super.apply(this, arguments);
+	var AppModel = __webpack_require__(10);
+	var AppRouter = __webpack_require__(11);
+	var AppView = (function (_super) {
+	    __extends(AppView, _super);
+	    function AppView() {
+	        _super.call(this, { model: new AppModel() });
+	        this.setElement($('#app'), true);
+	        new AppRouter();
+	        if (!Backbone.history.start()) {
+	            console.error("didn't route");
+	        }
 	    }
-	    return AppModel;
-	}(Backbone.Model));
-	module.exports = AppModel;
-
+	    return AppView;
+	}(Backbone.View));
+	module.exports = AppView;
+	
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)))
 
 /***/ },
+/* 4 */
+/***/ function(module, exports) {
+
+	// removed by extract-text-webpack-plugin
+
+/***/ },
+/* 5 */,
+/* 6 */,
+/* 7 */,
 /* 8 */
 /***/ function(module, exports, __webpack_require__) {
 
@@ -14590,29 +14597,22 @@
 /* 10 */
 /***/ function(module, exports, __webpack_require__) {
 
-	/* WEBPACK VAR INJECTION */(function($) {"use strict";
+	"use strict";
 	var __extends = (this && this.__extends) || function (d, b) {
 	    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
 	    function __() { this.constructor = d; }
 	    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 	};
 	var Backbone = __webpack_require__(8);
-	var AppRouter = __webpack_require__(11);
-	var AppView = (function (_super) {
-	    __extends(AppView, _super);
-	    function AppView(options) {
-	        _super.call(this, options);
-	        this.setElement($('#app'), true);
-	        new AppRouter();
-	        if (!Backbone.history.start()) {
-	            console.error("didn't route");
-	        }
+	var AppModel = (function (_super) {
+	    __extends(AppModel, _super);
+	    function AppModel() {
+	        _super.apply(this, arguments);
 	    }
-	    return AppView;
-	}(Backbone.View));
-	module.exports = AppView;
-	
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)))
+	    return AppModel;
+	}(Backbone.Model));
+	module.exports = AppModel;
+
 
 /***/ },
 /* 11 */
@@ -14665,13 +14665,14 @@
 	var WorksheetModel = __webpack_require__(13);
 	var WorksheetNavigationView = __webpack_require__(33);
 	var WorksheetSelectionView = __webpack_require__(40);
+	__webpack_require__(45);
 	var WorksheetView = (function (_super) {
 	    __extends(WorksheetView, _super);
 	    function WorksheetView(options) {
 	        _super.call(this, options);
 	        this.model = new WorksheetModel();
 	        this.setElement($('#content'), true);
-	        this.template = __webpack_require__(45);
+	        this.template = __webpack_require__(47);
 	        this.model.fetchFromService();
 	    }
 	    WorksheetView.prototype.render = function () {
@@ -15442,10 +15443,10 @@
 	                out.attributes.rights = json[fieldName];
 	            }
 	            else if (fieldName == "thumbnail_url") {
-	                out.attributes.thumbnailUrl = new URL(json[fieldName]);
+	                out.attributes.thumbnailUrl = json[fieldName];
 	            }
 	            else if (fieldName == "full_size_url") {
-	                out.attributes.fullSizeUrl = new URL(json[fieldName]);
+	                out.attributes.fullSizeUrl = json[fieldName];
 	            }
 	        }
 	        return out;
@@ -15453,9 +15454,9 @@
 	    WorksheetFeatureValueImage.prototype.toThryftJSON = function () {
 	        var json = {};
 	        json["rights"] = this.rights;
-	        json["thumbnail_url"] = this.thumbnailUrl.toString();
+	        json["thumbnail_url"] = this.thumbnailUrl;
 	        if (this.has("fullSizeUrl")) {
-	            json["full_size_url"] = this.fullSizeUrl.toString();
+	            json["full_size_url"] = this.fullSizeUrl;
 	        }
 	        return json;
 	    };
@@ -16701,7 +16702,14 @@
 /* 45 */
 /***/ function(module, exports) {
 
-	module.exports = "<div class=\"container-fluid has-inner-drawer\" style=\"height: 100%\">\n    <div class=\"row\" style=\"height: 100%\">\n        <div class=\"col-md-6\" id=\"left-column\" style=\"height: 100%\"></div>\n        <div class=\"col-md-6\" id=\"right-column\" style=\"text-align: right\"></div>\n    </div>\n</div>\n"
+	// removed by extract-text-webpack-plugin
+
+/***/ },
+/* 46 */,
+/* 47 */
+/***/ function(module, exports) {
+
+	module.exports = "<div class=\"container-fluid has-inner-drawer\" id=\"worksheet\" style=\"height: 100%\">\n    <div class=\"row\" style=\"height: 100%\">\n        <div class=\"col-md-6\" id=\"left-column\" style=\"height: 100%\"></div>\n        <div class=\"col-md-6\" id=\"right-column\" style=\"text-align: right\"></div>\n    </div>\n</div>\n"
 
 /***/ }
 /******/ ]);

@@ -22,6 +22,11 @@ module.exports = {
         //exclude: /node_modules/,
         loader: ExtractTextPlugin.extract('style-loader', 'css-loader')
       },
+      {
+          test: /\.less$/,
+          //exclude: /node_modules/,
+          loader: ExtractTextPlugin.extract('style-loader', 'css-loader!less-loader')
+      },
 	  {
         test: /\.ts$/,
         loader: 'ts'

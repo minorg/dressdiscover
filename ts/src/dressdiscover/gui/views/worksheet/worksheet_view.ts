@@ -3,6 +3,7 @@
 import WorksheetModel = require("../../models/worksheet/worksheet_model");
 import WorksheetNavigationView = require("./navigation/worksheet_navigation_view");
 import WorksheetSelectionView = require("./selection/worksheet_selection_view");
+import "./worksheet_view.less";
 
 declare function require(moduleName: string): any;
 
