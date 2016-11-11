@@ -1,9 +1,9 @@
 import * as Backbone from "backbone";
-import { WorksheetEnumFeatureDefinition as dressdiscover_api_models_worksheet_WorksheetEnumFeatureDefinition } from "./worksheet_enum_feature_definition";
-import { WorksheetTextFeatureDefinition as dressdiscover_api_models_worksheet_WorksheetTextFeatureDefinition } from "./worksheet_text_feature_definition";
+import { WorksheetEnumFeatureDefinition } from "./worksheet_enum_feature_definition";
+import { WorksheetTextFeatureDefinition } from "./worksheet_text_feature_definition";
 
 export class WorksheetFeatureDefinition extends Backbone.Model {
-    constructor(attributes?: {id: string, displayName?: string, enum_?: dressdiscover_api_models_worksheet_WorksheetEnumFeatureDefinition, text?: dressdiscover_api_models_worksheet_WorksheetTextFeatureDefinition}) {
+    constructor(attributes?: {id: string, displayName?: string, enum_?: WorksheetEnumFeatureDefinition, text?: WorksheetTextFeatureDefinition}) {
         super(attributes);
     }
 
@@ -23,19 +23,19 @@ export class WorksheetFeatureDefinition extends Backbone.Model {
         this.set('displayName', value);
     }
 
-    get enum_(): dressdiscover_api_models_worksheet_WorksheetEnumFeatureDefinition {
+    get enum_(): WorksheetEnumFeatureDefinition {
         return this.get('enum_');
     }
 
-    set enum_(value: dressdiscover_api_models_worksheet_WorksheetEnumFeatureDefinition) {
+    set enum_(value: WorksheetEnumFeatureDefinition) {
         this.set('enum_', value);
     }
 
-    get text(): dressdiscover_api_models_worksheet_WorksheetTextFeatureDefinition {
+    get text(): WorksheetTextFeatureDefinition {
         return this.get('text');
     }
 
-    set text(value: dressdiscover_api_models_worksheet_WorksheetTextFeatureDefinition) {
+    set text(value: WorksheetTextFeatureDefinition) {
         this.set('text', value);
     }
 
@@ -47,9 +47,9 @@ export class WorksheetFeatureDefinition extends Backbone.Model {
             } else if (fieldName == "display_name") {
                 out.attributes.displayName = json[fieldName];
             } else if (fieldName == "enum_") {
-                out.attributes.enum_ = dressdiscover_api_models_worksheet_WorksheetEnumFeatureDefinition.fromThryftJSON(json[fieldName]);
+                out.attributes.enum_ = WorksheetEnumFeatureDefinition.fromThryftJSON(json[fieldName]);
             } else if (fieldName == "text") {
-                out.attributes.text = dressdiscover_api_models_worksheet_WorksheetTextFeatureDefinition.fromThryftJSON(json[fieldName]);
+                out.attributes.text = WorksheetTextFeatureDefinition.fromThryftJSON(json[fieldName]);
             }
         }
         return out;

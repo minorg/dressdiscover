@@ -1,8 +1,8 @@
 import * as Backbone from "backbone";
-import { WorksheetEnumFeatureValueImage as dressdiscover_api_models_worksheet_WorksheetEnumFeatureValueImage } from "./worksheet_enum_feature_value_image";
+import { WorksheetEnumFeatureValueImage } from "./worksheet_enum_feature_value_image";
 
 export class WorksheetEnumFeatureValueDefinition extends Backbone.Model {
-    constructor(attributes?: {id: string, displayName?: string, image?: dressdiscover_api_models_worksheet_WorksheetEnumFeatureValueImage}) {
+    constructor(attributes?: {id: string, displayName?: string, image?: WorksheetEnumFeatureValueImage}) {
         super(attributes);
     }
 
@@ -22,11 +22,11 @@ export class WorksheetEnumFeatureValueDefinition extends Backbone.Model {
         this.set('displayName', value);
     }
 
-    get image(): dressdiscover_api_models_worksheet_WorksheetEnumFeatureValueImage {
+    get image(): WorksheetEnumFeatureValueImage {
         return this.get('image');
     }
 
-    set image(value: dressdiscover_api_models_worksheet_WorksheetEnumFeatureValueImage) {
+    set image(value: WorksheetEnumFeatureValueImage) {
         this.set('image', value);
     }
 
@@ -38,7 +38,7 @@ export class WorksheetEnumFeatureValueDefinition extends Backbone.Model {
             } else if (fieldName == "display_name") {
                 out.attributes.displayName = json[fieldName];
             } else if (fieldName == "image") {
-                out.attributes.image = dressdiscover_api_models_worksheet_WorksheetEnumFeatureValueImage.fromThryftJSON(json[fieldName]);
+                out.attributes.image = WorksheetEnumFeatureValueImage.fromThryftJSON(json[fieldName]);
             }
         }
         return out;

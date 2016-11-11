@@ -1,16 +1,16 @@
-import { WorksheetDefinition as dressdiscover_api_models_worksheet_WorksheetDefinition } from "../../models/worksheet/worksheet_definition";
-import { WorksheetState as dressdiscover_api_models_worksheet_WorksheetState } from "../../models/worksheet/worksheet_state";
+import { WorksheetDefinition } from "../../models/worksheet/worksheet_definition";
+import { WorksheetState } from "../../models/worksheet/worksheet_state";
 
 export interface WorksheetQueryService {
-    getWorksheetDefinitionAsync(kwds: {error: (jqXHR: JQueryXHR | null, textStatus: string, errorThrown: string | null) => any, success: (returnValue: dressdiscover_api_models_worksheet_WorksheetDefinition) => void}): void;
-    getWorksheetDefinitionSync(): dressdiscover_api_models_worksheet_WorksheetDefinition;
+    getWorksheetDefinitionAsync(kwds: {error: (jqXHR: JQueryXHR | null, textStatus: string, errorThrown: string | null) => any, success: (returnValue: WorksheetDefinition) => void}): void;
+    getWorksheetDefinitionSync(): WorksheetDefinition;
 
-    getWorksheetStateAsync(kwds: {error: (jqXHR: JQueryXHR | null, textStatus: string, errorThrown: string | null) => any, success: (returnValue: dressdiscover_api_models_worksheet_WorksheetState) => void}): void;
-    getWorksheetStateSync(): dressdiscover_api_models_worksheet_WorksheetState;
+    getWorksheetStateAsync(kwds: {error: (jqXHR: JQueryXHR | null, textStatus: string, errorThrown: string | null) => any, success: (returnValue: WorksheetState) => void}): void;
+    getWorksheetStateSync(): WorksheetState;
 }
 
 export class JsonRpcWorksheetQueryService implements WorksheetQueryService {
-    getWorksheetDefinitionAsync(kwds: {error: (jqXHR: JQueryXHR | null, textStatus: string, errorThrown: string | null) => any, success: (returnValue: dressdiscover_api_models_worksheet_WorksheetDefinition) => void}): void {
+    getWorksheetDefinitionAsync(kwds: {error: (jqXHR: JQueryXHR | null, textStatus: string, errorThrown: string | null) => any, success: (returnValue: WorksheetDefinition) => void}): void {
         $.ajax({
             async: true,
             data: JSON.stringify({
@@ -27,7 +27,7 @@ export class JsonRpcWorksheetQueryService implements WorksheetQueryService {
             type: 'POST',
             success: function(__response: any) {
                 if (typeof __response.result !== "undefined") {
-                    kwds.success(dressdiscover_api_models_worksheet_WorksheetDefinition.fromThryftJSON(__response.result));
+                    kwds.success(WorksheetDefinition.fromThryftJSON(__response.result));
                 } else {
                     kwds.error(null, __response.error.message, null);
                 }
@@ -36,8 +36,8 @@ export class JsonRpcWorksheetQueryService implements WorksheetQueryService {
         });
     }
 
-    getWorksheetDefinitionSync(): dressdiscover_api_models_worksheet_WorksheetDefinition {
-        var returnValue: dressdiscover_api_models_worksheet_WorksheetDefinition = new dressdiscover_api_models_worksheet_WorksheetDefinition();
+    getWorksheetDefinitionSync(): WorksheetDefinition {
+        var returnValue: WorksheetDefinition = new WorksheetDefinition();
 
         $.ajax({
             async: false,
@@ -55,7 +55,7 @@ export class JsonRpcWorksheetQueryService implements WorksheetQueryService {
             type: 'POST',
             success: function(__response: any) {
                 if (typeof __response.result !== "undefined") {
-                    returnValue = dressdiscover_api_models_worksheet_WorksheetDefinition.fromThryftJSON(__response.result);
+                    returnValue = WorksheetDefinition.fromThryftJSON(__response.result);
                 } else {
                     throw new Error(__response.error);
                 }
@@ -66,7 +66,7 @@ export class JsonRpcWorksheetQueryService implements WorksheetQueryService {
         return returnValue;
     }
 
-    getWorksheetStateAsync(kwds: {error: (jqXHR: JQueryXHR | null, textStatus: string, errorThrown: string | null) => any, success: (returnValue: dressdiscover_api_models_worksheet_WorksheetState) => void}): void {
+    getWorksheetStateAsync(kwds: {error: (jqXHR: JQueryXHR | null, textStatus: string, errorThrown: string | null) => any, success: (returnValue: WorksheetState) => void}): void {
         $.ajax({
             async: true,
             data: JSON.stringify({
@@ -83,7 +83,7 @@ export class JsonRpcWorksheetQueryService implements WorksheetQueryService {
             type: 'POST',
             success: function(__response: any) {
                 if (typeof __response.result !== "undefined") {
-                    kwds.success(dressdiscover_api_models_worksheet_WorksheetState.fromThryftJSON(__response.result));
+                    kwds.success(WorksheetState.fromThryftJSON(__response.result));
                 } else {
                     kwds.error(null, __response.error.message, null);
                 }
@@ -92,8 +92,8 @@ export class JsonRpcWorksheetQueryService implements WorksheetQueryService {
         });
     }
 
-    getWorksheetStateSync(): dressdiscover_api_models_worksheet_WorksheetState {
-        var returnValue: dressdiscover_api_models_worksheet_WorksheetState = new dressdiscover_api_models_worksheet_WorksheetState();
+    getWorksheetStateSync(): WorksheetState {
+        var returnValue: WorksheetState = new WorksheetState();
 
         $.ajax({
             async: false,
@@ -111,7 +111,7 @@ export class JsonRpcWorksheetQueryService implements WorksheetQueryService {
             type: 'POST',
             success: function(__response: any) {
                 if (typeof __response.result !== "undefined") {
-                    returnValue = dressdiscover_api_models_worksheet_WorksheetState.fromThryftJSON(__response.result);
+                    returnValue = WorksheetState.fromThryftJSON(__response.result);
                 } else {
                     throw new Error(__response.error);
                 }
@@ -124,7 +124,7 @@ export class JsonRpcWorksheetQueryService implements WorksheetQueryService {
 }
 
 export abstract class AsyncToSyncWorksheetQueryService implements WorksheetQueryService {
-    getWorksheetDefinitionAsync(kwds: {error: (jqXHR: JQueryXHR | null, textStatus: string, errorThrown: string | null) => any, success: (returnValue: dressdiscover_api_models_worksheet_WorksheetDefinition) => void}): void {
+    getWorksheetDefinitionAsync(kwds: {error: (jqXHR: JQueryXHR | null, textStatus: string, errorThrown: string | null) => any, success: (returnValue: WorksheetDefinition) => void}): void {
         try {
             kwds.success(this.getWorksheetDefinitionSync());
         } catch (e) {
@@ -132,9 +132,9 @@ export abstract class AsyncToSyncWorksheetQueryService implements WorksheetQuery
         }
     }
 
-    abstract getWorksheetDefinitionSync(): dressdiscover_api_models_worksheet_WorksheetDefinition;
+    abstract getWorksheetDefinitionSync(): WorksheetDefinition;
 
-    getWorksheetStateAsync(kwds: {error: (jqXHR: JQueryXHR | null, textStatus: string, errorThrown: string | null) => any, success: (returnValue: dressdiscover_api_models_worksheet_WorksheetState) => void}): void {
+    getWorksheetStateAsync(kwds: {error: (jqXHR: JQueryXHR | null, textStatus: string, errorThrown: string | null) => any, success: (returnValue: WorksheetState) => void}): void {
         try {
             kwds.success(this.getWorksheetStateSync());
         } catch (e) {
@@ -142,5 +142,5 @@ export abstract class AsyncToSyncWorksheetQueryService implements WorksheetQuery
         }
     }
 
-    abstract getWorksheetStateSync(): dressdiscover_api_models_worksheet_WorksheetState;
+    abstract getWorksheetStateSync(): WorksheetState;
 }

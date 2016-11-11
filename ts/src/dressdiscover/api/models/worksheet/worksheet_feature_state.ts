@@ -1,25 +1,25 @@
 import * as Backbone from "backbone";
-import { WorksheetEnumFeatureState as dressdiscover_api_models_worksheet_WorksheetEnumFeatureState } from "./worksheet_enum_feature_state";
-import { WorksheetTextFeatureState as dressdiscover_api_models_worksheet_WorksheetTextFeatureState } from "./worksheet_text_feature_state";
+import { WorksheetEnumFeatureState } from "./worksheet_enum_feature_state";
+import { WorksheetTextFeatureState } from "./worksheet_text_feature_state";
 
 export class WorksheetFeatureState extends Backbone.Model {
-    constructor(attributes?: {enum_?: dressdiscover_api_models_worksheet_WorksheetEnumFeatureState, text?: dressdiscover_api_models_worksheet_WorksheetTextFeatureState}) {
+    constructor(attributes?: {enum_?: WorksheetEnumFeatureState, text?: WorksheetTextFeatureState}) {
         super(attributes);
     }
 
-    get enum_(): dressdiscover_api_models_worksheet_WorksheetEnumFeatureState {
+    get enum_(): WorksheetEnumFeatureState {
         return this.get('enum_');
     }
 
-    set enum_(value: dressdiscover_api_models_worksheet_WorksheetEnumFeatureState) {
+    set enum_(value: WorksheetEnumFeatureState) {
         this.set('enum_', value);
     }
 
-    get text(): dressdiscover_api_models_worksheet_WorksheetTextFeatureState {
+    get text(): WorksheetTextFeatureState {
         return this.get('text');
     }
 
-    set text(value: dressdiscover_api_models_worksheet_WorksheetTextFeatureState) {
+    set text(value: WorksheetTextFeatureState) {
         this.set('text', value);
     }
 
@@ -27,9 +27,9 @@ export class WorksheetFeatureState extends Backbone.Model {
         var out: WorksheetFeatureState = new WorksheetFeatureState;
         for (var fieldName in json) {
             if (fieldName == "enum_") {
-                out.attributes.enum_ = dressdiscover_api_models_worksheet_WorksheetEnumFeatureState.fromThryftJSON(json[fieldName]);
+                out.attributes.enum_ = WorksheetEnumFeatureState.fromThryftJSON(json[fieldName]);
             } else if (fieldName == "text") {
-                out.attributes.text = dressdiscover_api_models_worksheet_WorksheetTextFeatureState.fromThryftJSON(json[fieldName]);
+                out.attributes.text = WorksheetTextFeatureState.fromThryftJSON(json[fieldName]);
             }
         }
         return out;

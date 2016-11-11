@@ -1,12 +1,12 @@
-import { WorksheetState as dressdiscover_api_models_worksheet_WorksheetState } from "../../models/worksheet/worksheet_state";
+import { WorksheetState } from "../../models/worksheet/worksheet_state";
 
 export interface WorksheetCommandService {
-    putWorksheetStateAsync(kwds: {state: dressdiscover_api_models_worksheet_WorksheetState, error: (jqXHR: JQueryXHR | null, textStatus: string, errorThrown: string | null) => any, success: () => void}): void;
-    putWorksheetStateSync(kwds: {state: dressdiscover_api_models_worksheet_WorksheetState}): void;
+    putWorksheetStateAsync(kwds: {state: WorksheetState, error: (jqXHR: JQueryXHR | null, textStatus: string, errorThrown: string | null) => any, success: () => void}): void;
+    putWorksheetStateSync(kwds: {state: WorksheetState}): void;
 }
 
 export class JsonRpcWorksheetCommandService implements WorksheetCommandService {
-    putWorksheetStateAsync(kwds: {state: dressdiscover_api_models_worksheet_WorksheetState, error: (jqXHR: JQueryXHR | null, textStatus: string, errorThrown: string | null) => any, success: () => void}): void {
+    putWorksheetStateAsync(kwds: {state: WorksheetState, error: (jqXHR: JQueryXHR | null, textStatus: string, errorThrown: string | null) => any, success: () => void}): void {
         var __jsonrpc_params: {[index: string]: any} = {};
         __jsonrpc_params["state"] = kwds.state.toThryftJSON();
 
@@ -35,7 +35,7 @@ export class JsonRpcWorksheetCommandService implements WorksheetCommandService {
         });
     }
 
-    putWorksheetStateSync(kwds: {state: dressdiscover_api_models_worksheet_WorksheetState}): void {
+    putWorksheetStateSync(kwds: {state: WorksheetState}): void {
         var __jsonrpc_params: {[index: string]: any} = {};
         __jsonrpc_params["state"] = kwds.state.toThryftJSON();
 
@@ -64,7 +64,7 @@ export class JsonRpcWorksheetCommandService implements WorksheetCommandService {
 }
 
 export abstract class AsyncToSyncWorksheetCommandService implements WorksheetCommandService {
-    putWorksheetStateAsync(kwds: {state: dressdiscover_api_models_worksheet_WorksheetState, error: (jqXHR: JQueryXHR | null, textStatus: string, errorThrown: string | null) => any, success: () => void}): void {
+    putWorksheetStateAsync(kwds: {state: WorksheetState, error: (jqXHR: JQueryXHR | null, textStatus: string, errorThrown: string | null) => any, success: () => void}): void {
         try {
             this.putWorksheetStateSync({state: kwds.state});
             kwds.success();
@@ -73,5 +73,5 @@ export abstract class AsyncToSyncWorksheetCommandService implements WorksheetCom
         }
     }
 
-    abstract putWorksheetStateSync(kwds: {state: dressdiscover_api_models_worksheet_WorksheetState}): void;
+    abstract putWorksheetStateSync(kwds: {state: WorksheetState}): void;
 }

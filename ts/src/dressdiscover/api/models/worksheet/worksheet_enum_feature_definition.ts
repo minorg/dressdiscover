@@ -1,16 +1,16 @@
 import * as Backbone from "backbone";
-import { WorksheetEnumFeatureValueDefinition as dressdiscover_api_models_worksheet_WorksheetEnumFeatureValueDefinition } from "./worksheet_enum_feature_value_definition";
+import { WorksheetEnumFeatureValueDefinition } from "./worksheet_enum_feature_value_definition";
 
 export class WorksheetEnumFeatureDefinition extends Backbone.Model {
-    constructor(attributes?: {values_?: Backbone.Collection<dressdiscover_api_models_worksheet_WorksheetEnumFeatureValueDefinition>}) {
+    constructor(attributes?: {values_?: Backbone.Collection<WorksheetEnumFeatureValueDefinition>}) {
         super(attributes);
     }
 
-    get values_(): Backbone.Collection<dressdiscover_api_models_worksheet_WorksheetEnumFeatureValueDefinition> {
+    get values_(): Backbone.Collection<WorksheetEnumFeatureValueDefinition> {
         return this.get('values_');
     }
 
-    set values_(value: Backbone.Collection<dressdiscover_api_models_worksheet_WorksheetEnumFeatureValueDefinition>) {
+    set values_(value: Backbone.Collection<WorksheetEnumFeatureValueDefinition>) {
         this.set('values_', value);
     }
 
@@ -18,7 +18,7 @@ export class WorksheetEnumFeatureDefinition extends Backbone.Model {
         var out: WorksheetEnumFeatureDefinition = new WorksheetEnumFeatureDefinition;
         for (var fieldName in json) {
             if (fieldName == "values_") {
-                out.attributes.values_ = function(json: any[]): Backbone.Collection<dressdiscover_api_models_worksheet_WorksheetEnumFeatureValueDefinition> { var sequence: dressdiscover_api_models_worksheet_WorksheetEnumFeatureValueDefinition[] = []; for (var i = 0; i < json.length; i++) { sequence.push(dressdiscover_api_models_worksheet_WorksheetEnumFeatureValueDefinition.fromThryftJSON(json[i])); } return new Backbone.Collection<dressdiscover_api_models_worksheet_WorksheetEnumFeatureValueDefinition>(sequence); }(json[fieldName]);
+                out.attributes.values_ = function(json: any[]): Backbone.Collection<WorksheetEnumFeatureValueDefinition> { var sequence: WorksheetEnumFeatureValueDefinition[] = []; for (var i = 0; i < json.length; i++) { sequence.push(WorksheetEnumFeatureValueDefinition.fromThryftJSON(json[i])); } return new Backbone.Collection<WorksheetEnumFeatureValueDefinition>(sequence); }(json[fieldName]);
             }
         }
         return out;
@@ -27,7 +27,7 @@ export class WorksheetEnumFeatureDefinition extends Backbone.Model {
     toThryftJSON(): any {
         var json: {[index: string]: any} = {};
         if (this.has("values_")) {
-            json["values_"] = function (__inArray: dressdiscover_api_models_worksheet_WorksheetEnumFeatureValueDefinition[]): any[] { var __outArray: any[] = []; for (var __i = 0; __i < __inArray.length; __i++) { __outArray.push(__inArray[__i].toThryftJSON()); } return __outArray; }(this.values_.models);
+            json["values_"] = function (__inArray: WorksheetEnumFeatureValueDefinition[]): any[] { var __outArray: any[] = []; for (var __i = 0; __i < __inArray.length; __i++) { __outArray.push(__inArray[__i].toThryftJSON()); } return __outArray; }(this.values_.models);
         }
         return json;
     }
