@@ -1,24 +1,24 @@
 import * as Backbone from "backbone";
-import { WorksheetFeatureState as dressdiscover_api_models_worksheet_WorksheetFeatureState } from "./worksheet_feature_state";
+import { WorksheetFeatureSetState as dressdiscover_api_models_worksheet_WorksheetFeatureSetState } from "./worksheet_feature_set_state";
 
 export class WorksheetState extends Backbone.Model {
-    constructor(attributes?: {features: Backbone.Collection<dressdiscover_api_models_worksheet_WorksheetFeatureState>}) {
+    constructor(attributes?: {rootFeatureSets?: {[index: string]: dressdiscover_api_models_worksheet_WorksheetFeatureSetState}}) {
         super(attributes);
     }
 
-    get features(): Backbone.Collection<dressdiscover_api_models_worksheet_WorksheetFeatureState> {
-        return this.get('features');
+    get rootFeatureSets(): {[index: string]: dressdiscover_api_models_worksheet_WorksheetFeatureSetState} {
+        return this.get('rootFeatureSets');
     }
 
-    set features(value: Backbone.Collection<dressdiscover_api_models_worksheet_WorksheetFeatureState>) {
-        this.set('features', value);
+    set rootFeatureSets(value: {[index: string]: dressdiscover_api_models_worksheet_WorksheetFeatureSetState}) {
+        this.set('rootFeatureSets', value);
     }
 
     static fromThryftJSON(json: any): WorksheetState {
         var out: WorksheetState = new WorksheetState;
         for (var fieldName in json) {
-            if (fieldName == "features") {
-                out.attributes.features = function(json: any[]): Backbone.Collection<dressdiscover_api_models_worksheet_WorksheetFeatureState> { var sequence: dressdiscover_api_models_worksheet_WorksheetFeatureState[] = []; for (var i = 0; i < json.length; i++) { sequence.push(dressdiscover_api_models_worksheet_WorksheetFeatureState.fromThryftJSON(json[i])); } return new Backbone.Collection<dressdiscover_api_models_worksheet_WorksheetFeatureState>(sequence); }(json[fieldName]);
+            if (fieldName == "root_feature_sets") {
+                out.attributes.rootFeatureSets = function (json: any): {[index: string]: dressdiscover_api_models_worksheet_WorksheetFeatureSetState} { var map: any = {}; for (var key in json) { map[key] = dressdiscover_api_models_worksheet_WorksheetFeatureSetState.fromThryftJSON(json[key]); } return map; }(json[fieldName]);
             }
         }
         return out;
@@ -26,7 +26,9 @@ export class WorksheetState extends Backbone.Model {
 
     toThryftJSON(): any {
         var json: {[index: string]: any} = {};
-        json["features"] = function (__inArray: dressdiscover_api_models_worksheet_WorksheetFeatureState[]): any[] { var __outArray: any[] = []; for (var __i = 0; __i < __inArray.length; __i++) { __outArray.push(__inArray[__i].toThryftJSON()); } return __outArray; }(this.features.models);
+        if (this.has("rootFeatureSets")) {
+            json["root_feature_sets"] = function (value: {[index: string]: dressdiscover_api_models_worksheet_WorksheetFeatureSetState}): {[index: string]: dressdiscover_api_models_worksheet_WorksheetFeatureSetState} { var outObject: {[index: string]: dressdiscover_api_models_worksheet_WorksheetFeatureSetState} = {}; for (var key in value) { outObject[key] = value[key].toThryftJSON(); } return outObject; }(this.rootFeatureSets);
+        }
         return json;
     }
 }

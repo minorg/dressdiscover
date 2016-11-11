@@ -1,44 +1,35 @@
 import * as Backbone from "backbone";
-import { WorksheetFeatureStateId as dressdiscover_api_models_worksheet_WorksheetFeatureStateId } from "./worksheet_feature_state_id";
+import { WorksheetEnumFeatureState as dressdiscover_api_models_worksheet_WorksheetEnumFeatureState } from "./worksheet_enum_feature_state";
+import { WorksheetTextFeatureState as dressdiscover_api_models_worksheet_WorksheetTextFeatureState } from "./worksheet_text_feature_state";
 
 export class WorksheetFeatureState extends Backbone.Model {
-    constructor(attributes?: {id: dressdiscover_api_models_worksheet_WorksheetFeatureStateId, selected?: boolean, text?: string}) {
+    constructor(attributes?: {enum_?: dressdiscover_api_models_worksheet_WorksheetEnumFeatureState, text?: dressdiscover_api_models_worksheet_WorksheetTextFeatureState}) {
         super(attributes);
     }
 
-    get id(): dressdiscover_api_models_worksheet_WorksheetFeatureStateId {
-        return this.get('id');
+    get enum_(): dressdiscover_api_models_worksheet_WorksheetEnumFeatureState {
+        return this.get('enum_');
     }
 
-    set id(value: dressdiscover_api_models_worksheet_WorksheetFeatureStateId) {
-        this.set('id', value);
+    set enum_(value: dressdiscover_api_models_worksheet_WorksheetEnumFeatureState) {
+        this.set('enum_', value);
     }
 
-    get selected(): boolean {
-        return this.get('selected');
-    }
-
-    set selected(value: boolean) {
-        this.set('selected', value);
-    }
-
-    get text(): string {
+    get text(): dressdiscover_api_models_worksheet_WorksheetTextFeatureState {
         return this.get('text');
     }
 
-    set text(value: string) {
+    set text(value: dressdiscover_api_models_worksheet_WorksheetTextFeatureState) {
         this.set('text', value);
     }
 
     static fromThryftJSON(json: any): WorksheetFeatureState {
         var out: WorksheetFeatureState = new WorksheetFeatureState;
         for (var fieldName in json) {
-            if (fieldName == "id") {
-                out.attributes.id = dressdiscover_api_models_worksheet_WorksheetFeatureStateId.fromThryftJSON(json[fieldName]);
-            } else if (fieldName == "selected") {
-                out.attributes.selected = json[fieldName];
+            if (fieldName == "enum_") {
+                out.attributes.enum_ = dressdiscover_api_models_worksheet_WorksheetEnumFeatureState.fromThryftJSON(json[fieldName]);
             } else if (fieldName == "text") {
-                out.attributes.text = json[fieldName];
+                out.attributes.text = dressdiscover_api_models_worksheet_WorksheetTextFeatureState.fromThryftJSON(json[fieldName]);
             }
         }
         return out;
@@ -46,12 +37,11 @@ export class WorksheetFeatureState extends Backbone.Model {
 
     toThryftJSON(): any {
         var json: {[index: string]: any} = {};
-        json["id"] = this.id.toThryftJSON();
-        if (this.has("selected")) {
-            json["selected"] = this.selected;
+        if (this.has("enum_")) {
+            json["enum_"] = this.enum_.toThryftJSON();
         }
         if (this.has("text")) {
-            json["text"] = this.text;
+            json["text"] = this.text.toThryftJSON();
         }
         return json;
     }

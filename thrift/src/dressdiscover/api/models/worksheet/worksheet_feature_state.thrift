@@ -1,13 +1,9 @@
 namespace * dressdiscover.api.models.worksheet
 
-include "dressdiscover/api/models/worksheet/worksheet_feature_state_id.thrift"
+include "dressdiscover/api/models/worksheet/worksheet_enum_feature_state.thrift"
+include "dressdiscover/api/models/worksheet/worksheet_text_feature_state.thrift"
 
 struct WorksheetFeatureState {
-    worksheet_feature_state_id.WorksheetFeatureStateId id;
-
-    // @validation {"acceptance": true}
-    optional bool selected;
-
-    // @validation {"blank": false, "minLength": 1}
-    optional string text;
+    optional worksheet_enum_feature_state.WorksheetEnumFeatureState enum_;
+    optional worksheet_text_feature_state.WorksheetTextFeatureState text;
 }

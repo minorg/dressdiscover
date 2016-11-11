@@ -1,5 +1,5 @@
-﻿import { WorksheetFeatureSetDefinition } from "../../../api/models/worksheet/worksheet_feature_set_definition";
-import { WorksheetFeatureSetState } from "../../../api/models/worksheet/worksheet_feature_set_state";
+﻿import { WorksheetDefinition } from "../../../api/models/worksheet/worksheet_definition";
+import { WorksheetState } from "../../../api/models/worksheet/worksheet_state";
 import Services = require("../../services/services");
 import Backbone = require("backbone");
 import WorksheetFeatureCollection = require("./worksheet_feature_collection");
@@ -13,50 +13,32 @@ import WorksheetFeatureValueModel = require("./worksheet_feature_value_model");
 class WorksheetModel extends Backbone.Model {
     fetchFromService(): void {
         const modelThis = this;
-        Services.instance.worksheetQueryService.getWorksheetFeatureSetDefinitionsAsync({
+        Services.instance.worksheetQueryService.getWorksheetDefinitionAsync({
             error: function (jqXHR: JQueryXHR | null, textStatus: string, errorThrown: string | null): any {
                 console.error(textStatus);
             },
-            success: function (returnValue: Backbone.Collection<WorksheetFeatureSetDefinition>): void {
-                const featureSetDefinitions = returnValue.models;
-                Services.instance.worksheetQueryService.getWorksheetFeatureSetStatesAsync({
+            success: function (worksheetDefinition: WorksheetDefinition): void {
+                Services.instance.worksheetQueryService.getWorksheetStateAsync({
                     error: function (jqXHR: JQueryXHR | null, textStatus: string, errorThrown: string | null): any {
                         console.error(textStatus);
                     },
-                    success: function (returnValue: { [index: string]: WorksheetFeatureSetState }): void {
-                        const featureSets: WorksheetFeatureSetModel[] = [];
-                        const state = returnValue;
-                        for (let featureSetDefinition of featureSetDefinitions) {
-                            const featureSetState = state[featureSetDefinition.id];
-                            const featureModels: WorksheetFeatureModel[] = [];
-                            for (let featureDefinition of featureSetDefinition.features.models) {
-                                const featureState = featureSetState ? featureSetState.features[featureDefinition.id] : undefined;
-                                var featureValueCollection: WorksheetFeatureValueCollection | undefined;
-                                if (featureDefinition.featureValues) {
-                                    const featureValueModels: WorksheetFeatureValueModel[] = [];
-                                    for (let featureValueDefinition of featureDefinition.featureValues.models) {
-                                        featureValueModels.push(new WorksheetFeatureValueModel(featureValueDefinition, featureState != null ? featureState.featureValues[featureValueDefinition.id] : undefined));
-                                    }
-                                    featureValueCollection = new WorksheetFeatureValueCollection(featureValueModels);
-                                } else {
-                                    featureValueCollection = undefined;
-                                }
-                                featureModels.push(new WorksheetFeatureModel(featureDefinition, featureValueCollection, featureState));
-                            }
-                            featureSets.push(new WorksheetFeatureSetModel(featureSetDefinition, new WorksheetFeatureCollection(featureModels), featureSetState));
+                    success: function (worksheetState: WorksheetState): void {
+                        const rootFeatureSets: WorksheetFeatureSetModel[] = [];
+                        for (let rootFeatureSetDefinition of worksheetDefinition.rootFeatureSets.models) {
+                            rootFeatureSets.push(new WorksheetFeatureSetModel(rootFeatureSetDefinition, worksheetState.rootFeatureSets ? worksheetState.rootFeatureSets[rootFeatureSetDefinition.id] : undefined));
                         }
-                        modelThis._featureSets = new WorksheetFeatureSetCollection(featureSets);
+                        modelThis._rootFeatureSets = new WorksheetFeatureSetCollection(rootFeatureSets);
                     }
                 });
             }
         });
     }
 
-    get featureSets(): WorksheetFeatureSetCollection {
-        return this._featureSets;
+    get rootFeatureSets(): WorksheetFeatureSetCollection {
+        return this._rootFeatureSets;
     }
 
-    private _featureSets: WorksheetFeatureSetCollection;
+    private _rootFeatureSets: WorksheetFeatureSetCollection;
 }
 
 export = WorksheetModel;
