@@ -1,9 +1,9 @@
-﻿import Backbone = require("backbone");
+﻿import Marionette = require("backbone.marionette");
 import WorksheetFeatureModel = require("../../../models/worksheet/worksheet_feature_model");
 import WorksheetModel = require("../../../models/worksheet/worksheet_model");
 import WorksheetFeatureInputView = require("./worksheet_feature_input_view");
 
-class WorksheetInputView extends Backbone.View<WorksheetModel> {
+class WorksheetInputView extends Marionette.View<WorksheetModel> {
     constructor(options: {model: WorksheetModel}) {
         super(options);
     }
