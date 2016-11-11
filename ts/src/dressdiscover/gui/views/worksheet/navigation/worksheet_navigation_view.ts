@@ -21,14 +21,18 @@ class WorksheetNavigationView extends Backbone.View<WorksheetModel> {
             featureSetsEl.append(new WorksheetFeatureSetNavigationView({ model: featureSetModel }).render().el);
         }
 
-        this.$el.find('h4.panel-title').on('click', (e) => {
-	   		// remove "open" class from all headers in this group
-	   		$(this).closest('.accordion-group').find('h4.panel-title').removeClass('open');
-            $(this).closest('.accordion-group').find('.collapse').removeClass("in");
-	   		// then set the one clicked on to open
-	   		$(this).addClass('open');
-            $(this).parent().next(".collapse").addClass("in");
-	    });
+        const collapseEl = this.$el.find("#worksheet-navigation");
+        collapseEl
+            .on("shown.bs.collapse", () => {
+                alert("Show");
+                $(this).parent().find(".glyphicon-plus").removeClass("glyphicon-plus").addClass("glyphicon-minus");
+                return true;
+            })
+            .on("hidden.bs.collapse", () => {
+                alert("Hide");
+                $(this).parent().find(".glyphicon-minus").removeClass("glyphicon-minus").addClass("glyphicon-plus");
+                return true;
+            });
 
         return this;
     }

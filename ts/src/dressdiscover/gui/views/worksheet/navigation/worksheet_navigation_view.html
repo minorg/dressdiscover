@@ -1,16 +1,14 @@
-﻿<!-- Adapted from https://jsfiddle.net/kW33s/2/ -->
-<div class="panel-group accordion-group" id="worksheet-navigation">
+﻿<div class="panel-group" id="worksheet-navigation" role="tablist" aria-multiselectable="true">
     <div class="panel panel-default">
-        <div class="panel-heading">
+        <div class="panel-heading" role="tab" id="headingOne">
             <h4 class="panel-title">
-                <a data-toggle="collapse" data-parent="#accordion" data-target="#feature-sets-collapse">
-                    Features
+                <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                Features
                 </a>
             </h4>
         </div>
-        <div id="feature-sets-collapse" class="panel-collapse collapse">
-            <div class="panel-body" id="feature-sets">
-            </div>
+        <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+            <ul class="list-group" id="feature-sets"></ul>
         </div>
     </div>
 </div>

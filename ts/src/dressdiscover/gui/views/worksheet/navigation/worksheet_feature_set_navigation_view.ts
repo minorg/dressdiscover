@@ -16,6 +16,7 @@ class WorksheetFeatureSetNavigationView extends Backbone.View<WorksheetFeatureSe
 
     render() {
         this.$el.attr("role", "presentation");
+        this.$el.addClass("list-group-item");
         this.$el.html(Mustache.render(this.template, this.model.definition.toJSON()));
 
         const featuresEl = this.$el.find("#features");

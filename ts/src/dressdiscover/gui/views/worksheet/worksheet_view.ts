@@ -28,7 +28,7 @@ class WorksheetView extends Backbone.View<WorksheetModel> {
 
         const rightColumnEl: JQuery = $("#right-column");
         rightColumnEl.empty();
-        leftColumnEl.append(new WorksheetSelectionView({ model: this.model }).render().el);
+        rightColumnEl.append(new WorksheetSelectionView({ model: this.model }).render().el);
 
         return this;
     }
