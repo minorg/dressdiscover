@@ -20,8 +20,15 @@ class WorksheetFeatureSetNavigationView extends Backbone.View<WorksheetFeatureSe
         this.$el.html(Mustache.render(this.template, this.model.definition.toJSON()));
 
         const childrenEl = this.$el.find("#children");
-        for (let featureModel of this.model.features.models) {
-            featuresEl.append(new WorksheetFeatureNavigationView({ model: featureModel }).render().el);
+        if (this.model.childFeatureSets) {
+            for (let childFeatureSetModel of this.model.childFeatureSets.models) {
+                childrenEl.append(new WorksheetFeatureSetNavigationView({ model: childFeatureSetModel }).render().el);
+            }
+        }
+        if (this.model.features) {
+            for (let featureModel of this.model.features.models) {
+                childrenEl.append(new WorksheetFeatureNavigationView({ model: featureModel }).render().el);
+            }
         }
 
         return this;

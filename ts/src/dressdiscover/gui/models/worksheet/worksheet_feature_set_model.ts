@@ -1,9 +1,10 @@
 ﻿import Backbone = require("backbone");
 import { WorksheetFeatureSetDefinition } from "../../../api/models/worksheet/worksheet_feature_set_definition";
 import { WorksheetFeatureSetState } from "../../../api/models/worksheet/worksheet_feature_set_state";
+import WorksheetEnumFeatureModel = require("./worksheet_enum_feature_model");
 import WorksheetFeatureCollection = require("./worksheet_feature_collection");
-import WorksheetFeatureModel = require("./worksheet_feature_model");
 import WorksheetFeatureSetCollection = require("./worksheet_feature_set_collection");
+import WorksheetTextFeatureModel = require("./worksheet_text_feature_model");
 
 class WorksheetFeatureSetModel extends Backbone.Model {
     constructor(definition: WorksheetFeatureSetDefinition, state: WorksheetFeatureSetState | undefined) {
@@ -16,7 +17,14 @@ class WorksheetFeatureSetModel extends Backbone.Model {
         }
         if (definition.features) {
             for (let featureDefinition of definition.features.models) {
-                this._features.add(WorksheetFeatureModel.fromDefinition(featureDefinition, state && state.features ? state.features[featureDefinition.id] : undefined));
+                const featureState = state && state.features ? state.features[featureDefinition.id] : undefined;
+                if (featureDefinition.enum_) {
+                    this._features.add(new WorksheetEnumFeatureModel(featureDefinition, featureState));
+                } else if (featureDefinition.text) {
+                    this._features.add(new WorksheetTextFeatureModel(featureDefinition, featureState));
+                } else {
+                    throw new Error("feature definition without union set");
+                }
             }
         }
     }

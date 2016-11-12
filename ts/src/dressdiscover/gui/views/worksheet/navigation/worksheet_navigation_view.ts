@@ -17,7 +17,7 @@ class WorksheetNavigationView extends Backbone.View<WorksheetModel> {
         this.$el.html(this.template);
 
         const featureSetsEl = this.$el.find("#feature-sets");
-        for (let featureSetModel of this.model.featureSets.models) {
+        for (let featureSetModel of this.model.rootFeatureSets.models) {
             featureSetsEl.append(new WorksheetFeatureSetNavigationView({ model: featureSetModel }).render().el);
         }
 

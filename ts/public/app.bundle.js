@@ -13469,16 +13469,16 @@
 	};
 	var Backbone = __webpack_require__(8);
 	var WorksheetModel = __webpack_require__(13);
-	var WorksheetInputView = __webpack_require__(24);
-	var WorksheetNavigationView = __webpack_require__(33);
-	__webpack_require__(39);
+	var WorksheetInputView = __webpack_require__(39);
+	var WorksheetNavigationView = __webpack_require__(43);
+	__webpack_require__(50);
 	var WorksheetView = (function (_super) {
 	    __extends(WorksheetView, _super);
 	    function WorksheetView(options) {
 	        _super.call(this, options);
 	        this.model = new WorksheetModel();
 	        this.setElement($('#content'), true);
-	        this.template = __webpack_require__(41);
+	        this.template = __webpack_require__(52);
 	        this.model.fetchFromService();
 	    }
 	    WorksheetView.prototype.render = function () {
@@ -13508,37 +13508,40 @@
 	    function __() { this.constructor = d; }
 	    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 	};
+	//import { WorksheetDefinition } from "../../../api/models/worksheet/worksheet_definition";
+	//import { WorksheetState } from "../../../api/models/worksheet/worksheet_state";
 	var Services = __webpack_require__(14);
 	var Backbone = __webpack_require__(8);
-	var WorksheetFeatureSetCollection = __webpack_require__(18);
-	var WorksheetFeatureSetModel = __webpack_require__(19);
+	var WorksheetFeatureSetCollection = __webpack_require__(31);
+	var WorksheetFeatureSetModel = __webpack_require__(32);
 	var WorksheetModel = (function (_super) {
 	    __extends(WorksheetModel, _super);
 	    function WorksheetModel() {
 	        _super.apply(this, arguments);
 	    }
 	    WorksheetModel.prototype.fetchFromService = function () {
-	        var modelThis = this;
-	        Services.instance.worksheetQueryService.getWorksheetDefinitionAsync({
-	            error: function (jqXHR, textStatus, errorThrown) {
-	                console.error(textStatus);
-	            },
-	            success: function (worksheetDefinition) {
-	                Services.instance.worksheetQueryService.getWorksheetStateAsync({
-	                    error: function (jqXHR, textStatus, errorThrown) {
-	                        console.error(textStatus);
-	                    },
-	                    success: function (worksheetState) {
-	                        var rootFeatureSets = [];
-	                        for (var _i = 0, _a = worksheetDefinition.rootFeatureSets.models; _i < _a.length; _i++) {
-	                            var rootFeatureSetDefinition = _a[_i];
-	                            rootFeatureSets.push(new WorksheetFeatureSetModel(rootFeatureSetDefinition, worksheetState.rootFeatureSets ? worksheetState.rootFeatureSets[rootFeatureSetDefinition.id] : undefined));
-	                        }
-	                        modelThis._rootFeatureSets = new WorksheetFeatureSetCollection(rootFeatureSets);
-	                    }
-	                });
-	            }
-	        });
+	        var worksheetDefinition = Services.instance.worksheetQueryService.getWorksheetDefinitionSync();
+	        var worksheetState = Services.instance.worksheetQueryService.getWorksheetStateSync();
+	        var rootFeatureSets = [];
+	        for (var _i = 0, _a = worksheetDefinition.rootFeatureSets.models; _i < _a.length; _i++) {
+	            var rootFeatureSetDefinition = _a[_i];
+	            rootFeatureSets.push(new WorksheetFeatureSetModel(rootFeatureSetDefinition, worksheetState.rootFeatureSets ? worksheetState.rootFeatureSets[rootFeatureSetDefinition.id] : undefined));
+	        }
+	        this._rootFeatureSets = new WorksheetFeatureSetCollection(rootFeatureSets);
+	        //Services.instance.worksheetQueryService.getWorksheetDefinitionAsync({
+	        //    error: function (jqXHR: JQueryXHR | null, textStatus: string, errorThrown: string | null): any {
+	        //        console.error(textStatus);
+	        //    },
+	        //    success: function (worksheetDefinition: WorksheetDefinition): void {
+	        //        Services.instance.worksheetQueryService.getWorksheetStateAsync({
+	        //            error: function (jqXHR: JQueryXHR | null, textStatus: string, errorThrown: string | null): any {
+	        //                console.error(textStatus);
+	        //            },
+	        //            success: function (worksheetState: WorksheetState): void {
+	        //            }
+	        //        });
+	        //    }
+	        //});
 	    };
 	    Object.defineProperty(WorksheetModel.prototype, "rootFeatureSets", {
 	        get: function () {
@@ -13558,7 +13561,7 @@
 
 	"use strict";
 	var LocalWorksheetCommandService = __webpack_require__(15);
-	var LocalWorksheetQueryService = __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"./worksheet/local_worksheet_query_service\""); e.code = 'MODULE_NOT_FOUND'; throw e; }()));
+	var LocalWorksheetQueryService = __webpack_require__(17);
 	var Services = (function () {
 	    function Services() {
 	        this._worksheetCommandService = new LocalWorksheetCommandService;
@@ -13607,13 +13610,8 @@
 	    function LocalWorksheetCommandService() {
 	        _super.apply(this, arguments);
 	    }
-	    LocalWorksheetCommandService.prototype.putWorksheetFeatureSetStatesSync = function (kwds) {
-	        var jsonObject = {};
-	        for (var key in kwds.worksheetFeatureSetStates) {
-	            jsonObject[key] = kwds.worksheetFeatureSetStates[key].toThryftJSON();
-	        }
-	        var jsonString = JSON.stringify(jsonObject);
-	        localStorage.setItem("worksheet-feature-set-states", jsonString);
+	    LocalWorksheetCommandService.prototype.putWorksheetStateSync = function (kwds) {
+	        localStorage.setItem("worksheet-state", JSON.stringify(kwds.state.toThryftJSON));
 	    };
 	    return LocalWorksheetCommandService;
 	}(worksheet_command_service_1.AsyncToSyncWorksheetCommandService));
@@ -13703,8 +13701,962 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)))
 
 /***/ },
-/* 17 */,
+/* 17 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+	var __extends = (this && this.__extends) || function (d, b) {
+	    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
+	    function __() { this.constructor = d; }
+	    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+	};
+	var worksheet_query_service_1 = __webpack_require__(18);
+	var Backbone = __webpack_require__(8);
+	var worksheet_definition_1 = __webpack_require__(19);
+	var worksheet_feature_set_definition_1 = __webpack_require__(20);
+	var worksheet_feature_set_state_1 = __webpack_require__(27);
+	var worksheet_state_1 = __webpack_require__(26);
+	var LocalWorksheetQueryService = (function (_super) {
+	    __extends(LocalWorksheetQueryService, _super);
+	    function LocalWorksheetQueryService() {
+	        _super.call(this);
+	        {
+	            var rootFeatureSetDefinitions = [];
+	            for (var _i = 0, FEATURES_1 = FEATURES; _i < FEATURES_1.length; _i++) {
+	                var featureSetDefinitionJsonObject = FEATURES_1[_i];
+	                rootFeatureSetDefinitions.push(worksheet_feature_set_definition_1.WorksheetFeatureSetDefinition.fromThryftJSON(featureSetDefinitionJsonObject));
+	            }
+	            this._worksheetDefinition = new worksheet_definition_1.WorksheetDefinition({ rootFeatureSets: new Backbone.Collection(rootFeatureSetDefinitions) });
+	        }
+	    }
+	    LocalWorksheetQueryService.prototype.getWorksheetDefinitionSync = function () {
+	        return this._worksheetDefinition;
+	    };
+	    LocalWorksheetQueryService.prototype.getWorksheetStateSync = function () {
+	        var jsonString = localStorage.getItem("worksheet-feature-set-states");
+	        if (jsonString == null) {
+	            return new worksheet_state_1.WorksheetState();
+	        }
+	        var jsonObject = JSON.parse(jsonString);
+	        var rootFeatureSets = {};
+	        for (var key in jsonObject) {
+	            rootFeatureSets[key] = worksheet_feature_set_state_1.WorksheetFeatureSetState.fromThryftJSON(jsonObject[key]);
+	        }
+	        return new worksheet_state_1.WorksheetState(rootFeatureSets);
+	    };
+	    return LocalWorksheetQueryService;
+	}(worksheet_query_service_1.AsyncToSyncWorksheetQueryService));
+	module.exports = LocalWorksheetQueryService;
+
+
+/***/ },
 /* 18 */
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function($) {"use strict";
+	var worksheet_definition_1 = __webpack_require__(19);
+	var worksheet_state_1 = __webpack_require__(26);
+	var JsonRpcWorksheetQueryService = (function () {
+	    function JsonRpcWorksheetQueryService() {
+	    }
+	    JsonRpcWorksheetQueryService.prototype.getWorksheetDefinitionAsync = function (kwds) {
+	        $.ajax({
+	            async: true,
+	            data: JSON.stringify({
+	                jsonrpc: '2.0',
+	                method: 'get_worksheet_definition',
+	                params: {},
+	                id: '1234'
+	            }),
+	            dataType: 'json',
+	            error: function (jqXHR, textStatus, errorThrown) {
+	                kwds.error(jqXHR, textStatus, errorThrown);
+	            },
+	            mimeType: 'application/json',
+	            type: 'POST',
+	            success: function (__response) {
+	                if (typeof __response.result !== "undefined") {
+	                    kwds.success(worksheet_definition_1.WorksheetDefinition.fromThryftJSON(__response.result));
+	                }
+	                else {
+	                    kwds.error(null, __response.error.message, null);
+	                }
+	            },
+	            url: '/api/jsonrpc/worksheet_query',
+	        });
+	    };
+	    JsonRpcWorksheetQueryService.prototype.getWorksheetDefinitionSync = function () {
+	        var returnValue = new worksheet_definition_1.WorksheetDefinition();
+	        $.ajax({
+	            async: false,
+	            data: JSON.stringify({
+	                jsonrpc: '2.0',
+	                method: 'get_worksheet_definition',
+	                params: {},
+	                id: '1234'
+	            }),
+	            dataType: 'json',
+	            error: function (jqXHR, textStatus, errorThrown) {
+	                throw new Error(errorThrown);
+	            },
+	            mimeType: 'application/json',
+	            type: 'POST',
+	            success: function (__response) {
+	                if (typeof __response.result !== "undefined") {
+	                    returnValue = worksheet_definition_1.WorksheetDefinition.fromThryftJSON(__response.result);
+	                }
+	                else {
+	                    throw new Error(__response.error);
+	                }
+	            },
+	            url: '/api/jsonrpc/worksheet_query',
+	        });
+	        return returnValue;
+	    };
+	    JsonRpcWorksheetQueryService.prototype.getWorksheetStateAsync = function (kwds) {
+	        $.ajax({
+	            async: true,
+	            data: JSON.stringify({
+	                jsonrpc: '2.0',
+	                method: 'get_worksheet_state',
+	                params: {},
+	                id: '1234'
+	            }),
+	            dataType: 'json',
+	            error: function (jqXHR, textStatus, errorThrown) {
+	                kwds.error(jqXHR, textStatus, errorThrown);
+	            },
+	            mimeType: 'application/json',
+	            type: 'POST',
+	            success: function (__response) {
+	                if (typeof __response.result !== "undefined") {
+	                    kwds.success(worksheet_state_1.WorksheetState.fromThryftJSON(__response.result));
+	                }
+	                else {
+	                    kwds.error(null, __response.error.message, null);
+	                }
+	            },
+	            url: '/api/jsonrpc/worksheet_query',
+	        });
+	    };
+	    JsonRpcWorksheetQueryService.prototype.getWorksheetStateSync = function () {
+	        var returnValue = new worksheet_state_1.WorksheetState();
+	        $.ajax({
+	            async: false,
+	            data: JSON.stringify({
+	                jsonrpc: '2.0',
+	                method: 'get_worksheet_state',
+	                params: {},
+	                id: '1234'
+	            }),
+	            dataType: 'json',
+	            error: function (jqXHR, textStatus, errorThrown) {
+	                throw new Error(errorThrown);
+	            },
+	            mimeType: 'application/json',
+	            type: 'POST',
+	            success: function (__response) {
+	                if (typeof __response.result !== "undefined") {
+	                    returnValue = worksheet_state_1.WorksheetState.fromThryftJSON(__response.result);
+	                }
+	                else {
+	                    throw new Error(__response.error);
+	                }
+	            },
+	            url: '/api/jsonrpc/worksheet_query',
+	        });
+	        return returnValue;
+	    };
+	    return JsonRpcWorksheetQueryService;
+	}());
+	exports.JsonRpcWorksheetQueryService = JsonRpcWorksheetQueryService;
+	var AsyncToSyncWorksheetQueryService = (function () {
+	    function AsyncToSyncWorksheetQueryService() {
+	    }
+	    AsyncToSyncWorksheetQueryService.prototype.getWorksheetDefinitionAsync = function (kwds) {
+	        try {
+	            kwds.success(this.getWorksheetDefinitionSync());
+	        }
+	        catch (e) {
+	            kwds.error(null, e.message, e);
+	        }
+	    };
+	    AsyncToSyncWorksheetQueryService.prototype.getWorksheetStateAsync = function (kwds) {
+	        try {
+	            kwds.success(this.getWorksheetStateSync());
+	        }
+	        catch (e) {
+	            kwds.error(null, e.message, e);
+	        }
+	    };
+	    return AsyncToSyncWorksheetQueryService;
+	}());
+	exports.AsyncToSyncWorksheetQueryService = AsyncToSyncWorksheetQueryService;
+	
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)))
+
+/***/ },
+/* 19 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+	var __extends = (this && this.__extends) || function (d, b) {
+	    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
+	    function __() { this.constructor = d; }
+	    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+	};
+	var Backbone = __webpack_require__(8);
+	var worksheet_feature_set_definition_1 = __webpack_require__(20);
+	var WorksheetDefinition = (function (_super) {
+	    __extends(WorksheetDefinition, _super);
+	    function WorksheetDefinition(attributes) {
+	        _super.call(this, attributes);
+	    }
+	    Object.defineProperty(WorksheetDefinition.prototype, "rootFeatureSets", {
+	        get: function () {
+	            return this.get('rootFeatureSets');
+	        },
+	        set: function (value) {
+	            this.set('rootFeatureSets', value);
+	        },
+	        enumerable: true,
+	        configurable: true
+	    });
+	    WorksheetDefinition.fromThryftJSON = function (json) {
+	        var out = new WorksheetDefinition;
+	        for (var fieldName in json) {
+	            if (fieldName == "root_feature_sets") {
+	                out.attributes.rootFeatureSets = function (json) { var sequence = []; for (var i = 0; i < json.length; i++) {
+	                    sequence.push(worksheet_feature_set_definition_1.WorksheetFeatureSetDefinition.fromThryftJSON(json[i]));
+	                } return new Backbone.Collection(sequence); }(json[fieldName]);
+	            }
+	        }
+	        return out;
+	    };
+	    WorksheetDefinition.prototype.toThryftJSON = function () {
+	        var json = {};
+	        json["root_feature_sets"] = function (__inArray) { var __outArray = []; for (var __i = 0; __i < __inArray.length; __i++) {
+	            __outArray.push(__inArray[__i].toThryftJSON());
+	        } return __outArray; }(this.rootFeatureSets.models);
+	        return json;
+	    };
+	    return WorksheetDefinition;
+	}(Backbone.Model));
+	exports.WorksheetDefinition = WorksheetDefinition;
+
+
+/***/ },
+/* 20 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+	var __extends = (this && this.__extends) || function (d, b) {
+	    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
+	    function __() { this.constructor = d; }
+	    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+	};
+	var Backbone = __webpack_require__(8);
+	var worksheet_feature_definition_1 = __webpack_require__(21);
+	var WorksheetFeatureSetDefinition = (function (_super) {
+	    __extends(WorksheetFeatureSetDefinition, _super);
+	    function WorksheetFeatureSetDefinition(attributes) {
+	        _super.call(this, attributes);
+	    }
+	    Object.defineProperty(WorksheetFeatureSetDefinition.prototype, "id", {
+	        get: function () {
+	            return this.get('id');
+	        },
+	        set: function (value) {
+	            this.set('id', value);
+	        },
+	        enumerable: true,
+	        configurable: true
+	    });
+	    Object.defineProperty(WorksheetFeatureSetDefinition.prototype, "childFeatureSets", {
+	        get: function () {
+	            return this.get('childFeatureSets');
+	        },
+	        set: function (value) {
+	            this.set('childFeatureSets', value);
+	        },
+	        enumerable: true,
+	        configurable: true
+	    });
+	    Object.defineProperty(WorksheetFeatureSetDefinition.prototype, "displayName", {
+	        get: function () {
+	            return this.get('displayName');
+	        },
+	        set: function (value) {
+	            this.set('displayName', value);
+	        },
+	        enumerable: true,
+	        configurable: true
+	    });
+	    Object.defineProperty(WorksheetFeatureSetDefinition.prototype, "features", {
+	        get: function () {
+	            return this.get('features');
+	        },
+	        set: function (value) {
+	            this.set('features', value);
+	        },
+	        enumerable: true,
+	        configurable: true
+	    });
+	    WorksheetFeatureSetDefinition.fromThryftJSON = function (json) {
+	        var out = new WorksheetFeatureSetDefinition;
+	        for (var fieldName in json) {
+	            if (fieldName == "id") {
+	                out.attributes.id = json[fieldName];
+	            }
+	            else if (fieldName == "child_feature_sets") {
+	                out.attributes.childFeatureSets = function (json) { var sequence = []; for (var i = 0; i < json.length; i++) {
+	                    sequence.push(WorksheetFeatureSetDefinition.fromThryftJSON(json[i]));
+	                } return new Backbone.Collection(sequence); }(json[fieldName]);
+	            }
+	            else if (fieldName == "display_name") {
+	                out.attributes.displayName = json[fieldName];
+	            }
+	            else if (fieldName == "features") {
+	                out.attributes.features = function (json) { var sequence = []; for (var i = 0; i < json.length; i++) {
+	                    sequence.push(worksheet_feature_definition_1.WorksheetFeatureDefinition.fromThryftJSON(json[i]));
+	                } return new Backbone.Collection(sequence); }(json[fieldName]);
+	            }
+	        }
+	        return out;
+	    };
+	    WorksheetFeatureSetDefinition.prototype.toThryftJSON = function () {
+	        var json = {};
+	        json["id"] = this.id;
+	        if (this.has("childFeatureSets")) {
+	            json["child_feature_sets"] = function (__inArray) { var __outArray = []; for (var __i = 0; __i < __inArray.length; __i++) {
+	                __outArray.push(__inArray[__i].toThryftJSON());
+	            } return __outArray; }(this.childFeatureSets.models);
+	        }
+	        if (this.has("displayName")) {
+	            json["display_name"] = this.displayName;
+	        }
+	        if (this.has("features")) {
+	            json["features"] = function (__inArray) { var __outArray = []; for (var __i = 0; __i < __inArray.length; __i++) {
+	                __outArray.push(__inArray[__i].toThryftJSON());
+	            } return __outArray; }(this.features.models);
+	        }
+	        return json;
+	    };
+	    return WorksheetFeatureSetDefinition;
+	}(Backbone.Model));
+	exports.WorksheetFeatureSetDefinition = WorksheetFeatureSetDefinition;
+
+
+/***/ },
+/* 21 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+	var __extends = (this && this.__extends) || function (d, b) {
+	    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
+	    function __() { this.constructor = d; }
+	    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+	};
+	var Backbone = __webpack_require__(8);
+	var worksheet_enum_feature_definition_1 = __webpack_require__(22);
+	var worksheet_text_feature_definition_1 = __webpack_require__(25);
+	var WorksheetFeatureDefinition = (function (_super) {
+	    __extends(WorksheetFeatureDefinition, _super);
+	    function WorksheetFeatureDefinition(attributes) {
+	        _super.call(this, attributes);
+	    }
+	    Object.defineProperty(WorksheetFeatureDefinition.prototype, "id", {
+	        get: function () {
+	            return this.get('id');
+	        },
+	        set: function (value) {
+	            this.set('id', value);
+	        },
+	        enumerable: true,
+	        configurable: true
+	    });
+	    Object.defineProperty(WorksheetFeatureDefinition.prototype, "displayName", {
+	        get: function () {
+	            return this.get('displayName');
+	        },
+	        set: function (value) {
+	            this.set('displayName', value);
+	        },
+	        enumerable: true,
+	        configurable: true
+	    });
+	    Object.defineProperty(WorksheetFeatureDefinition.prototype, "enum_", {
+	        get: function () {
+	            return this.get('enum_');
+	        },
+	        set: function (value) {
+	            this.set('enum_', value);
+	        },
+	        enumerable: true,
+	        configurable: true
+	    });
+	    Object.defineProperty(WorksheetFeatureDefinition.prototype, "text", {
+	        get: function () {
+	            return this.get('text');
+	        },
+	        set: function (value) {
+	            this.set('text', value);
+	        },
+	        enumerable: true,
+	        configurable: true
+	    });
+	    WorksheetFeatureDefinition.fromThryftJSON = function (json) {
+	        var out = new WorksheetFeatureDefinition;
+	        for (var fieldName in json) {
+	            if (fieldName == "id") {
+	                out.attributes.id = json[fieldName];
+	            }
+	            else if (fieldName == "display_name") {
+	                out.attributes.displayName = json[fieldName];
+	            }
+	            else if (fieldName == "enum_") {
+	                out.attributes.enum_ = worksheet_enum_feature_definition_1.WorksheetEnumFeatureDefinition.fromThryftJSON(json[fieldName]);
+	            }
+	            else if (fieldName == "text") {
+	                out.attributes.text = worksheet_text_feature_definition_1.WorksheetTextFeatureDefinition.fromThryftJSON(json[fieldName]);
+	            }
+	        }
+	        return out;
+	    };
+	    WorksheetFeatureDefinition.prototype.toThryftJSON = function () {
+	        var json = {};
+	        json["id"] = this.id;
+	        if (this.has("displayName")) {
+	            json["display_name"] = this.displayName;
+	        }
+	        if (this.has("enum_")) {
+	            json["enum_"] = this.enum_.toThryftJSON();
+	        }
+	        if (this.has("text")) {
+	            json["text"] = this.text.toThryftJSON();
+	        }
+	        return json;
+	    };
+	    return WorksheetFeatureDefinition;
+	}(Backbone.Model));
+	exports.WorksheetFeatureDefinition = WorksheetFeatureDefinition;
+
+
+/***/ },
+/* 22 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+	var __extends = (this && this.__extends) || function (d, b) {
+	    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
+	    function __() { this.constructor = d; }
+	    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+	};
+	var Backbone = __webpack_require__(8);
+	var worksheet_enum_feature_value_definition_1 = __webpack_require__(23);
+	var WorksheetEnumFeatureDefinition = (function (_super) {
+	    __extends(WorksheetEnumFeatureDefinition, _super);
+	    function WorksheetEnumFeatureDefinition(attributes) {
+	        _super.call(this, attributes);
+	    }
+	    Object.defineProperty(WorksheetEnumFeatureDefinition.prototype, "values_", {
+	        get: function () {
+	            return this.get('values_');
+	        },
+	        set: function (value) {
+	            this.set('values_', value);
+	        },
+	        enumerable: true,
+	        configurable: true
+	    });
+	    WorksheetEnumFeatureDefinition.fromThryftJSON = function (json) {
+	        var out = new WorksheetEnumFeatureDefinition;
+	        for (var fieldName in json) {
+	            if (fieldName == "values_") {
+	                out.attributes.values_ = function (json) { var sequence = []; for (var i = 0; i < json.length; i++) {
+	                    sequence.push(worksheet_enum_feature_value_definition_1.WorksheetEnumFeatureValueDefinition.fromThryftJSON(json[i]));
+	                } return new Backbone.Collection(sequence); }(json[fieldName]);
+	            }
+	        }
+	        return out;
+	    };
+	    WorksheetEnumFeatureDefinition.prototype.toThryftJSON = function () {
+	        var json = {};
+	        json["values_"] = function (__inArray) { var __outArray = []; for (var __i = 0; __i < __inArray.length; __i++) {
+	            __outArray.push(__inArray[__i].toThryftJSON());
+	        } return __outArray; }(this.values_.models);
+	        return json;
+	    };
+	    return WorksheetEnumFeatureDefinition;
+	}(Backbone.Model));
+	exports.WorksheetEnumFeatureDefinition = WorksheetEnumFeatureDefinition;
+
+
+/***/ },
+/* 23 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+	var __extends = (this && this.__extends) || function (d, b) {
+	    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
+	    function __() { this.constructor = d; }
+	    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+	};
+	var Backbone = __webpack_require__(8);
+	var worksheet_enum_feature_value_image_1 = __webpack_require__(24);
+	var WorksheetEnumFeatureValueDefinition = (function (_super) {
+	    __extends(WorksheetEnumFeatureValueDefinition, _super);
+	    function WorksheetEnumFeatureValueDefinition(attributes) {
+	        _super.call(this, attributes);
+	    }
+	    Object.defineProperty(WorksheetEnumFeatureValueDefinition.prototype, "id", {
+	        get: function () {
+	            return this.get('id');
+	        },
+	        set: function (value) {
+	            this.set('id', value);
+	        },
+	        enumerable: true,
+	        configurable: true
+	    });
+	    Object.defineProperty(WorksheetEnumFeatureValueDefinition.prototype, "displayName", {
+	        get: function () {
+	            return this.get('displayName');
+	        },
+	        set: function (value) {
+	            this.set('displayName', value);
+	        },
+	        enumerable: true,
+	        configurable: true
+	    });
+	    Object.defineProperty(WorksheetEnumFeatureValueDefinition.prototype, "image", {
+	        get: function () {
+	            return this.get('image');
+	        },
+	        set: function (value) {
+	            this.set('image', value);
+	        },
+	        enumerable: true,
+	        configurable: true
+	    });
+	    WorksheetEnumFeatureValueDefinition.fromThryftJSON = function (json) {
+	        var out = new WorksheetEnumFeatureValueDefinition;
+	        for (var fieldName in json) {
+	            if (fieldName == "id") {
+	                out.attributes.id = json[fieldName];
+	            }
+	            else if (fieldName == "display_name") {
+	                out.attributes.displayName = json[fieldName];
+	            }
+	            else if (fieldName == "image") {
+	                out.attributes.image = worksheet_enum_feature_value_image_1.WorksheetEnumFeatureValueImage.fromThryftJSON(json[fieldName]);
+	            }
+	        }
+	        return out;
+	    };
+	    WorksheetEnumFeatureValueDefinition.prototype.toThryftJSON = function () {
+	        var json = {};
+	        json["id"] = this.id;
+	        if (this.has("displayName")) {
+	            json["display_name"] = this.displayName;
+	        }
+	        if (this.has("image")) {
+	            json["image"] = this.image.toThryftJSON();
+	        }
+	        return json;
+	    };
+	    return WorksheetEnumFeatureValueDefinition;
+	}(Backbone.Model));
+	exports.WorksheetEnumFeatureValueDefinition = WorksheetEnumFeatureValueDefinition;
+
+
+/***/ },
+/* 24 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+	var __extends = (this && this.__extends) || function (d, b) {
+	    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
+	    function __() { this.constructor = d; }
+	    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+	};
+	var Backbone = __webpack_require__(8);
+	var WorksheetEnumFeatureValueImage = (function (_super) {
+	    __extends(WorksheetEnumFeatureValueImage, _super);
+	    function WorksheetEnumFeatureValueImage(attributes) {
+	        _super.call(this, attributes);
+	    }
+	    Object.defineProperty(WorksheetEnumFeatureValueImage.prototype, "rights", {
+	        get: function () {
+	            return this.get('rights');
+	        },
+	        set: function (value) {
+	            this.set('rights', value);
+	        },
+	        enumerable: true,
+	        configurable: true
+	    });
+	    Object.defineProperty(WorksheetEnumFeatureValueImage.prototype, "thumbnailUrl", {
+	        get: function () {
+	            return this.get('thumbnailUrl');
+	        },
+	        set: function (value) {
+	            this.set('thumbnailUrl', value);
+	        },
+	        enumerable: true,
+	        configurable: true
+	    });
+	    Object.defineProperty(WorksheetEnumFeatureValueImage.prototype, "fullSizeUrl", {
+	        get: function () {
+	            return this.get('fullSizeUrl');
+	        },
+	        set: function (value) {
+	            this.set('fullSizeUrl', value);
+	        },
+	        enumerable: true,
+	        configurable: true
+	    });
+	    WorksheetEnumFeatureValueImage.fromThryftJSON = function (json) {
+	        var out = new WorksheetEnumFeatureValueImage;
+	        for (var fieldName in json) {
+	            if (fieldName == "rights") {
+	                out.attributes.rights = json[fieldName];
+	            }
+	            else if (fieldName == "thumbnail_url") {
+	                out.attributes.thumbnailUrl = new URL(json[fieldName]);
+	            }
+	            else if (fieldName == "full_size_url") {
+	                out.attributes.fullSizeUrl = new URL(json[fieldName]);
+	            }
+	        }
+	        return out;
+	    };
+	    WorksheetEnumFeatureValueImage.prototype.toThryftJSON = function () {
+	        var json = {};
+	        json["rights"] = this.rights;
+	        json["thumbnail_url"] = this.thumbnailUrl.toString();
+	        if (this.has("fullSizeUrl")) {
+	            json["full_size_url"] = this.fullSizeUrl.toString();
+	        }
+	        return json;
+	    };
+	    return WorksheetEnumFeatureValueImage;
+	}(Backbone.Model));
+	exports.WorksheetEnumFeatureValueImage = WorksheetEnumFeatureValueImage;
+
+
+/***/ },
+/* 25 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+	var __extends = (this && this.__extends) || function (d, b) {
+	    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
+	    function __() { this.constructor = d; }
+	    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+	};
+	var Backbone = __webpack_require__(8);
+	var WorksheetTextFeatureDefinition = (function (_super) {
+	    __extends(WorksheetTextFeatureDefinition, _super);
+	    function WorksheetTextFeatureDefinition(attributes) {
+	        _super.call(this, attributes);
+	    }
+	    WorksheetTextFeatureDefinition.fromThryftJSON = function (json) {
+	        return new WorksheetTextFeatureDefinition;
+	    };
+	    WorksheetTextFeatureDefinition.prototype.toThryftJSON = function () {
+	        return {};
+	    };
+	    return WorksheetTextFeatureDefinition;
+	}(Backbone.Model));
+	exports.WorksheetTextFeatureDefinition = WorksheetTextFeatureDefinition;
+
+
+/***/ },
+/* 26 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+	var __extends = (this && this.__extends) || function (d, b) {
+	    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
+	    function __() { this.constructor = d; }
+	    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+	};
+	var Backbone = __webpack_require__(8);
+	var worksheet_feature_set_state_1 = __webpack_require__(27);
+	var WorksheetState = (function (_super) {
+	    __extends(WorksheetState, _super);
+	    function WorksheetState(attributes) {
+	        _super.call(this, attributes);
+	    }
+	    Object.defineProperty(WorksheetState.prototype, "rootFeatureSets", {
+	        get: function () {
+	            return this.get('rootFeatureSets');
+	        },
+	        set: function (value) {
+	            this.set('rootFeatureSets', value);
+	        },
+	        enumerable: true,
+	        configurable: true
+	    });
+	    WorksheetState.fromThryftJSON = function (json) {
+	        var out = new WorksheetState;
+	        for (var fieldName in json) {
+	            if (fieldName == "root_feature_sets") {
+	                out.attributes.rootFeatureSets = function (json) { var map = {}; for (var key in json) {
+	                    map[key] = worksheet_feature_set_state_1.WorksheetFeatureSetState.fromThryftJSON(json[key]);
+	                } return map; }(json[fieldName]);
+	            }
+	        }
+	        return out;
+	    };
+	    WorksheetState.prototype.toThryftJSON = function () {
+	        var json = {};
+	        if (this.has("rootFeatureSets")) {
+	            json["root_feature_sets"] = function (value) { var outObject = {}; for (var key in value) {
+	                outObject[key] = value[key].toThryftJSON();
+	            } return outObject; }(this.rootFeatureSets);
+	        }
+	        return json;
+	    };
+	    return WorksheetState;
+	}(Backbone.Model));
+	exports.WorksheetState = WorksheetState;
+
+
+/***/ },
+/* 27 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+	var __extends = (this && this.__extends) || function (d, b) {
+	    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
+	    function __() { this.constructor = d; }
+	    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+	};
+	var Backbone = __webpack_require__(8);
+	var worksheet_feature_state_1 = __webpack_require__(28);
+	var WorksheetFeatureSetState = (function (_super) {
+	    __extends(WorksheetFeatureSetState, _super);
+	    function WorksheetFeatureSetState(attributes) {
+	        _super.call(this, attributes);
+	    }
+	    Object.defineProperty(WorksheetFeatureSetState.prototype, "childFeatureSets", {
+	        get: function () {
+	            return this.get('childFeatureSets');
+	        },
+	        set: function (value) {
+	            this.set('childFeatureSets', value);
+	        },
+	        enumerable: true,
+	        configurable: true
+	    });
+	    Object.defineProperty(WorksheetFeatureSetState.prototype, "features", {
+	        get: function () {
+	            return this.get('features');
+	        },
+	        set: function (value) {
+	            this.set('features', value);
+	        },
+	        enumerable: true,
+	        configurable: true
+	    });
+	    WorksheetFeatureSetState.fromThryftJSON = function (json) {
+	        var out = new WorksheetFeatureSetState;
+	        for (var fieldName in json) {
+	            if (fieldName == "child_feature_sets") {
+	                out.attributes.childFeatureSets = function (json) { var map = {}; for (var key in json) {
+	                    map[key] = WorksheetFeatureSetState.fromThryftJSON(json[key]);
+	                } return map; }(json[fieldName]);
+	            }
+	            else if (fieldName == "features") {
+	                out.attributes.features = function (json) { var map = {}; for (var key in json) {
+	                    map[key] = worksheet_feature_state_1.WorksheetFeatureState.fromThryftJSON(json[key]);
+	                } return map; }(json[fieldName]);
+	            }
+	        }
+	        return out;
+	    };
+	    WorksheetFeatureSetState.prototype.toThryftJSON = function () {
+	        var json = {};
+	        if (this.has("childFeatureSets")) {
+	            json["child_feature_sets"] = function (value) { var outObject = {}; for (var key in value) {
+	                outObject[key] = value[key].toThryftJSON();
+	            } return outObject; }(this.childFeatureSets);
+	        }
+	        if (this.has("features")) {
+	            json["features"] = function (value) { var outObject = {}; for (var key in value) {
+	                outObject[key] = value[key].toThryftJSON();
+	            } return outObject; }(this.features);
+	        }
+	        return json;
+	    };
+	    return WorksheetFeatureSetState;
+	}(Backbone.Model));
+	exports.WorksheetFeatureSetState = WorksheetFeatureSetState;
+
+
+/***/ },
+/* 28 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+	var __extends = (this && this.__extends) || function (d, b) {
+	    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
+	    function __() { this.constructor = d; }
+	    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+	};
+	var Backbone = __webpack_require__(8);
+	var worksheet_enum_feature_state_1 = __webpack_require__(29);
+	var worksheet_text_feature_state_1 = __webpack_require__(30);
+	var WorksheetFeatureState = (function (_super) {
+	    __extends(WorksheetFeatureState, _super);
+	    function WorksheetFeatureState(attributes) {
+	        _super.call(this, attributes);
+	    }
+	    Object.defineProperty(WorksheetFeatureState.prototype, "enum_", {
+	        get: function () {
+	            return this.get('enum_');
+	        },
+	        set: function (value) {
+	            this.set('enum_', value);
+	        },
+	        enumerable: true,
+	        configurable: true
+	    });
+	    Object.defineProperty(WorksheetFeatureState.prototype, "text", {
+	        get: function () {
+	            return this.get('text');
+	        },
+	        set: function (value) {
+	            this.set('text', value);
+	        },
+	        enumerable: true,
+	        configurable: true
+	    });
+	    WorksheetFeatureState.fromThryftJSON = function (json) {
+	        var out = new WorksheetFeatureState;
+	        for (var fieldName in json) {
+	            if (fieldName == "enum_") {
+	                out.attributes.enum_ = worksheet_enum_feature_state_1.WorksheetEnumFeatureState.fromThryftJSON(json[fieldName]);
+	            }
+	            else if (fieldName == "text") {
+	                out.attributes.text = worksheet_text_feature_state_1.WorksheetTextFeatureState.fromThryftJSON(json[fieldName]);
+	            }
+	        }
+	        return out;
+	    };
+	    WorksheetFeatureState.prototype.toThryftJSON = function () {
+	        var json = {};
+	        if (this.has("enum_")) {
+	            json["enum_"] = this.enum_.toThryftJSON();
+	        }
+	        if (this.has("text")) {
+	            json["text"] = this.text.toThryftJSON();
+	        }
+	        return json;
+	    };
+	    return WorksheetFeatureState;
+	}(Backbone.Model));
+	exports.WorksheetFeatureState = WorksheetFeatureState;
+
+
+/***/ },
+/* 29 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+	var __extends = (this && this.__extends) || function (d, b) {
+	    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
+	    function __() { this.constructor = d; }
+	    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+	};
+	var Backbone = __webpack_require__(8);
+	var WorksheetEnumFeatureState = (function (_super) {
+	    __extends(WorksheetEnumFeatureState, _super);
+	    function WorksheetEnumFeatureState(attributes) {
+	        _super.call(this, attributes);
+	    }
+	    Object.defineProperty(WorksheetEnumFeatureState.prototype, "selectedValues", {
+	        get: function () {
+	            return this.get('selectedValues');
+	        },
+	        set: function (value) {
+	            this.set('selectedValues', value);
+	        },
+	        enumerable: true,
+	        configurable: true
+	    });
+	    WorksheetEnumFeatureState.fromThryftJSON = function (json) {
+	        var out = new WorksheetEnumFeatureState;
+	        for (var fieldName in json) {
+	            if (fieldName == "selected_values") {
+	                out.attributes.selectedValues = function (json) { var sequence = []; for (var i = 0; i < json.length; i++) {
+	                    sequence.push(json[i]);
+	                } return sequence; }(json[fieldName]);
+	            }
+	        }
+	        return out;
+	    };
+	    WorksheetEnumFeatureState.prototype.toThryftJSON = function () {
+	        var json = {};
+	        json["selected_values"] = function (__inArray) { var __outArray = []; for (var __i = 0; __i < __inArray.length; __i++) {
+	            __outArray.push(__inArray[__i]);
+	        } return __outArray; }(this.selectedValues);
+	        return json;
+	    };
+	    return WorksheetEnumFeatureState;
+	}(Backbone.Model));
+	exports.WorksheetEnumFeatureState = WorksheetEnumFeatureState;
+
+
+/***/ },
+/* 30 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+	var __extends = (this && this.__extends) || function (d, b) {
+	    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
+	    function __() { this.constructor = d; }
+	    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+	};
+	var Backbone = __webpack_require__(8);
+	var WorksheetTextFeatureState = (function (_super) {
+	    __extends(WorksheetTextFeatureState, _super);
+	    function WorksheetTextFeatureState(attributes) {
+	        _super.call(this, attributes);
+	    }
+	    Object.defineProperty(WorksheetTextFeatureState.prototype, "text", {
+	        get: function () {
+	            return this.get('text');
+	        },
+	        set: function (value) {
+	            this.set('text', value);
+	        },
+	        enumerable: true,
+	        configurable: true
+	    });
+	    WorksheetTextFeatureState.fromThryftJSON = function (json) {
+	        var out = new WorksheetTextFeatureState;
+	        for (var fieldName in json) {
+	            if (fieldName == "text") {
+	                out.attributes.text = json[fieldName];
+	            }
+	        }
+	        return out;
+	    };
+	    WorksheetTextFeatureState.prototype.toThryftJSON = function () {
+	        var json = {};
+	        json["text"] = this.text;
+	        return json;
+	    };
+	    return WorksheetTextFeatureState;
+	}(Backbone.Model));
+	exports.WorksheetTextFeatureState = WorksheetTextFeatureState;
+
+
+/***/ },
+/* 31 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -13725,7 +14677,7 @@
 
 
 /***/ },
-/* 19 */
+/* 32 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -13735,9 +14687,9 @@
 	    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 	};
 	var Backbone = __webpack_require__(8);
-	var WorksheetFeatureCollection = __webpack_require__(20);
-	var WorksheetFeatureModel = __webpack_require__(21);
-	var WorksheetFeatureSetCollection = __webpack_require__(18);
+	var WorksheetFeatureCollection = __webpack_require__(33);
+	var WorksheetFeatureModel = __webpack_require__(34);
+	var WorksheetFeatureSetCollection = __webpack_require__(31);
 	var WorksheetFeatureSetModel = (function (_super) {
 	    __extends(WorksheetFeatureSetModel, _super);
 	    function WorksheetFeatureSetModel(definition, state) {
@@ -13748,13 +14700,13 @@
 	        if (definition.childFeatureSets) {
 	            for (var _i = 0, _a = definition.childFeatureSets.models; _i < _a.length; _i++) {
 	                var childFeatureSetDefinition = _a[_i];
-	                this._childFeatureSets.add(new WorksheetFeatureSetModel(childFeatureSetDefinition, state.childFeatureSets ? state.childFeatureSets[childFeatureSetDefinition.id] : undefined));
+	                this._childFeatureSets.add(new WorksheetFeatureSetModel(childFeatureSetDefinition, state && state.childFeatureSets ? state.childFeatureSets[childFeatureSetDefinition.id] : undefined));
 	            }
 	        }
 	        if (definition.features) {
 	            for (var _b = 0, _c = definition.features.models; _b < _c.length; _b++) {
 	                var featureDefinition = _c[_b];
-	                this._features.add(WorksheetFeatureModel.fromDefinition(featureDefinition, state.features ? state.features[featureDefinition.id] : undefined));
+	                this._features.add(WorksheetFeatureModel.fromDefinition(featureDefinition, state && state.features ? state.features[featureDefinition.id] : undefined));
 	            }
 	        }
 	    }
@@ -13785,7 +14737,7 @@
 
 
 /***/ },
-/* 20 */
+/* 33 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -13823,7 +14775,7 @@
 
 
 /***/ },
-/* 21 */
+/* 34 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -13833,8 +14785,8 @@
 	    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 	};
 	var Backbone = __webpack_require__(8);
-	var WorksheetEnumFeatureModel = __webpack_require__(22);
-	var WorksheetTextFeatureModel = __webpack_require__(23);
+	var WorksheetEnumFeatureModel = __webpack_require__(35);
+	var WorksheetTextFeatureModel = __webpack_require__(38);
 	var WorksheetFeatureModel = (function (_super) {
 	    __extends(WorksheetFeatureModel, _super);
 	    function WorksheetFeatureModel(definition, state) {
@@ -13876,7 +14828,7 @@
 
 
 /***/ },
-/* 22 */
+/* 35 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -13885,19 +14837,33 @@
 	    function __() { this.constructor = d; }
 	    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 	};
-	var WorksheetFeatureModel = __webpack_require__(21);
+	var WorksheetEnumFeatureValueCollection = __webpack_require__(36);
+	var WorksheetEnumFeatureValueModel = __webpack_require__(37);
+	var WorksheetFeatureModel = __webpack_require__(34);
 	var WorksheetEnumFeatureModel = (function (_super) {
 	    __extends(WorksheetEnumFeatureModel, _super);
 	    function WorksheetEnumFeatureModel(definition, state) {
 	        _super.call(this, definition, state);
+	        this._values = new WorksheetEnumFeatureValueCollection([]);
+	        for (var _i = 0, _a = definition.enum_.values_.models; _i < _a.length; _i++) {
+	            var valueDefinition = _a[_i];
+	            this._values.add(new WorksheetEnumFeatureValueModel(valueDefinition, state && state.enum_ ? state.enum_.selectedValues.indexOf(valueDefinition.id) != -1 : false));
+	        }
 	    }
+	    Object.defineProperty(WorksheetEnumFeatureModel.prototype, "values_", {
+	        get: function () {
+	            return this._values;
+	        },
+	        enumerable: true,
+	        configurable: true
+	    });
 	    return WorksheetEnumFeatureModel;
 	}(WorksheetFeatureModel));
 	module.exports = WorksheetEnumFeatureModel;
 
 
 /***/ },
-/* 23 */
+/* 36 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -13906,7 +14872,58 @@
 	    function __() { this.constructor = d; }
 	    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 	};
-	var WorksheetFeatureModel = __webpack_require__(21);
+	var Backbone = __webpack_require__(8);
+	var WorksheetEnumFeatureValueCollection = (function (_super) {
+	    __extends(WorksheetEnumFeatureValueCollection, _super);
+	    function WorksheetEnumFeatureValueCollection(models) {
+	        _super.call(this, models);
+	    }
+	    return WorksheetEnumFeatureValueCollection;
+	}(Backbone.Collection));
+	module.exports = WorksheetEnumFeatureValueCollection;
+
+
+/***/ },
+/* 37 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+	var __extends = (this && this.__extends) || function (d, b) {
+	    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
+	    function __() { this.constructor = d; }
+	    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+	};
+	var Backbone = __webpack_require__(8);
+	var WorksheetEnumFeatureValueModel = (function (_super) {
+	    __extends(WorksheetEnumFeatureValueModel, _super);
+	    function WorksheetEnumFeatureValueModel(definition, selected) {
+	        _super.call(this, { id: definition.id });
+	        this._definition = definition;
+	        this.set("selected", true);
+	    }
+	    Object.defineProperty(WorksheetEnumFeatureValueModel.prototype, "definition", {
+	        get: function () {
+	            return this._definition;
+	        },
+	        enumerable: true,
+	        configurable: true
+	    });
+	    return WorksheetEnumFeatureValueModel;
+	}(Backbone.Model));
+	module.exports = WorksheetEnumFeatureValueModel;
+
+
+/***/ },
+/* 38 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+	var __extends = (this && this.__extends) || function (d, b) {
+	    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
+	    function __() { this.constructor = d; }
+	    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+	};
+	var WorksheetFeatureModel = __webpack_require__(34);
 	var WorksheetTextFeatureModel = (function (_super) {
 	    __extends(WorksheetTextFeatureModel, _super);
 	    function WorksheetTextFeatureModel(definition, state) {
@@ -13918,7 +14935,7 @@
 
 
 /***/ },
-/* 24 */
+/* 39 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -13927,42 +14944,37 @@
 	    function __() { this.constructor = d; }
 	    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 	};
-	var Marionette = __webpack_require__(25);
-	var WorksheetFeatureInputView = __webpack_require__(28);
+	var Marionette = __webpack_require__(40);
+	//import WorksheetFeatureInputView = require("./worksheet_feature_input_view");
 	var WorksheetInputView = (function (_super) {
 	    __extends(WorksheetInputView, _super);
 	    function WorksheetInputView(options) {
 	        _super.call(this, options);
 	    }
 	    WorksheetInputView.prototype.render = function () {
-	        if (this.model.featureSets.length == 0) {
-	            return this;
-	        }
-	        console.debug("re-rendering input");
-	        var selectedFeatureModel = undefined;
-	        for (var _i = 0, _a = this.model.featureSets.models; _i < _a.length; _i++) {
-	            var featureSetModel = _a[_i];
-	            for (var _b = 0, _c = featureSetModel.features.models; _b < _c.length; _b++) {
-	                var featureModel = _c[_b];
-	                if (!featureModel.selected) {
-	                    continue;
-	                }
-	                selectedFeatureModel = featureModel;
-	                break;
-	            }
-	            if (selectedFeatureModel) {
-	                break;
-	            }
-	        }
-	        if (selectedFeatureModel) {
-	            console.debug("feature " + selectedFeatureModel.id + " selected");
-	        }
-	        else {
-	            console.debug("no feature selected, selecting first");
-	            selectedFeatureModel = this.model.featureSets.at(0).features.at(1);
-	            selectedFeatureModel.selected = true;
-	        }
-	        this.$el.append(new WorksheetFeatureInputView({ model: selectedFeatureModel }).render().el);
+	        // TODO: keep selected feature model when change:selected is fired
+	        // If it's not set then use the first feature of the first feature set
+	        //var selectedFeatureModel: WorksheetFeatureModel | undefined = undefined;
+	        //for (let featureSetModel of this.model.rootFeatureSets.models) {
+	        //    for (let featureModel of featureSetModel.features.models) {
+	        //        if (!featureModel.selected) {
+	        //            continue;
+	        //        }
+	        //        selectedFeatureModel = featureModel;
+	        //        break;
+	        //    }
+	        //    if (selectedFeatureModel) {
+	        //        break;
+	        //    }
+	        //}
+	        //if (selectedFeatureModel) {
+	        //    console.debug("feature " + selectedFeatureModel.id + " selected");
+	        //} else {
+	        //    console.debug("no feature selected, selecting first");
+	        //    selectedFeatureModel = this.model.featureSets.at(0).features.at(1);
+	        //    selectedFeatureModel.selected = true;
+	        //}
+	        //this.$el.append(new WorksheetFeatureInputView({ model: selectedFeatureModel }).render().el);
 	        return this;
 	    };
 	    return WorksheetInputView;
@@ -13971,7 +14983,7 @@
 
 
 /***/ },
-/* 25 */
+/* 40 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;// MarionetteJS (Backbone.Marionette)
@@ -13986,7 +14998,7 @@
 	(function(root, factory) {
 	
 	  if (true) {
-	    !(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(8), __webpack_require__(9), __webpack_require__(26), __webpack_require__(27)], __WEBPACK_AMD_DEFINE_RESULT__ = function(Backbone, _) {
+	    !(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(8), __webpack_require__(9), __webpack_require__(41), __webpack_require__(42)], __WEBPACK_AMD_DEFINE_RESULT__ = function(Backbone, _) {
 	      return (root.Marionette = root.Mn = factory(root, Backbone, _));
 	    }.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
 	  } else if (typeof exports !== 'undefined') {
@@ -17489,7 +18501,7 @@
 
 
 /***/ },
-/* 26 */
+/* 41 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;// Backbone.Wreqr (Backbone.Marionette)
@@ -17930,7 +18942,7 @@
 
 
 /***/ },
-/* 27 */
+/* 42 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;// Backbone.BabySitter
@@ -18126,7 +19138,7 @@
 
 
 /***/ },
-/* 28 */
+/* 43 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -18136,60 +19148,85 @@
 	    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 	};
 	var Backbone = __webpack_require__(8);
-	var WorksheetFeatureValueInputView = __webpack_require__(29);
-	var WorksheetFeatureInputView = (function (_super) {
-	    __extends(WorksheetFeatureInputView, _super);
-	    function WorksheetFeatureInputView(options) {
+	var WorksheetFeatureSetNavigationView = __webpack_require__(44);
+	var WorksheetNavigationView = (function (_super) {
+	    __extends(WorksheetNavigationView, _super);
+	    function WorksheetNavigationView(options) {
 	        _super.call(this, options);
-	        this.template = __webpack_require__(32);
+	        this.template = __webpack_require__(49);
 	    }
-	    WorksheetFeatureInputView.prototype.render = function () {
+	    WorksheetNavigationView.prototype.render = function () {
+	        this.$el.html(this.template);
+	        var featureSetsEl = this.$el.find("#feature-sets");
+	        for (var _i = 0, _a = this.model.rootFeatureSets.models; _i < _a.length; _i++) {
+	            var featureSetModel = _a[_i];
+	            featureSetsEl.append(new WorksheetFeatureSetNavigationView({ model: featureSetModel }).render().el);
+	        }
+	        //const collapseEl = this.$el.find("#worksheet-navigation");
+	        //collapseEl
+	        //    .on("shown.bs.collapse", () => {
+	        //        alert("Show");
+	        //        $(this).parent().find(".glyphicon-plus").removeClass("glyphicon-plus").addClass("glyphicon-minus");
+	        //        return true;
+	        //    })
+	        //    .on("hidden.bs.collapse", () => {
+	        //        alert("Hide");
+	        //        $(this).parent().find(".glyphicon-minus").removeClass("glyphicon-minus").addClass("glyphicon-plus");
+	        //        return true;
+	        //    });
+	        return this;
+	    };
+	    return WorksheetNavigationView;
+	}(Backbone.View));
+	module.exports = WorksheetNavigationView;
+
+
+/***/ },
+/* 44 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+	var __extends = (this && this.__extends) || function (d, b) {
+	    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
+	    function __() { this.constructor = d; }
+	    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+	};
+	var Backbone = __webpack_require__(8);
+	var Mustache = __webpack_require__(45);
+	var WorksheetFeatureNavigationView = __webpack_require__(46);
+	var WorksheetFeatureSetNavigationView = (function (_super) {
+	    __extends(WorksheetFeatureSetNavigationView, _super);
+	    function WorksheetFeatureSetNavigationView(options) {
+	        options.tagName = "li";
+	        _super.call(this, options);
+	        this.template = __webpack_require__(48);
+	    }
+	    WorksheetFeatureSetNavigationView.prototype.render = function () {
+	        this.$el.attr("role", "presentation");
+	        this.$el.addClass("list-group-item");
 	        this.$el.html(Mustache.render(this.template, this.model.definition.toJSON()));
-	        if (this.model.definition.featureValues) {
-	            var featureValuesEl = this.$el.find("#feature-values");
-	            for (var _i = 0, _a = this.model.featureValues.models; _i < _a.length; _i++) {
-	                var featureValueModel = _a[_i];
-	                featureValuesEl.append(new WorksheetFeatureValueInputView({ model: featureValueModel }).render().el);
+	        var childrenEl = this.$el.find("#children");
+	        if (this.model.childFeatureSets) {
+	            for (var _i = 0, _a = this.model.childFeatureSets.models; _i < _a.length; _i++) {
+	                var childFeatureSetModel = _a[_i];
+	                childrenEl.append(new WorksheetFeatureSetNavigationView({ model: childFeatureSetModel }).render().el);
+	            }
+	        }
+	        if (this.model.features) {
+	            for (var _b = 0, _c = this.model.features.models; _b < _c.length; _b++) {
+	                var featureModel = _c[_b];
+	                childrenEl.append(new WorksheetFeatureNavigationView({ model: featureModel }).render().el);
 	            }
 	        }
 	        return this;
 	    };
-	    return WorksheetFeatureInputView;
+	    return WorksheetFeatureSetNavigationView;
 	}(Backbone.View));
-	module.exports = WorksheetFeatureInputView;
+	module.exports = WorksheetFeatureSetNavigationView;
 
 
 /***/ },
-/* 29 */
-/***/ function(module, exports, __webpack_require__) {
-
-	"use strict";
-	var __extends = (this && this.__extends) || function (d, b) {
-	    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
-	    function __() { this.constructor = d; }
-	    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-	};
-	var Backbone = __webpack_require__(8);
-	var Mustache = __webpack_require__(30);
-	var WorksheetFeatureValueInputView = (function (_super) {
-	    __extends(WorksheetFeatureValueInputView, _super);
-	    function WorksheetFeatureValueInputView(options) {
-	        _super.call(this, options);
-	        this.template = __webpack_require__(31);
-	    }
-	    WorksheetFeatureValueInputView.prototype.render = function () {
-	        var scope = this.model.definition.toJSON();
-	        scope['image'] = scope['image'].toJSON();
-	        this.$el.html(Mustache.render(this.template, scope));
-	        return this;
-	    };
-	    return WorksheetFeatureValueInputView;
-	}(Backbone.View));
-	module.exports = WorksheetFeatureValueInputView;
-
-
-/***/ },
-/* 30 */
+/* 45 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
@@ -18824,19 +19861,7 @@
 
 
 /***/ },
-/* 31 */
-/***/ function(module, exports) {
-
-	module.exports = "<div class=\"col-lg-3 col-md-4 col-xs-6 feature-value-col\">\n    <a class=\"feature-value-link\">\r\n        {{#image}}\r\n        <img class=\"img-responsive\" src=\"{{image.thumbnailUrl}}\" alt=\"{{#displayName}}{{displayName}}{{/displayName}}{{^displayName}}{{id}}{{/displayName}}\">\r\n        {{/image}}\r\n        {{^image}}\r\n        {{/image}}\r\n        {{#displayName}}{{displayName}}{{/displayName}}{{^displayName}}{{id}}{{/displayName}}\r\n    </a>\r\n</div>\n"
-
-/***/ },
-/* 32 */
-/***/ function(module, exports) {
-
-	module.exports = "<div class=\"row\">\n    <div class=\"col-lg12\">\n        <h3 class=\"page-header\" style=\"text-align: center\">{{#displayName}}{{displayName}}{{/displayName}}{{^displayName}}{{id}}{{/displayName}}</h3>\n    </div>\n    <div id=\"feature-values\"></div>\n</div>\n"
-
-/***/ },
-/* 33 */
+/* 46 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -18846,94 +19871,14 @@
 	    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 	};
 	var Backbone = __webpack_require__(8);
-	var WorksheetFeatureSetNavigationView = __webpack_require__(34);
-	var WorksheetNavigationView = (function (_super) {
-	    __extends(WorksheetNavigationView, _super);
-	    function WorksheetNavigationView(options) {
-	        _super.call(this, options);
-	        this.template = __webpack_require__(38);
-	    }
-	    WorksheetNavigationView.prototype.render = function () {
-	        this.$el.html(this.template);
-	        var featureSetsEl = this.$el.find("#feature-sets");
-	        for (var _i = 0, _a = this.model.featureSets.models; _i < _a.length; _i++) {
-	            var featureSetModel = _a[_i];
-	            featureSetsEl.append(new WorksheetFeatureSetNavigationView({ model: featureSetModel }).render().el);
-	        }
-	        //const collapseEl = this.$el.find("#worksheet-navigation");
-	        //collapseEl
-	        //    .on("shown.bs.collapse", () => {
-	        //        alert("Show");
-	        //        $(this).parent().find(".glyphicon-plus").removeClass("glyphicon-plus").addClass("glyphicon-minus");
-	        //        return true;
-	        //    })
-	        //    .on("hidden.bs.collapse", () => {
-	        //        alert("Hide");
-	        //        $(this).parent().find(".glyphicon-minus").removeClass("glyphicon-minus").addClass("glyphicon-plus");
-	        //        return true;
-	        //    });
-	        return this;
-	    };
-	    return WorksheetNavigationView;
-	}(Backbone.View));
-	module.exports = WorksheetNavigationView;
-
-
-/***/ },
-/* 34 */
-/***/ function(module, exports, __webpack_require__) {
-
-	"use strict";
-	var __extends = (this && this.__extends) || function (d, b) {
-	    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
-	    function __() { this.constructor = d; }
-	    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-	};
-	var Backbone = __webpack_require__(8);
-	var Mustache = __webpack_require__(30);
-	var WorksheetFeatureNavigationView = __webpack_require__(35);
-	var WorksheetFeatureSetNavigationView = (function (_super) {
-	    __extends(WorksheetFeatureSetNavigationView, _super);
-	    function WorksheetFeatureSetNavigationView(options) {
-	        options.tagName = "li";
-	        _super.call(this, options);
-	        this.template = __webpack_require__(37);
-	    }
-	    WorksheetFeatureSetNavigationView.prototype.render = function () {
-	        this.$el.attr("role", "presentation");
-	        this.$el.addClass("list-group-item");
-	        this.$el.html(Mustache.render(this.template, this.model.definition.toJSON()));
-	        var childrenEl = this.$el.find("#children");
-	        for (var _i = 0, _a = this.model.features.models; _i < _a.length; _i++) {
-	            var featureModel = _a[_i];
-	            featuresEl.append(new WorksheetFeatureNavigationView({ model: featureModel }).render().el);
-	        }
-	        return this;
-	    };
-	    return WorksheetFeatureSetNavigationView;
-	}(Backbone.View));
-	module.exports = WorksheetFeatureSetNavigationView;
-
-
-/***/ },
-/* 35 */
-/***/ function(module, exports, __webpack_require__) {
-
-	"use strict";
-	var __extends = (this && this.__extends) || function (d, b) {
-	    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
-	    function __() { this.constructor = d; }
-	    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-	};
-	var Backbone = __webpack_require__(8);
-	var Mustache = __webpack_require__(30);
+	var Mustache = __webpack_require__(45);
 	var _ = __webpack_require__(9);
 	var WorksheetFeatureNavigationView = (function (_super) {
 	    __extends(WorksheetFeatureNavigationView, _super);
 	    function WorksheetFeatureNavigationView(options) {
 	        options.tagName = "li";
 	        _super.call(this, options);
-	        this.template = __webpack_require__(36);
+	        this.template = __webpack_require__(47);
 	        _.bindAll(this, "onClick");
 	    }
 	    WorksheetFeatureNavigationView.prototype.onClick = function () {
@@ -18952,32 +19897,32 @@
 
 
 /***/ },
-/* 36 */
+/* 47 */
 /***/ function(module, exports) {
 
-	module.exports = "<a class=\"btn btn-primary\" href=\"\">{{#displayName}}{{displayName}}{{/displayName}}{{^displayName}}{{id}}{{/displayName}}</a>\n"
+	module.exports = "<a class=\"btn btn-primary\" href=\"\"><%- displayName ? displayName : id -%></a>\n"
 
 /***/ },
-/* 37 */
+/* 48 */
 /***/ function(module, exports) {
 
-	module.exports = "<h3>{{#displayName}}{{displayName}}{{/displayName}}{{^displayName}}{{id}}{{/displayName}}</h3>\n<ul class=\"list-group\" id=\"children\"></ul>\n"
+	module.exports = "<h3><%- displayName ? displayName : id -%></h3>\n<ul class=\"list-group\" id=\"children\"></ul>\n"
 
 /***/ },
-/* 38 */
+/* 49 */
 /***/ function(module, exports) {
 
 	module.exports = "<div aria-multiselectable=\"true\" class=\"panel-group\" id=\"worksheet-navigation\" role=\"tablist\">\n    <div class=\"panel panel-default\">\n        <div class=\"panel-heading\" role=\"tab\" id=\"headingOne\">\n            <h4 class=\"panel-title\">\n                <a aria-expanded=\"true\" aria-controls=\"collapseOne\" class=\"btn btn-secondary\" data-toggle=\"collapse\" data-parent=\"#accordion\" href=\"#collapseOne\" role=\"button\">\n                Features\n                </a>\n            </h4>\n        </div>\n        <div id=\"collapseOne\" class=\"panel-collapse collapse in\" role=\"tabpanel\" aria-labelledby=\"headingOne\">\n            <ul class=\"list-group\" id=\"root-feature-sets\"></ul>\n        </div>\n    </div>\n</div>\n"
 
 /***/ },
-/* 39 */
+/* 50 */
 /***/ function(module, exports) {
 
 	// removed by extract-text-webpack-plugin
 
 /***/ },
-/* 40 */,
-/* 41 */
+/* 51 */,
+/* 52 */
 /***/ function(module, exports) {
 
 	module.exports = "<div class=\"container-fluid\" id=\"worksheet\" style=\"height: 100%\">\n    <div class=\"row\" style=\"height: 100%\">\n        <div class=\"col-md-4\" id=\"left-column\" style=\"height: 100%\"></div>\n        <div class=\"col-md-8\" id=\"right-column\"></div>\n    </div>\n</div>\n"

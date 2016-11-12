@@ -1,10 +1,9 @@
 ﻿<div class="col-lg-3 col-md-4 col-xs-6 feature-value-col">
     <a class="feature-value-link">
-        {{#image}}
-        <img class="img-responsive" src="{{image.thumbnailUrl}}" alt="{{#displayName}}{{displayName}}{{/displayName}}{{^displayName}}{{id}}{{/displayName}}">
-        {{/image}}
-        {{^image}}
-        {{/image}}
-        {{#displayName}}{{displayName}}{{/displayName}}{{^displayName}}{{id}}{{/displayName}}
+        <% if (image) { %>
+        <img class="img-responsive" src="<%- image.thumbnailUrl -%>" alt="<%- displayName ? displayName : id -%>">
+        <% } else { %>
+        <%- displayName ? displayName : id -%>
+        <% } %>
     </a>
 </div>
