@@ -11,12 +11,12 @@ class WorksheetFeatureSetModel extends Backbone.Model {
         this._definition = definition;
         if (definition.childFeatureSets) {
             for (let childFeatureSetDefinition of definition.childFeatureSets.models) {
-                this._childFeatureSets.add(new WorksheetFeatureSetModel(childFeatureSetDefinition, state.childFeatureSets ? state.childFeatureSets[childFeatureSetDefinition.id] : undefined));
+                this._childFeatureSets.add(new WorksheetFeatureSetModel(childFeatureSetDefinition, state && state.childFeatureSets ? state.childFeatureSets[childFeatureSetDefinition.id] : undefined));
             }
         }
         if (definition.features) {
             for (let featureDefinition of definition.features.models) {
-                this._features.add(WorksheetFeatureModel.fromDefinition(featureDefinition, state.features ? state.features[featureDefinition.id] : undefined));
+                this._features.add(WorksheetFeatureModel.fromDefinition(featureDefinition, state && state.features ? state.features[featureDefinition.id] : undefined));
             }
         }
     }

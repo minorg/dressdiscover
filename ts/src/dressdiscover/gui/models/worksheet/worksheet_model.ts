@@ -2,13 +2,8 @@
 import { WorksheetState } from "../../../api/models/worksheet/worksheet_state";
 import Services = require("../../services/services");
 import Backbone = require("backbone");
-import WorksheetFeatureCollection = require("./worksheet_feature_collection");
 import WorksheetFeatureSetCollection = require("./worksheet_feature_set_collection");
-import WorksheetFeatureModel = require("./worksheet_feature_model");
 import WorksheetFeatureSetModel = require("./worksheet_feature_set_model");
-import WorksheetFeatureValueCollection = require("./worksheet_feature_value_collection");
-import WorksheetFeatureValueModel = require("./worksheet_feature_value_model");
-
 
 class WorksheetModel extends Backbone.Model {
     fetchFromService(): void {

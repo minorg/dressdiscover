@@ -4,5 +4,5 @@ include "dressdiscover/api/models/worksheet/worksheet_enum_feature_value_definit
 
 struct WorksheetEnumFeatureDefinition {
     // @validation {"minLength": 1}
-    optional list<worksheet_enum_feature_value_definition.WorksheetEnumFeatureValueDefinition> values_;
+    list<worksheet_enum_feature_value_definition.WorksheetEnumFeatureValueDefinition> values_;
 }

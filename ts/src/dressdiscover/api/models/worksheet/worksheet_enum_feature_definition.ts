@@ -2,7 +2,7 @@ import * as Backbone from "backbone";
 import { WorksheetEnumFeatureValueDefinition } from "./worksheet_enum_feature_value_definition";
 
 export class WorksheetEnumFeatureDefinition extends Backbone.Model {
-    constructor(attributes?: {values_?: Backbone.Collection<WorksheetEnumFeatureValueDefinition>}) {
+    constructor(attributes?: {values_: Backbone.Collection<WorksheetEnumFeatureValueDefinition>}) {
         super(attributes);
     }
 
@@ -26,9 +26,7 @@ export class WorksheetEnumFeatureDefinition extends Backbone.Model {
 
     toThryftJSON(): any {
         var json: {[index: string]: any} = {};
-        if (this.has("values_")) {
-            json["values_"] = function (__inArray: WorksheetEnumFeatureValueDefinition[]): any[] { var __outArray: any[] = []; for (var __i = 0; __i < __inArray.length; __i++) { __outArray.push(__inArray[__i].toThryftJSON()); } return __outArray; }(this.values_.models);
-        }
+        json["values_"] = function (__inArray: WorksheetEnumFeatureValueDefinition[]): any[] { var __outArray: any[] = []; for (var __i = 0; __i < __inArray.length; __i++) { __outArray.push(__inArray[__i].toThryftJSON()); } return __outArray; }(this.values_.models);
         return json;
     }
 }
