@@ -1,38 +1,20 @@
-﻿import Backbone = require("backbone");
-
+﻿import WorksheetContentView = require("./worksheet_content_view");
 import WorksheetModel = require("../../models/worksheet/worksheet_model");
-import WorksheetInputView = require("./input/worksheet_input_view");
-import WorksheetNavigationView = require("./navigation/worksheet_navigation_view");
-import "./worksheet_view.less";
+import TopLevelView = require("../top_level_view");
 
-declare function require(moduleName: string): any;
-
-class WorksheetView extends Backbone.View<WorksheetModel> {
+class WorksheetView extends TopLevelView<WorksheetModel> {
     template: string;
 
     constructor(options?: any) {
+        options["el"] = "#content";
+        options["model"] = new WorksheetModel(); 
         super(options);
-        this.model = new WorksheetModel();
-        this.setElement($('#content'), true);
-        this.template = require("raw!./worksheet_view.html");
-
         this.model.fetchFromService();
     }
 
-    render() {
-        console.debug("re-rendering worksheet view");
-
-        this.$el.html(this.template);
-
-        const leftColumnEl: JQuery = $("#left-column");
-        leftColumnEl.empty();
-        leftColumnEl.append(new WorksheetNavigationView({ model: this.model }).render().el);
-
-        const rightColumnEl: JQuery = $("#right-column");
-        rightColumnEl.empty();
-        rightColumnEl.append(new WorksheetInputView({ model: this.model }).render().el);
-
-        return this;
+    onShow() {
+        super.onShow();
+        this.showChildView("content", new WorksheetContentView({model: this.model));
     }
 }
 
