@@ -1,4 +1,4 @@
-﻿import Backbone = require("backbone");
+﻿import _ = require("underscore");
 import Marionette = require("backbone.marionette");
 import WorksheetModel = require("../../models/worksheet/worksheet_model");
 import WorksheetInputView = require("./input/worksheet_input_view");
@@ -9,11 +9,14 @@ declare function require(moduleName: string): any;
 
 class WorksheetContentView extends Marionette.LayoutView<WorksheetModel> {
     constructor(options?: any) {
+        if (!options) {
+            options = {};
+        }
         options["regions"] = {
             leftColumn: "#left-column",
             rightColumn: "#right-column"
         }
-        options["template"] = require("raw!./worksheet_content_view.html");
+        options["template"] = _.template(require("raw!./worksheet_content_view.html"));
         super(options);
     }
 

@@ -1,10 +1,11 @@
-﻿import Backbone = require("backbone");
+﻿import _ = require("underscore");
+import Backbone = require("backbone");
 import Marionette = require("backbone.marionette");
 
 declare function require(moduleName: string): any;
 
 class NavbarView extends Marionette.ItemView<Backbone.Model> {
-    template: string = require("raw!./navbar_view.html");
+    template: any = _.template(require("raw!./navbar_view.html"));
 }
 
 export = NavbarView;

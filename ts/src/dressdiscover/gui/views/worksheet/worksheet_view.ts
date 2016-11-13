@@ -3,18 +3,18 @@ import WorksheetModel = require("../../models/worksheet/worksheet_model");
 import TopLevelView = require("../top_level_view");
 
 class WorksheetView extends TopLevelView<WorksheetModel> {
-    template: string;
-
     constructor(options?: any) {
-        options["el"] = "#content";
+        if (!options) {
+            options = {};
+        }
         options["model"] = new WorksheetModel(); 
         super(options);
         this.model.fetchFromService();
     }
 
-    onShow() {
-        super.onShow();
-        this.showChildView("content", new WorksheetContentView({model: this.model));
+    onRender() {
+        super.onRender();
+        this.showChildView("content", new WorksheetContentView({ model: this.model }));
     }
 }
 
