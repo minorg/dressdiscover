@@ -17584,18 +17584,20 @@
 	    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 	};
 	var WorksheetContentView = __webpack_require__(10);
-	var WorksheetModel = __webpack_require__(24);
-	var TopLevelView = __webpack_require__(50);
+	var WorksheetModel = __webpack_require__(23);
+	var TopLevelView = __webpack_require__(49);
 	var WorksheetView = (function (_super) {
 	    __extends(WorksheetView, _super);
 	    function WorksheetView(options) {
-	        options["el"] = "#content";
+	        if (!options) {
+	            options = {};
+	        }
 	        options["model"] = new WorksheetModel();
 	        _super.call(this, options);
 	        this.model.fetchFromService();
 	    }
-	    WorksheetView.prototype.onShow = function () {
-	        _super.prototype.onShow.call(this);
+	    WorksheetView.prototype.onRender = function () {
+	        _super.prototype.onRender.call(this);
 	        this.showChildView("content", new WorksheetContentView({ model: this.model }));
 	    };
 	    return WorksheetView;
@@ -17613,22 +17615,26 @@
 	    function __() { this.constructor = d; }
 	    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 	};
+	var _ = __webpack_require__(4);
 	var Marionette = __webpack_require__(5);
 	var WorksheetInputView = __webpack_require__(11);
 	var WorksheetNavigationView = __webpack_require__(12);
-	__webpack_require__(19);
+	__webpack_require__(18);
 	var WorksheetContentView = (function (_super) {
 	    __extends(WorksheetContentView, _super);
 	    function WorksheetContentView(options) {
+	        if (!options) {
+	            options = {};
+	        }
 	        options["regions"] = {
 	            leftColumn: "#left-column",
 	            rightColumn: "#right-column"
 	        };
-	        options["template"] = __webpack_require__(23);
+	        options["template"] = _.template(__webpack_require__(22));
 	        _super.call(this, options);
 	    }
-	    WorksheetContentView.prototype.onShow = function () {
-	        this.showChildView("leftColumn", new WorksheetNavigationView({ model: this.model }));
+	    WorksheetContentView.prototype.onBeforeShow = function () {
+	        this.showChildView("leftColumn", new WorksheetNavigationView({ collection: this.model.rootFeatureSets }));
 	        this.showChildView("rightColumn", new WorksheetInputView({ model: this.model }));
 	    };
 	    return WorksheetContentView;
@@ -17694,37 +17700,19 @@
 	    function __() { this.constructor = d; }
 	    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 	};
-	var Backbone = __webpack_require__(3);
+	//import Backbone = require("backbone");
+	var Marionette = __webpack_require__(5);
 	var WorksheetFeatureSetNavigationView = __webpack_require__(13);
+	var _ = __webpack_require__(4);
 	var WorksheetNavigationView = (function (_super) {
 	    __extends(WorksheetNavigationView, _super);
 	    function WorksheetNavigationView(options) {
+	        options.childView = WorksheetFeatureSetNavigationView;
+	        options.template = _.template(__webpack_require__(17));
 	        _super.call(this, options);
-	        this.template = __webpack_require__(18);
 	    }
-	    WorksheetNavigationView.prototype.render = function () {
-	        this.$el.html(this.template);
-	        var featureSetsEl = this.$el.find("#feature-sets");
-	        for (var _i = 0, _a = this.model.rootFeatureSets.models; _i < _a.length; _i++) {
-	            var featureSetModel = _a[_i];
-	            featureSetsEl.append(new WorksheetFeatureSetNavigationView({ model: featureSetModel }).render().el);
-	        }
-	        //const collapseEl = this.$el.find("#worksheet-navigation");
-	        //collapseEl
-	        //    .on("shown.bs.collapse", () => {
-	        //        alert("Show");
-	        //        $(this).parent().find(".glyphicon-plus").removeClass("glyphicon-plus").addClass("glyphicon-minus");
-	        //        return true;
-	        //    })
-	        //    .on("hidden.bs.collapse", () => {
-	        //        alert("Hide");
-	        //        $(this).parent().find(".glyphicon-minus").removeClass("glyphicon-minus").addClass("glyphicon-plus");
-	        //        return true;
-	        //    });
-	        return this;
-	    };
 	    return WorksheetNavigationView;
-	}(Backbone.View));
+	}(Marionette.CollectionView));
 	module.exports = WorksheetNavigationView;
 
 
@@ -17738,677 +17726,41 @@
 	    function __() { this.constructor = d; }
 	    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 	};
-	var Backbone = __webpack_require__(3);
-	var Mustache = __webpack_require__(14);
-	var WorksheetFeatureNavigationView = __webpack_require__(15);
+	//import Backbone = require("backbone");
+	var _ = __webpack_require__(4);
+	var Marionette = __webpack_require__(5);
+	var WorksheetFeatureNavigationView = __webpack_require__(14);
 	var WorksheetFeatureSetNavigationView = (function (_super) {
 	    __extends(WorksheetFeatureSetNavigationView, _super);
 	    function WorksheetFeatureSetNavigationView(options) {
 	        options.tagName = "li";
+	        options.template = _.template(__webpack_require__(16));
+	        options.ui = { children: "#children" };
 	        _super.call(this, options);
-	        this.template = __webpack_require__(17);
 	    }
-	    WorksheetFeatureSetNavigationView.prototype.render = function () {
+	    WorksheetFeatureSetNavigationView.prototype.onRender = function () {
 	        this.$el.attr("role", "presentation");
 	        this.$el.addClass("list-group-item");
-	        this.$el.html(Mustache.render(this.template, this.model.definition.toJSON()));
-	        var childrenEl = this.$el.find("#children");
 	        if (this.model.childFeatureSets) {
 	            for (var _i = 0, _a = this.model.childFeatureSets.models; _i < _a.length; _i++) {
 	                var childFeatureSetModel = _a[_i];
-	                childrenEl.append(new WorksheetFeatureSetNavigationView({ model: childFeatureSetModel }).render().el);
+	                this.ui.children.append(new WorksheetFeatureSetNavigationView({ model: childFeatureSetModel }).render().el);
 	            }
 	        }
 	        if (this.model.features) {
 	            for (var _b = 0, _c = this.model.features.models; _b < _c.length; _b++) {
 	                var featureModel = _c[_b];
-	                childrenEl.append(new WorksheetFeatureNavigationView({ model: featureModel }).render().el);
+	                this.ui.children.append(new WorksheetFeatureNavigationView({ model: featureModel }).render().el);
 	            }
 	        }
-	        return this;
 	    };
 	    return WorksheetFeatureSetNavigationView;
-	}(Backbone.View));
+	}(Marionette.View));
 	module.exports = WorksheetFeatureSetNavigationView;
 
 
 /***/ },
 /* 14 */
-/***/ function(module, exports, __webpack_require__) {
-
-	var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
-	 * mustache.js - Logic-less {{mustache}} templates with JavaScript
-	 * http://github.com/janl/mustache.js
-	 */
-	
-	/*global define: false Mustache: true*/
-	
-	(function defineMustache (global, factory) {
-	  if (typeof exports === 'object' && exports && typeof exports.nodeName !== 'string') {
-	    factory(exports); // CommonJS
-	  } else if (true) {
-	    !(__WEBPACK_AMD_DEFINE_ARRAY__ = [exports], __WEBPACK_AMD_DEFINE_FACTORY__ = (factory), __WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ? (__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__)); // AMD
-	  } else {
-	    global.Mustache = {};
-	    factory(global.Mustache); // script, wsh, asp
-	  }
-	}(this, function mustacheFactory (mustache) {
-	
-	  var objectToString = Object.prototype.toString;
-	  var isArray = Array.isArray || function isArrayPolyfill (object) {
-	    return objectToString.call(object) === '[object Array]';
-	  };
-	
-	  function isFunction (object) {
-	    return typeof object === 'function';
-	  }
-	
-	  /**
-	   * More correct typeof string handling array
-	   * which normally returns typeof 'object'
-	   */
-	  function typeStr (obj) {
-	    return isArray(obj) ? 'array' : typeof obj;
-	  }
-	
-	  function escapeRegExp (string) {
-	    return string.replace(/[\-\[\]{}()*+?.,\\\^$|#\s]/g, '\\$&');
-	  }
-	
-	  /**
-	   * Null safe way of checking whether or not an object,
-	   * including its prototype, has a given property
-	   */
-	  function hasProperty (obj, propName) {
-	    return obj != null && typeof obj === 'object' && (propName in obj);
-	  }
-	
-	  // Workaround for https://issues.apache.org/jira/browse/COUCHDB-577
-	  // See https://github.com/janl/mustache.js/issues/189
-	  var regExpTest = RegExp.prototype.test;
-	  function testRegExp (re, string) {
-	    return regExpTest.call(re, string);
-	  }
-	
-	  var nonSpaceRe = /\S/;
-	  function isWhitespace (string) {
-	    return !testRegExp(nonSpaceRe, string);
-	  }
-	
-	  var entityMap = {
-	    '&': '&amp;',
-	    '<': '&lt;',
-	    '>': '&gt;',
-	    '"': '&quot;',
-	    "'": '&#39;',
-	    '/': '&#x2F;',
-	    '`': '&#x60;',
-	    '=': '&#x3D;'
-	  };
-	
-	  function escapeHtml (string) {
-	    return String(string).replace(/[&<>"'`=\/]/g, function fromEntityMap (s) {
-	      return entityMap[s];
-	    });
-	  }
-	
-	  var whiteRe = /\s*/;
-	  var spaceRe = /\s+/;
-	  var equalsRe = /\s*=/;
-	  var curlyRe = /\s*\}/;
-	  var tagRe = /#|\^|\/|>|\{|&|=|!/;
-	
-	  /**
-	   * Breaks up the given `template` string into a tree of tokens. If the `tags`
-	   * argument is given here it must be an array with two string values: the
-	   * opening and closing tags used in the template (e.g. [ "<%", "%>" ]). Of
-	   * course, the default is to use mustaches (i.e. mustache.tags).
-	   *
-	   * A token is an array with at least 4 elements. The first element is the
-	   * mustache symbol that was used inside the tag, e.g. "#" or "&". If the tag
-	   * did not contain a symbol (i.e. {{myValue}}) this element is "name". For
-	   * all text that appears outside a symbol this element is "text".
-	   *
-	   * The second element of a token is its "value". For mustache tags this is
-	   * whatever else was inside the tag besides the opening symbol. For text tokens
-	   * this is the text itself.
-	   *
-	   * The third and fourth elements of the token are the start and end indices,
-	   * respectively, of the token in the original template.
-	   *
-	   * Tokens that are the root node of a subtree contain two more elements: 1) an
-	   * array of tokens in the subtree and 2) the index in the original template at
-	   * which the closing tag for that section begins.
-	   */
-	  function parseTemplate (template, tags) {
-	    if (!template)
-	      return [];
-	
-	    var sections = [];     // Stack to hold section tokens
-	    var tokens = [];       // Buffer to hold the tokens
-	    var spaces = [];       // Indices of whitespace tokens on the current line
-	    var hasTag = false;    // Is there a {{tag}} on the current line?
-	    var nonSpace = false;  // Is there a non-space char on the current line?
-	
-	    // Strips all whitespace tokens array for the current line
-	    // if there was a {{#tag}} on it and otherwise only space.
-	    function stripSpace () {
-	      if (hasTag && !nonSpace) {
-	        while (spaces.length)
-	          delete tokens[spaces.pop()];
-	      } else {
-	        spaces = [];
-	      }
-	
-	      hasTag = false;
-	      nonSpace = false;
-	    }
-	
-	    var openingTagRe, closingTagRe, closingCurlyRe;
-	    function compileTags (tagsToCompile) {
-	      if (typeof tagsToCompile === 'string')
-	        tagsToCompile = tagsToCompile.split(spaceRe, 2);
-	
-	      if (!isArray(tagsToCompile) || tagsToCompile.length !== 2)
-	        throw new Error('Invalid tags: ' + tagsToCompile);
-	
-	      openingTagRe = new RegExp(escapeRegExp(tagsToCompile[0]) + '\\s*');
-	      closingTagRe = new RegExp('\\s*' + escapeRegExp(tagsToCompile[1]));
-	      closingCurlyRe = new RegExp('\\s*' + escapeRegExp('}' + tagsToCompile[1]));
-	    }
-	
-	    compileTags(tags || mustache.tags);
-	
-	    var scanner = new Scanner(template);
-	
-	    var start, type, value, chr, token, openSection;
-	    while (!scanner.eos()) {
-	      start = scanner.pos;
-	
-	      // Match any text between tags.
-	      value = scanner.scanUntil(openingTagRe);
-	
-	      if (value) {
-	        for (var i = 0, valueLength = value.length; i < valueLength; ++i) {
-	          chr = value.charAt(i);
-	
-	          if (isWhitespace(chr)) {
-	            spaces.push(tokens.length);
-	          } else {
-	            nonSpace = true;
-	          }
-	
-	          tokens.push([ 'text', chr, start, start + 1 ]);
-	          start += 1;
-	
-	          // Check for whitespace on the current line.
-	          if (chr === '\n')
-	            stripSpace();
-	        }
-	      }
-	
-	      // Match the opening tag.
-	      if (!scanner.scan(openingTagRe))
-	        break;
-	
-	      hasTag = true;
-	
-	      // Get the tag type.
-	      type = scanner.scan(tagRe) || 'name';
-	      scanner.scan(whiteRe);
-	
-	      // Get the tag value.
-	      if (type === '=') {
-	        value = scanner.scanUntil(equalsRe);
-	        scanner.scan(equalsRe);
-	        scanner.scanUntil(closingTagRe);
-	      } else if (type === '{') {
-	        value = scanner.scanUntil(closingCurlyRe);
-	        scanner.scan(curlyRe);
-	        scanner.scanUntil(closingTagRe);
-	        type = '&';
-	      } else {
-	        value = scanner.scanUntil(closingTagRe);
-	      }
-	
-	      // Match the closing tag.
-	      if (!scanner.scan(closingTagRe))
-	        throw new Error('Unclosed tag at ' + scanner.pos);
-	
-	      token = [ type, value, start, scanner.pos ];
-	      tokens.push(token);
-	
-	      if (type === '#' || type === '^') {
-	        sections.push(token);
-	      } else if (type === '/') {
-	        // Check section nesting.
-	        openSection = sections.pop();
-	
-	        if (!openSection)
-	          throw new Error('Unopened section "' + value + '" at ' + start);
-	
-	        if (openSection[1] !== value)
-	          throw new Error('Unclosed section "' + openSection[1] + '" at ' + start);
-	      } else if (type === 'name' || type === '{' || type === '&') {
-	        nonSpace = true;
-	      } else if (type === '=') {
-	        // Set the tags for the next time around.
-	        compileTags(value);
-	      }
-	    }
-	
-	    // Make sure there are no open sections when we're done.
-	    openSection = sections.pop();
-	
-	    if (openSection)
-	      throw new Error('Unclosed section "' + openSection[1] + '" at ' + scanner.pos);
-	
-	    return nestTokens(squashTokens(tokens));
-	  }
-	
-	  /**
-	   * Combines the values of consecutive text tokens in the given `tokens` array
-	   * to a single token.
-	   */
-	  function squashTokens (tokens) {
-	    var squashedTokens = [];
-	
-	    var token, lastToken;
-	    for (var i = 0, numTokens = tokens.length; i < numTokens; ++i) {
-	      token = tokens[i];
-	
-	      if (token) {
-	        if (token[0] === 'text' && lastToken && lastToken[0] === 'text') {
-	          lastToken[1] += token[1];
-	          lastToken[3] = token[3];
-	        } else {
-	          squashedTokens.push(token);
-	          lastToken = token;
-	        }
-	      }
-	    }
-	
-	    return squashedTokens;
-	  }
-	
-	  /**
-	   * Forms the given array of `tokens` into a nested tree structure where
-	   * tokens that represent a section have two additional items: 1) an array of
-	   * all tokens that appear in that section and 2) the index in the original
-	   * template that represents the end of that section.
-	   */
-	  function nestTokens (tokens) {
-	    var nestedTokens = [];
-	    var collector = nestedTokens;
-	    var sections = [];
-	
-	    var token, section;
-	    for (var i = 0, numTokens = tokens.length; i < numTokens; ++i) {
-	      token = tokens[i];
-	
-	      switch (token[0]) {
-	        case '#':
-	        case '^':
-	          collector.push(token);
-	          sections.push(token);
-	          collector = token[4] = [];
-	          break;
-	        case '/':
-	          section = sections.pop();
-	          section[5] = token[2];
-	          collector = sections.length > 0 ? sections[sections.length - 1][4] : nestedTokens;
-	          break;
-	        default:
-	          collector.push(token);
-	      }
-	    }
-	
-	    return nestedTokens;
-	  }
-	
-	  /**
-	   * A simple string scanner that is used by the template parser to find
-	   * tokens in template strings.
-	   */
-	  function Scanner (string) {
-	    this.string = string;
-	    this.tail = string;
-	    this.pos = 0;
-	  }
-	
-	  /**
-	   * Returns `true` if the tail is empty (end of string).
-	   */
-	  Scanner.prototype.eos = function eos () {
-	    return this.tail === '';
-	  };
-	
-	  /**
-	   * Tries to match the given regular expression at the current position.
-	   * Returns the matched text if it can match, the empty string otherwise.
-	   */
-	  Scanner.prototype.scan = function scan (re) {
-	    var match = this.tail.match(re);
-	
-	    if (!match || match.index !== 0)
-	      return '';
-	
-	    var string = match[0];
-	
-	    this.tail = this.tail.substring(string.length);
-	    this.pos += string.length;
-	
-	    return string;
-	  };
-	
-	  /**
-	   * Skips all text until the given regular expression can be matched. Returns
-	   * the skipped string, which is the entire tail if no match can be made.
-	   */
-	  Scanner.prototype.scanUntil = function scanUntil (re) {
-	    var index = this.tail.search(re), match;
-	
-	    switch (index) {
-	      case -1:
-	        match = this.tail;
-	        this.tail = '';
-	        break;
-	      case 0:
-	        match = '';
-	        break;
-	      default:
-	        match = this.tail.substring(0, index);
-	        this.tail = this.tail.substring(index);
-	    }
-	
-	    this.pos += match.length;
-	
-	    return match;
-	  };
-	
-	  /**
-	   * Represents a rendering context by wrapping a view object and
-	   * maintaining a reference to the parent context.
-	   */
-	  function Context (view, parentContext) {
-	    this.view = view;
-	    this.cache = { '.': this.view };
-	    this.parent = parentContext;
-	  }
-	
-	  /**
-	   * Creates a new context using the given view with this context
-	   * as the parent.
-	   */
-	  Context.prototype.push = function push (view) {
-	    return new Context(view, this);
-	  };
-	
-	  /**
-	   * Returns the value of the given name in this context, traversing
-	   * up the context hierarchy if the value is absent in this context's view.
-	   */
-	  Context.prototype.lookup = function lookup (name) {
-	    var cache = this.cache;
-	
-	    var value;
-	    if (cache.hasOwnProperty(name)) {
-	      value = cache[name];
-	    } else {
-	      var context = this, names, index, lookupHit = false;
-	
-	      while (context) {
-	        if (name.indexOf('.') > 0) {
-	          value = context.view;
-	          names = name.split('.');
-	          index = 0;
-	
-	          /**
-	           * Using the dot notion path in `name`, we descend through the
-	           * nested objects.
-	           *
-	           * To be certain that the lookup has been successful, we have to
-	           * check if the last object in the path actually has the property
-	           * we are looking for. We store the result in `lookupHit`.
-	           *
-	           * This is specially necessary for when the value has been set to
-	           * `undefined` and we want to avoid looking up parent contexts.
-	           **/
-	          while (value != null && index < names.length) {
-	            if (index === names.length - 1)
-	              lookupHit = hasProperty(value, names[index]);
-	
-	            value = value[names[index++]];
-	          }
-	        } else {
-	          value = context.view[name];
-	          lookupHit = hasProperty(context.view, name);
-	        }
-	
-	        if (lookupHit)
-	          break;
-	
-	        context = context.parent;
-	      }
-	
-	      cache[name] = value;
-	    }
-	
-	    if (isFunction(value))
-	      value = value.call(this.view);
-	
-	    return value;
-	  };
-	
-	  /**
-	   * A Writer knows how to take a stream of tokens and render them to a
-	   * string, given a context. It also maintains a cache of templates to
-	   * avoid the need to parse the same template twice.
-	   */
-	  function Writer () {
-	    this.cache = {};
-	  }
-	
-	  /**
-	   * Clears all cached templates in this writer.
-	   */
-	  Writer.prototype.clearCache = function clearCache () {
-	    this.cache = {};
-	  };
-	
-	  /**
-	   * Parses and caches the given `template` and returns the array of tokens
-	   * that is generated from the parse.
-	   */
-	  Writer.prototype.parse = function parse (template, tags) {
-	    var cache = this.cache;
-	    var tokens = cache[template];
-	
-	    if (tokens == null)
-	      tokens = cache[template] = parseTemplate(template, tags);
-	
-	    return tokens;
-	  };
-	
-	  /**
-	   * High-level method that is used to render the given `template` with
-	   * the given `view`.
-	   *
-	   * The optional `partials` argument may be an object that contains the
-	   * names and templates of partials that are used in the template. It may
-	   * also be a function that is used to load partial templates on the fly
-	   * that takes a single argument: the name of the partial.
-	   */
-	  Writer.prototype.render = function render (template, view, partials) {
-	    var tokens = this.parse(template);
-	    var context = (view instanceof Context) ? view : new Context(view);
-	    return this.renderTokens(tokens, context, partials, template);
-	  };
-	
-	  /**
-	   * Low-level method that renders the given array of `tokens` using
-	   * the given `context` and `partials`.
-	   *
-	   * Note: The `originalTemplate` is only ever used to extract the portion
-	   * of the original template that was contained in a higher-order section.
-	   * If the template doesn't use higher-order sections, this argument may
-	   * be omitted.
-	   */
-	  Writer.prototype.renderTokens = function renderTokens (tokens, context, partials, originalTemplate) {
-	    var buffer = '';
-	
-	    var token, symbol, value;
-	    for (var i = 0, numTokens = tokens.length; i < numTokens; ++i) {
-	      value = undefined;
-	      token = tokens[i];
-	      symbol = token[0];
-	
-	      if (symbol === '#') value = this.renderSection(token, context, partials, originalTemplate);
-	      else if (symbol === '^') value = this.renderInverted(token, context, partials, originalTemplate);
-	      else if (symbol === '>') value = this.renderPartial(token, context, partials, originalTemplate);
-	      else if (symbol === '&') value = this.unescapedValue(token, context);
-	      else if (symbol === 'name') value = this.escapedValue(token, context);
-	      else if (symbol === 'text') value = this.rawValue(token);
-	
-	      if (value !== undefined)
-	        buffer += value;
-	    }
-	
-	    return buffer;
-	  };
-	
-	  Writer.prototype.renderSection = function renderSection (token, context, partials, originalTemplate) {
-	    var self = this;
-	    var buffer = '';
-	    var value = context.lookup(token[1]);
-	
-	    // This function is used to render an arbitrary template
-	    // in the current context by higher-order sections.
-	    function subRender (template) {
-	      return self.render(template, context, partials);
-	    }
-	
-	    if (!value) return;
-	
-	    if (isArray(value)) {
-	      for (var j = 0, valueLength = value.length; j < valueLength; ++j) {
-	        buffer += this.renderTokens(token[4], context.push(value[j]), partials, originalTemplate);
-	      }
-	    } else if (typeof value === 'object' || typeof value === 'string' || typeof value === 'number') {
-	      buffer += this.renderTokens(token[4], context.push(value), partials, originalTemplate);
-	    } else if (isFunction(value)) {
-	      if (typeof originalTemplate !== 'string')
-	        throw new Error('Cannot use higher-order sections without the original template');
-	
-	      // Extract the portion of the original template that the section contains.
-	      value = value.call(context.view, originalTemplate.slice(token[3], token[5]), subRender);
-	
-	      if (value != null)
-	        buffer += value;
-	    } else {
-	      buffer += this.renderTokens(token[4], context, partials, originalTemplate);
-	    }
-	    return buffer;
-	  };
-	
-	  Writer.prototype.renderInverted = function renderInverted (token, context, partials, originalTemplate) {
-	    var value = context.lookup(token[1]);
-	
-	    // Use JavaScript's definition of falsy. Include empty arrays.
-	    // See https://github.com/janl/mustache.js/issues/186
-	    if (!value || (isArray(value) && value.length === 0))
-	      return this.renderTokens(token[4], context, partials, originalTemplate);
-	  };
-	
-	  Writer.prototype.renderPartial = function renderPartial (token, context, partials) {
-	    if (!partials) return;
-	
-	    var value = isFunction(partials) ? partials(token[1]) : partials[token[1]];
-	    if (value != null)
-	      return this.renderTokens(this.parse(value), context, partials, value);
-	  };
-	
-	  Writer.prototype.unescapedValue = function unescapedValue (token, context) {
-	    var value = context.lookup(token[1]);
-	    if (value != null)
-	      return value;
-	  };
-	
-	  Writer.prototype.escapedValue = function escapedValue (token, context) {
-	    var value = context.lookup(token[1]);
-	    if (value != null)
-	      return mustache.escape(value);
-	  };
-	
-	  Writer.prototype.rawValue = function rawValue (token) {
-	    return token[1];
-	  };
-	
-	  mustache.name = 'mustache.js';
-	  mustache.version = '2.2.1';
-	  mustache.tags = [ '{{', '}}' ];
-	
-	  // All high-level mustache.* functions use this writer.
-	  var defaultWriter = new Writer();
-	
-	  /**
-	   * Clears all cached templates in the default writer.
-	   */
-	  mustache.clearCache = function clearCache () {
-	    return defaultWriter.clearCache();
-	  };
-	
-	  /**
-	   * Parses and caches the given template in the default writer and returns the
-	   * array of tokens it contains. Doing this ahead of time avoids the need to
-	   * parse templates on the fly as they are rendered.
-	   */
-	  mustache.parse = function parse (template, tags) {
-	    return defaultWriter.parse(template, tags);
-	  };
-	
-	  /**
-	   * Renders the `template` with the given `view` and `partials` using the
-	   * default writer.
-	   */
-	  mustache.render = function render (template, view, partials) {
-	    if (typeof template !== 'string') {
-	      throw new TypeError('Invalid template! Template should be a "string" ' +
-	                          'but "' + typeStr(template) + '" was given as the first ' +
-	                          'argument for mustache#render(template, view, partials)');
-	    }
-	
-	    return defaultWriter.render(template, view, partials);
-	  };
-	
-	  // This is here for backwards compatibility with 0.4.x.,
-	  /*eslint-disable */ // eslint wants camel cased function name
-	  mustache.to_html = function to_html (template, view, partials, send) {
-	    /*eslint-enable*/
-	
-	    var result = mustache.render(template, view, partials);
-	
-	    if (isFunction(send)) {
-	      send(result);
-	    } else {
-	      return result;
-	    }
-	  };
-	
-	  // Export the escaping function so that the user may override it.
-	  // See https://github.com/janl/mustache.js/issues/244
-	  mustache.escape = escapeHtml;
-	
-	  // Export these mainly for testing, but also for advanced usage.
-	  mustache.Scanner = Scanner;
-	  mustache.Context = Context;
-	  mustache.Writer = Writer;
-	
-	}));
-
-
-/***/ },
-/* 15 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -18417,67 +17769,56 @@
 	    function __() { this.constructor = d; }
 	    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 	};
-	var Backbone = __webpack_require__(3);
-	var Mustache = __webpack_require__(14);
 	var _ = __webpack_require__(4);
+	var Marionette = __webpack_require__(5);
 	var WorksheetFeatureNavigationView = (function (_super) {
 	    __extends(WorksheetFeatureNavigationView, _super);
 	    function WorksheetFeatureNavigationView(options) {
+	        options.template = _.template(__webpack_require__(15));
 	        options.tagName = "li";
 	        _super.call(this, options);
-	        this.template = __webpack_require__(16);
-	        _.bindAll(this, "onClick");
+	        //_.bindAll(this, "onClick");
 	    }
-	    WorksheetFeatureNavigationView.prototype.onClick = function () {
-	        this.model.selected = true;
-	    };
-	    WorksheetFeatureNavigationView.prototype.render = function () {
-	        this.$el.attr("role", "presentation");
-	        this.$el.addClass("list-group-item");
-	        this.$el.html(Mustache.render(this.template, this.model.definition.toJSON()));
-	        this.$el.find("a").on("click", this.onClick);
-	        return this;
-	    };
 	    return WorksheetFeatureNavigationView;
-	}(Backbone.View));
+	}(Marionette.ItemView));
 	module.exports = WorksheetFeatureNavigationView;
 
 
 /***/ },
-/* 16 */
+/* 15 */
 /***/ function(module, exports) {
 
 	module.exports = "<a class=\"btn btn-primary\" href=\"\"><%- displayName ? displayName : id -%></a>\n"
 
 /***/ },
-/* 17 */
+/* 16 */
 /***/ function(module, exports) {
 
 	module.exports = "<h3><%- displayName ? displayName : id -%></h3>\n<ul class=\"list-group\" id=\"children\"></ul>\n"
 
 /***/ },
-/* 18 */
+/* 17 */
 /***/ function(module, exports) {
 
 	module.exports = "<div aria-multiselectable=\"true\" class=\"panel-group\" id=\"worksheet-navigation\" role=\"tablist\">\n    <div class=\"panel panel-default\">\n        <div class=\"panel-heading\" role=\"tab\" id=\"headingOne\">\n            <h4 class=\"panel-title\">\n                <a aria-expanded=\"true\" aria-controls=\"collapseOne\" class=\"btn btn-secondary\" data-toggle=\"collapse\" data-parent=\"#accordion\" href=\"#collapseOne\" role=\"button\">\n                Features\n                </a>\n            </h4>\n        </div>\n        <div id=\"collapseOne\" class=\"panel-collapse collapse in\" role=\"tabpanel\" aria-labelledby=\"headingOne\">\n            <ul class=\"list-group\" id=\"root-feature-sets\"></ul>\n        </div>\n    </div>\n</div>\n"
 
 /***/ },
-/* 19 */
+/* 18 */
 /***/ function(module, exports) {
 
 	// removed by extract-text-webpack-plugin
 
 /***/ },
+/* 19 */,
 /* 20 */,
 /* 21 */,
-/* 22 */,
-/* 23 */
+/* 22 */
 /***/ function(module, exports) {
 
 	module.exports = "<div class=\"container-fluid\" id=\"worksheet\" style=\"height: 100%\">\n    <div class=\"row\" style=\"height: 100%\">\n        <div class=\"col-md-4\" id=\"left-column\" style=\"height: 100%\"></div>\n        <div class=\"col-md-8\" id=\"right-column\"></div>\n    </div>\n</div>\n"
 
 /***/ },
-/* 24 */
+/* 23 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -18488,10 +17829,10 @@
 	};
 	//import { WorksheetDefinition } from "../../../api/models/worksheet/worksheet_definition";
 	//import { WorksheetState } from "../../../api/models/worksheet/worksheet_state";
-	var Services = __webpack_require__(25);
+	var Services = __webpack_require__(24);
 	var Backbone = __webpack_require__(3);
-	var WorksheetFeatureSetCollection = __webpack_require__(42);
-	var WorksheetFeatureSetModel = __webpack_require__(43);
+	var WorksheetFeatureSetCollection = __webpack_require__(41);
+	var WorksheetFeatureSetModel = __webpack_require__(42);
 	var WorksheetModel = (function (_super) {
 	    __extends(WorksheetModel, _super);
 	    function WorksheetModel() {
@@ -18534,12 +17875,12 @@
 
 
 /***/ },
-/* 25 */
+/* 24 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
-	var LocalWorksheetCommandService = __webpack_require__(26);
-	var LocalWorksheetQueryService = __webpack_require__(28);
+	var LocalWorksheetCommandService = __webpack_require__(25);
+	var LocalWorksheetQueryService = __webpack_require__(27);
 	var Services = (function () {
 	    function Services() {
 	        this._worksheetCommandService = new LocalWorksheetCommandService;
@@ -18573,7 +17914,7 @@
 
 
 /***/ },
-/* 26 */
+/* 25 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -18582,7 +17923,7 @@
 	    function __() { this.constructor = d; }
 	    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 	};
-	var worksheet_command_service_1 = __webpack_require__(27);
+	var worksheet_command_service_1 = __webpack_require__(26);
 	var LocalWorksheetCommandService = (function (_super) {
 	    __extends(LocalWorksheetCommandService, _super);
 	    function LocalWorksheetCommandService() {
@@ -18597,7 +17938,7 @@
 
 
 /***/ },
-/* 27 */
+/* 26 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function($) {"use strict";
@@ -18679,7 +18020,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)))
 
 /***/ },
-/* 28 */
+/* 27 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -18688,12 +18029,12 @@
 	    function __() { this.constructor = d; }
 	    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 	};
-	var worksheet_query_service_1 = __webpack_require__(29);
+	var worksheet_query_service_1 = __webpack_require__(28);
 	var Backbone = __webpack_require__(3);
-	var worksheet_definition_1 = __webpack_require__(30);
-	var worksheet_feature_set_definition_1 = __webpack_require__(31);
-	var worksheet_feature_set_state_1 = __webpack_require__(38);
-	var worksheet_state_1 = __webpack_require__(37);
+	var worksheet_definition_1 = __webpack_require__(29);
+	var worksheet_feature_set_definition_1 = __webpack_require__(30);
+	var worksheet_feature_set_state_1 = __webpack_require__(37);
+	var worksheet_state_1 = __webpack_require__(36);
 	var LocalWorksheetQueryService = (function (_super) {
 	    __extends(LocalWorksheetQueryService, _super);
 	    function LocalWorksheetQueryService() {
@@ -18728,12 +18069,12 @@
 
 
 /***/ },
-/* 29 */
+/* 28 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function($) {"use strict";
-	var worksheet_definition_1 = __webpack_require__(30);
-	var worksheet_state_1 = __webpack_require__(37);
+	var worksheet_definition_1 = __webpack_require__(29);
+	var worksheet_state_1 = __webpack_require__(36);
 	var JsonRpcWorksheetQueryService = (function () {
 	    function JsonRpcWorksheetQueryService() {
 	    }
@@ -18874,7 +18215,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)))
 
 /***/ },
-/* 30 */
+/* 29 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -18884,7 +18225,7 @@
 	    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 	};
 	var Backbone = __webpack_require__(3);
-	var worksheet_feature_set_definition_1 = __webpack_require__(31);
+	var worksheet_feature_set_definition_1 = __webpack_require__(30);
 	var WorksheetDefinition = (function (_super) {
 	    __extends(WorksheetDefinition, _super);
 	    function WorksheetDefinition(attributes) {
@@ -18924,7 +18265,7 @@
 
 
 /***/ },
-/* 31 */
+/* 30 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -18934,7 +18275,7 @@
 	    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 	};
 	var Backbone = __webpack_require__(3);
-	var worksheet_feature_definition_1 = __webpack_require__(32);
+	var worksheet_feature_definition_1 = __webpack_require__(31);
 	var WorksheetFeatureSetDefinition = (function (_super) {
 	    __extends(WorksheetFeatureSetDefinition, _super);
 	    function WorksheetFeatureSetDefinition(attributes) {
@@ -19026,7 +18367,7 @@
 
 
 /***/ },
-/* 32 */
+/* 31 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -19036,8 +18377,8 @@
 	    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 	};
 	var Backbone = __webpack_require__(3);
-	var worksheet_enum_feature_definition_1 = __webpack_require__(33);
-	var worksheet_text_feature_definition_1 = __webpack_require__(36);
+	var worksheet_enum_feature_definition_1 = __webpack_require__(32);
+	var worksheet_text_feature_definition_1 = __webpack_require__(35);
 	var WorksheetFeatureDefinition = (function (_super) {
 	    __extends(WorksheetFeatureDefinition, _super);
 	    function WorksheetFeatureDefinition(attributes) {
@@ -19121,7 +18462,7 @@
 
 
 /***/ },
-/* 33 */
+/* 32 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -19131,7 +18472,7 @@
 	    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 	};
 	var Backbone = __webpack_require__(3);
-	var worksheet_enum_feature_value_definition_1 = __webpack_require__(34);
+	var worksheet_enum_feature_value_definition_1 = __webpack_require__(33);
 	var WorksheetEnumFeatureDefinition = (function (_super) {
 	    __extends(WorksheetEnumFeatureDefinition, _super);
 	    function WorksheetEnumFeatureDefinition(attributes) {
@@ -19171,7 +18512,7 @@
 
 
 /***/ },
-/* 34 */
+/* 33 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -19181,7 +18522,7 @@
 	    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 	};
 	var Backbone = __webpack_require__(3);
-	var worksheet_enum_feature_value_image_1 = __webpack_require__(35);
+	var worksheet_enum_feature_value_image_1 = __webpack_require__(34);
 	var WorksheetEnumFeatureValueDefinition = (function (_super) {
 	    __extends(WorksheetEnumFeatureValueDefinition, _super);
 	    function WorksheetEnumFeatureValueDefinition(attributes) {
@@ -19249,7 +18590,7 @@
 
 
 /***/ },
-/* 35 */
+/* 34 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -19324,7 +18665,7 @@
 
 
 /***/ },
-/* 36 */
+/* 35 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -19351,7 +18692,7 @@
 
 
 /***/ },
-/* 37 */
+/* 36 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -19361,7 +18702,7 @@
 	    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 	};
 	var Backbone = __webpack_require__(3);
-	var worksheet_feature_set_state_1 = __webpack_require__(38);
+	var worksheet_feature_set_state_1 = __webpack_require__(37);
 	var WorksheetState = (function (_super) {
 	    __extends(WorksheetState, _super);
 	    function WorksheetState(attributes) {
@@ -19403,7 +18744,7 @@
 
 
 /***/ },
-/* 38 */
+/* 37 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -19413,7 +18754,7 @@
 	    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 	};
 	var Backbone = __webpack_require__(3);
-	var worksheet_feature_state_1 = __webpack_require__(39);
+	var worksheet_feature_state_1 = __webpack_require__(38);
 	var WorksheetFeatureSetState = (function (_super) {
 	    __extends(WorksheetFeatureSetState, _super);
 	    function WorksheetFeatureSetState(attributes) {
@@ -19475,7 +18816,7 @@
 
 
 /***/ },
-/* 39 */
+/* 38 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -19485,8 +18826,8 @@
 	    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 	};
 	var Backbone = __webpack_require__(3);
-	var worksheet_enum_feature_state_1 = __webpack_require__(40);
-	var worksheet_text_feature_state_1 = __webpack_require__(41);
+	var worksheet_enum_feature_state_1 = __webpack_require__(39);
+	var worksheet_text_feature_state_1 = __webpack_require__(40);
 	var WorksheetFeatureState = (function (_super) {
 	    __extends(WorksheetFeatureState, _super);
 	    function WorksheetFeatureState(attributes) {
@@ -19540,7 +18881,7 @@
 
 
 /***/ },
-/* 40 */
+/* 39 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -19589,7 +18930,7 @@
 
 
 /***/ },
-/* 41 */
+/* 40 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -19634,7 +18975,7 @@
 
 
 /***/ },
-/* 42 */
+/* 41 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -19655,7 +18996,7 @@
 
 
 /***/ },
-/* 43 */
+/* 42 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -19665,10 +19006,10 @@
 	    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 	};
 	var Backbone = __webpack_require__(3);
-	var WorksheetEnumFeatureModel = __webpack_require__(44);
-	var WorksheetFeatureCollection = __webpack_require__(48);
-	var WorksheetFeatureSetCollection = __webpack_require__(42);
-	var WorksheetTextFeatureModel = __webpack_require__(49);
+	var WorksheetEnumFeatureModel = __webpack_require__(43);
+	var WorksheetFeatureCollection = __webpack_require__(47);
+	var WorksheetFeatureSetCollection = __webpack_require__(41);
+	var WorksheetTextFeatureModel = __webpack_require__(48);
 	var WorksheetFeatureSetModel = (function (_super) {
 	    __extends(WorksheetFeatureSetModel, _super);
 	    function WorksheetFeatureSetModel(definition, state) {
@@ -19725,7 +19066,7 @@
 
 
 /***/ },
-/* 44 */
+/* 43 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -19734,9 +19075,9 @@
 	    function __() { this.constructor = d; }
 	    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 	};
-	var WorksheetEnumFeatureValueCollection = __webpack_require__(45);
-	var WorksheetEnumFeatureValueModel = __webpack_require__(46);
-	var WorksheetFeatureModel = __webpack_require__(47);
+	var WorksheetEnumFeatureValueCollection = __webpack_require__(44);
+	var WorksheetEnumFeatureValueModel = __webpack_require__(45);
+	var WorksheetFeatureModel = __webpack_require__(46);
 	var WorksheetEnumFeatureModel = (function (_super) {
 	    __extends(WorksheetEnumFeatureModel, _super);
 	    function WorksheetEnumFeatureModel(definition, state) {
@@ -19760,7 +19101,7 @@
 
 
 /***/ },
-/* 45 */
+/* 44 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -19781,7 +19122,7 @@
 
 
 /***/ },
-/* 46 */
+/* 45 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -19811,7 +19152,7 @@
 
 
 /***/ },
-/* 47 */
+/* 46 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -19851,7 +19192,7 @@
 
 
 /***/ },
-/* 48 */
+/* 47 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -19889,7 +19230,7 @@
 
 
 /***/ },
-/* 49 */
+/* 48 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -19898,7 +19239,7 @@
 	    function __() { this.constructor = d; }
 	    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 	};
-	var WorksheetFeatureModel = __webpack_require__(47);
+	var WorksheetFeatureModel = __webpack_require__(46);
 	var WorksheetTextFeatureModel = (function (_super) {
 	    __extends(WorksheetTextFeatureModel, _super);
 	    function WorksheetTextFeatureModel(definition, state) {
@@ -19910,7 +19251,7 @@
 
 
 /***/ },
-/* 50 */
+/* 49 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -19919,20 +19260,22 @@
 	    function __() { this.constructor = d; }
 	    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 	};
-	__webpack_require__(51);
+	__webpack_require__(50);
+	var _ = __webpack_require__(4);
 	var Marionette = __webpack_require__(5);
-	var NavbarView = __webpack_require__(53);
+	var NavbarView = __webpack_require__(52);
 	var TopLevelView = (function (_super) {
 	    __extends(TopLevelView, _super);
 	    function TopLevelView(options) {
-	        options['el'] = "#app";
-	        options['regions'] = {
+	        options["el"] = "#app";
+	        options["regions"] = {
 	            content: "#content",
 	            navbar: "#navbar"
 	        };
+	        options['template'] = _.template(__webpack_require__(54));
 	        _super.call(this, options);
 	    }
-	    TopLevelView.prototype.onShow = function () {
+	    TopLevelView.prototype.onRender = function () {
 	        this.showChildView("navbar", new NavbarView());
 	    };
 	    return TopLevelView;
@@ -19941,14 +19284,14 @@
 
 
 /***/ },
-/* 51 */
+/* 50 */
 /***/ function(module, exports) {
 
 	// removed by extract-text-webpack-plugin
 
 /***/ },
-/* 52 */,
-/* 53 */
+/* 51 */,
+/* 52 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -19957,12 +19300,13 @@
 	    function __() { this.constructor = d; }
 	    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 	};
+	var _ = __webpack_require__(4);
 	var Marionette = __webpack_require__(5);
 	var NavbarView = (function (_super) {
 	    __extends(NavbarView, _super);
 	    function NavbarView() {
 	        _super.apply(this, arguments);
-	        this.template = __webpack_require__(54);
+	        this.template = _.template(__webpack_require__(53));
 	    }
 	    return NavbarView;
 	}(Marionette.ItemView));
@@ -19970,10 +19314,16 @@
 
 
 /***/ },
-/* 54 */
+/* 53 */
 /***/ function(module, exports) {
 
 	module.exports = "<nav class=\"navbar navbar-default\">\n    <div class=\"container-fluid\">\n        <!-- Brand and toggle get grouped for better mobile display -->\n        <div class=\"navbar-header\">\n            <button type=\"button\" class=\"navbar-toggle collapsed\" data-toggle=\"collapse\" data-target=\"#navbar-collapse-1\" aria-expanded=\"false\">\n                <span class=\"sr-only\">Toggle navigation</span>\n                <span class=\"icon-bar\"></span>\n                <span class=\"icon-bar\"></span>\n                <span class=\"icon-bar\"></span>\n            </button>\n            <a class=\"navbar-brand\" href=\"#\">DressDiscover</a>\n        </div>\n        <!-- Collect the nav links, forms, and other content for toggling -->\n        <div class=\"collapse navbar-collapse\" id=\"navbar-collapse-1\">\n            <ul class=\"nav navbar-nav\">\n                <li class=\"active\"><a href=\"#worksheet\">Worksheet <span class=\"sr-only\">(current)</span></a></li>\n            </ul>\n        </div><!-- /.navbar-collapse -->\n    </div><!-- /.container-fluid -->\n</nav>\n"
+
+/***/ },
+/* 54 */
+/***/ function(module, exports) {
+
+	module.exports = "<div id=\"navbar\"></div>\r\n<div id=\"content\"></div>\r\n"
 
 /***/ }
 /******/ ]);
