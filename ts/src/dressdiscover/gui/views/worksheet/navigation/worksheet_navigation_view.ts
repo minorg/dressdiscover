@@ -8,10 +8,11 @@ declare function require(moduleName: string): any;
 
 class WorksheetNavigationView extends Marionette.CollectionView<WorksheetFeatureSetModel, WorksheetFeatureSetNavigationView> {
     constructor(options: any) {
-        options.childView = WorksheetFeatureSetNavigationView;
-        options.tagName = "ul";
-        options.template = _.template(require("raw!./worksheet_navigation_view.html"));
-        super(options);
+        super(_.extend(options, {
+            childView: WorksheetFeatureSetNavigationView,
+            tagName: "ul",
+            template: _.template(require("raw!./worksheet_navigation_view.html"))
+        }));
     }
 }
 

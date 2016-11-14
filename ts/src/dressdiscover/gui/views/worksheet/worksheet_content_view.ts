@@ -8,16 +8,14 @@ import "./worksheet_content_view.less";
 declare function require(moduleName: string): any;
 
 class WorksheetContentView extends Marionette.LayoutView<WorksheetModel> {
-    constructor(options?: any) {
-        if (!options) {
-            options = {};
-        }
-        options["regions"] = {
-            leftColumn: "#left-column",
-            rightColumn: "#right-column"
-        }
-        options["template"] = _.template(require("raw!./worksheet_content_view.html"));
-        super(options);
+    constructor(options: any) {
+        super(_.extend(options, {
+            regions: {
+                leftColumn: "#left-column",
+                rightColumn: "#right-column"
+            },
+            template: _.template(require("raw!./worksheet_content_view.html"))
+        }));
     }
 
     onBeforeShow() {
