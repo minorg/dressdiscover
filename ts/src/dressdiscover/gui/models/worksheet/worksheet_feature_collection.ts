@@ -1,7 +1,7 @@
 ﻿import Backbone = require("backbone");
-import WorksheetFeatureModel = require("./worksheet_feature_model");
+import { WorksheetFeatureModel } from "dressdiscover/gui/models/worksheet/worksheet_feature_model";
 
-class WorksheetFeatureCollection extends Backbone.Collection<WorksheetFeatureModel> {
+export class WorksheetFeatureCollection extends Backbone.Collection<WorksheetFeatureModel> {
     constructor(models: WorksheetFeatureModel[]) {
         super(models);
         this.on("change:selected", (changedModel: WorksheetFeatureModel) => {
@@ -20,5 +20,3 @@ class WorksheetFeatureCollection extends Backbone.Collection<WorksheetFeatureMod
         });
     }
 }
-
-export = WorksheetFeatureCollection;

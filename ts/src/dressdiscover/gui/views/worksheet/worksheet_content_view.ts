@@ -1,13 +1,13 @@
 ﻿import _ = require("underscore");
 import Marionette = require("backbone.marionette");
-import WorksheetModel = require("../../models/worksheet/worksheet_model");
-import WorksheetInputView = require("./input/worksheet_input_view");
-import WorksheetNavigationView = require("./navigation/worksheet_navigation_view");
+import { WorksheetModel } from "dressdiscover/gui/models/worksheet/worksheet_model";
+import { WorksheetInputView } from "./input/worksheet_input_view";
+import { WorksheetNavigationView } from "./navigation/worksheet_navigation_view";
 import "./worksheet_content_view.less";
 
 declare function require(moduleName: string): any;
 
-class WorksheetContentView extends Marionette.LayoutView<WorksheetModel> {
+export class WorksheetContentView extends Marionette.LayoutView<WorksheetModel> {
     constructor(options: any) {
         super(_.extend(options, {
             regions: {
@@ -23,5 +23,3 @@ class WorksheetContentView extends Marionette.LayoutView<WorksheetModel> {
         this.showChildView("rightColumn", WorksheetInputView.create(this.model.selectedFeature));
     }
 }
-
-export = WorksheetContentView;

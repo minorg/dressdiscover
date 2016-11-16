@@ -1,13 +1,12 @@
 ﻿import _ = require("underscore");
 import Backbone = require("backbone");
 import Marionette = require("backbone.marionette");
-//import WorksheetEnumFeatureModel = require("../../../models/worksheet/worksheet_enum_feature_model");
-import WorksheetEnumFeatureValueModel = require("../../../models/worksheet/worksheet_enum_feature_model");
-import WorksheetEnumFeatureValueInputView = require("./worksheet_enum_feature_value_input_view");
+import { WorksheetEnumFeatureValueModel } from "dressdiscover/gui/models/worksheet/worksheet_enum_feature_value_model";
+import { WorksheetEnumFeatureValueInputView } from "./worksheet_enum_feature_value_input_view";
 
 declare function require(moduleName: string): any;
 
-class WorksheetEnumFeatureInputView extends Marionette.CollectionView<WorksheetEnumFeatureValueModel, WorksheetEnumFeatureValueInputView> {
+export class WorksheetEnumFeatureInputView extends Marionette.CollectionView<WorksheetEnumFeatureValueModel, WorksheetEnumFeatureValueInputView> {
     constructor(options: any) {
         super(_.extend(options, {
             el: "#feature-values",
@@ -28,5 +27,3 @@ class WorksheetEnumFeatureInputView extends Marionette.CollectionView<WorksheetE
     //    return this;
     //}
 }
-
-export = WorksheetEnumFeatureInputView;

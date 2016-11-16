@@ -1,6 +1,7 @@
 {
     "compileOnSave": true,
     "compilerOptions": {
+        "baseUrl": "src",
         "module": "commonjs",
         "moduleResolution": "node",
         "noImplicitAny": true,

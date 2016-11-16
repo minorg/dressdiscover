@@ -1,10 +1,10 @@
 ﻿import _ = require("underscore");
 import Marionette = require("backbone.marionette");
-import WorksheetFeatureModel = require("../../../models/worksheet/worksheet_feature_model");
+import { WorksheetFeatureModel } from "dressdiscover/gui/models/worksheet/worksheet_feature_model";
 
 declare function require(moduleName: string): any;
 
-class WorksheetFeatureNavigationView extends Marionette.ItemView<WorksheetFeatureModel> {
+export class WorksheetFeatureNavigationView extends Marionette.ItemView<WorksheetFeatureModel> {
     constructor(options: any) {
         super(_.extend(options, {
             attributes: { role: "presentation"},
@@ -26,5 +26,3 @@ class WorksheetFeatureNavigationView extends Marionette.ItemView<WorksheetFeatur
         return { "displayName": this.model.definition.displayName, "id": this.model.definition.id };
     }
 }
-
-export = WorksheetFeatureNavigationView;

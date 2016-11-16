@@ -2,11 +2,11 @@
 import _ = require("underscore");
 import Backbone = require("backbone");
 import Marionette = require("backbone.marionette");
-import NavbarView = require("./navbar_view");
+import { NavbarView } from "./navbar_view";
 
 declare function require(moduleName: string): any;
 
-class TopLevelView<TModel extends Backbone.Model> extends Marionette.LayoutView<TModel> {
+export class TopLevelView<TModel extends Backbone.Model> extends Marionette.LayoutView<TModel> {
     constructor(options: any) {
         options["el"] = "#app";
         options["regions"] = {
@@ -21,5 +21,3 @@ class TopLevelView<TModel extends Backbone.Model> extends Marionette.LayoutView<
         this.showChildView("navbar", new NavbarView());
     }
 }
-
-export = TopLevelView;

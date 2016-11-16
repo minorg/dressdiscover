@@ -1,7 +1,7 @@
 ﻿import Backbone = require("backbone");
-import { WorksheetEnumFeatureValueDefinition } from "../../../api/models/worksheet/worksheet_enum_feature_value_definition";
+import { WorksheetEnumFeatureValueDefinition } from "dressdiscover/api/models/worksheet/worksheet_enum_feature_value_definition";
 
-class WorksheetEnumFeatureValueModel extends Backbone.Model {
+export class WorksheetEnumFeatureValueModel extends Backbone.Model {
     constructor(definition: WorksheetEnumFeatureValueDefinition, selected: boolean) {
         super({ id: definition.id });
         this._definition = definition;
@@ -14,5 +14,3 @@ class WorksheetEnumFeatureValueModel extends Backbone.Model {
 
     private _definition: WorksheetEnumFeatureValueDefinition;
 }
-
-export = WorksheetEnumFeatureValueModel;

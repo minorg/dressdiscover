@@ -1,10 +1,9 @@
-﻿import LocalWorksheetCommandService = require("./worksheet/local_worksheet_command_service");
-import LocalWorksheetQueryService = require("./worksheet/local_worksheet_query_service");
+﻿import { LocalWorksheetCommandService } from "./worksheet/local_worksheet_command_service";
+import { LocalWorksheetQueryService } from "./worksheet/local_worksheet_query_service";
+import { WorksheetCommandService } from "dressdiscover/api/services/worksheet/worksheet_command_service";
+import { WorksheetQueryService } from "dressdiscover/api/services/worksheet/worksheet_query_service";
 
-import { WorksheetCommandService } from "../../api/services/worksheet/worksheet_command_service";
-import { WorksheetQueryService } from "../../api/services/worksheet/worksheet_query_service";
-
-class Services {
+export class Services {
     static get instance(): Services {
         return Services._instance;
     }
@@ -24,5 +23,3 @@ class Services {
     private _worksheetQueryService: WorksheetQueryService = new LocalWorksheetQueryService;
     private static _instance: Services = new Services();
 }
-
-export = Services;

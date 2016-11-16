@@ -1,11 +1,9 @@
-﻿import { WorksheetFeatureDefinition } from "../../../api/models/worksheet/worksheet_feature_definition";
-import { WorksheetFeatureState } from "../../../api/models/worksheet/worksheet_feature_state";
-import WorksheetFeatureModel = require("./worksheet_feature_model");
+﻿import { WorksheetFeatureDefinition } from "dressdiscover/api/models/worksheet/worksheet_feature_definition";
+import { WorksheetFeatureModel } from "dressdiscover/gui/models/worksheet/worksheet_feature_model";
+import { WorksheetFeatureState } from "dressdiscover/api/models/worksheet/worksheet_feature_state";
 
-class WorksheetTextFeatureModel extends WorksheetFeatureModel {
+export class WorksheetTextFeatureModel extends WorksheetFeatureModel {
     constructor(definition: WorksheetFeatureDefinition, state: WorksheetFeatureState | undefined) {
         super(definition, state);
     }
 }
-
-export = WorksheetTextFeatureModel;

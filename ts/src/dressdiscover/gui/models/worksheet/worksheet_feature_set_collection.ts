@@ -1,10 +1,8 @@
 ﻿import Backbone = require("backbone");
-import WorksheetFeatureSetModel = require("./worksheet_feature_set_model");
+import { WorksheetFeatureSetModel } from "dressdiscover/gui/models/worksheet/worksheet_feature_set_model";
 
-class WorksheetFeatureSetCollection extends Backbone.Collection<WorksheetFeatureSetModel> {
+export class WorksheetFeatureSetCollection extends Backbone.Collection<WorksheetFeatureSetModel> {
     constructor(models: WorksheetFeatureSetModel[]) {
         super(models);
     }
 }
-
-export = WorksheetFeatureSetCollection;

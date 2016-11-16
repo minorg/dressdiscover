@@ -2,7 +2,7 @@
 import { WorksheetFeatureDefinition } from "../../../api/models/worksheet/worksheet_feature_definition";
 import { WorksheetFeatureState } from "../../../api/models/worksheet/worksheet_feature_state";
  
-abstract class WorksheetFeatureModel extends Backbone.Model {
+export abstract class WorksheetFeatureModel extends Backbone.Model {
     constructor(definition: WorksheetFeatureDefinition, state: WorksheetFeatureState | undefined) {
         super({ id: definition.id });
         this._definition = definition;
@@ -23,5 +23,3 @@ abstract class WorksheetFeatureModel extends Backbone.Model {
 
     private _definition: WorksheetFeatureDefinition;
 }
-
-export = WorksheetFeatureModel;

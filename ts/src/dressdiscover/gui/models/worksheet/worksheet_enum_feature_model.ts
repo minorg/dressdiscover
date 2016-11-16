@@ -1,10 +1,10 @@
-﻿import { WorksheetFeatureDefinition } from "../../../api/models/worksheet/worksheet_feature_definition";
-import { WorksheetFeatureState } from "../../../api/models/worksheet/worksheet_feature_state";
-import WorksheetEnumFeatureValueCollection = require("./worksheet_enum_feature_value_collection");
-import WorksheetEnumFeatureValueModel = require("./worksheet_enum_feature_value_model");
-import WorksheetFeatureModel = require("./worksheet_feature_model");
+﻿import { WorksheetFeatureDefinition } from "dressdiscover/api/models/worksheet/worksheet_feature_definition";
+import { WorksheetFeatureModel } from "dressdiscover/gui/models/worksheet/worksheet_feature_model";
+import { WorksheetFeatureState } from "dressdiscover/api/models/worksheet/worksheet_feature_state";
+import { WorksheetEnumFeatureValueCollection } from "dressdiscover/gui/models/worksheet/worksheet_enum_feature_value_collection";
+import { WorksheetEnumFeatureValueModel } from "dressdiscover/gui/models/worksheet/worksheet_enum_feature_value_model";
 
-class WorksheetEnumFeatureModel extends WorksheetFeatureModel {
+export class WorksheetEnumFeatureModel extends WorksheetFeatureModel {
     constructor(definition: WorksheetFeatureDefinition, state: WorksheetFeatureState | undefined) {
         super(definition, state);
         for (let valueDefinition of definition.enum_.values_.models) {
@@ -18,5 +18,3 @@ class WorksheetEnumFeatureModel extends WorksheetFeatureModel {
 
     private _values: WorksheetEnumFeatureValueCollection = new WorksheetEnumFeatureValueCollection([]);
 }
-
-export = WorksheetEnumFeatureModel;

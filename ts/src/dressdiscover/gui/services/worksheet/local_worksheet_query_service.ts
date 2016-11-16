@@ -1,13 +1,13 @@
-﻿import { AsyncToSyncWorksheetQueryService } from "../../../api/services/worksheet/worksheet_query_service";
+﻿import { AsyncToSyncWorksheetQueryService } from "dressdiscover/api/services/worksheet/worksheet_query_service";
 import * as Backbone from "backbone";
-import { WorksheetDefinition } from "../../../api/models/worksheet/worksheet_definition";
-import { WorksheetFeatureSetDefinition } from "../../../api/models/worksheet/worksheet_feature_set_definition";
-import { WorksheetFeatureSetState } from "../../../api/models/worksheet/worksheet_feature_set_state";
-import { WorksheetState } from "../../../api/models/worksheet/worksheet_state";
+import { WorksheetDefinition } from "dressdiscover/api/models/worksheet/worksheet_definition";
+import { WorksheetFeatureSetDefinition } from "dressdiscover/api/models/worksheet/worksheet_feature_set_definition";
+import { WorksheetFeatureSetState } from "dressdiscover/api/models/worksheet/worksheet_feature_set_state";
+import { WorksheetState } from "dressdiscover/api/models/worksheet/worksheet_state";
 
 declare var FEATURES: any;
 
-class LocalWorksheetQueryService extends AsyncToSyncWorksheetQueryService {
+export class LocalWorksheetQueryService extends AsyncToSyncWorksheetQueryService {
     constructor() {
         super();
         {
@@ -38,5 +38,3 @@ class LocalWorksheetQueryService extends AsyncToSyncWorksheetQueryService {
 
     private _worksheetDefinition: WorksheetDefinition;
 }
-
-export = LocalWorksheetQueryService;

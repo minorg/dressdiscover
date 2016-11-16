@@ -1,8 +1,8 @@
 ﻿import * as Backbone from "backbone";
 import _ = require("underscore");
-import WorksheetView = require("./views/worksheet/worksheet_view");
+import { WorksheetView } from "./views/worksheet/worksheet_view";
 
-class AppRouter extends Backbone.Router {
+export class AppRouter extends Backbone.Router {
     routes = {
         "worksheet": this.worksheet,
         "*path": this.defaultRoute
@@ -22,5 +22,3 @@ class AppRouter extends Backbone.Router {
         new WorksheetView().render();
     }
 }
-
-export = AppRouter;

@@ -2,11 +2,11 @@
 //import { WorksheetState } from "../../../api/models/worksheet/worksheet_state";
 import Services = require("../../services/services");
 import Backbone = require("backbone");
-import WorksheetFeatureModel = require("./worksheet_feature_model");
-import WorksheetFeatureSetCollection = require("./worksheet_feature_set_collection");
-import WorksheetFeatureSetModel = require("./worksheet_feature_set_model");
+import { WorksheetFeatureModel } from "./worksheet_feature_model";
+import { WorksheetFeatureSetCollection } from "./worksheet_feature_set_collection";
+import { WorksheetFeatureSetModel } from "./worksheet_feature_set_model";
 
-class WorksheetModel extends Backbone.Model {
+export class WorksheetModel extends Backbone.Model {
     fetchFromService(): void {
         const worksheetDefinition = Services.instance.worksheetQueryService.getWorksheetDefinitionSync();
         const worksheetState = Services.instance.worksheetQueryService.getWorksheetStateSync();
@@ -96,5 +96,3 @@ class WorksheetModel extends Backbone.Model {
 
     private _rootFeatureSets: WorksheetFeatureSetCollection;
 }
-
-export = WorksheetModel;

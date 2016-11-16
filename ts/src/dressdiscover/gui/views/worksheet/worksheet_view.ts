@@ -1,8 +1,8 @@
-﻿import WorksheetContentView = require("./worksheet_content_view");
-import WorksheetModel = require("../../models/worksheet/worksheet_model");
-import TopLevelView = require("../top_level_view");
+﻿import { WorksheetContentView } from "./worksheet_content_view";
+import { WorksheetModel } from "dressdiscover/gui/models/worksheet/worksheet_model");
+import { TopLevelView } from "dressdiscover/gui/views/top_level_view";
 
-class WorksheetView extends TopLevelView<WorksheetModel> {
+export class WorksheetView extends TopLevelView<WorksheetModel> {
     constructor() {
         super({ model: new WorksheetModel() });
         this.model.fetchFromService();
@@ -13,5 +13,4 @@ class WorksheetView extends TopLevelView<WorksheetModel> {
         this.showChildView("content", new WorksheetContentView({ model: this.model }));
     }
 }
-
-export = WorksheetView;
+``
