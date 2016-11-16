@@ -42,7 +42,6 @@ module.exports = {
     path: path.join(__dirname, './public')
   },
   plugins: [
-    new ExtractTextPlugin('app.css'),
     new CopyWebpackPlugin([
     {
       from: './src/index.html',
@@ -57,11 +56,8 @@ module.exports = {
         to: './bootstrap.min.css'
     }
     ]),
-    new webpack.ProvidePlugin({
-      $: 'jquery',
-      _: 'underscore'
-    })
-  ],
+    new ExtractTextPlugin('app.css'),
+],
   resolve: {
     extensions: ['', '.webpack.js', '.web.js', '.ts', '.js'],
     modulesDirectories: [path.join(__dirname, './node_modules')],

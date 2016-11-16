@@ -1,6 +1,8 @@
 ﻿import _ = require("underscore");
+import { AppRadio } from "dressdiscover/gui/app_radio";
 import Marionette = require("backbone.marionette");
 import { WorksheetFeatureModel } from "dressdiscover/gui/models/worksheet/worksheet_feature_model";
+import { WorksheetFeatureSelectionEvent } from "dressdiscover/gui/events/worksheet/worksheet_feature_selection_event";
 
 declare function require(moduleName: string): any;
 
@@ -15,11 +17,11 @@ export class WorksheetFeatureNavigationView extends Marionette.ItemView<Workshee
             tagName: "li",
             template: _.template(require("raw!./worksheet_feature_navigation_view.html"))
         }));
-        //_.bindAll(this, "onClick");
     }
 
     onClick() {
         this.model.selected = true;
+        AppRadio.channel.trigger(WorksheetFeatureSelectionEvent.NAME, new WorksheetFeatureSelectionEvent({ featureModel: this.model }));
     }
 
     serializeData(): any {

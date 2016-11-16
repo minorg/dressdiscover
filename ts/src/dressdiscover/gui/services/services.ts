@@ -8,9 +8,6 @@ export class Services {
         return Services._instance;
     }
 
-    constructor() {
-    }
-
     get worksheetCommandService(): WorksheetCommandService {
         return this._worksheetCommandService;
     }
