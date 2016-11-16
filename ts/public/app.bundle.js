@@ -59,14 +59,14 @@
 	};
 	var Backbone = __webpack_require__(3);
 	var Marionette = __webpack_require__(5);
-	var AppRouter = __webpack_require__(8);
+	var app_router_1 = __webpack_require__(8);
 	var Application = (function (_super) {
 	    __extends(Application, _super);
 	    function Application() {
 	        _super.apply(this, arguments);
 	    }
 	    Application.prototype.onStart = function () {
-	        new AppRouter();
+	        new app_router_1.AppRouter();
 	        if (!Backbone.history.start()) {
 	            console.error("didn't route");
 	        }
@@ -17548,7 +17548,7 @@
 	};
 	var Backbone = __webpack_require__(3);
 	var _ = __webpack_require__(4);
-	var WorksheetView = __webpack_require__(9);
+	var worksheet_view_1 = __webpack_require__(9);
 	var AppRouter = (function (_super) {
 	    __extends(AppRouter, _super);
 	    function AppRouter() {
@@ -17566,11 +17566,11 @@
 	    };
 	    AppRouter.prototype.worksheet = function (path) {
 	        if (path === void 0) { path = ''; }
-	        new WorksheetView().render();
+	        new worksheet_view_1.WorksheetView().render();
 	    };
 	    return AppRouter;
 	}(Backbone.Router));
-	module.exports = AppRouter;
+	exports.AppRouter = AppRouter;
 
 
 /***/ },
@@ -17583,22 +17583,23 @@
 	    function __() { this.constructor = d; }
 	    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 	};
-	var WorksheetContentView = __webpack_require__(10);
-	var WorksheetModel = __webpack_require__(34);
-	var TopLevelView = __webpack_require__(55);
+	var worksheet_content_view_1 = __webpack_require__(10);
+	var worksheet_model_1 = __webpack_require__(34);
+	var top_level_view_1 = __webpack_require__(55);
 	var WorksheetView = (function (_super) {
 	    __extends(WorksheetView, _super);
 	    function WorksheetView() {
-	        _super.call(this, { model: new WorksheetModel() });
+	        _super.call(this, { model: new worksheet_model_1.WorksheetModel() });
 	        this.model.fetchFromService();
 	    }
 	    WorksheetView.prototype.onRender = function () {
 	        _super.prototype.onRender.call(this);
-	        this.showChildView("content", new WorksheetContentView({ model: this.model }));
+	        this.showChildView("content", new worksheet_content_view_1.WorksheetContentView({ model: this.model }));
 	    };
 	    return WorksheetView;
-	}(TopLevelView));
-	module.exports = WorksheetView;
+	}(top_level_view_1.TopLevelView));
+	exports.WorksheetView = WorksheetView;
+	"";
 
 
 /***/ },
@@ -17613,8 +17614,8 @@
 	};
 	var _ = __webpack_require__(4);
 	var Marionette = __webpack_require__(5);
-	var WorksheetInputView = __webpack_require__(11);
-	var WorksheetNavigationView = __webpack_require__(23);
+	var worksheet_input_view_1 = __webpack_require__(11);
+	var worksheet_navigation_view_1 = __webpack_require__(23);
 	__webpack_require__(29);
 	var WorksheetContentView = (function (_super) {
 	    __extends(WorksheetContentView, _super);
@@ -17628,12 +17629,12 @@
 	        }));
 	    }
 	    WorksheetContentView.prototype.onBeforeShow = function () {
-	        this.showChildView("leftColumn", new WorksheetNavigationView({ collection: this.model.rootFeatureSets }));
-	        this.showChildView("rightColumn", WorksheetInputView.create(this.model.selectedFeature));
+	        this.showChildView("leftColumn", new worksheet_navigation_view_1.WorksheetNavigationView({ collection: this.model.rootFeatureSets }));
+	        this.showChildView("rightColumn", worksheet_input_view_1.WorksheetInputView.create(this.model.selectedFeature));
 	    };
 	    return WorksheetContentView;
 	}(Marionette.LayoutView));
-	module.exports = WorksheetContentView;
+	exports.WorksheetContentView = WorksheetContentView;
 
 
 /***/ },
@@ -17641,19 +17642,19 @@
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
-	var WorksheetEnumFeatureInputView = __webpack_require__(12);
-	var WorksheetEnumFeatureModel = __webpack_require__(16);
-	var WorksheetTextFeatureInputView = __webpack_require__(20);
-	var WorksheetTextFeatureModel = __webpack_require__(22);
+	var worksheet_enum_feature_input_view_1 = __webpack_require__(12);
+	var worksheet_enum_feature_model_1 = __webpack_require__(16);
+	var worksheet_text_feature_input_view_1 = __webpack_require__(20);
+	var worksheet_text_feature_model_1 = __webpack_require__(22);
 	var WorksheetInputView = (function () {
 	    function WorksheetInputView() {
 	    }
 	    WorksheetInputView.create = function (model) {
-	        if (model instanceof WorksheetEnumFeatureModel) {
-	            return new WorksheetEnumFeatureInputView({ model: model });
+	        if (model instanceof worksheet_enum_feature_model_1.WorksheetEnumFeatureModel) {
+	            return new worksheet_enum_feature_input_view_1.WorksheetEnumFeatureInputView({ model: model });
 	        }
-	        else if (model instanceof WorksheetTextFeatureModel) {
-	            return new WorksheetTextFeatureInputView({ model: model });
+	        else if (model instanceof worksheet_text_feature_model_1.WorksheetTextFeatureModel) {
+	            return new worksheet_text_feature_input_view_1.WorksheetTextFeatureInputView({ model: model });
 	        }
 	        else {
 	            throw new Error("not supported " + model.constructor.name);
@@ -17661,7 +17662,7 @@
 	    };
 	    return WorksheetInputView;
 	}());
-	module.exports = WorksheetInputView;
+	exports.WorksheetInputView = WorksheetInputView;
 
 
 /***/ },
@@ -17677,20 +17678,20 @@
 	var _ = __webpack_require__(4);
 	var Backbone = __webpack_require__(3);
 	var Marionette = __webpack_require__(5);
-	var WorksheetEnumFeatureValueInputView = __webpack_require__(13);
+	var worksheet_enum_feature_value_input_view_1 = __webpack_require__(13);
 	var WorksheetEnumFeatureInputView = (function (_super) {
 	    __extends(WorksheetEnumFeatureInputView, _super);
 	    function WorksheetEnumFeatureInputView(options) {
 	        _super.call(this, _.extend(options, {
 	            el: "#feature-values",
 	            collection: options.model.featureValues ? options.model.featureValues : new Backbone.Collection(),
-	            childView: WorksheetEnumFeatureValueInputView,
+	            childView: worksheet_enum_feature_value_input_view_1.WorksheetEnumFeatureValueInputView,
 	            template: _.template(__webpack_require__(15))
 	        }));
 	    }
 	    return WorksheetEnumFeatureInputView;
 	}(Marionette.CollectionView));
-	module.exports = WorksheetEnumFeatureInputView;
+	exports.WorksheetEnumFeatureInputView = WorksheetEnumFeatureInputView;
 
 
 /***/ },
@@ -17865,7 +17866,6 @@
 	};
 	var _ = __webpack_require__(4);
 	var Marionette = __webpack_require__(5);
-	__webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"../../../../../../../node_modules/backbone.stickit/backbone.stickit.js\""); e.code = 'MODULE_NOT_FOUND'; throw e; }()));
 	var WorksheetTextFeatureInputView = (function (_super) {
 	    __extends(WorksheetTextFeatureInputView, _super);
 	    function WorksheetTextFeatureInputView(options) {
@@ -17875,7 +17875,7 @@
 	    }
 	    return WorksheetTextFeatureInputView;
 	}(Marionette.ItemView));
-	module.exports = WorksheetTextFeatureInputView;
+	exports.WorksheetTextFeatureInputView = WorksheetTextFeatureInputView;
 
 
 /***/ },
@@ -17915,22 +17915,21 @@
 	    function __() { this.constructor = d; }
 	    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 	};
-	//import Backbone = require("backbone");
-	var Marionette = __webpack_require__(5);
-	var WorksheetFeatureSetNavigationView = __webpack_require__(24);
 	var _ = __webpack_require__(4);
+	var Marionette = __webpack_require__(5);
+	var worksheet_feature_set_navigation_view_1 = __webpack_require__(24);
 	var WorksheetNavigationView = (function (_super) {
 	    __extends(WorksheetNavigationView, _super);
 	    function WorksheetNavigationView(options) {
 	        _super.call(this, _.extend(options, {
-	            childView: WorksheetFeatureSetNavigationView,
+	            childView: worksheet_feature_set_navigation_view_1.WorksheetFeatureSetNavigationView,
 	            tagName: "ul",
 	            template: _.template(__webpack_require__(28))
 	        }));
 	    }
 	    return WorksheetNavigationView;
 	}(Marionette.CollectionView));
-	module.exports = WorksheetNavigationView;
+	exports.WorksheetNavigationView = WorksheetNavigationView;
 
 
 /***/ },
@@ -17946,7 +17945,7 @@
 	//import Backbone = require("backbone");
 	var _ = __webpack_require__(4);
 	var Marionette = __webpack_require__(5);
-	var WorksheetFeatureNavigationView = __webpack_require__(25);
+	var worksheet_feature_navigation_view_1 = __webpack_require__(25);
 	var WorksheetFeatureSetNavigationView = (function (_super) {
 	    __extends(WorksheetFeatureSetNavigationView, _super);
 	    function WorksheetFeatureSetNavigationView(options) {
@@ -17970,7 +17969,7 @@
 	        if (this.model.features) {
 	            for (var _b = 0, _c = this.model.features.models; _b < _c.length; _b++) {
 	                var featureModel = _c[_b];
-	                this.ui.children.append(new WorksheetFeatureNavigationView({ model: featureModel }).render().el);
+	                this.ui.children.append(new worksheet_feature_navigation_view_1.WorksheetFeatureNavigationView({ model: featureModel }).render().el);
 	            }
 	        }
 	    };
@@ -17979,7 +17978,7 @@
 	    };
 	    return WorksheetFeatureSetNavigationView;
 	}(Marionette.ItemView));
-	module.exports = WorksheetFeatureSetNavigationView;
+	exports.WorksheetFeatureSetNavigationView = WorksheetFeatureSetNavigationView;
 
 
 /***/ },
@@ -18016,7 +18015,7 @@
 	    };
 	    return WorksheetFeatureNavigationView;
 	}(Marionette.ItemView));
-	module.exports = WorksheetFeatureNavigationView;
+	exports.WorksheetFeatureNavigationView = WorksheetFeatureNavigationView;
 
 
 /***/ },
@@ -18062,10 +18061,8 @@
 	    function __() { this.constructor = d; }
 	    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 	};
-	//import { WorksheetDefinition } from "../../../api/models/worksheet/worksheet_definition";
-	//import { WorksheetState } from "../../../api/models/worksheet/worksheet_state";
-	var Services = __webpack_require__(35);
 	var Backbone = __webpack_require__(3);
+	var services_1 = __webpack_require__(35);
 	var worksheet_feature_set_collection_1 = __webpack_require__(52);
 	var worksheet_feature_set_model_1 = __webpack_require__(53);
 	var WorksheetModel = (function (_super) {
@@ -18074,8 +18071,8 @@
 	        _super.apply(this, arguments);
 	    }
 	    WorksheetModel.prototype.fetchFromService = function () {
-	        var worksheetDefinition = Services.instance.worksheetQueryService.getWorksheetDefinitionSync();
-	        var worksheetState = Services.instance.worksheetQueryService.getWorksheetStateSync();
+	        var worksheetDefinition = services_1.Services.instance.worksheetQueryService.getWorksheetDefinitionSync();
+	        var worksheetState = services_1.Services.instance.worksheetQueryService.getWorksheetStateSync();
 	        var rootFeatureSets = [];
 	        for (var _i = 0, _a = worksheetDefinition.rootFeatureSets.models; _i < _a.length; _i++) {
 	            var rootFeatureSetDefinition = _a[_i];
@@ -18170,12 +18167,12 @@
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
-	var LocalWorksheetCommandService = __webpack_require__(36);
-	var LocalWorksheetQueryService = __webpack_require__(38);
+	var local_worksheet_command_service_1 = __webpack_require__(36);
+	var local_worksheet_query_service_1 = __webpack_require__(38);
 	var Services = (function () {
 	    function Services() {
-	        this._worksheetCommandService = new LocalWorksheetCommandService;
-	        this._worksheetQueryService = new LocalWorksheetQueryService;
+	        this._worksheetCommandService = new local_worksheet_command_service_1.LocalWorksheetCommandService;
+	        this._worksheetQueryService = new local_worksheet_query_service_1.LocalWorksheetQueryService;
 	    }
 	    Object.defineProperty(Services, "instance", {
 	        get: function () {
@@ -18201,7 +18198,7 @@
 	    Services._instance = new Services();
 	    return Services;
 	}());
-	module.exports = Services;
+	exports.Services = Services;
 
 
 /***/ },
@@ -18225,7 +18222,7 @@
 	    };
 	    return LocalWorksheetCommandService;
 	}(worksheet_command_service_1.AsyncToSyncWorksheetCommandService));
-	module.exports = LocalWorksheetCommandService;
+	exports.LocalWorksheetCommandService = LocalWorksheetCommandService;
 
 
 /***/ },
@@ -18356,7 +18353,7 @@
 	    };
 	    return LocalWorksheetQueryService;
 	}(worksheet_query_service_1.AsyncToSyncWorksheetQueryService));
-	module.exports = LocalWorksheetQueryService;
+	exports.LocalWorksheetQueryService = LocalWorksheetQueryService;
 
 
 /***/ },
@@ -19407,7 +19404,7 @@
 	__webpack_require__(56);
 	var _ = __webpack_require__(4);
 	var Marionette = __webpack_require__(5);
-	var NavbarView = __webpack_require__(58);
+	var navbar_view_1 = __webpack_require__(58);
 	var TopLevelView = (function (_super) {
 	    __extends(TopLevelView, _super);
 	    function TopLevelView(options) {
@@ -19420,11 +19417,11 @@
 	        _super.call(this, options);
 	    }
 	    TopLevelView.prototype.onRender = function () {
-	        this.showChildView("navbar", new NavbarView());
+	        this.showChildView("navbar", new navbar_view_1.NavbarView());
 	    };
 	    return TopLevelView;
 	}(Marionette.LayoutView));
-	module.exports = TopLevelView;
+	exports.TopLevelView = TopLevelView;
 
 
 /***/ },
@@ -19454,7 +19451,7 @@
 	    }
 	    return NavbarView;
 	}(Marionette.ItemView));
-	module.exports = NavbarView;
+	exports.NavbarView = NavbarView;
 
 
 /***/ },

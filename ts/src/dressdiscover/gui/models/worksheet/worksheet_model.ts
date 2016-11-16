@@ -1,7 +1,5 @@
-﻿//import { WorksheetDefinition } from "../../../api/models/worksheet/worksheet_definition";
-//import { WorksheetState } from "../../../api/models/worksheet/worksheet_state";
-import Services = require("../../services/services");
-import Backbone = require("backbone");
+﻿import Backbone = require("backbone");
+import { Services } from "dressdiscover/gui/services/services";
 import { WorksheetFeatureModel } from "./worksheet_feature_model";
 import { WorksheetFeatureSetCollection } from "./worksheet_feature_set_collection";
 import { WorksheetFeatureSetModel } from "./worksheet_feature_set_model";

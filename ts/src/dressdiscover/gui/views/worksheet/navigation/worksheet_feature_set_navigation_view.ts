@@ -1,7 +1,7 @@
 ﻿//import Backbone = require("backbone");
 import _ = require("underscore");
 import Marionette = require("backbone.marionette");
-import { WorksheetFeatureNavigationView } from "./worksheet_feature_navigation_view");
+import { WorksheetFeatureNavigationView } from "./worksheet_feature_navigation_view";
 import { WorksheetFeatureSetModel } from "dressdiscover/gui/models/worksheet/worksheet_feature_set_model";
 
 declare function require(moduleName: string): any;

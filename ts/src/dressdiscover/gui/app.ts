@@ -1,6 +1,6 @@
 import Backbone = require("backbone");
 import Marionette = require("backbone.marionette");
-import AppRouter = require("./app_router");
+import { AppRouter } from "dressdiscover/gui/app_router";
 
 class Application extends Marionette.Application {
     onStart() {
