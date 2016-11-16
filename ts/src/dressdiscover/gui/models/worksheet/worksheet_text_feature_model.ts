@@ -5,5 +5,8 @@ import { WorksheetFeatureState } from "dressdiscover/api/models/worksheet/worksh
 export class WorksheetTextFeatureModel extends WorksheetFeatureModel {
     constructor(definition: WorksheetFeatureDefinition, state: WorksheetFeatureState | undefined) {
         super(definition, state);
+        if (state && state.text && state.text.text) {
+            this.set("text", state.text.text);
+        }
     }
 }

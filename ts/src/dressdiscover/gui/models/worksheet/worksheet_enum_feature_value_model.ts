@@ -5,7 +5,7 @@ export class WorksheetEnumFeatureValueModel extends Backbone.Model {
     constructor(definition: WorksheetEnumFeatureValueDefinition, selected: boolean) {
         super({ id: definition.id });
         this._definition = definition;
-        this.set("selected", true);
+        this.set("selected", selected);
     }
 
     get definition(): WorksheetEnumFeatureValueDefinition {

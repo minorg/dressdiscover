@@ -7,10 +7,7 @@ declare function require(moduleName: string): any;
 
 export class WorksheetTextFeatureInputView extends Marionette.ItemView<WorksheetTextFeatureModel> {
     bindings = {
-        "#text": {
-            observe: "text",
-            onSet: "onSet"
-        }
+        "#text": "text"
     };
 
     constructor(options: any) {
@@ -25,14 +22,6 @@ export class WorksheetTextFeatureInputView extends Marionette.ItemView<Worksheet
 
     onRender() {
         (this as any).stickit();
-    }
-
-    onSet(value: string) {
-        for (var key in this.model.attributes) {
-            console.info(key + ' = ' + this.model.attributes[key]);
-        }
-        console.info("Set to " + value);
-        return value;
     }
 
     serializeData(): any {
