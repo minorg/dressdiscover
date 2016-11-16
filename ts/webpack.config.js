@@ -22,6 +22,10 @@ module.exports = {
         //exclude: /node_modules/,
         loader: ExtractTextPlugin.extract('style-loader', 'css-loader')
       },
+      //{
+      //    test: /\.js$/,
+      //    loader: 'babel-loader'
+      //},
       {
           test: /\.less$/,
           //exclude: /node_modules/,

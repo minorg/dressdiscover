@@ -5,7 +5,8 @@
         "module": "commonjs",
         "moduleResolution": "node",
         "paths": {
-            "dressdiscover/*": [ "src/dressdiscover/*" ]
+            "dressdiscover/*": [ "src/dressdiscover/*" ],
+            "node_modules/*": [ "node_modules/*" ]
         },
         "noImplicitAny": true,
         "noImplicitReturns": true,
@@ -16,7 +17,7 @@
         "strictNullChecks": true,
         "target": "es5"
     },
-    "filesGlob": [
-        "**/*.ts"
+    "include": [
+        "src/**/*"
     ]
 }
