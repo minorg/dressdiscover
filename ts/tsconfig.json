@@ -1,9 +1,12 @@
 {
     "compileOnSave": true,
     "compilerOptions": {
-        "baseUrl": "src",
+        "baseUrl": ".",
         "module": "commonjs",
         "moduleResolution": "node",
+        "paths": {
+            "dressdiscover/*": [ "src/dressdiscover/*" ]
+        },
         "noImplicitAny": true,
         "noImplicitReturns": true,
         "noImplicitThis": true,
