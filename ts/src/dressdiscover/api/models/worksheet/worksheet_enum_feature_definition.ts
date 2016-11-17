@@ -2,32 +2,30 @@ import * as Backbone from "backbone";
 import { WorksheetEnumFeatureValueDefinition } from "./worksheet_enum_feature_value_definition";
 
 export class WorksheetEnumFeatureDefinition extends Backbone.Model {
-    constructor(attributes?: {values_: Backbone.Collection<WorksheetEnumFeatureValueDefinition>}) {
-        let attributes_: any = {};
-        if (attributes) {
-            attributes_["values_"] = attributes["values_"];
+    validation = {
+        values_: {
+            "fn": function(value: any, attr: any, computedState: any) {
+                if (!(value instanceof Backbone.Collection)) {
+                    return "expected WorksheetEnumFeatureDefinition.values_ to be a Backbone.Collection";
+                }
+                if (value.model !== WorksheetEnumFeatureValueDefinition) {
+                    return "expected WorksheetEnumFeatureDefinition.values_ to be a Backbone.Collection with model=WorksheetEnumFeatureValueDefinition";
+                }
+                for (let __model0 of value.models) {
+                    if (!__model0.isValid(true)) {
+                        return __model0.validationError;
+                    }
+                }
+                return undefined;
+            },
+            "minLength": 1, "required": true
         }
-        attributes_["validation"] = {
-            values_: {
-                "fn": function(value: any, attr: any, computedState: any) {
-                    console.debug("validating values_");
-                    if (!(value instanceof Backbone.Collection)) {
-                        return "expected WorksheetEnumFeatureDefinition.values_ to be a Backbone.Collection";
-                    }
-                    if (value.model !== WorksheetEnumFeatureValueDefinition) {
-                        return "expected WorksheetEnumFeatureDefinition.values_ to be a Backbone.Collection with model=WorksheetEnumFeatureValueDefinition";
-                    }
-                    for (let __model0 of value.models) {
-                        if (!__model0.isValid(true)) {
-                            return __model0.validationError;
-                        }
-                    }
-                    return undefined;
-                },
-                "minLength": 1, "required": true
-            }
-        }
-        super(attributes_);
+    }
+
+    validationError: any;
+
+    constructor(attributes?: {values_: Backbone.Collection<WorksheetEnumFeatureValueDefinition>}, options?: any) {
+        super(attributes, options);
     }
 
     get values_(): Backbone.Collection<WorksheetEnumFeatureValueDefinition> {
@@ -44,6 +42,9 @@ export class WorksheetEnumFeatureDefinition extends Backbone.Model {
             if (fieldName == "values_") {
                 out.attributes.values_ = function(json: any[]): Backbone.Collection<WorksheetEnumFeatureValueDefinition> { var sequence: WorksheetEnumFeatureValueDefinition[] = []; for (var i = 0; i < json.length; i++) { sequence.push(WorksheetEnumFeatureValueDefinition.fromThryftJSON(json[i])); } return new Backbone.Collection<WorksheetEnumFeatureValueDefinition>(sequence); }(json[fieldName]);
             }
+        }
+        if (!out.isValid(true)) {
+            throw new Error(out.validationError);
         }
         return out;
     }

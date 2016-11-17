@@ -1,24 +1,22 @@
 import * as Backbone from "backbone";
 
 export class WorksheetTextFeatureState extends Backbone.Model {
-    constructor(attributes?: {text: string}) {
-        let attributes_: any = {};
-        if (attributes) {
-            attributes_["text"] = attributes["text"];
+    validation = {
+        text: {
+            "fn": function(value: any, attr: any, computedState: any) {
+                if (typeof value !== "string") {
+                    return "expected WorksheetTextFeatureState.text to be a string";
+                }
+                return undefined;
+            },
+            "minLength": 1, "required": true
         }
-        attributes_["validation"] = {
-            text: {
-                "fn": function(value: any, attr: any, computedState: any) {
-                    console.debug("validating text");
-                    if (typeof value !== "string") {
-                        return "expected WorksheetTextFeatureState.text to be a string";
-                    }
-                    return undefined;
-                },
-                "minLength": 1, "required": true
-            }
-        }
-        super(attributes_);
+    }
+
+    validationError: any;
+
+    constructor(attributes?: {text: string}, options?: any) {
+        super(attributes, options);
     }
 
     get text(): string {
@@ -35,6 +33,9 @@ export class WorksheetTextFeatureState extends Backbone.Model {
             if (fieldName == "text") {
                 out.attributes.text = json[fieldName];
             }
+        }
+        if (!out.isValid(true)) {
+            throw new Error(out.validationError);
         }
         return out;
     }

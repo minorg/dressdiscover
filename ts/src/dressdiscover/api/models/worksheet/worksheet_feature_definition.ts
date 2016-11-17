@@ -3,72 +3,64 @@ import { WorksheetEnumFeatureDefinition } from "./worksheet_enum_feature_definit
 import { WorksheetTextFeatureDefinition } from "./worksheet_text_feature_definition";
 
 export class WorksheetFeatureDefinition extends Backbone.Model {
-    constructor(attributes?: {id: string, displayName?: string, enum_?: WorksheetEnumFeatureDefinition, text?: WorksheetTextFeatureDefinition}) {
-        let attributes_: any = {};
-        if (attributes) {
-            attributes_["id"] = attributes["id"];
-            attributes_["displayName"] = attributes["displayName"];
-            attributes_["enum_"] = attributes["enum_"];
-            attributes_["text"] = attributes["text"];
-        }
-        attributes_["validation"] = {
-            id: {
-                "fn": function(value: any, attr: any, computedState: any) {
-                    console.debug("validating id");
+    validation = {
+        id: {
+            "fn": function(value: any, attr: any, computedState: any) {
+                if (typeof value !== "string") {
+                    return "expected WorksheetFeatureDefinition.id to be a string";
+                }
+                return undefined;
+            },
+            "required": true
+        },
+
+        displayName: {
+            "fn": function(value: any, attr: any, computedState: any) {
+                if (typeof attr !== "undefined" && attr !== "null") {
                     if (typeof value !== "string") {
-                        return "expected WorksheetFeatureDefinition.id to be a string";
+                        return "expected WorksheetFeatureDefinition.display_name to be a string";
                     }
-                    return undefined;
-                },
-                "required": true
+                }
+                return undefined;
             },
+            "minLength": 1, "required": false
+        },
 
-            displayName: {
-                "fn": function(value: any, attr: any, computedState: any) {
-                    console.debug("validating displayName");
-                    if (typeof attr !== "undefined" && attr !== "null") {
-                        if (typeof value !== "string") {
-                            return "expected WorksheetFeatureDefinition.display_name to be a string";
-                        }
+        enum_: {
+            "fn": function(value: any, attr: any, computedState: any) {
+                if (typeof attr !== "undefined" && attr !== "null") {
+                    if (!(value instanceof WorksheetEnumFeatureDefinition)) {
+                        return "expected WorksheetFeatureDefinition.enum_ to be a WorksheetEnumFeatureDefinition";
                     }
-                    return undefined;
-                },
-                "minLength": 1, "required": false
+                    if (!value.isValid(true)) {
+                        return value.validationError;
+                    }
+                }
+                return undefined;
             },
+            "required": false
+        },
 
-            enum_: {
-                "fn": function(value: any, attr: any, computedState: any) {
-                    console.debug("validating enum_");
-                    if (typeof attr !== "undefined" && attr !== "null") {
-                        if (!(value instanceof WorksheetEnumFeatureDefinition)) {
-                            return "expected WorksheetFeatureDefinition.enum_ to be a WorksheetEnumFeatureDefinition";
-                        }
-                        if (!value.isValid(true)) {
-                            return value.validationError;
-                        }
+        text: {
+            "fn": function(value: any, attr: any, computedState: any) {
+                if (typeof attr !== "undefined" && attr !== "null") {
+                    if (!(value instanceof WorksheetTextFeatureDefinition)) {
+                        return "expected WorksheetFeatureDefinition.text to be a WorksheetTextFeatureDefinition";
                     }
-                    return undefined;
-                },
-                "required": false
+                    if (!value.isValid(true)) {
+                        return value.validationError;
+                    }
+                }
+                return undefined;
             },
-
-            text: {
-                "fn": function(value: any, attr: any, computedState: any) {
-                    console.debug("validating text");
-                    if (typeof attr !== "undefined" && attr !== "null") {
-                        if (!(value instanceof WorksheetTextFeatureDefinition)) {
-                            return "expected WorksheetFeatureDefinition.text to be a WorksheetTextFeatureDefinition";
-                        }
-                        if (!value.isValid(true)) {
-                            return value.validationError;
-                        }
-                    }
-                    return undefined;
-                },
-                "required": false
-            }
+            "required": false
         }
-        super(attributes_);
+    }
+
+    validationError: any;
+
+    constructor(attributes?: {id: string, displayName?: string, enum_?: WorksheetEnumFeatureDefinition, text?: WorksheetTextFeatureDefinition}, options?: any) {
+        super(attributes, options);
     }
 
     get id(): string {
@@ -115,6 +107,9 @@ export class WorksheetFeatureDefinition extends Backbone.Model {
             } else if (fieldName == "text") {
                 out.attributes.text = WorksheetTextFeatureDefinition.fromThryftJSON(json[fieldName]);
             }
+        }
+        if (!out.isValid(true)) {
+            throw new Error(out.validationError);
         }
         return out;
     }

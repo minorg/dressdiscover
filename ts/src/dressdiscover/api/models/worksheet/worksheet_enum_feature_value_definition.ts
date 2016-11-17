@@ -2,55 +2,49 @@ import * as Backbone from "backbone";
 import { WorksheetEnumFeatureValueImage } from "./worksheet_enum_feature_value_image";
 
 export class WorksheetEnumFeatureValueDefinition extends Backbone.Model {
-    constructor(attributes?: {id: string, displayName?: string, image?: WorksheetEnumFeatureValueImage}) {
-        let attributes_: any = {};
-        if (attributes) {
-            attributes_["id"] = attributes["id"];
-            attributes_["displayName"] = attributes["displayName"];
-            attributes_["image"] = attributes["image"];
-        }
-        attributes_["validation"] = {
-            id: {
-                "fn": function(value: any, attr: any, computedState: any) {
-                    console.debug("validating id");
+    validation = {
+        id: {
+            "fn": function(value: any, attr: any, computedState: any) {
+                if (typeof value !== "string") {
+                    return "expected WorksheetEnumFeatureValueDefinition.id to be a string";
+                }
+                return undefined;
+            },
+            "required": true
+        },
+
+        displayName: {
+            "fn": function(value: any, attr: any, computedState: any) {
+                if (typeof attr !== "undefined" && attr !== "null") {
                     if (typeof value !== "string") {
-                        return "expected WorksheetEnumFeatureValueDefinition.id to be a string";
+                        return "expected WorksheetEnumFeatureValueDefinition.display_name to be a string";
                     }
-                    return undefined;
-                },
-                "required": true
+                }
+                return undefined;
             },
+            "minLength": 1, "required": false
+        },
 
-            displayName: {
-                "fn": function(value: any, attr: any, computedState: any) {
-                    console.debug("validating displayName");
-                    if (typeof attr !== "undefined" && attr !== "null") {
-                        if (typeof value !== "string") {
-                            return "expected WorksheetEnumFeatureValueDefinition.display_name to be a string";
-                        }
+        image: {
+            "fn": function(value: any, attr: any, computedState: any) {
+                if (typeof attr !== "undefined" && attr !== "null") {
+                    if (!(value instanceof WorksheetEnumFeatureValueImage)) {
+                        return "expected WorksheetEnumFeatureValueDefinition.image to be a WorksheetEnumFeatureValueImage";
                     }
-                    return undefined;
-                },
-                "minLength": 1, "required": false
+                    if (!value.isValid(true)) {
+                        return value.validationError;
+                    }
+                }
+                return undefined;
             },
-
-            image: {
-                "fn": function(value: any, attr: any, computedState: any) {
-                    console.debug("validating image");
-                    if (typeof attr !== "undefined" && attr !== "null") {
-                        if (!(value instanceof WorksheetEnumFeatureValueImage)) {
-                            return "expected WorksheetEnumFeatureValueDefinition.image to be a WorksheetEnumFeatureValueImage";
-                        }
-                        if (!value.isValid(true)) {
-                            return value.validationError;
-                        }
-                    }
-                    return undefined;
-                },
-                "required": false
-            }
+            "required": false
         }
-        super(attributes_);
+    }
+
+    validationError: any;
+
+    constructor(attributes?: {id: string, displayName?: string, image?: WorksheetEnumFeatureValueImage}, options?: any) {
+        super(attributes, options);
     }
 
     get id(): string {
@@ -87,6 +81,9 @@ export class WorksheetEnumFeatureValueDefinition extends Backbone.Model {
             } else if (fieldName == "image") {
                 out.attributes.image = WorksheetEnumFeatureValueImage.fromThryftJSON(json[fieldName]);
             }
+        }
+        if (!out.isValid(true)) {
+            throw new Error(out.validationError);
         }
         return out;
     }

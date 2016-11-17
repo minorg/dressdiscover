@@ -1,29 +1,27 @@
 import * as Backbone from "backbone";
 
 export class WorksheetEnumFeatureState extends Backbone.Model {
-    constructor(attributes?: {selectedValues: string[]}) {
-        let attributes_: any = {};
-        if (attributes) {
-            attributes_["selectedValues"] = attributes["selectedValues"];
-        }
-        attributes_["validation"] = {
-            selectedValues: {
-                "fn": function(value: any, attr: any, computedState: any) {
-                    console.debug("validating selectedValues");
-                    if (!Array.isArray(value)) {
-                        return "expected WorksheetEnumFeatureState.selected_values to be an Array";
+    validation = {
+        selectedValues: {
+            "fn": function(value: any, attr: any, computedState: any) {
+                if (!Array.isArray(value)) {
+                    return "expected WorksheetEnumFeatureState.selected_values to be an Array";
+                }
+                for (var __i0 = 0; __i0 < value.length; __i0++) {
+                    if (typeof value[__i0] !== "string") {
+                        return "expected WorksheetEnumFeatureState.selected_values[i] to be a string";
                     }
-                    for (var __i0 = 0; __i0 < value.length; __i0++) {
-                        if (typeof value[__i0] !== "string") {
-                            return "expected WorksheetEnumFeatureState.selected_values[i] to be a string";
-                        }
-                    }
-                    return undefined;
-                },
-                "minLength": 1, "required": true
-            }
+                }
+                return undefined;
+            },
+            "minLength": 1, "required": true
         }
-        super(attributes_);
+    }
+
+    validationError: any;
+
+    constructor(attributes?: {selectedValues: string[]}, options?: any) {
+        super(attributes, options);
     }
 
     get selectedValues(): string[] {
@@ -40,6 +38,9 @@ export class WorksheetEnumFeatureState extends Backbone.Model {
             if (fieldName == "selected_values") {
                 out.attributes.selectedValues = function(json: any[]): string[] { var sequence: string[] = []; for (var i = 0; i < json.length; i++) { sequence.push(json[i]); } return sequence; }(json[fieldName]);
             }
+        }
+        if (!out.isValid(true)) {
+            throw new Error(out.validationError);
         }
         return out;
     }

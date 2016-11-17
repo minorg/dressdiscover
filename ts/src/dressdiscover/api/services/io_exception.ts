@@ -1,24 +1,22 @@
 import * as Backbone from "backbone";
 
 export class IoException extends Backbone.Model {
-    constructor(attributes?: {causeMessage: string}) {
-        let attributes_: any = {};
-        if (attributes) {
-            attributes_["causeMessage"] = attributes["causeMessage"];
+    validation = {
+        causeMessage: {
+            "fn": function(value: any, attr: any, computedState: any) {
+                if (typeof value !== "string") {
+                    return "expected IoException.cause_message to be a string";
+                }
+                return undefined;
+            },
+            "required": true
         }
-        attributes_["validation"] = {
-            causeMessage: {
-                "fn": function(value: any, attr: any, computedState: any) {
-                    console.debug("validating causeMessage");
-                    if (typeof value !== "string") {
-                        return "expected IoException.cause_message to be a string";
-                    }
-                    return undefined;
-                },
-                "required": true
-            }
-        }
-        super(attributes_);
+    }
+
+    validationError: any;
+
+    constructor(attributes?: {causeMessage: string}, options?: any) {
+        super(attributes, options);
     }
 
     get causeMessage(): string {
@@ -35,6 +33,9 @@ export class IoException extends Backbone.Model {
             if (fieldName == "cause_message") {
                 out.attributes.causeMessage = json[fieldName];
             }
+        }
+        if (!out.isValid(true)) {
+            throw new Error(out.validationError);
         }
         return out;
     }

@@ -1,50 +1,44 @@
 import * as Backbone from "backbone";
 
 export class WorksheetEnumFeatureValueImage extends Backbone.Model {
-    constructor(attributes?: {rights: string, thumbnailUrl: URL, fullSizeUrl?: URL}) {
-        let attributes_: any = {};
-        if (attributes) {
-            attributes_["rights"] = attributes["rights"];
-            attributes_["thumbnailUrl"] = attributes["thumbnailUrl"];
-            attributes_["fullSizeUrl"] = attributes["fullSizeUrl"];
-        }
-        attributes_["validation"] = {
-            rights: {
-                "fn": function(value: any, attr: any, computedState: any) {
-                    console.debug("validating rights");
-                    if (typeof value !== "string") {
-                        return "expected WorksheetEnumFeatureValueImage.rights to be a string";
-                    }
-                    return undefined;
-                },
-                "minLength": 1, "required": true
+    validation = {
+        rights: {
+            "fn": function(value: any, attr: any, computedState: any) {
+                if (typeof value !== "string") {
+                    return "expected WorksheetEnumFeatureValueImage.rights to be a string";
+                }
+                return undefined;
             },
+            "minLength": 1, "required": true
+        },
 
-            thumbnailUrl: {
-                "fn": function(value: any, attr: any, computedState: any) {
-                    console.debug("validating thumbnailUrl");
-                    if (typeof value !== "string") {
-                        return "expected WorksheetEnumFeatureValueImage.thumbnail_url to be a string";
-                    }
-                    return undefined;
-                },
-                "required": true
+        thumbnailUrl: {
+            "fn": function(value: any, attr: any, computedState: any) {
+                if (typeof value !== "string") {
+                    return "expected WorksheetEnumFeatureValueImage.thumbnail_url to be a string";
+                }
+                return undefined;
             },
+            "required": true
+        },
 
-            fullSizeUrl: {
-                "fn": function(value: any, attr: any, computedState: any) {
-                    console.debug("validating fullSizeUrl");
-                    if (typeof attr !== "undefined" && attr !== "null") {
-                        if (typeof value !== "string") {
-                            return "expected WorksheetEnumFeatureValueImage.full_size_url to be a string";
-                        }
+        fullSizeUrl: {
+            "fn": function(value: any, attr: any, computedState: any) {
+                if (typeof attr !== "undefined" && attr !== "null") {
+                    if (typeof value !== "string") {
+                        return "expected WorksheetEnumFeatureValueImage.full_size_url to be a string";
                     }
-                    return undefined;
-                },
-                "required": false
-            }
+                }
+                return undefined;
+            },
+            "required": false
         }
-        super(attributes_);
+    }
+
+    validationError: any;
+
+    constructor(attributes?: {rights: string, thumbnailUrl: URL, fullSizeUrl?: URL}, options?: any) {
+        super(attributes, options);
     }
 
     get rights(): string {
@@ -81,6 +75,9 @@ export class WorksheetEnumFeatureValueImage extends Backbone.Model {
             } else if (fieldName == "full_size_url") {
                 out.attributes.fullSizeUrl = new URL(json[fieldName]);
             }
+        }
+        if (!out.isValid(true)) {
+            throw new Error(out.validationError);
         }
         return out;
     }
