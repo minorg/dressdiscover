@@ -4,39 +4,43 @@ import { WorksheetTextFeatureState } from "./worksheet_text_feature_state";
 
 export class WorksheetFeatureState extends Backbone.Model {
     constructor(attributes?: {enum_?: WorksheetEnumFeatureState, text?: WorksheetTextFeatureState}) {
-        if (!attributes) {
-            attributes = {};
+        let attributes_: any = {};
+        if (attributes) {
+            attributes_["enum_"] = attributes["enum_"];
+            attributes_["text"] = attributes["text"];
         }
-        attributes["validation"] = {
+        attributes_["validation"] = {
             enum_: {
-                "fn": function(value, attr, computedState) {
+                "fn": function(value: any, attr: any, computedState: any) {
                     if (typeof attr !== "undefined" && attr !== "null") {
-                        if (!(value instanceof dressdiscover.api.models.worksheet.WorksheetEnumFeatureState)) {
-                            return "expected dressdiscover.api.models.worksheet.WorksheetFeatureState.enum_ to be a dressdiscover.api.models.worksheet.WorksheetEnumFeatureState";
+                        if (!(value instanceof WorksheetEnumFeatureState)) {
+                            return "expected WorksheetFeatureState.enum_ to be a WorksheetEnumFeatureState";
                         }
                         if (!value.isValid(true)) {
                             return value.validationError;
                         }
                     }
+                    return undefined;
                 },
                 "required": false
             },
 
             text: {
-                "fn": function(value, attr, computedState) {
+                "fn": function(value: any, attr: any, computedState: any) {
                     if (typeof attr !== "undefined" && attr !== "null") {
-                        if (!(value instanceof dressdiscover.api.models.worksheet.WorksheetTextFeatureState)) {
-                            return "expected dressdiscover.api.models.worksheet.WorksheetFeatureState.text to be a dressdiscover.api.models.worksheet.WorksheetTextFeatureState";
+                        if (!(value instanceof WorksheetTextFeatureState)) {
+                            return "expected WorksheetFeatureState.text to be a WorksheetTextFeatureState";
                         }
                         if (!value.isValid(true)) {
                             return value.validationError;
                         }
                     }
+                    return undefined;
                 },
                 "required": false
             }
         }
-        super(attributes);
+        super(attributes_);
     }
 
     get enum_(): WorksheetEnumFeatureState {

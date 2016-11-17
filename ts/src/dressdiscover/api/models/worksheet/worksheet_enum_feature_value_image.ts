@@ -2,40 +2,46 @@ import * as Backbone from "backbone";
 
 export class WorksheetEnumFeatureValueImage extends Backbone.Model {
     constructor(attributes?: {rights: string, thumbnailUrl: URL, fullSizeUrl?: URL}) {
-        if (!attributes) {
-            attributes = {};
+        let attributes_: any = {};
+        if (attributes) {
+            attributes_["rights"] = attributes["rights"];
+            attributes_["thumbnailUrl"] = attributes["thumbnailUrl"];
+            attributes_["fullSizeUrl"] = attributes["fullSizeUrl"];
         }
-        attributes["validation"] = {
+        attributes_["validation"] = {
             rights: {
-                "fn": function(value, attr, computedState) {
+                "fn": function(value: any, attr: any, computedState: any) {
                     if (typeof value !== "string") {
-                        return "expected dressdiscover.api.models.worksheet.WorksheetEnumFeatureValueImage.rights to be a string";
+                        return "expected WorksheetEnumFeatureValueImage.rights to be a string";
                     }
+                    return undefined;
                 },
                 "required": true
             },
 
-            thumbnail_url: {
-                "fn": function(value, attr, computedState) {
+            thumbnailUrl: {
+                "fn": function(value: any, attr: any, computedState: any) {
                     if (typeof value !== "string") {
-                        return "expected dressdiscover.api.models.worksheet.WorksheetEnumFeatureValueImage.thumbnail_url to be a string";
+                        return "expected WorksheetEnumFeatureValueImage.thumbnail_url to be a string";
                     }
+                    return undefined;
                 },
-                "pattern": "url", "required": true
+                "required": true
             },
 
-            full_size_url: {
-                "fn": function(value, attr, computedState) {
+            fullSizeUrl: {
+                "fn": function(value: any, attr: any, computedState: any) {
                     if (typeof attr !== "undefined" && attr !== "null") {
                         if (typeof value !== "string") {
-                            return "expected dressdiscover.api.models.worksheet.WorksheetEnumFeatureValueImage.full_size_url to be a string";
+                            return "expected WorksheetEnumFeatureValueImage.full_size_url to be a string";
                         }
                     }
+                    return undefined;
                 },
-                "pattern": "url", "required": false
+                "required": false
             }
         }
-        super(attributes);
+        super(attributes_);
     }
 
     get rights(): string {

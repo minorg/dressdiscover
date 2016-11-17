@@ -3,26 +3,30 @@ import { WorksheetFeatureSetDefinition } from "./worksheet_feature_set_definitio
 
 export class WorksheetDefinition extends Backbone.Model {
     constructor(attributes?: {rootFeatureSets: Backbone.Collection<WorksheetFeatureSetDefinition>}) {
-        if (!attributes) {
-            attributes = {};
+        let attributes_: any = {};
+        if (attributes) {
+            attributes_["rootFeatureSets"] = attributes["rootFeatureSets"];
         }
-        attributes["validation"] = {
-            root_feature_sets: {
-                "fn": function(value, attr, computedState) {
+        attributes_["validation"] = {
+            rootFeatureSets: {
+                "fn": function(value: any, attr: any, computedState: any) {
                     if (!(value instanceof Backbone.Collection)) {
-                        return "expected dressdiscover.api.models.worksheet.WorksheetDefinition.root_feature_sets to be a Backbone.Collection";
+                        return "expected WorksheetDefinition.root_feature_sets to be a Backbone.Collection";
                     }
-                    if (value.model !== dressdiscover.api.models.worksheet.WorksheetFeatureSetDefinition) {
-                        return "expected dressdiscover.api.models.worksheet.WorksheetDefinition.root_feature_sets to be a Backbone.Collection with model=dressdiscover.api.models.worksheet.WorksheetFeatureSetDefinition";
+                    if (value.model !== WorksheetFeatureSetDefinition) {
+                        return "expected WorksheetDefinition.root_feature_sets to be a Backbone.Collection with model=WorksheetFeatureSetDefinition";
                     }
-                    if (!value.isValid(true)) {
-                        return value.validationError;
+                    for (let __model0 of value.models) {
+                        if (!__model0.isValid(true)) {
+                            return __model0.validationError;
+                        }
                     }
+                    return undefined;
                 },
                 "required": true
             }
         }
-        super(attributes);
+        super(attributes_);
     }
 
     get rootFeatureSets(): Backbone.Collection<WorksheetFeatureSetDefinition> {

@@ -4,59 +4,67 @@ import { WorksheetTextFeatureDefinition } from "./worksheet_text_feature_definit
 
 export class WorksheetFeatureDefinition extends Backbone.Model {
     constructor(attributes?: {id: string, displayName?: string, enum_?: WorksheetEnumFeatureDefinition, text?: WorksheetTextFeatureDefinition}) {
-        if (!attributes) {
-            attributes = {};
+        let attributes_: any = {};
+        if (attributes) {
+            attributes_["id"] = attributes["id"];
+            attributes_["displayName"] = attributes["displayName"];
+            attributes_["enum_"] = attributes["enum_"];
+            attributes_["text"] = attributes["text"];
         }
-        attributes["validation"] = {
+        attributes_["validation"] = {
             id: {
-                "fn": function(value, attr, computedState) {
+                "fn": function(value: any, attr: any, computedState: any) {
                     if (typeof value !== "string") {
-                        return "expected dressdiscover.api.models.worksheet.WorksheetFeatureDefinition.id to be a string";
+                        return "expected WorksheetFeatureDefinition.id to be a string";
                     }
+                    return undefined;
                 },
                 "required": true
             },
 
-            display_name: {
-                "fn": function(value, attr, computedState) {
+            displayName: {
+                "fn": function(value: any, attr: any, computedState: any) {
                     if (typeof attr !== "undefined" && attr !== "null") {
                         if (typeof value !== "string") {
-                            return "expected dressdiscover.api.models.worksheet.WorksheetFeatureDefinition.display_name to be a string";
+                            return "expected WorksheetFeatureDefinition.display_name to be a string";
                         }
                     }
+                    return undefined;
                 },
                 "minLength": 1, "required": false
             },
 
             enum_: {
-                "fn": function(value, attr, computedState) {
+                "fn": function(value: any, attr: any, computedState: any) {
                     if (typeof attr !== "undefined" && attr !== "null") {
-                        if (!(value instanceof dressdiscover.api.models.worksheet.WorksheetEnumFeatureDefinition)) {
-                            return "expected dressdiscover.api.models.worksheet.WorksheetFeatureDefinition.enum_ to be a dressdiscover.api.models.worksheet.WorksheetEnumFeatureDefinition";
+                        if (!(value instanceof WorksheetEnumFeatureDefinition)) {
+                            return "expected WorksheetFeatureDefinition.enum_ to be a WorksheetEnumFeatureDefinition";
                         }
                         if (!value.isValid(true)) {
                             return value.validationError;
                         }
                     }
+                    return undefined;
                 },
                 "required": false
             },
 
             text: {
-                "fn": function(value, attr, computedState) {
+                "fn": function(value: any, attr: any, computedState: any) {
                     if (typeof attr !== "undefined" && attr !== "null") {
-                        if (!(value instanceof dressdiscover.api.models.worksheet.WorksheetTextFeatureDefinition)) {
-                            return "expected dressdiscover.api.models.worksheet.WorksheetFeatureDefinition.text to be a dressdiscover.api.models.worksheet.WorksheetTextFeatureDefinition";
+                        if (!(value instanceof WorksheetTextFeatureDefinition)) {
+                            return "expected WorksheetFeatureDefinition.text to be a WorksheetTextFeatureDefinition";
                         }
                         if (!value.isValid(true)) {
                             return value.validationError;
                         }
                     }
+                    return undefined;
                 },
                 "required": false
             }
         }
-        super(attributes);
+        super(attributes_);
     }
 
     get id(): string {

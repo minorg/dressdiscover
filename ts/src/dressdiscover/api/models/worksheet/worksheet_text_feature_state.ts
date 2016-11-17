@@ -2,20 +2,22 @@ import * as Backbone from "backbone";
 
 export class WorksheetTextFeatureState extends Backbone.Model {
     constructor(attributes?: {text: string}) {
-        if (!attributes) {
-            attributes = {};
+        let attributes_: any = {};
+        if (attributes) {
+            attributes_["text"] = attributes["text"];
         }
-        attributes["validation"] = {
+        attributes_["validation"] = {
             text: {
-                "fn": function(value, attr, computedState) {
+                "fn": function(value: any, attr: any, computedState: any) {
                     if (typeof value !== "string") {
-                        return "expected dressdiscover.api.models.worksheet.WorksheetTextFeatureState.text to be a string";
+                        return "expected WorksheetTextFeatureState.text to be a string";
                     }
+                    return undefined;
                 },
                 "minLength": 1, "required": true
             }
         }
-        super(attributes);
+        super(attributes_);
     }
 
     get text(): string {

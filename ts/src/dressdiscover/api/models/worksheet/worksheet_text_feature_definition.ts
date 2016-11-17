@@ -2,13 +2,13 @@ import * as Backbone from "backbone";
 
 export class WorksheetTextFeatureDefinition extends Backbone.Model {
     constructor(attributes?: {}) {
-        if (!attributes) {
-            attributes = {};
+        let attributes_: any = {};
+        if (attributes) {
         }
-        attributes["validation"] = {
+        attributes_["validation"] = {
 
         }
-        super(attributes);
+        super(attributes_);
     }
 
 

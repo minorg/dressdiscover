@@ -3,26 +3,30 @@ import { WorksheetEnumFeatureValueDefinition } from "./worksheet_enum_feature_va
 
 export class WorksheetEnumFeatureDefinition extends Backbone.Model {
     constructor(attributes?: {values_: Backbone.Collection<WorksheetEnumFeatureValueDefinition>}) {
-        if (!attributes) {
-            attributes = {};
+        let attributes_: any = {};
+        if (attributes) {
+            attributes_["values_"] = attributes["values_"];
         }
-        attributes["validation"] = {
+        attributes_["validation"] = {
             values_: {
-                "fn": function(value, attr, computedState) {
+                "fn": function(value: any, attr: any, computedState: any) {
                     if (!(value instanceof Backbone.Collection)) {
-                        return "expected dressdiscover.api.models.worksheet.WorksheetEnumFeatureDefinition.values_ to be a Backbone.Collection";
+                        return "expected WorksheetEnumFeatureDefinition.values_ to be a Backbone.Collection";
                     }
-                    if (value.model !== dressdiscover.api.models.worksheet.WorksheetEnumFeatureValueDefinition) {
-                        return "expected dressdiscover.api.models.worksheet.WorksheetEnumFeatureDefinition.values_ to be a Backbone.Collection with model=dressdiscover.api.models.worksheet.WorksheetEnumFeatureValueDefinition";
+                    if (value.model !== WorksheetEnumFeatureValueDefinition) {
+                        return "expected WorksheetEnumFeatureDefinition.values_ to be a Backbone.Collection with model=WorksheetEnumFeatureValueDefinition";
                     }
-                    if (!value.isValid(true)) {
-                        return value.validationError;
+                    for (let __model0 of value.models) {
+                        if (!__model0.isValid(true)) {
+                            return __model0.validationError;
+                        }
                     }
+                    return undefined;
                 },
                 "minLength": 1, "required": true
             }
         }
-        super(attributes);
+        super(attributes_);
     }
 
     get values_(): Backbone.Collection<WorksheetEnumFeatureValueDefinition> {
