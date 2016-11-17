@@ -11,6 +11,7 @@ export class WorksheetFeatureSetState extends Backbone.Model {
         attributes_["validation"] = {
             childFeatureSets: {
                 "fn": function(value: any, attr: any, computedState: any) {
+                    console.debug("validating childFeatureSets");
                     if (typeof attr !== "undefined" && attr !== "null") {
                         if (typeof value !== "object") {
                             return "expected WorksheetFeatureSetState.child_feature_sets to be an object";
@@ -35,6 +36,7 @@ export class WorksheetFeatureSetState extends Backbone.Model {
 
             features: {
                 "fn": function(value: any, attr: any, computedState: any) {
+                    console.debug("validating features");
                     if (typeof attr !== "undefined" && attr !== "null") {
                         if (typeof value !== "object") {
                             return "expected WorksheetFeatureSetState.features to be an object";
@@ -65,7 +67,7 @@ export class WorksheetFeatureSetState extends Backbone.Model {
     }
 
     set childFeatureSets(value: {[index: string]: WorksheetFeatureSetState}) {
-        this.set('childFeatureSets', value);
+        this.set('childFeatureSets', value, { validate: true });
     }
 
     get features(): {[index: string]: WorksheetFeatureState} {
@@ -73,7 +75,7 @@ export class WorksheetFeatureSetState extends Backbone.Model {
     }
 
     set features(value: {[index: string]: WorksheetFeatureState}) {
-        this.set('features', value);
+        this.set('features', value, { validate: true });
     }
 
     static fromThryftJSON(json: any): WorksheetFeatureSetState {

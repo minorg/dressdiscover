@@ -13,6 +13,7 @@ export class WorksheetFeatureSetDefinition extends Backbone.Model {
         attributes_["validation"] = {
             id: {
                 "fn": function(value: any, attr: any, computedState: any) {
+                    console.debug("validating id");
                     if (typeof value !== "string") {
                         return "expected WorksheetFeatureSetDefinition.id to be a string";
                     }
@@ -23,6 +24,7 @@ export class WorksheetFeatureSetDefinition extends Backbone.Model {
 
             childFeatureSets: {
                 "fn": function(value: any, attr: any, computedState: any) {
+                    console.debug("validating childFeatureSets");
                     if (typeof attr !== "undefined" && attr !== "null") {
                         if (!(value instanceof Backbone.Collection)) {
                             return "expected WorksheetFeatureSetDefinition.child_feature_sets to be a Backbone.Collection";
@@ -43,6 +45,7 @@ export class WorksheetFeatureSetDefinition extends Backbone.Model {
 
             displayName: {
                 "fn": function(value: any, attr: any, computedState: any) {
+                    console.debug("validating displayName");
                     if (typeof attr !== "undefined" && attr !== "null") {
                         if (typeof value !== "string") {
                             return "expected WorksheetFeatureSetDefinition.display_name to be a string";
@@ -55,6 +58,7 @@ export class WorksheetFeatureSetDefinition extends Backbone.Model {
 
             features: {
                 "fn": function(value: any, attr: any, computedState: any) {
+                    console.debug("validating features");
                     if (typeof attr !== "undefined" && attr !== "null") {
                         if (!(value instanceof Backbone.Collection)) {
                             return "expected WorksheetFeatureSetDefinition.features to be a Backbone.Collection";
@@ -81,7 +85,7 @@ export class WorksheetFeatureSetDefinition extends Backbone.Model {
     }
 
     set id(value: string) {
-        this.set('id', value);
+        this.set('id', value, { validate: true });
     }
 
     get childFeatureSets(): Backbone.Collection<WorksheetFeatureSetDefinition> {
@@ -89,7 +93,7 @@ export class WorksheetFeatureSetDefinition extends Backbone.Model {
     }
 
     set childFeatureSets(value: Backbone.Collection<WorksheetFeatureSetDefinition>) {
-        this.set('childFeatureSets', value);
+        this.set('childFeatureSets', value, { validate: true });
     }
 
     get displayName(): string {
@@ -97,7 +101,7 @@ export class WorksheetFeatureSetDefinition extends Backbone.Model {
     }
 
     set displayName(value: string) {
-        this.set('displayName', value);
+        this.set('displayName', value, { validate: true });
     }
 
     get features(): Backbone.Collection<WorksheetFeatureDefinition> {
@@ -105,7 +109,7 @@ export class WorksheetFeatureSetDefinition extends Backbone.Model {
     }
 
     set features(value: Backbone.Collection<WorksheetFeatureDefinition>) {
-        this.set('features', value);
+        this.set('features', value, { validate: true });
     }
 
     static fromThryftJSON(json: any): WorksheetFeatureSetDefinition {

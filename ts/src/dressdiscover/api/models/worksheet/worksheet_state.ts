@@ -10,6 +10,7 @@ export class WorksheetState extends Backbone.Model {
         attributes_["validation"] = {
             rootFeatureSets: {
                 "fn": function(value: any, attr: any, computedState: any) {
+                    console.debug("validating rootFeatureSets");
                     if (typeof attr !== "undefined" && attr !== "null") {
                         if (typeof value !== "object") {
                             return "expected WorksheetState.root_feature_sets to be an object";
@@ -40,7 +41,7 @@ export class WorksheetState extends Backbone.Model {
     }
 
     set rootFeatureSets(value: {[index: string]: WorksheetFeatureSetState}) {
-        this.set('rootFeatureSets', value);
+        this.set('rootFeatureSets', value, { validate: true });
     }
 
     static fromThryftJSON(json: any): WorksheetState {

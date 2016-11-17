@@ -9,6 +9,7 @@ export class WorksheetEnumFeatureState extends Backbone.Model {
         attributes_["validation"] = {
             selectedValues: {
                 "fn": function(value: any, attr: any, computedState: any) {
+                    console.debug("validating selectedValues");
                     if (!Array.isArray(value)) {
                         return "expected WorksheetEnumFeatureState.selected_values to be an Array";
                     }
@@ -30,7 +31,7 @@ export class WorksheetEnumFeatureState extends Backbone.Model {
     }
 
     set selectedValues(value: string[]) {
-        this.set('selectedValues', value);
+        this.set('selectedValues', value, { validate: true });
     }
 
     static fromThryftJSON(json: any): WorksheetEnumFeatureState {

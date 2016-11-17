@@ -11,16 +11,18 @@ export class WorksheetEnumFeatureValueImage extends Backbone.Model {
         attributes_["validation"] = {
             rights: {
                 "fn": function(value: any, attr: any, computedState: any) {
+                    console.debug("validating rights");
                     if (typeof value !== "string") {
                         return "expected WorksheetEnumFeatureValueImage.rights to be a string";
                     }
                     return undefined;
                 },
-                "required": true
+                "minLength": 1, "required": true
             },
 
             thumbnailUrl: {
                 "fn": function(value: any, attr: any, computedState: any) {
+                    console.debug("validating thumbnailUrl");
                     if (typeof value !== "string") {
                         return "expected WorksheetEnumFeatureValueImage.thumbnail_url to be a string";
                     }
@@ -31,6 +33,7 @@ export class WorksheetEnumFeatureValueImage extends Backbone.Model {
 
             fullSizeUrl: {
                 "fn": function(value: any, attr: any, computedState: any) {
+                    console.debug("validating fullSizeUrl");
                     if (typeof attr !== "undefined" && attr !== "null") {
                         if (typeof value !== "string") {
                             return "expected WorksheetEnumFeatureValueImage.full_size_url to be a string";
@@ -49,7 +52,7 @@ export class WorksheetEnumFeatureValueImage extends Backbone.Model {
     }
 
     set rights(value: string) {
-        this.set('rights', value);
+        this.set('rights', value, { validate: true });
     }
 
     get thumbnailUrl(): URL {
@@ -57,7 +60,7 @@ export class WorksheetEnumFeatureValueImage extends Backbone.Model {
     }
 
     set thumbnailUrl(value: URL) {
-        this.set('thumbnailUrl', value);
+        this.set('thumbnailUrl', value, { validate: true });
     }
 
     get fullSizeUrl(): URL {
@@ -65,7 +68,7 @@ export class WorksheetEnumFeatureValueImage extends Backbone.Model {
     }
 
     set fullSizeUrl(value: URL) {
-        this.set('fullSizeUrl', value);
+        this.set('fullSizeUrl', value, { validate: true });
     }
 
     static fromThryftJSON(json: any): WorksheetEnumFeatureValueImage {

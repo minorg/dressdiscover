@@ -10,6 +10,7 @@ export class WorksheetEnumFeatureDefinition extends Backbone.Model {
         attributes_["validation"] = {
             values_: {
                 "fn": function(value: any, attr: any, computedState: any) {
+                    console.debug("validating values_");
                     if (!(value instanceof Backbone.Collection)) {
                         return "expected WorksheetEnumFeatureDefinition.values_ to be a Backbone.Collection";
                     }
@@ -34,7 +35,7 @@ export class WorksheetEnumFeatureDefinition extends Backbone.Model {
     }
 
     set values_(value: Backbone.Collection<WorksheetEnumFeatureValueDefinition>) {
-        this.set('values_', value);
+        this.set('values_', value, { validate: true });
     }
 
     static fromThryftJSON(json: any): WorksheetEnumFeatureDefinition {

@@ -9,6 +9,7 @@ export class IoException extends Backbone.Model {
         attributes_["validation"] = {
             causeMessage: {
                 "fn": function(value: any, attr: any, computedState: any) {
+                    console.debug("validating causeMessage");
                     if (typeof value !== "string") {
                         return "expected IoException.cause_message to be a string";
                     }
@@ -25,7 +26,7 @@ export class IoException extends Backbone.Model {
     }
 
     set causeMessage(value: string) {
-        this.set('causeMessage', value);
+        this.set('causeMessage', value, { validate: true });
     }
 
     static fromThryftJSON(json: any): IoException {

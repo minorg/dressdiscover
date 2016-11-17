@@ -14,6 +14,7 @@ export class WorksheetFeatureDefinition extends Backbone.Model {
         attributes_["validation"] = {
             id: {
                 "fn": function(value: any, attr: any, computedState: any) {
+                    console.debug("validating id");
                     if (typeof value !== "string") {
                         return "expected WorksheetFeatureDefinition.id to be a string";
                     }
@@ -24,6 +25,7 @@ export class WorksheetFeatureDefinition extends Backbone.Model {
 
             displayName: {
                 "fn": function(value: any, attr: any, computedState: any) {
+                    console.debug("validating displayName");
                     if (typeof attr !== "undefined" && attr !== "null") {
                         if (typeof value !== "string") {
                             return "expected WorksheetFeatureDefinition.display_name to be a string";
@@ -36,6 +38,7 @@ export class WorksheetFeatureDefinition extends Backbone.Model {
 
             enum_: {
                 "fn": function(value: any, attr: any, computedState: any) {
+                    console.debug("validating enum_");
                     if (typeof attr !== "undefined" && attr !== "null") {
                         if (!(value instanceof WorksheetEnumFeatureDefinition)) {
                             return "expected WorksheetFeatureDefinition.enum_ to be a WorksheetEnumFeatureDefinition";
@@ -51,6 +54,7 @@ export class WorksheetFeatureDefinition extends Backbone.Model {
 
             text: {
                 "fn": function(value: any, attr: any, computedState: any) {
+                    console.debug("validating text");
                     if (typeof attr !== "undefined" && attr !== "null") {
                         if (!(value instanceof WorksheetTextFeatureDefinition)) {
                             return "expected WorksheetFeatureDefinition.text to be a WorksheetTextFeatureDefinition";
@@ -72,7 +76,7 @@ export class WorksheetFeatureDefinition extends Backbone.Model {
     }
 
     set id(value: string) {
-        this.set('id', value);
+        this.set('id', value, { validate: true });
     }
 
     get displayName(): string {
@@ -80,7 +84,7 @@ export class WorksheetFeatureDefinition extends Backbone.Model {
     }
 
     set displayName(value: string) {
-        this.set('displayName', value);
+        this.set('displayName', value, { validate: true });
     }
 
     get enum_(): WorksheetEnumFeatureDefinition {
@@ -88,7 +92,7 @@ export class WorksheetFeatureDefinition extends Backbone.Model {
     }
 
     set enum_(value: WorksheetEnumFeatureDefinition) {
-        this.set('enum_', value);
+        this.set('enum_', value, { validate: true });
     }
 
     get text(): WorksheetTextFeatureDefinition {
@@ -96,7 +100,7 @@ export class WorksheetFeatureDefinition extends Backbone.Model {
     }
 
     set text(value: WorksheetTextFeatureDefinition) {
-        this.set('text', value);
+        this.set('text', value, { validate: true });
     }
 
     static fromThryftJSON(json: any): WorksheetFeatureDefinition {

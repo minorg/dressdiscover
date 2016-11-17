@@ -12,6 +12,7 @@ export class WorksheetFeatureState extends Backbone.Model {
         attributes_["validation"] = {
             enum_: {
                 "fn": function(value: any, attr: any, computedState: any) {
+                    console.debug("validating enum_");
                     if (typeof attr !== "undefined" && attr !== "null") {
                         if (!(value instanceof WorksheetEnumFeatureState)) {
                             return "expected WorksheetFeatureState.enum_ to be a WorksheetEnumFeatureState";
@@ -27,6 +28,7 @@ export class WorksheetFeatureState extends Backbone.Model {
 
             text: {
                 "fn": function(value: any, attr: any, computedState: any) {
+                    console.debug("validating text");
                     if (typeof attr !== "undefined" && attr !== "null") {
                         if (!(value instanceof WorksheetTextFeatureState)) {
                             return "expected WorksheetFeatureState.text to be a WorksheetTextFeatureState";
@@ -48,7 +50,7 @@ export class WorksheetFeatureState extends Backbone.Model {
     }
 
     set enum_(value: WorksheetEnumFeatureState) {
-        this.set('enum_', value);
+        this.set('enum_', value, { validate: true });
     }
 
     get text(): WorksheetTextFeatureState {
@@ -56,7 +58,7 @@ export class WorksheetFeatureState extends Backbone.Model {
     }
 
     set text(value: WorksheetTextFeatureState) {
-        this.set('text', value);
+        this.set('text', value, { validate: true });
     }
 
     static fromThryftJSON(json: any): WorksheetFeatureState {

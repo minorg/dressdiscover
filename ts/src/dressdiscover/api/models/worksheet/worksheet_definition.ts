@@ -10,6 +10,7 @@ export class WorksheetDefinition extends Backbone.Model {
         attributes_["validation"] = {
             rootFeatureSets: {
                 "fn": function(value: any, attr: any, computedState: any) {
+                    console.debug("validating rootFeatureSets");
                     if (!(value instanceof Backbone.Collection)) {
                         return "expected WorksheetDefinition.root_feature_sets to be a Backbone.Collection";
                     }
@@ -34,7 +35,7 @@ export class WorksheetDefinition extends Backbone.Model {
     }
 
     set rootFeatureSets(value: Backbone.Collection<WorksheetFeatureSetDefinition>) {
-        this.set('rootFeatureSets', value);
+        this.set('rootFeatureSets', value, { validate: true });
     }
 
     static fromThryftJSON(json: any): WorksheetDefinition {

@@ -9,6 +9,7 @@ export class WorksheetTextFeatureState extends Backbone.Model {
         attributes_["validation"] = {
             text: {
                 "fn": function(value: any, attr: any, computedState: any) {
+                    console.debug("validating text");
                     if (typeof value !== "string") {
                         return "expected WorksheetTextFeatureState.text to be a string";
                     }
@@ -25,7 +26,7 @@ export class WorksheetTextFeatureState extends Backbone.Model {
     }
 
     set text(value: string) {
-        this.set('text', value);
+        this.set('text', value, { validate: true });
     }
 
     static fromThryftJSON(json: any): WorksheetTextFeatureState {

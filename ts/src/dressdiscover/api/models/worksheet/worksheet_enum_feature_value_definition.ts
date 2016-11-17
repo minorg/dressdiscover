@@ -12,6 +12,7 @@ export class WorksheetEnumFeatureValueDefinition extends Backbone.Model {
         attributes_["validation"] = {
             id: {
                 "fn": function(value: any, attr: any, computedState: any) {
+                    console.debug("validating id");
                     if (typeof value !== "string") {
                         return "expected WorksheetEnumFeatureValueDefinition.id to be a string";
                     }
@@ -22,6 +23,7 @@ export class WorksheetEnumFeatureValueDefinition extends Backbone.Model {
 
             displayName: {
                 "fn": function(value: any, attr: any, computedState: any) {
+                    console.debug("validating displayName");
                     if (typeof attr !== "undefined" && attr !== "null") {
                         if (typeof value !== "string") {
                             return "expected WorksheetEnumFeatureValueDefinition.display_name to be a string";
@@ -34,6 +36,7 @@ export class WorksheetEnumFeatureValueDefinition extends Backbone.Model {
 
             image: {
                 "fn": function(value: any, attr: any, computedState: any) {
+                    console.debug("validating image");
                     if (typeof attr !== "undefined" && attr !== "null") {
                         if (!(value instanceof WorksheetEnumFeatureValueImage)) {
                             return "expected WorksheetEnumFeatureValueDefinition.image to be a WorksheetEnumFeatureValueImage";
@@ -55,7 +58,7 @@ export class WorksheetEnumFeatureValueDefinition extends Backbone.Model {
     }
 
     set id(value: string) {
-        this.set('id', value);
+        this.set('id', value, { validate: true });
     }
 
     get displayName(): string {
@@ -63,7 +66,7 @@ export class WorksheetEnumFeatureValueDefinition extends Backbone.Model {
     }
 
     set displayName(value: string) {
-        this.set('displayName', value);
+        this.set('displayName', value, { validate: true });
     }
 
     get image(): WorksheetEnumFeatureValueImage {
@@ -71,7 +74,7 @@ export class WorksheetEnumFeatureValueDefinition extends Backbone.Model {
     }
 
     set image(value: WorksheetEnumFeatureValueImage) {
-        this.set('image', value);
+        this.set('image', value, { validate: true });
     }
 
     static fromThryftJSON(json: any): WorksheetEnumFeatureValueDefinition {
