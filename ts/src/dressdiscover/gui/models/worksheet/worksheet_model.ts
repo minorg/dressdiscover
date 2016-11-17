@@ -1,10 +1,28 @@
-﻿import Backbone = require("backbone");
+﻿import _ = require("underscore");
+import Backbone = require("backbone");
 import { Services } from "dressdiscover/gui/services/services";
 import { WorksheetFeatureModel } from "./worksheet_feature_model";
 import { WorksheetFeatureSetCollection } from "./worksheet_feature_set_collection";
 import { WorksheetFeatureSetModel } from "./worksheet_feature_set_model";
+import { WorksheetFeatureSetState } from "dressdiscover/api/models/worksheet/worksheet_feature_set_state";
+import { WorksheetState } from "dressdiscover/api/models/worksheet/worksheet_state";
 
 export class WorksheetModel extends Backbone.Model {
+    get currentState(): WorksheetState | undefined {
+        let rootFeatureSetStates: { [index: string]: WorksheetFeatureSetState } = {};
+        for (let featureSet of this.rootFeatureSets.models) {
+            let featureSetState = featureSet.currentState;
+            if (featureSetState) {
+                rootFeatureSetStates[featureSet.id] = featureSetState;
+            }
+        }
+        if (!_.isEmpty(rootFeatureSetStates)) {
+            return new WorksheetState({ rootFeatureSets: rootFeatureSetStates });
+        } else {
+            return undefined;
+        }
+    }
+
     fetchFromService(): void {
         const worksheetDefinition = Services.instance.worksheetQueryService.getWorksheetDefinitionSync();
         const worksheetState = Services.instance.worksheetQueryService.getWorksheetStateSync();

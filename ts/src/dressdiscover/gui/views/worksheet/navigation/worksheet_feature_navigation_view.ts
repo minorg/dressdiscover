@@ -20,7 +20,6 @@ export class WorksheetFeatureNavigationView extends Marionette.ItemView<Workshee
     }
 
     onClick() {
-        this.model.selected = true;
         AppRadio.channel.trigger(WorksheetFeatureSelectionEvent.NAME, new WorksheetFeatureSelectionEvent({ featureModel: this.model }));
     }
 

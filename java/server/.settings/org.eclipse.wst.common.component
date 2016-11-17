@@ -14,6 +14,9 @@
         <dependent-module archiveName="thryft-waf-api-1.0.1-SNAPSHOT.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/thryft-waf-java-api/thryft-waf-java-api">
             <dependency-type>uses</dependency-type>
         </dependent-module>
+        <dependent-module archiveName="libthryft-2.0.2-SNAPSHOT.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/thryft-lib-java/thryft-lib-java">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
         <dependent-module archiveName="thryft-waf-lib-1.0.1-SNAPSHOT.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/thryft-waf-java-lib/thryft-waf-java-lib">
             <dependency-type>uses</dependency-type>
         </dependent-module>

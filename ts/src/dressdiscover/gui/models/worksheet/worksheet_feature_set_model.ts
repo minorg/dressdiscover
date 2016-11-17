@@ -1,9 +1,11 @@
-﻿import Backbone = require("backbone");
-import { WorksheetFeatureSetDefinition } from "../../../api/models/worksheet/worksheet_feature_set_definition";
-import { WorksheetFeatureSetState } from "../../../api/models/worksheet/worksheet_feature_set_state";
+﻿import _ = require("underscore");
+import Backbone = require("backbone");
+import { WorksheetFeatureSetDefinition } from "dressdiscover/api/models/worksheet/worksheet_feature_set_definition";
+import { WorksheetFeatureSetState } from "dressdiscover/api/models/worksheet/worksheet_feature_set_state";
 import { WorksheetEnumFeatureModel } from "./worksheet_enum_feature_model";
 import { WorksheetFeatureCollection } from "./worksheet_feature_collection";
 import { WorksheetFeatureSetCollection } from "./worksheet_feature_set_collection";
+import { WorksheetFeatureState } from "dressdiscover/api/models/worksheet/worksheet_feature_state";
 import { WorksheetTextFeatureModel } from "./worksheet_text_feature_model";
 
 export class WorksheetFeatureSetModel extends Backbone.Model {
@@ -27,6 +29,37 @@ export class WorksheetFeatureSetModel extends Backbone.Model {
                 }
             }
         }
+    }
+
+    get currentState(): WorksheetFeatureSetState | undefined {
+        if (!this.definition.childFeatureSets && !this.definition.features) {
+            return undefined;
+        }
+        let state = new WorksheetFeatureSetState();
+        if (this.definition.childFeatureSets) {
+            let childFeatureSetStates: { [index: string]: WorksheetFeatureSetState } = {};
+            for (let childFeatureSetModel of this._childFeatureSets.models) {
+                let childFeatureSetState = childFeatureSetModel.currentState;
+                if (childFeatureSetState) {
+                    childFeatureSetStates[childFeatureSetModel.id] = childFeatureSetState;
+                }
+            }
+            if (!_.isEmpty(childFeatureSetStates)) {
+                state.childFeatureSets = childFeatureSetStates;
+            }
+
+            let featureStates: { [index: string]: WorksheetFeatureState } = {};
+            for (let feature of this._features.models) {
+                let featureState = feature.currentState;
+                if (featureState) {
+                    featureStates[feature.id] = featureState;
+                }
+            }
+            if (!_.isEmpty(featureStates)) {
+                state.features = featureStates;
+            }
+        }
+        return state;
     }
 
     get childFeatureSets(): WorksheetFeatureSetCollection {
