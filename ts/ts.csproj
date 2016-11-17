@@ -58,6 +58,7 @@
     <TypeScriptCompile Include="src\dressdiscover\gui\app.ts" />
     <TypeScriptCompile Include="src\dressdiscover\gui\app_radio.ts" />
     <TypeScriptCompile Include="src\dressdiscover\gui\app_router.ts" />
+    <TypeScriptCompile Include="src\dressdiscover\gui\events\worksheet\worksheet_feature_selection_event.ts" />
     <TypeScriptCompile Include="src\dressdiscover\gui\models\worksheet\worksheet_text_feature_model.ts" />
     <TypeScriptCompile Include="src\dressdiscover\gui\models\worksheet\worksheet_feature_collection.ts" />
     <TypeScriptCompile Include="src\dressdiscover\gui\models\worksheet\worksheet_enum_feature_model.ts" />
@@ -73,6 +74,7 @@
     <TypeScriptCompile Include="src\dressdiscover\gui\views\navbar_view.ts" />
     <TypeScriptCompile Include="src\dressdiscover\gui\views\top_level_view.ts" />
     <TypeScriptCompile Include="src\dressdiscover\gui\views\worksheet\input\worksheet_enum_feature_values_input_view.ts" />
+    <TypeScriptCompile Include="src\dressdiscover\gui\views\worksheet\input\worksheet_text_feature_input_view.ts" />
     <TypeScriptCompile Include="src\dressdiscover\gui\views\worksheet\navigation\worksheet_feature_navigation_view.ts" />
     <TypeScriptCompile Include="src\dressdiscover\gui\views\worksheet\navigation\worksheet_feature_set_navigation_view.ts" />
     <TypeScriptCompile Include="src\dressdiscover\gui\views\worksheet\navigation\worksheet_navigation_view.ts" />
