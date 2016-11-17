@@ -16,4 +16,3 @@ export class WorksheetView extends TopLevelView<WorksheetModel> {
         this.showChildView("content", new WorksheetContentView({ model: this.model }));
     }
 }
-``

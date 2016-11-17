@@ -4,8 +4,8 @@ import { WorksheetView } from "./views/worksheet/worksheet_view";
 
 export class AppRouter extends Backbone.Router {
     routes = {
+        "": this.defaultRoute,
         "worksheet": this.worksheet,
-        "*path": this.defaultRoute
     };
 
     constructor() {
@@ -18,7 +18,7 @@ export class AppRouter extends Backbone.Router {
         this.navigate("worksheet", { trigger: true });
     }
 
-    worksheet(path: string = ''): void {
+    worksheet(path: string = '') {
         new WorksheetView().render();
     }
 }
