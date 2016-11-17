@@ -16,6 +16,7 @@ export class WorksheetDefinition extends Backbone.Model {
                         return __model0.validationError;
                     }
                 }
+
                 return undefined;
             },
             "required": true

@@ -7,6 +7,7 @@ export class IoException extends Backbone.Model {
                 if (typeof value !== "string") {
                     return "expected IoException.cause_message to be a string";
                 }
+
                 return undefined;
             },
             "required": true

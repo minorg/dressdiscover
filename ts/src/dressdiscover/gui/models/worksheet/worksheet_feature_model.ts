@@ -20,6 +20,11 @@ export abstract class WorksheetFeatureModel extends Backbone.Model {
     }
 
     set selected(value: boolean) {
+        if (value) {
+            console.info("Select " + this.id);
+        } else {
+            console.info("Deselect " + this.id);
+        }
         this.set("selected", value);
     }
 

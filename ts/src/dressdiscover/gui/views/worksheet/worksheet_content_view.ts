@@ -25,9 +25,12 @@ export class WorksheetContentView extends Marionette.LayoutView<WorksheetModel> 
     }
 
     onFeatureSelection(request: WorksheetFeatureSelectionEvent) {
+        this.model.selectedFeature.selected = false;
+        this.model.selectedFeature = request.feature;
+
         let region = this.getRegion("rightColumn");
         region.reset();
-        region.show(WorksheetInputView.create(request.featureModel));
+        region.show(WorksheetInputView.create(request.feature));
     }
 
     onBeforeShow() {

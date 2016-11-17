@@ -16,6 +16,7 @@ export class WorksheetEnumFeatureDefinition extends Backbone.Model {
                         return __model0.validationError;
                     }
                 }
+
                 return undefined;
             },
             "minLength": 1, "required": true

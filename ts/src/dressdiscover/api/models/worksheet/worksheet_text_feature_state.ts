@@ -7,6 +7,11 @@ export class WorksheetTextFeatureState extends Backbone.Model {
                 if (typeof value !== "string") {
                     return "expected WorksheetTextFeatureState.text to be a string";
                 }
+
+                if (/^\s*$/.test(value)) {
+                    return "WorksheetTextFeatureState.text is blank";
+                }
+
                 return undefined;
             },
             "minLength": 1, "required": true

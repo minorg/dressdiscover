@@ -8,6 +8,7 @@ export class WorksheetEnumFeatureValueDefinition extends Backbone.Model {
                 if (typeof value !== "string") {
                     return "expected WorksheetEnumFeatureValueDefinition.id to be a string";
                 }
+
                 return undefined;
             },
             "required": true
@@ -15,11 +16,18 @@ export class WorksheetEnumFeatureValueDefinition extends Backbone.Model {
 
         displayName: {
             "fn": function(value: any, attr: any, computedState: any) {
-                if (typeof attr !== "undefined" && attr !== "null") {
-                    if (typeof value !== "string") {
-                        return "expected WorksheetEnumFeatureValueDefinition.display_name to be a string";
-                    }
+                if (typeof attr === "undefined" || attr === null) {
+                    return undefined;
                 }
+
+                if (typeof value !== "string") {
+                    return "expected WorksheetEnumFeatureValueDefinition.display_name to be a string";
+                }
+
+                if (/^\s*$/.test(value)) {
+                    return "WorksheetEnumFeatureValueDefinition.display_name is blank";
+                }
+
                 return undefined;
             },
             "minLength": 1, "required": false
@@ -27,14 +35,17 @@ export class WorksheetEnumFeatureValueDefinition extends Backbone.Model {
 
         image: {
             "fn": function(value: any, attr: any, computedState: any) {
-                if (typeof attr !== "undefined" && attr !== "null") {
-                    if (!(value instanceof WorksheetEnumFeatureValueImage)) {
-                        return "expected WorksheetEnumFeatureValueDefinition.image to be a WorksheetEnumFeatureValueImage";
-                    }
-                    if (!value.isValid(true)) {
-                        return value.validationError;
-                    }
+                if (typeof attr === "undefined" || attr === null) {
+                    return undefined;
                 }
+
+                if (!(value instanceof WorksheetEnumFeatureValueImage)) {
+                    return "expected WorksheetEnumFeatureValueDefinition.image to be a WorksheetEnumFeatureValueImage";
+                }
+                if (!value.isValid(true)) {
+                    return value.validationError;
+                }
+
                 return undefined;
             },
             "required": false

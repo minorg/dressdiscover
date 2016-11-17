@@ -6,14 +6,17 @@ export class WorksheetFeatureState extends Backbone.Model {
     validation = {
         enum_: {
             "fn": function(value: any, attr: any, computedState: any) {
-                if (typeof attr !== "undefined" && attr !== "null") {
-                    if (!(value instanceof WorksheetEnumFeatureState)) {
-                        return "expected WorksheetFeatureState.enum_ to be a WorksheetEnumFeatureState";
-                    }
-                    if (!value.isValid(true)) {
-                        return value.validationError;
-                    }
+                if (typeof attr === "undefined" || attr === null) {
+                    return undefined;
                 }
+
+                if (!(value instanceof WorksheetEnumFeatureState)) {
+                    return "expected WorksheetFeatureState.enum_ to be a WorksheetEnumFeatureState";
+                }
+                if (!value.isValid(true)) {
+                    return value.validationError;
+                }
+
                 return undefined;
             },
             "required": false
@@ -21,14 +24,17 @@ export class WorksheetFeatureState extends Backbone.Model {
 
         text: {
             "fn": function(value: any, attr: any, computedState: any) {
-                if (typeof attr !== "undefined" && attr !== "null") {
-                    if (!(value instanceof WorksheetTextFeatureState)) {
-                        return "expected WorksheetFeatureState.text to be a WorksheetTextFeatureState";
-                    }
-                    if (!value.isValid(true)) {
-                        return value.validationError;
-                    }
+                if (typeof attr === "undefined" || attr === null) {
+                    return undefined;
                 }
+
+                if (!(value instanceof WorksheetTextFeatureState)) {
+                    return "expected WorksheetFeatureState.text to be a WorksheetTextFeatureState";
+                }
+                if (!value.isValid(true)) {
+                    return value.validationError;
+                }
+
                 return undefined;
             },
             "required": false

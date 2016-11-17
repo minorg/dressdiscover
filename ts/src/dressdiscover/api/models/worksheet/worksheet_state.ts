@@ -5,23 +5,26 @@ export class WorksheetState extends Backbone.Model {
     validation = {
         rootFeatureSets: {
             "fn": function(value: any, attr: any, computedState: any) {
-                if (typeof attr !== "undefined" && attr !== "null") {
-                    if (typeof value !== "object") {
-                        return "expected WorksheetState.root_feature_sets to be an object";
+                if (typeof attr === "undefined" || attr === null) {
+                    return undefined;
+                }
+
+                if (typeof value !== "object") {
+                    return "expected WorksheetState.root_feature_sets to be an object";
+                }
+                for (var __key in value) {
+                    var __value = value[__key];
+                    if (typeof __key !== "string") {
+                        return "expected WorksheetState.root_feature_sets key to be a string";
                     }
-                    for (var __key in value) {
-                        var __value = value[__key];
-                        if (typeof __key !== "string") {
-                            return "expected WorksheetState.root_feature_sets key to be a string";
-                        }
-                        if (!(__value instanceof WorksheetFeatureSetState)) {
-                            return "expected WorksheetState.root_feature_sets value to be a WorksheetFeatureSetState";
-                        }
-                        if (!__value.isValid(true)) {
-                            return __value.validationError;
-                        }
+                    if (!(__value instanceof WorksheetFeatureSetState)) {
+                        return "expected WorksheetState.root_feature_sets value to be a WorksheetFeatureSetState";
+                    }
+                    if (!__value.isValid(true)) {
+                        return __value.validationError;
                     }
                 }
+
                 return undefined;
             },
             "minLength": 1, "required": false

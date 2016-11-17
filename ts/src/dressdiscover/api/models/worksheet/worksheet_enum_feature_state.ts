@@ -12,6 +12,7 @@ export class WorksheetEnumFeatureState extends Backbone.Model {
                         return "expected WorksheetEnumFeatureState.selected_values[i] to be a string";
                     }
                 }
+
                 return undefined;
             },
             "minLength": 1, "required": true

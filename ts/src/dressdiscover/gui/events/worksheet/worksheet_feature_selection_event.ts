@@ -3,11 +3,11 @@
 export class WorksheetFeatureSelectionEvent {
     static readonly NAME = "worksheet:feature:select";
 
-    constructor(options: {featureModel: WorksheetFeatureModel}) {
-        this._featureModel = options.featureModel;
+    constructor(options: {feature: WorksheetFeatureModel}) {
+        this._featureModel = options.feature;
     }
 
-    get featureModel() {
+    get feature() {
         return this._featureModel;
     }
 

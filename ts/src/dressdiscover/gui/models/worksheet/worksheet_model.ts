@@ -32,6 +32,30 @@ export class WorksheetModel extends Backbone.Model {
         }
         this._rootFeatureSets = new WorksheetFeatureSetCollection(rootFeatureSets);
 
+        {
+            for (let featureSet of this.rootFeatureSets.models) {
+                const selectedFeature = this.__getSelectedFeature(featureSet);
+                if (selectedFeature) {
+                    this._selectedFeature = selectedFeature;
+                    break;
+                }
+            }
+
+            if (!this._selectedFeature) {
+                for (let featureSet of this.rootFeatureSets.models) {
+                    const selectedFeature = this.__getFirstFeature(featureSet);
+                    if (selectedFeature) {
+                        this._selectedFeature = selectedFeature;
+                        break;
+                    }
+                }
+            }
+
+            if (!this._selectedFeature) {
+                throw new Error("should never happen");
+            }
+        }
+
         //Services.instance.worksheetQueryService.getWorksheetDefinitionAsync({
         //    error: function (jqXHR: JQueryXHR | null, textStatus: string, errorThrown: string | null): any {
         //        console.error(textStatus);
@@ -54,21 +78,11 @@ export class WorksheetModel extends Backbone.Model {
     }
 
     get selectedFeature(): WorksheetFeatureModel {
-        for (let featureSet of this.rootFeatureSets.models) {
-            const selectedFeature = this.__getSelectedFeature(featureSet);
-            if (selectedFeature) {
-                return selectedFeature;
-            }
-        }
+        return this._selectedFeature;
+    }
 
-        for (let featureSet of this.rootFeatureSets.models) {
-            const selectedFeature = this.__getFirstFeature(featureSet);
-            if (selectedFeature) {
-                return selectedFeature;
-            }
-        }
-
-        throw new Error("should never happen");
+    set selectedFeature(value: WorksheetFeatureModel) {
+        this._selectedFeature = value;
     }
 
     private __getSelectedFeature(featureSet: WorksheetFeatureSetModel): WorksheetFeatureModel | undefined {
@@ -108,7 +122,7 @@ export class WorksheetModel extends Backbone.Model {
 
         return undefined;
     }
-     
 
     private _rootFeatureSets: WorksheetFeatureSetCollection;
+    private _selectedFeature: WorksheetFeatureModel;
 }

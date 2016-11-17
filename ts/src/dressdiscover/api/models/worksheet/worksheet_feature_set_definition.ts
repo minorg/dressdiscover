@@ -8,6 +8,7 @@ export class WorksheetFeatureSetDefinition extends Backbone.Model {
                 if (typeof value !== "string") {
                     return "expected WorksheetFeatureSetDefinition.id to be a string";
                 }
+
                 return undefined;
             },
             "required": true
@@ -15,19 +16,22 @@ export class WorksheetFeatureSetDefinition extends Backbone.Model {
 
         childFeatureSets: {
             "fn": function(value: any, attr: any, computedState: any) {
-                if (typeof attr !== "undefined" && attr !== "null") {
-                    if (!(value instanceof Backbone.Collection)) {
-                        return "expected WorksheetFeatureSetDefinition.child_feature_sets to be a Backbone.Collection";
-                    }
-                    if (value.model !== WorksheetFeatureSetDefinition) {
-                        return "expected WorksheetFeatureSetDefinition.child_feature_sets to be a Backbone.Collection with model=WorksheetFeatureSetDefinition";
-                    }
-                    for (let __model0 of value.models) {
-                        if (!__model0.isValid(true)) {
-                            return __model0.validationError;
-                        }
+                if (typeof attr === "undefined" || attr === null) {
+                    return undefined;
+                }
+
+                if (!(value instanceof Backbone.Collection)) {
+                    return "expected WorksheetFeatureSetDefinition.child_feature_sets to be a Backbone.Collection";
+                }
+                if (value.model !== WorksheetFeatureSetDefinition) {
+                    return "expected WorksheetFeatureSetDefinition.child_feature_sets to be a Backbone.Collection with model=WorksheetFeatureSetDefinition";
+                }
+                for (let __model0 of value.models) {
+                    if (!__model0.isValid(true)) {
+                        return __model0.validationError;
                     }
                 }
+
                 return undefined;
             },
             "minLength": 1, "required": false
@@ -35,11 +39,18 @@ export class WorksheetFeatureSetDefinition extends Backbone.Model {
 
         displayName: {
             "fn": function(value: any, attr: any, computedState: any) {
-                if (typeof attr !== "undefined" && attr !== "null") {
-                    if (typeof value !== "string") {
-                        return "expected WorksheetFeatureSetDefinition.display_name to be a string";
-                    }
+                if (typeof attr === "undefined" || attr === null) {
+                    return undefined;
                 }
+
+                if (typeof value !== "string") {
+                    return "expected WorksheetFeatureSetDefinition.display_name to be a string";
+                }
+
+                if (/^\s*$/.test(value)) {
+                    return "WorksheetFeatureSetDefinition.display_name is blank";
+                }
+
                 return undefined;
             },
             "minLength": 1, "required": false
@@ -47,19 +58,22 @@ export class WorksheetFeatureSetDefinition extends Backbone.Model {
 
         features: {
             "fn": function(value: any, attr: any, computedState: any) {
-                if (typeof attr !== "undefined" && attr !== "null") {
-                    if (!(value instanceof Backbone.Collection)) {
-                        return "expected WorksheetFeatureSetDefinition.features to be a Backbone.Collection";
-                    }
-                    if (value.model !== WorksheetFeatureDefinition) {
-                        return "expected WorksheetFeatureSetDefinition.features to be a Backbone.Collection with model=WorksheetFeatureDefinition";
-                    }
-                    for (let __model0 of value.models) {
-                        if (!__model0.isValid(true)) {
-                            return __model0.validationError;
-                        }
+                if (typeof attr === "undefined" || attr === null) {
+                    return undefined;
+                }
+
+                if (!(value instanceof Backbone.Collection)) {
+                    return "expected WorksheetFeatureSetDefinition.features to be a Backbone.Collection";
+                }
+                if (value.model !== WorksheetFeatureDefinition) {
+                    return "expected WorksheetFeatureSetDefinition.features to be a Backbone.Collection with model=WorksheetFeatureDefinition";
+                }
+                for (let __model0 of value.models) {
+                    if (!__model0.isValid(true)) {
+                        return __model0.validationError;
                     }
                 }
+
                 return undefined;
             },
             "minLength": 1, "required": false

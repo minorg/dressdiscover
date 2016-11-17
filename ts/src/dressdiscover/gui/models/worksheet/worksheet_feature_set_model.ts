@@ -38,10 +38,10 @@ export class WorksheetFeatureSetModel extends Backbone.Model {
         let state = new WorksheetFeatureSetState();
         if (this.definition.childFeatureSets) {
             let childFeatureSetStates: { [index: string]: WorksheetFeatureSetState } = {};
-            for (let childFeatureSetModel of this._childFeatureSets.models) {
-                let childFeatureSetState = childFeatureSetModel.currentState;
+            for (let childFeatureSet of this._childFeatureSets.models) {
+                let childFeatureSetState = childFeatureSet.currentState;
                 if (childFeatureSetState) {
-                    childFeatureSetStates[childFeatureSetModel.id] = childFeatureSetState;
+                    childFeatureSetStates[childFeatureSet.id] = childFeatureSetState;
                 }
             }
             if (!_.isEmpty(childFeatureSetStates)) {

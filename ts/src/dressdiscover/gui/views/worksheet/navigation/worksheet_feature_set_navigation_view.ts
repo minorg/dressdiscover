@@ -22,14 +22,14 @@ export class WorksheetFeatureSetNavigationView extends Marionette.ItemView<Works
 
     onRender() {
         if (this.model.childFeatureSets) {
-            for (let childFeatureSetModel of this.model.childFeatureSets.models) {
-                this.ui.children.append(new WorksheetFeatureSetNavigationView({ model: childFeatureSetModel }).render().el);
+            for (let childFeatureSet of this.model.childFeatureSets.models) {
+                this.ui.children.append(new WorksheetFeatureSetNavigationView({ model: childFeatureSet }).render().el);
             }
         }
 
         if (this.model.features) {
-            for (let featureModel of this.model.features.models) {
-                this.ui.children.append(new WorksheetFeatureNavigationView({ model: featureModel }).render().el);
+            for (let feature of this.model.features.models) {
+                this.ui.children.append(new WorksheetFeatureNavigationView({ model: feature }).render().el);
             }
         }
     }

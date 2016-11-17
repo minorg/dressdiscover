@@ -7,6 +7,11 @@ export class WorksheetEnumFeatureValueImage extends Backbone.Model {
                 if (typeof value !== "string") {
                     return "expected WorksheetEnumFeatureValueImage.rights to be a string";
                 }
+
+                if (/^\s*$/.test(value)) {
+                    return "WorksheetEnumFeatureValueImage.rights is blank";
+                }
+
                 return undefined;
             },
             "minLength": 1, "required": true
@@ -17,6 +22,7 @@ export class WorksheetEnumFeatureValueImage extends Backbone.Model {
                 if (typeof value !== "string") {
                     return "expected WorksheetEnumFeatureValueImage.thumbnail_url to be a string";
                 }
+
                 return undefined;
             },
             "required": true
@@ -24,11 +30,14 @@ export class WorksheetEnumFeatureValueImage extends Backbone.Model {
 
         fullSizeUrl: {
             "fn": function(value: any, attr: any, computedState: any) {
-                if (typeof attr !== "undefined" && attr !== "null") {
-                    if (typeof value !== "string") {
-                        return "expected WorksheetEnumFeatureValueImage.full_size_url to be a string";
-                    }
+                if (typeof attr === "undefined" || attr === null) {
+                    return undefined;
                 }
+
+                if (typeof value !== "string") {
+                    return "expected WorksheetEnumFeatureValueImage.full_size_url to be a string";
+                }
+
                 return undefined;
             },
             "required": false
