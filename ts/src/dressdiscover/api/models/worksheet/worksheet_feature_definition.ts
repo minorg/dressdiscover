@@ -4,6 +4,58 @@ import { WorksheetTextFeatureDefinition } from "./worksheet_text_feature_definit
 
 export class WorksheetFeatureDefinition extends Backbone.Model {
     constructor(attributes?: {id: string, displayName?: string, enum_?: WorksheetEnumFeatureDefinition, text?: WorksheetTextFeatureDefinition}) {
+        if (!attributes) {
+            attributes = {};
+        }
+        attributes["validation"] = {
+            id: {
+                "fn": function(value, attr, computedState) {
+                    if (typeof value !== "string") {
+                        return "expected dressdiscover.api.models.worksheet.WorksheetFeatureDefinition.id to be a string";
+                    }
+                },
+                "required": true
+            },
+
+            display_name: {
+                "fn": function(value, attr, computedState) {
+                    if (typeof attr !== "undefined" && attr !== "null") {
+                        if (typeof value !== "string") {
+                            return "expected dressdiscover.api.models.worksheet.WorksheetFeatureDefinition.display_name to be a string";
+                        }
+                    }
+                },
+                "minLength": 1, "required": false
+            },
+
+            enum_: {
+                "fn": function(value, attr, computedState) {
+                    if (typeof attr !== "undefined" && attr !== "null") {
+                        if (!(value instanceof dressdiscover.api.models.worksheet.WorksheetEnumFeatureDefinition)) {
+                            return "expected dressdiscover.api.models.worksheet.WorksheetFeatureDefinition.enum_ to be a dressdiscover.api.models.worksheet.WorksheetEnumFeatureDefinition";
+                        }
+                        if (!value.isValid(true)) {
+                            return value.validationError;
+                        }
+                    }
+                },
+                "required": false
+            },
+
+            text: {
+                "fn": function(value, attr, computedState) {
+                    if (typeof attr !== "undefined" && attr !== "null") {
+                        if (!(value instanceof dressdiscover.api.models.worksheet.WorksheetTextFeatureDefinition)) {
+                            return "expected dressdiscover.api.models.worksheet.WorksheetFeatureDefinition.text to be a dressdiscover.api.models.worksheet.WorksheetTextFeatureDefinition";
+                        }
+                        if (!value.isValid(true)) {
+                            return value.validationError;
+                        }
+                    }
+                },
+                "required": false
+            }
+        }
         super(attributes);
     }
 

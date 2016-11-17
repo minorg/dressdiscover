@@ -3,6 +3,64 @@ import { WorksheetFeatureDefinition } from "./worksheet_feature_definition";
 
 export class WorksheetFeatureSetDefinition extends Backbone.Model {
     constructor(attributes?: {id: string, childFeatureSets?: Backbone.Collection<WorksheetFeatureSetDefinition>, displayName?: string, features?: Backbone.Collection<WorksheetFeatureDefinition>}) {
+        if (!attributes) {
+            attributes = {};
+        }
+        attributes["validation"] = {
+            id: {
+                "fn": function(value, attr, computedState) {
+                    if (typeof value !== "string") {
+                        return "expected dressdiscover.api.models.worksheet.WorksheetFeatureSetDefinition.id to be a string";
+                    }
+                },
+                "required": true
+            },
+
+            child_feature_sets: {
+                "fn": function(value, attr, computedState) {
+                    if (typeof attr !== "undefined" && attr !== "null") {
+                        if (!(value instanceof Backbone.Collection)) {
+                            return "expected dressdiscover.api.models.worksheet.WorksheetFeatureSetDefinition.child_feature_sets to be a Backbone.Collection";
+                        }
+                        if (value.model !== dressdiscover.api.models.worksheet.WorksheetFeatureSetDefinition) {
+                            return "expected dressdiscover.api.models.worksheet.WorksheetFeatureSetDefinition.child_feature_sets to be a Backbone.Collection with model=dressdiscover.api.models.worksheet.WorksheetFeatureSetDefinition";
+                        }
+                        if (!value.isValid(true)) {
+                            return value.validationError;
+                        }
+                    }
+                },
+                "minLength": 1, "required": false
+            },
+
+            display_name: {
+                "fn": function(value, attr, computedState) {
+                    if (typeof attr !== "undefined" && attr !== "null") {
+                        if (typeof value !== "string") {
+                            return "expected dressdiscover.api.models.worksheet.WorksheetFeatureSetDefinition.display_name to be a string";
+                        }
+                    }
+                },
+                "minLength": 1, "required": false
+            },
+
+            features: {
+                "fn": function(value, attr, computedState) {
+                    if (typeof attr !== "undefined" && attr !== "null") {
+                        if (!(value instanceof Backbone.Collection)) {
+                            return "expected dressdiscover.api.models.worksheet.WorksheetFeatureSetDefinition.features to be a Backbone.Collection";
+                        }
+                        if (value.model !== dressdiscover.api.models.worksheet.WorksheetFeatureDefinition) {
+                            return "expected dressdiscover.api.models.worksheet.WorksheetFeatureSetDefinition.features to be a Backbone.Collection with model=dressdiscover.api.models.worksheet.WorksheetFeatureDefinition";
+                        }
+                        if (!value.isValid(true)) {
+                            return value.validationError;
+                        }
+                    }
+                },
+                "minLength": 1, "required": false
+            }
+        }
         super(attributes);
     }
 

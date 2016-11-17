@@ -4,6 +4,38 @@ import { WorksheetTextFeatureState } from "./worksheet_text_feature_state";
 
 export class WorksheetFeatureState extends Backbone.Model {
     constructor(attributes?: {enum_?: WorksheetEnumFeatureState, text?: WorksheetTextFeatureState}) {
+        if (!attributes) {
+            attributes = {};
+        }
+        attributes["validation"] = {
+            enum_: {
+                "fn": function(value, attr, computedState) {
+                    if (typeof attr !== "undefined" && attr !== "null") {
+                        if (!(value instanceof dressdiscover.api.models.worksheet.WorksheetEnumFeatureState)) {
+                            return "expected dressdiscover.api.models.worksheet.WorksheetFeatureState.enum_ to be a dressdiscover.api.models.worksheet.WorksheetEnumFeatureState";
+                        }
+                        if (!value.isValid(true)) {
+                            return value.validationError;
+                        }
+                    }
+                },
+                "required": false
+            },
+
+            text: {
+                "fn": function(value, attr, computedState) {
+                    if (typeof attr !== "undefined" && attr !== "null") {
+                        if (!(value instanceof dressdiscover.api.models.worksheet.WorksheetTextFeatureState)) {
+                            return "expected dressdiscover.api.models.worksheet.WorksheetFeatureState.text to be a dressdiscover.api.models.worksheet.WorksheetTextFeatureState";
+                        }
+                        if (!value.isValid(true)) {
+                            return value.validationError;
+                        }
+                    }
+                },
+                "required": false
+            }
+        }
         super(attributes);
     }
 

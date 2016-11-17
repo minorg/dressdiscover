@@ -3,6 +3,56 @@ import { WorksheetFeatureState } from "./worksheet_feature_state";
 
 export class WorksheetFeatureSetState extends Backbone.Model {
     constructor(attributes?: {childFeatureSets?: {[index: string]: WorksheetFeatureSetState}, features?: {[index: string]: WorksheetFeatureState}}) {
+        if (!attributes) {
+            attributes = {};
+        }
+        attributes["validation"] = {
+            child_feature_sets: {
+                "fn": function(value, attr, computedState) {
+                    if (typeof attr !== "undefined" && attr !== "null") {
+                        if (typeof value !== "object") {
+                            return "expected dressdiscover.api.models.worksheet.WorksheetFeatureSetState.child_feature_sets to be an object";
+                        }
+                        for (var __key in value) {
+                            var __value = value[__key];
+                            if (typeof __key !== "string") {
+                                return "expected dressdiscover.api.models.worksheet.WorksheetFeatureSetState.child_feature_sets key to be a string";
+                            }
+                            if (!(__value instanceof dressdiscover.api.models.worksheet.WorksheetFeatureSetState)) {
+                                return "expected dressdiscover.api.models.worksheet.WorksheetFeatureSetState.child_feature_sets value to be a dressdiscover.api.models.worksheet.WorksheetFeatureSetState";
+                            }
+                            if (!__value.isValid(true)) {
+                                return __value.validationError;
+                            }
+                        }
+                    }
+                },
+                "minLength": 1, "required": false
+            },
+
+            features: {
+                "fn": function(value, attr, computedState) {
+                    if (typeof attr !== "undefined" && attr !== "null") {
+                        if (typeof value !== "object") {
+                            return "expected dressdiscover.api.models.worksheet.WorksheetFeatureSetState.features to be an object";
+                        }
+                        for (var __key in value) {
+                            var __value = value[__key];
+                            if (typeof __key !== "string") {
+                                return "expected dressdiscover.api.models.worksheet.WorksheetFeatureSetState.features key to be a string";
+                            }
+                            if (!(__value instanceof dressdiscover.api.models.worksheet.WorksheetFeatureState)) {
+                                return "expected dressdiscover.api.models.worksheet.WorksheetFeatureSetState.features value to be a dressdiscover.api.models.worksheet.WorksheetFeatureState";
+                            }
+                            if (!__value.isValid(true)) {
+                                return __value.validationError;
+                            }
+                        }
+                    }
+                },
+                "minLength": 1, "required": false
+            }
+        }
         super(attributes);
     }
 

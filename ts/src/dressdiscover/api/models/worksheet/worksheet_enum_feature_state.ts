@@ -2,6 +2,24 @@ import * as Backbone from "backbone";
 
 export class WorksheetEnumFeatureState extends Backbone.Model {
     constructor(attributes?: {selectedValues: string[]}) {
+        if (!attributes) {
+            attributes = {};
+        }
+        attributes["validation"] = {
+            selected_values: {
+                "fn": function(value, attr, computedState) {
+                    if (!Array.isArray(value)) {
+                        return "expected dressdiscover.api.models.worksheet.WorksheetEnumFeatureState.selected_values to be an Array";
+                    }
+                    for (var __i0 = 0; __i0 < value.length; __i0++) {
+                        if (typeof value[__i0] !== "string") {
+                            return "expected dressdiscover.api.models.worksheet.WorksheetEnumFeatureState.selected_values[i] to be a string";
+                        }
+                    }
+                },
+                "minLength": 1, "required": true
+            }
+        }
         super(attributes);
     }
 

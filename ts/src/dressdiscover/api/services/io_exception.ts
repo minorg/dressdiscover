@@ -2,6 +2,19 @@ import * as Backbone from "backbone";
 
 export class IoException extends Backbone.Model {
     constructor(attributes?: {causeMessage: string}) {
+        if (!attributes) {
+            attributes = {};
+        }
+        attributes["validation"] = {
+            cause_message: {
+                "fn": function(value, attr, computedState) {
+                    if (typeof value !== "string") {
+                        return "expected dressdiscover.api.services.IoException.cause_message to be a string";
+                    }
+                },
+                "required": true
+            }
+        }
         super(attributes);
     }
 

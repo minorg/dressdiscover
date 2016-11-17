@@ -3,6 +3,25 @@ import { WorksheetFeatureSetDefinition } from "./worksheet_feature_set_definitio
 
 export class WorksheetDefinition extends Backbone.Model {
     constructor(attributes?: {rootFeatureSets: Backbone.Collection<WorksheetFeatureSetDefinition>}) {
+        if (!attributes) {
+            attributes = {};
+        }
+        attributes["validation"] = {
+            root_feature_sets: {
+                "fn": function(value, attr, computedState) {
+                    if (!(value instanceof Backbone.Collection)) {
+                        return "expected dressdiscover.api.models.worksheet.WorksheetDefinition.root_feature_sets to be a Backbone.Collection";
+                    }
+                    if (value.model !== dressdiscover.api.models.worksheet.WorksheetFeatureSetDefinition) {
+                        return "expected dressdiscover.api.models.worksheet.WorksheetDefinition.root_feature_sets to be a Backbone.Collection with model=dressdiscover.api.models.worksheet.WorksheetFeatureSetDefinition";
+                    }
+                    if (!value.isValid(true)) {
+                        return value.validationError;
+                    }
+                },
+                "required": true
+            }
+        }
         super(attributes);
     }
 

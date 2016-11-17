@@ -3,6 +3,25 @@ import { WorksheetEnumFeatureValueDefinition } from "./worksheet_enum_feature_va
 
 export class WorksheetEnumFeatureDefinition extends Backbone.Model {
     constructor(attributes?: {values_: Backbone.Collection<WorksheetEnumFeatureValueDefinition>}) {
+        if (!attributes) {
+            attributes = {};
+        }
+        attributes["validation"] = {
+            values_: {
+                "fn": function(value, attr, computedState) {
+                    if (!(value instanceof Backbone.Collection)) {
+                        return "expected dressdiscover.api.models.worksheet.WorksheetEnumFeatureDefinition.values_ to be a Backbone.Collection";
+                    }
+                    if (value.model !== dressdiscover.api.models.worksheet.WorksheetEnumFeatureValueDefinition) {
+                        return "expected dressdiscover.api.models.worksheet.WorksheetEnumFeatureDefinition.values_ to be a Backbone.Collection with model=dressdiscover.api.models.worksheet.WorksheetEnumFeatureValueDefinition";
+                    }
+                    if (!value.isValid(true)) {
+                        return value.validationError;
+                    }
+                },
+                "minLength": 1, "required": true
+            }
+        }
         super(attributes);
     }
 

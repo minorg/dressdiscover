@@ -2,6 +2,39 @@ import * as Backbone from "backbone";
 
 export class WorksheetEnumFeatureValueImage extends Backbone.Model {
     constructor(attributes?: {rights: string, thumbnailUrl: URL, fullSizeUrl?: URL}) {
+        if (!attributes) {
+            attributes = {};
+        }
+        attributes["validation"] = {
+            rights: {
+                "fn": function(value, attr, computedState) {
+                    if (typeof value !== "string") {
+                        return "expected dressdiscover.api.models.worksheet.WorksheetEnumFeatureValueImage.rights to be a string";
+                    }
+                },
+                "required": true
+            },
+
+            thumbnail_url: {
+                "fn": function(value, attr, computedState) {
+                    if (typeof value !== "string") {
+                        return "expected dressdiscover.api.models.worksheet.WorksheetEnumFeatureValueImage.thumbnail_url to be a string";
+                    }
+                },
+                "pattern": "url", "required": true
+            },
+
+            full_size_url: {
+                "fn": function(value, attr, computedState) {
+                    if (typeof attr !== "undefined" && attr !== "null") {
+                        if (typeof value !== "string") {
+                            return "expected dressdiscover.api.models.worksheet.WorksheetEnumFeatureValueImage.full_size_url to be a string";
+                        }
+                    }
+                },
+                "pattern": "url", "required": false
+            }
+        }
         super(attributes);
     }
 
