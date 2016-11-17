@@ -17582,11 +17582,9 @@
 	    function __() { this.constructor = d; }
 	    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 	};
-	var app_radio_1 = __webpack_require__(10);
-	var worksheet_content_view_1 = __webpack_require__(12);
-	var worksheet_model_1 = __webpack_require__(38);
-	var top_level_view_1 = __webpack_require__(59);
-	var worksheet_feature_selection_event_1 = __webpack_require__(29);
+	var worksheet_content_view_1 = __webpack_require__(10);
+	var worksheet_model_1 = __webpack_require__(39);
+	var top_level_view_1 = __webpack_require__(60);
 	var WorksheetView = (function (_super) {
 	    __extends(WorksheetView, _super);
 	    function WorksheetView() {
@@ -17594,10 +17592,6 @@
 	    }
 	    WorksheetView.prototype.initialize = function () {
 	        this.model.fetchFromService();
-	        this.listenTo(app_radio_1.AppRadio.channel, worksheet_feature_selection_event_1.WorksheetFeatureSelectionEvent.NAME, this.onFeatureSelection);
-	    };
-	    WorksheetView.prototype.onFeatureSelection = function (request) {
-	        alert("Feature selected: " + request.featureModel.definition.id);
 	    };
 	    WorksheetView.prototype.onRender = function () {
 	        _super.prototype.onRender.call(this);
@@ -17614,8 +17608,53 @@
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
+	var __extends = (this && this.__extends) || function (d, b) {
+	    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
+	    function __() { this.constructor = d; }
+	    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+	};
+	var _ = __webpack_require__(3);
+	var app_radio_1 = __webpack_require__(11);
+	var Marionette = __webpack_require__(5);
+	var worksheet_feature_selection_event_1 = __webpack_require__(13);
+	var worksheet_input_view_1 = __webpack_require__(14);
+	var worksheet_navigation_view_1 = __webpack_require__(28);
+	__webpack_require__(34);
+	var WorksheetContentView = (function (_super) {
+	    __extends(WorksheetContentView, _super);
+	    function WorksheetContentView(options) {
+	        _super.call(this, _.extend(options, {
+	            regions: {
+	                leftColumn: "#left-column",
+	                rightColumn: "#right-column"
+	            },
+	            template: _.template(__webpack_require__(38))
+	        }));
+	    }
+	    WorksheetContentView.prototype.initialize = function () {
+	        this.listenTo(app_radio_1.AppRadio.channel, worksheet_feature_selection_event_1.WorksheetFeatureSelectionEvent.NAME, this.onFeatureSelection);
+	    };
+	    WorksheetContentView.prototype.onFeatureSelection = function (request) {
+	        var region = this.getRegion("rightColumn");
+	        region.reset();
+	        region.show(worksheet_input_view_1.WorksheetInputView.create(request.featureModel));
+	    };
+	    WorksheetContentView.prototype.onBeforeShow = function () {
+	        this.showChildView("leftColumn", new worksheet_navigation_view_1.WorksheetNavigationView({ collection: this.model.rootFeatureSets }));
+	        this.showChildView("rightColumn", worksheet_input_view_1.WorksheetInputView.create(this.model.selectedFeature));
+	    };
+	    return WorksheetContentView;
+	}(Marionette.LayoutView));
+	exports.WorksheetContentView = WorksheetContentView;
+
+
+/***/ },
+/* 11 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
 	//import Backbone = require("backbone");
-	__webpack_require__(11);
+	__webpack_require__(12);
 	var AppRadio = (function () {
 	    function AppRadio() {
 	    }
@@ -17633,7 +17672,7 @@
 
 
 /***/ },
-/* 11 */
+/* 12 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// Backbone.Radio v2.0.0
@@ -17988,49 +18027,36 @@
 	//# sourceMappingURL=./backbone.radio.js.map
 
 /***/ },
-/* 12 */
-/***/ function(module, exports, __webpack_require__) {
+/* 13 */
+/***/ function(module, exports) {
 
 	"use strict";
-	var __extends = (this && this.__extends) || function (d, b) {
-	    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
-	    function __() { this.constructor = d; }
-	    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-	};
-	var _ = __webpack_require__(3);
-	var Marionette = __webpack_require__(5);
-	var worksheet_input_view_1 = __webpack_require__(13);
-	var worksheet_navigation_view_1 = __webpack_require__(26);
-	__webpack_require__(33);
-	var WorksheetContentView = (function (_super) {
-	    __extends(WorksheetContentView, _super);
-	    function WorksheetContentView(options) {
-	        _super.call(this, _.extend(options, {
-	            regions: {
-	                leftColumn: "#left-column",
-	                rightColumn: "#right-column"
-	            },
-	            template: _.template(__webpack_require__(37))
-	        }));
+	var WorksheetFeatureSelectionEvent = (function () {
+	    function WorksheetFeatureSelectionEvent(options) {
+	        this._featureModel = options.featureModel;
 	    }
-	    WorksheetContentView.prototype.onBeforeShow = function () {
-	        this.showChildView("leftColumn", new worksheet_navigation_view_1.WorksheetNavigationView({ collection: this.model.rootFeatureSets }));
-	        this.showChildView("rightColumn", worksheet_input_view_1.WorksheetInputView.create(this.model.selectedFeature));
-	    };
-	    return WorksheetContentView;
-	}(Marionette.LayoutView));
-	exports.WorksheetContentView = WorksheetContentView;
+	    Object.defineProperty(WorksheetFeatureSelectionEvent.prototype, "featureModel", {
+	        get: function () {
+	            return this._featureModel;
+	        },
+	        enumerable: true,
+	        configurable: true
+	    });
+	    WorksheetFeatureSelectionEvent.NAME = "worksheet:feature:select";
+	    return WorksheetFeatureSelectionEvent;
+	}());
+	exports.WorksheetFeatureSelectionEvent = WorksheetFeatureSelectionEvent;
 
 
 /***/ },
-/* 13 */
+/* 14 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
-	var worksheet_enum_feature_input_view_1 = __webpack_require__(14);
-	var worksheet_enum_feature_model_1 = __webpack_require__(18);
-	var worksheet_text_feature_input_view_1 = __webpack_require__(22);
-	var worksheet_text_feature_model_1 = __webpack_require__(25);
+	var worksheet_enum_feature_input_view_1 = __webpack_require__(15);
+	var worksheet_enum_feature_model_1 = __webpack_require__(20);
+	var worksheet_text_feature_input_view_1 = __webpack_require__(24);
+	var worksheet_text_feature_model_1 = __webpack_require__(27);
 	var WorksheetInputView = (function () {
 	    function WorksheetInputView() {
 	    }
@@ -18051,7 +18077,7 @@
 
 
 /***/ },
-/* 14 */
+/* 15 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -18061,26 +18087,56 @@
 	    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 	};
 	var _ = __webpack_require__(3);
-	var Backbone = __webpack_require__(2);
 	var Marionette = __webpack_require__(5);
-	var worksheet_enum_feature_value_input_view_1 = __webpack_require__(15);
+	var worksheet_enum_feature_values_input_view_1 = __webpack_require__(16);
 	var WorksheetEnumFeatureInputView = (function (_super) {
 	    __extends(WorksheetEnumFeatureInputView, _super);
 	    function WorksheetEnumFeatureInputView(options) {
 	        _super.call(this, _.extend(options, {
-	            el: "#feature-values",
-	            collection: options.model.featureValues ? options.model.featureValues : new Backbone.Collection(),
-	            childView: worksheet_enum_feature_value_input_view_1.WorksheetEnumFeatureValueInputView,
-	            template: _.template(__webpack_require__(17))
+	            regions: {
+	                values: "#values"
+	            },
+	            template: _.template(__webpack_require__(19))
 	        }));
 	    }
+	    WorksheetEnumFeatureInputView.prototype.onRender = function () {
+	        this.showChildView("values", new worksheet_enum_feature_values_input_view_1.WorksheetEnumFeatureValuesInputView({ collection: this.model.values_ }));
+	    };
+	    WorksheetEnumFeatureInputView.prototype.serializeData = function () {
+	        return { "displayName": this.model.definition.displayName, "id": this.model.definition.id };
+	    };
 	    return WorksheetEnumFeatureInputView;
-	}(Marionette.CollectionView));
+	}(Marionette.LayoutView));
 	exports.WorksheetEnumFeatureInputView = WorksheetEnumFeatureInputView;
 
 
 /***/ },
-/* 15 */
+/* 16 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+	var __extends = (this && this.__extends) || function (d, b) {
+	    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
+	    function __() { this.constructor = d; }
+	    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+	};
+	var _ = __webpack_require__(3);
+	var Marionette = __webpack_require__(5);
+	var worksheet_enum_feature_value_input_view_1 = __webpack_require__(17);
+	var WorksheetEnumFeatureValuesInputView = (function (_super) {
+	    __extends(WorksheetEnumFeatureValuesInputView, _super);
+	    function WorksheetEnumFeatureValuesInputView(options) {
+	        _super.call(this, _.extend(options, {
+	            childView: worksheet_enum_feature_value_input_view_1.WorksheetEnumFeatureValueInputView
+	        }));
+	    }
+	    return WorksheetEnumFeatureValuesInputView;
+	}(Marionette.CollectionView));
+	exports.WorksheetEnumFeatureValuesInputView = WorksheetEnumFeatureValuesInputView;
+
+
+/***/ },
+/* 17 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -18094,27 +18150,32 @@
 	var WorksheetEnumFeatureValueInputView = (function (_super) {
 	    __extends(WorksheetEnumFeatureValueInputView, _super);
 	    function WorksheetEnumFeatureValueInputView(options) {
-	        _super.call(this, _.extend(options, { template: _.template(__webpack_require__(16)) }));
+	        _super.call(this, _.extend(options, { template: _.template(__webpack_require__(18)) }));
 	    }
+	    WorksheetEnumFeatureValueInputView.prototype.serializeData = function () {
+	        var data = this.model.definition.toJSON();
+	        data['image'] = this.model.definition.image ? this.model.definition.image.toJSON() : null;
+	        return data;
+	    };
 	    return WorksheetEnumFeatureValueInputView;
 	}(Marionette.ItemView));
 	exports.WorksheetEnumFeatureValueInputView = WorksheetEnumFeatureValueInputView;
 
 
 /***/ },
-/* 16 */
+/* 18 */
 /***/ function(module, exports) {
 
 	module.exports = "<div class=\"col-lg-3 col-md-4 col-xs-6 feature-value-col\">\n    <a class=\"feature-value-link\">\n        <% if (image) { %>\n        <img class=\"img-responsive\" src=\"<%- image.thumbnailUrl %>\" alt=\"<%- displayName ? displayName : id %>\">\n        <% } else { %>\n        <%- displayName ? displayName : id %>\n        <% } %>\n    </a>\n</div>\n"
 
 /***/ },
-/* 17 */
+/* 19 */
 /***/ function(module, exports) {
 
-	module.exports = "<div class=\"row\">\n    <div class=\"col-lg12\">\n        <h3 class=\"page-header\" style=\"text-align: center\"><%- displayName ? displayName : id %></h3>\n    </div>\n    <div id=\"feature-values\"></div>\n</div>\n"
+	module.exports = "<div class=\"row\">\n    <div class=\"col-lg12\">\n        <h3 class=\"page-header\" style=\"text-align: center\"><%- displayName ? displayName : id %></h3>\n    </div>\n    <div id=\"values\"></div>\n</div>\n"
 
 /***/ },
-/* 18 */
+/* 20 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -18123,9 +18184,9 @@
 	    function __() { this.constructor = d; }
 	    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 	};
-	var worksheet_feature_model_1 = __webpack_require__(19);
-	var worksheet_enum_feature_value_collection_1 = __webpack_require__(20);
-	var worksheet_enum_feature_value_model_1 = __webpack_require__(21);
+	var worksheet_feature_model_1 = __webpack_require__(21);
+	var worksheet_enum_feature_value_collection_1 = __webpack_require__(22);
+	var worksheet_enum_feature_value_model_1 = __webpack_require__(23);
 	var WorksheetEnumFeatureModel = (function (_super) {
 	    __extends(WorksheetEnumFeatureModel, _super);
 	    function WorksheetEnumFeatureModel(definition, state) {
@@ -18149,7 +18210,7 @@
 
 
 /***/ },
-/* 19 */
+/* 21 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -18189,7 +18250,7 @@
 
 
 /***/ },
-/* 20 */
+/* 22 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -18210,7 +18271,7 @@
 
 
 /***/ },
-/* 21 */
+/* 23 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -18240,7 +18301,7 @@
 
 
 /***/ },
-/* 22 */
+/* 24 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -18251,12 +18312,12 @@
 	};
 	var _ = __webpack_require__(3);
 	var Marionette = __webpack_require__(5);
-	__webpack_require__(23);
+	__webpack_require__(25);
 	var WorksheetTextFeatureInputView = (function (_super) {
 	    __extends(WorksheetTextFeatureInputView, _super);
 	    function WorksheetTextFeatureInputView(options) {
 	        _super.call(this, _.extend(options, {
-	            template: _.template(__webpack_require__(24))
+	            template: _.template(__webpack_require__(26))
 	        }));
 	        this.bindings = {
 	            "#text": "text"
@@ -18277,7 +18338,7 @@
 
 
 /***/ },
-/* 23 */
+/* 25 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;// Backbone.Stickit v0.9.2, MIT Licensed
@@ -18975,13 +19036,13 @@
 
 
 /***/ },
-/* 24 */
+/* 26 */
 /***/ function(module, exports) {
 
-	module.exports = "<div class=\"row\">\n    <div class=\"col-lg12\">\n        <h3 class=\"page-header\" style=\"text-align: center\"><%- displayName ? displayName : id %></h3>\n    </div>\n    <form class=\"form-horizontal\">\r\n        <div class=\"form-group\">\r\n            <label for=\"text\" class=\"col-sm-offset-2 col-sm-2 control-label\">Text:</label>\r\n            <div class=\"col-sm-6 \">\r\n                <input type=\"text\" class=\"form-control\" id=\"text\" placeholder=\"Text\">\r\n            </div>\r\n        </div>\r\n    </form>\n</div>\n"
+	module.exports = "<div class=\"row\">\r\n    <div class=\"col-lg12\">\r\n        <h3 class=\"page-header\" style=\"text-align: center\"><%- displayName ? displayName : id %></h3>\r\n    </div>\r\n    <form class=\"form-horizontal\">\r\n        <div class=\"form-group\">\r\n            <label for=\"text\" class=\"col-sm-offset-2 col-sm-2 control-label\">Text:</label>\r\n            <div class=\"col-sm-6 \">\r\n                <input type=\"text\" class=\"form-control\" id=\"text\" placeholder=\"Text\">\r\n            </div>\r\n        </div>\r\n    </form>\r\n</div>\r\n"
 
 /***/ },
-/* 25 */
+/* 27 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -18990,7 +19051,7 @@
 	    function __() { this.constructor = d; }
 	    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 	};
-	var worksheet_feature_model_1 = __webpack_require__(19);
+	var worksheet_feature_model_1 = __webpack_require__(21);
 	var WorksheetTextFeatureModel = (function (_super) {
 	    __extends(WorksheetTextFeatureModel, _super);
 	    function WorksheetTextFeatureModel(definition, state) {
@@ -19005,7 +19066,7 @@
 
 
 /***/ },
-/* 26 */
+/* 28 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -19016,14 +19077,14 @@
 	};
 	var _ = __webpack_require__(3);
 	var Marionette = __webpack_require__(5);
-	var worksheet_feature_set_navigation_view_1 = __webpack_require__(27);
+	var worksheet_feature_set_navigation_view_1 = __webpack_require__(29);
 	var WorksheetNavigationView = (function (_super) {
 	    __extends(WorksheetNavigationView, _super);
 	    function WorksheetNavigationView(options) {
 	        _super.call(this, _.extend(options, {
 	            childView: worksheet_feature_set_navigation_view_1.WorksheetFeatureSetNavigationView,
 	            tagName: "ul",
-	            template: _.template(__webpack_require__(32))
+	            template: _.template(__webpack_require__(33))
 	        }));
 	    }
 	    return WorksheetNavigationView;
@@ -19032,7 +19093,7 @@
 
 
 /***/ },
-/* 27 */
+/* 29 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -19044,7 +19105,7 @@
 	//import Backbone = require("backbone");
 	var _ = __webpack_require__(3);
 	var Marionette = __webpack_require__(5);
-	var worksheet_feature_navigation_view_1 = __webpack_require__(28);
+	var worksheet_feature_navigation_view_1 = __webpack_require__(30);
 	var WorksheetFeatureSetNavigationView = (function (_super) {
 	    __extends(WorksheetFeatureSetNavigationView, _super);
 	    function WorksheetFeatureSetNavigationView(options) {
@@ -19052,7 +19113,7 @@
 	            attributes: { role: "presentation" },
 	            className: "list-group-item",
 	            tagName: "li",
-	            template: _.template(__webpack_require__(31))
+	            template: _.template(__webpack_require__(32))
 	        }));
 	    }
 	    WorksheetFeatureSetNavigationView.prototype.initialize = function () {
@@ -19081,7 +19142,7 @@
 
 
 /***/ },
-/* 28 */
+/* 30 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -19091,9 +19152,9 @@
 	    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 	};
 	var _ = __webpack_require__(3);
-	var app_radio_1 = __webpack_require__(10);
+	var app_radio_1 = __webpack_require__(11);
 	var Marionette = __webpack_require__(5);
-	var worksheet_feature_selection_event_1 = __webpack_require__(29);
+	var worksheet_feature_selection_event_1 = __webpack_require__(13);
 	var WorksheetFeatureNavigationView = (function (_super) {
 	    __extends(WorksheetFeatureNavigationView, _super);
 	    function WorksheetFeatureNavigationView(options) {
@@ -19104,7 +19165,7 @@
 	                "click a": "onClick"
 	            },
 	            tagName: "li",
-	            template: _.template(__webpack_require__(30))
+	            template: _.template(__webpack_require__(31))
 	        }));
 	    }
 	    WorksheetFeatureNavigationView.prototype.onClick = function () {
@@ -19120,62 +19181,40 @@
 
 
 /***/ },
-/* 29 */
-/***/ function(module, exports) {
-
-	"use strict";
-	var WorksheetFeatureSelectionEvent = (function () {
-	    function WorksheetFeatureSelectionEvent(options) {
-	        this._featureModel = options.featureModel;
-	    }
-	    Object.defineProperty(WorksheetFeatureSelectionEvent.prototype, "featureModel", {
-	        get: function () {
-	            return this._featureModel;
-	        },
-	        enumerable: true,
-	        configurable: true
-	    });
-	    WorksheetFeatureSelectionEvent.NAME = "worksheet:feature:select";
-	    return WorksheetFeatureSelectionEvent;
-	}());
-	exports.WorksheetFeatureSelectionEvent = WorksheetFeatureSelectionEvent;
-
-
-/***/ },
-/* 30 */
+/* 31 */
 /***/ function(module, exports) {
 
 	module.exports = "<a class=\"btn btn-primary\" href=\"\"><%- displayName ? displayName : id %></a>\n"
 
 /***/ },
-/* 31 */
+/* 32 */
 /***/ function(module, exports) {
 
 	module.exports = "<h3><%- displayName ? displayName : id %></h3>\n<ul class=\"list-group\" id=\"children\"></ul>\n"
 
 /***/ },
-/* 32 */
+/* 33 */
 /***/ function(module, exports) {
 
 	module.exports = "<div aria-multiselectable=\"true\" class=\"panel-group\" id=\"worksheet-navigation\" role=\"tablist\">\n    <div class=\"panel panel-default\">\n        <div class=\"panel-heading\" role=\"tab\" id=\"headingOne\">\n            <h4 class=\"panel-title\">\n                <a aria-expanded=\"true\" aria-controls=\"collapseOne\" class=\"btn btn-secondary\" data-toggle=\"collapse\" data-parent=\"#accordion\" href=\"#collapseOne\" role=\"button\">\n                Features\n                </a>\n            </h4>\n        </div>\n        <div id=\"collapseOne\" class=\"panel-collapse collapse in\" role=\"tabpanel\" aria-labelledby=\"headingOne\">\n            <ul class=\"list-group\" id=\"root-feature-sets\"></ul>\n        </div>\n    </div>\n</div>\n"
 
 /***/ },
-/* 33 */
+/* 34 */
 /***/ function(module, exports) {
 
 	// removed by extract-text-webpack-plugin
 
 /***/ },
-/* 34 */,
 /* 35 */,
 /* 36 */,
-/* 37 */
+/* 37 */,
+/* 38 */
 /***/ function(module, exports) {
 
 	module.exports = "<div class=\"container-fluid\" id=\"worksheet\" style=\"height: 100%\">\n    <div class=\"row\" style=\"height: 100%\">\n        <div class=\"col-md-4\" id=\"left-column\" style=\"height: 100%\"></div>\n        <div class=\"col-md-8\" id=\"right-column\"></div>\n    </div>\n</div>\n"
 
 /***/ },
-/* 38 */
+/* 39 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -19185,9 +19224,9 @@
 	    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 	};
 	var Backbone = __webpack_require__(2);
-	var services_1 = __webpack_require__(39);
-	var worksheet_feature_set_collection_1 = __webpack_require__(56);
-	var worksheet_feature_set_model_1 = __webpack_require__(57);
+	var services_1 = __webpack_require__(40);
+	var worksheet_feature_set_collection_1 = __webpack_require__(57);
+	var worksheet_feature_set_model_1 = __webpack_require__(58);
 	var WorksheetModel = (function (_super) {
 	    __extends(WorksheetModel, _super);
 	    function WorksheetModel() {
@@ -19267,7 +19306,7 @@
 	    };
 	    WorksheetModel.prototype.__getFirstFeature = function (featureSet) {
 	        if (featureSet.features && featureSet.features.length > 0) {
-	            return featureSet.features.at(0);
+	            return featureSet.features.at(1);
 	        }
 	        if (featureSet.childFeatureSets) {
 	            for (var _i = 0, _a = featureSet.childFeatureSets.models; _i < _a.length; _i++) {
@@ -19286,12 +19325,12 @@
 
 
 /***/ },
-/* 39 */
+/* 40 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
-	var local_worksheet_command_service_1 = __webpack_require__(40);
-	var local_worksheet_query_service_1 = __webpack_require__(42);
+	var local_worksheet_command_service_1 = __webpack_require__(41);
+	var local_worksheet_query_service_1 = __webpack_require__(43);
 	var Services = (function () {
 	    function Services() {
 	        this._worksheetCommandService = new local_worksheet_command_service_1.LocalWorksheetCommandService;
@@ -19325,7 +19364,7 @@
 
 
 /***/ },
-/* 40 */
+/* 41 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -19334,7 +19373,7 @@
 	    function __() { this.constructor = d; }
 	    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 	};
-	var worksheet_command_service_1 = __webpack_require__(41);
+	var worksheet_command_service_1 = __webpack_require__(42);
 	var LocalWorksheetCommandService = (function (_super) {
 	    __extends(LocalWorksheetCommandService, _super);
 	    function LocalWorksheetCommandService() {
@@ -19349,7 +19388,7 @@
 
 
 /***/ },
-/* 41 */
+/* 42 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -19430,7 +19469,7 @@
 
 
 /***/ },
-/* 42 */
+/* 43 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -19439,12 +19478,12 @@
 	    function __() { this.constructor = d; }
 	    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 	};
-	var worksheet_query_service_1 = __webpack_require__(43);
+	var worksheet_query_service_1 = __webpack_require__(44);
 	var Backbone = __webpack_require__(2);
-	var worksheet_definition_1 = __webpack_require__(44);
-	var worksheet_feature_set_definition_1 = __webpack_require__(45);
-	var worksheet_feature_set_state_1 = __webpack_require__(52);
-	var worksheet_state_1 = __webpack_require__(51);
+	var worksheet_definition_1 = __webpack_require__(45);
+	var worksheet_feature_set_definition_1 = __webpack_require__(46);
+	var worksheet_feature_set_state_1 = __webpack_require__(53);
+	var worksheet_state_1 = __webpack_require__(52);
 	var LocalWorksheetQueryService = (function (_super) {
 	    __extends(LocalWorksheetQueryService, _super);
 	    function LocalWorksheetQueryService() {
@@ -19479,12 +19518,12 @@
 
 
 /***/ },
-/* 43 */
+/* 44 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
-	var worksheet_definition_1 = __webpack_require__(44);
-	var worksheet_state_1 = __webpack_require__(51);
+	var worksheet_definition_1 = __webpack_require__(45);
+	var worksheet_state_1 = __webpack_require__(52);
 	var JsonRpcWorksheetQueryService = (function () {
 	    function JsonRpcWorksheetQueryService() {
 	    }
@@ -19624,7 +19663,7 @@
 
 
 /***/ },
-/* 44 */
+/* 45 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -19634,7 +19673,7 @@
 	    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 	};
 	var Backbone = __webpack_require__(2);
-	var worksheet_feature_set_definition_1 = __webpack_require__(45);
+	var worksheet_feature_set_definition_1 = __webpack_require__(46);
 	var WorksheetDefinition = (function (_super) {
 	    __extends(WorksheetDefinition, _super);
 	    function WorksheetDefinition(attributes) {
@@ -19674,7 +19713,7 @@
 
 
 /***/ },
-/* 45 */
+/* 46 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -19684,7 +19723,7 @@
 	    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 	};
 	var Backbone = __webpack_require__(2);
-	var worksheet_feature_definition_1 = __webpack_require__(46);
+	var worksheet_feature_definition_1 = __webpack_require__(47);
 	var WorksheetFeatureSetDefinition = (function (_super) {
 	    __extends(WorksheetFeatureSetDefinition, _super);
 	    function WorksheetFeatureSetDefinition(attributes) {
@@ -19776,7 +19815,7 @@
 
 
 /***/ },
-/* 46 */
+/* 47 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -19786,8 +19825,8 @@
 	    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 	};
 	var Backbone = __webpack_require__(2);
-	var worksheet_enum_feature_definition_1 = __webpack_require__(47);
-	var worksheet_text_feature_definition_1 = __webpack_require__(50);
+	var worksheet_enum_feature_definition_1 = __webpack_require__(48);
+	var worksheet_text_feature_definition_1 = __webpack_require__(51);
 	var WorksheetFeatureDefinition = (function (_super) {
 	    __extends(WorksheetFeatureDefinition, _super);
 	    function WorksheetFeatureDefinition(attributes) {
@@ -19871,7 +19910,7 @@
 
 
 /***/ },
-/* 47 */
+/* 48 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -19881,7 +19920,7 @@
 	    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 	};
 	var Backbone = __webpack_require__(2);
-	var worksheet_enum_feature_value_definition_1 = __webpack_require__(48);
+	var worksheet_enum_feature_value_definition_1 = __webpack_require__(49);
 	var WorksheetEnumFeatureDefinition = (function (_super) {
 	    __extends(WorksheetEnumFeatureDefinition, _super);
 	    function WorksheetEnumFeatureDefinition(attributes) {
@@ -19921,7 +19960,7 @@
 
 
 /***/ },
-/* 48 */
+/* 49 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -19931,7 +19970,7 @@
 	    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 	};
 	var Backbone = __webpack_require__(2);
-	var worksheet_enum_feature_value_image_1 = __webpack_require__(49);
+	var worksheet_enum_feature_value_image_1 = __webpack_require__(50);
 	var WorksheetEnumFeatureValueDefinition = (function (_super) {
 	    __extends(WorksheetEnumFeatureValueDefinition, _super);
 	    function WorksheetEnumFeatureValueDefinition(attributes) {
@@ -19999,7 +20038,7 @@
 
 
 /***/ },
-/* 49 */
+/* 50 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -20074,7 +20113,7 @@
 
 
 /***/ },
-/* 50 */
+/* 51 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -20101,7 +20140,7 @@
 
 
 /***/ },
-/* 51 */
+/* 52 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -20111,7 +20150,7 @@
 	    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 	};
 	var Backbone = __webpack_require__(2);
-	var worksheet_feature_set_state_1 = __webpack_require__(52);
+	var worksheet_feature_set_state_1 = __webpack_require__(53);
 	var WorksheetState = (function (_super) {
 	    __extends(WorksheetState, _super);
 	    function WorksheetState(attributes) {
@@ -20153,7 +20192,7 @@
 
 
 /***/ },
-/* 52 */
+/* 53 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -20163,7 +20202,7 @@
 	    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 	};
 	var Backbone = __webpack_require__(2);
-	var worksheet_feature_state_1 = __webpack_require__(53);
+	var worksheet_feature_state_1 = __webpack_require__(54);
 	var WorksheetFeatureSetState = (function (_super) {
 	    __extends(WorksheetFeatureSetState, _super);
 	    function WorksheetFeatureSetState(attributes) {
@@ -20225,7 +20264,7 @@
 
 
 /***/ },
-/* 53 */
+/* 54 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -20235,8 +20274,8 @@
 	    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 	};
 	var Backbone = __webpack_require__(2);
-	var worksheet_enum_feature_state_1 = __webpack_require__(54);
-	var worksheet_text_feature_state_1 = __webpack_require__(55);
+	var worksheet_enum_feature_state_1 = __webpack_require__(55);
+	var worksheet_text_feature_state_1 = __webpack_require__(56);
 	var WorksheetFeatureState = (function (_super) {
 	    __extends(WorksheetFeatureState, _super);
 	    function WorksheetFeatureState(attributes) {
@@ -20290,7 +20329,7 @@
 
 
 /***/ },
-/* 54 */
+/* 55 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -20339,7 +20378,7 @@
 
 
 /***/ },
-/* 55 */
+/* 56 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -20384,7 +20423,7 @@
 
 
 /***/ },
-/* 56 */
+/* 57 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -20405,7 +20444,7 @@
 
 
 /***/ },
-/* 57 */
+/* 58 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -20415,10 +20454,10 @@
 	    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 	};
 	var Backbone = __webpack_require__(2);
-	var worksheet_enum_feature_model_1 = __webpack_require__(18);
-	var worksheet_feature_collection_1 = __webpack_require__(58);
-	var worksheet_feature_set_collection_1 = __webpack_require__(56);
-	var worksheet_text_feature_model_1 = __webpack_require__(25);
+	var worksheet_enum_feature_model_1 = __webpack_require__(20);
+	var worksheet_feature_collection_1 = __webpack_require__(59);
+	var worksheet_feature_set_collection_1 = __webpack_require__(57);
+	var worksheet_text_feature_model_1 = __webpack_require__(27);
 	var WorksheetFeatureSetModel = (function (_super) {
 	    __extends(WorksheetFeatureSetModel, _super);
 	    function WorksheetFeatureSetModel(definition, state) {
@@ -20475,7 +20514,7 @@
 
 
 /***/ },
-/* 58 */
+/* 59 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -20513,7 +20552,7 @@
 
 
 /***/ },
-/* 59 */
+/* 60 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -20522,20 +20561,21 @@
 	    function __() { this.constructor = d; }
 	    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 	};
-	__webpack_require__(60);
+	__webpack_require__(61);
 	var _ = __webpack_require__(3);
 	var Marionette = __webpack_require__(5);
-	var navbar_view_1 = __webpack_require__(62);
+	var navbar_view_1 = __webpack_require__(63);
 	var TopLevelView = (function (_super) {
 	    __extends(TopLevelView, _super);
 	    function TopLevelView(options) {
-	        options["el"] = "#app";
-	        options["regions"] = {
-	            content: "#content",
-	            navbar: "#navbar"
-	        };
-	        options['template'] = _.template(__webpack_require__(64));
-	        _super.call(this, options);
+	        _super.call(this, _.extend(options, {
+	            el: "#app",
+	            regions: {
+	                content: "#content",
+	                navbar: "#navbar"
+	            },
+	            template: _.template(__webpack_require__(65))
+	        }));
 	    }
 	    TopLevelView.prototype.onRender = function () {
 	        this.showChildView("navbar", new navbar_view_1.NavbarView());
@@ -20546,14 +20586,14 @@
 
 
 /***/ },
-/* 60 */
+/* 61 */
 /***/ function(module, exports) {
 
 	// removed by extract-text-webpack-plugin
 
 /***/ },
-/* 61 */,
-/* 62 */
+/* 62 */,
+/* 63 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -20568,7 +20608,7 @@
 	    __extends(NavbarView, _super);
 	    function NavbarView() {
 	        _super.apply(this, arguments);
-	        this.template = _.template(__webpack_require__(63));
+	        this.template = _.template(__webpack_require__(64));
 	    }
 	    return NavbarView;
 	}(Marionette.ItemView));
@@ -20576,13 +20616,13 @@
 
 
 /***/ },
-/* 63 */
+/* 64 */
 /***/ function(module, exports) {
 
 	module.exports = "<nav class=\"navbar navbar-default\">\r\n    <div class=\"container-fluid\">\r\n        <!-- Brand and toggle get grouped for better mobile display -->\r\n        <div class=\"navbar-header\">\r\n            <button type=\"button\" class=\"navbar-toggle collapsed\" data-toggle=\"collapse\" data-target=\"#navbar-collapse-1\" aria-expanded=\"false\">\r\n                <span class=\"sr-only\">Toggle navigation</span>\r\n                <span class=\"icon-bar\"></span>\r\n                <span class=\"icon-bar\"></span>\r\n                <span class=\"icon-bar\"></span>\r\n            </button>\r\n            <a class=\"navbar-brand\" href=\"#\">DressDiscover</a>\r\n        </div>\r\n        <!-- Collect the nav links, forms, and other content for toggling -->\r\n        <div class=\"collapse navbar-collapse\" id=\"navbar-collapse-1\">\r\n            <ul class=\"nav navbar-nav\">\r\n                <li class=\"active\"><a href=\"#worksheet\">Worksheet <span class=\"sr-only\">(current)</span></a></li>\r\n            </ul>\r\n        </div><!-- /.navbar-collapse -->\r\n    </div><!-- /.container-fluid -->\r\n</nav>\r\n"
 
 /***/ },
-/* 64 */
+/* 65 */
 /***/ function(module, exports) {
 
 	module.exports = "<div id=\"navbar\"></div>\n<div id=\"content\"></div>\n"

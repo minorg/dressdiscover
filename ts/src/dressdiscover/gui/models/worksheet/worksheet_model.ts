@@ -76,7 +76,7 @@ export class WorksheetModel extends Backbone.Model {
 
     private __getFirstFeature(featureSet: WorksheetFeatureSetModel): WorksheetFeatureModel | undefined {
         if (featureSet.features && featureSet.features.length > 0) {
-            return featureSet.features.at(0);
+            return featureSet.features.at(1);
         }
 
         if (featureSet.childFeatureSets) {

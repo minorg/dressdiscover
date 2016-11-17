@@ -8,13 +8,14 @@ declare function require(moduleName: string): any;
 
 export class TopLevelView<TModel extends Backbone.Model> extends Marionette.LayoutView<TModel> {
     constructor(options: any) {
-        options["el"] = "#app";
-        options["regions"] = {
-            content: "#content",
-            navbar: "#navbar"
-        };
-        options['template'] = _.template(require("raw!./top_level_view.html"));
-        super(options);
+        super(_.extend(options, {
+            el: "#app",
+            regions: {
+                content: "#content",
+                navbar: "#navbar"
+            },
+            template: _.template(require("raw!./top_level_view.html"))
+        }));
     }    
 
     onRender() {

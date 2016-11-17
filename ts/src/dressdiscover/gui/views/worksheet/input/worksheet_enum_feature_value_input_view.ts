@@ -9,10 +9,12 @@ export class WorksheetEnumFeatureValueInputView extends Marionette.ItemView<Work
         super(_.extend(options, { template: _.template(require("raw!./worksheet_enum_feature_value_input_view.html")) }));
     }
 
-    //render() {
-    //    var scope: any = this.model.definition.toJSON();
-    //    scope['image'] = scope['image'].toJSON();
-    //    this.$el.html(Mustache.render(this.template, scope));
-    //    return this;
-    //}
+    serializeData(): any {
+        let data = this.model.definition.toJSON();
+        if (!data["displayName"]) {
+            data["displayName"] = undefined;
+        }
+        data['image'] = this.model.definition.image ? this.model.definition.image.toJSON() : null;
+        return data;
+    }
 }
