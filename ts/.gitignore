@@ -1,7 +1,5 @@
 /node_modules
-/ts.csproj
 /ts.csproj.user
-/ts.sln
 /bin/
 /obj/
 /web.config
