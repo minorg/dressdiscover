@@ -1,7 +1,8 @@
 ﻿import _ = require("underscore");
 import { AppRadio } from "dressdiscover/gui/app_radio";
 import Marionette = require("backbone.marionette");
-import { WorksheetFeatureSelectionEvent } from "dressdiscover/gui/events/worksheet/worksheet_feature_selection_event";
+import { WorksheetFeatureInputEvent } from "dressdiscover/gui/events/worksheet/worksheet_feature_input_event";
+import { WorksheetFeatureNavigationEvent } from "dressdiscover/gui/events/worksheet/worksheet_feature_navigation_event";
 import { WorksheetModel } from "dressdiscover/gui/models/worksheet/worksheet_model";
 import { WorksheetInputView } from "./input/worksheet_input_view";
 import { WorksheetNavigationView } from "./navigation/worksheet_navigation_view";
@@ -21,16 +22,21 @@ export class WorksheetContentView extends Marionette.LayoutView<WorksheetModel> 
     }
 
     initialize() {
-        this.listenTo(AppRadio.channel, WorksheetFeatureSelectionEvent.NAME, this.onFeatureSelection);
+        this.listenTo(AppRadio.channel, WorksheetFeatureInputEvent.NAME, this.onFeatureInput);
+        this.listenTo(AppRadio.channel, WorksheetFeatureNavigationEvent.NAME, this.onFeatureNavigation);
     }
 
-    onFeatureSelection(request: WorksheetFeatureSelectionEvent) {
+    onFeatureInput(event: WorksheetFeatureInputEvent) {
+        this.model.putToService();
+    }
+
+    onFeatureNavigation(event: WorksheetFeatureNavigationEvent) {
         this.model.selectedFeature.selected = false;
-        this.model.selectedFeature = request.feature;
+        this.model.selectedFeature = event.feature;
 
         let region = this.getRegion("rightColumn");
         region.reset();
-        region.show(WorksheetInputView.create(request.feature));
+        region.show(WorksheetInputView.create(event.feature));
     }
 
     onBeforeShow() {

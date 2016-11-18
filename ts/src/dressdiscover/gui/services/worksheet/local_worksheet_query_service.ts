@@ -25,6 +25,7 @@ export class LocalWorksheetQueryService extends AsyncToSyncWorksheetQueryService
 
     getWorksheetStateSync(): WorksheetState {
         const jsonString = localStorage.getItem("worksheet-feature-set-states");
+        console.info("state from service: " + jsonString);
         if (jsonString == null) {
             return new WorksheetState();
         }

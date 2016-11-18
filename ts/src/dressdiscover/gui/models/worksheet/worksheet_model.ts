@@ -73,6 +73,13 @@ export class WorksheetModel extends Backbone.Model {
 
     }
 
+    putToService() {
+        let currentState = this.currentState;
+        if (currentState) {
+            Services.instance.worksheetCommandService.putWorksheetStateSync({ state: currentState as WorksheetState });
+        }
+    }
+
     get rootFeatureSets(): WorksheetFeatureSetCollection {
         return this._rootFeatureSets;
     }

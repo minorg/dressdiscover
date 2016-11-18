@@ -35,7 +35,10 @@ export class WorksheetFeatureSetModel extends Backbone.Model {
         if (!this.definition.childFeatureSets && !this.definition.features) {
             return undefined;
         }
+
         let state = new WorksheetFeatureSetState();
+        let usableState = false;
+    
         if (this.definition.childFeatureSets) {
             let childFeatureSetStates: { [index: string]: WorksheetFeatureSetState } = {};
             for (let childFeatureSet of this._childFeatureSets.models) {
@@ -46,8 +49,11 @@ export class WorksheetFeatureSetModel extends Backbone.Model {
             }
             if (!_.isEmpty(childFeatureSetStates)) {
                 state.childFeatureSets = childFeatureSetStates;
+                usableState = true;
             }
+        }
 
+        if (this.definition.features) {
             let featureStates: { [index: string]: WorksheetFeatureState } = {};
             for (let feature of this._features.models) {
                 let featureState = feature.currentState;
@@ -57,9 +63,11 @@ export class WorksheetFeatureSetModel extends Backbone.Model {
             }
             if (!_.isEmpty(featureStates)) {
                 state.features = featureStates;
+                usableState = true;
             }
         }
-        return state;
+
+        return usableState ? state : undefined;
     }
 
     get childFeatureSets(): WorksheetFeatureSetCollection {

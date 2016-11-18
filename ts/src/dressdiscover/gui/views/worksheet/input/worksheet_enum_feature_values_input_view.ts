@@ -6,7 +6,7 @@ import { WorksheetEnumFeatureValueInputView } from "./worksheet_enum_feature_val
 export class WorksheetEnumFeatureValuesInputView extends Marionette.CollectionView<WorksheetEnumFeatureValueModel, WorksheetEnumFeatureValueInputView> {
     constructor(options: any) {
         super(_.extend(options, {
-            childView: WorksheetEnumFeatureValueInputView
+            childView: WorksheetEnumFeatureValueInputView,
         }));
     }
 }

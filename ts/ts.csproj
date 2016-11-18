@@ -58,7 +58,8 @@
     <TypeScriptCompile Include="src\dressdiscover\gui\app.ts" />
     <TypeScriptCompile Include="src\dressdiscover\gui\app_radio.ts" />
     <TypeScriptCompile Include="src\dressdiscover\gui\app_router.ts" />
-    <TypeScriptCompile Include="src\dressdiscover\gui\events\worksheet\worksheet_feature_selection_event.ts" />
+    <TypeScriptCompile Include="src\dressdiscover\gui\events\worksheet\worksheet_feature_input_event.ts" />
+    <TypeScriptCompile Include="src\dressdiscover\gui\events\worksheet\worksheet_feature_navigation_event.ts" />
     <TypeScriptCompile Include="src\dressdiscover\gui\models\worksheet\worksheet_text_feature_model.ts" />
     <TypeScriptCompile Include="src\dressdiscover\gui\models\worksheet\worksheet_feature_collection.ts" />
     <TypeScriptCompile Include="src\dressdiscover\gui\models\worksheet\worksheet_enum_feature_model.ts" />
