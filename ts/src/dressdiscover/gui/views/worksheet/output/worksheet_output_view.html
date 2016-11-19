@@ -1,1 +1,10 @@
-﻿Output
+﻿<% if (output) { %>
+    <% for (var name in output) { _.each(output[name], function(value) { %>
+    <div class="row">
+        <div class="col-md-4" id="feature-name"><%- name %></div>
+        <div class="col-md-8" id="feature-value"><%- value %></div>
+    </div>
+    <% }); } %>
+<% } else { %>
+Select values on the right to generate a description.
+<% } %>

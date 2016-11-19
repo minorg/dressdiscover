@@ -22,6 +22,15 @@ export class WorksheetTextFeatureModel extends WorksheetFeatureModel {
         }
     }
 
+    get outputValues(): string[] {
+        let text = this.text;
+        if (text) {
+            return [text];
+        } else {
+            return [];
+        }
+    }
+
     get text(): string | undefined {
         return this.get("text");
     }

@@ -78,6 +78,10 @@ export class WorksheetFeatureSetModel extends Backbone.Model {
         return this._definition;
     }
 
+    get displayName(): string {
+        return this._definition.displayName ? this._definition.displayName : this._definition.id;
+    }
+
     get features(): WorksheetFeatureCollection {
         return this._features;
     }

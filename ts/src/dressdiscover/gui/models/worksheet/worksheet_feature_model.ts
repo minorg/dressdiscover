@@ -15,18 +15,24 @@ export abstract class WorksheetFeatureModel extends Backbone.Model {
         return this._definition;
     }
 
+    get displayName(): string {
+        return this._definition.displayName ? this._definition.displayName : this._definition.id;
+    }
+
     get selected(): boolean {
         return this.get("selected");
     }
 
     set selected(value: boolean) {
         if (value) {
-            console.info("Select " + this.id);
+            console.info("select " + this.id);
         } else {
-            console.info("Deselect " + this.id);
+            console.info("deselect " + this.id);
         }
         this.set("selected", value);
     }
+
+    abstract get outputValues(): string[];
 
     private _definition: WorksheetFeatureDefinition;
 }

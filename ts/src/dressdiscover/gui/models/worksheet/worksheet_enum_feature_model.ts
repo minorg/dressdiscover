@@ -29,6 +29,20 @@ export class WorksheetEnumFeatureModel extends WorksheetFeatureModel {
         }
     }
 
+    get outputValues(): string[] {
+        let selectedValues: string[] = [];
+        for (let value of this._values.models) {
+            if (value.selected) {
+                if (value.definition.displayName) {
+                    selectedValues.push(value.definition.displayName);
+                } else {
+                    selectedValues.push(value.definition.id);
+                }
+            }
+        }
+        return selectedValues;
+    }
+
     get values_(): WorksheetEnumFeatureValueCollection {
         return this._values;
     }

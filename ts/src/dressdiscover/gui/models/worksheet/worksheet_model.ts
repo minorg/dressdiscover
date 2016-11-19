@@ -70,7 +70,6 @@ export class WorksheetModel extends Backbone.Model {
         //        });
         //    }
         //});
-
     }
 
     putToService() {
