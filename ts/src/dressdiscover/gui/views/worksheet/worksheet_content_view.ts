@@ -40,7 +40,7 @@ export class WorksheetContentView extends Marionette.LayoutView<WorksheetModel> 
     }
 
     onBeforeShow() {
-        this.showChildView("leftColumn", new WorksheetNavigationView({ collection: this.model.rootFeatureSets }));
+        this.showChildView("leftColumn", new WorksheetNavigationView({ model: this.model }));
         this.showChildView("rightColumn", WorksheetInputView.create(this.model.selectedFeature));
     }
 }
