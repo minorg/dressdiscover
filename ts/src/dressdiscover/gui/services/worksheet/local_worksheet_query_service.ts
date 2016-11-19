@@ -2,7 +2,6 @@
 import * as Backbone from "backbone";
 import { WorksheetDefinition } from "dressdiscover/api/models/worksheet/worksheet_definition";
 import { WorksheetFeatureSetDefinition } from "dressdiscover/api/models/worksheet/worksheet_feature_set_definition";
-import { WorksheetFeatureSetState } from "dressdiscover/api/models/worksheet/worksheet_feature_set_state";
 import { WorksheetState } from "dressdiscover/api/models/worksheet/worksheet_state";
 
 declare var FEATURES: any;
@@ -24,17 +23,12 @@ export class LocalWorksheetQueryService extends AsyncToSyncWorksheetQueryService
     }
 
     getWorksheetStateSync(): WorksheetState {
-        const jsonString = localStorage.getItem("worksheet-feature-set-states");
+        const jsonString = localStorage.getItem("worksheet-state");
         console.info("state from service: " + jsonString);
         if (jsonString == null) {
             return new WorksheetState();
         }
-        const jsonObject = JSON.parse(jsonString);
-        var rootFeatureSets: { [index: string]: WorksheetFeatureSetState } = {};
-        for (var key in jsonObject) {
-            rootFeatureSets[key] = WorksheetFeatureSetState.fromThryftJSON(jsonObject[key]);            
-        }
-        return new WorksheetState(rootFeatureSets);
+        return WorksheetState.fromThryftJSON(JSON.parse(jsonString));
     }
 
     private _worksheetDefinition: WorksheetDefinition;
