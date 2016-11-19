@@ -1,9 +1,10 @@
 ﻿<div class="col-lg-3 col-md-4 col-xs-6 feature-value-col">
-    <a class="feature-value-link">
+    <a>
         <% if (image) { %>
         <img class="img-responsive" src="<%- image.thumbnailUrl %>" alt="<%- displayName ? displayName : id %>" title="<%- displayName ? displayName : id %>">
         <% } else { %>
         <%- displayName ? displayName : id %>
         <% } %>
     </a>
+    <input class="form-check-input" type="checkbox" value="" />&nbsp;<%- displayName ? displayName : id %>
 </div>
