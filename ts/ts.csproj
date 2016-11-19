@@ -27,14 +27,15 @@
     <Content Include="package.json" />
     <Content Include="src\.gitignore" />
     <Content Include="src\dressdiscover\gui\views\navbar_view.html" />
-    <Content Include="src\dressdiscover\gui\views\top_level_view.css" />
+    <Content Include="src\dressdiscover\gui\app.css" />
     <Content Include="src\dressdiscover\gui\views\top_level_view.html" />
     <Content Include="src\dressdiscover\gui\views\worksheet\navigation\worksheet_feature_navigation_view.html" />
     <Content Include="src\dressdiscover\gui\views\worksheet\navigation\worksheet_feature_set_navigation_view.html" />
-    <Content Include="src\dressdiscover\gui\views\worksheet\navigation\worksheet_navigation_view.html" />
     <Content Include="src\dressdiscover\gui\views\worksheet\input\worksheet_enum_feature_input_view.html" />
     <Content Include="src\dressdiscover\gui\views\worksheet\input\worksheet_enum_feature_value_input_view.html" />
-    <Content Include="src\dressdiscover\gui\views\worksheet\worksheet_content_view.html" />
+    <Content Include="src\dressdiscover\gui\views\worksheet\output\worksheet_output_view.html" />
+    <Content Include="src\dressdiscover\gui\views\worksheet\worksheet_two_column_view.html" />
+    <Content Include="src\dressdiscover\gui\views\worksheet\worksheet_sidebar_view.html" />
     <Content Include="src\index.html" />
     <Content Include="tsconfig.json" />
     <Content Include="webpack.config.js" />
@@ -78,16 +79,17 @@
     <TypeScriptCompile Include="src\dressdiscover\gui\views\worksheet\input\worksheet_text_feature_input_view.ts" />
     <TypeScriptCompile Include="src\dressdiscover\gui\views\worksheet\navigation\worksheet_feature_navigation_view.ts" />
     <TypeScriptCompile Include="src\dressdiscover\gui\views\worksheet\navigation\worksheet_feature_set_navigation_view.ts" />
-    <TypeScriptCompile Include="src\dressdiscover\gui\views\worksheet\navigation\worksheet_feature_sets_navigation_view.ts" />
     <TypeScriptCompile Include="src\dressdiscover\gui\views\worksheet\navigation\worksheet_navigation_view.ts" />
     <TypeScriptCompile Include="src\dressdiscover\gui\views\worksheet\input\worksheet_enum_feature_input_view.ts" />
     <TypeScriptCompile Include="src\dressdiscover\gui\views\worksheet\input\worksheet_enum_feature_value_input_view.ts" />
     <TypeScriptCompile Include="src\dressdiscover\gui\views\worksheet\input\worksheet_input_view.ts" />
-    <TypeScriptCompile Include="src\dressdiscover\gui\views\worksheet\worksheet_content_view.ts" />
-    <TypeScriptCompile Include="src\dressdiscover\gui\views\worksheet\worksheet_view.ts" />
+    <TypeScriptCompile Include="src\dressdiscover\gui\views\worksheet\output\worksheet_output_view.ts" />
+    <TypeScriptCompile Include="src\dressdiscover\gui\views\worksheet\worksheet_two_column_view.ts" />
+    <TypeScriptCompile Include="src\dressdiscover\gui\views\worksheet\worksheet_sidebar_view.ts" />
+    <TypeScriptCompile Include="src\dressdiscover\gui\views\worksheet\worksheet_top_level_view.ts" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="src\dressdiscover\gui\views\worksheet\worksheet_content_view.less" />
+    <Content Include="src\dressdiscover\gui\views\worksheet\worksheet.less" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">12.0</VisualStudioVersion>

@@ -1,33 +1,28 @@
 ﻿import _ = require("underscore");
 import { AppRadio } from "dressdiscover/gui/app_radio";
 import Marionette = require("backbone.marionette");
-import { WorksheetFeatureInputEvent } from "dressdiscover/gui/events/worksheet/worksheet_feature_input_event";
 import { WorksheetFeatureNavigationEvent } from "dressdiscover/gui/events/worksheet/worksheet_feature_navigation_event";
 import { WorksheetModel } from "dressdiscover/gui/models/worksheet/worksheet_model";
 import { WorksheetInputView } from "./input/worksheet_input_view";
-import { WorksheetNavigationView } from "./navigation/worksheet_navigation_view";
-import "./worksheet_content_view.less";
+import { WorksheetSidebarView } from "./worksheet_sidebar_view";
 
 declare function require(moduleName: string): any;
 
-export class WorksheetContentView extends Marionette.LayoutView<WorksheetModel> {
+export class WorksheetTwoColumnView extends Marionette.LayoutView<WorksheetModel> {
     constructor(options: any) {
         super(_.extend(options, {
             regions: {
                 leftColumn: "#left-column",
                 rightColumn: "#right-column"
             },
-            template: _.template(require("raw!./worksheet_content_view.html"))
+            template: _.template(require("raw!./worksheet_two_column_view.html"))
         }));
     }
 
     initialize() {
-        this.listenTo(AppRadio.channel, WorksheetFeatureInputEvent.NAME, this.onFeatureInput);
-        this.listenTo(AppRadio.channel, WorksheetFeatureNavigationEvent.NAME, this.onFeatureNavigation);
-    }
+        this.model.fetchFromService();
 
-    onFeatureInput(event: WorksheetFeatureInputEvent) {
-        this.model.putToService();
+        this.listenTo(AppRadio.channel, WorksheetFeatureNavigationEvent.NAME, this.onFeatureNavigation);
     }
 
     onFeatureNavigation(event: WorksheetFeatureNavigationEvent) {
@@ -40,7 +35,7 @@ export class WorksheetContentView extends Marionette.LayoutView<WorksheetModel> 
     }
 
     onBeforeShow() {
-        this.showChildView("leftColumn", new WorksheetNavigationView({ model: this.model }));
+        this.showChildView("leftColumn", new WorksheetSidebarView({ model: this.model }));
         this.showChildView("rightColumn", WorksheetInputView.create(this.model.selectedFeature));
     }
 }

@@ -1,5 +1,4 @@
-﻿import "./top_level_view.css";
-import _ = require("underscore");
+﻿import _ = require("underscore");
 import Backbone = require("backbone");
 import Marionette = require("backbone.marionette");
 import { NavbarView } from "./navbar_view";
