@@ -11,8 +11,8 @@ export class WorksheetEnumFeatureValueInputView extends Marionette.ItemView<Work
     constructor(options: { parentFeature: WorksheetEnumFeatureModel, [index: string]: any }) {    
         super(_.extend(_.omit(options, "parentFeature"), {
             events: {
-                "click input": "onClick",
-                "click a": "onClick"
+                "click #feature-value-link": "onClick",
+                "click #feature-value-checkbox": "onClick"
             },
             template: _.template(require("raw!./worksheet_enum_feature_value_input_view.html")),
         }));
@@ -20,7 +20,7 @@ export class WorksheetEnumFeatureValueInputView extends Marionette.ItemView<Work
     }
 
     initialize() {
-        this.ui = { checkbox: "input" };
+        this.ui = { checkbox: "#feature-value-checkbox" };
     }
 
     onClick() {
