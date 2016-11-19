@@ -35,6 +35,6 @@ export class WorksheetFeatureSetNavigationView extends Marionette.ItemView<Works
     }
 
     serializeData(): any {
-        return { "displayName": this.model.definition.displayName, "id": this.model.definition.id };
+        return { "displayName": this.model.displayName };
     }
 }

@@ -12,6 +12,10 @@ export class WorksheetEnumFeatureValueModel extends Backbone.Model {
         return this._definition;
     }
 
+    get displayName(): string {
+        return this._definition.displayName ? this._definition.displayName : this._definition.id;
+    }
+
     get selected(): boolean {
         return this.get("selected");
     }

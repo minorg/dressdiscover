@@ -31,9 +31,7 @@ export class WorksheetEnumFeatureValueInputView extends Marionette.ItemView<Work
 
     serializeData(): any {
         let data = this.model.definition.toJSON();
-        if (!data["displayName"]) {
-            data["displayName"] = undefined;
-        }
+        data["displayName"] = this.model.displayName;
         data['image'] = this.model.definition.image ? this.model.definition.image.toJSON() : null;
         return data;
     }

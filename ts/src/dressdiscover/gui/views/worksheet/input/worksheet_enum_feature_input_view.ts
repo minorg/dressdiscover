@@ -20,6 +20,6 @@ export class WorksheetEnumFeatureInputView extends Marionette.LayoutView<Workshe
     }
 
     serializeData(): any {
-        return { "displayName": this.model.definition.displayName, "id": this.model.definition.id };
+        return { "displayName": this.model.definition.displayName };
     }
 }
