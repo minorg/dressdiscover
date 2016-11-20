@@ -82,7 +82,7 @@ class Main(thryft.main.Main):
     def _compile(self):
         thrift_src_root_dir_path = os.path.join(ROOT_DIR_PATH, 'thrift', 'src')
 
-        self.__generate_features_js()
+        self.__generate_definitions_js()
 
         for pass_i in xrange(2):
             # Two passes: one to test-compile all .thrift files, the other to generate them
@@ -188,7 +188,7 @@ class Main(thryft.main.Main):
                             **compile_kwds
                         )
 
-    def __generate_features_js(self):
+    def __generate_definitions_js(self):
         out = []
         for feature_set_i in xrange(2):
             feature_set_dict = {'id': "Feature Set %(feature_set_i)d" % locals(), 'child_feature_sets': []}
@@ -216,7 +216,7 @@ class Main(thryft.main.Main):
                     sub_feature_set_dict['features'].append(feature_dict)
                 feature_set_dict['child_feature_sets'].append(sub_feature_set_dict)
             out.append(feature_set_dict)
-        file_path = os.path.join(ROOT_DIR_PATH, 'ts', 'data', 'features.js')
+        file_path = os.path.join(ROOT_DIR_PATH, 'ts', 'data', 'definitions.js')
         import json
         with open(file_path, 'w+b') as f:
             f.write('FEATURES = ' + json.dumps(out, indent=4))
