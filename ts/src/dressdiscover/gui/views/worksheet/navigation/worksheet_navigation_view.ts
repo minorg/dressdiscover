@@ -48,9 +48,6 @@ export class WorksheetNavigationView extends Marionette.ItemView<WorksheetModel>
                     text: feature.displayName
                 };
                 let state: any = {};
-                if (feature.currentState) {
-                    state["checked"] = true;
-                }
                 if (feature.selected) {
                     state["selected"] = true;
                 }
@@ -68,11 +65,9 @@ export class WorksheetNavigationView extends Marionette.ItemView<WorksheetModel>
 
     onBeforeShow() {
         (this.$el as any).treeview({
-            checkedIcon: "fa fa-car",
             data: this._tree,
             levels: 10,
-            onNodeSelected: this.onNodeSelected,
-            showCheckbox: true
+            onNodeSelected: this.onNodeSelected
         });
     }
 
