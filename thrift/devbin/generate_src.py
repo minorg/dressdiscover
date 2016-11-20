@@ -219,7 +219,7 @@ class Main(thryft.main.Main):
         file_path = os.path.join(ROOT_DIR_PATH, 'ts', 'data', 'definitions.js')
         import json
         with open(file_path, 'w+b') as f:
-            f.write('FEATURES = ' + json.dumps(out, indent=4))
+            f.write('DEFINITIONS = ' + json.dumps(out, indent=4))
 
 
 assert __name__ == '__main__'

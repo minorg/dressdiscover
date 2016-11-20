@@ -4,14 +4,14 @@ import { WorksheetDefinition } from "dressdiscover/api/models/worksheet/workshee
 import { WorksheetFeatureSetDefinition } from "dressdiscover/api/models/worksheet/worksheet_feature_set_definition";
 import { WorksheetState } from "dressdiscover/api/models/worksheet/worksheet_state";
 
-declare var FEATURES: any;
+declare var DEFINITIONS: any;
 
 export class LocalWorksheetQueryService extends AsyncToSyncWorksheetQueryService {
     constructor() {
         super();
         {
             const rootFeatureSetDefinitions: WorksheetFeatureSetDefinition[] = [];
-            for (let featureSetDefinitionJsonObject of FEATURES) {
+            for (let featureSetDefinitionJsonObject of DEFINITIONS) {
                 rootFeatureSetDefinitions.push(WorksheetFeatureSetDefinition.fromThryftJSON(featureSetDefinitionJsonObject));
             }
             this._worksheetDefinition = new WorksheetDefinition({ rootFeatureSets: new Backbone.Collection<WorksheetFeatureSetDefinition>(rootFeatureSetDefinitions) });
