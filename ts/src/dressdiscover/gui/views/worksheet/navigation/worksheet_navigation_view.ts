@@ -34,10 +34,14 @@ export class WorksheetNavigationView extends Marionette.ItemView<WorksheetModel>
         }
         if (featureSet.features) {
             for (let feature of featureSet.features.models) {
-                nodes.push({
+                let node: any = {
                     feature: feature,
                     text: feature.displayName
-                });
+                };
+                if (feature.selected) {
+                    node["state"] = { selected: true };
+                }
+                nodes.push(node);
             }
         }
         if (nodes.length > 0) {
