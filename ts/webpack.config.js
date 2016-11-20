@@ -44,16 +44,20 @@ module.exports = {
   plugins: [
     new CopyWebpackPlugin([
     {
-      from: './src/index.html',
-      to: './index.html'
-    },
-    {
       from: './data/definitions.js',
       to: './definitions.js'
     },
     {
+        from: './node_modules/jquery/dist/jquery.min.js',
+        to: './jquery.min.js'
+    },
+    {
         from: './src/bootstrap.min.css',
         to: './bootstrap.min.css'
+    },
+    {
+        from: './src/index.html',
+        to: './index.html'
     }
     ]),
     new ExtractTextPlugin('app.css'),
