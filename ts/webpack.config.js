@@ -38,14 +38,14 @@ module.exports = {
     ]
   },
   output: {
-    filename: 'app.bundle.js',
-    path: path.join(__dirname, './public/js')
+    filename: 'js/app.bundle.js',
+    path: path.join(__dirname, './public')
   },
   plugins: [
     new CopyWebpackPlugin([
     {
-      from: './assets/**/*',
-      to: '.'
+      from: './assets',
+      to: './'
     },
     {
         from: './node_modules/jquery/dist/jquery.min.js',
