@@ -5,15 +5,10 @@ import { WorksheetFeatureNavigationEvent } from "dressdiscover/gui/events/worksh
 import { WorksheetFeatureSetModel } from "dressdiscover/gui/models/worksheet/worksheet_feature_set_model";
 import { WorksheetModel } from "dressdiscover/gui/models/worksheet/worksheet_model";
 
-declare function require(moduleName: string): any;
-
 export class WorksheetNavigationView extends Marionette.ItemView<WorksheetModel> {
     constructor(options?: any) {
         super(_.extend(options, {
-            events: {
-                "nodeSelected .treeview": "onNodeSelected"
-            },
-            template: _.template(require("raw!./worksheet_navigation_view.html"))
+            template: _.template("")
         }));
         if (this.model.rootFeatureSets) {
             for (let featureSet of this.model.rootFeatureSets.models) {
