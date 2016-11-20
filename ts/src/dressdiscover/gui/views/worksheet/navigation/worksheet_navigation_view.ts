@@ -1,6 +1,7 @@
 ﻿import _ = require("underscore");
 import { AppRadio } from "dressdiscover/gui/app_radio";
 import Marionette = require("backbone.marionette");
+import { WorksheetFeatureInputEvent } from "dressdiscover/gui/events/worksheet/worksheet_feature_input_event";
 import { WorksheetFeatureNavigationEvent } from "dressdiscover/gui/events/worksheet/worksheet_feature_navigation_event";
 import { WorksheetFeatureSetModel } from "dressdiscover/gui/models/worksheet/worksheet_feature_set_model";
 import { WorksheetModel } from "dressdiscover/gui/models/worksheet/worksheet_model";
@@ -15,6 +16,14 @@ export class WorksheetNavigationView extends Marionette.ItemView<WorksheetModel>
                 this._tree.push(this.__constructFeatureSetTree(featureSet));
             }
         }
+    }
+
+    initialize() {
+        this.listenTo(AppRadio.channel, WorksheetFeatureInputEvent.NAME, this.onFeatureInput);
+    }
+
+    onFeatureInput(event: WorksheetFeatureInputEvent) {
+        console.info("Feature input here");
     }
 
     onNodeSelected(event: any, node: any) {
@@ -38,8 +47,15 @@ export class WorksheetNavigationView extends Marionette.ItemView<WorksheetModel>
                     feature: feature,
                     text: feature.displayName
                 };
+                let state: any = {};
+                if (feature.currentState) {
+                    state["checked"] = true;
+                }
                 if (feature.selected) {
-                    node["state"] = { selected: true };
+                    state["selected"] = true;
+                }
+                if (!_.isEmpty(state)) {
+                    node["state"] = state;
                 }
                 nodes.push(node);
             }
@@ -52,9 +68,11 @@ export class WorksheetNavigationView extends Marionette.ItemView<WorksheetModel>
 
     onBeforeShow() {
         (this.$el as any).treeview({
+            checkedIcon: "fa fa-car",
             data: this._tree,
             levels: 10,
-            onNodeSelected: this.onNodeSelected
+            onNodeSelected: this.onNodeSelected,
+            showCheckbox: true
         });
     }
 
