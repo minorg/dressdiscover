@@ -1,4 +1,4 @@
-FEATURES = [
+DEFINITIONS = [
     {
         "child_feature_sets": [
             {

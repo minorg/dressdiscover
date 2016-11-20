@@ -48,8 +48,8 @@ module.exports = {
       to: './index.html'
     },
     {
-      from: './data/features.js',
-      to: './features.js'
+      from: './data/definitions.js',
+      to: './definitions.js'
     },
     {
         from: './src/bootstrap.min.css',

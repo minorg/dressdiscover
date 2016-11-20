@@ -23,7 +23,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include=".gitignore" />
-    <Content Include="data\features.js" />
+    <Content Include="data\definitions.js" />
     <Content Include="package.json" />
     <Content Include="src\.gitignore" />
     <Content Include="src\dressdiscover\gui\views\navbar_view.html" />
