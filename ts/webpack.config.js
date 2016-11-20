@@ -63,6 +63,7 @@ module.exports = {
     new ExtractTextPlugin('app.css'),
     new webpack.ProvidePlugin({
         $: 'jquery',
+        jQuery: "jquery",
         _: 'underscore'
     })
   ],
