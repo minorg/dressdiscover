@@ -18,7 +18,7 @@ export class WorksheetSidebarView extends Marionette.LayoutView<WorksheetModel> 
     }
 
     onBeforeShow() {
-        this.showChildView("navigation", new WorksheetNavigationView({ collection: this.model.rootFeatureSets }));
+        this.showChildView("navigation", new WorksheetNavigationView({ model: this.model }));
         this.showChildView("output", new WorksheetOutputView({ model: this.model }));
     }
 }

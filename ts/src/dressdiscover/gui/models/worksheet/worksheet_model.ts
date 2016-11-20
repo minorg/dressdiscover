@@ -46,6 +46,7 @@ export class WorksheetModel extends Backbone.Model {
                     const selectedFeature = this.__getFirstFeature(featureSet);
                     if (selectedFeature) {
                         this._selectedFeature = selectedFeature;
+                        selectedFeature.selected = true;
                         break;
                     }
                 }
