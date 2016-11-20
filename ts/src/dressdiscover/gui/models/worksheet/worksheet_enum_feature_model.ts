@@ -8,9 +8,12 @@ import { WorksheetEnumFeatureValueModel } from "dressdiscover/gui/models/workshe
 export class WorksheetEnumFeatureModel extends WorksheetFeatureModel {
     constructor(definition: WorksheetFeatureDefinition, state: WorksheetFeatureState | undefined) {
         super(definition, state);
+        let values: WorksheetEnumFeatureValueModel[] = [];
         for (let valueDefinition of definition.enum_.values_.models) {
-            this._values.add(new WorksheetEnumFeatureValueModel(valueDefinition, state && state.enum_ ? state.enum_.selectedValues.indexOf(valueDefinition.id) != -1 : false));
+            let value = new WorksheetEnumFeatureValueModel(valueDefinition, this, state && state.enum_ ? state.enum_.selectedValues.indexOf(valueDefinition.id) != -1 : false);
+            values.push(value);
         }
+        this._values = new WorksheetEnumFeatureValueCollection(values);
     }
 
     get currentState(): WorksheetFeatureState | undefined {
@@ -47,5 +50,5 @@ export class WorksheetEnumFeatureModel extends WorksheetFeatureModel {
         return this._values;
     }
 
-    private _values: WorksheetEnumFeatureValueCollection = new WorksheetEnumFeatureValueCollection([]);
+    private _values: WorksheetEnumFeatureValueCollection;
 }

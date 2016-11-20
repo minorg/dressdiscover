@@ -6,7 +6,7 @@ export abstract class WorksheetFeatureModel extends Backbone.Model {
     constructor(definition: WorksheetFeatureDefinition, state: WorksheetFeatureState | undefined) {
         super({ id: definition.id });
         this._definition = definition;
-        this.set("selected", false);
+        this.selected = false;
     }
 
     abstract get currentState(): WorksheetFeatureState | undefined;
@@ -24,11 +24,6 @@ export abstract class WorksheetFeatureModel extends Backbone.Model {
     }
 
     set selected(value: boolean) {
-        if (value) {
-            console.info("select " + this.id);
-        } else {
-            console.info("deselect " + this.id);
-        }
         this.set("selected", value);
     }
 

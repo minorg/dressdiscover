@@ -1,22 +1,20 @@
 ﻿import _ = require("underscore");
 import { AppRadio } from "dressdiscover/gui/app_radio";
 import Marionette = require("backbone.marionette");
-import { WorksheetEnumFeatureModel } from "dressdiscover/gui/models/worksheet/worksheet_enum_feature_model";
 import { WorksheetEnumFeatureValueModel } from "dressdiscover/gui/models/worksheet/worksheet_enum_feature_value_model";
 import { WorksheetFeatureInputEvent } from "dressdiscover/gui/events/worksheet/worksheet_feature_input_event";
 
 declare function require(moduleName: string): any;
 
 export class WorksheetEnumFeatureValueInputView extends Marionette.ItemView<WorksheetEnumFeatureValueModel> {
-    constructor(options: { parentFeature: WorksheetEnumFeatureModel, [index: string]: any }) {    
-        super(_.extend(_.omit(options, "parentFeature"), {
+    constructor(options?: any) {    
+        super(_.extend(options, {
             events: {
                 "click #feature-value-link": "onClick",
                 "click #feature-value-checkbox": "onClick"
             },
             template: _.template(require("raw!./worksheet_enum_feature_value_input_view.html")),
         }));
-        this._parentFeature = options.parentFeature;
     }
 
     initialize() {
@@ -26,7 +24,7 @@ export class WorksheetEnumFeatureValueInputView extends Marionette.ItemView<Work
     onClick() {
         this.model.selected = !this.model.selected;
         this.ui.checkbox[0].checked = this.model.selected;
-        AppRadio.channel.trigger(WorksheetFeatureInputEvent.NAME, new WorksheetFeatureInputEvent({ feature: this._parentFeature }));
+        AppRadio.channel.trigger(WorksheetFeatureInputEvent.NAME, new WorksheetFeatureInputEvent({ feature: this.model.parentFeature }));
     }    
 
     serializeData(): any {
@@ -39,6 +37,4 @@ export class WorksheetEnumFeatureValueInputView extends Marionette.ItemView<Work
     onRender() {
         this.ui.checkbox[0].checked = this.model.selected;
     }
-
-    private _parentFeature: WorksheetEnumFeatureModel;
 }

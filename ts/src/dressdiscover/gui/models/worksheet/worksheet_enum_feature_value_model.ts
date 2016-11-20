@@ -1,11 +1,13 @@
 ﻿import Backbone = require("backbone");
+import { WorksheetEnumFeatureModel } from "dressdiscover/gui/models/worksheet/worksheet_enum_feature_model";
 import { WorksheetEnumFeatureValueDefinition } from "dressdiscover/api/models/worksheet/worksheet_enum_feature_value_definition";
 
 export class WorksheetEnumFeatureValueModel extends Backbone.Model {
-    constructor(definition: WorksheetEnumFeatureValueDefinition, selected: boolean) {
+    constructor(definition: WorksheetEnumFeatureValueDefinition, parentFeature: WorksheetEnumFeatureModel, selected: boolean) {
         super({ id: definition.id });
         this._definition = definition;
-        this.set("selected", selected);
+        this._parentFeature = parentFeature;
+        this.selected = selected;
     }
 
     get definition(): WorksheetEnumFeatureValueDefinition {
@@ -14,6 +16,10 @@ export class WorksheetEnumFeatureValueModel extends Backbone.Model {
 
     get displayName(): string {
         return this._definition.displayName ? this._definition.displayName : this._definition.id;
+    }
+
+    get parentFeature(): WorksheetEnumFeatureModel {
+        return this._parentFeature;
     }
 
     get selected(): boolean {
@@ -25,4 +31,5 @@ export class WorksheetEnumFeatureValueModel extends Backbone.Model {
     }
 
     private _definition: WorksheetEnumFeatureValueDefinition;
+    private _parentFeature: WorksheetEnumFeatureModel;
 }

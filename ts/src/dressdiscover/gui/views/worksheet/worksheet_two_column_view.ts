@@ -20,8 +20,6 @@ export class WorksheetTwoColumnView extends Marionette.LayoutView<WorksheetModel
     }
 
     initialize() {
-        this.model.fetchFromService();
-
         this.listenTo(AppRadio.channel, WorksheetFeatureNavigationEvent.NAME, this.onFeatureNavigation);
     }
 
