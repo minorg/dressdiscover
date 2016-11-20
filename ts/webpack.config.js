@@ -39,28 +39,24 @@ module.exports = {
   },
   output: {
     filename: 'app.bundle.js',
-    path: path.join(__dirname, './public')
+    path: path.join(__dirname, './public/js')
   },
   plugins: [
     new CopyWebpackPlugin([
     {
-      from: './data/definitions.js',
-      to: './definitions.js'
+      from: './assets/**/*',
+      to: '.'
     },
     {
         from: './node_modules/jquery/dist/jquery.min.js',
-        to: './jquery.min.js'
-    },
-    {
-        from: './src/bootstrap.min.css',
-        to: './bootstrap.min.css'
+        to: './js/jquery.min.js'
     },
     {
         from: './src/index.html',
         to: './index.html'
     }
     ]),
-    new ExtractTextPlugin('app.css'),
+    new ExtractTextPlugin('./css/app.css'),
     new webpack.ProvidePlugin({
         $: 'jquery',
         jQuery: "jquery",

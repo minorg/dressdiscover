@@ -23,7 +23,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include=".gitignore" />
-    <Content Include="data\definitions.js" />
+    <Content Include="assets\css\bootstrap.min.css" />
+    <Content Include="assets\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="assets\js\definitions.js" />
     <Content Include="package.json" />
     <Content Include="src\.gitignore" />
     <Content Include="src\dressdiscover\gui\views\navbar_view.html" />
@@ -86,6 +88,12 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="src\dressdiscover\gui\views\worksheet\worksheet.less" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="assets\fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="assets\fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="assets\fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="assets\fonts\glyphicons-halflings-regular.woff2" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">12.0</VisualStudioVersion>
