@@ -23,14 +23,26 @@ export class WorksheetNavigationView extends Marionette.ItemView<WorksheetModel>
     }
 
     onFeatureInput(event: WorksheetFeatureInputEvent) {
-        console.info("Feature input here");
+        let node = this._featureCidToTreeNodeMap[event.feature.cid];
+        if (!node) {
+            throw new Error("node for feature " + event.feature.cid + " not found in map");
+        }
+        if (event.feature.currentState) {
+            console.info("Check " + event.feature.id);
+            node["icon"] = "glyphicon glyphicon-check";
+        } else {
+            console.info("Uncheck " + event.feature.id);
+            delete node["icon"];
+        }
+        //let treeview = (this.$el as any).treeview(true);
     }
 
     onNodeSelected(event: any, node: any) {
         if (!node.feature) {
-            return;
+            return true;
         }
         AppRadio.channel.trigger(WorksheetFeatureNavigationEvent.NAME, new WorksheetFeatureNavigationEvent({ feature: node.feature }));
+        return true;
     }
 
     private __constructFeatureSetTree(featureSet: WorksheetFeatureSetModel) {
@@ -45,16 +57,14 @@ export class WorksheetNavigationView extends Marionette.ItemView<WorksheetModel>
             for (let feature of featureSet.features.models) {
                 let node: any = {
                     feature: feature,
-                    text: feature.displayName
+                    icon: feature.currentState ? "glyphicon glyphicon-check" : undefined,
+                    text: feature.displayName,
+                    state: {
+                        selected: feature.selected
+                    }
                 };
-                let state: any = {};
-                if (feature.selected) {
-                    state["selected"] = true;
-                }
-                if (!_.isEmpty(state)) {
-                    node["state"] = state;
-                }
                 nodes.push(node);
+                this._featureCidToTreeNodeMap[feature.cid] = node;
             }
         }
         if (nodes.length > 0) {
@@ -72,4 +82,5 @@ export class WorksheetNavigationView extends Marionette.ItemView<WorksheetModel>
     }
 
     private _tree: any[] = [];
+    private _featureCidToTreeNodeMap: any = {};
 }
