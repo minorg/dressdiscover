@@ -23,17 +23,22 @@ export class WorksheetNavigationView extends Marionette.ItemView<WorksheetModel>
     }
 
     onFeatureInput(event: WorksheetFeatureInputEvent) {
-        let node = this._featureCidToTreeNodeMap[event.feature.cid];
-        if (!node) {
-            throw new Error("node for feature " + event.feature.cid + " not found in map");
-        }
-        if (event.feature.currentState) {
-            console.info("Check " + event.feature.id);
-            node["icon"] = "glyphicon glyphicon-check";
-        } else {
-            console.info("Uncheck " + event.feature.id);
-            delete node["icon"];
-        }
+        // TODO: need to work with the numeric node id, see #195
+        // That means reproducing the algorithm for assigning node id's,
+        // which appears to be depth-first: assign parent a node id, then assign all its children a node id,
+        // then assign the next parent a node id, etc.
+        // Currently this is not how our tree construction traverses.
+        //let node = this._featureCidToTreeNodeMap[event.feature.cid];
+        //if (!node) {
+        //    throw new Error("node for feature " + event.feature.cid + " not found in map");
+        //}
+        //if (event.feature.currentState) {
+        //    console.info("Check " + event.feature.id);
+        //    node["icon"] = "glyphicon glyphicon-check";
+        //} else {
+        //    console.info("Uncheck " + event.feature.id);
+        //    delete node["icon"];
+        //}
         //let treeview = (this.$el as any).treeview(true);
     }
 
@@ -64,7 +69,6 @@ export class WorksheetNavigationView extends Marionette.ItemView<WorksheetModel>
                     }
                 };
                 nodes.push(node);
-                this._featureCidToTreeNodeMap[feature.cid] = node;
             }
         }
         if (nodes.length > 0) {
@@ -82,5 +86,4 @@ export class WorksheetNavigationView extends Marionette.ItemView<WorksheetModel>
     }
 
     private _tree: any[] = [];
-    private _featureCidToTreeNodeMap: any = {};
 }
