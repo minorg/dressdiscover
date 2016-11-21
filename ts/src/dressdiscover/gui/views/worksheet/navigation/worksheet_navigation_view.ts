@@ -23,23 +23,20 @@ export class WorksheetNavigationView extends Marionette.ItemView<WorksheetModel>
     }
 
     onFeatureInput(event: WorksheetFeatureInputEvent) {
-        // TODO: need to work with the numeric node id, see #195
-        // That means reproducing the algorithm for assigning node id's,
-        // which appears to be depth-first: assign parent a node id, then assign all its children a node id,
-        // then assign the next parent a node id, etc.
-        // Currently this is not how our tree construction traverses.
-        //let node = this._featureCidToTreeNodeMap[event.feature.cid];
-        //if (!node) {
-        //    throw new Error("node for feature " + event.feature.cid + " not found in map");
-        //}
-        //if (event.feature.currentState) {
-        //    console.info("Check " + event.feature.id);
-        //    node["icon"] = "glyphicon glyphicon-check";
-        //} else {
-        //    console.info("Uncheck " + event.feature.id);
-        //    delete node["icon"];
-        //}
-        //let treeview = (this.$el as any).treeview(true);
+        let treeview = (this.$el as any).treeview(true);
+        let nodeId = this._featureCidToNodeIdMap[event.feature.cid];
+        let node = treeview.getNode(nodeId);
+        if (node.feature.id != event.feature.id) {
+            throw new Error("map mismatch");
+        }
+        if (event.feature.currentState) {
+            console.info("Check " + event.feature.id);
+            node["icon"] = "glyphicon glyphicon-check";
+        } else {
+            console.info("Uncheck " + event.feature.id);
+            delete node["icon"];
+        }
+        treeview.selectNode(nodeId); // Force re-render
     }
 
     onNodeSelected(event: any, node: any) {
@@ -51,7 +48,8 @@ export class WorksheetNavigationView extends Marionette.ItemView<WorksheetModel>
     }
 
     private __constructFeatureSetTree(featureSet: WorksheetFeatureSetModel) {
-        let tree: any = { text: featureSet.displayName };
+        let tree: any = { ddId: this._nodeId++, text: featureSet.displayName };
+        
         let nodes: any[] = [];
         if (featureSet.childFeatureSets) {
             for (let childFeatureSet of featureSet.childFeatureSets.models) {
@@ -62,12 +60,14 @@ export class WorksheetNavigationView extends Marionette.ItemView<WorksheetModel>
             for (let feature of featureSet.features.models) {
                 let node: any = {
                     feature: feature,
+                    ddId: this._nodeId++,
                     icon: feature.currentState ? "glyphicon glyphicon-check" : undefined,
                     text: feature.displayName,
                     state: {
                         selected: feature.selected
                     }
                 };
+                this._featureCidToNodeIdMap[feature.cid] = node.ddId;
                 nodes.push(node);
             }
         }
@@ -86,4 +86,6 @@ export class WorksheetNavigationView extends Marionette.ItemView<WorksheetModel>
     }
 
     private _tree: any[] = [];
+    private _nodeId: number = 0;
+    private _featureCidToNodeIdMap: { [index: string]: number } = {};
 }
