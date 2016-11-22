@@ -6,13 +6,7 @@ import { WorksheetTwoColumnView } from "./worksheet_two_column_view";
 import "./worksheet.less";
 
 export class WorksheetTopLevelView extends TopLevelView<WorksheetModel> {
-    constructor() {
-        super({ model: new WorksheetModel() });
-    }
-
     initialize() {
-        this.model.fetchFromService();
-
         this.listenTo(AppRadio.channel, WorksheetFeatureInputEvent.NAME, this.onFeatureInput);
     }
 

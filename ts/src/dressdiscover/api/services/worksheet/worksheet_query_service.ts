@@ -1,4 +1,3 @@
-import * as Backbone from "backbone";
 import { WorksheetDefinition } from "../../models/worksheet/worksheet_definition";
 import { WorksheetState } from "../../models/worksheet/worksheet_state";
 

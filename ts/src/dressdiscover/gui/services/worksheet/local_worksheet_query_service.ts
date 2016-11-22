@@ -18,12 +18,20 @@ export class LocalWorksheetQueryService extends AsyncToSyncWorksheetQueryService
         }
     }
 
+    getWorksheetAccessionNumbersSync(): string[] {
+        return [];
+    }
+
     getWorksheetDefinitionSync(): WorksheetDefinition {
         return this._worksheetDefinition;
     }
 
-    getWorksheetStateSync(): WorksheetState {
-        const jsonString = localStorage.getItem("worksheet-state");
+    static getWorksheetStateItemKey(accessionNumber: string): string {
+        return "worksheet/state/" + accessionNumber;
+    }
+
+    getWorksheetStateSync(kwds: { accessionNumber: string }): WorksheetState {
+        const jsonString = localStorage.getItem(LocalWorksheetQueryService.getWorksheetStateItemKey(kwds.accessionNumber));
         console.info("state from service: " + jsonString);
         if (jsonString == null) {
             return new WorksheetState();

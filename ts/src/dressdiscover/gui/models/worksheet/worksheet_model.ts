@@ -1,6 +1,7 @@
 ﻿import _ = require("underscore");
 import Backbone = require("backbone");
 import { Services } from "dressdiscover/gui/services/services";
+import { WorksheetDefinition } from "dressdiscover/api/models/worksheet/worksheet_definition";
 import { WorksheetFeatureModel } from "./worksheet_feature_model";
 import { WorksheetFeatureSetCollection } from "./worksheet_feature_set_collection";
 import { WorksheetFeatureSetModel } from "./worksheet_feature_set_model";
@@ -8,27 +9,13 @@ import { WorksheetFeatureSetState } from "dressdiscover/api/models/worksheet/wor
 import { WorksheetState } from "dressdiscover/api/models/worksheet/worksheet_state";
 
 export class WorksheetModel extends Backbone.Model {
-    get currentState(): WorksheetState | undefined {
-        let rootFeatureSetStates: { [index: string]: WorksheetFeatureSetState } = {};
-        for (let featureSet of this.rootFeatureSets.models) {
-            let featureSetState = featureSet.currentState;
-            if (featureSetState) {
-                rootFeatureSetStates[featureSet.id] = featureSetState;
-            }
-        }
-        if (!_.isEmpty(rootFeatureSetStates)) {
-            return new WorksheetState({ rootFeatureSets: rootFeatureSetStates });
-        } else {
-            return undefined;
-        }
-    }
+    constructor(kwds: { accessionNumber: string, definition: WorksheetDefinition, initialState: WorksheetState }) {
+        super();
+        this._accessionNumber = kwds.accessionNumber;
 
-    fetchFromService(): void {
-        const worksheetDefinition = Services.instance.worksheetQueryService.getWorksheetDefinitionSync();
-        const worksheetState = Services.instance.worksheetQueryService.getWorksheetStateSync();
         const rootFeatureSets: WorksheetFeatureSetModel[] = [];
-        for (let rootFeatureSetDefinition of worksheetDefinition.rootFeatureSets.models) {
-            rootFeatureSets.push(new WorksheetFeatureSetModel(rootFeatureSetDefinition, worksheetState.rootFeatureSets ? worksheetState.rootFeatureSets[rootFeatureSetDefinition.id] : undefined));
+        for (let rootFeatureSetDefinition of kwds.definition.rootFeatureSets.models) {
+            rootFeatureSets.push(new WorksheetFeatureSetModel(rootFeatureSetDefinition, kwds.initialState.rootFeatureSets ? kwds.initialState.rootFeatureSets[rootFeatureSetDefinition.id] : undefined));
         }
         this._rootFeatureSets = new WorksheetFeatureSetCollection(rootFeatureSets);
 
@@ -56,21 +43,31 @@ export class WorksheetModel extends Backbone.Model {
                 throw new Error("should never happen");
             }
         }
+    }
 
-        //Services.instance.worksheetQueryService.getWorksheetDefinitionAsync({
-        //    error: function (jqXHR: JQueryXHR | null, textStatus: string, errorThrown: string | null): any {
-        //        console.error(textStatus);
-        //    },
-        //    success: function (worksheetDefinition: WorksheetDefinition): void {
-        //        Services.instance.worksheetQueryService.getWorksheetStateAsync({
-        //            error: function (jqXHR: JQueryXHR | null, textStatus: string, errorThrown: string | null): any {
-        //                console.error(textStatus);
-        //            },
-        //            success: function (worksheetState: WorksheetState): void {
-        //            }
-        //        });
-        //    }
-        //});
+    get accessionNumber(): string {
+        return this._accessionNumber;
+    }
+
+    static fetchFromService(kwds: { accessionNumber: string }): WorksheetModel {
+        const definition = Services.instance.worksheetQueryService.getWorksheetDefinitionSync();
+        const initialState = Services.instance.worksheetQueryService.getWorksheetStateSync({ accessionNumber: kwds.accessionNumber });
+        return new WorksheetModel({ accessionNumber: kwds.accessionNumber, definition: definition, initialState: initialState });
+    }
+   
+    get currentState(): WorksheetState | undefined {
+        let rootFeatureSetStates: { [index: string]: WorksheetFeatureSetState } = {};
+        for (let featureSet of this.rootFeatureSets.models) {
+            let featureSetState = featureSet.currentState;
+            if (featureSetState) {
+                rootFeatureSetStates[featureSet.id] = featureSetState;
+            }
+        }
+        if (!_.isEmpty(rootFeatureSetStates)) {
+            return new WorksheetState({ accessionNumber: this.accessionNumber, rootFeatureSets: rootFeatureSetStates });
+        } else {
+            return undefined;
+        }
     }
 
     putToService() {
@@ -130,6 +127,7 @@ export class WorksheetModel extends Backbone.Model {
         return undefined;
     }
 
+    private _accessionNumber: string;
     private _rootFeatureSets: WorksheetFeatureSetCollection;
     private _selectedFeature: WorksheetFeatureModel;
 }
