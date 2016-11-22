@@ -34,6 +34,7 @@
     <Content Include="src\dressdiscover\gui\views\worksheet\input\worksheet_enum_feature_input_view.html" />
     <Content Include="src\dressdiscover\gui\views\worksheet\input\worksheet_enum_feature_value_input_view.html" />
     <Content Include="src\dressdiscover\gui\views\worksheet\output\worksheet_output_view.html" />
+    <Content Include="src\dressdiscover\gui\views\worksheet\worksheet_accession_number_picker_view.html" />
     <Content Include="src\dressdiscover\gui\views\worksheet\worksheet_two_column_view.html" />
     <Content Include="src\dressdiscover\gui\views\worksheet\worksheet_sidebar_view.html" />
     <Content Include="src\index.html" />
@@ -82,6 +83,8 @@
     <TypeScriptCompile Include="src\dressdiscover\gui\views\worksheet\input\worksheet_enum_feature_value_input_view.ts" />
     <TypeScriptCompile Include="src\dressdiscover\gui\views\worksheet\input\worksheet_input_view.ts" />
     <TypeScriptCompile Include="src\dressdiscover\gui\views\worksheet\output\worksheet_output_view.ts" />
+    <TypeScriptCompile Include="src\dressdiscover\gui\views\modal_region.ts" />
+    <TypeScriptCompile Include="src\dressdiscover\gui\views\worksheet\worksheet_accession_number_picker_view.ts" />
     <TypeScriptCompile Include="src\dressdiscover\gui\views\worksheet\worksheet_two_column_view.ts" />
     <TypeScriptCompile Include="src\dressdiscover\gui\views\worksheet\worksheet_sidebar_view.ts" />
     <TypeScriptCompile Include="src\dressdiscover\gui\views\worksheet\worksheet_top_level_view.ts" />

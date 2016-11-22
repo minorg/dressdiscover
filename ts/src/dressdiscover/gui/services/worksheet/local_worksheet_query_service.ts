@@ -19,7 +19,7 @@ export class LocalWorksheetQueryService extends AsyncToSyncWorksheetQueryService
     }
 
     getWorksheetAccessionNumbersSync(): string[] {
-        return [];
+        return ["test1", "test2", "test3"];
     }
 
     getWorksheetDefinitionSync(): WorksheetDefinition {
