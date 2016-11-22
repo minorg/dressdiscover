@@ -1,4 +1,5 @@
 ﻿import _ = require("underscore");
+import { app } from "dressdiscover/gui/app";
 import Backbone = require("backbone");
 import Marionette = require("backbone.marionette");
 
@@ -24,6 +25,7 @@ export class WorksheetAccessionNumberPickerView extends Marionette.ItemView<Back
     }
 
     onCloseButtonClick() {
+        app.modalRegion.reset();
     }
 
     serializeData(): any {
