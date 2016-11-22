@@ -1,11 +1,11 @@
 ﻿import _ = require("underscore");
 import Marionette = require("backbone.marionette");
-import { WorksheetEnumFeatureModel } from "dressdiscover/gui/models/worksheet/worksheet_enum_feature_model";
+import { WorksheetEnumFeature } from "dressdiscover/gui/models/worksheet/worksheet_enum_feature";
 import { WorksheetEnumFeatureValuesInputView } from "dressdiscover/gui/views/worksheet/input/worksheet_enum_feature_values_input_view";
 
 declare function require(moduleName: string): any;
 
-export class WorksheetEnumFeatureInputView extends Marionette.LayoutView<WorksheetEnumFeatureModel> {
+export class WorksheetEnumFeatureInputView extends Marionette.LayoutView<WorksheetEnumFeature> {
     constructor(options: any) {
         super(_.extend(options, {
             regions: {

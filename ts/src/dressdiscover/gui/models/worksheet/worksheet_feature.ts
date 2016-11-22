@@ -2,7 +2,7 @@
 import { WorksheetFeatureDefinition } from "dressdiscover/api/models/worksheet/worksheet_feature_definition";
 import { WorksheetFeatureState } from "dressdiscover/api/models/worksheet/worksheet_feature_state";
  
-export abstract class WorksheetFeatureModel extends Backbone.Model {
+export abstract class WorksheetFeature extends Backbone.Model {
     constructor(definition: WorksheetFeatureDefinition, state: WorksheetFeatureState | undefined) {
         super({ id: definition.id });
         this._definition = definition;

@@ -1,16 +1,16 @@
 ﻿import { WorksheetEnumFeatureState } from "dressdiscover/api/models/worksheet/worksheet_enum_feature_state";
 import { WorksheetFeatureDefinition } from "dressdiscover/api/models/worksheet/worksheet_feature_definition";
-import { WorksheetFeatureModel } from "dressdiscover/gui/models/worksheet/worksheet_feature_model";
+import { WorksheetFeature } from "dressdiscover/gui/models/worksheet/worksheet_feature";
 import { WorksheetFeatureState } from "dressdiscover/api/models/worksheet/worksheet_feature_state";
 import { WorksheetEnumFeatureValueCollection } from "dressdiscover/gui/models/worksheet/worksheet_enum_feature_value_collection";
-import { WorksheetEnumFeatureValueModel } from "dressdiscover/gui/models/worksheet/worksheet_enum_feature_value_model";
+import { WorksheetEnumFeatureValue } from "dressdiscover/gui/models/worksheet/worksheet_enum_feature_value";
 
-export class WorksheetEnumFeatureModel extends WorksheetFeatureModel {
+export class WorksheetEnumFeature extends WorksheetFeature {
     constructor(definition: WorksheetFeatureDefinition, state: WorksheetFeatureState | undefined) {
         super(definition, state);
-        let values: WorksheetEnumFeatureValueModel[] = [];
+        let values: WorksheetEnumFeatureValue[] = [];
         for (let valueDefinition of definition.enum_.values_.models) {
-            let value = new WorksheetEnumFeatureValueModel(valueDefinition, this, state && state.enum_ ? state.enum_.selectedValues.indexOf(valueDefinition.id) != -1 : false);
+            let value = new WorksheetEnumFeatureValue(valueDefinition, this, state && state.enum_ ? state.enum_.selectedValues.indexOf(valueDefinition.id) != -1 : false);
             values.push(value);
         }
         this._values = new WorksheetEnumFeatureValueCollection(values);

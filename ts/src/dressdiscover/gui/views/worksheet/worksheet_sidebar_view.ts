@@ -1,12 +1,12 @@
 ﻿import _ = require("underscore");
 import Marionette = require("backbone.marionette");
-import { WorksheetModel } from "dressdiscover/gui/models/worksheet/worksheet_model";
+import { Worksheet } from "dressdiscover/gui/models/worksheet/worksheet";
 import { WorksheetNavigationView } from "dressdiscover/gui/views/worksheet/navigation/worksheet_navigation_view";
 import { WorksheetOutputView } from "dressdiscover/gui/views/worksheet/output/worksheet_output_view";
 
 declare function require(moduleName: string): any;
 
-export class WorksheetSidebarView extends Marionette.LayoutView<WorksheetModel> {
+export class WorksheetSidebarView extends Marionette.LayoutView<Worksheet> {
     constructor(options?: any) {
         super(_.extend(options, {
             regions: {

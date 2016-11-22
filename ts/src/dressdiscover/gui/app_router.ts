@@ -1,6 +1,6 @@
 ﻿import * as Backbone from "backbone";
 import _ = require("underscore");
-import { WorksheetModel } from "dressdiscover/gui/models/worksheet/worksheet_model";
+import { Worksheet } from "dressdiscover/gui/models/worksheet/worksheet";
 import { WorksheetTopLevelView } from "./views/worksheet/worksheet_top_level_view";
 
 export class AppRouter extends Backbone.Router {
@@ -20,6 +20,6 @@ export class AppRouter extends Backbone.Router {
     }
 
     worksheet(path: string = '') {
-        new WorksheetTopLevelView({ model: WorksheetModel.fetchFromService({ accessionNumber: "test" }) }).render();
+        new WorksheetTopLevelView({ model: Worksheet.fetchFromService({ accessionNumber: "test" }) }).render();
     }
 }

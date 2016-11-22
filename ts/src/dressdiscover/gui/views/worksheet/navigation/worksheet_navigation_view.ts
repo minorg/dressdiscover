@@ -3,10 +3,10 @@ import { AppRadio } from "dressdiscover/gui/app_radio";
 import Marionette = require("backbone.marionette");
 import { WorksheetFeatureInputEvent } from "dressdiscover/gui/events/worksheet/worksheet_feature_input_event";
 import { WorksheetFeatureNavigationEvent } from "dressdiscover/gui/events/worksheet/worksheet_feature_navigation_event";
-import { WorksheetFeatureSetModel } from "dressdiscover/gui/models/worksheet/worksheet_feature_set_model";
-import { WorksheetModel } from "dressdiscover/gui/models/worksheet/worksheet_model";
+import { WorksheetFeatureSet } from "dressdiscover/gui/models/worksheet/worksheet_feature_set";
+import { Worksheet } from "dressdiscover/gui/models/worksheet/worksheet";
 
-export class WorksheetNavigationView extends Marionette.ItemView<WorksheetModel> {
+export class WorksheetNavigationView extends Marionette.ItemView<Worksheet> {
     constructor(options?: any) {
         super(_.extend(options, {
             template: _.template("")
@@ -47,7 +47,7 @@ export class WorksheetNavigationView extends Marionette.ItemView<WorksheetModel>
         return true;
     }
 
-    private __constructFeatureSetTree(featureSet: WorksheetFeatureSetModel) {
+    private __constructFeatureSetTree(featureSet: WorksheetFeatureSet) {
         let tree: any = { ddId: this._nodeId++, text: featureSet.displayName };
         
         let nodes: any[] = [];

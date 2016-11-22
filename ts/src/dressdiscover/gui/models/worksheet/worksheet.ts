@@ -2,20 +2,20 @@
 import Backbone = require("backbone");
 import { Services } from "dressdiscover/gui/services/services";
 import { WorksheetDefinition } from "dressdiscover/api/models/worksheet/worksheet_definition";
-import { WorksheetFeatureModel } from "./worksheet_feature_model";
+import { WorksheetFeature } from "./worksheet_feature";
 import { WorksheetFeatureSetCollection } from "./worksheet_feature_set_collection";
-import { WorksheetFeatureSetModel } from "./worksheet_feature_set_model";
+import { WorksheetFeatureSet } from "./worksheet_feature_set";
 import { WorksheetFeatureSetState } from "dressdiscover/api/models/worksheet/worksheet_feature_set_state";
 import { WorksheetState } from "dressdiscover/api/models/worksheet/worksheet_state";
 
-export class WorksheetModel extends Backbone.Model {
+export class Worksheet extends Backbone.Model {
     constructor(kwds: { accessionNumber: string, definition: WorksheetDefinition, initialState: WorksheetState }) {
         super();
         this._accessionNumber = kwds.accessionNumber;
 
-        const rootFeatureSets: WorksheetFeatureSetModel[] = [];
+        const rootFeatureSets: WorksheetFeatureSet[] = [];
         for (let rootFeatureSetDefinition of kwds.definition.rootFeatureSets.models) {
-            rootFeatureSets.push(new WorksheetFeatureSetModel(rootFeatureSetDefinition, kwds.initialState.rootFeatureSets ? kwds.initialState.rootFeatureSets[rootFeatureSetDefinition.id] : undefined));
+            rootFeatureSets.push(new WorksheetFeatureSet(rootFeatureSetDefinition, kwds.initialState.rootFeatureSets ? kwds.initialState.rootFeatureSets[rootFeatureSetDefinition.id] : undefined));
         }
         this._rootFeatureSets = new WorksheetFeatureSetCollection(rootFeatureSets);
 
@@ -49,10 +49,10 @@ export class WorksheetModel extends Backbone.Model {
         return this._accessionNumber;
     }
 
-    static fetchFromService(kwds: { accessionNumber: string }): WorksheetModel {
+    static fetchFromService(kwds: { accessionNumber: string }): Worksheet {
         const definition = Services.instance.worksheetQueryService.getWorksheetDefinitionSync();
         const initialState = Services.instance.worksheetQueryService.getWorksheetStateSync({ accessionNumber: kwds.accessionNumber });
-        return new WorksheetModel({ accessionNumber: kwds.accessionNumber, definition: definition, initialState: initialState });
+        return new Worksheet({ accessionNumber: kwds.accessionNumber, definition: definition, initialState: initialState });
     }
    
     get currentState(): WorksheetState | undefined {
@@ -81,15 +81,15 @@ export class WorksheetModel extends Backbone.Model {
         return this._rootFeatureSets;
     }
 
-    get selectedFeature(): WorksheetFeatureModel {
+    get selectedFeature(): WorksheetFeature {
         return this._selectedFeature;
     }
 
-    set selectedFeature(value: WorksheetFeatureModel) {
+    set selectedFeature(value: WorksheetFeature) {
         this._selectedFeature = value;
     }
 
-    private __getSelectedFeature(featureSet: WorksheetFeatureSetModel): WorksheetFeatureModel | undefined {
+    private __getSelectedFeature(featureSet: WorksheetFeatureSet): WorksheetFeature | undefined {
         if (featureSet.features) {
             for (let feature of featureSet.features.models) {
                 if (feature.selected) {
@@ -110,7 +110,7 @@ export class WorksheetModel extends Backbone.Model {
         return undefined;    
     }
 
-    private __getFirstFeature(featureSet: WorksheetFeatureSetModel): WorksheetFeatureModel | undefined {
+    private __getFirstFeature(featureSet: WorksheetFeatureSet): WorksheetFeature | undefined {
         if (featureSet.features && featureSet.features.length > 0) {
             return featureSet.features.at(1);
         }
@@ -129,5 +129,5 @@ export class WorksheetModel extends Backbone.Model {
 
     private _accessionNumber: string;
     private _rootFeatureSets: WorksheetFeatureSetCollection;
-    private _selectedFeature: WorksheetFeatureModel;
+    private _selectedFeature: WorksheetFeature;
 }

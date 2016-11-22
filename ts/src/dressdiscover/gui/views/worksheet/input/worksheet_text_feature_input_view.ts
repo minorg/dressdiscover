@@ -2,12 +2,12 @@
 import { AppRadio } from "dressdiscover/gui/app_radio";
 import Marionette = require("backbone.marionette");
 import { WorksheetFeatureInputEvent } from "dressdiscover/gui/events/worksheet/worksheet_feature_input_event";
-import { WorksheetTextFeatureModel } from "dressdiscover/gui/models/worksheet/worksheet_text_feature_model";
+import { WorksheetTextFeature } from "dressdiscover/gui/models/worksheet/worksheet_text_feature";
 import "../../../../../../node_modules/backbone.stickit/backbone.stickit.js";
 
 declare function require(moduleName: string): any;
 
-export class WorksheetTextFeatureInputView extends Marionette.ItemView<WorksheetTextFeatureModel> {
+export class WorksheetTextFeatureInputView extends Marionette.ItemView<WorksheetTextFeature> {
     bindings = {
         "#text": "text"
     };
