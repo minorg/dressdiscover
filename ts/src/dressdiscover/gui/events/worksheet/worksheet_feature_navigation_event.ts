@@ -1,9 +1,9 @@
-﻿import { WorksheetFeatureModel } from "dressdiscover/gui/models/worksheet/worksheet_feature_model";
+﻿import { WorksheetFeature } from "dressdiscover/gui/models/worksheet/worksheet_feature";
 
 export class WorksheetFeatureNavigationEvent {
     static readonly NAME = "worksheet:feature:navigation";
 
-    constructor(options: {feature: WorksheetFeatureModel}) {
+    constructor(options: {feature: WorksheetFeature}) {
         this._feature = options.feature;
     }
 
@@ -11,5 +11,5 @@ export class WorksheetFeatureNavigationEvent {
         return this._feature;
     }
 
-    private _feature: WorksheetFeatureModel;
+    private _feature: WorksheetFeature;
 }

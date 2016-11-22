@@ -2,13 +2,13 @@
 import { AppRadio } from "dressdiscover/gui/app_radio";
 import Marionette = require("backbone.marionette");
 import { WorksheetFeatureInputEvent } from "dressdiscover/gui/events/worksheet/worksheet_feature_input_event";
-import { WorksheetFeatureModel } from "dressdiscover/gui/models/worksheet/worksheet_feature_model";
-import { WorksheetFeatureSetModel } from "dressdiscover/gui/models/worksheet/worksheet_feature_set_model";
-import { WorksheetModel } from "dressdiscover/gui/models/worksheet/worksheet_model";
+import { WorksheetFeature } from "dressdiscover/gui/models/worksheet/worksheet_feature";
+import { WorksheetFeatureSet } from "dressdiscover/gui/models/worksheet/worksheet_feature_set";
+import { Worksheet } from "dressdiscover/gui/models/worksheet/worksheet";
 
 declare function require(moduleName: string): any;
 
-export class WorksheetOutputView extends Marionette.ItemView<WorksheetModel> {
+export class WorksheetOutputView extends Marionette.ItemView<Worksheet> {
     constructor(options?: any) {
         super(_.extend(options, {
             template: _.template(require("raw!./worksheet_output_view.html"))
@@ -41,7 +41,7 @@ export class WorksheetOutputView extends Marionette.ItemView<WorksheetModel> {
         return output;
     }
 
-    private __calculateFeatureSetOutput(featureSet: WorksheetFeatureSetModel): { [index: string]: string[] } {
+    private __calculateFeatureSetOutput(featureSet: WorksheetFeatureSet): { [index: string]: string[] } {
         let output: { [index: string]: string[] } = {};
         for (let childFeatureSet of featureSet.childFeatureSets.models) {
             let childOutput = this.__calculateFeatureSetOutput(childFeatureSet);
@@ -60,7 +60,7 @@ export class WorksheetOutputView extends Marionette.ItemView<WorksheetModel> {
         return output;
     }
 
-    private __calculateFeatureOutput(feature: WorksheetFeatureModel): { [index: string]: string[] } {
+    private __calculateFeatureOutput(feature: WorksheetFeature): { [index: string]: string[] } {
         let values = feature.outputValues;
         if (values.length == 0) {
             return {};

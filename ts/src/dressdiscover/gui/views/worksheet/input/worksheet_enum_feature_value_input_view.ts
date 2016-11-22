@@ -1,12 +1,12 @@
 ﻿import _ = require("underscore");
 import { AppRadio } from "dressdiscover/gui/app_radio";
 import Marionette = require("backbone.marionette");
-import { WorksheetEnumFeatureValueModel } from "dressdiscover/gui/models/worksheet/worksheet_enum_feature_value_model";
+import { WorksheetEnumFeatureValue } from "dressdiscover/gui/models/worksheet/worksheet_enum_feature_value";
 import { WorksheetFeatureInputEvent } from "dressdiscover/gui/events/worksheet/worksheet_feature_input_event";
 
 declare function require(moduleName: string): any;
 
-export class WorksheetEnumFeatureValueInputView extends Marionette.ItemView<WorksheetEnumFeatureValueModel> {
+export class WorksheetEnumFeatureValueInputView extends Marionette.ItemView<WorksheetEnumFeatureValue> {
     constructor(options?: any) {    
         super(_.extend(options, {
             events: {

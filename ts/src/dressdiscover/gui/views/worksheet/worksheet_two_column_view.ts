@@ -2,13 +2,13 @@
 import { AppRadio } from "dressdiscover/gui/app_radio";
 import Marionette = require("backbone.marionette");
 import { WorksheetFeatureNavigationEvent } from "dressdiscover/gui/events/worksheet/worksheet_feature_navigation_event";
-import { WorksheetModel } from "dressdiscover/gui/models/worksheet/worksheet_model";
+import { Worksheet } from "dressdiscover/gui/models/worksheet/worksheet";
 import { WorksheetInputView } from "./input/worksheet_input_view";
 import { WorksheetSidebarView } from "./worksheet_sidebar_view";
 
 declare function require(moduleName: string): any;
 
-export class WorksheetTwoColumnView extends Marionette.LayoutView<WorksheetModel> {
+export class WorksheetTwoColumnView extends Marionette.LayoutView<Worksheet> {
     constructor(options: any) {
         super(_.extend(options, {
             regions: {
