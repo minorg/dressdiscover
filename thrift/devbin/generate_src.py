@@ -216,7 +216,7 @@ class Main(thryft.main.Main):
                     sub_feature_set_dict['features'].append(feature_dict)
                 feature_set_dict['child_feature_sets'].append(sub_feature_set_dict)
             out.append(feature_set_dict)
-        file_path = os.path.join(ROOT_DIR_PATH, 'ts', 'data', 'definitions.js')
+        file_path = os.path.join(ROOT_DIR_PATH, 'ts', 'assets', 'js', 'definitions.js')
         import json
         with open(file_path, 'w+b') as f:
             f.write('DEFINITIONS = ' + json.dumps(out, indent=4))

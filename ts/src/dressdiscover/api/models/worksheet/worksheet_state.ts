@@ -3,6 +3,17 @@ import { WorksheetFeatureSetState } from "./worksheet_feature_set_state";
 
 export class WorksheetState extends Backbone.Model {
     validation = {
+        accessionNumber: {
+            "fn": function(value: any, attr: any, computedState: any) {
+                if (typeof value !== "string") {
+                    return "expected WorksheetState.accession_number to be a string";
+                }
+
+                return undefined;
+            },
+            "required": true
+        },
+
         rootFeatureSets: {
             "fn": function(value: any, attr: any, computedState: any) {
                 if (typeof attr === "undefined" || attr === null) {
@@ -33,8 +44,16 @@ export class WorksheetState extends Backbone.Model {
 
     validationError: any;
 
-    constructor(attributes?: {rootFeatureSets?: {[index: string]: WorksheetFeatureSetState}}, options?: any) {
+    constructor(attributes?: {accessionNumber: string, rootFeatureSets?: {[index: string]: WorksheetFeatureSetState}}, options?: any) {
         super(attributes, options);
+    }
+
+    get accessionNumber(): string {
+        return this.get('accessionNumber');
+    }
+
+    set accessionNumber(value: string) {
+        this.set('accessionNumber', value, { validate: true });
     }
 
     get rootFeatureSets(): {[index: string]: WorksheetFeatureSetState} {
@@ -48,7 +67,9 @@ export class WorksheetState extends Backbone.Model {
     static fromThryftJSON(json: any): WorksheetState {
         var out: WorksheetState = new WorksheetState;
         for (var fieldName in json) {
-            if (fieldName == "root_feature_sets") {
+            if (fieldName == "accession_number") {
+                out.attributes.accessionNumber = json[fieldName];
+            } else if (fieldName == "root_feature_sets") {
                 out.attributes.rootFeatureSets = function (json: any): {[index: string]: WorksheetFeatureSetState} { var map: any = {}; for (var key in json) { map[key] = WorksheetFeatureSetState.fromThryftJSON(json[key]); } return map; }(json[fieldName]);
             }
         }
@@ -60,6 +81,7 @@ export class WorksheetState extends Backbone.Model {
 
     toThryftJSON(): any {
         var json: {[index: string]: any} = {};
+        json["accession_number"] = this.accessionNumber;
         if (this.has("rootFeatureSets")) {
             json["root_feature_sets"] = function (value: {[index: string]: WorksheetFeatureSetState}): {[index: string]: WorksheetFeatureSetState} { var outObject: {[index: string]: WorksheetFeatureSetState} = {}; for (var key in value) { outObject[key] = value[key].toThryftJSON(); } return outObject; }(this.rootFeatureSets);
         }
