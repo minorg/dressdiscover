@@ -6,7 +6,7 @@ import { WorksheetTopLevelView } from "./views/worksheet/worksheet_top_level_vie
 export class AppRouter extends Backbone.Router {
     routes = {
         "": this.defaultRoute,
-        "worksheet": this.worksheet,
+        "worksheet(/:accessionNumber)": this.worksheet,
     };
 
     constructor() {
@@ -15,11 +15,15 @@ export class AppRouter extends Backbone.Router {
         _.bindAll(this, "defaultRoute", "worksheet");
     }
 
-    defaultRoute(path: string = '') {
+    defaultRoute() {
         this.navigate("worksheet", { trigger: true });
     }
 
-    worksheet(path: string = '') {
-        new WorksheetTopLevelView({ model: Worksheet.fetchFromService({ accessionNumber: "test" }) }).render();
+    worksheet(accessionNumber: string | undefined) {
+        if (!accessionNumber) {
+            accessionNumber = "test";
+        }
+        console.info("Accession number: " + accessionNumber);
+        new WorksheetTopLevelView({ model: Worksheet.fetchFromService({ accessionNumber: accessionNumber }) }).render();
     }
 }
