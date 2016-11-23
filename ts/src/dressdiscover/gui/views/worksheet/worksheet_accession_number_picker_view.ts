@@ -23,7 +23,8 @@ export class WorksheetAccessionNumberPickerView extends Marionette.ItemView<Back
     initialize() {
         this.ui = {
             availableAccessionNumbersDropdown: "#availableAccessionNumbers.dropdown",
-            availableAccessionNumbersDropdownMenu: "#availableAccessionNumbers .dropdown-menu"
+            availableAccessionNumbersDropdownMenu: "#availableAccessionNumbers .dropdown-menu",
+            newAccessionNumber: "#newAccessionNumber"
         };
     }
 

@@ -1,4 +1,5 @@
-﻿import { AsyncToSyncWorksheetQueryService } from "dressdiscover/api/services/worksheet/worksheet_query_service";
+﻿import _s = require("underscore.string");
+import { AsyncToSyncWorksheetQueryService } from "dressdiscover/api/services/worksheet/worksheet_query_service";
 import * as Backbone from "backbone";
 import { WorksheetDefinition } from "dressdiscover/api/models/worksheet/worksheet_definition";
 import { WorksheetFeatureSetDefinition } from "dressdiscover/api/models/worksheet/worksheet_feature_set_definition";
@@ -19,7 +20,20 @@ export class LocalWorksheetQueryService extends AsyncToSyncWorksheetQueryService
     }
 
     getWorksheetAccessionNumbersSync(): string[] {
-        return ["test1", "test2", "test3"];
+        let result: string[] = [];
+        for (var keyI = 0; ; keyI++) {
+            const key = localStorage.key(keyI);
+            if (key == null) {
+                break;
+            }
+            if (!_s.startsWith(key, LocalWorksheetQueryService._WORKSHEET_ITEM_KEY_PREFIX)) {
+                continue;
+            } else if (key.length == LocalWorksheetQueryService._WORKSHEET_ITEM_KEY_PREFIX.length) {
+                continue;
+            }
+            result.push(key.substr(LocalWorksheetQueryService._WORKSHEET_ITEM_KEY_PREFIX.length));
+        }
+        return result;
     }
 
     getWorksheetDefinitionSync(): WorksheetDefinition {
@@ -27,7 +41,7 @@ export class LocalWorksheetQueryService extends AsyncToSyncWorksheetQueryService
     }
 
     static getWorksheetStateItemKey(accessionNumber: string): string {
-        return "worksheet/state/" + accessionNumber;
+        return LocalWorksheetQueryService._WORKSHEET_ITEM_KEY_PREFIX + accessionNumber;
     }
 
     getWorksheetStateSync(kwds: { accessionNumber: string }): WorksheetState {
@@ -39,5 +53,6 @@ export class LocalWorksheetQueryService extends AsyncToSyncWorksheetQueryService
         return WorksheetState.fromThryftJSON(JSON.parse(jsonString));
     }
 
+    private static readonly _WORKSHEET_ITEM_KEY_PREFIX = "worksheet/state/";
     private _worksheetDefinition: WorksheetDefinition;
 }

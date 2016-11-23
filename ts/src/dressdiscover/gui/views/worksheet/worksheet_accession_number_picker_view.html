@@ -14,14 +14,16 @@
                 <br /><br />
             <% } %>
             <div>
-                <input size="26" type="text"
+                <div>
                     <% if (availableAccessionNumbers.length > 0) { %>
-                        placeholder="Or enter a new accession number"
+                    Or enter a new accession number:
                     <% } else { %>
-                        placeholder="Enter a new accession number"
+                    Enter a new accession number:
                     <% } %>
-                />
+                </div>
+                <input id="newAccessionNumber" placeholder="New accession number" size="26" type="text" />
             </div>
+            <br/>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" id="footer-close-button">Cancel</button>
                 <button type="button" class="btn btn-primary" id="footer-ok-button">OK</button>
