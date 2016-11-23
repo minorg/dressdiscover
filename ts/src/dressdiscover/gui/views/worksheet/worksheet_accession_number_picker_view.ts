@@ -22,9 +22,9 @@ export class WorksheetAccessionNumberPickerView extends Marionette.ItemView<Back
 
     initialize() {
         this.ui = {
-            availableAccessionNumbersDropdown: "#availableAccessionNumbers.dropdown",
-            availableAccessionNumbersDropdownMenu: "#availableAccessionNumbers .dropdown-menu",
-            newAccessionNumber: "#newAccessionNumber"
+            accessionNumberSelect: "#accessionNumberSelect",
+            alert: "#alert",
+            newAccessionNumberInput: "#newAccessionNumberInput"
         };
     }
 
@@ -34,8 +34,19 @@ export class WorksheetAccessionNumberPickerView extends Marionette.ItemView<Back
     }
 
     onOkButtonClick() {
+        let accessionNumber: string = this.ui.accessionNumberSelect.val();
+        if (!accessionNumber) {
+            accessionNumber = this.ui.newAccessionNumberInput.val();
+            if (!accessionNumber || accessionNumber.length == 0) {
+                const alert = this.ui.alert;
+                alert.fadeTo(1000, 500).slideUp(500, () => {
+                    alert.slideUp(500);
+                });
+                return;
+            }
+        }        
         app.modalRegion.empty();
-        app.router.navigate("worksheet/test", { trigger: true });
+        app.router.navigate("worksheet/" + accessionNumber, { trigger: true });
     }
 
     serializeData(): any {
