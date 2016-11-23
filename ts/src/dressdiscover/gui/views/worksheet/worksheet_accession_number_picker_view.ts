@@ -12,7 +12,8 @@ export class WorksheetAccessionNumberPickerView extends Marionette.ItemView<Back
             events: {
                 "click #footer-close-button": "onCloseButtonClick",
                 "click #header-close-button": "onCloseButtonClick",
-                "click #footer-ok-button": "onOkButtonClick"
+                "click #footer-ok-button": "onOkButtonClick",
+                "keyup #newAccessionNumberInput": "onNewAccessionNumberInputKeyup"
             },
             model: new Backbone.Model(),
             template: _.template(require("raw!./worksheet_accession_number_picker_view.html"))
@@ -27,10 +28,6 @@ export class WorksheetAccessionNumberPickerView extends Marionette.ItemView<Back
             alert: "#alert",
             newAccessionNumberInput: "#newAccessionNumberInput"
         };
-
-        (Application.instance.modalRegion as any).$el.on('shown.bs.modal', { view: this }, (event: any) => {
-            event.data.view.ui.newAccessionNumberInput.focus();
-        });
     }
 
     onCloseButtonClick() {
@@ -52,6 +49,22 @@ export class WorksheetAccessionNumberPickerView extends Marionette.ItemView<Back
         }        
         Application.instance.modalRegion.empty();
         Application.instance.router.navigate("worksheet/" + accessionNumber, { trigger: true });
+    }
+
+    onNewAccessionNumberInputKeyup(event: any) {
+        if (event.keyCode == 13) {
+            this.onOkButtonClick();
+        }
+    }
+
+    onShow() {
+        this.ui.accessionNumberSelect.selectpicker("show");
+
+        (Application.instance.modalRegion as any).$el.on('shown.bs.modal', { view: this }, (event: any) => {
+            if (event.data.view.ui.newAccessionNumberInput.focus) {
+                event.data.view.ui.newAccessionNumberInput.focus();
+            }
+        });
     }
 
     serializeData(): any {

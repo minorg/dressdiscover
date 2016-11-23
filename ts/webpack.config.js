@@ -9,6 +9,7 @@ module.exports = {
   devServer: {
       contentBase: "public",
       host: "localhost",
+      inline: true,
       port: 9000
   },
   devtool: 'source-map',
@@ -65,7 +66,6 @@ module.exports = {
   ],
   resolve: {
     extensions: ['', '.webpack.js', '.web.js', '.ts', '.js'],
-    modulesDirectories: [path.join(__dirname, './node_modules')],
     root: path.join(__dirname, 'src')
   },
   resolveLoader: {
