@@ -1,23 +1,30 @@
-﻿<div class="modal-dialog" role="document">
+﻿<div class="modal-dialog" role="document" id="worksheet-accession-number-picker">
     <div class="modal-content">
         <div class="modal-header">
-            <button type="button" class="close" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-            <h4 class="modal-title">Accession number</h4>
+            <button type="button" class="close" aria-label="Close" id="header-close-button"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title">Worksheet</h4>
         </div>
         <div class="modal-body">
             <% if (availableAccessionNumbers.length > 0) { %>
-            Available accession numbers
-            <div class="dropdown" id="availableAccessionNumbers">
-                <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                <% for (var i = 0; i < availableAccessionNumbers.length; i++) { %>
-                    <li><%- availableAccessionNumbers[i] %></li>
-                <% } %>
-                </ul>
-            </div>
+                <select class="selectpicker show-menu-arrow show-tick" data-width="auto" id="accessionNumberSelect" title="Choose an existing worksheet">
+                    <% for (var i = 0; i < availableAccessionNumbers.length; i++) { %>
+                        <option><%- availableAccessionNumbers[i] %></option>
+                    <% } %>
+                </select>
+                <br /><br />
             <% } %>
+            <div>
+                <input size="26" type="text"
+                    <% if (availableAccessionNumbers.length > 0) { %>
+                        placeholder="Or enter a new accession number"
+                    <% } else { %>
+                        placeholder="Enter a new accession number"
+                    <% } %>
+                />
+            </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-default">Close</button>
-                <button type="button" class="btn btn-primary">Save changes</button>
+                <button type="button" class="btn btn-default" id="footer-close-button">Cancel</button>
+                <button type="button" class="btn btn-primary" id="footer-ok-button">OK</button>
             </div>
         </div>
     </div>

@@ -3,7 +3,6 @@ import { TopLevelView } from "dressdiscover/gui/views/top_level_view";
 import { Worksheet } from "dressdiscover/gui/models/worksheet/worksheet";
 import { WorksheetFeatureInputEvent } from "dressdiscover/gui/events/worksheet/worksheet_feature_input_event";
 import { WorksheetTwoColumnView } from "./worksheet_two_column_view";
-import "./worksheet.less";
 
 export class WorksheetTopLevelView extends TopLevelView<Worksheet> {
     initialize() {

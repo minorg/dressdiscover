@@ -2,6 +2,7 @@
 import { app } from "dressdiscover/gui/app";
 import Backbone = require("backbone");
 import Marionette = require("backbone.marionette");
+import "./worksheet_accession_number_picker_view.less";
 
 declare function require(moduleName: string): any;
 
@@ -9,7 +10,9 @@ export class WorksheetAccessionNumberPickerView extends Marionette.ItemView<Back
     constructor(kwds: { availableAccessionNumbers: string[] }) {
         super({
             events: {
-                "click button.close": "onCloseButtonClick"
+                "click #footer-close-button": "onCloseButtonClick",
+                "click #header-close-button": "onCloseButtonClick",
+                "click #footer-ok-button": "onOkButtonClick"
             },
             model: new Backbone.Model(),
             template: _.template(require("raw!./worksheet_accession_number_picker_view.html"))
@@ -25,6 +28,10 @@ export class WorksheetAccessionNumberPickerView extends Marionette.ItemView<Back
     }
 
     onCloseButtonClick() {
+        app.modalRegion.reset();
+    }
+
+    onOkButtonClick() {
         app.modalRegion.reset();
     }
 
