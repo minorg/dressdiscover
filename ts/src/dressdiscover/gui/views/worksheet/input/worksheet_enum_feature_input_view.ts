@@ -2,7 +2,6 @@
 import Marionette = require("backbone.marionette");
 import { WorksheetEnumFeature } from "dressdiscover/gui/models/worksheet/worksheet_enum_feature";
 import { WorksheetEnumFeatureValuesInputView } from "dressdiscover/gui/views/worksheet/input/worksheet_enum_feature_values_input_view";
-import "./worksheet_enum_feature_value_input_view.less";
 
 declare function require(moduleName: string): any;
 

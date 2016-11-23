@@ -21,4 +21,8 @@ export class WorksheetSidebarView extends Marionette.LayoutView<Worksheet> {
         this.showChildView("navigation", new WorksheetNavigationView({ model: this.model }));
         this.showChildView("output", new WorksheetOutputView({ model: this.model }));
     }
+
+    serializeData() {
+        return { "accessionNumber": this.model.accessionNumber };
+    }
 }

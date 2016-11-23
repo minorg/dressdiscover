@@ -15,8 +15,8 @@ import "../../../node_modules/bootstrap-treeview/src/js/bootstrap-treeview.js";
 class Application extends Marionette.Application {
     onStart() {
         this._modalRegion = new ModalRegion();
-        new AppRouter();
-        if (!Backbone.history.start()) {
+        this._router = new AppRouter();
+        if (!Backbone.history.start({ hashChange: true, pushState: false } as any)) {
             console.error("didn't route");
         }
     }
@@ -25,7 +25,12 @@ class Application extends Marionette.Application {
         return this._modalRegion;
     }
 
+    get router() {
+        return this._router;
+    }
+
     private _modalRegion: ModalRegion;
+    private _router: AppRouter;
 }
 
 export declare let app: Application;

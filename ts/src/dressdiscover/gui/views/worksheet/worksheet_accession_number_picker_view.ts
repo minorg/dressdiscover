@@ -28,11 +28,13 @@ export class WorksheetAccessionNumberPickerView extends Marionette.ItemView<Back
     }
 
     onCloseButtonClick() {
-        app.modalRegion.reset();
+        app.modalRegion.empty();
+        app.router.navigate("", { trigger: true });
     }
 
     onOkButtonClick() {
-        app.modalRegion.reset();
+        app.modalRegion.empty();
+        app.router.navigate("worksheet/test", { trigger: true });
     }
 
     serializeData(): any {

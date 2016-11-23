@@ -3,6 +3,7 @@ import { AppRadio } from "dressdiscover/gui/app_radio";
 import Marionette = require("backbone.marionette");
 import { WorksheetEnumFeatureValue } from "dressdiscover/gui/models/worksheet/worksheet_enum_feature_value";
 import { WorksheetFeatureInputEvent } from "dressdiscover/gui/events/worksheet/worksheet_feature_input_event";
+import "./worksheet_enum_feature_value_input_view.less";
 
 declare function require(moduleName: string): any;
 

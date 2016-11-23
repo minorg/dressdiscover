@@ -98,6 +98,9 @@
   <ItemGroup>
     <Content Include="src\dressdiscover\gui\views\worksheet\input\worksheet_enum_feature_value_input_view.less" />
   </ItemGroup>
+  <ItemGroup>
+    <Content Include="src\dressdiscover\gui\views\worksheet\worksheet_accession_number_picker_view.less" />
+  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">12.0</VisualStudioVersion>
   </PropertyGroup>
