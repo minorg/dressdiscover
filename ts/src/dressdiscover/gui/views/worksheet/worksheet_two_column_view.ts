@@ -1,5 +1,5 @@
 ﻿import _ = require("underscore");
-import { AppRadio } from "dressdiscover/gui/app_radio";
+import { Application } from "dressdiscover/gui/application";
 import Marionette = require("backbone.marionette");
 import { WorksheetFeatureNavigationEvent } from "dressdiscover/gui/events/worksheet/worksheet_feature_navigation_event";
 import { Worksheet } from "dressdiscover/gui/models/worksheet/worksheet";
@@ -20,7 +20,7 @@ export class WorksheetTwoColumnView extends Marionette.LayoutView<Worksheet> {
     }
 
     initialize() {
-        this.listenTo(AppRadio.channel, WorksheetFeatureNavigationEvent.NAME, this.onFeatureNavigation);
+        this.listenTo(Application.instance.radio.globalChannel, WorksheetFeatureNavigationEvent.NAME, this.onFeatureNavigation);
     }
 
     onFeatureNavigation(event: WorksheetFeatureNavigationEvent) {

@@ -1,5 +1,5 @@
 ﻿import _ = require("underscore");
-import { app } from "dressdiscover/gui/app";
+import { Application } from "dressdiscover/gui/application";
 import Backbone = require("backbone");
 import Marionette = require("backbone.marionette");
 import "./worksheet_accession_number_picker_view.less";
@@ -28,14 +28,14 @@ export class WorksheetAccessionNumberPickerView extends Marionette.ItemView<Back
             newAccessionNumberInput: "#newAccessionNumberInput"
         };
 
-        (app.modalRegion as any).$el.on('shown.bs.modal', { view: this }, (event: any) => {
+        (Application.instance.modalRegion as any).$el.on('shown.bs.modal', { view: this }, (event: any) => {
             event.data.view.ui.newAccessionNumberInput.focus();
         });
     }
 
     onCloseButtonClick() {
-        app.modalRegion.empty();
-        app.router.navigate("", { trigger: true });
+        Application.instance.modalRegion.empty();
+        Application.instance.router.navigate("", { trigger: true });
     }
 
     onOkButtonClick() {
@@ -50,8 +50,8 @@ export class WorksheetAccessionNumberPickerView extends Marionette.ItemView<Back
                 return;
             }
         }        
-        app.modalRegion.empty();
-        app.router.navigate("worksheet/" + accessionNumber, { trigger: true });
+        Application.instance.modalRegion.empty();
+        Application.instance.router.navigate("worksheet/" + accessionNumber, { trigger: true });
     }
 
     serializeData(): any {

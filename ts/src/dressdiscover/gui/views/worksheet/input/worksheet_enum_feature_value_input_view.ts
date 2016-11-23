@@ -1,5 +1,5 @@
 ﻿import _ = require("underscore");
-import { AppRadio } from "dressdiscover/gui/app_radio";
+import { Application } from "dressdiscover/gui/application";
 import Marionette = require("backbone.marionette");
 import { WorksheetEnumFeatureValue } from "dressdiscover/gui/models/worksheet/worksheet_enum_feature_value";
 import { WorksheetFeatureInputEvent } from "dressdiscover/gui/events/worksheet/worksheet_feature_input_event";
@@ -25,7 +25,7 @@ export class WorksheetEnumFeatureValueInputView extends Marionette.ItemView<Work
     onClick() {
         this.model.selected = !this.model.selected;
         this.ui.checkbox[0].checked = this.model.selected;
-        AppRadio.channel.trigger(WorksheetFeatureInputEvent.NAME, new WorksheetFeatureInputEvent({ feature: this.model.parentFeature }));
+        Application.instance.radio.globalChannel.trigger(WorksheetFeatureInputEvent.NAME, new WorksheetFeatureInputEvent({ feature: this.model.parentFeature }));
     }    
 
     serializeData(): any {

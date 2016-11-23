@@ -1,12 +1,12 @@
 ﻿import * as Backbone from "backbone";
 import _ = require("underscore");
-import { app } from "./app";
+import { Application } from "dressdiscover/gui/application";
 import { Services } from "dressdiscover/gui/services/services";
 import { Worksheet } from "dressdiscover/gui/models/worksheet/worksheet";
 import { WorksheetAccessionNumberPickerView } from "./views/worksheet/worksheet_accession_number_picker_view";
 import { WorksheetTopLevelView } from "./views/worksheet/worksheet_top_level_view";
 
-export class AppRouter extends Backbone.Router {
+export class Router extends Backbone.Router {
     routes = {
         "": this.defaultRoute,
         "worksheet(/:accessionNumber)": this.worksheet,
@@ -24,7 +24,7 @@ export class AppRouter extends Backbone.Router {
 
     worksheet(accessionNumber: string | undefined) {
         if (!accessionNumber) {
-            app.modalRegion.show(new WorksheetAccessionNumberPickerView({ availableAccessionNumbers: Services.instance.worksheetQueryService.getWorksheetAccessionNumbersSync() }));
+            Application.instance.modalRegion.show(new WorksheetAccessionNumberPickerView({ availableAccessionNumbers: Services.instance.worksheetQueryService.getWorksheetAccessionNumbersSync() }));
             return; // Will re-route with a value set
         }
         console.info("Accession number: " + accessionNumber);
