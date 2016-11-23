@@ -17,6 +17,7 @@ export class WorksheetAccessionNumberPickerView extends Marionette.ItemView<Back
             model: new Backbone.Model(),
             template: _.template(require("raw!./worksheet_accession_number_picker_view.html"))
         } as any);
+
         this._availableAccessionNumbers = kwds.availableAccessionNumbers;
     }
 
@@ -26,6 +27,10 @@ export class WorksheetAccessionNumberPickerView extends Marionette.ItemView<Back
             alert: "#alert",
             newAccessionNumberInput: "#newAccessionNumberInput"
         };
+
+        (app.modalRegion as any).$el.on('shown.bs.modal', { view: this }, (event: any) => {
+            event.data.view.ui.newAccessionNumberInput.focus();
+        });
     }
 
     onCloseButtonClick() {

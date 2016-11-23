@@ -8,7 +8,7 @@ export class ModalRegion extends Marionette.Region {
 
     getEl(selector: any): any {
         var $el = $(selector);
-        $el.on("hidden", this.empty);
+        $el.on("hidden.bs.modal", this.empty);
         return $el;
     }
 
@@ -17,8 +17,8 @@ export class ModalRegion extends Marionette.Region {
     }
 
     onShow() {
-        (this as any).$el.on('hidden', { region: this }, (event: any) => {
-            event.data.region.close();
+        (this as any).$el.on('hidden.bs.modal', { region: this }, (event: any) => {
+            event.data.region.empty();
         });
         (this as any).$el.modal('show');
     }
