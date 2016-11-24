@@ -1,5 +1,4 @@
-﻿import _s = require("underscore.string");
-import { AsyncToSyncWorksheetQueryService } from "dressdiscover/api/services/worksheet/worksheet_query_service";
+﻿import { AsyncToSyncWorksheetQueryService } from "dressdiscover/api/services/worksheet/worksheet_query_service";
 import * as Backbone from "backbone";
 import { WorksheetDefinition } from "dressdiscover/api/models/worksheet/worksheet_definition";
 import { WorksheetFeatureSetDefinition } from "dressdiscover/api/models/worksheet/worksheet_feature_set_definition";
@@ -26,7 +25,7 @@ export class LocalWorksheetQueryService extends AsyncToSyncWorksheetQueryService
             if (key == null) {
                 break;
             }
-            if (!_s.startsWith(key, LocalWorksheetQueryService._WORKSHEET_ITEM_KEY_PREFIX)) {
+            if (key.match("^" + LocalWorksheetQueryService._WORKSHEET_ITEM_KEY_PREFIX)) {
                 continue;
             } else if (key.length == LocalWorksheetQueryService._WORKSHEET_ITEM_KEY_PREFIX.length) {
                 continue;
