@@ -23,10 +23,6 @@ module.exports = {
         //exclude: /node_modules/,
         loader: ExtractTextPlugin.extract('style-loader', 'css-loader')
       },
-      //{
-      //    test: /\.js$/,
-      //    loader: 'babel-loader'
-      //},
       {
           test: /\.less$/,
           //exclude: /node_modules/,
@@ -39,7 +35,7 @@ module.exports = {
     ]
   },
   output: {
-    filename: 'js/app.bundle.js',
+    filename: 'js/dressdiscover.js',
     path: path.join(__dirname, './public')
   },
   plugins: [
@@ -57,7 +53,7 @@ module.exports = {
         to: './index.html'
     }
     ]),
-    new ExtractTextPlugin('./css/app.css'),
+    new ExtractTextPlugin('./css/dressdiscover.css'),
     new webpack.ProvidePlugin({
         $: 'jquery',
         jQuery: "jquery",
