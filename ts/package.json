@@ -1,4 +1,3 @@
-
 {
   "name": "dressdiscover",
   "description": "DressDiscover",
@@ -27,17 +26,21 @@
     "jquery": "^2.0.34",
     "underscore": "~1.8.3"
   },
-    "devDependencies": {
-        "copy-webpack-plugin": "^1.1.1",
-        "css-loader": "^0.23.1",
-        "extract-text-webpack-plugin": "^1.0.1",
-        "less": "~2.7.1",
-        "less-loader": "~2.2.3",
-        "raw-loader": "~0.5.1",
-        "style-loader": "^0.13.1",
-        "ts-loader": "~1.1.0",
-        "typescript": "~2.0.6",
-        "webpack": "~1.13.3",
-        "webpack-dev-server": "^1.16.2"
-    }
+  "devDependencies": {
+    "copy-webpack-plugin": "^1.1.1",
+    "css-loader": "^0.23.1",
+    "extract-text-webpack-plugin": "^1.0.1",
+    "less": "~2.7.1",
+    "less-loader": "~2.2.3",
+    "raw-loader": "~0.5.1",
+    "style-loader": "^0.13.1",
+    "ts-loader": "~1.1.0",
+    "typescript": "~2.0.6",
+    "uglify-js": "^2.7.4",
+    "webpack": "~1.13.3",
+    "webpack-dev-server": "^1.16.2"
+  },
+  "scripts": {
+    "uglify": "webpack && uglifyjs ./public/js/dressdiscover.js -c -m -o ./public/js/dressdiscover.min.js --source-map ./public/js/dressdiscover.min.js.map"
+  }
 }

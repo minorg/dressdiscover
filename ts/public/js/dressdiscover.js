@@ -73,12 +73,12 @@ return /******/ (function(modules) { // webpackBootstrap
 	var Marionette = __webpack_require__(5);
 	var radio_1 = __webpack_require__(8);
 	var router_1 = __webpack_require__(10);
-	var modal_region_1 = __webpack_require__(71);
-	__webpack_require__(72);
-	__webpack_require__(73);
+	var modal_region_1 = __webpack_require__(73);
+	__webpack_require__(74);
 	__webpack_require__(75);
-	__webpack_require__(76);
+	__webpack_require__(77);
 	__webpack_require__(78);
+	__webpack_require__(80);
 	var Application = (function (_super) {
 	    __extends(Application, _super);
 	    function Application() {
@@ -6615,10 +6615,10 @@ return /******/ (function(modules) { // webpackBootstrap
 	var _ = __webpack_require__(3);
 	var application_1 = __webpack_require__(1);
 	var home_top_level_view_1 = __webpack_require__(11);
-	var services_1 = __webpack_require__(18);
-	var worksheet_1 = __webpack_require__(35);
-	var worksheet_accession_number_picker_view_1 = __webpack_require__(44);
-	var worksheet_top_level_view_1 = __webpack_require__(50);
+	var services_1 = __webpack_require__(22);
+	var worksheet_1 = __webpack_require__(39);
+	var worksheet_accession_number_picker_view_1 = __webpack_require__(48);
+	var worksheet_top_level_view_1 = __webpack_require__(52);
 	var Router = (function (_super) {
 	    __extends(Router, _super);
 	    function Router() {
@@ -6656,7 +6656,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 	};
 	var home_content_view_1 = __webpack_require__(12);
-	var top_level_view_1 = __webpack_require__(14);
+	var top_level_view_1 = __webpack_require__(18);
 	var HomeTopLevelView = (function (_super) {
 	    __extends(HomeTopLevelView, _super);
 	    function HomeTopLevelView() {
@@ -6684,12 +6684,13 @@ return /******/ (function(modules) { // webpackBootstrap
 	var _ = __webpack_require__(3);
 	var Backbone = __webpack_require__(4);
 	var Marionette = __webpack_require__(5);
+	__webpack_require__(13);
 	var HomeContentView = (function (_super) {
 	    __extends(HomeContentView, _super);
 	    function HomeContentView(options) {
 	        _super.call(this, _.extend({
 	            model: new Backbone.Model(),
-	            template: _.template(__webpack_require__(13))
+	            template: _.template(__webpack_require__(17))
 	        }));
 	    }
 	    return HomeContentView;
@@ -6701,10 +6702,19 @@ return /******/ (function(modules) { // webpackBootstrap
 /* 13 */
 /***/ function(module, exports) {
 
+	// removed by extract-text-webpack-plugin
+
+/***/ },
+/* 14 */,
+/* 15 */,
+/* 16 */,
+/* 17 */
+/***/ function(module, exports) {
+
 	module.exports = "<div id=\"home\">\r\n    <h3 class=\"page-header\" style=\"text-align: center\">Welcome to DressDiscover!</h3>\r\n    <h5>Click on the <a href=\"#worksheet\">Worksheet</a> tab to start a new worksheet.</h5>\r\n</div>\r\n"
 
 /***/ },
-/* 14 */
+/* 18 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -6715,7 +6725,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	};
 	var _ = __webpack_require__(3);
 	var Marionette = __webpack_require__(5);
-	var navbar_view_1 = __webpack_require__(15);
+	var navbar_view_1 = __webpack_require__(19);
 	var TopLevelView = (function (_super) {
 	    __extends(TopLevelView, _super);
 	    function TopLevelView(options) {
@@ -6725,7 +6735,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	                content: "#content",
 	                navbar: "#navbar"
 	            },
-	            template: _.template(__webpack_require__(17))
+	            template: _.template(__webpack_require__(21))
 	        }));
 	    }
 	    TopLevelView.prototype.onRender = function () {
@@ -6737,7 +6747,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ },
-/* 15 */
+/* 19 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -6752,7 +6762,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    __extends(NavbarView, _super);
 	    function NavbarView() {
 	        _super.apply(this, arguments);
-	        this.template = _.template(__webpack_require__(16));
+	        this.template = _.template(__webpack_require__(20));
 	    }
 	    return NavbarView;
 	}(Marionette.ItemView));
@@ -6760,24 +6770,24 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ },
-/* 16 */
+/* 20 */
 /***/ function(module, exports) {
 
 	module.exports = "<nav class=\"navbar navbar-default\">\n    <div class=\"container-fluid\">\n        <!-- Brand and toggle get grouped for better mobile display -->\n        <div class=\"navbar-header\">\n            <button type=\"button\" class=\"navbar-toggle collapsed\" data-toggle=\"collapse\" data-target=\"#navbar-collapse-1\" aria-expanded=\"false\">\n                <span class=\"sr-only\">Toggle navigation</span>\n                <span class=\"icon-bar\"></span>\n                <span class=\"icon-bar\"></span>\n                <span class=\"icon-bar\"></span>\n            </button>\n            <a class=\"navbar-brand\" href=\"#\">DressDiscover</a>\n        </div>\n        <!-- Collect the nav links, forms, and other content for toggling -->\n        <div class=\"collapse navbar-collapse\" id=\"navbar-collapse-1\">\n            <ul class=\"nav navbar-nav\">\n                <li class=\"active\"><a href=\"#worksheet\">Worksheet <span class=\"sr-only\">(current)</span></a></li>\n            </ul>\n        </div><!-- /.navbar-collapse -->\n    </div><!-- /.container-fluid -->\n</nav>\n"
 
 /***/ },
-/* 17 */
+/* 21 */
 /***/ function(module, exports) {
 
 	module.exports = "<div id=\"navbar\"></div>\r\n<div id=\"content\"></div>\r\n"
 
 /***/ },
-/* 18 */
+/* 22 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
-	var local_worksheet_command_service_1 = __webpack_require__(19);
-	var local_worksheet_query_service_1 = __webpack_require__(21);
+	var local_worksheet_command_service_1 = __webpack_require__(23);
+	var local_worksheet_query_service_1 = __webpack_require__(25);
 	var Services = (function () {
 	    function Services() {
 	        this._worksheetCommandService = new local_worksheet_command_service_1.LocalWorksheetCommandService;
@@ -6811,7 +6821,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ },
-/* 19 */
+/* 23 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -6820,8 +6830,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	    function __() { this.constructor = d; }
 	    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 	};
-	var async_to_sync_worksheet_command_service_1 = __webpack_require__(20);
-	var local_worksheet_query_service_1 = __webpack_require__(21);
+	var async_to_sync_worksheet_command_service_1 = __webpack_require__(24);
+	var local_worksheet_query_service_1 = __webpack_require__(25);
 	var LocalWorksheetCommandService = (function (_super) {
 	    __extends(LocalWorksheetCommandService, _super);
 	    function LocalWorksheetCommandService() {
@@ -6838,7 +6848,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ },
-/* 20 */
+/* 24 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -6860,7 +6870,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ },
-/* 21 */
+/* 25 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -6869,11 +6879,11 @@ return /******/ (function(modules) { // webpackBootstrap
 	    function __() { this.constructor = d; }
 	    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 	};
-	var async_to_sync_worksheet_query_service_1 = __webpack_require__(22);
+	var async_to_sync_worksheet_query_service_1 = __webpack_require__(26);
 	var Backbone = __webpack_require__(4);
-	var worksheet_definition_1 = __webpack_require__(23);
-	var worksheet_feature_set_definition_1 = __webpack_require__(24);
-	var worksheet_state_1 = __webpack_require__(30);
+	var worksheet_definition_1 = __webpack_require__(27);
+	var worksheet_feature_set_definition_1 = __webpack_require__(28);
+	var worksheet_state_1 = __webpack_require__(34);
 	var LocalWorksheetQueryService = (function (_super) {
 	    __extends(LocalWorksheetQueryService, _super);
 	    function LocalWorksheetQueryService() {
@@ -6925,7 +6935,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ },
-/* 22 */
+/* 26 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -6962,7 +6972,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ },
-/* 23 */
+/* 27 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -6972,7 +6982,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 	};
 	var Backbone = __webpack_require__(4);
-	var worksheet_feature_set_definition_1 = __webpack_require__(24);
+	var worksheet_feature_set_definition_1 = __webpack_require__(28);
 	var WorksheetDefinition = (function (_super) {
 	    __extends(WorksheetDefinition, _super);
 	    function WorksheetDefinition(attributes, options) {
@@ -7035,7 +7045,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ },
-/* 24 */
+/* 28 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -7045,7 +7055,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 	};
 	var Backbone = __webpack_require__(4);
-	var worksheet_feature_definition_1 = __webpack_require__(25);
+	var worksheet_feature_definition_1 = __webpack_require__(29);
 	var WorksheetFeatureSetDefinition = (function (_super) {
 	    __extends(WorksheetFeatureSetDefinition, _super);
 	    function WorksheetFeatureSetDefinition(attributes, options) {
@@ -7208,7 +7218,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ },
-/* 25 */
+/* 29 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -7218,8 +7228,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 	};
 	var Backbone = __webpack_require__(4);
-	var worksheet_enum_feature_definition_1 = __webpack_require__(26);
-	var worksheet_text_feature_definition_1 = __webpack_require__(29);
+	var worksheet_enum_feature_definition_1 = __webpack_require__(30);
+	var worksheet_text_feature_definition_1 = __webpack_require__(33);
 	var WorksheetFeatureDefinition = (function (_super) {
 	    __extends(WorksheetFeatureDefinition, _super);
 	    function WorksheetFeatureDefinition(attributes, options) {
@@ -7362,7 +7372,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ },
-/* 26 */
+/* 30 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -7372,7 +7382,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 	};
 	var Backbone = __webpack_require__(4);
-	var worksheet_enum_feature_value_definition_1 = __webpack_require__(27);
+	var worksheet_enum_feature_value_definition_1 = __webpack_require__(31);
 	var WorksheetEnumFeatureDefinition = (function (_super) {
 	    __extends(WorksheetEnumFeatureDefinition, _super);
 	    function WorksheetEnumFeatureDefinition(attributes, options) {
@@ -7435,7 +7445,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ },
-/* 27 */
+/* 31 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -7445,7 +7455,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 	};
 	var Backbone = __webpack_require__(4);
-	var worksheet_enum_feature_value_image_1 = __webpack_require__(28);
+	var worksheet_enum_feature_value_image_1 = __webpack_require__(32);
 	var WorksheetEnumFeatureValueDefinition = (function (_super) {
 	    __extends(WorksheetEnumFeatureValueDefinition, _super);
 	    function WorksheetEnumFeatureValueDefinition(attributes, options) {
@@ -7557,7 +7567,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ },
-/* 28 */
+/* 32 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -7676,7 +7686,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ },
-/* 29 */
+/* 33 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -7704,7 +7714,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ },
-/* 30 */
+/* 34 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -7714,7 +7724,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 	};
 	var Backbone = __webpack_require__(4);
-	var worksheet_feature_set_state_1 = __webpack_require__(31);
+	var worksheet_feature_set_state_1 = __webpack_require__(35);
 	var WorksheetState = (function (_super) {
 	    __extends(WorksheetState, _super);
 	    function WorksheetState(attributes, options) {
@@ -7808,7 +7818,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ },
-/* 31 */
+/* 35 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -7818,7 +7828,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 	};
 	var Backbone = __webpack_require__(4);
-	var worksheet_feature_state_1 = __webpack_require__(32);
+	var worksheet_feature_state_1 = __webpack_require__(36);
 	var WorksheetFeatureSetState = (function (_super) {
 	    __extends(WorksheetFeatureSetState, _super);
 	    function WorksheetFeatureSetState(attributes, options) {
@@ -7933,7 +7943,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ },
-/* 32 */
+/* 36 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -7943,8 +7953,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 	};
 	var Backbone = __webpack_require__(4);
-	var worksheet_enum_feature_state_1 = __webpack_require__(33);
-	var worksheet_text_feature_state_1 = __webpack_require__(34);
+	var worksheet_enum_feature_state_1 = __webpack_require__(37);
+	var worksheet_text_feature_state_1 = __webpack_require__(38);
 	var WorksheetFeatureState = (function (_super) {
 	    __extends(WorksheetFeatureState, _super);
 	    function WorksheetFeatureState(attributes, options) {
@@ -8033,7 +8043,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ },
-/* 33 */
+/* 37 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -8101,7 +8111,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ },
-/* 34 */
+/* 38 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -8163,7 +8173,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ },
-/* 35 */
+/* 39 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -8174,10 +8184,10 @@ return /******/ (function(modules) { // webpackBootstrap
 	};
 	var _ = __webpack_require__(3);
 	var Backbone = __webpack_require__(4);
-	var services_1 = __webpack_require__(18);
-	var worksheet_feature_set_collection_1 = __webpack_require__(36);
-	var worksheet_feature_set_1 = __webpack_require__(37);
-	var worksheet_state_1 = __webpack_require__(30);
+	var services_1 = __webpack_require__(22);
+	var worksheet_feature_set_collection_1 = __webpack_require__(40);
+	var worksheet_feature_set_1 = __webpack_require__(41);
+	var worksheet_state_1 = __webpack_require__(34);
 	var Worksheet = (function (_super) {
 	    __extends(Worksheet, _super);
 	    function Worksheet(kwds) {
@@ -8310,7 +8320,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ },
-/* 36 */
+/* 40 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -8331,7 +8341,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ },
-/* 37 */
+/* 41 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -8342,11 +8352,11 @@ return /******/ (function(modules) { // webpackBootstrap
 	};
 	var _ = __webpack_require__(3);
 	var Backbone = __webpack_require__(4);
-	var worksheet_feature_set_state_1 = __webpack_require__(31);
-	var worksheet_enum_feature_1 = __webpack_require__(38);
-	var worksheet_feature_collection_1 = __webpack_require__(42);
-	var worksheet_feature_set_collection_1 = __webpack_require__(36);
-	var worksheet_text_feature_1 = __webpack_require__(43);
+	var worksheet_feature_set_state_1 = __webpack_require__(35);
+	var worksheet_enum_feature_1 = __webpack_require__(42);
+	var worksheet_feature_collection_1 = __webpack_require__(46);
+	var worksheet_feature_set_collection_1 = __webpack_require__(40);
+	var worksheet_text_feature_1 = __webpack_require__(47);
 	var WorksheetFeatureSet = (function (_super) {
 	    __extends(WorksheetFeatureSet, _super);
 	    function WorksheetFeatureSet(definition, state) {
@@ -8450,7 +8460,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ },
-/* 38 */
+/* 42 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -8459,11 +8469,11 @@ return /******/ (function(modules) { // webpackBootstrap
 	    function __() { this.constructor = d; }
 	    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 	};
-	var worksheet_enum_feature_state_1 = __webpack_require__(33);
-	var worksheet_feature_1 = __webpack_require__(39);
-	var worksheet_feature_state_1 = __webpack_require__(32);
-	var worksheet_enum_feature_value_collection_1 = __webpack_require__(40);
-	var worksheet_enum_feature_value_1 = __webpack_require__(41);
+	var worksheet_enum_feature_state_1 = __webpack_require__(37);
+	var worksheet_feature_1 = __webpack_require__(43);
+	var worksheet_feature_state_1 = __webpack_require__(36);
+	var worksheet_enum_feature_value_collection_1 = __webpack_require__(44);
+	var worksheet_enum_feature_value_1 = __webpack_require__(45);
 	var WorksheetEnumFeature = (function (_super) {
 	    __extends(WorksheetEnumFeature, _super);
 	    function WorksheetEnumFeature(definition, state) {
@@ -8529,7 +8539,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ },
-/* 39 */
+/* 43 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -8586,7 +8596,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ },
-/* 40 */
+/* 44 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -8607,7 +8617,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ },
-/* 41 */
+/* 45 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -8662,7 +8672,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ },
-/* 42 */
+/* 46 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -8683,7 +8693,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ },
-/* 43 */
+/* 47 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -8692,9 +8702,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	    function __() { this.constructor = d; }
 	    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 	};
-	var worksheet_feature_1 = __webpack_require__(39);
-	var worksheet_feature_state_1 = __webpack_require__(32);
-	var worksheet_text_feature_state_1 = __webpack_require__(34);
+	var worksheet_feature_1 = __webpack_require__(43);
+	var worksheet_feature_state_1 = __webpack_require__(36);
+	var worksheet_text_feature_state_1 = __webpack_require__(38);
 	var WorksheetTextFeature = (function (_super) {
 	    __extends(WorksheetTextFeature, _super);
 	    function WorksheetTextFeature(definition, state) {
@@ -8744,7 +8754,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ },
-/* 44 */
+/* 48 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -8757,7 +8767,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	var application_1 = __webpack_require__(1);
 	var Backbone = __webpack_require__(4);
 	var Marionette = __webpack_require__(5);
-	__webpack_require__(45);
+	__webpack_require__(49);
 	var WorksheetAccessionNumberPickerView = (function (_super) {
 	    __extends(WorksheetAccessionNumberPickerView, _super);
 	    function WorksheetAccessionNumberPickerView(kwds) {
@@ -8769,7 +8779,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	                "keyup #newAccessionNumberInput": "onNewAccessionNumberInputKeyup"
 	            },
 	            model: new Backbone.Model(),
-	            template: _.template(__webpack_require__(49))
+	            template: _.template(__webpack_require__(51))
 	        });
 	        this._availableAccessionNumbers = kwds.availableAccessionNumbers;
 	    }
@@ -8821,22 +8831,20 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ },
-/* 45 */
+/* 49 */
 /***/ function(module, exports) {
 
 	// removed by extract-text-webpack-plugin
 
 /***/ },
-/* 46 */,
-/* 47 */,
-/* 48 */,
-/* 49 */
+/* 50 */,
+/* 51 */
 /***/ function(module, exports) {
 
 	module.exports = "<div class=\"modal-dialog\" role=\"document\" id=\"worksheet-accession-number-picker\">\r\n    <div class=\"modal-content\">\r\n        <div class=\"modal-header\">\r\n            <button type=\"button\" class=\"close\" aria-label=\"Close\" id=\"header-close-button\"><span aria-hidden=\"true\">&times;</span></button>\r\n            <h4 class=\"modal-title\">Worksheet</h4>\r\n        </div>\r\n        <div class=\"modal-body\">\r\n            <% if (availableAccessionNumbers.length > 0) { %>\r\n                <select class=\"selectpicker show-menu-arrow show-tick\" data-width=\"auto\" id=\"accessionNumberSelect\" title=\"Choose an existing worksheet\">\r\n                    <% for (var i = 0; i < availableAccessionNumbers.length; i++) { %>\r\n                        <option value=\"<%= availableAccessionNumbers[i] %>\"><%- availableAccessionNumbers[i] %></option>\r\n                    <% } %>\r\n                </select>\r\n                <br /><br />\r\n            <% } %>\r\n            <div>\r\n                <div>\r\n                    <% if (availableAccessionNumbers.length > 0) { %>\r\n                    Or enter a new accession number:\r\n                    <% } else { %>\r\n                    Enter a new accession number:\r\n                    <% } %>\r\n                </div>\r\n                <input id=\"newAccessionNumberInput\" placeholder=\"New accession number\" size=\"26\" type=\"text\" />\r\n            </div>\r\n            <br/>\r\n            <div class=\"modal-footer\">\r\n                <button type=\"button\" class=\"btn btn-default\" id=\"footer-close-button\">Cancel</button>\r\n                <button type=\"button\" class=\"btn btn-primary\" id=\"footer-ok-button\">OK</button>\r\n            </div>\r\n            <div class=\"alert alert-warning\" hidden=\"hidden\" id=\"alert\" role=\"alert\">\r\n                <strong>Please select or enter an accession number</strong>\r\n            </div>\r\n        </div>\r\n    </div>\r\n</div>\r\n"
 
 /***/ },
-/* 50 */
+/* 52 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -8846,9 +8854,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 	};
 	var application_1 = __webpack_require__(1);
-	var top_level_view_1 = __webpack_require__(14);
-	var worksheet_feature_input_event_1 = __webpack_require__(51);
-	var worksheet_two_column_view_1 = __webpack_require__(52);
+	var top_level_view_1 = __webpack_require__(18);
+	var worksheet_feature_input_event_1 = __webpack_require__(53);
+	var worksheet_two_column_view_1 = __webpack_require__(54);
 	var WorksheetTopLevelView = (function (_super) {
 	    __extends(WorksheetTopLevelView, _super);
 	    function WorksheetTopLevelView() {
@@ -8870,7 +8878,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ },
-/* 51 */
+/* 53 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -8892,7 +8900,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ },
-/* 52 */
+/* 54 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -8904,9 +8912,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	var _ = __webpack_require__(3);
 	var application_1 = __webpack_require__(1);
 	var Marionette = __webpack_require__(5);
-	var worksheet_feature_navigation_event_1 = __webpack_require__(53);
-	var worksheet_input_view_1 = __webpack_require__(54);
-	var worksheet_sidebar_view_1 = __webpack_require__(65);
+	var worksheet_feature_navigation_event_1 = __webpack_require__(55);
+	var worksheet_input_view_1 = __webpack_require__(56);
+	var worksheet_sidebar_view_1 = __webpack_require__(67);
 	var WorksheetTwoColumnView = (function (_super) {
 	    __extends(WorksheetTwoColumnView, _super);
 	    function WorksheetTwoColumnView(options) {
@@ -8915,7 +8923,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	                leftColumn: "#left-column",
 	                rightColumn: "#right-column"
 	            },
-	            template: _.template(__webpack_require__(70))
+	            template: _.template(__webpack_require__(72))
 	        }));
 	    }
 	    WorksheetTwoColumnView.prototype.initialize = function () {
@@ -8938,7 +8946,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ },
-/* 53 */
+/* 55 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -8960,14 +8968,14 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ },
-/* 54 */
+/* 56 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
-	var worksheet_enum_feature_input_view_1 = __webpack_require__(55);
-	var worksheet_enum_feature_1 = __webpack_require__(38);
-	var worksheet_text_feature_input_view_1 = __webpack_require__(62);
-	var worksheet_text_feature_1 = __webpack_require__(43);
+	var worksheet_enum_feature_input_view_1 = __webpack_require__(57);
+	var worksheet_enum_feature_1 = __webpack_require__(42);
+	var worksheet_text_feature_input_view_1 = __webpack_require__(64);
+	var worksheet_text_feature_1 = __webpack_require__(47);
 	var WorksheetInputView = (function () {
 	    function WorksheetInputView() {
 	    }
@@ -8988,7 +8996,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ },
-/* 55 */
+/* 57 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -8999,7 +9007,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	};
 	var _ = __webpack_require__(3);
 	var Marionette = __webpack_require__(5);
-	var worksheet_enum_feature_values_input_view_1 = __webpack_require__(56);
+	var worksheet_enum_feature_values_input_view_1 = __webpack_require__(58);
 	var WorksheetEnumFeatureInputView = (function (_super) {
 	    __extends(WorksheetEnumFeatureInputView, _super);
 	    function WorksheetEnumFeatureInputView(options) {
@@ -9007,7 +9015,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	            regions: {
 	                values: "#values"
 	            },
-	            template: _.template(__webpack_require__(61))
+	            template: _.template(__webpack_require__(63))
 	        }));
 	    }
 	    WorksheetEnumFeatureInputView.prototype.onRender = function () {
@@ -9022,7 +9030,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ },
-/* 56 */
+/* 58 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -9033,7 +9041,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	};
 	var _ = __webpack_require__(3);
 	var Marionette = __webpack_require__(5);
-	var worksheet_enum_feature_value_input_view_1 = __webpack_require__(57);
+	var worksheet_enum_feature_value_input_view_1 = __webpack_require__(59);
 	var WorksheetEnumFeatureValuesInputView = (function (_super) {
 	    __extends(WorksheetEnumFeatureValuesInputView, _super);
 	    function WorksheetEnumFeatureValuesInputView(options) {
@@ -9047,7 +9055,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ },
-/* 57 */
+/* 59 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -9059,8 +9067,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	var _ = __webpack_require__(3);
 	var application_1 = __webpack_require__(1);
 	var Marionette = __webpack_require__(5);
-	var worksheet_feature_input_event_1 = __webpack_require__(51);
-	__webpack_require__(58);
+	var worksheet_feature_input_event_1 = __webpack_require__(53);
+	__webpack_require__(60);
 	var WorksheetEnumFeatureValueInputView = (function (_super) {
 	    __extends(WorksheetEnumFeatureValueInputView, _super);
 	    function WorksheetEnumFeatureValueInputView(options) {
@@ -9069,7 +9077,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	                "click #feature-value-link": "onClick",
 	                "click #feature-value-checkbox": "onClick"
 	            },
-	            template: _.template(__webpack_require__(60)),
+	            template: _.template(__webpack_require__(62)),
 	        }));
 	    }
 	    WorksheetEnumFeatureValueInputView.prototype.initialize = function () {
@@ -9095,26 +9103,26 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ },
-/* 58 */
+/* 60 */
 /***/ function(module, exports) {
 
 	// removed by extract-text-webpack-plugin
 
 /***/ },
-/* 59 */,
-/* 60 */
+/* 61 */,
+/* 62 */
 /***/ function(module, exports) {
 
 	module.exports = "<div class=\"col-lg-3 col-md-4 col-xs-6 enum-feature-value\">\n    <a id=\"feature-value-link\">\n        <% if (image) { %>\n        <img class=\"img-responsive\" src=\"<%- image.thumbnailUrl %>\" alt=\"<%- displayName %>\" title=\"<%- displayName %>\">\n        <% } else { %>\n        <%- displayName %>\n        <% } %>\n    </a>\n    <input class=\"form-check-input\" id=\"feature-value-checkbox\" type=\"checkbox\" value=\"\" />&nbsp;<%- displayName %>\n</div>\n"
 
 /***/ },
-/* 61 */
+/* 63 */
 /***/ function(module, exports) {
 
 	module.exports = "<div class=\"row\" id=\"input\">\n    <div class=\"col-lg12\">\n        <h3 class=\"page-header\" style=\"text-align: center\"><%- displayName %></h3>\n    </div>\n    <div id=\"values\"></div>\n</div>\n"
 
 /***/ },
-/* 62 */
+/* 64 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -9126,13 +9134,13 @@ return /******/ (function(modules) { // webpackBootstrap
 	var _ = __webpack_require__(3);
 	var application_1 = __webpack_require__(1);
 	var Marionette = __webpack_require__(5);
-	var worksheet_feature_input_event_1 = __webpack_require__(51);
-	__webpack_require__(63);
+	var worksheet_feature_input_event_1 = __webpack_require__(53);
+	__webpack_require__(65);
 	var WorksheetTextFeatureInputView = (function (_super) {
 	    __extends(WorksheetTextFeatureInputView, _super);
 	    function WorksheetTextFeatureInputView(options) {
 	        _super.call(this, _.extend(options, {
-	            template: _.template(__webpack_require__(64))
+	            template: _.template(__webpack_require__(66))
 	        }));
 	        this.bindings = {
 	            "#text": "text"
@@ -9159,7 +9167,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ },
-/* 63 */
+/* 65 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;// Backbone.Stickit v0.9.2, MIT Licensed
@@ -9857,13 +9865,13 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ },
-/* 64 */
+/* 66 */
 /***/ function(module, exports) {
 
 	module.exports = "<div class=\"row\" id=\"input\">\n    <div class=\"col-lg12\">\n        <h3 class=\"page-header\" style=\"text-align: center\"><%- displayName %></h3>\n    </div>\n    <form class=\"form-horizontal\">\n        <div class=\"form-group\">\n            <label for=\"text\" class=\"col-sm-offset-2 col-sm-2 control-label\">Text:</label>\n            <div class=\"col-sm-6 \">\n                <input type=\"text\" class=\"form-control\" id=\"text\" placeholder=\"Text\">\n            </div>\n        </div>\n    </form>\n</div>\n"
 
 /***/ },
-/* 65 */
+/* 67 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -9874,8 +9882,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	};
 	var _ = __webpack_require__(3);
 	var Marionette = __webpack_require__(5);
-	var worksheet_navigation_view_1 = __webpack_require__(66);
-	var worksheet_output_view_1 = __webpack_require__(67);
+	var worksheet_navigation_view_1 = __webpack_require__(68);
+	var worksheet_output_view_1 = __webpack_require__(69);
 	var WorksheetSidebarView = (function (_super) {
 	    __extends(WorksheetSidebarView, _super);
 	    function WorksheetSidebarView(options) {
@@ -9884,7 +9892,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	                navigation: "#navigation",
 	                output: "#output"
 	            },
-	            template: _.template(__webpack_require__(69))
+	            template: _.template(__webpack_require__(71))
 	        }));
 	    }
 	    WorksheetSidebarView.prototype.onBeforeShow = function () {
@@ -9900,7 +9908,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ },
-/* 66 */
+/* 68 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -9912,8 +9920,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	var _ = __webpack_require__(3);
 	var application_1 = __webpack_require__(1);
 	var Marionette = __webpack_require__(5);
-	var worksheet_feature_input_event_1 = __webpack_require__(51);
-	var worksheet_feature_navigation_event_1 = __webpack_require__(53);
+	var worksheet_feature_input_event_1 = __webpack_require__(53);
+	var worksheet_feature_navigation_event_1 = __webpack_require__(55);
 	var WorksheetNavigationView = (function (_super) {
 	    __extends(WorksheetNavigationView, _super);
 	    function WorksheetNavigationView(options) {
@@ -10000,7 +10008,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ },
-/* 67 */
+/* 69 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -10012,12 +10020,12 @@ return /******/ (function(modules) { // webpackBootstrap
 	var _ = __webpack_require__(3);
 	var application_1 = __webpack_require__(1);
 	var Marionette = __webpack_require__(5);
-	var worksheet_feature_input_event_1 = __webpack_require__(51);
+	var worksheet_feature_input_event_1 = __webpack_require__(53);
 	var WorksheetOutputView = (function (_super) {
 	    __extends(WorksheetOutputView, _super);
 	    function WorksheetOutputView(options) {
 	        _super.call(this, _.extend(options, {
-	            template: _.template(__webpack_require__(68))
+	            template: _.template(__webpack_require__(70))
 	        }));
 	    }
 	    WorksheetOutputView.prototype.initialize = function () {
@@ -10079,25 +10087,25 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ },
-/* 68 */
+/* 70 */
 /***/ function(module, exports) {
 
 	module.exports = "<% if (output) { %>\r\n    <% for (var name in output) { _.each(output[name], function(value) { %>\r\n    <div class=\"row\">\r\n        <div class=\"col-md-4\" id=\"feature-name\"><%- name %></div>\r\n        <div class=\"col-md-8\" id=\"feature-value\"><%- value %></div>\r\n    </div>\r\n    <% }); } %>\r\n<% } else { %>\r\nSelect values on the right to generate a description.\r\n<% } %>\r\n"
 
 /***/ },
-/* 69 */
+/* 71 */
 /***/ function(module, exports) {
 
 	module.exports = "<div class=\"panel-group\" role=\"tablist\" aria-multiselectable=\"true\">\r\n    <div class=\"panel panel-default\">\r\n        <div class=\"panel-heading\" role=\"tab\" id=\"headingOne\">\r\n            <h4 class=\"panel-title\">\r\n                <a role=\"button\" data-toggle=\"collapse\" href=\"#collapseOne\" aria-expanded=\"true\" aria-controls=\"collapseOne\">\r\n                    Accession number: <%- accessionNumber %>\r\n                </a>\r\n            </h4>\r\n        </div>\r\n        <div id=\"collapseOne\" class=\"panel-collapse collapse in\" role=\"tabpanel\" aria-labelledby=\"headingOne\">\r\n            <div class=\"panel-body\" id=\"output\">\r\n            </div>\r\n        </div>\r\n    </div>\r\n    <div class=\"panel panel-default\">\r\n        <div class=\"panel-heading\" role=\"tab\" id=\"headingTwo\">\r\n            <h4 class=\"panel-title\">\r\n                <a class=\"collapsed\" role=\"button\" data-toggle=\"collapse\" href=\"#collapseTwo\" aria-expanded=\"true\" aria-controls=\"collapseTwo\">\r\n                    Features\r\n                </a>\r\n            </h4>\r\n        </div>\r\n        <div id=\"collapseTwo\" class=\"panel-collapse collapse in\" role=\"tabpanel\" aria-labelledby=\"headingTwo\">\r\n            <div class=\"panel-body\" id=\"navigation\">\r\n            </div>\r\n        </div>\r\n    </div>\r\n</div>\r\n"
 
 /***/ },
-/* 70 */
+/* 72 */
 /***/ function(module, exports) {
 
 	module.exports = "<div class=\"container-fluid\" id=\"worksheet\" style=\"height: 100%\">\n    <div class=\"row\" style=\"height: 100%\">\n        <div class=\"col-md-4\" id=\"left-column\" style=\"height: 100%\"></div>\n        <div class=\"col-md-8\" id=\"right-column\"></div>\n    </div>\n</div>\n"
 
 /***/ },
-/* 71 */
+/* 73 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function($) {"use strict";
@@ -10134,7 +10142,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)))
 
 /***/ },
-/* 72 */
+/* 74 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(_) {// Backbone.Validation v0.7.1
@@ -10148,14 +10156,14 @@ return /******/ (function(modules) { // webpackBootstrap
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
 
 /***/ },
-/* 73 */
+/* 75 */
 /***/ function(module, exports) {
 
 	// removed by extract-text-webpack-plugin
 
 /***/ },
-/* 74 */,
-/* 75 */
+/* 76 */,
+/* 77 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
@@ -10169,14 +10177,14 @@ return /******/ (function(modules) { // webpackBootstrap
 	//# sourceMappingURL=bootstrap-select.js.map
 
 /***/ },
-/* 76 */
+/* 78 */
 /***/ function(module, exports) {
 
 	// removed by extract-text-webpack-plugin
 
 /***/ },
-/* 77 */,
-/* 78 */
+/* 79 */,
+/* 80 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(jQuery) {!function(a,b,c,d){"use strict";var e="treeview",f={};f.settings={injectStyle:!0,levels:2,expandIcon:"glyphicon glyphicon-plus",collapseIcon:"glyphicon glyphicon-minus",emptyIcon:"glyphicon",nodeIcon:"",selectedIcon:"",checkedIcon:"glyphicon glyphicon-check",uncheckedIcon:"glyphicon glyphicon-unchecked",color:d,backColor:d,borderColor:d,onhoverColor:"#F5F5F5",selectedColor:"#FFFFFF",selectedBackColor:"#428bca",searchResultColor:"#D9534F",searchResultBackColor:d,enableLinks:!1,highlightSelected:!0,highlightSearchResults:!0,showBorder:!0,showIcon:!0,showCheckbox:!1,showTags:!1,multiSelect:!1,onNodeChecked:d,onNodeCollapsed:d,onNodeDisabled:d,onNodeEnabled:d,onNodeExpanded:d,onNodeSelected:d,onNodeUnchecked:d,onNodeUnselected:d,onSearchComplete:d,onSearchCleared:d},f.options={silent:!1,ignoreChildren:!1},f.searchOptions={ignoreCase:!0,exactMatch:!1,revealResults:!0};var g=function(b,c){return this.$element=a(b),this.elementId=b.id,this.styleId=this.elementId+"-style",this.init(c),{options:this.options,init:a.proxy(this.init,this),remove:a.proxy(this.remove,this),getNode:a.proxy(this.getNode,this),getParent:a.proxy(this.getParent,this),getSiblings:a.proxy(this.getSiblings,this),getSelected:a.proxy(this.getSelected,this),getUnselected:a.proxy(this.getUnselected,this),getExpanded:a.proxy(this.getExpanded,this),getCollapsed:a.proxy(this.getCollapsed,this),getChecked:a.proxy(this.getChecked,this),getUnchecked:a.proxy(this.getUnchecked,this),getDisabled:a.proxy(this.getDisabled,this),getEnabled:a.proxy(this.getEnabled,this),selectNode:a.proxy(this.selectNode,this),unselectNode:a.proxy(this.unselectNode,this),toggleNodeSelected:a.proxy(this.toggleNodeSelected,this),collapseAll:a.proxy(this.collapseAll,this),collapseNode:a.proxy(this.collapseNode,this),expandAll:a.proxy(this.expandAll,this),expandNode:a.proxy(this.expandNode,this),toggleNodeExpanded:a.proxy(this.toggleNodeExpanded,this),revealNode:a.proxy(this.revealNode,this),checkAll:a.proxy(this.checkAll,this),checkNode:a.proxy(this.checkNode,this),uncheckAll:a.proxy(this.uncheckAll,this),uncheckNode:a.proxy(this.uncheckNode,this),toggleNodeChecked:a.proxy(this.toggleNodeChecked,this),disableAll:a.proxy(this.disableAll,this),disableNode:a.proxy(this.disableNode,this),enableAll:a.proxy(this.enableAll,this),enableNode:a.proxy(this.enableNode,this),toggleNodeDisabled:a.proxy(this.toggleNodeDisabled,this),search:a.proxy(this.search,this),clearSearch:a.proxy(this.clearSearch,this)}};g.prototype.init=function(b){this.tree=[],this.nodes=[],b.data&&("string"==typeof b.data&&(b.data=a.parseJSON(b.data)),this.tree=a.extend(!0,[],b.data),delete b.data),this.options=a.extend({},f.settings,b),this.destroy(),this.subscribeEvents(),this.setInitialStates({nodes:this.tree},0),this.render()},g.prototype.remove=function(){this.destroy(),a.removeData(this,e),a("#"+this.styleId).remove()},g.prototype.destroy=function(){this.initialized&&(this.$wrapper.remove(),this.$wrapper=null,this.unsubscribeEvents(),this.initialized=!1)},g.prototype.unsubscribeEvents=function(){this.$element.off("click"),this.$element.off("nodeChecked"),this.$element.off("nodeCollapsed"),this.$element.off("nodeDisabled"),this.$element.off("nodeEnabled"),this.$element.off("nodeExpanded"),this.$element.off("nodeSelected"),this.$element.off("nodeUnchecked"),this.$element.off("nodeUnselected"),this.$element.off("searchComplete"),this.$element.off("searchCleared")},g.prototype.subscribeEvents=function(){this.unsubscribeEvents(),this.$element.on("click",a.proxy(this.clickHandler,this)),"function"==typeof this.options.onNodeChecked&&this.$element.on("nodeChecked",this.options.onNodeChecked),"function"==typeof this.options.onNodeCollapsed&&this.$element.on("nodeCollapsed",this.options.onNodeCollapsed),"function"==typeof this.options.onNodeDisabled&&this.$element.on("nodeDisabled",this.options.onNodeDisabled),"function"==typeof this.options.onNodeEnabled&&this.$element.on("nodeEnabled",this.options.onNodeEnabled),"function"==typeof this.options.onNodeExpanded&&this.$element.on("nodeExpanded",this.options.onNodeExpanded),"function"==typeof this.options.onNodeSelected&&this.$element.on("nodeSelected",this.options.onNodeSelected),"function"==typeof this.options.onNodeUnchecked&&this.$element.on("nodeUnchecked",this.options.onNodeUnchecked),"function"==typeof this.options.onNodeUnselected&&this.$element.on("nodeUnselected",this.options.onNodeUnselected),"function"==typeof this.options.onSearchComplete&&this.$element.on("searchComplete",this.options.onSearchComplete),"function"==typeof this.options.onSearchCleared&&this.$element.on("searchCleared",this.options.onSearchCleared)},g.prototype.setInitialStates=function(b,c){if(b.nodes){c+=1;var d=b,e=this;a.each(b.nodes,function(a,b){b.nodeId=e.nodes.length,b.parentId=d.nodeId,b.hasOwnProperty("selectable")||(b.selectable=!0),b.state=b.state||{},b.state.hasOwnProperty("checked")||(b.state.checked=!1),b.state.hasOwnProperty("disabled")||(b.state.disabled=!1),b.state.hasOwnProperty("expanded")||(!b.state.disabled&&c<e.options.levels&&b.nodes&&b.nodes.length>0?b.state.expanded=!0:b.state.expanded=!1),b.state.hasOwnProperty("selected")||(b.state.selected=!1),e.nodes.push(b),b.nodes&&e.setInitialStates(b,c)})}},g.prototype.clickHandler=function(b){this.options.enableLinks||b.preventDefault();var c=a(b.target),d=this.findNode(c);if(d&&!d.state.disabled){var e=c.attr("class")?c.attr("class").split(" "):[];-1!==e.indexOf("expand-icon")?(this.toggleExpandedState(d,f.options),this.render()):-1!==e.indexOf("check-icon")?(this.toggleCheckedState(d,f.options),this.render()):(d.selectable?this.toggleSelectedState(d,f.options):this.toggleExpandedState(d,f.options),this.render())}},g.prototype.findNode=function(a){var b=a.closest("li.list-group-item").attr("data-nodeid"),c=this.nodes[b];return c||console.log("Error: node does not exist"),c},g.prototype.toggleExpandedState=function(a,b){a&&this.setExpandedState(a,!a.state.expanded,b)},g.prototype.setExpandedState=function(b,c,d){c!==b.state.expanded&&(c&&b.nodes?(b.state.expanded=!0,d.silent||this.$element.trigger("nodeExpanded",a.extend(!0,{},b))):c||(b.state.expanded=!1,d.silent||this.$element.trigger("nodeCollapsed",a.extend(!0,{},b)),b.nodes&&!d.ignoreChildren&&a.each(b.nodes,a.proxy(function(a,b){this.setExpandedState(b,!1,d)},this))))},g.prototype.toggleSelectedState=function(a,b){a&&this.setSelectedState(a,!a.state.selected,b)},g.prototype.setSelectedState=function(b,c,d){c!==b.state.selected&&(c?(this.options.multiSelect||a.each(this.findNodes("true","g","state.selected"),a.proxy(function(a,b){this.setSelectedState(b,!1,d)},this)),b.state.selected=!0,d.silent||this.$element.trigger("nodeSelected",a.extend(!0,{},b))):(b.state.selected=!1,d.silent||this.$element.trigger("nodeUnselected",a.extend(!0,{},b))))},g.prototype.toggleCheckedState=function(a,b){a&&this.setCheckedState(a,!a.state.checked,b)},g.prototype.setCheckedState=function(b,c,d){c!==b.state.checked&&(c?(b.state.checked=!0,d.silent||this.$element.trigger("nodeChecked",a.extend(!0,{},b))):(b.state.checked=!1,d.silent||this.$element.trigger("nodeUnchecked",a.extend(!0,{},b))))},g.prototype.setDisabledState=function(b,c,d){c!==b.state.disabled&&(c?(b.state.disabled=!0,this.setExpandedState(b,!1,d),this.setSelectedState(b,!1,d),this.setCheckedState(b,!1,d),d.silent||this.$element.trigger("nodeDisabled",a.extend(!0,{},b))):(b.state.disabled=!1,d.silent||this.$element.trigger("nodeEnabled",a.extend(!0,{},b))))},g.prototype.render=function(){this.initialized||(this.$element.addClass(e),this.$wrapper=a(this.template.list),this.injectStyle(),this.initialized=!0),this.$element.empty().append(this.$wrapper.empty()),this.buildTree(this.tree,0)},g.prototype.buildTree=function(b,c){if(b){c+=1;var d=this;a.each(b,function(b,e){for(var f=a(d.template.item).addClass("node-"+d.elementId).addClass(e.state.checked?"node-checked":"").addClass(e.state.disabled?"node-disabled":"").addClass(e.state.selected?"node-selected":"").addClass(e.searchResult?"search-result":"").attr("data-nodeid",e.nodeId).attr("style",d.buildStyleOverride(e)),g=0;c-1>g;g++)f.append(d.template.indent);var h=[];if(e.nodes?(h.push("expand-icon"),h.push(e.state.expanded?d.options.collapseIcon:d.options.expandIcon)):h.push(d.options.emptyIcon),f.append(a(d.template.icon).addClass(h.join(" "))),d.options.showIcon){var h=["node-icon"];h.push(e.icon||d.options.nodeIcon),e.state.selected&&(h.pop(),h.push(e.selectedIcon||d.options.selectedIcon||e.icon||d.options.nodeIcon)),f.append(a(d.template.icon).addClass(h.join(" ")))}if(d.options.showCheckbox){var h=["check-icon"];h.push(e.state.checked?d.options.checkedIcon:d.options.uncheckedIcon),f.append(a(d.template.icon).addClass(h.join(" ")))}return f.append(d.options.enableLinks?a(d.template.link).attr("href",e.href).append(e.text):e.text),d.options.showTags&&e.tags&&a.each(e.tags,function(b,c){f.append(a(d.template.badge).append(c))}),d.$wrapper.append(f),e.nodes&&e.state.expanded&&!e.state.disabled?d.buildTree(e.nodes,c):void 0})}},g.prototype.buildStyleOverride=function(a){if(a.state.disabled)return"";var b=a.color,c=a.backColor;return this.options.highlightSelected&&a.state.selected&&(this.options.selectedColor&&(b=this.options.selectedColor),this.options.selectedBackColor&&(c=this.options.selectedBackColor)),this.options.highlightSearchResults&&a.searchResult&&!a.state.disabled&&(this.options.searchResultColor&&(b=this.options.searchResultColor),this.options.searchResultBackColor&&(c=this.options.searchResultBackColor)),"color:"+b+";background-color:"+c+";"},g.prototype.injectStyle=function(){this.options.injectStyle&&!c.getElementById(this.styleId)&&a('<style type="text/css" id="'+this.styleId+'"> '+this.buildStyle()+" </style>").appendTo("head")},g.prototype.buildStyle=function(){var a=".node-"+this.elementId+"{";return this.options.color&&(a+="color:"+this.options.color+";"),this.options.backColor&&(a+="background-color:"+this.options.backColor+";"),this.options.showBorder?this.options.borderColor&&(a+="border:1px solid "+this.options.borderColor+";"):a+="border:none;",a+="}",this.options.onhoverColor&&(a+=".node-"+this.elementId+":not(.node-disabled):hover{background-color:"+this.options.onhoverColor+";}"),this.css+a},g.prototype.template={list:'<ul class="list-group"></ul>',item:'<li class="list-group-item"></li>',indent:'<span class="indent"></span>',icon:'<span class="icon"></span>',link:'<a href="#" style="color:inherit;"></a>',badge:'<span class="badge"></span>'},g.prototype.css=".treeview .list-group-item{cursor:pointer}.treeview span.indent{margin-left:10px;margin-right:10px}.treeview span.icon{width:12px;margin-right:5px}.treeview .node-disabled{color:silver;cursor:not-allowed}",g.prototype.getNode=function(a){return this.nodes[a]},g.prototype.getParent=function(a){var b=this.identifyNode(a);return this.nodes[b.parentId]},g.prototype.getSiblings=function(a){var b=this.identifyNode(a),c=this.getParent(b),d=c?c.nodes:this.tree;return d.filter(function(a){return a.nodeId!==b.nodeId})},g.prototype.getSelected=function(){return this.findNodes("true","g","state.selected")},g.prototype.getUnselected=function(){return this.findNodes("false","g","state.selected")},g.prototype.getExpanded=function(){return this.findNodes("true","g","state.expanded")},g.prototype.getCollapsed=function(){return this.findNodes("false","g","state.expanded")},g.prototype.getChecked=function(){return this.findNodes("true","g","state.checked")},g.prototype.getUnchecked=function(){return this.findNodes("false","g","state.checked")},g.prototype.getDisabled=function(){return this.findNodes("true","g","state.disabled")},g.prototype.getEnabled=function(){return this.findNodes("false","g","state.disabled")},g.prototype.selectNode=function(b,c){this.forEachIdentifier(b,c,a.proxy(function(a,b){this.setSelectedState(a,!0,b)},this)),this.render()},g.prototype.unselectNode=function(b,c){this.forEachIdentifier(b,c,a.proxy(function(a,b){this.setSelectedState(a,!1,b)},this)),this.render()},g.prototype.toggleNodeSelected=function(b,c){this.forEachIdentifier(b,c,a.proxy(function(a,b){this.toggleSelectedState(a,b)},this)),this.render()},g.prototype.collapseAll=function(b){var c=this.findNodes("true","g","state.expanded");this.forEachIdentifier(c,b,a.proxy(function(a,b){this.setExpandedState(a,!1,b)},this)),this.render()},g.prototype.collapseNode=function(b,c){this.forEachIdentifier(b,c,a.proxy(function(a,b){this.setExpandedState(a,!1,b)},this)),this.render()},g.prototype.expandAll=function(b){if(b=a.extend({},f.options,b),b&&b.levels)this.expandLevels(this.tree,b.levels,b);else{var c=this.findNodes("false","g","state.expanded");this.forEachIdentifier(c,b,a.proxy(function(a,b){this.setExpandedState(a,!0,b)},this))}this.render()},g.prototype.expandNode=function(b,c){this.forEachIdentifier(b,c,a.proxy(function(a,b){this.setExpandedState(a,!0,b),a.nodes&&b&&b.levels&&this.expandLevels(a.nodes,b.levels-1,b)},this)),this.render()},g.prototype.expandLevels=function(b,c,d){d=a.extend({},f.options,d),a.each(b,a.proxy(function(a,b){this.setExpandedState(b,c>0?!0:!1,d),b.nodes&&this.expandLevels(b.nodes,c-1,d)},this))},g.prototype.revealNode=function(b,c){this.forEachIdentifier(b,c,a.proxy(function(a,b){for(var c=this.getParent(a);c;)this.setExpandedState(c,!0,b),c=this.getParent(c)},this)),this.render()},g.prototype.toggleNodeExpanded=function(b,c){this.forEachIdentifier(b,c,a.proxy(function(a,b){this.toggleExpandedState(a,b)},this)),this.render()},g.prototype.checkAll=function(b){var c=this.findNodes("false","g","state.checked");this.forEachIdentifier(c,b,a.proxy(function(a,b){this.setCheckedState(a,!0,b)},this)),this.render()},g.prototype.checkNode=function(b,c){this.forEachIdentifier(b,c,a.proxy(function(a,b){this.setCheckedState(a,!0,b)},this)),this.render()},g.prototype.uncheckAll=function(b){var c=this.findNodes("true","g","state.checked");this.forEachIdentifier(c,b,a.proxy(function(a,b){this.setCheckedState(a,!1,b)},this)),this.render()},g.prototype.uncheckNode=function(b,c){this.forEachIdentifier(b,c,a.proxy(function(a,b){this.setCheckedState(a,!1,b)},this)),this.render()},g.prototype.toggleNodeChecked=function(b,c){this.forEachIdentifier(b,c,a.proxy(function(a,b){this.toggleCheckedState(a,b)},this)),this.render()},g.prototype.disableAll=function(b){var c=this.findNodes("false","g","state.disabled");this.forEachIdentifier(c,b,a.proxy(function(a,b){this.setDisabledState(a,!0,b)},this)),this.render()},g.prototype.disableNode=function(b,c){this.forEachIdentifier(b,c,a.proxy(function(a,b){this.setDisabledState(a,!0,b)},this)),this.render()},g.prototype.enableAll=function(b){var c=this.findNodes("true","g","state.disabled");this.forEachIdentifier(c,b,a.proxy(function(a,b){this.setDisabledState(a,!1,b)},this)),this.render()},g.prototype.enableNode=function(b,c){this.forEachIdentifier(b,c,a.proxy(function(a,b){this.setDisabledState(a,!1,b)},this)),this.render()},g.prototype.toggleNodeDisabled=function(b,c){this.forEachIdentifier(b,c,a.proxy(function(a,b){this.setDisabledState(a,!a.state.disabled,b)},this)),this.render()},g.prototype.forEachIdentifier=function(b,c,d){c=a.extend({},f.options,c),b instanceof Array||(b=[b]),a.each(b,a.proxy(function(a,b){d(this.identifyNode(b),c)},this))},g.prototype.identifyNode=function(a){return"number"==typeof a?this.nodes[a]:a},g.prototype.search=function(b,c){c=a.extend({},f.searchOptions,c),this.clearSearch({render:!1});var d=[];if(b&&b.length>0){c.exactMatch&&(b="^"+b+"$");var e="g";c.ignoreCase&&(e+="i"),d=this.findNodes(b,e),a.each(d,function(a,b){b.searchResult=!0})}return c.revealResults?this.revealNode(d):this.render(),this.$element.trigger("searchComplete",a.extend(!0,{},d)),d},g.prototype.clearSearch=function(b){b=a.extend({},{render:!0},b);var c=a.each(this.findNodes("true","g","searchResult"),function(a,b){b.searchResult=!1});b.render&&this.render(),this.$element.trigger("searchCleared",a.extend(!0,{},c))},g.prototype.findNodes=function(b,c,d){c=c||"g",d=d||"text";var e=this;return a.grep(this.nodes,function(a){var f=e.getNodeValue(a,d);return"string"==typeof f?f.match(new RegExp(b,c)):void 0})},g.prototype.getNodeValue=function(a,b){var c=b.indexOf(".");if(c>0){var e=a[b.substring(0,c)],f=b.substring(c+1,b.length);return this.getNodeValue(e,f)}return a.hasOwnProperty(b)?a[b].toString():d};var h=function(a){b.console&&b.console.error(a)};a.fn[e]=function(b,c){var d;return this.each(function(){var f=a.data(this,e);"string"==typeof b?f?a.isFunction(f[b])&&"_"!==b.charAt(0)?(c instanceof Array||(c=[c]),d=f[b].apply(f,c)):h("No such method : "+b):h("Not initialized, can not call method : "+b):"boolean"==typeof b?d=f:a.data(this,e,new g(this,a.extend(!0,{},b)))}),d||this}}(jQuery,window,document);
