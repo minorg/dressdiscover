@@ -57,6 +57,8 @@
     <TypeScriptCompile Include="src\dressdiscover\api\models\worksheet\worksheet_text_feature_definition.ts" />
     <TypeScriptCompile Include="src\dressdiscover\api\models\worksheet\worksheet_text_feature_state.ts" />
     <TypeScriptCompile Include="src\dressdiscover\api\services\io_exception.ts" />
+    <TypeScriptCompile Include="src\dressdiscover\api\services\worksheet\async_to_sync_worksheet_command_service.ts" />
+    <TypeScriptCompile Include="src\dressdiscover\api\services\worksheet\async_to_sync_worksheet_query_service.ts" />
     <TypeScriptCompile Include="src\dressdiscover\api\services\worksheet\worksheet_command_service.ts" />
     <TypeScriptCompile Include="src\dressdiscover\api\services\worksheet\worksheet_query_service.ts" />
     <TypeScriptCompile Include="src\dressdiscover\gui\application.ts" />
