@@ -46,7 +46,7 @@ export class WorksheetEnumFeatureValueImage extends Backbone.Model {
 
     validationError: any;
 
-    constructor(attributes?: {rights: string, thumbnailUrl: URL, fullSizeUrl?: URL}, options?: any) {
+    constructor(attributes?: {rights: string, thumbnailUrl: string, fullSizeUrl?: string}, options?: any) {
         super(attributes, options);
     }
 
@@ -58,19 +58,19 @@ export class WorksheetEnumFeatureValueImage extends Backbone.Model {
         this.set('rights', value, { validate: true });
     }
 
-    get thumbnailUrl(): URL {
+    get thumbnailUrl(): string {
         return this.get('thumbnailUrl');
     }
 
-    set thumbnailUrl(value: URL) {
+    set thumbnailUrl(value: string) {
         this.set('thumbnailUrl', value, { validate: true });
     }
 
-    get fullSizeUrl(): URL {
+    get fullSizeUrl(): string {
         return this.get('fullSizeUrl');
     }
 
-    set fullSizeUrl(value: URL) {
+    set fullSizeUrl(value: string) {
         this.set('fullSizeUrl', value, { validate: true });
     }
 
@@ -80,9 +80,9 @@ export class WorksheetEnumFeatureValueImage extends Backbone.Model {
             if (fieldName == "rights") {
                 out.attributes.rights = json[fieldName];
             } else if (fieldName == "thumbnail_url") {
-                out.attributes.thumbnailUrl = new URL(json[fieldName]);
+                out.attributes.thumbnailUrl = json[fieldName];
             } else if (fieldName == "full_size_url") {
-                out.attributes.fullSizeUrl = new URL(json[fieldName]);
+                out.attributes.fullSizeUrl = json[fieldName];
             }
         }
         if (!out.isValid(true)) {
@@ -94,9 +94,9 @@ export class WorksheetEnumFeatureValueImage extends Backbone.Model {
     toThryftJSON(): any {
         var json: {[index: string]: any} = {};
         json["rights"] = this.rights;
-        json["thumbnail_url"] = this.thumbnailUrl.toString();
+        json["thumbnail_url"] = this.thumbnailUrl;
         if (this.has("fullSizeUrl")) {
-            json["full_size_url"] = this.fullSizeUrl.toString();
+            json["full_size_url"] = this.fullSizeUrl;
         }
         return json;
     }
