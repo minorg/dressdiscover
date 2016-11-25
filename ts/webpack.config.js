@@ -40,18 +40,22 @@ module.exports = {
   },
   plugins: [
     new CopyWebpackPlugin([
-    {
-      from: './assets',
-      to: './'
-    },
-    {
-        from: './node_modules/jquery/dist/jquery.min.js',
-        to: './js/jquery.min.js'
-    },
-    {
-        from: './src/index.html',
-        to: './index.html'
-    }
+        {
+          from: './assets',
+          to: './'
+        },
+        {
+            from: './node_modules/bootstrap/dist/js/bootstrap.min.js',
+            to: './js/'
+        },
+        {
+            from: './node_modules/jquery/dist/jquery.min.js',
+            to: './js/'
+        },
+        {
+            from: './src/index.html',
+            to: './'
+        }
     ]),
     new ExtractTextPlugin('./css/dressdiscover.css'),
     new webpack.ProvidePlugin({
