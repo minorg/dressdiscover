@@ -1,4 +1,4 @@
-﻿import { AsyncToSyncWorksheetQueryService } from "dressdiscover/api/services/worksheet/worksheet_query_service";
+﻿import { AsyncToSyncWorksheetQueryService } from "dressdiscover/api/services/worksheet/async_to_sync_worksheet_query_service";
 import * as Backbone from "backbone";
 import { WorksheetDefinition } from "dressdiscover/api/models/worksheet/worksheet_definition";
 import { WorksheetFeatureSetDefinition } from "dressdiscover/api/models/worksheet/worksheet_feature_set_definition";

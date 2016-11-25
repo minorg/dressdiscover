@@ -18173,7 +18173,7 @@
 	    function __() { this.constructor = d; }
 	    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 	};
-	var worksheet_command_service_1 = __webpack_require__(20);
+	var async_to_sync_worksheet_command_service_1 = __webpack_require__(20);
 	var local_worksheet_query_service_1 = __webpack_require__(21);
 	var LocalWorksheetCommandService = (function (_super) {
 	    __extends(LocalWorksheetCommandService, _super);
@@ -18186,74 +18186,15 @@
 	        localStorage.setItem(local_worksheet_query_service_1.LocalWorksheetQueryService.getWorksheetStateItemKey(kwds.state.accessionNumber), jsonString);
 	    };
 	    return LocalWorksheetCommandService;
-	}(worksheet_command_service_1.AsyncToSyncWorksheetCommandService));
+	}(async_to_sync_worksheet_command_service_1.AsyncToSyncWorksheetCommandService));
 	exports.LocalWorksheetCommandService = LocalWorksheetCommandService;
 
 
 /***/ },
 /* 20 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ function(module, exports) {
 
-	/* WEBPACK VAR INJECTION */(function($) {"use strict";
-	var JsonRpcWorksheetCommandService = (function () {
-	    function JsonRpcWorksheetCommandService() {
-	    }
-	    JsonRpcWorksheetCommandService.prototype.putWorksheetStateAsync = function (kwds) {
-	        var __jsonrpc_params = {};
-	        __jsonrpc_params["state"] = kwds.state.toThryftJSON();
-	        $.ajax({
-	            async: true,
-	            data: JSON.stringify({
-	                jsonrpc: '2.0',
-	                method: 'put_worksheet_state',
-	                params: __jsonrpc_params,
-	                id: '1234'
-	            }),
-	            dataType: 'json',
-	            error: function (jqXHR, textStatus, errorThrown) {
-	                kwds.error(jqXHR, textStatus, errorThrown);
-	            },
-	            mimeType: 'application/json',
-	            type: 'POST',
-	            success: function (__response) {
-	                if (typeof __response.result !== "undefined") {
-	                    kwds.success();
-	                }
-	                else {
-	                    kwds.error(null, __response.error.message, null);
-	                }
-	            },
-	            url: '/api/jsonrpc/worksheet_command',
-	        });
-	    };
-	    JsonRpcWorksheetCommandService.prototype.putWorksheetStateSync = function (kwds) {
-	        var __jsonrpc_params = {};
-	        __jsonrpc_params["state"] = kwds.state.toThryftJSON();
-	        $.ajax({
-	            async: false,
-	            data: JSON.stringify({
-	                jsonrpc: '2.0',
-	                method: 'put_worksheet_state',
-	                params: __jsonrpc_params,
-	                id: '1234'
-	            }),
-	            dataType: 'json',
-	            error: function (jqXHR, textStatus, errorThrown) {
-	                throw new Error(errorThrown);
-	            },
-	            mimeType: 'application/json',
-	            type: 'POST',
-	            success: function (__response) {
-	                if (typeof __response.result === "undefined") {
-	                    throw new Error(__response.error);
-	                }
-	            },
-	            url: '/api/jsonrpc/worksheet_command',
-	        });
-	    };
-	    return JsonRpcWorksheetCommandService;
-	}());
-	exports.JsonRpcWorksheetCommandService = JsonRpcWorksheetCommandService;
+	"use strict";
 	var AsyncToSyncWorksheetCommandService = (function () {
 	    function AsyncToSyncWorksheetCommandService() {
 	    }
@@ -18269,8 +18210,7 @@
 	    return AsyncToSyncWorksheetCommandService;
 	}());
 	exports.AsyncToSyncWorksheetCommandService = AsyncToSyncWorksheetCommandService;
-	
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)))
+
 
 /***/ },
 /* 21 */
@@ -18282,7 +18222,7 @@
 	    function __() { this.constructor = d; }
 	    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 	};
-	var worksheet_query_service_1 = __webpack_require__(22);
+	var async_to_sync_worksheet_query_service_1 = __webpack_require__(22);
 	var Backbone = __webpack_require__(4);
 	var worksheet_definition_1 = __webpack_require__(23);
 	var worksheet_feature_set_definition_1 = __webpack_require__(24);
@@ -18333,193 +18273,15 @@
 	    };
 	    LocalWorksheetQueryService._WORKSHEET_ITEM_KEY_PREFIX = "worksheet/state/";
 	    return LocalWorksheetQueryService;
-	}(worksheet_query_service_1.AsyncToSyncWorksheetQueryService));
+	}(async_to_sync_worksheet_query_service_1.AsyncToSyncWorksheetQueryService));
 	exports.LocalWorksheetQueryService = LocalWorksheetQueryService;
 
 
 /***/ },
 /* 22 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ function(module, exports) {
 
-	/* WEBPACK VAR INJECTION */(function($) {"use strict";
-	var worksheet_definition_1 = __webpack_require__(23);
-	var worksheet_state_1 = __webpack_require__(30);
-	var JsonRpcWorksheetQueryService = (function () {
-	    function JsonRpcWorksheetQueryService() {
-	    }
-	    JsonRpcWorksheetQueryService.prototype.getWorksheetAccessionNumbersAsync = function (kwds) {
-	        $.ajax({
-	            async: true,
-	            data: JSON.stringify({
-	                jsonrpc: '2.0',
-	                method: 'get_worksheet_accession_numbers',
-	                params: {},
-	                id: '1234'
-	            }),
-	            dataType: 'json',
-	            error: function (jqXHR, textStatus, errorThrown) {
-	                kwds.error(jqXHR, textStatus, errorThrown);
-	            },
-	            mimeType: 'application/json',
-	            type: 'POST',
-	            success: function (__response) {
-	                if (typeof __response.result !== "undefined") {
-	                    kwds.success(function (json) { var sequence = []; for (var i = 0; i < json.length; i++) {
-	                        sequence.push(json[i]);
-	                    } return sequence; }(__response.result));
-	                }
-	                else {
-	                    kwds.error(null, __response.error.message, null);
-	                }
-	            },
-	            url: '/api/jsonrpc/worksheet_query',
-	        });
-	    };
-	    JsonRpcWorksheetQueryService.prototype.getWorksheetAccessionNumbersSync = function () {
-	        var returnValue = [];
-	        $.ajax({
-	            async: false,
-	            data: JSON.stringify({
-	                jsonrpc: '2.0',
-	                method: 'get_worksheet_accession_numbers',
-	                params: {},
-	                id: '1234'
-	            }),
-	            dataType: 'json',
-	            error: function (jqXHR, textStatus, errorThrown) {
-	                throw new Error(errorThrown);
-	            },
-	            mimeType: 'application/json',
-	            type: 'POST',
-	            success: function (__response) {
-	                if (typeof __response.result !== "undefined") {
-	                    returnValue = function (json) { var sequence = []; for (var i = 0; i < json.length; i++) {
-	                        sequence.push(json[i]);
-	                    } return sequence; }(__response.result);
-	                }
-	                else {
-	                    throw new Error(__response.error);
-	                }
-	            },
-	            url: '/api/jsonrpc/worksheet_query',
-	        });
-	        return returnValue;
-	    };
-	    JsonRpcWorksheetQueryService.prototype.getWorksheetDefinitionAsync = function (kwds) {
-	        $.ajax({
-	            async: true,
-	            data: JSON.stringify({
-	                jsonrpc: '2.0',
-	                method: 'get_worksheet_definition',
-	                params: {},
-	                id: '1234'
-	            }),
-	            dataType: 'json',
-	            error: function (jqXHR, textStatus, errorThrown) {
-	                kwds.error(jqXHR, textStatus, errorThrown);
-	            },
-	            mimeType: 'application/json',
-	            type: 'POST',
-	            success: function (__response) {
-	                if (typeof __response.result !== "undefined") {
-	                    kwds.success(worksheet_definition_1.WorksheetDefinition.fromThryftJSON(__response.result));
-	                }
-	                else {
-	                    kwds.error(null, __response.error.message, null);
-	                }
-	            },
-	            url: '/api/jsonrpc/worksheet_query',
-	        });
-	    };
-	    JsonRpcWorksheetQueryService.prototype.getWorksheetDefinitionSync = function () {
-	        var returnValue = new worksheet_definition_1.WorksheetDefinition();
-	        $.ajax({
-	            async: false,
-	            data: JSON.stringify({
-	                jsonrpc: '2.0',
-	                method: 'get_worksheet_definition',
-	                params: {},
-	                id: '1234'
-	            }),
-	            dataType: 'json',
-	            error: function (jqXHR, textStatus, errorThrown) {
-	                throw new Error(errorThrown);
-	            },
-	            mimeType: 'application/json',
-	            type: 'POST',
-	            success: function (__response) {
-	                if (typeof __response.result !== "undefined") {
-	                    returnValue = worksheet_definition_1.WorksheetDefinition.fromThryftJSON(__response.result);
-	                }
-	                else {
-	                    throw new Error(__response.error);
-	                }
-	            },
-	            url: '/api/jsonrpc/worksheet_query',
-	        });
-	        return returnValue;
-	    };
-	    JsonRpcWorksheetQueryService.prototype.getWorksheetStateAsync = function (kwds) {
-	        var __jsonrpc_params = {};
-	        __jsonrpc_params["accession_number"] = kwds.accessionNumber;
-	        $.ajax({
-	            async: true,
-	            data: JSON.stringify({
-	                jsonrpc: '2.0',
-	                method: 'get_worksheet_state',
-	                params: __jsonrpc_params,
-	                id: '1234'
-	            }),
-	            dataType: 'json',
-	            error: function (jqXHR, textStatus, errorThrown) {
-	                kwds.error(jqXHR, textStatus, errorThrown);
-	            },
-	            mimeType: 'application/json',
-	            type: 'POST',
-	            success: function (__response) {
-	                if (typeof __response.result !== "undefined") {
-	                    kwds.success(worksheet_state_1.WorksheetState.fromThryftJSON(__response.result));
-	                }
-	                else {
-	                    kwds.error(null, __response.error.message, null);
-	                }
-	            },
-	            url: '/api/jsonrpc/worksheet_query',
-	        });
-	    };
-	    JsonRpcWorksheetQueryService.prototype.getWorksheetStateSync = function (kwds) {
-	        var __jsonrpc_params = {};
-	        __jsonrpc_params["accession_number"] = kwds.accessionNumber;
-	        var returnValue = new worksheet_state_1.WorksheetState();
-	        $.ajax({
-	            async: false,
-	            data: JSON.stringify({
-	                jsonrpc: '2.0',
-	                method: 'get_worksheet_state',
-	                params: __jsonrpc_params,
-	                id: '1234'
-	            }),
-	            dataType: 'json',
-	            error: function (jqXHR, textStatus, errorThrown) {
-	                throw new Error(errorThrown);
-	            },
-	            mimeType: 'application/json',
-	            type: 'POST',
-	            success: function (__response) {
-	                if (typeof __response.result !== "undefined") {
-	                    returnValue = worksheet_state_1.WorksheetState.fromThryftJSON(__response.result);
-	                }
-	                else {
-	                    throw new Error(__response.error);
-	                }
-	            },
-	            url: '/api/jsonrpc/worksheet_query',
-	        });
-	        return returnValue;
-	    };
-	    return JsonRpcWorksheetQueryService;
-	}());
-	exports.JsonRpcWorksheetQueryService = JsonRpcWorksheetQueryService;
+	"use strict";
 	var AsyncToSyncWorksheetQueryService = (function () {
 	    function AsyncToSyncWorksheetQueryService() {
 	    }
@@ -18550,8 +18312,7 @@
 	    return AsyncToSyncWorksheetQueryService;
 	}());
 	exports.AsyncToSyncWorksheetQueryService = AsyncToSyncWorksheetQueryService;
-	
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)))
+
 
 /***/ },
 /* 23 */

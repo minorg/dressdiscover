@@ -30,6 +30,7 @@ from thryft.generators.py.properties_py_generator import PropertiesPyGenerator
 from thryft.generators.py.json_rpc_client_py_generator import JsonRpcClientPyGenerator
 from thryft.generators.py.py_generator import PyGenerator
 from thryft.generators.sql.create_table_sql_generator import CreateTableSqlGenerator
+from thryft.generators.ts.async_to_sync_service_ts_generator import AsyncToSyncServiceTsGenerator
 from thryft.generators.ts.ts_generator import TsGenerator
 from yutil import indent, upper_camelize
 
@@ -122,6 +123,12 @@ class Main(thryft.main.Main):
                                 out=TS_OUT_DIR_PATH,
                                 **compile_kwds
                             )
+                            if thrift_file_base_name.endswith('_service'):
+                                self._compile_thrift_file(
+                                    generator=AsyncToSyncServiceTsGenerator(ts_out_dir_path=TS_OUT_DIR_PATH),
+                                    out=TS_OUT_DIR_PATH,
+                                    **compile_kwds
+                                )
                             if thrift_file_dir_name == 'worksheet':
                                 continue
 
