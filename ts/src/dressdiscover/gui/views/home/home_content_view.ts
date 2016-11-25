@@ -1,6 +1,7 @@
 ﻿import * as _ from "underscore";
 import * as Backbone from "backbone";
 import * as Marionette from "backbone.marionette";
+import "./home_content_view.less";
 
 declare function require(moduleName: string): any;
 
