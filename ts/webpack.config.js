@@ -45,10 +45,6 @@ module.exports = {
           to: './'
         },
         {
-            from: './node_modules/backbone.validation/dist/backbone-validation-min.js',
-            to: './js/'
-        },
-        {
             from: './node_modules/bootstrap/dist/js/bootstrap.min.js',
             to: './js/'
         },
