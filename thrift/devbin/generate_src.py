@@ -201,14 +201,14 @@ class Main(thryft.main.Main):
             feature_set_dict = {'id': "Feature Set %(feature_set_i)d" % locals(), 'child_feature_sets': []}
             for sub_feature_set_i in xrange(2):
                 sub_feature_set_dict = {'id': "Sub Feature Set %(feature_set_i)d-%(sub_feature_set_i)d" % locals(), 'features': []}
-                for feature_i in xrange(10):
+                for feature_i in xrange(4):
                     feature_dict = {'id': "Feature %(feature_set_i)d-%(sub_feature_set_i)d-%(feature_i)d" % locals()}
                     if feature_i == 0:
                         feature_dict['display_name'] = feature_dict['id'] + ' (text)'
                         feature_dict['text'] = {}
                     else:
                         feature_values = []
-                        for feature_value_i in xrange(10):
+                        for feature_value_i in xrange(4):
                             feature_value_dict = {'id': "Value %(feature_set_i)d-%(sub_feature_set_i)d-%(feature_i)d-%(feature_value_i)d" % locals()}
                             if feature_value_i == 0:
                                 feature_value_dict['display_name'] = feature_value_dict['id'] + ' (display name)'
