@@ -214,9 +214,9 @@ class Main(thryft.main.Main):
                                 feature_value_dict['display_name'] = feature_value_dict['id'] + ' (display name)'
                             image_text = feature_value_dict['id'].replace(' ', '+')
                             feature_value_dict['image'] = {
-                                'full_size_url': "/img/enum_feature_value_placeholder_full_size.png" % locals(),
+                                'full_size_url': "img/enum_feature_value_placeholder_full_size.png" % locals(),
                                 'rights': "Placeholder rights",
-                                'thumbnail_url': "/img/enum_feature_value_placeholder_thumbnail.png" % locals(),
+                                'thumbnail_url': "img/enum_feature_value_placeholder_thumbnail.png" % locals(),
                             }
                             feature_values.append(feature_value_dict)
                         feature_dict['enum_'] = {'values_': feature_values}
