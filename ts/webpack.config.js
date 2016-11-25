@@ -14,7 +14,13 @@ module.exports = {
   },
   devtool: 'source-map',
   entry: {
-    app: ['./src/dressdiscover/gui/application.ts']
+      app: ['./src/dressdiscover/gui/application.ts']
+  },
+  externals: {
+    // require("jquery") is external and available
+    //  on the global var jQuery
+    "jquery": "jQuery",
+    "underscore": "_"
   },
   module: {
     loaders: [
@@ -36,6 +42,7 @@ module.exports = {
   },
   output: {
     filename: 'js/dressdiscover.js',
+    libraryTarget: 'umd',
     path: path.join(__dirname, './public')
   },
   plugins: [
@@ -50,6 +57,10 @@ module.exports = {
         },
         {
             from: './node_modules/jquery/dist/jquery.min.js',
+            to: './js/'
+        },
+        {
+            from: './node_modules/underscore/underscore-min.js',
             to: './js/'
         },
         {
