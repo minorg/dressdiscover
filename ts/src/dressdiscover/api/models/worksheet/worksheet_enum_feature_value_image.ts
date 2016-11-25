@@ -23,9 +23,13 @@ export class WorksheetEnumFeatureValueImage extends Backbone.Model {
                     return "expected WorksheetEnumFeatureValueImage.thumbnail_url to be a string";
                 }
 
+                if (/^\s*$/.test(value)) {
+                    return "WorksheetEnumFeatureValueImage.thumbnail_url is blank";
+                }
+
                 return undefined;
             },
-            "required": true
+            "minLength": 1, "required": true
         },
 
         fullSizeUrl: {
@@ -38,9 +42,13 @@ export class WorksheetEnumFeatureValueImage extends Backbone.Model {
                     return "expected WorksheetEnumFeatureValueImage.full_size_url to be a string";
                 }
 
+                if (/^\s*$/.test(value)) {
+                    return "WorksheetEnumFeatureValueImage.full_size_url is blank";
+                }
+
                 return undefined;
             },
-            "required": false
+            "minLength": 1, "required": false
         }
     }
 
