@@ -45,6 +45,7 @@
     <Content Include="tsconfig.json" />
     <Content Include="webpack.config.js" />
     <Content Include="src\dressdiscover\gui\views\worksheet\output\worksheet_output_view.less" />
+    <Content Include="src\dressdiscover\gui\views\worksheet\worksheet_sidebar_view.less" />
   </ItemGroup>
   <ItemGroup>
     <TypeScriptCompile Include="src\dressdiscover\api\models\worksheet\worksheet_definition.ts" />
