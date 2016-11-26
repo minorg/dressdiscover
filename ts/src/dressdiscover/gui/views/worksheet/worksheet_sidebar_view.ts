@@ -28,7 +28,8 @@ export class WorksheetSidebarView extends Marionette.LayoutView<Worksheet> {
     }
 
     onChangeAccessionNumberButtonClick() {
-        Application.instance.router.navigate("worksheet", { trigger: true });
+        Application.instance.router.navigate("worksheet");
+        window.location.reload();
     }
 
     serializeData() {
