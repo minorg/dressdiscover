@@ -30,10 +30,8 @@ export class WorksheetNavigationView extends Marionette.ItemView<Worksheet> {
             throw new Error("map mismatch");
         }
         if (event.feature.currentState) {
-            console.info("Check " + event.feature.id);
             node["icon"] = "glyphicon glyphicon-check";
         } else {
-            console.info("Uncheck " + event.feature.id);
             delete node["icon"];
         }
         treeview.selectNode(nodeId); // Force re-render

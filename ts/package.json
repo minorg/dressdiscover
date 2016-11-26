@@ -22,13 +22,13 @@
     "bootstrap": "~3.3.7",
     "bootstrap-select": "~1.12.1",
     "bootstrap-treeview": "~1.2.0",
-    "es6-promise": "^4.0.5",
     "jquery": "^2.0.34",
     "underscore": "~1.8.3"
   },
   "devDependencies": {
     "copy-webpack-plugin": "^1.1.1",
     "css-loader": "^0.23.1",
+    "es6-promise": "^4.0.5",
     "extract-text-webpack-plugin": "^1.0.1",
     "less": "~2.7.1",
     "less-loader": "~2.2.3",
