@@ -25,7 +25,7 @@ export class LocalWorksheetQueryService extends AsyncToSyncWorksheetQueryService
             if (key == null) {
                 break;
             }
-            if (key.match("^" + LocalWorksheetQueryService._WORKSHEET_ITEM_KEY_PREFIX)) {
+            if (!key.match("^" + LocalWorksheetQueryService._WORKSHEET_ITEM_KEY_PREFIX)) {
                 continue;
             } else if (key.length == LocalWorksheetQueryService._WORKSHEET_ITEM_KEY_PREFIX.length) {
                 continue;
