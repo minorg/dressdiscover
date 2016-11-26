@@ -32,6 +32,7 @@ export class WorksheetOutputView extends Marionette.ItemView<Worksheet> {
     }
 
     initialize() {
+        this._output = this.__calculateOutput();
         this.listenTo(Application.instance.radio.globalChannel, WorksheetFeatureInputEvent.NAME, this.onFeatureInput);
     }
 
