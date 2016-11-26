@@ -37,8 +37,15 @@ export class WorksheetOutputView extends Marionette.ItemView<Worksheet> {
     }
 
     onCsvClick() {
-        this.__download("x,y,z", this.model.accessionNumber + ".csv", "text/csv");
+        let csv: string = "Feature name,Feature value\n";
+        for (var featureDisplayName in this._output) {
+            for (let featureValue of this._output[featureDisplayName].featureValues) {
+                csv += this.__escapeCsv(featureDisplayName) + "," + this.__escapeCsv(featureValue) + "\n";
+            }
+        }
+        this.__download(csv, this.model.accessionNumber + ".csv", "text/csv");
     }
+
 
     onFeatureInput(event: WorksheetFeatureInputEvent) {
         this.render();
@@ -120,6 +127,10 @@ export class WorksheetOutputView extends Marionette.ItemView<Worksheet> {
             }, 333);
             return true;
         }
+    }
+
+    private __escapeCsv(cell: string): string {
+        return '"' + cell.replace(/"/g, '""') + '"';
     }
 
     private _output: WorksheetOutput;
