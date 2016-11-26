@@ -28,6 +28,7 @@
     <Content Include="assets\js\definitions.js" />
     <Content Include="package.json" />
     <Content Include="src\.gitignore" />
+    <Content Include="devbin\generate_definitions.py" />
     <None Include="src\dressdiscover\gui\views\home\home_content_view.less" />
     <Content Include="src\dressdiscover\gui\views\home\home_content_view.html" />
     <Content Include="src\dressdiscover\gui\views\navbar_view.html" />

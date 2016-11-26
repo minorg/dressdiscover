@@ -1,0 +1,25 @@
+{
+    "Head/Neck": {}, 
+    "Torso/Pelvis": {
+        "Main Garment (Top)": {
+            "Bodice Front": {
+                "Decoration": {
+                    "Applied": [
+                        "Embroidery", 
+                        "Sequins", 
+                        "Applique"
+                    ]
+                }
+            }, 
+            "Bodice Back": {
+                "Decoration": {
+                    "Applied": [
+                        "Embroidery", 
+                        "Sequins", 
+                        "Applique"
+                    ]
+                }
+            }
+        }
+    }
+}
