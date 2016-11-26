@@ -6,6 +6,7 @@ import { WorksheetFeature } from "dressdiscover/gui/models/worksheet/worksheet_f
 import { WorksheetFeatureNavigationEvent } from "dressdiscover/gui/events/worksheet/worksheet_feature_navigation_event";
 import { WorksheetFeatureSet } from "dressdiscover/gui/models/worksheet/worksheet_feature_set";
 import { Worksheet } from "dressdiscover/gui/models/worksheet/worksheet";
+import "./worksheet_output_view.less";
 
 declare function require(moduleName: string): any;
 
@@ -22,8 +23,10 @@ export class WorksheetOutputView extends Marionette.ItemView<Worksheet> {
     constructor(options?: any) {
         super(_.extend(options, {
             events: {
-                "click .feature-name a": "onFeatureNameClick"
+                "click .feature-name a": "onFeatureNameClick",
+                "click #csv": "onCsvClick"
             },
+            id: "output",
             template: _.template(require("raw!./worksheet_output_view.html"))
         }));
     }
@@ -31,6 +34,10 @@ export class WorksheetOutputView extends Marionette.ItemView<Worksheet> {
     initialize() {
         this._output = this.__calculateOutput()
         this.listenTo(Application.instance.radio.globalChannel, WorksheetFeatureInputEvent.NAME, this.onFeatureInput);
+    }
+
+    onCsvClick() {
+        this.__download("x,y,z", this.model.accessionNumber + ".csv", "text/csv");
     }
 
     onFeatureInput(event: WorksheetFeatureInputEvent) {
@@ -87,6 +94,32 @@ export class WorksheetOutputView extends Marionette.ItemView<Worksheet> {
         let output: WorksheetOutput = {};
         output[feature.id] = { feature: feature, featureValues: values };
         return output;
+    }
+
+    // Adapted from https://stackoverflow.com/questions/14964035/how-to-export-javascript-array-info-to-csv-on-client-side
+    private __download(content: string, fileName: string, mimeType: string): boolean {
+        var a = document.createElement('a');
+        mimeType = mimeType || 'application/octet-stream';
+
+        if (navigator.msSaveBlob) { // IE10
+            return navigator.msSaveBlob(new Blob([content], { type: mimeType }), fileName);
+        } else if ('download' in a) { //html5 A[download]
+            a.href = 'data:' + mimeType + ',' + encodeURIComponent(content);
+            a.setAttribute('download', fileName);
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            return true;
+        } else { //do iframe dataURL download (old ch+FF):
+            var f = document.createElement('iframe');
+            document.body.appendChild(f);
+            f.src = 'data:' + mimeType + ',' + encodeURIComponent(content);
+
+            setTimeout(function () {
+                document.body.removeChild(f);
+            }, 333);
+            return true;
+        }
     }
 
     private _output: WorksheetOutput;

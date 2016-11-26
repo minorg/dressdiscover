@@ -6904,7 +6904,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	            if (key == null) {
 	                break;
 	            }
-	            if (key.match("^" + LocalWorksheetQueryService._WORKSHEET_ITEM_KEY_PREFIX)) {
+	            if (!key.match("^" + LocalWorksheetQueryService._WORKSHEET_ITEM_KEY_PREFIX)) {
 	                continue;
 	            }
 	            else if (key.length == LocalWorksheetQueryService._WORKSHEET_ITEM_KEY_PREFIX.length) {
@@ -10021,23 +10021,35 @@ return /******/ (function(modules) { // webpackBootstrap
 	var application_1 = __webpack_require__(1);
 	var Marionette = __webpack_require__(5);
 	var worksheet_feature_input_event_1 = __webpack_require__(53);
+	var worksheet_feature_navigation_event_1 = __webpack_require__(55);
 	var WorksheetOutputView = (function (_super) {
 	    __extends(WorksheetOutputView, _super);
 	    function WorksheetOutputView(options) {
 	        _super.call(this, _.extend(options, {
+	            events: {
+	                "click .feature-name a": "onFeatureNameClick",
+	                "click #csv": "onCsvClick"
+	            },
 	            template: _.template(__webpack_require__(70))
 	        }));
 	    }
 	    WorksheetOutputView.prototype.initialize = function () {
+	        this._output = this.__calculateOutput();
 	        this.listenTo(application_1.Application.instance.radio.globalChannel, worksheet_feature_input_event_1.WorksheetFeatureInputEvent.NAME, this.onFeatureInput);
+	    };
+	    WorksheetOutputView.prototype.onCsvClick = function () {
 	    };
 	    WorksheetOutputView.prototype.onFeatureInput = function (event) {
 	        this.render();
 	    };
+	    WorksheetOutputView.prototype.onFeatureNameClick = function (event) {
+	        var featureDisplayName = event.target.innerText;
+	        var feature = this._output[featureDisplayName].feature;
+	        application_1.Application.instance.radio.globalChannel.trigger(worksheet_feature_navigation_event_1.WorksheetFeatureNavigationEvent.NAME, new worksheet_feature_navigation_event_1.WorksheetFeatureNavigationEvent({ feature: feature }));
+	    };
 	    WorksheetOutputView.prototype.serializeData = function () {
-	        var output = this.__calculateOutput();
-	        if (!_.isEmpty(output)) {
-	            return { output: output };
+	        if (!_.isEmpty(this._output)) {
+	            return { output: this._output };
 	        }
 	        else {
 	            return { output: undefined };
@@ -10078,8 +10090,33 @@ return /******/ (function(modules) { // webpackBootstrap
 	            return {};
 	        }
 	        var output = {};
-	        output[feature.displayName] = values;
+	        output[feature.id] = { feature: feature, featureValues: values };
 	        return output;
+	    };
+	    // Adapted from https://stackoverflow.com/questions/14964035/how-to-export-javascript-array-info-to-csv-on-client-side
+	    WorksheetOutputView.prototype.__download = function (content, fileName, mimeType) {
+	        var a = document.createElement('a');
+	        mimeType = mimeType || 'application/octet-stream';
+	        if (navigator.msSaveBlob) {
+	            return navigator.msSaveBlob(new Blob([content], { type: mimeType }), fileName);
+	        }
+	        else if ('download' in a) {
+	            a.href = 'data:' + mimeType + ',' + encodeURIComponent(content);
+	            a.setAttribute('download', fileName);
+	            document.body.appendChild(a);
+	            a.click();
+	            document.body.removeChild(a);
+	            return true;
+	        }
+	        else {
+	            var f = document.createElement('iframe');
+	            document.body.appendChild(f);
+	            f.src = 'data:' + mimeType + ',' + encodeURIComponent(content);
+	            setTimeout(function () {
+	                document.body.removeChild(f);
+	            }, 333);
+	            return true;
+	        }
 	    };
 	    return WorksheetOutputView;
 	}(Marionette.ItemView));
@@ -10090,7 +10127,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /* 70 */
 /***/ function(module, exports) {
 
-	module.exports = "<% if (output) { %>\r\n    <% for (var name in output) { _.each(output[name], function(value) { %>\r\n    <div class=\"row\">\r\n        <div class=\"col-md-4\" id=\"feature-name\"><%- name %></div>\r\n        <div class=\"col-md-8\" id=\"feature-value\"><%- value %></div>\r\n    </div>\r\n    <% }); } %>\r\n<% } else { %>\r\nSelect values on the right to generate a description.\r\n<% } %>\r\n"
+	module.exports = "<% if (output) { %>\n    <% for (var featureDisplayName in output) { _.each(output[featureDisplayName].featureValues, function(featureValue) { %>\n    <div class=\"row\">\n        <div class=\"col-md-4 feature-name\"><a><%- output[featureDisplayName].feature.displayName %></a></div>\n        <div class=\"col-md-8 feature-value\"><%- featureValue %></div>\n    </div>\n    <% }); } %>\n    <a id=\"csv\">Download as CSV</a>\n<% } else { %>\nSelect values on the right to generate a description.\n<% } %>\n"
 
 /***/ },
 /* 71 */
