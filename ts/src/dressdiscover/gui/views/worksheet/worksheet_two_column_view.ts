@@ -5,6 +5,7 @@ import { WorksheetFeatureNavigationEvent } from "dressdiscover/gui/events/worksh
 import { Worksheet } from "dressdiscover/gui/models/worksheet/worksheet";
 import { WorksheetInputView } from "./input/worksheet_input_view";
 import { WorksheetSidebarView } from "./worksheet_sidebar_view";
+import "./worksheet_two_column_view.less";
 
 declare function require(moduleName: string): any;
 
@@ -29,11 +30,11 @@ export class WorksheetTwoColumnView extends Marionette.LayoutView<Worksheet> {
 
         let region = this.getRegion("rightColumn");
         region.reset();
-        region.show(WorksheetInputView.create(event.feature));
+        region.show(new WorksheetInputView({ model: event.feature }));
     }
 
     onBeforeShow() {
         this.showChildView("leftColumn", new WorksheetSidebarView({ model: this.model }));
-        this.showChildView("rightColumn", WorksheetInputView.create(this.model.selectedFeature));
+        this.showChildView("rightColumn", new WorksheetInputView({ model: this.model.selectedFeature }));
     }
 }

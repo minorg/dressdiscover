@@ -3,6 +3,7 @@
 /ts.csproj.user
 /bin/
 /obj/
+/public/js/definitions.json
 *.pyc
 /web.config
 /web.Debug.config
