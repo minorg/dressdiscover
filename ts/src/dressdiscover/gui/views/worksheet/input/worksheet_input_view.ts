@@ -11,6 +11,10 @@ declare function require(moduleName: string): any;
 export class WorksheetInputView extends Marionette.LayoutView<WorksheetFeature> {
     constructor(options: any) {
         super(_.extend(options, {
+            events: {
+                "click #back-button": "onClickBackButton",
+                "click #next-button": "onClickNextButton"
+            },
             regions: {
                 buttons: "#input-navigation",
                 child: "#input-child"
@@ -29,5 +33,13 @@ export class WorksheetInputView extends Marionette.LayoutView<WorksheetFeature> 
             throw new Error("not supported " + (this.model.constructor as any).name);
         }
         this.showChildView("child", childView);
+    }
+
+    onClickBackButton() {
+        console.info("Back");
+    }
+
+    onClickNextButton() {
+        console.info("Next");
     }
 }

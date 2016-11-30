@@ -10,10 +10,10 @@ export class WorksheetAccessionNumberPickerView extends Marionette.ItemView<Back
     constructor(kwds: { availableAccessionNumbers: string[] }) {
         super({
             events: {
-                "click #footer-close-button": "onCloseButtonClick",
-                "click #header-close-button": "onCloseButtonClick",
-                "click #footer-ok-button": "onOkButtonClick",
-                "keyup #newAccessionNumberInput": "onNewAccessionNumberInputKeyup"
+                "click #footer-close-button": "onClickCloseButton",
+                "click #header-close-button": "onClickCloseButton",
+                "click #footer-ok-button": "onClickOkButton",
+                "keyup #newAccessionNumberInput": "onKeyupNewAccessionNumberInput"
             },
             model: new Backbone.Model(),
             template: _.template(require("raw!./worksheet_accession_number_picker_view.html"))
@@ -30,12 +30,12 @@ export class WorksheetAccessionNumberPickerView extends Marionette.ItemView<Back
         };
     }
 
-    onCloseButtonClick() {
+    onClickCloseButton() {
         Application.instance.modalRegion.empty();
         Application.instance.router.navigate("", { trigger: true });
     }
 
-    onOkButtonClick() {
+    onClickOkButton() {
         let accessionNumber: string = this.ui.accessionNumberSelect.val();
         if (!accessionNumber) {
             accessionNumber = this.ui.newAccessionNumberInput.val();
@@ -51,9 +51,9 @@ export class WorksheetAccessionNumberPickerView extends Marionette.ItemView<Back
         Application.instance.router.navigate("worksheet/" + accessionNumber, { trigger: true });
     }
 
-    onNewAccessionNumberInputKeyup(event: any) {
+    onKeyupNewAccessionNumberInput(event: any) {
         if (event.keyCode == 13) {
-            this.onOkButtonClick();
+            this.onClickOkButton();
         }
     }
 
