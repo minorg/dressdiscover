@@ -1,12 +1,14 @@
 ﻿import Backbone = require("backbone");
 import { WorksheetFeatureDefinition } from "dressdiscover/api/models/worksheet/worksheet_feature_definition";
+import { WorksheetFeatureSet } from "dressdiscover/gui/models/worksheet/worksheet_feature_set";
 import { WorksheetFeatureState } from "dressdiscover/api/models/worksheet/worksheet_feature_state";
  
 export abstract class WorksheetFeature extends Backbone.Model {
-    constructor(definition: WorksheetFeatureDefinition, state: WorksheetFeatureState | undefined) {
-        super({ id: definition.id });
-        this._definition = definition;
+    constructor(kwds: { definition: WorksheetFeatureDefinition, parentFeatureSet: WorksheetFeatureSet, state: WorksheetFeatureState | undefined }) {
+        super({ id: kwds.definition.id });
+        this._definition = kwds.definition;
         this.selected = false;
+        this._parentFeatureSet = kwds.parentFeatureSet;
     }
 
     abstract get currentState(): WorksheetFeatureState | undefined;
@@ -17,6 +19,10 @@ export abstract class WorksheetFeature extends Backbone.Model {
 
     get displayName(): string {
         return this._definition.displayName ? this._definition.displayName : this._definition.id;
+    }
+
+    get parentFeatureset(): WorksheetFeatureSet {
+        return this._parentFeatureSet;
     }
 
     get selected(): boolean {
@@ -30,4 +36,5 @@ export abstract class WorksheetFeature extends Backbone.Model {
     abstract get outputValues(): string[];
 
     private _definition: WorksheetFeatureDefinition;
+    private _parentFeatureSet: WorksheetFeatureSet;
 }

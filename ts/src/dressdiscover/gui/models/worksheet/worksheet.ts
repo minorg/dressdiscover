@@ -15,7 +15,11 @@ export class Worksheet extends Backbone.Model {
 
         const rootFeatureSets: WorksheetFeatureSet[] = [];
         for (let rootFeatureSetDefinition of kwds.definition.rootFeatureSets.models) {
-            rootFeatureSets.push(new WorksheetFeatureSet(rootFeatureSetDefinition, kwds.initialState.rootFeatureSets ? kwds.initialState.rootFeatureSets[rootFeatureSetDefinition.id] : undefined));
+            rootFeatureSets.push(new WorksheetFeatureSet({
+                definition: rootFeatureSetDefinition,
+                parentFeatureSet: undefined,
+                state: kwds.initialState.rootFeatureSets ? kwds.initialState.rootFeatureSets[rootFeatureSetDefinition.id] : undefined
+            }));
         }
         this._rootFeatureSets = new WorksheetFeatureSetCollection(rootFeatureSets);
 

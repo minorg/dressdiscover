@@ -8196,7 +8196,11 @@ return /******/ (function(modules) { // webpackBootstrap
 	        var rootFeatureSets = [];
 	        for (var _i = 0, _a = kwds.definition.rootFeatureSets.models; _i < _a.length; _i++) {
 	            var rootFeatureSetDefinition = _a[_i];
-	            rootFeatureSets.push(new worksheet_feature_set_1.WorksheetFeatureSet(rootFeatureSetDefinition, kwds.initialState.rootFeatureSets ? kwds.initialState.rootFeatureSets[rootFeatureSetDefinition.id] : undefined));
+	            rootFeatureSets.push(new worksheet_feature_set_1.WorksheetFeatureSet({
+	                definition: rootFeatureSetDefinition,
+	                parentFeatureSet: undefined,
+	                state: kwds.initialState.rootFeatureSets ? kwds.initialState.rootFeatureSets[rootFeatureSetDefinition.id] : undefined
+	            }));
 	        }
 	        this._rootFeatureSets = new worksheet_feature_set_collection_1.WorksheetFeatureSetCollection(rootFeatureSets);
 	        {
@@ -8359,26 +8363,32 @@ return /******/ (function(modules) { // webpackBootstrap
 	var worksheet_text_feature_1 = __webpack_require__(47);
 	var WorksheetFeatureSet = (function (_super) {
 	    __extends(WorksheetFeatureSet, _super);
-	    function WorksheetFeatureSet(definition, state) {
-	        _super.call(this, { "id": definition.id });
+	    function WorksheetFeatureSet(kwds) {
+	        _super.call(this, { "id": kwds.definition.id });
 	        this._childFeatureSets = new worksheet_feature_set_collection_1.WorksheetFeatureSetCollection([]);
 	        this._features = new worksheet_feature_collection_1.WorksheetFeatureCollection([]);
-	        this._definition = definition;
-	        if (definition.childFeatureSets) {
-	            for (var _i = 0, _a = definition.childFeatureSets.models; _i < _a.length; _i++) {
+	        this._definition = kwds.definition;
+	        this._parentFeatureSet = kwds.parentFeatureSet;
+	        if (kwds.definition.childFeatureSets) {
+	            for (var _i = 0, _a = kwds.definition.childFeatureSets.models; _i < _a.length; _i++) {
 	                var childFeatureSetDefinition = _a[_i];
-	                this._childFeatureSets.add(new WorksheetFeatureSet(childFeatureSetDefinition, state && state.childFeatureSets ? state.childFeatureSets[childFeatureSetDefinition.id] : undefined));
+	                this._childFeatureSets.add(new WorksheetFeatureSet({
+	                    definition: childFeatureSetDefinition,
+	                    parentFeatureSet: this,
+	                    state: kwds.state && kwds.state.childFeatureSets ? kwds.state.childFeatureSets[childFeatureSetDefinition.id] : undefined
+	                }));
 	            }
 	        }
-	        if (definition.features) {
-	            for (var _b = 0, _c = definition.features.models; _b < _c.length; _b++) {
+	        if (kwds.definition.features) {
+	            for (var _b = 0, _c = kwds.definition.features.models; _b < _c.length; _b++) {
 	                var featureDefinition = _c[_b];
-	                var featureState = state && state.features ? state.features[featureDefinition.id] : undefined;
+	                var featureState = kwds.state && kwds.state.features ? kwds.state.features[featureDefinition.id] : undefined;
+	                var featureKwds = { definition: featureDefinition, parentFeatureSet: this, state: featureState };
 	                if (featureDefinition.enum_) {
-	                    this._features.add(new worksheet_enum_feature_1.WorksheetEnumFeature(featureDefinition, featureState));
+	                    this._features.add(new worksheet_enum_feature_1.WorksheetEnumFeature(featureKwds));
 	                }
 	                else if (featureDefinition.text) {
-	                    this._features.add(new worksheet_text_feature_1.WorksheetTextFeature(featureDefinition, featureState));
+	                    this._features.add(new worksheet_text_feature_1.WorksheetTextFeature(featureKwds));
 	                }
 	                else {
 	                    throw new Error("feature definition without union set");
@@ -8454,6 +8464,13 @@ return /******/ (function(modules) { // webpackBootstrap
 	        enumerable: true,
 	        configurable: true
 	    });
+	    Object.defineProperty(WorksheetFeatureSet.prototype, "parentFeatureSet", {
+	        get: function () {
+	            return this._parentFeatureSet;
+	        },
+	        enumerable: true,
+	        configurable: true
+	    });
 	    return WorksheetFeatureSet;
 	}(Backbone.Model));
 	exports.WorksheetFeatureSet = WorksheetFeatureSet;
@@ -8476,12 +8493,12 @@ return /******/ (function(modules) { // webpackBootstrap
 	var worksheet_enum_feature_value_1 = __webpack_require__(45);
 	var WorksheetEnumFeature = (function (_super) {
 	    __extends(WorksheetEnumFeature, _super);
-	    function WorksheetEnumFeature(definition, state) {
-	        _super.call(this, definition, state);
+	    function WorksheetEnumFeature(kwds) {
+	        _super.call(this, kwds);
 	        var values = [];
-	        for (var _i = 0, _a = definition.enum_.values_.models; _i < _a.length; _i++) {
+	        for (var _i = 0, _a = kwds.definition.enum_.values_.models; _i < _a.length; _i++) {
 	            var valueDefinition = _a[_i];
-	            var value = new worksheet_enum_feature_value_1.WorksheetEnumFeatureValue(valueDefinition, this, state && state.enum_ ? state.enum_.selectedValues.indexOf(valueDefinition.id) != -1 : false);
+	            var value = new worksheet_enum_feature_value_1.WorksheetEnumFeatureValue(valueDefinition, this, kwds.state && kwds.state.enum_ ? kwds.state.enum_.selectedValues.indexOf(valueDefinition.id) != -1 : false);
 	            values.push(value);
 	        }
 	        this._values = new worksheet_enum_feature_value_collection_1.WorksheetEnumFeatureValueCollection(values);
@@ -8551,10 +8568,11 @@ return /******/ (function(modules) { // webpackBootstrap
 	var Backbone = __webpack_require__(4);
 	var WorksheetFeature = (function (_super) {
 	    __extends(WorksheetFeature, _super);
-	    function WorksheetFeature(definition, state) {
-	        _super.call(this, { id: definition.id });
-	        this._definition = definition;
+	    function WorksheetFeature(kwds) {
+	        _super.call(this, { id: kwds.definition.id });
+	        this._definition = kwds.definition;
 	        this.selected = false;
+	        this._parentFeatureSet = kwds.parentFeatureSet;
 	    }
 	    Object.defineProperty(WorksheetFeature.prototype, "currentState", {
 	        get: function () { },
@@ -8571,6 +8589,13 @@ return /******/ (function(modules) { // webpackBootstrap
 	    Object.defineProperty(WorksheetFeature.prototype, "displayName", {
 	        get: function () {
 	            return this._definition.displayName ? this._definition.displayName : this._definition.id;
+	        },
+	        enumerable: true,
+	        configurable: true
+	    });
+	    Object.defineProperty(WorksheetFeature.prototype, "parentFeatureset", {
+	        get: function () {
+	            return this._parentFeatureSet;
 	        },
 	        enumerable: true,
 	        configurable: true
@@ -8707,10 +8732,10 @@ return /******/ (function(modules) { // webpackBootstrap
 	var worksheet_text_feature_state_1 = __webpack_require__(38);
 	var WorksheetTextFeature = (function (_super) {
 	    __extends(WorksheetTextFeature, _super);
-	    function WorksheetTextFeature(definition, state) {
-	        _super.call(this, definition, state);
-	        if (state && state.text && state.text.text) {
-	            this.set("text", state.text.text);
+	    function WorksheetTextFeature(kwds) {
+	        _super.call(this, kwds);
+	        if (kwds.state && kwds.state.text && kwds.state.text.text) {
+	            this.set("text", kwds.state.text.text);
 	        }
 	    }
 	    Object.defineProperty(WorksheetTextFeature.prototype, "currentState", {
@@ -8773,10 +8798,10 @@ return /******/ (function(modules) { // webpackBootstrap
 	    function WorksheetAccessionNumberPickerView(kwds) {
 	        _super.call(this, {
 	            events: {
-	                "click #footer-close-button": "onCloseButtonClick",
-	                "click #header-close-button": "onCloseButtonClick",
-	                "click #footer-ok-button": "onOkButtonClick",
-	                "keyup #newAccessionNumberInput": "onNewAccessionNumberInputKeyup"
+	                "click #footer-close-button": "onClickCloseButton",
+	                "click #header-close-button": "onClickCloseButton",
+	                "click #footer-ok-button": "onClickOkButton",
+	                "keyup #newAccessionNumberInput": "onKeyupNewAccessionNumberInput"
 	            },
 	            model: new Backbone.Model(),
 	            template: _.template(__webpack_require__(51))
@@ -8790,11 +8815,11 @@ return /******/ (function(modules) { // webpackBootstrap
 	            newAccessionNumberInput: "#newAccessionNumberInput"
 	        };
 	    };
-	    WorksheetAccessionNumberPickerView.prototype.onCloseButtonClick = function () {
+	    WorksheetAccessionNumberPickerView.prototype.onClickCloseButton = function () {
 	        application_1.Application.instance.modalRegion.empty();
 	        application_1.Application.instance.router.navigate("", { trigger: true });
 	    };
-	    WorksheetAccessionNumberPickerView.prototype.onOkButtonClick = function () {
+	    WorksheetAccessionNumberPickerView.prototype.onClickOkButton = function () {
 	        var accessionNumber = this.ui.accessionNumberSelect.val();
 	        if (!accessionNumber) {
 	            accessionNumber = this.ui.newAccessionNumberInput.val();
@@ -8809,9 +8834,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	        application_1.Application.instance.modalRegion.empty();
 	        application_1.Application.instance.router.navigate("worksheet/" + accessionNumber, { trigger: true });
 	    };
-	    WorksheetAccessionNumberPickerView.prototype.onNewAccessionNumberInputKeyup = function (event) {
+	    WorksheetAccessionNumberPickerView.prototype.onKeyupNewAccessionNumberInput = function (event) {
 	        if (event.keyCode == 13) {
-	            this.onOkButtonClick();
+	            this.onClickOkButton();
 	        }
 	    };
 	    WorksheetAccessionNumberPickerView.prototype.onShow = function () {
@@ -8988,6 +9013,10 @@ return /******/ (function(modules) { // webpackBootstrap
 	    __extends(WorksheetInputView, _super);
 	    function WorksheetInputView(options) {
 	        _super.call(this, _.extend(options, {
+	            events: {
+	                "click #back-button": "onClickBackButton",
+	                "click #next-button": "onClickNextButton"
+	            },
 	            regions: {
 	                buttons: "#input-navigation",
 	                child: "#input-child"
@@ -9007,6 +9036,12 @@ return /******/ (function(modules) { // webpackBootstrap
 	            throw new Error("not supported " + this.model.constructor.name);
 	        }
 	        this.showChildView("child", childView);
+	    };
+	    WorksheetInputView.prototype.onClickBackButton = function () {
+	        console.info("Back");
+	    };
+	    WorksheetInputView.prototype.onClickNextButton = function () {
+	        console.info("Next");
 	    };
 	    return WorksheetInputView;
 	}(Marionette.LayoutView));
@@ -9892,7 +9927,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /* 67 */
 /***/ function(module, exports) {
 
-	module.exports = "<div class=\"container-fluid\" id=\"input\">\r\n    <div class=\"row\" id=\"input-navigation\"></div>\r\n    <div class=\"row\" id=\"input-child\"></div>\r\n</div>\r\n"
+	module.exports = "<div class=\"container-fluid\" id=\"input\">\r\n    <div class=\"row\" id=\"input-navigation\">\r\n        <div class=\"col-md-2\"><button class=\"btn btn-primary\" id=\"back-button\" type=\"button\">Previous</button></div>\r\n        <div class=\"col-md-8\">&nbsp;</div>\r\n        <div class=\"col-md-2\"><button class=\"btn btn-primary\" id=\"next-button\" type=\"button\">Next</button></div>\r\n    </div>\r\n    <div class=\"row\" id=\"input-child\"></div>\r\n</div>\r\n"
 
 /***/ },
 /* 68 */
@@ -9915,7 +9950,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    function WorksheetSidebarView(options) {
 	        _super.call(this, _.extend(options, {
 	            events: {
-	                "click #changeAccessionNumberButton": "onChangeAccessionNumberButtonClick"
+	                "click #changeAccessionNumberButton": "onClickChangeAccessionNumberButton"
 	            },
 	            regions: {
 	                navigation: "#navigation",
@@ -9928,7 +9963,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        this.showChildView("navigation", new worksheet_navigation_view_1.WorksheetNavigationView({ model: this.model }));
 	        this.showChildView("output", new worksheet_output_view_1.WorksheetOutputView({ model: this.model }));
 	    };
-	    WorksheetSidebarView.prototype.onChangeAccessionNumberButtonClick = function () {
+	    WorksheetSidebarView.prototype.onClickChangeAccessionNumberButton = function () {
 	        application_1.Application.instance.router.navigate("worksheet");
 	        window.location.reload();
 	    };
@@ -10059,8 +10094,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	    function WorksheetOutputView(options) {
 	        _super.call(this, _.extend(options, {
 	            events: {
-	                "click .feature-name a": "onFeatureNameClick",
-	                "click #csv": "onCsvClick"
+	                "click .feature-name a": "onClickFeatureName",
+	                "click #csv": "onClickCsv"
 	            },
 	            id: "output",
 	            template: _.template(__webpack_require__(73))
@@ -10070,7 +10105,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        this._output = this.__calculateOutput();
 	        this.listenTo(application_1.Application.instance.radio.globalChannel, worksheet_feature_input_event_1.WorksheetFeatureInputEvent.NAME, this.onFeatureInput);
 	    };
-	    WorksheetOutputView.prototype.onCsvClick = function () {
+	    WorksheetOutputView.prototype.onClickCsv = function () {
 	        var csv = "Feature name,Feature value\n";
 	        for (var featureDisplayName in this._output) {
 	            for (var _i = 0, _a = this._output[featureDisplayName].featureValues; _i < _a.length; _i++) {
@@ -10080,14 +10115,14 @@ return /******/ (function(modules) { // webpackBootstrap
 	        }
 	        this.__download(csv, this.model.accessionNumber + ".csv", "text/csv");
 	    };
-	    WorksheetOutputView.prototype.onFeatureInput = function (event) {
-	        this._output = this.__calculateOutput();
-	        this.render();
-	    };
-	    WorksheetOutputView.prototype.onFeatureNameClick = function (event) {
+	    WorksheetOutputView.prototype.onClickFeatureName = function (event) {
 	        var featureDisplayName = event.target.innerText;
 	        var feature = this._output[featureDisplayName].feature;
 	        application_1.Application.instance.radio.globalChannel.trigger(worksheet_feature_navigation_event_1.WorksheetFeatureNavigationEvent.NAME, new worksheet_feature_navigation_event_1.WorksheetFeatureNavigationEvent({ feature: feature }));
+	    };
+	    WorksheetOutputView.prototype.onFeatureInput = function (event) {
+	        this._output = this.__calculateOutput();
+	        this.render();
 	    };
 	    WorksheetOutputView.prototype.serializeData = function () {
 	        if (!_.isEmpty(this._output)) {
@@ -10192,7 +10227,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /* 76 */
 /***/ function(module, exports) {
 
-	module.exports = "<div class=\"panel-group\" id=\"sidebar\" role=\"tablist\" aria-multiselectable=\"true\">\n    <div class=\"panel panel-default\">\n        <div class=\"panel-heading\" role=\"tab\" id=\"headingOne\">\n            <h4 class=\"panel-title\">\n                <a role=\"button\" data-toggle=\"collapse\" href=\"#collapseOne\" aria-expanded=\"true\" aria-controls=\"collapseOne\">\n                    Accession number: <%- accessionNumber %>\n                </a>\n                <button type=\"button\" class=\"btn btn-link\" id=\"changeAccessionNumberButton\">Change</button>\n            </h4>\n        </div>\n        <div id=\"collapseOne\" class=\"panel-collapse collapse in\" role=\"tabpanel\" aria-labelledby=\"headingOne\">\n            <div class=\"panel-body\" id=\"output\">\n            </div>\n        </div>\n    </div>\n    <div class=\"panel panel-default\">\n        <div class=\"panel-heading\" role=\"tab\" id=\"headingTwo\">\n            <h4 class=\"panel-title\">\n                <a class=\"collapsed\" role=\"button\" data-toggle=\"collapse\" href=\"#collapseTwo\" aria-expanded=\"true\" aria-controls=\"collapseTwo\">\n                    Features\n                </a>\n            </h4>\n        </div>\n        <div id=\"collapseTwo\" class=\"panel-collapse collapse in\" role=\"tabpanel\" aria-labelledby=\"headingTwo\">\n            <div class=\"panel-body\" id=\"navigation\">\n            </div>\n        </div>\n    </div>\n</div>\n"
+	module.exports = "<div class=\"panel-group\" id=\"sidebar\" role=\"tablist\" aria-multiselectable=\"true\">\n    <div class=\"panel panel-default\">\n        <div class=\"panel-heading\" role=\"tab\" id=\"headingOne\">\n            <h4 class=\"panel-title\">\n                <a role=\"button\" data-toggle=\"collapse\" href=\"#collapseOne\" aria-expanded=\"true\" aria-controls=\"collapseOne\">\n                    Accession number: <%- accessionNumber %>\n                </a>\n                <button type=\"button\" class=\"btn btn-primary\" id=\"changeAccessionNumberButton\">Change</button>\n            </h4>\n        </div>\n        <div id=\"collapseOne\" class=\"panel-collapse collapse in\" role=\"tabpanel\" aria-labelledby=\"headingOne\">\n            <div class=\"panel-body\" id=\"output\">\n            </div>\n        </div>\n    </div>\n    <div class=\"panel panel-default\">\n        <div class=\"panel-heading\" role=\"tab\" id=\"headingTwo\">\n            <h4 class=\"panel-title\">\n                <a class=\"collapsed\" role=\"button\" data-toggle=\"collapse\" href=\"#collapseTwo\" aria-expanded=\"true\" aria-controls=\"collapseTwo\">\n                    Features\n                </a>\n            </h4>\n        </div>\n        <div id=\"collapseTwo\" class=\"panel-collapse collapse in\" role=\"tabpanel\" aria-labelledby=\"headingTwo\">\n            <div class=\"panel-body\" id=\"navigation\">\n            </div>\n        </div>\n    </div>\n</div>\n"
 
 /***/ },
 /* 77 */
