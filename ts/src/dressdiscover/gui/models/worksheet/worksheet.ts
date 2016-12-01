@@ -1,41 +1,30 @@
-﻿import _ = require("underscore");
-import Backbone = require("backbone");
+﻿import Backbone = require("backbone");
 import { Services } from "dressdiscover/gui/services/services";
 import { WorksheetDefinition } from "dressdiscover/api/models/worksheet/worksheet_definition";
 import { WorksheetFeature } from "./worksheet_feature";
-import { WorksheetFeatureSetCollection } from "./worksheet_feature_set_collection";
 import { WorksheetFeatureSet } from "./worksheet_feature_set";
-import { WorksheetFeatureSetState } from "dressdiscover/api/models/worksheet/worksheet_feature_set_state";
 import { WorksheetState } from "dressdiscover/api/models/worksheet/worksheet_state";
 
 export class Worksheet extends Backbone.Model {
-    constructor(kwds: { accessionNumber: string, definition: WorksheetDefinition, initialState: WorksheetState }) {
+    constructor(kwds: { accessionNumber: string, definition: WorksheetDefinition, state: WorksheetState }) {
         super();
         this._accessionNumber = kwds.accessionNumber;
-
-        const rootFeatureSets: WorksheetFeatureSet[] = [];
-        for (let rootFeatureSetDefinition of kwds.definition.rootFeatureSets.models) {
-            rootFeatureSets.push(new WorksheetFeatureSet(rootFeatureSetDefinition, kwds.initialState.rootFeatureSets ? kwds.initialState.rootFeatureSets[rootFeatureSetDefinition.id] : undefined));
-        }
-        this._rootFeatureSets = new WorksheetFeatureSetCollection(rootFeatureSets);
+        this._rootFeatureSet = new WorksheetFeatureSet({
+            definition: kwds.definition.rootFeatureSet,
+            parentFeatureSet: undefined,
+            parentsChildNumber: undefined,
+            state: kwds.state.rootFeatureSet
+        });
 
         {
-            for (let featureSet of this.rootFeatureSets.models) {
-                const selectedFeature = this.__getSelectedFeature(featureSet);
+            let selectedFeature = this.__getSelectedFeature(this.rootFeatureSet);
+            if (selectedFeature) {
+                this._selectedFeature = selectedFeature;
+            } else {
+                selectedFeature = this.__getFirstFeature(this.rootFeatureSet);
                 if (selectedFeature) {
                     this._selectedFeature = selectedFeature;
-                    break;
-                }
-            }
-
-            if (!this._selectedFeature) {
-                for (let featureSet of this.rootFeatureSets.models) {
-                    const selectedFeature = this.__getFirstFeature(featureSet);
-                    if (selectedFeature) {
-                        this._selectedFeature = selectedFeature;
-                        selectedFeature.selected = true;
-                        break;
-                    }
+                    selectedFeature.selected = true;
                 }
             }
 
@@ -51,20 +40,14 @@ export class Worksheet extends Backbone.Model {
 
     static fetchFromService(kwds: { accessionNumber: string }): Worksheet {
         const definition = Services.instance.worksheetQueryService.getWorksheetDefinitionSync();
-        const initialState = Services.instance.worksheetQueryService.getWorksheetStateSync({ accessionNumber: kwds.accessionNumber });
-        return new Worksheet({ accessionNumber: kwds.accessionNumber, definition: definition, initialState: initialState });
+        const state = Services.instance.worksheetQueryService.getWorksheetStateSync({ accessionNumber: kwds.accessionNumber });
+        return new Worksheet({ accessionNumber: kwds.accessionNumber, definition: definition, state: state });
     }
    
     get currentState(): WorksheetState | undefined {
-        let rootFeatureSetStates: { [index: string]: WorksheetFeatureSetState } = {};
-        for (let featureSet of this.rootFeatureSets.models) {
-            let featureSetState = featureSet.currentState;
-            if (featureSetState) {
-                rootFeatureSetStates[featureSet.id] = featureSetState;
-            }
-        }
-        if (!_.isEmpty(rootFeatureSetStates)) {
-            return new WorksheetState({ accessionNumber: this.accessionNumber, rootFeatureSets: rootFeatureSetStates });
+        const rootFeatureSetState = this.rootFeatureSet.currentState;
+        if (rootFeatureSetState) {
+            return new WorksheetState({ accessionNumber: this.accessionNumber, rootFeatureSet: rootFeatureSetState });
         } else {
             return undefined;
         }
@@ -77,8 +60,8 @@ export class Worksheet extends Backbone.Model {
         }
     }
 
-    get rootFeatureSets(): WorksheetFeatureSetCollection {
-        return this._rootFeatureSets;
+    get rootFeatureSet(): WorksheetFeatureSet {
+        return this._rootFeatureSet;
     }
 
     get selectedFeature(): WorksheetFeature {
@@ -128,6 +111,6 @@ export class Worksheet extends Backbone.Model {
     }
 
     private _accessionNumber: string;
-    private _rootFeatureSets: WorksheetFeatureSetCollection;
+    private _rootFeatureSet: WorksheetFeatureSet;
     private _selectedFeature: WorksheetFeature;
 }

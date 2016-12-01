@@ -62,10 +62,6 @@ export class WorksheetEnumFeatureValueDefinition extends Backbone.Model {
         return this.get('id');
     }
 
-    set id(value: string) {
-        this.set('id', value, { validate: true });
-    }
-
     get displayName(): string {
         return this.get('displayName');
     }

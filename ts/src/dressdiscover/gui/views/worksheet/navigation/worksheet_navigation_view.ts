@@ -11,10 +11,8 @@ export class WorksheetNavigationView extends Marionette.ItemView<Worksheet> {
         super(_.extend(options, {
             template: _.template("")
         }));
-        if (this.model.rootFeatureSets) {
-            for (let featureSet of this.model.rootFeatureSets.models) {
-                this._tree.push(this.__constructFeatureSetTree(featureSet));
-            }
+        for (let featureSet of this.model.rootFeatureSet.childFeatureSets.models) {
+            this._tree.push(this.__constructFeatureSetTree(featureSet));
         }
     }
 

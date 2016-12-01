@@ -23,8 +23,8 @@ export class WorksheetOutputView extends Marionette.ItemView<Worksheet> {
     constructor(options?: any) {
         super(_.extend(options, {
             events: {
-                "click .feature-name a": "onFeatureNameClick",
-                "click #csv": "onCsvClick"
+                "click .feature-name a": "onClickFeatureName",
+                "click #csv": "onClickCsv"
             },
             id: "output",
             template: _.template(require("raw!./worksheet_output_view.html"))
@@ -36,7 +36,7 @@ export class WorksheetOutputView extends Marionette.ItemView<Worksheet> {
         this.listenTo(Application.instance.radio.globalChannel, WorksheetFeatureInputEvent.NAME, this.onFeatureInput);
     }
 
-    onCsvClick() {
+    onClickCsv() {
         let csv: string = "Feature name,Feature value\n";
         for (var featureDisplayName in this._output) {
             for (let featureValue of this._output[featureDisplayName].featureValues) {
@@ -46,16 +46,15 @@ export class WorksheetOutputView extends Marionette.ItemView<Worksheet> {
         this.__download(csv, this.model.accessionNumber + ".csv", "text/csv");
     }
 
+    onClickFeatureName(event: any) {
+        const featureDisplayName = event.target.innerText;
+        const feature = this._output[featureDisplayName].feature;
+        Application.instance.radio.globalChannel.trigger(WorksheetFeatureNavigationEvent.NAME, new WorksheetFeatureNavigationEvent({ feature: feature }));
+    }
 
     onFeatureInput(event: WorksheetFeatureInputEvent) {
         this._output = this.__calculateOutput();
         this.render();
-    }
-
-    onFeatureNameClick(event: any) {
-        const featureDisplayName = event.target.innerText;
-        const feature = this._output[featureDisplayName].feature;
-        Application.instance.radio.globalChannel.trigger(WorksheetFeatureNavigationEvent.NAME, new WorksheetFeatureNavigationEvent({ feature: feature }));
     }
 
     serializeData(): any {
@@ -67,10 +66,7 @@ export class WorksheetOutputView extends Marionette.ItemView<Worksheet> {
     }
 
     private __calculateOutput(): WorksheetOutput {
-        let output: WorksheetOutput = {};
-        for (let rootFeatureSet of this.model.rootFeatureSets.models) {
-            _.extend(output, this.__calculateFeatureSetOutput(rootFeatureSet));
-        }
+        const output = this.__calculateFeatureSetOutput(this.model.rootFeatureSet);
         console.info("output: " + JSON.stringify(output));
         return output;
     }

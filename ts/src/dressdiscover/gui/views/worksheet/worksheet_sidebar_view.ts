@@ -12,7 +12,7 @@ export class WorksheetSidebarView extends Marionette.LayoutView<Worksheet> {
     constructor(options?: any) {
         super(_.extend(options, {
             events: {
-                "click #changeAccessionNumberButton": "onChangeAccessionNumberButtonClick"
+                "click #changeAccessionNumberButton": "onClickChangeAccessionNumberButton"
             },
             regions: {
                 navigation: "#navigation",
@@ -27,7 +27,7 @@ export class WorksheetSidebarView extends Marionette.LayoutView<Worksheet> {
         this.showChildView("output", new WorksheetOutputView({ model: this.model }));
     }
 
-    onChangeAccessionNumberButtonClick() {
+    onClickChangeAccessionNumberButton() {
         Application.instance.router.navigate("worksheet");
         window.location.reload();
     }

@@ -14,37 +14,28 @@ export class WorksheetState extends Backbone.Model {
             "required": true
         },
 
-        rootFeatureSets: {
+        rootFeatureSet: {
             "fn": function(value: any, attr: any, computedState: any) {
                 if (typeof attr === "undefined" || attr === null) {
                     return undefined;
                 }
 
-                if (typeof value !== "object") {
-                    return "expected WorksheetState.root_feature_sets to be an object";
+                if (!(value instanceof WorksheetFeatureSetState)) {
+                    return "expected WorksheetState.root_feature_set to be a WorksheetFeatureSetState";
                 }
-                for (var __key in value) {
-                    var __value = value[__key];
-                    if (typeof __key !== "string") {
-                        return "expected WorksheetState.root_feature_sets key to be a string";
-                    }
-                    if (!(__value instanceof WorksheetFeatureSetState)) {
-                        return "expected WorksheetState.root_feature_sets value to be a WorksheetFeatureSetState";
-                    }
-                    if (!__value.isValid(true)) {
-                        return __value.validationError;
-                    }
+                if (!value.isValid(true)) {
+                    return value.validationError;
                 }
 
                 return undefined;
             },
-            "minLength": 1, "required": false
+            "required": false
         }
     }
 
     validationError: any;
 
-    constructor(attributes?: {accessionNumber: string, rootFeatureSets?: {[index: string]: WorksheetFeatureSetState}}, options?: any) {
+    constructor(attributes?: {accessionNumber: string, rootFeatureSet?: WorksheetFeatureSetState}, options?: any) {
         super(attributes, options);
     }
 
@@ -56,12 +47,12 @@ export class WorksheetState extends Backbone.Model {
         this.set('accessionNumber', value, { validate: true });
     }
 
-    get rootFeatureSets(): {[index: string]: WorksheetFeatureSetState} {
-        return this.get('rootFeatureSets');
+    get rootFeatureSet(): WorksheetFeatureSetState {
+        return this.get('rootFeatureSet');
     }
 
-    set rootFeatureSets(value: {[index: string]: WorksheetFeatureSetState}) {
-        this.set('rootFeatureSets', value, { validate: true });
+    set rootFeatureSet(value: WorksheetFeatureSetState) {
+        this.set('rootFeatureSet', value, { validate: true });
     }
 
     static fromThryftJSON(json: any): WorksheetState {
@@ -69,8 +60,8 @@ export class WorksheetState extends Backbone.Model {
         for (var fieldName in json) {
             if (fieldName == "accession_number") {
                 out.attributes.accessionNumber = json[fieldName];
-            } else if (fieldName == "root_feature_sets") {
-                out.attributes.rootFeatureSets = function (json: any): {[index: string]: WorksheetFeatureSetState} { var map: any = {}; for (var key in json) { map[key] = WorksheetFeatureSetState.fromThryftJSON(json[key]); } return map; }(json[fieldName]);
+            } else if (fieldName == "root_feature_set") {
+                out.attributes.rootFeatureSet = WorksheetFeatureSetState.fromThryftJSON(json[fieldName]);
             }
         }
         if (!out.isValid(true)) {
@@ -82,8 +73,8 @@ export class WorksheetState extends Backbone.Model {
     toThryftJSON(): any {
         var json: {[index: string]: any} = {};
         json["accession_number"] = this.accessionNumber;
-        if (this.has("rootFeatureSets")) {
-            json["root_feature_sets"] = function (value: {[index: string]: WorksheetFeatureSetState}): {[index: string]: WorksheetFeatureSetState} { var outObject: {[index: string]: WorksheetFeatureSetState} = {}; for (var key in value) { outObject[key] = value[key].toThryftJSON(); } return outObject; }(this.rootFeatureSets);
+        if (this.has("rootFeatureSet")) {
+            json["root_feature_set"] = this.rootFeatureSet.toThryftJSON();
         }
         return json;
     }

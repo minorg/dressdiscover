@@ -4,6 +4,21 @@
 #worksheet-accession-number-picker .modal-body {
   text-align: center;
 }
+#worksheet #sidebar #changeAccessionNumberButton {
+  margin-left: 20%;
+}
+#worksheet {
+  height: 100%;
+}
+#worksheet #left-column {
+  height: 100%;
+}
+#worksheet #right-column {
+  height: 100%;
+}
+#worksheet #two-columns {
+  height: 100%;
+}
 /*!
  * Bootstrap-select v1.12.1 (http://silviomoreto.github.io/bootstrap-select)
  *
