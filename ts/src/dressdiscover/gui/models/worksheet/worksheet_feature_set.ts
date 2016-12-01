@@ -9,23 +9,37 @@ import { WorksheetFeatureState } from "dressdiscover/api/models/worksheet/worksh
 import { WorksheetTextFeature } from "./worksheet_text_feature";
 
 export class WorksheetFeatureSet extends Backbone.Model {
-    constructor(kwds: {definition: WorksheetFeatureSetDefinition, parentFeatureSet: WorksheetFeatureSet | undefined, state: WorksheetFeatureSetState | undefined}) {
+    constructor(kwds: {
+        definition: WorksheetFeatureSetDefinition,
+        parentFeatureSet: WorksheetFeatureSet | undefined,
+        parentsChildNumber: number | undefined,
+        state: WorksheetFeatureSetState | undefined
+    }) {
         super({ "id": kwds.definition.id });
         this._definition = kwds.definition;
         this._parentFeatureSet = kwds.parentFeatureSet;
+        this._parentsChildNumber = kwds.parentsChildNumber;
         if (kwds.definition.childFeatureSets) {
+            let childNumber = 0;
             for (let childFeatureSetDefinition of kwds.definition.childFeatureSets.models) {
                 this._childFeatureSets.add(new WorksheetFeatureSet({
                     definition: childFeatureSetDefinition,
                     parentFeatureSet: this,
+                    parentsChildNumber: childNumber++,
                     state: kwds.state && kwds.state.childFeatureSets ? kwds.state.childFeatureSets[childFeatureSetDefinition.id] : undefined
                 }));
             }
         }
         if (kwds.definition.features) {
+            let childNumber = 0;
             for (let featureDefinition of kwds.definition.features.models) {
                 const featureState = kwds.state && kwds.state.features ? kwds.state.features[featureDefinition.id] : undefined;
-                const featureKwds = { definition: featureDefinition, parentFeatureSet: this, state: featureState };
+                const featureKwds = {
+                    definition: featureDefinition,
+                    parentFeatureSet: this,
+                    parentsChildNumber: childNumber++,
+                    state: featureState
+                };
                 if (featureDefinition.enum_) {
                     this._features.add(new WorksheetEnumFeature(featureKwds));
                 } else if (featureDefinition.text) {
@@ -92,12 +106,27 @@ export class WorksheetFeatureSet extends Backbone.Model {
         return this._features;
     }
 
+    get nextFeatureSet(): WorksheetFeatureSet | undefined {
+        if (this._parentFeatureSet && this._parentsChildNumber + 1 < (this.parentFeatureSet as WorksheetFeatureSet).childFeatureSets.length) {
+            return (this.parentFeatureSet as WorksheetFeatureSet).childFeatureSets.at(this._parentsChildNumber + 1);
+        }
+        return undefined;
+    }
+
     get parentFeatureSet(): WorksheetFeatureSet | undefined {
         return this._parentFeatureSet;
+    }
+
+    get previousFeatureSet(): WorksheetFeatureSet | undefined {
+        if (this._parentFeatureSet && this._parentsChildNumber > 0) {
+            return (this.parentFeatureSet as WorksheetFeatureSet).childFeatureSets.at(this._parentsChildNumber - 1);
+        }
+        return undefined;
     }
 
     private _childFeatureSets: WorksheetFeatureSetCollection = new WorksheetFeatureSetCollection([]);
     private _definition: WorksheetFeatureSetDefinition;
     private _features: WorksheetFeatureCollection = new WorksheetFeatureCollection([]);
     private _parentFeatureSet: WorksheetFeatureSet | undefined;
+    private _parentsChildNumber: number | undefined;
 }

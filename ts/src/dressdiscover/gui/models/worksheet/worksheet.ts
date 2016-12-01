@@ -12,6 +12,7 @@ export class Worksheet extends Backbone.Model {
         this._rootFeatureSet = new WorksheetFeatureSet({
             definition: kwds.definition.rootFeatureSet,
             parentFeatureSet: undefined,
+            parentsChildNumber: undefined,
             state: kwds.state.rootFeatureSet
         });
 

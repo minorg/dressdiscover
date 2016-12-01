@@ -5,7 +5,12 @@ import { WorksheetFeatureState } from "dressdiscover/api/models/worksheet/worksh
 import { WorksheetTextFeatureState } from "dressdiscover/api/models/worksheet/worksheet_text_feature_state";
 
 export class WorksheetTextFeature extends WorksheetFeature {
-    constructor(kwds: { definition: WorksheetFeatureDefinition, parentFeatureSet: WorksheetFeatureSet, state: WorksheetFeatureState | undefined }) {
+    constructor(kwds: {
+        definition: WorksheetFeatureDefinition,
+        parentFeatureSet: WorksheetFeatureSet,
+        parentsChildNumber: number
+        state: WorksheetFeatureState | undefined
+    }) {
         super(kwds);
         if (kwds.state && kwds.state.text && kwds.state.text.text) {
             this.set("text", kwds.state.text.text);

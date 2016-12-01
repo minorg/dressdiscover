@@ -7,7 +7,12 @@ import { WorksheetEnumFeatureValueCollection } from "dressdiscover/gui/models/wo
 import { WorksheetEnumFeatureValue } from "dressdiscover/gui/models/worksheet/worksheet_enum_feature_value";
 
 export class WorksheetEnumFeature extends WorksheetFeature {
-    constructor(kwds: { definition: WorksheetFeatureDefinition, parentFeatureSet: WorksheetFeatureSet, state: WorksheetFeatureState | undefined }) {
+    constructor(kwds: {
+        definition: WorksheetFeatureDefinition,
+        parentFeatureSet: WorksheetFeatureSet,
+        parentsChildNumber: number
+        state: WorksheetFeatureState | undefined
+    }) {
         super(kwds);
         let values: WorksheetEnumFeatureValue[] = [];
         for (let valueDefinition of kwds.definition.enum_.values_.models) {
