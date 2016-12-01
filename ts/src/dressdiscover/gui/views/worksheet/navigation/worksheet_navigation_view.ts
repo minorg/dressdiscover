@@ -18,12 +18,13 @@ export class WorksheetNavigationView extends Marionette.ItemView<Worksheet> {
 
     initialize() {
         this.listenTo(Application.instance.radio.globalChannel, WorksheetFeatureInputEvent.NAME, this.onFeatureInput);
+        this.listenTo(Application.instance.radio.globalChannel, WorksheetFeatureNavigationEvent.NAME, this.onFeatureNavigation);
     }
 
     onFeatureInput(event: WorksheetFeatureInputEvent) {
-        let treeview = (this.$el as any).treeview(true);
-        let nodeId = this._featureCidToNodeIdMap[event.feature.cid];
-        let node = treeview.getNode(nodeId);
+        const treeview = (this.$el as any).treeview(true);
+        const nodeId = this._featureCidToNodeIdMap[event.feature.cid];
+        const node = treeview.getNode(nodeId);
         if (node.feature.id != event.feature.id) {
             throw new Error("map mismatch");
         }
@@ -35,6 +36,12 @@ export class WorksheetNavigationView extends Marionette.ItemView<Worksheet> {
         treeview.selectNode(nodeId); // Force re-render
     }
 
+    onFeatureNavigation(event: WorksheetFeatureNavigationEvent) {
+        const treeview = (this.$el as any).treeview(true);
+        const nodeId = this._featureCidToNodeIdMap[event.feature.cid];
+        treeview.selectNode(nodeId);
+    }
+
     onNodeSelected(event: any, node: any) {
         if (!node.feature) {
             return true;
@@ -44,9 +51,9 @@ export class WorksheetNavigationView extends Marionette.ItemView<Worksheet> {
     }
 
     private __constructFeatureSetTree(featureSet: WorksheetFeatureSet) {
-        let tree: any = { ddId: this._nodeId++, text: featureSet.displayName };
+        const tree: any = { ddId: this._nodeId++, text: featureSet.displayName };
         
-        let nodes: any[] = [];
+        const nodes: any[] = [];
         if (featureSet.childFeatureSets) {
             for (let childFeatureSet of featureSet.childFeatureSets.models) {
                 nodes.push(this.__constructFeatureSetTree(childFeatureSet));
