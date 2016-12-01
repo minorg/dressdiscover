@@ -6879,8 +6879,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	    function __() { this.constructor = d; }
 	    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 	};
-	var async_to_sync_worksheet_query_service_1 = __webpack_require__(26);
 	var Backbone = __webpack_require__(4);
+	var async_to_sync_worksheet_query_service_1 = __webpack_require__(26);
 	var worksheet_definition_1 = __webpack_require__(27);
 	var worksheet_feature_set_definition_1 = __webpack_require__(28);
 	var worksheet_state_1 = __webpack_require__(34);
@@ -6889,12 +6889,17 @@ return /******/ (function(modules) { // webpackBootstrap
 	    function LocalWorksheetQueryService() {
 	        _super.call(this);
 	        {
-	            var rootFeatureSetDefinitions = [];
+	            var featureSetDefinitions = [];
 	            for (var _i = 0, DEFINITIONS_1 = DEFINITIONS; _i < DEFINITIONS_1.length; _i++) {
 	                var featureSetDefinitionJsonObject = DEFINITIONS_1[_i];
-	                rootFeatureSetDefinitions.push(worksheet_feature_set_definition_1.WorksheetFeatureSetDefinition.fromThryftJSON(featureSetDefinitionJsonObject));
+	                featureSetDefinitions.push(worksheet_feature_set_definition_1.WorksheetFeatureSetDefinition.fromThryftJSON(featureSetDefinitionJsonObject));
 	            }
-	            this._worksheetDefinition = new worksheet_definition_1.WorksheetDefinition({ rootFeatureSets: new Backbone.Collection(rootFeatureSetDefinitions) });
+	            this._worksheetDefinition = new worksheet_definition_1.WorksheetDefinition({
+	                rootFeatureSet: new worksheet_feature_set_definition_1.WorksheetFeatureSetDefinition({
+	                    id: "Root",
+	                    childFeatureSets: new Backbone.Collection(featureSetDefinitions)
+	                })
+	            });
 	        }
 	    }
 	    LocalWorksheetQueryService.prototype.getWorksheetAccessionNumbersSync = function () {
@@ -6988,19 +6993,13 @@ return /******/ (function(modules) { // webpackBootstrap
 	    function WorksheetDefinition(attributes, options) {
 	        _super.call(this, attributes, options);
 	        this.validation = {
-	            rootFeatureSets: {
+	            rootFeatureSet: {
 	                "fn": function (value, attr, computedState) {
-	                    if (!(value instanceof Backbone.Collection)) {
-	                        return "expected WorksheetDefinition.root_feature_sets to be a Backbone.Collection";
+	                    if (!(value instanceof worksheet_feature_set_definition_1.WorksheetFeatureSetDefinition)) {
+	                        return "expected WorksheetDefinition.root_feature_set to be a WorksheetFeatureSetDefinition";
 	                    }
-	                    if (value.model !== worksheet_feature_set_definition_1.WorksheetFeatureSetDefinition) {
-	                        return "expected WorksheetDefinition.root_feature_sets to be a Backbone.Collection with model=WorksheetFeatureSetDefinition";
-	                    }
-	                    for (var _i = 0, _a = value.models; _i < _a.length; _i++) {
-	                        var __model0 = _a[_i];
-	                        if (!__model0.isValid(true)) {
-	                            return __model0.validationError;
-	                        }
+	                    if (!value.isValid(true)) {
+	                        return value.validationError;
 	                    }
 	                    return undefined;
 	                },
@@ -7008,12 +7007,12 @@ return /******/ (function(modules) { // webpackBootstrap
 	            }
 	        };
 	    }
-	    Object.defineProperty(WorksheetDefinition.prototype, "rootFeatureSets", {
+	    Object.defineProperty(WorksheetDefinition.prototype, "rootFeatureSet", {
 	        get: function () {
-	            return this.get('rootFeatureSets');
+	            return this.get('rootFeatureSet');
 	        },
 	        set: function (value) {
-	            this.set('rootFeatureSets', value, { validate: true });
+	            this.set('rootFeatureSet', value, { validate: true });
 	        },
 	        enumerable: true,
 	        configurable: true
@@ -7021,10 +7020,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	    WorksheetDefinition.fromThryftJSON = function (json) {
 	        var out = new WorksheetDefinition;
 	        for (var fieldName in json) {
-	            if (fieldName == "root_feature_sets") {
-	                out.attributes.rootFeatureSets = function (json) { var sequence = []; for (var i = 0; i < json.length; i++) {
-	                    sequence.push(worksheet_feature_set_definition_1.WorksheetFeatureSetDefinition.fromThryftJSON(json[i]));
-	                } return new Backbone.Collection(sequence); }(json[fieldName]);
+	            if (fieldName == "root_feature_set") {
+	                out.attributes.rootFeatureSet = worksheet_feature_set_definition_1.WorksheetFeatureSetDefinition.fromThryftJSON(json[fieldName]);
 	            }
 	        }
 	        if (!out.isValid(true)) {
@@ -7034,9 +7031,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    };
 	    WorksheetDefinition.prototype.toThryftJSON = function () {
 	        var json = {};
-	        json["root_feature_sets"] = function (__inArray) { var __outArray = []; for (var __i = 0; __i < __inArray.length; __i++) {
-	            __outArray.push(__inArray[__i].toThryftJSON());
-	        } return __outArray; }(this.rootFeatureSets.models);
+	        json["root_feature_set"] = this.rootFeatureSet.toThryftJSON();
 	        return json;
 	    };
 	    return WorksheetDefinition;
@@ -7132,9 +7127,6 @@ return /******/ (function(modules) { // webpackBootstrap
 	    Object.defineProperty(WorksheetFeatureSetDefinition.prototype, "id", {
 	        get: function () {
 	            return this.get('id');
-	        },
-	        set: function (value) {
-	            this.set('id', value, { validate: true });
 	        },
 	        enumerable: true,
 	        configurable: true
@@ -7294,9 +7286,6 @@ return /******/ (function(modules) { // webpackBootstrap
 	    Object.defineProperty(WorksheetFeatureDefinition.prototype, "id", {
 	        get: function () {
 	            return this.get('id');
-	        },
-	        set: function (value) {
-	            this.set('id', value, { validate: true });
 	        },
 	        enumerable: true,
 	        configurable: true
@@ -7505,9 +7494,6 @@ return /******/ (function(modules) { // webpackBootstrap
 	    Object.defineProperty(WorksheetEnumFeatureValueDefinition.prototype, "id", {
 	        get: function () {
 	            return this.get('id');
-	        },
-	        set: function (value) {
-	            this.set('id', value, { validate: true });
 	        },
 	        enumerable: true,
 	        configurable: true
@@ -7739,29 +7725,20 @@ return /******/ (function(modules) { // webpackBootstrap
 	                },
 	                "required": true
 	            },
-	            rootFeatureSets: {
+	            rootFeatureSet: {
 	                "fn": function (value, attr, computedState) {
 	                    if (typeof attr === "undefined" || attr === null) {
 	                        return undefined;
 	                    }
-	                    if (typeof value !== "object") {
-	                        return "expected WorksheetState.root_feature_sets to be an object";
+	                    if (!(value instanceof worksheet_feature_set_state_1.WorksheetFeatureSetState)) {
+	                        return "expected WorksheetState.root_feature_set to be a WorksheetFeatureSetState";
 	                    }
-	                    for (var __key in value) {
-	                        var __value = value[__key];
-	                        if (typeof __key !== "string") {
-	                            return "expected WorksheetState.root_feature_sets key to be a string";
-	                        }
-	                        if (!(__value instanceof worksheet_feature_set_state_1.WorksheetFeatureSetState)) {
-	                            return "expected WorksheetState.root_feature_sets value to be a WorksheetFeatureSetState";
-	                        }
-	                        if (!__value.isValid(true)) {
-	                            return __value.validationError;
-	                        }
+	                    if (!value.isValid(true)) {
+	                        return value.validationError;
 	                    }
 	                    return undefined;
 	                },
-	                "minLength": 1, "required": false
+	                "required": false
 	            }
 	        };
 	    }
@@ -7775,12 +7752,12 @@ return /******/ (function(modules) { // webpackBootstrap
 	        enumerable: true,
 	        configurable: true
 	    });
-	    Object.defineProperty(WorksheetState.prototype, "rootFeatureSets", {
+	    Object.defineProperty(WorksheetState.prototype, "rootFeatureSet", {
 	        get: function () {
-	            return this.get('rootFeatureSets');
+	            return this.get('rootFeatureSet');
 	        },
 	        set: function (value) {
-	            this.set('rootFeatureSets', value, { validate: true });
+	            this.set('rootFeatureSet', value, { validate: true });
 	        },
 	        enumerable: true,
 	        configurable: true
@@ -7791,10 +7768,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	            if (fieldName == "accession_number") {
 	                out.attributes.accessionNumber = json[fieldName];
 	            }
-	            else if (fieldName == "root_feature_sets") {
-	                out.attributes.rootFeatureSets = function (json) { var map = {}; for (var key in json) {
-	                    map[key] = worksheet_feature_set_state_1.WorksheetFeatureSetState.fromThryftJSON(json[key]);
-	                } return map; }(json[fieldName]);
+	            else if (fieldName == "root_feature_set") {
+	                out.attributes.rootFeatureSet = worksheet_feature_set_state_1.WorksheetFeatureSetState.fromThryftJSON(json[fieldName]);
 	            }
 	        }
 	        if (!out.isValid(true)) {
@@ -7805,10 +7780,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	    WorksheetState.prototype.toThryftJSON = function () {
 	        var json = {};
 	        json["accession_number"] = this.accessionNumber;
-	        if (this.has("rootFeatureSets")) {
-	            json["root_feature_sets"] = function (value) { var outObject = {}; for (var key in value) {
-	                outObject[key] = value[key].toThryftJSON();
-	            } return outObject; }(this.rootFeatureSets);
+	        if (this.has("rootFeatureSet")) {
+	            json["root_feature_set"] = this.rootFeatureSet.toThryftJSON();
 	        }
 	        return json;
 	    };
@@ -8182,45 +8155,33 @@ return /******/ (function(modules) { // webpackBootstrap
 	    function __() { this.constructor = d; }
 	    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 	};
-	var _ = __webpack_require__(3);
 	var Backbone = __webpack_require__(4);
 	var services_1 = __webpack_require__(22);
-	var worksheet_feature_set_collection_1 = __webpack_require__(40);
-	var worksheet_feature_set_1 = __webpack_require__(41);
+	var worksheet_feature_set_1 = __webpack_require__(40);
 	var worksheet_state_1 = __webpack_require__(34);
 	var Worksheet = (function (_super) {
 	    __extends(Worksheet, _super);
 	    function Worksheet(kwds) {
 	        _super.call(this);
+	        this._allFeatures = [];
 	        this._accessionNumber = kwds.accessionNumber;
-	        var rootFeatureSets = [];
-	        for (var _i = 0, _a = kwds.definition.rootFeatureSets.models; _i < _a.length; _i++) {
-	            var rootFeatureSetDefinition = _a[_i];
-	            rootFeatureSets.push(new worksheet_feature_set_1.WorksheetFeatureSet({
-	                definition: rootFeatureSetDefinition,
-	                parentFeatureSet: undefined,
-	                state: kwds.initialState.rootFeatureSets ? kwds.initialState.rootFeatureSets[rootFeatureSetDefinition.id] : undefined
-	            }));
-	        }
-	        this._rootFeatureSets = new worksheet_feature_set_collection_1.WorksheetFeatureSetCollection(rootFeatureSets);
+	        this._rootFeatureSet = new worksheet_feature_set_1.WorksheetFeatureSet({
+	            allFeatures: this._allFeatures,
+	            definition: kwds.definition.rootFeatureSet,
+	            parentFeatureSet: undefined,
+	            parentsChildNumber: undefined,
+	            state: kwds.state.rootFeatureSet
+	        });
 	        {
-	            for (var _b = 0, _c = this.rootFeatureSets.models; _b < _c.length; _b++) {
-	                var featureSet = _c[_b];
-	                var selectedFeature = this.__getSelectedFeature(featureSet);
+	            var selectedFeature = this.__getSelectedFeature(this.rootFeatureSet);
+	            if (selectedFeature) {
+	                this._selectedFeature = selectedFeature;
+	            }
+	            else {
+	                selectedFeature = this.__getFirstFeature(this.rootFeatureSet);
 	                if (selectedFeature) {
 	                    this._selectedFeature = selectedFeature;
-	                    break;
-	                }
-	            }
-	            if (!this._selectedFeature) {
-	                for (var _d = 0, _e = this.rootFeatureSets.models; _d < _e.length; _d++) {
-	                    var featureSet = _e[_d];
-	                    var selectedFeature = this.__getFirstFeature(featureSet);
-	                    if (selectedFeature) {
-	                        this._selectedFeature = selectedFeature;
-	                        selectedFeature.selected = true;
-	                        break;
-	                    }
+	                    selectedFeature.selected = true;
 	                }
 	            }
 	            if (!this._selectedFeature) {
@@ -8237,21 +8198,14 @@ return /******/ (function(modules) { // webpackBootstrap
 	    });
 	    Worksheet.fetchFromService = function (kwds) {
 	        var definition = services_1.Services.instance.worksheetQueryService.getWorksheetDefinitionSync();
-	        var initialState = services_1.Services.instance.worksheetQueryService.getWorksheetStateSync({ accessionNumber: kwds.accessionNumber });
-	        return new Worksheet({ accessionNumber: kwds.accessionNumber, definition: definition, initialState: initialState });
+	        var state = services_1.Services.instance.worksheetQueryService.getWorksheetStateSync({ accessionNumber: kwds.accessionNumber });
+	        return new Worksheet({ accessionNumber: kwds.accessionNumber, definition: definition, state: state });
 	    };
 	    Object.defineProperty(Worksheet.prototype, "currentState", {
 	        get: function () {
-	            var rootFeatureSetStates = {};
-	            for (var _i = 0, _a = this.rootFeatureSets.models; _i < _a.length; _i++) {
-	                var featureSet = _a[_i];
-	                var featureSetState = featureSet.currentState;
-	                if (featureSetState) {
-	                    rootFeatureSetStates[featureSet.id] = featureSetState;
-	                }
-	            }
-	            if (!_.isEmpty(rootFeatureSetStates)) {
-	                return new worksheet_state_1.WorksheetState({ accessionNumber: this.accessionNumber, rootFeatureSets: rootFeatureSetStates });
+	            var rootFeatureSetState = this.rootFeatureSet.currentState;
+	            if (rootFeatureSetState) {
+	                return new worksheet_state_1.WorksheetState({ accessionNumber: this.accessionNumber, rootFeatureSet: rootFeatureSetState });
 	            }
 	            else {
 	                return undefined;
@@ -8266,9 +8220,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	            services_1.Services.instance.worksheetCommandService.putWorksheetStateSync({ state: currentState });
 	        }
 	    };
-	    Object.defineProperty(Worksheet.prototype, "rootFeatureSets", {
+	    Object.defineProperty(Worksheet.prototype, "rootFeatureSet", {
 	        get: function () {
-	            return this._rootFeatureSets;
+	            return this._rootFeatureSet;
 	        },
 	        enumerable: true,
 	        configurable: true
@@ -8333,33 +8287,12 @@ return /******/ (function(modules) { // webpackBootstrap
 	    function __() { this.constructor = d; }
 	    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 	};
-	var Backbone = __webpack_require__(4);
-	var WorksheetFeatureSetCollection = (function (_super) {
-	    __extends(WorksheetFeatureSetCollection, _super);
-	    function WorksheetFeatureSetCollection(models) {
-	        _super.call(this, models);
-	    }
-	    return WorksheetFeatureSetCollection;
-	}(Backbone.Collection));
-	exports.WorksheetFeatureSetCollection = WorksheetFeatureSetCollection;
-
-
-/***/ },
-/* 41 */
-/***/ function(module, exports, __webpack_require__) {
-
-	"use strict";
-	var __extends = (this && this.__extends) || function (d, b) {
-	    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
-	    function __() { this.constructor = d; }
-	    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-	};
 	var _ = __webpack_require__(3);
 	var Backbone = __webpack_require__(4);
 	var worksheet_feature_set_state_1 = __webpack_require__(35);
-	var worksheet_enum_feature_1 = __webpack_require__(42);
-	var worksheet_feature_collection_1 = __webpack_require__(46);
-	var worksheet_feature_set_collection_1 = __webpack_require__(40);
+	var worksheet_enum_feature_1 = __webpack_require__(41);
+	var worksheet_feature_collection_1 = __webpack_require__(45);
+	var worksheet_feature_set_collection_1 = __webpack_require__(46);
 	var worksheet_text_feature_1 = __webpack_require__(47);
 	var WorksheetFeatureSet = (function (_super) {
 	    __extends(WorksheetFeatureSet, _super);
@@ -8369,12 +8302,16 @@ return /******/ (function(modules) { // webpackBootstrap
 	        this._features = new worksheet_feature_collection_1.WorksheetFeatureCollection([]);
 	        this._definition = kwds.definition;
 	        this._parentFeatureSet = kwds.parentFeatureSet;
+	        this._parentsChildNumber = kwds.parentsChildNumber;
 	        if (kwds.definition.childFeatureSets) {
+	            var childNumber = 0;
 	            for (var _i = 0, _a = kwds.definition.childFeatureSets.models; _i < _a.length; _i++) {
 	                var childFeatureSetDefinition = _a[_i];
 	                this._childFeatureSets.add(new WorksheetFeatureSet({
+	                    allFeatures: kwds.allFeatures,
 	                    definition: childFeatureSetDefinition,
 	                    parentFeatureSet: this,
+	                    parentsChildNumber: childNumber++,
 	                    state: kwds.state && kwds.state.childFeatureSets ? kwds.state.childFeatureSets[childFeatureSetDefinition.id] : undefined
 	                }));
 	            }
@@ -8383,16 +8320,25 @@ return /******/ (function(modules) { // webpackBootstrap
 	            for (var _b = 0, _c = kwds.definition.features.models; _b < _c.length; _b++) {
 	                var featureDefinition = _c[_b];
 	                var featureState = kwds.state && kwds.state.features ? kwds.state.features[featureDefinition.id] : undefined;
-	                var featureKwds = { definition: featureDefinition, parentFeatureSet: this, state: featureState };
+	                var featureKwds = {
+	                    allFeatures: kwds.allFeatures,
+	                    allFeaturesIndex: kwds.allFeatures.length,
+	                    definition: featureDefinition,
+	                    parentFeatureSet: this,
+	                    state: featureState
+	                };
+	                var feature = void 0;
 	                if (featureDefinition.enum_) {
-	                    this._features.add(new worksheet_enum_feature_1.WorksheetEnumFeature(featureKwds));
+	                    feature = new worksheet_enum_feature_1.WorksheetEnumFeature(featureKwds);
 	                }
 	                else if (featureDefinition.text) {
-	                    this._features.add(new worksheet_text_feature_1.WorksheetTextFeature(featureKwds));
+	                    feature = new worksheet_text_feature_1.WorksheetTextFeature(featureKwds);
 	                }
 	                else {
 	                    throw new Error("feature definition without union set");
 	                }
+	                this._features.add(feature);
+	                kwds.allFeatures.push(feature);
 	            }
 	        }
 	    }
@@ -8477,7 +8423,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ },
-/* 42 */
+/* 41 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -8487,10 +8433,10 @@ return /******/ (function(modules) { // webpackBootstrap
 	    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 	};
 	var worksheet_enum_feature_state_1 = __webpack_require__(37);
-	var worksheet_feature_1 = __webpack_require__(43);
+	var worksheet_feature_1 = __webpack_require__(42);
 	var worksheet_feature_state_1 = __webpack_require__(36);
-	var worksheet_enum_feature_value_collection_1 = __webpack_require__(44);
-	var worksheet_enum_feature_value_1 = __webpack_require__(45);
+	var worksheet_enum_feature_value_collection_1 = __webpack_require__(43);
+	var worksheet_enum_feature_value_1 = __webpack_require__(44);
 	var WorksheetEnumFeature = (function (_super) {
 	    __extends(WorksheetEnumFeature, _super);
 	    function WorksheetEnumFeature(kwds) {
@@ -8556,7 +8502,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ },
-/* 43 */
+/* 42 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -8570,6 +8516,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	    __extends(WorksheetFeature, _super);
 	    function WorksheetFeature(kwds) {
 	        _super.call(this, { id: kwds.definition.id });
+	        this._allFeatures = kwds.allFeatures;
+	        this._allFeaturesIndex = kwds.allFeaturesIndex;
 	        this._definition = kwds.definition;
 	        this.selected = false;
 	        this._parentFeatureSet = kwds.parentFeatureSet;
@@ -8593,9 +8541,29 @@ return /******/ (function(modules) { // webpackBootstrap
 	        enumerable: true,
 	        configurable: true
 	    });
-	    Object.defineProperty(WorksheetFeature.prototype, "parentFeatureset", {
+	    Object.defineProperty(WorksheetFeature.prototype, "parentFeatureSet", {
 	        get: function () {
 	            return this._parentFeatureSet;
+	        },
+	        enumerable: true,
+	        configurable: true
+	    });
+	    Object.defineProperty(WorksheetFeature.prototype, "nextFeature", {
+	        get: function () {
+	            if (this._allFeaturesIndex + 1 < this._allFeatures.length) {
+	                return this._allFeatures[this._allFeaturesIndex + 1];
+	            }
+	            return undefined;
+	        },
+	        enumerable: true,
+	        configurable: true
+	    });
+	    Object.defineProperty(WorksheetFeature.prototype, "previousFeature", {
+	        get: function () {
+	            if (this._allFeaturesIndex > 0) {
+	                return this._allFeatures[this._allFeaturesIndex - 1];
+	            }
+	            return undefined;
 	        },
 	        enumerable: true,
 	        configurable: true
@@ -8621,7 +8589,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ },
-/* 44 */
+/* 43 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -8642,7 +8610,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ },
-/* 45 */
+/* 44 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -8697,7 +8665,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ },
-/* 46 */
+/* 45 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -8718,6 +8686,27 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ },
+/* 46 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+	var __extends = (this && this.__extends) || function (d, b) {
+	    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
+	    function __() { this.constructor = d; }
+	    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+	};
+	var Backbone = __webpack_require__(4);
+	var WorksheetFeatureSetCollection = (function (_super) {
+	    __extends(WorksheetFeatureSetCollection, _super);
+	    function WorksheetFeatureSetCollection(models) {
+	        _super.call(this, models);
+	    }
+	    return WorksheetFeatureSetCollection;
+	}(Backbone.Collection));
+	exports.WorksheetFeatureSetCollection = WorksheetFeatureSetCollection;
+
+
+/***/ },
 /* 47 */
 /***/ function(module, exports, __webpack_require__) {
 
@@ -8727,7 +8716,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    function __() { this.constructor = d; }
 	    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 	};
-	var worksheet_feature_1 = __webpack_require__(43);
+	var worksheet_feature_1 = __webpack_require__(42);
 	var worksheet_feature_state_1 = __webpack_require__(36);
 	var worksheet_text_feature_state_1 = __webpack_require__(38);
 	var WorksheetTextFeature = (function (_super) {
@@ -9005,8 +8994,10 @@ return /******/ (function(modules) { // webpackBootstrap
 	};
 	var _ = __webpack_require__(3);
 	var Marionette = __webpack_require__(5);
+	var application_1 = __webpack_require__(1);
 	var worksheet_enum_feature_input_view_1 = __webpack_require__(57);
-	var worksheet_enum_feature_1 = __webpack_require__(42);
+	var worksheet_enum_feature_1 = __webpack_require__(41);
+	var worksheet_feature_navigation_event_1 = __webpack_require__(55);
 	var worksheet_text_feature_input_view_1 = __webpack_require__(64);
 	var worksheet_text_feature_1 = __webpack_require__(47);
 	var WorksheetInputView = (function (_super) {
@@ -9023,7 +9014,12 @@ return /******/ (function(modules) { // webpackBootstrap
 	            },
 	            template: _.template(__webpack_require__(67))
 	        }));
+	        this._nextFeature = this.model.nextFeature;
+	        this._previousFeature = this.model.previousFeature;
 	    }
+	    WorksheetInputView.prototype.initialize = function () {
+	        this.ui = { backButton: "#back-button", nextButton: "#next-button" };
+	    };
 	    WorksheetInputView.prototype.onBeforeShow = function () {
 	        var childView;
 	        if (this.model instanceof worksheet_enum_feature_1.WorksheetEnumFeature) {
@@ -9038,10 +9034,20 @@ return /******/ (function(modules) { // webpackBootstrap
 	        this.showChildView("child", childView);
 	    };
 	    WorksheetInputView.prototype.onClickBackButton = function () {
-	        console.info("Back");
+	        if (!this._previousFeature) {
+	            return;
+	        }
+	        application_1.Application.instance.radio.globalChannel.trigger(worksheet_feature_navigation_event_1.WorksheetFeatureNavigationEvent.NAME, new worksheet_feature_navigation_event_1.WorksheetFeatureNavigationEvent({ feature: this._previousFeature }));
 	    };
 	    WorksheetInputView.prototype.onClickNextButton = function () {
-	        console.info("Next");
+	        if (!this._nextFeature) {
+	            return;
+	        }
+	        application_1.Application.instance.radio.globalChannel.trigger(worksheet_feature_navigation_event_1.WorksheetFeatureNavigationEvent.NAME, new worksheet_feature_navigation_event_1.WorksheetFeatureNavigationEvent({ feature: this._nextFeature }));
+	    };
+	    WorksheetInputView.prototype.onRender = function () {
+	        this.ui.backButton.prop("disabled", !!!this._previousFeature);
+	        this.ui.nextButton.prop("disabled", !!!this._nextFeature);
 	    };
 	    return WorksheetInputView;
 	}(Marionette.LayoutView));
@@ -9927,7 +9933,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /* 67 */
 /***/ function(module, exports) {
 
-	module.exports = "<div class=\"container-fluid\" id=\"input\">\r\n    <div class=\"row\" id=\"input-navigation\">\r\n        <div class=\"col-md-2\"><button class=\"btn btn-primary\" id=\"back-button\" type=\"button\">Previous</button></div>\r\n        <div class=\"col-md-8\">&nbsp;</div>\r\n        <div class=\"col-md-2\"><button class=\"btn btn-primary\" id=\"next-button\" type=\"button\">Next</button></div>\r\n    </div>\r\n    <div class=\"row\" id=\"input-child\"></div>\r\n</div>\r\n"
+	module.exports = "<div class=\"container-fluid\" id=\"input\">\n    <div class=\"row\" id=\"input-navigation\">\n        <div class=\"col-md-2\"><button class=\"btn btn-primary\" id=\"back-button\" type=\"button\">Previous</button></div>\n        <div class=\"col-md-8\">&nbsp;</div>\n        <div class=\"col-md-2\"><button class=\"btn btn-primary\" id=\"next-button\" type=\"button\">Next</button></div>\n    </div>\n    <div class=\"row\" id=\"input-child\"></div>\n</div>\n"
 
 /***/ },
 /* 68 */
@@ -9999,15 +10005,14 @@ return /******/ (function(modules) { // webpackBootstrap
 	        this._tree = [];
 	        this._nodeId = 0;
 	        this._featureCidToNodeIdMap = {};
-	        if (this.model.rootFeatureSets) {
-	            for (var _i = 0, _a = this.model.rootFeatureSets.models; _i < _a.length; _i++) {
-	                var featureSet = _a[_i];
-	                this._tree.push(this.__constructFeatureSetTree(featureSet));
-	            }
+	        for (var _i = 0, _a = this.model.rootFeatureSet.childFeatureSets.models; _i < _a.length; _i++) {
+	            var featureSet = _a[_i];
+	            this._tree.push(this.__constructFeatureSetTree(featureSet));
 	        }
 	    }
 	    WorksheetNavigationView.prototype.initialize = function () {
 	        this.listenTo(application_1.Application.instance.radio.globalChannel, worksheet_feature_input_event_1.WorksheetFeatureInputEvent.NAME, this.onFeatureInput);
+	        this.listenTo(application_1.Application.instance.radio.globalChannel, worksheet_feature_navigation_event_1.WorksheetFeatureNavigationEvent.NAME, this.onFeatureNavigation);
 	    };
 	    WorksheetNavigationView.prototype.onFeatureInput = function (event) {
 	        var treeview = this.$el.treeview(true);
@@ -10023,6 +10028,11 @@ return /******/ (function(modules) { // webpackBootstrap
 	            delete node["icon"];
 	        }
 	        treeview.selectNode(nodeId); // Force re-render
+	    };
+	    WorksheetNavigationView.prototype.onFeatureNavigation = function (event) {
+	        var treeview = this.$el.treeview(true);
+	        var nodeId = this._featureCidToNodeIdMap[event.feature.cid];
+	        treeview.selectNode(nodeId);
 	    };
 	    WorksheetNavigationView.prototype.onNodeSelected = function (event, node) {
 	        if (!node.feature) {
@@ -10133,11 +10143,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        }
 	    };
 	    WorksheetOutputView.prototype.__calculateOutput = function () {
-	        var output = {};
-	        for (var _i = 0, _a = this.model.rootFeatureSets.models; _i < _a.length; _i++) {
-	            var rootFeatureSet = _a[_i];
-	            _.extend(output, this.__calculateFeatureSetOutput(rootFeatureSet));
-	        }
+	        var output = this.__calculateFeatureSetOutput(this.model.rootFeatureSet);
 	        console.info("output: " + JSON.stringify(output));
 	        return output;
 	    };

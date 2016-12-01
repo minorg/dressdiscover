@@ -10,6 +10,7 @@ export class Worksheet extends Backbone.Model {
         super();
         this._accessionNumber = kwds.accessionNumber;
         this._rootFeatureSet = new WorksheetFeatureSet({
+            allFeatures: this._allFeatures,
             definition: kwds.definition.rootFeatureSet,
             parentFeatureSet: undefined,
             parentsChildNumber: undefined,
@@ -111,6 +112,7 @@ export class Worksheet extends Backbone.Model {
     }
 
     private _accessionNumber: string;
+    private _allFeatures: WorksheetFeature[] = [];
     private _rootFeatureSet: WorksheetFeatureSet;
     private _selectedFeature: WorksheetFeature;
 }
