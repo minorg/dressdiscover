@@ -5,16 +5,18 @@ import { WorksheetFeatureState } from "dressdiscover/api/models/worksheet/worksh
  
 export abstract class WorksheetFeature extends Backbone.Model {
     constructor(kwds: {
+        allFeatures: WorksheetFeature[],
+        allFeaturesIndex: number,
         definition: WorksheetFeatureDefinition,
         parentFeatureSet: WorksheetFeatureSet,
-        parentsChildNumber: number
         state: WorksheetFeatureState | undefined
     }) {
         super({ id: kwds.definition.id });
+        this._allFeatures = kwds.allFeatures;
+        this._allFeaturesIndex = kwds.allFeaturesIndex;
         this._definition = kwds.definition;
         this.selected = false;
         this._parentFeatureSet = kwds.parentFeatureSet;
-        this._parentsChildNumber = kwds.parentsChildNumber;
     }
 
     abstract get currentState(): WorksheetFeatureState | undefined;
@@ -32,29 +34,15 @@ export abstract class WorksheetFeature extends Backbone.Model {
     }
 
     get nextFeature(): WorksheetFeature | undefined {
-        if (this._parentsChildNumber + 1 < this.parentFeatureSet.features.length) {
-            return this.parentFeatureSet.features.at(this._parentsChildNumber + 1);
-        }
-        let nextFeatureSet = this.parentFeatureSet.nextFeatureSet;
-        while (nextFeatureSet) {
-            if (nextFeatureSet.features.length > 0) {
-                return nextFeatureSet.features.at(0);
-            }
-            nextFeatureSet = nextFeatureSet.nextFeatureSet;
+        if (this._allFeaturesIndex + 1 < this._allFeatures.length) {
+            return this._allFeatures[this._allFeaturesIndex + 1];
         }
         return undefined;
     }
 
     get previousFeature(): WorksheetFeature | undefined {
-        if (this._parentsChildNumber > 0) {
-            return this.parentFeatureSet.features.at(this._parentsChildNumber - 1);
-        }
-        let previousFeatureSet = this.parentFeatureSet.previousFeatureSet;
-        while (previousFeatureSet) {
-            if (previousFeatureSet.features.length > 0) {
-                return previousFeatureSet.features.at(previousFeatureSet.features.length - 1);
-            }
-            previousFeatureSet = previousFeatureSet.previousFeatureSet;
+        if (this._allFeaturesIndex > 0) {
+            return this._allFeatures[this._allFeaturesIndex - 1];
         }
         return undefined;
     }
@@ -69,7 +57,8 @@ export abstract class WorksheetFeature extends Backbone.Model {
 
     abstract get outputValues(): string[];
 
+    private _allFeatures: WorksheetFeature[];
+    private _allFeaturesIndex: number;
     private _definition: WorksheetFeatureDefinition;
     private _parentFeatureSet: WorksheetFeatureSet;
-    private _parentsChildNumber: number;
 }

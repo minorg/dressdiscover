@@ -8,9 +8,10 @@ import { WorksheetEnumFeatureValue } from "dressdiscover/gui/models/worksheet/wo
 
 export class WorksheetEnumFeature extends WorksheetFeature {
     constructor(kwds: {
+        allFeatures: WorksheetFeature[],
+        allFeaturesIndex: number,
         definition: WorksheetFeatureDefinition,
         parentFeatureSet: WorksheetFeatureSet,
-        parentsChildNumber: number
         state: WorksheetFeatureState | undefined
     }) {
         super(kwds);
