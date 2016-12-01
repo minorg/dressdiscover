@@ -66,10 +66,7 @@ export class WorksheetOutputView extends Marionette.ItemView<Worksheet> {
     }
 
     private __calculateOutput(): WorksheetOutput {
-        let output: WorksheetOutput = {};
-        for (let rootFeatureSet of this.model.rootFeatureSets.models) {
-            _.extend(output, this.__calculateFeatureSetOutput(rootFeatureSet));
-        }
+        const output = this.__calculateFeatureSetOutput(this.model.rootFeatureSet);
         console.info("output: " + JSON.stringify(output));
         return output;
     }

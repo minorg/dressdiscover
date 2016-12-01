@@ -1,5 +1,5 @@
-﻿import { AsyncToSyncWorksheetQueryService } from "dressdiscover/api/services/worksheet/async_to_sync_worksheet_query_service";
-import * as Backbone from "backbone";
+﻿import * as Backbone from "backbone";
+import { AsyncToSyncWorksheetQueryService } from "dressdiscover/api/services/worksheet/async_to_sync_worksheet_query_service";
 import { WorksheetDefinition } from "dressdiscover/api/models/worksheet/worksheet_definition";
 import { WorksheetFeatureSetDefinition } from "dressdiscover/api/models/worksheet/worksheet_feature_set_definition";
 import { WorksheetState } from "dressdiscover/api/models/worksheet/worksheet_state";
@@ -10,11 +10,16 @@ export class LocalWorksheetQueryService extends AsyncToSyncWorksheetQueryService
     constructor() {
         super();
         {
-            const rootFeatureSetDefinitions: WorksheetFeatureSetDefinition[] = [];
+            const featureSetDefinitions: WorksheetFeatureSetDefinition[] = [];
             for (let featureSetDefinitionJsonObject of DEFINITIONS) {
-                rootFeatureSetDefinitions.push(WorksheetFeatureSetDefinition.fromThryftJSON(featureSetDefinitionJsonObject));
+                featureSetDefinitions.push(WorksheetFeatureSetDefinition.fromThryftJSON(featureSetDefinitionJsonObject));
             }
-            this._worksheetDefinition = new WorksheetDefinition({ rootFeatureSets: new Backbone.Collection<WorksheetFeatureSetDefinition>(rootFeatureSetDefinitions) });
+            this._worksheetDefinition = new WorksheetDefinition({
+                rootFeatureSet: new WorksheetFeatureSetDefinition({
+                    id: "Root",
+                    childFeatureSets: new Backbone.Collection<WorksheetFeatureSetDefinition>(featureSetDefinitions)
+                })
+            });
         }
     }
 
