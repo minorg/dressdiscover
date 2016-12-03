@@ -18,6 +18,7 @@ export class WorksheetEnumFeatureValueInputView extends Marionette.ItemView<Work
             },
             template: _.template(require("raw!./worksheet_enum_feature_value_input_view.html")),
         }));
+        this.listenTo(this.model, "change:selected", this.onModelChangeSelected);
     }
 
     initialize() {
@@ -28,7 +29,11 @@ export class WorksheetEnumFeatureValueInputView extends Marionette.ItemView<Work
         this.model.selected = !this.model.selected;
         this.ui.checkbox[0].checked = this.model.selected;
         Application.instance.radio.globalChannel.trigger(WorksheetFeatureInputEvent.NAME, new WorksheetFeatureInputEvent({ feature: this.model.parentFeature }));
-    }    
+    }
+
+    onModelChangeSelected() {
+        this.ui.checkbox[0].checked = this.model.selected;
+    }
 
     serializeData(): any {
         let data = this.model.definition.toJSON();
