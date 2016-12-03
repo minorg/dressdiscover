@@ -19,7 +19,7 @@ export class WorksheetEnumFeatureValueInputView extends Marionette.ItemView<Work
     }
 
     initialize() {
-        this.ui = { checkbox: "#feature-value-checkbox" };
+        this.ui = { checkbox: "#feature-value-checkbox", image: "#feature-value-img" };
     }
 
     onClick() {
@@ -31,11 +31,12 @@ export class WorksheetEnumFeatureValueInputView extends Marionette.ItemView<Work
     serializeData(): any {
         let data = this.model.definition.toJSON();
         data["displayName"] = this.model.displayName;
-        data['image'] = this.model.definition.image ? this.model.definition.image.toJSON() : null;
+        data["image"] = this.model.definition.image ? this.model.definition.image.toJSON() : null;
         return data;
     }
 
     onRender() {
         this.ui.checkbox[0].checked = this.model.selected;
+        this.ui.image.magnify();
     }
 }
