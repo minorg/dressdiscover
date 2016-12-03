@@ -49,6 +49,7 @@
     <Content Include="src\dressdiscover\gui\views\worksheet\worksheet_sidebar_view.less" />
     <Content Include="src\dressdiscover\gui\views\worksheet\worksheet_two_column_view.less" />
     <Content Include="src\dressdiscover\gui\views\worksheet\input\worksheet_text_feature_input_view.less" />
+    <Content Include="src\dressdiscover\gui\views\worksheet\input\worksheet_enum_feature_input_view.less" />
   </ItemGroup>
   <ItemGroup>
     <TypeScriptCompile Include="src\dressdiscover\api\models\worksheet\worksheet_definition.ts" />
