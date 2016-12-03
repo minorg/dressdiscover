@@ -4,6 +4,8 @@ import Marionette = require("backbone.marionette");
 import { WorksheetEnumFeatureValue } from "dressdiscover/gui/models/worksheet/worksheet_enum_feature_value";
 import { WorksheetFeatureInputEvent } from "dressdiscover/gui/events/worksheet/worksheet_feature_input_event";
 import "./worksheet_enum_feature_value_input_view.less";
+import "../../../../../../node_modules/magnify/dist/css/magnify.css";
+import "../../../../../../node_modules/magnify/dist/js/jquery.magnify.js";
 
 declare function require(moduleName: string): any;
 

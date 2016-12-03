@@ -11,8 +11,6 @@ import "../../../node_modules/bootstrap-select/dist/css/bootstrap-select.min.css
 import "../../../node_modules/bootstrap-select/dist/js/bootstrap-select.min.js";
 import "../../../node_modules/bootstrap-treeview/dist/bootstrap-treeview.min.css";
 import "../../../node_modules/bootstrap-treeview/dist/bootstrap-treeview.min.js";
-import "../../../node_modules/magnify/dist/css/magnify.css";
-import "../../../node_modules/magnify/dist/js/jquery.magnify.js";
 
 export class Application extends Marionette.Application {
     onStart() {

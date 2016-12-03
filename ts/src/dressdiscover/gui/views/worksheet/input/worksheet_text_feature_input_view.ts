@@ -4,6 +4,7 @@ import Marionette = require("backbone.marionette");
 import { WorksheetFeatureInputEvent } from "dressdiscover/gui/events/worksheet/worksheet_feature_input_event";
 import { WorksheetTextFeature } from "dressdiscover/gui/models/worksheet/worksheet_text_feature";
 import "../../../../../../node_modules/backbone.stickit/backbone.stickit.js";
+import "./worksheet_text_feature_input_view.less";
 
 declare function require(moduleName: string): any;
 
