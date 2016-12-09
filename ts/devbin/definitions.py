@@ -101,6 +101,18 @@ waistline_characteristics = [
 
 # TODO: label as text in Whole
 
+definitions = []
+for extent, sub_extents in extents.iteritems():
+    if sub_extents is None or len(sub_extents) == 0:
+        sub_extents = [None]
+    extent_definitions = []
+    definitions.append(extent_definitions)
+    for sub_extent in sub_extents:
+        pass
+
+
+
+
 # definitions = {
 #     'Head/Neck': {
 #     },
