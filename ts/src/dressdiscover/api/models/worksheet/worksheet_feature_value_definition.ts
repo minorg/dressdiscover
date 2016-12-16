@@ -1,12 +1,12 @@
 import * as Backbone from "backbone";
-import { WorksheetEnumFeatureValueImage } from "./worksheet_enum_feature_value_image";
+import { WorksheetFeatureValueImage } from "./worksheet_feature_value_image";
 
-export class WorksheetEnumFeatureValueDefinition extends Backbone.Model {
+export class WorksheetFeatureValueDefinition extends Backbone.Model {
     validation = {
         id: {
             "fn": function(value: any, attr: any, computedState: any) {
                 if (typeof value !== "string") {
-                    return "expected WorksheetEnumFeatureValueDefinition.id to be a string";
+                    return "expected WorksheetFeatureValueDefinition.id to be a string";
                 }
 
                 return undefined;
@@ -21,11 +21,11 @@ export class WorksheetEnumFeatureValueDefinition extends Backbone.Model {
                 }
 
                 if (typeof value !== "string") {
-                    return "expected WorksheetEnumFeatureValueDefinition.display_name to be a string";
+                    return "expected WorksheetFeatureValueDefinition.display_name to be a string";
                 }
 
                 if (/^\s*$/.test(value)) {
-                    return "WorksheetEnumFeatureValueDefinition.display_name is blank";
+                    return "WorksheetFeatureValueDefinition.display_name is blank";
                 }
 
                 return undefined;
@@ -39,8 +39,8 @@ export class WorksheetEnumFeatureValueDefinition extends Backbone.Model {
                     return undefined;
                 }
 
-                if (!(value instanceof WorksheetEnumFeatureValueImage)) {
-                    return "expected WorksheetEnumFeatureValueDefinition.image to be a WorksheetEnumFeatureValueImage";
+                if (!(value instanceof WorksheetFeatureValueImage)) {
+                    return "expected WorksheetFeatureValueDefinition.image to be a WorksheetFeatureValueImage";
                 }
                 if (!value.isValid(true)) {
                     return value.validationError;
@@ -54,7 +54,7 @@ export class WorksheetEnumFeatureValueDefinition extends Backbone.Model {
 
     validationError: any;
 
-    constructor(attributes?: {id: string, displayName?: string, image?: WorksheetEnumFeatureValueImage}, options?: any) {
+    constructor(attributes?: {id: string, displayName?: string, image?: WorksheetFeatureValueImage}, options?: any) {
         super(attributes, options);
     }
 
@@ -70,23 +70,23 @@ export class WorksheetEnumFeatureValueDefinition extends Backbone.Model {
         this.set('displayName', value, { validate: true });
     }
 
-    get image(): WorksheetEnumFeatureValueImage {
+    get image(): WorksheetFeatureValueImage {
         return this.get('image');
     }
 
-    set image(value: WorksheetEnumFeatureValueImage) {
+    set image(value: WorksheetFeatureValueImage) {
         this.set('image', value, { validate: true });
     }
 
-    static fromThryftJSON(json: any): WorksheetEnumFeatureValueDefinition {
-        var out: WorksheetEnumFeatureValueDefinition = new WorksheetEnumFeatureValueDefinition;
+    static fromThryftJSON(json: any): WorksheetFeatureValueDefinition {
+        var out: WorksheetFeatureValueDefinition = new WorksheetFeatureValueDefinition;
         for (var fieldName in json) {
             if (fieldName == "id") {
                 out.attributes.id = json[fieldName];
             } else if (fieldName == "display_name") {
                 out.attributes.displayName = json[fieldName];
             } else if (fieldName == "image") {
-                out.attributes.image = WorksheetEnumFeatureValueImage.fromThryftJSON(json[fieldName]);
+                out.attributes.image = WorksheetFeatureValueImage.fromThryftJSON(json[fieldName]);
             }
         }
         if (!out.isValid(true)) {

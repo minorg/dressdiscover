@@ -1,15 +1,15 @@
 import * as Backbone from "backbone";
 
-export class WorksheetEnumFeatureValueImage extends Backbone.Model {
+export class WorksheetFeatureValueImage extends Backbone.Model {
     validation = {
         rights: {
             "fn": function(value: any, attr: any, computedState: any) {
                 if (typeof value !== "string") {
-                    return "expected WorksheetEnumFeatureValueImage.rights to be a string";
+                    return "expected WorksheetFeatureValueImage.rights to be a string";
                 }
 
                 if (/^\s*$/.test(value)) {
-                    return "WorksheetEnumFeatureValueImage.rights is blank";
+                    return "WorksheetFeatureValueImage.rights is blank";
                 }
 
                 return undefined;
@@ -20,11 +20,11 @@ export class WorksheetEnumFeatureValueImage extends Backbone.Model {
         thumbnailUrl: {
             "fn": function(value: any, attr: any, computedState: any) {
                 if (typeof value !== "string") {
-                    return "expected WorksheetEnumFeatureValueImage.thumbnail_url to be a string";
+                    return "expected WorksheetFeatureValueImage.thumbnail_url to be a string";
                 }
 
                 if (/^\s*$/.test(value)) {
-                    return "WorksheetEnumFeatureValueImage.thumbnail_url is blank";
+                    return "WorksheetFeatureValueImage.thumbnail_url is blank";
                 }
 
                 return undefined;
@@ -39,11 +39,11 @@ export class WorksheetEnumFeatureValueImage extends Backbone.Model {
                 }
 
                 if (typeof value !== "string") {
-                    return "expected WorksheetEnumFeatureValueImage.full_size_url to be a string";
+                    return "expected WorksheetFeatureValueImage.full_size_url to be a string";
                 }
 
                 if (/^\s*$/.test(value)) {
-                    return "WorksheetEnumFeatureValueImage.full_size_url is blank";
+                    return "WorksheetFeatureValueImage.full_size_url is blank";
                 }
 
                 return undefined;
@@ -82,8 +82,8 @@ export class WorksheetEnumFeatureValueImage extends Backbone.Model {
         this.set('fullSizeUrl', value, { validate: true });
     }
 
-    static fromThryftJSON(json: any): WorksheetEnumFeatureValueImage {
-        var out: WorksheetEnumFeatureValueImage = new WorksheetEnumFeatureValueImage;
+    static fromThryftJSON(json: any): WorksheetFeatureValueImage {
+        var out: WorksheetFeatureValueImage = new WorksheetFeatureValueImage;
         for (var fieldName in json) {
             if (fieldName == "rights") {
                 out.attributes.rights = json[fieldName];

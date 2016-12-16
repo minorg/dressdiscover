@@ -1,7 +1,7 @@
 import __builtin__
 
 
-class WorksheetEnumFeatureValueImage(object):
+class WorksheetFeatureValueImage(object):
     class Builder(object):
         def __init__(
             self,
@@ -20,7 +20,7 @@ class WorksheetEnumFeatureValueImage(object):
             self.__full_size_url = full_size_url
 
         def build(self):
-            return WorksheetEnumFeatureValueImage(rights=self.__rights, thumbnail_url=self.__thumbnail_url, full_size_url=self.__full_size_url)
+            return WorksheetFeatureValueImage(rights=self.__rights, thumbnail_url=self.__thumbnail_url, full_size_url=self.__full_size_url)
 
         @property
         def full_size_url(self):
@@ -93,22 +93,22 @@ class WorksheetEnumFeatureValueImage(object):
 
             return self.__thumbnail_url
 
-        def update(self, worksheet_enum_feature_value_image):
+        def update(self, worksheet_feature_value_image):
             '''
             :type rights: str
             :type thumbnail_url: str
             :type full_size_url: str or None
             '''
 
-            if isinstance(worksheet_enum_feature_value_image, WorksheetEnumFeatureValueImage):
-                self.set_rights(worksheet_enum_feature_value_image.rights)
-                self.set_thumbnail_url(worksheet_enum_feature_value_image.thumbnail_url)
-                self.set_full_size_url(worksheet_enum_feature_value_image.full_size_url)
-            elif isinstance(worksheet_enum_feature_value_image, dict):
-                for key, value in worksheet_enum_feature_value_image.iteritems():
+            if isinstance(worksheet_feature_value_image, WorksheetFeatureValueImage):
+                self.set_rights(worksheet_feature_value_image.rights)
+                self.set_thumbnail_url(worksheet_feature_value_image.thumbnail_url)
+                self.set_full_size_url(worksheet_feature_value_image.full_size_url)
+            elif isinstance(worksheet_feature_value_image, dict):
+                for key, value in worksheet_feature_value_image.iteritems():
                     getattr(self, 'set_' + key)(value)
             else:
-                raise TypeError(worksheet_enum_feature_value_image)
+                raise TypeError(worksheet_feature_value_image)
             return self
 
         @full_size_url.setter
@@ -230,7 +230,7 @@ class WorksheetEnumFeatureValueImage(object):
         field_reprs.append('thumbnail_url=' + "'" + self.thumbnail_url.encode('ascii', 'replace') + "'")
         if self.full_size_url is not None:
             field_reprs.append('full_size_url=' + "'" + self.full_size_url.encode('ascii', 'replace') + "'")
-        return 'WorksheetEnumFeatureValueImage(' + ', '.join(field_reprs) + ')'
+        return 'WorksheetFeatureValueImage(' + ', '.join(field_reprs) + ')'
 
     def __str__(self):
         field_reprs = []
@@ -238,7 +238,7 @@ class WorksheetEnumFeatureValueImage(object):
         field_reprs.append('thumbnail_url=' + "'" + self.thumbnail_url.encode('ascii', 'replace') + "'")
         if self.full_size_url is not None:
             field_reprs.append('full_size_url=' + "'" + self.full_size_url.encode('ascii', 'replace') + "'")
-        return 'WorksheetEnumFeatureValueImage(' + ', '.join(field_reprs) + ')'
+        return 'WorksheetFeatureValueImage(' + ', '.join(field_reprs) + ')'
 
     @property
     def full_size_url(self):
@@ -254,7 +254,7 @@ class WorksheetEnumFeatureValueImage(object):
         Read a new object from the given input protocol and return the object.
 
         :type iprot: thryft.protocol._input_protocol._InputProtocol
-        :rtype: dressdiscover.api.models.worksheet.worksheet_enum_feature_value_image.WorksheetEnumFeatureValueImage
+        :rtype: dressdiscover.api.models.worksheet.worksheet_feature_value_image.WorksheetFeatureValueImage
         '''
 
         init_kwds = {}
@@ -290,7 +290,7 @@ class WorksheetEnumFeatureValueImage(object):
         :type rights: str or None
         :type thumbnail_url: str or None
         :type full_size_url: str or None
-        :rtype: dressdiscover.api.models.worksheet.worksheet_enum_feature_value_image.WorksheetEnumFeatureValueImage
+        :rtype: dressdiscover.api.models.worksheet.worksheet_feature_value_image.WorksheetFeatureValueImage
         '''
 
         if rights is None:
@@ -322,10 +322,10 @@ class WorksheetEnumFeatureValueImage(object):
         Write this object to the given output protocol and return self.
 
         :type oprot: thryft.protocol._output_protocol._OutputProtocol
-        :rtype: dressdiscover.api.models.worksheet.worksheet_enum_feature_value_image.WorksheetEnumFeatureValueImage
+        :rtype: dressdiscover.api.models.worksheet.worksheet_feature_value_image.WorksheetFeatureValueImage
         '''
 
-        oprot.write_struct_begin('WorksheetEnumFeatureValueImage')
+        oprot.write_struct_begin('WorksheetFeatureValueImage')
 
         oprot.write_field_begin(name='rights', type=11, id=None)
         oprot.write_string(self.rights)

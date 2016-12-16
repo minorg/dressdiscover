@@ -1,7 +1,7 @@
+from itertools import ifilterfalse
 import __builtin__
-import dressdiscover.api.models.worksheet.worksheet_enum_feature_definition
 import dressdiscover.api.models.worksheet.worksheet_feature_id
-import dressdiscover.api.models.worksheet.worksheet_text_feature_definition
+import dressdiscover.api.models.worksheet.worksheet_feature_value_definition
 
 
 class WorksheetFeatureDefinition(object):
@@ -10,23 +10,20 @@ class WorksheetFeatureDefinition(object):
             self,
             id=None,  # @ReservedAssignment
             display_name=None,
-            enum_=None,
-            text=None,
+            values_=None,
         ):
             '''
             :type id: str
             :type display_name: str or None
-            :type enum_: dressdiscover.api.models.worksheet.worksheet_enum_feature_definition.WorksheetEnumFeatureDefinition or None
-            :type text: dressdiscover.api.models.worksheet.worksheet_text_feature_definition.WorksheetTextFeatureDefinition or None
+            :type values_: tuple(dressdiscover.api.models.worksheet.worksheet_feature_value_definition.WorksheetFeatureValueDefinition) or None
             '''
 
             self.__id = id
             self.__display_name = display_name
-            self.__enum_ = enum_
-            self.__text = text
+            self.__values_ = values_
 
         def build(self):
-            return WorksheetFeatureDefinition(id=self.__id, display_name=self.__display_name, enum_=self.__enum_, text=self.__text)
+            return WorksheetFeatureDefinition(id=self.__id, display_name=self.__display_name, values_=self.__values_)
 
         @property
         def display_name(self):
@@ -35,14 +32,6 @@ class WorksheetFeatureDefinition(object):
             '''
 
             return self.__display_name
-
-        @property
-        def enum_(self):
-            '''
-            :rtype: dressdiscover.api.models.worksheet.worksheet_enum_feature_definition.WorksheetEnumFeatureDefinition
-            '''
-
-            return self.__enum_
 
         @property
         def id(self):  # @ReservedAssignment
@@ -67,17 +56,6 @@ class WorksheetFeatureDefinition(object):
             self.__display_name = display_name
             return self
 
-        def set_enum_(self, enum_):
-            '''
-            :type enum_: dressdiscover.api.models.worksheet.worksheet_enum_feature_definition.WorksheetEnumFeatureDefinition or None
-            '''
-
-            if enum_ is not None:
-                if not isinstance(enum_, dressdiscover.api.models.worksheet.worksheet_enum_feature_definition.WorksheetEnumFeatureDefinition):
-                    raise TypeError("expected enum_ to be a dressdiscover.api.models.worksheet.worksheet_enum_feature_definition.WorksheetEnumFeatureDefinition but it is a %s" % getattr(__builtin__, 'type')(enum_))
-            self.__enum_ = enum_
-            return self
-
         def set_id(self, id):  # @ReservedAssignment
             '''
             :type id: str
@@ -90,44 +68,44 @@ class WorksheetFeatureDefinition(object):
             self.__id = id
             return self
 
-        def set_text(self, text):
+        def set_values_(self, values_):
             '''
-            :type text: dressdiscover.api.models.worksheet.worksheet_text_feature_definition.WorksheetTextFeatureDefinition or None
+            :type values_: tuple(dressdiscover.api.models.worksheet.worksheet_feature_value_definition.WorksheetFeatureValueDefinition) or None
             '''
 
-            if text is not None:
-                if not isinstance(text, dressdiscover.api.models.worksheet.worksheet_text_feature_definition.WorksheetTextFeatureDefinition):
-                    raise TypeError("expected text to be a dressdiscover.api.models.worksheet.worksheet_text_feature_definition.WorksheetTextFeatureDefinition but it is a %s" % getattr(__builtin__, 'type')(text))
-            self.__text = text
+            if values_ is not None:
+                if not (isinstance(values_, tuple) and len(list(ifilterfalse(lambda _: isinstance(_, dressdiscover.api.models.worksheet.worksheet_feature_value_definition.WorksheetFeatureValueDefinition), values_))) == 0):
+                    raise TypeError("expected values_ to be a tuple(dressdiscover.api.models.worksheet.worksheet_feature_value_definition.WorksheetFeatureValueDefinition) but it is a %s" % getattr(__builtin__, 'type')(values_))
+                if len(values_) < 1:
+                    raise ValueError("expected len(values_) to be >= 1, was %d" % len(values_))
+            self.__values_ = values_
             return self
-
-        @property
-        def text(self):
-            '''
-            :rtype: dressdiscover.api.models.worksheet.worksheet_text_feature_definition.WorksheetTextFeatureDefinition
-            '''
-
-            return self.__text
 
         def update(self, worksheet_feature_definition):
             '''
             :type id: str
             :type display_name: str or None
-            :type enum_: dressdiscover.api.models.worksheet.worksheet_enum_feature_definition.WorksheetEnumFeatureDefinition or None
-            :type text: dressdiscover.api.models.worksheet.worksheet_text_feature_definition.WorksheetTextFeatureDefinition or None
+            :type values_: tuple(dressdiscover.api.models.worksheet.worksheet_feature_value_definition.WorksheetFeatureValueDefinition) or None
             '''
 
             if isinstance(worksheet_feature_definition, WorksheetFeatureDefinition):
                 self.set_id(worksheet_feature_definition.id)
                 self.set_display_name(worksheet_feature_definition.display_name)
-                self.set_enum_(worksheet_feature_definition.enum_)
-                self.set_text(worksheet_feature_definition.text)
+                self.set_values_(worksheet_feature_definition.values_)
             elif isinstance(worksheet_feature_definition, dict):
                 for key, value in worksheet_feature_definition.iteritems():
                     getattr(self, 'set_' + key)(value)
             else:
                 raise TypeError(worksheet_feature_definition)
             return self
+
+        @property
+        def values_(self):
+            '''
+            :rtype: tuple(dressdiscover.api.models.worksheet.worksheet_feature_value_definition.WorksheetFeatureValueDefinition)
+            '''
+
+            return self.__values_
 
         @display_name.setter
         def display_name(self, display_name):
@@ -137,14 +115,6 @@ class WorksheetFeatureDefinition(object):
 
             self.set_display_name(display_name)
 
-        @enum_.setter
-        def enum_(self, enum_):
-            '''
-            :type enum_: dressdiscover.api.models.worksheet.worksheet_enum_feature_definition.WorksheetEnumFeatureDefinition or None
-            '''
-
-            self.set_enum_(enum_)
-
         @id.setter
         def id(self, id):  # @ReservedAssignment
             '''
@@ -153,19 +123,18 @@ class WorksheetFeatureDefinition(object):
 
             self.set_id(id)
 
-        @text.setter
-        def text(self, text):
+        @values_.setter
+        def values_(self, values_):
             '''
-            :type text: dressdiscover.api.models.worksheet.worksheet_text_feature_definition.WorksheetTextFeatureDefinition or None
+            :type values_: tuple(dressdiscover.api.models.worksheet.worksheet_feature_value_definition.WorksheetFeatureValueDefinition) or None
             '''
 
-            self.set_text(text)
+            self.set_values_(values_)
 
     class FieldMetadata(object):
         ID = None
         DISPLAY_NAME = None
-        ENUM_ = None
-        TEXT = None
+        VALUES_ = None
 
         def __init__(self, name, type_, validation):
             object.__init__(self)
@@ -186,25 +155,22 @@ class WorksheetFeatureDefinition(object):
 
         @classmethod
         def values(cls):
-            return (cls.ID, cls.DISPLAY_NAME, cls.ENUM_, cls.TEXT,)
+            return (cls.ID, cls.DISPLAY_NAME, cls.VALUES_,)
 
     FieldMetadata.ID = FieldMetadata('id', dressdiscover.api.models.worksheet.worksheet_feature_id.WorksheetFeatureId, None)
     FieldMetadata.DISPLAY_NAME = FieldMetadata('display_name', str, {u'blank': False, u'minLength': 1})
-    FieldMetadata.ENUM_ = FieldMetadata('enum_', dressdiscover.api.models.worksheet.worksheet_enum_feature_definition.WorksheetEnumFeatureDefinition, None)
-    FieldMetadata.TEXT = FieldMetadata('text', dressdiscover.api.models.worksheet.worksheet_text_feature_definition.WorksheetTextFeatureDefinition, None)
+    FieldMetadata.VALUES_ = FieldMetadata('values_', tuple, {u'minLength': 1})
 
     def __init__(
         self,
         id,  # @ReservedAssignment
         display_name=None,
-        enum_=None,
-        text=None,
+        values_=None,
     ):
         '''
         :type id: str
         :type display_name: str or None
-        :type enum_: dressdiscover.api.models.worksheet.worksheet_enum_feature_definition.WorksheetEnumFeatureDefinition or None
-        :type text: dressdiscover.api.models.worksheet.worksheet_text_feature_definition.WorksheetTextFeatureDefinition or None
+        :type values_: tuple(dressdiscover.api.models.worksheet.worksheet_feature_value_definition.WorksheetFeatureValueDefinition) or None
         '''
 
         if id is None:
@@ -222,32 +188,27 @@ class WorksheetFeatureDefinition(object):
                 raise ValueError("expected len(display_name) to be >= 1, was %d" % len(display_name))
         self.__display_name = display_name
 
-        if enum_ is not None:
-            if not isinstance(enum_, dressdiscover.api.models.worksheet.worksheet_enum_feature_definition.WorksheetEnumFeatureDefinition):
-                raise TypeError("expected enum_ to be a dressdiscover.api.models.worksheet.worksheet_enum_feature_definition.WorksheetEnumFeatureDefinition but it is a %s" % getattr(__builtin__, 'type')(enum_))
-        self.__enum_ = enum_
-
-        if text is not None:
-            if not isinstance(text, dressdiscover.api.models.worksheet.worksheet_text_feature_definition.WorksheetTextFeatureDefinition):
-                raise TypeError("expected text to be a dressdiscover.api.models.worksheet.worksheet_text_feature_definition.WorksheetTextFeatureDefinition but it is a %s" % getattr(__builtin__, 'type')(text))
-        self.__text = text
+        if values_ is not None:
+            if not (isinstance(values_, tuple) and len(list(ifilterfalse(lambda _: isinstance(_, dressdiscover.api.models.worksheet.worksheet_feature_value_definition.WorksheetFeatureValueDefinition), values_))) == 0):
+                raise TypeError("expected values_ to be a tuple(dressdiscover.api.models.worksheet.worksheet_feature_value_definition.WorksheetFeatureValueDefinition) but it is a %s" % getattr(__builtin__, 'type')(values_))
+            if len(values_) < 1:
+                raise ValueError("expected len(values_) to be >= 1, was %d" % len(values_))
+        self.__values_ = values_
 
     def __eq__(self, other):
         if self.id != other.id:
             return False
         if self.display_name != other.display_name:
             return False
-        if self.enum_ != other.enum_:
-            return False
-        if self.text != other.text:
+        if self.values_ != other.values_:
             return False
         return True
 
     def __hash__(self):
-        return hash((self.id,self.display_name,self.enum_,self.text,))
+        return hash((self.id,self.display_name,self.values_,))
 
     def __iter__(self):
-        return iter((self.id, self.display_name, self.enum_, self.text,))
+        return iter((self.id, self.display_name, self.values_,))
 
     def __ne__(self, other):
         return not self.__eq__(other)
@@ -257,10 +218,8 @@ class WorksheetFeatureDefinition(object):
         field_reprs.append('id=' + "'" + self.id.encode('ascii', 'replace') + "'")
         if self.display_name is not None:
             field_reprs.append('display_name=' + "'" + self.display_name.encode('ascii', 'replace') + "'")
-        if self.enum_ is not None:
-            field_reprs.append('enum_=' + repr(self.enum_))
-        if self.text is not None:
-            field_reprs.append('text=' + repr(self.text))
+        if self.values_ is not None:
+            field_reprs.append('values_=' + repr(self.values_))
         return 'WorksheetFeatureDefinition(' + ', '.join(field_reprs) + ')'
 
     def __str__(self):
@@ -268,10 +227,8 @@ class WorksheetFeatureDefinition(object):
         field_reprs.append('id=' + "'" + self.id.encode('ascii', 'replace') + "'")
         if self.display_name is not None:
             field_reprs.append('display_name=' + "'" + self.display_name.encode('ascii', 'replace') + "'")
-        if self.enum_ is not None:
-            field_reprs.append('enum_=' + repr(self.enum_))
-        if self.text is not None:
-            field_reprs.append('text=' + repr(self.text))
+        if self.values_ is not None:
+            field_reprs.append('values_=' + repr(self.values_))
         return 'WorksheetFeatureDefinition(' + ', '.join(field_reprs) + ')'
 
     @property
@@ -281,14 +238,6 @@ class WorksheetFeatureDefinition(object):
         '''
 
         return self.__display_name
-
-    @property
-    def enum_(self):
-        '''
-        :rtype: dressdiscover.api.models.worksheet.worksheet_enum_feature_definition.WorksheetEnumFeatureDefinition
-        '''
-
-        return self.__enum_
 
     @property
     def id(self):  # @ReservedAssignment
@@ -321,10 +270,8 @@ class WorksheetFeatureDefinition(object):
                     init_kwds['display_name'] = iprot.read_string()
                 except (TypeError, ValueError,):
                     pass
-            elif ifield_name == 'enum_':
-                init_kwds['enum_'] = dressdiscover.api.models.worksheet.worksheet_enum_feature_definition.WorksheetEnumFeatureDefinition.read(iprot)
-            elif ifield_name == 'text':
-                init_kwds['text'] = dressdiscover.api.models.worksheet.worksheet_text_feature_definition.WorksheetTextFeatureDefinition.read(iprot)
+            elif ifield_name == 'values_':
+                init_kwds['values_'] = tuple([dressdiscover.api.models.worksheet.worksheet_feature_value_definition.WorksheetFeatureValueDefinition.read(iprot) for _ in xrange(iprot.read_list_begin()[1])] + (iprot.read_list_end() is None and []))
             iprot.read_field_end()
         iprot.read_struct_end()
 
@@ -334,16 +281,14 @@ class WorksheetFeatureDefinition(object):
         self,
         id=None,  # @ReservedAssignment
         display_name=None,
-        enum_=None,
-        text=None,
+        values_=None,
     ):
         '''
         Copy this object, replace one or more fields, and return the copy.
 
         :type id: str or None
         :type display_name: str or None
-        :type enum_: dressdiscover.api.models.worksheet.worksheet_enum_feature_definition.WorksheetEnumFeatureDefinition or None
-        :type text: dressdiscover.api.models.worksheet.worksheet_text_feature_definition.WorksheetTextFeatureDefinition or None
+        :type values_: tuple(dressdiscover.api.models.worksheet.worksheet_feature_value_definition.WorksheetFeatureValueDefinition) or None
         :rtype: dressdiscover.api.models.worksheet.worksheet_feature_definition.WorksheetFeatureDefinition
         '''
 
@@ -351,19 +296,17 @@ class WorksheetFeatureDefinition(object):
             id = self.id  # @ReservedAssignment
         if display_name is None:
             display_name = self.display_name
-        if enum_ is None:
-            enum_ = self.enum_
-        if text is None:
-            text = self.text
-        return self.__class__(id=id, display_name=display_name, enum_=enum_, text=text)
+        if values_ is None:
+            values_ = self.values_
+        return self.__class__(id=id, display_name=display_name, values_=values_)
 
     @property
-    def text(self):
+    def values_(self):
         '''
-        :rtype: dressdiscover.api.models.worksheet.worksheet_text_feature_definition.WorksheetTextFeatureDefinition
+        :rtype: tuple(dressdiscover.api.models.worksheet.worksheet_feature_value_definition.WorksheetFeatureValueDefinition)
         '''
 
-        return self.__text
+        return self.__values_
 
     def write(self, oprot):
         '''
@@ -384,14 +327,12 @@ class WorksheetFeatureDefinition(object):
             oprot.write_string(self.display_name)
             oprot.write_field_end()
 
-        if self.enum_ is not None:
-            oprot.write_field_begin(name='enum_', type=12, id=None)
-            self.enum_.write(oprot)
-            oprot.write_field_end()
-
-        if self.text is not None:
-            oprot.write_field_begin(name='text', type=12, id=None)
-            self.text.write(oprot)
+        if self.values_ is not None:
+            oprot.write_field_begin(name='values_', type=15, id=None)
+            oprot.write_list_begin(12, len(self.values_))
+            for _0 in self.values_:
+                _0.write(oprot)
+            oprot.write_list_end()
             oprot.write_field_end()
 
         oprot.write_field_stop()

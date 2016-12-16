@@ -1,9 +1,9 @@
 import __builtin__
-import dressdiscover.api.models.worksheet.worksheet_enum_feature_value_id
-import dressdiscover.api.models.worksheet.worksheet_enum_feature_value_image
+import dressdiscover.api.models.worksheet.worksheet_feature_value_id
+import dressdiscover.api.models.worksheet.worksheet_feature_value_image
 
 
-class WorksheetEnumFeatureValueDefinition(object):
+class WorksheetFeatureValueDefinition(object):
     class Builder(object):
         def __init__(
             self,
@@ -14,7 +14,7 @@ class WorksheetEnumFeatureValueDefinition(object):
             '''
             :type id: str
             :type display_name: str or None
-            :type image: dressdiscover.api.models.worksheet.worksheet_enum_feature_value_image.WorksheetEnumFeatureValueImage or None
+            :type image: dressdiscover.api.models.worksheet.worksheet_feature_value_image.WorksheetFeatureValueImage or None
             '''
 
             self.__id = id
@@ -22,7 +22,7 @@ class WorksheetEnumFeatureValueDefinition(object):
             self.__image = image
 
         def build(self):
-            return WorksheetEnumFeatureValueDefinition(id=self.__id, display_name=self.__display_name, image=self.__image)
+            return WorksheetFeatureValueDefinition(id=self.__id, display_name=self.__display_name, image=self.__image)
 
         @property
         def display_name(self):
@@ -43,7 +43,7 @@ class WorksheetEnumFeatureValueDefinition(object):
         @property
         def image(self):
             '''
-            :rtype: dressdiscover.api.models.worksheet.worksheet_enum_feature_value_image.WorksheetEnumFeatureValueImage
+            :rtype: dressdiscover.api.models.worksheet.worksheet_feature_value_image.WorksheetFeatureValueImage
             '''
 
             return self.__image
@@ -77,31 +77,31 @@ class WorksheetEnumFeatureValueDefinition(object):
 
         def set_image(self, image):
             '''
-            :type image: dressdiscover.api.models.worksheet.worksheet_enum_feature_value_image.WorksheetEnumFeatureValueImage or None
+            :type image: dressdiscover.api.models.worksheet.worksheet_feature_value_image.WorksheetFeatureValueImage or None
             '''
 
             if image is not None:
-                if not isinstance(image, dressdiscover.api.models.worksheet.worksheet_enum_feature_value_image.WorksheetEnumFeatureValueImage):
-                    raise TypeError("expected image to be a dressdiscover.api.models.worksheet.worksheet_enum_feature_value_image.WorksheetEnumFeatureValueImage but it is a %s" % getattr(__builtin__, 'type')(image))
+                if not isinstance(image, dressdiscover.api.models.worksheet.worksheet_feature_value_image.WorksheetFeatureValueImage):
+                    raise TypeError("expected image to be a dressdiscover.api.models.worksheet.worksheet_feature_value_image.WorksheetFeatureValueImage but it is a %s" % getattr(__builtin__, 'type')(image))
             self.__image = image
             return self
 
-        def update(self, worksheet_enum_feature_value_definition):
+        def update(self, worksheet_feature_value_definition):
             '''
             :type id: str
             :type display_name: str or None
-            :type image: dressdiscover.api.models.worksheet.worksheet_enum_feature_value_image.WorksheetEnumFeatureValueImage or None
+            :type image: dressdiscover.api.models.worksheet.worksheet_feature_value_image.WorksheetFeatureValueImage or None
             '''
 
-            if isinstance(worksheet_enum_feature_value_definition, WorksheetEnumFeatureValueDefinition):
-                self.set_id(worksheet_enum_feature_value_definition.id)
-                self.set_display_name(worksheet_enum_feature_value_definition.display_name)
-                self.set_image(worksheet_enum_feature_value_definition.image)
-            elif isinstance(worksheet_enum_feature_value_definition, dict):
-                for key, value in worksheet_enum_feature_value_definition.iteritems():
+            if isinstance(worksheet_feature_value_definition, WorksheetFeatureValueDefinition):
+                self.set_id(worksheet_feature_value_definition.id)
+                self.set_display_name(worksheet_feature_value_definition.display_name)
+                self.set_image(worksheet_feature_value_definition.image)
+            elif isinstance(worksheet_feature_value_definition, dict):
+                for key, value in worksheet_feature_value_definition.iteritems():
                     getattr(self, 'set_' + key)(value)
             else:
-                raise TypeError(worksheet_enum_feature_value_definition)
+                raise TypeError(worksheet_feature_value_definition)
             return self
 
         @display_name.setter
@@ -123,7 +123,7 @@ class WorksheetEnumFeatureValueDefinition(object):
         @image.setter
         def image(self, image):
             '''
-            :type image: dressdiscover.api.models.worksheet.worksheet_enum_feature_value_image.WorksheetEnumFeatureValueImage or None
+            :type image: dressdiscover.api.models.worksheet.worksheet_feature_value_image.WorksheetFeatureValueImage or None
             '''
 
             self.set_image(image)
@@ -154,9 +154,9 @@ class WorksheetEnumFeatureValueDefinition(object):
         def values(cls):
             return (cls.ID, cls.DISPLAY_NAME, cls.IMAGE,)
 
-    FieldMetadata.ID = FieldMetadata('id', dressdiscover.api.models.worksheet.worksheet_enum_feature_value_id.WorksheetEnumFeatureValueId, None)
+    FieldMetadata.ID = FieldMetadata('id', dressdiscover.api.models.worksheet.worksheet_feature_value_id.WorksheetFeatureValueId, None)
     FieldMetadata.DISPLAY_NAME = FieldMetadata('display_name', str, {u'blank': False, u'minLength': 1})
-    FieldMetadata.IMAGE = FieldMetadata('image', dressdiscover.api.models.worksheet.worksheet_enum_feature_value_image.WorksheetEnumFeatureValueImage, None)
+    FieldMetadata.IMAGE = FieldMetadata('image', dressdiscover.api.models.worksheet.worksheet_feature_value_image.WorksheetFeatureValueImage, None)
 
     def __init__(
         self,
@@ -167,7 +167,7 @@ class WorksheetEnumFeatureValueDefinition(object):
         '''
         :type id: str
         :type display_name: str or None
-        :type image: dressdiscover.api.models.worksheet.worksheet_enum_feature_value_image.WorksheetEnumFeatureValueImage or None
+        :type image: dressdiscover.api.models.worksheet.worksheet_feature_value_image.WorksheetFeatureValueImage or None
         '''
 
         if id is None:
@@ -186,8 +186,8 @@ class WorksheetEnumFeatureValueDefinition(object):
         self.__display_name = display_name
 
         if image is not None:
-            if not isinstance(image, dressdiscover.api.models.worksheet.worksheet_enum_feature_value_image.WorksheetEnumFeatureValueImage):
-                raise TypeError("expected image to be a dressdiscover.api.models.worksheet.worksheet_enum_feature_value_image.WorksheetEnumFeatureValueImage but it is a %s" % getattr(__builtin__, 'type')(image))
+            if not isinstance(image, dressdiscover.api.models.worksheet.worksheet_feature_value_image.WorksheetFeatureValueImage):
+                raise TypeError("expected image to be a dressdiscover.api.models.worksheet.worksheet_feature_value_image.WorksheetFeatureValueImage but it is a %s" % getattr(__builtin__, 'type')(image))
         self.__image = image
 
     def __eq__(self, other):
@@ -215,7 +215,7 @@ class WorksheetEnumFeatureValueDefinition(object):
             field_reprs.append('display_name=' + "'" + self.display_name.encode('ascii', 'replace') + "'")
         if self.image is not None:
             field_reprs.append('image=' + repr(self.image))
-        return 'WorksheetEnumFeatureValueDefinition(' + ', '.join(field_reprs) + ')'
+        return 'WorksheetFeatureValueDefinition(' + ', '.join(field_reprs) + ')'
 
     def __str__(self):
         field_reprs = []
@@ -224,7 +224,7 @@ class WorksheetEnumFeatureValueDefinition(object):
             field_reprs.append('display_name=' + "'" + self.display_name.encode('ascii', 'replace') + "'")
         if self.image is not None:
             field_reprs.append('image=' + repr(self.image))
-        return 'WorksheetEnumFeatureValueDefinition(' + ', '.join(field_reprs) + ')'
+        return 'WorksheetFeatureValueDefinition(' + ', '.join(field_reprs) + ')'
 
     @property
     def display_name(self):
@@ -245,7 +245,7 @@ class WorksheetEnumFeatureValueDefinition(object):
     @property
     def image(self):
         '''
-        :rtype: dressdiscover.api.models.worksheet.worksheet_enum_feature_value_image.WorksheetEnumFeatureValueImage
+        :rtype: dressdiscover.api.models.worksheet.worksheet_feature_value_image.WorksheetFeatureValueImage
         '''
 
         return self.__image
@@ -256,7 +256,7 @@ class WorksheetEnumFeatureValueDefinition(object):
         Read a new object from the given input protocol and return the object.
 
         :type iprot: thryft.protocol._input_protocol._InputProtocol
-        :rtype: dressdiscover.api.models.worksheet.worksheet_enum_feature_value_definition.WorksheetEnumFeatureValueDefinition
+        :rtype: dressdiscover.api.models.worksheet.worksheet_feature_value_definition.WorksheetFeatureValueDefinition
         '''
 
         init_kwds = {}
@@ -274,7 +274,7 @@ class WorksheetEnumFeatureValueDefinition(object):
                 except (TypeError, ValueError,):
                     pass
             elif ifield_name == 'image':
-                init_kwds['image'] = dressdiscover.api.models.worksheet.worksheet_enum_feature_value_image.WorksheetEnumFeatureValueImage.read(iprot)
+                init_kwds['image'] = dressdiscover.api.models.worksheet.worksheet_feature_value_image.WorksheetFeatureValueImage.read(iprot)
             iprot.read_field_end()
         iprot.read_struct_end()
 
@@ -291,8 +291,8 @@ class WorksheetEnumFeatureValueDefinition(object):
 
         :type id: str or None
         :type display_name: str or None
-        :type image: dressdiscover.api.models.worksheet.worksheet_enum_feature_value_image.WorksheetEnumFeatureValueImage or None
-        :rtype: dressdiscover.api.models.worksheet.worksheet_enum_feature_value_definition.WorksheetEnumFeatureValueDefinition
+        :type image: dressdiscover.api.models.worksheet.worksheet_feature_value_image.WorksheetFeatureValueImage or None
+        :rtype: dressdiscover.api.models.worksheet.worksheet_feature_value_definition.WorksheetFeatureValueDefinition
         '''
 
         if id is None:
@@ -308,10 +308,10 @@ class WorksheetEnumFeatureValueDefinition(object):
         Write this object to the given output protocol and return self.
 
         :type oprot: thryft.protocol._output_protocol._OutputProtocol
-        :rtype: dressdiscover.api.models.worksheet.worksheet_enum_feature_value_definition.WorksheetEnumFeatureValueDefinition
+        :rtype: dressdiscover.api.models.worksheet.worksheet_feature_value_definition.WorksheetFeatureValueDefinition
         '''
 
-        oprot.write_struct_begin('WorksheetEnumFeatureValueDefinition')
+        oprot.write_struct_begin('WorksheetFeatureValueDefinition')
 
         oprot.write_field_begin(name='id', type=11, id=None)
         oprot.write_string(self.id)

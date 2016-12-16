@@ -1,6 +1,6 @@
 namespace * dressdiscover.api.models.worksheet
 
-struct WorksheetEnumFeatureValueImage {
+struct WorksheetFeatureValueImage {
     // @validation {"blank": false, "minLength": 1}
     string rights;
     // Thumbnail and full size URLs can be relatives

@@ -1,6 +1,5 @@
 import * as Backbone from "backbone";
-import { WorksheetEnumFeatureDefinition } from "./worksheet_enum_feature_definition";
-import { WorksheetTextFeatureDefinition } from "./worksheet_text_feature_definition";
+import { WorksheetFeatureValueDefinition } from "./worksheet_feature_value_definition";
 
 export class WorksheetFeatureDefinition extends Backbone.Model {
     validation = {
@@ -34,46 +33,33 @@ export class WorksheetFeatureDefinition extends Backbone.Model {
             "minLength": 1, "required": false
         },
 
-        enum_: {
+        values_: {
             "fn": function(value: any, attr: any, computedState: any) {
                 if (typeof attr === "undefined" || attr === null) {
                     return undefined;
                 }
 
-                if (!(value instanceof WorksheetEnumFeatureDefinition)) {
-                    return "expected WorksheetFeatureDefinition.enum_ to be a WorksheetEnumFeatureDefinition";
+                if (!(value instanceof Backbone.Collection)) {
+                    return "expected WorksheetFeatureDefinition.values_ to be a Backbone.Collection";
                 }
-                if (!value.isValid(true)) {
-                    return value.validationError;
+                if (value.model !== WorksheetFeatureValueDefinition) {
+                    return "expected WorksheetFeatureDefinition.values_ to be a Backbone.Collection with model=WorksheetFeatureValueDefinition";
                 }
-
-                return undefined;
-            },
-            "required": false
-        },
-
-        text: {
-            "fn": function(value: any, attr: any, computedState: any) {
-                if (typeof attr === "undefined" || attr === null) {
-                    return undefined;
-                }
-
-                if (!(value instanceof WorksheetTextFeatureDefinition)) {
-                    return "expected WorksheetFeatureDefinition.text to be a WorksheetTextFeatureDefinition";
-                }
-                if (!value.isValid(true)) {
-                    return value.validationError;
+                for (let __model0 of value.models) {
+                    if (!__model0.isValid(true)) {
+                        return __model0.validationError;
+                    }
                 }
 
                 return undefined;
             },
-            "required": false
+            "minLength": 1, "required": false
         }
     }
 
     validationError: any;
 
-    constructor(attributes?: {id: string, displayName?: string, enum_?: WorksheetEnumFeatureDefinition, text?: WorksheetTextFeatureDefinition}, options?: any) {
+    constructor(attributes?: {id: string, displayName?: string, values_?: Backbone.Collection<WorksheetFeatureValueDefinition>}, options?: any) {
         super(attributes, options);
     }
 
@@ -89,20 +75,12 @@ export class WorksheetFeatureDefinition extends Backbone.Model {
         this.set('displayName', value, { validate: true });
     }
 
-    get enum_(): WorksheetEnumFeatureDefinition {
-        return this.get('enum_');
+    get values_(): Backbone.Collection<WorksheetFeatureValueDefinition> {
+        return this.get('values_');
     }
 
-    set enum_(value: WorksheetEnumFeatureDefinition) {
-        this.set('enum_', value, { validate: true });
-    }
-
-    get text(): WorksheetTextFeatureDefinition {
-        return this.get('text');
-    }
-
-    set text(value: WorksheetTextFeatureDefinition) {
-        this.set('text', value, { validate: true });
+    set values_(value: Backbone.Collection<WorksheetFeatureValueDefinition>) {
+        this.set('values_', value, { validate: true });
     }
 
     static fromThryftJSON(json: any): WorksheetFeatureDefinition {
@@ -112,10 +90,8 @@ export class WorksheetFeatureDefinition extends Backbone.Model {
                 out.attributes.id = json[fieldName];
             } else if (fieldName == "display_name") {
                 out.attributes.displayName = json[fieldName];
-            } else if (fieldName == "enum_") {
-                out.attributes.enum_ = WorksheetEnumFeatureDefinition.fromThryftJSON(json[fieldName]);
-            } else if (fieldName == "text") {
-                out.attributes.text = WorksheetTextFeatureDefinition.fromThryftJSON(json[fieldName]);
+            } else if (fieldName == "values_") {
+                out.attributes.values_ = function(json: any[]): Backbone.Collection<WorksheetFeatureValueDefinition> { var sequence: WorksheetFeatureValueDefinition[] = []; for (var i = 0; i < json.length; i++) { sequence.push(WorksheetFeatureValueDefinition.fromThryftJSON(json[i])); } return new Backbone.Collection<WorksheetFeatureValueDefinition>(sequence); }(json[fieldName]);
             }
         }
         if (!out.isValid(true)) {
@@ -130,11 +106,8 @@ export class WorksheetFeatureDefinition extends Backbone.Model {
         if (this.has("displayName")) {
             json["display_name"] = this.displayName;
         }
-        if (this.has("enum_")) {
-            json["enum_"] = this.enum_.toThryftJSON();
-        }
-        if (this.has("text")) {
-            json["text"] = this.text.toThryftJSON();
+        if (this.has("values_")) {
+            json["values_"] = function (__inArray: WorksheetFeatureValueDefinition[]): any[] { var __outArray: any[] = []; for (var __i = 0; __i < __inArray.length; __i++) { __outArray.push(__inArray[__i].toThryftJSON()); } return __outArray; }(this.values_.models);
         }
         return json;
     }

@@ -1,25 +1,25 @@
 import * as Backbone from "backbone";
-import { WorksheetEnumFeatureState } from "./worksheet_enum_feature_state";
-import { WorksheetTextFeatureState } from "./worksheet_text_feature_state";
 
 export class WorksheetFeatureState extends Backbone.Model {
     validation = {
-        enum_: {
+        selectedValues: {
             "fn": function(value: any, attr: any, computedState: any) {
                 if (typeof attr === "undefined" || attr === null) {
                     return undefined;
                 }
 
-                if (!(value instanceof WorksheetEnumFeatureState)) {
-                    return "expected WorksheetFeatureState.enum_ to be a WorksheetEnumFeatureState";
+                if (!Array.isArray(value)) {
+                    return "expected WorksheetFeatureState.selected_values to be an Array";
                 }
-                if (!value.isValid(true)) {
-                    return value.validationError;
+                for (var __i0 = 0; __i0 < value.length; __i0++) {
+                    if (typeof value[__i0] !== "string") {
+                        return "expected WorksheetFeatureState.selected_values[i] to be a string";
+                    }
                 }
 
                 return undefined;
             },
-            "required": false
+            "minLength": 1, "required": false
         },
 
         text: {
@@ -28,48 +28,49 @@ export class WorksheetFeatureState extends Backbone.Model {
                     return undefined;
                 }
 
-                if (!(value instanceof WorksheetTextFeatureState)) {
-                    return "expected WorksheetFeatureState.text to be a WorksheetTextFeatureState";
+                if (typeof value !== "string") {
+                    return "expected WorksheetFeatureState.text to be a string";
                 }
-                if (!value.isValid(true)) {
-                    return value.validationError;
+
+                if (/^\s*$/.test(value)) {
+                    return "WorksheetFeatureState.text is blank";
                 }
 
                 return undefined;
             },
-            "required": false
+            "minLength": 1, "required": false
         }
     }
 
     validationError: any;
 
-    constructor(attributes?: {enum_?: WorksheetEnumFeatureState, text?: WorksheetTextFeatureState}, options?: any) {
+    constructor(attributes?: {selectedValues?: string[], text?: string}, options?: any) {
         super(attributes, options);
     }
 
-    get enum_(): WorksheetEnumFeatureState {
-        return this.get('enum_');
+    get selectedValues(): string[] {
+        return this.get('selectedValues');
     }
 
-    set enum_(value: WorksheetEnumFeatureState) {
-        this.set('enum_', value, { validate: true });
+    set selectedValues(value: string[]) {
+        this.set('selectedValues', value, { validate: true });
     }
 
-    get text(): WorksheetTextFeatureState {
+    get text(): string {
         return this.get('text');
     }
 
-    set text(value: WorksheetTextFeatureState) {
+    set text(value: string) {
         this.set('text', value, { validate: true });
     }
 
     static fromThryftJSON(json: any): WorksheetFeatureState {
         var out: WorksheetFeatureState = new WorksheetFeatureState;
         for (var fieldName in json) {
-            if (fieldName == "enum_") {
-                out.attributes.enum_ = WorksheetEnumFeatureState.fromThryftJSON(json[fieldName]);
+            if (fieldName == "selected_values") {
+                out.attributes.selectedValues = function(json: any[]): string[] { var sequence: string[] = []; for (var i = 0; i < json.length; i++) { sequence.push(json[i]); } return sequence; }(json[fieldName]);
             } else if (fieldName == "text") {
-                out.attributes.text = WorksheetTextFeatureState.fromThryftJSON(json[fieldName]);
+                out.attributes.text = json[fieldName];
             }
         }
         if (!out.isValid(true)) {
@@ -80,11 +81,11 @@ export class WorksheetFeatureState extends Backbone.Model {
 
     toThryftJSON(): any {
         var json: {[index: string]: any} = {};
-        if (this.has("enum_")) {
-            json["enum_"] = this.enum_.toThryftJSON();
+        if (this.has("selectedValues")) {
+            json["selected_values"] = function (__inArray: string[]): any[] { var __outArray: any[] = []; for (var __i = 0; __i < __inArray.length; __i++) { __outArray.push(__inArray[__i]); } return __outArray; }(this.selectedValues);
         }
         if (this.has("text")) {
-            json["text"] = this.text.toThryftJSON();
+            json["text"] = this.text;
         }
         return json;
     }

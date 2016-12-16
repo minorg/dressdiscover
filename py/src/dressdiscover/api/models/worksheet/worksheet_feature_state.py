@@ -1,72 +1,77 @@
+from itertools import ifilterfalse
 import __builtin__
-import dressdiscover.api.models.worksheet.worksheet_enum_feature_state
-import dressdiscover.api.models.worksheet.worksheet_text_feature_state
 
 
 class WorksheetFeatureState(object):
     class Builder(object):
         def __init__(
             self,
-            enum_=None,
+            selected_values=None,
             text=None,
         ):
             '''
-            :type enum_: dressdiscover.api.models.worksheet.worksheet_enum_feature_state.WorksheetEnumFeatureState or None
-            :type text: dressdiscover.api.models.worksheet.worksheet_text_feature_state.WorksheetTextFeatureState or None
+            :type selected_values: tuple(str) or None
+            :type text: str or None
             '''
 
-            self.__enum_ = enum_
+            self.__selected_values = selected_values
             self.__text = text
 
         def build(self):
-            return WorksheetFeatureState(enum_=self.__enum_, text=self.__text)
+            return WorksheetFeatureState(selected_values=self.__selected_values, text=self.__text)
 
         @property
-        def enum_(self):
+        def selected_values(self):
             '''
-            :rtype: dressdiscover.api.models.worksheet.worksheet_enum_feature_state.WorksheetEnumFeatureState
-            '''
-
-            return self.__enum_
-
-        def set_enum_(self, enum_):
-            '''
-            :type enum_: dressdiscover.api.models.worksheet.worksheet_enum_feature_state.WorksheetEnumFeatureState or None
+            :rtype: tuple(str)
             '''
 
-            if enum_ is not None:
-                if not isinstance(enum_, dressdiscover.api.models.worksheet.worksheet_enum_feature_state.WorksheetEnumFeatureState):
-                    raise TypeError("expected enum_ to be a dressdiscover.api.models.worksheet.worksheet_enum_feature_state.WorksheetEnumFeatureState but it is a %s" % getattr(__builtin__, 'type')(enum_))
-            self.__enum_ = enum_
+            return self.__selected_values
+
+        def set_selected_values(self, selected_values):
+            '''
+            :type selected_values: tuple(str) or None
+            '''
+
+            if selected_values is not None:
+                if not (isinstance(selected_values, tuple) and len(list(ifilterfalse(lambda _: isinstance(_, basestring), selected_values))) == 0):
+                    raise TypeError("expected selected_values to be a tuple(str) but it is a %s" % getattr(__builtin__, 'type')(selected_values))
+                if len(selected_values) < 1:
+                    raise ValueError("expected len(selected_values) to be >= 1, was %d" % len(selected_values))
+            self.__selected_values = selected_values
             return self
 
         def set_text(self, text):
             '''
-            :type text: dressdiscover.api.models.worksheet.worksheet_text_feature_state.WorksheetTextFeatureState or None
+            :type text: str or None
             '''
 
             if text is not None:
-                if not isinstance(text, dressdiscover.api.models.worksheet.worksheet_text_feature_state.WorksheetTextFeatureState):
-                    raise TypeError("expected text to be a dressdiscover.api.models.worksheet.worksheet_text_feature_state.WorksheetTextFeatureState but it is a %s" % getattr(__builtin__, 'type')(text))
+                if not isinstance(text, basestring):
+                    raise TypeError("expected text to be a str but it is a %s" % getattr(__builtin__, 'type')(text))
+                if text.isspace():
+                    raise ValueError("expected text not to be blank")
+                if len(text) < 1:
+                    raise ValueError("expected len(text) to be >= 1, was %d" % len(text))
             self.__text = text
             return self
 
         @property
         def text(self):
             '''
-            :rtype: dressdiscover.api.models.worksheet.worksheet_text_feature_state.WorksheetTextFeatureState
+            :rtype: str
             '''
 
             return self.__text
 
         def update(self, worksheet_feature_state):
             '''
-            :type enum_: dressdiscover.api.models.worksheet.worksheet_enum_feature_state.WorksheetEnumFeatureState or None
-            :type text: dressdiscover.api.models.worksheet.worksheet_text_feature_state.WorksheetTextFeatureState or None
+            :type selected_values: tuple(str) or None
+            :type text: str or None
             '''
 
             if isinstance(worksheet_feature_state, WorksheetFeatureState):
-                self.set_enum_(worksheet_feature_state.enum_)
+                self.set_selected_values(worksheet_feature_state.selected_values)
                 self.set_text(worksheet_feature_state.text)
             elif isinstance(worksheet_feature_state, dict):
                 for key, value in worksheet_feature_state.iteritems():
@@ -75,24 +80,24 @@ class WorksheetFeatureState(object):
                 raise TypeError(worksheet_feature_state)
             return self
 
-        @enum_.setter
-        def enum_(self, enum_):
+        @selected_values.setter
+        def selected_values(self, selected_values):
             '''
-            :type enum_: dressdiscover.api.models.worksheet.worksheet_enum_feature_state.WorksheetEnumFeatureState or None
+            :type selected_values: tuple(str) or None
             '''
 
-            self.set_enum_(enum_)
+            self.set_selected_values(selected_values)
 
         @text.setter
         def text(self, text):
             '''
-            :type text: dressdiscover.api.models.worksheet.worksheet_text_feature_state.WorksheetTextFeatureState or None
+            :type text: str or None
             '''
 
             self.set_text(text)
 
     class FieldMetadata(object):
-        ENUM_ = None
+        SELECTED_VALUES = None
         TEXT = None
 
         def __init__(self, name, type_, validation):
@@ -114,70 +119,68 @@ class WorksheetFeatureState(object):
 
         @classmethod
         def values(cls):
-            return (cls.ENUM_, cls.TEXT,)
+            return (cls.SELECTED_VALUES, cls.TEXT,)
 
-    FieldMetadata.ENUM_ = FieldMetadata('enum_', dressdiscover.api.models.worksheet.worksheet_enum_feature_state.WorksheetEnumFeatureState, None)
-    FieldMetadata.TEXT = FieldMetadata('text', dressdiscover.api.models.worksheet.worksheet_text_feature_state.WorksheetTextFeatureState, None)
+    FieldMetadata.SELECTED_VALUES = FieldMetadata('selected_values', tuple, {u'minLength': 1})
+    FieldMetadata.TEXT = FieldMetadata('text', str, {u'blank': False, u'minLength': 1})
 
     def __init__(
         self,
-        enum_=None,
+        selected_values=None,
         text=None,
     ):
         '''
-        :type enum_: dressdiscover.api.models.worksheet.worksheet_enum_feature_state.WorksheetEnumFeatureState or None
-        :type text: dressdiscover.api.models.worksheet.worksheet_text_feature_state.WorksheetTextFeatureState or None
+        :type selected_values: tuple(str) or None
+        :type text: str or None
         '''
 
-        if enum_ is not None:
-            if not isinstance(enum_, dressdiscover.api.models.worksheet.worksheet_enum_feature_state.WorksheetEnumFeatureState):
-                raise TypeError("expected enum_ to be a dressdiscover.api.models.worksheet.worksheet_enum_feature_state.WorksheetEnumFeatureState but it is a %s" % getattr(__builtin__, 'type')(enum_))
-        self.__enum_ = enum_
+        if selected_values is not None:
+            if not (isinstance(selected_values, tuple) and len(list(ifilterfalse(lambda _: isinstance(_, basestring), selected_values))) == 0):
+                raise TypeError("expected selected_values to be a tuple(str) but it is a %s" % getattr(__builtin__, 'type')(selected_values))
+            if len(selected_values) < 1:
+                raise ValueError("expected len(selected_values) to be >= 1, was %d" % len(selected_values))
+        self.__selected_values = selected_values
 
         if text is not None:
-            if not isinstance(text, dressdiscover.api.models.worksheet.worksheet_text_feature_state.WorksheetTextFeatureState):
-                raise TypeError("expected text to be a dressdiscover.api.models.worksheet.worksheet_text_feature_state.WorksheetTextFeatureState but it is a %s" % getattr(__builtin__, 'type')(text))
+            if not isinstance(text, basestring):
+                raise TypeError("expected text to be a str but it is a %s" % getattr(__builtin__, 'type')(text))
+            if text.isspace():
+                raise ValueError("expected text not to be blank")
+            if len(text) < 1:
+                raise ValueError("expected len(text) to be >= 1, was %d" % len(text))
         self.__text = text
 
     def __eq__(self, other):
-        if self.enum_ != other.enum_:
+        if self.selected_values != other.selected_values:
             return False
         if self.text != other.text:
             return False
         return True
 
     def __hash__(self):
-        return hash((self.enum_,self.text,))
+        return hash((self.selected_values,self.text,))
 
     def __iter__(self):
-        return iter((self.enum_, self.text,))
+        return iter((self.selected_values, self.text,))
 
     def __ne__(self, other):
         return not self.__eq__(other)
 
     def __repr__(self):
         field_reprs = []
-        if self.enum_ is not None:
-            field_reprs.append('enum_=' + repr(self.enum_))
+        if self.selected_values is not None:
+            field_reprs.append('selected_values=' + repr(self.selected_values))
         if self.text is not None:
-            field_reprs.append('text=' + repr(self.text))
+            field_reprs.append('text=' + "'" + self.text.encode('ascii', 'replace') + "'")
         return 'WorksheetFeatureState(' + ', '.join(field_reprs) + ')'
 
     def __str__(self):
         field_reprs = []
-        if self.enum_ is not None:
-            field_reprs.append('enum_=' + repr(self.enum_))
+        if self.selected_values is not None:
+            field_reprs.append('selected_values=' + repr(self.selected_values))
         if self.text is not None:
-            field_reprs.append('text=' + repr(self.text))
+            field_reprs.append('text=' + "'" + self.text.encode('ascii', 'replace') + "'")
         return 'WorksheetFeatureState(' + ', '.join(field_reprs) + ')'
-
-    @property
-    def enum_(self):
-        '''
-        :rtype: dressdiscover.api.models.worksheet.worksheet_enum_feature_state.WorksheetEnumFeatureState
-        '''
-
-        return self.__enum_
 
     @classmethod
     def read(cls, iprot):
@@ -195,10 +198,13 @@ class WorksheetFeatureState(object):
             ifield_name, ifield_type, _ifield_id = iprot.read_field_begin()
             if ifield_type == 0: # STOP
                 break
-            elif ifield_name == 'enum_':
-                init_kwds['enum_'] = dressdiscover.api.models.worksheet.worksheet_enum_feature_state.WorksheetEnumFeatureState.read(iprot)
+            elif ifield_name == 'selected_values':
+                init_kwds['selected_values'] = tuple([iprot.read_string() for _ in xrange(iprot.read_list_begin()[1])] + (iprot.read_list_end() is None and []))
             elif ifield_name == 'text':
-                init_kwds['text'] = dressdiscover.api.models.worksheet.worksheet_text_feature_state.WorksheetTextFeatureState.read(iprot)
+                try:
+                    init_kwds['text'] = iprot.read_string()
+                except (TypeError, ValueError,):
+                    pass
             iprot.read_field_end()
         iprot.read_struct_end()
 
@@ -206,27 +212,35 @@ class WorksheetFeatureState(object):
 
     def replace(
         self,
-        enum_=None,
+        selected_values=None,
         text=None,
     ):
         '''
         Copy this object, replace one or more fields, and return the copy.
 
-        :type enum_: dressdiscover.api.models.worksheet.worksheet_enum_feature_state.WorksheetEnumFeatureState or None
-        :type text: dressdiscover.api.models.worksheet.worksheet_text_feature_state.WorksheetTextFeatureState or None
+        :type selected_values: tuple(str) or None
+        :type text: str or None
         :rtype: dressdiscover.api.models.worksheet.worksheet_feature_state.WorksheetFeatureState
         '''
 
-        if enum_ is None:
-            enum_ = self.enum_
+        if selected_values is None:
+            selected_values = self.selected_values
         if text is None:
             text = self.text
-        return self.__class__(enum_=enum_, text=text)
+        return self.__class__(selected_values=selected_values, text=text)
+
+    @property
+    def selected_values(self):
+        '''
+        :rtype: tuple(str)
+        '''
+
+        return self.__selected_values
 
     @property
     def text(self):
         '''
-        :rtype: dressdiscover.api.models.worksheet.worksheet_text_feature_state.WorksheetTextFeatureState
+        :rtype: str
         '''
 
         return self.__text
@@ -241,14 +255,17 @@ class WorksheetFeatureState(object):
 
         oprot.write_struct_begin('WorksheetFeatureState')
 
-        if self.enum_ is not None:
-            oprot.write_field_begin(name='enum_', type=12, id=None)
-            self.enum_.write(oprot)
+        if self.selected_values is not None:
+            oprot.write_field_begin(name='selected_values', type=15, id=None)
+            oprot.write_list_begin(11, len(self.selected_values))
+            for _0 in self.selected_values:
+                oprot.write_string(_0)
+            oprot.write_list_end()
             oprot.write_field_end()
 
         if self.text is not None:
-            oprot.write_field_begin(name='text', type=12, id=None)
-            self.text.write(oprot)
+            oprot.write_field_begin(name='text', type=11, id=None)
+            oprot.write_string(self.text)
             oprot.write_field_end()
 
         oprot.write_field_stop()
