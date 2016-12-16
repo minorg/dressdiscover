@@ -1,3 +1,8 @@
+from dressdiscover.api.models.worksheet.worksheet_definition import WorksheetDefinition
+from dressdiscover.api.models.worksheet.worksheet_enum_feature_definition import WorksheetEnumFeatureDefinition
+from dressdiscover.api.models.worksheet.worksheet_feature_definition import WorksheetFeatureDefinition
+from dressdiscover.api.models.worksheet.worksheet_feature_set_definition import WorksheetFeatureSetDefinition
+
 # decoration_applied = {
 #     'Decoration': {
 #         'Applied': [
@@ -102,15 +107,22 @@ waistline_characteristics = [
 # TODO: label as text in Whole
 
 
-definitions = []
+root_feature_sets = []
 for extent, sub_extents in extents.iteritems():
     if sub_extents is None or len(sub_extents) == 0:
         sub_extents = [None]
     extent_definitions = []
-    definitions.append(extent_definitions)
     for sub_extent in sub_extents:
         pass
 
+WORKSHEET_DEFINITION = \
+    WorksheetDefinition(
+        root_feature_set_definition=\
+            WorksheetFeatureSetDefinition(
+                child_feature_sets=tuple(root_feature_sets),
+                id='root',
+            )
+    )
 
 
 

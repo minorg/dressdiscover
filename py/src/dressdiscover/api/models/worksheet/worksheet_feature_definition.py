@@ -1,5 +1,6 @@
 import __builtin__
 import dressdiscover.api.models.worksheet.worksheet_enum_feature_definition
+import dressdiscover.api.models.worksheet.worksheet_feature_id
 import dressdiscover.api.models.worksheet.worksheet_text_feature_definition
 
 

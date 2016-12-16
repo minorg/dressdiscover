@@ -1,6 +1,7 @@
 from itertools import ifilterfalse
 import __builtin__
 import dressdiscover.api.models.worksheet.worksheet_feature_definition
+import dressdiscover.api.models.worksheet.worksheet_feature_set_id
 
 
 class WorksheetFeatureSetDefinition(object):
