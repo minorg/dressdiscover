@@ -1,4 +1,4 @@
-from dressdiscover.api.
+from dressdiscover.api.models.
 
 # decoration_applied = {
 #     'Decoration': {

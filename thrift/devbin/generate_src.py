@@ -86,6 +86,26 @@ class Main(thryft.main.Main):
 
 #         self.__generate_definitions_js()
 
+        async_to_sync_service_ts_generator = AsyncToSyncServiceTsGenerator(ts_out_dir_path=TS_OUT_DIR_PATH)
+        java_generator = \
+            JavaGenerator(
+                default_methods=True,
+                function_overloads=True,
+                namespace_prefix='org.',
+            )
+        json_rpc_servlet_java_generator = JsonRpcServletJavaGenerator(namespace_prefix='org.')
+        lint_generator = LintGenerator()
+        logging_service_java_generator = \
+            LoggingServiceJavaGenerator(
+                exception_log_level_default='error',
+                namespace_prefix='org.',
+            )
+        properties_java_generator = PropertiesJavaGenerator(project_name='dressdiscover', namespace_prefix='org.')
+        py_generator = PyGenerator()
+        sql_generator = CreateTableSqlGenerator()
+        ts_generator = TsGenerator(ts_out_dir_path=TS_OUT_DIR_PATH)
+        validating_service_java_generator = ValidatingServiceJavaGenerator(namespace_prefix='org.')
+
         for pass_i in xrange(2):
             # Two passes: one to test-compile all .thrift files, the other to generate them
             # ASTs are cached in the compiler so this only costs us the file system traversal,
@@ -109,7 +129,7 @@ class Main(thryft.main.Main):
                     }
 
                     self._compile_thrift_file(
-                        generator=LintGenerator(),
+                        generator=lint_generator,
                         **compile_kwds
                     )
 
@@ -120,13 +140,18 @@ class Main(thryft.main.Main):
                         if thrift_file_base_name == 'io_exception' or \
                            thrift_file_dir_name == 'worksheet':
                             self._compile_thrift_file(
-                                generator=TsGenerator(ts_out_dir_path=TS_OUT_DIR_PATH),
+                                generator=ts_generator,
                                 out=TS_OUT_DIR_PATH,
+                                **compile_kwds
+                            )
+                            self._compile_thrift_file(
+                                generator=py_generator,
+                                out=PY_OUT_DIR_PATH,
                                 **compile_kwds
                             )
                             if thrift_file_base_name.endswith('_service'):
                                 self._compile_thrift_file(
-                                    generator=AsyncToSyncServiceTsGenerator(ts_out_dir_path=TS_OUT_DIR_PATH),
+                                    generator=async_to_sync_service_ts_generator,
                                     out=TS_OUT_DIR_PATH,
                                     **compile_kwds
                                 )
@@ -135,7 +160,7 @@ class Main(thryft.main.Main):
 
                     if thrift_subdir_name in ('lib', 'server') and thrift_file_base_name.endswith('_properties'):
                         self._compile_thrift_file(
-                            generator=PropertiesJavaGenerator(project_name='dressdiscover', namespace_prefix='org.'),
+                            generator=properties_java_generator,
                             out=os.path.join(ROOT_DIR_PATH, 'java', thrift_subdir_name, 'src', 'gen', 'java'),
                             **compile_kwds
                         )
@@ -145,18 +170,8 @@ class Main(thryft.main.Main):
                     assert thrift_subdir_name == 'api'
 
                     self._compile_thrift_file(
-                        generator=JavaGenerator(
-                            default_methods=True,
-                            function_overloads=True,
-                            namespace_prefix='org.',
-                        ),
+                        generator=java_generator,
                         out=os.path.join(ROOT_DIR_PATH, 'java', thrift_subdir_name, 'src', 'gen', 'java'),
-                        **compile_kwds
-                    )
-
-                    self._compile_thrift_file(
-                        generator=PyGenerator(),
-                        out=PY_OUT_DIR_PATH,
                         **compile_kwds
                     )
 
@@ -176,28 +191,25 @@ class Main(thryft.main.Main):
                             os.makedirs(out_dir_path)
 
                         self._compile_thrift_file(
-                            generator=CreateTableSqlGenerator(),
+                            generator=sql_generator,
                             out=out_dir_path,
                             **compile_kwds
                         )
                     elif thrift_file_base_name.endswith('_service'):
                         self._compile_thrift_file(
-                            generator=LoggingServiceJavaGenerator(
-                                exception_log_level_default='error',
-                                namespace_prefix='org.',
-                            ),
+                            generator=logging_service_java_generator,
                             out=os.path.join(ROOT_DIR_PATH, 'java', 'lib', 'src', 'gen', 'java'),
                             **compile_kwds
                         )
 
                         self._compile_thrift_file(
-                            generator=ValidatingServiceJavaGenerator(namespace_prefix='org.'),
+                            generator=validating_service_java_generator,
                             out=os.path.join(ROOT_DIR_PATH, 'java', 'lib', 'src', 'gen', 'java'),
                             **compile_kwds
                         )
 
                         self._compile_thrift_file(
-                            generator=JsonRpcServletJavaGenerator(namespace_prefix='org.'),
+                            generator=json_rpc_servlet_java_generator,
                             out=os.path.join(ROOT_DIR_PATH, 'java', 'server', 'src', 'gen', 'java'),
                             **compile_kwds
                         )
