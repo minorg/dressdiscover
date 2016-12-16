@@ -3,6 +3,7 @@
 	<name>dressdiscover-ts</name>
 	<comment></comment>
 	<projects>
+		<project>dressdiscover-py</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>

@@ -156,7 +156,7 @@ class Main(thryft.main.Main):
 
                     self._compile_thrift_file(
                         generator=PyGenerator(),
-                        out=os.path.join(ROOT_DIR_PATH, 'py', 'src', 'dressdiscover', thrift_subdir_name),
+                        out=PY_OUT_DIR_PATH,
                         **compile_kwds
                     )
 
