@@ -1,5 +1,3 @@
-from dressdiscover.api.models.
-
 # decoration_applied = {
 #     'Decoration': {
 #         'Applied': [
@@ -102,6 +100,7 @@ waistline_characteristics = [
 ]
 
 # TODO: label as text in Whole
+
 
 definitions = []
 for extent, sub_extents in extents.iteritems():
