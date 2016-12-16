@@ -33,6 +33,7 @@ from thryft.generators.ts.ts_generator import TsGenerator
 from yutil import indent, upper_camelize
 
 
+PY_OUT_DIR_PATH = os.path.join(ROOT_DIR_PATH, 'py', 'src')
 TS_OUT_DIR_PATH = os.path.join(ROOT_DIR_PATH, 'ts', 'src')
 
 
@@ -67,6 +68,7 @@ class Main(thryft.main.Main):
              os.path.join(ROOT_DIR_PATH, 'java', 'api', 'src', 'gen', 'java', 'org', 'dressdiscover'),
              os.path.join(ROOT_DIR_PATH, 'java', 'lib', 'src', 'gen', 'java', 'org', 'dressdiscover'),
              os.path.join(ROOT_DIR_PATH, 'java', 'server', 'src', 'gen', 'java', 'org', 'dressdiscover'),
+             os.path.join(PY_OUT_DIR_PATH, 'dressdiscover', 'api'),
              os.path.join(ROOT_DIR_PATH, 'sql'),
              os.path.join(TS_OUT_DIR_PATH, 'dressdiscover', 'api'),
         ):
@@ -76,6 +78,7 @@ class Main(thryft.main.Main):
                         shutil.rmtree(dir_path)
                     except WindowsError:
                         pass
+        os.makedirs(os.path.join(PY_OUT_DIR_PATH, 'dressdiscover', 'api'))
         os.makedirs(os.path.join(TS_OUT_DIR_PATH, 'dressdiscover', 'api'))
 
     def _compile(self):
@@ -148,6 +151,12 @@ class Main(thryft.main.Main):
                             namespace_prefix='org.',
                         ),
                         out=os.path.join(ROOT_DIR_PATH, 'java', thrift_subdir_name, 'src', 'gen', 'java'),
+                        **compile_kwds
+                    )
+
+                    self._compile_thrift_file(
+                        generator=PyGenerator(),
+                        out=os.path.join(ROOT_DIR_PATH, 'py', 'src', 'dressdiscover', thrift_subdir_name),
                         **compile_kwds
                     )
 
