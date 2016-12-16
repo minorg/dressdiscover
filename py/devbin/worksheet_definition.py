@@ -1,7 +1,9 @@
 from dressdiscover.api.models.worksheet.worksheet_definition import WorksheetDefinition
 from dressdiscover.api.models.worksheet.worksheet_enum_feature_definition import WorksheetEnumFeatureDefinition
+from dressdiscover.api.models.worksheet.worksheet_enum_feature_value_definition import WorksheetEnumFeatureValueDefinition
 from dressdiscover.api.models.worksheet.worksheet_feature_definition import WorksheetFeatureDefinition
 from dressdiscover.api.models.worksheet.worksheet_feature_set_definition import WorksheetFeatureSetDefinition
+
 
 # decoration_applied = {
 #     'Decoration': {
@@ -12,7 +14,6 @@ from dressdiscover.api.models.worksheet.worksheet_feature_set_definition import 
 #         ]
 #     }
 # }
-
 closures = [
     'Button',
     'Hook and eye',
@@ -107,32 +108,70 @@ waistline_characteristics = [
 # TODO: label as text in Whole
 
 
-root_feature_sets = []
+def __to_enum_feature_definition(id_, values_list):
+    value_definitions = []
+    for value in values_list:
+        value_definitions.append(
+            WorksheetEnumFeatureValueDefinition.Builder()
+                .set_id(value)
+                .build()
+        )
+    return \
+        WorksheetFeatureDefinition.Builder()\
+            .set_enum_(
+                WorksheetEnumFeatureDefinition.Builder()
+                    .set_values_(tuple(value_definitions))
+                    .build()
+            )\
+            .set_id(id_)\
+            .build()
+
+
+extent_feature_set_definitions = []
 for extent, sub_extents in extents.iteritems():
     if sub_extents is None or len(sub_extents) == 0:
         sub_extents = [None]
-    extent_definitions = []
+    extent_child_feature_set_definitions = []
+    extent_feature_definitions = []
     for sub_extent in sub_extents:
-        pass
+        if sub_extent is None:
+            sub_extent_feature_definitions = extent_feature_definitions
+        else:
+            sub_extent_feature_definitions = []
+
+        sub_extent_feature_definitions.append(__to_enum_feature_definition('Materials', materials))
+        # TODO: append technique etc. here
+
+        if sub_extent is not None:
+            extent_child_feature_set_definitions.append(
+                WorksheetFeatureSetDefinition.Builder()
+                    .set_features(tuple(sub_extent_feature_definitions))
+                    .set_id(sub_extent)
+                    .build()
+            )
+
+    extent_feature_set_definition_builder = \
+        WorksheetFeatureSetDefinition.Builder().set_id(extent)
+    if len(extent_child_feature_set_definitions) > 0:
+        extent_feature_set_definition_builder.set_child_feature_sets(tuple(extent_child_feature_set_definitions))
+    if len(extent_feature_definitions) > 0:
+        extent_feature_set_definition_builder.set_features(tuple(extent_feature_definitions))
+    extent_feature_set_definitions.append(extent_feature_set_definition_builder.build())
 
 WORKSHEET_DEFINITION = \
     WorksheetDefinition(
-        root_feature_set_definition=\
+        root_feature_set=\
             WorksheetFeatureSetDefinition(
-                child_feature_sets=tuple(root_feature_sets),
+                child_feature_sets=tuple(extent_feature_set_definitions),
                 id='root',
             )
     )
 
 
+if __name__ == '__main__':
+    import json
+    from thryft.protocol.builtins_output_protocol import BuiltinsOutputProtocol
+    oprot = BuiltinsOutputProtocol()
+    WORKSHEET_DEFINITION.write(oprot)
+    print json.dumps(oprot.value, indent=2)
 
-# definitions = {
-#     'Head/Neck': {
-#     },
-#     'Torso/Pelvis': {
-#         'Main Garment (Top)': {
-#             'Bodice Back': decoration_applied,
-#             'Bodice Front': decoration_applied,
-#         }
-#     }
-# }
