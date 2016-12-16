@@ -69,6 +69,7 @@ class Main(thryft.main.Main):
              os.path.join(ROOT_DIR_PATH, 'java', 'lib', 'src', 'gen', 'java', 'org', 'dressdiscover'),
              os.path.join(ROOT_DIR_PATH, 'java', 'server', 'src', 'gen', 'java', 'org', 'dressdiscover'),
              os.path.join(PY_OUT_DIR_PATH, 'dressdiscover', 'api'),
+             os.path.join(PY_OUT_DIR_PATH, 'thryft'),
              os.path.join(ROOT_DIR_PATH, 'sql'),
              os.path.join(TS_OUT_DIR_PATH, 'dressdiscover', 'api'),
         ):
@@ -78,13 +79,18 @@ class Main(thryft.main.Main):
                         shutil.rmtree(dir_path)
                     except WindowsError:
                         pass
+
         os.makedirs(os.path.join(PY_OUT_DIR_PATH, 'dressdiscover', 'api'))
         os.makedirs(os.path.join(TS_OUT_DIR_PATH, 'dressdiscover', 'api'))
 
+        # Copy thryft/lib/py to py/src
+        shutil.copytree(
+            os.path.join(THRYFT_ROOT_DIR_PATH, 'lib', 'py', 'src', 'thryft'),
+            os.path.join(PY_OUT_DIR_PATH, 'thryft')
+        )
+
     def _compile(self):
         thrift_src_root_dir_path = os.path.join(ROOT_DIR_PATH, 'thrift', 'src')
-
-#         self.__generate_definitions_js()
 
         async_to_sync_service_ts_generator = AsyncToSyncServiceTsGenerator(ts_out_dir_path=TS_OUT_DIR_PATH)
         java_generator = \
