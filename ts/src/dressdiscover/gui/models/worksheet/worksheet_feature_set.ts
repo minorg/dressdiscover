@@ -2,12 +2,10 @@
 import Backbone = require("backbone");
 import { WorksheetFeatureSetDefinition } from "dressdiscover/api/models/worksheet/worksheet_feature_set_definition";
 import { WorksheetFeatureSetState } from "dressdiscover/api/models/worksheet/worksheet_feature_set_state";
-import { WorksheetEnumFeature } from "./worksheet_enum_feature";
 import { WorksheetFeature } from "dressdiscover/gui/models/worksheet/worksheet_feature";
 import { WorksheetFeatureCollection } from "./worksheet_feature_collection";
 import { WorksheetFeatureSetCollection } from "./worksheet_feature_set_collection";
 import { WorksheetFeatureState } from "dressdiscover/api/models/worksheet/worksheet_feature_state";
-import { WorksheetTextFeature } from "./worksheet_text_feature";
 
 export class WorksheetFeatureSet extends Backbone.Model {
     constructor(kwds: {
@@ -35,22 +33,13 @@ export class WorksheetFeatureSet extends Backbone.Model {
         }
         if (kwds.definition.features) {
             for (let featureDefinition of kwds.definition.features.models) {
-                const featureState = kwds.state && kwds.state.features ? kwds.state.features[featureDefinition.id] : undefined;
-                const featureKwds = {
+                let feature = new WorksheetFeature({
                     allFeatures: kwds.allFeatures,
                     allFeaturesIndex: kwds.allFeatures.length,
                     definition: featureDefinition,
                     parentFeatureSet: this,
-                    state: featureState
-                };
-                let feature: WorksheetFeature;
-                if (featureDefinition.enum_) {
-                    feature = new WorksheetEnumFeature(featureKwds);
-                } else if (featureDefinition.text) {
-                    feature = new WorksheetTextFeature(featureKwds);
-                } else {
-                    throw new Error("feature definition without union set");
-                }
+                    state: kwds.state && kwds.state.features ? kwds.state.features[featureDefinition.id] : undefined
+                });
                 this._features.add(feature);
                 kwds.allFeatures.push(feature);
             }

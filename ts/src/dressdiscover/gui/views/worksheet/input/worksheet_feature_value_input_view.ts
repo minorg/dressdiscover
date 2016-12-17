@@ -1,22 +1,21 @@
 ﻿import _ = require("underscore");
 import { Application } from "dressdiscover/gui/application";
 import Marionette = require("backbone.marionette");
-import { WorksheetEnumFeatureValue } from "dressdiscover/gui/models/worksheet/worksheet_enum_feature_value";
+import { WorksheetFeatureValue } from "dressdiscover/gui/models/worksheet/worksheet_feature_value";
 import { WorksheetFeatureInputEvent } from "dressdiscover/gui/events/worksheet/worksheet_feature_input_event";
-import "./worksheet_enum_feature_value_input_view.less";
 import "../../../../../../node_modules/magnify/dist/css/magnify.css";
 import "../../../../../../node_modules/magnify/dist/js/jquery.magnify.js";
 
 declare function require(moduleName: string): any;
 
-export class WorksheetEnumFeatureValueInputView extends Marionette.ItemView<WorksheetEnumFeatureValue> {
+export class WorksheetFeatureValueInputView extends Marionette.ItemView<WorksheetFeatureValue> {
     constructor(options?: any) {    
         super(_.extend(options, {
             events: {
                 "click #feature-value-link": "onClick",
                 "click #feature-value-checkbox": "onClick"
             },
-            template: _.template(require("raw!./worksheet_enum_feature_value_input_view.html")),
+            template: _.template(require("raw!./worksheet_feature_value_input_view.html")),
         }));
         this.listenTo(this.model, "change:selected", this.onModelChangeSelected);
     }

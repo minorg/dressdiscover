@@ -1,8 +1,7 @@
 from dressdiscover.api.models.worksheet.worksheet_definition import WorksheetDefinition
-from dressdiscover.api.models.worksheet.worksheet_enum_feature_definition import WorksheetEnumFeatureDefinition
-from dressdiscover.api.models.worksheet.worksheet_enum_feature_value_definition import WorksheetEnumFeatureValueDefinition
 from dressdiscover.api.models.worksheet.worksheet_feature_definition import WorksheetFeatureDefinition
 from dressdiscover.api.models.worksheet.worksheet_feature_set_definition import WorksheetFeatureSetDefinition
+from dressdiscover.api.models.worksheet.worksheet_feature_value_definition import WorksheetFeatureValueDefinition
 
 
 # decoration_applied = {
@@ -112,18 +111,14 @@ def __to_enum_feature_definition(id_, values_list):
     value_definitions = []
     for value in values_list:
         value_definitions.append(
-            WorksheetEnumFeatureValueDefinition.Builder()
+            WorksheetFeatureValueDefinition.Builder()
                 .set_id(value)
                 .build()
         )
     return \
         WorksheetFeatureDefinition.Builder()\
-            .set_enum_(
-                WorksheetEnumFeatureDefinition.Builder()
-                    .set_values_(tuple(value_definitions))
-                    .build()
-            )\
             .set_id(id_)\
+            .set_values_(tuple(value_definitions))\
             .build()
 
 

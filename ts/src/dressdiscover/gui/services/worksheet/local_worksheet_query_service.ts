@@ -1,26 +1,13 @@
-﻿import * as Backbone from "backbone";
-import { AsyncToSyncWorksheetQueryService } from "dressdiscover/api/services/worksheet/async_to_sync_worksheet_query_service";
+﻿import { AsyncToSyncWorksheetQueryService } from "dressdiscover/api/services/worksheet/async_to_sync_worksheet_query_service";
 import { WorksheetDefinition } from "dressdiscover/api/models/worksheet/worksheet_definition";
-import { WorksheetFeatureSetDefinition } from "dressdiscover/api/models/worksheet/worksheet_feature_set_definition";
 import { WorksheetState } from "dressdiscover/api/models/worksheet/worksheet_state";
 
-declare var DEFINITIONS: any;
+declare var WORKSHEET_DEFINITION: any;
 
 export class LocalWorksheetQueryService extends AsyncToSyncWorksheetQueryService {
     constructor() {
         super();
-        {
-            const featureSetDefinitions: WorksheetFeatureSetDefinition[] = [];
-            for (let featureSetDefinitionJsonObject of DEFINITIONS) {
-                featureSetDefinitions.push(WorksheetFeatureSetDefinition.fromThryftJSON(featureSetDefinitionJsonObject));
-            }
-            this._worksheetDefinition = new WorksheetDefinition({
-                rootFeatureSet: new WorksheetFeatureSetDefinition({
-                    id: "Root",
-                    childFeatureSets: new Backbone.Collection<WorksheetFeatureSetDefinition>(featureSetDefinitions)
-                })
-            });
-        }
+        this._worksheetDefinition = WorksheetDefinition.fromThryftJSON(WORKSHEET_DEFINITION);
     }
 
     getWorksheetAccessionNumbersSync(): string[] {

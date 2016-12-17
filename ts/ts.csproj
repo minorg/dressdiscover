@@ -25,7 +25,9 @@
     <Content Include=".gitignore" />
     <Content Include="assets\css\bootstrap.min.css" />
     <Content Include="assets\fonts\glyphicons-halflings-regular.svg" />
-    <Content Include="assets\js\definitions.js" />
+    <Content Include="assets\img\enum_feature_value_placeholder_full_size.png" />
+    <Content Include="assets\img\enum_feature_value_placeholder_thumbnail.png" />
+    <Content Include="assets\js\worksheet_definition.js" />
     <Content Include="package.json" />
     <Content Include="src\.gitignore" />
     <Content Include="devbin\generate_definitions_js.py" />
@@ -35,9 +37,8 @@
     <Content Include="src\dressdiscover\gui\views\navbar_view.html" />
     <Content Include="src\dressdiscover\gui\views\top_level_view.html" />
     <Content Include="src\dressdiscover\gui\views\worksheet\input\worksheet_input_view.html" />
-    <Content Include="src\dressdiscover\gui\views\worksheet\input\worksheet_text_feature_input_view.html" />
-    <Content Include="src\dressdiscover\gui\views\worksheet\input\worksheet_enum_feature_input_view.html" />
-    <Content Include="src\dressdiscover\gui\views\worksheet\input\worksheet_enum_feature_value_input_view.html" />
+    <Content Include="src\dressdiscover\gui\views\worksheet\input\worksheet_feature_input_view.html" />
+    <Content Include="src\dressdiscover\gui\views\worksheet\input\worksheet_feature_value_input_view.html" />
     <Content Include="src\dressdiscover\gui\views\worksheet\output\worksheet_output_view.html" />
     <Content Include="src\dressdiscover\gui\views\worksheet\worksheet_accession_number_picker_view.html" />
     <Content Include="src\dressdiscover\gui\views\worksheet\worksheet_two_column_view.html" />
@@ -48,22 +49,17 @@
     <Content Include="src\dressdiscover\gui\views\worksheet\output\worksheet_output_view.less" />
     <Content Include="src\dressdiscover\gui\views\worksheet\worksheet_sidebar_view.less" />
     <Content Include="src\dressdiscover\gui\views\worksheet\worksheet_two_column_view.less" />
-    <Content Include="src\dressdiscover\gui\views\worksheet\input\worksheet_text_feature_input_view.less" />
-    <Content Include="src\dressdiscover\gui\views\worksheet\input\worksheet_enum_feature_input_view.less" />
+    <Content Include="src\dressdiscover\gui\views\worksheet\input\worksheet_feature_input_view.less" />
   </ItemGroup>
   <ItemGroup>
     <TypeScriptCompile Include="src\dressdiscover\api\models\worksheet\worksheet_definition.ts" />
-    <TypeScriptCompile Include="src\dressdiscover\api\models\worksheet\worksheet_enum_feature_definition.ts" />
-    <TypeScriptCompile Include="src\dressdiscover\api\models\worksheet\worksheet_enum_feature_state.ts" />
-    <TypeScriptCompile Include="src\dressdiscover\api\models\worksheet\worksheet_enum_feature_value_definition.ts" />
-    <TypeScriptCompile Include="src\dressdiscover\api\models\worksheet\worksheet_enum_feature_value_image.ts" />
     <TypeScriptCompile Include="src\dressdiscover\api\models\worksheet\worksheet_feature_definition.ts" />
     <TypeScriptCompile Include="src\dressdiscover\api\models\worksheet\worksheet_feature_set_definition.ts" />
     <TypeScriptCompile Include="src\dressdiscover\api\models\worksheet\worksheet_feature_set_state.ts" />
     <TypeScriptCompile Include="src\dressdiscover\api\models\worksheet\worksheet_feature_state.ts" />
+    <TypeScriptCompile Include="src\dressdiscover\api\models\worksheet\worksheet_feature_value_definition.ts" />
+    <TypeScriptCompile Include="src\dressdiscover\api\models\worksheet\worksheet_feature_value_image.ts" />
     <TypeScriptCompile Include="src\dressdiscover\api\models\worksheet\worksheet_state.ts" />
-    <TypeScriptCompile Include="src\dressdiscover\api\models\worksheet\worksheet_text_feature_definition.ts" />
-    <TypeScriptCompile Include="src\dressdiscover\api\models\worksheet\worksheet_text_feature_state.ts" />
     <TypeScriptCompile Include="src\dressdiscover\api\services\io_exception.ts" />
     <TypeScriptCompile Include="src\dressdiscover\api\services\worksheet\async_to_sync_worksheet_command_service.ts" />
     <TypeScriptCompile Include="src\dressdiscover\api\services\worksheet\async_to_sync_worksheet_query_service.ts" />
@@ -74,14 +70,12 @@
     <TypeScriptCompile Include="src\dressdiscover\gui\router.ts" />
     <TypeScriptCompile Include="src\dressdiscover\gui\events\worksheet\worksheet_feature_input_event.ts" />
     <TypeScriptCompile Include="src\dressdiscover\gui\events\worksheet\worksheet_feature_navigation_event.ts" />
-    <TypeScriptCompile Include="src\dressdiscover\gui\models\worksheet\worksheet_text_feature.ts" />
     <TypeScriptCompile Include="src\dressdiscover\gui\models\worksheet\worksheet_feature_collection.ts" />
-    <TypeScriptCompile Include="src\dressdiscover\gui\models\worksheet\worksheet_enum_feature.ts" />
     <TypeScriptCompile Include="src\dressdiscover\gui\models\worksheet\worksheet_feature.ts" />
     <TypeScriptCompile Include="src\dressdiscover\gui\models\worksheet\worksheet_feature_set_collection.ts" />
     <TypeScriptCompile Include="src\dressdiscover\gui\models\worksheet\worksheet_feature_set.ts" />
-    <TypeScriptCompile Include="src\dressdiscover\gui\models\worksheet\worksheet_enum_feature_value_collection.ts" />
-    <TypeScriptCompile Include="src\dressdiscover\gui\models\worksheet\worksheet_enum_feature_value.ts" />
+    <TypeScriptCompile Include="src\dressdiscover\gui\models\worksheet\worksheet_feature_value_collection.ts" />
+    <TypeScriptCompile Include="src\dressdiscover\gui\models\worksheet\worksheet_feature_value.ts" />
     <TypeScriptCompile Include="src\dressdiscover\gui\models\worksheet\worksheet.ts" />
     <TypeScriptCompile Include="src\dressdiscover\gui\services\services.ts" />
     <TypeScriptCompile Include="src\dressdiscover\gui\services\worksheet\local_worksheet_command_service.ts" />
@@ -90,11 +84,10 @@
     <TypeScriptCompile Include="src\dressdiscover\gui\views\home\home_top_level_view.ts" />
     <TypeScriptCompile Include="src\dressdiscover\gui\views\navbar_view.ts" />
     <TypeScriptCompile Include="src\dressdiscover\gui\views\top_level_view.ts" />
-    <TypeScriptCompile Include="src\dressdiscover\gui\views\worksheet\input\worksheet_enum_feature_values_input_view.ts" />
-    <TypeScriptCompile Include="src\dressdiscover\gui\views\worksheet\input\worksheet_text_feature_input_view.ts" />
+    <TypeScriptCompile Include="src\dressdiscover\gui\views\worksheet\input\worksheet_feature_values_input_view.ts" />
     <TypeScriptCompile Include="src\dressdiscover\gui\views\worksheet\navigation\worksheet_navigation_view.ts" />
-    <TypeScriptCompile Include="src\dressdiscover\gui\views\worksheet\input\worksheet_enum_feature_input_view.ts" />
-    <TypeScriptCompile Include="src\dressdiscover\gui\views\worksheet\input\worksheet_enum_feature_value_input_view.ts" />
+    <TypeScriptCompile Include="src\dressdiscover\gui\views\worksheet\input\worksheet_feature_input_view.ts" />
+    <TypeScriptCompile Include="src\dressdiscover\gui\views\worksheet\input\worksheet_feature_value_input_view.ts" />
     <TypeScriptCompile Include="src\dressdiscover\gui\views\worksheet\input\worksheet_input_view.ts" />
     <TypeScriptCompile Include="src\dressdiscover\gui\views\worksheet\output\worksheet_output_view.ts" />
     <TypeScriptCompile Include="src\dressdiscover\gui\modal_region.ts" />
@@ -108,9 +101,6 @@
     <Content Include="assets\fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="assets\fonts\glyphicons-halflings-regular.woff" />
     <Content Include="assets\fonts\glyphicons-halflings-regular.woff2" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="src\dressdiscover\gui\views\worksheet\input\worksheet_enum_feature_value_input_view.less" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="src\dressdiscover\gui\views\worksheet\worksheet_accession_number_picker_view.less" />

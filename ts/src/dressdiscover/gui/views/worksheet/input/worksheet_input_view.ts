@@ -1,12 +1,9 @@
 ﻿import * as _ from "underscore";
 import * as Marionette from "backbone.marionette";
 import { Application } from "dressdiscover/gui/application";
-import { WorksheetEnumFeatureInputView } from "./worksheet_enum_feature_input_view";
-import { WorksheetEnumFeature } from "dressdiscover/gui/models/worksheet/worksheet_enum_feature";
 import { WorksheetFeature } from "dressdiscover/gui/models/worksheet/worksheet_feature";
+import { WorksheetFeatureInputView } from "dressdiscover/gui/views/worksheet/input/worksheet_feature_input_view";
 import { WorksheetFeatureNavigationEvent } from "dressdiscover/gui/events/worksheet/worksheet_feature_navigation_event";
-import { WorksheetTextFeatureInputView } from "./worksheet_text_feature_input_view";
-import { WorksheetTextFeature } from "dressdiscover/gui/models/worksheet/worksheet_text_feature";
 
 declare function require(moduleName: string): any;
 
@@ -32,15 +29,7 @@ export class WorksheetInputView extends Marionette.LayoutView<WorksheetFeature> 
     }
 
     onBeforeShow() {
-        let childView: Marionette.View<any>;
-        if (this.model instanceof WorksheetEnumFeature) {
-            childView = new WorksheetEnumFeatureInputView({ model: this.model });
-        } else if (this.model instanceof WorksheetTextFeature) {
-            childView = new WorksheetTextFeatureInputView({ model: this.model });
-        } else {
-            throw new Error("not supported " + (this.model.constructor as any).name);
-        }
-        this.showChildView("child", childView);
+        this.showChildView("child", new WorksheetFeatureInputView({ model: this.model }));
     }
 
     onClickBackButton() {
