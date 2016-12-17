@@ -22,7 +22,6 @@
     "bootstrap": "~3.3.7",
     "bootstrap-select": "~1.12.1",
     "bootstrap-treeview": "~1.2.0",
-    "magnify": "~1.6.17",
     "jquery": "^2.0.34",
     "underscore": "~1.8.3"
   },

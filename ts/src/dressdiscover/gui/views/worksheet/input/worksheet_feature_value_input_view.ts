@@ -3,6 +3,7 @@ import { Application } from "dressdiscover/gui/application";
 import Marionette = require("backbone.marionette");
 import { WorksheetFeatureValue } from "dressdiscover/gui/models/worksheet/worksheet_feature_value";
 import { WorksheetFeatureInputEvent } from "dressdiscover/gui/events/worksheet/worksheet_feature_input_event";
+import { WorksheetFeatureValueFullSizeImageView } from "dressdiscover/gui/views/worksheet/input/worksheet_feature_value_full_size_image_view";
 import "../../../../../../node_modules/magnify/dist/css/magnify.css";
 import "../../../../../../node_modules/magnify/dist/js/jquery.magnify.js";
 import "./worksheet_feature_value_input_view.less";
@@ -13,8 +14,9 @@ export class WorksheetFeatureValueInputView extends Marionette.ItemView<Workshee
     constructor(options?: any) {    
         super(_.extend(options, {
             events: {
-                "click a.thumbnail": "onClick",
-                "click div.checkbox": "onClick"
+                "click a.full-size": "onClickFullSize",
+                "click a.thumbnail": "onClickSelect",
+                "click div.checkbox": "onClickSelect"
             },
             template: _.template(require("raw!./worksheet_feature_value_input_view.html")),
         }));
@@ -25,7 +27,11 @@ export class WorksheetFeatureValueInputView extends Marionette.ItemView<Workshee
         this.ui = { checkbox: "input", image: "img" };
     }
 
-    onClick() {
+    onClickFullSize() {
+        Application.instance.modalRegion.show(new WorksheetFeatureValueFullSizeImageView({ model: this.model }));
+    }
+
+    onClickSelect() {
         this.model.selected = !this.model.selected;
         this.ui.checkbox[0].checked = this.model.selected;
         Application.instance.radio.globalChannel.trigger(WorksheetFeatureInputEvent.NAME, new WorksheetFeatureInputEvent({ feature: this.model.parentFeature }));
