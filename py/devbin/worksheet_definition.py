@@ -1,3 +1,5 @@
+from collections import OrderedDict
+
 from dressdiscover.api.models.worksheet.worksheet_definition import WorksheetDefinition
 from dressdiscover.api.models.worksheet.worksheet_feature_definition import WorksheetFeatureDefinition
 from dressdiscover.api.models.worksheet.worksheet_feature_set_definition import WorksheetFeatureSetDefinition
@@ -43,15 +45,14 @@ _vertical_extents = [
     'Bottom',
 ]
 
-extents = {
-    'Whole': _vertical_extents,
-    'Collar': [],
-    'Shoulders': [],
-    'Sleeves': [],
-    'Front': _vertical_extents,
-    'Back': _vertical_extents,
-    'Interior': _vertical_extents,
-}
+extents = OrderedDict()
+extents['Whole'] = _vertical_extents
+extents['Collar'] = []
+extents['Shoulders'] = []
+extents['Sleeves'] = []
+extents['Front'] = _vertical_extents
+extents['Back'] = _vertical_extents
+extents['Interior'] = _vertical_extents
 
 interior_characteristics = [
     'Attached underskirt',
@@ -137,12 +138,19 @@ for extent, sub_extents in extents.iteritems():
     extent_child_feature_set_definitions = []
     extent_feature_definitions = []
     for sub_extent in sub_extents:
+        if extent == sub_extent:
+            continue
+
+        feature_id_prefix = extent
         if sub_extent is None:
             sub_extent_feature_definitions = extent_feature_definitions
         else:
+            feature_id_prefix = feature_id_prefix + ' ' + sub_extent
             sub_extent_feature_definitions = []
+        feature_id_prefix = feature_id_prefix + ' '
 
-        sub_extent_feature_definitions.append(__to_enum_feature_definition('Material', materials))
+        sub_extent_feature_definitions.append(__to_enum_feature_definition(feature_id_prefix + 'Material', materials))
+        sub_extent_feature_definitions.append(__to_enum_feature_definition(feature_id_prefix + 'Print', prints))
         # TODO: append technique etc. here
 
         if sub_extent is not None:
