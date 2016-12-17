@@ -1,8 +1,8 @@
 ﻿<% if (output) { %>
-    <% for (var featureDisplayName in output) { _.each(output[featureDisplayName].featureValues, function(featureValue) { %>
+    <% for (var outputKey in output) { _.each(output[outputKey].values, function(outputValue) { %>
     <div class="row">
-        <div class="col-md-4 feature-name"><a><%- output[featureDisplayName].feature.displayName %></a></div>
-        <div class="col-md-8 feature-value"><%- featureValue %></div>
+        <div class="col-md-4 feature-name"><a><%- outputKey %></a></div>
+        <div class="col-md-8 feature-value"><%- outputValue %></div>
     </div>
     <% }); } %>
     <div class="row">

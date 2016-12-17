@@ -12,7 +12,7 @@ declare function require(moduleName: string): any;
 
 interface WorksheetFeatureOutput {
     feature: WorksheetFeature;
-    featureValues: string[];
+    values: string[];
 }
 
 interface WorksheetOutput {
@@ -38,18 +38,19 @@ export class WorksheetOutputView extends Marionette.ItemView<Worksheet> {
 
     onClickCsv() {
         let csv: string = "Feature name,Feature value\n";
-        for (var featureDisplayName in this._output) {
-            for (let featureValue of this._output[featureDisplayName].featureValues) {
-                csv += this.__escapeCsv(featureDisplayName) + "," + this.__escapeCsv(featureValue) + "\n";
+        for (var outputKey in this._output) {
+            for (let outputValue of this._output[outputKey].values) {
+                csv += this.__escapeCsv(outputKey) + "," + this.__escapeCsv(outputValue) + "\n";
             }
         }
         this.__download(csv, this.model.accessionNumber + ".csv", "text/csv");
     }
 
     onClickFeatureName(event: any) {
-        const featureDisplayName = event.target.innerText;
-        const feature = this._output[featureDisplayName].feature;
-        Application.instance.radio.globalChannel.trigger(WorksheetFeatureNavigationEvent.NAME, new WorksheetFeatureNavigationEvent({ feature: feature }));
+        Application.instance.radio.globalChannel.trigger(
+            WorksheetFeatureNavigationEvent.NAME,
+            new WorksheetFeatureNavigationEvent({ feature: this._output[event.target.innerText].feature })
+        );
     }
 
     onFeatureInput(event: WorksheetFeatureInputEvent) {
@@ -96,7 +97,7 @@ export class WorksheetOutputView extends Marionette.ItemView<Worksheet> {
             return {};
         }
         let output: WorksheetOutput = {};
-        output[feature.id] = { feature: feature, featureValues: values };
+        output[feature.displayName] = { feature: feature, values: values };
         return output;
     }
 

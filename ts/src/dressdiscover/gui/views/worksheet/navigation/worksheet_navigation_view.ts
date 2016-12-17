@@ -83,7 +83,7 @@ export class WorksheetNavigationView extends Marionette.ItemView<Worksheet> {
     onBeforeShow() {
         (this.$el as any).treeview({
             data: this._tree,
-            levels: 10,
+            levels: 0,
             onNodeSelected: this.onNodeSelected
         });
     }

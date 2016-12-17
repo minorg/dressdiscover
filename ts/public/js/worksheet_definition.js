@@ -2,10 +2,205 @@ var WORKSHEET_DEFINITION = {
     "root_feature_set": {
         "child_feature_sets": [
             {
-                "id": "Shoulders", 
+                "child_feature_sets": [
+                    {
+                        "id": "Top", 
+                        "features": [
+                            {
+                                "id": "Whole Top Material", 
+                                "values_": [
+                                    {
+                                        "image": {
+                                            "thumbnail_url": "img/feature_value_placeholder_thumbnail.png", 
+                                            "full_size_url": "img/feature_value_placeholder_full_size.png", 
+                                            "rights": "Placeholder rights"
+                                        }, 
+                                        "id": "Cotton"
+                                    }, 
+                                    {
+                                        "image": {
+                                            "thumbnail_url": "img/feature_value_placeholder_thumbnail.png", 
+                                            "full_size_url": "img/feature_value_placeholder_full_size.png", 
+                                            "rights": "Placeholder rights"
+                                        }, 
+                                        "id": "Elastic"
+                                    }, 
+                                    {
+                                        "image": {
+                                            "thumbnail_url": "img/feature_value_placeholder_thumbnail.png", 
+                                            "full_size_url": "img/feature_value_placeholder_full_size.png", 
+                                            "rights": "Placeholder rights"
+                                        }, 
+                                        "id": "Plastic"
+                                    }, 
+                                    {
+                                        "image": {
+                                            "thumbnail_url": "img/feature_value_placeholder_thumbnail.png", 
+                                            "full_size_url": "img/feature_value_placeholder_full_size.png", 
+                                            "rights": "Placeholder rights"
+                                        }, 
+                                        "id": "Self-fabric"
+                                    }, 
+                                    {
+                                        "image": {
+                                            "thumbnail_url": "img/feature_value_placeholder_thumbnail.png", 
+                                            "full_size_url": "img/feature_value_placeholder_full_size.png", 
+                                            "rights": "Placeholder rights"
+                                        }, 
+                                        "id": "Net tulle"
+                                    }, 
+                                    {
+                                        "image": {
+                                            "thumbnail_url": "img/feature_value_placeholder_thumbnail.png", 
+                                            "full_size_url": "img/feature_value_placeholder_full_size.png", 
+                                            "rights": "Placeholder rights"
+                                        }, 
+                                        "id": "Velvet"
+                                    }
+                                ]
+                            }, 
+                            {
+                                "id": "Whole Top Print", 
+                                "values_": [
+                                    {
+                                        "image": {
+                                            "thumbnail_url": "img/feature_value_placeholder_thumbnail.png", 
+                                            "full_size_url": "img/feature_value_placeholder_full_size.png", 
+                                            "rights": "Placeholder rights"
+                                        }, 
+                                        "id": "Abstracted floral"
+                                    }, 
+                                    {
+                                        "image": {
+                                            "thumbnail_url": "img/feature_value_placeholder_thumbnail.png", 
+                                            "full_size_url": "img/feature_value_placeholder_full_size.png", 
+                                            "rights": "Placeholder rights"
+                                        }, 
+                                        "id": "Checkerboard"
+                                    }, 
+                                    {
+                                        "image": {
+                                            "thumbnail_url": "img/feature_value_placeholder_thumbnail.png", 
+                                            "full_size_url": "img/feature_value_placeholder_full_size.png", 
+                                            "rights": "Placeholder rights"
+                                        }, 
+                                        "id": "Floral"
+                                    }, 
+                                    {
+                                        "image": {
+                                            "thumbnail_url": "img/feature_value_placeholder_thumbnail.png", 
+                                            "full_size_url": "img/feature_value_placeholder_full_size.png", 
+                                            "rights": "Placeholder rights"
+                                        }, 
+                                        "id": "Plaid"
+                                    }
+                                ]
+                            }
+                        ]
+                    }, 
+                    {
+                        "id": "Bottom", 
+                        "features": [
+                            {
+                                "id": "Whole Bottom Material", 
+                                "values_": [
+                                    {
+                                        "image": {
+                                            "thumbnail_url": "img/feature_value_placeholder_thumbnail.png", 
+                                            "full_size_url": "img/feature_value_placeholder_full_size.png", 
+                                            "rights": "Placeholder rights"
+                                        }, 
+                                        "id": "Cotton"
+                                    }, 
+                                    {
+                                        "image": {
+                                            "thumbnail_url": "img/feature_value_placeholder_thumbnail.png", 
+                                            "full_size_url": "img/feature_value_placeholder_full_size.png", 
+                                            "rights": "Placeholder rights"
+                                        }, 
+                                        "id": "Elastic"
+                                    }, 
+                                    {
+                                        "image": {
+                                            "thumbnail_url": "img/feature_value_placeholder_thumbnail.png", 
+                                            "full_size_url": "img/feature_value_placeholder_full_size.png", 
+                                            "rights": "Placeholder rights"
+                                        }, 
+                                        "id": "Plastic"
+                                    }, 
+                                    {
+                                        "image": {
+                                            "thumbnail_url": "img/feature_value_placeholder_thumbnail.png", 
+                                            "full_size_url": "img/feature_value_placeholder_full_size.png", 
+                                            "rights": "Placeholder rights"
+                                        }, 
+                                        "id": "Self-fabric"
+                                    }, 
+                                    {
+                                        "image": {
+                                            "thumbnail_url": "img/feature_value_placeholder_thumbnail.png", 
+                                            "full_size_url": "img/feature_value_placeholder_full_size.png", 
+                                            "rights": "Placeholder rights"
+                                        }, 
+                                        "id": "Net tulle"
+                                    }, 
+                                    {
+                                        "image": {
+                                            "thumbnail_url": "img/feature_value_placeholder_thumbnail.png", 
+                                            "full_size_url": "img/feature_value_placeholder_full_size.png", 
+                                            "rights": "Placeholder rights"
+                                        }, 
+                                        "id": "Velvet"
+                                    }
+                                ]
+                            }, 
+                            {
+                                "id": "Whole Bottom Print", 
+                                "values_": [
+                                    {
+                                        "image": {
+                                            "thumbnail_url": "img/feature_value_placeholder_thumbnail.png", 
+                                            "full_size_url": "img/feature_value_placeholder_full_size.png", 
+                                            "rights": "Placeholder rights"
+                                        }, 
+                                        "id": "Abstracted floral"
+                                    }, 
+                                    {
+                                        "image": {
+                                            "thumbnail_url": "img/feature_value_placeholder_thumbnail.png", 
+                                            "full_size_url": "img/feature_value_placeholder_full_size.png", 
+                                            "rights": "Placeholder rights"
+                                        }, 
+                                        "id": "Checkerboard"
+                                    }, 
+                                    {
+                                        "image": {
+                                            "thumbnail_url": "img/feature_value_placeholder_thumbnail.png", 
+                                            "full_size_url": "img/feature_value_placeholder_full_size.png", 
+                                            "rights": "Placeholder rights"
+                                        }, 
+                                        "id": "Floral"
+                                    }, 
+                                    {
+                                        "image": {
+                                            "thumbnail_url": "img/feature_value_placeholder_thumbnail.png", 
+                                            "full_size_url": "img/feature_value_placeholder_full_size.png", 
+                                            "rights": "Placeholder rights"
+                                        }, 
+                                        "id": "Plaid"
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ], 
+                "id": "Whole"
+            }, 
+            {
+                "id": "Collar", 
                 "features": [
                     {
-                        "id": "Material", 
+                        "id": "Collar Material", 
                         "values_": [
                             {
                                 "image": {
@@ -56,372 +251,146 @@ var WORKSHEET_DEFINITION = {
                                 "id": "Velvet"
                             }
                         ]
+                    }, 
+                    {
+                        "id": "Collar Print", 
+                        "values_": [
+                            {
+                                "image": {
+                                    "thumbnail_url": "img/feature_value_placeholder_thumbnail.png", 
+                                    "full_size_url": "img/feature_value_placeholder_full_size.png", 
+                                    "rights": "Placeholder rights"
+                                }, 
+                                "id": "Abstracted floral"
+                            }, 
+                            {
+                                "image": {
+                                    "thumbnail_url": "img/feature_value_placeholder_thumbnail.png", 
+                                    "full_size_url": "img/feature_value_placeholder_full_size.png", 
+                                    "rights": "Placeholder rights"
+                                }, 
+                                "id": "Checkerboard"
+                            }, 
+                            {
+                                "image": {
+                                    "thumbnail_url": "img/feature_value_placeholder_thumbnail.png", 
+                                    "full_size_url": "img/feature_value_placeholder_full_size.png", 
+                                    "rights": "Placeholder rights"
+                                }, 
+                                "id": "Floral"
+                            }, 
+                            {
+                                "image": {
+                                    "thumbnail_url": "img/feature_value_placeholder_thumbnail.png", 
+                                    "full_size_url": "img/feature_value_placeholder_full_size.png", 
+                                    "rights": "Placeholder rights"
+                                }, 
+                                "id": "Plaid"
+                            }
+                        ]
                     }
                 ]
             }, 
             {
-                "child_feature_sets": [
+                "id": "Shoulders", 
+                "features": [
                     {
-                        "id": "Whole", 
-                        "features": [
+                        "id": "Shoulders Material", 
+                        "values_": [
                             {
-                                "id": "Material", 
-                                "values_": [
-                                    {
-                                        "image": {
-                                            "thumbnail_url": "img/feature_value_placeholder_thumbnail.png", 
-                                            "full_size_url": "img/feature_value_placeholder_full_size.png", 
-                                            "rights": "Placeholder rights"
-                                        }, 
-                                        "id": "Cotton"
-                                    }, 
-                                    {
-                                        "image": {
-                                            "thumbnail_url": "img/feature_value_placeholder_thumbnail.png", 
-                                            "full_size_url": "img/feature_value_placeholder_full_size.png", 
-                                            "rights": "Placeholder rights"
-                                        }, 
-                                        "id": "Elastic"
-                                    }, 
-                                    {
-                                        "image": {
-                                            "thumbnail_url": "img/feature_value_placeholder_thumbnail.png", 
-                                            "full_size_url": "img/feature_value_placeholder_full_size.png", 
-                                            "rights": "Placeholder rights"
-                                        }, 
-                                        "id": "Plastic"
-                                    }, 
-                                    {
-                                        "image": {
-                                            "thumbnail_url": "img/feature_value_placeholder_thumbnail.png", 
-                                            "full_size_url": "img/feature_value_placeholder_full_size.png", 
-                                            "rights": "Placeholder rights"
-                                        }, 
-                                        "id": "Self-fabric"
-                                    }, 
-                                    {
-                                        "image": {
-                                            "thumbnail_url": "img/feature_value_placeholder_thumbnail.png", 
-                                            "full_size_url": "img/feature_value_placeholder_full_size.png", 
-                                            "rights": "Placeholder rights"
-                                        }, 
-                                        "id": "Net tulle"
-                                    }, 
-                                    {
-                                        "image": {
-                                            "thumbnail_url": "img/feature_value_placeholder_thumbnail.png", 
-                                            "full_size_url": "img/feature_value_placeholder_full_size.png", 
-                                            "rights": "Placeholder rights"
-                                        }, 
-                                        "id": "Velvet"
-                                    }
-                                ]
+                                "image": {
+                                    "thumbnail_url": "img/feature_value_placeholder_thumbnail.png", 
+                                    "full_size_url": "img/feature_value_placeholder_full_size.png", 
+                                    "rights": "Placeholder rights"
+                                }, 
+                                "id": "Cotton"
+                            }, 
+                            {
+                                "image": {
+                                    "thumbnail_url": "img/feature_value_placeholder_thumbnail.png", 
+                                    "full_size_url": "img/feature_value_placeholder_full_size.png", 
+                                    "rights": "Placeholder rights"
+                                }, 
+                                "id": "Elastic"
+                            }, 
+                            {
+                                "image": {
+                                    "thumbnail_url": "img/feature_value_placeholder_thumbnail.png", 
+                                    "full_size_url": "img/feature_value_placeholder_full_size.png", 
+                                    "rights": "Placeholder rights"
+                                }, 
+                                "id": "Plastic"
+                            }, 
+                            {
+                                "image": {
+                                    "thumbnail_url": "img/feature_value_placeholder_thumbnail.png", 
+                                    "full_size_url": "img/feature_value_placeholder_full_size.png", 
+                                    "rights": "Placeholder rights"
+                                }, 
+                                "id": "Self-fabric"
+                            }, 
+                            {
+                                "image": {
+                                    "thumbnail_url": "img/feature_value_placeholder_thumbnail.png", 
+                                    "full_size_url": "img/feature_value_placeholder_full_size.png", 
+                                    "rights": "Placeholder rights"
+                                }, 
+                                "id": "Net tulle"
+                            }, 
+                            {
+                                "image": {
+                                    "thumbnail_url": "img/feature_value_placeholder_thumbnail.png", 
+                                    "full_size_url": "img/feature_value_placeholder_full_size.png", 
+                                    "rights": "Placeholder rights"
+                                }, 
+                                "id": "Velvet"
                             }
                         ]
                     }, 
                     {
-                        "id": "Top", 
-                        "features": [
+                        "id": "Shoulders Print", 
+                        "values_": [
                             {
-                                "id": "Material", 
-                                "values_": [
-                                    {
-                                        "image": {
-                                            "thumbnail_url": "img/feature_value_placeholder_thumbnail.png", 
-                                            "full_size_url": "img/feature_value_placeholder_full_size.png", 
-                                            "rights": "Placeholder rights"
-                                        }, 
-                                        "id": "Cotton"
-                                    }, 
-                                    {
-                                        "image": {
-                                            "thumbnail_url": "img/feature_value_placeholder_thumbnail.png", 
-                                            "full_size_url": "img/feature_value_placeholder_full_size.png", 
-                                            "rights": "Placeholder rights"
-                                        }, 
-                                        "id": "Elastic"
-                                    }, 
-                                    {
-                                        "image": {
-                                            "thumbnail_url": "img/feature_value_placeholder_thumbnail.png", 
-                                            "full_size_url": "img/feature_value_placeholder_full_size.png", 
-                                            "rights": "Placeholder rights"
-                                        }, 
-                                        "id": "Plastic"
-                                    }, 
-                                    {
-                                        "image": {
-                                            "thumbnail_url": "img/feature_value_placeholder_thumbnail.png", 
-                                            "full_size_url": "img/feature_value_placeholder_full_size.png", 
-                                            "rights": "Placeholder rights"
-                                        }, 
-                                        "id": "Self-fabric"
-                                    }, 
-                                    {
-                                        "image": {
-                                            "thumbnail_url": "img/feature_value_placeholder_thumbnail.png", 
-                                            "full_size_url": "img/feature_value_placeholder_full_size.png", 
-                                            "rights": "Placeholder rights"
-                                        }, 
-                                        "id": "Net tulle"
-                                    }, 
-                                    {
-                                        "image": {
-                                            "thumbnail_url": "img/feature_value_placeholder_thumbnail.png", 
-                                            "full_size_url": "img/feature_value_placeholder_full_size.png", 
-                                            "rights": "Placeholder rights"
-                                        }, 
-                                        "id": "Velvet"
-                                    }
-                                ]
-                            }
-                        ]
-                    }, 
-                    {
-                        "id": "Bottom", 
-                        "features": [
+                                "image": {
+                                    "thumbnail_url": "img/feature_value_placeholder_thumbnail.png", 
+                                    "full_size_url": "img/feature_value_placeholder_full_size.png", 
+                                    "rights": "Placeholder rights"
+                                }, 
+                                "id": "Abstracted floral"
+                            }, 
                             {
-                                "id": "Material", 
-                                "values_": [
-                                    {
-                                        "image": {
-                                            "thumbnail_url": "img/feature_value_placeholder_thumbnail.png", 
-                                            "full_size_url": "img/feature_value_placeholder_full_size.png", 
-                                            "rights": "Placeholder rights"
-                                        }, 
-                                        "id": "Cotton"
-                                    }, 
-                                    {
-                                        "image": {
-                                            "thumbnail_url": "img/feature_value_placeholder_thumbnail.png", 
-                                            "full_size_url": "img/feature_value_placeholder_full_size.png", 
-                                            "rights": "Placeholder rights"
-                                        }, 
-                                        "id": "Elastic"
-                                    }, 
-                                    {
-                                        "image": {
-                                            "thumbnail_url": "img/feature_value_placeholder_thumbnail.png", 
-                                            "full_size_url": "img/feature_value_placeholder_full_size.png", 
-                                            "rights": "Placeholder rights"
-                                        }, 
-                                        "id": "Plastic"
-                                    }, 
-                                    {
-                                        "image": {
-                                            "thumbnail_url": "img/feature_value_placeholder_thumbnail.png", 
-                                            "full_size_url": "img/feature_value_placeholder_full_size.png", 
-                                            "rights": "Placeholder rights"
-                                        }, 
-                                        "id": "Self-fabric"
-                                    }, 
-                                    {
-                                        "image": {
-                                            "thumbnail_url": "img/feature_value_placeholder_thumbnail.png", 
-                                            "full_size_url": "img/feature_value_placeholder_full_size.png", 
-                                            "rights": "Placeholder rights"
-                                        }, 
-                                        "id": "Net tulle"
-                                    }, 
-                                    {
-                                        "image": {
-                                            "thumbnail_url": "img/feature_value_placeholder_thumbnail.png", 
-                                            "full_size_url": "img/feature_value_placeholder_full_size.png", 
-                                            "rights": "Placeholder rights"
-                                        }, 
-                                        "id": "Velvet"
-                                    }
-                                ]
+                                "image": {
+                                    "thumbnail_url": "img/feature_value_placeholder_thumbnail.png", 
+                                    "full_size_url": "img/feature_value_placeholder_full_size.png", 
+                                    "rights": "Placeholder rights"
+                                }, 
+                                "id": "Checkerboard"
+                            }, 
+                            {
+                                "image": {
+                                    "thumbnail_url": "img/feature_value_placeholder_thumbnail.png", 
+                                    "full_size_url": "img/feature_value_placeholder_full_size.png", 
+                                    "rights": "Placeholder rights"
+                                }, 
+                                "id": "Floral"
+                            }, 
+                            {
+                                "image": {
+                                    "thumbnail_url": "img/feature_value_placeholder_thumbnail.png", 
+                                    "full_size_url": "img/feature_value_placeholder_full_size.png", 
+                                    "rights": "Placeholder rights"
+                                }, 
+                                "id": "Plaid"
                             }
                         ]
                     }
-                ], 
-                "id": "Back"
-            }, 
-            {
-                "child_feature_sets": [
-                    {
-                        "id": "Whole", 
-                        "features": [
-                            {
-                                "id": "Material", 
-                                "values_": [
-                                    {
-                                        "image": {
-                                            "thumbnail_url": "img/feature_value_placeholder_thumbnail.png", 
-                                            "full_size_url": "img/feature_value_placeholder_full_size.png", 
-                                            "rights": "Placeholder rights"
-                                        }, 
-                                        "id": "Cotton"
-                                    }, 
-                                    {
-                                        "image": {
-                                            "thumbnail_url": "img/feature_value_placeholder_thumbnail.png", 
-                                            "full_size_url": "img/feature_value_placeholder_full_size.png", 
-                                            "rights": "Placeholder rights"
-                                        }, 
-                                        "id": "Elastic"
-                                    }, 
-                                    {
-                                        "image": {
-                                            "thumbnail_url": "img/feature_value_placeholder_thumbnail.png", 
-                                            "full_size_url": "img/feature_value_placeholder_full_size.png", 
-                                            "rights": "Placeholder rights"
-                                        }, 
-                                        "id": "Plastic"
-                                    }, 
-                                    {
-                                        "image": {
-                                            "thumbnail_url": "img/feature_value_placeholder_thumbnail.png", 
-                                            "full_size_url": "img/feature_value_placeholder_full_size.png", 
-                                            "rights": "Placeholder rights"
-                                        }, 
-                                        "id": "Self-fabric"
-                                    }, 
-                                    {
-                                        "image": {
-                                            "thumbnail_url": "img/feature_value_placeholder_thumbnail.png", 
-                                            "full_size_url": "img/feature_value_placeholder_full_size.png", 
-                                            "rights": "Placeholder rights"
-                                        }, 
-                                        "id": "Net tulle"
-                                    }, 
-                                    {
-                                        "image": {
-                                            "thumbnail_url": "img/feature_value_placeholder_thumbnail.png", 
-                                            "full_size_url": "img/feature_value_placeholder_full_size.png", 
-                                            "rights": "Placeholder rights"
-                                        }, 
-                                        "id": "Velvet"
-                                    }
-                                ]
-                            }
-                        ]
-                    }, 
-                    {
-                        "id": "Top", 
-                        "features": [
-                            {
-                                "id": "Material", 
-                                "values_": [
-                                    {
-                                        "image": {
-                                            "thumbnail_url": "img/feature_value_placeholder_thumbnail.png", 
-                                            "full_size_url": "img/feature_value_placeholder_full_size.png", 
-                                            "rights": "Placeholder rights"
-                                        }, 
-                                        "id": "Cotton"
-                                    }, 
-                                    {
-                                        "image": {
-                                            "thumbnail_url": "img/feature_value_placeholder_thumbnail.png", 
-                                            "full_size_url": "img/feature_value_placeholder_full_size.png", 
-                                            "rights": "Placeholder rights"
-                                        }, 
-                                        "id": "Elastic"
-                                    }, 
-                                    {
-                                        "image": {
-                                            "thumbnail_url": "img/feature_value_placeholder_thumbnail.png", 
-                                            "full_size_url": "img/feature_value_placeholder_full_size.png", 
-                                            "rights": "Placeholder rights"
-                                        }, 
-                                        "id": "Plastic"
-                                    }, 
-                                    {
-                                        "image": {
-                                            "thumbnail_url": "img/feature_value_placeholder_thumbnail.png", 
-                                            "full_size_url": "img/feature_value_placeholder_full_size.png", 
-                                            "rights": "Placeholder rights"
-                                        }, 
-                                        "id": "Self-fabric"
-                                    }, 
-                                    {
-                                        "image": {
-                                            "thumbnail_url": "img/feature_value_placeholder_thumbnail.png", 
-                                            "full_size_url": "img/feature_value_placeholder_full_size.png", 
-                                            "rights": "Placeholder rights"
-                                        }, 
-                                        "id": "Net tulle"
-                                    }, 
-                                    {
-                                        "image": {
-                                            "thumbnail_url": "img/feature_value_placeholder_thumbnail.png", 
-                                            "full_size_url": "img/feature_value_placeholder_full_size.png", 
-                                            "rights": "Placeholder rights"
-                                        }, 
-                                        "id": "Velvet"
-                                    }
-                                ]
-                            }
-                        ]
-                    }, 
-                    {
-                        "id": "Bottom", 
-                        "features": [
-                            {
-                                "id": "Material", 
-                                "values_": [
-                                    {
-                                        "image": {
-                                            "thumbnail_url": "img/feature_value_placeholder_thumbnail.png", 
-                                            "full_size_url": "img/feature_value_placeholder_full_size.png", 
-                                            "rights": "Placeholder rights"
-                                        }, 
-                                        "id": "Cotton"
-                                    }, 
-                                    {
-                                        "image": {
-                                            "thumbnail_url": "img/feature_value_placeholder_thumbnail.png", 
-                                            "full_size_url": "img/feature_value_placeholder_full_size.png", 
-                                            "rights": "Placeholder rights"
-                                        }, 
-                                        "id": "Elastic"
-                                    }, 
-                                    {
-                                        "image": {
-                                            "thumbnail_url": "img/feature_value_placeholder_thumbnail.png", 
-                                            "full_size_url": "img/feature_value_placeholder_full_size.png", 
-                                            "rights": "Placeholder rights"
-                                        }, 
-                                        "id": "Plastic"
-                                    }, 
-                                    {
-                                        "image": {
-                                            "thumbnail_url": "img/feature_value_placeholder_thumbnail.png", 
-                                            "full_size_url": "img/feature_value_placeholder_full_size.png", 
-                                            "rights": "Placeholder rights"
-                                        }, 
-                                        "id": "Self-fabric"
-                                    }, 
-                                    {
-                                        "image": {
-                                            "thumbnail_url": "img/feature_value_placeholder_thumbnail.png", 
-                                            "full_size_url": "img/feature_value_placeholder_full_size.png", 
-                                            "rights": "Placeholder rights"
-                                        }, 
-                                        "id": "Net tulle"
-                                    }, 
-                                    {
-                                        "image": {
-                                            "thumbnail_url": "img/feature_value_placeholder_thumbnail.png", 
-                                            "full_size_url": "img/feature_value_placeholder_full_size.png", 
-                                            "rights": "Placeholder rights"
-                                        }, 
-                                        "id": "Velvet"
-                                    }
-                                ]
-                            }
-                        ]
-                    }
-                ], 
-                "id": "Interior"
+                ]
             }, 
             {
                 "id": "Sleeves", 
                 "features": [
                     {
-                        "id": "Material", 
+                        "id": "Sleeves Material", 
                         "values_": [
                             {
                                 "image": {
@@ -472,6 +441,43 @@ var WORKSHEET_DEFINITION = {
                                 "id": "Velvet"
                             }
                         ]
+                    }, 
+                    {
+                        "id": "Sleeves Print", 
+                        "values_": [
+                            {
+                                "image": {
+                                    "thumbnail_url": "img/feature_value_placeholder_thumbnail.png", 
+                                    "full_size_url": "img/feature_value_placeholder_full_size.png", 
+                                    "rights": "Placeholder rights"
+                                }, 
+                                "id": "Abstracted floral"
+                            }, 
+                            {
+                                "image": {
+                                    "thumbnail_url": "img/feature_value_placeholder_thumbnail.png", 
+                                    "full_size_url": "img/feature_value_placeholder_full_size.png", 
+                                    "rights": "Placeholder rights"
+                                }, 
+                                "id": "Checkerboard"
+                            }, 
+                            {
+                                "image": {
+                                    "thumbnail_url": "img/feature_value_placeholder_thumbnail.png", 
+                                    "full_size_url": "img/feature_value_placeholder_full_size.png", 
+                                    "rights": "Placeholder rights"
+                                }, 
+                                "id": "Floral"
+                            }, 
+                            {
+                                "image": {
+                                    "thumbnail_url": "img/feature_value_placeholder_thumbnail.png", 
+                                    "full_size_url": "img/feature_value_placeholder_full_size.png", 
+                                    "rights": "Placeholder rights"
+                                }, 
+                                "id": "Plaid"
+                            }
+                        ]
                     }
                 ]
             }, 
@@ -481,7 +487,7 @@ var WORKSHEET_DEFINITION = {
                         "id": "Whole", 
                         "features": [
                             {
-                                "id": "Material", 
+                                "id": "Front Whole Material", 
                                 "values_": [
                                     {
                                         "image": {
@@ -530,6 +536,43 @@ var WORKSHEET_DEFINITION = {
                                             "rights": "Placeholder rights"
                                         }, 
                                         "id": "Velvet"
+                                    }
+                                ]
+                            }, 
+                            {
+                                "id": "Front Whole Print", 
+                                "values_": [
+                                    {
+                                        "image": {
+                                            "thumbnail_url": "img/feature_value_placeholder_thumbnail.png", 
+                                            "full_size_url": "img/feature_value_placeholder_full_size.png", 
+                                            "rights": "Placeholder rights"
+                                        }, 
+                                        "id": "Abstracted floral"
+                                    }, 
+                                    {
+                                        "image": {
+                                            "thumbnail_url": "img/feature_value_placeholder_thumbnail.png", 
+                                            "full_size_url": "img/feature_value_placeholder_full_size.png", 
+                                            "rights": "Placeholder rights"
+                                        }, 
+                                        "id": "Checkerboard"
+                                    }, 
+                                    {
+                                        "image": {
+                                            "thumbnail_url": "img/feature_value_placeholder_thumbnail.png", 
+                                            "full_size_url": "img/feature_value_placeholder_full_size.png", 
+                                            "rights": "Placeholder rights"
+                                        }, 
+                                        "id": "Floral"
+                                    }, 
+                                    {
+                                        "image": {
+                                            "thumbnail_url": "img/feature_value_placeholder_thumbnail.png", 
+                                            "full_size_url": "img/feature_value_placeholder_full_size.png", 
+                                            "rights": "Placeholder rights"
+                                        }, 
+                                        "id": "Plaid"
                                     }
                                 ]
                             }
@@ -539,7 +582,7 @@ var WORKSHEET_DEFINITION = {
                         "id": "Top", 
                         "features": [
                             {
-                                "id": "Material", 
+                                "id": "Front Top Material", 
                                 "values_": [
                                     {
                                         "image": {
@@ -590,6 +633,43 @@ var WORKSHEET_DEFINITION = {
                                         "id": "Velvet"
                                     }
                                 ]
+                            }, 
+                            {
+                                "id": "Front Top Print", 
+                                "values_": [
+                                    {
+                                        "image": {
+                                            "thumbnail_url": "img/feature_value_placeholder_thumbnail.png", 
+                                            "full_size_url": "img/feature_value_placeholder_full_size.png", 
+                                            "rights": "Placeholder rights"
+                                        }, 
+                                        "id": "Abstracted floral"
+                                    }, 
+                                    {
+                                        "image": {
+                                            "thumbnail_url": "img/feature_value_placeholder_thumbnail.png", 
+                                            "full_size_url": "img/feature_value_placeholder_full_size.png", 
+                                            "rights": "Placeholder rights"
+                                        }, 
+                                        "id": "Checkerboard"
+                                    }, 
+                                    {
+                                        "image": {
+                                            "thumbnail_url": "img/feature_value_placeholder_thumbnail.png", 
+                                            "full_size_url": "img/feature_value_placeholder_full_size.png", 
+                                            "rights": "Placeholder rights"
+                                        }, 
+                                        "id": "Floral"
+                                    }, 
+                                    {
+                                        "image": {
+                                            "thumbnail_url": "img/feature_value_placeholder_thumbnail.png", 
+                                            "full_size_url": "img/feature_value_placeholder_full_size.png", 
+                                            "rights": "Placeholder rights"
+                                        }, 
+                                        "id": "Plaid"
+                                    }
+                                ]
                             }
                         ]
                     }, 
@@ -597,7 +677,7 @@ var WORKSHEET_DEFINITION = {
                         "id": "Bottom", 
                         "features": [
                             {
-                                "id": "Material", 
+                                "id": "Front Bottom Material", 
                                 "values_": [
                                     {
                                         "image": {
@@ -646,6 +726,43 @@ var WORKSHEET_DEFINITION = {
                                             "rights": "Placeholder rights"
                                         }, 
                                         "id": "Velvet"
+                                    }
+                                ]
+                            }, 
+                            {
+                                "id": "Front Bottom Print", 
+                                "values_": [
+                                    {
+                                        "image": {
+                                            "thumbnail_url": "img/feature_value_placeholder_thumbnail.png", 
+                                            "full_size_url": "img/feature_value_placeholder_full_size.png", 
+                                            "rights": "Placeholder rights"
+                                        }, 
+                                        "id": "Abstracted floral"
+                                    }, 
+                                    {
+                                        "image": {
+                                            "thumbnail_url": "img/feature_value_placeholder_thumbnail.png", 
+                                            "full_size_url": "img/feature_value_placeholder_full_size.png", 
+                                            "rights": "Placeholder rights"
+                                        }, 
+                                        "id": "Checkerboard"
+                                    }, 
+                                    {
+                                        "image": {
+                                            "thumbnail_url": "img/feature_value_placeholder_thumbnail.png", 
+                                            "full_size_url": "img/feature_value_placeholder_full_size.png", 
+                                            "rights": "Placeholder rights"
+                                        }, 
+                                        "id": "Floral"
+                                    }, 
+                                    {
+                                        "image": {
+                                            "thumbnail_url": "img/feature_value_placeholder_thumbnail.png", 
+                                            "full_size_url": "img/feature_value_placeholder_full_size.png", 
+                                            "rights": "Placeholder rights"
+                                        }, 
+                                        "id": "Plaid"
                                     }
                                 ]
                             }
@@ -660,7 +777,7 @@ var WORKSHEET_DEFINITION = {
                         "id": "Whole", 
                         "features": [
                             {
-                                "id": "Material", 
+                                "id": "Back Whole Material", 
                                 "values_": [
                                     {
                                         "image": {
@@ -709,6 +826,43 @@ var WORKSHEET_DEFINITION = {
                                             "rights": "Placeholder rights"
                                         }, 
                                         "id": "Velvet"
+                                    }
+                                ]
+                            }, 
+                            {
+                                "id": "Back Whole Print", 
+                                "values_": [
+                                    {
+                                        "image": {
+                                            "thumbnail_url": "img/feature_value_placeholder_thumbnail.png", 
+                                            "full_size_url": "img/feature_value_placeholder_full_size.png", 
+                                            "rights": "Placeholder rights"
+                                        }, 
+                                        "id": "Abstracted floral"
+                                    }, 
+                                    {
+                                        "image": {
+                                            "thumbnail_url": "img/feature_value_placeholder_thumbnail.png", 
+                                            "full_size_url": "img/feature_value_placeholder_full_size.png", 
+                                            "rights": "Placeholder rights"
+                                        }, 
+                                        "id": "Checkerboard"
+                                    }, 
+                                    {
+                                        "image": {
+                                            "thumbnail_url": "img/feature_value_placeholder_thumbnail.png", 
+                                            "full_size_url": "img/feature_value_placeholder_full_size.png", 
+                                            "rights": "Placeholder rights"
+                                        }, 
+                                        "id": "Floral"
+                                    }, 
+                                    {
+                                        "image": {
+                                            "thumbnail_url": "img/feature_value_placeholder_thumbnail.png", 
+                                            "full_size_url": "img/feature_value_placeholder_full_size.png", 
+                                            "rights": "Placeholder rights"
+                                        }, 
+                                        "id": "Plaid"
                                     }
                                 ]
                             }
@@ -718,7 +872,7 @@ var WORKSHEET_DEFINITION = {
                         "id": "Top", 
                         "features": [
                             {
-                                "id": "Material", 
+                                "id": "Back Top Material", 
                                 "values_": [
                                     {
                                         "image": {
@@ -767,6 +921,43 @@ var WORKSHEET_DEFINITION = {
                                             "rights": "Placeholder rights"
                                         }, 
                                         "id": "Velvet"
+                                    }
+                                ]
+                            }, 
+                            {
+                                "id": "Back Top Print", 
+                                "values_": [
+                                    {
+                                        "image": {
+                                            "thumbnail_url": "img/feature_value_placeholder_thumbnail.png", 
+                                            "full_size_url": "img/feature_value_placeholder_full_size.png", 
+                                            "rights": "Placeholder rights"
+                                        }, 
+                                        "id": "Abstracted floral"
+                                    }, 
+                                    {
+                                        "image": {
+                                            "thumbnail_url": "img/feature_value_placeholder_thumbnail.png", 
+                                            "full_size_url": "img/feature_value_placeholder_full_size.png", 
+                                            "rights": "Placeholder rights"
+                                        }, 
+                                        "id": "Checkerboard"
+                                    }, 
+                                    {
+                                        "image": {
+                                            "thumbnail_url": "img/feature_value_placeholder_thumbnail.png", 
+                                            "full_size_url": "img/feature_value_placeholder_full_size.png", 
+                                            "rights": "Placeholder rights"
+                                        }, 
+                                        "id": "Floral"
+                                    }, 
+                                    {
+                                        "image": {
+                                            "thumbnail_url": "img/feature_value_placeholder_thumbnail.png", 
+                                            "full_size_url": "img/feature_value_placeholder_full_size.png", 
+                                            "rights": "Placeholder rights"
+                                        }, 
+                                        "id": "Plaid"
                                     }
                                 ]
                             }
@@ -776,7 +967,7 @@ var WORKSHEET_DEFINITION = {
                         "id": "Bottom", 
                         "features": [
                             {
-                                "id": "Material", 
+                                "id": "Back Bottom Material", 
                                 "values_": [
                                     {
                                         "image": {
@@ -827,69 +1018,338 @@ var WORKSHEET_DEFINITION = {
                                         "id": "Velvet"
                                     }
                                 ]
+                            }, 
+                            {
+                                "id": "Back Bottom Print", 
+                                "values_": [
+                                    {
+                                        "image": {
+                                            "thumbnail_url": "img/feature_value_placeholder_thumbnail.png", 
+                                            "full_size_url": "img/feature_value_placeholder_full_size.png", 
+                                            "rights": "Placeholder rights"
+                                        }, 
+                                        "id": "Abstracted floral"
+                                    }, 
+                                    {
+                                        "image": {
+                                            "thumbnail_url": "img/feature_value_placeholder_thumbnail.png", 
+                                            "full_size_url": "img/feature_value_placeholder_full_size.png", 
+                                            "rights": "Placeholder rights"
+                                        }, 
+                                        "id": "Checkerboard"
+                                    }, 
+                                    {
+                                        "image": {
+                                            "thumbnail_url": "img/feature_value_placeholder_thumbnail.png", 
+                                            "full_size_url": "img/feature_value_placeholder_full_size.png", 
+                                            "rights": "Placeholder rights"
+                                        }, 
+                                        "id": "Floral"
+                                    }, 
+                                    {
+                                        "image": {
+                                            "thumbnail_url": "img/feature_value_placeholder_thumbnail.png", 
+                                            "full_size_url": "img/feature_value_placeholder_full_size.png", 
+                                            "rights": "Placeholder rights"
+                                        }, 
+                                        "id": "Plaid"
+                                    }
+                                ]
                             }
                         ]
                     }
                 ], 
-                "id": "Whole"
+                "id": "Back"
             }, 
             {
-                "id": "Collar", 
-                "features": [
+                "child_feature_sets": [
                     {
-                        "id": "Material", 
-                        "values_": [
+                        "id": "Whole", 
+                        "features": [
                             {
-                                "image": {
-                                    "thumbnail_url": "img/feature_value_placeholder_thumbnail.png", 
-                                    "full_size_url": "img/feature_value_placeholder_full_size.png", 
-                                    "rights": "Placeholder rights"
-                                }, 
-                                "id": "Cotton"
+                                "id": "Interior Whole Material", 
+                                "values_": [
+                                    {
+                                        "image": {
+                                            "thumbnail_url": "img/feature_value_placeholder_thumbnail.png", 
+                                            "full_size_url": "img/feature_value_placeholder_full_size.png", 
+                                            "rights": "Placeholder rights"
+                                        }, 
+                                        "id": "Cotton"
+                                    }, 
+                                    {
+                                        "image": {
+                                            "thumbnail_url": "img/feature_value_placeholder_thumbnail.png", 
+                                            "full_size_url": "img/feature_value_placeholder_full_size.png", 
+                                            "rights": "Placeholder rights"
+                                        }, 
+                                        "id": "Elastic"
+                                    }, 
+                                    {
+                                        "image": {
+                                            "thumbnail_url": "img/feature_value_placeholder_thumbnail.png", 
+                                            "full_size_url": "img/feature_value_placeholder_full_size.png", 
+                                            "rights": "Placeholder rights"
+                                        }, 
+                                        "id": "Plastic"
+                                    }, 
+                                    {
+                                        "image": {
+                                            "thumbnail_url": "img/feature_value_placeholder_thumbnail.png", 
+                                            "full_size_url": "img/feature_value_placeholder_full_size.png", 
+                                            "rights": "Placeholder rights"
+                                        }, 
+                                        "id": "Self-fabric"
+                                    }, 
+                                    {
+                                        "image": {
+                                            "thumbnail_url": "img/feature_value_placeholder_thumbnail.png", 
+                                            "full_size_url": "img/feature_value_placeholder_full_size.png", 
+                                            "rights": "Placeholder rights"
+                                        }, 
+                                        "id": "Net tulle"
+                                    }, 
+                                    {
+                                        "image": {
+                                            "thumbnail_url": "img/feature_value_placeholder_thumbnail.png", 
+                                            "full_size_url": "img/feature_value_placeholder_full_size.png", 
+                                            "rights": "Placeholder rights"
+                                        }, 
+                                        "id": "Velvet"
+                                    }
+                                ]
                             }, 
                             {
-                                "image": {
-                                    "thumbnail_url": "img/feature_value_placeholder_thumbnail.png", 
-                                    "full_size_url": "img/feature_value_placeholder_full_size.png", 
-                                    "rights": "Placeholder rights"
-                                }, 
-                                "id": "Elastic"
+                                "id": "Interior Whole Print", 
+                                "values_": [
+                                    {
+                                        "image": {
+                                            "thumbnail_url": "img/feature_value_placeholder_thumbnail.png", 
+                                            "full_size_url": "img/feature_value_placeholder_full_size.png", 
+                                            "rights": "Placeholder rights"
+                                        }, 
+                                        "id": "Abstracted floral"
+                                    }, 
+                                    {
+                                        "image": {
+                                            "thumbnail_url": "img/feature_value_placeholder_thumbnail.png", 
+                                            "full_size_url": "img/feature_value_placeholder_full_size.png", 
+                                            "rights": "Placeholder rights"
+                                        }, 
+                                        "id": "Checkerboard"
+                                    }, 
+                                    {
+                                        "image": {
+                                            "thumbnail_url": "img/feature_value_placeholder_thumbnail.png", 
+                                            "full_size_url": "img/feature_value_placeholder_full_size.png", 
+                                            "rights": "Placeholder rights"
+                                        }, 
+                                        "id": "Floral"
+                                    }, 
+                                    {
+                                        "image": {
+                                            "thumbnail_url": "img/feature_value_placeholder_thumbnail.png", 
+                                            "full_size_url": "img/feature_value_placeholder_full_size.png", 
+                                            "rights": "Placeholder rights"
+                                        }, 
+                                        "id": "Plaid"
+                                    }
+                                ]
+                            }
+                        ]
+                    }, 
+                    {
+                        "id": "Top", 
+                        "features": [
+                            {
+                                "id": "Interior Top Material", 
+                                "values_": [
+                                    {
+                                        "image": {
+                                            "thumbnail_url": "img/feature_value_placeholder_thumbnail.png", 
+                                            "full_size_url": "img/feature_value_placeholder_full_size.png", 
+                                            "rights": "Placeholder rights"
+                                        }, 
+                                        "id": "Cotton"
+                                    }, 
+                                    {
+                                        "image": {
+                                            "thumbnail_url": "img/feature_value_placeholder_thumbnail.png", 
+                                            "full_size_url": "img/feature_value_placeholder_full_size.png", 
+                                            "rights": "Placeholder rights"
+                                        }, 
+                                        "id": "Elastic"
+                                    }, 
+                                    {
+                                        "image": {
+                                            "thumbnail_url": "img/feature_value_placeholder_thumbnail.png", 
+                                            "full_size_url": "img/feature_value_placeholder_full_size.png", 
+                                            "rights": "Placeholder rights"
+                                        }, 
+                                        "id": "Plastic"
+                                    }, 
+                                    {
+                                        "image": {
+                                            "thumbnail_url": "img/feature_value_placeholder_thumbnail.png", 
+                                            "full_size_url": "img/feature_value_placeholder_full_size.png", 
+                                            "rights": "Placeholder rights"
+                                        }, 
+                                        "id": "Self-fabric"
+                                    }, 
+                                    {
+                                        "image": {
+                                            "thumbnail_url": "img/feature_value_placeholder_thumbnail.png", 
+                                            "full_size_url": "img/feature_value_placeholder_full_size.png", 
+                                            "rights": "Placeholder rights"
+                                        }, 
+                                        "id": "Net tulle"
+                                    }, 
+                                    {
+                                        "image": {
+                                            "thumbnail_url": "img/feature_value_placeholder_thumbnail.png", 
+                                            "full_size_url": "img/feature_value_placeholder_full_size.png", 
+                                            "rights": "Placeholder rights"
+                                        }, 
+                                        "id": "Velvet"
+                                    }
+                                ]
                             }, 
                             {
-                                "image": {
-                                    "thumbnail_url": "img/feature_value_placeholder_thumbnail.png", 
-                                    "full_size_url": "img/feature_value_placeholder_full_size.png", 
-                                    "rights": "Placeholder rights"
-                                }, 
-                                "id": "Plastic"
+                                "id": "Interior Top Print", 
+                                "values_": [
+                                    {
+                                        "image": {
+                                            "thumbnail_url": "img/feature_value_placeholder_thumbnail.png", 
+                                            "full_size_url": "img/feature_value_placeholder_full_size.png", 
+                                            "rights": "Placeholder rights"
+                                        }, 
+                                        "id": "Abstracted floral"
+                                    }, 
+                                    {
+                                        "image": {
+                                            "thumbnail_url": "img/feature_value_placeholder_thumbnail.png", 
+                                            "full_size_url": "img/feature_value_placeholder_full_size.png", 
+                                            "rights": "Placeholder rights"
+                                        }, 
+                                        "id": "Checkerboard"
+                                    }, 
+                                    {
+                                        "image": {
+                                            "thumbnail_url": "img/feature_value_placeholder_thumbnail.png", 
+                                            "full_size_url": "img/feature_value_placeholder_full_size.png", 
+                                            "rights": "Placeholder rights"
+                                        }, 
+                                        "id": "Floral"
+                                    }, 
+                                    {
+                                        "image": {
+                                            "thumbnail_url": "img/feature_value_placeholder_thumbnail.png", 
+                                            "full_size_url": "img/feature_value_placeholder_full_size.png", 
+                                            "rights": "Placeholder rights"
+                                        }, 
+                                        "id": "Plaid"
+                                    }
+                                ]
+                            }
+                        ]
+                    }, 
+                    {
+                        "id": "Bottom", 
+                        "features": [
+                            {
+                                "id": "Interior Bottom Material", 
+                                "values_": [
+                                    {
+                                        "image": {
+                                            "thumbnail_url": "img/feature_value_placeholder_thumbnail.png", 
+                                            "full_size_url": "img/feature_value_placeholder_full_size.png", 
+                                            "rights": "Placeholder rights"
+                                        }, 
+                                        "id": "Cotton"
+                                    }, 
+                                    {
+                                        "image": {
+                                            "thumbnail_url": "img/feature_value_placeholder_thumbnail.png", 
+                                            "full_size_url": "img/feature_value_placeholder_full_size.png", 
+                                            "rights": "Placeholder rights"
+                                        }, 
+                                        "id": "Elastic"
+                                    }, 
+                                    {
+                                        "image": {
+                                            "thumbnail_url": "img/feature_value_placeholder_thumbnail.png", 
+                                            "full_size_url": "img/feature_value_placeholder_full_size.png", 
+                                            "rights": "Placeholder rights"
+                                        }, 
+                                        "id": "Plastic"
+                                    }, 
+                                    {
+                                        "image": {
+                                            "thumbnail_url": "img/feature_value_placeholder_thumbnail.png", 
+                                            "full_size_url": "img/feature_value_placeholder_full_size.png", 
+                                            "rights": "Placeholder rights"
+                                        }, 
+                                        "id": "Self-fabric"
+                                    }, 
+                                    {
+                                        "image": {
+                                            "thumbnail_url": "img/feature_value_placeholder_thumbnail.png", 
+                                            "full_size_url": "img/feature_value_placeholder_full_size.png", 
+                                            "rights": "Placeholder rights"
+                                        }, 
+                                        "id": "Net tulle"
+                                    }, 
+                                    {
+                                        "image": {
+                                            "thumbnail_url": "img/feature_value_placeholder_thumbnail.png", 
+                                            "full_size_url": "img/feature_value_placeholder_full_size.png", 
+                                            "rights": "Placeholder rights"
+                                        }, 
+                                        "id": "Velvet"
+                                    }
+                                ]
                             }, 
                             {
-                                "image": {
-                                    "thumbnail_url": "img/feature_value_placeholder_thumbnail.png", 
-                                    "full_size_url": "img/feature_value_placeholder_full_size.png", 
-                                    "rights": "Placeholder rights"
-                                }, 
-                                "id": "Self-fabric"
-                            }, 
-                            {
-                                "image": {
-                                    "thumbnail_url": "img/feature_value_placeholder_thumbnail.png", 
-                                    "full_size_url": "img/feature_value_placeholder_full_size.png", 
-                                    "rights": "Placeholder rights"
-                                }, 
-                                "id": "Net tulle"
-                            }, 
-                            {
-                                "image": {
-                                    "thumbnail_url": "img/feature_value_placeholder_thumbnail.png", 
-                                    "full_size_url": "img/feature_value_placeholder_full_size.png", 
-                                    "rights": "Placeholder rights"
-                                }, 
-                                "id": "Velvet"
+                                "id": "Interior Bottom Print", 
+                                "values_": [
+                                    {
+                                        "image": {
+                                            "thumbnail_url": "img/feature_value_placeholder_thumbnail.png", 
+                                            "full_size_url": "img/feature_value_placeholder_full_size.png", 
+                                            "rights": "Placeholder rights"
+                                        }, 
+                                        "id": "Abstracted floral"
+                                    }, 
+                                    {
+                                        "image": {
+                                            "thumbnail_url": "img/feature_value_placeholder_thumbnail.png", 
+                                            "full_size_url": "img/feature_value_placeholder_full_size.png", 
+                                            "rights": "Placeholder rights"
+                                        }, 
+                                        "id": "Checkerboard"
+                                    }, 
+                                    {
+                                        "image": {
+                                            "thumbnail_url": "img/feature_value_placeholder_thumbnail.png", 
+                                            "full_size_url": "img/feature_value_placeholder_full_size.png", 
+                                            "rights": "Placeholder rights"
+                                        }, 
+                                        "id": "Floral"
+                                    }, 
+                                    {
+                                        "image": {
+                                            "thumbnail_url": "img/feature_value_placeholder_thumbnail.png", 
+                                            "full_size_url": "img/feature_value_placeholder_full_size.png", 
+                                            "rights": "Placeholder rights"
+                                        }, 
+                                        "id": "Plaid"
+                                    }
+                                ]
                             }
                         ]
                     }
-                ]
+                ], 
+                "id": "Interior"
             }
         ], 
         "id": "root"

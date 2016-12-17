@@ -10002,7 +10002,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    WorksheetNavigationView.prototype.onBeforeShow = function () {
 	        this.$el.treeview({
 	            data: this._tree,
-	            levels: 10,
+	            levels: 0,
 	            onNodeSelected: this.onNodeSelected
 	        });
 	    };
@@ -10045,18 +10045,16 @@ return /******/ (function(modules) { // webpackBootstrap
 	    };
 	    WorksheetOutputView.prototype.onClickCsv = function () {
 	        var csv = "Feature name,Feature value\n";
-	        for (var featureDisplayName in this._output) {
-	            for (var _i = 0, _a = this._output[featureDisplayName].featureValues; _i < _a.length; _i++) {
-	                var featureValue = _a[_i];
-	                csv += this.__escapeCsv(featureDisplayName) + "," + this.__escapeCsv(featureValue) + "\n";
+	        for (var outputKey in this._output) {
+	            for (var _i = 0, _a = this._output[outputKey].values; _i < _a.length; _i++) {
+	                var outputValue = _a[_i];
+	                csv += this.__escapeCsv(outputKey) + "," + this.__escapeCsv(outputValue) + "\n";
 	            }
 	        }
 	        this.__download(csv, this.model.accessionNumber + ".csv", "text/csv");
 	    };
 	    WorksheetOutputView.prototype.onClickFeatureName = function (event) {
-	        var featureDisplayName = event.target.innerText;
-	        var feature = this._output[featureDisplayName].feature;
-	        application_1.Application.instance.radio.globalChannel.trigger(worksheet_feature_navigation_event_1.WorksheetFeatureNavigationEvent.NAME, new worksheet_feature_navigation_event_1.WorksheetFeatureNavigationEvent({ feature: feature }));
+	        application_1.Application.instance.radio.globalChannel.trigger(worksheet_feature_navigation_event_1.WorksheetFeatureNavigationEvent.NAME, new worksheet_feature_navigation_event_1.WorksheetFeatureNavigationEvent({ feature: this._output[event.target.innerText].feature }));
 	    };
 	    WorksheetOutputView.prototype.onFeatureInput = function (event) {
 	        this._output = this.__calculateOutput();
@@ -10101,7 +10099,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	            return {};
 	        }
 	        var output = {};
-	        output[feature.id] = { feature: feature, featureValues: values };
+	        output[feature.displayName] = { feature: feature, values: values };
 	        return output;
 	    };
 	    // Adapted from https://stackoverflow.com/questions/14964035/how-to-export-javascript-array-info-to-csv-on-client-side
@@ -10148,7 +10146,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /* 70 */
 /***/ function(module, exports) {
 
-	module.exports = "<% if (output) { %>\n    <% for (var featureDisplayName in output) { _.each(output[featureDisplayName].featureValues, function(featureValue) { %>\n    <div class=\"row\">\n        <div class=\"col-md-4 feature-name\"><a><%- output[featureDisplayName].feature.displayName %></a></div>\n        <div class=\"col-md-8 feature-value\"><%- featureValue %></div>\n    </div>\n    <% }); } %>\n    <div class=\"row\">\n        <div class=\"col-md-4\"></div>\n        <div class=\"col-md-8\"><a id=\"csv\">Download as CSV</a></div>\n    </div>\n<% } else { %>\nSelect values on the right to generate a description.\n<% } %>\n"
+	module.exports = "<% if (output) { %>\n    <% for (var outputKey in output) { _.each(output[outputKey].values, function(outputValue) { %>\n    <div class=\"row\">\n        <div class=\"col-md-4 feature-name\"><a><%- outputKey %></a></div>\n        <div class=\"col-md-8 feature-value\"><%- outputValue %></div>\n    </div>\n    <% }); } %>\n    <div class=\"row\">\n        <div class=\"col-md-4\"></div>\n        <div class=\"col-md-8\"><a id=\"csv\">Download as CSV</a></div>\n    </div>\n<% } else { %>\nSelect values on the right to generate a description.\n<% } %>\n"
 
 /***/ },
 /* 71 */
