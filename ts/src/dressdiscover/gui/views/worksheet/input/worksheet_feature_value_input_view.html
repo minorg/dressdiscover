@@ -6,6 +6,9 @@
         <%- displayName %>
         <% } %>
     </a>
+    <% if (image) { %>
+    <div class="feature-value-image-rights"><%- image.rights %></div>
+    <% } %>
     <div class="feature-value-checkbox">
         <input class="feature-value-checkbox form-check-input" name="feature-value-checkbox" type="checkbox" value="" />
         <label for="feature-value-checkbox"><%- displayName %></label>

@@ -11,7 +11,7 @@ declare function require(moduleName: string): any;
 
 export class WorksheetFeatureInputView extends Marionette.LayoutView<WorksheetFeature> {
     bindings = {
-        "#text": "text"
+        "textarea": "text"
     };
 
     constructor(options: any) {
