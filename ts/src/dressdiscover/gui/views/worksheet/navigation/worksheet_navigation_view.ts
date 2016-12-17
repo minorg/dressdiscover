@@ -14,6 +14,7 @@ export class WorksheetNavigationView extends Marionette.ItemView<Worksheet> {
         for (let featureSet of this.model.rootFeatureSet.childFeatureSets.models) {
             this._tree.push(this.__constructFeatureSetTree(featureSet));
         }
+        _.bindAll(this, "onNodeSelected");
     }
 
     initialize() {
@@ -21,8 +22,16 @@ export class WorksheetNavigationView extends Marionette.ItemView<Worksheet> {
         this.listenTo(Application.instance.radio.globalChannel, WorksheetFeatureNavigationEvent.NAME, this.onFeatureNavigation);
     }
 
+    onBeforeShow() {
+        (this.$el as any).treeview({
+            data: this._tree,
+            levels: 0,
+            onNodeSelected: this.onNodeSelected
+        });
+    }
+
     onFeatureInput(event: WorksheetFeatureInputEvent) {
-        const treeview = (this.$el as any).treeview(true);
+        const treeview = this.__treeview;
         const nodeId = this._featureCidToNodeIdMap[event.feature.cid];
         const node = treeview.getNode(nodeId);
         if (node.feature.id != event.feature.id) {
@@ -37,16 +46,18 @@ export class WorksheetNavigationView extends Marionette.ItemView<Worksheet> {
     }
 
     onFeatureNavigation(event: WorksheetFeatureNavigationEvent) {
-        const treeview = (this.$el as any).treeview(true);
         const nodeId = this._featureCidToNodeIdMap[event.feature.cid];
-        treeview.selectNode(nodeId);
+        this.__treeview.selectNode(nodeId);
     }
 
     onNodeSelected(event: any, node: any) {
-        if (!node.feature) {
-            return true;
+        if (node.feature) {
+            Application.instance.radio.globalChannel.trigger(WorksheetFeatureNavigationEvent.NAME, new WorksheetFeatureNavigationEvent({ feature: node.feature }));
+        } else {
+            const treeview = this.__treeview;
+            treeview.toggleNodeExpanded(node.nodeId, { silent: true });
+            treeview.unselectNode(node.nodeId, { silent: true });
         }
-        Application.instance.radio.globalChannel.trigger(WorksheetFeatureNavigationEvent.NAME, new WorksheetFeatureNavigationEvent({ feature: node.feature }));
         return true;
     }
 
@@ -80,12 +91,8 @@ export class WorksheetNavigationView extends Marionette.ItemView<Worksheet> {
         return tree;
     }
 
-    onBeforeShow() {
-        (this.$el as any).treeview({
-            data: this._tree,
-            levels: 0,
-            onNodeSelected: this.onNodeSelected
-        });
+    private get __treeview() {
+        return (this.$el as any).treeview(true);
     }
 
     private _tree: any[] = [];
