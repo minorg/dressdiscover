@@ -4,6 +4,7 @@ import { Application } from "dressdiscover/gui/application";
 import { WorksheetFeature } from "dressdiscover/gui/models/worksheet/worksheet_feature";
 import { WorksheetFeatureValuesInputView } from "dressdiscover/gui/views/worksheet/input/worksheet_feature_values_input_view";
 import { WorksheetFeatureInputEvent } from "dressdiscover/gui/events/worksheet/worksheet_feature_input_event";
+import "../../../../../../node_modules/backbone.stickit/backbone.stickit.js";
 import "./worksheet_feature_input_view.less";
 
 declare function require(moduleName: string): any;

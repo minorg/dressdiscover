@@ -5,6 +5,7 @@ import { WorksheetFeatureValue } from "dressdiscover/gui/models/worksheet/worksh
 import { WorksheetFeatureInputEvent } from "dressdiscover/gui/events/worksheet/worksheet_feature_input_event";
 import "../../../../../../node_modules/magnify/dist/css/magnify.css";
 import "../../../../../../node_modules/magnify/dist/js/jquery.magnify.js";
+import "./worksheet_feature_value_input_view.less";
 
 declare function require(moduleName: string): any;
 
@@ -12,8 +13,8 @@ export class WorksheetFeatureValueInputView extends Marionette.ItemView<Workshee
     constructor(options?: any) {    
         super(_.extend(options, {
             events: {
-                "click #feature-value-link": "onClick",
-                "click #feature-value-checkbox": "onClick"
+                "click a.feature-value-link": "onClick",
+                "click div.feature-value-checkbox": "onClick"
             },
             template: _.template(require("raw!./worksheet_feature_value_input_view.html")),
         }));
@@ -21,7 +22,7 @@ export class WorksheetFeatureValueInputView extends Marionette.ItemView<Workshee
     }
 
     initialize() {
-        this.ui = { checkbox: "#feature-value-checkbox", image: "#feature-value-img" };
+        this.ui = { checkbox: "input.feature-value-checkbox", image: "img.feature-value-img" };
     }
 
     onClick() {

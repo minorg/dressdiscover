@@ -2,6 +2,7 @@ from dressdiscover.api.models.worksheet.worksheet_definition import WorksheetDef
 from dressdiscover.api.models.worksheet.worksheet_feature_definition import WorksheetFeatureDefinition
 from dressdiscover.api.models.worksheet.worksheet_feature_set_definition import WorksheetFeatureSetDefinition
 from dressdiscover.api.models.worksheet.worksheet_feature_value_definition import WorksheetFeatureValueDefinition
+from dressdiscover.api.models.worksheet.worksheet_feature_value_image import WorksheetFeatureValueImage
 
 
 # decoration_applied = {
@@ -113,6 +114,13 @@ def __to_enum_feature_definition(id_, values_list):
         value_definitions.append(
             WorksheetFeatureValueDefinition.Builder()
                 .set_id(value)
+                .set_image(
+                    WorksheetFeatureValueImage.Builder()
+                        .set_full_size_url("img/feature_value_placeholder_full_size.png")
+                        .set_rights("Placeholder rights")
+                        .set_thumbnail_url("img/feature_value_placeholder_thumbnail.png")
+                        .build()
+                    )
                 .build()
         )
     return \
@@ -134,7 +142,7 @@ for extent, sub_extents in extents.iteritems():
         else:
             sub_extent_feature_definitions = []
 
-        sub_extent_feature_definitions.append(__to_enum_feature_definition('Materials', materials))
+        sub_extent_feature_definitions.append(__to_enum_feature_definition('Material', materials))
         # TODO: append technique etc. here
 
         if sub_extent is not None:

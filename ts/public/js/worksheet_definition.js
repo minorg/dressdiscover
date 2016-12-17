@@ -5,24 +5,54 @@ var WORKSHEET_DEFINITION = {
                 "id": "Shoulders", 
                 "features": [
                     {
-                        "id": "Materials", 
+                        "id": "Material", 
                         "values_": [
                             {
+                                "image": {
+                                    "thumbnail_url": "img/feature_value_placeholder_thumbnail.png", 
+                                    "full_size_url": "img/feature_value_placeholder_full_size.png", 
+                                    "rights": "Placeholder rights"
+                                }, 
                                 "id": "Cotton"
                             }, 
                             {
+                                "image": {
+                                    "thumbnail_url": "img/feature_value_placeholder_thumbnail.png", 
+                                    "full_size_url": "img/feature_value_placeholder_full_size.png", 
+                                    "rights": "Placeholder rights"
+                                }, 
                                 "id": "Elastic"
                             }, 
                             {
+                                "image": {
+                                    "thumbnail_url": "img/feature_value_placeholder_thumbnail.png", 
+                                    "full_size_url": "img/feature_value_placeholder_full_size.png", 
+                                    "rights": "Placeholder rights"
+                                }, 
                                 "id": "Plastic"
                             }, 
                             {
+                                "image": {
+                                    "thumbnail_url": "img/feature_value_placeholder_thumbnail.png", 
+                                    "full_size_url": "img/feature_value_placeholder_full_size.png", 
+                                    "rights": "Placeholder rights"
+                                }, 
                                 "id": "Self-fabric"
                             }, 
                             {
+                                "image": {
+                                    "thumbnail_url": "img/feature_value_placeholder_thumbnail.png", 
+                                    "full_size_url": "img/feature_value_placeholder_full_size.png", 
+                                    "rights": "Placeholder rights"
+                                }, 
                                 "id": "Net tulle"
                             }, 
                             {
+                                "image": {
+                                    "thumbnail_url": "img/feature_value_placeholder_thumbnail.png", 
+                                    "full_size_url": "img/feature_value_placeholder_full_size.png", 
+                                    "rights": "Placeholder rights"
+                                }, 
                                 "id": "Velvet"
                             }
                         ]
@@ -35,24 +65,54 @@ var WORKSHEET_DEFINITION = {
                         "id": "Whole", 
                         "features": [
                             {
-                                "id": "Materials", 
+                                "id": "Material", 
                                 "values_": [
                                     {
+                                        "image": {
+                                            "thumbnail_url": "img/feature_value_placeholder_thumbnail.png", 
+                                            "full_size_url": "img/feature_value_placeholder_full_size.png", 
+                                            "rights": "Placeholder rights"
+                                        }, 
                                         "id": "Cotton"
                                     }, 
                                     {
+                                        "image": {
+                                            "thumbnail_url": "img/feature_value_placeholder_thumbnail.png", 
+                                            "full_size_url": "img/feature_value_placeholder_full_size.png", 
+                                            "rights": "Placeholder rights"
+                                        }, 
                                         "id": "Elastic"
                                     }, 
                                     {
+                                        "image": {
+                                            "thumbnail_url": "img/feature_value_placeholder_thumbnail.png", 
+                                            "full_size_url": "img/feature_value_placeholder_full_size.png", 
+                                            "rights": "Placeholder rights"
+                                        }, 
                                         "id": "Plastic"
                                     }, 
                                     {
+                                        "image": {
+                                            "thumbnail_url": "img/feature_value_placeholder_thumbnail.png", 
+                                            "full_size_url": "img/feature_value_placeholder_full_size.png", 
+                                            "rights": "Placeholder rights"
+                                        }, 
                                         "id": "Self-fabric"
                                     }, 
                                     {
+                                        "image": {
+                                            "thumbnail_url": "img/feature_value_placeholder_thumbnail.png", 
+                                            "full_size_url": "img/feature_value_placeholder_full_size.png", 
+                                            "rights": "Placeholder rights"
+                                        }, 
                                         "id": "Net tulle"
                                     }, 
                                     {
+                                        "image": {
+                                            "thumbnail_url": "img/feature_value_placeholder_thumbnail.png", 
+                                            "full_size_url": "img/feature_value_placeholder_full_size.png", 
+                                            "rights": "Placeholder rights"
+                                        }, 
                                         "id": "Velvet"
                                     }
                                 ]
@@ -63,24 +123,54 @@ var WORKSHEET_DEFINITION = {
                         "id": "Top", 
                         "features": [
                             {
-                                "id": "Materials", 
+                                "id": "Material", 
                                 "values_": [
                                     {
+                                        "image": {
+                                            "thumbnail_url": "img/feature_value_placeholder_thumbnail.png", 
+                                            "full_size_url": "img/feature_value_placeholder_full_size.png", 
+                                            "rights": "Placeholder rights"
+                                        }, 
                                         "id": "Cotton"
                                     }, 
                                     {
+                                        "image": {
+                                            "thumbnail_url": "img/feature_value_placeholder_thumbnail.png", 
+                                            "full_size_url": "img/feature_value_placeholder_full_size.png", 
+                                            "rights": "Placeholder rights"
+                                        }, 
                                         "id": "Elastic"
                                     }, 
                                     {
+                                        "image": {
+                                            "thumbnail_url": "img/feature_value_placeholder_thumbnail.png", 
+                                            "full_size_url": "img/feature_value_placeholder_full_size.png", 
+                                            "rights": "Placeholder rights"
+                                        }, 
                                         "id": "Plastic"
                                     }, 
                                     {
+                                        "image": {
+                                            "thumbnail_url": "img/feature_value_placeholder_thumbnail.png", 
+                                            "full_size_url": "img/feature_value_placeholder_full_size.png", 
+                                            "rights": "Placeholder rights"
+                                        }, 
                                         "id": "Self-fabric"
                                     }, 
                                     {
+                                        "image": {
+                                            "thumbnail_url": "img/feature_value_placeholder_thumbnail.png", 
+                                            "full_size_url": "img/feature_value_placeholder_full_size.png", 
+                                            "rights": "Placeholder rights"
+                                        }, 
                                         "id": "Net tulle"
                                     }, 
                                     {
+                                        "image": {
+                                            "thumbnail_url": "img/feature_value_placeholder_thumbnail.png", 
+                                            "full_size_url": "img/feature_value_placeholder_full_size.png", 
+                                            "rights": "Placeholder rights"
+                                        }, 
                                         "id": "Velvet"
                                     }
                                 ]
@@ -91,24 +181,54 @@ var WORKSHEET_DEFINITION = {
                         "id": "Bottom", 
                         "features": [
                             {
-                                "id": "Materials", 
+                                "id": "Material", 
                                 "values_": [
                                     {
+                                        "image": {
+                                            "thumbnail_url": "img/feature_value_placeholder_thumbnail.png", 
+                                            "full_size_url": "img/feature_value_placeholder_full_size.png", 
+                                            "rights": "Placeholder rights"
+                                        }, 
                                         "id": "Cotton"
                                     }, 
                                     {
+                                        "image": {
+                                            "thumbnail_url": "img/feature_value_placeholder_thumbnail.png", 
+                                            "full_size_url": "img/feature_value_placeholder_full_size.png", 
+                                            "rights": "Placeholder rights"
+                                        }, 
                                         "id": "Elastic"
                                     }, 
                                     {
+                                        "image": {
+                                            "thumbnail_url": "img/feature_value_placeholder_thumbnail.png", 
+                                            "full_size_url": "img/feature_value_placeholder_full_size.png", 
+                                            "rights": "Placeholder rights"
+                                        }, 
                                         "id": "Plastic"
                                     }, 
                                     {
+                                        "image": {
+                                            "thumbnail_url": "img/feature_value_placeholder_thumbnail.png", 
+                                            "full_size_url": "img/feature_value_placeholder_full_size.png", 
+                                            "rights": "Placeholder rights"
+                                        }, 
                                         "id": "Self-fabric"
                                     }, 
                                     {
+                                        "image": {
+                                            "thumbnail_url": "img/feature_value_placeholder_thumbnail.png", 
+                                            "full_size_url": "img/feature_value_placeholder_full_size.png", 
+                                            "rights": "Placeholder rights"
+                                        }, 
                                         "id": "Net tulle"
                                     }, 
                                     {
+                                        "image": {
+                                            "thumbnail_url": "img/feature_value_placeholder_thumbnail.png", 
+                                            "full_size_url": "img/feature_value_placeholder_full_size.png", 
+                                            "rights": "Placeholder rights"
+                                        }, 
                                         "id": "Velvet"
                                     }
                                 ]
@@ -124,24 +244,54 @@ var WORKSHEET_DEFINITION = {
                         "id": "Whole", 
                         "features": [
                             {
-                                "id": "Materials", 
+                                "id": "Material", 
                                 "values_": [
                                     {
+                                        "image": {
+                                            "thumbnail_url": "img/feature_value_placeholder_thumbnail.png", 
+                                            "full_size_url": "img/feature_value_placeholder_full_size.png", 
+                                            "rights": "Placeholder rights"
+                                        }, 
                                         "id": "Cotton"
                                     }, 
                                     {
+                                        "image": {
+                                            "thumbnail_url": "img/feature_value_placeholder_thumbnail.png", 
+                                            "full_size_url": "img/feature_value_placeholder_full_size.png", 
+                                            "rights": "Placeholder rights"
+                                        }, 
                                         "id": "Elastic"
                                     }, 
                                     {
+                                        "image": {
+                                            "thumbnail_url": "img/feature_value_placeholder_thumbnail.png", 
+                                            "full_size_url": "img/feature_value_placeholder_full_size.png", 
+                                            "rights": "Placeholder rights"
+                                        }, 
                                         "id": "Plastic"
                                     }, 
                                     {
+                                        "image": {
+                                            "thumbnail_url": "img/feature_value_placeholder_thumbnail.png", 
+                                            "full_size_url": "img/feature_value_placeholder_full_size.png", 
+                                            "rights": "Placeholder rights"
+                                        }, 
                                         "id": "Self-fabric"
                                     }, 
                                     {
+                                        "image": {
+                                            "thumbnail_url": "img/feature_value_placeholder_thumbnail.png", 
+                                            "full_size_url": "img/feature_value_placeholder_full_size.png", 
+                                            "rights": "Placeholder rights"
+                                        }, 
                                         "id": "Net tulle"
                                     }, 
                                     {
+                                        "image": {
+                                            "thumbnail_url": "img/feature_value_placeholder_thumbnail.png", 
+                                            "full_size_url": "img/feature_value_placeholder_full_size.png", 
+                                            "rights": "Placeholder rights"
+                                        }, 
                                         "id": "Velvet"
                                     }
                                 ]
@@ -152,24 +302,54 @@ var WORKSHEET_DEFINITION = {
                         "id": "Top", 
                         "features": [
                             {
-                                "id": "Materials", 
+                                "id": "Material", 
                                 "values_": [
                                     {
+                                        "image": {
+                                            "thumbnail_url": "img/feature_value_placeholder_thumbnail.png", 
+                                            "full_size_url": "img/feature_value_placeholder_full_size.png", 
+                                            "rights": "Placeholder rights"
+                                        }, 
                                         "id": "Cotton"
                                     }, 
                                     {
+                                        "image": {
+                                            "thumbnail_url": "img/feature_value_placeholder_thumbnail.png", 
+                                            "full_size_url": "img/feature_value_placeholder_full_size.png", 
+                                            "rights": "Placeholder rights"
+                                        }, 
                                         "id": "Elastic"
                                     }, 
                                     {
+                                        "image": {
+                                            "thumbnail_url": "img/feature_value_placeholder_thumbnail.png", 
+                                            "full_size_url": "img/feature_value_placeholder_full_size.png", 
+                                            "rights": "Placeholder rights"
+                                        }, 
                                         "id": "Plastic"
                                     }, 
                                     {
+                                        "image": {
+                                            "thumbnail_url": "img/feature_value_placeholder_thumbnail.png", 
+                                            "full_size_url": "img/feature_value_placeholder_full_size.png", 
+                                            "rights": "Placeholder rights"
+                                        }, 
                                         "id": "Self-fabric"
                                     }, 
                                     {
+                                        "image": {
+                                            "thumbnail_url": "img/feature_value_placeholder_thumbnail.png", 
+                                            "full_size_url": "img/feature_value_placeholder_full_size.png", 
+                                            "rights": "Placeholder rights"
+                                        }, 
                                         "id": "Net tulle"
                                     }, 
                                     {
+                                        "image": {
+                                            "thumbnail_url": "img/feature_value_placeholder_thumbnail.png", 
+                                            "full_size_url": "img/feature_value_placeholder_full_size.png", 
+                                            "rights": "Placeholder rights"
+                                        }, 
                                         "id": "Velvet"
                                     }
                                 ]
@@ -180,24 +360,54 @@ var WORKSHEET_DEFINITION = {
                         "id": "Bottom", 
                         "features": [
                             {
-                                "id": "Materials", 
+                                "id": "Material", 
                                 "values_": [
                                     {
+                                        "image": {
+                                            "thumbnail_url": "img/feature_value_placeholder_thumbnail.png", 
+                                            "full_size_url": "img/feature_value_placeholder_full_size.png", 
+                                            "rights": "Placeholder rights"
+                                        }, 
                                         "id": "Cotton"
                                     }, 
                                     {
+                                        "image": {
+                                            "thumbnail_url": "img/feature_value_placeholder_thumbnail.png", 
+                                            "full_size_url": "img/feature_value_placeholder_full_size.png", 
+                                            "rights": "Placeholder rights"
+                                        }, 
                                         "id": "Elastic"
                                     }, 
                                     {
+                                        "image": {
+                                            "thumbnail_url": "img/feature_value_placeholder_thumbnail.png", 
+                                            "full_size_url": "img/feature_value_placeholder_full_size.png", 
+                                            "rights": "Placeholder rights"
+                                        }, 
                                         "id": "Plastic"
                                     }, 
                                     {
+                                        "image": {
+                                            "thumbnail_url": "img/feature_value_placeholder_thumbnail.png", 
+                                            "full_size_url": "img/feature_value_placeholder_full_size.png", 
+                                            "rights": "Placeholder rights"
+                                        }, 
                                         "id": "Self-fabric"
                                     }, 
                                     {
+                                        "image": {
+                                            "thumbnail_url": "img/feature_value_placeholder_thumbnail.png", 
+                                            "full_size_url": "img/feature_value_placeholder_full_size.png", 
+                                            "rights": "Placeholder rights"
+                                        }, 
                                         "id": "Net tulle"
                                     }, 
                                     {
+                                        "image": {
+                                            "thumbnail_url": "img/feature_value_placeholder_thumbnail.png", 
+                                            "full_size_url": "img/feature_value_placeholder_full_size.png", 
+                                            "rights": "Placeholder rights"
+                                        }, 
                                         "id": "Velvet"
                                     }
                                 ]
@@ -211,24 +421,54 @@ var WORKSHEET_DEFINITION = {
                 "id": "Sleeves", 
                 "features": [
                     {
-                        "id": "Materials", 
+                        "id": "Material", 
                         "values_": [
                             {
+                                "image": {
+                                    "thumbnail_url": "img/feature_value_placeholder_thumbnail.png", 
+                                    "full_size_url": "img/feature_value_placeholder_full_size.png", 
+                                    "rights": "Placeholder rights"
+                                }, 
                                 "id": "Cotton"
                             }, 
                             {
+                                "image": {
+                                    "thumbnail_url": "img/feature_value_placeholder_thumbnail.png", 
+                                    "full_size_url": "img/feature_value_placeholder_full_size.png", 
+                                    "rights": "Placeholder rights"
+                                }, 
                                 "id": "Elastic"
                             }, 
                             {
+                                "image": {
+                                    "thumbnail_url": "img/feature_value_placeholder_thumbnail.png", 
+                                    "full_size_url": "img/feature_value_placeholder_full_size.png", 
+                                    "rights": "Placeholder rights"
+                                }, 
                                 "id": "Plastic"
                             }, 
                             {
+                                "image": {
+                                    "thumbnail_url": "img/feature_value_placeholder_thumbnail.png", 
+                                    "full_size_url": "img/feature_value_placeholder_full_size.png", 
+                                    "rights": "Placeholder rights"
+                                }, 
                                 "id": "Self-fabric"
                             }, 
                             {
+                                "image": {
+                                    "thumbnail_url": "img/feature_value_placeholder_thumbnail.png", 
+                                    "full_size_url": "img/feature_value_placeholder_full_size.png", 
+                                    "rights": "Placeholder rights"
+                                }, 
                                 "id": "Net tulle"
                             }, 
                             {
+                                "image": {
+                                    "thumbnail_url": "img/feature_value_placeholder_thumbnail.png", 
+                                    "full_size_url": "img/feature_value_placeholder_full_size.png", 
+                                    "rights": "Placeholder rights"
+                                }, 
                                 "id": "Velvet"
                             }
                         ]
@@ -241,24 +481,54 @@ var WORKSHEET_DEFINITION = {
                         "id": "Whole", 
                         "features": [
                             {
-                                "id": "Materials", 
+                                "id": "Material", 
                                 "values_": [
                                     {
+                                        "image": {
+                                            "thumbnail_url": "img/feature_value_placeholder_thumbnail.png", 
+                                            "full_size_url": "img/feature_value_placeholder_full_size.png", 
+                                            "rights": "Placeholder rights"
+                                        }, 
                                         "id": "Cotton"
                                     }, 
                                     {
+                                        "image": {
+                                            "thumbnail_url": "img/feature_value_placeholder_thumbnail.png", 
+                                            "full_size_url": "img/feature_value_placeholder_full_size.png", 
+                                            "rights": "Placeholder rights"
+                                        }, 
                                         "id": "Elastic"
                                     }, 
                                     {
+                                        "image": {
+                                            "thumbnail_url": "img/feature_value_placeholder_thumbnail.png", 
+                                            "full_size_url": "img/feature_value_placeholder_full_size.png", 
+                                            "rights": "Placeholder rights"
+                                        }, 
                                         "id": "Plastic"
                                     }, 
                                     {
+                                        "image": {
+                                            "thumbnail_url": "img/feature_value_placeholder_thumbnail.png", 
+                                            "full_size_url": "img/feature_value_placeholder_full_size.png", 
+                                            "rights": "Placeholder rights"
+                                        }, 
                                         "id": "Self-fabric"
                                     }, 
                                     {
+                                        "image": {
+                                            "thumbnail_url": "img/feature_value_placeholder_thumbnail.png", 
+                                            "full_size_url": "img/feature_value_placeholder_full_size.png", 
+                                            "rights": "Placeholder rights"
+                                        }, 
                                         "id": "Net tulle"
                                     }, 
                                     {
+                                        "image": {
+                                            "thumbnail_url": "img/feature_value_placeholder_thumbnail.png", 
+                                            "full_size_url": "img/feature_value_placeholder_full_size.png", 
+                                            "rights": "Placeholder rights"
+                                        }, 
                                         "id": "Velvet"
                                     }
                                 ]
@@ -269,24 +539,54 @@ var WORKSHEET_DEFINITION = {
                         "id": "Top", 
                         "features": [
                             {
-                                "id": "Materials", 
+                                "id": "Material", 
                                 "values_": [
                                     {
+                                        "image": {
+                                            "thumbnail_url": "img/feature_value_placeholder_thumbnail.png", 
+                                            "full_size_url": "img/feature_value_placeholder_full_size.png", 
+                                            "rights": "Placeholder rights"
+                                        }, 
                                         "id": "Cotton"
                                     }, 
                                     {
+                                        "image": {
+                                            "thumbnail_url": "img/feature_value_placeholder_thumbnail.png", 
+                                            "full_size_url": "img/feature_value_placeholder_full_size.png", 
+                                            "rights": "Placeholder rights"
+                                        }, 
                                         "id": "Elastic"
                                     }, 
                                     {
+                                        "image": {
+                                            "thumbnail_url": "img/feature_value_placeholder_thumbnail.png", 
+                                            "full_size_url": "img/feature_value_placeholder_full_size.png", 
+                                            "rights": "Placeholder rights"
+                                        }, 
                                         "id": "Plastic"
                                     }, 
                                     {
+                                        "image": {
+                                            "thumbnail_url": "img/feature_value_placeholder_thumbnail.png", 
+                                            "full_size_url": "img/feature_value_placeholder_full_size.png", 
+                                            "rights": "Placeholder rights"
+                                        }, 
                                         "id": "Self-fabric"
                                     }, 
                                     {
+                                        "image": {
+                                            "thumbnail_url": "img/feature_value_placeholder_thumbnail.png", 
+                                            "full_size_url": "img/feature_value_placeholder_full_size.png", 
+                                            "rights": "Placeholder rights"
+                                        }, 
                                         "id": "Net tulle"
                                     }, 
                                     {
+                                        "image": {
+                                            "thumbnail_url": "img/feature_value_placeholder_thumbnail.png", 
+                                            "full_size_url": "img/feature_value_placeholder_full_size.png", 
+                                            "rights": "Placeholder rights"
+                                        }, 
                                         "id": "Velvet"
                                     }
                                 ]
@@ -297,24 +597,54 @@ var WORKSHEET_DEFINITION = {
                         "id": "Bottom", 
                         "features": [
                             {
-                                "id": "Materials", 
+                                "id": "Material", 
                                 "values_": [
                                     {
+                                        "image": {
+                                            "thumbnail_url": "img/feature_value_placeholder_thumbnail.png", 
+                                            "full_size_url": "img/feature_value_placeholder_full_size.png", 
+                                            "rights": "Placeholder rights"
+                                        }, 
                                         "id": "Cotton"
                                     }, 
                                     {
+                                        "image": {
+                                            "thumbnail_url": "img/feature_value_placeholder_thumbnail.png", 
+                                            "full_size_url": "img/feature_value_placeholder_full_size.png", 
+                                            "rights": "Placeholder rights"
+                                        }, 
                                         "id": "Elastic"
                                     }, 
                                     {
+                                        "image": {
+                                            "thumbnail_url": "img/feature_value_placeholder_thumbnail.png", 
+                                            "full_size_url": "img/feature_value_placeholder_full_size.png", 
+                                            "rights": "Placeholder rights"
+                                        }, 
                                         "id": "Plastic"
                                     }, 
                                     {
+                                        "image": {
+                                            "thumbnail_url": "img/feature_value_placeholder_thumbnail.png", 
+                                            "full_size_url": "img/feature_value_placeholder_full_size.png", 
+                                            "rights": "Placeholder rights"
+                                        }, 
                                         "id": "Self-fabric"
                                     }, 
                                     {
+                                        "image": {
+                                            "thumbnail_url": "img/feature_value_placeholder_thumbnail.png", 
+                                            "full_size_url": "img/feature_value_placeholder_full_size.png", 
+                                            "rights": "Placeholder rights"
+                                        }, 
                                         "id": "Net tulle"
                                     }, 
                                     {
+                                        "image": {
+                                            "thumbnail_url": "img/feature_value_placeholder_thumbnail.png", 
+                                            "full_size_url": "img/feature_value_placeholder_full_size.png", 
+                                            "rights": "Placeholder rights"
+                                        }, 
                                         "id": "Velvet"
                                     }
                                 ]
@@ -330,24 +660,54 @@ var WORKSHEET_DEFINITION = {
                         "id": "Whole", 
                         "features": [
                             {
-                                "id": "Materials", 
+                                "id": "Material", 
                                 "values_": [
                                     {
+                                        "image": {
+                                            "thumbnail_url": "img/feature_value_placeholder_thumbnail.png", 
+                                            "full_size_url": "img/feature_value_placeholder_full_size.png", 
+                                            "rights": "Placeholder rights"
+                                        }, 
                                         "id": "Cotton"
                                     }, 
                                     {
+                                        "image": {
+                                            "thumbnail_url": "img/feature_value_placeholder_thumbnail.png", 
+                                            "full_size_url": "img/feature_value_placeholder_full_size.png", 
+                                            "rights": "Placeholder rights"
+                                        }, 
                                         "id": "Elastic"
                                     }, 
                                     {
+                                        "image": {
+                                            "thumbnail_url": "img/feature_value_placeholder_thumbnail.png", 
+                                            "full_size_url": "img/feature_value_placeholder_full_size.png", 
+                                            "rights": "Placeholder rights"
+                                        }, 
                                         "id": "Plastic"
                                     }, 
                                     {
+                                        "image": {
+                                            "thumbnail_url": "img/feature_value_placeholder_thumbnail.png", 
+                                            "full_size_url": "img/feature_value_placeholder_full_size.png", 
+                                            "rights": "Placeholder rights"
+                                        }, 
                                         "id": "Self-fabric"
                                     }, 
                                     {
+                                        "image": {
+                                            "thumbnail_url": "img/feature_value_placeholder_thumbnail.png", 
+                                            "full_size_url": "img/feature_value_placeholder_full_size.png", 
+                                            "rights": "Placeholder rights"
+                                        }, 
                                         "id": "Net tulle"
                                     }, 
                                     {
+                                        "image": {
+                                            "thumbnail_url": "img/feature_value_placeholder_thumbnail.png", 
+                                            "full_size_url": "img/feature_value_placeholder_full_size.png", 
+                                            "rights": "Placeholder rights"
+                                        }, 
                                         "id": "Velvet"
                                     }
                                 ]
@@ -358,24 +718,54 @@ var WORKSHEET_DEFINITION = {
                         "id": "Top", 
                         "features": [
                             {
-                                "id": "Materials", 
+                                "id": "Material", 
                                 "values_": [
                                     {
+                                        "image": {
+                                            "thumbnail_url": "img/feature_value_placeholder_thumbnail.png", 
+                                            "full_size_url": "img/feature_value_placeholder_full_size.png", 
+                                            "rights": "Placeholder rights"
+                                        }, 
                                         "id": "Cotton"
                                     }, 
                                     {
+                                        "image": {
+                                            "thumbnail_url": "img/feature_value_placeholder_thumbnail.png", 
+                                            "full_size_url": "img/feature_value_placeholder_full_size.png", 
+                                            "rights": "Placeholder rights"
+                                        }, 
                                         "id": "Elastic"
                                     }, 
                                     {
+                                        "image": {
+                                            "thumbnail_url": "img/feature_value_placeholder_thumbnail.png", 
+                                            "full_size_url": "img/feature_value_placeholder_full_size.png", 
+                                            "rights": "Placeholder rights"
+                                        }, 
                                         "id": "Plastic"
                                     }, 
                                     {
+                                        "image": {
+                                            "thumbnail_url": "img/feature_value_placeholder_thumbnail.png", 
+                                            "full_size_url": "img/feature_value_placeholder_full_size.png", 
+                                            "rights": "Placeholder rights"
+                                        }, 
                                         "id": "Self-fabric"
                                     }, 
                                     {
+                                        "image": {
+                                            "thumbnail_url": "img/feature_value_placeholder_thumbnail.png", 
+                                            "full_size_url": "img/feature_value_placeholder_full_size.png", 
+                                            "rights": "Placeholder rights"
+                                        }, 
                                         "id": "Net tulle"
                                     }, 
                                     {
+                                        "image": {
+                                            "thumbnail_url": "img/feature_value_placeholder_thumbnail.png", 
+                                            "full_size_url": "img/feature_value_placeholder_full_size.png", 
+                                            "rights": "Placeholder rights"
+                                        }, 
                                         "id": "Velvet"
                                     }
                                 ]
@@ -386,24 +776,54 @@ var WORKSHEET_DEFINITION = {
                         "id": "Bottom", 
                         "features": [
                             {
-                                "id": "Materials", 
+                                "id": "Material", 
                                 "values_": [
                                     {
+                                        "image": {
+                                            "thumbnail_url": "img/feature_value_placeholder_thumbnail.png", 
+                                            "full_size_url": "img/feature_value_placeholder_full_size.png", 
+                                            "rights": "Placeholder rights"
+                                        }, 
                                         "id": "Cotton"
                                     }, 
                                     {
+                                        "image": {
+                                            "thumbnail_url": "img/feature_value_placeholder_thumbnail.png", 
+                                            "full_size_url": "img/feature_value_placeholder_full_size.png", 
+                                            "rights": "Placeholder rights"
+                                        }, 
                                         "id": "Elastic"
                                     }, 
                                     {
+                                        "image": {
+                                            "thumbnail_url": "img/feature_value_placeholder_thumbnail.png", 
+                                            "full_size_url": "img/feature_value_placeholder_full_size.png", 
+                                            "rights": "Placeholder rights"
+                                        }, 
                                         "id": "Plastic"
                                     }, 
                                     {
+                                        "image": {
+                                            "thumbnail_url": "img/feature_value_placeholder_thumbnail.png", 
+                                            "full_size_url": "img/feature_value_placeholder_full_size.png", 
+                                            "rights": "Placeholder rights"
+                                        }, 
                                         "id": "Self-fabric"
                                     }, 
                                     {
+                                        "image": {
+                                            "thumbnail_url": "img/feature_value_placeholder_thumbnail.png", 
+                                            "full_size_url": "img/feature_value_placeholder_full_size.png", 
+                                            "rights": "Placeholder rights"
+                                        }, 
                                         "id": "Net tulle"
                                     }, 
                                     {
+                                        "image": {
+                                            "thumbnail_url": "img/feature_value_placeholder_thumbnail.png", 
+                                            "full_size_url": "img/feature_value_placeholder_full_size.png", 
+                                            "rights": "Placeholder rights"
+                                        }, 
                                         "id": "Velvet"
                                     }
                                 ]
@@ -417,24 +837,54 @@ var WORKSHEET_DEFINITION = {
                 "id": "Collar", 
                 "features": [
                     {
-                        "id": "Materials", 
+                        "id": "Material", 
                         "values_": [
                             {
+                                "image": {
+                                    "thumbnail_url": "img/feature_value_placeholder_thumbnail.png", 
+                                    "full_size_url": "img/feature_value_placeholder_full_size.png", 
+                                    "rights": "Placeholder rights"
+                                }, 
                                 "id": "Cotton"
                             }, 
                             {
+                                "image": {
+                                    "thumbnail_url": "img/feature_value_placeholder_thumbnail.png", 
+                                    "full_size_url": "img/feature_value_placeholder_full_size.png", 
+                                    "rights": "Placeholder rights"
+                                }, 
                                 "id": "Elastic"
                             }, 
                             {
+                                "image": {
+                                    "thumbnail_url": "img/feature_value_placeholder_thumbnail.png", 
+                                    "full_size_url": "img/feature_value_placeholder_full_size.png", 
+                                    "rights": "Placeholder rights"
+                                }, 
                                 "id": "Plastic"
                             }, 
                             {
+                                "image": {
+                                    "thumbnail_url": "img/feature_value_placeholder_thumbnail.png", 
+                                    "full_size_url": "img/feature_value_placeholder_full_size.png", 
+                                    "rights": "Placeholder rights"
+                                }, 
                                 "id": "Self-fabric"
                             }, 
                             {
+                                "image": {
+                                    "thumbnail_url": "img/feature_value_placeholder_thumbnail.png", 
+                                    "full_size_url": "img/feature_value_placeholder_full_size.png", 
+                                    "rights": "Placeholder rights"
+                                }, 
                                 "id": "Net tulle"
                             }, 
                             {
+                                "image": {
+                                    "thumbnail_url": "img/feature_value_placeholder_thumbnail.png", 
+                                    "full_size_url": "img/feature_value_placeholder_full_size.png", 
+                                    "rights": "Placeholder rights"
+                                }, 
                                 "id": "Velvet"
                             }
                         ]

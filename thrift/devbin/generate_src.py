@@ -220,39 +220,6 @@ class Main(thryft.main.Main):
                             **compile_kwds
                         )
 
-#     def __generate_definitions_js(self):
-#         out = []
-#         for feature_set_i in xrange(2):
-#             feature_set_dict = {'id': "Feature Set %(feature_set_i)d" % locals(), 'child_feature_sets': []}
-#             for sub_feature_set_i in xrange(2):
-#                 sub_feature_set_dict = {'id': "Sub Feature Set %(feature_set_i)d-%(sub_feature_set_i)d" % locals(), 'features': []}
-#                 for feature_i in xrange(4):
-#                     feature_dict = {'id': "Feature %(feature_set_i)d-%(sub_feature_set_i)d-%(feature_i)d" % locals()}
-#                     if feature_i == 0:
-#                         feature_dict['display_name'] = feature_dict['id'] + ' (text)'
-#                         feature_dict['text'] = {}
-#                     else:
-#                         feature_values = []
-#                         for feature_value_i in xrange(4):
-#                             feature_value_dict = {'id': "Value %(feature_set_i)d-%(sub_feature_set_i)d-%(feature_i)d-%(feature_value_i)d" % locals()}
-#                             if feature_value_i == 0:
-#                                 feature_value_dict['display_name'] = feature_value_dict['id'] + ' (display name)'
-#                             image_text = feature_value_dict['id'].replace(' ', '+')
-#                             feature_value_dict['image'] = {
-#                                 'full_size_url': "img/enum_feature_value_placeholder_full_size.png" % locals(),
-#                                 'rights': "Placeholder rights",
-#                                 'thumbnail_url': "img/enum_feature_value_placeholder_thumbnail.png" % locals(),
-#                             }
-#                             feature_values.append(feature_value_dict)
-#                         feature_dict['enum_'] = {'values_': feature_values}
-#                     sub_feature_set_dict['features'].append(feature_dict)
-#                 feature_set_dict['child_feature_sets'].append(sub_feature_set_dict)
-#             out.append(feature_set_dict)
-#         file_path = os.path.join(ROOT_DIR_PATH, 'ts', 'assets', 'js', 'definitions.js')
-#         import json
-#         with open(file_path, 'w+b') as f:
-#             f.write('DEFINITIONS = ' + json.dumps(out, indent=4))
-
 
 assert __name__ == '__main__'
 Main.main()
