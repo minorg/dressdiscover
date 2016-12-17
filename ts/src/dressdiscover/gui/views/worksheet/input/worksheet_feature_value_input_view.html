@@ -1,16 +1,19 @@
 ﻿<div class="col-lg-3 col-md-4 col-xs-6 feature-value">
-    <a class="feature-value-link">
-        <% if (image) { %>
-        <img alt="<%- displayName %>" class="feature-value-img img-responsive" data-magnify-src="<%- image.fullSizeUrl %>" src="<%- image.thumbnailUrl %>" title="<%- displayName %>">
-        <% } else { %>
-        <%- displayName %>
-        <% } %>
-    </a>
     <% if (image) { %>
-    <div class="feature-value-image-rights"><%- image.rights %></div>
+    <div class="container-fluid image">
+        <div class="row thumbnail">
+            <a class="thumbnail"><img alt="<%- displayName %>" class="img-responsive" src="<%- image.thumbnailUrl %>" title="<%- displayName %>"></a>
+            <a class="full-size"><i class="glyphicon glyphicon-search"></i></a>
+        </div>
+        <div class="row rights">
+            <div class="col-md-2">&nbsp;</div>
+            <div class="col-md-8"><%- image.rights %></div>
+            <div class="col-md-2">&nbsp;</div>
+        </div>
+    </div>
     <% } %>
-    <div class="feature-value-checkbox">
-        <input class="feature-value-checkbox form-check-input" name="feature-value-checkbox" type="checkbox" value="" />
+    <div class="checkbox">
+        <input class="form-check-input" name="feature-value-checkbox" type="checkbox" value="" />
         <label for="feature-value-checkbox"><%- displayName %></label>
     </div>
 </div>

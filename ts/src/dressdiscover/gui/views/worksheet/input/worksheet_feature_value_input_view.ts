@@ -13,8 +13,8 @@ export class WorksheetFeatureValueInputView extends Marionette.ItemView<Workshee
     constructor(options?: any) {    
         super(_.extend(options, {
             events: {
-                "click a.feature-value-link": "onClick",
-                "click div.feature-value-checkbox": "onClick"
+                "click a.thumbnail": "onClick",
+                "click div.checkbox": "onClick"
             },
             template: _.template(require("raw!./worksheet_feature_value_input_view.html")),
         }));
@@ -22,7 +22,7 @@ export class WorksheetFeatureValueInputView extends Marionette.ItemView<Workshee
     }
 
     initialize() {
-        this.ui = { checkbox: "input.feature-value-checkbox", image: "img.feature-value-img" };
+        this.ui = { checkbox: "input", image: "img" };
     }
 
     onClick() {
