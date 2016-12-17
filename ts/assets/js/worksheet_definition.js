@@ -194,7 +194,12 @@ var WORKSHEET_DEFINITION = {
                         ]
                     }
                 ], 
-                "id": "Whole"
+                "id": "Whole", 
+                "features": [
+                    {
+                        "id": "Label"
+                    }
+                ]
             }, 
             {
                 "id": "Collar", 

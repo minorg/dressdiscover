@@ -73,12 +73,12 @@ return /******/ (function(modules) { // webpackBootstrap
 	var Marionette = __webpack_require__(5);
 	var radio_1 = __webpack_require__(8);
 	var router_1 = __webpack_require__(10);
-	var modal_region_1 = __webpack_require__(77);
-	__webpack_require__(78);
-	__webpack_require__(79);
-	__webpack_require__(81);
+	var modal_region_1 = __webpack_require__(81);
 	__webpack_require__(82);
-	__webpack_require__(84);
+	__webpack_require__(83);
+	__webpack_require__(85);
+	__webpack_require__(86);
+	__webpack_require__(88);
 	var Application = (function (_super) {
 	    __extends(Application, _super);
 	    function Application() {
@@ -8603,8 +8603,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	var Marionette = __webpack_require__(5);
 	var worksheet_feature_navigation_event_1 = __webpack_require__(49);
 	var worksheet_input_view_1 = __webpack_require__(50);
-	var worksheet_sidebar_view_1 = __webpack_require__(65);
-	__webpack_require__(74);
+	var worksheet_sidebar_view_1 = __webpack_require__(69);
+	__webpack_require__(78);
 	var WorksheetTwoColumnView = (function (_super) {
 	    __extends(WorksheetTwoColumnView, _super);
 	    function WorksheetTwoColumnView(options) {
@@ -8613,7 +8613,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	                leftColumn: "#left-column",
 	                rightColumn: "#right-column"
 	            },
-	            template: _.template(__webpack_require__(76))
+	            template: _.template(__webpack_require__(80))
 	        }));
 	    }
 	    WorksheetTwoColumnView.prototype.initialize = function () {
@@ -8684,7 +8684,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	                buttons: "#input-navigation",
 	                child: "#input-child"
 	            },
-	            template: _.template(__webpack_require__(64))
+	            template: _.template(__webpack_require__(68))
 	        }));
 	        this._nextFeature = this.model.nextFeature;
 	        this._previousFeature = this.model.previousFeature;
@@ -8731,8 +8731,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	var application_1 = __webpack_require__(1);
 	var worksheet_feature_values_input_view_1 = __webpack_require__(52);
 	var worksheet_feature_input_event_1 = __webpack_require__(47);
-	__webpack_require__(60);
-	__webpack_require__(61);
+	__webpack_require__(64);
+	__webpack_require__(65);
 	var WorksheetFeatureInputView = (function (_super) {
 	    __extends(WorksheetFeatureInputView, _super);
 	    function WorksheetFeatureInputView(options) {
@@ -8743,10 +8743,10 @@ return /******/ (function(modules) { // webpackBootstrap
 	            regions: {
 	                values: "#values"
 	            },
-	            template: _.template(__webpack_require__(63))
+	            template: _.template(__webpack_require__(67))
 	        }));
 	        this.bindings = {
-	            "#text": "text"
+	            "textarea": "text"
 	        };
 	    }
 	    WorksheetFeatureInputView.prototype.initialize = function () {
@@ -8819,25 +8819,30 @@ return /******/ (function(modules) { // webpackBootstrap
 	var application_1 = __webpack_require__(1);
 	var Marionette = __webpack_require__(5);
 	var worksheet_feature_input_event_1 = __webpack_require__(47);
-	__webpack_require__(54);
-	__webpack_require__(56);
-	__webpack_require__(57);
+	var worksheet_feature_value_full_size_image_view_1 = __webpack_require__(54);
+	__webpack_require__(58);
+	__webpack_require__(60);
+	__webpack_require__(61);
 	var WorksheetFeatureValueInputView = (function (_super) {
 	    __extends(WorksheetFeatureValueInputView, _super);
 	    function WorksheetFeatureValueInputView(options) {
 	        _super.call(this, _.extend(options, {
 	            events: {
-	                "click a.feature-value-link": "onClick",
-	                "click div.feature-value-checkbox": "onClick"
+	                "click a.full-size": "onClickFullSize",
+	                "click a.thumbnail": "onClickSelect",
+	                "click div.checkbox": "onClickSelect"
 	            },
-	            template: _.template(__webpack_require__(59)),
+	            template: _.template(__webpack_require__(63)),
 	        }));
 	        this.listenTo(this.model, "change:selected", this.onModelChangeSelected);
 	    }
 	    WorksheetFeatureValueInputView.prototype.initialize = function () {
-	        this.ui = { checkbox: "input.feature-value-checkbox", image: "img.feature-value-img" };
+	        this.ui = { checkbox: "input", image: "img" };
 	    };
-	    WorksheetFeatureValueInputView.prototype.onClick = function () {
+	    WorksheetFeatureValueInputView.prototype.onClickFullSize = function () {
+	        application_1.Application.instance.modalRegion.show(new worksheet_feature_value_full_size_image_view_1.WorksheetFeatureValueFullSizeImageView({ model: this.model }));
+	    };
+	    WorksheetFeatureValueInputView.prototype.onClickSelect = function () {
 	        this.model.selected = !this.model.selected;
 	        this.ui.checkbox[0].checked = this.model.selected;
 	        application_1.Application.instance.radio.globalChannel.trigger(worksheet_feature_input_event_1.WorksheetFeatureInputEvent.NAME, new worksheet_feature_input_event_1.WorksheetFeatureInputEvent({ feature: this.model.parentFeature }));
@@ -8862,13 +8867,61 @@ return /******/ (function(modules) { // webpackBootstrap
 
 /***/ },
 /* 54 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+	var __extends = (this && this.__extends) || function (d, b) {
+	    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
+	    function __() { this.constructor = d; }
+	    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+	};
+	var _ = __webpack_require__(3);
+	var application_1 = __webpack_require__(1);
+	var Marionette = __webpack_require__(5);
+	__webpack_require__(55);
+	var WorksheetFeatureValueFullSizeImageView = (function (_super) {
+	    __extends(WorksheetFeatureValueFullSizeImageView, _super);
+	    function WorksheetFeatureValueFullSizeImageView(options) {
+	        _super.call(this, _.extend(options, {
+	            events: {
+	                "click #close-button": "onClickCloseButton",
+	            },
+	            template: _.template(__webpack_require__(57))
+	        }));
+	    }
+	    WorksheetFeatureValueFullSizeImageView.prototype.onClickCloseButton = function () {
+	        application_1.Application.instance.modalRegion.empty();
+	    };
+	    WorksheetFeatureValueFullSizeImageView.prototype.serializeData = function () {
+	        return { "displayName": this.model.displayName, "url": this.model.definition.image.fullSizeUrl };
+	    };
+	    return WorksheetFeatureValueFullSizeImageView;
+	}(Marionette.ItemView));
+	exports.WorksheetFeatureValueFullSizeImageView = WorksheetFeatureValueFullSizeImageView;
+
+
+/***/ },
+/* 55 */
 /***/ function(module, exports) {
 
 	// removed by extract-text-webpack-plugin
 
 /***/ },
-/* 55 */,
-/* 56 */
+/* 56 */,
+/* 57 */
+/***/ function(module, exports) {
+
+	module.exports = "<div class=\"modal-dialog\" role=\"document\" id=\"feature-value-full-size-image\">\r\n    <div class=\"modal-content\">\r\n        <div class=\"modal-header\">\r\n            <button type=\"button\" class=\"close\" aria-label=\"Close\" id=\"close-button\"><span aria-hidden=\"true\">&times;</span></button>\r\n            <h4 class=\"modal-title\"><%- displayName %></h4>\r\n        </div>\r\n        <div class=\"modal-body\">\r\n            <img class=\"img-responsive\" src=\"<%= url %>\" />\r\n        </div>\r\n    </div>\r\n</div>\r\n"
+
+/***/ },
+/* 58 */
+/***/ function(module, exports) {
+
+	// removed by extract-text-webpack-plugin
+
+/***/ },
+/* 59 */,
+/* 60 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(jQuery) {/*!
@@ -9134,20 +9187,20 @@ return /******/ (function(modules) { // webpackBootstrap
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)))
 
 /***/ },
-/* 57 */
+/* 61 */
 /***/ function(module, exports) {
 
 	// removed by extract-text-webpack-plugin
 
 /***/ },
-/* 58 */,
-/* 59 */
+/* 62 */,
+/* 63 */
 /***/ function(module, exports) {
 
-	module.exports = "<div class=\"col-lg-3 col-md-4 col-xs-6 feature-value\">\r\n    <a class=\"feature-value-link\">\r\n        <% if (image) { %>\r\n        <img alt=\"<%- displayName %>\" class=\"feature-value-img img-responsive\" data-magnify-src=\"<%- image.fullSizeUrl %>\" src=\"<%- image.thumbnailUrl %>\" title=\"<%- displayName %>\">\r\n        <% } else { %>\r\n        <%- displayName %>\r\n        <% } %>\r\n    </a>\r\n    <div class=\"feature-value-checkbox\">\r\n        <input class=\"feature-value-checkbox form-check-input\" name=\"feature-value-checkbox\" type=\"checkbox\" value=\"\" />\r\n        <label for=\"feature-value-checkbox\"><%- displayName %></label>\r\n    </div>\r\n</div>\r\n"
+	module.exports = "<div class=\"col-lg-3 col-md-4 col-xs-6 feature-value\">\r\n    <% if (image) { %>\r\n    <div class=\"container-fluid image\">\r\n        <div class=\"row thumbnail\">\r\n            <a class=\"thumbnail\"><img alt=\"<%- displayName %>\" class=\"img-responsive\" src=\"<%- image.thumbnailUrl %>\" title=\"<%- displayName %>\"></a>\r\n            <a class=\"full-size\"><i class=\"glyphicon glyphicon-search\"></i></a>\r\n        </div>\r\n        <div class=\"row rights\">\r\n            <div class=\"col-md-2\">&nbsp;</div>\r\n            <div class=\"col-md-8\"><%- image.rights %></div>\r\n            <div class=\"col-md-2\">&nbsp;</div>\r\n        </div>\r\n    </div>\r\n    <% } %>\r\n    <div class=\"checkbox\">\r\n        <input class=\"form-check-input\" name=\"feature-value-checkbox\" type=\"checkbox\" value=\"\" />\r\n        <label for=\"feature-value-checkbox\"><%- displayName %></label>\r\n    </div>\r\n</div>\r\n"
 
 /***/ },
-/* 60 */
+/* 64 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;// Backbone.Stickit v0.9.2, MIT Licensed
@@ -9845,26 +9898,26 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ },
-/* 61 */
+/* 65 */
 /***/ function(module, exports) {
 
 	// removed by extract-text-webpack-plugin
 
 /***/ },
-/* 62 */,
-/* 63 */
+/* 66 */,
+/* 67 */
 /***/ function(module, exports) {
 
-	module.exports = "<div class=\"row\" id=\"input\">\n    <div class=\"container-fluid\">\n        <div class=\"row\">\n            <div class=\"col-md-10\">\n                <h3 class=\"page-header\">\n                    <span><%- displayName %></span>\n                    <span><button class=\"btn btn-secondary\" id=\"reset-button\" type=\"button\">Reset</button></span>\n                </h3>\n            </div>\n            <!--<div class=\"col-md-2\">\n                <h3>\n                    \n                </h3>\n            </div>-->\n        </div>\n        <div class=\"row\">\n            <div id=\"values\"></div>\n        </div>\n        <br/>\n        <div class=\"row\">\n            <form class=\"form-horizontal\">\r\n                <div class=\"form-group\">\r\n                    <!--<label for=\"text\" class=\"col-sm-offset-2 col-sm-2 control-label\">Text:</label>\r\n                <div class=\"col-sm-6 \">\r\n                    <input type=\"text\" class=\"form-control\" id=\"text\" placeholder=\"Text\">\r\n                </div>-->\r\n                    <div class=\"col-md-2\">&nbsp;</div>\r\n                    <div class=\"col-md-8\" id=\"text-column\">\r\n                        <textarea class=\"form-control\" placeholder=\"Enter text\" rows=\"10\" id=\"text\"></textarea>\r\n                    </div>\r\n                    <div class=\"col-md-2\">&nbsp;</div>\r\n                </div>\r\n            </form>\r\n        </div>\r\n    </div>\n</div>\n"
+	module.exports = "<div class=\"row\" id=\"input\">\n    <div class=\"container-fluid\">\n        <div class=\"row\">\n            <div class=\"col-md-10\">\n                <h3 class=\"page-header\">\n                    <span><%- displayName %></span>\n                    <span><button class=\"btn btn-secondary\" id=\"reset-button\" type=\"button\">Reset</button></span>\n                </h3>\n            </div>\n            <!--<div class=\"col-md-2\">\n                <h3>\n                    \n                </h3>\n            </div>-->\n        </div>\n        <div class=\"row\">\n            <div id=\"values\"></div>\n        </div>\n        <div class=\"row\">\n            <form class=\"form-horizontal\">\r\n                <div class=\"form-group\">\r\n                    <!--<label for=\"text\" class=\"col-sm-offset-2 col-sm-2 control-label\">Text:</label>\r\n                <div class=\"col-sm-6 \">\r\n                    <input type=\"text\" class=\"form-control\" id=\"text\" placeholder=\"Text\">\r\n                </div>-->\r\n                    <div class=\"col-md-2\">&nbsp;</div>\r\n                    <div class=\"col-md-8\">\r\n                        <textarea class=\"form-control\" placeholder=\"Enter text\" rows=\"10\"></textarea>\r\n                    </div>\r\n                    <div class=\"col-md-2\">&nbsp;</div>\r\n                </div>\r\n            </form>\r\n        </div>\r\n    </div>\n</div>\n"
 
 /***/ },
-/* 64 */
+/* 68 */
 /***/ function(module, exports) {
 
 	module.exports = "<div class=\"container-fluid\" id=\"input\">\n    <div class=\"row\" id=\"input-navigation\">\n        <div class=\"col-md-2\"><button class=\"btn btn-primary\" id=\"back-button\" type=\"button\">Previous</button></div>\n        <div class=\"col-md-8\">&nbsp;</div>\n        <div class=\"col-md-2\"><button class=\"btn btn-primary\" id=\"next-button\" type=\"button\">Next</button></div>\n    </div>\n    <div class=\"row\" id=\"input-child\"></div>\n</div>\n"
 
 /***/ },
-/* 65 */
+/* 69 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -9876,9 +9929,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	var _ = __webpack_require__(3);
 	var application_1 = __webpack_require__(1);
 	var Marionette = __webpack_require__(5);
-	var worksheet_navigation_view_1 = __webpack_require__(66);
-	var worksheet_output_view_1 = __webpack_require__(67);
-	__webpack_require__(71);
+	var worksheet_navigation_view_1 = __webpack_require__(70);
+	var worksheet_output_view_1 = __webpack_require__(71);
+	__webpack_require__(75);
 	var WorksheetSidebarView = (function (_super) {
 	    __extends(WorksheetSidebarView, _super);
 	    function WorksheetSidebarView(options) {
@@ -9890,7 +9943,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	                navigation: "#navigation",
 	                output: "#output"
 	            },
-	            template: _.template(__webpack_require__(73))
+	            template: _.template(__webpack_require__(77))
 	        }));
 	    }
 	    WorksheetSidebarView.prototype.onBeforeShow = function () {
@@ -9910,7 +9963,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ },
-/* 66 */
+/* 70 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -9937,13 +9990,21 @@ return /******/ (function(modules) { // webpackBootstrap
 	            var featureSet = _a[_i];
 	            this._tree.push(this.__constructFeatureSetTree(featureSet));
 	        }
+	        _.bindAll(this, "onNodeSelected");
 	    }
 	    WorksheetNavigationView.prototype.initialize = function () {
 	        this.listenTo(application_1.Application.instance.radio.globalChannel, worksheet_feature_input_event_1.WorksheetFeatureInputEvent.NAME, this.onFeatureInput);
 	        this.listenTo(application_1.Application.instance.radio.globalChannel, worksheet_feature_navigation_event_1.WorksheetFeatureNavigationEvent.NAME, this.onFeatureNavigation);
 	    };
+	    WorksheetNavigationView.prototype.onBeforeShow = function () {
+	        this.$el.treeview({
+	            data: this._tree,
+	            levels: 0,
+	            onNodeSelected: this.onNodeSelected
+	        });
+	    };
 	    WorksheetNavigationView.prototype.onFeatureInput = function (event) {
-	        var treeview = this.$el.treeview(true);
+	        var treeview = this.__treeview;
 	        var nodeId = this._featureCidToNodeIdMap[event.feature.cid];
 	        var node = treeview.getNode(nodeId);
 	        if (node.feature.id != event.feature.id) {
@@ -9958,15 +10019,18 @@ return /******/ (function(modules) { // webpackBootstrap
 	        treeview.selectNode(nodeId); // Force re-render
 	    };
 	    WorksheetNavigationView.prototype.onFeatureNavigation = function (event) {
-	        var treeview = this.$el.treeview(true);
 	        var nodeId = this._featureCidToNodeIdMap[event.feature.cid];
-	        treeview.selectNode(nodeId);
+	        this.__treeview.selectNode(nodeId);
 	    };
 	    WorksheetNavigationView.prototype.onNodeSelected = function (event, node) {
-	        if (!node.feature) {
-	            return true;
+	        if (node.feature) {
+	            application_1.Application.instance.radio.globalChannel.trigger(worksheet_feature_navigation_event_1.WorksheetFeatureNavigationEvent.NAME, new worksheet_feature_navigation_event_1.WorksheetFeatureNavigationEvent({ feature: node.feature }));
 	        }
-	        application_1.Application.instance.radio.globalChannel.trigger(worksheet_feature_navigation_event_1.WorksheetFeatureNavigationEvent.NAME, new worksheet_feature_navigation_event_1.WorksheetFeatureNavigationEvent({ feature: node.feature }));
+	        else {
+	            var treeview = this.__treeview;
+	            treeview.toggleNodeExpanded(node.nodeId, { silent: true });
+	            treeview.unselectNode(node.nodeId, { silent: true });
+	        }
 	        return true;
 	    };
 	    WorksheetNavigationView.prototype.__constructFeatureSetTree = function (featureSet) {
@@ -9999,20 +10063,20 @@ return /******/ (function(modules) { // webpackBootstrap
 	        }
 	        return tree;
 	    };
-	    WorksheetNavigationView.prototype.onBeforeShow = function () {
-	        this.$el.treeview({
-	            data: this._tree,
-	            levels: 0,
-	            onNodeSelected: this.onNodeSelected
-	        });
-	    };
+	    Object.defineProperty(WorksheetNavigationView.prototype, "__treeview", {
+	        get: function () {
+	            return this.$el.treeview(true);
+	        },
+	        enumerable: true,
+	        configurable: true
+	    });
 	    return WorksheetNavigationView;
 	}(Marionette.ItemView));
 	exports.WorksheetNavigationView = WorksheetNavigationView;
 
 
 /***/ },
-/* 67 */
+/* 71 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -10026,7 +10090,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	var Marionette = __webpack_require__(5);
 	var worksheet_feature_input_event_1 = __webpack_require__(47);
 	var worksheet_feature_navigation_event_1 = __webpack_require__(49);
-	__webpack_require__(68);
+	__webpack_require__(72);
 	var WorksheetOutputView = (function (_super) {
 	    __extends(WorksheetOutputView, _super);
 	    function WorksheetOutputView(options) {
@@ -10036,7 +10100,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	                "click #csv": "onClickCsv"
 	            },
 	            id: "output",
-	            template: _.template(__webpack_require__(70))
+	            template: _.template(__webpack_require__(74))
 	        }));
 	    }
 	    WorksheetOutputView.prototype.initialize = function () {
@@ -10136,46 +10200,46 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ },
-/* 68 */
+/* 72 */
 /***/ function(module, exports) {
 
 	// removed by extract-text-webpack-plugin
 
 /***/ },
-/* 69 */,
-/* 70 */
+/* 73 */,
+/* 74 */
 /***/ function(module, exports) {
 
 	module.exports = "<% if (output) { %>\n    <% for (var outputKey in output) { _.each(output[outputKey].values, function(outputValue) { %>\n    <div class=\"row\">\n        <div class=\"col-md-4 feature-name\"><a><%- outputKey %></a></div>\n        <div class=\"col-md-8 feature-value\"><%- outputValue %></div>\n    </div>\n    <% }); } %>\n    <div class=\"row\">\n        <div class=\"col-md-4\"></div>\n        <div class=\"col-md-8\"><a id=\"csv\">Download as CSV</a></div>\n    </div>\n<% } else { %>\nSelect values on the right to generate a description.\n<% } %>\n"
 
 /***/ },
-/* 71 */
+/* 75 */
 /***/ function(module, exports) {
 
 	// removed by extract-text-webpack-plugin
 
 /***/ },
-/* 72 */,
-/* 73 */
+/* 76 */,
+/* 77 */
 /***/ function(module, exports) {
 
 	module.exports = "<div class=\"panel-group\" id=\"sidebar\" role=\"tablist\" aria-multiselectable=\"true\">\n    <div class=\"panel panel-default\">\n        <div class=\"panel-heading\" role=\"tab\" id=\"headingOne\">\n            <h4 class=\"panel-title\">\n                <a role=\"button\" data-toggle=\"collapse\" href=\"#collapseOne\" aria-expanded=\"true\" aria-controls=\"collapseOne\">\n                    Accession number: <%- accessionNumber %>\n                </a>\n                <button type=\"button\" class=\"btn btn-primary\" id=\"changeAccessionNumberButton\">Change</button>\n            </h4>\n        </div>\n        <div id=\"collapseOne\" class=\"panel-collapse collapse in\" role=\"tabpanel\" aria-labelledby=\"headingOne\">\n            <div class=\"panel-body\" id=\"output\">\n            </div>\n        </div>\n    </div>\n    <div class=\"panel panel-default\">\n        <div class=\"panel-heading\" role=\"tab\" id=\"headingTwo\">\n            <h4 class=\"panel-title\">\n                <a class=\"collapsed\" role=\"button\" data-toggle=\"collapse\" href=\"#collapseTwo\" aria-expanded=\"true\" aria-controls=\"collapseTwo\">\n                    Features\n                </a>\n            </h4>\n        </div>\n        <div id=\"collapseTwo\" class=\"panel-collapse collapse in\" role=\"tabpanel\" aria-labelledby=\"headingTwo\">\n            <div class=\"panel-body\" id=\"navigation\">\n            </div>\n        </div>\n    </div>\n</div>\n"
 
 /***/ },
-/* 74 */
+/* 78 */
 /***/ function(module, exports) {
 
 	// removed by extract-text-webpack-plugin
 
 /***/ },
-/* 75 */,
-/* 76 */
+/* 79 */,
+/* 80 */
 /***/ function(module, exports) {
 
 	module.exports = "<div class=\"container-fluid\" id=\"worksheet\">\n    <div class=\"row\" id=\"two-columns\">\n        <div class=\"col-md-4\" id=\"left-column\"></div>\n        <div class=\"col-md-8\" id=\"right-column\"></div>\n    </div>\n</div>\n"
 
 /***/ },
-/* 77 */
+/* 81 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function($) {"use strict";
@@ -10212,7 +10276,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)))
 
 /***/ },
-/* 78 */
+/* 82 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(_) {// Backbone.Validation v0.7.1
@@ -10226,14 +10290,14 @@ return /******/ (function(modules) { // webpackBootstrap
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
 
 /***/ },
-/* 79 */
+/* 83 */
 /***/ function(module, exports) {
 
 	// removed by extract-text-webpack-plugin
 
 /***/ },
-/* 80 */,
-/* 81 */
+/* 84 */,
+/* 85 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
@@ -10247,14 +10311,14 @@ return /******/ (function(modules) { // webpackBootstrap
 	//# sourceMappingURL=bootstrap-select.js.map
 
 /***/ },
-/* 82 */
+/* 86 */
 /***/ function(module, exports) {
 
 	// removed by extract-text-webpack-plugin
 
 /***/ },
-/* 83 */,
-/* 84 */
+/* 87 */,
+/* 88 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(jQuery) {!function(a,b,c,d){"use strict";var e="treeview",f={};f.settings={injectStyle:!0,levels:2,expandIcon:"glyphicon glyphicon-plus",collapseIcon:"glyphicon glyphicon-minus",emptyIcon:"glyphicon",nodeIcon:"",selectedIcon:"",checkedIcon:"glyphicon glyphicon-check",uncheckedIcon:"glyphicon glyphicon-unchecked",color:d,backColor:d,borderColor:d,onhoverColor:"#F5F5F5",selectedColor:"#FFFFFF",selectedBackColor:"#428bca",searchResultColor:"#D9534F",searchResultBackColor:d,enableLinks:!1,highlightSelected:!0,highlightSearchResults:!0,showBorder:!0,showIcon:!0,showCheckbox:!1,showTags:!1,multiSelect:!1,onNodeChecked:d,onNodeCollapsed:d,onNodeDisabled:d,onNodeEnabled:d,onNodeExpanded:d,onNodeSelected:d,onNodeUnchecked:d,onNodeUnselected:d,onSearchComplete:d,onSearchCleared:d},f.options={silent:!1,ignoreChildren:!1},f.searchOptions={ignoreCase:!0,exactMatch:!1,revealResults:!0};var g=function(b,c){return this.$element=a(b),this.elementId=b.id,this.styleId=this.elementId+"-style",this.init(c),{options:this.options,init:a.proxy(this.init,this),remove:a.proxy(this.remove,this),getNode:a.proxy(this.getNode,this),getParent:a.proxy(this.getParent,this),getSiblings:a.proxy(this.getSiblings,this),getSelected:a.proxy(this.getSelected,this),getUnselected:a.proxy(this.getUnselected,this),getExpanded:a.proxy(this.getExpanded,this),getCollapsed:a.proxy(this.getCollapsed,this),getChecked:a.proxy(this.getChecked,this),getUnchecked:a.proxy(this.getUnchecked,this),getDisabled:a.proxy(this.getDisabled,this),getEnabled:a.proxy(this.getEnabled,this),selectNode:a.proxy(this.selectNode,this),unselectNode:a.proxy(this.unselectNode,this),toggleNodeSelected:a.proxy(this.toggleNodeSelected,this),collapseAll:a.proxy(this.collapseAll,this),collapseNode:a.proxy(this.collapseNode,this),expandAll:a.proxy(this.expandAll,this),expandNode:a.proxy(this.expandNode,this),toggleNodeExpanded:a.proxy(this.toggleNodeExpanded,this),revealNode:a.proxy(this.revealNode,this),checkAll:a.proxy(this.checkAll,this),checkNode:a.proxy(this.checkNode,this),uncheckAll:a.proxy(this.uncheckAll,this),uncheckNode:a.proxy(this.uncheckNode,this),toggleNodeChecked:a.proxy(this.toggleNodeChecked,this),disableAll:a.proxy(this.disableAll,this),disableNode:a.proxy(this.disableNode,this),enableAll:a.proxy(this.enableAll,this),enableNode:a.proxy(this.enableNode,this),toggleNodeDisabled:a.proxy(this.toggleNodeDisabled,this),search:a.proxy(this.search,this),clearSearch:a.proxy(this.clearSearch,this)}};g.prototype.init=function(b){this.tree=[],this.nodes=[],b.data&&("string"==typeof b.data&&(b.data=a.parseJSON(b.data)),this.tree=a.extend(!0,[],b.data),delete b.data),this.options=a.extend({},f.settings,b),this.destroy(),this.subscribeEvents(),this.setInitialStates({nodes:this.tree},0),this.render()},g.prototype.remove=function(){this.destroy(),a.removeData(this,e),a("#"+this.styleId).remove()},g.prototype.destroy=function(){this.initialized&&(this.$wrapper.remove(),this.$wrapper=null,this.unsubscribeEvents(),this.initialized=!1)},g.prototype.unsubscribeEvents=function(){this.$element.off("click"),this.$element.off("nodeChecked"),this.$element.off("nodeCollapsed"),this.$element.off("nodeDisabled"),this.$element.off("nodeEnabled"),this.$element.off("nodeExpanded"),this.$element.off("nodeSelected"),this.$element.off("nodeUnchecked"),this.$element.off("nodeUnselected"),this.$element.off("searchComplete"),this.$element.off("searchCleared")},g.prototype.subscribeEvents=function(){this.unsubscribeEvents(),this.$element.on("click",a.proxy(this.clickHandler,this)),"function"==typeof this.options.onNodeChecked&&this.$element.on("nodeChecked",this.options.onNodeChecked),"function"==typeof this.options.onNodeCollapsed&&this.$element.on("nodeCollapsed",this.options.onNodeCollapsed),"function"==typeof this.options.onNodeDisabled&&this.$element.on("nodeDisabled",this.options.onNodeDisabled),"function"==typeof this.options.onNodeEnabled&&this.$element.on("nodeEnabled",this.options.onNodeEnabled),"function"==typeof this.options.onNodeExpanded&&this.$element.on("nodeExpanded",this.options.onNodeExpanded),"function"==typeof this.options.onNodeSelected&&this.$element.on("nodeSelected",this.options.onNodeSelected),"function"==typeof this.options.onNodeUnchecked&&this.$element.on("nodeUnchecked",this.options.onNodeUnchecked),"function"==typeof this.options.onNodeUnselected&&this.$element.on("nodeUnselected",this.options.onNodeUnselected),"function"==typeof this.options.onSearchComplete&&this.$element.on("searchComplete",this.options.onSearchComplete),"function"==typeof this.options.onSearchCleared&&this.$element.on("searchCleared",this.options.onSearchCleared)},g.prototype.setInitialStates=function(b,c){if(b.nodes){c+=1;var d=b,e=this;a.each(b.nodes,function(a,b){b.nodeId=e.nodes.length,b.parentId=d.nodeId,b.hasOwnProperty("selectable")||(b.selectable=!0),b.state=b.state||{},b.state.hasOwnProperty("checked")||(b.state.checked=!1),b.state.hasOwnProperty("disabled")||(b.state.disabled=!1),b.state.hasOwnProperty("expanded")||(!b.state.disabled&&c<e.options.levels&&b.nodes&&b.nodes.length>0?b.state.expanded=!0:b.state.expanded=!1),b.state.hasOwnProperty("selected")||(b.state.selected=!1),e.nodes.push(b),b.nodes&&e.setInitialStates(b,c)})}},g.prototype.clickHandler=function(b){this.options.enableLinks||b.preventDefault();var c=a(b.target),d=this.findNode(c);if(d&&!d.state.disabled){var e=c.attr("class")?c.attr("class").split(" "):[];-1!==e.indexOf("expand-icon")?(this.toggleExpandedState(d,f.options),this.render()):-1!==e.indexOf("check-icon")?(this.toggleCheckedState(d,f.options),this.render()):(d.selectable?this.toggleSelectedState(d,f.options):this.toggleExpandedState(d,f.options),this.render())}},g.prototype.findNode=function(a){var b=a.closest("li.list-group-item").attr("data-nodeid"),c=this.nodes[b];return c||console.log("Error: node does not exist"),c},g.prototype.toggleExpandedState=function(a,b){a&&this.setExpandedState(a,!a.state.expanded,b)},g.prototype.setExpandedState=function(b,c,d){c!==b.state.expanded&&(c&&b.nodes?(b.state.expanded=!0,d.silent||this.$element.trigger("nodeExpanded",a.extend(!0,{},b))):c||(b.state.expanded=!1,d.silent||this.$element.trigger("nodeCollapsed",a.extend(!0,{},b)),b.nodes&&!d.ignoreChildren&&a.each(b.nodes,a.proxy(function(a,b){this.setExpandedState(b,!1,d)},this))))},g.prototype.toggleSelectedState=function(a,b){a&&this.setSelectedState(a,!a.state.selected,b)},g.prototype.setSelectedState=function(b,c,d){c!==b.state.selected&&(c?(this.options.multiSelect||a.each(this.findNodes("true","g","state.selected"),a.proxy(function(a,b){this.setSelectedState(b,!1,d)},this)),b.state.selected=!0,d.silent||this.$element.trigger("nodeSelected",a.extend(!0,{},b))):(b.state.selected=!1,d.silent||this.$element.trigger("nodeUnselected",a.extend(!0,{},b))))},g.prototype.toggleCheckedState=function(a,b){a&&this.setCheckedState(a,!a.state.checked,b)},g.prototype.setCheckedState=function(b,c,d){c!==b.state.checked&&(c?(b.state.checked=!0,d.silent||this.$element.trigger("nodeChecked",a.extend(!0,{},b))):(b.state.checked=!1,d.silent||this.$element.trigger("nodeUnchecked",a.extend(!0,{},b))))},g.prototype.setDisabledState=function(b,c,d){c!==b.state.disabled&&(c?(b.state.disabled=!0,this.setExpandedState(b,!1,d),this.setSelectedState(b,!1,d),this.setCheckedState(b,!1,d),d.silent||this.$element.trigger("nodeDisabled",a.extend(!0,{},b))):(b.state.disabled=!1,d.silent||this.$element.trigger("nodeEnabled",a.extend(!0,{},b))))},g.prototype.render=function(){this.initialized||(this.$element.addClass(e),this.$wrapper=a(this.template.list),this.injectStyle(),this.initialized=!0),this.$element.empty().append(this.$wrapper.empty()),this.buildTree(this.tree,0)},g.prototype.buildTree=function(b,c){if(b){c+=1;var d=this;a.each(b,function(b,e){for(var f=a(d.template.item).addClass("node-"+d.elementId).addClass(e.state.checked?"node-checked":"").addClass(e.state.disabled?"node-disabled":"").addClass(e.state.selected?"node-selected":"").addClass(e.searchResult?"search-result":"").attr("data-nodeid",e.nodeId).attr("style",d.buildStyleOverride(e)),g=0;c-1>g;g++)f.append(d.template.indent);var h=[];if(e.nodes?(h.push("expand-icon"),h.push(e.state.expanded?d.options.collapseIcon:d.options.expandIcon)):h.push(d.options.emptyIcon),f.append(a(d.template.icon).addClass(h.join(" "))),d.options.showIcon){var h=["node-icon"];h.push(e.icon||d.options.nodeIcon),e.state.selected&&(h.pop(),h.push(e.selectedIcon||d.options.selectedIcon||e.icon||d.options.nodeIcon)),f.append(a(d.template.icon).addClass(h.join(" ")))}if(d.options.showCheckbox){var h=["check-icon"];h.push(e.state.checked?d.options.checkedIcon:d.options.uncheckedIcon),f.append(a(d.template.icon).addClass(h.join(" ")))}return f.append(d.options.enableLinks?a(d.template.link).attr("href",e.href).append(e.text):e.text),d.options.showTags&&e.tags&&a.each(e.tags,function(b,c){f.append(a(d.template.badge).append(c))}),d.$wrapper.append(f),e.nodes&&e.state.expanded&&!e.state.disabled?d.buildTree(e.nodes,c):void 0})}},g.prototype.buildStyleOverride=function(a){if(a.state.disabled)return"";var b=a.color,c=a.backColor;return this.options.highlightSelected&&a.state.selected&&(this.options.selectedColor&&(b=this.options.selectedColor),this.options.selectedBackColor&&(c=this.options.selectedBackColor)),this.options.highlightSearchResults&&a.searchResult&&!a.state.disabled&&(this.options.searchResultColor&&(b=this.options.searchResultColor),this.options.searchResultBackColor&&(c=this.options.searchResultBackColor)),"color:"+b+";background-color:"+c+";"},g.prototype.injectStyle=function(){this.options.injectStyle&&!c.getElementById(this.styleId)&&a('<style type="text/css" id="'+this.styleId+'"> '+this.buildStyle()+" </style>").appendTo("head")},g.prototype.buildStyle=function(){var a=".node-"+this.elementId+"{";return this.options.color&&(a+="color:"+this.options.color+";"),this.options.backColor&&(a+="background-color:"+this.options.backColor+";"),this.options.showBorder?this.options.borderColor&&(a+="border:1px solid "+this.options.borderColor+";"):a+="border:none;",a+="}",this.options.onhoverColor&&(a+=".node-"+this.elementId+":not(.node-disabled):hover{background-color:"+this.options.onhoverColor+";}"),this.css+a},g.prototype.template={list:'<ul class="list-group"></ul>',item:'<li class="list-group-item"></li>',indent:'<span class="indent"></span>',icon:'<span class="icon"></span>',link:'<a href="#" style="color:inherit;"></a>',badge:'<span class="badge"></span>'},g.prototype.css=".treeview .list-group-item{cursor:pointer}.treeview span.indent{margin-left:10px;margin-right:10px}.treeview span.icon{width:12px;margin-right:5px}.treeview .node-disabled{color:silver;cursor:not-allowed}",g.prototype.getNode=function(a){return this.nodes[a]},g.prototype.getParent=function(a){var b=this.identifyNode(a);return this.nodes[b.parentId]},g.prototype.getSiblings=function(a){var b=this.identifyNode(a),c=this.getParent(b),d=c?c.nodes:this.tree;return d.filter(function(a){return a.nodeId!==b.nodeId})},g.prototype.getSelected=function(){return this.findNodes("true","g","state.selected")},g.prototype.getUnselected=function(){return this.findNodes("false","g","state.selected")},g.prototype.getExpanded=function(){return this.findNodes("true","g","state.expanded")},g.prototype.getCollapsed=function(){return this.findNodes("false","g","state.expanded")},g.prototype.getChecked=function(){return this.findNodes("true","g","state.checked")},g.prototype.getUnchecked=function(){return this.findNodes("false","g","state.checked")},g.prototype.getDisabled=function(){return this.findNodes("true","g","state.disabled")},g.prototype.getEnabled=function(){return this.findNodes("false","g","state.disabled")},g.prototype.selectNode=function(b,c){this.forEachIdentifier(b,c,a.proxy(function(a,b){this.setSelectedState(a,!0,b)},this)),this.render()},g.prototype.unselectNode=function(b,c){this.forEachIdentifier(b,c,a.proxy(function(a,b){this.setSelectedState(a,!1,b)},this)),this.render()},g.prototype.toggleNodeSelected=function(b,c){this.forEachIdentifier(b,c,a.proxy(function(a,b){this.toggleSelectedState(a,b)},this)),this.render()},g.prototype.collapseAll=function(b){var c=this.findNodes("true","g","state.expanded");this.forEachIdentifier(c,b,a.proxy(function(a,b){this.setExpandedState(a,!1,b)},this)),this.render()},g.prototype.collapseNode=function(b,c){this.forEachIdentifier(b,c,a.proxy(function(a,b){this.setExpandedState(a,!1,b)},this)),this.render()},g.prototype.expandAll=function(b){if(b=a.extend({},f.options,b),b&&b.levels)this.expandLevels(this.tree,b.levels,b);else{var c=this.findNodes("false","g","state.expanded");this.forEachIdentifier(c,b,a.proxy(function(a,b){this.setExpandedState(a,!0,b)},this))}this.render()},g.prototype.expandNode=function(b,c){this.forEachIdentifier(b,c,a.proxy(function(a,b){this.setExpandedState(a,!0,b),a.nodes&&b&&b.levels&&this.expandLevels(a.nodes,b.levels-1,b)},this)),this.render()},g.prototype.expandLevels=function(b,c,d){d=a.extend({},f.options,d),a.each(b,a.proxy(function(a,b){this.setExpandedState(b,c>0?!0:!1,d),b.nodes&&this.expandLevels(b.nodes,c-1,d)},this))},g.prototype.revealNode=function(b,c){this.forEachIdentifier(b,c,a.proxy(function(a,b){for(var c=this.getParent(a);c;)this.setExpandedState(c,!0,b),c=this.getParent(c)},this)),this.render()},g.prototype.toggleNodeExpanded=function(b,c){this.forEachIdentifier(b,c,a.proxy(function(a,b){this.toggleExpandedState(a,b)},this)),this.render()},g.prototype.checkAll=function(b){var c=this.findNodes("false","g","state.checked");this.forEachIdentifier(c,b,a.proxy(function(a,b){this.setCheckedState(a,!0,b)},this)),this.render()},g.prototype.checkNode=function(b,c){this.forEachIdentifier(b,c,a.proxy(function(a,b){this.setCheckedState(a,!0,b)},this)),this.render()},g.prototype.uncheckAll=function(b){var c=this.findNodes("true","g","state.checked");this.forEachIdentifier(c,b,a.proxy(function(a,b){this.setCheckedState(a,!1,b)},this)),this.render()},g.prototype.uncheckNode=function(b,c){this.forEachIdentifier(b,c,a.proxy(function(a,b){this.setCheckedState(a,!1,b)},this)),this.render()},g.prototype.toggleNodeChecked=function(b,c){this.forEachIdentifier(b,c,a.proxy(function(a,b){this.toggleCheckedState(a,b)},this)),this.render()},g.prototype.disableAll=function(b){var c=this.findNodes("false","g","state.disabled");this.forEachIdentifier(c,b,a.proxy(function(a,b){this.setDisabledState(a,!0,b)},this)),this.render()},g.prototype.disableNode=function(b,c){this.forEachIdentifier(b,c,a.proxy(function(a,b){this.setDisabledState(a,!0,b)},this)),this.render()},g.prototype.enableAll=function(b){var c=this.findNodes("true","g","state.disabled");this.forEachIdentifier(c,b,a.proxy(function(a,b){this.setDisabledState(a,!1,b)},this)),this.render()},g.prototype.enableNode=function(b,c){this.forEachIdentifier(b,c,a.proxy(function(a,b){this.setDisabledState(a,!1,b)},this)),this.render()},g.prototype.toggleNodeDisabled=function(b,c){this.forEachIdentifier(b,c,a.proxy(function(a,b){this.setDisabledState(a,!a.state.disabled,b)},this)),this.render()},g.prototype.forEachIdentifier=function(b,c,d){c=a.extend({},f.options,c),b instanceof Array||(b=[b]),a.each(b,a.proxy(function(a,b){d(this.identifyNode(b),c)},this))},g.prototype.identifyNode=function(a){return"number"==typeof a?this.nodes[a]:a},g.prototype.search=function(b,c){c=a.extend({},f.searchOptions,c),this.clearSearch({render:!1});var d=[];if(b&&b.length>0){c.exactMatch&&(b="^"+b+"$");var e="g";c.ignoreCase&&(e+="i"),d=this.findNodes(b,e),a.each(d,function(a,b){b.searchResult=!0})}return c.revealResults?this.revealNode(d):this.render(),this.$element.trigger("searchComplete",a.extend(!0,{},d)),d},g.prototype.clearSearch=function(b){b=a.extend({},{render:!0},b);var c=a.each(this.findNodes("true","g","searchResult"),function(a,b){b.searchResult=!1});b.render&&this.render(),this.$element.trigger("searchCleared",a.extend(!0,{},c))},g.prototype.findNodes=function(b,c,d){c=c||"g",d=d||"text";var e=this;return a.grep(this.nodes,function(a){var f=e.getNodeValue(a,d);return"string"==typeof f?f.match(new RegExp(b,c)):void 0})},g.prototype.getNodeValue=function(a,b){var c=b.indexOf(".");if(c>0){var e=a[b.substring(0,c)],f=b.substring(c+1,b.length);return this.getNodeValue(e,f)}return a.hasOwnProperty(b)?a[b].toString():d};var h=function(a){b.console&&b.console.error(a)};a.fn[e]=function(b,c){var d;return this.each(function(){var f=a.data(this,e);"string"==typeof b?f?a.isFunction(f[b])&&"_"!==b.charAt(0)?(c instanceof Array||(c=[c]),d=f[b].apply(f,c)):h("No such method : "+b):h("Not initialized, can not call method : "+b):"boolean"==typeof b?d=f:a.data(this,e,new g(this,a.extend(!0,{},b)))}),d||this}}(jQuery,window,document);

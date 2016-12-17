@@ -133,10 +133,18 @@ def __to_enum_feature_definition(id_, values_list):
 
 extent_feature_set_definitions = []
 for extent, sub_extents in extents.iteritems():
-    if sub_extents is None or len(sub_extents) == 0:
-        sub_extents = [None]
     extent_child_feature_set_definitions = []
     extent_feature_definitions = []
+
+    if extent == 'Whole':
+        extent_feature_definitions.append(
+            WorksheetFeatureDefinition.Builder()
+                .set_id('Label')
+                .build()
+            )
+
+    if sub_extents is None or len(sub_extents) == 0:
+        sub_extents = [None]
     for sub_extent in sub_extents:
         if extent == sub_extent:
             continue
