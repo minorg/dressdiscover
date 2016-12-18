@@ -41,11 +41,12 @@ def rights(
 
 def wikipedia_rights(
     author,
-    source_url
+    source_url,
+    license_='CC Attribution-Share Alike'
 ):
     return rights(
         author=author,
-        license_='CC SA 3.0 Unported',
+        license_=license_,
         source_name='Wikipedia',
         source_url=source_url,
     )
@@ -84,7 +85,6 @@ closures['Zip'] = feature_value(
     )    
 )
 #feature_value('Non-functional'),
-#feature_value('Zip'),
 features['Closure'] = {'values': closures}
 
 
@@ -130,12 +130,20 @@ pleats = [
     feature_value('Inverted'),
 ]
 
-prints = [
-    feature_value('Abstracted floral'),
-    feature_value('Checkerboard'),
-    feature_value('Floral'),
-    feature_value('Plaid'),
-]
+prints = OrderedDict()
+#     feature_value('Abstracted floral'),
+#     feature_value('Checkerboard'),
+#     feature_value('Floral'),
+#     feature_value('Plaid'),
+# ]
+prints['Plaid'] = feature_value(
+    image_rights=wikipedia_rights(
+        author='Unknown',
+        license_='Public domain',
+        source_url='https://commons.wikimedia.org/wiki/File:Royal_stewart.jpg',
+    )
+)
+features['Print'] = { 'values': prints }
 
 pocket_characteristics = [
     feature_value('Attached'),

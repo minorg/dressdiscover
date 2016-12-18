@@ -16,7 +16,7 @@ var WORKSHEET_DEFINITION = {
                                             "rights": {
                                                 "source_url": "https://commons.wikimedia.org/wiki/File:Three_holes_buttons.jpg", 
                                                 "source_name": "Wikipedia", 
-                                                "license": "CC SA 3.0 Unported", 
+                                                "license": "CC Attribution-Share Alike", 
                                                 "author": "Marco Bernardini"
                                             }
                                         }, 
@@ -29,7 +29,7 @@ var WORKSHEET_DEFINITION = {
                                             "rights": {
                                                 "source_url": "https://en.wikipedia.org/wiki/Hook-and-eye_closure#/media/File:Hook_and_eye_clasp.JPG", 
                                                 "source_name": "Wikipedia", 
-                                                "license": "CC SA 3.0 Unported", 
+                                                "license": "CC Attribution-Share Alike", 
                                                 "author": "Wikipedia user Eitan F"
                                             }
                                         }, 
@@ -42,7 +42,7 @@ var WORKSHEET_DEFINITION = {
                                             "rights": {
                                                 "source_url": "https://commons.wikimedia.org/wiki/File:Coil_plastic_and_metal_zippers.jpg", 
                                                 "source_name": "Wikipedia", 
-                                                "license": "CC SA 3.0 Unported", 
+                                                "license": "CC Attribution-Share Alike", 
                                                 "author": "Wikipedia user Woodbine9"
                                             }
                                         }, 
@@ -60,11 +60,29 @@ var WORKSHEET_DEFINITION = {
                                             "rights": {
                                                 "source_url": "https://commons.wikimedia.org/wiki/File:Carolus_-Private_Collection_-_zwarte_tulekant.jpg", 
                                                 "source_name": "Wikipedia", 
-                                                "license": "CC SA 3.0 Unported", 
+                                                "license": "CC Attribution-Share Alike", 
                                                 "author": "Wikipedia user Carolus"
                                             }
                                         }, 
                                         "id": "Net tulle"
+                                    }
+                                ]
+                            }, 
+                            {
+                                "id": "Whole Top Print", 
+                                "values_": [
+                                    {
+                                        "image": {
+                                            "thumbnail_url": "img/thumbnail/Print/Plaid.jpg", 
+                                            "full_size_url": "img/full_size/Print/Plaid.jpg", 
+                                            "rights": {
+                                                "source_url": "https://commons.wikimedia.org/wiki/File:Royal_stewart.jpg", 
+                                                "source_name": "Wikipedia", 
+                                                "license": "Public domain", 
+                                                "author": "Unknown"
+                                            }
+                                        }, 
+                                        "id": "Plaid"
                                     }
                                 ]
                             }
@@ -83,7 +101,7 @@ var WORKSHEET_DEFINITION = {
                                             "rights": {
                                                 "source_url": "https://commons.wikimedia.org/wiki/File:Three_holes_buttons.jpg", 
                                                 "source_name": "Wikipedia", 
-                                                "license": "CC SA 3.0 Unported", 
+                                                "license": "CC Attribution-Share Alike", 
                                                 "author": "Marco Bernardini"
                                             }
                                         }, 
@@ -96,7 +114,7 @@ var WORKSHEET_DEFINITION = {
                                             "rights": {
                                                 "source_url": "https://en.wikipedia.org/wiki/Hook-and-eye_closure#/media/File:Hook_and_eye_clasp.JPG", 
                                                 "source_name": "Wikipedia", 
-                                                "license": "CC SA 3.0 Unported", 
+                                                "license": "CC Attribution-Share Alike", 
                                                 "author": "Wikipedia user Eitan F"
                                             }
                                         }, 
@@ -109,7 +127,7 @@ var WORKSHEET_DEFINITION = {
                                             "rights": {
                                                 "source_url": "https://commons.wikimedia.org/wiki/File:Coil_plastic_and_metal_zippers.jpg", 
                                                 "source_name": "Wikipedia", 
-                                                "license": "CC SA 3.0 Unported", 
+                                                "license": "CC Attribution-Share Alike", 
                                                 "author": "Wikipedia user Woodbine9"
                                             }
                                         }, 
@@ -127,11 +145,29 @@ var WORKSHEET_DEFINITION = {
                                             "rights": {
                                                 "source_url": "https://commons.wikimedia.org/wiki/File:Carolus_-Private_Collection_-_zwarte_tulekant.jpg", 
                                                 "source_name": "Wikipedia", 
-                                                "license": "CC SA 3.0 Unported", 
+                                                "license": "CC Attribution-Share Alike", 
                                                 "author": "Wikipedia user Carolus"
                                             }
                                         }, 
                                         "id": "Net tulle"
+                                    }
+                                ]
+                            }, 
+                            {
+                                "id": "Whole Bottom Print", 
+                                "values_": [
+                                    {
+                                        "image": {
+                                            "thumbnail_url": "img/thumbnail/Print/Plaid.jpg", 
+                                            "full_size_url": "img/full_size/Print/Plaid.jpg", 
+                                            "rights": {
+                                                "source_url": "https://commons.wikimedia.org/wiki/File:Royal_stewart.jpg", 
+                                                "source_name": "Wikipedia", 
+                                                "license": "Public domain", 
+                                                "author": "Unknown"
+                                            }
+                                        }, 
+                                        "id": "Plaid"
                                     }
                                 ]
                             }
@@ -158,7 +194,7 @@ var WORKSHEET_DEFINITION = {
                                     "rights": {
                                         "source_url": "https://commons.wikimedia.org/wiki/File:Three_holes_buttons.jpg", 
                                         "source_name": "Wikipedia", 
-                                        "license": "CC SA 3.0 Unported", 
+                                        "license": "CC Attribution-Share Alike", 
                                         "author": "Marco Bernardini"
                                     }
                                 }, 
@@ -171,7 +207,7 @@ var WORKSHEET_DEFINITION = {
                                     "rights": {
                                         "source_url": "https://en.wikipedia.org/wiki/Hook-and-eye_closure#/media/File:Hook_and_eye_clasp.JPG", 
                                         "source_name": "Wikipedia", 
-                                        "license": "CC SA 3.0 Unported", 
+                                        "license": "CC Attribution-Share Alike", 
                                         "author": "Wikipedia user Eitan F"
                                     }
                                 }, 
@@ -184,7 +220,7 @@ var WORKSHEET_DEFINITION = {
                                     "rights": {
                                         "source_url": "https://commons.wikimedia.org/wiki/File:Coil_plastic_and_metal_zippers.jpg", 
                                         "source_name": "Wikipedia", 
-                                        "license": "CC SA 3.0 Unported", 
+                                        "license": "CC Attribution-Share Alike", 
                                         "author": "Wikipedia user Woodbine9"
                                     }
                                 }, 
@@ -202,11 +238,29 @@ var WORKSHEET_DEFINITION = {
                                     "rights": {
                                         "source_url": "https://commons.wikimedia.org/wiki/File:Carolus_-Private_Collection_-_zwarte_tulekant.jpg", 
                                         "source_name": "Wikipedia", 
-                                        "license": "CC SA 3.0 Unported", 
+                                        "license": "CC Attribution-Share Alike", 
                                         "author": "Wikipedia user Carolus"
                                     }
                                 }, 
                                 "id": "Net tulle"
+                            }
+                        ]
+                    }, 
+                    {
+                        "id": "Collar Print", 
+                        "values_": [
+                            {
+                                "image": {
+                                    "thumbnail_url": "img/thumbnail/Print/Plaid.jpg", 
+                                    "full_size_url": "img/full_size/Print/Plaid.jpg", 
+                                    "rights": {
+                                        "source_url": "https://commons.wikimedia.org/wiki/File:Royal_stewart.jpg", 
+                                        "source_name": "Wikipedia", 
+                                        "license": "Public domain", 
+                                        "author": "Unknown"
+                                    }
+                                }, 
+                                "id": "Plaid"
                             }
                         ]
                     }
@@ -225,7 +279,7 @@ var WORKSHEET_DEFINITION = {
                                     "rights": {
                                         "source_url": "https://commons.wikimedia.org/wiki/File:Three_holes_buttons.jpg", 
                                         "source_name": "Wikipedia", 
-                                        "license": "CC SA 3.0 Unported", 
+                                        "license": "CC Attribution-Share Alike", 
                                         "author": "Marco Bernardini"
                                     }
                                 }, 
@@ -238,7 +292,7 @@ var WORKSHEET_DEFINITION = {
                                     "rights": {
                                         "source_url": "https://en.wikipedia.org/wiki/Hook-and-eye_closure#/media/File:Hook_and_eye_clasp.JPG", 
                                         "source_name": "Wikipedia", 
-                                        "license": "CC SA 3.0 Unported", 
+                                        "license": "CC Attribution-Share Alike", 
                                         "author": "Wikipedia user Eitan F"
                                     }
                                 }, 
@@ -251,7 +305,7 @@ var WORKSHEET_DEFINITION = {
                                     "rights": {
                                         "source_url": "https://commons.wikimedia.org/wiki/File:Coil_plastic_and_metal_zippers.jpg", 
                                         "source_name": "Wikipedia", 
-                                        "license": "CC SA 3.0 Unported", 
+                                        "license": "CC Attribution-Share Alike", 
                                         "author": "Wikipedia user Woodbine9"
                                     }
                                 }, 
@@ -269,11 +323,29 @@ var WORKSHEET_DEFINITION = {
                                     "rights": {
                                         "source_url": "https://commons.wikimedia.org/wiki/File:Carolus_-Private_Collection_-_zwarte_tulekant.jpg", 
                                         "source_name": "Wikipedia", 
-                                        "license": "CC SA 3.0 Unported", 
+                                        "license": "CC Attribution-Share Alike", 
                                         "author": "Wikipedia user Carolus"
                                     }
                                 }, 
                                 "id": "Net tulle"
+                            }
+                        ]
+                    }, 
+                    {
+                        "id": "Shoulders Print", 
+                        "values_": [
+                            {
+                                "image": {
+                                    "thumbnail_url": "img/thumbnail/Print/Plaid.jpg", 
+                                    "full_size_url": "img/full_size/Print/Plaid.jpg", 
+                                    "rights": {
+                                        "source_url": "https://commons.wikimedia.org/wiki/File:Royal_stewart.jpg", 
+                                        "source_name": "Wikipedia", 
+                                        "license": "Public domain", 
+                                        "author": "Unknown"
+                                    }
+                                }, 
+                                "id": "Plaid"
                             }
                         ]
                     }
@@ -292,7 +364,7 @@ var WORKSHEET_DEFINITION = {
                                     "rights": {
                                         "source_url": "https://commons.wikimedia.org/wiki/File:Three_holes_buttons.jpg", 
                                         "source_name": "Wikipedia", 
-                                        "license": "CC SA 3.0 Unported", 
+                                        "license": "CC Attribution-Share Alike", 
                                         "author": "Marco Bernardini"
                                     }
                                 }, 
@@ -305,7 +377,7 @@ var WORKSHEET_DEFINITION = {
                                     "rights": {
                                         "source_url": "https://en.wikipedia.org/wiki/Hook-and-eye_closure#/media/File:Hook_and_eye_clasp.JPG", 
                                         "source_name": "Wikipedia", 
-                                        "license": "CC SA 3.0 Unported", 
+                                        "license": "CC Attribution-Share Alike", 
                                         "author": "Wikipedia user Eitan F"
                                     }
                                 }, 
@@ -318,7 +390,7 @@ var WORKSHEET_DEFINITION = {
                                     "rights": {
                                         "source_url": "https://commons.wikimedia.org/wiki/File:Coil_plastic_and_metal_zippers.jpg", 
                                         "source_name": "Wikipedia", 
-                                        "license": "CC SA 3.0 Unported", 
+                                        "license": "CC Attribution-Share Alike", 
                                         "author": "Wikipedia user Woodbine9"
                                     }
                                 }, 
@@ -336,11 +408,29 @@ var WORKSHEET_DEFINITION = {
                                     "rights": {
                                         "source_url": "https://commons.wikimedia.org/wiki/File:Carolus_-Private_Collection_-_zwarte_tulekant.jpg", 
                                         "source_name": "Wikipedia", 
-                                        "license": "CC SA 3.0 Unported", 
+                                        "license": "CC Attribution-Share Alike", 
                                         "author": "Wikipedia user Carolus"
                                     }
                                 }, 
                                 "id": "Net tulle"
+                            }
+                        ]
+                    }, 
+                    {
+                        "id": "Sleeves Print", 
+                        "values_": [
+                            {
+                                "image": {
+                                    "thumbnail_url": "img/thumbnail/Print/Plaid.jpg", 
+                                    "full_size_url": "img/full_size/Print/Plaid.jpg", 
+                                    "rights": {
+                                        "source_url": "https://commons.wikimedia.org/wiki/File:Royal_stewart.jpg", 
+                                        "source_name": "Wikipedia", 
+                                        "license": "Public domain", 
+                                        "author": "Unknown"
+                                    }
+                                }, 
+                                "id": "Plaid"
                             }
                         ]
                     }
@@ -361,7 +451,7 @@ var WORKSHEET_DEFINITION = {
                                             "rights": {
                                                 "source_url": "https://commons.wikimedia.org/wiki/File:Three_holes_buttons.jpg", 
                                                 "source_name": "Wikipedia", 
-                                                "license": "CC SA 3.0 Unported", 
+                                                "license": "CC Attribution-Share Alike", 
                                                 "author": "Marco Bernardini"
                                             }
                                         }, 
@@ -374,7 +464,7 @@ var WORKSHEET_DEFINITION = {
                                             "rights": {
                                                 "source_url": "https://en.wikipedia.org/wiki/Hook-and-eye_closure#/media/File:Hook_and_eye_clasp.JPG", 
                                                 "source_name": "Wikipedia", 
-                                                "license": "CC SA 3.0 Unported", 
+                                                "license": "CC Attribution-Share Alike", 
                                                 "author": "Wikipedia user Eitan F"
                                             }
                                         }, 
@@ -387,7 +477,7 @@ var WORKSHEET_DEFINITION = {
                                             "rights": {
                                                 "source_url": "https://commons.wikimedia.org/wiki/File:Coil_plastic_and_metal_zippers.jpg", 
                                                 "source_name": "Wikipedia", 
-                                                "license": "CC SA 3.0 Unported", 
+                                                "license": "CC Attribution-Share Alike", 
                                                 "author": "Wikipedia user Woodbine9"
                                             }
                                         }, 
@@ -405,11 +495,29 @@ var WORKSHEET_DEFINITION = {
                                             "rights": {
                                                 "source_url": "https://commons.wikimedia.org/wiki/File:Carolus_-Private_Collection_-_zwarte_tulekant.jpg", 
                                                 "source_name": "Wikipedia", 
-                                                "license": "CC SA 3.0 Unported", 
+                                                "license": "CC Attribution-Share Alike", 
                                                 "author": "Wikipedia user Carolus"
                                             }
                                         }, 
                                         "id": "Net tulle"
+                                    }
+                                ]
+                            }, 
+                            {
+                                "id": "Front Whole Print", 
+                                "values_": [
+                                    {
+                                        "image": {
+                                            "thumbnail_url": "img/thumbnail/Print/Plaid.jpg", 
+                                            "full_size_url": "img/full_size/Print/Plaid.jpg", 
+                                            "rights": {
+                                                "source_url": "https://commons.wikimedia.org/wiki/File:Royal_stewart.jpg", 
+                                                "source_name": "Wikipedia", 
+                                                "license": "Public domain", 
+                                                "author": "Unknown"
+                                            }
+                                        }, 
+                                        "id": "Plaid"
                                     }
                                 ]
                             }
@@ -428,7 +536,7 @@ var WORKSHEET_DEFINITION = {
                                             "rights": {
                                                 "source_url": "https://commons.wikimedia.org/wiki/File:Three_holes_buttons.jpg", 
                                                 "source_name": "Wikipedia", 
-                                                "license": "CC SA 3.0 Unported", 
+                                                "license": "CC Attribution-Share Alike", 
                                                 "author": "Marco Bernardini"
                                             }
                                         }, 
@@ -441,7 +549,7 @@ var WORKSHEET_DEFINITION = {
                                             "rights": {
                                                 "source_url": "https://en.wikipedia.org/wiki/Hook-and-eye_closure#/media/File:Hook_and_eye_clasp.JPG", 
                                                 "source_name": "Wikipedia", 
-                                                "license": "CC SA 3.0 Unported", 
+                                                "license": "CC Attribution-Share Alike", 
                                                 "author": "Wikipedia user Eitan F"
                                             }
                                         }, 
@@ -454,7 +562,7 @@ var WORKSHEET_DEFINITION = {
                                             "rights": {
                                                 "source_url": "https://commons.wikimedia.org/wiki/File:Coil_plastic_and_metal_zippers.jpg", 
                                                 "source_name": "Wikipedia", 
-                                                "license": "CC SA 3.0 Unported", 
+                                                "license": "CC Attribution-Share Alike", 
                                                 "author": "Wikipedia user Woodbine9"
                                             }
                                         }, 
@@ -472,11 +580,29 @@ var WORKSHEET_DEFINITION = {
                                             "rights": {
                                                 "source_url": "https://commons.wikimedia.org/wiki/File:Carolus_-Private_Collection_-_zwarte_tulekant.jpg", 
                                                 "source_name": "Wikipedia", 
-                                                "license": "CC SA 3.0 Unported", 
+                                                "license": "CC Attribution-Share Alike", 
                                                 "author": "Wikipedia user Carolus"
                                             }
                                         }, 
                                         "id": "Net tulle"
+                                    }
+                                ]
+                            }, 
+                            {
+                                "id": "Front Top Print", 
+                                "values_": [
+                                    {
+                                        "image": {
+                                            "thumbnail_url": "img/thumbnail/Print/Plaid.jpg", 
+                                            "full_size_url": "img/full_size/Print/Plaid.jpg", 
+                                            "rights": {
+                                                "source_url": "https://commons.wikimedia.org/wiki/File:Royal_stewart.jpg", 
+                                                "source_name": "Wikipedia", 
+                                                "license": "Public domain", 
+                                                "author": "Unknown"
+                                            }
+                                        }, 
+                                        "id": "Plaid"
                                     }
                                 ]
                             }
@@ -495,7 +621,7 @@ var WORKSHEET_DEFINITION = {
                                             "rights": {
                                                 "source_url": "https://commons.wikimedia.org/wiki/File:Three_holes_buttons.jpg", 
                                                 "source_name": "Wikipedia", 
-                                                "license": "CC SA 3.0 Unported", 
+                                                "license": "CC Attribution-Share Alike", 
                                                 "author": "Marco Bernardini"
                                             }
                                         }, 
@@ -508,7 +634,7 @@ var WORKSHEET_DEFINITION = {
                                             "rights": {
                                                 "source_url": "https://en.wikipedia.org/wiki/Hook-and-eye_closure#/media/File:Hook_and_eye_clasp.JPG", 
                                                 "source_name": "Wikipedia", 
-                                                "license": "CC SA 3.0 Unported", 
+                                                "license": "CC Attribution-Share Alike", 
                                                 "author": "Wikipedia user Eitan F"
                                             }
                                         }, 
@@ -521,7 +647,7 @@ var WORKSHEET_DEFINITION = {
                                             "rights": {
                                                 "source_url": "https://commons.wikimedia.org/wiki/File:Coil_plastic_and_metal_zippers.jpg", 
                                                 "source_name": "Wikipedia", 
-                                                "license": "CC SA 3.0 Unported", 
+                                                "license": "CC Attribution-Share Alike", 
                                                 "author": "Wikipedia user Woodbine9"
                                             }
                                         }, 
@@ -539,11 +665,29 @@ var WORKSHEET_DEFINITION = {
                                             "rights": {
                                                 "source_url": "https://commons.wikimedia.org/wiki/File:Carolus_-Private_Collection_-_zwarte_tulekant.jpg", 
                                                 "source_name": "Wikipedia", 
-                                                "license": "CC SA 3.0 Unported", 
+                                                "license": "CC Attribution-Share Alike", 
                                                 "author": "Wikipedia user Carolus"
                                             }
                                         }, 
                                         "id": "Net tulle"
+                                    }
+                                ]
+                            }, 
+                            {
+                                "id": "Front Bottom Print", 
+                                "values_": [
+                                    {
+                                        "image": {
+                                            "thumbnail_url": "img/thumbnail/Print/Plaid.jpg", 
+                                            "full_size_url": "img/full_size/Print/Plaid.jpg", 
+                                            "rights": {
+                                                "source_url": "https://commons.wikimedia.org/wiki/File:Royal_stewart.jpg", 
+                                                "source_name": "Wikipedia", 
+                                                "license": "Public domain", 
+                                                "author": "Unknown"
+                                            }
+                                        }, 
+                                        "id": "Plaid"
                                     }
                                 ]
                             }
@@ -567,7 +711,7 @@ var WORKSHEET_DEFINITION = {
                                             "rights": {
                                                 "source_url": "https://commons.wikimedia.org/wiki/File:Three_holes_buttons.jpg", 
                                                 "source_name": "Wikipedia", 
-                                                "license": "CC SA 3.0 Unported", 
+                                                "license": "CC Attribution-Share Alike", 
                                                 "author": "Marco Bernardini"
                                             }
                                         }, 
@@ -580,7 +724,7 @@ var WORKSHEET_DEFINITION = {
                                             "rights": {
                                                 "source_url": "https://en.wikipedia.org/wiki/Hook-and-eye_closure#/media/File:Hook_and_eye_clasp.JPG", 
                                                 "source_name": "Wikipedia", 
-                                                "license": "CC SA 3.0 Unported", 
+                                                "license": "CC Attribution-Share Alike", 
                                                 "author": "Wikipedia user Eitan F"
                                             }
                                         }, 
@@ -593,7 +737,7 @@ var WORKSHEET_DEFINITION = {
                                             "rights": {
                                                 "source_url": "https://commons.wikimedia.org/wiki/File:Coil_plastic_and_metal_zippers.jpg", 
                                                 "source_name": "Wikipedia", 
-                                                "license": "CC SA 3.0 Unported", 
+                                                "license": "CC Attribution-Share Alike", 
                                                 "author": "Wikipedia user Woodbine9"
                                             }
                                         }, 
@@ -611,11 +755,29 @@ var WORKSHEET_DEFINITION = {
                                             "rights": {
                                                 "source_url": "https://commons.wikimedia.org/wiki/File:Carolus_-Private_Collection_-_zwarte_tulekant.jpg", 
                                                 "source_name": "Wikipedia", 
-                                                "license": "CC SA 3.0 Unported", 
+                                                "license": "CC Attribution-Share Alike", 
                                                 "author": "Wikipedia user Carolus"
                                             }
                                         }, 
                                         "id": "Net tulle"
+                                    }
+                                ]
+                            }, 
+                            {
+                                "id": "Back Whole Print", 
+                                "values_": [
+                                    {
+                                        "image": {
+                                            "thumbnail_url": "img/thumbnail/Print/Plaid.jpg", 
+                                            "full_size_url": "img/full_size/Print/Plaid.jpg", 
+                                            "rights": {
+                                                "source_url": "https://commons.wikimedia.org/wiki/File:Royal_stewart.jpg", 
+                                                "source_name": "Wikipedia", 
+                                                "license": "Public domain", 
+                                                "author": "Unknown"
+                                            }
+                                        }, 
+                                        "id": "Plaid"
                                     }
                                 ]
                             }
@@ -634,7 +796,7 @@ var WORKSHEET_DEFINITION = {
                                             "rights": {
                                                 "source_url": "https://commons.wikimedia.org/wiki/File:Three_holes_buttons.jpg", 
                                                 "source_name": "Wikipedia", 
-                                                "license": "CC SA 3.0 Unported", 
+                                                "license": "CC Attribution-Share Alike", 
                                                 "author": "Marco Bernardini"
                                             }
                                         }, 
@@ -647,7 +809,7 @@ var WORKSHEET_DEFINITION = {
                                             "rights": {
                                                 "source_url": "https://en.wikipedia.org/wiki/Hook-and-eye_closure#/media/File:Hook_and_eye_clasp.JPG", 
                                                 "source_name": "Wikipedia", 
-                                                "license": "CC SA 3.0 Unported", 
+                                                "license": "CC Attribution-Share Alike", 
                                                 "author": "Wikipedia user Eitan F"
                                             }
                                         }, 
@@ -660,7 +822,7 @@ var WORKSHEET_DEFINITION = {
                                             "rights": {
                                                 "source_url": "https://commons.wikimedia.org/wiki/File:Coil_plastic_and_metal_zippers.jpg", 
                                                 "source_name": "Wikipedia", 
-                                                "license": "CC SA 3.0 Unported", 
+                                                "license": "CC Attribution-Share Alike", 
                                                 "author": "Wikipedia user Woodbine9"
                                             }
                                         }, 
@@ -678,11 +840,29 @@ var WORKSHEET_DEFINITION = {
                                             "rights": {
                                                 "source_url": "https://commons.wikimedia.org/wiki/File:Carolus_-Private_Collection_-_zwarte_tulekant.jpg", 
                                                 "source_name": "Wikipedia", 
-                                                "license": "CC SA 3.0 Unported", 
+                                                "license": "CC Attribution-Share Alike", 
                                                 "author": "Wikipedia user Carolus"
                                             }
                                         }, 
                                         "id": "Net tulle"
+                                    }
+                                ]
+                            }, 
+                            {
+                                "id": "Back Top Print", 
+                                "values_": [
+                                    {
+                                        "image": {
+                                            "thumbnail_url": "img/thumbnail/Print/Plaid.jpg", 
+                                            "full_size_url": "img/full_size/Print/Plaid.jpg", 
+                                            "rights": {
+                                                "source_url": "https://commons.wikimedia.org/wiki/File:Royal_stewart.jpg", 
+                                                "source_name": "Wikipedia", 
+                                                "license": "Public domain", 
+                                                "author": "Unknown"
+                                            }
+                                        }, 
+                                        "id": "Plaid"
                                     }
                                 ]
                             }
@@ -701,7 +881,7 @@ var WORKSHEET_DEFINITION = {
                                             "rights": {
                                                 "source_url": "https://commons.wikimedia.org/wiki/File:Three_holes_buttons.jpg", 
                                                 "source_name": "Wikipedia", 
-                                                "license": "CC SA 3.0 Unported", 
+                                                "license": "CC Attribution-Share Alike", 
                                                 "author": "Marco Bernardini"
                                             }
                                         }, 
@@ -714,7 +894,7 @@ var WORKSHEET_DEFINITION = {
                                             "rights": {
                                                 "source_url": "https://en.wikipedia.org/wiki/Hook-and-eye_closure#/media/File:Hook_and_eye_clasp.JPG", 
                                                 "source_name": "Wikipedia", 
-                                                "license": "CC SA 3.0 Unported", 
+                                                "license": "CC Attribution-Share Alike", 
                                                 "author": "Wikipedia user Eitan F"
                                             }
                                         }, 
@@ -727,7 +907,7 @@ var WORKSHEET_DEFINITION = {
                                             "rights": {
                                                 "source_url": "https://commons.wikimedia.org/wiki/File:Coil_plastic_and_metal_zippers.jpg", 
                                                 "source_name": "Wikipedia", 
-                                                "license": "CC SA 3.0 Unported", 
+                                                "license": "CC Attribution-Share Alike", 
                                                 "author": "Wikipedia user Woodbine9"
                                             }
                                         }, 
@@ -745,11 +925,29 @@ var WORKSHEET_DEFINITION = {
                                             "rights": {
                                                 "source_url": "https://commons.wikimedia.org/wiki/File:Carolus_-Private_Collection_-_zwarte_tulekant.jpg", 
                                                 "source_name": "Wikipedia", 
-                                                "license": "CC SA 3.0 Unported", 
+                                                "license": "CC Attribution-Share Alike", 
                                                 "author": "Wikipedia user Carolus"
                                             }
                                         }, 
                                         "id": "Net tulle"
+                                    }
+                                ]
+                            }, 
+                            {
+                                "id": "Back Bottom Print", 
+                                "values_": [
+                                    {
+                                        "image": {
+                                            "thumbnail_url": "img/thumbnail/Print/Plaid.jpg", 
+                                            "full_size_url": "img/full_size/Print/Plaid.jpg", 
+                                            "rights": {
+                                                "source_url": "https://commons.wikimedia.org/wiki/File:Royal_stewart.jpg", 
+                                                "source_name": "Wikipedia", 
+                                                "license": "Public domain", 
+                                                "author": "Unknown"
+                                            }
+                                        }, 
+                                        "id": "Plaid"
                                     }
                                 ]
                             }
@@ -773,7 +971,7 @@ var WORKSHEET_DEFINITION = {
                                             "rights": {
                                                 "source_url": "https://commons.wikimedia.org/wiki/File:Three_holes_buttons.jpg", 
                                                 "source_name": "Wikipedia", 
-                                                "license": "CC SA 3.0 Unported", 
+                                                "license": "CC Attribution-Share Alike", 
                                                 "author": "Marco Bernardini"
                                             }
                                         }, 
@@ -786,7 +984,7 @@ var WORKSHEET_DEFINITION = {
                                             "rights": {
                                                 "source_url": "https://en.wikipedia.org/wiki/Hook-and-eye_closure#/media/File:Hook_and_eye_clasp.JPG", 
                                                 "source_name": "Wikipedia", 
-                                                "license": "CC SA 3.0 Unported", 
+                                                "license": "CC Attribution-Share Alike", 
                                                 "author": "Wikipedia user Eitan F"
                                             }
                                         }, 
@@ -799,7 +997,7 @@ var WORKSHEET_DEFINITION = {
                                             "rights": {
                                                 "source_url": "https://commons.wikimedia.org/wiki/File:Coil_plastic_and_metal_zippers.jpg", 
                                                 "source_name": "Wikipedia", 
-                                                "license": "CC SA 3.0 Unported", 
+                                                "license": "CC Attribution-Share Alike", 
                                                 "author": "Wikipedia user Woodbine9"
                                             }
                                         }, 
@@ -817,11 +1015,29 @@ var WORKSHEET_DEFINITION = {
                                             "rights": {
                                                 "source_url": "https://commons.wikimedia.org/wiki/File:Carolus_-Private_Collection_-_zwarte_tulekant.jpg", 
                                                 "source_name": "Wikipedia", 
-                                                "license": "CC SA 3.0 Unported", 
+                                                "license": "CC Attribution-Share Alike", 
                                                 "author": "Wikipedia user Carolus"
                                             }
                                         }, 
                                         "id": "Net tulle"
+                                    }
+                                ]
+                            }, 
+                            {
+                                "id": "Interior Whole Print", 
+                                "values_": [
+                                    {
+                                        "image": {
+                                            "thumbnail_url": "img/thumbnail/Print/Plaid.jpg", 
+                                            "full_size_url": "img/full_size/Print/Plaid.jpg", 
+                                            "rights": {
+                                                "source_url": "https://commons.wikimedia.org/wiki/File:Royal_stewart.jpg", 
+                                                "source_name": "Wikipedia", 
+                                                "license": "Public domain", 
+                                                "author": "Unknown"
+                                            }
+                                        }, 
+                                        "id": "Plaid"
                                     }
                                 ]
                             }
@@ -840,7 +1056,7 @@ var WORKSHEET_DEFINITION = {
                                             "rights": {
                                                 "source_url": "https://commons.wikimedia.org/wiki/File:Three_holes_buttons.jpg", 
                                                 "source_name": "Wikipedia", 
-                                                "license": "CC SA 3.0 Unported", 
+                                                "license": "CC Attribution-Share Alike", 
                                                 "author": "Marco Bernardini"
                                             }
                                         }, 
@@ -853,7 +1069,7 @@ var WORKSHEET_DEFINITION = {
                                             "rights": {
                                                 "source_url": "https://en.wikipedia.org/wiki/Hook-and-eye_closure#/media/File:Hook_and_eye_clasp.JPG", 
                                                 "source_name": "Wikipedia", 
-                                                "license": "CC SA 3.0 Unported", 
+                                                "license": "CC Attribution-Share Alike", 
                                                 "author": "Wikipedia user Eitan F"
                                             }
                                         }, 
@@ -866,7 +1082,7 @@ var WORKSHEET_DEFINITION = {
                                             "rights": {
                                                 "source_url": "https://commons.wikimedia.org/wiki/File:Coil_plastic_and_metal_zippers.jpg", 
                                                 "source_name": "Wikipedia", 
-                                                "license": "CC SA 3.0 Unported", 
+                                                "license": "CC Attribution-Share Alike", 
                                                 "author": "Wikipedia user Woodbine9"
                                             }
                                         }, 
@@ -884,11 +1100,29 @@ var WORKSHEET_DEFINITION = {
                                             "rights": {
                                                 "source_url": "https://commons.wikimedia.org/wiki/File:Carolus_-Private_Collection_-_zwarte_tulekant.jpg", 
                                                 "source_name": "Wikipedia", 
-                                                "license": "CC SA 3.0 Unported", 
+                                                "license": "CC Attribution-Share Alike", 
                                                 "author": "Wikipedia user Carolus"
                                             }
                                         }, 
                                         "id": "Net tulle"
+                                    }
+                                ]
+                            }, 
+                            {
+                                "id": "Interior Top Print", 
+                                "values_": [
+                                    {
+                                        "image": {
+                                            "thumbnail_url": "img/thumbnail/Print/Plaid.jpg", 
+                                            "full_size_url": "img/full_size/Print/Plaid.jpg", 
+                                            "rights": {
+                                                "source_url": "https://commons.wikimedia.org/wiki/File:Royal_stewart.jpg", 
+                                                "source_name": "Wikipedia", 
+                                                "license": "Public domain", 
+                                                "author": "Unknown"
+                                            }
+                                        }, 
+                                        "id": "Plaid"
                                     }
                                 ]
                             }
@@ -907,7 +1141,7 @@ var WORKSHEET_DEFINITION = {
                                             "rights": {
                                                 "source_url": "https://commons.wikimedia.org/wiki/File:Three_holes_buttons.jpg", 
                                                 "source_name": "Wikipedia", 
-                                                "license": "CC SA 3.0 Unported", 
+                                                "license": "CC Attribution-Share Alike", 
                                                 "author": "Marco Bernardini"
                                             }
                                         }, 
@@ -920,7 +1154,7 @@ var WORKSHEET_DEFINITION = {
                                             "rights": {
                                                 "source_url": "https://en.wikipedia.org/wiki/Hook-and-eye_closure#/media/File:Hook_and_eye_clasp.JPG", 
                                                 "source_name": "Wikipedia", 
-                                                "license": "CC SA 3.0 Unported", 
+                                                "license": "CC Attribution-Share Alike", 
                                                 "author": "Wikipedia user Eitan F"
                                             }
                                         }, 
@@ -933,7 +1167,7 @@ var WORKSHEET_DEFINITION = {
                                             "rights": {
                                                 "source_url": "https://commons.wikimedia.org/wiki/File:Coil_plastic_and_metal_zippers.jpg", 
                                                 "source_name": "Wikipedia", 
-                                                "license": "CC SA 3.0 Unported", 
+                                                "license": "CC Attribution-Share Alike", 
                                                 "author": "Wikipedia user Woodbine9"
                                             }
                                         }, 
@@ -951,11 +1185,29 @@ var WORKSHEET_DEFINITION = {
                                             "rights": {
                                                 "source_url": "https://commons.wikimedia.org/wiki/File:Carolus_-Private_Collection_-_zwarte_tulekant.jpg", 
                                                 "source_name": "Wikipedia", 
-                                                "license": "CC SA 3.0 Unported", 
+                                                "license": "CC Attribution-Share Alike", 
                                                 "author": "Wikipedia user Carolus"
                                             }
                                         }, 
                                         "id": "Net tulle"
+                                    }
+                                ]
+                            }, 
+                            {
+                                "id": "Interior Bottom Print", 
+                                "values_": [
+                                    {
+                                        "image": {
+                                            "thumbnail_url": "img/thumbnail/Print/Plaid.jpg", 
+                                            "full_size_url": "img/full_size/Print/Plaid.jpg", 
+                                            "rights": {
+                                                "source_url": "https://commons.wikimedia.org/wiki/File:Royal_stewart.jpg", 
+                                                "source_name": "Wikipedia", 
+                                                "license": "Public domain", 
+                                                "author": "Unknown"
+                                            }
+                                        }, 
+                                        "id": "Plaid"
                                     }
                                 ]
                             }
