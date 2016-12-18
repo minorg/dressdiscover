@@ -45,7 +45,12 @@ export class WorksheetFeatureValueInputView extends Marionette.ItemView<Workshee
     serializeData(): any {
         let data = this.model.definition.toJSON();
         data["displayName"] = this.model.displayName;
-        data["image"] = this.model.definition.image ? this.model.definition.image.toJSON() : null;
+        if (this.model.definition.image) {
+            data["image"] = this.model.definition.image.toJSON();
+            data["image"]["rights"] = this.model.definition.image.rights.toJSON();
+        } else {
+            data["image"] = null;
+        }
         return data;
     }
 

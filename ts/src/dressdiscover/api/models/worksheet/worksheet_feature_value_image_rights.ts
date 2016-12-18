@@ -32,6 +32,21 @@ export class WorksheetFeatureValueImageRights extends Backbone.Model {
             "minLength": 1, "required": true
         },
 
+        sourceName: {
+            "fn": function(value: any, attr: any, computedState: any) {
+                if (typeof value !== "string") {
+                    return "expected WorksheetFeatureValueImageRights.source_name to be a string";
+                }
+
+                if (/^\s*$/.test(value)) {
+                    return "WorksheetFeatureValueImageRights.source_name is blank";
+                }
+
+                return undefined;
+            },
+            "minLength": 1, "required": true
+        },
+
         sourceUrl: {
             "fn": function(value: any, attr: any, computedState: any) {
                 if (typeof value !== "string") {
@@ -46,7 +61,7 @@ export class WorksheetFeatureValueImageRights extends Backbone.Model {
 
     validationError: any;
 
-    constructor(attributes?: {author: string, license: string, sourceUrl: URL}, options?: any) {
+    constructor(attributes?: {author: string, license: string, sourceName: string, sourceUrl: URL}, options?: any) {
         super(attributes, options);
     }
 
@@ -66,6 +81,14 @@ export class WorksheetFeatureValueImageRights extends Backbone.Model {
         this.set('license', value, { validate: true });
     }
 
+    get sourceName(): string {
+        return this.get('sourceName');
+    }
+
+    set sourceName(value: string) {
+        this.set('sourceName', value, { validate: true });
+    }
+
     get sourceUrl(): URL {
         return this.get('sourceUrl');
     }
@@ -81,6 +104,8 @@ export class WorksheetFeatureValueImageRights extends Backbone.Model {
                 out.attributes.author = json[fieldName];
             } else if (fieldName == "license") {
                 out.attributes.license = json[fieldName];
+            } else if (fieldName == "source_name") {
+                out.attributes.sourceName = json[fieldName];
             } else if (fieldName == "source_url") {
                 out.attributes.sourceUrl = new URL(json[fieldName]);
             }
@@ -95,6 +120,7 @@ export class WorksheetFeatureValueImageRights extends Backbone.Model {
         var json: {[index: string]: any} = {};
         json["author"] = this.author;
         json["license"] = this.license;
+        json["source_name"] = this.sourceName;
         json["source_url"] = this.sourceUrl.toString();
         return json;
     }

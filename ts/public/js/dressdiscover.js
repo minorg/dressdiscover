@@ -7603,6 +7603,18 @@ return /******/ (function(modules) { // webpackBootstrap
 	                },
 	                "minLength": 1, "required": true
 	            },
+	            sourceName: {
+	                "fn": function (value, attr, computedState) {
+	                    if (typeof value !== "string") {
+	                        return "expected WorksheetFeatureValueImageRights.source_name to be a string";
+	                    }
+	                    if (/^\s*$/.test(value)) {
+	                        return "WorksheetFeatureValueImageRights.source_name is blank";
+	                    }
+	                    return undefined;
+	                },
+	                "minLength": 1, "required": true
+	            },
 	            sourceUrl: {
 	                "fn": function (value, attr, computedState) {
 	                    if (typeof value !== "string") {
@@ -7634,6 +7646,16 @@ return /******/ (function(modules) { // webpackBootstrap
 	        enumerable: true,
 	        configurable: true
 	    });
+	    Object.defineProperty(WorksheetFeatureValueImageRights.prototype, "sourceName", {
+	        get: function () {
+	            return this.get('sourceName');
+	        },
+	        set: function (value) {
+	            this.set('sourceName', value, { validate: true });
+	        },
+	        enumerable: true,
+	        configurable: true
+	    });
 	    Object.defineProperty(WorksheetFeatureValueImageRights.prototype, "sourceUrl", {
 	        get: function () {
 	            return this.get('sourceUrl');
@@ -7653,6 +7675,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	            else if (fieldName == "license") {
 	                out.attributes.license = json[fieldName];
 	            }
+	            else if (fieldName == "source_name") {
+	                out.attributes.sourceName = json[fieldName];
+	            }
 	            else if (fieldName == "source_url") {
 	                out.attributes.sourceUrl = new URL(json[fieldName]);
 	            }
@@ -7666,6 +7691,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        var json = {};
 	        json["author"] = this.author;
 	        json["license"] = this.license;
+	        json["source_name"] = this.sourceName;
 	        json["source_url"] = this.sourceUrl.toString();
 	        return json;
 	    };
@@ -8966,7 +8992,13 @@ return /******/ (function(modules) { // webpackBootstrap
 	    WorksheetFeatureValueInputView.prototype.serializeData = function () {
 	        var data = this.model.definition.toJSON();
 	        data["displayName"] = this.model.displayName;
-	        data["image"] = this.model.definition.image ? this.model.definition.image.toJSON() : null;
+	        if (this.model.definition.image) {
+	            data["image"] = this.model.definition.image.toJSON();
+	            data["image"]["rights"] = this.model.definition.image.rights.toJSON();
+	        }
+	        else {
+	            data["image"] = null;
+	        }
 	        return data;
 	    };
 	    WorksheetFeatureValueInputView.prototype.onRender = function () {
@@ -9310,7 +9342,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /* 64 */
 /***/ function(module, exports) {
 
-	module.exports = "<div class=\"col-lg-3 col-md-4 col-xs-6 feature-value\">\n    <a class=\"display-name\"><h5><%- displayName %></h5></a>\n    <% if (image) { %>\n    <div class=\"container-fluid image\">\n        <div class=\"row thumbnail\">\n            <a class=\"thumbnail\"><img alt=\"<%- displayName %>\" class=\"img-responsive\" src=\"<%- image.thumbnailUrl %>\" title=\"<%- displayName %>\"></a>\n            <a class=\"full-size\"><i class=\"glyphicon glyphicon-search\"></i></a>\n        </div>\n        <div class=\"row rights\">\n            <div class=\"col-md-2\">&nbsp;</div>\n            <div class=\"col-md-8\"><%- image.rights %></div>\n            <div class=\"col-md-2\">&nbsp;</div>\n        </div>\n    </div>\n    <% } %>\n    <div class=\"checkbox\">\n        <input class=\"form-check-input\" name=\"feature-value-checkbox\" type=\"checkbox\" value=\"\" />\n        <label for=\"feature-value-checkbox\"><%- displayName %></label>\n    </div>\n</div>\n"
+	module.exports = "<div class=\"col-lg-3 col-md-4 col-xs-6 feature-value\">\n    <a class=\"display-name\"><h5><%- displayName %></h5></a>\n    <% if (image) { %>\n    <div class=\"container-fluid image\">\n        <div class=\"row thumbnail\">\n            <a class=\"thumbnail\"><img alt=\"<%- displayName %>\" class=\"img-responsive\" src=\"<%- image.thumbnailUrl %>\" title=\"<%- displayName %>\"></a>\n            <a class=\"full-size\"><i class=\"glyphicon glyphicon-search\"></i></a>\n        </div>\n        <div class=\"row rights\">\n            <div class=\"panel-group\" id=\"rights-panel-group\">\r\n                <div class=\"panel panel-default\">\r\n                    <div class=\"panel-heading\">\r\n                        <h4 class=\"panel-title\">\r\n                            <a class=\"collapsed rights-toggle\" data-toggle=\"collapse\" data-parent=\"#rights-panel-group\" href=\"#rightsCollapseOne\">\r\n                                (C) <%- image.rights.author %>\r\n                            </a>\r\n                        </h4>\r\n                    </div>\r\n                    <div id=\"rightsCollapseOne\" class=\"panel-collapse collapse\">\r\n                        <div class=\"panel-body\">\r\n                            <table>\r\n                                <tr><td class=\"rights-field-name\">Author</td><td class=\"rights-field-value\"><%- image.rights.author %></td></tr>\r\n                                <tr><td class=\"rights-field-name\">License</td><td class=\"rights-field-value\"><%- image.rights.license %></td></tr>\r\n                                <tr><td class=\"rights-field-name\">Source</td><td class=\"rights-field-value\"><a href=\"<% image.rights.sourceUrl %>\"><%- image.rights.sourceName %></a></td></tr>\r\n                            </table>\r\n                        </div>\r\n                    </div>\r\n                </div>\r\n            </div>\n        </div>\n    </div>\n    <% } %>\n    <div class=\"checkbox\">\n        <input class=\"form-check-input\" name=\"feature-value-checkbox\" type=\"checkbox\" value=\"\" />\n        <label for=\"feature-value-checkbox\"><%- displayName %></label>\n    </div>\n</div>\n"
 
 /***/ },
 /* 65 */
@@ -10336,7 +10368,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /* 78 */
 /***/ function(module, exports) {
 
-	module.exports = "<div class=\"panel-group\" id=\"sidebar\" role=\"tablist\" aria-multiselectable=\"true\">\n    <div class=\"panel panel-default\">\n        <div class=\"panel-heading\" role=\"tab\" id=\"headingOne\">\n            <h4 class=\"panel-title\">\n                <a role=\"button\" data-toggle=\"collapse\" href=\"#collapseOne\" aria-expanded=\"true\" aria-controls=\"collapseOne\">\n                    Accession number: <%- accessionNumber %>\n                </a>\n                <button type=\"button\" class=\"btn btn-primary\" id=\"changeAccessionNumberButton\">Change</button>\n            </h4>\n        </div>\n        <div id=\"collapseOne\" class=\"panel-collapse collapse in\" role=\"tabpanel\" aria-labelledby=\"headingOne\">\n            <div class=\"panel-body\" id=\"output\">\n            </div>\n        </div>\n    </div>\n    <div class=\"panel panel-default\">\n        <div class=\"panel-heading\" role=\"tab\" id=\"headingTwo\">\n            <h4 class=\"panel-title\">\n                <a class=\"collapsed\" role=\"button\" data-toggle=\"collapse\" href=\"#collapseTwo\" aria-expanded=\"true\" aria-controls=\"collapseTwo\">\n                    Features\n                </a>\n            </h4>\n        </div>\n        <div id=\"collapseTwo\" class=\"panel-collapse collapse in\" role=\"tabpanel\" aria-labelledby=\"headingTwo\">\n            <div class=\"panel-body\" id=\"navigation\">\n            </div>\n        </div>\n    </div>\n</div>\n"
+	module.exports = "<div class=\"panel-group\" id=\"sidebar\" role=\"tablist\" aria-multiselectable=\"true\">\n    <div class=\"panel panel-default\">\n        <div class=\"panel-heading\" role=\"tab\" id=\"sidebarHeadingOne\">\n            <h4 class=\"panel-title\">\n                <a role=\"button\" data-toggle=\"collapse\" href=\"#sidebarCollapseOne\" aria-expanded=\"true\" aria-controls=\"sidebarCollapseOne\">\n                    Accession number: <%- accessionNumber %>\n                </a>\n                <button type=\"button\" class=\"btn btn-primary\" id=\"changeAccessionNumberButton\">Change</button>\n            </h4>\n        </div>\n        <div id=\"sidebarCollapseOne\" class=\"panel-collapse collapse in\" role=\"tabpanel\" aria-labelledby=\"sidebarHeadingOne\">\n            <div class=\"panel-body\" id=\"output\">\n            </div>\n        </div>\n    </div>\n    <div class=\"panel panel-default\">\n        <div class=\"panel-heading\" role=\"tab\" id=\"sidebarHeadingTwo\">\n            <h4 class=\"panel-title\">\n                <a class=\"collapsed\" role=\"button\" data-toggle=\"collapse\" href=\"#sidebarCollapseTwo\" aria-expanded=\"true\" aria-controls=\"sidebarCollapseTwo\">\n                    Features\n                </a>\n            </h4>\n        </div>\n        <div id=\"sidebarCollapseTwo\" class=\"panel-collapse collapse in\" role=\"tabpanel\" aria-labelledby=\"sidebarHeadingTwo\">\n            <div class=\"panel-body\" id=\"navigation\">\n            </div>\n        </div>\n    </div>\n</div>\n"
 
 /***/ },
 /* 79 */

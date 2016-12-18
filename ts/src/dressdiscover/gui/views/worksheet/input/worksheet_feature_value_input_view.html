@@ -7,9 +7,26 @@
             <a class="full-size"><i class="glyphicon glyphicon-search"></i></a>
         </div>
         <div class="row rights">
-            <div class="col-md-2">&nbsp;</div>
-            <div class="col-md-8"><%- image.rights %></div>
-            <div class="col-md-2">&nbsp;</div>
+            <div class="panel-group" id="rights-panel-group">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a class="collapsed rights-toggle" data-toggle="collapse" data-parent="#rights-panel-group" href="#rightsCollapseOne">
+                                (C) <%- image.rights.author %>
+                            </a>
+                        </h4>
+                    </div>
+                    <div id="rightsCollapseOne" class="panel-collapse collapse">
+                        <div class="panel-body">
+                            <table>
+                                <tr><td class="rights-field-name">Author</td><td class="rights-field-value"><%- image.rights.author %></td></tr>
+                                <tr><td class="rights-field-name">License</td><td class="rights-field-value"><%- image.rights.license %></td></tr>
+                                <tr><td class="rights-field-name">Source</td><td class="rights-field-value"><a href="<% image.rights.sourceUrl %>"><%- image.rights.sourceName %></a></td></tr>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
     <% } %>

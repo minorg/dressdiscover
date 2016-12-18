@@ -44,12 +44,14 @@ def image(
 def rights(
     author,
     license_,
+    source_name,
     source_url
 ):
     return \
         WorksheetFeatureValueImageRights.Builder()\
             .set_author(author)\
             .set_license(license_)\
+            .set_source_name(source_name)\
             .set_source_url(source_url)\
             .build()
 

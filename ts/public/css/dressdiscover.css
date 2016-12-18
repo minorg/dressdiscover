@@ -78,7 +78,35 @@ html.magnifying > body {
   font-size: larger;
   text-align: center;
 }
-#worksheet #input .feature-value .image .rights {
+#worksheet #input .feature-value .image .rights .panel-heading .rights-toggle:after {
+  /* symbol for "opening" panels */
+  font-family: 'Glyphicons Halflings';
+  /* essential for enabling glyphicon */
+  content: "\E114";
+  /* adjust as needed, taken from bootstrap.css */
+  float: right;
+  /* adjust as needed */
+  color: grey;
+  /* adjust as needed */
+}
+#worksheet #input .feature-value .image .rights .panel-heading .rights-toggle.collapsed:after {
+  /* symbol for "collapsed" panels */
+  content: "\E080";
+  /* adjust as needed, taken from bootstrap.css */
+}
+#worksheet #input .feature-value .image .rights .panel-body {
+  font-size: smaller;
+}
+#worksheet #input .feature-value .image .rights .panel-body .rights-field-name {
+  font-weight: bold;
+}
+#worksheet #input .feature-value .image .rights .panel-body .rights-field-value {
+  text-align: right;
+}
+#worksheet #input .feature-value .image .rights .panel-body table {
+  width: 100%;
+}
+#worksheet #input .feature-value .image .rights .panel-title {
   font-size: smaller;
   text-align: center;
 }

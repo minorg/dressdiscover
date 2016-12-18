@@ -7,20 +7,23 @@ class WorksheetFeatureValueImageRights(object):
             self,
             author=None,
             license=None,  # @ReservedAssignment
+            source_name=None,
             source_url=None,
         ):
             '''
             :type author: str
             :type license: str
+            :type source_name: str
             :type source_url: str
             '''
 
             self.__author = author
             self.__license = license
+            self.__source_name = source_name
             self.__source_url = source_url
 
         def build(self):
-            return WorksheetFeatureValueImageRights(author=self.__author, license=self.__license, source_url=self.__source_url)
+            return WorksheetFeatureValueImageRights(author=self.__author, license=self.__license, source_name=self.__source_name, source_url=self.__source_url)
 
         @property
         def author(self):
@@ -70,6 +73,22 @@ class WorksheetFeatureValueImageRights(object):
             self.__license = license
             return self
 
+        def set_source_name(self, source_name):
+            '''
+            :type source_name: str
+            '''
+
+            if source_name is None:
+                raise ValueError('source_name is required')
+            if not isinstance(source_name, basestring):
+                raise TypeError("expected source_name to be a str but it is a %s" % getattr(__builtin__, 'type')(source_name))
+            if source_name.isspace():
+                raise ValueError("expected source_name not to be blank")
+            if len(source_name) < 1:
+                raise ValueError("expected len(source_name) to be >= 1, was %d" % len(source_name))
+            self.__source_name = source_name
+            return self
+
         def set_source_url(self, source_url):
             '''
             :type source_url: str
@@ -83,6 +102,14 @@ class WorksheetFeatureValueImageRights(object):
             return self
 
         @property
+        def source_name(self):
+            '''
+            :rtype: str
+            '''
+
+            return self.__source_name
+
+        @property
         def source_url(self):
             '''
             :rtype: str
@@ -94,12 +121,14 @@ class WorksheetFeatureValueImageRights(object):
             '''
             :type author: str
             :type license: str
+            :type source_name: str
             :type source_url: str
             '''
 
             if isinstance(worksheet_feature_value_image_rights, WorksheetFeatureValueImageRights):
                 self.set_author(worksheet_feature_value_image_rights.author)
                 self.set_license(worksheet_feature_value_image_rights.license)
+                self.set_source_name(worksheet_feature_value_image_rights.source_name)
                 self.set_source_url(worksheet_feature_value_image_rights.source_url)
             elif isinstance(worksheet_feature_value_image_rights, dict):
                 for key, value in worksheet_feature_value_image_rights.iteritems():
@@ -124,6 +153,14 @@ class WorksheetFeatureValueImageRights(object):
 
             self.set_license(license)
 
+        @source_name.setter
+        def source_name(self, source_name):
+            '''
+            :type source_name: str
+            '''
+
+            self.set_source_name(source_name)
+
         @source_url.setter
         def source_url(self, source_url):
             '''
@@ -135,6 +172,7 @@ class WorksheetFeatureValueImageRights(object):
     class FieldMetadata(object):
         AUTHOR = None
         LICENSE = None
+        SOURCE_NAME = None
         SOURCE_URL = None
 
         def __init__(self, name, type_, validation):
@@ -156,21 +194,24 @@ class WorksheetFeatureValueImageRights(object):
 
         @classmethod
         def values(cls):
-            return (cls.AUTHOR, cls.LICENSE, cls.SOURCE_URL,)
+            return (cls.AUTHOR, cls.LICENSE, cls.SOURCE_NAME, cls.SOURCE_URL,)
 
     FieldMetadata.AUTHOR = FieldMetadata('author', str, {u'blank': False, u'minLength': 1})
     FieldMetadata.LICENSE = FieldMetadata('license', str, {u'blank': False, u'minLength': 1})
+    FieldMetadata.SOURCE_NAME = FieldMetadata('source_name', str, {u'blank': False, u'minLength': 1})
     FieldMetadata.SOURCE_URL = FieldMetadata('source_url', str, None)
 
     def __init__(
         self,
         author,
         license,  # @ReservedAssignment
+        source_name,
         source_url,
     ):
         '''
         :type author: str
         :type license: str
+        :type source_name: str
         :type source_url: str
         '''
 
@@ -194,6 +235,16 @@ class WorksheetFeatureValueImageRights(object):
             raise ValueError("expected len(license) to be >= 1, was %d" % len(license))
         self.__license = license
 
+        if source_name is None:
+            raise ValueError('source_name is required')
+        if not isinstance(source_name, basestring):
+            raise TypeError("expected source_name to be a str but it is a %s" % getattr(__builtin__, 'type')(source_name))
+        if source_name.isspace():
+            raise ValueError("expected source_name not to be blank")
+        if len(source_name) < 1:
+            raise ValueError("expected len(source_name) to be >= 1, was %d" % len(source_name))
+        self.__source_name = source_name
+
         if source_url is None:
             raise ValueError('source_url is required')
         if not isinstance(source_url, basestring):
@@ -205,15 +256,17 @@ class WorksheetFeatureValueImageRights(object):
             return False
         if self.license != other.license:
             return False
+        if self.source_name != other.source_name:
+            return False
         if self.source_url != other.source_url:
             return False
         return True
 
     def __hash__(self):
-        return hash((self.author,self.license,self.source_url,))
+        return hash((self.author,self.license,self.source_name,self.source_url,))
 
     def __iter__(self):
-        return iter((self.author, self.license, self.source_url,))
+        return iter((self.author, self.license, self.source_name, self.source_url,))
 
     def __ne__(self, other):
         return not self.__eq__(other)
@@ -222,6 +275,7 @@ class WorksheetFeatureValueImageRights(object):
         field_reprs = []
         field_reprs.append('author=' + "'" + self.author.encode('ascii', 'replace') + "'")
         field_reprs.append('license=' + "'" + self.license.encode('ascii', 'replace') + "'")
+        field_reprs.append('source_name=' + "'" + self.source_name.encode('ascii', 'replace') + "'")
         field_reprs.append('source_url=' + "'" + self.source_url.encode('ascii', 'replace') + "'")
         return 'WorksheetFeatureValueImageRights(' + ', '.join(field_reprs) + ')'
 
@@ -229,6 +283,7 @@ class WorksheetFeatureValueImageRights(object):
         field_reprs = []
         field_reprs.append('author=' + "'" + self.author.encode('ascii', 'replace') + "'")
         field_reprs.append('license=' + "'" + self.license.encode('ascii', 'replace') + "'")
+        field_reprs.append('source_name=' + "'" + self.source_name.encode('ascii', 'replace') + "'")
         field_reprs.append('source_url=' + "'" + self.source_url.encode('ascii', 'replace') + "'")
         return 'WorksheetFeatureValueImageRights(' + ', '.join(field_reprs) + ')'
 
@@ -268,6 +323,8 @@ class WorksheetFeatureValueImageRights(object):
                 init_kwds['author'] = iprot.read_string()
             elif ifield_name == 'license':
                 init_kwds['license'] = iprot.read_string()
+            elif ifield_name == 'source_name':
+                init_kwds['source_name'] = iprot.read_string()
             elif ifield_name == 'source_url':
                 init_kwds['source_url'] = iprot.read_string()
             iprot.read_field_end()
@@ -279,6 +336,7 @@ class WorksheetFeatureValueImageRights(object):
         self,
         author=None,
         license=None,  # @ReservedAssignment
+        source_name=None,
         source_url=None,
     ):
         '''
@@ -286,6 +344,7 @@ class WorksheetFeatureValueImageRights(object):
 
         :type author: str or None
         :type license: str or None
+        :type source_name: str or None
         :type source_url: str or None
         :rtype: dressdiscover.api.models.worksheet.worksheet_feature_value_image_rights.WorksheetFeatureValueImageRights
         '''
@@ -294,9 +353,19 @@ class WorksheetFeatureValueImageRights(object):
             author = self.author
         if license is None:
             license = self.license  # @ReservedAssignment
+        if source_name is None:
+            source_name = self.source_name
         if source_url is None:
             source_url = self.source_url
-        return self.__class__(author=author, license=license, source_url=source_url)
+        return self.__class__(author=author, license=license, source_name=source_name, source_url=source_url)
+
+    @property
+    def source_name(self):
+        '''
+        :rtype: str
+        '''
+
+        return self.__source_name
 
     @property
     def source_url(self):
@@ -322,6 +391,10 @@ class WorksheetFeatureValueImageRights(object):
 
         oprot.write_field_begin(name='license', type=11, id=None)
         oprot.write_string(self.license)
+        oprot.write_field_end()
+
+        oprot.write_field_begin(name='source_name', type=11, id=None)
+        oprot.write_string(self.source_name)
         oprot.write_field_end()
 
         oprot.write_field_begin(name='source_url', type=11, id=None)
