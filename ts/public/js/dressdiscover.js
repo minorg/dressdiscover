@@ -8828,6 +8828,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    function WorksheetFeatureValueInputView(options) {
 	        _super.call(this, _.extend(options, {
 	            events: {
+	                "click a.display-name": "onClickSelect",
 	                "click a.full-size": "onClickFullSize",
 	                "click a.thumbnail": "onClickSelect",
 	                "click div.checkbox": "onClickSelect"
@@ -9197,7 +9198,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /* 63 */
 /***/ function(module, exports) {
 
-	module.exports = "<div class=\"col-lg-3 col-md-4 col-xs-6 feature-value\">\r\n    <h5 class=\"display-name\"><%- displayName %></h5>\r\n    <% if (image) { %>\r\n    <div class=\"container-fluid image\">\r\n        <div class=\"row thumbnail\">\r\n            <a class=\"thumbnail\"><img alt=\"<%- displayName %>\" class=\"img-responsive\" src=\"<%- image.thumbnailUrl %>\" title=\"<%- displayName %>\"></a>\r\n            <a class=\"full-size\"><i class=\"glyphicon glyphicon-search\"></i></a>\r\n        </div>\r\n        <div class=\"row rights\">\r\n            <div class=\"col-md-2\">&nbsp;</div>\r\n            <div class=\"col-md-8\"><%- image.rights %></div>\r\n            <div class=\"col-md-2\">&nbsp;</div>\r\n        </div>\r\n    </div>\r\n    <% } %>\r\n    <div class=\"checkbox\">\r\n        <input class=\"form-check-input\" name=\"feature-value-checkbox\" type=\"checkbox\" value=\"\" />\r\n        <label for=\"feature-value-checkbox\"><%- displayName %></label>\r\n    </div>\r\n</div>\r\n"
+	module.exports = "<div class=\"col-lg-3 col-md-4 col-xs-6 feature-value\">\r\n    <a class=\"display-name\"><h5><%- displayName %></h5></a>\r\n    <% if (image) { %>\r\n    <div class=\"container-fluid image\">\r\n        <div class=\"row thumbnail\">\r\n            <a class=\"thumbnail\"><img alt=\"<%- displayName %>\" class=\"img-responsive\" src=\"<%- image.thumbnailUrl %>\" title=\"<%- displayName %>\"></a>\r\n            <a class=\"full-size\"><i class=\"glyphicon glyphicon-search\"></i></a>\r\n        </div>\r\n        <div class=\"row rights\">\r\n            <div class=\"col-md-2\">&nbsp;</div>\r\n            <div class=\"col-md-8\"><%- image.rights %></div>\r\n            <div class=\"col-md-2\">&nbsp;</div>\r\n        </div>\r\n    </div>\r\n    <% } %>\r\n    <div class=\"checkbox\">\r\n        <input class=\"form-check-input\" name=\"feature-value-checkbox\" type=\"checkbox\" value=\"\" />\r\n        <label for=\"feature-value-checkbox\"><%- displayName %></label>\r\n    </div>\r\n</div>\r\n"
 
 /***/ },
 /* 64 */

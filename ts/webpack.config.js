@@ -1,8 +1,9 @@
 /// <binding BeforeBuild='Hot' AfterBuild='Watch - Development' />
 require('es6-promise').polyfill();
 const webpack = require('webpack');
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const CleanWebpackPlugin = require('clean-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const path = require('path');
 
 module.exports = {
@@ -46,6 +47,11 @@ module.exports = {
     path: path.join(__dirname, './public')
   },
   plugins: [
+    new CleanWebpackPlugin(['public'], {
+        root: __dirname,
+        verbose: true, 
+        dry: false
+    }),
     new CopyWebpackPlugin([
         {
           from: './assets',

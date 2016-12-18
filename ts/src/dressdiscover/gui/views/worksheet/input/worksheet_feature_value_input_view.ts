@@ -14,6 +14,7 @@ export class WorksheetFeatureValueInputView extends Marionette.ItemView<Workshee
     constructor(options?: any) {    
         super(_.extend(options, {
             events: {
+                "click a.display-name": "onClickSelect",
                 "click a.full-size": "onClickFullSize",
                 "click a.thumbnail": "onClickSelect",
                 "click div.checkbox": "onClickSelect"

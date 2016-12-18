@@ -7,6 +7,38 @@ from dressdiscover.api.models.worksheet.worksheet_feature_value_definition impor
 from dressdiscover.api.models.worksheet.worksheet_feature_value_image import WorksheetFeatureValueImage
 
 
+# Helper functions
+def define_feature(
+    id_,
+    parent_feature_set_ids,
+    value_definitions
+):
+    return \
+        WorksheetFeatureDefinition.Builder()\
+            .set_id(' '.join(parent_feature_set_ids + [id_]))\
+            .set_values_(tuple(value_definitions))\
+            .build()
+
+
+def define_feature_value(
+    id_,
+    image_file_extension='jpg',
+    image_rights=None
+):
+    builder = WorksheetFeatureValueDefinition.Builder().set_id(id_)
+    if image_rights is not None:
+        builder\
+            .set_image(
+                WorksheetFeatureValueImage.Builder()
+                    .set_full_size_url("img/full_size/%(id_)s.%(image_file_extension)s" % locals())
+                    .set_rights(image_rights)
+                    .set_thumbnail_url("img/thumbnail/%(id_)s.%(image_file_extension)s" % locals())
+                    .build()
+                )
+    return builder.build()
+
+
+# Definitions
 # decoration_applied = {
 #     'Decoration': {
 #         'Applied': [
@@ -17,26 +49,26 @@ from dressdiscover.api.models.worksheet.worksheet_feature_value_image import Wor
 #     }
 # }
 closures = [
-    'Button',
-    'Hook and eye',
-    'Non-functional',
-    'Zip'
+    define_feature_value('Button'),
+    define_feature_value('Hook and eye'),
+    define_feature_value('Non-functional'),
+    define_feature_value('Zip'),
 ]
 
 collar_characteristics = [
-    'Attached',
-    'Bibbed',
-    'No collar',
-    'Peaked',
-    'Round',
+    define_feature_value('Attached'),
+    define_feature_value('Bibbed'),
+    define_feature_value('No collar'),
+    define_feature_value('Peaked'),
+    define_feature_value('Round'),
 ]
 
 colors = [
-    'Blue',
-    'Brown',
-    'Green',
-    'Red',
-    'White',
+    define_feature_value('Blue'),
+    define_feature_value('Brown'),
+    define_feature_value('Green'),
+    define_feature_value('Red'),
+    define_feature_value('White'),
 ]
 
 _vertical_extents = [
@@ -55,84 +87,56 @@ extents['Back'] = _vertical_extents
 extents['Interior'] = _vertical_extents
 
 interior_characteristics = [
-    'Attached underskirt',
-    'Partially lined',
-    'Lined',
-    'Unlined'
+    define_feature_value('Attached underskirt'),
+    define_feature_value('Partially lined'),
+    define_feature_value('Lined'),
+    define_feature_value('Unlined'),
 ]
 
 materials = [
-    'Cotton',
-    'Elastic',
-    'Plastic',
-    'Self-fabric',
-    'Net tulle',
-    'Velvet',
+    define_feature_value('Cotton'),
+    define_feature_value('Elastic'),
+    define_feature_value('Plastic'),
+    define_feature_value('Self-fabric'),
+    define_feature_value('Net tulle'),
+    define_feature_value('Velvet'),
 ]
 
 pleats = [
-    'Inverted',
+    define_feature_value('Inverted'),
 ]
 
 prints = [
-    'Abstracted floral',
-    'Checkerboard',
-    'Floral',
-    'Plaid',
+    define_feature_value('Abstracted floral'),
+    define_feature_value('Checkerboard'),
+    define_feature_value('Floral'),
+    define_feature_value('Plaid'),
 ]
 
 pocket_characteristics = [
-    'Attached',
-    'Open'
+    define_feature_value('Attached'),
+    define_feature_value('Open'),
 ]
 
 sleeve_characteristics = [
-    'Attached cuffs',
-    'Elbow-length',
-    'Set-in',
-    'Sleeveless',
+    define_feature_value('Attached cuffs'),
+    define_feature_value('Elbow-length'),
+    define_feature_value('Set-in'),
+    define_feature_value('Sleeveless'),
 ]
 
 techniques = [
-    'Piped trim',
-    'Gathered',
-    'Slightly gathered',
-    'Smocked',
+    define_feature_value('Piped trim'),
+    define_feature_value('Gathered'),
+    define_feature_value('Slightly gathered'),
+    define_feature_value('Smocked'),
 ]
 
 waistline_characteristics = [
-    'Dropped',
-    'Natural',
-    'Undefined waistline',
+    define_feature_value('Dropped'),
+    define_feature_value('Natural'),
+    define_feature_value('Undefined waistline'),
 ]
-
-# TODO: label as text in Whole
-
-
-def __to_enum_feature_definition(
-    id_,
-    parent_feature_set_ids,
-    value_ids
-):
-    value_definitions = []
-    for value in value_ids:
-        value_definitions.append(
-            WorksheetFeatureValueDefinition.Builder()
-                .set_id(value)
-                .set_image(
-                    WorksheetFeatureValueImage.Builder()
-                        .set_full_size_url("img/full_size/placeholder.png")
-                        .set_rights("Placeholder rights")
-                        .set_thumbnail_url("img/thumbnail/placeholder.png")
-                        .build()
-                    )
-                .build()
-        )
-    return \
-        WorksheetFeatureDefinition.Builder()\
-            .set_id(' '.join(parent_feature_set_ids + [id_]))\
-            .set_values_(tuple(value_definitions))\
-            .build()
 
 
 extent_feature_set_definitions = []
@@ -160,15 +164,15 @@ for extent, sub_extents in extents.iteritems():
             sub_extent_feature_definitions = []
             parent_feature_set_ids.append(sub_extent)
 
-        sub_extent_feature_definitions.append(__to_enum_feature_definition(
+        sub_extent_feature_definitions.append(define_feature(
             id_='Material',
             parent_feature_set_ids=parent_feature_set_ids,
-            value_ids=materials
+            value_definitions=materials
         ))
-        sub_extent_feature_definitions.append(__to_enum_feature_definition(
+        sub_extent_feature_definitions.append(define_feature(
             id_='Print',
             parent_feature_set_ids=parent_feature_set_ids,
-            value_ids=prints
+            value_definitions=prints
         ))
         # TODO: append technique etc. here
 
