@@ -63,10 +63,6 @@ class WorksheetFeatureValueImage(object):
                 raise ValueError('rights is required')
             if not isinstance(rights, dressdiscover.api.models.worksheet.worksheet_feature_value_image_rights.WorksheetFeatureValueImageRights):
                 raise TypeError("expected rights to be a dressdiscover.api.models.worksheet.worksheet_feature_value_image_rights.WorksheetFeatureValueImageRights but it is a %s" % getattr(__builtin__, 'type')(rights))
-            if rights.isspace():
-                raise ValueError("expected rights not to be blank")
-            if len(rights) < 1:
-                raise ValueError("expected len(rights) to be >= 1, was %d" % len(rights))
             self.__rights = rights
             return self
 
@@ -162,7 +158,7 @@ class WorksheetFeatureValueImage(object):
         def values(cls):
             return (cls.RIGHTS, cls.THUMBNAIL_URL, cls.FULL_SIZE_URL,)
 
-    FieldMetadata.RIGHTS = FieldMetadata('rights', dressdiscover.api.models.worksheet.worksheet_feature_value_image_rights.WorksheetFeatureValueImageRights, {u'blank': False, u'minLength': 1})
+    FieldMetadata.RIGHTS = FieldMetadata('rights', dressdiscover.api.models.worksheet.worksheet_feature_value_image_rights.WorksheetFeatureValueImageRights, None)
     FieldMetadata.THUMBNAIL_URL = FieldMetadata('thumbnail_url', str, {u'blank': False, u'minLength': 1})
     FieldMetadata.FULL_SIZE_URL = FieldMetadata('full_size_url', str, {u'blank': False, u'minLength': 1})
 
@@ -182,10 +178,6 @@ class WorksheetFeatureValueImage(object):
             raise ValueError('rights is required')
         if not isinstance(rights, dressdiscover.api.models.worksheet.worksheet_feature_value_image_rights.WorksheetFeatureValueImageRights):
             raise TypeError("expected rights to be a dressdiscover.api.models.worksheet.worksheet_feature_value_image_rights.WorksheetFeatureValueImageRights but it is a %s" % getattr(__builtin__, 'type')(rights))
-        if rights.isspace():
-            raise ValueError("expected rights not to be blank")
-        if len(rights) < 1:
-            raise ValueError("expected len(rights) to be >= 1, was %d" % len(rights))
         self.__rights = rights
 
         if thumbnail_url is None:

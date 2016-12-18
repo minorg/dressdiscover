@@ -32,13 +32,13 @@ def feature_value(
 def image(
     id_,
     rights,
-    file_extension_='jpg'
+    file_extension='jpg'
 ):
     return \
         WorksheetFeatureValueImage.Builder()\
-            .set_full_size_url("img/full_size/%(id_)s.%(image_file_extension)s" % locals())\
+            .set_full_size_url("img/full_size/%(id_)s.%(file_extension)s" % locals())\
             .set_rights(rights)\
-            .set_thumbnail_url("img/thumbnail/%(id_)s.%(image_file_extension)s" % locals())\
+            .set_thumbnail_url("img/thumbnail/%(id_)s.%(file_extension)s" % locals())\
             .build()
 
 def rights(
@@ -49,7 +49,7 @@ def rights(
     return \
         WorksheetFeatureValueImageRights.Builder()\
             .set_author(author)\
-            .set_license(license)\
+            .set_license(license_)\
             .set_source_url(source_url)\
             .build()
 
@@ -118,7 +118,7 @@ materials = [
         id_='Net tulle',
         image_rights=rights(
             author='Wikipedia user Carolus',
-            license='CC-SA 3.0',
+            license_='CC-SA 3.0',
             source_url='https://commons.wikimedia.org/wiki/File:Carolus_-Private_Collection_-_zwarte_tulekant.jpg',
         )
     ),

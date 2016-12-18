@@ -12,13 +12,9 @@ export class WorksheetFeatureValueImage extends Backbone.Model {
                     return value.validationError;
                 }
 
-                if (/^\s*$/.test(value)) {
-                    return "WorksheetFeatureValueImage.rights is blank";
-                }
-
                 return undefined;
             },
-            "minLength": 1, "required": true
+            "required": true
         },
 
         thumbnailUrl: {

@@ -25,7 +25,11 @@ var WORKSHEET_DEFINITION = {
                                         "image": {
                                             "thumbnail_url": "img/thumbnail/Net tulle.jpg", 
                                             "full_size_url": "img/full_size/Net tulle.jpg", 
-                                            "rights": "(C) Wikipedia user Carolus, CC-SA 3.0"
+                                            "rights": {
+                                                "source_url": "https://commons.wikimedia.org/wiki/File:Carolus_-Private_Collection_-_zwarte_tulekant.jpg", 
+                                                "license": "CC-SA 3.0", 
+                                                "author": "Wikipedia user Carolus"
+                                            }
                                         }, 
                                         "id": "Net tulle"
                                     }, 
@@ -75,7 +79,11 @@ var WORKSHEET_DEFINITION = {
                                         "image": {
                                             "thumbnail_url": "img/thumbnail/Net tulle.jpg", 
                                             "full_size_url": "img/full_size/Net tulle.jpg", 
-                                            "rights": "(C) Wikipedia user Carolus, CC-SA 3.0"
+                                            "rights": {
+                                                "source_url": "https://commons.wikimedia.org/wiki/File:Carolus_-Private_Collection_-_zwarte_tulekant.jpg", 
+                                                "license": "CC-SA 3.0", 
+                                                "author": "Wikipedia user Carolus"
+                                            }
                                         }, 
                                         "id": "Net tulle"
                                     }, 
@@ -133,7 +141,11 @@ var WORKSHEET_DEFINITION = {
                                 "image": {
                                     "thumbnail_url": "img/thumbnail/Net tulle.jpg", 
                                     "full_size_url": "img/full_size/Net tulle.jpg", 
-                                    "rights": "(C) Wikipedia user Carolus, CC-SA 3.0"
+                                    "rights": {
+                                        "source_url": "https://commons.wikimedia.org/wiki/File:Carolus_-Private_Collection_-_zwarte_tulekant.jpg", 
+                                        "license": "CC-SA 3.0", 
+                                        "author": "Wikipedia user Carolus"
+                                    }
                                 }, 
                                 "id": "Net tulle"
                             }, 
@@ -183,7 +195,11 @@ var WORKSHEET_DEFINITION = {
                                 "image": {
                                     "thumbnail_url": "img/thumbnail/Net tulle.jpg", 
                                     "full_size_url": "img/full_size/Net tulle.jpg", 
-                                    "rights": "(C) Wikipedia user Carolus, CC-SA 3.0"
+                                    "rights": {
+                                        "source_url": "https://commons.wikimedia.org/wiki/File:Carolus_-Private_Collection_-_zwarte_tulekant.jpg", 
+                                        "license": "CC-SA 3.0", 
+                                        "author": "Wikipedia user Carolus"
+                                    }
                                 }, 
                                 "id": "Net tulle"
                             }, 
@@ -233,7 +249,11 @@ var WORKSHEET_DEFINITION = {
                                 "image": {
                                     "thumbnail_url": "img/thumbnail/Net tulle.jpg", 
                                     "full_size_url": "img/full_size/Net tulle.jpg", 
-                                    "rights": "(C) Wikipedia user Carolus, CC-SA 3.0"
+                                    "rights": {
+                                        "source_url": "https://commons.wikimedia.org/wiki/File:Carolus_-Private_Collection_-_zwarte_tulekant.jpg", 
+                                        "license": "CC-SA 3.0", 
+                                        "author": "Wikipedia user Carolus"
+                                    }
                                 }, 
                                 "id": "Net tulle"
                             }, 
@@ -285,7 +305,11 @@ var WORKSHEET_DEFINITION = {
                                         "image": {
                                             "thumbnail_url": "img/thumbnail/Net tulle.jpg", 
                                             "full_size_url": "img/full_size/Net tulle.jpg", 
-                                            "rights": "(C) Wikipedia user Carolus, CC-SA 3.0"
+                                            "rights": {
+                                                "source_url": "https://commons.wikimedia.org/wiki/File:Carolus_-Private_Collection_-_zwarte_tulekant.jpg", 
+                                                "license": "CC-SA 3.0", 
+                                                "author": "Wikipedia user Carolus"
+                                            }
                                         }, 
                                         "id": "Net tulle"
                                     }, 
@@ -335,7 +359,11 @@ var WORKSHEET_DEFINITION = {
                                         "image": {
                                             "thumbnail_url": "img/thumbnail/Net tulle.jpg", 
                                             "full_size_url": "img/full_size/Net tulle.jpg", 
-                                            "rights": "(C) Wikipedia user Carolus, CC-SA 3.0"
+                                            "rights": {
+                                                "source_url": "https://commons.wikimedia.org/wiki/File:Carolus_-Private_Collection_-_zwarte_tulekant.jpg", 
+                                                "license": "CC-SA 3.0", 
+                                                "author": "Wikipedia user Carolus"
+                                            }
                                         }, 
                                         "id": "Net tulle"
                                     }, 
@@ -385,7 +413,11 @@ var WORKSHEET_DEFINITION = {
                                         "image": {
                                             "thumbnail_url": "img/thumbnail/Net tulle.jpg", 
                                             "full_size_url": "img/full_size/Net tulle.jpg", 
-                                            "rights": "(C) Wikipedia user Carolus, CC-SA 3.0"
+                                            "rights": {
+                                                "source_url": "https://commons.wikimedia.org/wiki/File:Carolus_-Private_Collection_-_zwarte_tulekant.jpg", 
+                                                "license": "CC-SA 3.0", 
+                                                "author": "Wikipedia user Carolus"
+                                            }
                                         }, 
                                         "id": "Net tulle"
                                     }, 
@@ -440,7 +472,11 @@ var WORKSHEET_DEFINITION = {
                                         "image": {
                                             "thumbnail_url": "img/thumbnail/Net tulle.jpg", 
                                             "full_size_url": "img/full_size/Net tulle.jpg", 
-                                            "rights": "(C) Wikipedia user Carolus, CC-SA 3.0"
+                                            "rights": {
+                                                "source_url": "https://commons.wikimedia.org/wiki/File:Carolus_-Private_Collection_-_zwarte_tulekant.jpg", 
+                                                "license": "CC-SA 3.0", 
+                                                "author": "Wikipedia user Carolus"
+                                            }
                                         }, 
                                         "id": "Net tulle"
                                     }, 
@@ -490,7 +526,11 @@ var WORKSHEET_DEFINITION = {
                                         "image": {
                                             "thumbnail_url": "img/thumbnail/Net tulle.jpg", 
                                             "full_size_url": "img/full_size/Net tulle.jpg", 
-                                            "rights": "(C) Wikipedia user Carolus, CC-SA 3.0"
+                                            "rights": {
+                                                "source_url": "https://commons.wikimedia.org/wiki/File:Carolus_-Private_Collection_-_zwarte_tulekant.jpg", 
+                                                "license": "CC-SA 3.0", 
+                                                "author": "Wikipedia user Carolus"
+                                            }
                                         }, 
                                         "id": "Net tulle"
                                     }, 
@@ -540,7 +580,11 @@ var WORKSHEET_DEFINITION = {
                                         "image": {
                                             "thumbnail_url": "img/thumbnail/Net tulle.jpg", 
                                             "full_size_url": "img/full_size/Net tulle.jpg", 
-                                            "rights": "(C) Wikipedia user Carolus, CC-SA 3.0"
+                                            "rights": {
+                                                "source_url": "https://commons.wikimedia.org/wiki/File:Carolus_-Private_Collection_-_zwarte_tulekant.jpg", 
+                                                "license": "CC-SA 3.0", 
+                                                "author": "Wikipedia user Carolus"
+                                            }
                                         }, 
                                         "id": "Net tulle"
                                     }, 
@@ -595,7 +639,11 @@ var WORKSHEET_DEFINITION = {
                                         "image": {
                                             "thumbnail_url": "img/thumbnail/Net tulle.jpg", 
                                             "full_size_url": "img/full_size/Net tulle.jpg", 
-                                            "rights": "(C) Wikipedia user Carolus, CC-SA 3.0"
+                                            "rights": {
+                                                "source_url": "https://commons.wikimedia.org/wiki/File:Carolus_-Private_Collection_-_zwarte_tulekant.jpg", 
+                                                "license": "CC-SA 3.0", 
+                                                "author": "Wikipedia user Carolus"
+                                            }
                                         }, 
                                         "id": "Net tulle"
                                     }, 
@@ -645,7 +693,11 @@ var WORKSHEET_DEFINITION = {
                                         "image": {
                                             "thumbnail_url": "img/thumbnail/Net tulle.jpg", 
                                             "full_size_url": "img/full_size/Net tulle.jpg", 
-                                            "rights": "(C) Wikipedia user Carolus, CC-SA 3.0"
+                                            "rights": {
+                                                "source_url": "https://commons.wikimedia.org/wiki/File:Carolus_-Private_Collection_-_zwarte_tulekant.jpg", 
+                                                "license": "CC-SA 3.0", 
+                                                "author": "Wikipedia user Carolus"
+                                            }
                                         }, 
                                         "id": "Net tulle"
                                     }, 
@@ -695,7 +747,11 @@ var WORKSHEET_DEFINITION = {
                                         "image": {
                                             "thumbnail_url": "img/thumbnail/Net tulle.jpg", 
                                             "full_size_url": "img/full_size/Net tulle.jpg", 
-                                            "rights": "(C) Wikipedia user Carolus, CC-SA 3.0"
+                                            "rights": {
+                                                "source_url": "https://commons.wikimedia.org/wiki/File:Carolus_-Private_Collection_-_zwarte_tulekant.jpg", 
+                                                "license": "CC-SA 3.0", 
+                                                "author": "Wikipedia user Carolus"
+                                            }
                                         }, 
                                         "id": "Net tulle"
                                     }, 
