@@ -98,7 +98,7 @@ materials = [
     define_feature_value('Elastic'),
     define_feature_value('Plastic'),
     define_feature_value('Self-fabric'),
-    define_feature_value('Net tulle'),
+    define_feature_value('Net tulle', image_rights='(C) Wikipedia user Carolus, CC-SA 3.0'),
     define_feature_value('Velvet'),
 ]
 

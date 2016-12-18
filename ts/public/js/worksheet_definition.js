@@ -22,6 +22,11 @@ var WORKSHEET_DEFINITION = {
                                         "id": "Self-fabric"
                                     }, 
                                     {
+                                        "image": {
+                                            "thumbnail_url": "img/thumbnail/Net tulle.jpg", 
+                                            "full_size_url": "img/full_size/Net tulle.jpg", 
+                                            "rights": "(C) Wikipedia user Carolus, CC-SA 3.0"
+                                        }, 
                                         "id": "Net tulle"
                                     }, 
                                     {
@@ -67,6 +72,11 @@ var WORKSHEET_DEFINITION = {
                                         "id": "Self-fabric"
                                     }, 
                                     {
+                                        "image": {
+                                            "thumbnail_url": "img/thumbnail/Net tulle.jpg", 
+                                            "full_size_url": "img/full_size/Net tulle.jpg", 
+                                            "rights": "(C) Wikipedia user Carolus, CC-SA 3.0"
+                                        }, 
                                         "id": "Net tulle"
                                     }, 
                                     {
@@ -120,6 +130,11 @@ var WORKSHEET_DEFINITION = {
                                 "id": "Self-fabric"
                             }, 
                             {
+                                "image": {
+                                    "thumbnail_url": "img/thumbnail/Net tulle.jpg", 
+                                    "full_size_url": "img/full_size/Net tulle.jpg", 
+                                    "rights": "(C) Wikipedia user Carolus, CC-SA 3.0"
+                                }, 
                                 "id": "Net tulle"
                             }, 
                             {
@@ -165,6 +180,11 @@ var WORKSHEET_DEFINITION = {
                                 "id": "Self-fabric"
                             }, 
                             {
+                                "image": {
+                                    "thumbnail_url": "img/thumbnail/Net tulle.jpg", 
+                                    "full_size_url": "img/full_size/Net tulle.jpg", 
+                                    "rights": "(C) Wikipedia user Carolus, CC-SA 3.0"
+                                }, 
                                 "id": "Net tulle"
                             }, 
                             {
@@ -210,6 +230,11 @@ var WORKSHEET_DEFINITION = {
                                 "id": "Self-fabric"
                             }, 
                             {
+                                "image": {
+                                    "thumbnail_url": "img/thumbnail/Net tulle.jpg", 
+                                    "full_size_url": "img/full_size/Net tulle.jpg", 
+                                    "rights": "(C) Wikipedia user Carolus, CC-SA 3.0"
+                                }, 
                                 "id": "Net tulle"
                             }, 
                             {
@@ -257,6 +282,11 @@ var WORKSHEET_DEFINITION = {
                                         "id": "Self-fabric"
                                     }, 
                                     {
+                                        "image": {
+                                            "thumbnail_url": "img/thumbnail/Net tulle.jpg", 
+                                            "full_size_url": "img/full_size/Net tulle.jpg", 
+                                            "rights": "(C) Wikipedia user Carolus, CC-SA 3.0"
+                                        }, 
                                         "id": "Net tulle"
                                     }, 
                                     {
@@ -302,6 +332,11 @@ var WORKSHEET_DEFINITION = {
                                         "id": "Self-fabric"
                                     }, 
                                     {
+                                        "image": {
+                                            "thumbnail_url": "img/thumbnail/Net tulle.jpg", 
+                                            "full_size_url": "img/full_size/Net tulle.jpg", 
+                                            "rights": "(C) Wikipedia user Carolus, CC-SA 3.0"
+                                        }, 
                                         "id": "Net tulle"
                                     }, 
                                     {
@@ -347,6 +382,11 @@ var WORKSHEET_DEFINITION = {
                                         "id": "Self-fabric"
                                     }, 
                                     {
+                                        "image": {
+                                            "thumbnail_url": "img/thumbnail/Net tulle.jpg", 
+                                            "full_size_url": "img/full_size/Net tulle.jpg", 
+                                            "rights": "(C) Wikipedia user Carolus, CC-SA 3.0"
+                                        }, 
                                         "id": "Net tulle"
                                     }, 
                                     {
@@ -397,6 +437,11 @@ var WORKSHEET_DEFINITION = {
                                         "id": "Self-fabric"
                                     }, 
                                     {
+                                        "image": {
+                                            "thumbnail_url": "img/thumbnail/Net tulle.jpg", 
+                                            "full_size_url": "img/full_size/Net tulle.jpg", 
+                                            "rights": "(C) Wikipedia user Carolus, CC-SA 3.0"
+                                        }, 
                                         "id": "Net tulle"
                                     }, 
                                     {
@@ -442,6 +487,11 @@ var WORKSHEET_DEFINITION = {
                                         "id": "Self-fabric"
                                     }, 
                                     {
+                                        "image": {
+                                            "thumbnail_url": "img/thumbnail/Net tulle.jpg", 
+                                            "full_size_url": "img/full_size/Net tulle.jpg", 
+                                            "rights": "(C) Wikipedia user Carolus, CC-SA 3.0"
+                                        }, 
                                         "id": "Net tulle"
                                     }, 
                                     {
@@ -487,6 +537,11 @@ var WORKSHEET_DEFINITION = {
                                         "id": "Self-fabric"
                                     }, 
                                     {
+                                        "image": {
+                                            "thumbnail_url": "img/thumbnail/Net tulle.jpg", 
+                                            "full_size_url": "img/full_size/Net tulle.jpg", 
+                                            "rights": "(C) Wikipedia user Carolus, CC-SA 3.0"
+                                        }, 
                                         "id": "Net tulle"
                                     }, 
                                     {
@@ -537,6 +592,11 @@ var WORKSHEET_DEFINITION = {
                                         "id": "Self-fabric"
                                     }, 
                                     {
+                                        "image": {
+                                            "thumbnail_url": "img/thumbnail/Net tulle.jpg", 
+                                            "full_size_url": "img/full_size/Net tulle.jpg", 
+                                            "rights": "(C) Wikipedia user Carolus, CC-SA 3.0"
+                                        }, 
                                         "id": "Net tulle"
                                     }, 
                                     {
@@ -582,6 +642,11 @@ var WORKSHEET_DEFINITION = {
                                         "id": "Self-fabric"
                                     }, 
                                     {
+                                        "image": {
+                                            "thumbnail_url": "img/thumbnail/Net tulle.jpg", 
+                                            "full_size_url": "img/full_size/Net tulle.jpg", 
+                                            "rights": "(C) Wikipedia user Carolus, CC-SA 3.0"
+                                        }, 
                                         "id": "Net tulle"
                                     }, 
                                     {
@@ -627,6 +692,11 @@ var WORKSHEET_DEFINITION = {
                                         "id": "Self-fabric"
                                     }, 
                                     {
+                                        "image": {
+                                            "thumbnail_url": "img/thumbnail/Net tulle.jpg", 
+                                            "full_size_url": "img/full_size/Net tulle.jpg", 
+                                            "rights": "(C) Wikipedia user Carolus, CC-SA 3.0"
+                                        }, 
                                         "id": "Net tulle"
                                     }, 
                                     {
