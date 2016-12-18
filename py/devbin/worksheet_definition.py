@@ -90,7 +90,15 @@ def rights(
 #     }
 # }
 closures = [
-    feature_value('Button'),
+    feature_value(
+        id_='Button',
+        image_rights=rights(
+            author='Marco Bernardini',
+            license_='CC-SA 3.0',
+            source_name='Wikipedia',
+            source_url='https://commons.wikimedia.org/wiki/File:Three_holes_buttons.jpg',
+        ),
+    ),
     feature_value('Hook and eye'),
     feature_value('Non-functional'),
     feature_value('Zip'),
