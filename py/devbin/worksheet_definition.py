@@ -51,7 +51,7 @@ def wikipedia_rights(
     )
 
 
-# Definitions
+# Features
 # decoration_applied = {
 #     'Decoration': {
 #         'Applied': [
@@ -77,6 +77,12 @@ closures['Hook-and-eye'] = feature_value(
         source_url='https://en.wikipedia.org/wiki/Hook-and-eye_closure#/media/File:Hook_and_eye_clasp.JPG'
     )
 )
+closures['Zip'] = feature_value(
+    image_rights=wikipedia_rights(
+        author='Wikipedia user Woodbine9',
+        source_url='https://commons.wikimedia.org/wiki/File:Coil_plastic_and_metal_zippers.jpg'
+    )    
+)
 #feature_value('Non-functional'),
 #feature_value('Zip'),
 features['Closure'] = {'values': closures}
@@ -97,21 +103,6 @@ colors = [
     feature_value('Red'),
     feature_value('White'),
 ]
-
-_vertical_extents = [
-    'Whole',
-    'Top',
-    'Bottom',
-]
-
-extents = OrderedDict()
-extents['Whole'] = _vertical_extents
-extents['Collar'] = []
-extents['Shoulders'] = []
-extents['Sleeves'] = []
-extents['Front'] = _vertical_extents
-extents['Back'] = _vertical_extents
-extents['Interior'] = _vertical_extents
 
 interior_characteristics = [
     feature_value('Attached underskirt'),
@@ -170,6 +161,23 @@ waistline_characteristics = [
     feature_value('Natural'),
     feature_value('Undefined waistline'),
 ]
+
+
+# Extents
+_vertical_extents = [
+    'Whole',
+    'Top',
+    'Bottom',
+]
+
+extents = OrderedDict()
+extents['Whole'] = _vertical_extents
+extents['Collar'] = []
+extents['Shoulders'] = []
+extents['Sleeves'] = []
+extents['Front'] = _vertical_extents
+extents['Back'] = _vertical_extents
+extents['Interior'] = _vertical_extents
 
 
 extent_feature_set_definitions = []

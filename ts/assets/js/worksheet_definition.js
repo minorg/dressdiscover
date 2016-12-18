@@ -34,6 +34,19 @@ var WORKSHEET_DEFINITION = {
                                             }
                                         }, 
                                         "id": "Hook-and-eye"
+                                    }, 
+                                    {
+                                        "image": {
+                                            "thumbnail_url": "img/thumbnail/Closure/Zip.jpg", 
+                                            "full_size_url": "img/full_size/Closure/Zip.jpg", 
+                                            "rights": {
+                                                "source_url": "https://commons.wikimedia.org/wiki/File:Coil_plastic_and_metal_zippers.jpg", 
+                                                "source_name": "Wikipedia", 
+                                                "license": "CC SA 3.0 Unported", 
+                                                "author": "Wikipedia user Woodbine9"
+                                            }
+                                        }, 
+                                        "id": "Zip"
                                     }
                                 ]
                             }, 
@@ -88,6 +101,19 @@ var WORKSHEET_DEFINITION = {
                                             }
                                         }, 
                                         "id": "Hook-and-eye"
+                                    }, 
+                                    {
+                                        "image": {
+                                            "thumbnail_url": "img/thumbnail/Closure/Zip.jpg", 
+                                            "full_size_url": "img/full_size/Closure/Zip.jpg", 
+                                            "rights": {
+                                                "source_url": "https://commons.wikimedia.org/wiki/File:Coil_plastic_and_metal_zippers.jpg", 
+                                                "source_name": "Wikipedia", 
+                                                "license": "CC SA 3.0 Unported", 
+                                                "author": "Wikipedia user Woodbine9"
+                                            }
+                                        }, 
+                                        "id": "Zip"
                                     }
                                 ]
                             }, 
@@ -150,6 +176,19 @@ var WORKSHEET_DEFINITION = {
                                     }
                                 }, 
                                 "id": "Hook-and-eye"
+                            }, 
+                            {
+                                "image": {
+                                    "thumbnail_url": "img/thumbnail/Closure/Zip.jpg", 
+                                    "full_size_url": "img/full_size/Closure/Zip.jpg", 
+                                    "rights": {
+                                        "source_url": "https://commons.wikimedia.org/wiki/File:Coil_plastic_and_metal_zippers.jpg", 
+                                        "source_name": "Wikipedia", 
+                                        "license": "CC SA 3.0 Unported", 
+                                        "author": "Wikipedia user Woodbine9"
+                                    }
+                                }, 
+                                "id": "Zip"
                             }
                         ]
                     }, 
@@ -204,6 +243,19 @@ var WORKSHEET_DEFINITION = {
                                     }
                                 }, 
                                 "id": "Hook-and-eye"
+                            }, 
+                            {
+                                "image": {
+                                    "thumbnail_url": "img/thumbnail/Closure/Zip.jpg", 
+                                    "full_size_url": "img/full_size/Closure/Zip.jpg", 
+                                    "rights": {
+                                        "source_url": "https://commons.wikimedia.org/wiki/File:Coil_plastic_and_metal_zippers.jpg", 
+                                        "source_name": "Wikipedia", 
+                                        "license": "CC SA 3.0 Unported", 
+                                        "author": "Wikipedia user Woodbine9"
+                                    }
+                                }, 
+                                "id": "Zip"
                             }
                         ]
                     }, 
@@ -258,6 +310,19 @@ var WORKSHEET_DEFINITION = {
                                     }
                                 }, 
                                 "id": "Hook-and-eye"
+                            }, 
+                            {
+                                "image": {
+                                    "thumbnail_url": "img/thumbnail/Closure/Zip.jpg", 
+                                    "full_size_url": "img/full_size/Closure/Zip.jpg", 
+                                    "rights": {
+                                        "source_url": "https://commons.wikimedia.org/wiki/File:Coil_plastic_and_metal_zippers.jpg", 
+                                        "source_name": "Wikipedia", 
+                                        "license": "CC SA 3.0 Unported", 
+                                        "author": "Wikipedia user Woodbine9"
+                                    }
+                                }, 
+                                "id": "Zip"
                             }
                         ]
                     }, 
@@ -314,6 +379,19 @@ var WORKSHEET_DEFINITION = {
                                             }
                                         }, 
                                         "id": "Hook-and-eye"
+                                    }, 
+                                    {
+                                        "image": {
+                                            "thumbnail_url": "img/thumbnail/Closure/Zip.jpg", 
+                                            "full_size_url": "img/full_size/Closure/Zip.jpg", 
+                                            "rights": {
+                                                "source_url": "https://commons.wikimedia.org/wiki/File:Coil_plastic_and_metal_zippers.jpg", 
+                                                "source_name": "Wikipedia", 
+                                                "license": "CC SA 3.0 Unported", 
+                                                "author": "Wikipedia user Woodbine9"
+                                            }
+                                        }, 
+                                        "id": "Zip"
                                     }
                                 ]
                             }, 
@@ -368,6 +446,19 @@ var WORKSHEET_DEFINITION = {
                                             }
                                         }, 
                                         "id": "Hook-and-eye"
+                                    }, 
+                                    {
+                                        "image": {
+                                            "thumbnail_url": "img/thumbnail/Closure/Zip.jpg", 
+                                            "full_size_url": "img/full_size/Closure/Zip.jpg", 
+                                            "rights": {
+                                                "source_url": "https://commons.wikimedia.org/wiki/File:Coil_plastic_and_metal_zippers.jpg", 
+                                                "source_name": "Wikipedia", 
+                                                "license": "CC SA 3.0 Unported", 
+                                                "author": "Wikipedia user Woodbine9"
+                                            }
+                                        }, 
+                                        "id": "Zip"
                                     }
                                 ]
                             }, 
@@ -422,6 +513,19 @@ var WORKSHEET_DEFINITION = {
                                             }
                                         }, 
                                         "id": "Hook-and-eye"
+                                    }, 
+                                    {
+                                        "image": {
+                                            "thumbnail_url": "img/thumbnail/Closure/Zip.jpg", 
+                                            "full_size_url": "img/full_size/Closure/Zip.jpg", 
+                                            "rights": {
+                                                "source_url": "https://commons.wikimedia.org/wiki/File:Coil_plastic_and_metal_zippers.jpg", 
+                                                "source_name": "Wikipedia", 
+                                                "license": "CC SA 3.0 Unported", 
+                                                "author": "Wikipedia user Woodbine9"
+                                            }
+                                        }, 
+                                        "id": "Zip"
                                     }
                                 ]
                             }, 
@@ -481,6 +585,19 @@ var WORKSHEET_DEFINITION = {
                                             }
                                         }, 
                                         "id": "Hook-and-eye"
+                                    }, 
+                                    {
+                                        "image": {
+                                            "thumbnail_url": "img/thumbnail/Closure/Zip.jpg", 
+                                            "full_size_url": "img/full_size/Closure/Zip.jpg", 
+                                            "rights": {
+                                                "source_url": "https://commons.wikimedia.org/wiki/File:Coil_plastic_and_metal_zippers.jpg", 
+                                                "source_name": "Wikipedia", 
+                                                "license": "CC SA 3.0 Unported", 
+                                                "author": "Wikipedia user Woodbine9"
+                                            }
+                                        }, 
+                                        "id": "Zip"
                                     }
                                 ]
                             }, 
@@ -535,6 +652,19 @@ var WORKSHEET_DEFINITION = {
                                             }
                                         }, 
                                         "id": "Hook-and-eye"
+                                    }, 
+                                    {
+                                        "image": {
+                                            "thumbnail_url": "img/thumbnail/Closure/Zip.jpg", 
+                                            "full_size_url": "img/full_size/Closure/Zip.jpg", 
+                                            "rights": {
+                                                "source_url": "https://commons.wikimedia.org/wiki/File:Coil_plastic_and_metal_zippers.jpg", 
+                                                "source_name": "Wikipedia", 
+                                                "license": "CC SA 3.0 Unported", 
+                                                "author": "Wikipedia user Woodbine9"
+                                            }
+                                        }, 
+                                        "id": "Zip"
                                     }
                                 ]
                             }, 
@@ -589,6 +719,19 @@ var WORKSHEET_DEFINITION = {
                                             }
                                         }, 
                                         "id": "Hook-and-eye"
+                                    }, 
+                                    {
+                                        "image": {
+                                            "thumbnail_url": "img/thumbnail/Closure/Zip.jpg", 
+                                            "full_size_url": "img/full_size/Closure/Zip.jpg", 
+                                            "rights": {
+                                                "source_url": "https://commons.wikimedia.org/wiki/File:Coil_plastic_and_metal_zippers.jpg", 
+                                                "source_name": "Wikipedia", 
+                                                "license": "CC SA 3.0 Unported", 
+                                                "author": "Wikipedia user Woodbine9"
+                                            }
+                                        }, 
+                                        "id": "Zip"
                                     }
                                 ]
                             }, 
@@ -648,6 +791,19 @@ var WORKSHEET_DEFINITION = {
                                             }
                                         }, 
                                         "id": "Hook-and-eye"
+                                    }, 
+                                    {
+                                        "image": {
+                                            "thumbnail_url": "img/thumbnail/Closure/Zip.jpg", 
+                                            "full_size_url": "img/full_size/Closure/Zip.jpg", 
+                                            "rights": {
+                                                "source_url": "https://commons.wikimedia.org/wiki/File:Coil_plastic_and_metal_zippers.jpg", 
+                                                "source_name": "Wikipedia", 
+                                                "license": "CC SA 3.0 Unported", 
+                                                "author": "Wikipedia user Woodbine9"
+                                            }
+                                        }, 
+                                        "id": "Zip"
                                     }
                                 ]
                             }, 
@@ -702,6 +858,19 @@ var WORKSHEET_DEFINITION = {
                                             }
                                         }, 
                                         "id": "Hook-and-eye"
+                                    }, 
+                                    {
+                                        "image": {
+                                            "thumbnail_url": "img/thumbnail/Closure/Zip.jpg", 
+                                            "full_size_url": "img/full_size/Closure/Zip.jpg", 
+                                            "rights": {
+                                                "source_url": "https://commons.wikimedia.org/wiki/File:Coil_plastic_and_metal_zippers.jpg", 
+                                                "source_name": "Wikipedia", 
+                                                "license": "CC SA 3.0 Unported", 
+                                                "author": "Wikipedia user Woodbine9"
+                                            }
+                                        }, 
+                                        "id": "Zip"
                                     }
                                 ]
                             }, 
@@ -756,6 +925,19 @@ var WORKSHEET_DEFINITION = {
                                             }
                                         }, 
                                         "id": "Hook-and-eye"
+                                    }, 
+                                    {
+                                        "image": {
+                                            "thumbnail_url": "img/thumbnail/Closure/Zip.jpg", 
+                                            "full_size_url": "img/full_size/Closure/Zip.jpg", 
+                                            "rights": {
+                                                "source_url": "https://commons.wikimedia.org/wiki/File:Coil_plastic_and_metal_zippers.jpg", 
+                                                "source_name": "Wikipedia", 
+                                                "license": "CC SA 3.0 Unported", 
+                                                "author": "Wikipedia user Woodbine9"
+                                            }
+                                        }, 
+                                        "id": "Zip"
                                     }
                                 ]
                             }, 
