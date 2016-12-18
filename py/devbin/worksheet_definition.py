@@ -1,4 +1,5 @@
 from collections import OrderedDict
+import os.path
 
 from dressdiscover.api.models.worksheet.worksheet_definition import WorksheetDefinition
 from dressdiscover.api.models.worksheet.worksheet_feature_definition import WorksheetFeatureDefinition
@@ -6,6 +7,12 @@ from dressdiscover.api.models.worksheet.worksheet_feature_set_definition import 
 from dressdiscover.api.models.worksheet.worksheet_feature_value_definition import WorksheetFeatureValueDefinition
 from dressdiscover.api.models.worksheet.worksheet_feature_value_image import WorksheetFeatureValueImage
 from dressdiscover.api.models.worksheet.worksheet_feature_value_image_rights import WorksheetFeatureValueImageRights
+
+
+# Constants
+ASSETS_DIR_PATH = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..', 'ts', 'assets'))
+assert os.path.isdir(ASSETS_DIR_PATH), ASSETS_DIR_PATH
+THUMBNAIL_DIMENSIONS = (200, 200)
 
 
 # Helper functions
@@ -34,12 +41,28 @@ def image(
     rights,
     file_extension='jpg'
 ):
-    return \
-        WorksheetFeatureValueImage.Builder()\
-            .set_full_size_url("img/full_size/%(id_)s.%(file_extension)s" % locals())\
-            .set_rights(rights)\
-            .set_thumbnail_url("img/thumbnail/%(id_)s.%(file_extension)s" % locals())\
-            .build()
+    builder = WorksheetFeatureValueImage.Builder()
+    builder.set_rights(rights)    
+    
+    file_name = "%(id_)s.%(file_extension)s" % locals()
+    
+    full_size_file_path = os.path.join(ASSETS_DIR_PATH, 'img', 'full_size', file_name)
+    if not os.path.isfile(full_size_file_path):
+        raise ValueError("%(full_size_file_path)s does not exist" % locals())
+    builder.set_full_size_url("img/full_size/" + file_name)
+    
+    thumbnail_file_path = os.path.join(ASSETS_DIR_PATH, 'img', 'thumbnail', file_name)
+    if not os.path.isfile(thumbnail_file_path):
+        from PIL import Image  # @UnresolvedImport
+        thumbnail = Image.open(full_size_file_path)
+        # Use .resize and .thumbnail, because the latter preserves the aspect ratio,
+        # which we don't want.
+        thumbnail = thumbnail.resize(THUMBNAIL_DIMENSIONS)
+        thumbnail.save(thumbnail_file_path)
+        print "saved thumbnail to", thumbnail_file_path
+    builder.set_thumbnail_url("img/thumbnail/" + file_name)
+    
+    return builder.build()
 
 def rights(
     author,
@@ -229,9 +252,10 @@ WORKSHEET_DEFINITION = \
 
 
 if __name__ == '__main__':
-    import json
-    from thryft.protocol.builtins_output_protocol import BuiltinsOutputProtocol
-    oprot = BuiltinsOutputProtocol()
-    WORKSHEET_DEFINITION.write(oprot)
-    print json.dumps(oprot.value, indent=2)
+    with open(os.path.join(ASSETS_DIR_PATH, 'js', 'worksheet_definition.js'), 'w+b') as f:
+        import json
+        from thryft.protocol.builtins_output_protocol import BuiltinsOutputProtocol
+        oprot = BuiltinsOutputProtocol()
+        WORKSHEET_DEFINITION.write(oprot)
+        f.write('var WORKSHEET_DEFINITION = ' + json.dumps(oprot.value, indent=4) + "\n")
 
