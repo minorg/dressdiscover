@@ -27,6 +27,7 @@ var WORKSHEET_DEFINITION = {
                                             "full_size_url": "img/full_size/Net tulle.jpg", 
                                             "rights": {
                                                 "source_url": "https://commons.wikimedia.org/wiki/File:Carolus_-Private_Collection_-_zwarte_tulekant.jpg", 
+                                                "source_name": "Wikipedia", 
                                                 "license": "CC-SA 3.0", 
                                                 "author": "Wikipedia user Carolus"
                                             }
@@ -81,6 +82,7 @@ var WORKSHEET_DEFINITION = {
                                             "full_size_url": "img/full_size/Net tulle.jpg", 
                                             "rights": {
                                                 "source_url": "https://commons.wikimedia.org/wiki/File:Carolus_-Private_Collection_-_zwarte_tulekant.jpg", 
+                                                "source_name": "Wikipedia", 
                                                 "license": "CC-SA 3.0", 
                                                 "author": "Wikipedia user Carolus"
                                             }
@@ -143,6 +145,7 @@ var WORKSHEET_DEFINITION = {
                                     "full_size_url": "img/full_size/Net tulle.jpg", 
                                     "rights": {
                                         "source_url": "https://commons.wikimedia.org/wiki/File:Carolus_-Private_Collection_-_zwarte_tulekant.jpg", 
+                                        "source_name": "Wikipedia", 
                                         "license": "CC-SA 3.0", 
                                         "author": "Wikipedia user Carolus"
                                     }
@@ -197,6 +200,7 @@ var WORKSHEET_DEFINITION = {
                                     "full_size_url": "img/full_size/Net tulle.jpg", 
                                     "rights": {
                                         "source_url": "https://commons.wikimedia.org/wiki/File:Carolus_-Private_Collection_-_zwarte_tulekant.jpg", 
+                                        "source_name": "Wikipedia", 
                                         "license": "CC-SA 3.0", 
                                         "author": "Wikipedia user Carolus"
                                     }
@@ -251,6 +255,7 @@ var WORKSHEET_DEFINITION = {
                                     "full_size_url": "img/full_size/Net tulle.jpg", 
                                     "rights": {
                                         "source_url": "https://commons.wikimedia.org/wiki/File:Carolus_-Private_Collection_-_zwarte_tulekant.jpg", 
+                                        "source_name": "Wikipedia", 
                                         "license": "CC-SA 3.0", 
                                         "author": "Wikipedia user Carolus"
                                     }
@@ -307,6 +312,7 @@ var WORKSHEET_DEFINITION = {
                                             "full_size_url": "img/full_size/Net tulle.jpg", 
                                             "rights": {
                                                 "source_url": "https://commons.wikimedia.org/wiki/File:Carolus_-Private_Collection_-_zwarte_tulekant.jpg", 
+                                                "source_name": "Wikipedia", 
                                                 "license": "CC-SA 3.0", 
                                                 "author": "Wikipedia user Carolus"
                                             }
@@ -361,6 +367,7 @@ var WORKSHEET_DEFINITION = {
                                             "full_size_url": "img/full_size/Net tulle.jpg", 
                                             "rights": {
                                                 "source_url": "https://commons.wikimedia.org/wiki/File:Carolus_-Private_Collection_-_zwarte_tulekant.jpg", 
+                                                "source_name": "Wikipedia", 
                                                 "license": "CC-SA 3.0", 
                                                 "author": "Wikipedia user Carolus"
                                             }
@@ -415,6 +422,7 @@ var WORKSHEET_DEFINITION = {
                                             "full_size_url": "img/full_size/Net tulle.jpg", 
                                             "rights": {
                                                 "source_url": "https://commons.wikimedia.org/wiki/File:Carolus_-Private_Collection_-_zwarte_tulekant.jpg", 
+                                                "source_name": "Wikipedia", 
                                                 "license": "CC-SA 3.0", 
                                                 "author": "Wikipedia user Carolus"
                                             }
@@ -474,6 +482,7 @@ var WORKSHEET_DEFINITION = {
                                             "full_size_url": "img/full_size/Net tulle.jpg", 
                                             "rights": {
                                                 "source_url": "https://commons.wikimedia.org/wiki/File:Carolus_-Private_Collection_-_zwarte_tulekant.jpg", 
+                                                "source_name": "Wikipedia", 
                                                 "license": "CC-SA 3.0", 
                                                 "author": "Wikipedia user Carolus"
                                             }
@@ -528,6 +537,7 @@ var WORKSHEET_DEFINITION = {
                                             "full_size_url": "img/full_size/Net tulle.jpg", 
                                             "rights": {
                                                 "source_url": "https://commons.wikimedia.org/wiki/File:Carolus_-Private_Collection_-_zwarte_tulekant.jpg", 
+                                                "source_name": "Wikipedia", 
                                                 "license": "CC-SA 3.0", 
                                                 "author": "Wikipedia user Carolus"
                                             }
@@ -582,6 +592,7 @@ var WORKSHEET_DEFINITION = {
                                             "full_size_url": "img/full_size/Net tulle.jpg", 
                                             "rights": {
                                                 "source_url": "https://commons.wikimedia.org/wiki/File:Carolus_-Private_Collection_-_zwarte_tulekant.jpg", 
+                                                "source_name": "Wikipedia", 
                                                 "license": "CC-SA 3.0", 
                                                 "author": "Wikipedia user Carolus"
                                             }
@@ -641,6 +652,7 @@ var WORKSHEET_DEFINITION = {
                                             "full_size_url": "img/full_size/Net tulle.jpg", 
                                             "rights": {
                                                 "source_url": "https://commons.wikimedia.org/wiki/File:Carolus_-Private_Collection_-_zwarte_tulekant.jpg", 
+                                                "source_name": "Wikipedia", 
                                                 "license": "CC-SA 3.0", 
                                                 "author": "Wikipedia user Carolus"
                                             }
@@ -695,6 +707,7 @@ var WORKSHEET_DEFINITION = {
                                             "full_size_url": "img/full_size/Net tulle.jpg", 
                                             "rights": {
                                                 "source_url": "https://commons.wikimedia.org/wiki/File:Carolus_-Private_Collection_-_zwarte_tulekant.jpg", 
+                                                "source_name": "Wikipedia", 
                                                 "license": "CC-SA 3.0", 
                                                 "author": "Wikipedia user Carolus"
                                             }
@@ -749,6 +762,7 @@ var WORKSHEET_DEFINITION = {
                                             "full_size_url": "img/full_size/Net tulle.jpg", 
                                             "rights": {
                                                 "source_url": "https://commons.wikimedia.org/wiki/File:Carolus_-Private_Collection_-_zwarte_tulekant.jpg", 
+                                                "source_name": "Wikipedia", 
                                                 "license": "CC-SA 3.0", 
                                                 "author": "Wikipedia user Carolus"
                                             }

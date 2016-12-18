@@ -121,6 +121,7 @@ materials = [
         image_rights=rights(
             author='Wikipedia user Carolus',
             license_='CC-SA 3.0',
+            source_name='Wikipedia',
             source_url='https://commons.wikimedia.org/wiki/File:Carolus_-Private_Collection_-_zwarte_tulekant.jpg',
         )
     ),
