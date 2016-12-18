@@ -109,24 +109,28 @@ waistline_characteristics = [
 # TODO: label as text in Whole
 
 
-def __to_enum_feature_definition(id_, values_list):
+def __to_enum_feature_definition(
+    id_,
+    parent_feature_set_ids,
+    value_ids
+):
     value_definitions = []
-    for value in values_list:
+    for value in value_ids:
         value_definitions.append(
             WorksheetFeatureValueDefinition.Builder()
                 .set_id(value)
                 .set_image(
                     WorksheetFeatureValueImage.Builder()
-                        .set_full_size_url("img/feature_value_placeholder_full_size.png")
+                        .set_full_size_url("img/full_size/placeholder.png")
                         .set_rights("Placeholder rights")
-                        .set_thumbnail_url("img/feature_value_placeholder_thumbnail.png")
+                        .set_thumbnail_url("img/thumbnail/placeholder.png")
                         .build()
                     )
                 .build()
         )
     return \
         WorksheetFeatureDefinition.Builder()\
-            .set_id(id_)\
+            .set_id(' '.join(parent_feature_set_ids + [id_]))\
             .set_values_(tuple(value_definitions))\
             .build()
 
@@ -149,16 +153,23 @@ for extent, sub_extents in extents.iteritems():
         if extent == sub_extent:
             continue
 
-        feature_id_prefix = extent
+        parent_feature_set_ids = [extent]
         if sub_extent is None:
             sub_extent_feature_definitions = extent_feature_definitions
         else:
-            feature_id_prefix = feature_id_prefix + ' ' + sub_extent
             sub_extent_feature_definitions = []
-        feature_id_prefix = feature_id_prefix + ' '
+            parent_feature_set_ids.append(sub_extent)
 
-        sub_extent_feature_definitions.append(__to_enum_feature_definition(feature_id_prefix + 'Material', materials))
-        sub_extent_feature_definitions.append(__to_enum_feature_definition(feature_id_prefix + 'Print', prints))
+        sub_extent_feature_definitions.append(__to_enum_feature_definition(
+            id_='Material',
+            parent_feature_set_ids=parent_feature_set_ids,
+            value_ids=materials
+        ))
+        sub_extent_feature_definitions.append(__to_enum_feature_definition(
+            id_='Print',
+            parent_feature_set_ids=parent_feature_set_ids,
+            value_ids=prints
+        ))
         # TODO: append technique etc. here
 
         if sub_extent is not None:

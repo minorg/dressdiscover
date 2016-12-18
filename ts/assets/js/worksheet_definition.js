@@ -11,48 +11,48 @@ var WORKSHEET_DEFINITION = {
                                 "values_": [
                                     {
                                         "image": {
-                                            "thumbnail_url": "img/feature_value_placeholder_thumbnail.png", 
-                                            "full_size_url": "img/feature_value_placeholder_full_size.png", 
+                                            "thumbnail_url": "img/thumbnail/placeholder.png", 
+                                            "full_size_url": "img/full_size/placeholder.png", 
                                             "rights": "Placeholder rights"
                                         }, 
                                         "id": "Cotton"
                                     }, 
                                     {
                                         "image": {
-                                            "thumbnail_url": "img/feature_value_placeholder_thumbnail.png", 
-                                            "full_size_url": "img/feature_value_placeholder_full_size.png", 
+                                            "thumbnail_url": "img/thumbnail/placeholder.png", 
+                                            "full_size_url": "img/full_size/placeholder.png", 
                                             "rights": "Placeholder rights"
                                         }, 
                                         "id": "Elastic"
                                     }, 
                                     {
                                         "image": {
-                                            "thumbnail_url": "img/feature_value_placeholder_thumbnail.png", 
-                                            "full_size_url": "img/feature_value_placeholder_full_size.png", 
+                                            "thumbnail_url": "img/thumbnail/placeholder.png", 
+                                            "full_size_url": "img/full_size/placeholder.png", 
                                             "rights": "Placeholder rights"
                                         }, 
                                         "id": "Plastic"
                                     }, 
                                     {
                                         "image": {
-                                            "thumbnail_url": "img/feature_value_placeholder_thumbnail.png", 
-                                            "full_size_url": "img/feature_value_placeholder_full_size.png", 
+                                            "thumbnail_url": "img/thumbnail/placeholder.png", 
+                                            "full_size_url": "img/full_size/placeholder.png", 
                                             "rights": "Placeholder rights"
                                         }, 
                                         "id": "Self-fabric"
                                     }, 
                                     {
                                         "image": {
-                                            "thumbnail_url": "img/feature_value_placeholder_thumbnail.png", 
-                                            "full_size_url": "img/feature_value_placeholder_full_size.png", 
+                                            "thumbnail_url": "img/thumbnail/placeholder.png", 
+                                            "full_size_url": "img/full_size/placeholder.png", 
                                             "rights": "Placeholder rights"
                                         }, 
                                         "id": "Net tulle"
                                     }, 
                                     {
                                         "image": {
-                                            "thumbnail_url": "img/feature_value_placeholder_thumbnail.png", 
-                                            "full_size_url": "img/feature_value_placeholder_full_size.png", 
+                                            "thumbnail_url": "img/thumbnail/placeholder.png", 
+                                            "full_size_url": "img/full_size/placeholder.png", 
                                             "rights": "Placeholder rights"
                                         }, 
                                         "id": "Velvet"
@@ -64,32 +64,32 @@ var WORKSHEET_DEFINITION = {
                                 "values_": [
                                     {
                                         "image": {
-                                            "thumbnail_url": "img/feature_value_placeholder_thumbnail.png", 
-                                            "full_size_url": "img/feature_value_placeholder_full_size.png", 
+                                            "thumbnail_url": "img/thumbnail/placeholder.png", 
+                                            "full_size_url": "img/full_size/placeholder.png", 
                                             "rights": "Placeholder rights"
                                         }, 
                                         "id": "Abstracted floral"
                                     }, 
                                     {
                                         "image": {
-                                            "thumbnail_url": "img/feature_value_placeholder_thumbnail.png", 
-                                            "full_size_url": "img/feature_value_placeholder_full_size.png", 
+                                            "thumbnail_url": "img/thumbnail/placeholder.png", 
+                                            "full_size_url": "img/full_size/placeholder.png", 
                                             "rights": "Placeholder rights"
                                         }, 
                                         "id": "Checkerboard"
                                     }, 
                                     {
                                         "image": {
-                                            "thumbnail_url": "img/feature_value_placeholder_thumbnail.png", 
-                                            "full_size_url": "img/feature_value_placeholder_full_size.png", 
+                                            "thumbnail_url": "img/thumbnail/placeholder.png", 
+                                            "full_size_url": "img/full_size/placeholder.png", 
                                             "rights": "Placeholder rights"
                                         }, 
                                         "id": "Floral"
                                     }, 
                                     {
                                         "image": {
-                                            "thumbnail_url": "img/feature_value_placeholder_thumbnail.png", 
-                                            "full_size_url": "img/feature_value_placeholder_full_size.png", 
+                                            "thumbnail_url": "img/thumbnail/placeholder.png", 
+                                            "full_size_url": "img/full_size/placeholder.png", 
                                             "rights": "Placeholder rights"
                                         }, 
                                         "id": "Plaid"
@@ -106,48 +106,48 @@ var WORKSHEET_DEFINITION = {
                                 "values_": [
                                     {
                                         "image": {
-                                            "thumbnail_url": "img/feature_value_placeholder_thumbnail.png", 
-                                            "full_size_url": "img/feature_value_placeholder_full_size.png", 
+                                            "thumbnail_url": "img/thumbnail/placeholder.png", 
+                                            "full_size_url": "img/full_size/placeholder.png", 
                                             "rights": "Placeholder rights"
                                         }, 
                                         "id": "Cotton"
                                     }, 
                                     {
                                         "image": {
-                                            "thumbnail_url": "img/feature_value_placeholder_thumbnail.png", 
-                                            "full_size_url": "img/feature_value_placeholder_full_size.png", 
+                                            "thumbnail_url": "img/thumbnail/placeholder.png", 
+                                            "full_size_url": "img/full_size/placeholder.png", 
                                             "rights": "Placeholder rights"
                                         }, 
                                         "id": "Elastic"
                                     }, 
                                     {
                                         "image": {
-                                            "thumbnail_url": "img/feature_value_placeholder_thumbnail.png", 
-                                            "full_size_url": "img/feature_value_placeholder_full_size.png", 
+                                            "thumbnail_url": "img/thumbnail/placeholder.png", 
+                                            "full_size_url": "img/full_size/placeholder.png", 
                                             "rights": "Placeholder rights"
                                         }, 
                                         "id": "Plastic"
                                     }, 
                                     {
                                         "image": {
-                                            "thumbnail_url": "img/feature_value_placeholder_thumbnail.png", 
-                                            "full_size_url": "img/feature_value_placeholder_full_size.png", 
+                                            "thumbnail_url": "img/thumbnail/placeholder.png", 
+                                            "full_size_url": "img/full_size/placeholder.png", 
                                             "rights": "Placeholder rights"
                                         }, 
                                         "id": "Self-fabric"
                                     }, 
                                     {
                                         "image": {
-                                            "thumbnail_url": "img/feature_value_placeholder_thumbnail.png", 
-                                            "full_size_url": "img/feature_value_placeholder_full_size.png", 
+                                            "thumbnail_url": "img/thumbnail/placeholder.png", 
+                                            "full_size_url": "img/full_size/placeholder.png", 
                                             "rights": "Placeholder rights"
                                         }, 
                                         "id": "Net tulle"
                                     }, 
                                     {
                                         "image": {
-                                            "thumbnail_url": "img/feature_value_placeholder_thumbnail.png", 
-                                            "full_size_url": "img/feature_value_placeholder_full_size.png", 
+                                            "thumbnail_url": "img/thumbnail/placeholder.png", 
+                                            "full_size_url": "img/full_size/placeholder.png", 
                                             "rights": "Placeholder rights"
                                         }, 
                                         "id": "Velvet"
@@ -159,32 +159,32 @@ var WORKSHEET_DEFINITION = {
                                 "values_": [
                                     {
                                         "image": {
-                                            "thumbnail_url": "img/feature_value_placeholder_thumbnail.png", 
-                                            "full_size_url": "img/feature_value_placeholder_full_size.png", 
+                                            "thumbnail_url": "img/thumbnail/placeholder.png", 
+                                            "full_size_url": "img/full_size/placeholder.png", 
                                             "rights": "Placeholder rights"
                                         }, 
                                         "id": "Abstracted floral"
                                     }, 
                                     {
                                         "image": {
-                                            "thumbnail_url": "img/feature_value_placeholder_thumbnail.png", 
-                                            "full_size_url": "img/feature_value_placeholder_full_size.png", 
+                                            "thumbnail_url": "img/thumbnail/placeholder.png", 
+                                            "full_size_url": "img/full_size/placeholder.png", 
                                             "rights": "Placeholder rights"
                                         }, 
                                         "id": "Checkerboard"
                                     }, 
                                     {
                                         "image": {
-                                            "thumbnail_url": "img/feature_value_placeholder_thumbnail.png", 
-                                            "full_size_url": "img/feature_value_placeholder_full_size.png", 
+                                            "thumbnail_url": "img/thumbnail/placeholder.png", 
+                                            "full_size_url": "img/full_size/placeholder.png", 
                                             "rights": "Placeholder rights"
                                         }, 
                                         "id": "Floral"
                                     }, 
                                     {
                                         "image": {
-                                            "thumbnail_url": "img/feature_value_placeholder_thumbnail.png", 
-                                            "full_size_url": "img/feature_value_placeholder_full_size.png", 
+                                            "thumbnail_url": "img/thumbnail/placeholder.png", 
+                                            "full_size_url": "img/full_size/placeholder.png", 
                                             "rights": "Placeholder rights"
                                         }, 
                                         "id": "Plaid"
@@ -209,48 +209,48 @@ var WORKSHEET_DEFINITION = {
                         "values_": [
                             {
                                 "image": {
-                                    "thumbnail_url": "img/feature_value_placeholder_thumbnail.png", 
-                                    "full_size_url": "img/feature_value_placeholder_full_size.png", 
+                                    "thumbnail_url": "img/thumbnail/placeholder.png", 
+                                    "full_size_url": "img/full_size/placeholder.png", 
                                     "rights": "Placeholder rights"
                                 }, 
                                 "id": "Cotton"
                             }, 
                             {
                                 "image": {
-                                    "thumbnail_url": "img/feature_value_placeholder_thumbnail.png", 
-                                    "full_size_url": "img/feature_value_placeholder_full_size.png", 
+                                    "thumbnail_url": "img/thumbnail/placeholder.png", 
+                                    "full_size_url": "img/full_size/placeholder.png", 
                                     "rights": "Placeholder rights"
                                 }, 
                                 "id": "Elastic"
                             }, 
                             {
                                 "image": {
-                                    "thumbnail_url": "img/feature_value_placeholder_thumbnail.png", 
-                                    "full_size_url": "img/feature_value_placeholder_full_size.png", 
+                                    "thumbnail_url": "img/thumbnail/placeholder.png", 
+                                    "full_size_url": "img/full_size/placeholder.png", 
                                     "rights": "Placeholder rights"
                                 }, 
                                 "id": "Plastic"
                             }, 
                             {
                                 "image": {
-                                    "thumbnail_url": "img/feature_value_placeholder_thumbnail.png", 
-                                    "full_size_url": "img/feature_value_placeholder_full_size.png", 
+                                    "thumbnail_url": "img/thumbnail/placeholder.png", 
+                                    "full_size_url": "img/full_size/placeholder.png", 
                                     "rights": "Placeholder rights"
                                 }, 
                                 "id": "Self-fabric"
                             }, 
                             {
                                 "image": {
-                                    "thumbnail_url": "img/feature_value_placeholder_thumbnail.png", 
-                                    "full_size_url": "img/feature_value_placeholder_full_size.png", 
+                                    "thumbnail_url": "img/thumbnail/placeholder.png", 
+                                    "full_size_url": "img/full_size/placeholder.png", 
                                     "rights": "Placeholder rights"
                                 }, 
                                 "id": "Net tulle"
                             }, 
                             {
                                 "image": {
-                                    "thumbnail_url": "img/feature_value_placeholder_thumbnail.png", 
-                                    "full_size_url": "img/feature_value_placeholder_full_size.png", 
+                                    "thumbnail_url": "img/thumbnail/placeholder.png", 
+                                    "full_size_url": "img/full_size/placeholder.png", 
                                     "rights": "Placeholder rights"
                                 }, 
                                 "id": "Velvet"
@@ -262,32 +262,32 @@ var WORKSHEET_DEFINITION = {
                         "values_": [
                             {
                                 "image": {
-                                    "thumbnail_url": "img/feature_value_placeholder_thumbnail.png", 
-                                    "full_size_url": "img/feature_value_placeholder_full_size.png", 
+                                    "thumbnail_url": "img/thumbnail/placeholder.png", 
+                                    "full_size_url": "img/full_size/placeholder.png", 
                                     "rights": "Placeholder rights"
                                 }, 
                                 "id": "Abstracted floral"
                             }, 
                             {
                                 "image": {
-                                    "thumbnail_url": "img/feature_value_placeholder_thumbnail.png", 
-                                    "full_size_url": "img/feature_value_placeholder_full_size.png", 
+                                    "thumbnail_url": "img/thumbnail/placeholder.png", 
+                                    "full_size_url": "img/full_size/placeholder.png", 
                                     "rights": "Placeholder rights"
                                 }, 
                                 "id": "Checkerboard"
                             }, 
                             {
                                 "image": {
-                                    "thumbnail_url": "img/feature_value_placeholder_thumbnail.png", 
-                                    "full_size_url": "img/feature_value_placeholder_full_size.png", 
+                                    "thumbnail_url": "img/thumbnail/placeholder.png", 
+                                    "full_size_url": "img/full_size/placeholder.png", 
                                     "rights": "Placeholder rights"
                                 }, 
                                 "id": "Floral"
                             }, 
                             {
                                 "image": {
-                                    "thumbnail_url": "img/feature_value_placeholder_thumbnail.png", 
-                                    "full_size_url": "img/feature_value_placeholder_full_size.png", 
+                                    "thumbnail_url": "img/thumbnail/placeholder.png", 
+                                    "full_size_url": "img/full_size/placeholder.png", 
                                     "rights": "Placeholder rights"
                                 }, 
                                 "id": "Plaid"
@@ -304,48 +304,48 @@ var WORKSHEET_DEFINITION = {
                         "values_": [
                             {
                                 "image": {
-                                    "thumbnail_url": "img/feature_value_placeholder_thumbnail.png", 
-                                    "full_size_url": "img/feature_value_placeholder_full_size.png", 
+                                    "thumbnail_url": "img/thumbnail/placeholder.png", 
+                                    "full_size_url": "img/full_size/placeholder.png", 
                                     "rights": "Placeholder rights"
                                 }, 
                                 "id": "Cotton"
                             }, 
                             {
                                 "image": {
-                                    "thumbnail_url": "img/feature_value_placeholder_thumbnail.png", 
-                                    "full_size_url": "img/feature_value_placeholder_full_size.png", 
+                                    "thumbnail_url": "img/thumbnail/placeholder.png", 
+                                    "full_size_url": "img/full_size/placeholder.png", 
                                     "rights": "Placeholder rights"
                                 }, 
                                 "id": "Elastic"
                             }, 
                             {
                                 "image": {
-                                    "thumbnail_url": "img/feature_value_placeholder_thumbnail.png", 
-                                    "full_size_url": "img/feature_value_placeholder_full_size.png", 
+                                    "thumbnail_url": "img/thumbnail/placeholder.png", 
+                                    "full_size_url": "img/full_size/placeholder.png", 
                                     "rights": "Placeholder rights"
                                 }, 
                                 "id": "Plastic"
                             }, 
                             {
                                 "image": {
-                                    "thumbnail_url": "img/feature_value_placeholder_thumbnail.png", 
-                                    "full_size_url": "img/feature_value_placeholder_full_size.png", 
+                                    "thumbnail_url": "img/thumbnail/placeholder.png", 
+                                    "full_size_url": "img/full_size/placeholder.png", 
                                     "rights": "Placeholder rights"
                                 }, 
                                 "id": "Self-fabric"
                             }, 
                             {
                                 "image": {
-                                    "thumbnail_url": "img/feature_value_placeholder_thumbnail.png", 
-                                    "full_size_url": "img/feature_value_placeholder_full_size.png", 
+                                    "thumbnail_url": "img/thumbnail/placeholder.png", 
+                                    "full_size_url": "img/full_size/placeholder.png", 
                                     "rights": "Placeholder rights"
                                 }, 
                                 "id": "Net tulle"
                             }, 
                             {
                                 "image": {
-                                    "thumbnail_url": "img/feature_value_placeholder_thumbnail.png", 
-                                    "full_size_url": "img/feature_value_placeholder_full_size.png", 
+                                    "thumbnail_url": "img/thumbnail/placeholder.png", 
+                                    "full_size_url": "img/full_size/placeholder.png", 
                                     "rights": "Placeholder rights"
                                 }, 
                                 "id": "Velvet"
@@ -357,32 +357,32 @@ var WORKSHEET_DEFINITION = {
                         "values_": [
                             {
                                 "image": {
-                                    "thumbnail_url": "img/feature_value_placeholder_thumbnail.png", 
-                                    "full_size_url": "img/feature_value_placeholder_full_size.png", 
+                                    "thumbnail_url": "img/thumbnail/placeholder.png", 
+                                    "full_size_url": "img/full_size/placeholder.png", 
                                     "rights": "Placeholder rights"
                                 }, 
                                 "id": "Abstracted floral"
                             }, 
                             {
                                 "image": {
-                                    "thumbnail_url": "img/feature_value_placeholder_thumbnail.png", 
-                                    "full_size_url": "img/feature_value_placeholder_full_size.png", 
+                                    "thumbnail_url": "img/thumbnail/placeholder.png", 
+                                    "full_size_url": "img/full_size/placeholder.png", 
                                     "rights": "Placeholder rights"
                                 }, 
                                 "id": "Checkerboard"
                             }, 
                             {
                                 "image": {
-                                    "thumbnail_url": "img/feature_value_placeholder_thumbnail.png", 
-                                    "full_size_url": "img/feature_value_placeholder_full_size.png", 
+                                    "thumbnail_url": "img/thumbnail/placeholder.png", 
+                                    "full_size_url": "img/full_size/placeholder.png", 
                                     "rights": "Placeholder rights"
                                 }, 
                                 "id": "Floral"
                             }, 
                             {
                                 "image": {
-                                    "thumbnail_url": "img/feature_value_placeholder_thumbnail.png", 
-                                    "full_size_url": "img/feature_value_placeholder_full_size.png", 
+                                    "thumbnail_url": "img/thumbnail/placeholder.png", 
+                                    "full_size_url": "img/full_size/placeholder.png", 
                                     "rights": "Placeholder rights"
                                 }, 
                                 "id": "Plaid"
@@ -399,48 +399,48 @@ var WORKSHEET_DEFINITION = {
                         "values_": [
                             {
                                 "image": {
-                                    "thumbnail_url": "img/feature_value_placeholder_thumbnail.png", 
-                                    "full_size_url": "img/feature_value_placeholder_full_size.png", 
+                                    "thumbnail_url": "img/thumbnail/placeholder.png", 
+                                    "full_size_url": "img/full_size/placeholder.png", 
                                     "rights": "Placeholder rights"
                                 }, 
                                 "id": "Cotton"
                             }, 
                             {
                                 "image": {
-                                    "thumbnail_url": "img/feature_value_placeholder_thumbnail.png", 
-                                    "full_size_url": "img/feature_value_placeholder_full_size.png", 
+                                    "thumbnail_url": "img/thumbnail/placeholder.png", 
+                                    "full_size_url": "img/full_size/placeholder.png", 
                                     "rights": "Placeholder rights"
                                 }, 
                                 "id": "Elastic"
                             }, 
                             {
                                 "image": {
-                                    "thumbnail_url": "img/feature_value_placeholder_thumbnail.png", 
-                                    "full_size_url": "img/feature_value_placeholder_full_size.png", 
+                                    "thumbnail_url": "img/thumbnail/placeholder.png", 
+                                    "full_size_url": "img/full_size/placeholder.png", 
                                     "rights": "Placeholder rights"
                                 }, 
                                 "id": "Plastic"
                             }, 
                             {
                                 "image": {
-                                    "thumbnail_url": "img/feature_value_placeholder_thumbnail.png", 
-                                    "full_size_url": "img/feature_value_placeholder_full_size.png", 
+                                    "thumbnail_url": "img/thumbnail/placeholder.png", 
+                                    "full_size_url": "img/full_size/placeholder.png", 
                                     "rights": "Placeholder rights"
                                 }, 
                                 "id": "Self-fabric"
                             }, 
                             {
                                 "image": {
-                                    "thumbnail_url": "img/feature_value_placeholder_thumbnail.png", 
-                                    "full_size_url": "img/feature_value_placeholder_full_size.png", 
+                                    "thumbnail_url": "img/thumbnail/placeholder.png", 
+                                    "full_size_url": "img/full_size/placeholder.png", 
                                     "rights": "Placeholder rights"
                                 }, 
                                 "id": "Net tulle"
                             }, 
                             {
                                 "image": {
-                                    "thumbnail_url": "img/feature_value_placeholder_thumbnail.png", 
-                                    "full_size_url": "img/feature_value_placeholder_full_size.png", 
+                                    "thumbnail_url": "img/thumbnail/placeholder.png", 
+                                    "full_size_url": "img/full_size/placeholder.png", 
                                     "rights": "Placeholder rights"
                                 }, 
                                 "id": "Velvet"
@@ -452,32 +452,32 @@ var WORKSHEET_DEFINITION = {
                         "values_": [
                             {
                                 "image": {
-                                    "thumbnail_url": "img/feature_value_placeholder_thumbnail.png", 
-                                    "full_size_url": "img/feature_value_placeholder_full_size.png", 
+                                    "thumbnail_url": "img/thumbnail/placeholder.png", 
+                                    "full_size_url": "img/full_size/placeholder.png", 
                                     "rights": "Placeholder rights"
                                 }, 
                                 "id": "Abstracted floral"
                             }, 
                             {
                                 "image": {
-                                    "thumbnail_url": "img/feature_value_placeholder_thumbnail.png", 
-                                    "full_size_url": "img/feature_value_placeholder_full_size.png", 
+                                    "thumbnail_url": "img/thumbnail/placeholder.png", 
+                                    "full_size_url": "img/full_size/placeholder.png", 
                                     "rights": "Placeholder rights"
                                 }, 
                                 "id": "Checkerboard"
                             }, 
                             {
                                 "image": {
-                                    "thumbnail_url": "img/feature_value_placeholder_thumbnail.png", 
-                                    "full_size_url": "img/feature_value_placeholder_full_size.png", 
+                                    "thumbnail_url": "img/thumbnail/placeholder.png", 
+                                    "full_size_url": "img/full_size/placeholder.png", 
                                     "rights": "Placeholder rights"
                                 }, 
                                 "id": "Floral"
                             }, 
                             {
                                 "image": {
-                                    "thumbnail_url": "img/feature_value_placeholder_thumbnail.png", 
-                                    "full_size_url": "img/feature_value_placeholder_full_size.png", 
+                                    "thumbnail_url": "img/thumbnail/placeholder.png", 
+                                    "full_size_url": "img/full_size/placeholder.png", 
                                     "rights": "Placeholder rights"
                                 }, 
                                 "id": "Plaid"
@@ -496,48 +496,48 @@ var WORKSHEET_DEFINITION = {
                                 "values_": [
                                     {
                                         "image": {
-                                            "thumbnail_url": "img/feature_value_placeholder_thumbnail.png", 
-                                            "full_size_url": "img/feature_value_placeholder_full_size.png", 
+                                            "thumbnail_url": "img/thumbnail/placeholder.png", 
+                                            "full_size_url": "img/full_size/placeholder.png", 
                                             "rights": "Placeholder rights"
                                         }, 
                                         "id": "Cotton"
                                     }, 
                                     {
                                         "image": {
-                                            "thumbnail_url": "img/feature_value_placeholder_thumbnail.png", 
-                                            "full_size_url": "img/feature_value_placeholder_full_size.png", 
+                                            "thumbnail_url": "img/thumbnail/placeholder.png", 
+                                            "full_size_url": "img/full_size/placeholder.png", 
                                             "rights": "Placeholder rights"
                                         }, 
                                         "id": "Elastic"
                                     }, 
                                     {
                                         "image": {
-                                            "thumbnail_url": "img/feature_value_placeholder_thumbnail.png", 
-                                            "full_size_url": "img/feature_value_placeholder_full_size.png", 
+                                            "thumbnail_url": "img/thumbnail/placeholder.png", 
+                                            "full_size_url": "img/full_size/placeholder.png", 
                                             "rights": "Placeholder rights"
                                         }, 
                                         "id": "Plastic"
                                     }, 
                                     {
                                         "image": {
-                                            "thumbnail_url": "img/feature_value_placeholder_thumbnail.png", 
-                                            "full_size_url": "img/feature_value_placeholder_full_size.png", 
+                                            "thumbnail_url": "img/thumbnail/placeholder.png", 
+                                            "full_size_url": "img/full_size/placeholder.png", 
                                             "rights": "Placeholder rights"
                                         }, 
                                         "id": "Self-fabric"
                                     }, 
                                     {
                                         "image": {
-                                            "thumbnail_url": "img/feature_value_placeholder_thumbnail.png", 
-                                            "full_size_url": "img/feature_value_placeholder_full_size.png", 
+                                            "thumbnail_url": "img/thumbnail/placeholder.png", 
+                                            "full_size_url": "img/full_size/placeholder.png", 
                                             "rights": "Placeholder rights"
                                         }, 
                                         "id": "Net tulle"
                                     }, 
                                     {
                                         "image": {
-                                            "thumbnail_url": "img/feature_value_placeholder_thumbnail.png", 
-                                            "full_size_url": "img/feature_value_placeholder_full_size.png", 
+                                            "thumbnail_url": "img/thumbnail/placeholder.png", 
+                                            "full_size_url": "img/full_size/placeholder.png", 
                                             "rights": "Placeholder rights"
                                         }, 
                                         "id": "Velvet"
@@ -549,32 +549,32 @@ var WORKSHEET_DEFINITION = {
                                 "values_": [
                                     {
                                         "image": {
-                                            "thumbnail_url": "img/feature_value_placeholder_thumbnail.png", 
-                                            "full_size_url": "img/feature_value_placeholder_full_size.png", 
+                                            "thumbnail_url": "img/thumbnail/placeholder.png", 
+                                            "full_size_url": "img/full_size/placeholder.png", 
                                             "rights": "Placeholder rights"
                                         }, 
                                         "id": "Abstracted floral"
                                     }, 
                                     {
                                         "image": {
-                                            "thumbnail_url": "img/feature_value_placeholder_thumbnail.png", 
-                                            "full_size_url": "img/feature_value_placeholder_full_size.png", 
+                                            "thumbnail_url": "img/thumbnail/placeholder.png", 
+                                            "full_size_url": "img/full_size/placeholder.png", 
                                             "rights": "Placeholder rights"
                                         }, 
                                         "id": "Checkerboard"
                                     }, 
                                     {
                                         "image": {
-                                            "thumbnail_url": "img/feature_value_placeholder_thumbnail.png", 
-                                            "full_size_url": "img/feature_value_placeholder_full_size.png", 
+                                            "thumbnail_url": "img/thumbnail/placeholder.png", 
+                                            "full_size_url": "img/full_size/placeholder.png", 
                                             "rights": "Placeholder rights"
                                         }, 
                                         "id": "Floral"
                                     }, 
                                     {
                                         "image": {
-                                            "thumbnail_url": "img/feature_value_placeholder_thumbnail.png", 
-                                            "full_size_url": "img/feature_value_placeholder_full_size.png", 
+                                            "thumbnail_url": "img/thumbnail/placeholder.png", 
+                                            "full_size_url": "img/full_size/placeholder.png", 
                                             "rights": "Placeholder rights"
                                         }, 
                                         "id": "Plaid"
@@ -591,48 +591,48 @@ var WORKSHEET_DEFINITION = {
                                 "values_": [
                                     {
                                         "image": {
-                                            "thumbnail_url": "img/feature_value_placeholder_thumbnail.png", 
-                                            "full_size_url": "img/feature_value_placeholder_full_size.png", 
+                                            "thumbnail_url": "img/thumbnail/placeholder.png", 
+                                            "full_size_url": "img/full_size/placeholder.png", 
                                             "rights": "Placeholder rights"
                                         }, 
                                         "id": "Cotton"
                                     }, 
                                     {
                                         "image": {
-                                            "thumbnail_url": "img/feature_value_placeholder_thumbnail.png", 
-                                            "full_size_url": "img/feature_value_placeholder_full_size.png", 
+                                            "thumbnail_url": "img/thumbnail/placeholder.png", 
+                                            "full_size_url": "img/full_size/placeholder.png", 
                                             "rights": "Placeholder rights"
                                         }, 
                                         "id": "Elastic"
                                     }, 
                                     {
                                         "image": {
-                                            "thumbnail_url": "img/feature_value_placeholder_thumbnail.png", 
-                                            "full_size_url": "img/feature_value_placeholder_full_size.png", 
+                                            "thumbnail_url": "img/thumbnail/placeholder.png", 
+                                            "full_size_url": "img/full_size/placeholder.png", 
                                             "rights": "Placeholder rights"
                                         }, 
                                         "id": "Plastic"
                                     }, 
                                     {
                                         "image": {
-                                            "thumbnail_url": "img/feature_value_placeholder_thumbnail.png", 
-                                            "full_size_url": "img/feature_value_placeholder_full_size.png", 
+                                            "thumbnail_url": "img/thumbnail/placeholder.png", 
+                                            "full_size_url": "img/full_size/placeholder.png", 
                                             "rights": "Placeholder rights"
                                         }, 
                                         "id": "Self-fabric"
                                     }, 
                                     {
                                         "image": {
-                                            "thumbnail_url": "img/feature_value_placeholder_thumbnail.png", 
-                                            "full_size_url": "img/feature_value_placeholder_full_size.png", 
+                                            "thumbnail_url": "img/thumbnail/placeholder.png", 
+                                            "full_size_url": "img/full_size/placeholder.png", 
                                             "rights": "Placeholder rights"
                                         }, 
                                         "id": "Net tulle"
                                     }, 
                                     {
                                         "image": {
-                                            "thumbnail_url": "img/feature_value_placeholder_thumbnail.png", 
-                                            "full_size_url": "img/feature_value_placeholder_full_size.png", 
+                                            "thumbnail_url": "img/thumbnail/placeholder.png", 
+                                            "full_size_url": "img/full_size/placeholder.png", 
                                             "rights": "Placeholder rights"
                                         }, 
                                         "id": "Velvet"
@@ -644,32 +644,32 @@ var WORKSHEET_DEFINITION = {
                                 "values_": [
                                     {
                                         "image": {
-                                            "thumbnail_url": "img/feature_value_placeholder_thumbnail.png", 
-                                            "full_size_url": "img/feature_value_placeholder_full_size.png", 
+                                            "thumbnail_url": "img/thumbnail/placeholder.png", 
+                                            "full_size_url": "img/full_size/placeholder.png", 
                                             "rights": "Placeholder rights"
                                         }, 
                                         "id": "Abstracted floral"
                                     }, 
                                     {
                                         "image": {
-                                            "thumbnail_url": "img/feature_value_placeholder_thumbnail.png", 
-                                            "full_size_url": "img/feature_value_placeholder_full_size.png", 
+                                            "thumbnail_url": "img/thumbnail/placeholder.png", 
+                                            "full_size_url": "img/full_size/placeholder.png", 
                                             "rights": "Placeholder rights"
                                         }, 
                                         "id": "Checkerboard"
                                     }, 
                                     {
                                         "image": {
-                                            "thumbnail_url": "img/feature_value_placeholder_thumbnail.png", 
-                                            "full_size_url": "img/feature_value_placeholder_full_size.png", 
+                                            "thumbnail_url": "img/thumbnail/placeholder.png", 
+                                            "full_size_url": "img/full_size/placeholder.png", 
                                             "rights": "Placeholder rights"
                                         }, 
                                         "id": "Floral"
                                     }, 
                                     {
                                         "image": {
-                                            "thumbnail_url": "img/feature_value_placeholder_thumbnail.png", 
-                                            "full_size_url": "img/feature_value_placeholder_full_size.png", 
+                                            "thumbnail_url": "img/thumbnail/placeholder.png", 
+                                            "full_size_url": "img/full_size/placeholder.png", 
                                             "rights": "Placeholder rights"
                                         }, 
                                         "id": "Plaid"
@@ -686,48 +686,48 @@ var WORKSHEET_DEFINITION = {
                                 "values_": [
                                     {
                                         "image": {
-                                            "thumbnail_url": "img/feature_value_placeholder_thumbnail.png", 
-                                            "full_size_url": "img/feature_value_placeholder_full_size.png", 
+                                            "thumbnail_url": "img/thumbnail/placeholder.png", 
+                                            "full_size_url": "img/full_size/placeholder.png", 
                                             "rights": "Placeholder rights"
                                         }, 
                                         "id": "Cotton"
                                     }, 
                                     {
                                         "image": {
-                                            "thumbnail_url": "img/feature_value_placeholder_thumbnail.png", 
-                                            "full_size_url": "img/feature_value_placeholder_full_size.png", 
+                                            "thumbnail_url": "img/thumbnail/placeholder.png", 
+                                            "full_size_url": "img/full_size/placeholder.png", 
                                             "rights": "Placeholder rights"
                                         }, 
                                         "id": "Elastic"
                                     }, 
                                     {
                                         "image": {
-                                            "thumbnail_url": "img/feature_value_placeholder_thumbnail.png", 
-                                            "full_size_url": "img/feature_value_placeholder_full_size.png", 
+                                            "thumbnail_url": "img/thumbnail/placeholder.png", 
+                                            "full_size_url": "img/full_size/placeholder.png", 
                                             "rights": "Placeholder rights"
                                         }, 
                                         "id": "Plastic"
                                     }, 
                                     {
                                         "image": {
-                                            "thumbnail_url": "img/feature_value_placeholder_thumbnail.png", 
-                                            "full_size_url": "img/feature_value_placeholder_full_size.png", 
+                                            "thumbnail_url": "img/thumbnail/placeholder.png", 
+                                            "full_size_url": "img/full_size/placeholder.png", 
                                             "rights": "Placeholder rights"
                                         }, 
                                         "id": "Self-fabric"
                                     }, 
                                     {
                                         "image": {
-                                            "thumbnail_url": "img/feature_value_placeholder_thumbnail.png", 
-                                            "full_size_url": "img/feature_value_placeholder_full_size.png", 
+                                            "thumbnail_url": "img/thumbnail/placeholder.png", 
+                                            "full_size_url": "img/full_size/placeholder.png", 
                                             "rights": "Placeholder rights"
                                         }, 
                                         "id": "Net tulle"
                                     }, 
                                     {
                                         "image": {
-                                            "thumbnail_url": "img/feature_value_placeholder_thumbnail.png", 
-                                            "full_size_url": "img/feature_value_placeholder_full_size.png", 
+                                            "thumbnail_url": "img/thumbnail/placeholder.png", 
+                                            "full_size_url": "img/full_size/placeholder.png", 
                                             "rights": "Placeholder rights"
                                         }, 
                                         "id": "Velvet"
@@ -739,32 +739,32 @@ var WORKSHEET_DEFINITION = {
                                 "values_": [
                                     {
                                         "image": {
-                                            "thumbnail_url": "img/feature_value_placeholder_thumbnail.png", 
-                                            "full_size_url": "img/feature_value_placeholder_full_size.png", 
+                                            "thumbnail_url": "img/thumbnail/placeholder.png", 
+                                            "full_size_url": "img/full_size/placeholder.png", 
                                             "rights": "Placeholder rights"
                                         }, 
                                         "id": "Abstracted floral"
                                     }, 
                                     {
                                         "image": {
-                                            "thumbnail_url": "img/feature_value_placeholder_thumbnail.png", 
-                                            "full_size_url": "img/feature_value_placeholder_full_size.png", 
+                                            "thumbnail_url": "img/thumbnail/placeholder.png", 
+                                            "full_size_url": "img/full_size/placeholder.png", 
                                             "rights": "Placeholder rights"
                                         }, 
                                         "id": "Checkerboard"
                                     }, 
                                     {
                                         "image": {
-                                            "thumbnail_url": "img/feature_value_placeholder_thumbnail.png", 
-                                            "full_size_url": "img/feature_value_placeholder_full_size.png", 
+                                            "thumbnail_url": "img/thumbnail/placeholder.png", 
+                                            "full_size_url": "img/full_size/placeholder.png", 
                                             "rights": "Placeholder rights"
                                         }, 
                                         "id": "Floral"
                                     }, 
                                     {
                                         "image": {
-                                            "thumbnail_url": "img/feature_value_placeholder_thumbnail.png", 
-                                            "full_size_url": "img/feature_value_placeholder_full_size.png", 
+                                            "thumbnail_url": "img/thumbnail/placeholder.png", 
+                                            "full_size_url": "img/full_size/placeholder.png", 
                                             "rights": "Placeholder rights"
                                         }, 
                                         "id": "Plaid"
@@ -786,48 +786,48 @@ var WORKSHEET_DEFINITION = {
                                 "values_": [
                                     {
                                         "image": {
-                                            "thumbnail_url": "img/feature_value_placeholder_thumbnail.png", 
-                                            "full_size_url": "img/feature_value_placeholder_full_size.png", 
+                                            "thumbnail_url": "img/thumbnail/placeholder.png", 
+                                            "full_size_url": "img/full_size/placeholder.png", 
                                             "rights": "Placeholder rights"
                                         }, 
                                         "id": "Cotton"
                                     }, 
                                     {
                                         "image": {
-                                            "thumbnail_url": "img/feature_value_placeholder_thumbnail.png", 
-                                            "full_size_url": "img/feature_value_placeholder_full_size.png", 
+                                            "thumbnail_url": "img/thumbnail/placeholder.png", 
+                                            "full_size_url": "img/full_size/placeholder.png", 
                                             "rights": "Placeholder rights"
                                         }, 
                                         "id": "Elastic"
                                     }, 
                                     {
                                         "image": {
-                                            "thumbnail_url": "img/feature_value_placeholder_thumbnail.png", 
-                                            "full_size_url": "img/feature_value_placeholder_full_size.png", 
+                                            "thumbnail_url": "img/thumbnail/placeholder.png", 
+                                            "full_size_url": "img/full_size/placeholder.png", 
                                             "rights": "Placeholder rights"
                                         }, 
                                         "id": "Plastic"
                                     }, 
                                     {
                                         "image": {
-                                            "thumbnail_url": "img/feature_value_placeholder_thumbnail.png", 
-                                            "full_size_url": "img/feature_value_placeholder_full_size.png", 
+                                            "thumbnail_url": "img/thumbnail/placeholder.png", 
+                                            "full_size_url": "img/full_size/placeholder.png", 
                                             "rights": "Placeholder rights"
                                         }, 
                                         "id": "Self-fabric"
                                     }, 
                                     {
                                         "image": {
-                                            "thumbnail_url": "img/feature_value_placeholder_thumbnail.png", 
-                                            "full_size_url": "img/feature_value_placeholder_full_size.png", 
+                                            "thumbnail_url": "img/thumbnail/placeholder.png", 
+                                            "full_size_url": "img/full_size/placeholder.png", 
                                             "rights": "Placeholder rights"
                                         }, 
                                         "id": "Net tulle"
                                     }, 
                                     {
                                         "image": {
-                                            "thumbnail_url": "img/feature_value_placeholder_thumbnail.png", 
-                                            "full_size_url": "img/feature_value_placeholder_full_size.png", 
+                                            "thumbnail_url": "img/thumbnail/placeholder.png", 
+                                            "full_size_url": "img/full_size/placeholder.png", 
                                             "rights": "Placeholder rights"
                                         }, 
                                         "id": "Velvet"
@@ -839,32 +839,32 @@ var WORKSHEET_DEFINITION = {
                                 "values_": [
                                     {
                                         "image": {
-                                            "thumbnail_url": "img/feature_value_placeholder_thumbnail.png", 
-                                            "full_size_url": "img/feature_value_placeholder_full_size.png", 
+                                            "thumbnail_url": "img/thumbnail/placeholder.png", 
+                                            "full_size_url": "img/full_size/placeholder.png", 
                                             "rights": "Placeholder rights"
                                         }, 
                                         "id": "Abstracted floral"
                                     }, 
                                     {
                                         "image": {
-                                            "thumbnail_url": "img/feature_value_placeholder_thumbnail.png", 
-                                            "full_size_url": "img/feature_value_placeholder_full_size.png", 
+                                            "thumbnail_url": "img/thumbnail/placeholder.png", 
+                                            "full_size_url": "img/full_size/placeholder.png", 
                                             "rights": "Placeholder rights"
                                         }, 
                                         "id": "Checkerboard"
                                     }, 
                                     {
                                         "image": {
-                                            "thumbnail_url": "img/feature_value_placeholder_thumbnail.png", 
-                                            "full_size_url": "img/feature_value_placeholder_full_size.png", 
+                                            "thumbnail_url": "img/thumbnail/placeholder.png", 
+                                            "full_size_url": "img/full_size/placeholder.png", 
                                             "rights": "Placeholder rights"
                                         }, 
                                         "id": "Floral"
                                     }, 
                                     {
                                         "image": {
-                                            "thumbnail_url": "img/feature_value_placeholder_thumbnail.png", 
-                                            "full_size_url": "img/feature_value_placeholder_full_size.png", 
+                                            "thumbnail_url": "img/thumbnail/placeholder.png", 
+                                            "full_size_url": "img/full_size/placeholder.png", 
                                             "rights": "Placeholder rights"
                                         }, 
                                         "id": "Plaid"
@@ -881,48 +881,48 @@ var WORKSHEET_DEFINITION = {
                                 "values_": [
                                     {
                                         "image": {
-                                            "thumbnail_url": "img/feature_value_placeholder_thumbnail.png", 
-                                            "full_size_url": "img/feature_value_placeholder_full_size.png", 
+                                            "thumbnail_url": "img/thumbnail/placeholder.png", 
+                                            "full_size_url": "img/full_size/placeholder.png", 
                                             "rights": "Placeholder rights"
                                         }, 
                                         "id": "Cotton"
                                     }, 
                                     {
                                         "image": {
-                                            "thumbnail_url": "img/feature_value_placeholder_thumbnail.png", 
-                                            "full_size_url": "img/feature_value_placeholder_full_size.png", 
+                                            "thumbnail_url": "img/thumbnail/placeholder.png", 
+                                            "full_size_url": "img/full_size/placeholder.png", 
                                             "rights": "Placeholder rights"
                                         }, 
                                         "id": "Elastic"
                                     }, 
                                     {
                                         "image": {
-                                            "thumbnail_url": "img/feature_value_placeholder_thumbnail.png", 
-                                            "full_size_url": "img/feature_value_placeholder_full_size.png", 
+                                            "thumbnail_url": "img/thumbnail/placeholder.png", 
+                                            "full_size_url": "img/full_size/placeholder.png", 
                                             "rights": "Placeholder rights"
                                         }, 
                                         "id": "Plastic"
                                     }, 
                                     {
                                         "image": {
-                                            "thumbnail_url": "img/feature_value_placeholder_thumbnail.png", 
-                                            "full_size_url": "img/feature_value_placeholder_full_size.png", 
+                                            "thumbnail_url": "img/thumbnail/placeholder.png", 
+                                            "full_size_url": "img/full_size/placeholder.png", 
                                             "rights": "Placeholder rights"
                                         }, 
                                         "id": "Self-fabric"
                                     }, 
                                     {
                                         "image": {
-                                            "thumbnail_url": "img/feature_value_placeholder_thumbnail.png", 
-                                            "full_size_url": "img/feature_value_placeholder_full_size.png", 
+                                            "thumbnail_url": "img/thumbnail/placeholder.png", 
+                                            "full_size_url": "img/full_size/placeholder.png", 
                                             "rights": "Placeholder rights"
                                         }, 
                                         "id": "Net tulle"
                                     }, 
                                     {
                                         "image": {
-                                            "thumbnail_url": "img/feature_value_placeholder_thumbnail.png", 
-                                            "full_size_url": "img/feature_value_placeholder_full_size.png", 
+                                            "thumbnail_url": "img/thumbnail/placeholder.png", 
+                                            "full_size_url": "img/full_size/placeholder.png", 
                                             "rights": "Placeholder rights"
                                         }, 
                                         "id": "Velvet"
@@ -934,32 +934,32 @@ var WORKSHEET_DEFINITION = {
                                 "values_": [
                                     {
                                         "image": {
-                                            "thumbnail_url": "img/feature_value_placeholder_thumbnail.png", 
-                                            "full_size_url": "img/feature_value_placeholder_full_size.png", 
+                                            "thumbnail_url": "img/thumbnail/placeholder.png", 
+                                            "full_size_url": "img/full_size/placeholder.png", 
                                             "rights": "Placeholder rights"
                                         }, 
                                         "id": "Abstracted floral"
                                     }, 
                                     {
                                         "image": {
-                                            "thumbnail_url": "img/feature_value_placeholder_thumbnail.png", 
-                                            "full_size_url": "img/feature_value_placeholder_full_size.png", 
+                                            "thumbnail_url": "img/thumbnail/placeholder.png", 
+                                            "full_size_url": "img/full_size/placeholder.png", 
                                             "rights": "Placeholder rights"
                                         }, 
                                         "id": "Checkerboard"
                                     }, 
                                     {
                                         "image": {
-                                            "thumbnail_url": "img/feature_value_placeholder_thumbnail.png", 
-                                            "full_size_url": "img/feature_value_placeholder_full_size.png", 
+                                            "thumbnail_url": "img/thumbnail/placeholder.png", 
+                                            "full_size_url": "img/full_size/placeholder.png", 
                                             "rights": "Placeholder rights"
                                         }, 
                                         "id": "Floral"
                                     }, 
                                     {
                                         "image": {
-                                            "thumbnail_url": "img/feature_value_placeholder_thumbnail.png", 
-                                            "full_size_url": "img/feature_value_placeholder_full_size.png", 
+                                            "thumbnail_url": "img/thumbnail/placeholder.png", 
+                                            "full_size_url": "img/full_size/placeholder.png", 
                                             "rights": "Placeholder rights"
                                         }, 
                                         "id": "Plaid"
@@ -976,48 +976,48 @@ var WORKSHEET_DEFINITION = {
                                 "values_": [
                                     {
                                         "image": {
-                                            "thumbnail_url": "img/feature_value_placeholder_thumbnail.png", 
-                                            "full_size_url": "img/feature_value_placeholder_full_size.png", 
+                                            "thumbnail_url": "img/thumbnail/placeholder.png", 
+                                            "full_size_url": "img/full_size/placeholder.png", 
                                             "rights": "Placeholder rights"
                                         }, 
                                         "id": "Cotton"
                                     }, 
                                     {
                                         "image": {
-                                            "thumbnail_url": "img/feature_value_placeholder_thumbnail.png", 
-                                            "full_size_url": "img/feature_value_placeholder_full_size.png", 
+                                            "thumbnail_url": "img/thumbnail/placeholder.png", 
+                                            "full_size_url": "img/full_size/placeholder.png", 
                                             "rights": "Placeholder rights"
                                         }, 
                                         "id": "Elastic"
                                     }, 
                                     {
                                         "image": {
-                                            "thumbnail_url": "img/feature_value_placeholder_thumbnail.png", 
-                                            "full_size_url": "img/feature_value_placeholder_full_size.png", 
+                                            "thumbnail_url": "img/thumbnail/placeholder.png", 
+                                            "full_size_url": "img/full_size/placeholder.png", 
                                             "rights": "Placeholder rights"
                                         }, 
                                         "id": "Plastic"
                                     }, 
                                     {
                                         "image": {
-                                            "thumbnail_url": "img/feature_value_placeholder_thumbnail.png", 
-                                            "full_size_url": "img/feature_value_placeholder_full_size.png", 
+                                            "thumbnail_url": "img/thumbnail/placeholder.png", 
+                                            "full_size_url": "img/full_size/placeholder.png", 
                                             "rights": "Placeholder rights"
                                         }, 
                                         "id": "Self-fabric"
                                     }, 
                                     {
                                         "image": {
-                                            "thumbnail_url": "img/feature_value_placeholder_thumbnail.png", 
-                                            "full_size_url": "img/feature_value_placeholder_full_size.png", 
+                                            "thumbnail_url": "img/thumbnail/placeholder.png", 
+                                            "full_size_url": "img/full_size/placeholder.png", 
                                             "rights": "Placeholder rights"
                                         }, 
                                         "id": "Net tulle"
                                     }, 
                                     {
                                         "image": {
-                                            "thumbnail_url": "img/feature_value_placeholder_thumbnail.png", 
-                                            "full_size_url": "img/feature_value_placeholder_full_size.png", 
+                                            "thumbnail_url": "img/thumbnail/placeholder.png", 
+                                            "full_size_url": "img/full_size/placeholder.png", 
                                             "rights": "Placeholder rights"
                                         }, 
                                         "id": "Velvet"
@@ -1029,32 +1029,32 @@ var WORKSHEET_DEFINITION = {
                                 "values_": [
                                     {
                                         "image": {
-                                            "thumbnail_url": "img/feature_value_placeholder_thumbnail.png", 
-                                            "full_size_url": "img/feature_value_placeholder_full_size.png", 
+                                            "thumbnail_url": "img/thumbnail/placeholder.png", 
+                                            "full_size_url": "img/full_size/placeholder.png", 
                                             "rights": "Placeholder rights"
                                         }, 
                                         "id": "Abstracted floral"
                                     }, 
                                     {
                                         "image": {
-                                            "thumbnail_url": "img/feature_value_placeholder_thumbnail.png", 
-                                            "full_size_url": "img/feature_value_placeholder_full_size.png", 
+                                            "thumbnail_url": "img/thumbnail/placeholder.png", 
+                                            "full_size_url": "img/full_size/placeholder.png", 
                                             "rights": "Placeholder rights"
                                         }, 
                                         "id": "Checkerboard"
                                     }, 
                                     {
                                         "image": {
-                                            "thumbnail_url": "img/feature_value_placeholder_thumbnail.png", 
-                                            "full_size_url": "img/feature_value_placeholder_full_size.png", 
+                                            "thumbnail_url": "img/thumbnail/placeholder.png", 
+                                            "full_size_url": "img/full_size/placeholder.png", 
                                             "rights": "Placeholder rights"
                                         }, 
                                         "id": "Floral"
                                     }, 
                                     {
                                         "image": {
-                                            "thumbnail_url": "img/feature_value_placeholder_thumbnail.png", 
-                                            "full_size_url": "img/feature_value_placeholder_full_size.png", 
+                                            "thumbnail_url": "img/thumbnail/placeholder.png", 
+                                            "full_size_url": "img/full_size/placeholder.png", 
                                             "rights": "Placeholder rights"
                                         }, 
                                         "id": "Plaid"
@@ -1076,48 +1076,48 @@ var WORKSHEET_DEFINITION = {
                                 "values_": [
                                     {
                                         "image": {
-                                            "thumbnail_url": "img/feature_value_placeholder_thumbnail.png", 
-                                            "full_size_url": "img/feature_value_placeholder_full_size.png", 
+                                            "thumbnail_url": "img/thumbnail/placeholder.png", 
+                                            "full_size_url": "img/full_size/placeholder.png", 
                                             "rights": "Placeholder rights"
                                         }, 
                                         "id": "Cotton"
                                     }, 
                                     {
                                         "image": {
-                                            "thumbnail_url": "img/feature_value_placeholder_thumbnail.png", 
-                                            "full_size_url": "img/feature_value_placeholder_full_size.png", 
+                                            "thumbnail_url": "img/thumbnail/placeholder.png", 
+                                            "full_size_url": "img/full_size/placeholder.png", 
                                             "rights": "Placeholder rights"
                                         }, 
                                         "id": "Elastic"
                                     }, 
                                     {
                                         "image": {
-                                            "thumbnail_url": "img/feature_value_placeholder_thumbnail.png", 
-                                            "full_size_url": "img/feature_value_placeholder_full_size.png", 
+                                            "thumbnail_url": "img/thumbnail/placeholder.png", 
+                                            "full_size_url": "img/full_size/placeholder.png", 
                                             "rights": "Placeholder rights"
                                         }, 
                                         "id": "Plastic"
                                     }, 
                                     {
                                         "image": {
-                                            "thumbnail_url": "img/feature_value_placeholder_thumbnail.png", 
-                                            "full_size_url": "img/feature_value_placeholder_full_size.png", 
+                                            "thumbnail_url": "img/thumbnail/placeholder.png", 
+                                            "full_size_url": "img/full_size/placeholder.png", 
                                             "rights": "Placeholder rights"
                                         }, 
                                         "id": "Self-fabric"
                                     }, 
                                     {
                                         "image": {
-                                            "thumbnail_url": "img/feature_value_placeholder_thumbnail.png", 
-                                            "full_size_url": "img/feature_value_placeholder_full_size.png", 
+                                            "thumbnail_url": "img/thumbnail/placeholder.png", 
+                                            "full_size_url": "img/full_size/placeholder.png", 
                                             "rights": "Placeholder rights"
                                         }, 
                                         "id": "Net tulle"
                                     }, 
                                     {
                                         "image": {
-                                            "thumbnail_url": "img/feature_value_placeholder_thumbnail.png", 
-                                            "full_size_url": "img/feature_value_placeholder_full_size.png", 
+                                            "thumbnail_url": "img/thumbnail/placeholder.png", 
+                                            "full_size_url": "img/full_size/placeholder.png", 
                                             "rights": "Placeholder rights"
                                         }, 
                                         "id": "Velvet"
@@ -1129,32 +1129,32 @@ var WORKSHEET_DEFINITION = {
                                 "values_": [
                                     {
                                         "image": {
-                                            "thumbnail_url": "img/feature_value_placeholder_thumbnail.png", 
-                                            "full_size_url": "img/feature_value_placeholder_full_size.png", 
+                                            "thumbnail_url": "img/thumbnail/placeholder.png", 
+                                            "full_size_url": "img/full_size/placeholder.png", 
                                             "rights": "Placeholder rights"
                                         }, 
                                         "id": "Abstracted floral"
                                     }, 
                                     {
                                         "image": {
-                                            "thumbnail_url": "img/feature_value_placeholder_thumbnail.png", 
-                                            "full_size_url": "img/feature_value_placeholder_full_size.png", 
+                                            "thumbnail_url": "img/thumbnail/placeholder.png", 
+                                            "full_size_url": "img/full_size/placeholder.png", 
                                             "rights": "Placeholder rights"
                                         }, 
                                         "id": "Checkerboard"
                                     }, 
                                     {
                                         "image": {
-                                            "thumbnail_url": "img/feature_value_placeholder_thumbnail.png", 
-                                            "full_size_url": "img/feature_value_placeholder_full_size.png", 
+                                            "thumbnail_url": "img/thumbnail/placeholder.png", 
+                                            "full_size_url": "img/full_size/placeholder.png", 
                                             "rights": "Placeholder rights"
                                         }, 
                                         "id": "Floral"
                                     }, 
                                     {
                                         "image": {
-                                            "thumbnail_url": "img/feature_value_placeholder_thumbnail.png", 
-                                            "full_size_url": "img/feature_value_placeholder_full_size.png", 
+                                            "thumbnail_url": "img/thumbnail/placeholder.png", 
+                                            "full_size_url": "img/full_size/placeholder.png", 
                                             "rights": "Placeholder rights"
                                         }, 
                                         "id": "Plaid"
@@ -1171,48 +1171,48 @@ var WORKSHEET_DEFINITION = {
                                 "values_": [
                                     {
                                         "image": {
-                                            "thumbnail_url": "img/feature_value_placeholder_thumbnail.png", 
-                                            "full_size_url": "img/feature_value_placeholder_full_size.png", 
+                                            "thumbnail_url": "img/thumbnail/placeholder.png", 
+                                            "full_size_url": "img/full_size/placeholder.png", 
                                             "rights": "Placeholder rights"
                                         }, 
                                         "id": "Cotton"
                                     }, 
                                     {
                                         "image": {
-                                            "thumbnail_url": "img/feature_value_placeholder_thumbnail.png", 
-                                            "full_size_url": "img/feature_value_placeholder_full_size.png", 
+                                            "thumbnail_url": "img/thumbnail/placeholder.png", 
+                                            "full_size_url": "img/full_size/placeholder.png", 
                                             "rights": "Placeholder rights"
                                         }, 
                                         "id": "Elastic"
                                     }, 
                                     {
                                         "image": {
-                                            "thumbnail_url": "img/feature_value_placeholder_thumbnail.png", 
-                                            "full_size_url": "img/feature_value_placeholder_full_size.png", 
+                                            "thumbnail_url": "img/thumbnail/placeholder.png", 
+                                            "full_size_url": "img/full_size/placeholder.png", 
                                             "rights": "Placeholder rights"
                                         }, 
                                         "id": "Plastic"
                                     }, 
                                     {
                                         "image": {
-                                            "thumbnail_url": "img/feature_value_placeholder_thumbnail.png", 
-                                            "full_size_url": "img/feature_value_placeholder_full_size.png", 
+                                            "thumbnail_url": "img/thumbnail/placeholder.png", 
+                                            "full_size_url": "img/full_size/placeholder.png", 
                                             "rights": "Placeholder rights"
                                         }, 
                                         "id": "Self-fabric"
                                     }, 
                                     {
                                         "image": {
-                                            "thumbnail_url": "img/feature_value_placeholder_thumbnail.png", 
-                                            "full_size_url": "img/feature_value_placeholder_full_size.png", 
+                                            "thumbnail_url": "img/thumbnail/placeholder.png", 
+                                            "full_size_url": "img/full_size/placeholder.png", 
                                             "rights": "Placeholder rights"
                                         }, 
                                         "id": "Net tulle"
                                     }, 
                                     {
                                         "image": {
-                                            "thumbnail_url": "img/feature_value_placeholder_thumbnail.png", 
-                                            "full_size_url": "img/feature_value_placeholder_full_size.png", 
+                                            "thumbnail_url": "img/thumbnail/placeholder.png", 
+                                            "full_size_url": "img/full_size/placeholder.png", 
                                             "rights": "Placeholder rights"
                                         }, 
                                         "id": "Velvet"
@@ -1224,32 +1224,32 @@ var WORKSHEET_DEFINITION = {
                                 "values_": [
                                     {
                                         "image": {
-                                            "thumbnail_url": "img/feature_value_placeholder_thumbnail.png", 
-                                            "full_size_url": "img/feature_value_placeholder_full_size.png", 
+                                            "thumbnail_url": "img/thumbnail/placeholder.png", 
+                                            "full_size_url": "img/full_size/placeholder.png", 
                                             "rights": "Placeholder rights"
                                         }, 
                                         "id": "Abstracted floral"
                                     }, 
                                     {
                                         "image": {
-                                            "thumbnail_url": "img/feature_value_placeholder_thumbnail.png", 
-                                            "full_size_url": "img/feature_value_placeholder_full_size.png", 
+                                            "thumbnail_url": "img/thumbnail/placeholder.png", 
+                                            "full_size_url": "img/full_size/placeholder.png", 
                                             "rights": "Placeholder rights"
                                         }, 
                                         "id": "Checkerboard"
                                     }, 
                                     {
                                         "image": {
-                                            "thumbnail_url": "img/feature_value_placeholder_thumbnail.png", 
-                                            "full_size_url": "img/feature_value_placeholder_full_size.png", 
+                                            "thumbnail_url": "img/thumbnail/placeholder.png", 
+                                            "full_size_url": "img/full_size/placeholder.png", 
                                             "rights": "Placeholder rights"
                                         }, 
                                         "id": "Floral"
                                     }, 
                                     {
                                         "image": {
-                                            "thumbnail_url": "img/feature_value_placeholder_thumbnail.png", 
-                                            "full_size_url": "img/feature_value_placeholder_full_size.png", 
+                                            "thumbnail_url": "img/thumbnail/placeholder.png", 
+                                            "full_size_url": "img/full_size/placeholder.png", 
                                             "rights": "Placeholder rights"
                                         }, 
                                         "id": "Plaid"
@@ -1266,48 +1266,48 @@ var WORKSHEET_DEFINITION = {
                                 "values_": [
                                     {
                                         "image": {
-                                            "thumbnail_url": "img/feature_value_placeholder_thumbnail.png", 
-                                            "full_size_url": "img/feature_value_placeholder_full_size.png", 
+                                            "thumbnail_url": "img/thumbnail/placeholder.png", 
+                                            "full_size_url": "img/full_size/placeholder.png", 
                                             "rights": "Placeholder rights"
                                         }, 
                                         "id": "Cotton"
                                     }, 
                                     {
                                         "image": {
-                                            "thumbnail_url": "img/feature_value_placeholder_thumbnail.png", 
-                                            "full_size_url": "img/feature_value_placeholder_full_size.png", 
+                                            "thumbnail_url": "img/thumbnail/placeholder.png", 
+                                            "full_size_url": "img/full_size/placeholder.png", 
                                             "rights": "Placeholder rights"
                                         }, 
                                         "id": "Elastic"
                                     }, 
                                     {
                                         "image": {
-                                            "thumbnail_url": "img/feature_value_placeholder_thumbnail.png", 
-                                            "full_size_url": "img/feature_value_placeholder_full_size.png", 
+                                            "thumbnail_url": "img/thumbnail/placeholder.png", 
+                                            "full_size_url": "img/full_size/placeholder.png", 
                                             "rights": "Placeholder rights"
                                         }, 
                                         "id": "Plastic"
                                     }, 
                                     {
                                         "image": {
-                                            "thumbnail_url": "img/feature_value_placeholder_thumbnail.png", 
-                                            "full_size_url": "img/feature_value_placeholder_full_size.png", 
+                                            "thumbnail_url": "img/thumbnail/placeholder.png", 
+                                            "full_size_url": "img/full_size/placeholder.png", 
                                             "rights": "Placeholder rights"
                                         }, 
                                         "id": "Self-fabric"
                                     }, 
                                     {
                                         "image": {
-                                            "thumbnail_url": "img/feature_value_placeholder_thumbnail.png", 
-                                            "full_size_url": "img/feature_value_placeholder_full_size.png", 
+                                            "thumbnail_url": "img/thumbnail/placeholder.png", 
+                                            "full_size_url": "img/full_size/placeholder.png", 
                                             "rights": "Placeholder rights"
                                         }, 
                                         "id": "Net tulle"
                                     }, 
                                     {
                                         "image": {
-                                            "thumbnail_url": "img/feature_value_placeholder_thumbnail.png", 
-                                            "full_size_url": "img/feature_value_placeholder_full_size.png", 
+                                            "thumbnail_url": "img/thumbnail/placeholder.png", 
+                                            "full_size_url": "img/full_size/placeholder.png", 
                                             "rights": "Placeholder rights"
                                         }, 
                                         "id": "Velvet"
@@ -1319,32 +1319,32 @@ var WORKSHEET_DEFINITION = {
                                 "values_": [
                                     {
                                         "image": {
-                                            "thumbnail_url": "img/feature_value_placeholder_thumbnail.png", 
-                                            "full_size_url": "img/feature_value_placeholder_full_size.png", 
+                                            "thumbnail_url": "img/thumbnail/placeholder.png", 
+                                            "full_size_url": "img/full_size/placeholder.png", 
                                             "rights": "Placeholder rights"
                                         }, 
                                         "id": "Abstracted floral"
                                     }, 
                                     {
                                         "image": {
-                                            "thumbnail_url": "img/feature_value_placeholder_thumbnail.png", 
-                                            "full_size_url": "img/feature_value_placeholder_full_size.png", 
+                                            "thumbnail_url": "img/thumbnail/placeholder.png", 
+                                            "full_size_url": "img/full_size/placeholder.png", 
                                             "rights": "Placeholder rights"
                                         }, 
                                         "id": "Checkerboard"
                                     }, 
                                     {
                                         "image": {
-                                            "thumbnail_url": "img/feature_value_placeholder_thumbnail.png", 
-                                            "full_size_url": "img/feature_value_placeholder_full_size.png", 
+                                            "thumbnail_url": "img/thumbnail/placeholder.png", 
+                                            "full_size_url": "img/full_size/placeholder.png", 
                                             "rights": "Placeholder rights"
                                         }, 
                                         "id": "Floral"
                                     }, 
                                     {
                                         "image": {
-                                            "thumbnail_url": "img/feature_value_placeholder_thumbnail.png", 
-                                            "full_size_url": "img/feature_value_placeholder_full_size.png", 
+                                            "thumbnail_url": "img/thumbnail/placeholder.png", 
+                                            "full_size_url": "img/full_size/placeholder.png", 
                                             "rights": "Placeholder rights"
                                         }, 
                                         "id": "Plaid"

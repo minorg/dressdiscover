@@ -58,7 +58,9 @@ html.magnifying > body {
   text-transform: none;
 }
 #worksheet #input .feature-value {
+  border: 1px solid;
   padding-bottom: 2%;
+  padding-top: 2%;
 }
 #worksheet #input .feature-value a.full-size {
   margin-left: 80%;
@@ -67,6 +69,9 @@ html.magnifying > body {
   border: none;
   margin: 0px;
   padding: 0px;
+  text-align: center;
+}
+#worksheet #input .feature-value .display-name {
   text-align: center;
 }
 #worksheet #input .feature-value div.checkbox {
@@ -95,6 +100,9 @@ html.magnifying > body {
 #worksheet #input textarea {
   border: 2px solid;
   padding: 8px;
+}
+#worksheet #input .values-row {
+  margin-bottom: 20px;
 }
 #worksheet #sidebar #changeAccessionNumberButton {
   margin-left: 20%;
