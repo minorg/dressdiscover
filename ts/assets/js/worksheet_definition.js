@@ -7,52 +7,51 @@ var WORKSHEET_DEFINITION = {
                         "id": "Top", 
                         "features": [
                             {
-                                "id": "Whole Top Material", 
+                                "id": "Whole Top Closure", 
                                 "values_": [
                                     {
-                                        "id": "Cotton"
-                                    }, 
-                                    {
-                                        "id": "Elastic"
-                                    }, 
-                                    {
-                                        "id": "Plastic"
-                                    }, 
-                                    {
-                                        "id": "Self-fabric"
+                                        "image": {
+                                            "thumbnail_url": "img/thumbnail/Closure/Button.jpg", 
+                                            "full_size_url": "img/full_size/Closure/Button.jpg", 
+                                            "rights": {
+                                                "source_url": "https://commons.wikimedia.org/wiki/File:Three_holes_buttons.jpg", 
+                                                "source_name": "Wikipedia", 
+                                                "license": "CC SA 3.0 Unported", 
+                                                "author": "Marco Bernardini"
+                                            }
+                                        }, 
+                                        "id": "Button"
                                     }, 
                                     {
                                         "image": {
-                                            "thumbnail_url": "img/thumbnail/Net tulle.jpg", 
-                                            "full_size_url": "img/full_size/Net tulle.jpg", 
+                                            "thumbnail_url": "img/thumbnail/Closure/Hook-and-eye.jpg", 
+                                            "full_size_url": "img/full_size/Closure/Hook-and-eye.jpg", 
                                             "rights": {
-                                                "source_url": "https://commons.wikimedia.org/wiki/File:Carolus_-Private_Collection_-_zwarte_tulekant.jpg", 
+                                                "source_url": "https://en.wikipedia.org/wiki/Hook-and-eye_closure#/media/File:Hook_and_eye_clasp.JPG", 
                                                 "source_name": "Wikipedia", 
-                                                "license": "CC-SA 3.0", 
-                                                "author": "Wikipedia user Carolus"
+                                                "license": "CC SA 3.0 Unported", 
+                                                "author": "Wikipedia user Eitan F"
                                             }
                                         }, 
-                                        "id": "Net tulle"
-                                    }, 
-                                    {
-                                        "id": "Velvet"
+                                        "id": "Hook-and-eye"
                                     }
                                 ]
                             }, 
                             {
-                                "id": "Whole Top Print", 
+                                "id": "Whole Top Material", 
                                 "values_": [
                                     {
-                                        "id": "Abstracted floral"
-                                    }, 
-                                    {
-                                        "id": "Checkerboard"
-                                    }, 
-                                    {
-                                        "id": "Floral"
-                                    }, 
-                                    {
-                                        "id": "Plaid"
+                                        "image": {
+                                            "thumbnail_url": "img/thumbnail/Material/Net tulle.jpg", 
+                                            "full_size_url": "img/full_size/Material/Net tulle.jpg", 
+                                            "rights": {
+                                                "source_url": "https://commons.wikimedia.org/wiki/File:Carolus_-Private_Collection_-_zwarte_tulekant.jpg", 
+                                                "source_name": "Wikipedia", 
+                                                "license": "CC SA 3.0 Unported", 
+                                                "author": "Wikipedia user Carolus"
+                                            }
+                                        }, 
+                                        "id": "Net tulle"
                                     }
                                 ]
                             }
@@ -62,52 +61,51 @@ var WORKSHEET_DEFINITION = {
                         "id": "Bottom", 
                         "features": [
                             {
-                                "id": "Whole Bottom Material", 
+                                "id": "Whole Bottom Closure", 
                                 "values_": [
                                     {
-                                        "id": "Cotton"
-                                    }, 
-                                    {
-                                        "id": "Elastic"
-                                    }, 
-                                    {
-                                        "id": "Plastic"
-                                    }, 
-                                    {
-                                        "id": "Self-fabric"
+                                        "image": {
+                                            "thumbnail_url": "img/thumbnail/Closure/Button.jpg", 
+                                            "full_size_url": "img/full_size/Closure/Button.jpg", 
+                                            "rights": {
+                                                "source_url": "https://commons.wikimedia.org/wiki/File:Three_holes_buttons.jpg", 
+                                                "source_name": "Wikipedia", 
+                                                "license": "CC SA 3.0 Unported", 
+                                                "author": "Marco Bernardini"
+                                            }
+                                        }, 
+                                        "id": "Button"
                                     }, 
                                     {
                                         "image": {
-                                            "thumbnail_url": "img/thumbnail/Net tulle.jpg", 
-                                            "full_size_url": "img/full_size/Net tulle.jpg", 
+                                            "thumbnail_url": "img/thumbnail/Closure/Hook-and-eye.jpg", 
+                                            "full_size_url": "img/full_size/Closure/Hook-and-eye.jpg", 
                                             "rights": {
-                                                "source_url": "https://commons.wikimedia.org/wiki/File:Carolus_-Private_Collection_-_zwarte_tulekant.jpg", 
+                                                "source_url": "https://en.wikipedia.org/wiki/Hook-and-eye_closure#/media/File:Hook_and_eye_clasp.JPG", 
                                                 "source_name": "Wikipedia", 
-                                                "license": "CC-SA 3.0", 
-                                                "author": "Wikipedia user Carolus"
+                                                "license": "CC SA 3.0 Unported", 
+                                                "author": "Wikipedia user Eitan F"
                                             }
                                         }, 
-                                        "id": "Net tulle"
-                                    }, 
-                                    {
-                                        "id": "Velvet"
+                                        "id": "Hook-and-eye"
                                     }
                                 ]
                             }, 
                             {
-                                "id": "Whole Bottom Print", 
+                                "id": "Whole Bottom Material", 
                                 "values_": [
                                     {
-                                        "id": "Abstracted floral"
-                                    }, 
-                                    {
-                                        "id": "Checkerboard"
-                                    }, 
-                                    {
-                                        "id": "Floral"
-                                    }, 
-                                    {
-                                        "id": "Plaid"
+                                        "image": {
+                                            "thumbnail_url": "img/thumbnail/Material/Net tulle.jpg", 
+                                            "full_size_url": "img/full_size/Material/Net tulle.jpg", 
+                                            "rights": {
+                                                "source_url": "https://commons.wikimedia.org/wiki/File:Carolus_-Private_Collection_-_zwarte_tulekant.jpg", 
+                                                "source_name": "Wikipedia", 
+                                                "license": "CC SA 3.0 Unported", 
+                                                "author": "Wikipedia user Carolus"
+                                            }
+                                        }, 
+                                        "id": "Net tulle"
                                     }
                                 ]
                             }
@@ -125,52 +123,51 @@ var WORKSHEET_DEFINITION = {
                 "id": "Collar", 
                 "features": [
                     {
-                        "id": "Collar Material", 
+                        "id": "Collar Closure", 
                         "values_": [
                             {
-                                "id": "Cotton"
-                            }, 
-                            {
-                                "id": "Elastic"
-                            }, 
-                            {
-                                "id": "Plastic"
-                            }, 
-                            {
-                                "id": "Self-fabric"
+                                "image": {
+                                    "thumbnail_url": "img/thumbnail/Closure/Button.jpg", 
+                                    "full_size_url": "img/full_size/Closure/Button.jpg", 
+                                    "rights": {
+                                        "source_url": "https://commons.wikimedia.org/wiki/File:Three_holes_buttons.jpg", 
+                                        "source_name": "Wikipedia", 
+                                        "license": "CC SA 3.0 Unported", 
+                                        "author": "Marco Bernardini"
+                                    }
+                                }, 
+                                "id": "Button"
                             }, 
                             {
                                 "image": {
-                                    "thumbnail_url": "img/thumbnail/Net tulle.jpg", 
-                                    "full_size_url": "img/full_size/Net tulle.jpg", 
+                                    "thumbnail_url": "img/thumbnail/Closure/Hook-and-eye.jpg", 
+                                    "full_size_url": "img/full_size/Closure/Hook-and-eye.jpg", 
                                     "rights": {
-                                        "source_url": "https://commons.wikimedia.org/wiki/File:Carolus_-Private_Collection_-_zwarte_tulekant.jpg", 
+                                        "source_url": "https://en.wikipedia.org/wiki/Hook-and-eye_closure#/media/File:Hook_and_eye_clasp.JPG", 
                                         "source_name": "Wikipedia", 
-                                        "license": "CC-SA 3.0", 
-                                        "author": "Wikipedia user Carolus"
+                                        "license": "CC SA 3.0 Unported", 
+                                        "author": "Wikipedia user Eitan F"
                                     }
                                 }, 
-                                "id": "Net tulle"
-                            }, 
-                            {
-                                "id": "Velvet"
+                                "id": "Hook-and-eye"
                             }
                         ]
                     }, 
                     {
-                        "id": "Collar Print", 
+                        "id": "Collar Material", 
                         "values_": [
                             {
-                                "id": "Abstracted floral"
-                            }, 
-                            {
-                                "id": "Checkerboard"
-                            }, 
-                            {
-                                "id": "Floral"
-                            }, 
-                            {
-                                "id": "Plaid"
+                                "image": {
+                                    "thumbnail_url": "img/thumbnail/Material/Net tulle.jpg", 
+                                    "full_size_url": "img/full_size/Material/Net tulle.jpg", 
+                                    "rights": {
+                                        "source_url": "https://commons.wikimedia.org/wiki/File:Carolus_-Private_Collection_-_zwarte_tulekant.jpg", 
+                                        "source_name": "Wikipedia", 
+                                        "license": "CC SA 3.0 Unported", 
+                                        "author": "Wikipedia user Carolus"
+                                    }
+                                }, 
+                                "id": "Net tulle"
                             }
                         ]
                     }
@@ -180,52 +177,51 @@ var WORKSHEET_DEFINITION = {
                 "id": "Shoulders", 
                 "features": [
                     {
-                        "id": "Shoulders Material", 
+                        "id": "Shoulders Closure", 
                         "values_": [
                             {
-                                "id": "Cotton"
-                            }, 
-                            {
-                                "id": "Elastic"
-                            }, 
-                            {
-                                "id": "Plastic"
-                            }, 
-                            {
-                                "id": "Self-fabric"
+                                "image": {
+                                    "thumbnail_url": "img/thumbnail/Closure/Button.jpg", 
+                                    "full_size_url": "img/full_size/Closure/Button.jpg", 
+                                    "rights": {
+                                        "source_url": "https://commons.wikimedia.org/wiki/File:Three_holes_buttons.jpg", 
+                                        "source_name": "Wikipedia", 
+                                        "license": "CC SA 3.0 Unported", 
+                                        "author": "Marco Bernardini"
+                                    }
+                                }, 
+                                "id": "Button"
                             }, 
                             {
                                 "image": {
-                                    "thumbnail_url": "img/thumbnail/Net tulle.jpg", 
-                                    "full_size_url": "img/full_size/Net tulle.jpg", 
+                                    "thumbnail_url": "img/thumbnail/Closure/Hook-and-eye.jpg", 
+                                    "full_size_url": "img/full_size/Closure/Hook-and-eye.jpg", 
                                     "rights": {
-                                        "source_url": "https://commons.wikimedia.org/wiki/File:Carolus_-Private_Collection_-_zwarte_tulekant.jpg", 
+                                        "source_url": "https://en.wikipedia.org/wiki/Hook-and-eye_closure#/media/File:Hook_and_eye_clasp.JPG", 
                                         "source_name": "Wikipedia", 
-                                        "license": "CC-SA 3.0", 
-                                        "author": "Wikipedia user Carolus"
+                                        "license": "CC SA 3.0 Unported", 
+                                        "author": "Wikipedia user Eitan F"
                                     }
                                 }, 
-                                "id": "Net tulle"
-                            }, 
-                            {
-                                "id": "Velvet"
+                                "id": "Hook-and-eye"
                             }
                         ]
                     }, 
                     {
-                        "id": "Shoulders Print", 
+                        "id": "Shoulders Material", 
                         "values_": [
                             {
-                                "id": "Abstracted floral"
-                            }, 
-                            {
-                                "id": "Checkerboard"
-                            }, 
-                            {
-                                "id": "Floral"
-                            }, 
-                            {
-                                "id": "Plaid"
+                                "image": {
+                                    "thumbnail_url": "img/thumbnail/Material/Net tulle.jpg", 
+                                    "full_size_url": "img/full_size/Material/Net tulle.jpg", 
+                                    "rights": {
+                                        "source_url": "https://commons.wikimedia.org/wiki/File:Carolus_-Private_Collection_-_zwarte_tulekant.jpg", 
+                                        "source_name": "Wikipedia", 
+                                        "license": "CC SA 3.0 Unported", 
+                                        "author": "Wikipedia user Carolus"
+                                    }
+                                }, 
+                                "id": "Net tulle"
                             }
                         ]
                     }
@@ -235,52 +231,51 @@ var WORKSHEET_DEFINITION = {
                 "id": "Sleeves", 
                 "features": [
                     {
-                        "id": "Sleeves Material", 
+                        "id": "Sleeves Closure", 
                         "values_": [
                             {
-                                "id": "Cotton"
-                            }, 
-                            {
-                                "id": "Elastic"
-                            }, 
-                            {
-                                "id": "Plastic"
-                            }, 
-                            {
-                                "id": "Self-fabric"
+                                "image": {
+                                    "thumbnail_url": "img/thumbnail/Closure/Button.jpg", 
+                                    "full_size_url": "img/full_size/Closure/Button.jpg", 
+                                    "rights": {
+                                        "source_url": "https://commons.wikimedia.org/wiki/File:Three_holes_buttons.jpg", 
+                                        "source_name": "Wikipedia", 
+                                        "license": "CC SA 3.0 Unported", 
+                                        "author": "Marco Bernardini"
+                                    }
+                                }, 
+                                "id": "Button"
                             }, 
                             {
                                 "image": {
-                                    "thumbnail_url": "img/thumbnail/Net tulle.jpg", 
-                                    "full_size_url": "img/full_size/Net tulle.jpg", 
+                                    "thumbnail_url": "img/thumbnail/Closure/Hook-and-eye.jpg", 
+                                    "full_size_url": "img/full_size/Closure/Hook-and-eye.jpg", 
                                     "rights": {
-                                        "source_url": "https://commons.wikimedia.org/wiki/File:Carolus_-Private_Collection_-_zwarte_tulekant.jpg", 
+                                        "source_url": "https://en.wikipedia.org/wiki/Hook-and-eye_closure#/media/File:Hook_and_eye_clasp.JPG", 
                                         "source_name": "Wikipedia", 
-                                        "license": "CC-SA 3.0", 
-                                        "author": "Wikipedia user Carolus"
+                                        "license": "CC SA 3.0 Unported", 
+                                        "author": "Wikipedia user Eitan F"
                                     }
                                 }, 
-                                "id": "Net tulle"
-                            }, 
-                            {
-                                "id": "Velvet"
+                                "id": "Hook-and-eye"
                             }
                         ]
                     }, 
                     {
-                        "id": "Sleeves Print", 
+                        "id": "Sleeves Material", 
                         "values_": [
                             {
-                                "id": "Abstracted floral"
-                            }, 
-                            {
-                                "id": "Checkerboard"
-                            }, 
-                            {
-                                "id": "Floral"
-                            }, 
-                            {
-                                "id": "Plaid"
+                                "image": {
+                                    "thumbnail_url": "img/thumbnail/Material/Net tulle.jpg", 
+                                    "full_size_url": "img/full_size/Material/Net tulle.jpg", 
+                                    "rights": {
+                                        "source_url": "https://commons.wikimedia.org/wiki/File:Carolus_-Private_Collection_-_zwarte_tulekant.jpg", 
+                                        "source_name": "Wikipedia", 
+                                        "license": "CC SA 3.0 Unported", 
+                                        "author": "Wikipedia user Carolus"
+                                    }
+                                }, 
+                                "id": "Net tulle"
                             }
                         ]
                     }
@@ -292,52 +287,51 @@ var WORKSHEET_DEFINITION = {
                         "id": "Whole", 
                         "features": [
                             {
-                                "id": "Front Whole Material", 
+                                "id": "Front Whole Closure", 
                                 "values_": [
                                     {
-                                        "id": "Cotton"
-                                    }, 
-                                    {
-                                        "id": "Elastic"
-                                    }, 
-                                    {
-                                        "id": "Plastic"
-                                    }, 
-                                    {
-                                        "id": "Self-fabric"
+                                        "image": {
+                                            "thumbnail_url": "img/thumbnail/Closure/Button.jpg", 
+                                            "full_size_url": "img/full_size/Closure/Button.jpg", 
+                                            "rights": {
+                                                "source_url": "https://commons.wikimedia.org/wiki/File:Three_holes_buttons.jpg", 
+                                                "source_name": "Wikipedia", 
+                                                "license": "CC SA 3.0 Unported", 
+                                                "author": "Marco Bernardini"
+                                            }
+                                        }, 
+                                        "id": "Button"
                                     }, 
                                     {
                                         "image": {
-                                            "thumbnail_url": "img/thumbnail/Net tulle.jpg", 
-                                            "full_size_url": "img/full_size/Net tulle.jpg", 
+                                            "thumbnail_url": "img/thumbnail/Closure/Hook-and-eye.jpg", 
+                                            "full_size_url": "img/full_size/Closure/Hook-and-eye.jpg", 
                                             "rights": {
-                                                "source_url": "https://commons.wikimedia.org/wiki/File:Carolus_-Private_Collection_-_zwarte_tulekant.jpg", 
+                                                "source_url": "https://en.wikipedia.org/wiki/Hook-and-eye_closure#/media/File:Hook_and_eye_clasp.JPG", 
                                                 "source_name": "Wikipedia", 
-                                                "license": "CC-SA 3.0", 
-                                                "author": "Wikipedia user Carolus"
+                                                "license": "CC SA 3.0 Unported", 
+                                                "author": "Wikipedia user Eitan F"
                                             }
                                         }, 
-                                        "id": "Net tulle"
-                                    }, 
-                                    {
-                                        "id": "Velvet"
+                                        "id": "Hook-and-eye"
                                     }
                                 ]
                             }, 
                             {
-                                "id": "Front Whole Print", 
+                                "id": "Front Whole Material", 
                                 "values_": [
                                     {
-                                        "id": "Abstracted floral"
-                                    }, 
-                                    {
-                                        "id": "Checkerboard"
-                                    }, 
-                                    {
-                                        "id": "Floral"
-                                    }, 
-                                    {
-                                        "id": "Plaid"
+                                        "image": {
+                                            "thumbnail_url": "img/thumbnail/Material/Net tulle.jpg", 
+                                            "full_size_url": "img/full_size/Material/Net tulle.jpg", 
+                                            "rights": {
+                                                "source_url": "https://commons.wikimedia.org/wiki/File:Carolus_-Private_Collection_-_zwarte_tulekant.jpg", 
+                                                "source_name": "Wikipedia", 
+                                                "license": "CC SA 3.0 Unported", 
+                                                "author": "Wikipedia user Carolus"
+                                            }
+                                        }, 
+                                        "id": "Net tulle"
                                     }
                                 ]
                             }
@@ -347,52 +341,51 @@ var WORKSHEET_DEFINITION = {
                         "id": "Top", 
                         "features": [
                             {
-                                "id": "Front Top Material", 
+                                "id": "Front Top Closure", 
                                 "values_": [
                                     {
-                                        "id": "Cotton"
-                                    }, 
-                                    {
-                                        "id": "Elastic"
-                                    }, 
-                                    {
-                                        "id": "Plastic"
-                                    }, 
-                                    {
-                                        "id": "Self-fabric"
+                                        "image": {
+                                            "thumbnail_url": "img/thumbnail/Closure/Button.jpg", 
+                                            "full_size_url": "img/full_size/Closure/Button.jpg", 
+                                            "rights": {
+                                                "source_url": "https://commons.wikimedia.org/wiki/File:Three_holes_buttons.jpg", 
+                                                "source_name": "Wikipedia", 
+                                                "license": "CC SA 3.0 Unported", 
+                                                "author": "Marco Bernardini"
+                                            }
+                                        }, 
+                                        "id": "Button"
                                     }, 
                                     {
                                         "image": {
-                                            "thumbnail_url": "img/thumbnail/Net tulle.jpg", 
-                                            "full_size_url": "img/full_size/Net tulle.jpg", 
+                                            "thumbnail_url": "img/thumbnail/Closure/Hook-and-eye.jpg", 
+                                            "full_size_url": "img/full_size/Closure/Hook-and-eye.jpg", 
                                             "rights": {
-                                                "source_url": "https://commons.wikimedia.org/wiki/File:Carolus_-Private_Collection_-_zwarte_tulekant.jpg", 
+                                                "source_url": "https://en.wikipedia.org/wiki/Hook-and-eye_closure#/media/File:Hook_and_eye_clasp.JPG", 
                                                 "source_name": "Wikipedia", 
-                                                "license": "CC-SA 3.0", 
-                                                "author": "Wikipedia user Carolus"
+                                                "license": "CC SA 3.0 Unported", 
+                                                "author": "Wikipedia user Eitan F"
                                             }
                                         }, 
-                                        "id": "Net tulle"
-                                    }, 
-                                    {
-                                        "id": "Velvet"
+                                        "id": "Hook-and-eye"
                                     }
                                 ]
                             }, 
                             {
-                                "id": "Front Top Print", 
+                                "id": "Front Top Material", 
                                 "values_": [
                                     {
-                                        "id": "Abstracted floral"
-                                    }, 
-                                    {
-                                        "id": "Checkerboard"
-                                    }, 
-                                    {
-                                        "id": "Floral"
-                                    }, 
-                                    {
-                                        "id": "Plaid"
+                                        "image": {
+                                            "thumbnail_url": "img/thumbnail/Material/Net tulle.jpg", 
+                                            "full_size_url": "img/full_size/Material/Net tulle.jpg", 
+                                            "rights": {
+                                                "source_url": "https://commons.wikimedia.org/wiki/File:Carolus_-Private_Collection_-_zwarte_tulekant.jpg", 
+                                                "source_name": "Wikipedia", 
+                                                "license": "CC SA 3.0 Unported", 
+                                                "author": "Wikipedia user Carolus"
+                                            }
+                                        }, 
+                                        "id": "Net tulle"
                                     }
                                 ]
                             }
@@ -402,52 +395,51 @@ var WORKSHEET_DEFINITION = {
                         "id": "Bottom", 
                         "features": [
                             {
-                                "id": "Front Bottom Material", 
+                                "id": "Front Bottom Closure", 
                                 "values_": [
                                     {
-                                        "id": "Cotton"
-                                    }, 
-                                    {
-                                        "id": "Elastic"
-                                    }, 
-                                    {
-                                        "id": "Plastic"
-                                    }, 
-                                    {
-                                        "id": "Self-fabric"
+                                        "image": {
+                                            "thumbnail_url": "img/thumbnail/Closure/Button.jpg", 
+                                            "full_size_url": "img/full_size/Closure/Button.jpg", 
+                                            "rights": {
+                                                "source_url": "https://commons.wikimedia.org/wiki/File:Three_holes_buttons.jpg", 
+                                                "source_name": "Wikipedia", 
+                                                "license": "CC SA 3.0 Unported", 
+                                                "author": "Marco Bernardini"
+                                            }
+                                        }, 
+                                        "id": "Button"
                                     }, 
                                     {
                                         "image": {
-                                            "thumbnail_url": "img/thumbnail/Net tulle.jpg", 
-                                            "full_size_url": "img/full_size/Net tulle.jpg", 
+                                            "thumbnail_url": "img/thumbnail/Closure/Hook-and-eye.jpg", 
+                                            "full_size_url": "img/full_size/Closure/Hook-and-eye.jpg", 
                                             "rights": {
-                                                "source_url": "https://commons.wikimedia.org/wiki/File:Carolus_-Private_Collection_-_zwarte_tulekant.jpg", 
+                                                "source_url": "https://en.wikipedia.org/wiki/Hook-and-eye_closure#/media/File:Hook_and_eye_clasp.JPG", 
                                                 "source_name": "Wikipedia", 
-                                                "license": "CC-SA 3.0", 
-                                                "author": "Wikipedia user Carolus"
+                                                "license": "CC SA 3.0 Unported", 
+                                                "author": "Wikipedia user Eitan F"
                                             }
                                         }, 
-                                        "id": "Net tulle"
-                                    }, 
-                                    {
-                                        "id": "Velvet"
+                                        "id": "Hook-and-eye"
                                     }
                                 ]
                             }, 
                             {
-                                "id": "Front Bottom Print", 
+                                "id": "Front Bottom Material", 
                                 "values_": [
                                     {
-                                        "id": "Abstracted floral"
-                                    }, 
-                                    {
-                                        "id": "Checkerboard"
-                                    }, 
-                                    {
-                                        "id": "Floral"
-                                    }, 
-                                    {
-                                        "id": "Plaid"
+                                        "image": {
+                                            "thumbnail_url": "img/thumbnail/Material/Net tulle.jpg", 
+                                            "full_size_url": "img/full_size/Material/Net tulle.jpg", 
+                                            "rights": {
+                                                "source_url": "https://commons.wikimedia.org/wiki/File:Carolus_-Private_Collection_-_zwarte_tulekant.jpg", 
+                                                "source_name": "Wikipedia", 
+                                                "license": "CC SA 3.0 Unported", 
+                                                "author": "Wikipedia user Carolus"
+                                            }
+                                        }, 
+                                        "id": "Net tulle"
                                     }
                                 ]
                             }
@@ -462,52 +454,51 @@ var WORKSHEET_DEFINITION = {
                         "id": "Whole", 
                         "features": [
                             {
-                                "id": "Back Whole Material", 
+                                "id": "Back Whole Closure", 
                                 "values_": [
                                     {
-                                        "id": "Cotton"
-                                    }, 
-                                    {
-                                        "id": "Elastic"
-                                    }, 
-                                    {
-                                        "id": "Plastic"
-                                    }, 
-                                    {
-                                        "id": "Self-fabric"
+                                        "image": {
+                                            "thumbnail_url": "img/thumbnail/Closure/Button.jpg", 
+                                            "full_size_url": "img/full_size/Closure/Button.jpg", 
+                                            "rights": {
+                                                "source_url": "https://commons.wikimedia.org/wiki/File:Three_holes_buttons.jpg", 
+                                                "source_name": "Wikipedia", 
+                                                "license": "CC SA 3.0 Unported", 
+                                                "author": "Marco Bernardini"
+                                            }
+                                        }, 
+                                        "id": "Button"
                                     }, 
                                     {
                                         "image": {
-                                            "thumbnail_url": "img/thumbnail/Net tulle.jpg", 
-                                            "full_size_url": "img/full_size/Net tulle.jpg", 
+                                            "thumbnail_url": "img/thumbnail/Closure/Hook-and-eye.jpg", 
+                                            "full_size_url": "img/full_size/Closure/Hook-and-eye.jpg", 
                                             "rights": {
-                                                "source_url": "https://commons.wikimedia.org/wiki/File:Carolus_-Private_Collection_-_zwarte_tulekant.jpg", 
+                                                "source_url": "https://en.wikipedia.org/wiki/Hook-and-eye_closure#/media/File:Hook_and_eye_clasp.JPG", 
                                                 "source_name": "Wikipedia", 
-                                                "license": "CC-SA 3.0", 
-                                                "author": "Wikipedia user Carolus"
+                                                "license": "CC SA 3.0 Unported", 
+                                                "author": "Wikipedia user Eitan F"
                                             }
                                         }, 
-                                        "id": "Net tulle"
-                                    }, 
-                                    {
-                                        "id": "Velvet"
+                                        "id": "Hook-and-eye"
                                     }
                                 ]
                             }, 
                             {
-                                "id": "Back Whole Print", 
+                                "id": "Back Whole Material", 
                                 "values_": [
                                     {
-                                        "id": "Abstracted floral"
-                                    }, 
-                                    {
-                                        "id": "Checkerboard"
-                                    }, 
-                                    {
-                                        "id": "Floral"
-                                    }, 
-                                    {
-                                        "id": "Plaid"
+                                        "image": {
+                                            "thumbnail_url": "img/thumbnail/Material/Net tulle.jpg", 
+                                            "full_size_url": "img/full_size/Material/Net tulle.jpg", 
+                                            "rights": {
+                                                "source_url": "https://commons.wikimedia.org/wiki/File:Carolus_-Private_Collection_-_zwarte_tulekant.jpg", 
+                                                "source_name": "Wikipedia", 
+                                                "license": "CC SA 3.0 Unported", 
+                                                "author": "Wikipedia user Carolus"
+                                            }
+                                        }, 
+                                        "id": "Net tulle"
                                     }
                                 ]
                             }
@@ -517,52 +508,51 @@ var WORKSHEET_DEFINITION = {
                         "id": "Top", 
                         "features": [
                             {
-                                "id": "Back Top Material", 
+                                "id": "Back Top Closure", 
                                 "values_": [
                                     {
-                                        "id": "Cotton"
-                                    }, 
-                                    {
-                                        "id": "Elastic"
-                                    }, 
-                                    {
-                                        "id": "Plastic"
-                                    }, 
-                                    {
-                                        "id": "Self-fabric"
+                                        "image": {
+                                            "thumbnail_url": "img/thumbnail/Closure/Button.jpg", 
+                                            "full_size_url": "img/full_size/Closure/Button.jpg", 
+                                            "rights": {
+                                                "source_url": "https://commons.wikimedia.org/wiki/File:Three_holes_buttons.jpg", 
+                                                "source_name": "Wikipedia", 
+                                                "license": "CC SA 3.0 Unported", 
+                                                "author": "Marco Bernardini"
+                                            }
+                                        }, 
+                                        "id": "Button"
                                     }, 
                                     {
                                         "image": {
-                                            "thumbnail_url": "img/thumbnail/Net tulle.jpg", 
-                                            "full_size_url": "img/full_size/Net tulle.jpg", 
+                                            "thumbnail_url": "img/thumbnail/Closure/Hook-and-eye.jpg", 
+                                            "full_size_url": "img/full_size/Closure/Hook-and-eye.jpg", 
                                             "rights": {
-                                                "source_url": "https://commons.wikimedia.org/wiki/File:Carolus_-Private_Collection_-_zwarte_tulekant.jpg", 
+                                                "source_url": "https://en.wikipedia.org/wiki/Hook-and-eye_closure#/media/File:Hook_and_eye_clasp.JPG", 
                                                 "source_name": "Wikipedia", 
-                                                "license": "CC-SA 3.0", 
-                                                "author": "Wikipedia user Carolus"
+                                                "license": "CC SA 3.0 Unported", 
+                                                "author": "Wikipedia user Eitan F"
                                             }
                                         }, 
-                                        "id": "Net tulle"
-                                    }, 
-                                    {
-                                        "id": "Velvet"
+                                        "id": "Hook-and-eye"
                                     }
                                 ]
                             }, 
                             {
-                                "id": "Back Top Print", 
+                                "id": "Back Top Material", 
                                 "values_": [
                                     {
-                                        "id": "Abstracted floral"
-                                    }, 
-                                    {
-                                        "id": "Checkerboard"
-                                    }, 
-                                    {
-                                        "id": "Floral"
-                                    }, 
-                                    {
-                                        "id": "Plaid"
+                                        "image": {
+                                            "thumbnail_url": "img/thumbnail/Material/Net tulle.jpg", 
+                                            "full_size_url": "img/full_size/Material/Net tulle.jpg", 
+                                            "rights": {
+                                                "source_url": "https://commons.wikimedia.org/wiki/File:Carolus_-Private_Collection_-_zwarte_tulekant.jpg", 
+                                                "source_name": "Wikipedia", 
+                                                "license": "CC SA 3.0 Unported", 
+                                                "author": "Wikipedia user Carolus"
+                                            }
+                                        }, 
+                                        "id": "Net tulle"
                                     }
                                 ]
                             }
@@ -572,52 +562,51 @@ var WORKSHEET_DEFINITION = {
                         "id": "Bottom", 
                         "features": [
                             {
-                                "id": "Back Bottom Material", 
+                                "id": "Back Bottom Closure", 
                                 "values_": [
                                     {
-                                        "id": "Cotton"
-                                    }, 
-                                    {
-                                        "id": "Elastic"
-                                    }, 
-                                    {
-                                        "id": "Plastic"
-                                    }, 
-                                    {
-                                        "id": "Self-fabric"
+                                        "image": {
+                                            "thumbnail_url": "img/thumbnail/Closure/Button.jpg", 
+                                            "full_size_url": "img/full_size/Closure/Button.jpg", 
+                                            "rights": {
+                                                "source_url": "https://commons.wikimedia.org/wiki/File:Three_holes_buttons.jpg", 
+                                                "source_name": "Wikipedia", 
+                                                "license": "CC SA 3.0 Unported", 
+                                                "author": "Marco Bernardini"
+                                            }
+                                        }, 
+                                        "id": "Button"
                                     }, 
                                     {
                                         "image": {
-                                            "thumbnail_url": "img/thumbnail/Net tulle.jpg", 
-                                            "full_size_url": "img/full_size/Net tulle.jpg", 
+                                            "thumbnail_url": "img/thumbnail/Closure/Hook-and-eye.jpg", 
+                                            "full_size_url": "img/full_size/Closure/Hook-and-eye.jpg", 
                                             "rights": {
-                                                "source_url": "https://commons.wikimedia.org/wiki/File:Carolus_-Private_Collection_-_zwarte_tulekant.jpg", 
+                                                "source_url": "https://en.wikipedia.org/wiki/Hook-and-eye_closure#/media/File:Hook_and_eye_clasp.JPG", 
                                                 "source_name": "Wikipedia", 
-                                                "license": "CC-SA 3.0", 
-                                                "author": "Wikipedia user Carolus"
+                                                "license": "CC SA 3.0 Unported", 
+                                                "author": "Wikipedia user Eitan F"
                                             }
                                         }, 
-                                        "id": "Net tulle"
-                                    }, 
-                                    {
-                                        "id": "Velvet"
+                                        "id": "Hook-and-eye"
                                     }
                                 ]
                             }, 
                             {
-                                "id": "Back Bottom Print", 
+                                "id": "Back Bottom Material", 
                                 "values_": [
                                     {
-                                        "id": "Abstracted floral"
-                                    }, 
-                                    {
-                                        "id": "Checkerboard"
-                                    }, 
-                                    {
-                                        "id": "Floral"
-                                    }, 
-                                    {
-                                        "id": "Plaid"
+                                        "image": {
+                                            "thumbnail_url": "img/thumbnail/Material/Net tulle.jpg", 
+                                            "full_size_url": "img/full_size/Material/Net tulle.jpg", 
+                                            "rights": {
+                                                "source_url": "https://commons.wikimedia.org/wiki/File:Carolus_-Private_Collection_-_zwarte_tulekant.jpg", 
+                                                "source_name": "Wikipedia", 
+                                                "license": "CC SA 3.0 Unported", 
+                                                "author": "Wikipedia user Carolus"
+                                            }
+                                        }, 
+                                        "id": "Net tulle"
                                     }
                                 ]
                             }
@@ -632,52 +621,51 @@ var WORKSHEET_DEFINITION = {
                         "id": "Whole", 
                         "features": [
                             {
-                                "id": "Interior Whole Material", 
+                                "id": "Interior Whole Closure", 
                                 "values_": [
                                     {
-                                        "id": "Cotton"
-                                    }, 
-                                    {
-                                        "id": "Elastic"
-                                    }, 
-                                    {
-                                        "id": "Plastic"
-                                    }, 
-                                    {
-                                        "id": "Self-fabric"
+                                        "image": {
+                                            "thumbnail_url": "img/thumbnail/Closure/Button.jpg", 
+                                            "full_size_url": "img/full_size/Closure/Button.jpg", 
+                                            "rights": {
+                                                "source_url": "https://commons.wikimedia.org/wiki/File:Three_holes_buttons.jpg", 
+                                                "source_name": "Wikipedia", 
+                                                "license": "CC SA 3.0 Unported", 
+                                                "author": "Marco Bernardini"
+                                            }
+                                        }, 
+                                        "id": "Button"
                                     }, 
                                     {
                                         "image": {
-                                            "thumbnail_url": "img/thumbnail/Net tulle.jpg", 
-                                            "full_size_url": "img/full_size/Net tulle.jpg", 
+                                            "thumbnail_url": "img/thumbnail/Closure/Hook-and-eye.jpg", 
+                                            "full_size_url": "img/full_size/Closure/Hook-and-eye.jpg", 
                                             "rights": {
-                                                "source_url": "https://commons.wikimedia.org/wiki/File:Carolus_-Private_Collection_-_zwarte_tulekant.jpg", 
+                                                "source_url": "https://en.wikipedia.org/wiki/Hook-and-eye_closure#/media/File:Hook_and_eye_clasp.JPG", 
                                                 "source_name": "Wikipedia", 
-                                                "license": "CC-SA 3.0", 
-                                                "author": "Wikipedia user Carolus"
+                                                "license": "CC SA 3.0 Unported", 
+                                                "author": "Wikipedia user Eitan F"
                                             }
                                         }, 
-                                        "id": "Net tulle"
-                                    }, 
-                                    {
-                                        "id": "Velvet"
+                                        "id": "Hook-and-eye"
                                     }
                                 ]
                             }, 
                             {
-                                "id": "Interior Whole Print", 
+                                "id": "Interior Whole Material", 
                                 "values_": [
                                     {
-                                        "id": "Abstracted floral"
-                                    }, 
-                                    {
-                                        "id": "Checkerboard"
-                                    }, 
-                                    {
-                                        "id": "Floral"
-                                    }, 
-                                    {
-                                        "id": "Plaid"
+                                        "image": {
+                                            "thumbnail_url": "img/thumbnail/Material/Net tulle.jpg", 
+                                            "full_size_url": "img/full_size/Material/Net tulle.jpg", 
+                                            "rights": {
+                                                "source_url": "https://commons.wikimedia.org/wiki/File:Carolus_-Private_Collection_-_zwarte_tulekant.jpg", 
+                                                "source_name": "Wikipedia", 
+                                                "license": "CC SA 3.0 Unported", 
+                                                "author": "Wikipedia user Carolus"
+                                            }
+                                        }, 
+                                        "id": "Net tulle"
                                     }
                                 ]
                             }
@@ -687,52 +675,51 @@ var WORKSHEET_DEFINITION = {
                         "id": "Top", 
                         "features": [
                             {
-                                "id": "Interior Top Material", 
+                                "id": "Interior Top Closure", 
                                 "values_": [
                                     {
-                                        "id": "Cotton"
-                                    }, 
-                                    {
-                                        "id": "Elastic"
-                                    }, 
-                                    {
-                                        "id": "Plastic"
-                                    }, 
-                                    {
-                                        "id": "Self-fabric"
+                                        "image": {
+                                            "thumbnail_url": "img/thumbnail/Closure/Button.jpg", 
+                                            "full_size_url": "img/full_size/Closure/Button.jpg", 
+                                            "rights": {
+                                                "source_url": "https://commons.wikimedia.org/wiki/File:Three_holes_buttons.jpg", 
+                                                "source_name": "Wikipedia", 
+                                                "license": "CC SA 3.0 Unported", 
+                                                "author": "Marco Bernardini"
+                                            }
+                                        }, 
+                                        "id": "Button"
                                     }, 
                                     {
                                         "image": {
-                                            "thumbnail_url": "img/thumbnail/Net tulle.jpg", 
-                                            "full_size_url": "img/full_size/Net tulle.jpg", 
+                                            "thumbnail_url": "img/thumbnail/Closure/Hook-and-eye.jpg", 
+                                            "full_size_url": "img/full_size/Closure/Hook-and-eye.jpg", 
                                             "rights": {
-                                                "source_url": "https://commons.wikimedia.org/wiki/File:Carolus_-Private_Collection_-_zwarte_tulekant.jpg", 
+                                                "source_url": "https://en.wikipedia.org/wiki/Hook-and-eye_closure#/media/File:Hook_and_eye_clasp.JPG", 
                                                 "source_name": "Wikipedia", 
-                                                "license": "CC-SA 3.0", 
-                                                "author": "Wikipedia user Carolus"
+                                                "license": "CC SA 3.0 Unported", 
+                                                "author": "Wikipedia user Eitan F"
                                             }
                                         }, 
-                                        "id": "Net tulle"
-                                    }, 
-                                    {
-                                        "id": "Velvet"
+                                        "id": "Hook-and-eye"
                                     }
                                 ]
                             }, 
                             {
-                                "id": "Interior Top Print", 
+                                "id": "Interior Top Material", 
                                 "values_": [
                                     {
-                                        "id": "Abstracted floral"
-                                    }, 
-                                    {
-                                        "id": "Checkerboard"
-                                    }, 
-                                    {
-                                        "id": "Floral"
-                                    }, 
-                                    {
-                                        "id": "Plaid"
+                                        "image": {
+                                            "thumbnail_url": "img/thumbnail/Material/Net tulle.jpg", 
+                                            "full_size_url": "img/full_size/Material/Net tulle.jpg", 
+                                            "rights": {
+                                                "source_url": "https://commons.wikimedia.org/wiki/File:Carolus_-Private_Collection_-_zwarte_tulekant.jpg", 
+                                                "source_name": "Wikipedia", 
+                                                "license": "CC SA 3.0 Unported", 
+                                                "author": "Wikipedia user Carolus"
+                                            }
+                                        }, 
+                                        "id": "Net tulle"
                                     }
                                 ]
                             }
@@ -742,52 +729,51 @@ var WORKSHEET_DEFINITION = {
                         "id": "Bottom", 
                         "features": [
                             {
-                                "id": "Interior Bottom Material", 
+                                "id": "Interior Bottom Closure", 
                                 "values_": [
                                     {
-                                        "id": "Cotton"
-                                    }, 
-                                    {
-                                        "id": "Elastic"
-                                    }, 
-                                    {
-                                        "id": "Plastic"
-                                    }, 
-                                    {
-                                        "id": "Self-fabric"
+                                        "image": {
+                                            "thumbnail_url": "img/thumbnail/Closure/Button.jpg", 
+                                            "full_size_url": "img/full_size/Closure/Button.jpg", 
+                                            "rights": {
+                                                "source_url": "https://commons.wikimedia.org/wiki/File:Three_holes_buttons.jpg", 
+                                                "source_name": "Wikipedia", 
+                                                "license": "CC SA 3.0 Unported", 
+                                                "author": "Marco Bernardini"
+                                            }
+                                        }, 
+                                        "id": "Button"
                                     }, 
                                     {
                                         "image": {
-                                            "thumbnail_url": "img/thumbnail/Net tulle.jpg", 
-                                            "full_size_url": "img/full_size/Net tulle.jpg", 
+                                            "thumbnail_url": "img/thumbnail/Closure/Hook-and-eye.jpg", 
+                                            "full_size_url": "img/full_size/Closure/Hook-and-eye.jpg", 
                                             "rights": {
-                                                "source_url": "https://commons.wikimedia.org/wiki/File:Carolus_-Private_Collection_-_zwarte_tulekant.jpg", 
+                                                "source_url": "https://en.wikipedia.org/wiki/Hook-and-eye_closure#/media/File:Hook_and_eye_clasp.JPG", 
                                                 "source_name": "Wikipedia", 
-                                                "license": "CC-SA 3.0", 
-                                                "author": "Wikipedia user Carolus"
+                                                "license": "CC SA 3.0 Unported", 
+                                                "author": "Wikipedia user Eitan F"
                                             }
                                         }, 
-                                        "id": "Net tulle"
-                                    }, 
-                                    {
-                                        "id": "Velvet"
+                                        "id": "Hook-and-eye"
                                     }
                                 ]
                             }, 
                             {
-                                "id": "Interior Bottom Print", 
+                                "id": "Interior Bottom Material", 
                                 "values_": [
                                     {
-                                        "id": "Abstracted floral"
-                                    }, 
-                                    {
-                                        "id": "Checkerboard"
-                                    }, 
-                                    {
-                                        "id": "Floral"
-                                    }, 
-                                    {
-                                        "id": "Plaid"
+                                        "image": {
+                                            "thumbnail_url": "img/thumbnail/Material/Net tulle.jpg", 
+                                            "full_size_url": "img/full_size/Material/Net tulle.jpg", 
+                                            "rights": {
+                                                "source_url": "https://commons.wikimedia.org/wiki/File:Carolus_-Private_Collection_-_zwarte_tulekant.jpg", 
+                                                "source_name": "Wikipedia", 
+                                                "license": "CC SA 3.0 Unported", 
+                                                "author": "Wikipedia user Carolus"
+                                            }
+                                        }, 
+                                        "id": "Net tulle"
                                     }
                                 ]
                             }
