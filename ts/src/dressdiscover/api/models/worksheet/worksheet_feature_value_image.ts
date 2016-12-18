@@ -1,11 +1,15 @@
 import * as Backbone from "backbone";
+import { WorksheetFeatureValueImageRights } from "./worksheet_feature_value_image_rights";
 
 export class WorksheetFeatureValueImage extends Backbone.Model {
     validation = {
         rights: {
             "fn": function(value: any, attr: any, computedState: any) {
-                if (typeof value !== "string") {
-                    return "expected WorksheetFeatureValueImage.rights to be a string";
+                if (!(value instanceof WorksheetFeatureValueImageRights)) {
+                    return "expected WorksheetFeatureValueImage.rights to be a WorksheetFeatureValueImageRights";
+                }
+                if (!value.isValid(true)) {
+                    return value.validationError;
                 }
 
                 if (/^\s*$/.test(value)) {
@@ -54,15 +58,15 @@ export class WorksheetFeatureValueImage extends Backbone.Model {
 
     validationError: any;
 
-    constructor(attributes?: {rights: string, thumbnailUrl: string, fullSizeUrl?: string}, options?: any) {
+    constructor(attributes?: {rights: WorksheetFeatureValueImageRights, thumbnailUrl: string, fullSizeUrl?: string}, options?: any) {
         super(attributes, options);
     }
 
-    get rights(): string {
+    get rights(): WorksheetFeatureValueImageRights {
         return this.get('rights');
     }
 
-    set rights(value: string) {
+    set rights(value: WorksheetFeatureValueImageRights) {
         this.set('rights', value, { validate: true });
     }
 
@@ -86,7 +90,7 @@ export class WorksheetFeatureValueImage extends Backbone.Model {
         var out: WorksheetFeatureValueImage = new WorksheetFeatureValueImage;
         for (var fieldName in json) {
             if (fieldName == "rights") {
-                out.attributes.rights = json[fieldName];
+                out.attributes.rights = WorksheetFeatureValueImageRights.fromThryftJSON(json[fieldName]);
             } else if (fieldName == "thumbnail_url") {
                 out.attributes.thumbnailUrl = json[fieldName];
             } else if (fieldName == "full_size_url") {
@@ -101,7 +105,7 @@ export class WorksheetFeatureValueImage extends Backbone.Model {
 
     toThryftJSON(): any {
         var json: {[index: string]: any} = {};
-        json["rights"] = this.rights;
+        json["rights"] = this.rights.toThryftJSON();
         json["thumbnail_url"] = this.thumbnailUrl;
         if (this.has("fullSizeUrl")) {
             json["full_size_url"] = this.fullSizeUrl;

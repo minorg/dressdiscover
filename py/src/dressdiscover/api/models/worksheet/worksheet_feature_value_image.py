@@ -1,4 +1,5 @@
 import __builtin__
+import dressdiscover.api.models.worksheet.worksheet_feature_value_image_rights
 
 
 class WorksheetFeatureValueImage(object):
@@ -10,7 +11,7 @@ class WorksheetFeatureValueImage(object):
             full_size_url=None,
         ):
             '''
-            :type rights: str
+            :type rights: dressdiscover.api.models.worksheet.worksheet_feature_value_image_rights.WorksheetFeatureValueImageRights
             :type thumbnail_url: str
             :type full_size_url: str or None
             '''
@@ -33,7 +34,7 @@ class WorksheetFeatureValueImage(object):
         @property
         def rights(self):
             '''
-            :rtype: str
+            :rtype: dressdiscover.api.models.worksheet.worksheet_feature_value_image_rights.WorksheetFeatureValueImageRights
             '''
 
             return self.__rights
@@ -55,13 +56,13 @@ class WorksheetFeatureValueImage(object):
 
         def set_rights(self, rights):
             '''
-            :type rights: str
+            :type rights: dressdiscover.api.models.worksheet.worksheet_feature_value_image_rights.WorksheetFeatureValueImageRights
             '''
 
             if rights is None:
                 raise ValueError('rights is required')
-            if not isinstance(rights, basestring):
-                raise TypeError("expected rights to be a str but it is a %s" % getattr(__builtin__, 'type')(rights))
+            if not isinstance(rights, dressdiscover.api.models.worksheet.worksheet_feature_value_image_rights.WorksheetFeatureValueImageRights):
+                raise TypeError("expected rights to be a dressdiscover.api.models.worksheet.worksheet_feature_value_image_rights.WorksheetFeatureValueImageRights but it is a %s" % getattr(__builtin__, 'type')(rights))
             if rights.isspace():
                 raise ValueError("expected rights not to be blank")
             if len(rights) < 1:
@@ -95,7 +96,7 @@ class WorksheetFeatureValueImage(object):
 
         def update(self, worksheet_feature_value_image):
             '''
-            :type rights: str
+            :type rights: dressdiscover.api.models.worksheet.worksheet_feature_value_image_rights.WorksheetFeatureValueImageRights
             :type thumbnail_url: str
             :type full_size_url: str or None
             '''
@@ -122,7 +123,7 @@ class WorksheetFeatureValueImage(object):
         @rights.setter
         def rights(self, rights):
             '''
-            :type rights: str
+            :type rights: dressdiscover.api.models.worksheet.worksheet_feature_value_image_rights.WorksheetFeatureValueImageRights
             '''
 
             self.set_rights(rights)
@@ -161,7 +162,7 @@ class WorksheetFeatureValueImage(object):
         def values(cls):
             return (cls.RIGHTS, cls.THUMBNAIL_URL, cls.FULL_SIZE_URL,)
 
-    FieldMetadata.RIGHTS = FieldMetadata('rights', str, {u'blank': False, u'minLength': 1})
+    FieldMetadata.RIGHTS = FieldMetadata('rights', dressdiscover.api.models.worksheet.worksheet_feature_value_image_rights.WorksheetFeatureValueImageRights, {u'blank': False, u'minLength': 1})
     FieldMetadata.THUMBNAIL_URL = FieldMetadata('thumbnail_url', str, {u'blank': False, u'minLength': 1})
     FieldMetadata.FULL_SIZE_URL = FieldMetadata('full_size_url', str, {u'blank': False, u'minLength': 1})
 
@@ -172,15 +173,15 @@ class WorksheetFeatureValueImage(object):
         full_size_url=None,
     ):
         '''
-        :type rights: str
+        :type rights: dressdiscover.api.models.worksheet.worksheet_feature_value_image_rights.WorksheetFeatureValueImageRights
         :type thumbnail_url: str
         :type full_size_url: str or None
         '''
 
         if rights is None:
             raise ValueError('rights is required')
-        if not isinstance(rights, basestring):
-            raise TypeError("expected rights to be a str but it is a %s" % getattr(__builtin__, 'type')(rights))
+        if not isinstance(rights, dressdiscover.api.models.worksheet.worksheet_feature_value_image_rights.WorksheetFeatureValueImageRights):
+            raise TypeError("expected rights to be a dressdiscover.api.models.worksheet.worksheet_feature_value_image_rights.WorksheetFeatureValueImageRights but it is a %s" % getattr(__builtin__, 'type')(rights))
         if rights.isspace():
             raise ValueError("expected rights not to be blank")
         if len(rights) < 1:
@@ -226,7 +227,7 @@ class WorksheetFeatureValueImage(object):
 
     def __repr__(self):
         field_reprs = []
-        field_reprs.append('rights=' + "'" + self.rights.encode('ascii', 'replace') + "'")
+        field_reprs.append('rights=' + repr(self.rights))
         field_reprs.append('thumbnail_url=' + "'" + self.thumbnail_url.encode('ascii', 'replace') + "'")
         if self.full_size_url is not None:
             field_reprs.append('full_size_url=' + "'" + self.full_size_url.encode('ascii', 'replace') + "'")
@@ -234,7 +235,7 @@ class WorksheetFeatureValueImage(object):
 
     def __str__(self):
         field_reprs = []
-        field_reprs.append('rights=' + "'" + self.rights.encode('ascii', 'replace') + "'")
+        field_reprs.append('rights=' + repr(self.rights))
         field_reprs.append('thumbnail_url=' + "'" + self.thumbnail_url.encode('ascii', 'replace') + "'")
         if self.full_size_url is not None:
             field_reprs.append('full_size_url=' + "'" + self.full_size_url.encode('ascii', 'replace') + "'")
@@ -265,7 +266,7 @@ class WorksheetFeatureValueImage(object):
             if ifield_type == 0: # STOP
                 break
             elif ifield_name == 'rights':
-                init_kwds['rights'] = iprot.read_string()
+                init_kwds['rights'] = dressdiscover.api.models.worksheet.worksheet_feature_value_image_rights.WorksheetFeatureValueImageRights.read(iprot)
             elif ifield_name == 'thumbnail_url':
                 init_kwds['thumbnail_url'] = iprot.read_string()
             elif ifield_name == 'full_size_url':
@@ -287,7 +288,7 @@ class WorksheetFeatureValueImage(object):
         '''
         Copy this object, replace one or more fields, and return the copy.
 
-        :type rights: str or None
+        :type rights: dressdiscover.api.models.worksheet.worksheet_feature_value_image_rights.WorksheetFeatureValueImageRights or None
         :type thumbnail_url: str or None
         :type full_size_url: str or None
         :rtype: dressdiscover.api.models.worksheet.worksheet_feature_value_image.WorksheetFeatureValueImage
@@ -304,7 +305,7 @@ class WorksheetFeatureValueImage(object):
     @property
     def rights(self):
         '''
-        :rtype: str
+        :rtype: dressdiscover.api.models.worksheet.worksheet_feature_value_image_rights.WorksheetFeatureValueImageRights
         '''
 
         return self.__rights
@@ -327,8 +328,8 @@ class WorksheetFeatureValueImage(object):
 
         oprot.write_struct_begin('WorksheetFeatureValueImage')
 
-        oprot.write_field_begin(name='rights', type=11, id=None)
-        oprot.write_string(self.rights)
+        oprot.write_field_begin(name='rights', type=12, id=None)
+        self.rights.write(oprot)
         oprot.write_field_end()
 
         oprot.write_field_begin(name='thumbnail_url', type=11, id=None)
