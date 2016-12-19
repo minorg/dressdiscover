@@ -55,13 +55,26 @@ var WORKSHEET_DEFINITION = {
                                 "values_": [
                                     {
                                         "image": {
-                                            "thumbnail_url": "img/thumbnail/Material/Net tulle.jpg", 
-                                            "full_size_url": "img/full_size/Material/Net tulle.jpg", 
+                                            "thumbnail_url": "img/thumbnail/Material/Corduroy.jpg", 
+                                            "full_size_url": "img/full_size/Material/Corduroy.jpg", 
                                             "rights": {
                                                 "source_url": "https://commons.wikimedia.org/wiki/File:Carolus_-Private_Collection_-_zwarte_tulekant.jpg", 
                                                 "source_name": "Wikipedia", 
                                                 "license": "CC Attribution-Share Alike", 
                                                 "author": "Wikipedia user Carolus"
+                                            }
+                                        }, 
+                                        "id": "Corduroy"
+                                    }, 
+                                    {
+                                        "image": {
+                                            "thumbnail_url": "img/thumbnail/Material/Net tulle.jpg", 
+                                            "full_size_url": "img/full_size/Material/Net tulle.jpg", 
+                                            "rights": {
+                                                "source_url": "https://commons.wikimedia.org/wiki/File:Mansestr.jpg", 
+                                                "source_name": "Wikipedia", 
+                                                "license": "CC Attribution-Share Alike", 
+                                                "author": "Wikipedia user Ludek"
                                             }
                                         }, 
                                         "id": "Net tulle"
@@ -140,13 +153,26 @@ var WORKSHEET_DEFINITION = {
                                 "values_": [
                                     {
                                         "image": {
-                                            "thumbnail_url": "img/thumbnail/Material/Net tulle.jpg", 
-                                            "full_size_url": "img/full_size/Material/Net tulle.jpg", 
+                                            "thumbnail_url": "img/thumbnail/Material/Corduroy.jpg", 
+                                            "full_size_url": "img/full_size/Material/Corduroy.jpg", 
                                             "rights": {
                                                 "source_url": "https://commons.wikimedia.org/wiki/File:Carolus_-Private_Collection_-_zwarte_tulekant.jpg", 
                                                 "source_name": "Wikipedia", 
                                                 "license": "CC Attribution-Share Alike", 
                                                 "author": "Wikipedia user Carolus"
+                                            }
+                                        }, 
+                                        "id": "Corduroy"
+                                    }, 
+                                    {
+                                        "image": {
+                                            "thumbnail_url": "img/thumbnail/Material/Net tulle.jpg", 
+                                            "full_size_url": "img/full_size/Material/Net tulle.jpg", 
+                                            "rights": {
+                                                "source_url": "https://commons.wikimedia.org/wiki/File:Mansestr.jpg", 
+                                                "source_name": "Wikipedia", 
+                                                "license": "CC Attribution-Share Alike", 
+                                                "author": "Wikipedia user Ludek"
                                             }
                                         }, 
                                         "id": "Net tulle"
@@ -233,13 +259,26 @@ var WORKSHEET_DEFINITION = {
                         "values_": [
                             {
                                 "image": {
-                                    "thumbnail_url": "img/thumbnail/Material/Net tulle.jpg", 
-                                    "full_size_url": "img/full_size/Material/Net tulle.jpg", 
+                                    "thumbnail_url": "img/thumbnail/Material/Corduroy.jpg", 
+                                    "full_size_url": "img/full_size/Material/Corduroy.jpg", 
                                     "rights": {
                                         "source_url": "https://commons.wikimedia.org/wiki/File:Carolus_-Private_Collection_-_zwarte_tulekant.jpg", 
                                         "source_name": "Wikipedia", 
                                         "license": "CC Attribution-Share Alike", 
                                         "author": "Wikipedia user Carolus"
+                                    }
+                                }, 
+                                "id": "Corduroy"
+                            }, 
+                            {
+                                "image": {
+                                    "thumbnail_url": "img/thumbnail/Material/Net tulle.jpg", 
+                                    "full_size_url": "img/full_size/Material/Net tulle.jpg", 
+                                    "rights": {
+                                        "source_url": "https://commons.wikimedia.org/wiki/File:Mansestr.jpg", 
+                                        "source_name": "Wikipedia", 
+                                        "license": "CC Attribution-Share Alike", 
+                                        "author": "Wikipedia user Ludek"
                                     }
                                 }, 
                                 "id": "Net tulle"
@@ -318,13 +357,26 @@ var WORKSHEET_DEFINITION = {
                         "values_": [
                             {
                                 "image": {
-                                    "thumbnail_url": "img/thumbnail/Material/Net tulle.jpg", 
-                                    "full_size_url": "img/full_size/Material/Net tulle.jpg", 
+                                    "thumbnail_url": "img/thumbnail/Material/Corduroy.jpg", 
+                                    "full_size_url": "img/full_size/Material/Corduroy.jpg", 
                                     "rights": {
                                         "source_url": "https://commons.wikimedia.org/wiki/File:Carolus_-Private_Collection_-_zwarte_tulekant.jpg", 
                                         "source_name": "Wikipedia", 
                                         "license": "CC Attribution-Share Alike", 
                                         "author": "Wikipedia user Carolus"
+                                    }
+                                }, 
+                                "id": "Corduroy"
+                            }, 
+                            {
+                                "image": {
+                                    "thumbnail_url": "img/thumbnail/Material/Net tulle.jpg", 
+                                    "full_size_url": "img/full_size/Material/Net tulle.jpg", 
+                                    "rights": {
+                                        "source_url": "https://commons.wikimedia.org/wiki/File:Mansestr.jpg", 
+                                        "source_name": "Wikipedia", 
+                                        "license": "CC Attribution-Share Alike", 
+                                        "author": "Wikipedia user Ludek"
                                     }
                                 }, 
                                 "id": "Net tulle"
@@ -403,13 +455,26 @@ var WORKSHEET_DEFINITION = {
                         "values_": [
                             {
                                 "image": {
-                                    "thumbnail_url": "img/thumbnail/Material/Net tulle.jpg", 
-                                    "full_size_url": "img/full_size/Material/Net tulle.jpg", 
+                                    "thumbnail_url": "img/thumbnail/Material/Corduroy.jpg", 
+                                    "full_size_url": "img/full_size/Material/Corduroy.jpg", 
                                     "rights": {
                                         "source_url": "https://commons.wikimedia.org/wiki/File:Carolus_-Private_Collection_-_zwarte_tulekant.jpg", 
                                         "source_name": "Wikipedia", 
                                         "license": "CC Attribution-Share Alike", 
                                         "author": "Wikipedia user Carolus"
+                                    }
+                                }, 
+                                "id": "Corduroy"
+                            }, 
+                            {
+                                "image": {
+                                    "thumbnail_url": "img/thumbnail/Material/Net tulle.jpg", 
+                                    "full_size_url": "img/full_size/Material/Net tulle.jpg", 
+                                    "rights": {
+                                        "source_url": "https://commons.wikimedia.org/wiki/File:Mansestr.jpg", 
+                                        "source_name": "Wikipedia", 
+                                        "license": "CC Attribution-Share Alike", 
+                                        "author": "Wikipedia user Ludek"
                                     }
                                 }, 
                                 "id": "Net tulle"
@@ -490,13 +555,26 @@ var WORKSHEET_DEFINITION = {
                                 "values_": [
                                     {
                                         "image": {
-                                            "thumbnail_url": "img/thumbnail/Material/Net tulle.jpg", 
-                                            "full_size_url": "img/full_size/Material/Net tulle.jpg", 
+                                            "thumbnail_url": "img/thumbnail/Material/Corduroy.jpg", 
+                                            "full_size_url": "img/full_size/Material/Corduroy.jpg", 
                                             "rights": {
                                                 "source_url": "https://commons.wikimedia.org/wiki/File:Carolus_-Private_Collection_-_zwarte_tulekant.jpg", 
                                                 "source_name": "Wikipedia", 
                                                 "license": "CC Attribution-Share Alike", 
                                                 "author": "Wikipedia user Carolus"
+                                            }
+                                        }, 
+                                        "id": "Corduroy"
+                                    }, 
+                                    {
+                                        "image": {
+                                            "thumbnail_url": "img/thumbnail/Material/Net tulle.jpg", 
+                                            "full_size_url": "img/full_size/Material/Net tulle.jpg", 
+                                            "rights": {
+                                                "source_url": "https://commons.wikimedia.org/wiki/File:Mansestr.jpg", 
+                                                "source_name": "Wikipedia", 
+                                                "license": "CC Attribution-Share Alike", 
+                                                "author": "Wikipedia user Ludek"
                                             }
                                         }, 
                                         "id": "Net tulle"
@@ -575,13 +653,26 @@ var WORKSHEET_DEFINITION = {
                                 "values_": [
                                     {
                                         "image": {
-                                            "thumbnail_url": "img/thumbnail/Material/Net tulle.jpg", 
-                                            "full_size_url": "img/full_size/Material/Net tulle.jpg", 
+                                            "thumbnail_url": "img/thumbnail/Material/Corduroy.jpg", 
+                                            "full_size_url": "img/full_size/Material/Corduroy.jpg", 
                                             "rights": {
                                                 "source_url": "https://commons.wikimedia.org/wiki/File:Carolus_-Private_Collection_-_zwarte_tulekant.jpg", 
                                                 "source_name": "Wikipedia", 
                                                 "license": "CC Attribution-Share Alike", 
                                                 "author": "Wikipedia user Carolus"
+                                            }
+                                        }, 
+                                        "id": "Corduroy"
+                                    }, 
+                                    {
+                                        "image": {
+                                            "thumbnail_url": "img/thumbnail/Material/Net tulle.jpg", 
+                                            "full_size_url": "img/full_size/Material/Net tulle.jpg", 
+                                            "rights": {
+                                                "source_url": "https://commons.wikimedia.org/wiki/File:Mansestr.jpg", 
+                                                "source_name": "Wikipedia", 
+                                                "license": "CC Attribution-Share Alike", 
+                                                "author": "Wikipedia user Ludek"
                                             }
                                         }, 
                                         "id": "Net tulle"
@@ -660,13 +751,26 @@ var WORKSHEET_DEFINITION = {
                                 "values_": [
                                     {
                                         "image": {
-                                            "thumbnail_url": "img/thumbnail/Material/Net tulle.jpg", 
-                                            "full_size_url": "img/full_size/Material/Net tulle.jpg", 
+                                            "thumbnail_url": "img/thumbnail/Material/Corduroy.jpg", 
+                                            "full_size_url": "img/full_size/Material/Corduroy.jpg", 
                                             "rights": {
                                                 "source_url": "https://commons.wikimedia.org/wiki/File:Carolus_-Private_Collection_-_zwarte_tulekant.jpg", 
                                                 "source_name": "Wikipedia", 
                                                 "license": "CC Attribution-Share Alike", 
                                                 "author": "Wikipedia user Carolus"
+                                            }
+                                        }, 
+                                        "id": "Corduroy"
+                                    }, 
+                                    {
+                                        "image": {
+                                            "thumbnail_url": "img/thumbnail/Material/Net tulle.jpg", 
+                                            "full_size_url": "img/full_size/Material/Net tulle.jpg", 
+                                            "rights": {
+                                                "source_url": "https://commons.wikimedia.org/wiki/File:Mansestr.jpg", 
+                                                "source_name": "Wikipedia", 
+                                                "license": "CC Attribution-Share Alike", 
+                                                "author": "Wikipedia user Ludek"
                                             }
                                         }, 
                                         "id": "Net tulle"
@@ -750,13 +854,26 @@ var WORKSHEET_DEFINITION = {
                                 "values_": [
                                     {
                                         "image": {
-                                            "thumbnail_url": "img/thumbnail/Material/Net tulle.jpg", 
-                                            "full_size_url": "img/full_size/Material/Net tulle.jpg", 
+                                            "thumbnail_url": "img/thumbnail/Material/Corduroy.jpg", 
+                                            "full_size_url": "img/full_size/Material/Corduroy.jpg", 
                                             "rights": {
                                                 "source_url": "https://commons.wikimedia.org/wiki/File:Carolus_-Private_Collection_-_zwarte_tulekant.jpg", 
                                                 "source_name": "Wikipedia", 
                                                 "license": "CC Attribution-Share Alike", 
                                                 "author": "Wikipedia user Carolus"
+                                            }
+                                        }, 
+                                        "id": "Corduroy"
+                                    }, 
+                                    {
+                                        "image": {
+                                            "thumbnail_url": "img/thumbnail/Material/Net tulle.jpg", 
+                                            "full_size_url": "img/full_size/Material/Net tulle.jpg", 
+                                            "rights": {
+                                                "source_url": "https://commons.wikimedia.org/wiki/File:Mansestr.jpg", 
+                                                "source_name": "Wikipedia", 
+                                                "license": "CC Attribution-Share Alike", 
+                                                "author": "Wikipedia user Ludek"
                                             }
                                         }, 
                                         "id": "Net tulle"
@@ -835,13 +952,26 @@ var WORKSHEET_DEFINITION = {
                                 "values_": [
                                     {
                                         "image": {
-                                            "thumbnail_url": "img/thumbnail/Material/Net tulle.jpg", 
-                                            "full_size_url": "img/full_size/Material/Net tulle.jpg", 
+                                            "thumbnail_url": "img/thumbnail/Material/Corduroy.jpg", 
+                                            "full_size_url": "img/full_size/Material/Corduroy.jpg", 
                                             "rights": {
                                                 "source_url": "https://commons.wikimedia.org/wiki/File:Carolus_-Private_Collection_-_zwarte_tulekant.jpg", 
                                                 "source_name": "Wikipedia", 
                                                 "license": "CC Attribution-Share Alike", 
                                                 "author": "Wikipedia user Carolus"
+                                            }
+                                        }, 
+                                        "id": "Corduroy"
+                                    }, 
+                                    {
+                                        "image": {
+                                            "thumbnail_url": "img/thumbnail/Material/Net tulle.jpg", 
+                                            "full_size_url": "img/full_size/Material/Net tulle.jpg", 
+                                            "rights": {
+                                                "source_url": "https://commons.wikimedia.org/wiki/File:Mansestr.jpg", 
+                                                "source_name": "Wikipedia", 
+                                                "license": "CC Attribution-Share Alike", 
+                                                "author": "Wikipedia user Ludek"
                                             }
                                         }, 
                                         "id": "Net tulle"
@@ -920,13 +1050,26 @@ var WORKSHEET_DEFINITION = {
                                 "values_": [
                                     {
                                         "image": {
-                                            "thumbnail_url": "img/thumbnail/Material/Net tulle.jpg", 
-                                            "full_size_url": "img/full_size/Material/Net tulle.jpg", 
+                                            "thumbnail_url": "img/thumbnail/Material/Corduroy.jpg", 
+                                            "full_size_url": "img/full_size/Material/Corduroy.jpg", 
                                             "rights": {
                                                 "source_url": "https://commons.wikimedia.org/wiki/File:Carolus_-Private_Collection_-_zwarte_tulekant.jpg", 
                                                 "source_name": "Wikipedia", 
                                                 "license": "CC Attribution-Share Alike", 
                                                 "author": "Wikipedia user Carolus"
+                                            }
+                                        }, 
+                                        "id": "Corduroy"
+                                    }, 
+                                    {
+                                        "image": {
+                                            "thumbnail_url": "img/thumbnail/Material/Net tulle.jpg", 
+                                            "full_size_url": "img/full_size/Material/Net tulle.jpg", 
+                                            "rights": {
+                                                "source_url": "https://commons.wikimedia.org/wiki/File:Mansestr.jpg", 
+                                                "source_name": "Wikipedia", 
+                                                "license": "CC Attribution-Share Alike", 
+                                                "author": "Wikipedia user Ludek"
                                             }
                                         }, 
                                         "id": "Net tulle"
@@ -1010,13 +1153,26 @@ var WORKSHEET_DEFINITION = {
                                 "values_": [
                                     {
                                         "image": {
-                                            "thumbnail_url": "img/thumbnail/Material/Net tulle.jpg", 
-                                            "full_size_url": "img/full_size/Material/Net tulle.jpg", 
+                                            "thumbnail_url": "img/thumbnail/Material/Corduroy.jpg", 
+                                            "full_size_url": "img/full_size/Material/Corduroy.jpg", 
                                             "rights": {
                                                 "source_url": "https://commons.wikimedia.org/wiki/File:Carolus_-Private_Collection_-_zwarte_tulekant.jpg", 
                                                 "source_name": "Wikipedia", 
                                                 "license": "CC Attribution-Share Alike", 
                                                 "author": "Wikipedia user Carolus"
+                                            }
+                                        }, 
+                                        "id": "Corduroy"
+                                    }, 
+                                    {
+                                        "image": {
+                                            "thumbnail_url": "img/thumbnail/Material/Net tulle.jpg", 
+                                            "full_size_url": "img/full_size/Material/Net tulle.jpg", 
+                                            "rights": {
+                                                "source_url": "https://commons.wikimedia.org/wiki/File:Mansestr.jpg", 
+                                                "source_name": "Wikipedia", 
+                                                "license": "CC Attribution-Share Alike", 
+                                                "author": "Wikipedia user Ludek"
                                             }
                                         }, 
                                         "id": "Net tulle"
@@ -1095,13 +1251,26 @@ var WORKSHEET_DEFINITION = {
                                 "values_": [
                                     {
                                         "image": {
-                                            "thumbnail_url": "img/thumbnail/Material/Net tulle.jpg", 
-                                            "full_size_url": "img/full_size/Material/Net tulle.jpg", 
+                                            "thumbnail_url": "img/thumbnail/Material/Corduroy.jpg", 
+                                            "full_size_url": "img/full_size/Material/Corduroy.jpg", 
                                             "rights": {
                                                 "source_url": "https://commons.wikimedia.org/wiki/File:Carolus_-Private_Collection_-_zwarte_tulekant.jpg", 
                                                 "source_name": "Wikipedia", 
                                                 "license": "CC Attribution-Share Alike", 
                                                 "author": "Wikipedia user Carolus"
+                                            }
+                                        }, 
+                                        "id": "Corduroy"
+                                    }, 
+                                    {
+                                        "image": {
+                                            "thumbnail_url": "img/thumbnail/Material/Net tulle.jpg", 
+                                            "full_size_url": "img/full_size/Material/Net tulle.jpg", 
+                                            "rights": {
+                                                "source_url": "https://commons.wikimedia.org/wiki/File:Mansestr.jpg", 
+                                                "source_name": "Wikipedia", 
+                                                "license": "CC Attribution-Share Alike", 
+                                                "author": "Wikipedia user Ludek"
                                             }
                                         }, 
                                         "id": "Net tulle"
@@ -1180,13 +1349,26 @@ var WORKSHEET_DEFINITION = {
                                 "values_": [
                                     {
                                         "image": {
-                                            "thumbnail_url": "img/thumbnail/Material/Net tulle.jpg", 
-                                            "full_size_url": "img/full_size/Material/Net tulle.jpg", 
+                                            "thumbnail_url": "img/thumbnail/Material/Corduroy.jpg", 
+                                            "full_size_url": "img/full_size/Material/Corduroy.jpg", 
                                             "rights": {
                                                 "source_url": "https://commons.wikimedia.org/wiki/File:Carolus_-Private_Collection_-_zwarte_tulekant.jpg", 
                                                 "source_name": "Wikipedia", 
                                                 "license": "CC Attribution-Share Alike", 
                                                 "author": "Wikipedia user Carolus"
+                                            }
+                                        }, 
+                                        "id": "Corduroy"
+                                    }, 
+                                    {
+                                        "image": {
+                                            "thumbnail_url": "img/thumbnail/Material/Net tulle.jpg", 
+                                            "full_size_url": "img/full_size/Material/Net tulle.jpg", 
+                                            "rights": {
+                                                "source_url": "https://commons.wikimedia.org/wiki/File:Mansestr.jpg", 
+                                                "source_name": "Wikipedia", 
+                                                "license": "CC Attribution-Share Alike", 
+                                                "author": "Wikipedia user Ludek"
                                             }
                                         }, 
                                         "id": "Net tulle"

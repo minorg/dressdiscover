@@ -113,14 +113,21 @@ interior_characteristics = [
 
 materials = OrderedDict()
 #     feature_value('Cotton'),
+materials['Corduroy'] = feature_value(
+    image_rights=wikipedia_rights(
+        author='Wikipedia user Carolus',
+        source_url='https://commons.wikimedia.org/wiki/File:Carolus_-Private_Collection_-_zwarte_tulekant.jpg',
+    )
+)
+
 #     feature_value('Elastic'),
 #     feature_value('Plastic'),
 #     feature_value('Self-fabric'),
 #     feature_value(
 materials['Net tulle'] = feature_value(
     image_rights=wikipedia_rights(
-        author='Wikipedia user Carolus',
-        source_url='https://commons.wikimedia.org/wiki/File:Carolus_-Private_Collection_-_zwarte_tulekant.jpg',
+        author='Wikipedia user Ludek',
+        source_url='https://commons.wikimedia.org/wiki/File:Mansestr.jpg',
     )
 )
 features['Material'] = {'values': materials}

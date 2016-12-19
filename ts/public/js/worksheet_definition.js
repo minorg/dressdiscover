@@ -7,35 +7,77 @@ var WORKSHEET_DEFINITION = {
                         "id": "Top", 
                         "features": [
                             {
-                                "id": "Whole Top Material", 
+                                "id": "Whole Top Closure", 
                                 "values_": [
                                     {
-                                        "id": "Cotton"
-                                    }, 
-                                    {
-                                        "id": "Elastic"
-                                    }, 
-                                    {
-                                        "id": "Plastic"
-                                    }, 
-                                    {
-                                        "id": "Self-fabric"
+                                        "image": {
+                                            "thumbnail_url": "img/thumbnail/Closure/Button.jpg", 
+                                            "full_size_url": "img/full_size/Closure/Button.jpg", 
+                                            "rights": {
+                                                "source_url": "https://commons.wikimedia.org/wiki/File:Three_holes_buttons.jpg", 
+                                                "source_name": "Wikipedia", 
+                                                "license": "CC Attribution-Share Alike", 
+                                                "author": "Marco Bernardini"
+                                            }
+                                        }, 
+                                        "id": "Button"
                                     }, 
                                     {
                                         "image": {
-                                            "thumbnail_url": "img/thumbnail/Net tulle.jpg", 
-                                            "full_size_url": "img/full_size/Net tulle.jpg", 
+                                            "thumbnail_url": "img/thumbnail/Closure/Hook-and-eye.jpg", 
+                                            "full_size_url": "img/full_size/Closure/Hook-and-eye.jpg", 
+                                            "rights": {
+                                                "source_url": "https://en.wikipedia.org/wiki/Hook-and-eye_closure#/media/File:Hook_and_eye_clasp.JPG", 
+                                                "source_name": "Wikipedia", 
+                                                "license": "CC Attribution-Share Alike", 
+                                                "author": "Wikipedia user Eitan F"
+                                            }
+                                        }, 
+                                        "id": "Hook-and-eye"
+                                    }, 
+                                    {
+                                        "image": {
+                                            "thumbnail_url": "img/thumbnail/Closure/Zip.jpg", 
+                                            "full_size_url": "img/full_size/Closure/Zip.jpg", 
+                                            "rights": {
+                                                "source_url": "https://commons.wikimedia.org/wiki/File:Coil_plastic_and_metal_zippers.jpg", 
+                                                "source_name": "Wikipedia", 
+                                                "license": "CC Attribution-Share Alike", 
+                                                "author": "Wikipedia user Woodbine9"
+                                            }
+                                        }, 
+                                        "id": "Zip"
+                                    }
+                                ]
+                            }, 
+                            {
+                                "id": "Whole Top Material", 
+                                "values_": [
+                                    {
+                                        "image": {
+                                            "thumbnail_url": "img/thumbnail/Material/Corduroy.jpg", 
+                                            "full_size_url": "img/full_size/Material/Corduroy.jpg", 
                                             "rights": {
                                                 "source_url": "https://commons.wikimedia.org/wiki/File:Carolus_-Private_Collection_-_zwarte_tulekant.jpg", 
                                                 "source_name": "Wikipedia", 
-                                                "license": "CC-SA 3.0", 
+                                                "license": "CC Attribution-Share Alike", 
                                                 "author": "Wikipedia user Carolus"
                                             }
                                         }, 
-                                        "id": "Net tulle"
+                                        "id": "Corduroy"
                                     }, 
                                     {
-                                        "id": "Velvet"
+                                        "image": {
+                                            "thumbnail_url": "img/thumbnail/Material/Net tulle.jpg", 
+                                            "full_size_url": "img/full_size/Material/Net tulle.jpg", 
+                                            "rights": {
+                                                "source_url": "https://commons.wikimedia.org/wiki/File:Mansestr.jpg", 
+                                                "source_name": "Wikipedia", 
+                                                "license": "CC Attribution-Share Alike", 
+                                                "author": "Wikipedia user Ludek"
+                                            }
+                                        }, 
+                                        "id": "Net tulle"
                                     }
                                 ]
                             }, 
@@ -43,15 +85,16 @@ var WORKSHEET_DEFINITION = {
                                 "id": "Whole Top Print", 
                                 "values_": [
                                     {
-                                        "id": "Abstracted floral"
-                                    }, 
-                                    {
-                                        "id": "Checkerboard"
-                                    }, 
-                                    {
-                                        "id": "Floral"
-                                    }, 
-                                    {
+                                        "image": {
+                                            "thumbnail_url": "img/thumbnail/Print/Plaid.jpg", 
+                                            "full_size_url": "img/full_size/Print/Plaid.jpg", 
+                                            "rights": {
+                                                "source_url": "https://commons.wikimedia.org/wiki/File:Royal_stewart.jpg", 
+                                                "source_name": "Wikipedia", 
+                                                "license": "Public domain", 
+                                                "author": "Unknown"
+                                            }
+                                        }, 
                                         "id": "Plaid"
                                     }
                                 ]
@@ -62,35 +105,77 @@ var WORKSHEET_DEFINITION = {
                         "id": "Bottom", 
                         "features": [
                             {
-                                "id": "Whole Bottom Material", 
+                                "id": "Whole Bottom Closure", 
                                 "values_": [
                                     {
-                                        "id": "Cotton"
-                                    }, 
-                                    {
-                                        "id": "Elastic"
-                                    }, 
-                                    {
-                                        "id": "Plastic"
-                                    }, 
-                                    {
-                                        "id": "Self-fabric"
+                                        "image": {
+                                            "thumbnail_url": "img/thumbnail/Closure/Button.jpg", 
+                                            "full_size_url": "img/full_size/Closure/Button.jpg", 
+                                            "rights": {
+                                                "source_url": "https://commons.wikimedia.org/wiki/File:Three_holes_buttons.jpg", 
+                                                "source_name": "Wikipedia", 
+                                                "license": "CC Attribution-Share Alike", 
+                                                "author": "Marco Bernardini"
+                                            }
+                                        }, 
+                                        "id": "Button"
                                     }, 
                                     {
                                         "image": {
-                                            "thumbnail_url": "img/thumbnail/Net tulle.jpg", 
-                                            "full_size_url": "img/full_size/Net tulle.jpg", 
+                                            "thumbnail_url": "img/thumbnail/Closure/Hook-and-eye.jpg", 
+                                            "full_size_url": "img/full_size/Closure/Hook-and-eye.jpg", 
+                                            "rights": {
+                                                "source_url": "https://en.wikipedia.org/wiki/Hook-and-eye_closure#/media/File:Hook_and_eye_clasp.JPG", 
+                                                "source_name": "Wikipedia", 
+                                                "license": "CC Attribution-Share Alike", 
+                                                "author": "Wikipedia user Eitan F"
+                                            }
+                                        }, 
+                                        "id": "Hook-and-eye"
+                                    }, 
+                                    {
+                                        "image": {
+                                            "thumbnail_url": "img/thumbnail/Closure/Zip.jpg", 
+                                            "full_size_url": "img/full_size/Closure/Zip.jpg", 
+                                            "rights": {
+                                                "source_url": "https://commons.wikimedia.org/wiki/File:Coil_plastic_and_metal_zippers.jpg", 
+                                                "source_name": "Wikipedia", 
+                                                "license": "CC Attribution-Share Alike", 
+                                                "author": "Wikipedia user Woodbine9"
+                                            }
+                                        }, 
+                                        "id": "Zip"
+                                    }
+                                ]
+                            }, 
+                            {
+                                "id": "Whole Bottom Material", 
+                                "values_": [
+                                    {
+                                        "image": {
+                                            "thumbnail_url": "img/thumbnail/Material/Corduroy.jpg", 
+                                            "full_size_url": "img/full_size/Material/Corduroy.jpg", 
                                             "rights": {
                                                 "source_url": "https://commons.wikimedia.org/wiki/File:Carolus_-Private_Collection_-_zwarte_tulekant.jpg", 
                                                 "source_name": "Wikipedia", 
-                                                "license": "CC-SA 3.0", 
+                                                "license": "CC Attribution-Share Alike", 
                                                 "author": "Wikipedia user Carolus"
                                             }
                                         }, 
-                                        "id": "Net tulle"
+                                        "id": "Corduroy"
                                     }, 
                                     {
-                                        "id": "Velvet"
+                                        "image": {
+                                            "thumbnail_url": "img/thumbnail/Material/Net tulle.jpg", 
+                                            "full_size_url": "img/full_size/Material/Net tulle.jpg", 
+                                            "rights": {
+                                                "source_url": "https://commons.wikimedia.org/wiki/File:Mansestr.jpg", 
+                                                "source_name": "Wikipedia", 
+                                                "license": "CC Attribution-Share Alike", 
+                                                "author": "Wikipedia user Ludek"
+                                            }
+                                        }, 
+                                        "id": "Net tulle"
                                     }
                                 ]
                             }, 
@@ -98,15 +183,16 @@ var WORKSHEET_DEFINITION = {
                                 "id": "Whole Bottom Print", 
                                 "values_": [
                                     {
-                                        "id": "Abstracted floral"
-                                    }, 
-                                    {
-                                        "id": "Checkerboard"
-                                    }, 
-                                    {
-                                        "id": "Floral"
-                                    }, 
-                                    {
+                                        "image": {
+                                            "thumbnail_url": "img/thumbnail/Print/Plaid.jpg", 
+                                            "full_size_url": "img/full_size/Print/Plaid.jpg", 
+                                            "rights": {
+                                                "source_url": "https://commons.wikimedia.org/wiki/File:Royal_stewart.jpg", 
+                                                "source_name": "Wikipedia", 
+                                                "license": "Public domain", 
+                                                "author": "Unknown"
+                                            }
+                                        }, 
                                         "id": "Plaid"
                                     }
                                 ]
@@ -125,35 +211,77 @@ var WORKSHEET_DEFINITION = {
                 "id": "Collar", 
                 "features": [
                     {
-                        "id": "Collar Material", 
+                        "id": "Collar Closure", 
                         "values_": [
                             {
-                                "id": "Cotton"
-                            }, 
-                            {
-                                "id": "Elastic"
-                            }, 
-                            {
-                                "id": "Plastic"
-                            }, 
-                            {
-                                "id": "Self-fabric"
+                                "image": {
+                                    "thumbnail_url": "img/thumbnail/Closure/Button.jpg", 
+                                    "full_size_url": "img/full_size/Closure/Button.jpg", 
+                                    "rights": {
+                                        "source_url": "https://commons.wikimedia.org/wiki/File:Three_holes_buttons.jpg", 
+                                        "source_name": "Wikipedia", 
+                                        "license": "CC Attribution-Share Alike", 
+                                        "author": "Marco Bernardini"
+                                    }
+                                }, 
+                                "id": "Button"
                             }, 
                             {
                                 "image": {
-                                    "thumbnail_url": "img/thumbnail/Net tulle.jpg", 
-                                    "full_size_url": "img/full_size/Net tulle.jpg", 
+                                    "thumbnail_url": "img/thumbnail/Closure/Hook-and-eye.jpg", 
+                                    "full_size_url": "img/full_size/Closure/Hook-and-eye.jpg", 
+                                    "rights": {
+                                        "source_url": "https://en.wikipedia.org/wiki/Hook-and-eye_closure#/media/File:Hook_and_eye_clasp.JPG", 
+                                        "source_name": "Wikipedia", 
+                                        "license": "CC Attribution-Share Alike", 
+                                        "author": "Wikipedia user Eitan F"
+                                    }
+                                }, 
+                                "id": "Hook-and-eye"
+                            }, 
+                            {
+                                "image": {
+                                    "thumbnail_url": "img/thumbnail/Closure/Zip.jpg", 
+                                    "full_size_url": "img/full_size/Closure/Zip.jpg", 
+                                    "rights": {
+                                        "source_url": "https://commons.wikimedia.org/wiki/File:Coil_plastic_and_metal_zippers.jpg", 
+                                        "source_name": "Wikipedia", 
+                                        "license": "CC Attribution-Share Alike", 
+                                        "author": "Wikipedia user Woodbine9"
+                                    }
+                                }, 
+                                "id": "Zip"
+                            }
+                        ]
+                    }, 
+                    {
+                        "id": "Collar Material", 
+                        "values_": [
+                            {
+                                "image": {
+                                    "thumbnail_url": "img/thumbnail/Material/Corduroy.jpg", 
+                                    "full_size_url": "img/full_size/Material/Corduroy.jpg", 
                                     "rights": {
                                         "source_url": "https://commons.wikimedia.org/wiki/File:Carolus_-Private_Collection_-_zwarte_tulekant.jpg", 
                                         "source_name": "Wikipedia", 
-                                        "license": "CC-SA 3.0", 
+                                        "license": "CC Attribution-Share Alike", 
                                         "author": "Wikipedia user Carolus"
                                     }
                                 }, 
-                                "id": "Net tulle"
+                                "id": "Corduroy"
                             }, 
                             {
-                                "id": "Velvet"
+                                "image": {
+                                    "thumbnail_url": "img/thumbnail/Material/Net tulle.jpg", 
+                                    "full_size_url": "img/full_size/Material/Net tulle.jpg", 
+                                    "rights": {
+                                        "source_url": "https://commons.wikimedia.org/wiki/File:Mansestr.jpg", 
+                                        "source_name": "Wikipedia", 
+                                        "license": "CC Attribution-Share Alike", 
+                                        "author": "Wikipedia user Ludek"
+                                    }
+                                }, 
+                                "id": "Net tulle"
                             }
                         ]
                     }, 
@@ -161,15 +289,16 @@ var WORKSHEET_DEFINITION = {
                         "id": "Collar Print", 
                         "values_": [
                             {
-                                "id": "Abstracted floral"
-                            }, 
-                            {
-                                "id": "Checkerboard"
-                            }, 
-                            {
-                                "id": "Floral"
-                            }, 
-                            {
+                                "image": {
+                                    "thumbnail_url": "img/thumbnail/Print/Plaid.jpg", 
+                                    "full_size_url": "img/full_size/Print/Plaid.jpg", 
+                                    "rights": {
+                                        "source_url": "https://commons.wikimedia.org/wiki/File:Royal_stewart.jpg", 
+                                        "source_name": "Wikipedia", 
+                                        "license": "Public domain", 
+                                        "author": "Unknown"
+                                    }
+                                }, 
                                 "id": "Plaid"
                             }
                         ]
@@ -180,35 +309,77 @@ var WORKSHEET_DEFINITION = {
                 "id": "Shoulders", 
                 "features": [
                     {
-                        "id": "Shoulders Material", 
+                        "id": "Shoulders Closure", 
                         "values_": [
                             {
-                                "id": "Cotton"
-                            }, 
-                            {
-                                "id": "Elastic"
-                            }, 
-                            {
-                                "id": "Plastic"
-                            }, 
-                            {
-                                "id": "Self-fabric"
+                                "image": {
+                                    "thumbnail_url": "img/thumbnail/Closure/Button.jpg", 
+                                    "full_size_url": "img/full_size/Closure/Button.jpg", 
+                                    "rights": {
+                                        "source_url": "https://commons.wikimedia.org/wiki/File:Three_holes_buttons.jpg", 
+                                        "source_name": "Wikipedia", 
+                                        "license": "CC Attribution-Share Alike", 
+                                        "author": "Marco Bernardini"
+                                    }
+                                }, 
+                                "id": "Button"
                             }, 
                             {
                                 "image": {
-                                    "thumbnail_url": "img/thumbnail/Net tulle.jpg", 
-                                    "full_size_url": "img/full_size/Net tulle.jpg", 
+                                    "thumbnail_url": "img/thumbnail/Closure/Hook-and-eye.jpg", 
+                                    "full_size_url": "img/full_size/Closure/Hook-and-eye.jpg", 
+                                    "rights": {
+                                        "source_url": "https://en.wikipedia.org/wiki/Hook-and-eye_closure#/media/File:Hook_and_eye_clasp.JPG", 
+                                        "source_name": "Wikipedia", 
+                                        "license": "CC Attribution-Share Alike", 
+                                        "author": "Wikipedia user Eitan F"
+                                    }
+                                }, 
+                                "id": "Hook-and-eye"
+                            }, 
+                            {
+                                "image": {
+                                    "thumbnail_url": "img/thumbnail/Closure/Zip.jpg", 
+                                    "full_size_url": "img/full_size/Closure/Zip.jpg", 
+                                    "rights": {
+                                        "source_url": "https://commons.wikimedia.org/wiki/File:Coil_plastic_and_metal_zippers.jpg", 
+                                        "source_name": "Wikipedia", 
+                                        "license": "CC Attribution-Share Alike", 
+                                        "author": "Wikipedia user Woodbine9"
+                                    }
+                                }, 
+                                "id": "Zip"
+                            }
+                        ]
+                    }, 
+                    {
+                        "id": "Shoulders Material", 
+                        "values_": [
+                            {
+                                "image": {
+                                    "thumbnail_url": "img/thumbnail/Material/Corduroy.jpg", 
+                                    "full_size_url": "img/full_size/Material/Corduroy.jpg", 
                                     "rights": {
                                         "source_url": "https://commons.wikimedia.org/wiki/File:Carolus_-Private_Collection_-_zwarte_tulekant.jpg", 
                                         "source_name": "Wikipedia", 
-                                        "license": "CC-SA 3.0", 
+                                        "license": "CC Attribution-Share Alike", 
                                         "author": "Wikipedia user Carolus"
                                     }
                                 }, 
-                                "id": "Net tulle"
+                                "id": "Corduroy"
                             }, 
                             {
-                                "id": "Velvet"
+                                "image": {
+                                    "thumbnail_url": "img/thumbnail/Material/Net tulle.jpg", 
+                                    "full_size_url": "img/full_size/Material/Net tulle.jpg", 
+                                    "rights": {
+                                        "source_url": "https://commons.wikimedia.org/wiki/File:Mansestr.jpg", 
+                                        "source_name": "Wikipedia", 
+                                        "license": "CC Attribution-Share Alike", 
+                                        "author": "Wikipedia user Ludek"
+                                    }
+                                }, 
+                                "id": "Net tulle"
                             }
                         ]
                     }, 
@@ -216,15 +387,16 @@ var WORKSHEET_DEFINITION = {
                         "id": "Shoulders Print", 
                         "values_": [
                             {
-                                "id": "Abstracted floral"
-                            }, 
-                            {
-                                "id": "Checkerboard"
-                            }, 
-                            {
-                                "id": "Floral"
-                            }, 
-                            {
+                                "image": {
+                                    "thumbnail_url": "img/thumbnail/Print/Plaid.jpg", 
+                                    "full_size_url": "img/full_size/Print/Plaid.jpg", 
+                                    "rights": {
+                                        "source_url": "https://commons.wikimedia.org/wiki/File:Royal_stewart.jpg", 
+                                        "source_name": "Wikipedia", 
+                                        "license": "Public domain", 
+                                        "author": "Unknown"
+                                    }
+                                }, 
                                 "id": "Plaid"
                             }
                         ]
@@ -235,35 +407,77 @@ var WORKSHEET_DEFINITION = {
                 "id": "Sleeves", 
                 "features": [
                     {
-                        "id": "Sleeves Material", 
+                        "id": "Sleeves Closure", 
                         "values_": [
                             {
-                                "id": "Cotton"
-                            }, 
-                            {
-                                "id": "Elastic"
-                            }, 
-                            {
-                                "id": "Plastic"
-                            }, 
-                            {
-                                "id": "Self-fabric"
+                                "image": {
+                                    "thumbnail_url": "img/thumbnail/Closure/Button.jpg", 
+                                    "full_size_url": "img/full_size/Closure/Button.jpg", 
+                                    "rights": {
+                                        "source_url": "https://commons.wikimedia.org/wiki/File:Three_holes_buttons.jpg", 
+                                        "source_name": "Wikipedia", 
+                                        "license": "CC Attribution-Share Alike", 
+                                        "author": "Marco Bernardini"
+                                    }
+                                }, 
+                                "id": "Button"
                             }, 
                             {
                                 "image": {
-                                    "thumbnail_url": "img/thumbnail/Net tulle.jpg", 
-                                    "full_size_url": "img/full_size/Net tulle.jpg", 
+                                    "thumbnail_url": "img/thumbnail/Closure/Hook-and-eye.jpg", 
+                                    "full_size_url": "img/full_size/Closure/Hook-and-eye.jpg", 
+                                    "rights": {
+                                        "source_url": "https://en.wikipedia.org/wiki/Hook-and-eye_closure#/media/File:Hook_and_eye_clasp.JPG", 
+                                        "source_name": "Wikipedia", 
+                                        "license": "CC Attribution-Share Alike", 
+                                        "author": "Wikipedia user Eitan F"
+                                    }
+                                }, 
+                                "id": "Hook-and-eye"
+                            }, 
+                            {
+                                "image": {
+                                    "thumbnail_url": "img/thumbnail/Closure/Zip.jpg", 
+                                    "full_size_url": "img/full_size/Closure/Zip.jpg", 
+                                    "rights": {
+                                        "source_url": "https://commons.wikimedia.org/wiki/File:Coil_plastic_and_metal_zippers.jpg", 
+                                        "source_name": "Wikipedia", 
+                                        "license": "CC Attribution-Share Alike", 
+                                        "author": "Wikipedia user Woodbine9"
+                                    }
+                                }, 
+                                "id": "Zip"
+                            }
+                        ]
+                    }, 
+                    {
+                        "id": "Sleeves Material", 
+                        "values_": [
+                            {
+                                "image": {
+                                    "thumbnail_url": "img/thumbnail/Material/Corduroy.jpg", 
+                                    "full_size_url": "img/full_size/Material/Corduroy.jpg", 
                                     "rights": {
                                         "source_url": "https://commons.wikimedia.org/wiki/File:Carolus_-Private_Collection_-_zwarte_tulekant.jpg", 
                                         "source_name": "Wikipedia", 
-                                        "license": "CC-SA 3.0", 
+                                        "license": "CC Attribution-Share Alike", 
                                         "author": "Wikipedia user Carolus"
                                     }
                                 }, 
-                                "id": "Net tulle"
+                                "id": "Corduroy"
                             }, 
                             {
-                                "id": "Velvet"
+                                "image": {
+                                    "thumbnail_url": "img/thumbnail/Material/Net tulle.jpg", 
+                                    "full_size_url": "img/full_size/Material/Net tulle.jpg", 
+                                    "rights": {
+                                        "source_url": "https://commons.wikimedia.org/wiki/File:Mansestr.jpg", 
+                                        "source_name": "Wikipedia", 
+                                        "license": "CC Attribution-Share Alike", 
+                                        "author": "Wikipedia user Ludek"
+                                    }
+                                }, 
+                                "id": "Net tulle"
                             }
                         ]
                     }, 
@@ -271,15 +485,16 @@ var WORKSHEET_DEFINITION = {
                         "id": "Sleeves Print", 
                         "values_": [
                             {
-                                "id": "Abstracted floral"
-                            }, 
-                            {
-                                "id": "Checkerboard"
-                            }, 
-                            {
-                                "id": "Floral"
-                            }, 
-                            {
+                                "image": {
+                                    "thumbnail_url": "img/thumbnail/Print/Plaid.jpg", 
+                                    "full_size_url": "img/full_size/Print/Plaid.jpg", 
+                                    "rights": {
+                                        "source_url": "https://commons.wikimedia.org/wiki/File:Royal_stewart.jpg", 
+                                        "source_name": "Wikipedia", 
+                                        "license": "Public domain", 
+                                        "author": "Unknown"
+                                    }
+                                }, 
                                 "id": "Plaid"
                             }
                         ]
@@ -292,35 +507,77 @@ var WORKSHEET_DEFINITION = {
                         "id": "Whole", 
                         "features": [
                             {
-                                "id": "Front Whole Material", 
+                                "id": "Front Whole Closure", 
                                 "values_": [
                                     {
-                                        "id": "Cotton"
-                                    }, 
-                                    {
-                                        "id": "Elastic"
-                                    }, 
-                                    {
-                                        "id": "Plastic"
-                                    }, 
-                                    {
-                                        "id": "Self-fabric"
+                                        "image": {
+                                            "thumbnail_url": "img/thumbnail/Closure/Button.jpg", 
+                                            "full_size_url": "img/full_size/Closure/Button.jpg", 
+                                            "rights": {
+                                                "source_url": "https://commons.wikimedia.org/wiki/File:Three_holes_buttons.jpg", 
+                                                "source_name": "Wikipedia", 
+                                                "license": "CC Attribution-Share Alike", 
+                                                "author": "Marco Bernardini"
+                                            }
+                                        }, 
+                                        "id": "Button"
                                     }, 
                                     {
                                         "image": {
-                                            "thumbnail_url": "img/thumbnail/Net tulle.jpg", 
-                                            "full_size_url": "img/full_size/Net tulle.jpg", 
+                                            "thumbnail_url": "img/thumbnail/Closure/Hook-and-eye.jpg", 
+                                            "full_size_url": "img/full_size/Closure/Hook-and-eye.jpg", 
+                                            "rights": {
+                                                "source_url": "https://en.wikipedia.org/wiki/Hook-and-eye_closure#/media/File:Hook_and_eye_clasp.JPG", 
+                                                "source_name": "Wikipedia", 
+                                                "license": "CC Attribution-Share Alike", 
+                                                "author": "Wikipedia user Eitan F"
+                                            }
+                                        }, 
+                                        "id": "Hook-and-eye"
+                                    }, 
+                                    {
+                                        "image": {
+                                            "thumbnail_url": "img/thumbnail/Closure/Zip.jpg", 
+                                            "full_size_url": "img/full_size/Closure/Zip.jpg", 
+                                            "rights": {
+                                                "source_url": "https://commons.wikimedia.org/wiki/File:Coil_plastic_and_metal_zippers.jpg", 
+                                                "source_name": "Wikipedia", 
+                                                "license": "CC Attribution-Share Alike", 
+                                                "author": "Wikipedia user Woodbine9"
+                                            }
+                                        }, 
+                                        "id": "Zip"
+                                    }
+                                ]
+                            }, 
+                            {
+                                "id": "Front Whole Material", 
+                                "values_": [
+                                    {
+                                        "image": {
+                                            "thumbnail_url": "img/thumbnail/Material/Corduroy.jpg", 
+                                            "full_size_url": "img/full_size/Material/Corduroy.jpg", 
                                             "rights": {
                                                 "source_url": "https://commons.wikimedia.org/wiki/File:Carolus_-Private_Collection_-_zwarte_tulekant.jpg", 
                                                 "source_name": "Wikipedia", 
-                                                "license": "CC-SA 3.0", 
+                                                "license": "CC Attribution-Share Alike", 
                                                 "author": "Wikipedia user Carolus"
                                             }
                                         }, 
-                                        "id": "Net tulle"
+                                        "id": "Corduroy"
                                     }, 
                                     {
-                                        "id": "Velvet"
+                                        "image": {
+                                            "thumbnail_url": "img/thumbnail/Material/Net tulle.jpg", 
+                                            "full_size_url": "img/full_size/Material/Net tulle.jpg", 
+                                            "rights": {
+                                                "source_url": "https://commons.wikimedia.org/wiki/File:Mansestr.jpg", 
+                                                "source_name": "Wikipedia", 
+                                                "license": "CC Attribution-Share Alike", 
+                                                "author": "Wikipedia user Ludek"
+                                            }
+                                        }, 
+                                        "id": "Net tulle"
                                     }
                                 ]
                             }, 
@@ -328,15 +585,16 @@ var WORKSHEET_DEFINITION = {
                                 "id": "Front Whole Print", 
                                 "values_": [
                                     {
-                                        "id": "Abstracted floral"
-                                    }, 
-                                    {
-                                        "id": "Checkerboard"
-                                    }, 
-                                    {
-                                        "id": "Floral"
-                                    }, 
-                                    {
+                                        "image": {
+                                            "thumbnail_url": "img/thumbnail/Print/Plaid.jpg", 
+                                            "full_size_url": "img/full_size/Print/Plaid.jpg", 
+                                            "rights": {
+                                                "source_url": "https://commons.wikimedia.org/wiki/File:Royal_stewart.jpg", 
+                                                "source_name": "Wikipedia", 
+                                                "license": "Public domain", 
+                                                "author": "Unknown"
+                                            }
+                                        }, 
                                         "id": "Plaid"
                                     }
                                 ]
@@ -347,35 +605,77 @@ var WORKSHEET_DEFINITION = {
                         "id": "Top", 
                         "features": [
                             {
-                                "id": "Front Top Material", 
+                                "id": "Front Top Closure", 
                                 "values_": [
                                     {
-                                        "id": "Cotton"
-                                    }, 
-                                    {
-                                        "id": "Elastic"
-                                    }, 
-                                    {
-                                        "id": "Plastic"
-                                    }, 
-                                    {
-                                        "id": "Self-fabric"
+                                        "image": {
+                                            "thumbnail_url": "img/thumbnail/Closure/Button.jpg", 
+                                            "full_size_url": "img/full_size/Closure/Button.jpg", 
+                                            "rights": {
+                                                "source_url": "https://commons.wikimedia.org/wiki/File:Three_holes_buttons.jpg", 
+                                                "source_name": "Wikipedia", 
+                                                "license": "CC Attribution-Share Alike", 
+                                                "author": "Marco Bernardini"
+                                            }
+                                        }, 
+                                        "id": "Button"
                                     }, 
                                     {
                                         "image": {
-                                            "thumbnail_url": "img/thumbnail/Net tulle.jpg", 
-                                            "full_size_url": "img/full_size/Net tulle.jpg", 
+                                            "thumbnail_url": "img/thumbnail/Closure/Hook-and-eye.jpg", 
+                                            "full_size_url": "img/full_size/Closure/Hook-and-eye.jpg", 
+                                            "rights": {
+                                                "source_url": "https://en.wikipedia.org/wiki/Hook-and-eye_closure#/media/File:Hook_and_eye_clasp.JPG", 
+                                                "source_name": "Wikipedia", 
+                                                "license": "CC Attribution-Share Alike", 
+                                                "author": "Wikipedia user Eitan F"
+                                            }
+                                        }, 
+                                        "id": "Hook-and-eye"
+                                    }, 
+                                    {
+                                        "image": {
+                                            "thumbnail_url": "img/thumbnail/Closure/Zip.jpg", 
+                                            "full_size_url": "img/full_size/Closure/Zip.jpg", 
+                                            "rights": {
+                                                "source_url": "https://commons.wikimedia.org/wiki/File:Coil_plastic_and_metal_zippers.jpg", 
+                                                "source_name": "Wikipedia", 
+                                                "license": "CC Attribution-Share Alike", 
+                                                "author": "Wikipedia user Woodbine9"
+                                            }
+                                        }, 
+                                        "id": "Zip"
+                                    }
+                                ]
+                            }, 
+                            {
+                                "id": "Front Top Material", 
+                                "values_": [
+                                    {
+                                        "image": {
+                                            "thumbnail_url": "img/thumbnail/Material/Corduroy.jpg", 
+                                            "full_size_url": "img/full_size/Material/Corduroy.jpg", 
                                             "rights": {
                                                 "source_url": "https://commons.wikimedia.org/wiki/File:Carolus_-Private_Collection_-_zwarte_tulekant.jpg", 
                                                 "source_name": "Wikipedia", 
-                                                "license": "CC-SA 3.0", 
+                                                "license": "CC Attribution-Share Alike", 
                                                 "author": "Wikipedia user Carolus"
                                             }
                                         }, 
-                                        "id": "Net tulle"
+                                        "id": "Corduroy"
                                     }, 
                                     {
-                                        "id": "Velvet"
+                                        "image": {
+                                            "thumbnail_url": "img/thumbnail/Material/Net tulle.jpg", 
+                                            "full_size_url": "img/full_size/Material/Net tulle.jpg", 
+                                            "rights": {
+                                                "source_url": "https://commons.wikimedia.org/wiki/File:Mansestr.jpg", 
+                                                "source_name": "Wikipedia", 
+                                                "license": "CC Attribution-Share Alike", 
+                                                "author": "Wikipedia user Ludek"
+                                            }
+                                        }, 
+                                        "id": "Net tulle"
                                     }
                                 ]
                             }, 
@@ -383,15 +683,16 @@ var WORKSHEET_DEFINITION = {
                                 "id": "Front Top Print", 
                                 "values_": [
                                     {
-                                        "id": "Abstracted floral"
-                                    }, 
-                                    {
-                                        "id": "Checkerboard"
-                                    }, 
-                                    {
-                                        "id": "Floral"
-                                    }, 
-                                    {
+                                        "image": {
+                                            "thumbnail_url": "img/thumbnail/Print/Plaid.jpg", 
+                                            "full_size_url": "img/full_size/Print/Plaid.jpg", 
+                                            "rights": {
+                                                "source_url": "https://commons.wikimedia.org/wiki/File:Royal_stewart.jpg", 
+                                                "source_name": "Wikipedia", 
+                                                "license": "Public domain", 
+                                                "author": "Unknown"
+                                            }
+                                        }, 
                                         "id": "Plaid"
                                     }
                                 ]
@@ -402,35 +703,77 @@ var WORKSHEET_DEFINITION = {
                         "id": "Bottom", 
                         "features": [
                             {
-                                "id": "Front Bottom Material", 
+                                "id": "Front Bottom Closure", 
                                 "values_": [
                                     {
-                                        "id": "Cotton"
-                                    }, 
-                                    {
-                                        "id": "Elastic"
-                                    }, 
-                                    {
-                                        "id": "Plastic"
-                                    }, 
-                                    {
-                                        "id": "Self-fabric"
+                                        "image": {
+                                            "thumbnail_url": "img/thumbnail/Closure/Button.jpg", 
+                                            "full_size_url": "img/full_size/Closure/Button.jpg", 
+                                            "rights": {
+                                                "source_url": "https://commons.wikimedia.org/wiki/File:Three_holes_buttons.jpg", 
+                                                "source_name": "Wikipedia", 
+                                                "license": "CC Attribution-Share Alike", 
+                                                "author": "Marco Bernardini"
+                                            }
+                                        }, 
+                                        "id": "Button"
                                     }, 
                                     {
                                         "image": {
-                                            "thumbnail_url": "img/thumbnail/Net tulle.jpg", 
-                                            "full_size_url": "img/full_size/Net tulle.jpg", 
+                                            "thumbnail_url": "img/thumbnail/Closure/Hook-and-eye.jpg", 
+                                            "full_size_url": "img/full_size/Closure/Hook-and-eye.jpg", 
+                                            "rights": {
+                                                "source_url": "https://en.wikipedia.org/wiki/Hook-and-eye_closure#/media/File:Hook_and_eye_clasp.JPG", 
+                                                "source_name": "Wikipedia", 
+                                                "license": "CC Attribution-Share Alike", 
+                                                "author": "Wikipedia user Eitan F"
+                                            }
+                                        }, 
+                                        "id": "Hook-and-eye"
+                                    }, 
+                                    {
+                                        "image": {
+                                            "thumbnail_url": "img/thumbnail/Closure/Zip.jpg", 
+                                            "full_size_url": "img/full_size/Closure/Zip.jpg", 
+                                            "rights": {
+                                                "source_url": "https://commons.wikimedia.org/wiki/File:Coil_plastic_and_metal_zippers.jpg", 
+                                                "source_name": "Wikipedia", 
+                                                "license": "CC Attribution-Share Alike", 
+                                                "author": "Wikipedia user Woodbine9"
+                                            }
+                                        }, 
+                                        "id": "Zip"
+                                    }
+                                ]
+                            }, 
+                            {
+                                "id": "Front Bottom Material", 
+                                "values_": [
+                                    {
+                                        "image": {
+                                            "thumbnail_url": "img/thumbnail/Material/Corduroy.jpg", 
+                                            "full_size_url": "img/full_size/Material/Corduroy.jpg", 
                                             "rights": {
                                                 "source_url": "https://commons.wikimedia.org/wiki/File:Carolus_-Private_Collection_-_zwarte_tulekant.jpg", 
                                                 "source_name": "Wikipedia", 
-                                                "license": "CC-SA 3.0", 
+                                                "license": "CC Attribution-Share Alike", 
                                                 "author": "Wikipedia user Carolus"
                                             }
                                         }, 
-                                        "id": "Net tulle"
+                                        "id": "Corduroy"
                                     }, 
                                     {
-                                        "id": "Velvet"
+                                        "image": {
+                                            "thumbnail_url": "img/thumbnail/Material/Net tulle.jpg", 
+                                            "full_size_url": "img/full_size/Material/Net tulle.jpg", 
+                                            "rights": {
+                                                "source_url": "https://commons.wikimedia.org/wiki/File:Mansestr.jpg", 
+                                                "source_name": "Wikipedia", 
+                                                "license": "CC Attribution-Share Alike", 
+                                                "author": "Wikipedia user Ludek"
+                                            }
+                                        }, 
+                                        "id": "Net tulle"
                                     }
                                 ]
                             }, 
@@ -438,15 +781,16 @@ var WORKSHEET_DEFINITION = {
                                 "id": "Front Bottom Print", 
                                 "values_": [
                                     {
-                                        "id": "Abstracted floral"
-                                    }, 
-                                    {
-                                        "id": "Checkerboard"
-                                    }, 
-                                    {
-                                        "id": "Floral"
-                                    }, 
-                                    {
+                                        "image": {
+                                            "thumbnail_url": "img/thumbnail/Print/Plaid.jpg", 
+                                            "full_size_url": "img/full_size/Print/Plaid.jpg", 
+                                            "rights": {
+                                                "source_url": "https://commons.wikimedia.org/wiki/File:Royal_stewart.jpg", 
+                                                "source_name": "Wikipedia", 
+                                                "license": "Public domain", 
+                                                "author": "Unknown"
+                                            }
+                                        }, 
                                         "id": "Plaid"
                                     }
                                 ]
@@ -462,35 +806,77 @@ var WORKSHEET_DEFINITION = {
                         "id": "Whole", 
                         "features": [
                             {
-                                "id": "Back Whole Material", 
+                                "id": "Back Whole Closure", 
                                 "values_": [
                                     {
-                                        "id": "Cotton"
-                                    }, 
-                                    {
-                                        "id": "Elastic"
-                                    }, 
-                                    {
-                                        "id": "Plastic"
-                                    }, 
-                                    {
-                                        "id": "Self-fabric"
+                                        "image": {
+                                            "thumbnail_url": "img/thumbnail/Closure/Button.jpg", 
+                                            "full_size_url": "img/full_size/Closure/Button.jpg", 
+                                            "rights": {
+                                                "source_url": "https://commons.wikimedia.org/wiki/File:Three_holes_buttons.jpg", 
+                                                "source_name": "Wikipedia", 
+                                                "license": "CC Attribution-Share Alike", 
+                                                "author": "Marco Bernardini"
+                                            }
+                                        }, 
+                                        "id": "Button"
                                     }, 
                                     {
                                         "image": {
-                                            "thumbnail_url": "img/thumbnail/Net tulle.jpg", 
-                                            "full_size_url": "img/full_size/Net tulle.jpg", 
+                                            "thumbnail_url": "img/thumbnail/Closure/Hook-and-eye.jpg", 
+                                            "full_size_url": "img/full_size/Closure/Hook-and-eye.jpg", 
+                                            "rights": {
+                                                "source_url": "https://en.wikipedia.org/wiki/Hook-and-eye_closure#/media/File:Hook_and_eye_clasp.JPG", 
+                                                "source_name": "Wikipedia", 
+                                                "license": "CC Attribution-Share Alike", 
+                                                "author": "Wikipedia user Eitan F"
+                                            }
+                                        }, 
+                                        "id": "Hook-and-eye"
+                                    }, 
+                                    {
+                                        "image": {
+                                            "thumbnail_url": "img/thumbnail/Closure/Zip.jpg", 
+                                            "full_size_url": "img/full_size/Closure/Zip.jpg", 
+                                            "rights": {
+                                                "source_url": "https://commons.wikimedia.org/wiki/File:Coil_plastic_and_metal_zippers.jpg", 
+                                                "source_name": "Wikipedia", 
+                                                "license": "CC Attribution-Share Alike", 
+                                                "author": "Wikipedia user Woodbine9"
+                                            }
+                                        }, 
+                                        "id": "Zip"
+                                    }
+                                ]
+                            }, 
+                            {
+                                "id": "Back Whole Material", 
+                                "values_": [
+                                    {
+                                        "image": {
+                                            "thumbnail_url": "img/thumbnail/Material/Corduroy.jpg", 
+                                            "full_size_url": "img/full_size/Material/Corduroy.jpg", 
                                             "rights": {
                                                 "source_url": "https://commons.wikimedia.org/wiki/File:Carolus_-Private_Collection_-_zwarte_tulekant.jpg", 
                                                 "source_name": "Wikipedia", 
-                                                "license": "CC-SA 3.0", 
+                                                "license": "CC Attribution-Share Alike", 
                                                 "author": "Wikipedia user Carolus"
                                             }
                                         }, 
-                                        "id": "Net tulle"
+                                        "id": "Corduroy"
                                     }, 
                                     {
-                                        "id": "Velvet"
+                                        "image": {
+                                            "thumbnail_url": "img/thumbnail/Material/Net tulle.jpg", 
+                                            "full_size_url": "img/full_size/Material/Net tulle.jpg", 
+                                            "rights": {
+                                                "source_url": "https://commons.wikimedia.org/wiki/File:Mansestr.jpg", 
+                                                "source_name": "Wikipedia", 
+                                                "license": "CC Attribution-Share Alike", 
+                                                "author": "Wikipedia user Ludek"
+                                            }
+                                        }, 
+                                        "id": "Net tulle"
                                     }
                                 ]
                             }, 
@@ -498,15 +884,16 @@ var WORKSHEET_DEFINITION = {
                                 "id": "Back Whole Print", 
                                 "values_": [
                                     {
-                                        "id": "Abstracted floral"
-                                    }, 
-                                    {
-                                        "id": "Checkerboard"
-                                    }, 
-                                    {
-                                        "id": "Floral"
-                                    }, 
-                                    {
+                                        "image": {
+                                            "thumbnail_url": "img/thumbnail/Print/Plaid.jpg", 
+                                            "full_size_url": "img/full_size/Print/Plaid.jpg", 
+                                            "rights": {
+                                                "source_url": "https://commons.wikimedia.org/wiki/File:Royal_stewart.jpg", 
+                                                "source_name": "Wikipedia", 
+                                                "license": "Public domain", 
+                                                "author": "Unknown"
+                                            }
+                                        }, 
                                         "id": "Plaid"
                                     }
                                 ]
@@ -517,35 +904,77 @@ var WORKSHEET_DEFINITION = {
                         "id": "Top", 
                         "features": [
                             {
-                                "id": "Back Top Material", 
+                                "id": "Back Top Closure", 
                                 "values_": [
                                     {
-                                        "id": "Cotton"
-                                    }, 
-                                    {
-                                        "id": "Elastic"
-                                    }, 
-                                    {
-                                        "id": "Plastic"
-                                    }, 
-                                    {
-                                        "id": "Self-fabric"
+                                        "image": {
+                                            "thumbnail_url": "img/thumbnail/Closure/Button.jpg", 
+                                            "full_size_url": "img/full_size/Closure/Button.jpg", 
+                                            "rights": {
+                                                "source_url": "https://commons.wikimedia.org/wiki/File:Three_holes_buttons.jpg", 
+                                                "source_name": "Wikipedia", 
+                                                "license": "CC Attribution-Share Alike", 
+                                                "author": "Marco Bernardini"
+                                            }
+                                        }, 
+                                        "id": "Button"
                                     }, 
                                     {
                                         "image": {
-                                            "thumbnail_url": "img/thumbnail/Net tulle.jpg", 
-                                            "full_size_url": "img/full_size/Net tulle.jpg", 
+                                            "thumbnail_url": "img/thumbnail/Closure/Hook-and-eye.jpg", 
+                                            "full_size_url": "img/full_size/Closure/Hook-and-eye.jpg", 
+                                            "rights": {
+                                                "source_url": "https://en.wikipedia.org/wiki/Hook-and-eye_closure#/media/File:Hook_and_eye_clasp.JPG", 
+                                                "source_name": "Wikipedia", 
+                                                "license": "CC Attribution-Share Alike", 
+                                                "author": "Wikipedia user Eitan F"
+                                            }
+                                        }, 
+                                        "id": "Hook-and-eye"
+                                    }, 
+                                    {
+                                        "image": {
+                                            "thumbnail_url": "img/thumbnail/Closure/Zip.jpg", 
+                                            "full_size_url": "img/full_size/Closure/Zip.jpg", 
+                                            "rights": {
+                                                "source_url": "https://commons.wikimedia.org/wiki/File:Coil_plastic_and_metal_zippers.jpg", 
+                                                "source_name": "Wikipedia", 
+                                                "license": "CC Attribution-Share Alike", 
+                                                "author": "Wikipedia user Woodbine9"
+                                            }
+                                        }, 
+                                        "id": "Zip"
+                                    }
+                                ]
+                            }, 
+                            {
+                                "id": "Back Top Material", 
+                                "values_": [
+                                    {
+                                        "image": {
+                                            "thumbnail_url": "img/thumbnail/Material/Corduroy.jpg", 
+                                            "full_size_url": "img/full_size/Material/Corduroy.jpg", 
                                             "rights": {
                                                 "source_url": "https://commons.wikimedia.org/wiki/File:Carolus_-Private_Collection_-_zwarte_tulekant.jpg", 
                                                 "source_name": "Wikipedia", 
-                                                "license": "CC-SA 3.0", 
+                                                "license": "CC Attribution-Share Alike", 
                                                 "author": "Wikipedia user Carolus"
                                             }
                                         }, 
-                                        "id": "Net tulle"
+                                        "id": "Corduroy"
                                     }, 
                                     {
-                                        "id": "Velvet"
+                                        "image": {
+                                            "thumbnail_url": "img/thumbnail/Material/Net tulle.jpg", 
+                                            "full_size_url": "img/full_size/Material/Net tulle.jpg", 
+                                            "rights": {
+                                                "source_url": "https://commons.wikimedia.org/wiki/File:Mansestr.jpg", 
+                                                "source_name": "Wikipedia", 
+                                                "license": "CC Attribution-Share Alike", 
+                                                "author": "Wikipedia user Ludek"
+                                            }
+                                        }, 
+                                        "id": "Net tulle"
                                     }
                                 ]
                             }, 
@@ -553,15 +982,16 @@ var WORKSHEET_DEFINITION = {
                                 "id": "Back Top Print", 
                                 "values_": [
                                     {
-                                        "id": "Abstracted floral"
-                                    }, 
-                                    {
-                                        "id": "Checkerboard"
-                                    }, 
-                                    {
-                                        "id": "Floral"
-                                    }, 
-                                    {
+                                        "image": {
+                                            "thumbnail_url": "img/thumbnail/Print/Plaid.jpg", 
+                                            "full_size_url": "img/full_size/Print/Plaid.jpg", 
+                                            "rights": {
+                                                "source_url": "https://commons.wikimedia.org/wiki/File:Royal_stewart.jpg", 
+                                                "source_name": "Wikipedia", 
+                                                "license": "Public domain", 
+                                                "author": "Unknown"
+                                            }
+                                        }, 
                                         "id": "Plaid"
                                     }
                                 ]
@@ -572,35 +1002,77 @@ var WORKSHEET_DEFINITION = {
                         "id": "Bottom", 
                         "features": [
                             {
-                                "id": "Back Bottom Material", 
+                                "id": "Back Bottom Closure", 
                                 "values_": [
                                     {
-                                        "id": "Cotton"
-                                    }, 
-                                    {
-                                        "id": "Elastic"
-                                    }, 
-                                    {
-                                        "id": "Plastic"
-                                    }, 
-                                    {
-                                        "id": "Self-fabric"
+                                        "image": {
+                                            "thumbnail_url": "img/thumbnail/Closure/Button.jpg", 
+                                            "full_size_url": "img/full_size/Closure/Button.jpg", 
+                                            "rights": {
+                                                "source_url": "https://commons.wikimedia.org/wiki/File:Three_holes_buttons.jpg", 
+                                                "source_name": "Wikipedia", 
+                                                "license": "CC Attribution-Share Alike", 
+                                                "author": "Marco Bernardini"
+                                            }
+                                        }, 
+                                        "id": "Button"
                                     }, 
                                     {
                                         "image": {
-                                            "thumbnail_url": "img/thumbnail/Net tulle.jpg", 
-                                            "full_size_url": "img/full_size/Net tulle.jpg", 
+                                            "thumbnail_url": "img/thumbnail/Closure/Hook-and-eye.jpg", 
+                                            "full_size_url": "img/full_size/Closure/Hook-and-eye.jpg", 
+                                            "rights": {
+                                                "source_url": "https://en.wikipedia.org/wiki/Hook-and-eye_closure#/media/File:Hook_and_eye_clasp.JPG", 
+                                                "source_name": "Wikipedia", 
+                                                "license": "CC Attribution-Share Alike", 
+                                                "author": "Wikipedia user Eitan F"
+                                            }
+                                        }, 
+                                        "id": "Hook-and-eye"
+                                    }, 
+                                    {
+                                        "image": {
+                                            "thumbnail_url": "img/thumbnail/Closure/Zip.jpg", 
+                                            "full_size_url": "img/full_size/Closure/Zip.jpg", 
+                                            "rights": {
+                                                "source_url": "https://commons.wikimedia.org/wiki/File:Coil_plastic_and_metal_zippers.jpg", 
+                                                "source_name": "Wikipedia", 
+                                                "license": "CC Attribution-Share Alike", 
+                                                "author": "Wikipedia user Woodbine9"
+                                            }
+                                        }, 
+                                        "id": "Zip"
+                                    }
+                                ]
+                            }, 
+                            {
+                                "id": "Back Bottom Material", 
+                                "values_": [
+                                    {
+                                        "image": {
+                                            "thumbnail_url": "img/thumbnail/Material/Corduroy.jpg", 
+                                            "full_size_url": "img/full_size/Material/Corduroy.jpg", 
                                             "rights": {
                                                 "source_url": "https://commons.wikimedia.org/wiki/File:Carolus_-Private_Collection_-_zwarte_tulekant.jpg", 
                                                 "source_name": "Wikipedia", 
-                                                "license": "CC-SA 3.0", 
+                                                "license": "CC Attribution-Share Alike", 
                                                 "author": "Wikipedia user Carolus"
                                             }
                                         }, 
-                                        "id": "Net tulle"
+                                        "id": "Corduroy"
                                     }, 
                                     {
-                                        "id": "Velvet"
+                                        "image": {
+                                            "thumbnail_url": "img/thumbnail/Material/Net tulle.jpg", 
+                                            "full_size_url": "img/full_size/Material/Net tulle.jpg", 
+                                            "rights": {
+                                                "source_url": "https://commons.wikimedia.org/wiki/File:Mansestr.jpg", 
+                                                "source_name": "Wikipedia", 
+                                                "license": "CC Attribution-Share Alike", 
+                                                "author": "Wikipedia user Ludek"
+                                            }
+                                        }, 
+                                        "id": "Net tulle"
                                     }
                                 ]
                             }, 
@@ -608,15 +1080,16 @@ var WORKSHEET_DEFINITION = {
                                 "id": "Back Bottom Print", 
                                 "values_": [
                                     {
-                                        "id": "Abstracted floral"
-                                    }, 
-                                    {
-                                        "id": "Checkerboard"
-                                    }, 
-                                    {
-                                        "id": "Floral"
-                                    }, 
-                                    {
+                                        "image": {
+                                            "thumbnail_url": "img/thumbnail/Print/Plaid.jpg", 
+                                            "full_size_url": "img/full_size/Print/Plaid.jpg", 
+                                            "rights": {
+                                                "source_url": "https://commons.wikimedia.org/wiki/File:Royal_stewart.jpg", 
+                                                "source_name": "Wikipedia", 
+                                                "license": "Public domain", 
+                                                "author": "Unknown"
+                                            }
+                                        }, 
                                         "id": "Plaid"
                                     }
                                 ]
@@ -632,35 +1105,77 @@ var WORKSHEET_DEFINITION = {
                         "id": "Whole", 
                         "features": [
                             {
-                                "id": "Interior Whole Material", 
+                                "id": "Interior Whole Closure", 
                                 "values_": [
                                     {
-                                        "id": "Cotton"
-                                    }, 
-                                    {
-                                        "id": "Elastic"
-                                    }, 
-                                    {
-                                        "id": "Plastic"
-                                    }, 
-                                    {
-                                        "id": "Self-fabric"
+                                        "image": {
+                                            "thumbnail_url": "img/thumbnail/Closure/Button.jpg", 
+                                            "full_size_url": "img/full_size/Closure/Button.jpg", 
+                                            "rights": {
+                                                "source_url": "https://commons.wikimedia.org/wiki/File:Three_holes_buttons.jpg", 
+                                                "source_name": "Wikipedia", 
+                                                "license": "CC Attribution-Share Alike", 
+                                                "author": "Marco Bernardini"
+                                            }
+                                        }, 
+                                        "id": "Button"
                                     }, 
                                     {
                                         "image": {
-                                            "thumbnail_url": "img/thumbnail/Net tulle.jpg", 
-                                            "full_size_url": "img/full_size/Net tulle.jpg", 
+                                            "thumbnail_url": "img/thumbnail/Closure/Hook-and-eye.jpg", 
+                                            "full_size_url": "img/full_size/Closure/Hook-and-eye.jpg", 
+                                            "rights": {
+                                                "source_url": "https://en.wikipedia.org/wiki/Hook-and-eye_closure#/media/File:Hook_and_eye_clasp.JPG", 
+                                                "source_name": "Wikipedia", 
+                                                "license": "CC Attribution-Share Alike", 
+                                                "author": "Wikipedia user Eitan F"
+                                            }
+                                        }, 
+                                        "id": "Hook-and-eye"
+                                    }, 
+                                    {
+                                        "image": {
+                                            "thumbnail_url": "img/thumbnail/Closure/Zip.jpg", 
+                                            "full_size_url": "img/full_size/Closure/Zip.jpg", 
+                                            "rights": {
+                                                "source_url": "https://commons.wikimedia.org/wiki/File:Coil_plastic_and_metal_zippers.jpg", 
+                                                "source_name": "Wikipedia", 
+                                                "license": "CC Attribution-Share Alike", 
+                                                "author": "Wikipedia user Woodbine9"
+                                            }
+                                        }, 
+                                        "id": "Zip"
+                                    }
+                                ]
+                            }, 
+                            {
+                                "id": "Interior Whole Material", 
+                                "values_": [
+                                    {
+                                        "image": {
+                                            "thumbnail_url": "img/thumbnail/Material/Corduroy.jpg", 
+                                            "full_size_url": "img/full_size/Material/Corduroy.jpg", 
                                             "rights": {
                                                 "source_url": "https://commons.wikimedia.org/wiki/File:Carolus_-Private_Collection_-_zwarte_tulekant.jpg", 
                                                 "source_name": "Wikipedia", 
-                                                "license": "CC-SA 3.0", 
+                                                "license": "CC Attribution-Share Alike", 
                                                 "author": "Wikipedia user Carolus"
                                             }
                                         }, 
-                                        "id": "Net tulle"
+                                        "id": "Corduroy"
                                     }, 
                                     {
-                                        "id": "Velvet"
+                                        "image": {
+                                            "thumbnail_url": "img/thumbnail/Material/Net tulle.jpg", 
+                                            "full_size_url": "img/full_size/Material/Net tulle.jpg", 
+                                            "rights": {
+                                                "source_url": "https://commons.wikimedia.org/wiki/File:Mansestr.jpg", 
+                                                "source_name": "Wikipedia", 
+                                                "license": "CC Attribution-Share Alike", 
+                                                "author": "Wikipedia user Ludek"
+                                            }
+                                        }, 
+                                        "id": "Net tulle"
                                     }
                                 ]
                             }, 
@@ -668,15 +1183,16 @@ var WORKSHEET_DEFINITION = {
                                 "id": "Interior Whole Print", 
                                 "values_": [
                                     {
-                                        "id": "Abstracted floral"
-                                    }, 
-                                    {
-                                        "id": "Checkerboard"
-                                    }, 
-                                    {
-                                        "id": "Floral"
-                                    }, 
-                                    {
+                                        "image": {
+                                            "thumbnail_url": "img/thumbnail/Print/Plaid.jpg", 
+                                            "full_size_url": "img/full_size/Print/Plaid.jpg", 
+                                            "rights": {
+                                                "source_url": "https://commons.wikimedia.org/wiki/File:Royal_stewart.jpg", 
+                                                "source_name": "Wikipedia", 
+                                                "license": "Public domain", 
+                                                "author": "Unknown"
+                                            }
+                                        }, 
                                         "id": "Plaid"
                                     }
                                 ]
@@ -687,35 +1203,77 @@ var WORKSHEET_DEFINITION = {
                         "id": "Top", 
                         "features": [
                             {
-                                "id": "Interior Top Material", 
+                                "id": "Interior Top Closure", 
                                 "values_": [
                                     {
-                                        "id": "Cotton"
-                                    }, 
-                                    {
-                                        "id": "Elastic"
-                                    }, 
-                                    {
-                                        "id": "Plastic"
-                                    }, 
-                                    {
-                                        "id": "Self-fabric"
+                                        "image": {
+                                            "thumbnail_url": "img/thumbnail/Closure/Button.jpg", 
+                                            "full_size_url": "img/full_size/Closure/Button.jpg", 
+                                            "rights": {
+                                                "source_url": "https://commons.wikimedia.org/wiki/File:Three_holes_buttons.jpg", 
+                                                "source_name": "Wikipedia", 
+                                                "license": "CC Attribution-Share Alike", 
+                                                "author": "Marco Bernardini"
+                                            }
+                                        }, 
+                                        "id": "Button"
                                     }, 
                                     {
                                         "image": {
-                                            "thumbnail_url": "img/thumbnail/Net tulle.jpg", 
-                                            "full_size_url": "img/full_size/Net tulle.jpg", 
+                                            "thumbnail_url": "img/thumbnail/Closure/Hook-and-eye.jpg", 
+                                            "full_size_url": "img/full_size/Closure/Hook-and-eye.jpg", 
+                                            "rights": {
+                                                "source_url": "https://en.wikipedia.org/wiki/Hook-and-eye_closure#/media/File:Hook_and_eye_clasp.JPG", 
+                                                "source_name": "Wikipedia", 
+                                                "license": "CC Attribution-Share Alike", 
+                                                "author": "Wikipedia user Eitan F"
+                                            }
+                                        }, 
+                                        "id": "Hook-and-eye"
+                                    }, 
+                                    {
+                                        "image": {
+                                            "thumbnail_url": "img/thumbnail/Closure/Zip.jpg", 
+                                            "full_size_url": "img/full_size/Closure/Zip.jpg", 
+                                            "rights": {
+                                                "source_url": "https://commons.wikimedia.org/wiki/File:Coil_plastic_and_metal_zippers.jpg", 
+                                                "source_name": "Wikipedia", 
+                                                "license": "CC Attribution-Share Alike", 
+                                                "author": "Wikipedia user Woodbine9"
+                                            }
+                                        }, 
+                                        "id": "Zip"
+                                    }
+                                ]
+                            }, 
+                            {
+                                "id": "Interior Top Material", 
+                                "values_": [
+                                    {
+                                        "image": {
+                                            "thumbnail_url": "img/thumbnail/Material/Corduroy.jpg", 
+                                            "full_size_url": "img/full_size/Material/Corduroy.jpg", 
                                             "rights": {
                                                 "source_url": "https://commons.wikimedia.org/wiki/File:Carolus_-Private_Collection_-_zwarte_tulekant.jpg", 
                                                 "source_name": "Wikipedia", 
-                                                "license": "CC-SA 3.0", 
+                                                "license": "CC Attribution-Share Alike", 
                                                 "author": "Wikipedia user Carolus"
                                             }
                                         }, 
-                                        "id": "Net tulle"
+                                        "id": "Corduroy"
                                     }, 
                                     {
-                                        "id": "Velvet"
+                                        "image": {
+                                            "thumbnail_url": "img/thumbnail/Material/Net tulle.jpg", 
+                                            "full_size_url": "img/full_size/Material/Net tulle.jpg", 
+                                            "rights": {
+                                                "source_url": "https://commons.wikimedia.org/wiki/File:Mansestr.jpg", 
+                                                "source_name": "Wikipedia", 
+                                                "license": "CC Attribution-Share Alike", 
+                                                "author": "Wikipedia user Ludek"
+                                            }
+                                        }, 
+                                        "id": "Net tulle"
                                     }
                                 ]
                             }, 
@@ -723,15 +1281,16 @@ var WORKSHEET_DEFINITION = {
                                 "id": "Interior Top Print", 
                                 "values_": [
                                     {
-                                        "id": "Abstracted floral"
-                                    }, 
-                                    {
-                                        "id": "Checkerboard"
-                                    }, 
-                                    {
-                                        "id": "Floral"
-                                    }, 
-                                    {
+                                        "image": {
+                                            "thumbnail_url": "img/thumbnail/Print/Plaid.jpg", 
+                                            "full_size_url": "img/full_size/Print/Plaid.jpg", 
+                                            "rights": {
+                                                "source_url": "https://commons.wikimedia.org/wiki/File:Royal_stewart.jpg", 
+                                                "source_name": "Wikipedia", 
+                                                "license": "Public domain", 
+                                                "author": "Unknown"
+                                            }
+                                        }, 
                                         "id": "Plaid"
                                     }
                                 ]
@@ -742,35 +1301,77 @@ var WORKSHEET_DEFINITION = {
                         "id": "Bottom", 
                         "features": [
                             {
-                                "id": "Interior Bottom Material", 
+                                "id": "Interior Bottom Closure", 
                                 "values_": [
                                     {
-                                        "id": "Cotton"
-                                    }, 
-                                    {
-                                        "id": "Elastic"
-                                    }, 
-                                    {
-                                        "id": "Plastic"
-                                    }, 
-                                    {
-                                        "id": "Self-fabric"
+                                        "image": {
+                                            "thumbnail_url": "img/thumbnail/Closure/Button.jpg", 
+                                            "full_size_url": "img/full_size/Closure/Button.jpg", 
+                                            "rights": {
+                                                "source_url": "https://commons.wikimedia.org/wiki/File:Three_holes_buttons.jpg", 
+                                                "source_name": "Wikipedia", 
+                                                "license": "CC Attribution-Share Alike", 
+                                                "author": "Marco Bernardini"
+                                            }
+                                        }, 
+                                        "id": "Button"
                                     }, 
                                     {
                                         "image": {
-                                            "thumbnail_url": "img/thumbnail/Net tulle.jpg", 
-                                            "full_size_url": "img/full_size/Net tulle.jpg", 
+                                            "thumbnail_url": "img/thumbnail/Closure/Hook-and-eye.jpg", 
+                                            "full_size_url": "img/full_size/Closure/Hook-and-eye.jpg", 
+                                            "rights": {
+                                                "source_url": "https://en.wikipedia.org/wiki/Hook-and-eye_closure#/media/File:Hook_and_eye_clasp.JPG", 
+                                                "source_name": "Wikipedia", 
+                                                "license": "CC Attribution-Share Alike", 
+                                                "author": "Wikipedia user Eitan F"
+                                            }
+                                        }, 
+                                        "id": "Hook-and-eye"
+                                    }, 
+                                    {
+                                        "image": {
+                                            "thumbnail_url": "img/thumbnail/Closure/Zip.jpg", 
+                                            "full_size_url": "img/full_size/Closure/Zip.jpg", 
+                                            "rights": {
+                                                "source_url": "https://commons.wikimedia.org/wiki/File:Coil_plastic_and_metal_zippers.jpg", 
+                                                "source_name": "Wikipedia", 
+                                                "license": "CC Attribution-Share Alike", 
+                                                "author": "Wikipedia user Woodbine9"
+                                            }
+                                        }, 
+                                        "id": "Zip"
+                                    }
+                                ]
+                            }, 
+                            {
+                                "id": "Interior Bottom Material", 
+                                "values_": [
+                                    {
+                                        "image": {
+                                            "thumbnail_url": "img/thumbnail/Material/Corduroy.jpg", 
+                                            "full_size_url": "img/full_size/Material/Corduroy.jpg", 
                                             "rights": {
                                                 "source_url": "https://commons.wikimedia.org/wiki/File:Carolus_-Private_Collection_-_zwarte_tulekant.jpg", 
                                                 "source_name": "Wikipedia", 
-                                                "license": "CC-SA 3.0", 
+                                                "license": "CC Attribution-Share Alike", 
                                                 "author": "Wikipedia user Carolus"
                                             }
                                         }, 
-                                        "id": "Net tulle"
+                                        "id": "Corduroy"
                                     }, 
                                     {
-                                        "id": "Velvet"
+                                        "image": {
+                                            "thumbnail_url": "img/thumbnail/Material/Net tulle.jpg", 
+                                            "full_size_url": "img/full_size/Material/Net tulle.jpg", 
+                                            "rights": {
+                                                "source_url": "https://commons.wikimedia.org/wiki/File:Mansestr.jpg", 
+                                                "source_name": "Wikipedia", 
+                                                "license": "CC Attribution-Share Alike", 
+                                                "author": "Wikipedia user Ludek"
+                                            }
+                                        }, 
+                                        "id": "Net tulle"
                                     }
                                 ]
                             }, 
@@ -778,15 +1379,16 @@ var WORKSHEET_DEFINITION = {
                                 "id": "Interior Bottom Print", 
                                 "values_": [
                                     {
-                                        "id": "Abstracted floral"
-                                    }, 
-                                    {
-                                        "id": "Checkerboard"
-                                    }, 
-                                    {
-                                        "id": "Floral"
-                                    }, 
-                                    {
+                                        "image": {
+                                            "thumbnail_url": "img/thumbnail/Print/Plaid.jpg", 
+                                            "full_size_url": "img/full_size/Print/Plaid.jpg", 
+                                            "rights": {
+                                                "source_url": "https://commons.wikimedia.org/wiki/File:Royal_stewart.jpg", 
+                                                "source_name": "Wikipedia", 
+                                                "license": "Public domain", 
+                                                "author": "Unknown"
+                                            }
+                                        }, 
                                         "id": "Plaid"
                                     }
                                 ]
