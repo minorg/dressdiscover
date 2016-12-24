@@ -58,10 +58,10 @@ var WORKSHEET_DEFINITION = {
                                             "thumbnail_url": "img/thumbnail/Material/Corduroy.jpg", 
                                             "full_size_url": "img/full_size/Material/Corduroy.jpg", 
                                             "rights": {
-                                                "source_url": "https://commons.wikimedia.org/wiki/File:Carolus_-Private_Collection_-_zwarte_tulekant.jpg", 
+                                                "source_url": "https://commons.wikimedia.org/wiki/File:Mansestr.jpg", 
                                                 "source_name": "Wikipedia", 
                                                 "license": "CC Attribution-Share Alike", 
-                                                "author": "Wikipedia user Carolus"
+                                                "author": "Wikipedia user Ludek"
                                             }
                                         }, 
                                         "id": "Corduroy"
@@ -71,10 +71,10 @@ var WORKSHEET_DEFINITION = {
                                             "thumbnail_url": "img/thumbnail/Material/Net tulle.jpg", 
                                             "full_size_url": "img/full_size/Material/Net tulle.jpg", 
                                             "rights": {
-                                                "source_url": "https://commons.wikimedia.org/wiki/File:Mansestr.jpg", 
+                                                "source_url": "https://commons.wikimedia.org/wiki/File:Carolus_-Private_Collection_-_zwarte_tulekant.jpg", 
                                                 "source_name": "Wikipedia", 
                                                 "license": "CC Attribution-Share Alike", 
-                                                "author": "Wikipedia user Ludek"
+                                                "author": "Wikipedia user Carolus"
                                             }
                                         }, 
                                         "id": "Net tulle"
@@ -92,7 +92,7 @@ var WORKSHEET_DEFINITION = {
                                                 "source_url": "https://commons.wikimedia.org/wiki/File:Royal_stewart.jpg", 
                                                 "source_name": "Wikipedia", 
                                                 "license": "Public domain", 
-                                                "author": "Unknown"
+                                                "author": "Public domain"
                                             }
                                         }, 
                                         "id": "Plaid"
@@ -156,10 +156,10 @@ var WORKSHEET_DEFINITION = {
                                             "thumbnail_url": "img/thumbnail/Material/Corduroy.jpg", 
                                             "full_size_url": "img/full_size/Material/Corduroy.jpg", 
                                             "rights": {
-                                                "source_url": "https://commons.wikimedia.org/wiki/File:Carolus_-Private_Collection_-_zwarte_tulekant.jpg", 
+                                                "source_url": "https://commons.wikimedia.org/wiki/File:Mansestr.jpg", 
                                                 "source_name": "Wikipedia", 
                                                 "license": "CC Attribution-Share Alike", 
-                                                "author": "Wikipedia user Carolus"
+                                                "author": "Wikipedia user Ludek"
                                             }
                                         }, 
                                         "id": "Corduroy"
@@ -169,10 +169,10 @@ var WORKSHEET_DEFINITION = {
                                             "thumbnail_url": "img/thumbnail/Material/Net tulle.jpg", 
                                             "full_size_url": "img/full_size/Material/Net tulle.jpg", 
                                             "rights": {
-                                                "source_url": "https://commons.wikimedia.org/wiki/File:Mansestr.jpg", 
+                                                "source_url": "https://commons.wikimedia.org/wiki/File:Carolus_-Private_Collection_-_zwarte_tulekant.jpg", 
                                                 "source_name": "Wikipedia", 
                                                 "license": "CC Attribution-Share Alike", 
-                                                "author": "Wikipedia user Ludek"
+                                                "author": "Wikipedia user Carolus"
                                             }
                                         }, 
                                         "id": "Net tulle"
@@ -190,7 +190,7 @@ var WORKSHEET_DEFINITION = {
                                                 "source_url": "https://commons.wikimedia.org/wiki/File:Royal_stewart.jpg", 
                                                 "source_name": "Wikipedia", 
                                                 "license": "Public domain", 
-                                                "author": "Unknown"
+                                                "author": "Public domain"
                                             }
                                         }, 
                                         "id": "Plaid"
@@ -203,7 +203,100 @@ var WORKSHEET_DEFINITION = {
                 "id": "Whole", 
                 "features": [
                     {
-                        "id": "Label"
+                        "id": "Whole Closure", 
+                        "values_": [
+                            {
+                                "image": {
+                                    "thumbnail_url": "img/thumbnail/Closure/Button.jpg", 
+                                    "full_size_url": "img/full_size/Closure/Button.jpg", 
+                                    "rights": {
+                                        "source_url": "https://commons.wikimedia.org/wiki/File:Three_holes_buttons.jpg", 
+                                        "source_name": "Wikipedia", 
+                                        "license": "CC Attribution-Share Alike", 
+                                        "author": "Marco Bernardini"
+                                    }
+                                }, 
+                                "id": "Button"
+                            }, 
+                            {
+                                "image": {
+                                    "thumbnail_url": "img/thumbnail/Closure/Hook-and-eye.jpg", 
+                                    "full_size_url": "img/full_size/Closure/Hook-and-eye.jpg", 
+                                    "rights": {
+                                        "source_url": "https://en.wikipedia.org/wiki/Hook-and-eye_closure#/media/File:Hook_and_eye_clasp.JPG", 
+                                        "source_name": "Wikipedia", 
+                                        "license": "CC Attribution-Share Alike", 
+                                        "author": "Wikipedia user Eitan F"
+                                    }
+                                }, 
+                                "id": "Hook-and-eye"
+                            }, 
+                            {
+                                "image": {
+                                    "thumbnail_url": "img/thumbnail/Closure/Zip.jpg", 
+                                    "full_size_url": "img/full_size/Closure/Zip.jpg", 
+                                    "rights": {
+                                        "source_url": "https://commons.wikimedia.org/wiki/File:Coil_plastic_and_metal_zippers.jpg", 
+                                        "source_name": "Wikipedia", 
+                                        "license": "CC Attribution-Share Alike", 
+                                        "author": "Wikipedia user Woodbine9"
+                                    }
+                                }, 
+                                "id": "Zip"
+                            }
+                        ]
+                    }, 
+                    {
+                        "id": "Whole Label"
+                    }, 
+                    {
+                        "id": "Whole Material", 
+                        "values_": [
+                            {
+                                "image": {
+                                    "thumbnail_url": "img/thumbnail/Material/Corduroy.jpg", 
+                                    "full_size_url": "img/full_size/Material/Corduroy.jpg", 
+                                    "rights": {
+                                        "source_url": "https://commons.wikimedia.org/wiki/File:Mansestr.jpg", 
+                                        "source_name": "Wikipedia", 
+                                        "license": "CC Attribution-Share Alike", 
+                                        "author": "Wikipedia user Ludek"
+                                    }
+                                }, 
+                                "id": "Corduroy"
+                            }, 
+                            {
+                                "image": {
+                                    "thumbnail_url": "img/thumbnail/Material/Net tulle.jpg", 
+                                    "full_size_url": "img/full_size/Material/Net tulle.jpg", 
+                                    "rights": {
+                                        "source_url": "https://commons.wikimedia.org/wiki/File:Carolus_-Private_Collection_-_zwarte_tulekant.jpg", 
+                                        "source_name": "Wikipedia", 
+                                        "license": "CC Attribution-Share Alike", 
+                                        "author": "Wikipedia user Carolus"
+                                    }
+                                }, 
+                                "id": "Net tulle"
+                            }
+                        ]
+                    }, 
+                    {
+                        "id": "Whole Print", 
+                        "values_": [
+                            {
+                                "image": {
+                                    "thumbnail_url": "img/thumbnail/Print/Plaid.jpg", 
+                                    "full_size_url": "img/full_size/Print/Plaid.jpg", 
+                                    "rights": {
+                                        "source_url": "https://commons.wikimedia.org/wiki/File:Royal_stewart.jpg", 
+                                        "source_name": "Wikipedia", 
+                                        "license": "Public domain", 
+                                        "author": "Public domain"
+                                    }
+                                }, 
+                                "id": "Plaid"
+                            }
+                        ]
                     }
                 ]
             }, 
@@ -262,10 +355,10 @@ var WORKSHEET_DEFINITION = {
                                     "thumbnail_url": "img/thumbnail/Material/Corduroy.jpg", 
                                     "full_size_url": "img/full_size/Material/Corduroy.jpg", 
                                     "rights": {
-                                        "source_url": "https://commons.wikimedia.org/wiki/File:Carolus_-Private_Collection_-_zwarte_tulekant.jpg", 
+                                        "source_url": "https://commons.wikimedia.org/wiki/File:Mansestr.jpg", 
                                         "source_name": "Wikipedia", 
                                         "license": "CC Attribution-Share Alike", 
-                                        "author": "Wikipedia user Carolus"
+                                        "author": "Wikipedia user Ludek"
                                     }
                                 }, 
                                 "id": "Corduroy"
@@ -275,10 +368,10 @@ var WORKSHEET_DEFINITION = {
                                     "thumbnail_url": "img/thumbnail/Material/Net tulle.jpg", 
                                     "full_size_url": "img/full_size/Material/Net tulle.jpg", 
                                     "rights": {
-                                        "source_url": "https://commons.wikimedia.org/wiki/File:Mansestr.jpg", 
+                                        "source_url": "https://commons.wikimedia.org/wiki/File:Carolus_-Private_Collection_-_zwarte_tulekant.jpg", 
                                         "source_name": "Wikipedia", 
                                         "license": "CC Attribution-Share Alike", 
-                                        "author": "Wikipedia user Ludek"
+                                        "author": "Wikipedia user Carolus"
                                     }
                                 }, 
                                 "id": "Net tulle"
@@ -296,7 +389,7 @@ var WORKSHEET_DEFINITION = {
                                         "source_url": "https://commons.wikimedia.org/wiki/File:Royal_stewart.jpg", 
                                         "source_name": "Wikipedia", 
                                         "license": "Public domain", 
-                                        "author": "Unknown"
+                                        "author": "Public domain"
                                     }
                                 }, 
                                 "id": "Plaid"
@@ -360,10 +453,10 @@ var WORKSHEET_DEFINITION = {
                                     "thumbnail_url": "img/thumbnail/Material/Corduroy.jpg", 
                                     "full_size_url": "img/full_size/Material/Corduroy.jpg", 
                                     "rights": {
-                                        "source_url": "https://commons.wikimedia.org/wiki/File:Carolus_-Private_Collection_-_zwarte_tulekant.jpg", 
+                                        "source_url": "https://commons.wikimedia.org/wiki/File:Mansestr.jpg", 
                                         "source_name": "Wikipedia", 
                                         "license": "CC Attribution-Share Alike", 
-                                        "author": "Wikipedia user Carolus"
+                                        "author": "Wikipedia user Ludek"
                                     }
                                 }, 
                                 "id": "Corduroy"
@@ -373,10 +466,10 @@ var WORKSHEET_DEFINITION = {
                                     "thumbnail_url": "img/thumbnail/Material/Net tulle.jpg", 
                                     "full_size_url": "img/full_size/Material/Net tulle.jpg", 
                                     "rights": {
-                                        "source_url": "https://commons.wikimedia.org/wiki/File:Mansestr.jpg", 
+                                        "source_url": "https://commons.wikimedia.org/wiki/File:Carolus_-Private_Collection_-_zwarte_tulekant.jpg", 
                                         "source_name": "Wikipedia", 
                                         "license": "CC Attribution-Share Alike", 
-                                        "author": "Wikipedia user Ludek"
+                                        "author": "Wikipedia user Carolus"
                                     }
                                 }, 
                                 "id": "Net tulle"
@@ -394,7 +487,7 @@ var WORKSHEET_DEFINITION = {
                                         "source_url": "https://commons.wikimedia.org/wiki/File:Royal_stewart.jpg", 
                                         "source_name": "Wikipedia", 
                                         "license": "Public domain", 
-                                        "author": "Unknown"
+                                        "author": "Public domain"
                                     }
                                 }, 
                                 "id": "Plaid"
@@ -458,10 +551,10 @@ var WORKSHEET_DEFINITION = {
                                     "thumbnail_url": "img/thumbnail/Material/Corduroy.jpg", 
                                     "full_size_url": "img/full_size/Material/Corduroy.jpg", 
                                     "rights": {
-                                        "source_url": "https://commons.wikimedia.org/wiki/File:Carolus_-Private_Collection_-_zwarte_tulekant.jpg", 
+                                        "source_url": "https://commons.wikimedia.org/wiki/File:Mansestr.jpg", 
                                         "source_name": "Wikipedia", 
                                         "license": "CC Attribution-Share Alike", 
-                                        "author": "Wikipedia user Carolus"
+                                        "author": "Wikipedia user Ludek"
                                     }
                                 }, 
                                 "id": "Corduroy"
@@ -471,10 +564,10 @@ var WORKSHEET_DEFINITION = {
                                     "thumbnail_url": "img/thumbnail/Material/Net tulle.jpg", 
                                     "full_size_url": "img/full_size/Material/Net tulle.jpg", 
                                     "rights": {
-                                        "source_url": "https://commons.wikimedia.org/wiki/File:Mansestr.jpg", 
+                                        "source_url": "https://commons.wikimedia.org/wiki/File:Carolus_-Private_Collection_-_zwarte_tulekant.jpg", 
                                         "source_name": "Wikipedia", 
                                         "license": "CC Attribution-Share Alike", 
-                                        "author": "Wikipedia user Ludek"
+                                        "author": "Wikipedia user Carolus"
                                     }
                                 }, 
                                 "id": "Net tulle"
@@ -492,7 +585,7 @@ var WORKSHEET_DEFINITION = {
                                         "source_url": "https://commons.wikimedia.org/wiki/File:Royal_stewart.jpg", 
                                         "source_name": "Wikipedia", 
                                         "license": "Public domain", 
-                                        "author": "Unknown"
+                                        "author": "Public domain"
                                     }
                                 }, 
                                 "id": "Plaid"
@@ -558,10 +651,10 @@ var WORKSHEET_DEFINITION = {
                                             "thumbnail_url": "img/thumbnail/Material/Corduroy.jpg", 
                                             "full_size_url": "img/full_size/Material/Corduroy.jpg", 
                                             "rights": {
-                                                "source_url": "https://commons.wikimedia.org/wiki/File:Carolus_-Private_Collection_-_zwarte_tulekant.jpg", 
+                                                "source_url": "https://commons.wikimedia.org/wiki/File:Mansestr.jpg", 
                                                 "source_name": "Wikipedia", 
                                                 "license": "CC Attribution-Share Alike", 
-                                                "author": "Wikipedia user Carolus"
+                                                "author": "Wikipedia user Ludek"
                                             }
                                         }, 
                                         "id": "Corduroy"
@@ -571,10 +664,10 @@ var WORKSHEET_DEFINITION = {
                                             "thumbnail_url": "img/thumbnail/Material/Net tulle.jpg", 
                                             "full_size_url": "img/full_size/Material/Net tulle.jpg", 
                                             "rights": {
-                                                "source_url": "https://commons.wikimedia.org/wiki/File:Mansestr.jpg", 
+                                                "source_url": "https://commons.wikimedia.org/wiki/File:Carolus_-Private_Collection_-_zwarte_tulekant.jpg", 
                                                 "source_name": "Wikipedia", 
                                                 "license": "CC Attribution-Share Alike", 
-                                                "author": "Wikipedia user Ludek"
+                                                "author": "Wikipedia user Carolus"
                                             }
                                         }, 
                                         "id": "Net tulle"
@@ -592,7 +685,7 @@ var WORKSHEET_DEFINITION = {
                                                 "source_url": "https://commons.wikimedia.org/wiki/File:Royal_stewart.jpg", 
                                                 "source_name": "Wikipedia", 
                                                 "license": "Public domain", 
-                                                "author": "Unknown"
+                                                "author": "Public domain"
                                             }
                                         }, 
                                         "id": "Plaid"
@@ -656,10 +749,10 @@ var WORKSHEET_DEFINITION = {
                                             "thumbnail_url": "img/thumbnail/Material/Corduroy.jpg", 
                                             "full_size_url": "img/full_size/Material/Corduroy.jpg", 
                                             "rights": {
-                                                "source_url": "https://commons.wikimedia.org/wiki/File:Carolus_-Private_Collection_-_zwarte_tulekant.jpg", 
+                                                "source_url": "https://commons.wikimedia.org/wiki/File:Mansestr.jpg", 
                                                 "source_name": "Wikipedia", 
                                                 "license": "CC Attribution-Share Alike", 
-                                                "author": "Wikipedia user Carolus"
+                                                "author": "Wikipedia user Ludek"
                                             }
                                         }, 
                                         "id": "Corduroy"
@@ -669,10 +762,10 @@ var WORKSHEET_DEFINITION = {
                                             "thumbnail_url": "img/thumbnail/Material/Net tulle.jpg", 
                                             "full_size_url": "img/full_size/Material/Net tulle.jpg", 
                                             "rights": {
-                                                "source_url": "https://commons.wikimedia.org/wiki/File:Mansestr.jpg", 
+                                                "source_url": "https://commons.wikimedia.org/wiki/File:Carolus_-Private_Collection_-_zwarte_tulekant.jpg", 
                                                 "source_name": "Wikipedia", 
                                                 "license": "CC Attribution-Share Alike", 
-                                                "author": "Wikipedia user Ludek"
+                                                "author": "Wikipedia user Carolus"
                                             }
                                         }, 
                                         "id": "Net tulle"
@@ -690,7 +783,7 @@ var WORKSHEET_DEFINITION = {
                                                 "source_url": "https://commons.wikimedia.org/wiki/File:Royal_stewart.jpg", 
                                                 "source_name": "Wikipedia", 
                                                 "license": "Public domain", 
-                                                "author": "Unknown"
+                                                "author": "Public domain"
                                             }
                                         }, 
                                         "id": "Plaid"
@@ -754,10 +847,10 @@ var WORKSHEET_DEFINITION = {
                                             "thumbnail_url": "img/thumbnail/Material/Corduroy.jpg", 
                                             "full_size_url": "img/full_size/Material/Corduroy.jpg", 
                                             "rights": {
-                                                "source_url": "https://commons.wikimedia.org/wiki/File:Carolus_-Private_Collection_-_zwarte_tulekant.jpg", 
+                                                "source_url": "https://commons.wikimedia.org/wiki/File:Mansestr.jpg", 
                                                 "source_name": "Wikipedia", 
                                                 "license": "CC Attribution-Share Alike", 
-                                                "author": "Wikipedia user Carolus"
+                                                "author": "Wikipedia user Ludek"
                                             }
                                         }, 
                                         "id": "Corduroy"
@@ -767,10 +860,10 @@ var WORKSHEET_DEFINITION = {
                                             "thumbnail_url": "img/thumbnail/Material/Net tulle.jpg", 
                                             "full_size_url": "img/full_size/Material/Net tulle.jpg", 
                                             "rights": {
-                                                "source_url": "https://commons.wikimedia.org/wiki/File:Mansestr.jpg", 
+                                                "source_url": "https://commons.wikimedia.org/wiki/File:Carolus_-Private_Collection_-_zwarte_tulekant.jpg", 
                                                 "source_name": "Wikipedia", 
                                                 "license": "CC Attribution-Share Alike", 
-                                                "author": "Wikipedia user Ludek"
+                                                "author": "Wikipedia user Carolus"
                                             }
                                         }, 
                                         "id": "Net tulle"
@@ -788,7 +881,7 @@ var WORKSHEET_DEFINITION = {
                                                 "source_url": "https://commons.wikimedia.org/wiki/File:Royal_stewart.jpg", 
                                                 "source_name": "Wikipedia", 
                                                 "license": "Public domain", 
-                                                "author": "Unknown"
+                                                "author": "Public domain"
                                             }
                                         }, 
                                         "id": "Plaid"
@@ -857,10 +950,10 @@ var WORKSHEET_DEFINITION = {
                                             "thumbnail_url": "img/thumbnail/Material/Corduroy.jpg", 
                                             "full_size_url": "img/full_size/Material/Corduroy.jpg", 
                                             "rights": {
-                                                "source_url": "https://commons.wikimedia.org/wiki/File:Carolus_-Private_Collection_-_zwarte_tulekant.jpg", 
+                                                "source_url": "https://commons.wikimedia.org/wiki/File:Mansestr.jpg", 
                                                 "source_name": "Wikipedia", 
                                                 "license": "CC Attribution-Share Alike", 
-                                                "author": "Wikipedia user Carolus"
+                                                "author": "Wikipedia user Ludek"
                                             }
                                         }, 
                                         "id": "Corduroy"
@@ -870,10 +963,10 @@ var WORKSHEET_DEFINITION = {
                                             "thumbnail_url": "img/thumbnail/Material/Net tulle.jpg", 
                                             "full_size_url": "img/full_size/Material/Net tulle.jpg", 
                                             "rights": {
-                                                "source_url": "https://commons.wikimedia.org/wiki/File:Mansestr.jpg", 
+                                                "source_url": "https://commons.wikimedia.org/wiki/File:Carolus_-Private_Collection_-_zwarte_tulekant.jpg", 
                                                 "source_name": "Wikipedia", 
                                                 "license": "CC Attribution-Share Alike", 
-                                                "author": "Wikipedia user Ludek"
+                                                "author": "Wikipedia user Carolus"
                                             }
                                         }, 
                                         "id": "Net tulle"
@@ -891,7 +984,7 @@ var WORKSHEET_DEFINITION = {
                                                 "source_url": "https://commons.wikimedia.org/wiki/File:Royal_stewart.jpg", 
                                                 "source_name": "Wikipedia", 
                                                 "license": "Public domain", 
-                                                "author": "Unknown"
+                                                "author": "Public domain"
                                             }
                                         }, 
                                         "id": "Plaid"
@@ -955,10 +1048,10 @@ var WORKSHEET_DEFINITION = {
                                             "thumbnail_url": "img/thumbnail/Material/Corduroy.jpg", 
                                             "full_size_url": "img/full_size/Material/Corduroy.jpg", 
                                             "rights": {
-                                                "source_url": "https://commons.wikimedia.org/wiki/File:Carolus_-Private_Collection_-_zwarte_tulekant.jpg", 
+                                                "source_url": "https://commons.wikimedia.org/wiki/File:Mansestr.jpg", 
                                                 "source_name": "Wikipedia", 
                                                 "license": "CC Attribution-Share Alike", 
-                                                "author": "Wikipedia user Carolus"
+                                                "author": "Wikipedia user Ludek"
                                             }
                                         }, 
                                         "id": "Corduroy"
@@ -968,10 +1061,10 @@ var WORKSHEET_DEFINITION = {
                                             "thumbnail_url": "img/thumbnail/Material/Net tulle.jpg", 
                                             "full_size_url": "img/full_size/Material/Net tulle.jpg", 
                                             "rights": {
-                                                "source_url": "https://commons.wikimedia.org/wiki/File:Mansestr.jpg", 
+                                                "source_url": "https://commons.wikimedia.org/wiki/File:Carolus_-Private_Collection_-_zwarte_tulekant.jpg", 
                                                 "source_name": "Wikipedia", 
                                                 "license": "CC Attribution-Share Alike", 
-                                                "author": "Wikipedia user Ludek"
+                                                "author": "Wikipedia user Carolus"
                                             }
                                         }, 
                                         "id": "Net tulle"
@@ -989,7 +1082,7 @@ var WORKSHEET_DEFINITION = {
                                                 "source_url": "https://commons.wikimedia.org/wiki/File:Royal_stewart.jpg", 
                                                 "source_name": "Wikipedia", 
                                                 "license": "Public domain", 
-                                                "author": "Unknown"
+                                                "author": "Public domain"
                                             }
                                         }, 
                                         "id": "Plaid"
@@ -1053,10 +1146,10 @@ var WORKSHEET_DEFINITION = {
                                             "thumbnail_url": "img/thumbnail/Material/Corduroy.jpg", 
                                             "full_size_url": "img/full_size/Material/Corduroy.jpg", 
                                             "rights": {
-                                                "source_url": "https://commons.wikimedia.org/wiki/File:Carolus_-Private_Collection_-_zwarte_tulekant.jpg", 
+                                                "source_url": "https://commons.wikimedia.org/wiki/File:Mansestr.jpg", 
                                                 "source_name": "Wikipedia", 
                                                 "license": "CC Attribution-Share Alike", 
-                                                "author": "Wikipedia user Carolus"
+                                                "author": "Wikipedia user Ludek"
                                             }
                                         }, 
                                         "id": "Corduroy"
@@ -1066,10 +1159,10 @@ var WORKSHEET_DEFINITION = {
                                             "thumbnail_url": "img/thumbnail/Material/Net tulle.jpg", 
                                             "full_size_url": "img/full_size/Material/Net tulle.jpg", 
                                             "rights": {
-                                                "source_url": "https://commons.wikimedia.org/wiki/File:Mansestr.jpg", 
+                                                "source_url": "https://commons.wikimedia.org/wiki/File:Carolus_-Private_Collection_-_zwarte_tulekant.jpg", 
                                                 "source_name": "Wikipedia", 
                                                 "license": "CC Attribution-Share Alike", 
-                                                "author": "Wikipedia user Ludek"
+                                                "author": "Wikipedia user Carolus"
                                             }
                                         }, 
                                         "id": "Net tulle"
@@ -1087,7 +1180,7 @@ var WORKSHEET_DEFINITION = {
                                                 "source_url": "https://commons.wikimedia.org/wiki/File:Royal_stewart.jpg", 
                                                 "source_name": "Wikipedia", 
                                                 "license": "Public domain", 
-                                                "author": "Unknown"
+                                                "author": "Public domain"
                                             }
                                         }, 
                                         "id": "Plaid"
@@ -1156,10 +1249,10 @@ var WORKSHEET_DEFINITION = {
                                             "thumbnail_url": "img/thumbnail/Material/Corduroy.jpg", 
                                             "full_size_url": "img/full_size/Material/Corduroy.jpg", 
                                             "rights": {
-                                                "source_url": "https://commons.wikimedia.org/wiki/File:Carolus_-Private_Collection_-_zwarte_tulekant.jpg", 
+                                                "source_url": "https://commons.wikimedia.org/wiki/File:Mansestr.jpg", 
                                                 "source_name": "Wikipedia", 
                                                 "license": "CC Attribution-Share Alike", 
-                                                "author": "Wikipedia user Carolus"
+                                                "author": "Wikipedia user Ludek"
                                             }
                                         }, 
                                         "id": "Corduroy"
@@ -1169,10 +1262,10 @@ var WORKSHEET_DEFINITION = {
                                             "thumbnail_url": "img/thumbnail/Material/Net tulle.jpg", 
                                             "full_size_url": "img/full_size/Material/Net tulle.jpg", 
                                             "rights": {
-                                                "source_url": "https://commons.wikimedia.org/wiki/File:Mansestr.jpg", 
+                                                "source_url": "https://commons.wikimedia.org/wiki/File:Carolus_-Private_Collection_-_zwarte_tulekant.jpg", 
                                                 "source_name": "Wikipedia", 
                                                 "license": "CC Attribution-Share Alike", 
-                                                "author": "Wikipedia user Ludek"
+                                                "author": "Wikipedia user Carolus"
                                             }
                                         }, 
                                         "id": "Net tulle"
@@ -1190,7 +1283,7 @@ var WORKSHEET_DEFINITION = {
                                                 "source_url": "https://commons.wikimedia.org/wiki/File:Royal_stewart.jpg", 
                                                 "source_name": "Wikipedia", 
                                                 "license": "Public domain", 
-                                                "author": "Unknown"
+                                                "author": "Public domain"
                                             }
                                         }, 
                                         "id": "Plaid"
@@ -1254,10 +1347,10 @@ var WORKSHEET_DEFINITION = {
                                             "thumbnail_url": "img/thumbnail/Material/Corduroy.jpg", 
                                             "full_size_url": "img/full_size/Material/Corduroy.jpg", 
                                             "rights": {
-                                                "source_url": "https://commons.wikimedia.org/wiki/File:Carolus_-Private_Collection_-_zwarte_tulekant.jpg", 
+                                                "source_url": "https://commons.wikimedia.org/wiki/File:Mansestr.jpg", 
                                                 "source_name": "Wikipedia", 
                                                 "license": "CC Attribution-Share Alike", 
-                                                "author": "Wikipedia user Carolus"
+                                                "author": "Wikipedia user Ludek"
                                             }
                                         }, 
                                         "id": "Corduroy"
@@ -1267,10 +1360,10 @@ var WORKSHEET_DEFINITION = {
                                             "thumbnail_url": "img/thumbnail/Material/Net tulle.jpg", 
                                             "full_size_url": "img/full_size/Material/Net tulle.jpg", 
                                             "rights": {
-                                                "source_url": "https://commons.wikimedia.org/wiki/File:Mansestr.jpg", 
+                                                "source_url": "https://commons.wikimedia.org/wiki/File:Carolus_-Private_Collection_-_zwarte_tulekant.jpg", 
                                                 "source_name": "Wikipedia", 
                                                 "license": "CC Attribution-Share Alike", 
-                                                "author": "Wikipedia user Ludek"
+                                                "author": "Wikipedia user Carolus"
                                             }
                                         }, 
                                         "id": "Net tulle"
@@ -1288,7 +1381,7 @@ var WORKSHEET_DEFINITION = {
                                                 "source_url": "https://commons.wikimedia.org/wiki/File:Royal_stewart.jpg", 
                                                 "source_name": "Wikipedia", 
                                                 "license": "Public domain", 
-                                                "author": "Unknown"
+                                                "author": "Public domain"
                                             }
                                         }, 
                                         "id": "Plaid"
@@ -1352,10 +1445,10 @@ var WORKSHEET_DEFINITION = {
                                             "thumbnail_url": "img/thumbnail/Material/Corduroy.jpg", 
                                             "full_size_url": "img/full_size/Material/Corduroy.jpg", 
                                             "rights": {
-                                                "source_url": "https://commons.wikimedia.org/wiki/File:Carolus_-Private_Collection_-_zwarte_tulekant.jpg", 
+                                                "source_url": "https://commons.wikimedia.org/wiki/File:Mansestr.jpg", 
                                                 "source_name": "Wikipedia", 
                                                 "license": "CC Attribution-Share Alike", 
-                                                "author": "Wikipedia user Carolus"
+                                                "author": "Wikipedia user Ludek"
                                             }
                                         }, 
                                         "id": "Corduroy"
@@ -1365,10 +1458,10 @@ var WORKSHEET_DEFINITION = {
                                             "thumbnail_url": "img/thumbnail/Material/Net tulle.jpg", 
                                             "full_size_url": "img/full_size/Material/Net tulle.jpg", 
                                             "rights": {
-                                                "source_url": "https://commons.wikimedia.org/wiki/File:Mansestr.jpg", 
+                                                "source_url": "https://commons.wikimedia.org/wiki/File:Carolus_-Private_Collection_-_zwarte_tulekant.jpg", 
                                                 "source_name": "Wikipedia", 
                                                 "license": "CC Attribution-Share Alike", 
-                                                "author": "Wikipedia user Ludek"
+                                                "author": "Wikipedia user Carolus"
                                             }
                                         }, 
                                         "id": "Net tulle"
@@ -1386,7 +1479,7 @@ var WORKSHEET_DEFINITION = {
                                                 "source_url": "https://commons.wikimedia.org/wiki/File:Royal_stewart.jpg", 
                                                 "source_name": "Wikipedia", 
                                                 "license": "Public domain", 
-                                                "author": "Unknown"
+                                                "author": "Public domain"
                                             }
                                         }, 
                                         "id": "Plaid"

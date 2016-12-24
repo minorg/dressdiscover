@@ -13,6 +13,7 @@ from _nsis import out
 # Constants
 ASSETS_DIR_PATH = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..', 'ts', 'assets'))
 assert os.path.isdir(ASSETS_DIR_PATH), ASSETS_DIR_PATH
+PUBLIC_DOMAIN = 'Public domain'
 THUMBNAIL_DIMENSIONS = (200, 200)
 
 
@@ -50,6 +51,18 @@ def wikipedia_rights(
         source_name='Wikipedia',
         source_url=source_url,
     )
+    
+def nypl_rights(
+    author,
+    source_url
+):
+    return rights(
+        author=author,
+        license_='Public Domain',
+        source_name='New York Public Library',
+        source_url=source_url,
+    )
+    
 
 
 # Features
@@ -111,23 +124,24 @@ interior_characteristics = [
     feature_value('Unlined'),
 ]
 
+features['Label'] = {'extents': (('Whole', None),)}
+
 materials = OrderedDict()
 #     feature_value('Cotton'),
 materials['Corduroy'] = feature_value(
     image_rights=wikipedia_rights(
-        author='Wikipedia user Carolus',
-        source_url='https://commons.wikimedia.org/wiki/File:Carolus_-Private_Collection_-_zwarte_tulekant.jpg',
+        author='Wikipedia user Ludek',
+        source_url='https://commons.wikimedia.org/wiki/File:Mansestr.jpg',
     )
 )
-
 #     feature_value('Elastic'),
 #     feature_value('Plastic'),
 #     feature_value('Self-fabric'),
 #     feature_value(
 materials['Net tulle'] = feature_value(
     image_rights=wikipedia_rights(
-        author='Wikipedia user Ludek',
-        source_url='https://commons.wikimedia.org/wiki/File:Mansestr.jpg',
+        author='Wikipedia user Carolus',
+        source_url='https://commons.wikimedia.org/wiki/File:Carolus_-Private_Collection_-_zwarte_tulekant.jpg',
     )
 )
 features['Material'] = {'values': materials}
@@ -145,8 +159,8 @@ prints = OrderedDict()
 # ]
 prints['Plaid'] = feature_value(
     image_rights=wikipedia_rights(
-        author='Unknown',
-        license_='Public domain',
+        author=PUBLIC_DOMAIN,
+        license_=PUBLIC_DOMAIN,
         source_url='https://commons.wikimedia.org/wiki/File:Royal_stewart.jpg',
     )
 )
@@ -171,11 +185,18 @@ techniques = [
     feature_value('Smocked'),
 ]
 
-waistline_characteristics = [
-    feature_value('Dropped'),
-    feature_value('Natural'),
-    feature_value('Undefined waistline'),
-]
+waistline = OrderedDict()
+waistline['Natural'] = feature_value(
+    image_rights=nypl_rights(
+        author=PUBLIC_DOMAIN,
+        source_url='https://digitalcollections.nypl.org/items/a1974390-ab14-0132-a409-58d385a7bbd0',
+    )
+)
+#features['Waistline'] = {'extents': (('Whole', None),), 'values': waistline}
+#     feature_value('Dropped'),
+#     feature_value('Natural'),
+#     feature_value('Undefined waistline'),
+# ]
 
 
 # Extents
@@ -186,10 +207,10 @@ _vertical_extents = [
 ]
 
 extents = OrderedDict()
-extents['Whole'] = _vertical_extents
-extents['Collar'] = []
-extents['Shoulders'] = []
-extents['Sleeves'] = []
+extents['Whole'] = (None, 'Top', 'Bottom')
+extents['Collar'] = (None,)
+extents['Shoulders'] = (None,)
+extents['Sleeves'] = (None,)
 extents['Front'] = _vertical_extents
 extents['Back'] = _vertical_extents
 extents['Interior'] = _vertical_extents
@@ -199,19 +220,9 @@ extent_feature_set_definitions = []
 for extent, sub_extents in extents.iteritems():
     extent_child_feature_set_definitions = []
     extent_feature_definitions = []
-
-    if extent == 'Whole':
-        extent_feature_definitions.append(
-            WorksheetFeatureDefinition.Builder()
-                .set_id('Label')
-                .build()
-            )
-
-    if sub_extents is None or len(sub_extents) == 0:
-        sub_extents = [None]
+        
     for sub_extent in sub_extents:
-        if extent == sub_extent:
-            continue
+        assert extent != sub_extent
 
         parent_feature_set_ids = [extent]
         if sub_extent is None:
@@ -221,48 +232,60 @@ for extent, sub_extents in extents.iteritems():
             parent_feature_set_ids.append(sub_extent)
 
         for feature_id, feature in features.iteritems():
+            feature_extents = feature.get('extents')
+            if feature_extents is not None:
+                include_feature = False
+                for feature_extent in feature_extents:
+                    feature_extent, feature_sub_extent = feature_extent
+                    if feature_extent == extent and feature_sub_extent == sub_extent:
+                        include_feature = True
+                        break
+                if not include_feature:
+                    continue
+            
             feature_definition_builder = \
                 WorksheetFeatureDefinition.Builder()\
                     .set_id(' '.join(parent_feature_set_ids + [feature_id]))
-            
-            feature_value_definitions = []
-            for feature_value_id, feature_value in feature['values'].iteritems():
-                feature_value_definition_builder = \
-                    WorksheetFeatureValueDefinition.Builder()\
-                        .set_id(feature_value_id)
-                
-                image_rights = feature_value.get('image_rights')
-                if image_rights is not None:
-                    image_builder = WorksheetFeatureValueImage.Builder()
-                    image_builder.set_rights(image_rights)    
 
-                    file_extension = feature_value.get('image_file_extension', 'jpg')                     
-                    file_name = "%(feature_value_id)s.%(file_extension)s" % locals()
-                     
-                    full_size_file_path = os.path.join(ASSETS_DIR_PATH, 'img', 'full_size', feature_id, file_name)
-                    if not os.path.isfile(full_size_file_path):
-                        raise ValueError("%(full_size_file_path)s does not exist" % locals())
-                    image_builder.set_full_size_url("img/full_size/%(feature_id)s/%(file_name)s" % locals())
-                     
-                    thumbnail_dir_path = os.path.join(ASSETS_DIR_PATH, 'img', 'thumbnail', feature_id)
-                    thumbnail_file_path = os.path.join(thumbnail_dir_path, file_name)
-                    if not os.path.isfile(thumbnail_file_path):
-                        from PIL import Image  # @UnresolvedImport
-                        thumbnail = Image.open(full_size_file_path)
-                        # Use .resize and .thumbnail, because the latter preserves the aspect ratio,
-                        # which we don't want.
-                        thumbnail = thumbnail.resize(THUMBNAIL_DIMENSIONS)
-                        if not os.path.isdir(thumbnail_dir_path):
-                            os.makedirs(thumbnail_dir_path)
-                        thumbnail.save(thumbnail_file_path)
-                        print "saved thumbnail to", thumbnail_file_path
-                    image_builder.set_thumbnail_url("img/thumbnail/%(feature_id)s/%(file_name)s" % locals())
-
-                    feature_value_definition_builder.set_image(image_builder.build())
-
-                feature_value_definitions.append(feature_value_definition_builder.build())
-                
-            feature_definition_builder.set_values_(tuple(feature_value_definitions))
+            if 'values' in feature:
+                feature_value_definitions = []
+                for feature_value_id, feature_value in feature['values'].iteritems():
+                    feature_value_definition_builder = \
+                        WorksheetFeatureValueDefinition.Builder()\
+                            .set_id(feature_value_id)
+                    
+                    image_rights = feature_value.get('image_rights')
+                    if image_rights is not None:
+                        image_builder = WorksheetFeatureValueImage.Builder()
+                        image_builder.set_rights(image_rights)    
+    
+                        file_extension = feature_value.get('image_file_extension', 'jpg')                     
+                        file_name = "%(feature_value_id)s.%(file_extension)s" % locals()
+                         
+                        full_size_file_path = os.path.join(ASSETS_DIR_PATH, 'img', 'full_size', feature_id, file_name)
+                        if not os.path.isfile(full_size_file_path):
+                            raise ValueError("%(full_size_file_path)s does not exist" % locals())
+                        image_builder.set_full_size_url("img/full_size/%(feature_id)s/%(file_name)s" % locals())
+                         
+                        thumbnail_dir_path = os.path.join(ASSETS_DIR_PATH, 'img', 'thumbnail', feature_id)
+                        thumbnail_file_path = os.path.join(thumbnail_dir_path, file_name)
+                        if not os.path.isfile(thumbnail_file_path):
+                            from PIL import Image  # @UnresolvedImport
+                            thumbnail = Image.open(full_size_file_path)
+                            # Use .resize and .thumbnail, because the latter preserves the aspect ratio,
+                            # which we don't want.
+                            thumbnail = thumbnail.resize(THUMBNAIL_DIMENSIONS)
+                            if not os.path.isdir(thumbnail_dir_path):
+                                os.makedirs(thumbnail_dir_path)
+                            thumbnail.save(thumbnail_file_path)
+                            print "saved thumbnail to", thumbnail_file_path
+                        image_builder.set_thumbnail_url("img/thumbnail/%(feature_id)s/%(file_name)s" % locals())
+    
+                        feature_value_definition_builder.set_image(image_builder.build())
+    
+                    feature_value_definitions.append(feature_value_definition_builder.build())
+                    
+                feature_definition_builder.set_values_(tuple(feature_value_definitions))
             
             sub_extent_feature_definitions.append(feature_definition_builder.build())
                 
