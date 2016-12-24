@@ -16,7 +16,7 @@ var WORKSHEET_DEFINITION = {
                                             "rights": {
                                                 "source_url": "https://commons.wikimedia.org/wiki/File:Three_holes_buttons.jpg", 
                                                 "source_name": "Wikipedia", 
-                                                "license": "CC Attribution-Share Alike", 
+                                                "license": "Creative Commons Attribution-Share Alike", 
                                                 "author": "Marco Bernardini"
                                             }
                                         }, 
@@ -29,7 +29,7 @@ var WORKSHEET_DEFINITION = {
                                             "rights": {
                                                 "source_url": "https://en.wikipedia.org/wiki/Hook-and-eye_closure#/media/File:Hook_and_eye_clasp.JPG", 
                                                 "source_name": "Wikipedia", 
-                                                "license": "CC Attribution-Share Alike", 
+                                                "license": "Creative Commons Attribution-Share Alike", 
                                                 "author": "Wikipedia user Eitan F"
                                             }
                                         }, 
@@ -42,7 +42,7 @@ var WORKSHEET_DEFINITION = {
                                             "rights": {
                                                 "source_url": "https://commons.wikimedia.org/wiki/File:Coil_plastic_and_metal_zippers.jpg", 
                                                 "source_name": "Wikipedia", 
-                                                "license": "CC Attribution-Share Alike", 
+                                                "license": "Creative Commons Attribution-Share Alike", 
                                                 "author": "Wikipedia user Woodbine9"
                                             }
                                         }, 
@@ -60,7 +60,7 @@ var WORKSHEET_DEFINITION = {
                                             "rights": {
                                                 "source_url": "https://commons.wikimedia.org/wiki/File:Mansestr.jpg", 
                                                 "source_name": "Wikipedia", 
-                                                "license": "CC Attribution-Share Alike", 
+                                                "license": "Creative Commons Attribution-Share Alike", 
                                                 "author": "Wikipedia user Ludek"
                                             }
                                         }, 
@@ -73,7 +73,7 @@ var WORKSHEET_DEFINITION = {
                                             "rights": {
                                                 "source_url": "https://commons.wikimedia.org/wiki/File:Carolus_-Private_Collection_-_zwarte_tulekant.jpg", 
                                                 "source_name": "Wikipedia", 
-                                                "license": "CC Attribution-Share Alike", 
+                                                "license": "Creative Commons Attribution-Share Alike", 
                                                 "author": "Wikipedia user Carolus"
                                             }
                                         }, 
@@ -114,7 +114,7 @@ var WORKSHEET_DEFINITION = {
                                             "rights": {
                                                 "source_url": "https://commons.wikimedia.org/wiki/File:Three_holes_buttons.jpg", 
                                                 "source_name": "Wikipedia", 
-                                                "license": "CC Attribution-Share Alike", 
+                                                "license": "Creative Commons Attribution-Share Alike", 
                                                 "author": "Marco Bernardini"
                                             }
                                         }, 
@@ -127,7 +127,7 @@ var WORKSHEET_DEFINITION = {
                                             "rights": {
                                                 "source_url": "https://en.wikipedia.org/wiki/Hook-and-eye_closure#/media/File:Hook_and_eye_clasp.JPG", 
                                                 "source_name": "Wikipedia", 
-                                                "license": "CC Attribution-Share Alike", 
+                                                "license": "Creative Commons Attribution-Share Alike", 
                                                 "author": "Wikipedia user Eitan F"
                                             }
                                         }, 
@@ -140,7 +140,7 @@ var WORKSHEET_DEFINITION = {
                                             "rights": {
                                                 "source_url": "https://commons.wikimedia.org/wiki/File:Coil_plastic_and_metal_zippers.jpg", 
                                                 "source_name": "Wikipedia", 
-                                                "license": "CC Attribution-Share Alike", 
+                                                "license": "Creative Commons Attribution-Share Alike", 
                                                 "author": "Wikipedia user Woodbine9"
                                             }
                                         }, 
@@ -158,7 +158,7 @@ var WORKSHEET_DEFINITION = {
                                             "rights": {
                                                 "source_url": "https://commons.wikimedia.org/wiki/File:Mansestr.jpg", 
                                                 "source_name": "Wikipedia", 
-                                                "license": "CC Attribution-Share Alike", 
+                                                "license": "Creative Commons Attribution-Share Alike", 
                                                 "author": "Wikipedia user Ludek"
                                             }
                                         }, 
@@ -171,7 +171,7 @@ var WORKSHEET_DEFINITION = {
                                             "rights": {
                                                 "source_url": "https://commons.wikimedia.org/wiki/File:Carolus_-Private_Collection_-_zwarte_tulekant.jpg", 
                                                 "source_name": "Wikipedia", 
-                                                "license": "CC Attribution-Share Alike", 
+                                                "license": "Creative Commons Attribution-Share Alike", 
                                                 "author": "Wikipedia user Carolus"
                                             }
                                         }, 
@@ -212,7 +212,7 @@ var WORKSHEET_DEFINITION = {
                                     "rights": {
                                         "source_url": "https://commons.wikimedia.org/wiki/File:Three_holes_buttons.jpg", 
                                         "source_name": "Wikipedia", 
-                                        "license": "CC Attribution-Share Alike", 
+                                        "license": "Creative Commons Attribution-Share Alike", 
                                         "author": "Marco Bernardini"
                                     }
                                 }, 
@@ -225,7 +225,7 @@ var WORKSHEET_DEFINITION = {
                                     "rights": {
                                         "source_url": "https://en.wikipedia.org/wiki/Hook-and-eye_closure#/media/File:Hook_and_eye_clasp.JPG", 
                                         "source_name": "Wikipedia", 
-                                        "license": "CC Attribution-Share Alike", 
+                                        "license": "Creative Commons Attribution-Share Alike", 
                                         "author": "Wikipedia user Eitan F"
                                     }
                                 }, 
@@ -238,7 +238,7 @@ var WORKSHEET_DEFINITION = {
                                     "rights": {
                                         "source_url": "https://commons.wikimedia.org/wiki/File:Coil_plastic_and_metal_zippers.jpg", 
                                         "source_name": "Wikipedia", 
-                                        "license": "CC Attribution-Share Alike", 
+                                        "license": "Creative Commons Attribution-Share Alike", 
                                         "author": "Wikipedia user Woodbine9"
                                     }
                                 }, 
@@ -259,7 +259,7 @@ var WORKSHEET_DEFINITION = {
                                     "rights": {
                                         "source_url": "https://commons.wikimedia.org/wiki/File:Mansestr.jpg", 
                                         "source_name": "Wikipedia", 
-                                        "license": "CC Attribution-Share Alike", 
+                                        "license": "Creative Commons Attribution-Share Alike", 
                                         "author": "Wikipedia user Ludek"
                                     }
                                 }, 
@@ -272,7 +272,7 @@ var WORKSHEET_DEFINITION = {
                                     "rights": {
                                         "source_url": "https://commons.wikimedia.org/wiki/File:Carolus_-Private_Collection_-_zwarte_tulekant.jpg", 
                                         "source_name": "Wikipedia", 
-                                        "license": "CC Attribution-Share Alike", 
+                                        "license": "Creative Commons Attribution-Share Alike", 
                                         "author": "Wikipedia user Carolus"
                                     }
                                 }, 
@@ -331,7 +331,7 @@ var WORKSHEET_DEFINITION = {
                                     "rights": {
                                         "source_url": "https://commons.wikimedia.org/wiki/File:Three_holes_buttons.jpg", 
                                         "source_name": "Wikipedia", 
-                                        "license": "CC Attribution-Share Alike", 
+                                        "license": "Creative Commons Attribution-Share Alike", 
                                         "author": "Marco Bernardini"
                                     }
                                 }, 
@@ -344,7 +344,7 @@ var WORKSHEET_DEFINITION = {
                                     "rights": {
                                         "source_url": "https://en.wikipedia.org/wiki/Hook-and-eye_closure#/media/File:Hook_and_eye_clasp.JPG", 
                                         "source_name": "Wikipedia", 
-                                        "license": "CC Attribution-Share Alike", 
+                                        "license": "Creative Commons Attribution-Share Alike", 
                                         "author": "Wikipedia user Eitan F"
                                     }
                                 }, 
@@ -357,7 +357,7 @@ var WORKSHEET_DEFINITION = {
                                     "rights": {
                                         "source_url": "https://commons.wikimedia.org/wiki/File:Coil_plastic_and_metal_zippers.jpg", 
                                         "source_name": "Wikipedia", 
-                                        "license": "CC Attribution-Share Alike", 
+                                        "license": "Creative Commons Attribution-Share Alike", 
                                         "author": "Wikipedia user Woodbine9"
                                     }
                                 }, 
@@ -375,7 +375,7 @@ var WORKSHEET_DEFINITION = {
                                     "rights": {
                                         "source_url": "https://commons.wikimedia.org/wiki/File:Mansestr.jpg", 
                                         "source_name": "Wikipedia", 
-                                        "license": "CC Attribution-Share Alike", 
+                                        "license": "Creative Commons Attribution-Share Alike", 
                                         "author": "Wikipedia user Ludek"
                                     }
                                 }, 
@@ -388,7 +388,7 @@ var WORKSHEET_DEFINITION = {
                                     "rights": {
                                         "source_url": "https://commons.wikimedia.org/wiki/File:Carolus_-Private_Collection_-_zwarte_tulekant.jpg", 
                                         "source_name": "Wikipedia", 
-                                        "license": "CC Attribution-Share Alike", 
+                                        "license": "Creative Commons Attribution-Share Alike", 
                                         "author": "Wikipedia user Carolus"
                                     }
                                 }, 
@@ -429,7 +429,7 @@ var WORKSHEET_DEFINITION = {
                                     "rights": {
                                         "source_url": "https://commons.wikimedia.org/wiki/File:Three_holes_buttons.jpg", 
                                         "source_name": "Wikipedia", 
-                                        "license": "CC Attribution-Share Alike", 
+                                        "license": "Creative Commons Attribution-Share Alike", 
                                         "author": "Marco Bernardini"
                                     }
                                 }, 
@@ -442,7 +442,7 @@ var WORKSHEET_DEFINITION = {
                                     "rights": {
                                         "source_url": "https://en.wikipedia.org/wiki/Hook-and-eye_closure#/media/File:Hook_and_eye_clasp.JPG", 
                                         "source_name": "Wikipedia", 
-                                        "license": "CC Attribution-Share Alike", 
+                                        "license": "Creative Commons Attribution-Share Alike", 
                                         "author": "Wikipedia user Eitan F"
                                     }
                                 }, 
@@ -455,7 +455,7 @@ var WORKSHEET_DEFINITION = {
                                     "rights": {
                                         "source_url": "https://commons.wikimedia.org/wiki/File:Coil_plastic_and_metal_zippers.jpg", 
                                         "source_name": "Wikipedia", 
-                                        "license": "CC Attribution-Share Alike", 
+                                        "license": "Creative Commons Attribution-Share Alike", 
                                         "author": "Wikipedia user Woodbine9"
                                     }
                                 }, 
@@ -473,7 +473,7 @@ var WORKSHEET_DEFINITION = {
                                     "rights": {
                                         "source_url": "https://commons.wikimedia.org/wiki/File:Mansestr.jpg", 
                                         "source_name": "Wikipedia", 
-                                        "license": "CC Attribution-Share Alike", 
+                                        "license": "Creative Commons Attribution-Share Alike", 
                                         "author": "Wikipedia user Ludek"
                                     }
                                 }, 
@@ -486,7 +486,7 @@ var WORKSHEET_DEFINITION = {
                                     "rights": {
                                         "source_url": "https://commons.wikimedia.org/wiki/File:Carolus_-Private_Collection_-_zwarte_tulekant.jpg", 
                                         "source_name": "Wikipedia", 
-                                        "license": "CC Attribution-Share Alike", 
+                                        "license": "Creative Commons Attribution-Share Alike", 
                                         "author": "Wikipedia user Carolus"
                                     }
                                 }, 
@@ -527,7 +527,7 @@ var WORKSHEET_DEFINITION = {
                                     "rights": {
                                         "source_url": "https://commons.wikimedia.org/wiki/File:Three_holes_buttons.jpg", 
                                         "source_name": "Wikipedia", 
-                                        "license": "CC Attribution-Share Alike", 
+                                        "license": "Creative Commons Attribution-Share Alike", 
                                         "author": "Marco Bernardini"
                                     }
                                 }, 
@@ -540,7 +540,7 @@ var WORKSHEET_DEFINITION = {
                                     "rights": {
                                         "source_url": "https://en.wikipedia.org/wiki/Hook-and-eye_closure#/media/File:Hook_and_eye_clasp.JPG", 
                                         "source_name": "Wikipedia", 
-                                        "license": "CC Attribution-Share Alike", 
+                                        "license": "Creative Commons Attribution-Share Alike", 
                                         "author": "Wikipedia user Eitan F"
                                     }
                                 }, 
@@ -553,7 +553,7 @@ var WORKSHEET_DEFINITION = {
                                     "rights": {
                                         "source_url": "https://commons.wikimedia.org/wiki/File:Coil_plastic_and_metal_zippers.jpg", 
                                         "source_name": "Wikipedia", 
-                                        "license": "CC Attribution-Share Alike", 
+                                        "license": "Creative Commons Attribution-Share Alike", 
                                         "author": "Wikipedia user Woodbine9"
                                     }
                                 }, 
@@ -571,7 +571,7 @@ var WORKSHEET_DEFINITION = {
                                     "rights": {
                                         "source_url": "https://commons.wikimedia.org/wiki/File:Mansestr.jpg", 
                                         "source_name": "Wikipedia", 
-                                        "license": "CC Attribution-Share Alike", 
+                                        "license": "Creative Commons Attribution-Share Alike", 
                                         "author": "Wikipedia user Ludek"
                                     }
                                 }, 
@@ -584,7 +584,7 @@ var WORKSHEET_DEFINITION = {
                                     "rights": {
                                         "source_url": "https://commons.wikimedia.org/wiki/File:Carolus_-Private_Collection_-_zwarte_tulekant.jpg", 
                                         "source_name": "Wikipedia", 
-                                        "license": "CC Attribution-Share Alike", 
+                                        "license": "Creative Commons Attribution-Share Alike", 
                                         "author": "Wikipedia user Carolus"
                                     }
                                 }, 
@@ -609,6 +609,24 @@ var WORKSHEET_DEFINITION = {
                                 "id": "Plaid"
                             }
                         ]
+                    }, 
+                    {
+                        "id": "Sleeves Sleeves", 
+                        "values_": [
+                            {
+                                "image": {
+                                    "thumbnail_url": "img/thumbnail/Sleeves/Set-in.jpg", 
+                                    "full_size_url": "img/full_size/Sleeves/Set-in.jpg", 
+                                    "rights": {
+                                        "source_url": "https://commons.wikimedia.org/wiki/File:Set_in_sleeve_blind_stitched.jpg", 
+                                        "source_name": "Wikipedia", 
+                                        "license": "Creative Commons Attribution-Share Alike", 
+                                        "author": "Wikipedia user kellyhogaboom"
+                                    }
+                                }, 
+                                "id": "Set-in"
+                            }
+                        ]
                     }
                 ]
             }, 
@@ -627,7 +645,7 @@ var WORKSHEET_DEFINITION = {
                                             "rights": {
                                                 "source_url": "https://commons.wikimedia.org/wiki/File:Three_holes_buttons.jpg", 
                                                 "source_name": "Wikipedia", 
-                                                "license": "CC Attribution-Share Alike", 
+                                                "license": "Creative Commons Attribution-Share Alike", 
                                                 "author": "Marco Bernardini"
                                             }
                                         }, 
@@ -640,7 +658,7 @@ var WORKSHEET_DEFINITION = {
                                             "rights": {
                                                 "source_url": "https://en.wikipedia.org/wiki/Hook-and-eye_closure#/media/File:Hook_and_eye_clasp.JPG", 
                                                 "source_name": "Wikipedia", 
-                                                "license": "CC Attribution-Share Alike", 
+                                                "license": "Creative Commons Attribution-Share Alike", 
                                                 "author": "Wikipedia user Eitan F"
                                             }
                                         }, 
@@ -653,7 +671,7 @@ var WORKSHEET_DEFINITION = {
                                             "rights": {
                                                 "source_url": "https://commons.wikimedia.org/wiki/File:Coil_plastic_and_metal_zippers.jpg", 
                                                 "source_name": "Wikipedia", 
-                                                "license": "CC Attribution-Share Alike", 
+                                                "license": "Creative Commons Attribution-Share Alike", 
                                                 "author": "Wikipedia user Woodbine9"
                                             }
                                         }, 
@@ -671,7 +689,7 @@ var WORKSHEET_DEFINITION = {
                                             "rights": {
                                                 "source_url": "https://commons.wikimedia.org/wiki/File:Mansestr.jpg", 
                                                 "source_name": "Wikipedia", 
-                                                "license": "CC Attribution-Share Alike", 
+                                                "license": "Creative Commons Attribution-Share Alike", 
                                                 "author": "Wikipedia user Ludek"
                                             }
                                         }, 
@@ -684,7 +702,7 @@ var WORKSHEET_DEFINITION = {
                                             "rights": {
                                                 "source_url": "https://commons.wikimedia.org/wiki/File:Carolus_-Private_Collection_-_zwarte_tulekant.jpg", 
                                                 "source_name": "Wikipedia", 
-                                                "license": "CC Attribution-Share Alike", 
+                                                "license": "Creative Commons Attribution-Share Alike", 
                                                 "author": "Wikipedia user Carolus"
                                             }
                                         }, 
@@ -725,7 +743,7 @@ var WORKSHEET_DEFINITION = {
                                             "rights": {
                                                 "source_url": "https://commons.wikimedia.org/wiki/File:Three_holes_buttons.jpg", 
                                                 "source_name": "Wikipedia", 
-                                                "license": "CC Attribution-Share Alike", 
+                                                "license": "Creative Commons Attribution-Share Alike", 
                                                 "author": "Marco Bernardini"
                                             }
                                         }, 
@@ -738,7 +756,7 @@ var WORKSHEET_DEFINITION = {
                                             "rights": {
                                                 "source_url": "https://en.wikipedia.org/wiki/Hook-and-eye_closure#/media/File:Hook_and_eye_clasp.JPG", 
                                                 "source_name": "Wikipedia", 
-                                                "license": "CC Attribution-Share Alike", 
+                                                "license": "Creative Commons Attribution-Share Alike", 
                                                 "author": "Wikipedia user Eitan F"
                                             }
                                         }, 
@@ -751,7 +769,7 @@ var WORKSHEET_DEFINITION = {
                                             "rights": {
                                                 "source_url": "https://commons.wikimedia.org/wiki/File:Coil_plastic_and_metal_zippers.jpg", 
                                                 "source_name": "Wikipedia", 
-                                                "license": "CC Attribution-Share Alike", 
+                                                "license": "Creative Commons Attribution-Share Alike", 
                                                 "author": "Wikipedia user Woodbine9"
                                             }
                                         }, 
@@ -769,7 +787,7 @@ var WORKSHEET_DEFINITION = {
                                             "rights": {
                                                 "source_url": "https://commons.wikimedia.org/wiki/File:Mansestr.jpg", 
                                                 "source_name": "Wikipedia", 
-                                                "license": "CC Attribution-Share Alike", 
+                                                "license": "Creative Commons Attribution-Share Alike", 
                                                 "author": "Wikipedia user Ludek"
                                             }
                                         }, 
@@ -782,7 +800,7 @@ var WORKSHEET_DEFINITION = {
                                             "rights": {
                                                 "source_url": "https://commons.wikimedia.org/wiki/File:Carolus_-Private_Collection_-_zwarte_tulekant.jpg", 
                                                 "source_name": "Wikipedia", 
-                                                "license": "CC Attribution-Share Alike", 
+                                                "license": "Creative Commons Attribution-Share Alike", 
                                                 "author": "Wikipedia user Carolus"
                                             }
                                         }, 
@@ -823,7 +841,7 @@ var WORKSHEET_DEFINITION = {
                                             "rights": {
                                                 "source_url": "https://commons.wikimedia.org/wiki/File:Three_holes_buttons.jpg", 
                                                 "source_name": "Wikipedia", 
-                                                "license": "CC Attribution-Share Alike", 
+                                                "license": "Creative Commons Attribution-Share Alike", 
                                                 "author": "Marco Bernardini"
                                             }
                                         }, 
@@ -836,7 +854,7 @@ var WORKSHEET_DEFINITION = {
                                             "rights": {
                                                 "source_url": "https://en.wikipedia.org/wiki/Hook-and-eye_closure#/media/File:Hook_and_eye_clasp.JPG", 
                                                 "source_name": "Wikipedia", 
-                                                "license": "CC Attribution-Share Alike", 
+                                                "license": "Creative Commons Attribution-Share Alike", 
                                                 "author": "Wikipedia user Eitan F"
                                             }
                                         }, 
@@ -849,7 +867,7 @@ var WORKSHEET_DEFINITION = {
                                             "rights": {
                                                 "source_url": "https://commons.wikimedia.org/wiki/File:Coil_plastic_and_metal_zippers.jpg", 
                                                 "source_name": "Wikipedia", 
-                                                "license": "CC Attribution-Share Alike", 
+                                                "license": "Creative Commons Attribution-Share Alike", 
                                                 "author": "Wikipedia user Woodbine9"
                                             }
                                         }, 
@@ -867,7 +885,7 @@ var WORKSHEET_DEFINITION = {
                                             "rights": {
                                                 "source_url": "https://commons.wikimedia.org/wiki/File:Mansestr.jpg", 
                                                 "source_name": "Wikipedia", 
-                                                "license": "CC Attribution-Share Alike", 
+                                                "license": "Creative Commons Attribution-Share Alike", 
                                                 "author": "Wikipedia user Ludek"
                                             }
                                         }, 
@@ -880,7 +898,7 @@ var WORKSHEET_DEFINITION = {
                                             "rights": {
                                                 "source_url": "https://commons.wikimedia.org/wiki/File:Carolus_-Private_Collection_-_zwarte_tulekant.jpg", 
                                                 "source_name": "Wikipedia", 
-                                                "license": "CC Attribution-Share Alike", 
+                                                "license": "Creative Commons Attribution-Share Alike", 
                                                 "author": "Wikipedia user Carolus"
                                             }
                                         }, 
@@ -926,7 +944,7 @@ var WORKSHEET_DEFINITION = {
                                             "rights": {
                                                 "source_url": "https://commons.wikimedia.org/wiki/File:Three_holes_buttons.jpg", 
                                                 "source_name": "Wikipedia", 
-                                                "license": "CC Attribution-Share Alike", 
+                                                "license": "Creative Commons Attribution-Share Alike", 
                                                 "author": "Marco Bernardini"
                                             }
                                         }, 
@@ -939,7 +957,7 @@ var WORKSHEET_DEFINITION = {
                                             "rights": {
                                                 "source_url": "https://en.wikipedia.org/wiki/Hook-and-eye_closure#/media/File:Hook_and_eye_clasp.JPG", 
                                                 "source_name": "Wikipedia", 
-                                                "license": "CC Attribution-Share Alike", 
+                                                "license": "Creative Commons Attribution-Share Alike", 
                                                 "author": "Wikipedia user Eitan F"
                                             }
                                         }, 
@@ -952,7 +970,7 @@ var WORKSHEET_DEFINITION = {
                                             "rights": {
                                                 "source_url": "https://commons.wikimedia.org/wiki/File:Coil_plastic_and_metal_zippers.jpg", 
                                                 "source_name": "Wikipedia", 
-                                                "license": "CC Attribution-Share Alike", 
+                                                "license": "Creative Commons Attribution-Share Alike", 
                                                 "author": "Wikipedia user Woodbine9"
                                             }
                                         }, 
@@ -970,7 +988,7 @@ var WORKSHEET_DEFINITION = {
                                             "rights": {
                                                 "source_url": "https://commons.wikimedia.org/wiki/File:Mansestr.jpg", 
                                                 "source_name": "Wikipedia", 
-                                                "license": "CC Attribution-Share Alike", 
+                                                "license": "Creative Commons Attribution-Share Alike", 
                                                 "author": "Wikipedia user Ludek"
                                             }
                                         }, 
@@ -983,7 +1001,7 @@ var WORKSHEET_DEFINITION = {
                                             "rights": {
                                                 "source_url": "https://commons.wikimedia.org/wiki/File:Carolus_-Private_Collection_-_zwarte_tulekant.jpg", 
                                                 "source_name": "Wikipedia", 
-                                                "license": "CC Attribution-Share Alike", 
+                                                "license": "Creative Commons Attribution-Share Alike", 
                                                 "author": "Wikipedia user Carolus"
                                             }
                                         }, 
@@ -1024,7 +1042,7 @@ var WORKSHEET_DEFINITION = {
                                             "rights": {
                                                 "source_url": "https://commons.wikimedia.org/wiki/File:Three_holes_buttons.jpg", 
                                                 "source_name": "Wikipedia", 
-                                                "license": "CC Attribution-Share Alike", 
+                                                "license": "Creative Commons Attribution-Share Alike", 
                                                 "author": "Marco Bernardini"
                                             }
                                         }, 
@@ -1037,7 +1055,7 @@ var WORKSHEET_DEFINITION = {
                                             "rights": {
                                                 "source_url": "https://en.wikipedia.org/wiki/Hook-and-eye_closure#/media/File:Hook_and_eye_clasp.JPG", 
                                                 "source_name": "Wikipedia", 
-                                                "license": "CC Attribution-Share Alike", 
+                                                "license": "Creative Commons Attribution-Share Alike", 
                                                 "author": "Wikipedia user Eitan F"
                                             }
                                         }, 
@@ -1050,7 +1068,7 @@ var WORKSHEET_DEFINITION = {
                                             "rights": {
                                                 "source_url": "https://commons.wikimedia.org/wiki/File:Coil_plastic_and_metal_zippers.jpg", 
                                                 "source_name": "Wikipedia", 
-                                                "license": "CC Attribution-Share Alike", 
+                                                "license": "Creative Commons Attribution-Share Alike", 
                                                 "author": "Wikipedia user Woodbine9"
                                             }
                                         }, 
@@ -1068,7 +1086,7 @@ var WORKSHEET_DEFINITION = {
                                             "rights": {
                                                 "source_url": "https://commons.wikimedia.org/wiki/File:Mansestr.jpg", 
                                                 "source_name": "Wikipedia", 
-                                                "license": "CC Attribution-Share Alike", 
+                                                "license": "Creative Commons Attribution-Share Alike", 
                                                 "author": "Wikipedia user Ludek"
                                             }
                                         }, 
@@ -1081,7 +1099,7 @@ var WORKSHEET_DEFINITION = {
                                             "rights": {
                                                 "source_url": "https://commons.wikimedia.org/wiki/File:Carolus_-Private_Collection_-_zwarte_tulekant.jpg", 
                                                 "source_name": "Wikipedia", 
-                                                "license": "CC Attribution-Share Alike", 
+                                                "license": "Creative Commons Attribution-Share Alike", 
                                                 "author": "Wikipedia user Carolus"
                                             }
                                         }, 
@@ -1122,7 +1140,7 @@ var WORKSHEET_DEFINITION = {
                                             "rights": {
                                                 "source_url": "https://commons.wikimedia.org/wiki/File:Three_holes_buttons.jpg", 
                                                 "source_name": "Wikipedia", 
-                                                "license": "CC Attribution-Share Alike", 
+                                                "license": "Creative Commons Attribution-Share Alike", 
                                                 "author": "Marco Bernardini"
                                             }
                                         }, 
@@ -1135,7 +1153,7 @@ var WORKSHEET_DEFINITION = {
                                             "rights": {
                                                 "source_url": "https://en.wikipedia.org/wiki/Hook-and-eye_closure#/media/File:Hook_and_eye_clasp.JPG", 
                                                 "source_name": "Wikipedia", 
-                                                "license": "CC Attribution-Share Alike", 
+                                                "license": "Creative Commons Attribution-Share Alike", 
                                                 "author": "Wikipedia user Eitan F"
                                             }
                                         }, 
@@ -1148,7 +1166,7 @@ var WORKSHEET_DEFINITION = {
                                             "rights": {
                                                 "source_url": "https://commons.wikimedia.org/wiki/File:Coil_plastic_and_metal_zippers.jpg", 
                                                 "source_name": "Wikipedia", 
-                                                "license": "CC Attribution-Share Alike", 
+                                                "license": "Creative Commons Attribution-Share Alike", 
                                                 "author": "Wikipedia user Woodbine9"
                                             }
                                         }, 
@@ -1166,7 +1184,7 @@ var WORKSHEET_DEFINITION = {
                                             "rights": {
                                                 "source_url": "https://commons.wikimedia.org/wiki/File:Mansestr.jpg", 
                                                 "source_name": "Wikipedia", 
-                                                "license": "CC Attribution-Share Alike", 
+                                                "license": "Creative Commons Attribution-Share Alike", 
                                                 "author": "Wikipedia user Ludek"
                                             }
                                         }, 
@@ -1179,7 +1197,7 @@ var WORKSHEET_DEFINITION = {
                                             "rights": {
                                                 "source_url": "https://commons.wikimedia.org/wiki/File:Carolus_-Private_Collection_-_zwarte_tulekant.jpg", 
                                                 "source_name": "Wikipedia", 
-                                                "license": "CC Attribution-Share Alike", 
+                                                "license": "Creative Commons Attribution-Share Alike", 
                                                 "author": "Wikipedia user Carolus"
                                             }
                                         }, 
@@ -1225,7 +1243,7 @@ var WORKSHEET_DEFINITION = {
                                             "rights": {
                                                 "source_url": "https://commons.wikimedia.org/wiki/File:Three_holes_buttons.jpg", 
                                                 "source_name": "Wikipedia", 
-                                                "license": "CC Attribution-Share Alike", 
+                                                "license": "Creative Commons Attribution-Share Alike", 
                                                 "author": "Marco Bernardini"
                                             }
                                         }, 
@@ -1238,7 +1256,7 @@ var WORKSHEET_DEFINITION = {
                                             "rights": {
                                                 "source_url": "https://en.wikipedia.org/wiki/Hook-and-eye_closure#/media/File:Hook_and_eye_clasp.JPG", 
                                                 "source_name": "Wikipedia", 
-                                                "license": "CC Attribution-Share Alike", 
+                                                "license": "Creative Commons Attribution-Share Alike", 
                                                 "author": "Wikipedia user Eitan F"
                                             }
                                         }, 
@@ -1251,7 +1269,7 @@ var WORKSHEET_DEFINITION = {
                                             "rights": {
                                                 "source_url": "https://commons.wikimedia.org/wiki/File:Coil_plastic_and_metal_zippers.jpg", 
                                                 "source_name": "Wikipedia", 
-                                                "license": "CC Attribution-Share Alike", 
+                                                "license": "Creative Commons Attribution-Share Alike", 
                                                 "author": "Wikipedia user Woodbine9"
                                             }
                                         }, 
@@ -1269,7 +1287,7 @@ var WORKSHEET_DEFINITION = {
                                             "rights": {
                                                 "source_url": "https://commons.wikimedia.org/wiki/File:Mansestr.jpg", 
                                                 "source_name": "Wikipedia", 
-                                                "license": "CC Attribution-Share Alike", 
+                                                "license": "Creative Commons Attribution-Share Alike", 
                                                 "author": "Wikipedia user Ludek"
                                             }
                                         }, 
@@ -1282,7 +1300,7 @@ var WORKSHEET_DEFINITION = {
                                             "rights": {
                                                 "source_url": "https://commons.wikimedia.org/wiki/File:Carolus_-Private_Collection_-_zwarte_tulekant.jpg", 
                                                 "source_name": "Wikipedia", 
-                                                "license": "CC Attribution-Share Alike", 
+                                                "license": "Creative Commons Attribution-Share Alike", 
                                                 "author": "Wikipedia user Carolus"
                                             }
                                         }, 
@@ -1323,7 +1341,7 @@ var WORKSHEET_DEFINITION = {
                                             "rights": {
                                                 "source_url": "https://commons.wikimedia.org/wiki/File:Three_holes_buttons.jpg", 
                                                 "source_name": "Wikipedia", 
-                                                "license": "CC Attribution-Share Alike", 
+                                                "license": "Creative Commons Attribution-Share Alike", 
                                                 "author": "Marco Bernardini"
                                             }
                                         }, 
@@ -1336,7 +1354,7 @@ var WORKSHEET_DEFINITION = {
                                             "rights": {
                                                 "source_url": "https://en.wikipedia.org/wiki/Hook-and-eye_closure#/media/File:Hook_and_eye_clasp.JPG", 
                                                 "source_name": "Wikipedia", 
-                                                "license": "CC Attribution-Share Alike", 
+                                                "license": "Creative Commons Attribution-Share Alike", 
                                                 "author": "Wikipedia user Eitan F"
                                             }
                                         }, 
@@ -1349,7 +1367,7 @@ var WORKSHEET_DEFINITION = {
                                             "rights": {
                                                 "source_url": "https://commons.wikimedia.org/wiki/File:Coil_plastic_and_metal_zippers.jpg", 
                                                 "source_name": "Wikipedia", 
-                                                "license": "CC Attribution-Share Alike", 
+                                                "license": "Creative Commons Attribution-Share Alike", 
                                                 "author": "Wikipedia user Woodbine9"
                                             }
                                         }, 
@@ -1367,7 +1385,7 @@ var WORKSHEET_DEFINITION = {
                                             "rights": {
                                                 "source_url": "https://commons.wikimedia.org/wiki/File:Mansestr.jpg", 
                                                 "source_name": "Wikipedia", 
-                                                "license": "CC Attribution-Share Alike", 
+                                                "license": "Creative Commons Attribution-Share Alike", 
                                                 "author": "Wikipedia user Ludek"
                                             }
                                         }, 
@@ -1380,7 +1398,7 @@ var WORKSHEET_DEFINITION = {
                                             "rights": {
                                                 "source_url": "https://commons.wikimedia.org/wiki/File:Carolus_-Private_Collection_-_zwarte_tulekant.jpg", 
                                                 "source_name": "Wikipedia", 
-                                                "license": "CC Attribution-Share Alike", 
+                                                "license": "Creative Commons Attribution-Share Alike", 
                                                 "author": "Wikipedia user Carolus"
                                             }
                                         }, 
@@ -1421,7 +1439,7 @@ var WORKSHEET_DEFINITION = {
                                             "rights": {
                                                 "source_url": "https://commons.wikimedia.org/wiki/File:Three_holes_buttons.jpg", 
                                                 "source_name": "Wikipedia", 
-                                                "license": "CC Attribution-Share Alike", 
+                                                "license": "Creative Commons Attribution-Share Alike", 
                                                 "author": "Marco Bernardini"
                                             }
                                         }, 
@@ -1434,7 +1452,7 @@ var WORKSHEET_DEFINITION = {
                                             "rights": {
                                                 "source_url": "https://en.wikipedia.org/wiki/Hook-and-eye_closure#/media/File:Hook_and_eye_clasp.JPG", 
                                                 "source_name": "Wikipedia", 
-                                                "license": "CC Attribution-Share Alike", 
+                                                "license": "Creative Commons Attribution-Share Alike", 
                                                 "author": "Wikipedia user Eitan F"
                                             }
                                         }, 
@@ -1447,7 +1465,7 @@ var WORKSHEET_DEFINITION = {
                                             "rights": {
                                                 "source_url": "https://commons.wikimedia.org/wiki/File:Coil_plastic_and_metal_zippers.jpg", 
                                                 "source_name": "Wikipedia", 
-                                                "license": "CC Attribution-Share Alike", 
+                                                "license": "Creative Commons Attribution-Share Alike", 
                                                 "author": "Wikipedia user Woodbine9"
                                             }
                                         }, 
@@ -1465,7 +1483,7 @@ var WORKSHEET_DEFINITION = {
                                             "rights": {
                                                 "source_url": "https://commons.wikimedia.org/wiki/File:Mansestr.jpg", 
                                                 "source_name": "Wikipedia", 
-                                                "license": "CC Attribution-Share Alike", 
+                                                "license": "Creative Commons Attribution-Share Alike", 
                                                 "author": "Wikipedia user Ludek"
                                             }
                                         }, 
@@ -1478,7 +1496,7 @@ var WORKSHEET_DEFINITION = {
                                             "rights": {
                                                 "source_url": "https://commons.wikimedia.org/wiki/File:Carolus_-Private_Collection_-_zwarte_tulekant.jpg", 
                                                 "source_name": "Wikipedia", 
-                                                "license": "CC Attribution-Share Alike", 
+                                                "license": "Creative Commons Attribution-Share Alike", 
                                                 "author": "Wikipedia user Carolus"
                                             }
                                         }, 

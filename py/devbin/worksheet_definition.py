@@ -43,7 +43,7 @@ def rights(
 def wikipedia_rights(
     author,
     source_url,
-    license_='CC Attribution-Share Alike'
+    license_='Creative Commons Attribution-Share Alike'
 ):
     return rights(
         author=author,
@@ -151,6 +151,7 @@ pleats = [
     feature_value('Inverted'),
 ]
 
+
 prints = OrderedDict()
 #     feature_value('Abstracted floral'),
 #     feature_value('Checkerboard'),
@@ -171,12 +172,20 @@ pocket_characteristics = [
     feature_value('Open'),
 ]
 
-sleeve_characteristics = [
-    feature_value('Attached cuffs'),
-    feature_value('Elbow-length'),
-    feature_value('Set-in'),
-    feature_value('Sleeveless'),
-]
+sleeves = OrderedDict()
+# sleeve = [
+#     feature_value('Attached cuffs'),
+#     feature_value('Elbow-length'),
+#     feature_value('Set-in'),
+#     feature_value('Sleeveless'),
+# ]
+sleeves['Set-in'] = feature_value(
+    image_rights=wikipedia_rights(
+        author='Wikipedia user kellyhogaboom',
+        source_url='https://commons.wikimedia.org/wiki/File:Set_in_sleeve_blind_stitched.jpg',
+    )
+)
+features['Sleeves'] = {'extents': (('Sleeves', None),), 'values': sleeves}
 
 techniques = [
     feature_value('Piped trim'),
