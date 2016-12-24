@@ -316,10 +316,16 @@ WORKSHEET_DEFINITION = \
 
 
 if __name__ == '__main__':
-    with open(os.path.join(ASSETS_DIR_PATH, 'js', 'worksheet_definition.js'), 'w+b') as f:
-        import json
-        from thryft.protocol.builtins_output_protocol import BuiltinsOutputProtocol
-        oprot = BuiltinsOutputProtocol()
-        WORKSHEET_DEFINITION.write(oprot)
-        f.write('var WORKSHEET_DEFINITION = ' + json.dumps(oprot.value, indent=4) + "\n")
-
+    import json
+    from thryft.protocol.builtins_output_protocol import BuiltinsOutputProtocol
+    oprot = BuiltinsOutputProtocol()
+    WORKSHEET_DEFINITION.write(oprot)
+    js = 'var WORKSHEET_DEFINITION = ' + json.dumps(oprot.value, indent=4) + "\n"
+    
+    file_name = 'worksheet_definition.js'
+    for file_path in (
+        os.path.join(ASSETS_DIR_PATH, 'js', file_name),
+        os.path.join(ASSETS_DIR_PATH, '..', 'public', 'js', file_name)
+    ):
+        with open(file_path, 'w+b') as f:
+            f.write(js)
