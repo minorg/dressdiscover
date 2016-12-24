@@ -246,9 +246,10 @@ for extent, sub_extents in extents.iteritems():
                 include_feature = False
                 for feature_extent in feature_extents:
                     feature_extent, feature_sub_extent = feature_extent
-                    if feature_extent == extent and feature_sub_extent == sub_extent:
-                        include_feature = True
-                        break
+                    if feature_extent == extent or feature_extent == '*':
+                        if feature_sub_extent == sub_extent or feature_sub_extent == '*':
+                            include_feature = True
+                            break
                 if not include_feature:
                     continue
             
