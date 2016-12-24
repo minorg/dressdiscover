@@ -297,6 +297,24 @@ var WORKSHEET_DEFINITION = {
                                 "id": "Plaid"
                             }
                         ]
+                    }, 
+                    {
+                        "id": "Whole Waistline", 
+                        "values_": [
+                            {
+                                "image": {
+                                    "thumbnail_url": "img/thumbnail/Waistline/Natural.jpg", 
+                                    "full_size_url": "img/full_size/Waistline/Natural.jpg", 
+                                    "rights": {
+                                        "source_url": "https://digitalcollections.nypl.org/items/a1974390-ab14-0132-a409-58d385a7bbd0", 
+                                        "source_name": "New York Public Library", 
+                                        "license": "Public Domain", 
+                                        "author": "Public domain"
+                                    }
+                                }, 
+                                "id": "Natural"
+                            }
+                        ]
                     }
                 ]
             }, 

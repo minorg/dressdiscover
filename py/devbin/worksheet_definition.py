@@ -192,11 +192,11 @@ waistline['Natural'] = feature_value(
         source_url='https://digitalcollections.nypl.org/items/a1974390-ab14-0132-a409-58d385a7bbd0',
     )
 )
-#features['Waistline'] = {'extents': (('Whole', None),), 'values': waistline}
 #     feature_value('Dropped'),
 #     feature_value('Natural'),
 #     feature_value('Undefined waistline'),
 # ]
+features['Waistline'] = {'extents': (('Whole', None),), 'values': waistline}
 
 
 # Extents
