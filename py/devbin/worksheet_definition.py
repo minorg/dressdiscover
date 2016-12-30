@@ -247,10 +247,21 @@ prints['Plaid'] = feature_value(
 )
 features['Print'] = { 'values': prints }
 
+
 pocket_characteristics = [
     feature_value('Attached'),
     feature_value('Open'),
 ]
+
+
+shoulders = OrderedDict()
+shoulders['Epaulette'] = feature_value(
+    description='Trimming consisting of long or short lengths of straight or twisted thread, cord, or tassel; often grouped or knotted in various designs',
+    description_rights=aat_rights(),
+    image_rights=eft_wikipedia_rights(source_file_name='Epaulette_(drawing).jpg')
+)
+features['Shoulder'] = {'extents': ('Shoulder',), 'values': shoulders}
+
 
 # TODO: adapt from Wikipedia
 # https://en.wikipedia.org/wiki/Sleeve
@@ -266,7 +277,8 @@ sleeves['Set-in'] = feature_value(
         source_file_name='Set_in_sleeve_blind_stitched.jpg',
     )
 )
-features['Sleeves'] = {'extents': ('Sleeves',), 'values': sleeves}
+features['Sleeve'] = {'extents': ('Sleeve',), 'values': sleeves}
+
 
 techniques = [
     feature_value('Piped trim'),
@@ -274,6 +286,7 @@ techniques = [
     feature_value('Slightly gathered'),
     feature_value('Smocked'),
 ]
+
 
 waistline = OrderedDict()
 waistline['Natural'] = feature_value(
@@ -290,6 +303,12 @@ features['Waistline'] = {'extents': (('Whole', None),), 'values': waistline}
 
 
 # Extents
+_horizontal_extents = [
+    'Left',
+    'Right',
+    'Both'
+]
+
 _vertical_extents = [
     'Whole',
     'Top',
@@ -300,8 +319,8 @@ extents = OrderedDict()
 extents['Whole'] = (None, 'Top', 'Bottom')
 extents['Neckline'] = (None,)
 extents['Collar'] = (None,)
-extents['Shoulders'] = (None,)
-extents['Sleeves'] = (None,)
+extents['Shoulder'] = _horizontal_extents
+extents['Sleeve'] = _horizontal_extents
 extents['Front'] = _vertical_extents
 extents['Back'] = _vertical_extents
 extents['Interior'] = _vertical_extents
