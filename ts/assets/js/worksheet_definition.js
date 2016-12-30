@@ -11,6 +11,19 @@ var WORKSHEET_DEFINITION = {
                                 "values_": [
                                     {
                                         "image": {
+                                            "thumbnail_url": "img/thumbnail/Closure/Buckle.jpg", 
+                                            "full_size_url": "img/full_size/Closure/Buckle.jpg", 
+                                            "rights": {
+                                                "source_url": "https://commons.wikimedia.org/wiki/File:Buckle.jpg", 
+                                                "source_name": "Wikipedia / Europeana Fashion Thesaurus", 
+                                                "license": "Public domain", 
+                                                "author": "David Ring"
+                                            }
+                                        }, 
+                                        "id": "Buckle"
+                                    }, 
+                                    {
+                                        "image": {
                                             "thumbnail_url": "img/thumbnail/Closure/Button.jpg", 
                                             "full_size_url": "img/full_size/Closure/Button.jpg", 
                                             "rights": {
@@ -27,7 +40,7 @@ var WORKSHEET_DEFINITION = {
                                             "thumbnail_url": "img/thumbnail/Closure/Hook-and-eye.jpg", 
                                             "full_size_url": "img/full_size/Closure/Hook-and-eye.jpg", 
                                             "rights": {
-                                                "source_url": "https://en.wikipedia.org/wiki/Hook-and-eye_closure#/media/File:Hook_and_eye_clasp.JPG", 
+                                                "source_url": "https://commons.wikimedia.org/wiki/File:Hook_and_eye_clasp.JPG", 
                                                 "source_name": "Wikipedia", 
                                                 "license": "Creative Commons Attribution-Share Alike", 
                                                 "author": "Wikipedia user Eitan F"
@@ -109,6 +122,19 @@ var WORKSHEET_DEFINITION = {
                                 "values_": [
                                     {
                                         "image": {
+                                            "thumbnail_url": "img/thumbnail/Closure/Buckle.jpg", 
+                                            "full_size_url": "img/full_size/Closure/Buckle.jpg", 
+                                            "rights": {
+                                                "source_url": "https://commons.wikimedia.org/wiki/File:Buckle.jpg", 
+                                                "source_name": "Wikipedia / Europeana Fashion Thesaurus", 
+                                                "license": "Public domain", 
+                                                "author": "David Ring"
+                                            }
+                                        }, 
+                                        "id": "Buckle"
+                                    }, 
+                                    {
+                                        "image": {
                                             "thumbnail_url": "img/thumbnail/Closure/Button.jpg", 
                                             "full_size_url": "img/full_size/Closure/Button.jpg", 
                                             "rights": {
@@ -125,7 +151,7 @@ var WORKSHEET_DEFINITION = {
                                             "thumbnail_url": "img/thumbnail/Closure/Hook-and-eye.jpg", 
                                             "full_size_url": "img/full_size/Closure/Hook-and-eye.jpg", 
                                             "rights": {
-                                                "source_url": "https://en.wikipedia.org/wiki/Hook-and-eye_closure#/media/File:Hook_and_eye_clasp.JPG", 
+                                                "source_url": "https://commons.wikimedia.org/wiki/File:Hook_and_eye_clasp.JPG", 
                                                 "source_name": "Wikipedia", 
                                                 "license": "Creative Commons Attribution-Share Alike", 
                                                 "author": "Wikipedia user Eitan F"
@@ -207,6 +233,19 @@ var WORKSHEET_DEFINITION = {
                         "values_": [
                             {
                                 "image": {
+                                    "thumbnail_url": "img/thumbnail/Closure/Buckle.jpg", 
+                                    "full_size_url": "img/full_size/Closure/Buckle.jpg", 
+                                    "rights": {
+                                        "source_url": "https://commons.wikimedia.org/wiki/File:Buckle.jpg", 
+                                        "source_name": "Wikipedia / Europeana Fashion Thesaurus", 
+                                        "license": "Public domain", 
+                                        "author": "David Ring"
+                                    }
+                                }, 
+                                "id": "Buckle"
+                            }, 
+                            {
+                                "image": {
                                     "thumbnail_url": "img/thumbnail/Closure/Button.jpg", 
                                     "full_size_url": "img/full_size/Closure/Button.jpg", 
                                     "rights": {
@@ -223,7 +262,7 @@ var WORKSHEET_DEFINITION = {
                                     "thumbnail_url": "img/thumbnail/Closure/Hook-and-eye.jpg", 
                                     "full_size_url": "img/full_size/Closure/Hook-and-eye.jpg", 
                                     "rights": {
-                                        "source_url": "https://en.wikipedia.org/wiki/Hook-and-eye_closure#/media/File:Hook_and_eye_clasp.JPG", 
+                                        "source_url": "https://commons.wikimedia.org/wiki/File:Hook_and_eye_clasp.JPG", 
                                         "source_name": "Wikipedia", 
                                         "license": "Creative Commons Attribution-Share Alike", 
                                         "author": "Wikipedia user Eitan F"
@@ -326,6 +365,19 @@ var WORKSHEET_DEFINITION = {
                         "values_": [
                             {
                                 "image": {
+                                    "thumbnail_url": "img/thumbnail/Closure/Buckle.jpg", 
+                                    "full_size_url": "img/full_size/Closure/Buckle.jpg", 
+                                    "rights": {
+                                        "source_url": "https://commons.wikimedia.org/wiki/File:Buckle.jpg", 
+                                        "source_name": "Wikipedia / Europeana Fashion Thesaurus", 
+                                        "license": "Public domain", 
+                                        "author": "David Ring"
+                                    }
+                                }, 
+                                "id": "Buckle"
+                            }, 
+                            {
+                                "image": {
                                     "thumbnail_url": "img/thumbnail/Closure/Button.jpg", 
                                     "full_size_url": "img/full_size/Closure/Button.jpg", 
                                     "rights": {
@@ -342,7 +394,7 @@ var WORKSHEET_DEFINITION = {
                                     "thumbnail_url": "img/thumbnail/Closure/Hook-and-eye.jpg", 
                                     "full_size_url": "img/full_size/Closure/Hook-and-eye.jpg", 
                                     "rights": {
-                                        "source_url": "https://en.wikipedia.org/wiki/Hook-and-eye_closure#/media/File:Hook_and_eye_clasp.JPG", 
+                                        "source_url": "https://commons.wikimedia.org/wiki/File:Hook_and_eye_clasp.JPG", 
                                         "source_name": "Wikipedia", 
                                         "license": "Creative Commons Attribution-Share Alike", 
                                         "author": "Wikipedia user Eitan F"
@@ -424,6 +476,19 @@ var WORKSHEET_DEFINITION = {
                         "values_": [
                             {
                                 "image": {
+                                    "thumbnail_url": "img/thumbnail/Closure/Buckle.jpg", 
+                                    "full_size_url": "img/full_size/Closure/Buckle.jpg", 
+                                    "rights": {
+                                        "source_url": "https://commons.wikimedia.org/wiki/File:Buckle.jpg", 
+                                        "source_name": "Wikipedia / Europeana Fashion Thesaurus", 
+                                        "license": "Public domain", 
+                                        "author": "David Ring"
+                                    }
+                                }, 
+                                "id": "Buckle"
+                            }, 
+                            {
+                                "image": {
                                     "thumbnail_url": "img/thumbnail/Closure/Button.jpg", 
                                     "full_size_url": "img/full_size/Closure/Button.jpg", 
                                     "rights": {
@@ -440,7 +505,7 @@ var WORKSHEET_DEFINITION = {
                                     "thumbnail_url": "img/thumbnail/Closure/Hook-and-eye.jpg", 
                                     "full_size_url": "img/full_size/Closure/Hook-and-eye.jpg", 
                                     "rights": {
-                                        "source_url": "https://en.wikipedia.org/wiki/Hook-and-eye_closure#/media/File:Hook_and_eye_clasp.JPG", 
+                                        "source_url": "https://commons.wikimedia.org/wiki/File:Hook_and_eye_clasp.JPG", 
                                         "source_name": "Wikipedia", 
                                         "license": "Creative Commons Attribution-Share Alike", 
                                         "author": "Wikipedia user Eitan F"
@@ -522,6 +587,19 @@ var WORKSHEET_DEFINITION = {
                         "values_": [
                             {
                                 "image": {
+                                    "thumbnail_url": "img/thumbnail/Closure/Buckle.jpg", 
+                                    "full_size_url": "img/full_size/Closure/Buckle.jpg", 
+                                    "rights": {
+                                        "source_url": "https://commons.wikimedia.org/wiki/File:Buckle.jpg", 
+                                        "source_name": "Wikipedia / Europeana Fashion Thesaurus", 
+                                        "license": "Public domain", 
+                                        "author": "David Ring"
+                                    }
+                                }, 
+                                "id": "Buckle"
+                            }, 
+                            {
+                                "image": {
                                     "thumbnail_url": "img/thumbnail/Closure/Button.jpg", 
                                     "full_size_url": "img/full_size/Closure/Button.jpg", 
                                     "rights": {
@@ -538,7 +616,7 @@ var WORKSHEET_DEFINITION = {
                                     "thumbnail_url": "img/thumbnail/Closure/Hook-and-eye.jpg", 
                                     "full_size_url": "img/full_size/Closure/Hook-and-eye.jpg", 
                                     "rights": {
-                                        "source_url": "https://en.wikipedia.org/wiki/Hook-and-eye_closure#/media/File:Hook_and_eye_clasp.JPG", 
+                                        "source_url": "https://commons.wikimedia.org/wiki/File:Hook_and_eye_clasp.JPG", 
                                         "source_name": "Wikipedia", 
                                         "license": "Creative Commons Attribution-Share Alike", 
                                         "author": "Wikipedia user Eitan F"
@@ -640,6 +718,19 @@ var WORKSHEET_DEFINITION = {
                                 "values_": [
                                     {
                                         "image": {
+                                            "thumbnail_url": "img/thumbnail/Closure/Buckle.jpg", 
+                                            "full_size_url": "img/full_size/Closure/Buckle.jpg", 
+                                            "rights": {
+                                                "source_url": "https://commons.wikimedia.org/wiki/File:Buckle.jpg", 
+                                                "source_name": "Wikipedia / Europeana Fashion Thesaurus", 
+                                                "license": "Public domain", 
+                                                "author": "David Ring"
+                                            }
+                                        }, 
+                                        "id": "Buckle"
+                                    }, 
+                                    {
+                                        "image": {
                                             "thumbnail_url": "img/thumbnail/Closure/Button.jpg", 
                                             "full_size_url": "img/full_size/Closure/Button.jpg", 
                                             "rights": {
@@ -656,7 +747,7 @@ var WORKSHEET_DEFINITION = {
                                             "thumbnail_url": "img/thumbnail/Closure/Hook-and-eye.jpg", 
                                             "full_size_url": "img/full_size/Closure/Hook-and-eye.jpg", 
                                             "rights": {
-                                                "source_url": "https://en.wikipedia.org/wiki/Hook-and-eye_closure#/media/File:Hook_and_eye_clasp.JPG", 
+                                                "source_url": "https://commons.wikimedia.org/wiki/File:Hook_and_eye_clasp.JPG", 
                                                 "source_name": "Wikipedia", 
                                                 "license": "Creative Commons Attribution-Share Alike", 
                                                 "author": "Wikipedia user Eitan F"
@@ -738,6 +829,19 @@ var WORKSHEET_DEFINITION = {
                                 "values_": [
                                     {
                                         "image": {
+                                            "thumbnail_url": "img/thumbnail/Closure/Buckle.jpg", 
+                                            "full_size_url": "img/full_size/Closure/Buckle.jpg", 
+                                            "rights": {
+                                                "source_url": "https://commons.wikimedia.org/wiki/File:Buckle.jpg", 
+                                                "source_name": "Wikipedia / Europeana Fashion Thesaurus", 
+                                                "license": "Public domain", 
+                                                "author": "David Ring"
+                                            }
+                                        }, 
+                                        "id": "Buckle"
+                                    }, 
+                                    {
+                                        "image": {
                                             "thumbnail_url": "img/thumbnail/Closure/Button.jpg", 
                                             "full_size_url": "img/full_size/Closure/Button.jpg", 
                                             "rights": {
@@ -754,7 +858,7 @@ var WORKSHEET_DEFINITION = {
                                             "thumbnail_url": "img/thumbnail/Closure/Hook-and-eye.jpg", 
                                             "full_size_url": "img/full_size/Closure/Hook-and-eye.jpg", 
                                             "rights": {
-                                                "source_url": "https://en.wikipedia.org/wiki/Hook-and-eye_closure#/media/File:Hook_and_eye_clasp.JPG", 
+                                                "source_url": "https://commons.wikimedia.org/wiki/File:Hook_and_eye_clasp.JPG", 
                                                 "source_name": "Wikipedia", 
                                                 "license": "Creative Commons Attribution-Share Alike", 
                                                 "author": "Wikipedia user Eitan F"
@@ -836,6 +940,19 @@ var WORKSHEET_DEFINITION = {
                                 "values_": [
                                     {
                                         "image": {
+                                            "thumbnail_url": "img/thumbnail/Closure/Buckle.jpg", 
+                                            "full_size_url": "img/full_size/Closure/Buckle.jpg", 
+                                            "rights": {
+                                                "source_url": "https://commons.wikimedia.org/wiki/File:Buckle.jpg", 
+                                                "source_name": "Wikipedia / Europeana Fashion Thesaurus", 
+                                                "license": "Public domain", 
+                                                "author": "David Ring"
+                                            }
+                                        }, 
+                                        "id": "Buckle"
+                                    }, 
+                                    {
+                                        "image": {
                                             "thumbnail_url": "img/thumbnail/Closure/Button.jpg", 
                                             "full_size_url": "img/full_size/Closure/Button.jpg", 
                                             "rights": {
@@ -852,7 +969,7 @@ var WORKSHEET_DEFINITION = {
                                             "thumbnail_url": "img/thumbnail/Closure/Hook-and-eye.jpg", 
                                             "full_size_url": "img/full_size/Closure/Hook-and-eye.jpg", 
                                             "rights": {
-                                                "source_url": "https://en.wikipedia.org/wiki/Hook-and-eye_closure#/media/File:Hook_and_eye_clasp.JPG", 
+                                                "source_url": "https://commons.wikimedia.org/wiki/File:Hook_and_eye_clasp.JPG", 
                                                 "source_name": "Wikipedia", 
                                                 "license": "Creative Commons Attribution-Share Alike", 
                                                 "author": "Wikipedia user Eitan F"
@@ -939,6 +1056,19 @@ var WORKSHEET_DEFINITION = {
                                 "values_": [
                                     {
                                         "image": {
+                                            "thumbnail_url": "img/thumbnail/Closure/Buckle.jpg", 
+                                            "full_size_url": "img/full_size/Closure/Buckle.jpg", 
+                                            "rights": {
+                                                "source_url": "https://commons.wikimedia.org/wiki/File:Buckle.jpg", 
+                                                "source_name": "Wikipedia / Europeana Fashion Thesaurus", 
+                                                "license": "Public domain", 
+                                                "author": "David Ring"
+                                            }
+                                        }, 
+                                        "id": "Buckle"
+                                    }, 
+                                    {
+                                        "image": {
                                             "thumbnail_url": "img/thumbnail/Closure/Button.jpg", 
                                             "full_size_url": "img/full_size/Closure/Button.jpg", 
                                             "rights": {
@@ -955,7 +1085,7 @@ var WORKSHEET_DEFINITION = {
                                             "thumbnail_url": "img/thumbnail/Closure/Hook-and-eye.jpg", 
                                             "full_size_url": "img/full_size/Closure/Hook-and-eye.jpg", 
                                             "rights": {
-                                                "source_url": "https://en.wikipedia.org/wiki/Hook-and-eye_closure#/media/File:Hook_and_eye_clasp.JPG", 
+                                                "source_url": "https://commons.wikimedia.org/wiki/File:Hook_and_eye_clasp.JPG", 
                                                 "source_name": "Wikipedia", 
                                                 "license": "Creative Commons Attribution-Share Alike", 
                                                 "author": "Wikipedia user Eitan F"
@@ -1037,6 +1167,19 @@ var WORKSHEET_DEFINITION = {
                                 "values_": [
                                     {
                                         "image": {
+                                            "thumbnail_url": "img/thumbnail/Closure/Buckle.jpg", 
+                                            "full_size_url": "img/full_size/Closure/Buckle.jpg", 
+                                            "rights": {
+                                                "source_url": "https://commons.wikimedia.org/wiki/File:Buckle.jpg", 
+                                                "source_name": "Wikipedia / Europeana Fashion Thesaurus", 
+                                                "license": "Public domain", 
+                                                "author": "David Ring"
+                                            }
+                                        }, 
+                                        "id": "Buckle"
+                                    }, 
+                                    {
+                                        "image": {
                                             "thumbnail_url": "img/thumbnail/Closure/Button.jpg", 
                                             "full_size_url": "img/full_size/Closure/Button.jpg", 
                                             "rights": {
@@ -1053,7 +1196,7 @@ var WORKSHEET_DEFINITION = {
                                             "thumbnail_url": "img/thumbnail/Closure/Hook-and-eye.jpg", 
                                             "full_size_url": "img/full_size/Closure/Hook-and-eye.jpg", 
                                             "rights": {
-                                                "source_url": "https://en.wikipedia.org/wiki/Hook-and-eye_closure#/media/File:Hook_and_eye_clasp.JPG", 
+                                                "source_url": "https://commons.wikimedia.org/wiki/File:Hook_and_eye_clasp.JPG", 
                                                 "source_name": "Wikipedia", 
                                                 "license": "Creative Commons Attribution-Share Alike", 
                                                 "author": "Wikipedia user Eitan F"
@@ -1135,6 +1278,19 @@ var WORKSHEET_DEFINITION = {
                                 "values_": [
                                     {
                                         "image": {
+                                            "thumbnail_url": "img/thumbnail/Closure/Buckle.jpg", 
+                                            "full_size_url": "img/full_size/Closure/Buckle.jpg", 
+                                            "rights": {
+                                                "source_url": "https://commons.wikimedia.org/wiki/File:Buckle.jpg", 
+                                                "source_name": "Wikipedia / Europeana Fashion Thesaurus", 
+                                                "license": "Public domain", 
+                                                "author": "David Ring"
+                                            }
+                                        }, 
+                                        "id": "Buckle"
+                                    }, 
+                                    {
+                                        "image": {
                                             "thumbnail_url": "img/thumbnail/Closure/Button.jpg", 
                                             "full_size_url": "img/full_size/Closure/Button.jpg", 
                                             "rights": {
@@ -1151,7 +1307,7 @@ var WORKSHEET_DEFINITION = {
                                             "thumbnail_url": "img/thumbnail/Closure/Hook-and-eye.jpg", 
                                             "full_size_url": "img/full_size/Closure/Hook-and-eye.jpg", 
                                             "rights": {
-                                                "source_url": "https://en.wikipedia.org/wiki/Hook-and-eye_closure#/media/File:Hook_and_eye_clasp.JPG", 
+                                                "source_url": "https://commons.wikimedia.org/wiki/File:Hook_and_eye_clasp.JPG", 
                                                 "source_name": "Wikipedia", 
                                                 "license": "Creative Commons Attribution-Share Alike", 
                                                 "author": "Wikipedia user Eitan F"
@@ -1238,6 +1394,19 @@ var WORKSHEET_DEFINITION = {
                                 "values_": [
                                     {
                                         "image": {
+                                            "thumbnail_url": "img/thumbnail/Closure/Buckle.jpg", 
+                                            "full_size_url": "img/full_size/Closure/Buckle.jpg", 
+                                            "rights": {
+                                                "source_url": "https://commons.wikimedia.org/wiki/File:Buckle.jpg", 
+                                                "source_name": "Wikipedia / Europeana Fashion Thesaurus", 
+                                                "license": "Public domain", 
+                                                "author": "David Ring"
+                                            }
+                                        }, 
+                                        "id": "Buckle"
+                                    }, 
+                                    {
+                                        "image": {
                                             "thumbnail_url": "img/thumbnail/Closure/Button.jpg", 
                                             "full_size_url": "img/full_size/Closure/Button.jpg", 
                                             "rights": {
@@ -1254,7 +1423,7 @@ var WORKSHEET_DEFINITION = {
                                             "thumbnail_url": "img/thumbnail/Closure/Hook-and-eye.jpg", 
                                             "full_size_url": "img/full_size/Closure/Hook-and-eye.jpg", 
                                             "rights": {
-                                                "source_url": "https://en.wikipedia.org/wiki/Hook-and-eye_closure#/media/File:Hook_and_eye_clasp.JPG", 
+                                                "source_url": "https://commons.wikimedia.org/wiki/File:Hook_and_eye_clasp.JPG", 
                                                 "source_name": "Wikipedia", 
                                                 "license": "Creative Commons Attribution-Share Alike", 
                                                 "author": "Wikipedia user Eitan F"
@@ -1336,6 +1505,19 @@ var WORKSHEET_DEFINITION = {
                                 "values_": [
                                     {
                                         "image": {
+                                            "thumbnail_url": "img/thumbnail/Closure/Buckle.jpg", 
+                                            "full_size_url": "img/full_size/Closure/Buckle.jpg", 
+                                            "rights": {
+                                                "source_url": "https://commons.wikimedia.org/wiki/File:Buckle.jpg", 
+                                                "source_name": "Wikipedia / Europeana Fashion Thesaurus", 
+                                                "license": "Public domain", 
+                                                "author": "David Ring"
+                                            }
+                                        }, 
+                                        "id": "Buckle"
+                                    }, 
+                                    {
+                                        "image": {
                                             "thumbnail_url": "img/thumbnail/Closure/Button.jpg", 
                                             "full_size_url": "img/full_size/Closure/Button.jpg", 
                                             "rights": {
@@ -1352,7 +1534,7 @@ var WORKSHEET_DEFINITION = {
                                             "thumbnail_url": "img/thumbnail/Closure/Hook-and-eye.jpg", 
                                             "full_size_url": "img/full_size/Closure/Hook-and-eye.jpg", 
                                             "rights": {
-                                                "source_url": "https://en.wikipedia.org/wiki/Hook-and-eye_closure#/media/File:Hook_and_eye_clasp.JPG", 
+                                                "source_url": "https://commons.wikimedia.org/wiki/File:Hook_and_eye_clasp.JPG", 
                                                 "source_name": "Wikipedia", 
                                                 "license": "Creative Commons Attribution-Share Alike", 
                                                 "author": "Wikipedia user Eitan F"
@@ -1434,6 +1616,19 @@ var WORKSHEET_DEFINITION = {
                                 "values_": [
                                     {
                                         "image": {
+                                            "thumbnail_url": "img/thumbnail/Closure/Buckle.jpg", 
+                                            "full_size_url": "img/full_size/Closure/Buckle.jpg", 
+                                            "rights": {
+                                                "source_url": "https://commons.wikimedia.org/wiki/File:Buckle.jpg", 
+                                                "source_name": "Wikipedia / Europeana Fashion Thesaurus", 
+                                                "license": "Public domain", 
+                                                "author": "David Ring"
+                                            }
+                                        }, 
+                                        "id": "Buckle"
+                                    }, 
+                                    {
+                                        "image": {
                                             "thumbnail_url": "img/thumbnail/Closure/Button.jpg", 
                                             "full_size_url": "img/full_size/Closure/Button.jpg", 
                                             "rights": {
@@ -1450,7 +1645,7 @@ var WORKSHEET_DEFINITION = {
                                             "thumbnail_url": "img/thumbnail/Closure/Hook-and-eye.jpg", 
                                             "full_size_url": "img/full_size/Closure/Hook-and-eye.jpg", 
                                             "rights": {
-                                                "source_url": "https://en.wikipedia.org/wiki/Hook-and-eye_closure#/media/File:Hook_and_eye_clasp.JPG", 
+                                                "source_url": "https://commons.wikimedia.org/wiki/File:Hook_and_eye_clasp.JPG", 
                                                 "source_name": "Wikipedia", 
                                                 "license": "Creative Commons Attribution-Share Alike", 
                                                 "author": "Wikipedia user Eitan F"

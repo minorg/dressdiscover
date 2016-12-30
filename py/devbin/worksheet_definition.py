@@ -40,16 +40,24 @@ def rights(
             .set_source_url(source_url)\
             .build()
 
+def eft_wikipedia_rights(source_file_name):
+    return rights(
+        author='David Ring',
+        license_=PUBLIC_DOMAIN,
+        source_name='Wikipedia / Europeana Fashion Thesaurus',
+        source_url='https://commons.wikimedia.org/wiki/File:' + source_file_name
+    )
+
 def wikipedia_rights(
     author,
-    source_url,
+    source_file_name,
     license_='Creative Commons Attribution-Share Alike'
 ):
     return rights(
         author=author,
         license_=license_,
         source_name='Wikipedia',
-        source_url=source_url,
+        source_url='https://commons.wikimedia.org/wiki/File:' + source_file_name,
     )
     
 def nypl_rights(
@@ -65,42 +73,36 @@ def nypl_rights(
     
 
 
-# Features
-# decoration_applied = {
-#     'Decoration': {
-#         'Applied': [
-#             'Embroidery',
-#             'Sequins',
-#             'Applique',
-#         ]
-#     }
-# }
 
+# Features
 features = OrderedDict()
 
 closures = OrderedDict()
+closures['Buckle'] = feature_value(
+    image_rights=eft_wikipedia_rights(source_file_name='Buckle.jpg')
+)
 closures['Button'] = feature_value(
     image_rights=wikipedia_rights(
         author='Marco Bernardini',
-        source_url='https://commons.wikimedia.org/wiki/File:Three_holes_buttons.jpg',
+        source_file_name='Three_holes_buttons.jpg',
     )
 )
 closures['Hook-and-eye'] = feature_value(
     image_rights=wikipedia_rights(
         author='Wikipedia user Eitan F',
-        source_url='https://en.wikipedia.org/wiki/Hook-and-eye_closure#/media/File:Hook_and_eye_clasp.JPG'
+        source_file_name='Hook_and_eye_clasp.JPG'
     )
 )
 closures['Zip'] = feature_value(
     image_rights=wikipedia_rights(
         author='Wikipedia user Woodbine9',
-        source_url='https://commons.wikimedia.org/wiki/File:Coil_plastic_and_metal_zippers.jpg'
+        source_file_name='Coil_plastic_and_metal_zippers.jpg'
     )    
 )
-#feature_value('Non-functional'),
 features['Closure'] = {'values': closures}
 
 
+# TODO: https://en.wikipedia.org/wiki/Collar_(clothing)
 # collar_characteristics = [
 #     feature_value('Attached'),
 #     feature_value('Bibbed'),
@@ -131,7 +133,7 @@ materials = OrderedDict()
 materials['Corduroy'] = feature_value(
     image_rights=wikipedia_rights(
         author='Wikipedia user Ludek',
-        source_url='https://commons.wikimedia.org/wiki/File:Mansestr.jpg',
+        source_file_name='Mansestr.jpg',
     )
 )
 #     feature_value('Elastic'),
@@ -141,7 +143,7 @@ materials['Corduroy'] = feature_value(
 materials['Net tulle'] = feature_value(
     image_rights=wikipedia_rights(
         author='Wikipedia user Carolus',
-        source_url='https://commons.wikimedia.org/wiki/File:Carolus_-Private_Collection_-_zwarte_tulekant.jpg',
+        source_file_name='Carolus_-Private_Collection_-_zwarte_tulekant.jpg',
     )
 )
 features['Material'] = {'values': materials}
@@ -162,7 +164,7 @@ prints['Plaid'] = feature_value(
     image_rights=wikipedia_rights(
         author=PUBLIC_DOMAIN,
         license_=PUBLIC_DOMAIN,
-        source_url='https://commons.wikimedia.org/wiki/File:Royal_stewart.jpg',
+        source_file_name='Royal_stewart.jpg',
     )
 )
 features['Print'] = { 'values': prints }
@@ -172,20 +174,21 @@ pocket_characteristics = [
     feature_value('Open'),
 ]
 
+# TODO: adapt from Wikipedia
+# https://en.wikipedia.org/wiki/Sleeve
 sleeves = OrderedDict()
 # sleeve = [
 #     feature_value('Attached cuffs'),
 #     feature_value('Elbow-length'),
-#     feature_value('Set-in'),
 #     feature_value('Sleeveless'),
 # ]
 sleeves['Set-in'] = feature_value(
     image_rights=wikipedia_rights(
         author='Wikipedia user kellyhogaboom',
-        source_url='https://commons.wikimedia.org/wiki/File:Set_in_sleeve_blind_stitched.jpg',
+        source_file_name='Set_in_sleeve_blind_stitched.jpg',
     )
 )
-features['Sleeves'] = {'extents': (('Sleeves', None),), 'values': sleeves}
+features['Sleeves'] = {'extents': ('Sleeves',), 'values': sleeves}
 
 techniques = [
     feature_value('Piped trim'),
@@ -245,7 +248,11 @@ for extent, sub_extents in extents.iteritems():
             if feature_extents is not None:
                 include_feature = False
                 for feature_extent in feature_extents:
-                    feature_extent, feature_sub_extent = feature_extent
+                    if isinstance(feature_extent, tuple):
+                        feature_extent, feature_sub_extent = feature_extent
+                    else:
+                        feature_sub_extent = None
+                    assert isinstance(feature_extent, str)
                     if feature_extent == extent or feature_extent == '*':
                         if feature_sub_extent == sub_extent or feature_sub_extent == '*':
                             include_feature = True
