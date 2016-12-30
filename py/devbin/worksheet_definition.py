@@ -212,6 +212,18 @@ necklines['Boat neck'] = feature_value(
 necklines['Round neck'] = feature_value(
     image_rights=eft_wikipedia_rights(source_file_name='Round_neck.jpg')
 )
+necklines['Ruffled neck'] = feature_value(
+    image_rights=eft_wikipedia_rights(source_file_name='Ruffled_neck.jpg')
+)
+necklines['Square neck'] = feature_value(
+    image_rights=eft_wikipedia_rights(source_file_name='Square_neck.jpg')
+)
+necklines['Surplice'] = feature_value(
+    image_rights=eft_wikipedia_rights(source_file_name='Surplice_neckline.jpg')
+)
+necklines['V-neck'] = feature_value(
+    image_rights=eft_wikipedia_rights(source_file_name='V-neck.jpg')
+)
 features['Neckline'] = {'extents': ('Neckline',), 'values': necklines}
 
 
