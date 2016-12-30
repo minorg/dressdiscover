@@ -112,6 +112,10 @@ features['Closure'] = {'values': closures}
 
 
 # TODO: https://en.wikipedia.org/wiki/Collar_(clothing)
+collars = OrderedDict()
+collars['Band'] = feature_value(
+    image_rights=eft_wikipedia_rights(source_file_name='Band_(collar).jpg')
+)
 # collar_characteristics = [
 #     feature_value('Attached'),
 #     feature_value('Bibbed'),
@@ -119,6 +123,8 @@ features['Closure'] = {'values': closures}
 #     feature_value('Peaked'),
 #     feature_value('Round'),
 # ]
+features['Collar'] = {'extents': ('Collar',), 'values': collars}
+
 
 colors = [
     feature_value('Blue'),

@@ -574,6 +574,24 @@ var WORKSHEET_DEFINITION = {
                         ]
                     }, 
                     {
+                        "id": "Collar Collar", 
+                        "values_": [
+                            {
+                                "image": {
+                                    "thumbnail_url": "img/thumbnail/Collar/Band.jpg", 
+                                    "full_size_url": "img/full_size/Collar/Band.jpg", 
+                                    "rights": {
+                                        "source_url": "https://commons.wikimedia.org/wiki/File:Band_(collar).jpg", 
+                                        "source_name": "Wikipedia / Europeana Fashion Thesaurus", 
+                                        "license": "Public domain", 
+                                        "author": "David Ring"
+                                    }
+                                }, 
+                                "id": "Band"
+                            }
+                        ]
+                    }, 
+                    {
                         "id": "Collar Material", 
                         "values_": [
                             {
