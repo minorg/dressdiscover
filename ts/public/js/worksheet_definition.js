@@ -24,6 +24,19 @@ var WORKSHEET_DEFINITION = {
                                     }, 
                                     {
                                         "image": {
+                                            "thumbnail_url": "img/thumbnail/Closure/Button.jpg", 
+                                            "full_size_url": "img/full_size/Closure/Button.jpg", 
+                                            "rights": {
+                                                "source_url": "https://commons.wikimedia.org/wiki/File:Three_holes_buttons.jpg", 
+                                                "source_name": "Wikipedia", 
+                                                "license": "Creative Commons Attribution-Share Alike", 
+                                                "author": "Marco Bernardini"
+                                            }
+                                        }, 
+                                        "id": "Button"
+                                    }, 
+                                    {
+                                        "image": {
                                             "thumbnail_url": "img/thumbnail/Closure/Cufflink.jpg", 
                                             "full_size_url": "img/full_size/Closure/Cufflink.jpg", 
                                             "rights": {
@@ -50,32 +63,6 @@ var WORKSHEET_DEFINITION = {
                                     }, 
                                     {
                                         "image": {
-                                            "thumbnail_url": "img/thumbnail/Closure/Lacing.jpg", 
-                                            "full_size_url": "img/full_size/Closure/Lacing.jpg", 
-                                            "rights": {
-                                                "source_url": "https://commons.wikimedia.org/wiki/File:Lace_(fastening).jpg", 
-                                                "source_name": "Wikipedia / Europeana Fashion Thesaurus", 
-                                                "license": "Public domain", 
-                                                "author": "David Ring"
-                                            }
-                                        }, 
-                                        "id": "Lacing"
-                                    }, 
-                                    {
-                                        "image": {
-                                            "thumbnail_url": "img/thumbnail/Closure/Button.jpg", 
-                                            "full_size_url": "img/full_size/Closure/Button.jpg", 
-                                            "rights": {
-                                                "source_url": "https://commons.wikimedia.org/wiki/File:Three_holes_buttons.jpg", 
-                                                "source_name": "Wikipedia", 
-                                                "license": "Creative Commons Attribution-Share Alike", 
-                                                "author": "Marco Bernardini"
-                                            }
-                                        }, 
-                                        "id": "Button"
-                                    }, 
-                                    {
-                                        "image": {
                                             "thumbnail_url": "img/thumbnail/Closure/Hook-and-eye.jpg", 
                                             "full_size_url": "img/full_size/Closure/Hook-and-eye.jpg", 
                                             "rights": {
@@ -89,6 +76,19 @@ var WORKSHEET_DEFINITION = {
                                     }, 
                                     {
                                         "image": {
+                                            "thumbnail_url": "img/thumbnail/Closure/Lacing.jpg", 
+                                            "full_size_url": "img/full_size/Closure/Lacing.jpg", 
+                                            "rights": {
+                                                "source_url": "https://commons.wikimedia.org/wiki/File:Lace_(fastening).jpg", 
+                                                "source_name": "Wikipedia / Europeana Fashion Thesaurus", 
+                                                "license": "Public domain", 
+                                                "author": "David Ring"
+                                            }
+                                        }, 
+                                        "id": "Lacing"
+                                    }, 
+                                    {
+                                        "image": {
                                             "thumbnail_url": "img/thumbnail/Closure/Zip.jpg", 
                                             "full_size_url": "img/full_size/Closure/Zip.jpg", 
                                             "rights": {
@@ -99,6 +99,24 @@ var WORKSHEET_DEFINITION = {
                                             }
                                         }, 
                                         "id": "Zip"
+                                    }
+                                ]
+                            }, 
+                            {
+                                "id": "Whole Top Decoration", 
+                                "values_": [
+                                    {
+                                        "image": {
+                                            "thumbnail_url": "img/thumbnail/Decoration/Fringe.jpg", 
+                                            "full_size_url": "img/full_size/Decoration/Fringe.jpg", 
+                                            "rights": {
+                                                "source_url": "https://commons.wikimedia.org/wiki/File:Fringe_(fabric).jpg", 
+                                                "source_name": "Wikipedia / Europeana Fashion Thesaurus", 
+                                                "license": "Public domain", 
+                                                "author": "David Ring"
+                                            }
+                                        }, 
+                                        "id": "Fringe"
                                     }
                                 ]
                             }, 
@@ -174,6 +192,19 @@ var WORKSHEET_DEFINITION = {
                                     }, 
                                     {
                                         "image": {
+                                            "thumbnail_url": "img/thumbnail/Closure/Button.jpg", 
+                                            "full_size_url": "img/full_size/Closure/Button.jpg", 
+                                            "rights": {
+                                                "source_url": "https://commons.wikimedia.org/wiki/File:Three_holes_buttons.jpg", 
+                                                "source_name": "Wikipedia", 
+                                                "license": "Creative Commons Attribution-Share Alike", 
+                                                "author": "Marco Bernardini"
+                                            }
+                                        }, 
+                                        "id": "Button"
+                                    }, 
+                                    {
+                                        "image": {
                                             "thumbnail_url": "img/thumbnail/Closure/Cufflink.jpg", 
                                             "full_size_url": "img/full_size/Closure/Cufflink.jpg", 
                                             "rights": {
@@ -200,32 +231,6 @@ var WORKSHEET_DEFINITION = {
                                     }, 
                                     {
                                         "image": {
-                                            "thumbnail_url": "img/thumbnail/Closure/Lacing.jpg", 
-                                            "full_size_url": "img/full_size/Closure/Lacing.jpg", 
-                                            "rights": {
-                                                "source_url": "https://commons.wikimedia.org/wiki/File:Lace_(fastening).jpg", 
-                                                "source_name": "Wikipedia / Europeana Fashion Thesaurus", 
-                                                "license": "Public domain", 
-                                                "author": "David Ring"
-                                            }
-                                        }, 
-                                        "id": "Lacing"
-                                    }, 
-                                    {
-                                        "image": {
-                                            "thumbnail_url": "img/thumbnail/Closure/Button.jpg", 
-                                            "full_size_url": "img/full_size/Closure/Button.jpg", 
-                                            "rights": {
-                                                "source_url": "https://commons.wikimedia.org/wiki/File:Three_holes_buttons.jpg", 
-                                                "source_name": "Wikipedia", 
-                                                "license": "Creative Commons Attribution-Share Alike", 
-                                                "author": "Marco Bernardini"
-                                            }
-                                        }, 
-                                        "id": "Button"
-                                    }, 
-                                    {
-                                        "image": {
                                             "thumbnail_url": "img/thumbnail/Closure/Hook-and-eye.jpg", 
                                             "full_size_url": "img/full_size/Closure/Hook-and-eye.jpg", 
                                             "rights": {
@@ -239,6 +244,19 @@ var WORKSHEET_DEFINITION = {
                                     }, 
                                     {
                                         "image": {
+                                            "thumbnail_url": "img/thumbnail/Closure/Lacing.jpg", 
+                                            "full_size_url": "img/full_size/Closure/Lacing.jpg", 
+                                            "rights": {
+                                                "source_url": "https://commons.wikimedia.org/wiki/File:Lace_(fastening).jpg", 
+                                                "source_name": "Wikipedia / Europeana Fashion Thesaurus", 
+                                                "license": "Public domain", 
+                                                "author": "David Ring"
+                                            }
+                                        }, 
+                                        "id": "Lacing"
+                                    }, 
+                                    {
+                                        "image": {
                                             "thumbnail_url": "img/thumbnail/Closure/Zip.jpg", 
                                             "full_size_url": "img/full_size/Closure/Zip.jpg", 
                                             "rights": {
@@ -249,6 +267,24 @@ var WORKSHEET_DEFINITION = {
                                             }
                                         }, 
                                         "id": "Zip"
+                                    }
+                                ]
+                            }, 
+                            {
+                                "id": "Whole Bottom Decoration", 
+                                "values_": [
+                                    {
+                                        "image": {
+                                            "thumbnail_url": "img/thumbnail/Decoration/Fringe.jpg", 
+                                            "full_size_url": "img/full_size/Decoration/Fringe.jpg", 
+                                            "rights": {
+                                                "source_url": "https://commons.wikimedia.org/wiki/File:Fringe_(fabric).jpg", 
+                                                "source_name": "Wikipedia / Europeana Fashion Thesaurus", 
+                                                "license": "Public domain", 
+                                                "author": "David Ring"
+                                            }
+                                        }, 
+                                        "id": "Fringe"
                                     }
                                 ]
                             }, 
@@ -324,6 +360,19 @@ var WORKSHEET_DEFINITION = {
                             }, 
                             {
                                 "image": {
+                                    "thumbnail_url": "img/thumbnail/Closure/Button.jpg", 
+                                    "full_size_url": "img/full_size/Closure/Button.jpg", 
+                                    "rights": {
+                                        "source_url": "https://commons.wikimedia.org/wiki/File:Three_holes_buttons.jpg", 
+                                        "source_name": "Wikipedia", 
+                                        "license": "Creative Commons Attribution-Share Alike", 
+                                        "author": "Marco Bernardini"
+                                    }
+                                }, 
+                                "id": "Button"
+                            }, 
+                            {
+                                "image": {
                                     "thumbnail_url": "img/thumbnail/Closure/Cufflink.jpg", 
                                     "full_size_url": "img/full_size/Closure/Cufflink.jpg", 
                                     "rights": {
@@ -350,32 +399,6 @@ var WORKSHEET_DEFINITION = {
                             }, 
                             {
                                 "image": {
-                                    "thumbnail_url": "img/thumbnail/Closure/Lacing.jpg", 
-                                    "full_size_url": "img/full_size/Closure/Lacing.jpg", 
-                                    "rights": {
-                                        "source_url": "https://commons.wikimedia.org/wiki/File:Lace_(fastening).jpg", 
-                                        "source_name": "Wikipedia / Europeana Fashion Thesaurus", 
-                                        "license": "Public domain", 
-                                        "author": "David Ring"
-                                    }
-                                }, 
-                                "id": "Lacing"
-                            }, 
-                            {
-                                "image": {
-                                    "thumbnail_url": "img/thumbnail/Closure/Button.jpg", 
-                                    "full_size_url": "img/full_size/Closure/Button.jpg", 
-                                    "rights": {
-                                        "source_url": "https://commons.wikimedia.org/wiki/File:Three_holes_buttons.jpg", 
-                                        "source_name": "Wikipedia", 
-                                        "license": "Creative Commons Attribution-Share Alike", 
-                                        "author": "Marco Bernardini"
-                                    }
-                                }, 
-                                "id": "Button"
-                            }, 
-                            {
-                                "image": {
                                     "thumbnail_url": "img/thumbnail/Closure/Hook-and-eye.jpg", 
                                     "full_size_url": "img/full_size/Closure/Hook-and-eye.jpg", 
                                     "rights": {
@@ -389,6 +412,19 @@ var WORKSHEET_DEFINITION = {
                             }, 
                             {
                                 "image": {
+                                    "thumbnail_url": "img/thumbnail/Closure/Lacing.jpg", 
+                                    "full_size_url": "img/full_size/Closure/Lacing.jpg", 
+                                    "rights": {
+                                        "source_url": "https://commons.wikimedia.org/wiki/File:Lace_(fastening).jpg", 
+                                        "source_name": "Wikipedia / Europeana Fashion Thesaurus", 
+                                        "license": "Public domain", 
+                                        "author": "David Ring"
+                                    }
+                                }, 
+                                "id": "Lacing"
+                            }, 
+                            {
+                                "image": {
                                     "thumbnail_url": "img/thumbnail/Closure/Zip.jpg", 
                                     "full_size_url": "img/full_size/Closure/Zip.jpg", 
                                     "rights": {
@@ -399,6 +435,24 @@ var WORKSHEET_DEFINITION = {
                                     }
                                 }, 
                                 "id": "Zip"
+                            }
+                        ]
+                    }, 
+                    {
+                        "id": "Whole Decoration", 
+                        "values_": [
+                            {
+                                "image": {
+                                    "thumbnail_url": "img/thumbnail/Decoration/Fringe.jpg", 
+                                    "full_size_url": "img/full_size/Decoration/Fringe.jpg", 
+                                    "rights": {
+                                        "source_url": "https://commons.wikimedia.org/wiki/File:Fringe_(fabric).jpg", 
+                                        "source_name": "Wikipedia / Europeana Fashion Thesaurus", 
+                                        "license": "Public domain", 
+                                        "author": "David Ring"
+                                    }
+                                }, 
+                                "id": "Fringe"
                             }
                         ]
                     }, 
@@ -495,6 +549,19 @@ var WORKSHEET_DEFINITION = {
                             }, 
                             {
                                 "image": {
+                                    "thumbnail_url": "img/thumbnail/Closure/Button.jpg", 
+                                    "full_size_url": "img/full_size/Closure/Button.jpg", 
+                                    "rights": {
+                                        "source_url": "https://commons.wikimedia.org/wiki/File:Three_holes_buttons.jpg", 
+                                        "source_name": "Wikipedia", 
+                                        "license": "Creative Commons Attribution-Share Alike", 
+                                        "author": "Marco Bernardini"
+                                    }
+                                }, 
+                                "id": "Button"
+                            }, 
+                            {
+                                "image": {
                                     "thumbnail_url": "img/thumbnail/Closure/Cufflink.jpg", 
                                     "full_size_url": "img/full_size/Closure/Cufflink.jpg", 
                                     "rights": {
@@ -521,32 +588,6 @@ var WORKSHEET_DEFINITION = {
                             }, 
                             {
                                 "image": {
-                                    "thumbnail_url": "img/thumbnail/Closure/Lacing.jpg", 
-                                    "full_size_url": "img/full_size/Closure/Lacing.jpg", 
-                                    "rights": {
-                                        "source_url": "https://commons.wikimedia.org/wiki/File:Lace_(fastening).jpg", 
-                                        "source_name": "Wikipedia / Europeana Fashion Thesaurus", 
-                                        "license": "Public domain", 
-                                        "author": "David Ring"
-                                    }
-                                }, 
-                                "id": "Lacing"
-                            }, 
-                            {
-                                "image": {
-                                    "thumbnail_url": "img/thumbnail/Closure/Button.jpg", 
-                                    "full_size_url": "img/full_size/Closure/Button.jpg", 
-                                    "rights": {
-                                        "source_url": "https://commons.wikimedia.org/wiki/File:Three_holes_buttons.jpg", 
-                                        "source_name": "Wikipedia", 
-                                        "license": "Creative Commons Attribution-Share Alike", 
-                                        "author": "Marco Bernardini"
-                                    }
-                                }, 
-                                "id": "Button"
-                            }, 
-                            {
-                                "image": {
                                     "thumbnail_url": "img/thumbnail/Closure/Hook-and-eye.jpg", 
                                     "full_size_url": "img/full_size/Closure/Hook-and-eye.jpg", 
                                     "rights": {
@@ -557,6 +598,19 @@ var WORKSHEET_DEFINITION = {
                                     }
                                 }, 
                                 "id": "Hook-and-eye"
+                            }, 
+                            {
+                                "image": {
+                                    "thumbnail_url": "img/thumbnail/Closure/Lacing.jpg", 
+                                    "full_size_url": "img/full_size/Closure/Lacing.jpg", 
+                                    "rights": {
+                                        "source_url": "https://commons.wikimedia.org/wiki/File:Lace_(fastening).jpg", 
+                                        "source_name": "Wikipedia / Europeana Fashion Thesaurus", 
+                                        "license": "Public domain", 
+                                        "author": "David Ring"
+                                    }
+                                }, 
+                                "id": "Lacing"
                             }, 
                             {
                                 "image": {
@@ -601,6 +655,24 @@ var WORKSHEET_DEFINITION = {
                                     }
                                 }, 
                                 "id": "Jabot"
+                            }
+                        ]
+                    }, 
+                    {
+                        "id": "Collar Decoration", 
+                        "values_": [
+                            {
+                                "image": {
+                                    "thumbnail_url": "img/thumbnail/Decoration/Fringe.jpg", 
+                                    "full_size_url": "img/full_size/Decoration/Fringe.jpg", 
+                                    "rights": {
+                                        "source_url": "https://commons.wikimedia.org/wiki/File:Fringe_(fabric).jpg", 
+                                        "source_name": "Wikipedia / Europeana Fashion Thesaurus", 
+                                        "license": "Public domain", 
+                                        "author": "David Ring"
+                                    }
+                                }, 
+                                "id": "Fringe"
                             }
                         ]
                     }, 
@@ -676,6 +748,19 @@ var WORKSHEET_DEFINITION = {
                             }, 
                             {
                                 "image": {
+                                    "thumbnail_url": "img/thumbnail/Closure/Button.jpg", 
+                                    "full_size_url": "img/full_size/Closure/Button.jpg", 
+                                    "rights": {
+                                        "source_url": "https://commons.wikimedia.org/wiki/File:Three_holes_buttons.jpg", 
+                                        "source_name": "Wikipedia", 
+                                        "license": "Creative Commons Attribution-Share Alike", 
+                                        "author": "Marco Bernardini"
+                                    }
+                                }, 
+                                "id": "Button"
+                            }, 
+                            {
+                                "image": {
                                     "thumbnail_url": "img/thumbnail/Closure/Cufflink.jpg", 
                                     "full_size_url": "img/full_size/Closure/Cufflink.jpg", 
                                     "rights": {
@@ -702,32 +787,6 @@ var WORKSHEET_DEFINITION = {
                             }, 
                             {
                                 "image": {
-                                    "thumbnail_url": "img/thumbnail/Closure/Lacing.jpg", 
-                                    "full_size_url": "img/full_size/Closure/Lacing.jpg", 
-                                    "rights": {
-                                        "source_url": "https://commons.wikimedia.org/wiki/File:Lace_(fastening).jpg", 
-                                        "source_name": "Wikipedia / Europeana Fashion Thesaurus", 
-                                        "license": "Public domain", 
-                                        "author": "David Ring"
-                                    }
-                                }, 
-                                "id": "Lacing"
-                            }, 
-                            {
-                                "image": {
-                                    "thumbnail_url": "img/thumbnail/Closure/Button.jpg", 
-                                    "full_size_url": "img/full_size/Closure/Button.jpg", 
-                                    "rights": {
-                                        "source_url": "https://commons.wikimedia.org/wiki/File:Three_holes_buttons.jpg", 
-                                        "source_name": "Wikipedia", 
-                                        "license": "Creative Commons Attribution-Share Alike", 
-                                        "author": "Marco Bernardini"
-                                    }
-                                }, 
-                                "id": "Button"
-                            }, 
-                            {
-                                "image": {
                                     "thumbnail_url": "img/thumbnail/Closure/Hook-and-eye.jpg", 
                                     "full_size_url": "img/full_size/Closure/Hook-and-eye.jpg", 
                                     "rights": {
@@ -741,6 +800,19 @@ var WORKSHEET_DEFINITION = {
                             }, 
                             {
                                 "image": {
+                                    "thumbnail_url": "img/thumbnail/Closure/Lacing.jpg", 
+                                    "full_size_url": "img/full_size/Closure/Lacing.jpg", 
+                                    "rights": {
+                                        "source_url": "https://commons.wikimedia.org/wiki/File:Lace_(fastening).jpg", 
+                                        "source_name": "Wikipedia / Europeana Fashion Thesaurus", 
+                                        "license": "Public domain", 
+                                        "author": "David Ring"
+                                    }
+                                }, 
+                                "id": "Lacing"
+                            }, 
+                            {
+                                "image": {
                                     "thumbnail_url": "img/thumbnail/Closure/Zip.jpg", 
                                     "full_size_url": "img/full_size/Closure/Zip.jpg", 
                                     "rights": {
@@ -751,6 +823,24 @@ var WORKSHEET_DEFINITION = {
                                     }
                                 }, 
                                 "id": "Zip"
+                            }
+                        ]
+                    }, 
+                    {
+                        "id": "Shoulders Decoration", 
+                        "values_": [
+                            {
+                                "image": {
+                                    "thumbnail_url": "img/thumbnail/Decoration/Fringe.jpg", 
+                                    "full_size_url": "img/full_size/Decoration/Fringe.jpg", 
+                                    "rights": {
+                                        "source_url": "https://commons.wikimedia.org/wiki/File:Fringe_(fabric).jpg", 
+                                        "source_name": "Wikipedia / Europeana Fashion Thesaurus", 
+                                        "license": "Public domain", 
+                                        "author": "David Ring"
+                                    }
+                                }, 
+                                "id": "Fringe"
                             }
                         ]
                     }, 
@@ -826,6 +916,19 @@ var WORKSHEET_DEFINITION = {
                             }, 
                             {
                                 "image": {
+                                    "thumbnail_url": "img/thumbnail/Closure/Button.jpg", 
+                                    "full_size_url": "img/full_size/Closure/Button.jpg", 
+                                    "rights": {
+                                        "source_url": "https://commons.wikimedia.org/wiki/File:Three_holes_buttons.jpg", 
+                                        "source_name": "Wikipedia", 
+                                        "license": "Creative Commons Attribution-Share Alike", 
+                                        "author": "Marco Bernardini"
+                                    }
+                                }, 
+                                "id": "Button"
+                            }, 
+                            {
+                                "image": {
                                     "thumbnail_url": "img/thumbnail/Closure/Cufflink.jpg", 
                                     "full_size_url": "img/full_size/Closure/Cufflink.jpg", 
                                     "rights": {
@@ -852,32 +955,6 @@ var WORKSHEET_DEFINITION = {
                             }, 
                             {
                                 "image": {
-                                    "thumbnail_url": "img/thumbnail/Closure/Lacing.jpg", 
-                                    "full_size_url": "img/full_size/Closure/Lacing.jpg", 
-                                    "rights": {
-                                        "source_url": "https://commons.wikimedia.org/wiki/File:Lace_(fastening).jpg", 
-                                        "source_name": "Wikipedia / Europeana Fashion Thesaurus", 
-                                        "license": "Public domain", 
-                                        "author": "David Ring"
-                                    }
-                                }, 
-                                "id": "Lacing"
-                            }, 
-                            {
-                                "image": {
-                                    "thumbnail_url": "img/thumbnail/Closure/Button.jpg", 
-                                    "full_size_url": "img/full_size/Closure/Button.jpg", 
-                                    "rights": {
-                                        "source_url": "https://commons.wikimedia.org/wiki/File:Three_holes_buttons.jpg", 
-                                        "source_name": "Wikipedia", 
-                                        "license": "Creative Commons Attribution-Share Alike", 
-                                        "author": "Marco Bernardini"
-                                    }
-                                }, 
-                                "id": "Button"
-                            }, 
-                            {
-                                "image": {
                                     "thumbnail_url": "img/thumbnail/Closure/Hook-and-eye.jpg", 
                                     "full_size_url": "img/full_size/Closure/Hook-and-eye.jpg", 
                                     "rights": {
@@ -891,6 +968,19 @@ var WORKSHEET_DEFINITION = {
                             }, 
                             {
                                 "image": {
+                                    "thumbnail_url": "img/thumbnail/Closure/Lacing.jpg", 
+                                    "full_size_url": "img/full_size/Closure/Lacing.jpg", 
+                                    "rights": {
+                                        "source_url": "https://commons.wikimedia.org/wiki/File:Lace_(fastening).jpg", 
+                                        "source_name": "Wikipedia / Europeana Fashion Thesaurus", 
+                                        "license": "Public domain", 
+                                        "author": "David Ring"
+                                    }
+                                }, 
+                                "id": "Lacing"
+                            }, 
+                            {
+                                "image": {
                                     "thumbnail_url": "img/thumbnail/Closure/Zip.jpg", 
                                     "full_size_url": "img/full_size/Closure/Zip.jpg", 
                                     "rights": {
@@ -901,6 +991,24 @@ var WORKSHEET_DEFINITION = {
                                     }
                                 }, 
                                 "id": "Zip"
+                            }
+                        ]
+                    }, 
+                    {
+                        "id": "Sleeves Decoration", 
+                        "values_": [
+                            {
+                                "image": {
+                                    "thumbnail_url": "img/thumbnail/Decoration/Fringe.jpg", 
+                                    "full_size_url": "img/full_size/Decoration/Fringe.jpg", 
+                                    "rights": {
+                                        "source_url": "https://commons.wikimedia.org/wiki/File:Fringe_(fabric).jpg", 
+                                        "source_name": "Wikipedia / Europeana Fashion Thesaurus", 
+                                        "license": "Public domain", 
+                                        "author": "David Ring"
+                                    }
+                                }, 
+                                "id": "Fringe"
                             }
                         ]
                     }, 
@@ -996,6 +1104,19 @@ var WORKSHEET_DEFINITION = {
                                     }, 
                                     {
                                         "image": {
+                                            "thumbnail_url": "img/thumbnail/Closure/Button.jpg", 
+                                            "full_size_url": "img/full_size/Closure/Button.jpg", 
+                                            "rights": {
+                                                "source_url": "https://commons.wikimedia.org/wiki/File:Three_holes_buttons.jpg", 
+                                                "source_name": "Wikipedia", 
+                                                "license": "Creative Commons Attribution-Share Alike", 
+                                                "author": "Marco Bernardini"
+                                            }
+                                        }, 
+                                        "id": "Button"
+                                    }, 
+                                    {
+                                        "image": {
                                             "thumbnail_url": "img/thumbnail/Closure/Cufflink.jpg", 
                                             "full_size_url": "img/full_size/Closure/Cufflink.jpg", 
                                             "rights": {
@@ -1022,32 +1143,6 @@ var WORKSHEET_DEFINITION = {
                                     }, 
                                     {
                                         "image": {
-                                            "thumbnail_url": "img/thumbnail/Closure/Lacing.jpg", 
-                                            "full_size_url": "img/full_size/Closure/Lacing.jpg", 
-                                            "rights": {
-                                                "source_url": "https://commons.wikimedia.org/wiki/File:Lace_(fastening).jpg", 
-                                                "source_name": "Wikipedia / Europeana Fashion Thesaurus", 
-                                                "license": "Public domain", 
-                                                "author": "David Ring"
-                                            }
-                                        }, 
-                                        "id": "Lacing"
-                                    }, 
-                                    {
-                                        "image": {
-                                            "thumbnail_url": "img/thumbnail/Closure/Button.jpg", 
-                                            "full_size_url": "img/full_size/Closure/Button.jpg", 
-                                            "rights": {
-                                                "source_url": "https://commons.wikimedia.org/wiki/File:Three_holes_buttons.jpg", 
-                                                "source_name": "Wikipedia", 
-                                                "license": "Creative Commons Attribution-Share Alike", 
-                                                "author": "Marco Bernardini"
-                                            }
-                                        }, 
-                                        "id": "Button"
-                                    }, 
-                                    {
-                                        "image": {
                                             "thumbnail_url": "img/thumbnail/Closure/Hook-and-eye.jpg", 
                                             "full_size_url": "img/full_size/Closure/Hook-and-eye.jpg", 
                                             "rights": {
@@ -1061,6 +1156,19 @@ var WORKSHEET_DEFINITION = {
                                     }, 
                                     {
                                         "image": {
+                                            "thumbnail_url": "img/thumbnail/Closure/Lacing.jpg", 
+                                            "full_size_url": "img/full_size/Closure/Lacing.jpg", 
+                                            "rights": {
+                                                "source_url": "https://commons.wikimedia.org/wiki/File:Lace_(fastening).jpg", 
+                                                "source_name": "Wikipedia / Europeana Fashion Thesaurus", 
+                                                "license": "Public domain", 
+                                                "author": "David Ring"
+                                            }
+                                        }, 
+                                        "id": "Lacing"
+                                    }, 
+                                    {
+                                        "image": {
                                             "thumbnail_url": "img/thumbnail/Closure/Zip.jpg", 
                                             "full_size_url": "img/full_size/Closure/Zip.jpg", 
                                             "rights": {
@@ -1071,6 +1179,24 @@ var WORKSHEET_DEFINITION = {
                                             }
                                         }, 
                                         "id": "Zip"
+                                    }
+                                ]
+                            }, 
+                            {
+                                "id": "Front Whole Decoration", 
+                                "values_": [
+                                    {
+                                        "image": {
+                                            "thumbnail_url": "img/thumbnail/Decoration/Fringe.jpg", 
+                                            "full_size_url": "img/full_size/Decoration/Fringe.jpg", 
+                                            "rights": {
+                                                "source_url": "https://commons.wikimedia.org/wiki/File:Fringe_(fabric).jpg", 
+                                                "source_name": "Wikipedia / Europeana Fashion Thesaurus", 
+                                                "license": "Public domain", 
+                                                "author": "David Ring"
+                                            }
+                                        }, 
+                                        "id": "Fringe"
                                     }
                                 ]
                             }, 
@@ -1146,6 +1272,19 @@ var WORKSHEET_DEFINITION = {
                                     }, 
                                     {
                                         "image": {
+                                            "thumbnail_url": "img/thumbnail/Closure/Button.jpg", 
+                                            "full_size_url": "img/full_size/Closure/Button.jpg", 
+                                            "rights": {
+                                                "source_url": "https://commons.wikimedia.org/wiki/File:Three_holes_buttons.jpg", 
+                                                "source_name": "Wikipedia", 
+                                                "license": "Creative Commons Attribution-Share Alike", 
+                                                "author": "Marco Bernardini"
+                                            }
+                                        }, 
+                                        "id": "Button"
+                                    }, 
+                                    {
+                                        "image": {
                                             "thumbnail_url": "img/thumbnail/Closure/Cufflink.jpg", 
                                             "full_size_url": "img/full_size/Closure/Cufflink.jpg", 
                                             "rights": {
@@ -1172,32 +1311,6 @@ var WORKSHEET_DEFINITION = {
                                     }, 
                                     {
                                         "image": {
-                                            "thumbnail_url": "img/thumbnail/Closure/Lacing.jpg", 
-                                            "full_size_url": "img/full_size/Closure/Lacing.jpg", 
-                                            "rights": {
-                                                "source_url": "https://commons.wikimedia.org/wiki/File:Lace_(fastening).jpg", 
-                                                "source_name": "Wikipedia / Europeana Fashion Thesaurus", 
-                                                "license": "Public domain", 
-                                                "author": "David Ring"
-                                            }
-                                        }, 
-                                        "id": "Lacing"
-                                    }, 
-                                    {
-                                        "image": {
-                                            "thumbnail_url": "img/thumbnail/Closure/Button.jpg", 
-                                            "full_size_url": "img/full_size/Closure/Button.jpg", 
-                                            "rights": {
-                                                "source_url": "https://commons.wikimedia.org/wiki/File:Three_holes_buttons.jpg", 
-                                                "source_name": "Wikipedia", 
-                                                "license": "Creative Commons Attribution-Share Alike", 
-                                                "author": "Marco Bernardini"
-                                            }
-                                        }, 
-                                        "id": "Button"
-                                    }, 
-                                    {
-                                        "image": {
                                             "thumbnail_url": "img/thumbnail/Closure/Hook-and-eye.jpg", 
                                             "full_size_url": "img/full_size/Closure/Hook-and-eye.jpg", 
                                             "rights": {
@@ -1211,6 +1324,19 @@ var WORKSHEET_DEFINITION = {
                                     }, 
                                     {
                                         "image": {
+                                            "thumbnail_url": "img/thumbnail/Closure/Lacing.jpg", 
+                                            "full_size_url": "img/full_size/Closure/Lacing.jpg", 
+                                            "rights": {
+                                                "source_url": "https://commons.wikimedia.org/wiki/File:Lace_(fastening).jpg", 
+                                                "source_name": "Wikipedia / Europeana Fashion Thesaurus", 
+                                                "license": "Public domain", 
+                                                "author": "David Ring"
+                                            }
+                                        }, 
+                                        "id": "Lacing"
+                                    }, 
+                                    {
+                                        "image": {
                                             "thumbnail_url": "img/thumbnail/Closure/Zip.jpg", 
                                             "full_size_url": "img/full_size/Closure/Zip.jpg", 
                                             "rights": {
@@ -1221,6 +1347,24 @@ var WORKSHEET_DEFINITION = {
                                             }
                                         }, 
                                         "id": "Zip"
+                                    }
+                                ]
+                            }, 
+                            {
+                                "id": "Front Top Decoration", 
+                                "values_": [
+                                    {
+                                        "image": {
+                                            "thumbnail_url": "img/thumbnail/Decoration/Fringe.jpg", 
+                                            "full_size_url": "img/full_size/Decoration/Fringe.jpg", 
+                                            "rights": {
+                                                "source_url": "https://commons.wikimedia.org/wiki/File:Fringe_(fabric).jpg", 
+                                                "source_name": "Wikipedia / Europeana Fashion Thesaurus", 
+                                                "license": "Public domain", 
+                                                "author": "David Ring"
+                                            }
+                                        }, 
+                                        "id": "Fringe"
                                     }
                                 ]
                             }, 
@@ -1296,6 +1440,19 @@ var WORKSHEET_DEFINITION = {
                                     }, 
                                     {
                                         "image": {
+                                            "thumbnail_url": "img/thumbnail/Closure/Button.jpg", 
+                                            "full_size_url": "img/full_size/Closure/Button.jpg", 
+                                            "rights": {
+                                                "source_url": "https://commons.wikimedia.org/wiki/File:Three_holes_buttons.jpg", 
+                                                "source_name": "Wikipedia", 
+                                                "license": "Creative Commons Attribution-Share Alike", 
+                                                "author": "Marco Bernardini"
+                                            }
+                                        }, 
+                                        "id": "Button"
+                                    }, 
+                                    {
+                                        "image": {
                                             "thumbnail_url": "img/thumbnail/Closure/Cufflink.jpg", 
                                             "full_size_url": "img/full_size/Closure/Cufflink.jpg", 
                                             "rights": {
@@ -1322,32 +1479,6 @@ var WORKSHEET_DEFINITION = {
                                     }, 
                                     {
                                         "image": {
-                                            "thumbnail_url": "img/thumbnail/Closure/Lacing.jpg", 
-                                            "full_size_url": "img/full_size/Closure/Lacing.jpg", 
-                                            "rights": {
-                                                "source_url": "https://commons.wikimedia.org/wiki/File:Lace_(fastening).jpg", 
-                                                "source_name": "Wikipedia / Europeana Fashion Thesaurus", 
-                                                "license": "Public domain", 
-                                                "author": "David Ring"
-                                            }
-                                        }, 
-                                        "id": "Lacing"
-                                    }, 
-                                    {
-                                        "image": {
-                                            "thumbnail_url": "img/thumbnail/Closure/Button.jpg", 
-                                            "full_size_url": "img/full_size/Closure/Button.jpg", 
-                                            "rights": {
-                                                "source_url": "https://commons.wikimedia.org/wiki/File:Three_holes_buttons.jpg", 
-                                                "source_name": "Wikipedia", 
-                                                "license": "Creative Commons Attribution-Share Alike", 
-                                                "author": "Marco Bernardini"
-                                            }
-                                        }, 
-                                        "id": "Button"
-                                    }, 
-                                    {
-                                        "image": {
                                             "thumbnail_url": "img/thumbnail/Closure/Hook-and-eye.jpg", 
                                             "full_size_url": "img/full_size/Closure/Hook-and-eye.jpg", 
                                             "rights": {
@@ -1361,6 +1492,19 @@ var WORKSHEET_DEFINITION = {
                                     }, 
                                     {
                                         "image": {
+                                            "thumbnail_url": "img/thumbnail/Closure/Lacing.jpg", 
+                                            "full_size_url": "img/full_size/Closure/Lacing.jpg", 
+                                            "rights": {
+                                                "source_url": "https://commons.wikimedia.org/wiki/File:Lace_(fastening).jpg", 
+                                                "source_name": "Wikipedia / Europeana Fashion Thesaurus", 
+                                                "license": "Public domain", 
+                                                "author": "David Ring"
+                                            }
+                                        }, 
+                                        "id": "Lacing"
+                                    }, 
+                                    {
+                                        "image": {
                                             "thumbnail_url": "img/thumbnail/Closure/Zip.jpg", 
                                             "full_size_url": "img/full_size/Closure/Zip.jpg", 
                                             "rights": {
@@ -1371,6 +1515,24 @@ var WORKSHEET_DEFINITION = {
                                             }
                                         }, 
                                         "id": "Zip"
+                                    }
+                                ]
+                            }, 
+                            {
+                                "id": "Front Bottom Decoration", 
+                                "values_": [
+                                    {
+                                        "image": {
+                                            "thumbnail_url": "img/thumbnail/Decoration/Fringe.jpg", 
+                                            "full_size_url": "img/full_size/Decoration/Fringe.jpg", 
+                                            "rights": {
+                                                "source_url": "https://commons.wikimedia.org/wiki/File:Fringe_(fabric).jpg", 
+                                                "source_name": "Wikipedia / Europeana Fashion Thesaurus", 
+                                                "license": "Public domain", 
+                                                "author": "David Ring"
+                                            }
+                                        }, 
+                                        "id": "Fringe"
                                     }
                                 ]
                             }, 
@@ -1451,6 +1613,19 @@ var WORKSHEET_DEFINITION = {
                                     }, 
                                     {
                                         "image": {
+                                            "thumbnail_url": "img/thumbnail/Closure/Button.jpg", 
+                                            "full_size_url": "img/full_size/Closure/Button.jpg", 
+                                            "rights": {
+                                                "source_url": "https://commons.wikimedia.org/wiki/File:Three_holes_buttons.jpg", 
+                                                "source_name": "Wikipedia", 
+                                                "license": "Creative Commons Attribution-Share Alike", 
+                                                "author": "Marco Bernardini"
+                                            }
+                                        }, 
+                                        "id": "Button"
+                                    }, 
+                                    {
+                                        "image": {
                                             "thumbnail_url": "img/thumbnail/Closure/Cufflink.jpg", 
                                             "full_size_url": "img/full_size/Closure/Cufflink.jpg", 
                                             "rights": {
@@ -1477,32 +1652,6 @@ var WORKSHEET_DEFINITION = {
                                     }, 
                                     {
                                         "image": {
-                                            "thumbnail_url": "img/thumbnail/Closure/Lacing.jpg", 
-                                            "full_size_url": "img/full_size/Closure/Lacing.jpg", 
-                                            "rights": {
-                                                "source_url": "https://commons.wikimedia.org/wiki/File:Lace_(fastening).jpg", 
-                                                "source_name": "Wikipedia / Europeana Fashion Thesaurus", 
-                                                "license": "Public domain", 
-                                                "author": "David Ring"
-                                            }
-                                        }, 
-                                        "id": "Lacing"
-                                    }, 
-                                    {
-                                        "image": {
-                                            "thumbnail_url": "img/thumbnail/Closure/Button.jpg", 
-                                            "full_size_url": "img/full_size/Closure/Button.jpg", 
-                                            "rights": {
-                                                "source_url": "https://commons.wikimedia.org/wiki/File:Three_holes_buttons.jpg", 
-                                                "source_name": "Wikipedia", 
-                                                "license": "Creative Commons Attribution-Share Alike", 
-                                                "author": "Marco Bernardini"
-                                            }
-                                        }, 
-                                        "id": "Button"
-                                    }, 
-                                    {
-                                        "image": {
                                             "thumbnail_url": "img/thumbnail/Closure/Hook-and-eye.jpg", 
                                             "full_size_url": "img/full_size/Closure/Hook-and-eye.jpg", 
                                             "rights": {
@@ -1516,6 +1665,19 @@ var WORKSHEET_DEFINITION = {
                                     }, 
                                     {
                                         "image": {
+                                            "thumbnail_url": "img/thumbnail/Closure/Lacing.jpg", 
+                                            "full_size_url": "img/full_size/Closure/Lacing.jpg", 
+                                            "rights": {
+                                                "source_url": "https://commons.wikimedia.org/wiki/File:Lace_(fastening).jpg", 
+                                                "source_name": "Wikipedia / Europeana Fashion Thesaurus", 
+                                                "license": "Public domain", 
+                                                "author": "David Ring"
+                                            }
+                                        }, 
+                                        "id": "Lacing"
+                                    }, 
+                                    {
+                                        "image": {
                                             "thumbnail_url": "img/thumbnail/Closure/Zip.jpg", 
                                             "full_size_url": "img/full_size/Closure/Zip.jpg", 
                                             "rights": {
@@ -1526,6 +1688,24 @@ var WORKSHEET_DEFINITION = {
                                             }
                                         }, 
                                         "id": "Zip"
+                                    }
+                                ]
+                            }, 
+                            {
+                                "id": "Back Whole Decoration", 
+                                "values_": [
+                                    {
+                                        "image": {
+                                            "thumbnail_url": "img/thumbnail/Decoration/Fringe.jpg", 
+                                            "full_size_url": "img/full_size/Decoration/Fringe.jpg", 
+                                            "rights": {
+                                                "source_url": "https://commons.wikimedia.org/wiki/File:Fringe_(fabric).jpg", 
+                                                "source_name": "Wikipedia / Europeana Fashion Thesaurus", 
+                                                "license": "Public domain", 
+                                                "author": "David Ring"
+                                            }
+                                        }, 
+                                        "id": "Fringe"
                                     }
                                 ]
                             }, 
@@ -1601,6 +1781,19 @@ var WORKSHEET_DEFINITION = {
                                     }, 
                                     {
                                         "image": {
+                                            "thumbnail_url": "img/thumbnail/Closure/Button.jpg", 
+                                            "full_size_url": "img/full_size/Closure/Button.jpg", 
+                                            "rights": {
+                                                "source_url": "https://commons.wikimedia.org/wiki/File:Three_holes_buttons.jpg", 
+                                                "source_name": "Wikipedia", 
+                                                "license": "Creative Commons Attribution-Share Alike", 
+                                                "author": "Marco Bernardini"
+                                            }
+                                        }, 
+                                        "id": "Button"
+                                    }, 
+                                    {
+                                        "image": {
                                             "thumbnail_url": "img/thumbnail/Closure/Cufflink.jpg", 
                                             "full_size_url": "img/full_size/Closure/Cufflink.jpg", 
                                             "rights": {
@@ -1627,32 +1820,6 @@ var WORKSHEET_DEFINITION = {
                                     }, 
                                     {
                                         "image": {
-                                            "thumbnail_url": "img/thumbnail/Closure/Lacing.jpg", 
-                                            "full_size_url": "img/full_size/Closure/Lacing.jpg", 
-                                            "rights": {
-                                                "source_url": "https://commons.wikimedia.org/wiki/File:Lace_(fastening).jpg", 
-                                                "source_name": "Wikipedia / Europeana Fashion Thesaurus", 
-                                                "license": "Public domain", 
-                                                "author": "David Ring"
-                                            }
-                                        }, 
-                                        "id": "Lacing"
-                                    }, 
-                                    {
-                                        "image": {
-                                            "thumbnail_url": "img/thumbnail/Closure/Button.jpg", 
-                                            "full_size_url": "img/full_size/Closure/Button.jpg", 
-                                            "rights": {
-                                                "source_url": "https://commons.wikimedia.org/wiki/File:Three_holes_buttons.jpg", 
-                                                "source_name": "Wikipedia", 
-                                                "license": "Creative Commons Attribution-Share Alike", 
-                                                "author": "Marco Bernardini"
-                                            }
-                                        }, 
-                                        "id": "Button"
-                                    }, 
-                                    {
-                                        "image": {
                                             "thumbnail_url": "img/thumbnail/Closure/Hook-and-eye.jpg", 
                                             "full_size_url": "img/full_size/Closure/Hook-and-eye.jpg", 
                                             "rights": {
@@ -1666,6 +1833,19 @@ var WORKSHEET_DEFINITION = {
                                     }, 
                                     {
                                         "image": {
+                                            "thumbnail_url": "img/thumbnail/Closure/Lacing.jpg", 
+                                            "full_size_url": "img/full_size/Closure/Lacing.jpg", 
+                                            "rights": {
+                                                "source_url": "https://commons.wikimedia.org/wiki/File:Lace_(fastening).jpg", 
+                                                "source_name": "Wikipedia / Europeana Fashion Thesaurus", 
+                                                "license": "Public domain", 
+                                                "author": "David Ring"
+                                            }
+                                        }, 
+                                        "id": "Lacing"
+                                    }, 
+                                    {
+                                        "image": {
                                             "thumbnail_url": "img/thumbnail/Closure/Zip.jpg", 
                                             "full_size_url": "img/full_size/Closure/Zip.jpg", 
                                             "rights": {
@@ -1676,6 +1856,24 @@ var WORKSHEET_DEFINITION = {
                                             }
                                         }, 
                                         "id": "Zip"
+                                    }
+                                ]
+                            }, 
+                            {
+                                "id": "Back Top Decoration", 
+                                "values_": [
+                                    {
+                                        "image": {
+                                            "thumbnail_url": "img/thumbnail/Decoration/Fringe.jpg", 
+                                            "full_size_url": "img/full_size/Decoration/Fringe.jpg", 
+                                            "rights": {
+                                                "source_url": "https://commons.wikimedia.org/wiki/File:Fringe_(fabric).jpg", 
+                                                "source_name": "Wikipedia / Europeana Fashion Thesaurus", 
+                                                "license": "Public domain", 
+                                                "author": "David Ring"
+                                            }
+                                        }, 
+                                        "id": "Fringe"
                                     }
                                 ]
                             }, 
@@ -1751,6 +1949,19 @@ var WORKSHEET_DEFINITION = {
                                     }, 
                                     {
                                         "image": {
+                                            "thumbnail_url": "img/thumbnail/Closure/Button.jpg", 
+                                            "full_size_url": "img/full_size/Closure/Button.jpg", 
+                                            "rights": {
+                                                "source_url": "https://commons.wikimedia.org/wiki/File:Three_holes_buttons.jpg", 
+                                                "source_name": "Wikipedia", 
+                                                "license": "Creative Commons Attribution-Share Alike", 
+                                                "author": "Marco Bernardini"
+                                            }
+                                        }, 
+                                        "id": "Button"
+                                    }, 
+                                    {
+                                        "image": {
                                             "thumbnail_url": "img/thumbnail/Closure/Cufflink.jpg", 
                                             "full_size_url": "img/full_size/Closure/Cufflink.jpg", 
                                             "rights": {
@@ -1777,32 +1988,6 @@ var WORKSHEET_DEFINITION = {
                                     }, 
                                     {
                                         "image": {
-                                            "thumbnail_url": "img/thumbnail/Closure/Lacing.jpg", 
-                                            "full_size_url": "img/full_size/Closure/Lacing.jpg", 
-                                            "rights": {
-                                                "source_url": "https://commons.wikimedia.org/wiki/File:Lace_(fastening).jpg", 
-                                                "source_name": "Wikipedia / Europeana Fashion Thesaurus", 
-                                                "license": "Public domain", 
-                                                "author": "David Ring"
-                                            }
-                                        }, 
-                                        "id": "Lacing"
-                                    }, 
-                                    {
-                                        "image": {
-                                            "thumbnail_url": "img/thumbnail/Closure/Button.jpg", 
-                                            "full_size_url": "img/full_size/Closure/Button.jpg", 
-                                            "rights": {
-                                                "source_url": "https://commons.wikimedia.org/wiki/File:Three_holes_buttons.jpg", 
-                                                "source_name": "Wikipedia", 
-                                                "license": "Creative Commons Attribution-Share Alike", 
-                                                "author": "Marco Bernardini"
-                                            }
-                                        }, 
-                                        "id": "Button"
-                                    }, 
-                                    {
-                                        "image": {
                                             "thumbnail_url": "img/thumbnail/Closure/Hook-and-eye.jpg", 
                                             "full_size_url": "img/full_size/Closure/Hook-and-eye.jpg", 
                                             "rights": {
@@ -1816,6 +2001,19 @@ var WORKSHEET_DEFINITION = {
                                     }, 
                                     {
                                         "image": {
+                                            "thumbnail_url": "img/thumbnail/Closure/Lacing.jpg", 
+                                            "full_size_url": "img/full_size/Closure/Lacing.jpg", 
+                                            "rights": {
+                                                "source_url": "https://commons.wikimedia.org/wiki/File:Lace_(fastening).jpg", 
+                                                "source_name": "Wikipedia / Europeana Fashion Thesaurus", 
+                                                "license": "Public domain", 
+                                                "author": "David Ring"
+                                            }
+                                        }, 
+                                        "id": "Lacing"
+                                    }, 
+                                    {
+                                        "image": {
                                             "thumbnail_url": "img/thumbnail/Closure/Zip.jpg", 
                                             "full_size_url": "img/full_size/Closure/Zip.jpg", 
                                             "rights": {
@@ -1826,6 +2024,24 @@ var WORKSHEET_DEFINITION = {
                                             }
                                         }, 
                                         "id": "Zip"
+                                    }
+                                ]
+                            }, 
+                            {
+                                "id": "Back Bottom Decoration", 
+                                "values_": [
+                                    {
+                                        "image": {
+                                            "thumbnail_url": "img/thumbnail/Decoration/Fringe.jpg", 
+                                            "full_size_url": "img/full_size/Decoration/Fringe.jpg", 
+                                            "rights": {
+                                                "source_url": "https://commons.wikimedia.org/wiki/File:Fringe_(fabric).jpg", 
+                                                "source_name": "Wikipedia / Europeana Fashion Thesaurus", 
+                                                "license": "Public domain", 
+                                                "author": "David Ring"
+                                            }
+                                        }, 
+                                        "id": "Fringe"
                                     }
                                 ]
                             }, 
@@ -1906,6 +2122,19 @@ var WORKSHEET_DEFINITION = {
                                     }, 
                                     {
                                         "image": {
+                                            "thumbnail_url": "img/thumbnail/Closure/Button.jpg", 
+                                            "full_size_url": "img/full_size/Closure/Button.jpg", 
+                                            "rights": {
+                                                "source_url": "https://commons.wikimedia.org/wiki/File:Three_holes_buttons.jpg", 
+                                                "source_name": "Wikipedia", 
+                                                "license": "Creative Commons Attribution-Share Alike", 
+                                                "author": "Marco Bernardini"
+                                            }
+                                        }, 
+                                        "id": "Button"
+                                    }, 
+                                    {
+                                        "image": {
                                             "thumbnail_url": "img/thumbnail/Closure/Cufflink.jpg", 
                                             "full_size_url": "img/full_size/Closure/Cufflink.jpg", 
                                             "rights": {
@@ -1932,32 +2161,6 @@ var WORKSHEET_DEFINITION = {
                                     }, 
                                     {
                                         "image": {
-                                            "thumbnail_url": "img/thumbnail/Closure/Lacing.jpg", 
-                                            "full_size_url": "img/full_size/Closure/Lacing.jpg", 
-                                            "rights": {
-                                                "source_url": "https://commons.wikimedia.org/wiki/File:Lace_(fastening).jpg", 
-                                                "source_name": "Wikipedia / Europeana Fashion Thesaurus", 
-                                                "license": "Public domain", 
-                                                "author": "David Ring"
-                                            }
-                                        }, 
-                                        "id": "Lacing"
-                                    }, 
-                                    {
-                                        "image": {
-                                            "thumbnail_url": "img/thumbnail/Closure/Button.jpg", 
-                                            "full_size_url": "img/full_size/Closure/Button.jpg", 
-                                            "rights": {
-                                                "source_url": "https://commons.wikimedia.org/wiki/File:Three_holes_buttons.jpg", 
-                                                "source_name": "Wikipedia", 
-                                                "license": "Creative Commons Attribution-Share Alike", 
-                                                "author": "Marco Bernardini"
-                                            }
-                                        }, 
-                                        "id": "Button"
-                                    }, 
-                                    {
-                                        "image": {
                                             "thumbnail_url": "img/thumbnail/Closure/Hook-and-eye.jpg", 
                                             "full_size_url": "img/full_size/Closure/Hook-and-eye.jpg", 
                                             "rights": {
@@ -1971,6 +2174,19 @@ var WORKSHEET_DEFINITION = {
                                     }, 
                                     {
                                         "image": {
+                                            "thumbnail_url": "img/thumbnail/Closure/Lacing.jpg", 
+                                            "full_size_url": "img/full_size/Closure/Lacing.jpg", 
+                                            "rights": {
+                                                "source_url": "https://commons.wikimedia.org/wiki/File:Lace_(fastening).jpg", 
+                                                "source_name": "Wikipedia / Europeana Fashion Thesaurus", 
+                                                "license": "Public domain", 
+                                                "author": "David Ring"
+                                            }
+                                        }, 
+                                        "id": "Lacing"
+                                    }, 
+                                    {
+                                        "image": {
                                             "thumbnail_url": "img/thumbnail/Closure/Zip.jpg", 
                                             "full_size_url": "img/full_size/Closure/Zip.jpg", 
                                             "rights": {
@@ -1981,6 +2197,24 @@ var WORKSHEET_DEFINITION = {
                                             }
                                         }, 
                                         "id": "Zip"
+                                    }
+                                ]
+                            }, 
+                            {
+                                "id": "Interior Whole Decoration", 
+                                "values_": [
+                                    {
+                                        "image": {
+                                            "thumbnail_url": "img/thumbnail/Decoration/Fringe.jpg", 
+                                            "full_size_url": "img/full_size/Decoration/Fringe.jpg", 
+                                            "rights": {
+                                                "source_url": "https://commons.wikimedia.org/wiki/File:Fringe_(fabric).jpg", 
+                                                "source_name": "Wikipedia / Europeana Fashion Thesaurus", 
+                                                "license": "Public domain", 
+                                                "author": "David Ring"
+                                            }
+                                        }, 
+                                        "id": "Fringe"
                                     }
                                 ]
                             }, 
@@ -2056,6 +2290,19 @@ var WORKSHEET_DEFINITION = {
                                     }, 
                                     {
                                         "image": {
+                                            "thumbnail_url": "img/thumbnail/Closure/Button.jpg", 
+                                            "full_size_url": "img/full_size/Closure/Button.jpg", 
+                                            "rights": {
+                                                "source_url": "https://commons.wikimedia.org/wiki/File:Three_holes_buttons.jpg", 
+                                                "source_name": "Wikipedia", 
+                                                "license": "Creative Commons Attribution-Share Alike", 
+                                                "author": "Marco Bernardini"
+                                            }
+                                        }, 
+                                        "id": "Button"
+                                    }, 
+                                    {
+                                        "image": {
                                             "thumbnail_url": "img/thumbnail/Closure/Cufflink.jpg", 
                                             "full_size_url": "img/full_size/Closure/Cufflink.jpg", 
                                             "rights": {
@@ -2082,32 +2329,6 @@ var WORKSHEET_DEFINITION = {
                                     }, 
                                     {
                                         "image": {
-                                            "thumbnail_url": "img/thumbnail/Closure/Lacing.jpg", 
-                                            "full_size_url": "img/full_size/Closure/Lacing.jpg", 
-                                            "rights": {
-                                                "source_url": "https://commons.wikimedia.org/wiki/File:Lace_(fastening).jpg", 
-                                                "source_name": "Wikipedia / Europeana Fashion Thesaurus", 
-                                                "license": "Public domain", 
-                                                "author": "David Ring"
-                                            }
-                                        }, 
-                                        "id": "Lacing"
-                                    }, 
-                                    {
-                                        "image": {
-                                            "thumbnail_url": "img/thumbnail/Closure/Button.jpg", 
-                                            "full_size_url": "img/full_size/Closure/Button.jpg", 
-                                            "rights": {
-                                                "source_url": "https://commons.wikimedia.org/wiki/File:Three_holes_buttons.jpg", 
-                                                "source_name": "Wikipedia", 
-                                                "license": "Creative Commons Attribution-Share Alike", 
-                                                "author": "Marco Bernardini"
-                                            }
-                                        }, 
-                                        "id": "Button"
-                                    }, 
-                                    {
-                                        "image": {
                                             "thumbnail_url": "img/thumbnail/Closure/Hook-and-eye.jpg", 
                                             "full_size_url": "img/full_size/Closure/Hook-and-eye.jpg", 
                                             "rights": {
@@ -2121,6 +2342,19 @@ var WORKSHEET_DEFINITION = {
                                     }, 
                                     {
                                         "image": {
+                                            "thumbnail_url": "img/thumbnail/Closure/Lacing.jpg", 
+                                            "full_size_url": "img/full_size/Closure/Lacing.jpg", 
+                                            "rights": {
+                                                "source_url": "https://commons.wikimedia.org/wiki/File:Lace_(fastening).jpg", 
+                                                "source_name": "Wikipedia / Europeana Fashion Thesaurus", 
+                                                "license": "Public domain", 
+                                                "author": "David Ring"
+                                            }
+                                        }, 
+                                        "id": "Lacing"
+                                    }, 
+                                    {
+                                        "image": {
                                             "thumbnail_url": "img/thumbnail/Closure/Zip.jpg", 
                                             "full_size_url": "img/full_size/Closure/Zip.jpg", 
                                             "rights": {
@@ -2131,6 +2365,24 @@ var WORKSHEET_DEFINITION = {
                                             }
                                         }, 
                                         "id": "Zip"
+                                    }
+                                ]
+                            }, 
+                            {
+                                "id": "Interior Top Decoration", 
+                                "values_": [
+                                    {
+                                        "image": {
+                                            "thumbnail_url": "img/thumbnail/Decoration/Fringe.jpg", 
+                                            "full_size_url": "img/full_size/Decoration/Fringe.jpg", 
+                                            "rights": {
+                                                "source_url": "https://commons.wikimedia.org/wiki/File:Fringe_(fabric).jpg", 
+                                                "source_name": "Wikipedia / Europeana Fashion Thesaurus", 
+                                                "license": "Public domain", 
+                                                "author": "David Ring"
+                                            }
+                                        }, 
+                                        "id": "Fringe"
                                     }
                                 ]
                             }, 
@@ -2206,6 +2458,19 @@ var WORKSHEET_DEFINITION = {
                                     }, 
                                     {
                                         "image": {
+                                            "thumbnail_url": "img/thumbnail/Closure/Button.jpg", 
+                                            "full_size_url": "img/full_size/Closure/Button.jpg", 
+                                            "rights": {
+                                                "source_url": "https://commons.wikimedia.org/wiki/File:Three_holes_buttons.jpg", 
+                                                "source_name": "Wikipedia", 
+                                                "license": "Creative Commons Attribution-Share Alike", 
+                                                "author": "Marco Bernardini"
+                                            }
+                                        }, 
+                                        "id": "Button"
+                                    }, 
+                                    {
+                                        "image": {
                                             "thumbnail_url": "img/thumbnail/Closure/Cufflink.jpg", 
                                             "full_size_url": "img/full_size/Closure/Cufflink.jpg", 
                                             "rights": {
@@ -2232,32 +2497,6 @@ var WORKSHEET_DEFINITION = {
                                     }, 
                                     {
                                         "image": {
-                                            "thumbnail_url": "img/thumbnail/Closure/Lacing.jpg", 
-                                            "full_size_url": "img/full_size/Closure/Lacing.jpg", 
-                                            "rights": {
-                                                "source_url": "https://commons.wikimedia.org/wiki/File:Lace_(fastening).jpg", 
-                                                "source_name": "Wikipedia / Europeana Fashion Thesaurus", 
-                                                "license": "Public domain", 
-                                                "author": "David Ring"
-                                            }
-                                        }, 
-                                        "id": "Lacing"
-                                    }, 
-                                    {
-                                        "image": {
-                                            "thumbnail_url": "img/thumbnail/Closure/Button.jpg", 
-                                            "full_size_url": "img/full_size/Closure/Button.jpg", 
-                                            "rights": {
-                                                "source_url": "https://commons.wikimedia.org/wiki/File:Three_holes_buttons.jpg", 
-                                                "source_name": "Wikipedia", 
-                                                "license": "Creative Commons Attribution-Share Alike", 
-                                                "author": "Marco Bernardini"
-                                            }
-                                        }, 
-                                        "id": "Button"
-                                    }, 
-                                    {
-                                        "image": {
                                             "thumbnail_url": "img/thumbnail/Closure/Hook-and-eye.jpg", 
                                             "full_size_url": "img/full_size/Closure/Hook-and-eye.jpg", 
                                             "rights": {
@@ -2271,6 +2510,19 @@ var WORKSHEET_DEFINITION = {
                                     }, 
                                     {
                                         "image": {
+                                            "thumbnail_url": "img/thumbnail/Closure/Lacing.jpg", 
+                                            "full_size_url": "img/full_size/Closure/Lacing.jpg", 
+                                            "rights": {
+                                                "source_url": "https://commons.wikimedia.org/wiki/File:Lace_(fastening).jpg", 
+                                                "source_name": "Wikipedia / Europeana Fashion Thesaurus", 
+                                                "license": "Public domain", 
+                                                "author": "David Ring"
+                                            }
+                                        }, 
+                                        "id": "Lacing"
+                                    }, 
+                                    {
+                                        "image": {
                                             "thumbnail_url": "img/thumbnail/Closure/Zip.jpg", 
                                             "full_size_url": "img/full_size/Closure/Zip.jpg", 
                                             "rights": {
@@ -2281,6 +2533,24 @@ var WORKSHEET_DEFINITION = {
                                             }
                                         }, 
                                         "id": "Zip"
+                                    }
+                                ]
+                            }, 
+                            {
+                                "id": "Interior Bottom Decoration", 
+                                "values_": [
+                                    {
+                                        "image": {
+                                            "thumbnail_url": "img/thumbnail/Decoration/Fringe.jpg", 
+                                            "full_size_url": "img/full_size/Decoration/Fringe.jpg", 
+                                            "rights": {
+                                                "source_url": "https://commons.wikimedia.org/wiki/File:Fringe_(fabric).jpg", 
+                                                "source_name": "Wikipedia / Europeana Fashion Thesaurus", 
+                                                "license": "Public domain", 
+                                                "author": "David Ring"
+                                            }
+                                        }, 
+                                        "id": "Fringe"
                                     }
                                 ]
                             }, 

@@ -19,6 +19,8 @@ THUMBNAIL_DIMENSIONS = (200, 200)
 
 # Helper functions
 def feature_value(
+    description=None,
+    description_rights=None,
     image_rights=None
 ):
     out = {}
@@ -39,6 +41,15 @@ def rights(
             .set_source_name(source_name)\
             .set_source_url(source_url)\
             .build()
+
+def aat_rights():
+    return \
+        rights(
+            author='The J. Paul Getty Trust',
+            license_='Open Data Commons Attribution License',
+            source_name='Art and Architecture Thesaurus (AAT)',
+            source_url='http://www.getty.edu/research/tools/vocabularies/aat/'
+        )
 
 def eft_wikipedia_rights(source_file_name):
     return rights(
@@ -79,16 +90,9 @@ features = OrderedDict()
 
 closures = OrderedDict()
 closures['Buckle'] = feature_value(
+    description='Devices used for fastening consisting of a usually open rectangular or rounded frame and a tongue or catch attached to one side or a vertical bar attached across the center. Sometimes used alone as an ornament.',
+    description_rights=aat_rights(),
     image_rights=eft_wikipedia_rights(source_file_name='Buckle.jpg')
-)
-closures['Cufflink'] = feature_value(
-    image_rights=eft_wikipedia_rights(source_file_name='Cuff_links.jpg')
-)
-closures['Frog closure'] = feature_value(
-    image_rights=eft_wikipedia_rights(source_file_name='Frog_(fastening).jpg')
-)
-closures['Lacing'] = feature_value(
-    image_rights=eft_wikipedia_rights(source_file_name='Lace_(fastening).jpg')
 )
 closures['Button'] = feature_value(
     image_rights=wikipedia_rights(
@@ -96,11 +100,24 @@ closures['Button'] = feature_value(
         source_file_name='Three_holes_buttons.jpg',
     )
 )
+closures['Cufflink'] = feature_value(
+    description='Linked ornamental buttons or buttonlike devices for fastening a shirt cuff.',
+    description_rights=aat_rights(),
+    image_rights=eft_wikipedia_rights(source_file_name='Cuff_links.jpg')
+)
+closures['Frog closure'] = feature_value(
+    image_rights=eft_wikipedia_rights(source_file_name='Frog_(fastening).jpg')
+)
 closures['Hook-and-eye'] = feature_value(
     image_rights=wikipedia_rights(
         author='Wikipedia user Eitan F',
         source_file_name='Hook_and_eye_clasp.JPG'
     )
+)
+closures['Lacing'] = feature_value(
+    description='Cords, bands, or similar flexible devices used for fastening, especially by interlacing, such as in a knot or bow',
+    description_rights=aat_rights(),
+    image_rights=eft_wikipedia_rights(source_file_name='Lace_(fastening).jpg')
 )
 closures['Zip'] = feature_value(
     image_rights=wikipedia_rights(
@@ -114,9 +131,13 @@ features['Closure'] = {'values': closures}
 # TODO: https://en.wikipedia.org/wiki/Collar_(clothing)
 collars = OrderedDict()
 collars['Band'] = feature_value(
+    description='Flat, stand-up collars, starched, wired, or otherwise stiffened, especially those commonly worn by men and women in the 17th century',
+    description_rights=aat_rights(),
     image_rights=eft_wikipedia_rights(source_file_name='Band_(collar).jpg')
 )
 collars['Jabot'] = feature_value(
+    description='Detachable, made-up cascades of soft fabric, often lace, worn at the center front of the neckline over other garments. ',
+    description_rights=aat_rights(),
     image_rights=eft_wikipedia_rights(source_file_name='Jabot.jpg')
 )
 # collar_characteristics = [
@@ -136,6 +157,16 @@ colors = [
     feature_value('Red'),
     feature_value('White'),
 ]
+
+
+decorations = OrderedDict()
+decorations['Fringe'] = feature_value(
+    description='Trimming consisting of long or short lengths of straight or twisted thread, cord, or tassel; often grouped or knotted in various designs',
+    description_rights=aat_rights(),
+    image_rights=eft_wikipedia_rights(source_file_name='Fringe_(fabric).jpg')
+)
+features['Decoration'] = {'values': decorations}
+
 
 interior_characteristics = [
     feature_value('Attached underskirt'),
