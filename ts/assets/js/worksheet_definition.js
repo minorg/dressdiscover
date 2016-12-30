@@ -24,6 +24,19 @@ var WORKSHEET_DEFINITION = {
                                     }, 
                                     {
                                         "image": {
+                                            "thumbnail_url": "img/thumbnail/Closure/Cufflink.jpg", 
+                                            "full_size_url": "img/full_size/Closure/Cufflink.jpg", 
+                                            "rights": {
+                                                "source_url": "https://commons.wikimedia.org/wiki/File:Cuff_link.jpg", 
+                                                "source_name": "Wikipedia / Europeana Fashion Thesaurus", 
+                                                "license": "Public domain", 
+                                                "author": "David Ring"
+                                            }
+                                        }, 
+                                        "id": "Cufflink"
+                                    }, 
+                                    {
+                                        "image": {
                                             "thumbnail_url": "img/thumbnail/Closure/Button.jpg", 
                                             "full_size_url": "img/full_size/Closure/Button.jpg", 
                                             "rights": {
@@ -135,6 +148,19 @@ var WORKSHEET_DEFINITION = {
                                     }, 
                                     {
                                         "image": {
+                                            "thumbnail_url": "img/thumbnail/Closure/Cufflink.jpg", 
+                                            "full_size_url": "img/full_size/Closure/Cufflink.jpg", 
+                                            "rights": {
+                                                "source_url": "https://commons.wikimedia.org/wiki/File:Cuff_link.jpg", 
+                                                "source_name": "Wikipedia / Europeana Fashion Thesaurus", 
+                                                "license": "Public domain", 
+                                                "author": "David Ring"
+                                            }
+                                        }, 
+                                        "id": "Cufflink"
+                                    }, 
+                                    {
+                                        "image": {
                                             "thumbnail_url": "img/thumbnail/Closure/Button.jpg", 
                                             "full_size_url": "img/full_size/Closure/Button.jpg", 
                                             "rights": {
@@ -243,6 +269,19 @@ var WORKSHEET_DEFINITION = {
                                     }
                                 }, 
                                 "id": "Buckle"
+                            }, 
+                            {
+                                "image": {
+                                    "thumbnail_url": "img/thumbnail/Closure/Cufflink.jpg", 
+                                    "full_size_url": "img/full_size/Closure/Cufflink.jpg", 
+                                    "rights": {
+                                        "source_url": "https://commons.wikimedia.org/wiki/File:Cuff_link.jpg", 
+                                        "source_name": "Wikipedia / Europeana Fashion Thesaurus", 
+                                        "license": "Public domain", 
+                                        "author": "David Ring"
+                                    }
+                                }, 
+                                "id": "Cufflink"
                             }, 
                             {
                                 "image": {
@@ -378,6 +417,19 @@ var WORKSHEET_DEFINITION = {
                             }, 
                             {
                                 "image": {
+                                    "thumbnail_url": "img/thumbnail/Closure/Cufflink.jpg", 
+                                    "full_size_url": "img/full_size/Closure/Cufflink.jpg", 
+                                    "rights": {
+                                        "source_url": "https://commons.wikimedia.org/wiki/File:Cuff_link.jpg", 
+                                        "source_name": "Wikipedia / Europeana Fashion Thesaurus", 
+                                        "license": "Public domain", 
+                                        "author": "David Ring"
+                                    }
+                                }, 
+                                "id": "Cufflink"
+                            }, 
+                            {
+                                "image": {
                                     "thumbnail_url": "img/thumbnail/Closure/Button.jpg", 
                                     "full_size_url": "img/full_size/Closure/Button.jpg", 
                                     "rights": {
@@ -489,6 +541,19 @@ var WORKSHEET_DEFINITION = {
                             }, 
                             {
                                 "image": {
+                                    "thumbnail_url": "img/thumbnail/Closure/Cufflink.jpg", 
+                                    "full_size_url": "img/full_size/Closure/Cufflink.jpg", 
+                                    "rights": {
+                                        "source_url": "https://commons.wikimedia.org/wiki/File:Cuff_link.jpg", 
+                                        "source_name": "Wikipedia / Europeana Fashion Thesaurus", 
+                                        "license": "Public domain", 
+                                        "author": "David Ring"
+                                    }
+                                }, 
+                                "id": "Cufflink"
+                            }, 
+                            {
+                                "image": {
                                     "thumbnail_url": "img/thumbnail/Closure/Button.jpg", 
                                     "full_size_url": "img/full_size/Closure/Button.jpg", 
                                     "rights": {
@@ -597,6 +662,19 @@ var WORKSHEET_DEFINITION = {
                                     }
                                 }, 
                                 "id": "Buckle"
+                            }, 
+                            {
+                                "image": {
+                                    "thumbnail_url": "img/thumbnail/Closure/Cufflink.jpg", 
+                                    "full_size_url": "img/full_size/Closure/Cufflink.jpg", 
+                                    "rights": {
+                                        "source_url": "https://commons.wikimedia.org/wiki/File:Cuff_link.jpg", 
+                                        "source_name": "Wikipedia / Europeana Fashion Thesaurus", 
+                                        "license": "Public domain", 
+                                        "author": "David Ring"
+                                    }
+                                }, 
+                                "id": "Cufflink"
                             }, 
                             {
                                 "image": {
@@ -731,6 +809,19 @@ var WORKSHEET_DEFINITION = {
                                     }, 
                                     {
                                         "image": {
+                                            "thumbnail_url": "img/thumbnail/Closure/Cufflink.jpg", 
+                                            "full_size_url": "img/full_size/Closure/Cufflink.jpg", 
+                                            "rights": {
+                                                "source_url": "https://commons.wikimedia.org/wiki/File:Cuff_link.jpg", 
+                                                "source_name": "Wikipedia / Europeana Fashion Thesaurus", 
+                                                "license": "Public domain", 
+                                                "author": "David Ring"
+                                            }
+                                        }, 
+                                        "id": "Cufflink"
+                                    }, 
+                                    {
+                                        "image": {
                                             "thumbnail_url": "img/thumbnail/Closure/Button.jpg", 
                                             "full_size_url": "img/full_size/Closure/Button.jpg", 
                                             "rights": {
@@ -842,6 +933,19 @@ var WORKSHEET_DEFINITION = {
                                     }, 
                                     {
                                         "image": {
+                                            "thumbnail_url": "img/thumbnail/Closure/Cufflink.jpg", 
+                                            "full_size_url": "img/full_size/Closure/Cufflink.jpg", 
+                                            "rights": {
+                                                "source_url": "https://commons.wikimedia.org/wiki/File:Cuff_link.jpg", 
+                                                "source_name": "Wikipedia / Europeana Fashion Thesaurus", 
+                                                "license": "Public domain", 
+                                                "author": "David Ring"
+                                            }
+                                        }, 
+                                        "id": "Cufflink"
+                                    }, 
+                                    {
+                                        "image": {
                                             "thumbnail_url": "img/thumbnail/Closure/Button.jpg", 
                                             "full_size_url": "img/full_size/Closure/Button.jpg", 
                                             "rights": {
@@ -950,6 +1054,19 @@ var WORKSHEET_DEFINITION = {
                                             }
                                         }, 
                                         "id": "Buckle"
+                                    }, 
+                                    {
+                                        "image": {
+                                            "thumbnail_url": "img/thumbnail/Closure/Cufflink.jpg", 
+                                            "full_size_url": "img/full_size/Closure/Cufflink.jpg", 
+                                            "rights": {
+                                                "source_url": "https://commons.wikimedia.org/wiki/File:Cuff_link.jpg", 
+                                                "source_name": "Wikipedia / Europeana Fashion Thesaurus", 
+                                                "license": "Public domain", 
+                                                "author": "David Ring"
+                                            }
+                                        }, 
+                                        "id": "Cufflink"
                                     }, 
                                     {
                                         "image": {
@@ -1069,6 +1186,19 @@ var WORKSHEET_DEFINITION = {
                                     }, 
                                     {
                                         "image": {
+                                            "thumbnail_url": "img/thumbnail/Closure/Cufflink.jpg", 
+                                            "full_size_url": "img/full_size/Closure/Cufflink.jpg", 
+                                            "rights": {
+                                                "source_url": "https://commons.wikimedia.org/wiki/File:Cuff_link.jpg", 
+                                                "source_name": "Wikipedia / Europeana Fashion Thesaurus", 
+                                                "license": "Public domain", 
+                                                "author": "David Ring"
+                                            }
+                                        }, 
+                                        "id": "Cufflink"
+                                    }, 
+                                    {
+                                        "image": {
                                             "thumbnail_url": "img/thumbnail/Closure/Button.jpg", 
                                             "full_size_url": "img/full_size/Closure/Button.jpg", 
                                             "rights": {
@@ -1180,6 +1310,19 @@ var WORKSHEET_DEFINITION = {
                                     }, 
                                     {
                                         "image": {
+                                            "thumbnail_url": "img/thumbnail/Closure/Cufflink.jpg", 
+                                            "full_size_url": "img/full_size/Closure/Cufflink.jpg", 
+                                            "rights": {
+                                                "source_url": "https://commons.wikimedia.org/wiki/File:Cuff_link.jpg", 
+                                                "source_name": "Wikipedia / Europeana Fashion Thesaurus", 
+                                                "license": "Public domain", 
+                                                "author": "David Ring"
+                                            }
+                                        }, 
+                                        "id": "Cufflink"
+                                    }, 
+                                    {
+                                        "image": {
                                             "thumbnail_url": "img/thumbnail/Closure/Button.jpg", 
                                             "full_size_url": "img/full_size/Closure/Button.jpg", 
                                             "rights": {
@@ -1288,6 +1431,19 @@ var WORKSHEET_DEFINITION = {
                                             }
                                         }, 
                                         "id": "Buckle"
+                                    }, 
+                                    {
+                                        "image": {
+                                            "thumbnail_url": "img/thumbnail/Closure/Cufflink.jpg", 
+                                            "full_size_url": "img/full_size/Closure/Cufflink.jpg", 
+                                            "rights": {
+                                                "source_url": "https://commons.wikimedia.org/wiki/File:Cuff_link.jpg", 
+                                                "source_name": "Wikipedia / Europeana Fashion Thesaurus", 
+                                                "license": "Public domain", 
+                                                "author": "David Ring"
+                                            }
+                                        }, 
+                                        "id": "Cufflink"
                                     }, 
                                     {
                                         "image": {
@@ -1407,6 +1563,19 @@ var WORKSHEET_DEFINITION = {
                                     }, 
                                     {
                                         "image": {
+                                            "thumbnail_url": "img/thumbnail/Closure/Cufflink.jpg", 
+                                            "full_size_url": "img/full_size/Closure/Cufflink.jpg", 
+                                            "rights": {
+                                                "source_url": "https://commons.wikimedia.org/wiki/File:Cuff_link.jpg", 
+                                                "source_name": "Wikipedia / Europeana Fashion Thesaurus", 
+                                                "license": "Public domain", 
+                                                "author": "David Ring"
+                                            }
+                                        }, 
+                                        "id": "Cufflink"
+                                    }, 
+                                    {
+                                        "image": {
                                             "thumbnail_url": "img/thumbnail/Closure/Button.jpg", 
                                             "full_size_url": "img/full_size/Closure/Button.jpg", 
                                             "rights": {
@@ -1518,6 +1687,19 @@ var WORKSHEET_DEFINITION = {
                                     }, 
                                     {
                                         "image": {
+                                            "thumbnail_url": "img/thumbnail/Closure/Cufflink.jpg", 
+                                            "full_size_url": "img/full_size/Closure/Cufflink.jpg", 
+                                            "rights": {
+                                                "source_url": "https://commons.wikimedia.org/wiki/File:Cuff_link.jpg", 
+                                                "source_name": "Wikipedia / Europeana Fashion Thesaurus", 
+                                                "license": "Public domain", 
+                                                "author": "David Ring"
+                                            }
+                                        }, 
+                                        "id": "Cufflink"
+                                    }, 
+                                    {
+                                        "image": {
                                             "thumbnail_url": "img/thumbnail/Closure/Button.jpg", 
                                             "full_size_url": "img/full_size/Closure/Button.jpg", 
                                             "rights": {
@@ -1626,6 +1808,19 @@ var WORKSHEET_DEFINITION = {
                                             }
                                         }, 
                                         "id": "Buckle"
+                                    }, 
+                                    {
+                                        "image": {
+                                            "thumbnail_url": "img/thumbnail/Closure/Cufflink.jpg", 
+                                            "full_size_url": "img/full_size/Closure/Cufflink.jpg", 
+                                            "rights": {
+                                                "source_url": "https://commons.wikimedia.org/wiki/File:Cuff_link.jpg", 
+                                                "source_name": "Wikipedia / Europeana Fashion Thesaurus", 
+                                                "license": "Public domain", 
+                                                "author": "David Ring"
+                                            }
+                                        }, 
+                                        "id": "Cufflink"
                                     }, 
                                     {
                                         "image": {
