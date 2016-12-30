@@ -795,6 +795,19 @@ var WORKSHEET_DEFINITION = {
                                     }
                                 }, 
                                 "id": "Boat neck"
+                            }, 
+                            {
+                                "image": {
+                                    "thumbnail_url": "img/thumbnail/Neckline/Round neck.jpg", 
+                                    "full_size_url": "img/full_size/Neckline/Round neck.jpg", 
+                                    "rights": {
+                                        "source_url": "https://commons.wikimedia.org/wiki/File:Round_neck.jpg", 
+                                        "source_name": "Wikipedia / Europeana Fashion Thesaurus", 
+                                        "license": "Public domain", 
+                                        "author": "David Ring"
+                                    }
+                                }, 
+                                "id": "Round neck"
                             }
                         ]
                     }, 

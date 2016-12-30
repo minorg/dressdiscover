@@ -209,6 +209,9 @@ necklines = OrderedDict()
 necklines['Boat neck'] = feature_value(
     image_rights=eft_wikipedia_rights(source_file_name='Boat_neck.jpg')
 )
+necklines['Round neck'] = feature_value(
+    image_rights=eft_wikipedia_rights(source_file_name='Round_neck.jpg')
+)
 features['Neckline'] = {'extents': ('Neckline',), 'values': necklines}
 
 
