@@ -781,7 +781,7 @@ var WORKSHEET_DEFINITION = {
                         ]
                     }, 
                     {
-                        "id": "Neckline Neckline", 
+                        "id": "Neckline Type", 
                         "values_": [
                             {
                                 "image": {
@@ -983,7 +983,7 @@ var WORKSHEET_DEFINITION = {
                         ]
                     }, 
                     {
-                        "id": "Collar Collar", 
+                        "id": "Collar Type", 
                         "values_": [
                             {
                                 "image": {
@@ -1355,7 +1355,7 @@ var WORKSHEET_DEFINITION = {
                                 ]
                             }, 
                             {
-                                "id": "Shoulder Left Shoulder", 
+                                "id": "Shoulder Left Type", 
                                 "values_": [
                                     {
                                         "image": {
@@ -1567,7 +1567,7 @@ var WORKSHEET_DEFINITION = {
                                 ]
                             }, 
                             {
-                                "id": "Shoulder Right Shoulder", 
+                                "id": "Shoulder Right Type", 
                                 "values_": [
                                     {
                                         "image": {
@@ -1779,7 +1779,7 @@ var WORKSHEET_DEFINITION = {
                                 ]
                             }, 
                             {
-                                "id": "Shoulder Both Shoulder", 
+                                "id": "Shoulder Both Type", 
                                 "values_": [
                                     {
                                         "image": {
@@ -1996,7 +1996,7 @@ var WORKSHEET_DEFINITION = {
                                 ]
                             }, 
                             {
-                                "id": "Sleeve Left Sleeve", 
+                                "id": "Sleeve Left Type", 
                                 "values_": [
                                     {
                                         "image": {
@@ -2286,7 +2286,7 @@ var WORKSHEET_DEFINITION = {
                                 ]
                             }, 
                             {
-                                "id": "Sleeve Right Sleeve", 
+                                "id": "Sleeve Right Type", 
                                 "values_": [
                                     {
                                         "image": {
@@ -2576,7 +2576,7 @@ var WORKSHEET_DEFINITION = {
                                 ]
                             }, 
                             {
-                                "id": "Sleeve Both Sleeve", 
+                                "id": "Sleeve Both Type", 
                                 "values_": [
                                     {
                                         "image": {

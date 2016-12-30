@@ -468,10 +468,16 @@ for extent, sub_extents in extents.iteritems():
         for feature_id, feature_dict in features.iteritems():
             if not __extent_has_feature(feature_dict, extent, sub_extent):
                 continue
-            
+
             feature_definition_builder = \
-                WorksheetFeatureDefinition.Builder()\
+                WorksheetFeatureDefinition.Builder()
+            
+            if extent != feature_id:
+                feature_definition_builder\
                     .set_id(' '.join(parent_feature_set_ids + [feature_id]))
+            else:
+                # Neckline Neckline -> Neckline Type
+                feature_definition_builder.set_id(' '.join(parent_feature_set_ids + ['Type']))
 
             if 'values' in feature_dict:
                 feature_definition_builder.set_values_(__define_feature_values(feature_id, feature_dict['values']))
