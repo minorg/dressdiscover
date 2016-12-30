@@ -588,6 +588,19 @@ var WORKSHEET_DEFINITION = {
                                     }
                                 }, 
                                 "id": "Band"
+                            }, 
+                            {
+                                "image": {
+                                    "thumbnail_url": "img/thumbnail/Collar/Jabot.jpg", 
+                                    "full_size_url": "img/full_size/Collar/Jabot.jpg", 
+                                    "rights": {
+                                        "source_url": "https://commons.wikimedia.org/wiki/File:Jabot.jpg", 
+                                        "source_name": "Wikipedia / Europeana Fashion Thesaurus", 
+                                        "license": "Public domain", 
+                                        "author": "David Ring"
+                                    }
+                                }, 
+                                "id": "Jabot"
                             }
                         ]
                     }, 
