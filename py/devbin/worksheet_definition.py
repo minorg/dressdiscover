@@ -168,7 +168,9 @@ decorations['Fringe'] = feature_value(
 decorations['Knot'] = feature_value(
     image_rights=eft_wikipedia_rights(source_file_name='Knot_(decoration).jpg')
 )
-
+decorations['Lace'] = feature_value(
+    image_rights=eft_wikipedia_rights(source_file_name='Lace_fragment.tif')
+)
 features['Decoration'] = {'values': decorations}
 
 
