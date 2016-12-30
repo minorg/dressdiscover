@@ -87,6 +87,9 @@ closures['Cufflink'] = feature_value(
 closures['Frog closure'] = feature_value(
     image_rights=eft_wikipedia_rights(source_file_name='Frog_(fastening).jpg')
 )
+closures['Lacing'] = feature_value(
+    image_rights=eft_wikipedia_rights(source_file_name='Lace_(fastening).jpg')
+)
 closures['Button'] = feature_value(
     image_rights=wikipedia_rights(
         author='Marco Bernardini',

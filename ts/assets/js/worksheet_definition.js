@@ -50,6 +50,19 @@ var WORKSHEET_DEFINITION = {
                                     }, 
                                     {
                                         "image": {
+                                            "thumbnail_url": "img/thumbnail/Closure/Lacing.jpg", 
+                                            "full_size_url": "img/full_size/Closure/Lacing.jpg", 
+                                            "rights": {
+                                                "source_url": "https://commons.wikimedia.org/wiki/File:Lace_(fastening).jpg", 
+                                                "source_name": "Wikipedia / Europeana Fashion Thesaurus", 
+                                                "license": "Public domain", 
+                                                "author": "David Ring"
+                                            }
+                                        }, 
+                                        "id": "Lacing"
+                                    }, 
+                                    {
+                                        "image": {
                                             "thumbnail_url": "img/thumbnail/Closure/Button.jpg", 
                                             "full_size_url": "img/full_size/Closure/Button.jpg", 
                                             "rights": {
@@ -187,6 +200,19 @@ var WORKSHEET_DEFINITION = {
                                     }, 
                                     {
                                         "image": {
+                                            "thumbnail_url": "img/thumbnail/Closure/Lacing.jpg", 
+                                            "full_size_url": "img/full_size/Closure/Lacing.jpg", 
+                                            "rights": {
+                                                "source_url": "https://commons.wikimedia.org/wiki/File:Lace_(fastening).jpg", 
+                                                "source_name": "Wikipedia / Europeana Fashion Thesaurus", 
+                                                "license": "Public domain", 
+                                                "author": "David Ring"
+                                            }
+                                        }, 
+                                        "id": "Lacing"
+                                    }, 
+                                    {
+                                        "image": {
                                             "thumbnail_url": "img/thumbnail/Closure/Button.jpg", 
                                             "full_size_url": "img/full_size/Closure/Button.jpg", 
                                             "rights": {
@@ -321,6 +347,19 @@ var WORKSHEET_DEFINITION = {
                                     }
                                 }, 
                                 "id": "Frog closure"
+                            }, 
+                            {
+                                "image": {
+                                    "thumbnail_url": "img/thumbnail/Closure/Lacing.jpg", 
+                                    "full_size_url": "img/full_size/Closure/Lacing.jpg", 
+                                    "rights": {
+                                        "source_url": "https://commons.wikimedia.org/wiki/File:Lace_(fastening).jpg", 
+                                        "source_name": "Wikipedia / Europeana Fashion Thesaurus", 
+                                        "license": "Public domain", 
+                                        "author": "David Ring"
+                                    }
+                                }, 
+                                "id": "Lacing"
                             }, 
                             {
                                 "image": {
@@ -482,6 +521,19 @@ var WORKSHEET_DEFINITION = {
                             }, 
                             {
                                 "image": {
+                                    "thumbnail_url": "img/thumbnail/Closure/Lacing.jpg", 
+                                    "full_size_url": "img/full_size/Closure/Lacing.jpg", 
+                                    "rights": {
+                                        "source_url": "https://commons.wikimedia.org/wiki/File:Lace_(fastening).jpg", 
+                                        "source_name": "Wikipedia / Europeana Fashion Thesaurus", 
+                                        "license": "Public domain", 
+                                        "author": "David Ring"
+                                    }
+                                }, 
+                                "id": "Lacing"
+                            }, 
+                            {
+                                "image": {
                                     "thumbnail_url": "img/thumbnail/Closure/Button.jpg", 
                                     "full_size_url": "img/full_size/Closure/Button.jpg", 
                                     "rights": {
@@ -619,6 +671,19 @@ var WORKSHEET_DEFINITION = {
                             }, 
                             {
                                 "image": {
+                                    "thumbnail_url": "img/thumbnail/Closure/Lacing.jpg", 
+                                    "full_size_url": "img/full_size/Closure/Lacing.jpg", 
+                                    "rights": {
+                                        "source_url": "https://commons.wikimedia.org/wiki/File:Lace_(fastening).jpg", 
+                                        "source_name": "Wikipedia / Europeana Fashion Thesaurus", 
+                                        "license": "Public domain", 
+                                        "author": "David Ring"
+                                    }
+                                }, 
+                                "id": "Lacing"
+                            }, 
+                            {
+                                "image": {
                                     "thumbnail_url": "img/thumbnail/Closure/Button.jpg", 
                                     "full_size_url": "img/full_size/Closure/Button.jpg", 
                                     "rights": {
@@ -753,6 +818,19 @@ var WORKSHEET_DEFINITION = {
                                     }
                                 }, 
                                 "id": "Frog closure"
+                            }, 
+                            {
+                                "image": {
+                                    "thumbnail_url": "img/thumbnail/Closure/Lacing.jpg", 
+                                    "full_size_url": "img/full_size/Closure/Lacing.jpg", 
+                                    "rights": {
+                                        "source_url": "https://commons.wikimedia.org/wiki/File:Lace_(fastening).jpg", 
+                                        "source_name": "Wikipedia / Europeana Fashion Thesaurus", 
+                                        "license": "Public domain", 
+                                        "author": "David Ring"
+                                    }
+                                }, 
+                                "id": "Lacing"
                             }, 
                             {
                                 "image": {
@@ -913,6 +991,19 @@ var WORKSHEET_DEFINITION = {
                                     }, 
                                     {
                                         "image": {
+                                            "thumbnail_url": "img/thumbnail/Closure/Lacing.jpg", 
+                                            "full_size_url": "img/full_size/Closure/Lacing.jpg", 
+                                            "rights": {
+                                                "source_url": "https://commons.wikimedia.org/wiki/File:Lace_(fastening).jpg", 
+                                                "source_name": "Wikipedia / Europeana Fashion Thesaurus", 
+                                                "license": "Public domain", 
+                                                "author": "David Ring"
+                                            }
+                                        }, 
+                                        "id": "Lacing"
+                                    }, 
+                                    {
+                                        "image": {
                                             "thumbnail_url": "img/thumbnail/Closure/Button.jpg", 
                                             "full_size_url": "img/full_size/Closure/Button.jpg", 
                                             "rights": {
@@ -1050,6 +1141,19 @@ var WORKSHEET_DEFINITION = {
                                     }, 
                                     {
                                         "image": {
+                                            "thumbnail_url": "img/thumbnail/Closure/Lacing.jpg", 
+                                            "full_size_url": "img/full_size/Closure/Lacing.jpg", 
+                                            "rights": {
+                                                "source_url": "https://commons.wikimedia.org/wiki/File:Lace_(fastening).jpg", 
+                                                "source_name": "Wikipedia / Europeana Fashion Thesaurus", 
+                                                "license": "Public domain", 
+                                                "author": "David Ring"
+                                            }
+                                        }, 
+                                        "id": "Lacing"
+                                    }, 
+                                    {
+                                        "image": {
                                             "thumbnail_url": "img/thumbnail/Closure/Button.jpg", 
                                             "full_size_url": "img/full_size/Closure/Button.jpg", 
                                             "rights": {
@@ -1184,6 +1288,19 @@ var WORKSHEET_DEFINITION = {
                                             }
                                         }, 
                                         "id": "Frog closure"
+                                    }, 
+                                    {
+                                        "image": {
+                                            "thumbnail_url": "img/thumbnail/Closure/Lacing.jpg", 
+                                            "full_size_url": "img/full_size/Closure/Lacing.jpg", 
+                                            "rights": {
+                                                "source_url": "https://commons.wikimedia.org/wiki/File:Lace_(fastening).jpg", 
+                                                "source_name": "Wikipedia / Europeana Fashion Thesaurus", 
+                                                "license": "Public domain", 
+                                                "author": "David Ring"
+                                            }
+                                        }, 
+                                        "id": "Lacing"
                                     }, 
                                     {
                                         "image": {
@@ -1329,6 +1446,19 @@ var WORKSHEET_DEFINITION = {
                                     }, 
                                     {
                                         "image": {
+                                            "thumbnail_url": "img/thumbnail/Closure/Lacing.jpg", 
+                                            "full_size_url": "img/full_size/Closure/Lacing.jpg", 
+                                            "rights": {
+                                                "source_url": "https://commons.wikimedia.org/wiki/File:Lace_(fastening).jpg", 
+                                                "source_name": "Wikipedia / Europeana Fashion Thesaurus", 
+                                                "license": "Public domain", 
+                                                "author": "David Ring"
+                                            }
+                                        }, 
+                                        "id": "Lacing"
+                                    }, 
+                                    {
+                                        "image": {
                                             "thumbnail_url": "img/thumbnail/Closure/Button.jpg", 
                                             "full_size_url": "img/full_size/Closure/Button.jpg", 
                                             "rights": {
@@ -1466,6 +1596,19 @@ var WORKSHEET_DEFINITION = {
                                     }, 
                                     {
                                         "image": {
+                                            "thumbnail_url": "img/thumbnail/Closure/Lacing.jpg", 
+                                            "full_size_url": "img/full_size/Closure/Lacing.jpg", 
+                                            "rights": {
+                                                "source_url": "https://commons.wikimedia.org/wiki/File:Lace_(fastening).jpg", 
+                                                "source_name": "Wikipedia / Europeana Fashion Thesaurus", 
+                                                "license": "Public domain", 
+                                                "author": "David Ring"
+                                            }
+                                        }, 
+                                        "id": "Lacing"
+                                    }, 
+                                    {
+                                        "image": {
                                             "thumbnail_url": "img/thumbnail/Closure/Button.jpg", 
                                             "full_size_url": "img/full_size/Closure/Button.jpg", 
                                             "rights": {
@@ -1600,6 +1743,19 @@ var WORKSHEET_DEFINITION = {
                                             }
                                         }, 
                                         "id": "Frog closure"
+                                    }, 
+                                    {
+                                        "image": {
+                                            "thumbnail_url": "img/thumbnail/Closure/Lacing.jpg", 
+                                            "full_size_url": "img/full_size/Closure/Lacing.jpg", 
+                                            "rights": {
+                                                "source_url": "https://commons.wikimedia.org/wiki/File:Lace_(fastening).jpg", 
+                                                "source_name": "Wikipedia / Europeana Fashion Thesaurus", 
+                                                "license": "Public domain", 
+                                                "author": "David Ring"
+                                            }
+                                        }, 
+                                        "id": "Lacing"
                                     }, 
                                     {
                                         "image": {
@@ -1745,6 +1901,19 @@ var WORKSHEET_DEFINITION = {
                                     }, 
                                     {
                                         "image": {
+                                            "thumbnail_url": "img/thumbnail/Closure/Lacing.jpg", 
+                                            "full_size_url": "img/full_size/Closure/Lacing.jpg", 
+                                            "rights": {
+                                                "source_url": "https://commons.wikimedia.org/wiki/File:Lace_(fastening).jpg", 
+                                                "source_name": "Wikipedia / Europeana Fashion Thesaurus", 
+                                                "license": "Public domain", 
+                                                "author": "David Ring"
+                                            }
+                                        }, 
+                                        "id": "Lacing"
+                                    }, 
+                                    {
+                                        "image": {
                                             "thumbnail_url": "img/thumbnail/Closure/Button.jpg", 
                                             "full_size_url": "img/full_size/Closure/Button.jpg", 
                                             "rights": {
@@ -1882,6 +2051,19 @@ var WORKSHEET_DEFINITION = {
                                     }, 
                                     {
                                         "image": {
+                                            "thumbnail_url": "img/thumbnail/Closure/Lacing.jpg", 
+                                            "full_size_url": "img/full_size/Closure/Lacing.jpg", 
+                                            "rights": {
+                                                "source_url": "https://commons.wikimedia.org/wiki/File:Lace_(fastening).jpg", 
+                                                "source_name": "Wikipedia / Europeana Fashion Thesaurus", 
+                                                "license": "Public domain", 
+                                                "author": "David Ring"
+                                            }
+                                        }, 
+                                        "id": "Lacing"
+                                    }, 
+                                    {
+                                        "image": {
                                             "thumbnail_url": "img/thumbnail/Closure/Button.jpg", 
                                             "full_size_url": "img/full_size/Closure/Button.jpg", 
                                             "rights": {
@@ -2016,6 +2198,19 @@ var WORKSHEET_DEFINITION = {
                                             }
                                         }, 
                                         "id": "Frog closure"
+                                    }, 
+                                    {
+                                        "image": {
+                                            "thumbnail_url": "img/thumbnail/Closure/Lacing.jpg", 
+                                            "full_size_url": "img/full_size/Closure/Lacing.jpg", 
+                                            "rights": {
+                                                "source_url": "https://commons.wikimedia.org/wiki/File:Lace_(fastening).jpg", 
+                                                "source_name": "Wikipedia / Europeana Fashion Thesaurus", 
+                                                "license": "Public domain", 
+                                                "author": "David Ring"
+                                            }
+                                        }, 
+                                        "id": "Lacing"
                                     }, 
                                     {
                                         "image": {
