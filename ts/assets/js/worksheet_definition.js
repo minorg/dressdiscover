@@ -27,13 +27,26 @@ var WORKSHEET_DEFINITION = {
                                             "thumbnail_url": "img/thumbnail/Closure/Cufflink.jpg", 
                                             "full_size_url": "img/full_size/Closure/Cufflink.jpg", 
                                             "rights": {
-                                                "source_url": "https://commons.wikimedia.org/wiki/File:Cuff_link.jpg", 
+                                                "source_url": "https://commons.wikimedia.org/wiki/File:Cuff_links.jpg", 
                                                 "source_name": "Wikipedia / Europeana Fashion Thesaurus", 
                                                 "license": "Public domain", 
                                                 "author": "David Ring"
                                             }
                                         }, 
                                         "id": "Cufflink"
+                                    }, 
+                                    {
+                                        "image": {
+                                            "thumbnail_url": "img/thumbnail/Closure/Frog closure.jpg", 
+                                            "full_size_url": "img/full_size/Closure/Frog closure.jpg", 
+                                            "rights": {
+                                                "source_url": "https://commons.wikimedia.org/wiki/File:Frog_(fastening).jpg", 
+                                                "source_name": "Wikipedia / Europeana Fashion Thesaurus", 
+                                                "license": "Public domain", 
+                                                "author": "David Ring"
+                                            }
+                                        }, 
+                                        "id": "Frog closure"
                                     }, 
                                     {
                                         "image": {
@@ -151,13 +164,26 @@ var WORKSHEET_DEFINITION = {
                                             "thumbnail_url": "img/thumbnail/Closure/Cufflink.jpg", 
                                             "full_size_url": "img/full_size/Closure/Cufflink.jpg", 
                                             "rights": {
-                                                "source_url": "https://commons.wikimedia.org/wiki/File:Cuff_link.jpg", 
+                                                "source_url": "https://commons.wikimedia.org/wiki/File:Cuff_links.jpg", 
                                                 "source_name": "Wikipedia / Europeana Fashion Thesaurus", 
                                                 "license": "Public domain", 
                                                 "author": "David Ring"
                                             }
                                         }, 
                                         "id": "Cufflink"
+                                    }, 
+                                    {
+                                        "image": {
+                                            "thumbnail_url": "img/thumbnail/Closure/Frog closure.jpg", 
+                                            "full_size_url": "img/full_size/Closure/Frog closure.jpg", 
+                                            "rights": {
+                                                "source_url": "https://commons.wikimedia.org/wiki/File:Frog_(fastening).jpg", 
+                                                "source_name": "Wikipedia / Europeana Fashion Thesaurus", 
+                                                "license": "Public domain", 
+                                                "author": "David Ring"
+                                            }
+                                        }, 
+                                        "id": "Frog closure"
                                     }, 
                                     {
                                         "image": {
@@ -275,13 +301,26 @@ var WORKSHEET_DEFINITION = {
                                     "thumbnail_url": "img/thumbnail/Closure/Cufflink.jpg", 
                                     "full_size_url": "img/full_size/Closure/Cufflink.jpg", 
                                     "rights": {
-                                        "source_url": "https://commons.wikimedia.org/wiki/File:Cuff_link.jpg", 
+                                        "source_url": "https://commons.wikimedia.org/wiki/File:Cuff_links.jpg", 
                                         "source_name": "Wikipedia / Europeana Fashion Thesaurus", 
                                         "license": "Public domain", 
                                         "author": "David Ring"
                                     }
                                 }, 
                                 "id": "Cufflink"
+                            }, 
+                            {
+                                "image": {
+                                    "thumbnail_url": "img/thumbnail/Closure/Frog closure.jpg", 
+                                    "full_size_url": "img/full_size/Closure/Frog closure.jpg", 
+                                    "rights": {
+                                        "source_url": "https://commons.wikimedia.org/wiki/File:Frog_(fastening).jpg", 
+                                        "source_name": "Wikipedia / Europeana Fashion Thesaurus", 
+                                        "license": "Public domain", 
+                                        "author": "David Ring"
+                                    }
+                                }, 
+                                "id": "Frog closure"
                             }, 
                             {
                                 "image": {
@@ -420,13 +459,26 @@ var WORKSHEET_DEFINITION = {
                                     "thumbnail_url": "img/thumbnail/Closure/Cufflink.jpg", 
                                     "full_size_url": "img/full_size/Closure/Cufflink.jpg", 
                                     "rights": {
-                                        "source_url": "https://commons.wikimedia.org/wiki/File:Cuff_link.jpg", 
+                                        "source_url": "https://commons.wikimedia.org/wiki/File:Cuff_links.jpg", 
                                         "source_name": "Wikipedia / Europeana Fashion Thesaurus", 
                                         "license": "Public domain", 
                                         "author": "David Ring"
                                     }
                                 }, 
                                 "id": "Cufflink"
+                            }, 
+                            {
+                                "image": {
+                                    "thumbnail_url": "img/thumbnail/Closure/Frog closure.jpg", 
+                                    "full_size_url": "img/full_size/Closure/Frog closure.jpg", 
+                                    "rights": {
+                                        "source_url": "https://commons.wikimedia.org/wiki/File:Frog_(fastening).jpg", 
+                                        "source_name": "Wikipedia / Europeana Fashion Thesaurus", 
+                                        "license": "Public domain", 
+                                        "author": "David Ring"
+                                    }
+                                }, 
+                                "id": "Frog closure"
                             }, 
                             {
                                 "image": {
@@ -544,13 +596,26 @@ var WORKSHEET_DEFINITION = {
                                     "thumbnail_url": "img/thumbnail/Closure/Cufflink.jpg", 
                                     "full_size_url": "img/full_size/Closure/Cufflink.jpg", 
                                     "rights": {
-                                        "source_url": "https://commons.wikimedia.org/wiki/File:Cuff_link.jpg", 
+                                        "source_url": "https://commons.wikimedia.org/wiki/File:Cuff_links.jpg", 
                                         "source_name": "Wikipedia / Europeana Fashion Thesaurus", 
                                         "license": "Public domain", 
                                         "author": "David Ring"
                                     }
                                 }, 
                                 "id": "Cufflink"
+                            }, 
+                            {
+                                "image": {
+                                    "thumbnail_url": "img/thumbnail/Closure/Frog closure.jpg", 
+                                    "full_size_url": "img/full_size/Closure/Frog closure.jpg", 
+                                    "rights": {
+                                        "source_url": "https://commons.wikimedia.org/wiki/File:Frog_(fastening).jpg", 
+                                        "source_name": "Wikipedia / Europeana Fashion Thesaurus", 
+                                        "license": "Public domain", 
+                                        "author": "David Ring"
+                                    }
+                                }, 
+                                "id": "Frog closure"
                             }, 
                             {
                                 "image": {
@@ -668,13 +733,26 @@ var WORKSHEET_DEFINITION = {
                                     "thumbnail_url": "img/thumbnail/Closure/Cufflink.jpg", 
                                     "full_size_url": "img/full_size/Closure/Cufflink.jpg", 
                                     "rights": {
-                                        "source_url": "https://commons.wikimedia.org/wiki/File:Cuff_link.jpg", 
+                                        "source_url": "https://commons.wikimedia.org/wiki/File:Cuff_links.jpg", 
                                         "source_name": "Wikipedia / Europeana Fashion Thesaurus", 
                                         "license": "Public domain", 
                                         "author": "David Ring"
                                     }
                                 }, 
                                 "id": "Cufflink"
+                            }, 
+                            {
+                                "image": {
+                                    "thumbnail_url": "img/thumbnail/Closure/Frog closure.jpg", 
+                                    "full_size_url": "img/full_size/Closure/Frog closure.jpg", 
+                                    "rights": {
+                                        "source_url": "https://commons.wikimedia.org/wiki/File:Frog_(fastening).jpg", 
+                                        "source_name": "Wikipedia / Europeana Fashion Thesaurus", 
+                                        "license": "Public domain", 
+                                        "author": "David Ring"
+                                    }
+                                }, 
+                                "id": "Frog closure"
                             }, 
                             {
                                 "image": {
@@ -812,13 +890,26 @@ var WORKSHEET_DEFINITION = {
                                             "thumbnail_url": "img/thumbnail/Closure/Cufflink.jpg", 
                                             "full_size_url": "img/full_size/Closure/Cufflink.jpg", 
                                             "rights": {
-                                                "source_url": "https://commons.wikimedia.org/wiki/File:Cuff_link.jpg", 
+                                                "source_url": "https://commons.wikimedia.org/wiki/File:Cuff_links.jpg", 
                                                 "source_name": "Wikipedia / Europeana Fashion Thesaurus", 
                                                 "license": "Public domain", 
                                                 "author": "David Ring"
                                             }
                                         }, 
                                         "id": "Cufflink"
+                                    }, 
+                                    {
+                                        "image": {
+                                            "thumbnail_url": "img/thumbnail/Closure/Frog closure.jpg", 
+                                            "full_size_url": "img/full_size/Closure/Frog closure.jpg", 
+                                            "rights": {
+                                                "source_url": "https://commons.wikimedia.org/wiki/File:Frog_(fastening).jpg", 
+                                                "source_name": "Wikipedia / Europeana Fashion Thesaurus", 
+                                                "license": "Public domain", 
+                                                "author": "David Ring"
+                                            }
+                                        }, 
+                                        "id": "Frog closure"
                                     }, 
                                     {
                                         "image": {
@@ -936,13 +1027,26 @@ var WORKSHEET_DEFINITION = {
                                             "thumbnail_url": "img/thumbnail/Closure/Cufflink.jpg", 
                                             "full_size_url": "img/full_size/Closure/Cufflink.jpg", 
                                             "rights": {
-                                                "source_url": "https://commons.wikimedia.org/wiki/File:Cuff_link.jpg", 
+                                                "source_url": "https://commons.wikimedia.org/wiki/File:Cuff_links.jpg", 
                                                 "source_name": "Wikipedia / Europeana Fashion Thesaurus", 
                                                 "license": "Public domain", 
                                                 "author": "David Ring"
                                             }
                                         }, 
                                         "id": "Cufflink"
+                                    }, 
+                                    {
+                                        "image": {
+                                            "thumbnail_url": "img/thumbnail/Closure/Frog closure.jpg", 
+                                            "full_size_url": "img/full_size/Closure/Frog closure.jpg", 
+                                            "rights": {
+                                                "source_url": "https://commons.wikimedia.org/wiki/File:Frog_(fastening).jpg", 
+                                                "source_name": "Wikipedia / Europeana Fashion Thesaurus", 
+                                                "license": "Public domain", 
+                                                "author": "David Ring"
+                                            }
+                                        }, 
+                                        "id": "Frog closure"
                                     }, 
                                     {
                                         "image": {
@@ -1060,13 +1164,26 @@ var WORKSHEET_DEFINITION = {
                                             "thumbnail_url": "img/thumbnail/Closure/Cufflink.jpg", 
                                             "full_size_url": "img/full_size/Closure/Cufflink.jpg", 
                                             "rights": {
-                                                "source_url": "https://commons.wikimedia.org/wiki/File:Cuff_link.jpg", 
+                                                "source_url": "https://commons.wikimedia.org/wiki/File:Cuff_links.jpg", 
                                                 "source_name": "Wikipedia / Europeana Fashion Thesaurus", 
                                                 "license": "Public domain", 
                                                 "author": "David Ring"
                                             }
                                         }, 
                                         "id": "Cufflink"
+                                    }, 
+                                    {
+                                        "image": {
+                                            "thumbnail_url": "img/thumbnail/Closure/Frog closure.jpg", 
+                                            "full_size_url": "img/full_size/Closure/Frog closure.jpg", 
+                                            "rights": {
+                                                "source_url": "https://commons.wikimedia.org/wiki/File:Frog_(fastening).jpg", 
+                                                "source_name": "Wikipedia / Europeana Fashion Thesaurus", 
+                                                "license": "Public domain", 
+                                                "author": "David Ring"
+                                            }
+                                        }, 
+                                        "id": "Frog closure"
                                     }, 
                                     {
                                         "image": {
@@ -1189,13 +1306,26 @@ var WORKSHEET_DEFINITION = {
                                             "thumbnail_url": "img/thumbnail/Closure/Cufflink.jpg", 
                                             "full_size_url": "img/full_size/Closure/Cufflink.jpg", 
                                             "rights": {
-                                                "source_url": "https://commons.wikimedia.org/wiki/File:Cuff_link.jpg", 
+                                                "source_url": "https://commons.wikimedia.org/wiki/File:Cuff_links.jpg", 
                                                 "source_name": "Wikipedia / Europeana Fashion Thesaurus", 
                                                 "license": "Public domain", 
                                                 "author": "David Ring"
                                             }
                                         }, 
                                         "id": "Cufflink"
+                                    }, 
+                                    {
+                                        "image": {
+                                            "thumbnail_url": "img/thumbnail/Closure/Frog closure.jpg", 
+                                            "full_size_url": "img/full_size/Closure/Frog closure.jpg", 
+                                            "rights": {
+                                                "source_url": "https://commons.wikimedia.org/wiki/File:Frog_(fastening).jpg", 
+                                                "source_name": "Wikipedia / Europeana Fashion Thesaurus", 
+                                                "license": "Public domain", 
+                                                "author": "David Ring"
+                                            }
+                                        }, 
+                                        "id": "Frog closure"
                                     }, 
                                     {
                                         "image": {
@@ -1313,13 +1443,26 @@ var WORKSHEET_DEFINITION = {
                                             "thumbnail_url": "img/thumbnail/Closure/Cufflink.jpg", 
                                             "full_size_url": "img/full_size/Closure/Cufflink.jpg", 
                                             "rights": {
-                                                "source_url": "https://commons.wikimedia.org/wiki/File:Cuff_link.jpg", 
+                                                "source_url": "https://commons.wikimedia.org/wiki/File:Cuff_links.jpg", 
                                                 "source_name": "Wikipedia / Europeana Fashion Thesaurus", 
                                                 "license": "Public domain", 
                                                 "author": "David Ring"
                                             }
                                         }, 
                                         "id": "Cufflink"
+                                    }, 
+                                    {
+                                        "image": {
+                                            "thumbnail_url": "img/thumbnail/Closure/Frog closure.jpg", 
+                                            "full_size_url": "img/full_size/Closure/Frog closure.jpg", 
+                                            "rights": {
+                                                "source_url": "https://commons.wikimedia.org/wiki/File:Frog_(fastening).jpg", 
+                                                "source_name": "Wikipedia / Europeana Fashion Thesaurus", 
+                                                "license": "Public domain", 
+                                                "author": "David Ring"
+                                            }
+                                        }, 
+                                        "id": "Frog closure"
                                     }, 
                                     {
                                         "image": {
@@ -1437,13 +1580,26 @@ var WORKSHEET_DEFINITION = {
                                             "thumbnail_url": "img/thumbnail/Closure/Cufflink.jpg", 
                                             "full_size_url": "img/full_size/Closure/Cufflink.jpg", 
                                             "rights": {
-                                                "source_url": "https://commons.wikimedia.org/wiki/File:Cuff_link.jpg", 
+                                                "source_url": "https://commons.wikimedia.org/wiki/File:Cuff_links.jpg", 
                                                 "source_name": "Wikipedia / Europeana Fashion Thesaurus", 
                                                 "license": "Public domain", 
                                                 "author": "David Ring"
                                             }
                                         }, 
                                         "id": "Cufflink"
+                                    }, 
+                                    {
+                                        "image": {
+                                            "thumbnail_url": "img/thumbnail/Closure/Frog closure.jpg", 
+                                            "full_size_url": "img/full_size/Closure/Frog closure.jpg", 
+                                            "rights": {
+                                                "source_url": "https://commons.wikimedia.org/wiki/File:Frog_(fastening).jpg", 
+                                                "source_name": "Wikipedia / Europeana Fashion Thesaurus", 
+                                                "license": "Public domain", 
+                                                "author": "David Ring"
+                                            }
+                                        }, 
+                                        "id": "Frog closure"
                                     }, 
                                     {
                                         "image": {
@@ -1566,13 +1722,26 @@ var WORKSHEET_DEFINITION = {
                                             "thumbnail_url": "img/thumbnail/Closure/Cufflink.jpg", 
                                             "full_size_url": "img/full_size/Closure/Cufflink.jpg", 
                                             "rights": {
-                                                "source_url": "https://commons.wikimedia.org/wiki/File:Cuff_link.jpg", 
+                                                "source_url": "https://commons.wikimedia.org/wiki/File:Cuff_links.jpg", 
                                                 "source_name": "Wikipedia / Europeana Fashion Thesaurus", 
                                                 "license": "Public domain", 
                                                 "author": "David Ring"
                                             }
                                         }, 
                                         "id": "Cufflink"
+                                    }, 
+                                    {
+                                        "image": {
+                                            "thumbnail_url": "img/thumbnail/Closure/Frog closure.jpg", 
+                                            "full_size_url": "img/full_size/Closure/Frog closure.jpg", 
+                                            "rights": {
+                                                "source_url": "https://commons.wikimedia.org/wiki/File:Frog_(fastening).jpg", 
+                                                "source_name": "Wikipedia / Europeana Fashion Thesaurus", 
+                                                "license": "Public domain", 
+                                                "author": "David Ring"
+                                            }
+                                        }, 
+                                        "id": "Frog closure"
                                     }, 
                                     {
                                         "image": {
@@ -1690,13 +1859,26 @@ var WORKSHEET_DEFINITION = {
                                             "thumbnail_url": "img/thumbnail/Closure/Cufflink.jpg", 
                                             "full_size_url": "img/full_size/Closure/Cufflink.jpg", 
                                             "rights": {
-                                                "source_url": "https://commons.wikimedia.org/wiki/File:Cuff_link.jpg", 
+                                                "source_url": "https://commons.wikimedia.org/wiki/File:Cuff_links.jpg", 
                                                 "source_name": "Wikipedia / Europeana Fashion Thesaurus", 
                                                 "license": "Public domain", 
                                                 "author": "David Ring"
                                             }
                                         }, 
                                         "id": "Cufflink"
+                                    }, 
+                                    {
+                                        "image": {
+                                            "thumbnail_url": "img/thumbnail/Closure/Frog closure.jpg", 
+                                            "full_size_url": "img/full_size/Closure/Frog closure.jpg", 
+                                            "rights": {
+                                                "source_url": "https://commons.wikimedia.org/wiki/File:Frog_(fastening).jpg", 
+                                                "source_name": "Wikipedia / Europeana Fashion Thesaurus", 
+                                                "license": "Public domain", 
+                                                "author": "David Ring"
+                                            }
+                                        }, 
+                                        "id": "Frog closure"
                                     }, 
                                     {
                                         "image": {
@@ -1814,13 +1996,26 @@ var WORKSHEET_DEFINITION = {
                                             "thumbnail_url": "img/thumbnail/Closure/Cufflink.jpg", 
                                             "full_size_url": "img/full_size/Closure/Cufflink.jpg", 
                                             "rights": {
-                                                "source_url": "https://commons.wikimedia.org/wiki/File:Cuff_link.jpg", 
+                                                "source_url": "https://commons.wikimedia.org/wiki/File:Cuff_links.jpg", 
                                                 "source_name": "Wikipedia / Europeana Fashion Thesaurus", 
                                                 "license": "Public domain", 
                                                 "author": "David Ring"
                                             }
                                         }, 
                                         "id": "Cufflink"
+                                    }, 
+                                    {
+                                        "image": {
+                                            "thumbnail_url": "img/thumbnail/Closure/Frog closure.jpg", 
+                                            "full_size_url": "img/full_size/Closure/Frog closure.jpg", 
+                                            "rights": {
+                                                "source_url": "https://commons.wikimedia.org/wiki/File:Frog_(fastening).jpg", 
+                                                "source_name": "Wikipedia / Europeana Fashion Thesaurus", 
+                                                "license": "Public domain", 
+                                                "author": "David Ring"
+                                            }
+                                        }, 
+                                        "id": "Frog closure"
                                     }, 
                                     {
                                         "image": {

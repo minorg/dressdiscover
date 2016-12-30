@@ -82,7 +82,10 @@ closures['Buckle'] = feature_value(
     image_rights=eft_wikipedia_rights(source_file_name='Buckle.jpg')
 )
 closures['Cufflink'] = feature_value(
-    image_rights=eft_wikipedia_rights(source_file_name='Cuff_link.jpg')
+    image_rights=eft_wikipedia_rights(source_file_name='Cuff_links.jpg')
+)
+closures['Frog closure'] = feature_value(
+    image_rights=eft_wikipedia_rights(source_file_name='Frog_(fastening).jpg')
 )
 closures['Button'] = feature_value(
     image_rights=wikipedia_rights(
