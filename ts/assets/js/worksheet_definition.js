@@ -1000,6 +1000,58 @@ var WORKSHEET_DEFINITION = {
                             }, 
                             {
                                 "image": {
+                                    "thumbnail_url": "img/thumbnail/Collar/Bertha.jpg", 
+                                    "full_size_url": "img/full_size/Collar/Bertha.jpg", 
+                                    "rights": {
+                                        "source_url": "https://commons.wikimedia.org/wiki/File:Portrait_of_Hannah_Fry_(by_Andrew_Geddes).jpg", 
+                                        "source_name": "Wikipedia", 
+                                        "license": "Public domain", 
+                                        "author": "Public domain"
+                                    }
+                                }, 
+                                "id": "Bertha"
+                            }, 
+                            {
+                                "image": {
+                                    "thumbnail_url": "img/thumbnail/Collar/Button-down.jpg", 
+                                    "full_size_url": "img/full_size/Collar/Button-down.jpg", 
+                                    "rights": {
+                                        "source_url": "https://commons.wikimedia.org/wiki/File:Collar.agr.jpg", 
+                                        "source_name": "Wikipedia", 
+                                        "license": "Creative Commons Attribution-Share Alike", 
+                                        "author": "Wikipedia user ArnoldReinhold"
+                                    }
+                                }, 
+                                "id": "Button-down"
+                            }, 
+                            {
+                                "image": {
+                                    "thumbnail_url": "img/thumbnail/Collar/Clerical.jpg", 
+                                    "full_size_url": "img/full_size/Collar/Clerical.jpg", 
+                                    "rights": {
+                                        "source_url": "https://commons.wikimedia.org/wiki/File:FrJonathanMorris.jpg", 
+                                        "source_name": "Wikipedia", 
+                                        "license": "Public domain", 
+                                        "author": "Wikipedia user John Sweepy"
+                                    }
+                                }, 
+                                "id": "Clerical"
+                            }, 
+                            {
+                                "image": {
+                                    "thumbnail_url": "img/thumbnail/Collar/Detachable.jpg", 
+                                    "full_size_url": "img/full_size/Collar/Detachable.jpg", 
+                                    "rights": {
+                                        "source_url": "https://commons.wikimedia.org/wiki/File:Grafton_starched-stiff_detachable_wing_collar.jpg", 
+                                        "source_name": "Wikipedia", 
+                                        "license": "Public domain", 
+                                        "author": "Wikipedia user Charlie Huang"
+                                    }
+                                }, 
+                                "id": "Detachable"
+                            }, 
+                            {
+                                "image": {
                                     "thumbnail_url": "img/thumbnail/Collar/Jabot.jpg", 
                                     "full_size_url": "img/full_size/Collar/Jabot.jpg", 
                                     "rights": {

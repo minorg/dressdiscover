@@ -1,7 +1,5 @@
-from _nsis import out
 from collections import OrderedDict
 import os.path
-import sys
 
 from dressdiscover.api.models.worksheet.worksheet_definition import WorksheetDefinition
 from dressdiscover.api.models.worksheet.worksheet_feature_definition import WorksheetFeatureDefinition
@@ -14,6 +12,7 @@ from dressdiscover.api.models.worksheet.worksheet_feature_value_image_rights imp
 # Constants
 ASSETS_DIR_PATH = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..', 'ts', 'assets'))
 assert os.path.isdir(ASSETS_DIR_PATH), ASSETS_DIR_PATH
+CC_BY_SA = 'Creative Commons Attribution-Share Alike'
 PUBLIC_DOMAIN = 'Public domain'
 THUMBNAIL_DIMENSIONS = (200, 200)
 
@@ -43,7 +42,7 @@ def rights(
             .set_source_url(source_url)\
             .build()
 
-def aat_rights():
+def aat_text_rights():
     return \
         rights(
             author='The J. Paul Getty Trust',
@@ -52,7 +51,7 @@ def aat_rights():
             source_url='http://www.getty.edu/research/tools/vocabularies/aat/'
         )
 
-def eft_wikipedia_rights(source_file_name):
+def eft_wikipedia_image_rights(source_file_name):
     return rights(
         author='David Ring',
         license_=PUBLIC_DOMAIN,
@@ -60,19 +59,7 @@ def eft_wikipedia_rights(source_file_name):
         source_url='https://commons.wikimedia.org/wiki/File:' + source_file_name
     )
 
-def wikipedia_rights(
-    author,
-    source_file_name,
-    license_='Creative Commons Attribution-Share Alike'
-):
-    return rights(
-        author=author,
-        license_=license_,
-        source_name='Wikipedia',
-        source_url='https://commons.wikimedia.org/wiki/File:' + source_file_name,
-    )
-    
-def nypl_rights(
+def nypl_image_rights(
     author,
     source_url
 ):
@@ -82,8 +69,31 @@ def nypl_rights(
         source_name='New York Public Library',
         source_url=source_url,
     )
-    
 
+def wikipedia_text_rights(
+    source_article_name,
+    license_=CC_BY_SA
+):
+    return rights(
+        author='Wikipedia',
+        license_=license_,
+        source_name='Wikipedia',
+        source_url='https://en.wikipedia.org/wiki/' + source_article_name,
+    )
+
+def wikipedia_image_rights(
+    author,
+    source_file_name,
+    license_=CC_BY_SA
+):
+    return rights(
+        author=author,
+        license_=license_,
+        source_name='Wikipedia',
+        source_url='https://commons.wikimedia.org/wiki/File:' + source_file_name,
+    )
+    
+    
 
 
 # Features
@@ -92,36 +102,36 @@ features = OrderedDict()
 closures = OrderedDict()
 closures['Buckle'] = feature_value(
     description='Devices used for fastening consisting of a usually open rectangular or rounded frame and a tongue or catch attached to one side or a vertical bar attached across the center. Sometimes used alone as an ornament.',
-    description_rights=aat_rights(),
-    image_rights=eft_wikipedia_rights(source_file_name='Buckle.jpg')
+    description_rights=aat_text_rights(),
+    image_rights=eft_wikipedia_image_rights(source_file_name='Buckle.jpg')
 )
 closures['Button'] = feature_value(
-    image_rights=wikipedia_rights(
+    image_rights=wikipedia_image_rights(
         author='Marco Bernardini',
         source_file_name='Three_holes_buttons.jpg',
     )
 )
 closures['Cufflink'] = feature_value(
     description='Linked ornamental buttons or buttonlike devices for fastening a shirt cuff.',
-    description_rights=aat_rights(),
-    image_rights=eft_wikipedia_rights(source_file_name='Cuff_links.jpg')
+    description_rights=aat_text_rights(),
+    image_rights=eft_wikipedia_image_rights(source_file_name='Cuff_links.jpg')
 )
 closures['Frog closure'] = feature_value(
-    image_rights=eft_wikipedia_rights(source_file_name='Frog_(fastening).jpg')
+    image_rights=eft_wikipedia_image_rights(source_file_name='Frog_(fastening).jpg')
 )
 closures['Hook-and-eye'] = feature_value(
-    image_rights=wikipedia_rights(
+    image_rights=wikipedia_image_rights(
         author='Wikipedia user Eitan F',
         source_file_name='Hook_and_eye_clasp.JPG'
     )
 )
 closures['Lacing'] = feature_value(
     description='Cords, bands, or similar flexible devices used for fastening, especially by interlacing, such as in a knot or bow',
-    description_rights=aat_rights(),
-    image_rights=eft_wikipedia_rights(source_file_name='Lace_(fastening).jpg')
+    description_rights=aat_text_rights(),
+    image_rights=eft_wikipedia_image_rights(source_file_name='Lace_(fastening).jpg')
 )
 closures['Zip'] = feature_value(
-    image_rights=wikipedia_rights(
+    image_rights=wikipedia_image_rights(
         author='Wikipedia user Woodbine9',
         source_file_name='Coil_plastic_and_metal_zippers.jpg'
     )    
@@ -133,13 +143,49 @@ features['Closure'] = {'values': closures}
 collars = OrderedDict()
 collars['Band'] = feature_value(
     description='Flat, stand-up collars, starched, wired, or otherwise stiffened, especially those commonly worn by men and women in the 17th century',
-    description_rights=aat_rights(),
-    image_rights=eft_wikipedia_rights(source_file_name='Band_(collar).jpg')
+    description_rights=aat_text_rights(),
+    image_rights=eft_wikipedia_image_rights(source_file_name='Band_(collar).jpg')
+)
+collars['Bertha'] = feature_value(
+    description='A wide, flat, round collar, often of lace or sheer fabric, worn with a low neckline in the Victorian era and resurrected in the 1940s.',
+    description_rights=wikipedia_text_rights(source_article_name='Collar_(clothing)'),
+    image_rights=wikipedia_image_rights(
+        author=PUBLIC_DOMAIN,
+        license_=PUBLIC_DOMAIN,
+        source_file_name='Portrait_of_Hannah_Fry_(by_Andrew_Geddes).jpg'
+    )
+)
+collars['Button-down'] = feature_value(
+    description='A collar with buttonholes on the points to fasten them to the body of the shirt.',
+    description_rights=wikipedia_text_rights(source_article_name='Collar_(clothing)'),
+    image_rights=wikipedia_image_rights(
+        author='Wikipedia user ArnoldReinhold',
+        license_=CC_BY_SA,
+        source_file_name='Collar.agr.jpg'
+    )
+)
+collars['Clerical'] = feature_value(
+    description='A band collar worn as part of clerical clothing',
+    description_rights=wikipedia_text_rights(source_article_name='Collar_(clothing)'),
+    image_rights=wikipedia_image_rights(
+        author='Wikipedia user John Sweepy',
+        license_=PUBLIC_DOMAIN,
+        source_file_name='FrJonathanMorris.jpg'
+    )
+)
+collars['Detachable'] = feature_value(
+    description='A collar made as a separate accessory to be worn with a band-collared shirt',
+    description_rights=wikipedia_text_rights(source_article_name='Collar_(clothing)'),
+    image_rights=wikipedia_image_rights(
+        author='Wikipedia user Charlie Huang',
+        license_=PUBLIC_DOMAIN,
+        source_file_name='Grafton_starched-stiff_detachable_wing_collar.jpg'
+    )
 )
 collars['Jabot'] = feature_value(
     description='Detachable, made-up cascades of soft fabric, often lace, worn at the center front of the neckline over other garments. ',
-    description_rights=aat_rights(),
-    image_rights=eft_wikipedia_rights(source_file_name='Jabot.jpg')
+    description_rights=aat_text_rights(),
+    image_rights=eft_wikipedia_image_rights(source_file_name='Jabot.jpg')
 )
 # collar_characteristics = [
 #     feature_value('Attached'),
@@ -163,14 +209,14 @@ colors = [
 decorations = OrderedDict()
 decorations['Fringe'] = feature_value(
     description='Trimming consisting of long or short lengths of straight or twisted thread, cord, or tassel; often grouped or knotted in various designs',
-    description_rights=aat_rights(),
-    image_rights=eft_wikipedia_rights(source_file_name='Fringe_(fabric).jpg')
+    description_rights=aat_text_rights(),
+    image_rights=eft_wikipedia_image_rights(source_file_name='Fringe_(fabric).jpg')
 )
 decorations['Knot'] = feature_value(
-    image_rights=eft_wikipedia_rights(source_file_name='Knot_(decoration).jpg')
+    image_rights=eft_wikipedia_image_rights(source_file_name='Knot_(decoration).jpg')
 )
 decorations['Lace'] = feature_value(
-    image_rights=eft_wikipedia_rights(source_file_name='Lace_fragment.tif')
+    image_rights=eft_wikipedia_image_rights(source_file_name='Lace_fragment.tif')
 )
 features['Decoration'] = {'values': decorations}
 
@@ -187,7 +233,7 @@ features['Label'] = {'extents': (('Whole', None),)}
 materials = OrderedDict()
 #     feature_value('Cotton'),
 materials['Corduroy'] = feature_value(
-    image_rights=wikipedia_rights(
+    image_rights=wikipedia_image_rights(
         author='Wikipedia user Ludek',
         source_file_name='Mansestr.jpg',
     )
@@ -197,7 +243,7 @@ materials['Corduroy'] = feature_value(
 #     feature_value('Self-fabric'),
 #     feature_value(
 materials['Net tulle'] = feature_value(
-    image_rights=wikipedia_rights(
+    image_rights=wikipedia_image_rights(
         author='Wikipedia user Carolus',
         source_file_name='Carolus_-Private_Collection_-_zwarte_tulekant.jpg',
     )
@@ -208,22 +254,22 @@ features['Material'] = {'values': materials}
 
 necklines = OrderedDict()
 necklines['Boat neck'] = feature_value(
-    image_rights=eft_wikipedia_rights(source_file_name='Boat_neck.jpg')
+    image_rights=eft_wikipedia_image_rights(source_file_name='Boat_neck.jpg')
 )
 necklines['Round neck'] = feature_value(
-    image_rights=eft_wikipedia_rights(source_file_name='Round_neck.jpg')
+    image_rights=eft_wikipedia_image_rights(source_file_name='Round_neck.jpg')
 )
 necklines['Ruffled neck'] = feature_value(
-    image_rights=eft_wikipedia_rights(source_file_name='Ruffled_neck.jpg')
+    image_rights=eft_wikipedia_image_rights(source_file_name='Ruffled_neck.jpg')
 )
 necklines['Square neck'] = feature_value(
-    image_rights=eft_wikipedia_rights(source_file_name='Square_neck.jpg')
+    image_rights=eft_wikipedia_image_rights(source_file_name='Square_neck.jpg')
 )
 necklines['Surplice'] = feature_value(
-    image_rights=eft_wikipedia_rights(source_file_name='Surplice_neckline.jpg')
+    image_rights=eft_wikipedia_image_rights(source_file_name='Surplice_neckline.jpg')
 )
 necklines['V-neck'] = feature_value(
-    image_rights=eft_wikipedia_rights(source_file_name='V-neck.jpg')
+    image_rights=eft_wikipedia_image_rights(source_file_name='V-neck.jpg')
 )
 features['Neckline'] = {'extents': ('Neckline',), 'values': necklines}
 
@@ -240,7 +286,7 @@ prints = OrderedDict()
 #     feature_value('Plaid'),
 # ]
 prints['Plaid'] = feature_value(
-    image_rights=wikipedia_rights(
+    image_rights=wikipedia_image_rights(
         author=PUBLIC_DOMAIN,
         license_=PUBLIC_DOMAIN,
         source_file_name='Royal_stewart.jpg',
@@ -258,8 +304,8 @@ pocket_characteristics = [
 shoulders = OrderedDict()
 shoulders['Epaulette'] = feature_value(
     description='Trimming consisting of long or short lengths of straight or twisted thread, cord, or tassel; often grouped or knotted in various designs',
-    description_rights=aat_rights(),
-    image_rights=eft_wikipedia_rights(source_file_name='Epaulette_(drawing).jpg')
+    description_rights=aat_text_rights(),
+    image_rights=eft_wikipedia_image_rights(source_file_name='Epaulette_(drawing).jpg')
 )
 features['Shoulder'] = {'extents': ('Shoulder',), 'values': shoulders}
 
@@ -273,28 +319,28 @@ sleeves = OrderedDict()
 #     feature_value('Sleeveless'),
 # ]
 sleeves['Batwing'] = feature_value(
-    image_rights=eft_wikipedia_rights(source_file_name='Batwing_sleeve.jpg')
+    image_rights=eft_wikipedia_image_rights(source_file_name='Batwing_sleeve.jpg')
 )
 sleeves['Long'] = feature_value(
-    image_rights=eft_wikipedia_rights(source_file_name='Long_sleeve.jpg')
+    image_rights=eft_wikipedia_image_rights(source_file_name='Long_sleeve.jpg')
 )
 sleeves['One sleeve'] = feature_value(
-    image_rights=eft_wikipedia_rights(source_file_name='One_sleeve.jpg')
+    image_rights=eft_wikipedia_image_rights(source_file_name='One_sleeve.jpg')
 )
 sleeves['Set-in'] = feature_value(
-    image_rights=wikipedia_rights(
+    image_rights=wikipedia_image_rights(
         author='Wikipedia user kellyhogaboom',
         source_file_name='Set_in_sleeve_blind_stitched.jpg',
     )
 )
 sleeves['Short'] = feature_value(
-    image_rights=eft_wikipedia_rights(source_file_name='Short_sleeve.jpg')
+    image_rights=eft_wikipedia_image_rights(source_file_name='Short_sleeve.jpg')
 )
 sleeves['Short puffed'] = feature_value(
-    image_rights=eft_wikipedia_rights(source_file_name='Short_puffed_sleeve.jpg')
+    image_rights=eft_wikipedia_image_rights(source_file_name='Short_puffed_sleeve.jpg')
 )
 sleeves['Sleeveless'] = feature_value(
-    image_rights=eft_wikipedia_rights(source_file_name='Sleeveless.jpg')
+    image_rights=eft_wikipedia_image_rights(source_file_name='Sleeveless.jpg')
 )
 features['Sleeve'] = {'extents': ('Sleeve',), 'values': sleeves}
 
@@ -309,7 +355,7 @@ techniques = [
 
 waistline = OrderedDict()
 waistline['Natural'] = feature_value(
-    image_rights=nypl_rights(
+    image_rights=nypl_image_rights(
         author=PUBLIC_DOMAIN,
         source_url='https://digitalcollections.nypl.org/items/a1974390-ab14-0132-a409-58d385a7bbd0',
     )
@@ -370,33 +416,35 @@ def __define_feature_values(feature_id, feature_values_dict):
                 .set_id(feature_value_id)
         
         image_rights = feature_value.get('image_rights')
-        if image_rights is not None:
-            image_builder = WorksheetFeatureValueImage.Builder()
-            image_builder.set_rights(image_rights)    
+        if image_rights is None:
+            continue
+        
+        image_builder = WorksheetFeatureValueImage.Builder()
+        image_builder.set_rights(image_rights)    
 
-            file_extension = feature_value.get('image_file_extension', 'jpg')                     
-            file_name = "%(feature_value_id)s.%(file_extension)s" % locals()
-             
-            full_size_file_path = os.path.join(ASSETS_DIR_PATH, 'img', 'full_size', feature_id, file_name)
-            if not os.path.isfile(full_size_file_path):
-                raise ValueError("%(full_size_file_path)s does not exist" % locals())
-            image_builder.set_full_size_url("img/full_size/%(feature_id)s/%(file_name)s" % locals())
-             
-            thumbnail_dir_path = os.path.join(ASSETS_DIR_PATH, 'img', 'thumbnail', feature_id)
-            thumbnail_file_path = os.path.join(thumbnail_dir_path, file_name)
-            if not os.path.isfile(thumbnail_file_path):
-                from PIL import Image  # @UnresolvedImport
-                thumbnail = Image.open(full_size_file_path)
-                # Use .resize and .thumbnail, because the latter preserves the aspect ratio,
-                # which we don't want.
-                thumbnail = thumbnail.resize(THUMBNAIL_DIMENSIONS)
-                if not os.path.isdir(thumbnail_dir_path):
-                    os.makedirs(thumbnail_dir_path)
-                thumbnail.save(thumbnail_file_path)
-                print "saved thumbnail to", thumbnail_file_path
-            image_builder.set_thumbnail_url("img/thumbnail/%(feature_id)s/%(file_name)s" % locals())
+        file_extension = feature_value.get('image_file_extension', 'jpg')                     
+        file_name = "%(feature_value_id)s.%(file_extension)s" % locals()
+         
+        full_size_file_path = os.path.join(ASSETS_DIR_PATH, 'img', 'full_size', feature_id, file_name)
+        if not os.path.isfile(full_size_file_path):
+            raise ValueError("%(full_size_file_path)s does not exist" % locals())
+        image_builder.set_full_size_url("img/full_size/%(feature_id)s/%(file_name)s" % locals())
+         
+        thumbnail_dir_path = os.path.join(ASSETS_DIR_PATH, 'img', 'thumbnail', feature_id)
+        thumbnail_file_path = os.path.join(thumbnail_dir_path, file_name)
+        if not os.path.isfile(thumbnail_file_path):
+            from PIL import Image  # @UnresolvedImport
+            thumbnail = Image.open(full_size_file_path)
+            # Use .resize and .thumbnail, because the latter preserves the aspect ratio,
+            # which we don't want.
+            thumbnail = thumbnail.resize(THUMBNAIL_DIMENSIONS)
+            if not os.path.isdir(thumbnail_dir_path):
+                os.makedirs(thumbnail_dir_path)
+            thumbnail.save(thumbnail_file_path)
+            print "saved thumbnail to", thumbnail_file_path
+        image_builder.set_thumbnail_url("img/thumbnail/%(feature_id)s/%(file_name)s" % locals())
 
-            feature_value_definition_builder.set_image(image_builder.build())
+        feature_value_definition_builder.set_image(image_builder.build())
 
         feature_value_definitions.append(feature_value_definition_builder.build())
     return tuple(feature_value_definitions)
