@@ -607,6 +607,218 @@ var WORKSHEET_DEFINITION = {
                 ]
             }, 
             {
+                "id": "Neckline", 
+                "features": [
+                    {
+                        "id": "Neckline Closure", 
+                        "values_": [
+                            {
+                                "image": {
+                                    "thumbnail_url": "img/thumbnail/Closure/Buckle.jpg", 
+                                    "full_size_url": "img/full_size/Closure/Buckle.jpg", 
+                                    "rights": {
+                                        "source_url": "https://commons.wikimedia.org/wiki/File:Buckle.jpg", 
+                                        "source_name": "Wikipedia / Europeana Fashion Thesaurus", 
+                                        "license": "Public domain", 
+                                        "author": "David Ring"
+                                    }
+                                }, 
+                                "id": "Buckle"
+                            }, 
+                            {
+                                "image": {
+                                    "thumbnail_url": "img/thumbnail/Closure/Button.jpg", 
+                                    "full_size_url": "img/full_size/Closure/Button.jpg", 
+                                    "rights": {
+                                        "source_url": "https://commons.wikimedia.org/wiki/File:Three_holes_buttons.jpg", 
+                                        "source_name": "Wikipedia", 
+                                        "license": "Creative Commons Attribution-Share Alike", 
+                                        "author": "Marco Bernardini"
+                                    }
+                                }, 
+                                "id": "Button"
+                            }, 
+                            {
+                                "image": {
+                                    "thumbnail_url": "img/thumbnail/Closure/Cufflink.jpg", 
+                                    "full_size_url": "img/full_size/Closure/Cufflink.jpg", 
+                                    "rights": {
+                                        "source_url": "https://commons.wikimedia.org/wiki/File:Cuff_links.jpg", 
+                                        "source_name": "Wikipedia / Europeana Fashion Thesaurus", 
+                                        "license": "Public domain", 
+                                        "author": "David Ring"
+                                    }
+                                }, 
+                                "id": "Cufflink"
+                            }, 
+                            {
+                                "image": {
+                                    "thumbnail_url": "img/thumbnail/Closure/Frog closure.jpg", 
+                                    "full_size_url": "img/full_size/Closure/Frog closure.jpg", 
+                                    "rights": {
+                                        "source_url": "https://commons.wikimedia.org/wiki/File:Frog_(fastening).jpg", 
+                                        "source_name": "Wikipedia / Europeana Fashion Thesaurus", 
+                                        "license": "Public domain", 
+                                        "author": "David Ring"
+                                    }
+                                }, 
+                                "id": "Frog closure"
+                            }, 
+                            {
+                                "image": {
+                                    "thumbnail_url": "img/thumbnail/Closure/Hook-and-eye.jpg", 
+                                    "full_size_url": "img/full_size/Closure/Hook-and-eye.jpg", 
+                                    "rights": {
+                                        "source_url": "https://commons.wikimedia.org/wiki/File:Hook_and_eye_clasp.JPG", 
+                                        "source_name": "Wikipedia", 
+                                        "license": "Creative Commons Attribution-Share Alike", 
+                                        "author": "Wikipedia user Eitan F"
+                                    }
+                                }, 
+                                "id": "Hook-and-eye"
+                            }, 
+                            {
+                                "image": {
+                                    "thumbnail_url": "img/thumbnail/Closure/Lacing.jpg", 
+                                    "full_size_url": "img/full_size/Closure/Lacing.jpg", 
+                                    "rights": {
+                                        "source_url": "https://commons.wikimedia.org/wiki/File:Lace_(fastening).jpg", 
+                                        "source_name": "Wikipedia / Europeana Fashion Thesaurus", 
+                                        "license": "Public domain", 
+                                        "author": "David Ring"
+                                    }
+                                }, 
+                                "id": "Lacing"
+                            }, 
+                            {
+                                "image": {
+                                    "thumbnail_url": "img/thumbnail/Closure/Zip.jpg", 
+                                    "full_size_url": "img/full_size/Closure/Zip.jpg", 
+                                    "rights": {
+                                        "source_url": "https://commons.wikimedia.org/wiki/File:Coil_plastic_and_metal_zippers.jpg", 
+                                        "source_name": "Wikipedia", 
+                                        "license": "Creative Commons Attribution-Share Alike", 
+                                        "author": "Wikipedia user Woodbine9"
+                                    }
+                                }, 
+                                "id": "Zip"
+                            }
+                        ]
+                    }, 
+                    {
+                        "id": "Neckline Decoration", 
+                        "values_": [
+                            {
+                                "image": {
+                                    "thumbnail_url": "img/thumbnail/Decoration/Fringe.jpg", 
+                                    "full_size_url": "img/full_size/Decoration/Fringe.jpg", 
+                                    "rights": {
+                                        "source_url": "https://commons.wikimedia.org/wiki/File:Fringe_(fabric).jpg", 
+                                        "source_name": "Wikipedia / Europeana Fashion Thesaurus", 
+                                        "license": "Public domain", 
+                                        "author": "David Ring"
+                                    }
+                                }, 
+                                "id": "Fringe"
+                            }, 
+                            {
+                                "image": {
+                                    "thumbnail_url": "img/thumbnail/Decoration/Knot.jpg", 
+                                    "full_size_url": "img/full_size/Decoration/Knot.jpg", 
+                                    "rights": {
+                                        "source_url": "https://commons.wikimedia.org/wiki/File:Knot_(decoration).jpg", 
+                                        "source_name": "Wikipedia / Europeana Fashion Thesaurus", 
+                                        "license": "Public domain", 
+                                        "author": "David Ring"
+                                    }
+                                }, 
+                                "id": "Knot"
+                            }, 
+                            {
+                                "image": {
+                                    "thumbnail_url": "img/thumbnail/Decoration/Lace.jpg", 
+                                    "full_size_url": "img/full_size/Decoration/Lace.jpg", 
+                                    "rights": {
+                                        "source_url": "https://commons.wikimedia.org/wiki/File:Lace_fragment.tif", 
+                                        "source_name": "Wikipedia / Europeana Fashion Thesaurus", 
+                                        "license": "Public domain", 
+                                        "author": "David Ring"
+                                    }
+                                }, 
+                                "id": "Lace"
+                            }
+                        ]
+                    }, 
+                    {
+                        "id": "Neckline Material", 
+                        "values_": [
+                            {
+                                "image": {
+                                    "thumbnail_url": "img/thumbnail/Material/Corduroy.jpg", 
+                                    "full_size_url": "img/full_size/Material/Corduroy.jpg", 
+                                    "rights": {
+                                        "source_url": "https://commons.wikimedia.org/wiki/File:Mansestr.jpg", 
+                                        "source_name": "Wikipedia", 
+                                        "license": "Creative Commons Attribution-Share Alike", 
+                                        "author": "Wikipedia user Ludek"
+                                    }
+                                }, 
+                                "id": "Corduroy"
+                            }, 
+                            {
+                                "image": {
+                                    "thumbnail_url": "img/thumbnail/Material/Net tulle.jpg", 
+                                    "full_size_url": "img/full_size/Material/Net tulle.jpg", 
+                                    "rights": {
+                                        "source_url": "https://commons.wikimedia.org/wiki/File:Carolus_-Private_Collection_-_zwarte_tulekant.jpg", 
+                                        "source_name": "Wikipedia", 
+                                        "license": "Creative Commons Attribution-Share Alike", 
+                                        "author": "Wikipedia user Carolus"
+                                    }
+                                }, 
+                                "id": "Net tulle"
+                            }
+                        ]
+                    }, 
+                    {
+                        "id": "Neckline Neckline", 
+                        "values_": [
+                            {
+                                "image": {
+                                    "thumbnail_url": "img/thumbnail/Neckline/Boat neck.jpg", 
+                                    "full_size_url": "img/full_size/Neckline/Boat neck.jpg", 
+                                    "rights": {
+                                        "source_url": "https://commons.wikimedia.org/wiki/File:Boat_neck.jpg", 
+                                        "source_name": "Wikipedia / Europeana Fashion Thesaurus", 
+                                        "license": "Public domain", 
+                                        "author": "David Ring"
+                                    }
+                                }, 
+                                "id": "Boat neck"
+                            }
+                        ]
+                    }, 
+                    {
+                        "id": "Neckline Print", 
+                        "values_": [
+                            {
+                                "image": {
+                                    "thumbnail_url": "img/thumbnail/Print/Plaid.jpg", 
+                                    "full_size_url": "img/full_size/Print/Plaid.jpg", 
+                                    "rights": {
+                                        "source_url": "https://commons.wikimedia.org/wiki/File:Royal_stewart.jpg", 
+                                        "source_name": "Wikipedia", 
+                                        "license": "Public domain", 
+                                        "author": "Public domain"
+                                    }
+                                }, 
+                                "id": "Plaid"
+                            }
+                        ]
+                    }
+                ]
+            }, 
+            {
                 "id": "Collar", 
                 "features": [
                     {

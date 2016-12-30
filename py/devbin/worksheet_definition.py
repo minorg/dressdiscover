@@ -204,6 +204,14 @@ materials['Net tulle'] = feature_value(
 features['Material'] = {'values': materials}
 #     feature_value('Velvet'),
 
+
+necklines = OrderedDict()
+necklines['Boat neck'] = feature_value(
+    image_rights=eft_wikipedia_rights(source_file_name='Boat_neck.jpg')
+)
+features['Neckline'] = {'extents': ('Neckline',), 'values': necklines}
+
+
 pleats = [
     feature_value('Inverted'),
 ]
@@ -275,6 +283,7 @@ _vertical_extents = [
 
 extents = OrderedDict()
 extents['Whole'] = (None, 'Top', 'Bottom')
+extents['Neckline'] = (None,)
 extents['Collar'] = (None,)
 extents['Shoulders'] = (None,)
 extents['Sleeves'] = (None,)
