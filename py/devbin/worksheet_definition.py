@@ -165,6 +165,10 @@ decorations['Fringe'] = feature_value(
     description_rights=aat_rights(),
     image_rights=eft_wikipedia_rights(source_file_name='Fringe_(fabric).jpg')
 )
+decorations['Knot'] = feature_value(
+    image_rights=eft_wikipedia_rights(source_file_name='Knot_(decoration).jpg')
+)
+
 features['Decoration'] = {'values': decorations}
 
 
