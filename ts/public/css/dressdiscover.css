@@ -134,10 +134,11 @@ html.magnifying > body {
 }
 #worksheet #output .action.btn {
   font-size: smaller;
-  vertical-align: bottom;
+  height: 100%;
 }
 #worksheet #output #format {
   font-size: smaller;
+  height: 100%;
   text-align: center;
 }
 #worksheet #sidebar #changeAccessionNumberButton {
