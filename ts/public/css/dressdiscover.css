@@ -132,6 +132,14 @@ html.magnifying > body {
 #worksheet #input .values-row {
   margin-bottom: 20px;
 }
+#worksheet #output .action.btn {
+  font-size: smaller;
+  vertical-align: bottom;
+}
+#worksheet #output #format {
+  font-size: smaller;
+  text-align: center;
+}
 #worksheet #sidebar #changeAccessionNumberButton {
   margin-left: 20%;
 }

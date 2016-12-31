@@ -6,6 +6,8 @@ import { WorksheetFeature } from "dressdiscover/gui/models/worksheet/worksheet_f
 import { WorksheetFeatureNavigationEvent } from "dressdiscover/gui/events/worksheet/worksheet_feature_navigation_event";
 import { WorksheetFeatureSet } from "dressdiscover/gui/models/worksheet/worksheet_feature_set";
 import { Worksheet } from "dressdiscover/gui/models/worksheet/worksheet";
+import * as Clipboard from "Clipboard";
+import "../../../../../../node_modules/clipboard-js/clipboard.js";
 import "./worksheet_output_view.less";
 
 declare function require(moduleName: string): any;
@@ -19,12 +21,63 @@ interface WorksheetOutput {
     [featureDisplayName: string]: WorksheetFeatureOutput;
 }
 
+interface WorksheetOutputFormat {
+    fileExtension: string;
+
+    format(model: Worksheet, output: WorksheetOutput): string;
+
+    mimeType: string;
+}
+
+class WorksheetCsvOutputFormat implements WorksheetOutputFormat {
+    get fileExtension() {
+        return "csv";
+    }
+
+    format(model: Worksheet, output: WorksheetOutput): string {
+        let csv: string = "Feature name,Feature value\n";
+        for (var outputKey in output) {
+            for (let outputValue of output[outputKey].values) {
+                csv += WorksheetCsvOutputFormat.__escapeCsv(outputKey) + "," + WorksheetCsvOutputFormat.__escapeCsv(outputValue) + "\n";
+            }
+        }
+        return csv;
+    }
+
+    get mimeType() {
+        return "text/csv";
+    }
+
+    private static __escapeCsv(cell: string): string {
+        return '"' + cell.replace(/"/g, '""') + '"';
+    }
+}
+
+class WorksheetJsonOutputFormat implements WorksheetOutputFormat {
+    get fileExtension() {
+        return "json";
+    }
+
+    format(model: Worksheet, output: WorksheetOutput): string {
+        const currentState = model.currentState;
+        if (currentState) {
+            return JSON.stringify(currentState.toThryftJSON());
+        } else {
+            return JSON.stringify({});
+        }
+    }
+
+    get mimeType() {
+        return "application/json";
+    }
+}
+
 export class WorksheetOutputView extends Marionette.ItemView<Worksheet> {
     constructor(options?: any) {
         super(_.extend(options, {
             events: {
                 "click .feature-name a": "onClickFeatureName",
-                "click #csv": "onClickCsv"
+                "click #download": "onClickDownload"
             },
             id: "output",
             template: _.template(require("raw!./worksheet_output_view.html"))
@@ -34,16 +87,21 @@ export class WorksheetOutputView extends Marionette.ItemView<Worksheet> {
     initialize() {
         this._output = this.__calculateOutput();
         this.listenTo(Application.instance.radio.globalChannel, WorksheetFeatureInputEvent.NAME, this.onFeatureInput);
+        this.ui = { formatSelect: "#format" };
     }
 
-    onClickCsv() {
-        let csv: string = "Feature name,Feature value\n";
-        for (var outputKey in this._output) {
-            for (let outputValue of this._output[outputKey].values) {
-                csv += this.__escapeCsv(outputKey) + "," + this.__escapeCsv(outputValue) + "\n";
+    onBeforeShow() {
+        const this_ = this;
+        this._clipboard = new Clipboard("#copy", {
+            text: (elem) => {
+                return this_.__getSelectedOutputFormat().format(this.model, this._output);
             }
-        }
-        this.__download(csv, this.model.accessionNumber + ".csv", "text/csv");
+        });
+    }
+
+    onClickDownload() {
+        const outputFormat = this.__getSelectedOutputFormat();
+        this.__download(outputFormat.format(this.model, this._output), this.model.accessionNumber + "." + outputFormat.fileExtension, outputFormat.mimeType);
     }
 
     onClickFeatureName(event: any) {
@@ -51,6 +109,10 @@ export class WorksheetOutputView extends Marionette.ItemView<Worksheet> {
             WorksheetFeatureNavigationEvent.NAME,
             new WorksheetFeatureNavigationEvent({ feature: this._output[event.target.innerText].feature })
         );
+    }
+
+    onDestroy() {
+        this._clipboard.destroy();
     }
 
     onFeatureInput(event: WorksheetFeatureInputEvent) {
@@ -127,9 +189,14 @@ export class WorksheetOutputView extends Marionette.ItemView<Worksheet> {
         }
     }
 
-    private __escapeCsv(cell: string): string {
-        return '"' + cell.replace(/"/g, '""') + '"';
+    private __getSelectedOutputFormat(): WorksheetOutputFormat {
+        return this._outputFormats[this.ui.formatSelect.val()];
     }
 
+    private _clipboard: Clipboard;
     private _output: WorksheetOutput;
+    private _outputFormats: { [name: string]: WorksheetOutputFormat } = {
+        "CSV": new WorksheetCsvOutputFormat(),
+        "JSON": new WorksheetJsonOutputFormat()
+    };
 }
