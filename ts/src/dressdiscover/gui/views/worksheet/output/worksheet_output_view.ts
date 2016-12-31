@@ -72,6 +72,30 @@ class WorksheetJsonOutputFormat implements WorksheetOutputFormat {
     }
 }
 
+class WorksheetTsvOutputFormat implements WorksheetOutputFormat {
+    get fileExtension() {
+        return "tsv";
+    }
+
+    format(model: Worksheet, output: WorksheetOutput): string {
+        let tsv: string = "Feature name\tFeature value\n";
+        for (var outputKey in output) {
+            for (let outputValue of output[outputKey].values) {
+                tsv += WorksheetTsvOutputFormat.__escapeTsv(outputKey) + "\t" + WorksheetTsvOutputFormat.__escapeTsv(outputValue) + "\n";
+            }
+        }
+        return tsv;
+    }
+
+    get mimeType() {
+        return "text/tsv";
+    }
+
+    private static __escapeTsv(cell: string): string {
+        return '"' + cell.replace(/"/g, '""') + '"';
+    }
+}
+
 export class WorksheetOutputView extends Marionette.ItemView<Worksheet> {
     constructor(options?: any) {
         super(_.extend(options, {
@@ -203,6 +227,7 @@ export class WorksheetOutputView extends Marionette.ItemView<Worksheet> {
     private _output: WorksheetOutput;
     private _outputFormats: { [name: string]: WorksheetOutputFormat } = {
         "CSV": new WorksheetCsvOutputFormat(),
-        "JSON": new WorksheetJsonOutputFormat()
+        "JSON": new WorksheetJsonOutputFormat(),
+        "TSV": new WorksheetTsvOutputFormat()
     };
 }
