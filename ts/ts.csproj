@@ -23,11 +23,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include=".gitignore" />
-    <Content Include="assets\css\bootstrap.min.css" />
-    <Content Include="assets\fonts\glyphicons-halflings-regular.svg" />
-    <Content Include="assets\img\enum_feature_value_placeholder_full_size.png" />
-    <Content Include="assets\img\enum_feature_value_placeholder_thumbnail.png" />
-    <Content Include="assets\js\worksheet_definition.js" />
     <Content Include="package.json" />
     <Content Include="src\.gitignore" />
     <None Include="src\dressdiscover\gui\views\home\home_content_view.less" />
@@ -104,12 +99,6 @@
     <TypeScriptCompile Include="src\dressdiscover\gui\views\worksheet\worksheet_two_column_view.ts" />
     <TypeScriptCompile Include="src\dressdiscover\gui\views\worksheet\worksheet_sidebar_view.ts" />
     <TypeScriptCompile Include="src\dressdiscover\gui\views\worksheet\worksheet_top_level_view.ts" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="assets\fonts\glyphicons-halflings-regular.eot" />
-    <Content Include="assets\fonts\glyphicons-halflings-regular.ttf" />
-    <Content Include="assets\fonts\glyphicons-halflings-regular.woff" />
-    <Content Include="assets\fonts\glyphicons-halflings-regular.woff2" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="src\dressdiscover\gui\views\worksheet\worksheet_accession_number_picker_view.less" />

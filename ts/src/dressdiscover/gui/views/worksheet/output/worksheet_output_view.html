@@ -1,14 +1,25 @@
 ﻿<% if (output) { %>
     <% for (var outputKey in output) { _.each(output[outputKey].values, function(outputValue) { %>
-    <div class="row">
-        <div class="col-md-4 feature-name"><a><%- outputKey %></a></div>
-        <div class="col-md-8 feature-value"><%- outputValue %></div>
-    </div>
+<div class="row">
+    <div class="col-md-4 feature-name"><a><%- outputKey %></a></div>
+    <div class="col-md-8 feature-value"><%- outputValue %></div>
+</div>
     <% }); } %>
-    <div class="row">
-        <div class="col-md-4"></div>
-        <div class="col-md-8"><a id="csv">Download as CSV</a></div>
+<div class="row"><div class="col-md-12">&nbsp;</div></div>
+<div class="row" id="actions">
+    <div class="col-md-4"></div>
+    <div class="col-md-6">
+        <div class="form-group">
+            <a class="action btn btn-secondary" id="copy">Copy</a>
+            <a class="action btn btn-secondary" id="email">Email</a>
+            <a class="action btn btn-secondary" id="download">Download</a>
+            <select class="form-control" id="format">
+                <option>CSV</option>
+                <option>JSON</option>
+            </select>
+        </div>
     </div>
+</div>
 <% } else { %>
 Select values on the right to generate a description.
 <% } %>

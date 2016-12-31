@@ -10355,7 +10355,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /* 75 */
 /***/ function(module, exports) {
 
-	module.exports = "<% if (output) { %>\n    <% for (var outputKey in output) { _.each(output[outputKey].values, function(outputValue) { %>\n    <div class=\"row\">\n        <div class=\"col-md-4 feature-name\"><a><%- outputKey %></a></div>\n        <div class=\"col-md-8 feature-value\"><%- outputValue %></div>\n    </div>\n    <% }); } %>\n    <div class=\"row\">\n        <div class=\"col-md-4\"></div>\n        <div class=\"col-md-8\"><a id=\"csv\">Download as CSV</a></div>\n    </div>\n<% } else { %>\nSelect values on the right to generate a description.\n<% } %>\n"
+	module.exports = "<% if (output) { %>\n    <% for (var outputKey in output) { _.each(output[outputKey].values, function(outputValue) { %>\n    <div class=\"row\">\n        <div class=\"col-md-4 feature-name\"><a><%- outputKey %></a></div>\n        <div class=\"col-md-8 feature-value\"><%- outputValue %></div>\n    </div>\n    <% }); } %>\n    <div class=\"row\">\n        <div class=\"col-md-4\"></div>\n        <div class=\"col-md-2\"><a id=\"copy\">Copy</a></div>\r\n        <div class=\"col-md-2\"><a id=\"email\">Email</a></div>\r\n        <div class=\"col-md-2\"><a id=\"download\">Download</a></div>\n        <div class=\"col-md-2\">\r\n            <div class=\"form-group\">\r\n                <select class=\"form-control\" id=\"format\">\r\n                    <option>CSV</option>\r\n                    <option>JSON</option>\r\n                </select>\r\n            </div>\r\n        </div>\n    </div>\n<% } else { %>\nSelect values on the right to generate a description.\n<% } %>\n"
 
 /***/ },
 /* 76 */
