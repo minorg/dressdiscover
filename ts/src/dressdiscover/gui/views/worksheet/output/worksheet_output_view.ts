@@ -77,7 +77,8 @@ export class WorksheetOutputView extends Marionette.ItemView<Worksheet> {
         super(_.extend(options, {
             events: {
                 "click .feature-name a": "onClickFeatureName",
-                "click #download": "onClickDownload"
+                "click #download": "onClickDownload",
+                "click #email": "onClickEmail"
             },
             id: "output",
             template: _.template(require("raw!./worksheet_output_view.html"))
@@ -102,6 +103,11 @@ export class WorksheetOutputView extends Marionette.ItemView<Worksheet> {
     onClickDownload() {
         const outputFormat = this.__getSelectedOutputFormat();
         this.__download(outputFormat.format(this.model, this._output), this.model.accessionNumber + "." + outputFormat.fileExtension, outputFormat.mimeType);
+    }
+
+    onClickEmail() {
+        const output = this.__getSelectedOutputFormat().format(this.model, this._output);
+        window.open("mailto:?to=&subject=" + encodeURIComponent(this.model.accessionNumber) + "&body=" + encodeURIComponent(output));
     }
 
     onClickFeatureName(event: any) {
