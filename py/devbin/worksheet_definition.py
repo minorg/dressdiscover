@@ -516,7 +516,7 @@ if __name__ == '__main__':
     from thryft.protocol.builtins_output_protocol import BuiltinsOutputProtocol
     oprot = BuiltinsOutputProtocol()
     WORKSHEET_DEFINITION.write(oprot)
-    js = 'var WORKSHEET_DEFINITION = ' + json.dumps(oprot.value, indent=4) + "\n"
+    js = 'var WORKSHEET_DEFINITION = ' + json.dumps(oprot.value) + "\n"
     
     file_name = 'worksheet_definition.js'
     for file_path in (
