@@ -141,8 +141,11 @@ html.magnifying > body {
   height: 100%;
   text-align: center;
 }
-#worksheet #sidebar #changeAccessionNumberButton {
-  margin-left: 10%;
+#worksheet #sidebar #accessionNumber {
+  font-weight: bold;
+  height: 36px;
+  padding-top: 4px;
+  text-align: left;
 }
 #worksheet {
   height: 100%;

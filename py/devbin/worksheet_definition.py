@@ -1,6 +1,5 @@
 from collections import OrderedDict
 import os.path
-from pprint import pprint
 
 from dressdiscover.api.models.worksheet.worksheet_definition import WorksheetDefinition
 from dressdiscover.api.models.worksheet.worksheet_feature_definition import WorksheetFeatureDefinition
@@ -100,6 +99,7 @@ def wikipedia_image_rights(
 # Features
 features = OrderedDict()
 
+
 def closure_values():
     values = OrderedDict()
     values['Buckle'] = feature_value(
@@ -112,11 +112,6 @@ def closure_values():
             author='Marco Bernardini',
             source_file_name='Three_holes_buttons.jpg',
         )
-    )
-    values['Cufflink'] = feature_value(
-        description='Linked ornamental buttons or buttonlike devices for fastening a shirt cuff.',
-        description_rights=aat_text_rights(),
-        image_rights=eft_wikipedia_image_rights(source_file_name='Cuff_links.jpg')
     )
     values['Frog closure'] = feature_value(
         image_rights=eft_wikipedia_image_rights(source_file_name='Frog_(fastening).jpg')
@@ -139,7 +134,7 @@ def closure_values():
         )
     )
     return values
-features['Closure'] = {'values': closure_values}
+features['Closure'] = {'values': closure_values()}
 
 
 def collar_values():
@@ -202,6 +197,17 @@ def collar_values():
 features['Collar'] = {'values': collar_values()}
 
 
+# def cuff_closure_values():
+#     values = OrderedDict()
+#     values['Cufflink'] = feature_value(
+#         description='Linked ornamental buttons or buttonlike devices for fastening a shirt cuff.',
+#         description_rights=aat_text_rights(),
+#         image_rights=eft_wikipedia_image_rights(source_file_name='Cuff_links.jpg')
+#     )
+#     return values
+# features['Cuff Closure'] = {'values': cuff_closure_values()}
+
+
 # colors = [
 #     feature_value('Blue'),
 #     feature_value('Brown'),
@@ -228,18 +234,7 @@ def decoration_values():
 features['Decoration'] = {'values': decoration_values()}
 
 
-# interior_characteristics = [
-#     feature_value('Attached underskirt'),
-#     feature_value('Partially lined'),
-#     feature_value('Lined'),
-#     feature_value('Unlined'),
-# ]
-
-
-features['Label'] = {}
-
-
-def material_values():
+def fabric_values():
     values = OrderedDict()
     #     feature_value('Cotton'),
     values['Corduroy'] = feature_value(
@@ -260,7 +255,32 @@ def material_values():
     )
 #     feature_value('Velvet'),
     return values
-features['Material'] = {'values': material_values()}
+features['Fabric'] = {'values': fabric_values()}
+
+
+def fiber_values():
+    values = OrderedDict()
+    #     feature_value('Cotton'),
+    values['Cotton'] = feature_value(
+    )
+    #     feature_value('Elastic'),
+    #     feature_value('Plastic'),
+    #     feature_value('Self-fabric'),
+    #     feature_value(
+    return values
+features['Fiber'] = {'values': fiber_values()}
+
+
+
+# interior_characteristics = [
+#     feature_value('Attached underskirt'),
+#     feature_value('Partially lined'),
+#     feature_value('Lined'),
+#     feature_value('Unlined'),
+# ]
+
+
+features['Label'] = {}
 
 
 def neckline_values():
@@ -360,6 +380,7 @@ def sleeve_values():
     values['Sleeveless'] = feature_value(
         image_rights=eft_wikipedia_image_rights(source_file_name='Sleeveless.jpg')
     )
+    return values
 features['Sleeve'] = {'values': sleeve_values()}
 
 
@@ -387,7 +408,7 @@ def waistline_values():
 features['Waistline'] = {'values': waistline_values()}
 
 
-every_extent_feature_ids = ['Decoration', 'Material', 'Print']
+every_extent_feature_ids = ['Closure', 'Decoration', 'Fabric', 'Fiber', 'Print']
 sides = ('Left', 'Right')
 extents = OrderedDict()
 extents['Whole Body'] = ['Label'] + every_extent_feature_ids
@@ -401,15 +422,19 @@ for upper_body_extent_id in (
     'Torso',
     None
 ):
+    feature_ids = list(every_extent_feature_ids)
+    if upper_body_extent_id in features:
+        feature_ids.append(upper_body_extent_id)
+
     if upper_body_extent_id in ('Shoulder', 'Sleeve'):
         upper_body_extents[upper_body_extent_id] = bilateral_extents = OrderedDict()
         for side in sides:
-            bilateral_extents[side + ' ' + upper_body_extent_id] = every_extent_feature_ids
-        upper_body_extents[upper_body_extent_id][None] = every_extent_feature_ids
+            bilateral_extents[side + ' ' + upper_body_extent_id] = feature_ids
+        upper_body_extents[upper_body_extent_id][None] = feature_ids
     else:
-        upper_body_extents[upper_body_extent_id] = every_extent_feature_ids
+        upper_body_extents[upper_body_extent_id] = feature_ids
 upper_body_extents[None] = every_extent_feature_ids
-extents['Waistline'] = every_extent_feature_ids
+extents['Waistline'] = every_extent_feature_ids + ['Waistline']
 extents['Lower Body'] = lower_body_extents = OrderedDict()
 for lower_body_extent_id in (
     'Hip',
@@ -427,8 +452,12 @@ for lower_body_extent_id in (
 
 
 
+# Track which features are used to make sure they're all incorporated
+unused_features = features.copy()
 
-# More helper functions
+
+
+# Python type -> API type helper functions
 def __define_extent(extent_item):
     extent_id, sub = extent_item
     assert len(sub) > 0
@@ -464,6 +493,7 @@ def __define_extent_features(extent_id, feature_ids):
     extent_feature_definitions = []
     for feature_id in feature_ids:
         feature_dict = features[feature_id]
+        unused_features.pop(feature_id, None)
         
         feature_definition_builder = \
             WorksheetFeatureDefinition.Builder()
@@ -490,6 +520,7 @@ def __define_feature_values(feature_id, feature_values_dict):
 
         image_rights = feature_value.get('image_rights')
         if image_rights is None:
+            feature_value_definitions.append(feature_value_definition_builder.build())
             continue
 
         image_builder = WorksheetFeatureValueImage.Builder()
@@ -520,12 +551,16 @@ def __define_feature_values(feature_id, feature_values_dict):
         feature_value_definition_builder.set_image(image_builder.build())
 
         feature_value_definitions.append(feature_value_definition_builder.build())
+    assert len(feature_value_definitions) > 0, feature_id
     return tuple(feature_value_definitions)
 
 
+# Build up tree
 root_feature_set_definitions = []
 for extent_item in extents.iteritems():
     root_feature_set_definitions.append(__define_extent(extent_item))
+assert len(unused_features) == 0, unused_features.keys()
+    
 
 WORKSHEET_DEFINITION = \
     WorksheetDefinition(
