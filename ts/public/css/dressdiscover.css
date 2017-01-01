@@ -136,6 +136,12 @@ html.magnifying > body {
   font-size: smaller;
   height: 100%;
 }
+#worksheet #output .feature-name {
+  text-align: left;
+}
+#worksheet #output .feature-value {
+  text-align: center;
+}
 #worksheet #output #format {
   font-size: smaller;
   height: 100%;
