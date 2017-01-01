@@ -1,5 +1,5 @@
 ﻿import Backbone = require("backbone");
-import { Services } from "dressdiscover/gui/services/services";
+import { Application } from "dressdiscover/gui/application";
 import { WorksheetDefinition } from "dressdiscover/api/models/worksheet/worksheet_definition";
 import { WorksheetFeature } from "./worksheet_feature";
 import { WorksheetFeatureSet } from "./worksheet_feature_set";
@@ -40,8 +40,8 @@ export class Worksheet extends Backbone.Model {
     }
 
     static fetchFromService(kwds: { accessionNumber: string }): Worksheet {
-        const definition = Services.instance.worksheetQueryService.getWorksheetDefinitionSync();
-        const state = Services.instance.worksheetQueryService.getWorksheetStateSync({ accessionNumber: kwds.accessionNumber });
+        const definition = Application.instance.services.worksheetQueryService.getWorksheetDefinitionSync();
+        const state = Application.instance.services.worksheetQueryService.getWorksheetStateSync({ accessionNumber: kwds.accessionNumber });
         return new Worksheet({ accessionNumber: kwds.accessionNumber, definition: definition, state: state });
     }
    
@@ -57,7 +57,7 @@ export class Worksheet extends Backbone.Model {
     putToService() {
         let currentState = this.currentState;
         if (currentState) {
-            Services.instance.worksheetCommandService.putWorksheetStateSync({ state: currentState as WorksheetState });
+            Application.instance.services.worksheetCommandService.putWorksheetStateSync({ state: currentState as WorksheetState });
         }
     }
 

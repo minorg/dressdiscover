@@ -73,7 +73,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	var Marionette = __webpack_require__(5);
 	var radio_1 = __webpack_require__(8);
 	var router_1 = __webpack_require__(10);
-	var modal_region_1 = __webpack_require__(93);
+	var modal_region_1 = __webpack_require__(82);
+	var services_1 = __webpack_require__(83);
 	__webpack_require__(94);
 	__webpack_require__(95);
 	__webpack_require__(97);
@@ -88,6 +89,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        this._modalRegion = new modal_region_1.ModalRegion();
 	        this._radio = new radio_1.Radio();
 	        this._router = new router_1.Router();
+	        this._services = new services_1.Services();
 	        if (!Backbone.history.start({ hashChange: true, pushState: false })) {
 	            console.error("didn't route");
 	        }
@@ -116,6 +118,13 @@ return /******/ (function(modules) { // webpackBootstrap
 	    Object.defineProperty(Application.prototype, "router", {
 	        get: function () {
 	            return this._router;
+	        },
+	        enumerable: true,
+	        configurable: true
+	    });
+	    Object.defineProperty(Application.prototype, "services", {
+	        get: function () {
+	            return this._services;
 	        },
 	        enumerable: true,
 	        configurable: true
@@ -6615,10 +6624,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	var _ = __webpack_require__(3);
 	var application_1 = __webpack_require__(1);
 	var home_top_level_view_1 = __webpack_require__(11);
-	var services_1 = __webpack_require__(22);
-	var worksheet_1 = __webpack_require__(36);
-	var worksheet_accession_number_picker_view_1 = __webpack_require__(43);
-	var worksheet_top_level_view_1 = __webpack_require__(47);
+	var worksheet_1 = __webpack_require__(22);
+	var worksheet_accession_number_picker_view_1 = __webpack_require__(32);
+	var worksheet_top_level_view_1 = __webpack_require__(36);
 	var Router = (function (_super) {
 	    __extends(Router, _super);
 	    function Router() {
@@ -6635,7 +6643,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    };
 	    Router.prototype.worksheet = function (accessionNumber) {
 	        if (!accessionNumber) {
-	            application_1.Application.instance.modalRegion.show(new worksheet_accession_number_picker_view_1.WorksheetAccessionNumberPickerView({ availableAccessionNumbers: services_1.Services.instance.worksheetQueryService.getWorksheetAccessionNumbersSync() }));
+	            application_1.Application.instance.modalRegion.show(new worksheet_accession_number_picker_view_1.WorksheetAccessionNumberPickerView({ availableAccessionNumbers: application_1.Application.instance.services.worksheetQueryService.getWorksheetAccessionNumbersSync() }));
 	            return; // Will re-route with a value set
 	        }
 	        new worksheet_top_level_view_1.WorksheetTopLevelView({ model: worksheet_1.Worksheet.fetchFromService({ accessionNumber: accessionNumber }) }).render();
@@ -6786,1254 +6794,15 @@ return /******/ (function(modules) { // webpackBootstrap
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
-	var local_worksheet_command_service_1 = __webpack_require__(23);
-	var local_worksheet_query_service_1 = __webpack_require__(25);
-	var Services = (function () {
-	    function Services() {
-	        this._worksheetCommandService = new local_worksheet_command_service_1.LocalWorksheetCommandService;
-	        this._worksheetQueryService = new local_worksheet_query_service_1.LocalWorksheetQueryService;
-	    }
-	    Object.defineProperty(Services, "instance", {
-	        get: function () {
-	            return Services._instance;
-	        },
-	        enumerable: true,
-	        configurable: true
-	    });
-	    Object.defineProperty(Services.prototype, "worksheetCommandService", {
-	        get: function () {
-	            return this._worksheetCommandService;
-	        },
-	        enumerable: true,
-	        configurable: true
-	    });
-	    Object.defineProperty(Services.prototype, "worksheetQueryService", {
-	        get: function () {
-	            return this._worksheetQueryService;
-	        },
-	        enumerable: true,
-	        configurable: true
-	    });
-	    Services._instance = new Services();
-	    return Services;
-	}());
-	exports.Services = Services;
-
-
-/***/ },
-/* 23 */
-/***/ function(module, exports, __webpack_require__) {
-
-	"use strict";
-	var __extends = (this && this.__extends) || function (d, b) {
-	    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
-	    function __() { this.constructor = d; }
-	    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-	};
-	var async_to_sync_worksheet_command_service_1 = __webpack_require__(24);
-	var local_worksheet_query_service_1 = __webpack_require__(25);
-	var LocalWorksheetCommandService = (function (_super) {
-	    __extends(LocalWorksheetCommandService, _super);
-	    function LocalWorksheetCommandService() {
-	        _super.apply(this, arguments);
-	    }
-	    LocalWorksheetCommandService.prototype.putWorksheetStateSync = function (kwds) {
-	        var jsonString = JSON.stringify(kwds.state.toThryftJSON());
-	        console.info("state to service: " + jsonString);
-	        localStorage.setItem(local_worksheet_query_service_1.LocalWorksheetQueryService.getWorksheetStateItemKey(kwds.state.accessionNumber), jsonString);
-	    };
-	    return LocalWorksheetCommandService;
-	}(async_to_sync_worksheet_command_service_1.AsyncToSyncWorksheetCommandService));
-	exports.LocalWorksheetCommandService = LocalWorksheetCommandService;
-
-
-/***/ },
-/* 24 */
-/***/ function(module, exports) {
-
-	"use strict";
-	var AsyncToSyncWorksheetCommandService = (function () {
-	    function AsyncToSyncWorksheetCommandService() {
-	    }
-	    AsyncToSyncWorksheetCommandService.prototype.putWorksheetStateAsync = function (kwds) {
-	        try {
-	            this.putWorksheetStateSync({ state: kwds.state });
-	            kwds.success();
-	        }
-	        catch (e) {
-	            kwds.error(null, e.message, e);
-	        }
-	    };
-	    return AsyncToSyncWorksheetCommandService;
-	}());
-	exports.AsyncToSyncWorksheetCommandService = AsyncToSyncWorksheetCommandService;
-
-
-/***/ },
-/* 25 */
-/***/ function(module, exports, __webpack_require__) {
-
-	"use strict";
-	var __extends = (this && this.__extends) || function (d, b) {
-	    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
-	    function __() { this.constructor = d; }
-	    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-	};
-	var async_to_sync_worksheet_query_service_1 = __webpack_require__(26);
-	var worksheet_definition_1 = __webpack_require__(27);
-	var worksheet_state_1 = __webpack_require__(33);
-	var LocalWorksheetQueryService = (function (_super) {
-	    __extends(LocalWorksheetQueryService, _super);
-	    function LocalWorksheetQueryService() {
-	        _super.call(this);
-	        this._worksheetDefinition = worksheet_definition_1.WorksheetDefinition.fromThryftJSON(WORKSHEET_DEFINITION);
-	    }
-	    LocalWorksheetQueryService.prototype.getWorksheetAccessionNumbersSync = function () {
-	        var result = [];
-	        for (var keyI = 0;; keyI++) {
-	            var key = localStorage.key(keyI);
-	            if (key == null) {
-	                break;
-	            }
-	            if (!key.match("^" + LocalWorksheetQueryService._WORKSHEET_ITEM_KEY_PREFIX)) {
-	                continue;
-	            }
-	            else if (key.length == LocalWorksheetQueryService._WORKSHEET_ITEM_KEY_PREFIX.length) {
-	                continue;
-	            }
-	            result.push(key.substr(LocalWorksheetQueryService._WORKSHEET_ITEM_KEY_PREFIX.length));
-	        }
-	        return result;
-	    };
-	    LocalWorksheetQueryService.prototype.getWorksheetDefinitionSync = function () {
-	        return this._worksheetDefinition;
-	    };
-	    LocalWorksheetQueryService.getWorksheetStateItemKey = function (accessionNumber) {
-	        return LocalWorksheetQueryService._WORKSHEET_ITEM_KEY_PREFIX + accessionNumber;
-	    };
-	    LocalWorksheetQueryService.prototype.getWorksheetStateSync = function (kwds) {
-	        var jsonString = localStorage.getItem(LocalWorksheetQueryService.getWorksheetStateItemKey(kwds.accessionNumber));
-	        console.info("state from service: " + jsonString);
-	        if (jsonString == null) {
-	            return new worksheet_state_1.WorksheetState();
-	        }
-	        return worksheet_state_1.WorksheetState.fromThryftJSON(JSON.parse(jsonString));
-	    };
-	    LocalWorksheetQueryService._WORKSHEET_ITEM_KEY_PREFIX = "worksheet/state/";
-	    return LocalWorksheetQueryService;
-	}(async_to_sync_worksheet_query_service_1.AsyncToSyncWorksheetQueryService));
-	exports.LocalWorksheetQueryService = LocalWorksheetQueryService;
-
-
-/***/ },
-/* 26 */
-/***/ function(module, exports) {
-
-	"use strict";
-	var AsyncToSyncWorksheetQueryService = (function () {
-	    function AsyncToSyncWorksheetQueryService() {
-	    }
-	    AsyncToSyncWorksheetQueryService.prototype.getWorksheetAccessionNumbersAsync = function (kwds) {
-	        try {
-	            kwds.success(this.getWorksheetAccessionNumbersSync());
-	        }
-	        catch (e) {
-	            kwds.error(null, e.message, e);
-	        }
-	    };
-	    AsyncToSyncWorksheetQueryService.prototype.getWorksheetDefinitionAsync = function (kwds) {
-	        try {
-	            kwds.success(this.getWorksheetDefinitionSync());
-	        }
-	        catch (e) {
-	            kwds.error(null, e.message, e);
-	        }
-	    };
-	    AsyncToSyncWorksheetQueryService.prototype.getWorksheetStateAsync = function (kwds) {
-	        try {
-	            kwds.success(this.getWorksheetStateSync({ accessionNumber: kwds.accessionNumber }));
-	        }
-	        catch (e) {
-	            kwds.error(null, e.message, e);
-	        }
-	    };
-	    return AsyncToSyncWorksheetQueryService;
-	}());
-	exports.AsyncToSyncWorksheetQueryService = AsyncToSyncWorksheetQueryService;
-
-
-/***/ },
-/* 27 */
-/***/ function(module, exports, __webpack_require__) {
-
-	"use strict";
 	var __extends = (this && this.__extends) || function (d, b) {
 	    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
 	    function __() { this.constructor = d; }
 	    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 	};
 	var Backbone = __webpack_require__(4);
-	var worksheet_feature_set_definition_1 = __webpack_require__(28);
-	var WorksheetDefinition = (function (_super) {
-	    __extends(WorksheetDefinition, _super);
-	    function WorksheetDefinition(attributes, options) {
-	        _super.call(this, attributes, options);
-	        this.validation = {
-	            rootFeatureSet: {
-	                "fn": function (value, attr, computedState) {
-	                    if (!(value instanceof worksheet_feature_set_definition_1.WorksheetFeatureSetDefinition)) {
-	                        return "expected WorksheetDefinition.root_feature_set to be a WorksheetFeatureSetDefinition";
-	                    }
-	                    if (!value.isValid(true)) {
-	                        return value.validationError;
-	                    }
-	                    return undefined;
-	                },
-	                "required": true
-	            }
-	        };
-	    }
-	    Object.defineProperty(WorksheetDefinition.prototype, "rootFeatureSet", {
-	        get: function () {
-	            return this.get('rootFeatureSet');
-	        },
-	        set: function (value) {
-	            this.set('rootFeatureSet', value, { validate: true });
-	        },
-	        enumerable: true,
-	        configurable: true
-	    });
-	    WorksheetDefinition.fromThryftJSON = function (json) {
-	        var out = new WorksheetDefinition;
-	        for (var fieldName in json) {
-	            if (fieldName == "root_feature_set") {
-	                out.attributes.rootFeatureSet = worksheet_feature_set_definition_1.WorksheetFeatureSetDefinition.fromThryftJSON(json[fieldName]);
-	            }
-	        }
-	        if (!out.isValid(true)) {
-	            throw new Error(out.validationError);
-	        }
-	        return out;
-	    };
-	    WorksheetDefinition.prototype.toThryftJSON = function () {
-	        var json = {};
-	        json["root_feature_set"] = this.rootFeatureSet.toThryftJSON();
-	        return json;
-	    };
-	    return WorksheetDefinition;
-	}(Backbone.Model));
-	exports.WorksheetDefinition = WorksheetDefinition;
-
-
-/***/ },
-/* 28 */
-/***/ function(module, exports, __webpack_require__) {
-
-	"use strict";
-	var __extends = (this && this.__extends) || function (d, b) {
-	    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
-	    function __() { this.constructor = d; }
-	    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-	};
-	var Backbone = __webpack_require__(4);
-	var worksheet_feature_definition_1 = __webpack_require__(29);
-	var WorksheetFeatureSetDefinition = (function (_super) {
-	    __extends(WorksheetFeatureSetDefinition, _super);
-	    function WorksheetFeatureSetDefinition(attributes, options) {
-	        _super.call(this, attributes, options);
-	        this.validation = {
-	            id: {
-	                "fn": function (value, attr, computedState) {
-	                    if (typeof value !== "string") {
-	                        return "expected WorksheetFeatureSetDefinition.id to be a string";
-	                    }
-	                    return undefined;
-	                },
-	                "required": true
-	            },
-	            childFeatureSets: {
-	                "fn": function (value, attr, computedState) {
-	                    if (typeof attr === "undefined" || attr === null) {
-	                        return undefined;
-	                    }
-	                    if (!(value instanceof Backbone.Collection)) {
-	                        return "expected WorksheetFeatureSetDefinition.child_feature_sets to be a Backbone.Collection";
-	                    }
-	                    if (value.model !== WorksheetFeatureSetDefinition) {
-	                        return "expected WorksheetFeatureSetDefinition.child_feature_sets to be a Backbone.Collection with model=WorksheetFeatureSetDefinition";
-	                    }
-	                    for (var _i = 0, _a = value.models; _i < _a.length; _i++) {
-	                        var __model0 = _a[_i];
-	                        if (!__model0.isValid(true)) {
-	                            return __model0.validationError;
-	                        }
-	                    }
-	                    return undefined;
-	                },
-	                "minLength": 1, "required": false
-	            },
-	            displayName: {
-	                "fn": function (value, attr, computedState) {
-	                    if (typeof attr === "undefined" || attr === null) {
-	                        return undefined;
-	                    }
-	                    if (typeof value !== "string") {
-	                        return "expected WorksheetFeatureSetDefinition.display_name to be a string";
-	                    }
-	                    if (/^\s*$/.test(value)) {
-	                        return "WorksheetFeatureSetDefinition.display_name is blank";
-	                    }
-	                    return undefined;
-	                },
-	                "minLength": 1, "required": false
-	            },
-	            features: {
-	                "fn": function (value, attr, computedState) {
-	                    if (typeof attr === "undefined" || attr === null) {
-	                        return undefined;
-	                    }
-	                    if (!(value instanceof Backbone.Collection)) {
-	                        return "expected WorksheetFeatureSetDefinition.features to be a Backbone.Collection";
-	                    }
-	                    if (value.model !== worksheet_feature_definition_1.WorksheetFeatureDefinition) {
-	                        return "expected WorksheetFeatureSetDefinition.features to be a Backbone.Collection with model=WorksheetFeatureDefinition";
-	                    }
-	                    for (var _i = 0, _a = value.models; _i < _a.length; _i++) {
-	                        var __model0 = _a[_i];
-	                        if (!__model0.isValid(true)) {
-	                            return __model0.validationError;
-	                        }
-	                    }
-	                    return undefined;
-	                },
-	                "minLength": 1, "required": false
-	            }
-	        };
-	    }
-	    Object.defineProperty(WorksheetFeatureSetDefinition.prototype, "id", {
-	        get: function () {
-	            return this.get('id');
-	        },
-	        enumerable: true,
-	        configurable: true
-	    });
-	    Object.defineProperty(WorksheetFeatureSetDefinition.prototype, "childFeatureSets", {
-	        get: function () {
-	            return this.get('childFeatureSets');
-	        },
-	        set: function (value) {
-	            this.set('childFeatureSets', value, { validate: true });
-	        },
-	        enumerable: true,
-	        configurable: true
-	    });
-	    Object.defineProperty(WorksheetFeatureSetDefinition.prototype, "displayName", {
-	        get: function () {
-	            return this.get('displayName');
-	        },
-	        set: function (value) {
-	            this.set('displayName', value, { validate: true });
-	        },
-	        enumerable: true,
-	        configurable: true
-	    });
-	    Object.defineProperty(WorksheetFeatureSetDefinition.prototype, "features", {
-	        get: function () {
-	            return this.get('features');
-	        },
-	        set: function (value) {
-	            this.set('features', value, { validate: true });
-	        },
-	        enumerable: true,
-	        configurable: true
-	    });
-	    WorksheetFeatureSetDefinition.fromThryftJSON = function (json) {
-	        var out = new WorksheetFeatureSetDefinition;
-	        for (var fieldName in json) {
-	            if (fieldName == "id") {
-	                out.attributes.id = json[fieldName];
-	            }
-	            else if (fieldName == "child_feature_sets") {
-	                out.attributes.childFeatureSets = function (json) { var sequence = []; for (var i = 0; i < json.length; i++) {
-	                    sequence.push(WorksheetFeatureSetDefinition.fromThryftJSON(json[i]));
-	                } return new Backbone.Collection(sequence); }(json[fieldName]);
-	            }
-	            else if (fieldName == "display_name") {
-	                out.attributes.displayName = json[fieldName];
-	            }
-	            else if (fieldName == "features") {
-	                out.attributes.features = function (json) { var sequence = []; for (var i = 0; i < json.length; i++) {
-	                    sequence.push(worksheet_feature_definition_1.WorksheetFeatureDefinition.fromThryftJSON(json[i]));
-	                } return new Backbone.Collection(sequence); }(json[fieldName]);
-	            }
-	        }
-	        if (!out.isValid(true)) {
-	            throw new Error(out.validationError);
-	        }
-	        return out;
-	    };
-	    WorksheetFeatureSetDefinition.prototype.toThryftJSON = function () {
-	        var json = {};
-	        json["id"] = this.id;
-	        if (this.has("childFeatureSets")) {
-	            json["child_feature_sets"] = function (__inArray) { var __outArray = []; for (var __i = 0; __i < __inArray.length; __i++) {
-	                __outArray.push(__inArray[__i].toThryftJSON());
-	            } return __outArray; }(this.childFeatureSets.models);
-	        }
-	        if (this.has("displayName")) {
-	            json["display_name"] = this.displayName;
-	        }
-	        if (this.has("features")) {
-	            json["features"] = function (__inArray) { var __outArray = []; for (var __i = 0; __i < __inArray.length; __i++) {
-	                __outArray.push(__inArray[__i].toThryftJSON());
-	            } return __outArray; }(this.features.models);
-	        }
-	        return json;
-	    };
-	    return WorksheetFeatureSetDefinition;
-	}(Backbone.Model));
-	exports.WorksheetFeatureSetDefinition = WorksheetFeatureSetDefinition;
-
-
-/***/ },
-/* 29 */
-/***/ function(module, exports, __webpack_require__) {
-
-	"use strict";
-	var __extends = (this && this.__extends) || function (d, b) {
-	    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
-	    function __() { this.constructor = d; }
-	    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-	};
-	var Backbone = __webpack_require__(4);
-	var worksheet_feature_value_definition_1 = __webpack_require__(30);
-	var WorksheetFeatureDefinition = (function (_super) {
-	    __extends(WorksheetFeatureDefinition, _super);
-	    function WorksheetFeatureDefinition(attributes, options) {
-	        _super.call(this, attributes, options);
-	        this.validation = {
-	            id: {
-	                "fn": function (value, attr, computedState) {
-	                    if (typeof value !== "string") {
-	                        return "expected WorksheetFeatureDefinition.id to be a string";
-	                    }
-	                    return undefined;
-	                },
-	                "required": true
-	            },
-	            displayName: {
-	                "fn": function (value, attr, computedState) {
-	                    if (typeof attr === "undefined" || attr === null) {
-	                        return undefined;
-	                    }
-	                    if (typeof value !== "string") {
-	                        return "expected WorksheetFeatureDefinition.display_name to be a string";
-	                    }
-	                    if (/^\s*$/.test(value)) {
-	                        return "WorksheetFeatureDefinition.display_name is blank";
-	                    }
-	                    return undefined;
-	                },
-	                "minLength": 1, "required": false
-	            },
-	            values_: {
-	                "fn": function (value, attr, computedState) {
-	                    if (typeof attr === "undefined" || attr === null) {
-	                        return undefined;
-	                    }
-	                    if (!(value instanceof Backbone.Collection)) {
-	                        return "expected WorksheetFeatureDefinition.values_ to be a Backbone.Collection";
-	                    }
-	                    if (value.model !== worksheet_feature_value_definition_1.WorksheetFeatureValueDefinition) {
-	                        return "expected WorksheetFeatureDefinition.values_ to be a Backbone.Collection with model=WorksheetFeatureValueDefinition";
-	                    }
-	                    for (var _i = 0, _a = value.models; _i < _a.length; _i++) {
-	                        var __model0 = _a[_i];
-	                        if (!__model0.isValid(true)) {
-	                            return __model0.validationError;
-	                        }
-	                    }
-	                    return undefined;
-	                },
-	                "minLength": 1, "required": false
-	            }
-	        };
-	    }
-	    Object.defineProperty(WorksheetFeatureDefinition.prototype, "id", {
-	        get: function () {
-	            return this.get('id');
-	        },
-	        enumerable: true,
-	        configurable: true
-	    });
-	    Object.defineProperty(WorksheetFeatureDefinition.prototype, "displayName", {
-	        get: function () {
-	            return this.get('displayName');
-	        },
-	        set: function (value) {
-	            this.set('displayName', value, { validate: true });
-	        },
-	        enumerable: true,
-	        configurable: true
-	    });
-	    Object.defineProperty(WorksheetFeatureDefinition.prototype, "values_", {
-	        get: function () {
-	            return this.get('values_');
-	        },
-	        set: function (value) {
-	            this.set('values_', value, { validate: true });
-	        },
-	        enumerable: true,
-	        configurable: true
-	    });
-	    WorksheetFeatureDefinition.fromThryftJSON = function (json) {
-	        var out = new WorksheetFeatureDefinition;
-	        for (var fieldName in json) {
-	            if (fieldName == "id") {
-	                out.attributes.id = json[fieldName];
-	            }
-	            else if (fieldName == "display_name") {
-	                out.attributes.displayName = json[fieldName];
-	            }
-	            else if (fieldName == "values_") {
-	                out.attributes.values_ = function (json) { var sequence = []; for (var i = 0; i < json.length; i++) {
-	                    sequence.push(worksheet_feature_value_definition_1.WorksheetFeatureValueDefinition.fromThryftJSON(json[i]));
-	                } return new Backbone.Collection(sequence); }(json[fieldName]);
-	            }
-	        }
-	        if (!out.isValid(true)) {
-	            throw new Error(out.validationError);
-	        }
-	        return out;
-	    };
-	    WorksheetFeatureDefinition.prototype.toThryftJSON = function () {
-	        var json = {};
-	        json["id"] = this.id;
-	        if (this.has("displayName")) {
-	            json["display_name"] = this.displayName;
-	        }
-	        if (this.has("values_")) {
-	            json["values_"] = function (__inArray) { var __outArray = []; for (var __i = 0; __i < __inArray.length; __i++) {
-	                __outArray.push(__inArray[__i].toThryftJSON());
-	            } return __outArray; }(this.values_.models);
-	        }
-	        return json;
-	    };
-	    return WorksheetFeatureDefinition;
-	}(Backbone.Model));
-	exports.WorksheetFeatureDefinition = WorksheetFeatureDefinition;
-
-
-/***/ },
-/* 30 */
-/***/ function(module, exports, __webpack_require__) {
-
-	"use strict";
-	var __extends = (this && this.__extends) || function (d, b) {
-	    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
-	    function __() { this.constructor = d; }
-	    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-	};
-	var Backbone = __webpack_require__(4);
-	var worksheet_feature_value_image_1 = __webpack_require__(31);
-	var WorksheetFeatureValueDefinition = (function (_super) {
-	    __extends(WorksheetFeatureValueDefinition, _super);
-	    function WorksheetFeatureValueDefinition(attributes, options) {
-	        _super.call(this, attributes, options);
-	        this.validation = {
-	            id: {
-	                "fn": function (value, attr, computedState) {
-	                    if (typeof value !== "string") {
-	                        return "expected WorksheetFeatureValueDefinition.id to be a string";
-	                    }
-	                    return undefined;
-	                },
-	                "required": true
-	            },
-	            displayName: {
-	                "fn": function (value, attr, computedState) {
-	                    if (typeof attr === "undefined" || attr === null) {
-	                        return undefined;
-	                    }
-	                    if (typeof value !== "string") {
-	                        return "expected WorksheetFeatureValueDefinition.display_name to be a string";
-	                    }
-	                    if (/^\s*$/.test(value)) {
-	                        return "WorksheetFeatureValueDefinition.display_name is blank";
-	                    }
-	                    return undefined;
-	                },
-	                "minLength": 1, "required": false
-	            },
-	            image: {
-	                "fn": function (value, attr, computedState) {
-	                    if (typeof attr === "undefined" || attr === null) {
-	                        return undefined;
-	                    }
-	                    if (!(value instanceof worksheet_feature_value_image_1.WorksheetFeatureValueImage)) {
-	                        return "expected WorksheetFeatureValueDefinition.image to be a WorksheetFeatureValueImage";
-	                    }
-	                    if (!value.isValid(true)) {
-	                        return value.validationError;
-	                    }
-	                    return undefined;
-	                },
-	                "required": false
-	            }
-	        };
-	    }
-	    Object.defineProperty(WorksheetFeatureValueDefinition.prototype, "id", {
-	        get: function () {
-	            return this.get('id');
-	        },
-	        enumerable: true,
-	        configurable: true
-	    });
-	    Object.defineProperty(WorksheetFeatureValueDefinition.prototype, "displayName", {
-	        get: function () {
-	            return this.get('displayName');
-	        },
-	        set: function (value) {
-	            this.set('displayName', value, { validate: true });
-	        },
-	        enumerable: true,
-	        configurable: true
-	    });
-	    Object.defineProperty(WorksheetFeatureValueDefinition.prototype, "image", {
-	        get: function () {
-	            return this.get('image');
-	        },
-	        set: function (value) {
-	            this.set('image', value, { validate: true });
-	        },
-	        enumerable: true,
-	        configurable: true
-	    });
-	    WorksheetFeatureValueDefinition.fromThryftJSON = function (json) {
-	        var out = new WorksheetFeatureValueDefinition;
-	        for (var fieldName in json) {
-	            if (fieldName == "id") {
-	                out.attributes.id = json[fieldName];
-	            }
-	            else if (fieldName == "display_name") {
-	                out.attributes.displayName = json[fieldName];
-	            }
-	            else if (fieldName == "image") {
-	                out.attributes.image = worksheet_feature_value_image_1.WorksheetFeatureValueImage.fromThryftJSON(json[fieldName]);
-	            }
-	        }
-	        if (!out.isValid(true)) {
-	            throw new Error(out.validationError);
-	        }
-	        return out;
-	    };
-	    WorksheetFeatureValueDefinition.prototype.toThryftJSON = function () {
-	        var json = {};
-	        json["id"] = this.id;
-	        if (this.has("displayName")) {
-	            json["display_name"] = this.displayName;
-	        }
-	        if (this.has("image")) {
-	            json["image"] = this.image.toThryftJSON();
-	        }
-	        return json;
-	    };
-	    return WorksheetFeatureValueDefinition;
-	}(Backbone.Model));
-	exports.WorksheetFeatureValueDefinition = WorksheetFeatureValueDefinition;
-
-
-/***/ },
-/* 31 */
-/***/ function(module, exports, __webpack_require__) {
-
-	"use strict";
-	var __extends = (this && this.__extends) || function (d, b) {
-	    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
-	    function __() { this.constructor = d; }
-	    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-	};
-	var Backbone = __webpack_require__(4);
-	var worksheet_feature_value_image_rights_1 = __webpack_require__(32);
-	var WorksheetFeatureValueImage = (function (_super) {
-	    __extends(WorksheetFeatureValueImage, _super);
-	    function WorksheetFeatureValueImage(attributes, options) {
-	        _super.call(this, attributes, options);
-	        this.validation = {
-	            rights: {
-	                "fn": function (value, attr, computedState) {
-	                    if (!(value instanceof worksheet_feature_value_image_rights_1.WorksheetFeatureValueImageRights)) {
-	                        return "expected WorksheetFeatureValueImage.rights to be a WorksheetFeatureValueImageRights";
-	                    }
-	                    if (!value.isValid(true)) {
-	                        return value.validationError;
-	                    }
-	                    return undefined;
-	                },
-	                "required": true
-	            },
-	            thumbnailUrl: {
-	                "fn": function (value, attr, computedState) {
-	                    if (typeof value !== "string") {
-	                        return "expected WorksheetFeatureValueImage.thumbnail_url to be a string";
-	                    }
-	                    if (/^\s*$/.test(value)) {
-	                        return "WorksheetFeatureValueImage.thumbnail_url is blank";
-	                    }
-	                    return undefined;
-	                },
-	                "minLength": 1, "required": true
-	            },
-	            fullSizeUrl: {
-	                "fn": function (value, attr, computedState) {
-	                    if (typeof attr === "undefined" || attr === null) {
-	                        return undefined;
-	                    }
-	                    if (typeof value !== "string") {
-	                        return "expected WorksheetFeatureValueImage.full_size_url to be a string";
-	                    }
-	                    if (/^\s*$/.test(value)) {
-	                        return "WorksheetFeatureValueImage.full_size_url is blank";
-	                    }
-	                    return undefined;
-	                },
-	                "minLength": 1, "required": false
-	            }
-	        };
-	    }
-	    Object.defineProperty(WorksheetFeatureValueImage.prototype, "rights", {
-	        get: function () {
-	            return this.get('rights');
-	        },
-	        set: function (value) {
-	            this.set('rights', value, { validate: true });
-	        },
-	        enumerable: true,
-	        configurable: true
-	    });
-	    Object.defineProperty(WorksheetFeatureValueImage.prototype, "thumbnailUrl", {
-	        get: function () {
-	            return this.get('thumbnailUrl');
-	        },
-	        set: function (value) {
-	            this.set('thumbnailUrl', value, { validate: true });
-	        },
-	        enumerable: true,
-	        configurable: true
-	    });
-	    Object.defineProperty(WorksheetFeatureValueImage.prototype, "fullSizeUrl", {
-	        get: function () {
-	            return this.get('fullSizeUrl');
-	        },
-	        set: function (value) {
-	            this.set('fullSizeUrl', value, { validate: true });
-	        },
-	        enumerable: true,
-	        configurable: true
-	    });
-	    WorksheetFeatureValueImage.fromThryftJSON = function (json) {
-	        var out = new WorksheetFeatureValueImage;
-	        for (var fieldName in json) {
-	            if (fieldName == "rights") {
-	                out.attributes.rights = worksheet_feature_value_image_rights_1.WorksheetFeatureValueImageRights.fromThryftJSON(json[fieldName]);
-	            }
-	            else if (fieldName == "thumbnail_url") {
-	                out.attributes.thumbnailUrl = json[fieldName];
-	            }
-	            else if (fieldName == "full_size_url") {
-	                out.attributes.fullSizeUrl = json[fieldName];
-	            }
-	        }
-	        if (!out.isValid(true)) {
-	            throw new Error(out.validationError);
-	        }
-	        return out;
-	    };
-	    WorksheetFeatureValueImage.prototype.toThryftJSON = function () {
-	        var json = {};
-	        json["rights"] = this.rights.toThryftJSON();
-	        json["thumbnail_url"] = this.thumbnailUrl;
-	        if (this.has("fullSizeUrl")) {
-	            json["full_size_url"] = this.fullSizeUrl;
-	        }
-	        return json;
-	    };
-	    return WorksheetFeatureValueImage;
-	}(Backbone.Model));
-	exports.WorksheetFeatureValueImage = WorksheetFeatureValueImage;
-
-
-/***/ },
-/* 32 */
-/***/ function(module, exports, __webpack_require__) {
-
-	"use strict";
-	var __extends = (this && this.__extends) || function (d, b) {
-	    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
-	    function __() { this.constructor = d; }
-	    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-	};
-	var Backbone = __webpack_require__(4);
-	var WorksheetFeatureValueImageRights = (function (_super) {
-	    __extends(WorksheetFeatureValueImageRights, _super);
-	    function WorksheetFeatureValueImageRights(attributes, options) {
-	        _super.call(this, attributes, options);
-	        this.validation = {
-	            author: {
-	                "fn": function (value, attr, computedState) {
-	                    if (typeof value !== "string") {
-	                        return "expected WorksheetFeatureValueImageRights.author to be a string";
-	                    }
-	                    if (/^\s*$/.test(value)) {
-	                        return "WorksheetFeatureValueImageRights.author is blank";
-	                    }
-	                    return undefined;
-	                },
-	                "minLength": 1, "required": true
-	            },
-	            license: {
-	                "fn": function (value, attr, computedState) {
-	                    if (typeof value !== "string") {
-	                        return "expected WorksheetFeatureValueImageRights.license to be a string";
-	                    }
-	                    if (/^\s*$/.test(value)) {
-	                        return "WorksheetFeatureValueImageRights.license is blank";
-	                    }
-	                    return undefined;
-	                },
-	                "minLength": 1, "required": true
-	            },
-	            sourceName: {
-	                "fn": function (value, attr, computedState) {
-	                    if (typeof value !== "string") {
-	                        return "expected WorksheetFeatureValueImageRights.source_name to be a string";
-	                    }
-	                    if (/^\s*$/.test(value)) {
-	                        return "WorksheetFeatureValueImageRights.source_name is blank";
-	                    }
-	                    return undefined;
-	                },
-	                "minLength": 1, "required": true
-	            },
-	            sourceUrl: {
-	                "fn": function (value, attr, computedState) {
-	                    if (typeof value !== "string") {
-	                        return "expected WorksheetFeatureValueImageRights.source_url to be a string";
-	                    }
-	                    return undefined;
-	                },
-	                "required": true
-	            }
-	        };
-	    }
-	    Object.defineProperty(WorksheetFeatureValueImageRights.prototype, "author", {
-	        get: function () {
-	            return this.get('author');
-	        },
-	        set: function (value) {
-	            this.set('author', value, { validate: true });
-	        },
-	        enumerable: true,
-	        configurable: true
-	    });
-	    Object.defineProperty(WorksheetFeatureValueImageRights.prototype, "license", {
-	        get: function () {
-	            return this.get('license');
-	        },
-	        set: function (value) {
-	            this.set('license', value, { validate: true });
-	        },
-	        enumerable: true,
-	        configurable: true
-	    });
-	    Object.defineProperty(WorksheetFeatureValueImageRights.prototype, "sourceName", {
-	        get: function () {
-	            return this.get('sourceName');
-	        },
-	        set: function (value) {
-	            this.set('sourceName', value, { validate: true });
-	        },
-	        enumerable: true,
-	        configurable: true
-	    });
-	    Object.defineProperty(WorksheetFeatureValueImageRights.prototype, "sourceUrl", {
-	        get: function () {
-	            return this.get('sourceUrl');
-	        },
-	        set: function (value) {
-	            this.set('sourceUrl', value, { validate: true });
-	        },
-	        enumerable: true,
-	        configurable: true
-	    });
-	    WorksheetFeatureValueImageRights.fromThryftJSON = function (json) {
-	        var out = new WorksheetFeatureValueImageRights;
-	        for (var fieldName in json) {
-	            if (fieldName == "author") {
-	                out.attributes.author = json[fieldName];
-	            }
-	            else if (fieldName == "license") {
-	                out.attributes.license = json[fieldName];
-	            }
-	            else if (fieldName == "source_name") {
-	                out.attributes.sourceName = json[fieldName];
-	            }
-	            else if (fieldName == "source_url") {
-	                out.attributes.sourceUrl = new URL(json[fieldName]);
-	            }
-	        }
-	        if (!out.isValid(true)) {
-	            throw new Error(out.validationError);
-	        }
-	        return out;
-	    };
-	    WorksheetFeatureValueImageRights.prototype.toThryftJSON = function () {
-	        var json = {};
-	        json["author"] = this.author;
-	        json["license"] = this.license;
-	        json["source_name"] = this.sourceName;
-	        json["source_url"] = this.sourceUrl.toString();
-	        return json;
-	    };
-	    return WorksheetFeatureValueImageRights;
-	}(Backbone.Model));
-	exports.WorksheetFeatureValueImageRights = WorksheetFeatureValueImageRights;
-
-
-/***/ },
-/* 33 */
-/***/ function(module, exports, __webpack_require__) {
-
-	"use strict";
-	var __extends = (this && this.__extends) || function (d, b) {
-	    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
-	    function __() { this.constructor = d; }
-	    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-	};
-	var Backbone = __webpack_require__(4);
-	var worksheet_feature_set_state_1 = __webpack_require__(34);
-	var WorksheetState = (function (_super) {
-	    __extends(WorksheetState, _super);
-	    function WorksheetState(attributes, options) {
-	        _super.call(this, attributes, options);
-	        this.validation = {
-	            accessionNumber: {
-	                "fn": function (value, attr, computedState) {
-	                    if (typeof value !== "string") {
-	                        return "expected WorksheetState.accession_number to be a string";
-	                    }
-	                    return undefined;
-	                },
-	                "required": true
-	            },
-	            rootFeatureSet: {
-	                "fn": function (value, attr, computedState) {
-	                    if (typeof attr === "undefined" || attr === null) {
-	                        return undefined;
-	                    }
-	                    if (!(value instanceof worksheet_feature_set_state_1.WorksheetFeatureSetState)) {
-	                        return "expected WorksheetState.root_feature_set to be a WorksheetFeatureSetState";
-	                    }
-	                    if (!value.isValid(true)) {
-	                        return value.validationError;
-	                    }
-	                    return undefined;
-	                },
-	                "required": false
-	            }
-	        };
-	    }
-	    Object.defineProperty(WorksheetState.prototype, "accessionNumber", {
-	        get: function () {
-	            return this.get('accessionNumber');
-	        },
-	        set: function (value) {
-	            this.set('accessionNumber', value, { validate: true });
-	        },
-	        enumerable: true,
-	        configurable: true
-	    });
-	    Object.defineProperty(WorksheetState.prototype, "rootFeatureSet", {
-	        get: function () {
-	            return this.get('rootFeatureSet');
-	        },
-	        set: function (value) {
-	            this.set('rootFeatureSet', value, { validate: true });
-	        },
-	        enumerable: true,
-	        configurable: true
-	    });
-	    WorksheetState.fromThryftJSON = function (json) {
-	        var out = new WorksheetState;
-	        for (var fieldName in json) {
-	            if (fieldName == "accession_number") {
-	                out.attributes.accessionNumber = json[fieldName];
-	            }
-	            else if (fieldName == "root_feature_set") {
-	                out.attributes.rootFeatureSet = worksheet_feature_set_state_1.WorksheetFeatureSetState.fromThryftJSON(json[fieldName]);
-	            }
-	        }
-	        if (!out.isValid(true)) {
-	            throw new Error(out.validationError);
-	        }
-	        return out;
-	    };
-	    WorksheetState.prototype.toThryftJSON = function () {
-	        var json = {};
-	        json["accession_number"] = this.accessionNumber;
-	        if (this.has("rootFeatureSet")) {
-	            json["root_feature_set"] = this.rootFeatureSet.toThryftJSON();
-	        }
-	        return json;
-	    };
-	    return WorksheetState;
-	}(Backbone.Model));
-	exports.WorksheetState = WorksheetState;
-
-
-/***/ },
-/* 34 */
-/***/ function(module, exports, __webpack_require__) {
-
-	"use strict";
-	var __extends = (this && this.__extends) || function (d, b) {
-	    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
-	    function __() { this.constructor = d; }
-	    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-	};
-	var Backbone = __webpack_require__(4);
-	var worksheet_feature_state_1 = __webpack_require__(35);
-	var WorksheetFeatureSetState = (function (_super) {
-	    __extends(WorksheetFeatureSetState, _super);
-	    function WorksheetFeatureSetState(attributes, options) {
-	        _super.call(this, attributes, options);
-	        this.validation = {
-	            childFeatureSets: {
-	                "fn": function (value, attr, computedState) {
-	                    if (typeof attr === "undefined" || attr === null) {
-	                        return undefined;
-	                    }
-	                    if (typeof value !== "object") {
-	                        return "expected WorksheetFeatureSetState.child_feature_sets to be an object";
-	                    }
-	                    for (var __key in value) {
-	                        var __value = value[__key];
-	                        if (typeof __key !== "string") {
-	                            return "expected WorksheetFeatureSetState.child_feature_sets key to be a string";
-	                        }
-	                        if (!(__value instanceof WorksheetFeatureSetState)) {
-	                            return "expected WorksheetFeatureSetState.child_feature_sets value to be a WorksheetFeatureSetState";
-	                        }
-	                        if (!__value.isValid(true)) {
-	                            return __value.validationError;
-	                        }
-	                    }
-	                    return undefined;
-	                },
-	                "minLength": 1, "required": false
-	            },
-	            features: {
-	                "fn": function (value, attr, computedState) {
-	                    if (typeof attr === "undefined" || attr === null) {
-	                        return undefined;
-	                    }
-	                    if (typeof value !== "object") {
-	                        return "expected WorksheetFeatureSetState.features to be an object";
-	                    }
-	                    for (var __key in value) {
-	                        var __value = value[__key];
-	                        if (typeof __key !== "string") {
-	                            return "expected WorksheetFeatureSetState.features key to be a string";
-	                        }
-	                        if (!(__value instanceof worksheet_feature_state_1.WorksheetFeatureState)) {
-	                            return "expected WorksheetFeatureSetState.features value to be a WorksheetFeatureState";
-	                        }
-	                        if (!__value.isValid(true)) {
-	                            return __value.validationError;
-	                        }
-	                    }
-	                    return undefined;
-	                },
-	                "minLength": 1, "required": false
-	            }
-	        };
-	    }
-	    Object.defineProperty(WorksheetFeatureSetState.prototype, "childFeatureSets", {
-	        get: function () {
-	            return this.get('childFeatureSets');
-	        },
-	        set: function (value) {
-	            this.set('childFeatureSets', value, { validate: true });
-	        },
-	        enumerable: true,
-	        configurable: true
-	    });
-	    Object.defineProperty(WorksheetFeatureSetState.prototype, "features", {
-	        get: function () {
-	            return this.get('features');
-	        },
-	        set: function (value) {
-	            this.set('features', value, { validate: true });
-	        },
-	        enumerable: true,
-	        configurable: true
-	    });
-	    WorksheetFeatureSetState.fromThryftJSON = function (json) {
-	        var out = new WorksheetFeatureSetState;
-	        for (var fieldName in json) {
-	            if (fieldName == "child_feature_sets") {
-	                out.attributes.childFeatureSets = function (json) { var map = {}; for (var key in json) {
-	                    map[key] = WorksheetFeatureSetState.fromThryftJSON(json[key]);
-	                } return map; }(json[fieldName]);
-	            }
-	            else if (fieldName == "features") {
-	                out.attributes.features = function (json) { var map = {}; for (var key in json) {
-	                    map[key] = worksheet_feature_state_1.WorksheetFeatureState.fromThryftJSON(json[key]);
-	                } return map; }(json[fieldName]);
-	            }
-	        }
-	        if (!out.isValid(true)) {
-	            throw new Error(out.validationError);
-	        }
-	        return out;
-	    };
-	    WorksheetFeatureSetState.prototype.toThryftJSON = function () {
-	        var json = {};
-	        if (this.has("childFeatureSets")) {
-	            json["child_feature_sets"] = function (value) { var outObject = {}; for (var key in value) {
-	                outObject[key] = value[key].toThryftJSON();
-	            } return outObject; }(this.childFeatureSets);
-	        }
-	        if (this.has("features")) {
-	            json["features"] = function (value) { var outObject = {}; for (var key in value) {
-	                outObject[key] = value[key].toThryftJSON();
-	            } return outObject; }(this.features);
-	        }
-	        return json;
-	    };
-	    return WorksheetFeatureSetState;
-	}(Backbone.Model));
-	exports.WorksheetFeatureSetState = WorksheetFeatureSetState;
-
-
-/***/ },
-/* 35 */
-/***/ function(module, exports, __webpack_require__) {
-
-	"use strict";
-	var __extends = (this && this.__extends) || function (d, b) {
-	    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
-	    function __() { this.constructor = d; }
-	    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-	};
-	var Backbone = __webpack_require__(4);
-	var WorksheetFeatureState = (function (_super) {
-	    __extends(WorksheetFeatureState, _super);
-	    function WorksheetFeatureState(attributes, options) {
-	        _super.call(this, attributes, options);
-	        this.validation = {
-	            selectedValues: {
-	                "fn": function (value, attr, computedState) {
-	                    if (typeof attr === "undefined" || attr === null) {
-	                        return undefined;
-	                    }
-	                    if (!Array.isArray(value)) {
-	                        return "expected WorksheetFeatureState.selected_values to be an Array";
-	                    }
-	                    for (var __i0 = 0; __i0 < value.length; __i0++) {
-	                        if (typeof value[__i0] !== "string") {
-	                            return "expected WorksheetFeatureState.selected_values[i] to be a string";
-	                        }
-	                    }
-	                    return undefined;
-	                },
-	                "minLength": 1, "required": false
-	            },
-	            text: {
-	                "fn": function (value, attr, computedState) {
-	                    if (typeof attr === "undefined" || attr === null) {
-	                        return undefined;
-	                    }
-	                    if (typeof value !== "string") {
-	                        return "expected WorksheetFeatureState.text to be a string";
-	                    }
-	                    if (/^\s*$/.test(value)) {
-	                        return "WorksheetFeatureState.text is blank";
-	                    }
-	                    return undefined;
-	                },
-	                "minLength": 1, "required": false
-	            }
-	        };
-	    }
-	    Object.defineProperty(WorksheetFeatureState.prototype, "selectedValues", {
-	        get: function () {
-	            return this.get('selectedValues');
-	        },
-	        set: function (value) {
-	            this.set('selectedValues', value, { validate: true });
-	        },
-	        enumerable: true,
-	        configurable: true
-	    });
-	    Object.defineProperty(WorksheetFeatureState.prototype, "text", {
-	        get: function () {
-	            return this.get('text');
-	        },
-	        set: function (value) {
-	            this.set('text', value, { validate: true });
-	        },
-	        enumerable: true,
-	        configurable: true
-	    });
-	    WorksheetFeatureState.fromThryftJSON = function (json) {
-	        var out = new WorksheetFeatureState;
-	        for (var fieldName in json) {
-	            if (fieldName == "selected_values") {
-	                out.attributes.selectedValues = function (json) { var sequence = []; for (var i = 0; i < json.length; i++) {
-	                    sequence.push(json[i]);
-	                } return sequence; }(json[fieldName]);
-	            }
-	            else if (fieldName == "text") {
-	                out.attributes.text = json[fieldName];
-	            }
-	        }
-	        if (!out.isValid(true)) {
-	            throw new Error(out.validationError);
-	        }
-	        return out;
-	    };
-	    WorksheetFeatureState.prototype.toThryftJSON = function () {
-	        var json = {};
-	        if (this.has("selectedValues")) {
-	            json["selected_values"] = function (__inArray) { var __outArray = []; for (var __i = 0; __i < __inArray.length; __i++) {
-	                __outArray.push(__inArray[__i]);
-	            } return __outArray; }(this.selectedValues);
-	        }
-	        if (this.has("text")) {
-	            json["text"] = this.text;
-	        }
-	        return json;
-	    };
-	    return WorksheetFeatureState;
-	}(Backbone.Model));
-	exports.WorksheetFeatureState = WorksheetFeatureState;
-
-
-/***/ },
-/* 36 */
-/***/ function(module, exports, __webpack_require__) {
-
-	"use strict";
-	var __extends = (this && this.__extends) || function (d, b) {
-	    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
-	    function __() { this.constructor = d; }
-	    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-	};
-	var Backbone = __webpack_require__(4);
-	var services_1 = __webpack_require__(22);
-	var worksheet_feature_set_1 = __webpack_require__(37);
-	var worksheet_state_1 = __webpack_require__(33);
+	var application_1 = __webpack_require__(1);
+	var worksheet_feature_set_1 = __webpack_require__(23);
+	var worksheet_state_1 = __webpack_require__(31);
 	var Worksheet = (function (_super) {
 	    __extends(Worksheet, _super);
 	    function Worksheet(kwds) {
@@ -8072,8 +6841,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	        configurable: true
 	    });
 	    Worksheet.fetchFromService = function (kwds) {
-	        var definition = services_1.Services.instance.worksheetQueryService.getWorksheetDefinitionSync();
-	        var state = services_1.Services.instance.worksheetQueryService.getWorksheetStateSync({ accessionNumber: kwds.accessionNumber });
+	        var definition = application_1.Application.instance.services.worksheetQueryService.getWorksheetDefinitionSync();
+	        var state = application_1.Application.instance.services.worksheetQueryService.getWorksheetStateSync({ accessionNumber: kwds.accessionNumber });
 	        return new Worksheet({ accessionNumber: kwds.accessionNumber, definition: definition, state: state });
 	    };
 	    Object.defineProperty(Worksheet.prototype, "currentState", {
@@ -8092,7 +6861,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    Worksheet.prototype.putToService = function () {
 	        var currentState = this.currentState;
 	        if (currentState) {
-	            services_1.Services.instance.worksheetCommandService.putWorksheetStateSync({ state: currentState });
+	            application_1.Application.instance.services.worksheetCommandService.putWorksheetStateSync({ state: currentState });
 	        }
 	    };
 	    Object.defineProperty(Worksheet.prototype, "rootFeatureSet", {
@@ -8153,7 +6922,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ },
-/* 37 */
+/* 23 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -8164,10 +6933,10 @@ return /******/ (function(modules) { // webpackBootstrap
 	};
 	var _ = __webpack_require__(3);
 	var Backbone = __webpack_require__(4);
-	var worksheet_feature_set_state_1 = __webpack_require__(34);
-	var worksheet_feature_1 = __webpack_require__(38);
-	var worksheet_feature_collection_1 = __webpack_require__(41);
-	var worksheet_feature_set_collection_1 = __webpack_require__(42);
+	var worksheet_feature_set_state_1 = __webpack_require__(24);
+	var worksheet_feature_1 = __webpack_require__(26);
+	var worksheet_feature_collection_1 = __webpack_require__(29);
+	var worksheet_feature_set_collection_1 = __webpack_require__(30);
 	var WorksheetFeatureSet = (function (_super) {
 	    __extends(WorksheetFeatureSet, _super);
 	    function WorksheetFeatureSet(kwds) {
@@ -8286,7 +7055,238 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ },
-/* 38 */
+/* 24 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+	var __extends = (this && this.__extends) || function (d, b) {
+	    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
+	    function __() { this.constructor = d; }
+	    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+	};
+	var Backbone = __webpack_require__(4);
+	var worksheet_feature_state_1 = __webpack_require__(25);
+	var WorksheetFeatureSetState = (function (_super) {
+	    __extends(WorksheetFeatureSetState, _super);
+	    function WorksheetFeatureSetState(attributes, options) {
+	        _super.call(this, attributes, options);
+	        this.validation = {
+	            childFeatureSets: {
+	                "fn": function (value, attr, computedState) {
+	                    if (typeof attr === "undefined" || attr === null) {
+	                        return undefined;
+	                    }
+	                    if (typeof value !== "object") {
+	                        return "expected WorksheetFeatureSetState.child_feature_sets to be an object";
+	                    }
+	                    for (var __key in value) {
+	                        var __value = value[__key];
+	                        if (typeof __key !== "string") {
+	                            return "expected WorksheetFeatureSetState.child_feature_sets key to be a string";
+	                        }
+	                        if (!(__value instanceof WorksheetFeatureSetState)) {
+	                            return "expected WorksheetFeatureSetState.child_feature_sets value to be a WorksheetFeatureSetState";
+	                        }
+	                        if (!__value.isValid(true)) {
+	                            return __value.validationError;
+	                        }
+	                    }
+	                    return undefined;
+	                },
+	                "minLength": 1, "required": false
+	            },
+	            features: {
+	                "fn": function (value, attr, computedState) {
+	                    if (typeof attr === "undefined" || attr === null) {
+	                        return undefined;
+	                    }
+	                    if (typeof value !== "object") {
+	                        return "expected WorksheetFeatureSetState.features to be an object";
+	                    }
+	                    for (var __key in value) {
+	                        var __value = value[__key];
+	                        if (typeof __key !== "string") {
+	                            return "expected WorksheetFeatureSetState.features key to be a string";
+	                        }
+	                        if (!(__value instanceof worksheet_feature_state_1.WorksheetFeatureState)) {
+	                            return "expected WorksheetFeatureSetState.features value to be a WorksheetFeatureState";
+	                        }
+	                        if (!__value.isValid(true)) {
+	                            return __value.validationError;
+	                        }
+	                    }
+	                    return undefined;
+	                },
+	                "minLength": 1, "required": false
+	            }
+	        };
+	    }
+	    Object.defineProperty(WorksheetFeatureSetState.prototype, "childFeatureSets", {
+	        get: function () {
+	            return this.get('childFeatureSets');
+	        },
+	        set: function (value) {
+	            this.set('childFeatureSets', value, { validate: true });
+	        },
+	        enumerable: true,
+	        configurable: true
+	    });
+	    Object.defineProperty(WorksheetFeatureSetState.prototype, "features", {
+	        get: function () {
+	            return this.get('features');
+	        },
+	        set: function (value) {
+	            this.set('features', value, { validate: true });
+	        },
+	        enumerable: true,
+	        configurable: true
+	    });
+	    WorksheetFeatureSetState.fromThryftJSON = function (json) {
+	        var attributes = {};
+	        for (var fieldName in json) {
+	            if (fieldName == "child_feature_sets") {
+	                attributes["childFeatureSets"] = function (json) { var map = {}; for (var key in json) {
+	                    map[key] = WorksheetFeatureSetState.fromThryftJSON(json[key]);
+	                } return map; }(json[fieldName]);
+	            }
+	            else if (fieldName == "features") {
+	                attributes["features"] = function (json) { var map = {}; for (var key in json) {
+	                    map[key] = worksheet_feature_state_1.WorksheetFeatureState.fromThryftJSON(json[key]);
+	                } return map; }(json[fieldName]);
+	            }
+	        }
+	        var out = new WorksheetFeatureSetState(attributes);
+	        if (!out.isValid(true)) {
+	            throw new Error(out.validationError);
+	        }
+	        return out;
+	    };
+	    WorksheetFeatureSetState.prototype.toThryftJSON = function () {
+	        var json = {};
+	        if (this.has("childFeatureSets")) {
+	            json["child_feature_sets"] = function (value) { var outObject = {}; for (var key in value) {
+	                outObject[key] = value[key].toThryftJSON();
+	            } return outObject; }(this.childFeatureSets);
+	        }
+	        if (this.has("features")) {
+	            json["features"] = function (value) { var outObject = {}; for (var key in value) {
+	                outObject[key] = value[key].toThryftJSON();
+	            } return outObject; }(this.features);
+	        }
+	        return json;
+	    };
+	    return WorksheetFeatureSetState;
+	}(Backbone.Model));
+	exports.WorksheetFeatureSetState = WorksheetFeatureSetState;
+
+
+/***/ },
+/* 25 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+	var __extends = (this && this.__extends) || function (d, b) {
+	    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
+	    function __() { this.constructor = d; }
+	    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+	};
+	var Backbone = __webpack_require__(4);
+	var WorksheetFeatureState = (function (_super) {
+	    __extends(WorksheetFeatureState, _super);
+	    function WorksheetFeatureState(attributes, options) {
+	        _super.call(this, attributes, options);
+	        this.validation = {
+	            selectedValues: {
+	                "fn": function (value, attr, computedState) {
+	                    if (typeof attr === "undefined" || attr === null) {
+	                        return undefined;
+	                    }
+	                    if (!Array.isArray(value)) {
+	                        return "expected WorksheetFeatureState.selected_values to be an Array";
+	                    }
+	                    for (var __i0 = 0; __i0 < value.length; __i0++) {
+	                        if (typeof value[__i0] !== "string") {
+	                            return "expected WorksheetFeatureState.selected_values[i] to be a string";
+	                        }
+	                    }
+	                    return undefined;
+	                },
+	                "minLength": 1, "required": false
+	            },
+	            text: {
+	                "fn": function (value, attr, computedState) {
+	                    if (typeof attr === "undefined" || attr === null) {
+	                        return undefined;
+	                    }
+	                    if (typeof value !== "string") {
+	                        return "expected WorksheetFeatureState.text to be a string";
+	                    }
+	                    if (/^\s*$/.test(value)) {
+	                        return "WorksheetFeatureState.text is blank";
+	                    }
+	                    return undefined;
+	                },
+	                "minLength": 1, "required": false
+	            }
+	        };
+	    }
+	    Object.defineProperty(WorksheetFeatureState.prototype, "selectedValues", {
+	        get: function () {
+	            return this.get('selectedValues');
+	        },
+	        set: function (value) {
+	            this.set('selectedValues', value, { validate: true });
+	        },
+	        enumerable: true,
+	        configurable: true
+	    });
+	    Object.defineProperty(WorksheetFeatureState.prototype, "text", {
+	        get: function () {
+	            return this.get('text');
+	        },
+	        set: function (value) {
+	            this.set('text', value, { validate: true });
+	        },
+	        enumerable: true,
+	        configurable: true
+	    });
+	    WorksheetFeatureState.fromThryftJSON = function (json) {
+	        var attributes = {};
+	        for (var fieldName in json) {
+	            if (fieldName == "selected_values") {
+	                attributes["selectedValues"] = function (json) { var sequence = []; for (var i = 0; i < json.length; i++) {
+	                    sequence.push(json[i]);
+	                } return sequence; }(json[fieldName]);
+	            }
+	            else if (fieldName == "text") {
+	                attributes["text"] = json[fieldName];
+	            }
+	        }
+	        var out = new WorksheetFeatureState(attributes);
+	        if (!out.isValid(true)) {
+	            throw new Error(out.validationError);
+	        }
+	        return out;
+	    };
+	    WorksheetFeatureState.prototype.toThryftJSON = function () {
+	        var json = {};
+	        if (this.has("selectedValues")) {
+	            json["selected_values"] = function (__inArray) { var __outArray = []; for (var __i = 0; __i < __inArray.length; __i++) {
+	                __outArray.push(__inArray[__i]);
+	            } return __outArray; }(this.selectedValues);
+	        }
+	        if (this.has("text")) {
+	            json["text"] = this.text;
+	        }
+	        return json;
+	    };
+	    return WorksheetFeatureState;
+	}(Backbone.Model));
+	exports.WorksheetFeatureState = WorksheetFeatureState;
+
+
+/***/ },
+/* 26 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -8297,9 +7297,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	};
 	var _ = __webpack_require__(3);
 	var Backbone = __webpack_require__(4);
-	var worksheet_feature_state_1 = __webpack_require__(35);
-	var worksheet_feature_value_collection_1 = __webpack_require__(39);
-	var worksheet_feature_value_1 = __webpack_require__(40);
+	var worksheet_feature_state_1 = __webpack_require__(25);
+	var worksheet_feature_value_collection_1 = __webpack_require__(27);
+	var worksheet_feature_value_1 = __webpack_require__(28);
 	var WorksheetFeature = (function (_super) {
 	    __extends(WorksheetFeature, _super);
 	    function WorksheetFeature(kwds) {
@@ -8463,7 +7463,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ },
-/* 39 */
+/* 27 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -8484,7 +7484,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ },
-/* 40 */
+/* 28 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -8539,7 +7539,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ },
-/* 41 */
+/* 29 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -8560,7 +7560,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ },
-/* 42 */
+/* 30 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -8581,7 +7581,99 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ },
-/* 43 */
+/* 31 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+	var __extends = (this && this.__extends) || function (d, b) {
+	    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
+	    function __() { this.constructor = d; }
+	    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+	};
+	var Backbone = __webpack_require__(4);
+	var worksheet_feature_set_state_1 = __webpack_require__(24);
+	var WorksheetState = (function (_super) {
+	    __extends(WorksheetState, _super);
+	    function WorksheetState(attributes, options) {
+	        _super.call(this, attributes, options);
+	        this.validation = {
+	            accessionNumber: {
+	                "fn": function (value, attr, computedState) {
+	                    if (typeof value !== "string") {
+	                        return "expected WorksheetState.accession_number to be a string";
+	                    }
+	                    return undefined;
+	                },
+	                "required": true
+	            },
+	            rootFeatureSet: {
+	                "fn": function (value, attr, computedState) {
+	                    if (typeof attr === "undefined" || attr === null) {
+	                        return undefined;
+	                    }
+	                    if (!(value instanceof worksheet_feature_set_state_1.WorksheetFeatureSetState)) {
+	                        return "expected WorksheetState.root_feature_set to be a WorksheetFeatureSetState";
+	                    }
+	                    if (!value.isValid(true)) {
+	                        return value.validationError;
+	                    }
+	                    return undefined;
+	                },
+	                "required": false
+	            }
+	        };
+	    }
+	    Object.defineProperty(WorksheetState.prototype, "accessionNumber", {
+	        get: function () {
+	            return this.get('accessionNumber');
+	        },
+	        set: function (value) {
+	            this.set('accessionNumber', value, { validate: true });
+	        },
+	        enumerable: true,
+	        configurable: true
+	    });
+	    Object.defineProperty(WorksheetState.prototype, "rootFeatureSet", {
+	        get: function () {
+	            return this.get('rootFeatureSet');
+	        },
+	        set: function (value) {
+	            this.set('rootFeatureSet', value, { validate: true });
+	        },
+	        enumerable: true,
+	        configurable: true
+	    });
+	    WorksheetState.fromThryftJSON = function (json) {
+	        var attributes = {};
+	        for (var fieldName in json) {
+	            if (fieldName == "accession_number") {
+	                attributes["accessionNumber"] = json[fieldName];
+	            }
+	            else if (fieldName == "root_feature_set") {
+	                attributes["rootFeatureSet"] = worksheet_feature_set_state_1.WorksheetFeatureSetState.fromThryftJSON(json[fieldName]);
+	            }
+	        }
+	        var out = new WorksheetState(attributes);
+	        if (!out.isValid(true)) {
+	            throw new Error(out.validationError);
+	        }
+	        return out;
+	    };
+	    WorksheetState.prototype.toThryftJSON = function () {
+	        var json = {};
+	        json["accession_number"] = this.accessionNumber;
+	        if (this.has("rootFeatureSet")) {
+	            json["root_feature_set"] = this.rootFeatureSet.toThryftJSON();
+	        }
+	        return json;
+	    };
+	    return WorksheetState;
+	}(Backbone.Model));
+	exports.WorksheetState = WorksheetState;
+
+
+/***/ },
+/* 32 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -8594,7 +7686,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	var application_1 = __webpack_require__(1);
 	var Backbone = __webpack_require__(4);
 	var Marionette = __webpack_require__(5);
-	__webpack_require__(44);
+	__webpack_require__(33);
 	var WorksheetAccessionNumberPickerView = (function (_super) {
 	    __extends(WorksheetAccessionNumberPickerView, _super);
 	    function WorksheetAccessionNumberPickerView(kwds) {
@@ -8606,7 +7698,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	                "keyup #newAccessionNumberInput": "onKeyupNewAccessionNumberInput"
 	            },
 	            model: new Backbone.Model(),
-	            template: _.template(__webpack_require__(46))
+	            template: _.template(__webpack_require__(35))
 	        });
 	        this._availableAccessionNumbers = kwds.availableAccessionNumbers;
 	    }
@@ -8658,20 +7750,20 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ },
-/* 44 */
+/* 33 */
 /***/ function(module, exports) {
 
 	// removed by extract-text-webpack-plugin
 
 /***/ },
-/* 45 */,
-/* 46 */
+/* 34 */,
+/* 35 */
 /***/ function(module, exports) {
 
 	module.exports = "<div class=\"modal-dialog\" role=\"document\" id=\"worksheet-accession-number-picker\">\n    <div class=\"modal-content\">\n        <div class=\"modal-header\">\n            <button type=\"button\" class=\"close\" aria-label=\"Close\" id=\"header-close-button\"><span aria-hidden=\"true\">&times;</span></button>\n            <h4 class=\"modal-title\">Worksheet</h4>\n        </div>\n        <div class=\"modal-body\">\n            <% if (availableAccessionNumbers.length > 0) { %>\n                <select class=\"selectpicker show-menu-arrow show-tick\" data-width=\"auto\" id=\"accessionNumberSelect\" title=\"Choose an existing worksheet\">\n                    <% for (var i = 0; i < availableAccessionNumbers.length; i++) { %>\n                        <option value=\"<%= availableAccessionNumbers[i] %>\"><%- availableAccessionNumbers[i] %></option>\n                    <% } %>\n                </select>\n                <br /><br />\n            <% } %>\n            <div>\n                <div>\n                    <% if (availableAccessionNumbers.length > 0) { %>\n                    Or enter a new accession number:\n                    <% } else { %>\n                    Enter a new accession number:\n                    <% } %>\n                </div>\n                <input id=\"newAccessionNumberInput\" placeholder=\"New accession number\" size=\"26\" type=\"text\" />\n            </div>\n            <br/>\n            <div class=\"modal-footer\">\n                <button type=\"button\" class=\"btn btn-default\" id=\"footer-close-button\">Cancel</button>\n                <button type=\"button\" class=\"btn btn-primary\" id=\"footer-ok-button\">OK</button>\n            </div>\n            <div class=\"alert alert-warning\" hidden=\"hidden\" id=\"alert\" role=\"alert\">\n                <strong>Please select or enter an accession number</strong>\n            </div>\n        </div>\n    </div>\n</div>\n"
 
 /***/ },
-/* 47 */
+/* 36 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -8682,8 +7774,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	};
 	var application_1 = __webpack_require__(1);
 	var top_level_view_1 = __webpack_require__(18);
-	var worksheet_feature_input_event_1 = __webpack_require__(48);
-	var worksheet_two_column_view_1 = __webpack_require__(49);
+	var worksheet_feature_input_event_1 = __webpack_require__(37);
+	var worksheet_two_column_view_1 = __webpack_require__(38);
 	var WorksheetTopLevelView = (function (_super) {
 	    __extends(WorksheetTopLevelView, _super);
 	    function WorksheetTopLevelView() {
@@ -8705,7 +7797,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ },
-/* 48 */
+/* 37 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -8727,7 +7819,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ },
-/* 49 */
+/* 38 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -8739,10 +7831,10 @@ return /******/ (function(modules) { // webpackBootstrap
 	var _ = __webpack_require__(3);
 	var application_1 = __webpack_require__(1);
 	var Marionette = __webpack_require__(5);
-	var worksheet_feature_navigation_event_1 = __webpack_require__(50);
-	var worksheet_input_view_1 = __webpack_require__(51);
-	var worksheet_sidebar_view_1 = __webpack_require__(70);
-	__webpack_require__(90);
+	var worksheet_feature_navigation_event_1 = __webpack_require__(39);
+	var worksheet_input_view_1 = __webpack_require__(40);
+	var worksheet_sidebar_view_1 = __webpack_require__(59);
+	__webpack_require__(79);
 	var WorksheetTwoColumnView = (function (_super) {
 	    __extends(WorksheetTwoColumnView, _super);
 	    function WorksheetTwoColumnView(options) {
@@ -8751,7 +7843,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	                leftColumn: "#left-column",
 	                rightColumn: "#right-column"
 	            },
-	            template: _.template(__webpack_require__(92))
+	            template: _.template(__webpack_require__(81))
 	        }));
 	    }
 	    WorksheetTwoColumnView.prototype.initialize = function () {
@@ -8774,7 +7866,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ },
-/* 50 */
+/* 39 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -8796,7 +7888,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ },
-/* 51 */
+/* 40 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -8808,8 +7900,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	var _ = __webpack_require__(3);
 	var Marionette = __webpack_require__(5);
 	var application_1 = __webpack_require__(1);
-	var worksheet_feature_input_view_1 = __webpack_require__(52);
-	var worksheet_feature_navigation_event_1 = __webpack_require__(50);
+	var worksheet_feature_input_view_1 = __webpack_require__(41);
+	var worksheet_feature_navigation_event_1 = __webpack_require__(39);
 	var WorksheetInputView = (function (_super) {
 	    __extends(WorksheetInputView, _super);
 	    function WorksheetInputView(options) {
@@ -8822,7 +7914,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	                buttons: "#input-navigation",
 	                child: "#input-child"
 	            },
-	            template: _.template(__webpack_require__(69))
+	            template: _.template(__webpack_require__(58))
 	        }));
 	        this._nextFeature = this.model.nextFeature;
 	        this._previousFeature = this.model.previousFeature;
@@ -8855,7 +7947,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ },
-/* 52 */
+/* 41 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -8867,10 +7959,10 @@ return /******/ (function(modules) { // webpackBootstrap
 	var _ = __webpack_require__(3);
 	var Marionette = __webpack_require__(5);
 	var application_1 = __webpack_require__(1);
-	var worksheet_feature_values_input_view_1 = __webpack_require__(53);
-	var worksheet_feature_input_event_1 = __webpack_require__(48);
-	__webpack_require__(65);
-	__webpack_require__(66);
+	var worksheet_feature_values_input_view_1 = __webpack_require__(42);
+	var worksheet_feature_input_event_1 = __webpack_require__(37);
+	__webpack_require__(54);
+	__webpack_require__(55);
 	var WorksheetFeatureInputView = (function (_super) {
 	    __extends(WorksheetFeatureInputView, _super);
 	    function WorksheetFeatureInputView(options) {
@@ -8881,7 +7973,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	            regions: {
 	                values: "#values"
 	            },
-	            template: _.template(__webpack_require__(68))
+	            template: _.template(__webpack_require__(57))
 	        }));
 	        this.bindings = {
 	            "textarea": "text"
@@ -8919,7 +8011,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ },
-/* 53 */
+/* 42 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -8930,7 +8022,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	};
 	var _ = __webpack_require__(3);
 	var Marionette = __webpack_require__(5);
-	var worksheet_feature_value_input_view_1 = __webpack_require__(54);
+	var worksheet_feature_value_input_view_1 = __webpack_require__(43);
 	var WorksheetFeatureValuesInputView = (function (_super) {
 	    __extends(WorksheetFeatureValuesInputView, _super);
 	    function WorksheetFeatureValuesInputView(options) {
@@ -8944,7 +8036,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ },
-/* 54 */
+/* 43 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -8956,11 +8048,11 @@ return /******/ (function(modules) { // webpackBootstrap
 	var _ = __webpack_require__(3);
 	var application_1 = __webpack_require__(1);
 	var Marionette = __webpack_require__(5);
-	var worksheet_feature_input_event_1 = __webpack_require__(48);
-	var worksheet_feature_value_full_size_image_view_1 = __webpack_require__(55);
-	__webpack_require__(59);
-	__webpack_require__(61);
-	__webpack_require__(62);
+	var worksheet_feature_input_event_1 = __webpack_require__(37);
+	var worksheet_feature_value_full_size_image_view_1 = __webpack_require__(44);
+	__webpack_require__(48);
+	__webpack_require__(50);
+	__webpack_require__(51);
 	var WorksheetFeatureValueInputView = (function (_super) {
 	    __extends(WorksheetFeatureValueInputView, _super);
 	    function WorksheetFeatureValueInputView(options) {
@@ -8971,7 +8063,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	                "click a.thumbnail": "onClickSelect",
 	                "click div.checkbox": "onClickSelect"
 	            },
-	            template: _.template(__webpack_require__(64)),
+	            template: _.template(__webpack_require__(53)),
 	        }));
 	        this.listenTo(this.model, "change:selected", this.onModelChangeSelected);
 	    }
@@ -9011,7 +8103,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ },
-/* 55 */
+/* 44 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -9023,7 +8115,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	var _ = __webpack_require__(3);
 	var application_1 = __webpack_require__(1);
 	var Marionette = __webpack_require__(5);
-	__webpack_require__(56);
+	__webpack_require__(45);
 	var WorksheetFeatureValueFullSizeImageView = (function (_super) {
 	    __extends(WorksheetFeatureValueFullSizeImageView, _super);
 	    function WorksheetFeatureValueFullSizeImageView(options) {
@@ -9031,7 +8123,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	            events: {
 	                "click #close-button": "onClickCloseButton",
 	            },
-	            template: _.template(__webpack_require__(58))
+	            template: _.template(__webpack_require__(47))
 	        }));
 	    }
 	    WorksheetFeatureValueFullSizeImageView.prototype.onClickCloseButton = function () {
@@ -9046,27 +8138,27 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ },
-/* 56 */
+/* 45 */
 /***/ function(module, exports) {
 
 	// removed by extract-text-webpack-plugin
 
 /***/ },
-/* 57 */,
-/* 58 */
+/* 46 */,
+/* 47 */
 /***/ function(module, exports) {
 
 	module.exports = "<div class=\"modal-dialog\" role=\"document\" id=\"feature-value-full-size-image\">\n    <div class=\"modal-content\">\n        <div class=\"modal-header\">\n            <button type=\"button\" class=\"close\" aria-label=\"Close\" id=\"close-button\"><span aria-hidden=\"true\">&times;</span></button>\n            <h4 class=\"modal-title\"><%- displayName %></h4>\n        </div>\n        <div class=\"modal-body\">\n            <img class=\"img-responsive\" src=\"<%= url %>\" />\n        </div>\n    </div>\n</div>\n"
 
 /***/ },
-/* 59 */
+/* 48 */
 /***/ function(module, exports) {
 
 	// removed by extract-text-webpack-plugin
 
 /***/ },
-/* 60 */,
-/* 61 */
+/* 49 */,
+/* 50 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(jQuery) {/*!
@@ -9332,20 +8424,20 @@ return /******/ (function(modules) { // webpackBootstrap
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)))
 
 /***/ },
-/* 62 */
+/* 51 */
 /***/ function(module, exports) {
 
 	// removed by extract-text-webpack-plugin
 
 /***/ },
-/* 63 */,
-/* 64 */
+/* 52 */,
+/* 53 */
 /***/ function(module, exports) {
 
-	module.exports = "<div class=\"col-lg-3 col-md-4 col-xs-6 feature-value\">\n    <a class=\"display-name\"><h5><%- displayName %></h5></a>\n    <% if (image) { %>\n    <div class=\"container-fluid image\">\n        <div class=\"row thumbnail\">\n            <a class=\"thumbnail\"><img alt=\"<%- displayName %>\" class=\"img-responsive\" src=\"<%- image.thumbnailUrl %>\" title=\"<%- displayName %>\"></a>\n            <a class=\"full-size\"><i class=\"glyphicon glyphicon-search\"></i></a>\n        </div>\n        <div class=\"row rights\">\n            <div class=\"panel-group\" id=\"rights-panel-group\">\r\n                <div class=\"panel panel-default\">\r\n                    <div class=\"panel-heading\">\r\n                        <h4 class=\"panel-title\">\r\n                            <a class=\"collapsed rights-toggle\" data-toggle=\"collapse\" data-parent=\"#rights-panel-group\" href=\"#rightsCollapseOne\">\r\n                                (C) <%- image.rights.author %>\r\n                            </a>\r\n                        </h4>\r\n                    </div>\r\n                    <div id=\"rightsCollapseOne\" class=\"panel-collapse collapse\">\r\n                        <div class=\"panel-body\">\r\n                            <table>\r\n                                <tr><td class=\"rights-field-name\">Author</td><td class=\"rights-field-value\"><%- image.rights.author %></td></tr>\r\n                                <tr><td class=\"rights-field-name\">License</td><td class=\"rights-field-value\"><%- image.rights.license %></td></tr>\r\n                                <tr><td class=\"rights-field-name\">Source</td><td class=\"rights-field-value\"><a href=\"<%= image.rights.sourceUrl %>\"><%- image.rights.sourceName %></a></td></tr>\r\n                            </table>\r\n                        </div>\r\n                    </div>\r\n                </div>\r\n            </div>\n        </div>\n    </div>\n    <% } %>\n    <div class=\"checkbox\">\n        <input class=\"form-check-input\" name=\"feature-value-checkbox\" type=\"checkbox\" value=\"\" />\n        <label for=\"feature-value-checkbox\"><%- displayName %></label>\n    </div>\n</div>\n"
+	module.exports = "<div class=\"col-sm-3 feature-value\">\n    <a class=\"display-name\"><h5><%- displayName %></h5></a>\n    <% if (image) { %>\n    <div class=\"container-fluid image\">\n        <div class=\"row thumbnail\">\n            <a class=\"thumbnail\"><img alt=\"<%- displayName %>\" class=\"img-responsive\" src=\"<%- image.thumbnailUrl %>\" title=\"<%- displayName %>\"></a>\n            <a class=\"full-size\"><i class=\"glyphicon glyphicon-search\"></i></a>\n        </div>\n        <div class=\"row rights\">\n            <div class=\"panel-group\" id=\"rights-panel-group\">\r\n                <div class=\"panel panel-default\">\r\n                    <div class=\"panel-heading\">\r\n                        <h4 class=\"panel-title\">\r\n                            <a class=\"collapsed rights-toggle\" data-toggle=\"collapse\" data-parent=\"#rights-panel-group\" href=\"#rightsCollapseOne\">\r\n                                (C) <%- image.rights.author %>\r\n                            </a>\r\n                        </h4>\r\n                    </div>\r\n                    <div id=\"rightsCollapseOne\" class=\"panel-collapse collapse\">\r\n                        <div class=\"panel-body\">\r\n                            <table>\r\n                                <tr><td class=\"rights-field-name\">Author</td><td class=\"rights-field-value\"><%- image.rights.author %></td></tr>\r\n                                <tr><td class=\"rights-field-name\">License</td><td class=\"rights-field-value\"><%- image.rights.license %></td></tr>\r\n                                <tr><td class=\"rights-field-name\">Source</td><td class=\"rights-field-value\"><a href=\"<%= image.rights.sourceUrl %>\"><%- image.rights.sourceName %></a></td></tr>\r\n                            </table>\r\n                        </div>\r\n                    </div>\r\n                </div>\r\n            </div>\n        </div>\n    </div>\n    <% } %>\n    <div class=\"checkbox\">\n        <input class=\"form-check-input\" name=\"feature-value-checkbox\" type=\"checkbox\" value=\"\" />\n        <label for=\"feature-value-checkbox\"><%- displayName %></label>\n    </div>\n</div>\n"
 
 /***/ },
-/* 65 */
+/* 54 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;// Backbone.Stickit v0.9.2, MIT Licensed
@@ -10043,26 +9135,26 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ },
-/* 66 */
+/* 55 */
 /***/ function(module, exports) {
 
 	// removed by extract-text-webpack-plugin
 
 /***/ },
-/* 67 */,
-/* 68 */
+/* 56 */,
+/* 57 */
 /***/ function(module, exports) {
 
-	module.exports = "<div class=\"row\" id=\"input\">\n    <div class=\"container-fluid\">\n        <div class=\"row\">\n            <div class=\"col-md-10\">\n                <h3 class=\"page-header\">\n                    <span><%- displayName %></span>\n                    <span><button class=\"btn btn-secondary\" id=\"reset-button\" type=\"button\">Reset</button></span>\n                </h3>\n            </div>\n        </div>\n        <div class=\"row values-row\">\n            <div id=\"values\"></div>\n        </div>\n        <div class=\"row\">\n            <form class=\"form-horizontal\">\n                <div class=\"form-group\">\n                    <!--<label for=\"text\" class=\"col-sm-offset-2 col-sm-2 control-label\">Text:</label>\n                <div class=\"col-sm-6 \">\n                    <input type=\"text\" class=\"form-control\" id=\"text\" placeholder=\"Text\">\n                </div>-->\n                    <div class=\"col-md-2\">&nbsp;</div>\n                    <div class=\"col-md-8\">\n                        <textarea class=\"form-control\" placeholder=\"Enter text\" rows=\"10\"></textarea>\n                    </div>\n                    <div class=\"col-md-2\">&nbsp;</div>\n                </div>\n            </form>\n        </div>\n    </div>\n</div>\n"
+	module.exports = "<div class=\"row\" id=\"input\">\n    <div class=\"container-fluid\">\n        <div class=\"row\">\n            <div class=\"col-sm-10\">\n                <h3 class=\"page-header\">\n                    <span><%- displayName %></span>\n                    <span><button class=\"btn btn-secondary\" id=\"reset-button\" type=\"button\">Reset</button></span>\n                </h3>\n            </div>\n        </div>\n        <div class=\"row values-row\">\n            <div id=\"values\"></div>\n        </div>\n        <div class=\"row\">\n            <form class=\"form-horizontal\">\n                <div class=\"form-group\">\n                    <!--<label for=\"text\" class=\"col-sm-offset-2 col-sm-2 control-label\">Text:</label>\n                <div class=\"col-sm-6 \">\n                    <input type=\"text\" class=\"form-control\" id=\"text\" placeholder=\"Text\">\n                </div>-->\n                    <div class=\"col-sm-2\">&nbsp;</div>\n                    <div class=\"col-sm-8\">\n                        <textarea class=\"form-control\" placeholder=\"Enter text\" rows=\"10\"></textarea>\n                    </div>\n                    <div class=\"col-sm-2\">&nbsp;</div>\n                </div>\n            </form>\n        </div>\n    </div>\n</div>\n"
 
 /***/ },
-/* 69 */
+/* 58 */
 /***/ function(module, exports) {
 
-	module.exports = "<div class=\"container-fluid\" id=\"input\">\n    <div class=\"row\" id=\"input-navigation\">\n        <div class=\"col-md-2\"><button class=\"btn btn-primary\" id=\"back-button\" type=\"button\">Previous</button></div>\n        <div class=\"col-md-8\">&nbsp;</div>\n        <div class=\"col-md-2\"><button class=\"btn btn-primary\" id=\"next-button\" type=\"button\">Next</button></div>\n    </div>\n    <div class=\"row\" id=\"input-child\"></div>\n</div>\n"
+	module.exports = "<div class=\"container-fluid\" id=\"input\">\n    <div class=\"row\" id=\"input-navigation\">\n        <div class=\"col-sm-2\"><button class=\"btn btn-primary\" id=\"back-button\" type=\"button\">Previous</button></div>\n        <div class=\"col-sm-8\">&nbsp;</div>\n        <div class=\"col-sm-2\"><button class=\"btn btn-primary\" id=\"next-button\" type=\"button\">Next</button></div>\n    </div>\n    <div class=\"row\" id=\"input-child\"></div>\n</div>\n"
 
 /***/ },
-/* 70 */
+/* 59 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -10074,21 +9166,22 @@ return /******/ (function(modules) { // webpackBootstrap
 	var _ = __webpack_require__(3);
 	var application_1 = __webpack_require__(1);
 	var Marionette = __webpack_require__(5);
-	var worksheet_navigation_view_1 = __webpack_require__(71);
-	var worksheet_output_view_1 = __webpack_require__(72);
-	__webpack_require__(87);
+	var worksheet_navigation_view_1 = __webpack_require__(60);
+	var worksheet_output_view_1 = __webpack_require__(61);
+	__webpack_require__(76);
 	var WorksheetSidebarView = (function (_super) {
 	    __extends(WorksheetSidebarView, _super);
 	    function WorksheetSidebarView(options) {
 	        _super.call(this, _.extend(options, {
 	            events: {
-	                "click #changeAccessionNumberButton": "onClickChangeAccessionNumberButton"
+	                "click #changeAccessionNumberButton": "onClickChangeAccessionNumberButton",
+	                "click #deleteAccessionNumberButton": "onClickDeleteAccessionNumberButton"
 	            },
 	            regions: {
 	                navigation: "#navigation",
 	                output: "#output"
 	            },
-	            template: _.template(__webpack_require__(89))
+	            template: _.template(__webpack_require__(78))
 	        }));
 	    }
 	    WorksheetSidebarView.prototype.onBeforeShow = function () {
@@ -10099,6 +9192,10 @@ return /******/ (function(modules) { // webpackBootstrap
 	        application_1.Application.instance.router.navigate("worksheet");
 	        window.location.reload();
 	    };
+	    WorksheetSidebarView.prototype.onClickDeleteAccessionNumberButton = function () {
+	        application_1.Application.instance.services.worksheetCommandService.deleteWorksheetStateSync({ accessionNumber: this.model.accessionNumber });
+	        this.onClickChangeAccessionNumberButton();
+	    };
 	    WorksheetSidebarView.prototype.serializeData = function () {
 	        return { "accessionNumber": this.model.accessionNumber };
 	    };
@@ -10108,7 +9205,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ },
-/* 71 */
+/* 60 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -10120,8 +9217,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	var _ = __webpack_require__(3);
 	var application_1 = __webpack_require__(1);
 	var Marionette = __webpack_require__(5);
-	var worksheet_feature_input_event_1 = __webpack_require__(48);
-	var worksheet_feature_navigation_event_1 = __webpack_require__(50);
+	var worksheet_feature_input_event_1 = __webpack_require__(37);
+	var worksheet_feature_navigation_event_1 = __webpack_require__(39);
 	var WorksheetNavigationView = (function (_super) {
 	    __extends(WorksheetNavigationView, _super);
 	    function WorksheetNavigationView(options) {
@@ -10221,7 +9318,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ },
-/* 72 */
+/* 61 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -10233,11 +9330,11 @@ return /******/ (function(modules) { // webpackBootstrap
 	var _ = __webpack_require__(3);
 	var application_1 = __webpack_require__(1);
 	var Marionette = __webpack_require__(5);
-	var worksheet_feature_input_event_1 = __webpack_require__(48);
-	var worksheet_feature_navigation_event_1 = __webpack_require__(50);
-	var Clipboard = __webpack_require__(73);
-	__webpack_require__(81);
-	__webpack_require__(84);
+	var worksheet_feature_input_event_1 = __webpack_require__(37);
+	var worksheet_feature_navigation_event_1 = __webpack_require__(39);
+	var Clipboard = __webpack_require__(62);
+	__webpack_require__(70);
+	__webpack_require__(73);
 	var WorksheetCsvOutputFormat = (function () {
 	    function WorksheetCsvOutputFormat() {
 	    }
@@ -10340,7 +9437,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	                "click #email": "onClickEmail"
 	            },
 	            id: "output",
-	            template: _.template(__webpack_require__(86))
+	            template: _.template(__webpack_require__(75))
 	        }));
 	        this._outputFormats = {
 	            "CSV": new WorksheetCsvOutputFormat(),
@@ -10456,12 +9553,12 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ },
-/* 73 */
+/* 62 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;(function (global, factory) {
 	    if (true) {
-	        !(__WEBPACK_AMD_DEFINE_ARRAY__ = [module, __webpack_require__(74), __webpack_require__(76), __webpack_require__(77)], __WEBPACK_AMD_DEFINE_FACTORY__ = (factory), __WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ? (__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+	        !(__WEBPACK_AMD_DEFINE_ARRAY__ = [module, __webpack_require__(63), __webpack_require__(65), __webpack_require__(66)], __WEBPACK_AMD_DEFINE_FACTORY__ = (factory), __WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ? (__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
 	    } else if (typeof exports !== "undefined") {
 	        factory(module, require('./clipboard-action'), require('tiny-emitter'), require('good-listener'));
 	    } else {
@@ -10646,12 +9743,12 @@ return /******/ (function(modules) { // webpackBootstrap
 	});
 
 /***/ },
-/* 74 */
+/* 63 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;(function (global, factory) {
 	    if (true) {
-	        !(__WEBPACK_AMD_DEFINE_ARRAY__ = [module, __webpack_require__(75)], __WEBPACK_AMD_DEFINE_FACTORY__ = (factory), __WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ? (__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+	        !(__WEBPACK_AMD_DEFINE_ARRAY__ = [module, __webpack_require__(64)], __WEBPACK_AMD_DEFINE_FACTORY__ = (factory), __WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ? (__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
 	    } else if (typeof exports !== "undefined") {
 	        factory(module, require('select'));
 	    } else {
@@ -10880,7 +9977,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	});
 
 /***/ },
-/* 75 */
+/* 64 */
 /***/ function(module, exports) {
 
 	function select(element) {
@@ -10919,7 +10016,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ },
-/* 76 */
+/* 65 */
 /***/ function(module, exports) {
 
 	function E () {
@@ -10991,11 +10088,11 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ },
-/* 77 */
+/* 66 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var is = __webpack_require__(78);
-	var delegate = __webpack_require__(79);
+	var is = __webpack_require__(67);
+	var delegate = __webpack_require__(68);
 	
 	/**
 	 * Validates all params and calls the right
@@ -11092,7 +10189,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ },
-/* 78 */
+/* 67 */
 /***/ function(module, exports) {
 
 	/**
@@ -11147,10 +10244,10 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ },
-/* 79 */
+/* 68 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var closest = __webpack_require__(80);
+	var closest = __webpack_require__(69);
 	
 	/**
 	 * Delegates event to a selector.
@@ -11197,7 +10294,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ },
-/* 80 */
+/* 69 */
 /***/ function(module, exports) {
 
 	var DOCUMENT_NODE_TYPE = 9;
@@ -11233,7 +10330,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ },
-/* 81 */
+/* 70 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(setImmediate) {//  Import support https://stackoverflow.com/questions/13673346/supporting-both-commonjs-and-amd
@@ -11401,13 +10498,13 @@ return /******/ (function(modules) { // webpackBootstrap
 	  return clipboard;
 	}));
 	
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(82).setImmediate))
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(71).setImmediate))
 
 /***/ },
-/* 82 */
+/* 71 */
 /***/ function(module, exports, __webpack_require__) {
 
-	/* WEBPACK VAR INJECTION */(function(setImmediate, clearImmediate) {var nextTick = __webpack_require__(83).nextTick;
+	/* WEBPACK VAR INJECTION */(function(setImmediate, clearImmediate) {var nextTick = __webpack_require__(72).nextTick;
 	var apply = Function.prototype.apply;
 	var slice = Array.prototype.slice;
 	var immediateIds = {};
@@ -11483,10 +10580,10 @@ return /******/ (function(modules) { // webpackBootstrap
 	exports.clearImmediate = typeof clearImmediate === "function" ? clearImmediate : function(id) {
 	  delete immediateIds[id];
 	};
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(82).setImmediate, __webpack_require__(82).clearImmediate))
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(71).setImmediate, __webpack_require__(71).clearImmediate))
 
 /***/ },
-/* 83 */
+/* 72 */
 /***/ function(module, exports) {
 
 	// shim for using process in browser
@@ -11672,46 +10769,46 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ },
-/* 84 */
+/* 73 */
 /***/ function(module, exports) {
 
 	// removed by extract-text-webpack-plugin
 
 /***/ },
-/* 85 */,
-/* 86 */
+/* 74 */,
+/* 75 */
 /***/ function(module, exports) {
 
-	module.exports = "<% if (output) { %>\n    <% for (var outputKey in output) { _.each(output[outputKey].values, function(outputValue) { %>\n<div class=\"row\">\n    <div class=\"col-md-4 feature-name\"><a><%- outputKey %></a></div>\n    <div class=\"col-md-8 feature-value\"><%- outputValue %></div>\n</div>\n    <% }); } %>\n<div class=\"row\"><div class=\"col-md-12\">&nbsp;</div></div>\n<div class=\"row\" id=\"actions\">\n    <div class=\"col-md-2\"></div>\n    <div class=\"col-md-10\">\n        <div class=\"form-inline\">\n            <a class=\"action btn btn-secondary\" id=\"copy\">Copy</a>\n            <a class=\"action btn btn-secondary\" id=\"email\">Email</a>\n            <a class=\"action btn btn-secondary\" id=\"download\">Download</a>\n            <select class=\"form-control\" id=\"format\">\n                <option>CSV</option>\n                <option>JSON</option>\n                <option>TSV</option>\r\n            </select>\n        </div>\n    </div>\n</div>\n<% } else { %>\nSelect values on the right to generate a description.\n<% } %>\n"
+	module.exports = "<% if (output) { %>\n    <% for (var outputKey in output) { _.each(output[outputKey].values, function(outputValue) { %>\n<div class=\"row\">\n    <div class=\"col-sm-4 feature-name\"><a><%- outputKey %></a></div>\n    <div class=\"col-sm-8 feature-value\"><%- outputValue %></div>\n</div>\n    <% }); } %>\n<div class=\"row\"><div class=\"col-sm-12\">&nbsp;</div></div>\n<div class=\"row\" id=\"actions\">\n    <div class=\"col-sm-2\"></div>\n    <div class=\"col-sm-10\">\n        <div class=\"form-inline\">\n            <a class=\"action btn btn-secondary\" id=\"copy\">Copy</a>\n            <a class=\"action btn btn-secondary\" id=\"email\">Email</a>\n            <a class=\"action btn btn-secondary\" id=\"download\">Download</a>\n            <select class=\"form-control\" id=\"format\">\n                <option>CSV</option>\n                <option>JSON</option>\n                <option>TSV</option>\r\n            </select>\n        </div>\n    </div>\n</div>\n<% } else { %>\nSelect values on the right to generate a description.\n<% } %>\n"
 
 /***/ },
-/* 87 */
-/***/ function(module, exports) {
-
-	// removed by extract-text-webpack-plugin
-
-/***/ },
-/* 88 */,
-/* 89 */
-/***/ function(module, exports) {
-
-	module.exports = "<div class=\"panel-group\" id=\"sidebar\" role=\"tablist\" aria-multiselectable=\"true\">\n    <div class=\"panel panel-default\">\n        <div class=\"panel-heading\" role=\"tab\" id=\"sidebarHeadingOne\">\n            <h4 class=\"panel-title\">\n                <a role=\"button\" data-toggle=\"collapse\" href=\"#sidebarCollapseOne\" aria-expanded=\"true\" aria-controls=\"sidebarCollapseOne\">\n                    Accession number: <%- accessionNumber %>\n                </a>\n                <button type=\"button\" class=\"btn btn-primary\" id=\"changeAccessionNumberButton\">Change</button>\n            </h4>\n        </div>\n        <div id=\"sidebarCollapseOne\" class=\"panel-collapse collapse in\" role=\"tabpanel\" aria-labelledby=\"sidebarHeadingOne\">\n            <div class=\"panel-body\" id=\"output\">\n            </div>\n        </div>\n    </div>\n    <div class=\"panel panel-default\">\n        <div class=\"panel-heading\" role=\"tab\" id=\"sidebarHeadingTwo\">\n            <h4 class=\"panel-title\">\n                <a class=\"collapsed\" role=\"button\" data-toggle=\"collapse\" href=\"#sidebarCollapseTwo\" aria-expanded=\"true\" aria-controls=\"sidebarCollapseTwo\">\n                    Features\n                </a>\n            </h4>\n        </div>\n        <div id=\"sidebarCollapseTwo\" class=\"panel-collapse collapse in\" role=\"tabpanel\" aria-labelledby=\"sidebarHeadingTwo\">\n            <div class=\"panel-body\" id=\"navigation\">\n            </div>\n        </div>\n    </div>\n</div>\n"
-
-/***/ },
-/* 90 */
+/* 76 */
 /***/ function(module, exports) {
 
 	// removed by extract-text-webpack-plugin
 
 /***/ },
-/* 91 */,
-/* 92 */
+/* 77 */,
+/* 78 */
 /***/ function(module, exports) {
 
-	module.exports = "<div class=\"container-fluid\" id=\"worksheet\">\n    <div class=\"row\" id=\"two-columns\">\n        <div class=\"col-md-4\" id=\"left-column\"></div>\n        <div class=\"col-md-8\" id=\"right-column\"></div>\n    </div>\n</div>\n"
+	module.exports = "<div class=\"panel-group\" id=\"sidebar\" role=\"tablist\" aria-multiselectable=\"true\">\n    <div class=\"panel panel-default\">\n        <div class=\"panel-heading\" role=\"tab\" id=\"sidebarHeadingOne\">\n            <h4 class=\"panel-title\">\n                <a role=\"button\" data-toggle=\"collapse\" href=\"#sidebarCollapseOne\" aria-expanded=\"true\" aria-controls=\"sidebarCollapseOne\">\n                    Accession number: <%- accessionNumber %>\n                </a>\n                <button type=\"button\" class=\"btn btn-primary\" id=\"changeAccessionNumberButton\">Change</button>\n                <button type=\"button\" class=\"btn btn-warning\" id=\"deleteAccessionNumberButton\">Delete</button>\r\n            </h4>\n        </div>\n        <div id=\"sidebarCollapseOne\" class=\"panel-collapse collapse in\" role=\"tabpanel\" aria-labelledby=\"sidebarHeadingOne\">\n            <div class=\"panel-body\" id=\"output\">\n            </div>\n        </div>\n    </div>\n    <div class=\"panel panel-default\">\n        <div class=\"panel-heading\" role=\"tab\" id=\"sidebarHeadingTwo\">\n            <h4 class=\"panel-title\">\n                <a class=\"collapsed\" role=\"button\" data-toggle=\"collapse\" href=\"#sidebarCollapseTwo\" aria-expanded=\"true\" aria-controls=\"sidebarCollapseTwo\">\n                    Features\n                </a>\n            </h4>\n        </div>\n        <div id=\"sidebarCollapseTwo\" class=\"panel-collapse collapse in\" role=\"tabpanel\" aria-labelledby=\"sidebarHeadingTwo\">\n            <div class=\"panel-body\" id=\"navigation\">\n            </div>\n        </div>\n    </div>\n</div>\n"
 
 /***/ },
-/* 93 */
+/* 79 */
+/***/ function(module, exports) {
+
+	// removed by extract-text-webpack-plugin
+
+/***/ },
+/* 80 */,
+/* 81 */
+/***/ function(module, exports) {
+
+	module.exports = "<div class=\"container-fluid\" id=\"worksheet\">\n    <div class=\"row\" id=\"two-columns\">\n        <div class=\"col-sm-4\" id=\"left-column\"></div>\n        <div class=\"col-sm-8\" id=\"right-column\"></div>\n    </div>\n</div>\n"
+
+/***/ },
+/* 82 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function($) {"use strict";
@@ -11746,6 +10843,936 @@ return /******/ (function(modules) { // webpackBootstrap
 	exports.ModalRegion = ModalRegion;
 	
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)))
+
+/***/ },
+/* 83 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+	var local_worksheet_command_service_1 = __webpack_require__(84);
+	var local_worksheet_query_service_1 = __webpack_require__(86);
+	var Services = (function () {
+	    function Services() {
+	        this._worksheetCommandService = new local_worksheet_command_service_1.LocalWorksheetCommandService;
+	        this._worksheetQueryService = new local_worksheet_query_service_1.LocalWorksheetQueryService;
+	    }
+	    Object.defineProperty(Services.prototype, "worksheetCommandService", {
+	        get: function () {
+	            return this._worksheetCommandService;
+	        },
+	        enumerable: true,
+	        configurable: true
+	    });
+	    Object.defineProperty(Services.prototype, "worksheetQueryService", {
+	        get: function () {
+	            return this._worksheetQueryService;
+	        },
+	        enumerable: true,
+	        configurable: true
+	    });
+	    return Services;
+	}());
+	exports.Services = Services;
+
+
+/***/ },
+/* 84 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+	var __extends = (this && this.__extends) || function (d, b) {
+	    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
+	    function __() { this.constructor = d; }
+	    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+	};
+	var async_to_sync_worksheet_command_service_1 = __webpack_require__(85);
+	var local_worksheet_query_service_1 = __webpack_require__(86);
+	var LocalWorksheetCommandService = (function (_super) {
+	    __extends(LocalWorksheetCommandService, _super);
+	    function LocalWorksheetCommandService() {
+	        _super.apply(this, arguments);
+	    }
+	    LocalWorksheetCommandService.prototype.deleteWorksheetStateSync = function (kwds) {
+	        console.info("delete " + kwds.accessionNumber);
+	        localStorage.removeItem(local_worksheet_query_service_1.LocalWorksheetQueryService.getWorksheetStateItemKey(kwds.accessionNumber));
+	    };
+	    LocalWorksheetCommandService.prototype.putWorksheetStateSync = function (kwds) {
+	        var jsonString = JSON.stringify(kwds.state.toThryftJSON());
+	        console.info("put " + jsonString);
+	        localStorage.setItem(local_worksheet_query_service_1.LocalWorksheetQueryService.getWorksheetStateItemKey(kwds.state.accessionNumber), jsonString);
+	    };
+	    return LocalWorksheetCommandService;
+	}(async_to_sync_worksheet_command_service_1.AsyncToSyncWorksheetCommandService));
+	exports.LocalWorksheetCommandService = LocalWorksheetCommandService;
+
+
+/***/ },
+/* 85 */
+/***/ function(module, exports) {
+
+	"use strict";
+	var AsyncToSyncWorksheetCommandService = (function () {
+	    function AsyncToSyncWorksheetCommandService() {
+	    }
+	    AsyncToSyncWorksheetCommandService.prototype.deleteWorksheetStateAsync = function (kwds) {
+	        try {
+	            this.deleteWorksheetStateSync({ accessionNumber: kwds.accessionNumber });
+	            kwds.success();
+	        }
+	        catch (e) {
+	            kwds.error(null, e.message, e);
+	        }
+	    };
+	    AsyncToSyncWorksheetCommandService.prototype.putWorksheetStateAsync = function (kwds) {
+	        try {
+	            this.putWorksheetStateSync({ state: kwds.state });
+	            kwds.success();
+	        }
+	        catch (e) {
+	            kwds.error(null, e.message, e);
+	        }
+	    };
+	    return AsyncToSyncWorksheetCommandService;
+	}());
+	exports.AsyncToSyncWorksheetCommandService = AsyncToSyncWorksheetCommandService;
+
+
+/***/ },
+/* 86 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+	var __extends = (this && this.__extends) || function (d, b) {
+	    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
+	    function __() { this.constructor = d; }
+	    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+	};
+	var async_to_sync_worksheet_query_service_1 = __webpack_require__(87);
+	var worksheet_definition_1 = __webpack_require__(88);
+	var worksheet_state_1 = __webpack_require__(31);
+	var LocalWorksheetQueryService = (function (_super) {
+	    __extends(LocalWorksheetQueryService, _super);
+	    function LocalWorksheetQueryService() {
+	        _super.call(this);
+	        this._worksheetDefinition = worksheet_definition_1.WorksheetDefinition.fromThryftJSON(WORKSHEET_DEFINITION);
+	    }
+	    LocalWorksheetQueryService.prototype.getWorksheetAccessionNumbersSync = function () {
+	        var result = [];
+	        for (var keyI = 0;; keyI++) {
+	            var key = localStorage.key(keyI);
+	            if (key == null) {
+	                break;
+	            }
+	            if (!key.match("^" + LocalWorksheetQueryService._WORKSHEET_ITEM_KEY_PREFIX)) {
+	                continue;
+	            }
+	            else if (key.length == LocalWorksheetQueryService._WORKSHEET_ITEM_KEY_PREFIX.length) {
+	                continue;
+	            }
+	            result.push(key.substr(LocalWorksheetQueryService._WORKSHEET_ITEM_KEY_PREFIX.length));
+	        }
+	        return result;
+	    };
+	    LocalWorksheetQueryService.prototype.getWorksheetDefinitionSync = function () {
+	        return this._worksheetDefinition;
+	    };
+	    LocalWorksheetQueryService.getWorksheetStateItemKey = function (accessionNumber) {
+	        return LocalWorksheetQueryService._WORKSHEET_ITEM_KEY_PREFIX + accessionNumber;
+	    };
+	    LocalWorksheetQueryService.prototype.getWorksheetStateSync = function (kwds) {
+	        var jsonString = localStorage.getItem(LocalWorksheetQueryService.getWorksheetStateItemKey(kwds.accessionNumber));
+	        console.info("state from service: " + jsonString);
+	        if (jsonString == null) {
+	            return new worksheet_state_1.WorksheetState();
+	        }
+	        return worksheet_state_1.WorksheetState.fromThryftJSON(JSON.parse(jsonString));
+	    };
+	    LocalWorksheetQueryService._WORKSHEET_ITEM_KEY_PREFIX = "worksheet/state/";
+	    return LocalWorksheetQueryService;
+	}(async_to_sync_worksheet_query_service_1.AsyncToSyncWorksheetQueryService));
+	exports.LocalWorksheetQueryService = LocalWorksheetQueryService;
+
+
+/***/ },
+/* 87 */
+/***/ function(module, exports) {
+
+	"use strict";
+	var AsyncToSyncWorksheetQueryService = (function () {
+	    function AsyncToSyncWorksheetQueryService() {
+	    }
+	    AsyncToSyncWorksheetQueryService.prototype.getWorksheetAccessionNumbersAsync = function (kwds) {
+	        try {
+	            kwds.success(this.getWorksheetAccessionNumbersSync());
+	        }
+	        catch (e) {
+	            kwds.error(null, e.message, e);
+	        }
+	    };
+	    AsyncToSyncWorksheetQueryService.prototype.getWorksheetDefinitionAsync = function (kwds) {
+	        try {
+	            kwds.success(this.getWorksheetDefinitionSync());
+	        }
+	        catch (e) {
+	            kwds.error(null, e.message, e);
+	        }
+	    };
+	    AsyncToSyncWorksheetQueryService.prototype.getWorksheetStateAsync = function (kwds) {
+	        try {
+	            kwds.success(this.getWorksheetStateSync({ accessionNumber: kwds.accessionNumber }));
+	        }
+	        catch (e) {
+	            kwds.error(null, e.message, e);
+	        }
+	    };
+	    return AsyncToSyncWorksheetQueryService;
+	}());
+	exports.AsyncToSyncWorksheetQueryService = AsyncToSyncWorksheetQueryService;
+
+
+/***/ },
+/* 88 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+	var __extends = (this && this.__extends) || function (d, b) {
+	    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
+	    function __() { this.constructor = d; }
+	    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+	};
+	var Backbone = __webpack_require__(4);
+	var worksheet_feature_set_definition_1 = __webpack_require__(89);
+	var WorksheetDefinition = (function (_super) {
+	    __extends(WorksheetDefinition, _super);
+	    function WorksheetDefinition(attributes, options) {
+	        _super.call(this, attributes, options);
+	        this.validation = {
+	            rootFeatureSet: {
+	                "fn": function (value, attr, computedState) {
+	                    if (!(value instanceof worksheet_feature_set_definition_1.WorksheetFeatureSetDefinition)) {
+	                        return "expected WorksheetDefinition.root_feature_set to be a WorksheetFeatureSetDefinition";
+	                    }
+	                    if (!value.isValid(true)) {
+	                        return value.validationError;
+	                    }
+	                    return undefined;
+	                },
+	                "required": true
+	            }
+	        };
+	    }
+	    Object.defineProperty(WorksheetDefinition.prototype, "rootFeatureSet", {
+	        get: function () {
+	            return this.get('rootFeatureSet');
+	        },
+	        set: function (value) {
+	            this.set('rootFeatureSet', value, { validate: true });
+	        },
+	        enumerable: true,
+	        configurable: true
+	    });
+	    WorksheetDefinition.fromThryftJSON = function (json) {
+	        var attributes = {};
+	        for (var fieldName in json) {
+	            if (fieldName == "root_feature_set") {
+	                attributes["rootFeatureSet"] = worksheet_feature_set_definition_1.WorksheetFeatureSetDefinition.fromThryftJSON(json[fieldName]);
+	            }
+	        }
+	        var out = new WorksheetDefinition(attributes);
+	        if (!out.isValid(true)) {
+	            throw new Error(out.validationError);
+	        }
+	        return out;
+	    };
+	    WorksheetDefinition.prototype.toThryftJSON = function () {
+	        var json = {};
+	        json["root_feature_set"] = this.rootFeatureSet.toThryftJSON();
+	        return json;
+	    };
+	    return WorksheetDefinition;
+	}(Backbone.Model));
+	exports.WorksheetDefinition = WorksheetDefinition;
+
+
+/***/ },
+/* 89 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+	var __extends = (this && this.__extends) || function (d, b) {
+	    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
+	    function __() { this.constructor = d; }
+	    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+	};
+	var Backbone = __webpack_require__(4);
+	var worksheet_feature_definition_1 = __webpack_require__(90);
+	var WorksheetFeatureSetDefinition = (function (_super) {
+	    __extends(WorksheetFeatureSetDefinition, _super);
+	    function WorksheetFeatureSetDefinition(attributes, options) {
+	        _super.call(this, attributes, options);
+	        this.validation = {
+	            id: {
+	                "fn": function (value, attr, computedState) {
+	                    if (typeof value !== "string") {
+	                        return "expected WorksheetFeatureSetDefinition.id to be a string";
+	                    }
+	                    return undefined;
+	                },
+	                "required": true
+	            },
+	            childFeatureSets: {
+	                "fn": function (value, attr, computedState) {
+	                    if (typeof attr === "undefined" || attr === null) {
+	                        return undefined;
+	                    }
+	                    if (!(value instanceof Backbone.Collection)) {
+	                        return "expected WorksheetFeatureSetDefinition.child_feature_sets to be a Backbone.Collection";
+	                    }
+	                    if (value.model !== WorksheetFeatureSetDefinition) {
+	                        return "expected WorksheetFeatureSetDefinition.child_feature_sets to be a Backbone.Collection with model=WorksheetFeatureSetDefinition";
+	                    }
+	                    for (var _i = 0, _a = value.models; _i < _a.length; _i++) {
+	                        var __model0 = _a[_i];
+	                        if (!__model0.isValid(true)) {
+	                            return __model0.validationError;
+	                        }
+	                    }
+	                    return undefined;
+	                },
+	                "minLength": 1, "required": false
+	            },
+	            displayName: {
+	                "fn": function (value, attr, computedState) {
+	                    if (typeof attr === "undefined" || attr === null) {
+	                        return undefined;
+	                    }
+	                    if (typeof value !== "string") {
+	                        return "expected WorksheetFeatureSetDefinition.display_name to be a string";
+	                    }
+	                    if (/^\s*$/.test(value)) {
+	                        return "WorksheetFeatureSetDefinition.display_name is blank";
+	                    }
+	                    return undefined;
+	                },
+	                "minLength": 1, "required": false
+	            },
+	            features: {
+	                "fn": function (value, attr, computedState) {
+	                    if (typeof attr === "undefined" || attr === null) {
+	                        return undefined;
+	                    }
+	                    if (!(value instanceof Backbone.Collection)) {
+	                        return "expected WorksheetFeatureSetDefinition.features to be a Backbone.Collection";
+	                    }
+	                    if (value.model !== worksheet_feature_definition_1.WorksheetFeatureDefinition) {
+	                        return "expected WorksheetFeatureSetDefinition.features to be a Backbone.Collection with model=WorksheetFeatureDefinition";
+	                    }
+	                    for (var _i = 0, _a = value.models; _i < _a.length; _i++) {
+	                        var __model0 = _a[_i];
+	                        if (!__model0.isValid(true)) {
+	                            return __model0.validationError;
+	                        }
+	                    }
+	                    return undefined;
+	                },
+	                "minLength": 1, "required": false
+	            }
+	        };
+	    }
+	    Object.defineProperty(WorksheetFeatureSetDefinition.prototype, "id", {
+	        get: function () {
+	            return this.get('id');
+	        },
+	        enumerable: true,
+	        configurable: true
+	    });
+	    Object.defineProperty(WorksheetFeatureSetDefinition.prototype, "childFeatureSets", {
+	        get: function () {
+	            return this.get('childFeatureSets');
+	        },
+	        set: function (value) {
+	            this.set('childFeatureSets', value, { validate: true });
+	        },
+	        enumerable: true,
+	        configurable: true
+	    });
+	    Object.defineProperty(WorksheetFeatureSetDefinition.prototype, "displayName", {
+	        get: function () {
+	            return this.get('displayName');
+	        },
+	        set: function (value) {
+	            this.set('displayName', value, { validate: true });
+	        },
+	        enumerable: true,
+	        configurable: true
+	    });
+	    Object.defineProperty(WorksheetFeatureSetDefinition.prototype, "features", {
+	        get: function () {
+	            return this.get('features');
+	        },
+	        set: function (value) {
+	            this.set('features', value, { validate: true });
+	        },
+	        enumerable: true,
+	        configurable: true
+	    });
+	    WorksheetFeatureSetDefinition.fromThryftJSON = function (json) {
+	        var attributes = {};
+	        for (var fieldName in json) {
+	            if (fieldName == "id") {
+	                attributes["id"] = json[fieldName];
+	            }
+	            else if (fieldName == "child_feature_sets") {
+	                attributes["childFeatureSets"] = function (json) { var sequence = []; for (var i = 0; i < json.length; i++) {
+	                    sequence.push(WorksheetFeatureSetDefinition.fromThryftJSON(json[i]));
+	                } return new Backbone.Collection(sequence); }(json[fieldName]);
+	            }
+	            else if (fieldName == "display_name") {
+	                attributes["displayName"] = json[fieldName];
+	            }
+	            else if (fieldName == "features") {
+	                attributes["features"] = function (json) { var sequence = []; for (var i = 0; i < json.length; i++) {
+	                    sequence.push(worksheet_feature_definition_1.WorksheetFeatureDefinition.fromThryftJSON(json[i]));
+	                } return new Backbone.Collection(sequence); }(json[fieldName]);
+	            }
+	        }
+	        var out = new WorksheetFeatureSetDefinition(attributes);
+	        if (!out.isValid(true)) {
+	            throw new Error(out.validationError);
+	        }
+	        return out;
+	    };
+	    WorksheetFeatureSetDefinition.prototype.toThryftJSON = function () {
+	        var json = {};
+	        json["id"] = this.id;
+	        if (this.has("childFeatureSets")) {
+	            json["child_feature_sets"] = function (__inArray) { var __outArray = []; for (var __i = 0; __i < __inArray.length; __i++) {
+	                __outArray.push(__inArray[__i].toThryftJSON());
+	            } return __outArray; }(this.childFeatureSets.models);
+	        }
+	        if (this.has("displayName")) {
+	            json["display_name"] = this.displayName;
+	        }
+	        if (this.has("features")) {
+	            json["features"] = function (__inArray) { var __outArray = []; for (var __i = 0; __i < __inArray.length; __i++) {
+	                __outArray.push(__inArray[__i].toThryftJSON());
+	            } return __outArray; }(this.features.models);
+	        }
+	        return json;
+	    };
+	    return WorksheetFeatureSetDefinition;
+	}(Backbone.Model));
+	exports.WorksheetFeatureSetDefinition = WorksheetFeatureSetDefinition;
+
+
+/***/ },
+/* 90 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+	var __extends = (this && this.__extends) || function (d, b) {
+	    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
+	    function __() { this.constructor = d; }
+	    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+	};
+	var Backbone = __webpack_require__(4);
+	var worksheet_feature_value_definition_1 = __webpack_require__(91);
+	var WorksheetFeatureDefinition = (function (_super) {
+	    __extends(WorksheetFeatureDefinition, _super);
+	    function WorksheetFeatureDefinition(attributes, options) {
+	        _super.call(this, attributes, options);
+	        this.validation = {
+	            id: {
+	                "fn": function (value, attr, computedState) {
+	                    if (typeof value !== "string") {
+	                        return "expected WorksheetFeatureDefinition.id to be a string";
+	                    }
+	                    return undefined;
+	                },
+	                "required": true
+	            },
+	            displayName: {
+	                "fn": function (value, attr, computedState) {
+	                    if (typeof attr === "undefined" || attr === null) {
+	                        return undefined;
+	                    }
+	                    if (typeof value !== "string") {
+	                        return "expected WorksheetFeatureDefinition.display_name to be a string";
+	                    }
+	                    if (/^\s*$/.test(value)) {
+	                        return "WorksheetFeatureDefinition.display_name is blank";
+	                    }
+	                    return undefined;
+	                },
+	                "minLength": 1, "required": false
+	            },
+	            values_: {
+	                "fn": function (value, attr, computedState) {
+	                    if (typeof attr === "undefined" || attr === null) {
+	                        return undefined;
+	                    }
+	                    if (!(value instanceof Backbone.Collection)) {
+	                        return "expected WorksheetFeatureDefinition.values_ to be a Backbone.Collection";
+	                    }
+	                    if (value.model !== worksheet_feature_value_definition_1.WorksheetFeatureValueDefinition) {
+	                        return "expected WorksheetFeatureDefinition.values_ to be a Backbone.Collection with model=WorksheetFeatureValueDefinition";
+	                    }
+	                    for (var _i = 0, _a = value.models; _i < _a.length; _i++) {
+	                        var __model0 = _a[_i];
+	                        if (!__model0.isValid(true)) {
+	                            return __model0.validationError;
+	                        }
+	                    }
+	                    return undefined;
+	                },
+	                "minLength": 1, "required": false
+	            }
+	        };
+	    }
+	    Object.defineProperty(WorksheetFeatureDefinition.prototype, "id", {
+	        get: function () {
+	            return this.get('id');
+	        },
+	        enumerable: true,
+	        configurable: true
+	    });
+	    Object.defineProperty(WorksheetFeatureDefinition.prototype, "displayName", {
+	        get: function () {
+	            return this.get('displayName');
+	        },
+	        set: function (value) {
+	            this.set('displayName', value, { validate: true });
+	        },
+	        enumerable: true,
+	        configurable: true
+	    });
+	    Object.defineProperty(WorksheetFeatureDefinition.prototype, "values_", {
+	        get: function () {
+	            return this.get('values_');
+	        },
+	        set: function (value) {
+	            this.set('values_', value, { validate: true });
+	        },
+	        enumerable: true,
+	        configurable: true
+	    });
+	    WorksheetFeatureDefinition.fromThryftJSON = function (json) {
+	        var attributes = {};
+	        for (var fieldName in json) {
+	            if (fieldName == "id") {
+	                attributes["id"] = json[fieldName];
+	            }
+	            else if (fieldName == "display_name") {
+	                attributes["displayName"] = json[fieldName];
+	            }
+	            else if (fieldName == "values_") {
+	                attributes["values_"] = function (json) { var sequence = []; for (var i = 0; i < json.length; i++) {
+	                    sequence.push(worksheet_feature_value_definition_1.WorksheetFeatureValueDefinition.fromThryftJSON(json[i]));
+	                } return new Backbone.Collection(sequence); }(json[fieldName]);
+	            }
+	        }
+	        var out = new WorksheetFeatureDefinition(attributes);
+	        if (!out.isValid(true)) {
+	            throw new Error(out.validationError);
+	        }
+	        return out;
+	    };
+	    WorksheetFeatureDefinition.prototype.toThryftJSON = function () {
+	        var json = {};
+	        json["id"] = this.id;
+	        if (this.has("displayName")) {
+	            json["display_name"] = this.displayName;
+	        }
+	        if (this.has("values_")) {
+	            json["values_"] = function (__inArray) { var __outArray = []; for (var __i = 0; __i < __inArray.length; __i++) {
+	                __outArray.push(__inArray[__i].toThryftJSON());
+	            } return __outArray; }(this.values_.models);
+	        }
+	        return json;
+	    };
+	    return WorksheetFeatureDefinition;
+	}(Backbone.Model));
+	exports.WorksheetFeatureDefinition = WorksheetFeatureDefinition;
+
+
+/***/ },
+/* 91 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+	var __extends = (this && this.__extends) || function (d, b) {
+	    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
+	    function __() { this.constructor = d; }
+	    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+	};
+	var Backbone = __webpack_require__(4);
+	var worksheet_feature_value_image_1 = __webpack_require__(92);
+	var WorksheetFeatureValueDefinition = (function (_super) {
+	    __extends(WorksheetFeatureValueDefinition, _super);
+	    function WorksheetFeatureValueDefinition(attributes, options) {
+	        _super.call(this, attributes, options);
+	        this.validation = {
+	            id: {
+	                "fn": function (value, attr, computedState) {
+	                    if (typeof value !== "string") {
+	                        return "expected WorksheetFeatureValueDefinition.id to be a string";
+	                    }
+	                    return undefined;
+	                },
+	                "required": true
+	            },
+	            displayName: {
+	                "fn": function (value, attr, computedState) {
+	                    if (typeof attr === "undefined" || attr === null) {
+	                        return undefined;
+	                    }
+	                    if (typeof value !== "string") {
+	                        return "expected WorksheetFeatureValueDefinition.display_name to be a string";
+	                    }
+	                    if (/^\s*$/.test(value)) {
+	                        return "WorksheetFeatureValueDefinition.display_name is blank";
+	                    }
+	                    return undefined;
+	                },
+	                "minLength": 1, "required": false
+	            },
+	            image: {
+	                "fn": function (value, attr, computedState) {
+	                    if (typeof attr === "undefined" || attr === null) {
+	                        return undefined;
+	                    }
+	                    if (!(value instanceof worksheet_feature_value_image_1.WorksheetFeatureValueImage)) {
+	                        return "expected WorksheetFeatureValueDefinition.image to be a WorksheetFeatureValueImage";
+	                    }
+	                    if (!value.isValid(true)) {
+	                        return value.validationError;
+	                    }
+	                    return undefined;
+	                },
+	                "required": false
+	            }
+	        };
+	    }
+	    Object.defineProperty(WorksheetFeatureValueDefinition.prototype, "id", {
+	        get: function () {
+	            return this.get('id');
+	        },
+	        enumerable: true,
+	        configurable: true
+	    });
+	    Object.defineProperty(WorksheetFeatureValueDefinition.prototype, "displayName", {
+	        get: function () {
+	            return this.get('displayName');
+	        },
+	        set: function (value) {
+	            this.set('displayName', value, { validate: true });
+	        },
+	        enumerable: true,
+	        configurable: true
+	    });
+	    Object.defineProperty(WorksheetFeatureValueDefinition.prototype, "image", {
+	        get: function () {
+	            return this.get('image');
+	        },
+	        set: function (value) {
+	            this.set('image', value, { validate: true });
+	        },
+	        enumerable: true,
+	        configurable: true
+	    });
+	    WorksheetFeatureValueDefinition.fromThryftJSON = function (json) {
+	        var attributes = {};
+	        for (var fieldName in json) {
+	            if (fieldName == "id") {
+	                attributes["id"] = json[fieldName];
+	            }
+	            else if (fieldName == "display_name") {
+	                attributes["displayName"] = json[fieldName];
+	            }
+	            else if (fieldName == "image") {
+	                attributes["image"] = worksheet_feature_value_image_1.WorksheetFeatureValueImage.fromThryftJSON(json[fieldName]);
+	            }
+	        }
+	        var out = new WorksheetFeatureValueDefinition(attributes);
+	        if (!out.isValid(true)) {
+	            throw new Error(out.validationError);
+	        }
+	        return out;
+	    };
+	    WorksheetFeatureValueDefinition.prototype.toThryftJSON = function () {
+	        var json = {};
+	        json["id"] = this.id;
+	        if (this.has("displayName")) {
+	            json["display_name"] = this.displayName;
+	        }
+	        if (this.has("image")) {
+	            json["image"] = this.image.toThryftJSON();
+	        }
+	        return json;
+	    };
+	    return WorksheetFeatureValueDefinition;
+	}(Backbone.Model));
+	exports.WorksheetFeatureValueDefinition = WorksheetFeatureValueDefinition;
+
+
+/***/ },
+/* 92 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+	var __extends = (this && this.__extends) || function (d, b) {
+	    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
+	    function __() { this.constructor = d; }
+	    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+	};
+	var Backbone = __webpack_require__(4);
+	var worksheet_feature_value_image_rights_1 = __webpack_require__(93);
+	var WorksheetFeatureValueImage = (function (_super) {
+	    __extends(WorksheetFeatureValueImage, _super);
+	    function WorksheetFeatureValueImage(attributes, options) {
+	        _super.call(this, attributes, options);
+	        this.validation = {
+	            rights: {
+	                "fn": function (value, attr, computedState) {
+	                    if (!(value instanceof worksheet_feature_value_image_rights_1.WorksheetFeatureValueImageRights)) {
+	                        return "expected WorksheetFeatureValueImage.rights to be a WorksheetFeatureValueImageRights";
+	                    }
+	                    if (!value.isValid(true)) {
+	                        return value.validationError;
+	                    }
+	                    return undefined;
+	                },
+	                "required": true
+	            },
+	            thumbnailUrl: {
+	                "fn": function (value, attr, computedState) {
+	                    if (typeof value !== "string") {
+	                        return "expected WorksheetFeatureValueImage.thumbnail_url to be a string";
+	                    }
+	                    if (/^\s*$/.test(value)) {
+	                        return "WorksheetFeatureValueImage.thumbnail_url is blank";
+	                    }
+	                    return undefined;
+	                },
+	                "minLength": 1, "required": true
+	            },
+	            fullSizeUrl: {
+	                "fn": function (value, attr, computedState) {
+	                    if (typeof attr === "undefined" || attr === null) {
+	                        return undefined;
+	                    }
+	                    if (typeof value !== "string") {
+	                        return "expected WorksheetFeatureValueImage.full_size_url to be a string";
+	                    }
+	                    if (/^\s*$/.test(value)) {
+	                        return "WorksheetFeatureValueImage.full_size_url is blank";
+	                    }
+	                    return undefined;
+	                },
+	                "minLength": 1, "required": false
+	            }
+	        };
+	    }
+	    Object.defineProperty(WorksheetFeatureValueImage.prototype, "rights", {
+	        get: function () {
+	            return this.get('rights');
+	        },
+	        set: function (value) {
+	            this.set('rights', value, { validate: true });
+	        },
+	        enumerable: true,
+	        configurable: true
+	    });
+	    Object.defineProperty(WorksheetFeatureValueImage.prototype, "thumbnailUrl", {
+	        get: function () {
+	            return this.get('thumbnailUrl');
+	        },
+	        set: function (value) {
+	            this.set('thumbnailUrl', value, { validate: true });
+	        },
+	        enumerable: true,
+	        configurable: true
+	    });
+	    Object.defineProperty(WorksheetFeatureValueImage.prototype, "fullSizeUrl", {
+	        get: function () {
+	            return this.get('fullSizeUrl');
+	        },
+	        set: function (value) {
+	            this.set('fullSizeUrl', value, { validate: true });
+	        },
+	        enumerable: true,
+	        configurable: true
+	    });
+	    WorksheetFeatureValueImage.fromThryftJSON = function (json) {
+	        var attributes = {};
+	        for (var fieldName in json) {
+	            if (fieldName == "rights") {
+	                attributes["rights"] = worksheet_feature_value_image_rights_1.WorksheetFeatureValueImageRights.fromThryftJSON(json[fieldName]);
+	            }
+	            else if (fieldName == "thumbnail_url") {
+	                attributes["thumbnailUrl"] = json[fieldName];
+	            }
+	            else if (fieldName == "full_size_url") {
+	                attributes["fullSizeUrl"] = json[fieldName];
+	            }
+	        }
+	        var out = new WorksheetFeatureValueImage(attributes);
+	        if (!out.isValid(true)) {
+	            throw new Error(out.validationError);
+	        }
+	        return out;
+	    };
+	    WorksheetFeatureValueImage.prototype.toThryftJSON = function () {
+	        var json = {};
+	        json["rights"] = this.rights.toThryftJSON();
+	        json["thumbnail_url"] = this.thumbnailUrl;
+	        if (this.has("fullSizeUrl")) {
+	            json["full_size_url"] = this.fullSizeUrl;
+	        }
+	        return json;
+	    };
+	    return WorksheetFeatureValueImage;
+	}(Backbone.Model));
+	exports.WorksheetFeatureValueImage = WorksheetFeatureValueImage;
+
+
+/***/ },
+/* 93 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+	var __extends = (this && this.__extends) || function (d, b) {
+	    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
+	    function __() { this.constructor = d; }
+	    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+	};
+	var Backbone = __webpack_require__(4);
+	var WorksheetFeatureValueImageRights = (function (_super) {
+	    __extends(WorksheetFeatureValueImageRights, _super);
+	    function WorksheetFeatureValueImageRights(attributes, options) {
+	        _super.call(this, attributes, options);
+	        this.validation = {
+	            author: {
+	                "fn": function (value, attr, computedState) {
+	                    if (typeof value !== "string") {
+	                        return "expected WorksheetFeatureValueImageRights.author to be a string";
+	                    }
+	                    if (/^\s*$/.test(value)) {
+	                        return "WorksheetFeatureValueImageRights.author is blank";
+	                    }
+	                    return undefined;
+	                },
+	                "minLength": 1, "required": true
+	            },
+	            license: {
+	                "fn": function (value, attr, computedState) {
+	                    if (typeof value !== "string") {
+	                        return "expected WorksheetFeatureValueImageRights.license to be a string";
+	                    }
+	                    if (/^\s*$/.test(value)) {
+	                        return "WorksheetFeatureValueImageRights.license is blank";
+	                    }
+	                    return undefined;
+	                },
+	                "minLength": 1, "required": true
+	            },
+	            sourceName: {
+	                "fn": function (value, attr, computedState) {
+	                    if (typeof value !== "string") {
+	                        return "expected WorksheetFeatureValueImageRights.source_name to be a string";
+	                    }
+	                    if (/^\s*$/.test(value)) {
+	                        return "WorksheetFeatureValueImageRights.source_name is blank";
+	                    }
+	                    return undefined;
+	                },
+	                "minLength": 1, "required": true
+	            },
+	            sourceUrl: {
+	                "fn": function (value, attr, computedState) {
+	                    if (typeof value !== "string") {
+	                        return "expected WorksheetFeatureValueImageRights.source_url to be a string";
+	                    }
+	                    return undefined;
+	                },
+	                "required": true
+	            }
+	        };
+	    }
+	    Object.defineProperty(WorksheetFeatureValueImageRights.prototype, "author", {
+	        get: function () {
+	            return this.get('author');
+	        },
+	        set: function (value) {
+	            this.set('author', value, { validate: true });
+	        },
+	        enumerable: true,
+	        configurable: true
+	    });
+	    Object.defineProperty(WorksheetFeatureValueImageRights.prototype, "license", {
+	        get: function () {
+	            return this.get('license');
+	        },
+	        set: function (value) {
+	            this.set('license', value, { validate: true });
+	        },
+	        enumerable: true,
+	        configurable: true
+	    });
+	    Object.defineProperty(WorksheetFeatureValueImageRights.prototype, "sourceName", {
+	        get: function () {
+	            return this.get('sourceName');
+	        },
+	        set: function (value) {
+	            this.set('sourceName', value, { validate: true });
+	        },
+	        enumerable: true,
+	        configurable: true
+	    });
+	    Object.defineProperty(WorksheetFeatureValueImageRights.prototype, "sourceUrl", {
+	        get: function () {
+	            return this.get('sourceUrl');
+	        },
+	        set: function (value) {
+	            this.set('sourceUrl', value, { validate: true });
+	        },
+	        enumerable: true,
+	        configurable: true
+	    });
+	    WorksheetFeatureValueImageRights.fromThryftJSON = function (json) {
+	        var attributes = {};
+	        for (var fieldName in json) {
+	            if (fieldName == "author") {
+	                attributes["author"] = json[fieldName];
+	            }
+	            else if (fieldName == "license") {
+	                attributes["license"] = json[fieldName];
+	            }
+	            else if (fieldName == "source_name") {
+	                attributes["sourceName"] = json[fieldName];
+	            }
+	            else if (fieldName == "source_url") {
+	                attributes["sourceUrl"] = json[fieldName];
+	            }
+	        }
+	        var out = new WorksheetFeatureValueImageRights(attributes);
+	        if (!out.isValid(true)) {
+	            throw new Error(out.validationError);
+	        }
+	        return out;
+	    };
+	    WorksheetFeatureValueImageRights.prototype.toThryftJSON = function () {
+	        var json = {};
+	        json["author"] = this.author;
+	        json["license"] = this.license;
+	        json["source_name"] = this.sourceName;
+	        json["source_url"] = this.sourceUrl;
+	        return json;
+	    };
+	    return WorksheetFeatureValueImageRights;
+	}(Backbone.Model));
+	exports.WorksheetFeatureValueImageRights = WorksheetFeatureValueImageRights;
+
 
 /***/ },
 /* 94 */

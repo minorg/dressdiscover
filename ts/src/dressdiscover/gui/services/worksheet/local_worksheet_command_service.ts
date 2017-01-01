@@ -3,9 +3,14 @@ import { LocalWorksheetQueryService } from "dressdiscover/gui/services/worksheet
 import { WorksheetState } from "dressdiscover/api/models/worksheet/worksheet_state";
 
 export class LocalWorksheetCommandService extends AsyncToSyncWorksheetCommandService {
+    deleteWorksheetStateSync(kwds: { accessionNumber: string }): void {
+        console.info("delete " + kwds.accessionNumber);
+        localStorage.removeItem(LocalWorksheetQueryService.getWorksheetStateItemKey(kwds.accessionNumber));
+    }
+
     putWorksheetStateSync(kwds: { state: WorksheetState }): void {
         let jsonString = JSON.stringify(kwds.state.toThryftJSON());
-        console.info("state to service: " + jsonString);
+        console.info("put " + jsonString);
         localStorage.setItem(LocalWorksheetQueryService.getWorksheetStateItemKey(kwds.state.accessionNumber), jsonString);
     }
 }

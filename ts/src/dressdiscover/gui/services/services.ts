@@ -4,10 +4,6 @@ import { WorksheetCommandService } from "dressdiscover/api/services/worksheet/wo
 import { WorksheetQueryService } from "dressdiscover/api/services/worksheet/worksheet_query_service";
 
 export class Services {
-    static get instance(): Services {
-        return Services._instance;
-    }
-
     get worksheetCommandService(): WorksheetCommandService {
         return this._worksheetCommandService;
     }
@@ -18,5 +14,4 @@ export class Services {
 
     private _worksheetCommandService: WorksheetCommandService = new LocalWorksheetCommandService;
     private _worksheetQueryService: WorksheetQueryService = new LocalWorksheetQueryService;
-    private static _instance: Services = new Services();
 }

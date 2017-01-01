@@ -3,10 +3,22 @@
         <div class="panel-heading" role="tab" id="sidebarHeadingOne">
             <h4 class="panel-title">
                 <a role="button" data-toggle="collapse" href="#sidebarCollapseOne" aria-expanded="true" aria-controls="sidebarCollapseOne">
-                    Accession number: <%- accessionNumber %>
+                    Accession number
                 </a>
-                <button type="button" class="btn btn-primary" id="changeAccessionNumberButton">Change</button>
             </h4>
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-sm-4" id="accessionNumber">
+                        <%- accessionNumber %>
+                    </div>
+                    <div class="col-sm-4">
+                        <button type="button" class="btn btn-primary" id="changeAccessionNumberButton">Change</button>
+                    </div>
+                    <div class="col-sm-4">
+                        <button type="button" class="btn btn-warning" id="deleteAccessionNumberButton">Delete</button>
+                    </div>
+                </div>
+            </div>
         </div>
         <div id="sidebarCollapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="sidebarHeadingOne">
             <div class="panel-body" id="output">

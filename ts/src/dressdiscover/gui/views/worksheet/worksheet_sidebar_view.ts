@@ -12,7 +12,8 @@ export class WorksheetSidebarView extends Marionette.LayoutView<Worksheet> {
     constructor(options?: any) {
         super(_.extend(options, {
             events: {
-                "click #changeAccessionNumberButton": "onClickChangeAccessionNumberButton"
+                "click #changeAccessionNumberButton": "onClickChangeAccessionNumberButton",
+                "click #deleteAccessionNumberButton": "onClickDeleteAccessionNumberButton"
             },
             regions: {
                 navigation: "#navigation",
@@ -30,6 +31,11 @@ export class WorksheetSidebarView extends Marionette.LayoutView<Worksheet> {
     onClickChangeAccessionNumberButton() {
         Application.instance.router.navigate("worksheet");
         window.location.reload();
+    }
+
+    onClickDeleteAccessionNumberButton() {
+        Application.instance.services.worksheetCommandService.deleteWorksheetStateSync({ accessionNumber: this.model.accessionNumber });
+        this.onClickChangeAccessionNumberButton();
     }
 
     serializeData() {
