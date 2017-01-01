@@ -17,16 +17,44 @@ PUBLIC_DOMAIN = 'Public domain'
 THUMBNAIL_DIMENSIONS = (200, 200)
 
 
-# Helper functions
-def feature_value(
-    description=None,
-    description_rights=None,
-    image_rights=None
-):
-    out = {}
-    if image_rights is not None:
-        out['image_rights'] = image_rights
-    return out
+# Helper classes
+class FeatureValue(object):
+    def __init__(
+        self,
+        id_,
+        description=None,
+        description_rights=None,
+        image_rights=None
+    ):
+        self.__id = id_
+        self.__image_rights = image_rights
+
+    @property
+    def id_(self):
+        return self.__id
+    
+    @property
+    def image_rights(self):
+        return self.__image_rights
+
+
+class Feature(object):
+    def __init__(
+        self,
+        id_,
+        values=None
+    ):
+        self.__id = id_
+        self.__values = values
+    
+    @property
+    def id_(self):
+        return self.__id
+    
+    @property
+    def values(self):
+        return self.__values
+
 
 def rights(
     author,
@@ -97,55 +125,55 @@ def wikipedia_image_rights(
 
 
 # Features
-features = OrderedDict()
+features_list = []
 
 
 def closure_values():
-    values = OrderedDict()
-    values['Buckle'] = feature_value(
+    values = []
+    values.append(FeatureValue('Buckle',
         description='Devices used for fastening consisting of a usually open rectangular or rounded frame and a tongue or catch attached to one side or a vertical bar attached across the center. Sometimes used alone as an ornament.',
         description_rights=aat_text_rights(),
         image_rights=eft_wikipedia_image_rights(source_file_name='Buckle.jpg')
-    )
-    values['Button'] = feature_value(
+    ))
+    values.append(FeatureValue('Button',
         image_rights=wikipedia_image_rights(
             author='Marco Bernardini',
             source_file_name='Three_holes_buttons.jpg',
         )
-    )
-    values['Frog closure'] = feature_value(
+    ))
+    values.append(FeatureValue('Frog closure',
         image_rights=eft_wikipedia_image_rights(source_file_name='Frog_(fastening).jpg')
-    )
-    values['Hook-and-eye'] = feature_value(
+    ))
+    values.append(FeatureValue('Hook-and-eye',
         image_rights=wikipedia_image_rights(
             author='Wikipedia user Eitan F',
             source_file_name='Hook_and_eye_clasp.JPG'
         )
-    )
-    values['Lacing'] = feature_value(
+    ))
+    values.append(FeatureValue('Lacing',
         description='Cords, bands, or similar flexible devices used for fastening, especially by interlacing, such as in a knot or bow',
         description_rights=aat_text_rights(),
         image_rights=eft_wikipedia_image_rights(source_file_name='Lace_(fastening).jpg')
-    )
-    values['Zip'] = feature_value(
+    ))
+    values.append(FeatureValue('Zip',
         image_rights=wikipedia_image_rights(
             author='Wikipedia user Woodbine9',
             source_file_name='Coil_plastic_and_metal_zippers.jpg'
         )
-    )
+    ))
     return values
-features['Closure'] = {'values': closure_values()}
+features_list.append(Feature('Closure', values=closure_values()))
 
 
 def collar_values():
     # TODO: https://en.wikipedia.org/wiki/Collar_(clothing)
-    values = OrderedDict()
-    values['Band'] = feature_value(
+    values = []
+    values.append(FeatureValue('Band',
         description='Flat, stand-up collars, starched, wired, or otherwise stiffened, especially those commonly worn by men and women in the 17th century',
         description_rights=aat_text_rights(),
         image_rights=eft_wikipedia_image_rights(source_file_name='Band_(collar).jpg')
-    )
-    values['Bertha'] = feature_value(
+    ))
+    values.append(FeatureValue('Bertha',
         description='A wide, flat, round collar, often of lace or sheer fabric, worn with a low neckline in the Victorian era and resurrected in the 1940s.',
         description_rights=wikipedia_text_rights(source_article_name='Collar_(clothing)'),
         image_rights=wikipedia_image_rights(
@@ -153,8 +181,8 @@ def collar_values():
             license_=PUBLIC_DOMAIN,
             source_file_name='Portrait_of_Hannah_Fry_(by_Andrew_Geddes).jpg'
         )
-    )
-    values['Button-down'] = feature_value(
+    ))
+    values.append(FeatureValue('Button-down',
         description='A collar with buttonholes on the points to fasten them to the body of the shirt.',
         description_rights=wikipedia_text_rights(source_article_name='Collar_(clothing)'),
         image_rights=wikipedia_image_rights(
@@ -162,8 +190,8 @@ def collar_values():
             license_=CC_BY_SA,
             source_file_name='Collar.agr.jpg'
         )
-    )
-    values['Clerical'] = feature_value(
+    ))
+    values.append(FeatureValue('Clerical',
         description='A band collar worn as part of clerical clothing',
         description_rights=wikipedia_text_rights(source_article_name='Collar_(clothing)'),
         image_rights=wikipedia_image_rights(
@@ -171,8 +199,8 @@ def collar_values():
             license_=PUBLIC_DOMAIN,
             source_file_name='FrJonathanMorris.jpg'
         )
-    )
-    values['Detachable'] = feature_value(
+    ))
+    values.append(FeatureValue('Detachable',
         description='A collar made as a separate accessory to be worn with a band-collared shirt',
         description_rights=wikipedia_text_rights(source_article_name='Collar_(clothing)'),
         image_rights=wikipedia_image_rights(
@@ -180,12 +208,12 @@ def collar_values():
             license_=PUBLIC_DOMAIN,
             source_file_name='Grafton_starched-stiff_detachable_wing_collar.jpg'
         )
-    )
-    values['Jabot'] = feature_value(
+    ))
+    values.append(FeatureValue('Jabot',
         description='Detachable, made-up cascades of soft fabric, often lace, worn at the center front of the neckline over other garments. ',
         description_rights=aat_text_rights(),
         image_rights=eft_wikipedia_image_rights(source_file_name='Jabot.jpg')
-    )
+    ))
     # collar_characteristics = [
     #     feature_value('Attached'),
     #     feature_value('Bibbed'),
@@ -194,18 +222,18 @@ def collar_values():
     #     feature_value('Round'),
     # ]
     return values
-features['Collar'] = {'values': collar_values()}
+features_list.append(Feature('Collar', values=collar_values()))
 
 
 # def cuff_closure_values():
-#     values = OrderedDict()
-#     values['Cufflink'] = feature_value(
+#     values = []
+#     values.append(FeatureValue('Cufflink',
 #         description='Linked ornamental buttons or buttonlike devices for fastening a shirt cuff.',
 #         description_rights=aat_text_rights(),
 #         image_rights=eft_wikipedia_image_rights(source_file_name='Cuff_links.jpg')
 #     )
 #     return values
-# features['Cuff Closure'] = {'values': cuff_closure_values()}
+# features_list.append(Feature('Cuff Closure', values=cuff_closure_values()))
 
 
 # colors = [
@@ -218,57 +246,57 @@ features['Collar'] = {'values': collar_values()}
 
 
 def decoration_values():
-    values = OrderedDict()
-    values['Fringe'] = feature_value(
+    values = []
+    values.append(FeatureValue('Fringe',
         description='Trimming consisting of long or short lengths of straight or twisted thread, cord, or tassel; often grouped or knotted in various designs',
         description_rights=aat_text_rights(),
         image_rights=eft_wikipedia_image_rights(source_file_name='Fringe_(fabric).jpg')
-    )
-    values['Knot'] = feature_value(
+    ))
+    values.append(FeatureValue('Knot',
         image_rights=eft_wikipedia_image_rights(source_file_name='Knot_(decoration).jpg')
-    )
-    values['Lace'] = feature_value(
+    ))
+    values.append(FeatureValue('Lace',
         image_rights=eft_wikipedia_image_rights(source_file_name='Lace_fragment.tif')
-    )
+    ))
     return values
-features['Decoration'] = {'values': decoration_values()}
+features_list.append(Feature('Decoration', values=decoration_values()))
 
 
 def fabric_values():
-    values = OrderedDict()
+    values = []
     #     feature_value('Cotton'),
-    values['Corduroy'] = feature_value(
+    values.append(FeatureValue('Corduroy',
         image_rights=wikipedia_image_rights(
             author='Wikipedia user Ludek',
             source_file_name='Mansestr.jpg',
         )
-    )
+    ))
     #     feature_value('Elastic'),
     #     feature_value('Plastic'),
     #     feature_value('Self-fabric'),
     #     feature_value(
-    values['Net tulle'] = feature_value(
+    values.append(FeatureValue('Net tulle',
         image_rights=wikipedia_image_rights(
             author='Wikipedia user Carolus',
             source_file_name='Carolus_-Private_Collection_-_zwarte_tulekant.jpg',
         )
-    )
+    ))
 #     feature_value('Velvet'),
     return values
-features['Fabric'] = {'values': fabric_values()}
+features_list.append(Feature('Fabric', values=fabric_values()))
 
 
 def fiber_values():
-    values = OrderedDict()
+    values = []
     #     feature_value('Cotton'),
-    values['Cotton'] = feature_value(
-    )
+    values.append(FeatureValue('Cotton',
+    ))
     #     feature_value('Elastic'),
     #     feature_value('Plastic'),
     #     feature_value('Self-fabric'),
     #     feature_value(
     return values
-features['Fiber'] = {'values': fiber_values()}
+features_list.append(Feature('Fiber', values=fiber_values()))
 
 
 
@@ -280,31 +308,31 @@ features['Fiber'] = {'values': fiber_values()}
 # ]
 
 
-features['Label'] = {}
+features_list.append(Feature('Label'))
 
 
 def neckline_values():
-    values = OrderedDict()
-    values['Boat neck'] = feature_value(
+    values = []
+    values.append(FeatureValue('Boat neck',
         image_rights=eft_wikipedia_image_rights(source_file_name='Boat_neck.jpg')
-    )
-    values['Round neck'] = feature_value(
+    ))
+    values.append(FeatureValue('Round neck',
         image_rights=eft_wikipedia_image_rights(source_file_name='Round_neck.jpg')
-    )
-    values['Ruffled neck'] = feature_value(
+    ))
+    values.append(FeatureValue('Ruffled neck',
         image_rights=eft_wikipedia_image_rights(source_file_name='Ruffled_neck.jpg')
-    )
-    values['Square neck'] = feature_value(
+    ))
+    values.append(FeatureValue('Square neck',
         image_rights=eft_wikipedia_image_rights(source_file_name='Square_neck.jpg')
-    )
-    values['Surplice'] = feature_value(
+    ))
+    values.append(FeatureValue('Surplice',
         image_rights=eft_wikipedia_image_rights(source_file_name='Surplice_neckline.jpg')
-    )
-    values['V-neck'] = feature_value(
+    ))
+    values.append(FeatureValue('V-neck',
         image_rights=eft_wikipedia_image_rights(source_file_name='V-neck.jpg')
-    )
+    ))
     return values
-features['Neckline'] = {'values': neckline_values()}
+features_list.append(Feature('Neckline', values=neckline_values()))
 
 
 # pleats = [
@@ -313,21 +341,21 @@ features['Neckline'] = {'values': neckline_values()}
 
 
 def print_values():
-    values = OrderedDict()
+    values = []
     #     feature_value('Abstracted floral'),
     #     feature_value('Checkerboard'),
     #     feature_value('Floral'),
     #     feature_value('Plaid'),
     # ]
-    values['Plaid'] = feature_value(
+    values.append(FeatureValue('Plaid',
         image_rights=wikipedia_image_rights(
             author=PUBLIC_DOMAIN,
             license_=PUBLIC_DOMAIN,
             source_file_name='Royal_stewart.jpg',
         )
-    )
+    ))
     return values
-features['Print'] = { 'values': print_values() }
+features_list.append(Feature('Print', values=print_values()))
 
 
 # pocket_characteristics = [
@@ -337,51 +365,51 @@ features['Print'] = { 'values': print_values() }
 
 
 def shoulder_values():
-    values = OrderedDict()
-    values['Epaulette'] = feature_value(
+    values = []
+    values.append(FeatureValue('Epaulette',
         description='Trimming consisting of long or short lengths of straight or twisted thread, cord, or tassel; often grouped or knotted in various designs',
         description_rights=aat_text_rights(),
         image_rights=eft_wikipedia_image_rights(source_file_name='Epaulette_(drawing).jpg')
-    )
+    ))
     return values
-features['Shoulder'] = {'values': shoulder_values()}
+features_list.append(Feature('Shoulder', values=shoulder_values()))
 
 
 def sleeve_values():
     # TODO: adapt from Wikipedia
     # https://en.wikipedia.org/wiki/Sleeve
-    values = OrderedDict()
+    values = []
     # sleeve = [
     #     feature_value('Attached cuffs'),
     #     feature_value('Elbow-length'),
     #     feature_value('Sleeveless'),
     # ]
-    values['Batwing'] = feature_value(
+    values.append(FeatureValue('Batwing',
         image_rights=eft_wikipedia_image_rights(source_file_name='Batwing_sleeve.jpg')
-    )
-    values['Long'] = feature_value(
+    ))
+    values.append(FeatureValue('Long',
         image_rights=eft_wikipedia_image_rights(source_file_name='Long_sleeve.jpg')
-    )
-    values['One sleeve'] = feature_value(
+    ))
+    values.append(FeatureValue('One sleeve',
         image_rights=eft_wikipedia_image_rights(source_file_name='One_sleeve.jpg')
-    )
-    values['Set-in'] = feature_value(
+    ))
+    values.append(FeatureValue('Set-in',
         image_rights=wikipedia_image_rights(
             author='Wikipedia user kellyhogaboom',
             source_file_name='Set_in_sleeve_blind_stitched.jpg',
         )
-    )
-    values['Short'] = feature_value(
+    ))
+    values.append(FeatureValue('Short',
         image_rights=eft_wikipedia_image_rights(source_file_name='Short_sleeve.jpg')
-    )
-    values['Short puffed'] = feature_value(
+    ))
+    values.append(FeatureValue('Short puffed',
         image_rights=eft_wikipedia_image_rights(source_file_name='Short_puffed_sleeve.jpg')
-    )
-    values['Sleeveless'] = feature_value(
+    ))
+    values.append(FeatureValue('Sleeveless',
         image_rights=eft_wikipedia_image_rights(source_file_name='Sleeveless.jpg')
-    )
+    ))
     return values
-features['Sleeve'] = {'values': sleeve_values()}
+features_list.append(Feature('Sleeve', values=sleeve_values()))
 
 
 # techniques = [
@@ -393,19 +421,26 @@ features['Sleeve'] = {'values': sleeve_values()}
 
 
 def waistline_values():
-    values = OrderedDict()
-    values['Natural'] = feature_value(
+    values = []
+    values.append(FeatureValue('Natural',
         image_rights=nypl_image_rights(
             author=PUBLIC_DOMAIN,
             source_url='https://digitalcollections.nypl.org/items/a1974390-ab14-0132-a409-58d385a7bbd0',
         )
-    )
+    ))
     #     feature_value('Dropped'),
     #     feature_value('Natural'),
     #     feature_value('Undefined waistline'),
     # ]
     return values
-features['Waistline'] = {'values': waistline_values()}
+features_list.append(Feature('Waistline', values=waistline_values()))
+
+
+# Track which features are used to make sure they're all incorporated
+features_by_id = OrderedDict()
+for feature in features_list:
+    features_by_id[feature.id_] = feature
+unused_features_by_id = features_by_id.copy()
 
 
 every_extent_feature_ids = ['Closure', 'Decoration', 'Fabric', 'Fiber', 'Print']
@@ -423,7 +458,7 @@ for upper_body_extent_id in (
     None
 ):
     feature_ids = list(every_extent_feature_ids)
-    if upper_body_extent_id in features:
+    if upper_body_extent_id in features_by_id:
         feature_ids.append(upper_body_extent_id)
 
     if upper_body_extent_id in ('Shoulder', 'Sleeve'):
@@ -450,10 +485,6 @@ for lower_body_extent_id in (
     else:
         lower_body_extents[lower_body_extent_id] = every_extent_feature_ids
 
-
-
-# Track which features are used to make sure they're all incorporated
-unused_features = features.copy()
 
 
 
@@ -492,8 +523,8 @@ def __define_extent(extent_item):
 def __define_extent_features(extent_id, feature_ids):
     extent_feature_definitions = []
     for feature_id in feature_ids:
-        feature_dict = features[feature_id]
-        unused_features.pop(feature_id, None)
+        feature = features_by_id[feature_id]
+        unused_features_by_id.pop(feature_id, None)
         
         feature_definition_builder = \
             WorksheetFeatureDefinition.Builder()
@@ -505,28 +536,30 @@ def __define_extent_features(extent_id, feature_ids):
             # Neckline Neckline -> Neckline Type
             feature_definition_builder.set_id(extent_id + ' Type')
 
-        if 'values' in feature_dict:
-            feature_definition_builder.set_values_(__define_feature_values(feature_id, feature_dict['values']))
+        if feature.values is not None:
+            feature_definition_builder.set_values_(__define_feature_values(feature_id, feature.values))
             
         extent_feature_definitions.append(feature_definition_builder.build())
     return extent_feature_definitions
                 
-def __define_feature_values(feature_id, feature_values_dict):
+def __define_feature_values(feature_id, feature_values):
     feature_value_definitions = []
-    for feature_value_id, feature_value in feature_values_dict.iteritems():
+    for feature_value in feature_values:
+        feature_value_id = feature_value.id_
+        
         feature_value_definition_builder = \
             WorksheetFeatureValueDefinition.Builder()\
                 .set_id(feature_value_id)
 
-        image_rights = feature_value.get('image_rights')
-        if image_rights is None:
+        if feature_value.image_rights is None:
             feature_value_definitions.append(feature_value_definition_builder.build())
             continue
 
         image_builder = WorksheetFeatureValueImage.Builder()
-        image_builder.set_rights(image_rights)
+        image_builder.set_rights(feature_value.image_rights)
 
-        file_extension = feature_value.get('image_file_extension', 'jpg')
+#         file_extension = feature_value.get('image_file_extension', 'jpg')
+        file_extension = 'jpg'
         file_name = "%(feature_value_id)s.%(file_extension)s" % locals()
 
         full_size_file_path = os.path.join(ASSETS_DIR_PATH, 'img', 'full_size', feature_id, file_name)
@@ -559,7 +592,7 @@ def __define_feature_values(feature_id, feature_values_dict):
 root_feature_set_definitions = []
 for extent_item in extents.iteritems():
     root_feature_set_definitions.append(__define_extent(extent_item))
-assert len(unused_features) == 0, unused_features.keys()
+assert len(unused_features_by_id) == 0, unused_features_by_id.keys()
     
 
 WORKSHEET_DEFINITION = \
