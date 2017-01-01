@@ -17,7 +17,96 @@ PUBLIC_DOMAIN = 'Public domain'
 THUMBNAIL_DIMENSIONS = (200, 200)
 
 
-# Helper classes
+# Mutable helper classes
+class Feature(object):
+    def __init__(
+        self,
+        id_,
+        values=None
+    ):
+        self.__id = id_
+        if values is not None:
+            if isinstance(values, list):
+                values = tuple(values)
+            assert isinstance(values, tuple)
+            assert len(values) > 0
+        self.__values = values
+    
+    @property
+    def id_(self):
+        return self.__id
+    
+    @property
+    def values(self):
+        return self.__values
+    
+    def to_feature_definition(self, extent_id=None):
+        unused_features_by_id.pop(self.id_, None)
+        
+        feature_definition_builder = \
+            WorksheetFeatureDefinition.Builder()
+
+        id_ = self.id_
+        if extent_id is not None:
+            if extent_id != id_:
+                id_ = extent_id + ' ' + id_
+            else:
+                id_ = extent_id + ' Type'
+            
+        feature_definition_builder.set_id(id_)
+
+        if self.values is not None:
+            feature_definition_builder.set_values_(tuple(
+                feature_value.to_feature_value_definition(feature_id=self.id_)
+                for feature_value in self.values
+            ))
+            
+        return feature_definition_builder.build()
+
+
+class Extent(object):
+    def __init__(
+        self,
+        id_,
+        features=None
+     ):
+        self.__id = id_
+        self.__child_extents = []
+        self.__features = []
+        if features is not None:
+            self.__features.extend(features)
+        
+    @property
+    def child_extents(self):
+        return self.__child_extents
+    
+    @property
+    def id_(self):
+        return self.__id
+    
+    @property
+    def features(self):
+        return self.__features
+
+    def to_feature_set_definition(self):        
+        feature_set_definition_builder = \
+            WorksheetFeatureSetDefinition.Builder().set_id(self.id_)
+        
+        if len(self.child_extents) > 0:
+            feature_set_definition_builder.set_child_feature_sets(tuple(
+                child_extent.to_feature_set_definition()
+                for child_extent in self.child_extents
+            ))
+
+        if len(self.features) > 0:
+            feature_set_definition_builder.set_features(tuple(
+                feature.to_feature_definition(extent_id=self.id_)
+                for feature in self.features
+            ))
+
+        return feature_set_definition_builder.build()
+    
+
 class FeatureValue(object):
     def __init__(
         self,
@@ -37,23 +126,45 @@ class FeatureValue(object):
     def image_rights(self):
         return self.__image_rights
 
+    def to_feature_value_definition(self, feature_id):
+        feature_value_id = self.id_
+        
+        feature_value_definition_builder = \
+            WorksheetFeatureValueDefinition.Builder()\
+                .set_id(feature_value_id)
 
-class Feature(object):
-    def __init__(
-        self,
-        id_,
-        values=None
-    ):
-        self.__id = id_
-        self.__values = values
-    
-    @property
-    def id_(self):
-        return self.__id
-    
-    @property
-    def values(self):
-        return self.__values
+        if self.image_rights is None:
+            return feature_value_definition_builder.build()
+
+        image_builder = WorksheetFeatureValueImage.Builder()
+        image_builder.set_rights(self.image_rights)
+
+#         file_extension = self.get('image_file_extension', 'jpg')
+        file_extension = 'jpg'
+        file_name = "%(feature_value_id)s.%(file_extension)s" % locals()
+
+        full_size_file_path = os.path.join(ASSETS_DIR_PATH, 'img', 'full_size', feature_id, file_name)
+        if not os.path.isfile(full_size_file_path):
+            raise ValueError("%(full_size_file_path)s does not exist" % locals())
+        image_builder.set_full_size_url("img/full_size/%(feature_id)s/%(file_name)s" % locals())
+
+        thumbnail_dir_path = os.path.join(ASSETS_DIR_PATH, 'img', 'thumbnail', feature_id)
+        thumbnail_file_path = os.path.join(thumbnail_dir_path, file_name)
+        if not os.path.isfile(thumbnail_file_path):
+            from PIL import Image  # @UnresolvedImport
+            thumbnail = Image.open(full_size_file_path)
+            # Use .resize and .thumbnail, because the latter preserves the aspect ratio,
+            # which we don't want.
+            thumbnail = thumbnail.resize(THUMBNAIL_DIMENSIONS)
+            if not os.path.isdir(thumbnail_dir_path):
+                os.makedirs(thumbnail_dir_path)
+            thumbnail.save(thumbnail_file_path)
+            print "saved thumbnail to", thumbnail_file_path
+        image_builder.set_thumbnail_url("img/thumbnail/%(feature_id)s/%(file_name)s" % locals())
+
+        feature_value_definition_builder.set_image(image_builder.build())
+
+        return feature_value_definition_builder.build()
 
 
 def rights(
@@ -443,155 +554,55 @@ for feature in features_list:
 unused_features_by_id = features_by_id.copy()
 
 
-every_extent_feature_ids = ['Closure', 'Decoration', 'Fabric', 'Fiber', 'Print']
+every_extent_features = [features_by_id[feature_id]
+                         for feature_id in ['Closure', 'Decoration', 'Fabric', 'Fiber', 'Print']]
 sides = ('Left', 'Right')
-extents = OrderedDict()
-extents['Whole Body'] = ['Label'] + every_extent_feature_ids
-extents['Upper Body'] = upper_body_extents = OrderedDict()
-for upper_body_extent_id in (
+extents = []
+
+extents.append(Extent('Whole Body', features=[features_by_id['Label']] + every_extent_features))
+
+upper_body_extent = Extent('Upper Body', features=every_extent_features)
+extents.append(upper_body_extent)
+for upper_body_child_extent_id in (
     'Neckline',
     'Collar',
     'Shoulder',
     'Sleeve',
     'Cuff',
     'Torso',
-    None
 ):
-    feature_ids = list(every_extent_feature_ids)
-    if upper_body_extent_id in features_by_id:
-        feature_ids.append(upper_body_extent_id)
+    upper_body_child_extent = Extent(upper_body_child_extent_id, features=every_extent_features)
+    upper_body_extent.child_extents.append(upper_body_child_extent)
 
-    if upper_body_extent_id in ('Shoulder', 'Sleeve'):
-        upper_body_extents[upper_body_extent_id] = bilateral_extents = OrderedDict()
+    # Add features first so they can be present on Left-Right    
+    if upper_body_child_extent_id in features_by_id:
+        upper_body_child_extent.features.append(features_by_id[upper_body_child_extent_id])
+
+    if upper_body_child_extent_id in ('Shoulder', 'Sleeve'):
         for side in sides:
-            bilateral_extents[side + ' ' + upper_body_extent_id] = feature_ids
-        upper_body_extents[upper_body_extent_id][None] = feature_ids
-    else:
-        upper_body_extents[upper_body_extent_id] = feature_ids
-upper_body_extents[None] = every_extent_feature_ids
-extents['Waistline'] = every_extent_feature_ids + ['Waistline']
-extents['Lower Body'] = lower_body_extents = OrderedDict()
-for lower_body_extent_id in (
+            side_extent = Extent(side + ' ' + upper_body_child_extent_id, features=upper_body_child_extent.features)
+            upper_body_child_extent.child_extents.append(side_extent)
+ 
+extents.append(Extent('Waistline', every_extent_features + [features_by_id['Waistline']]))
+
+lower_body_extent = Extent('Lower Body', features=every_extent_features)
+extents.append(lower_body_extent)
+for lower_body_child_extent_id in (
     'Hip',
     'Leg',
     'Foot',
-    None
 ):
-    if lower_body_extent_id is not None:
-        lower_body_extents[lower_body_extent_id] = bilateral_extents = OrderedDict()
-        for side in sides:
-            bilateral_extents[side + ' ' + lower_body_extent_id] = every_extent_feature_ids
-        lower_body_extents[lower_body_extent_id][None] = every_extent_feature_ids
-    else:
-        lower_body_extents[lower_body_extent_id] = every_extent_feature_ids
-
-
-
-
-# Python type -> API type helper functions
-def __define_extent(extent_item):
-    extent_id, sub = extent_item
-    assert len(sub) > 0
-    
-    extent_feature_set_definition_builder = \
-        WorksheetFeatureSetDefinition.Builder().set_id(extent_id)
-    
-    extent_child_feature_set_definitions = []
-    extent_feature_definitions = []
-
-    if isinstance(sub, (list, tuple)):
-        # The extent has features only
-        extent_feature_definitions.extend(__define_extent_features(extent_id, sub))
-    elif isinstance(sub, OrderedDict):
-        for child_extent_item in sub.iteritems():
-            child_extent_id, child_sub = child_extent_item
-            if child_extent_id is None:
-                # The extent has child extents but its own features, and these are the latter
-                assert isinstance(child_sub, (list, tuple))
-                extent_feature_definitions.extend(__define_extent_features(extent_id, child_sub))
-            else:
-                # The extent has child extents and its own features, and these are the former
-                extent_child_feature_set_definitions.append(__define_extent(child_extent_item))
-            
-    if len(extent_child_feature_set_definitions) > 0:
-        extent_feature_set_definition_builder.set_child_feature_sets(tuple(extent_child_feature_set_definitions))
-    if len(extent_feature_definitions) > 0:
-        extent_feature_set_definition_builder.set_features(tuple(extent_feature_definitions))
-
-    return extent_feature_set_definition_builder.build()
-
-def __define_extent_features(extent_id, feature_ids):
-    extent_feature_definitions = []
-    for feature_id in feature_ids:
-        feature = features_by_id[feature_id]
-        unused_features_by_id.pop(feature_id, None)
+    lower_body_child_extent = Extent(lower_body_child_extent_id, features=every_extent_features)
+    lower_body_extent.child_extents.append(lower_body_child_extent)
         
-        feature_definition_builder = \
-            WorksheetFeatureDefinition.Builder()
-
-        if extent_id != feature_id:
-            feature_definition_builder\
-                .set_id(extent_id + ' ' + feature_id)
-        else:
-            # Neckline Neckline -> Neckline Type
-            feature_definition_builder.set_id(extent_id + ' Type')
-
-        if feature.values is not None:
-            feature_definition_builder.set_values_(__define_feature_values(feature_id, feature.values))
-            
-        extent_feature_definitions.append(feature_definition_builder.build())
-    return extent_feature_definitions
-                
-def __define_feature_values(feature_id, feature_values):
-    feature_value_definitions = []
-    for feature_value in feature_values:
-        feature_value_id = feature_value.id_
-        
-        feature_value_definition_builder = \
-            WorksheetFeatureValueDefinition.Builder()\
-                .set_id(feature_value_id)
-
-        if feature_value.image_rights is None:
-            feature_value_definitions.append(feature_value_definition_builder.build())
-            continue
-
-        image_builder = WorksheetFeatureValueImage.Builder()
-        image_builder.set_rights(feature_value.image_rights)
-
-#         file_extension = feature_value.get('image_file_extension', 'jpg')
-        file_extension = 'jpg'
-        file_name = "%(feature_value_id)s.%(file_extension)s" % locals()
-
-        full_size_file_path = os.path.join(ASSETS_DIR_PATH, 'img', 'full_size', feature_id, file_name)
-        if not os.path.isfile(full_size_file_path):
-            raise ValueError("%(full_size_file_path)s does not exist" % locals())
-        image_builder.set_full_size_url("img/full_size/%(feature_id)s/%(file_name)s" % locals())
-
-        thumbnail_dir_path = os.path.join(ASSETS_DIR_PATH, 'img', 'thumbnail', feature_id)
-        thumbnail_file_path = os.path.join(thumbnail_dir_path, file_name)
-        if not os.path.isfile(thumbnail_file_path):
-            from PIL import Image  # @UnresolvedImport
-            thumbnail = Image.open(full_size_file_path)
-            # Use .resize and .thumbnail, because the latter preserves the aspect ratio,
-            # which we don't want.
-            thumbnail = thumbnail.resize(THUMBNAIL_DIMENSIONS)
-            if not os.path.isdir(thumbnail_dir_path):
-                os.makedirs(thumbnail_dir_path)
-            thumbnail.save(thumbnail_file_path)
-            print "saved thumbnail to", thumbnail_file_path
-        image_builder.set_thumbnail_url("img/thumbnail/%(feature_id)s/%(file_name)s" % locals())
-
-        feature_value_definition_builder.set_image(image_builder.build())
-
-        feature_value_definitions.append(feature_value_definition_builder.build())
-    assert len(feature_value_definitions) > 0, feature_id
-    return tuple(feature_value_definitions)
-
+    for side in sides:
+        side_extent = Extent(side + ' ' + lower_body_child_extent_id, features=lower_body_child_extent.features)
+        lower_body_child_extent.child_extents.append(side_extent)
 
 # Build up tree
 root_feature_set_definitions = []
-for extent_item in extents.iteritems():
-    root_feature_set_definitions.append(__define_extent(extent_item))
+for extent in extents:
+    root_feature_set_definitions.append(extent.to_feature_set_definition())
 assert len(unused_features_by_id) == 0, unused_features_by_id.keys()
     
 
