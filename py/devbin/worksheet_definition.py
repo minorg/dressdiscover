@@ -1,5 +1,6 @@
 from collections import OrderedDict
 import os.path
+from pprint import pprint
 
 from dressdiscover.api.models.worksheet.worksheet_definition import WorksheetDefinition
 from dressdiscover.api.models.worksheet.worksheet_feature_definition import WorksheetFeatureDefinition
@@ -386,21 +387,8 @@ def waistline_values():
 features['Waistline'] = {'values': waistline_values()}
 
 
-# Extents
-# _horizontal_extents = [
-#     'Left',
-#     'Right',
-#     'Both'
-# ]
-#
-# _vertical_extents = [
-#     'Whole',
-#     'Top',
-#     'Bottom',
-# ]
-
-
 every_extent_feature_ids = ['Decoration', 'Material', 'Print']
+sides = ('Left', 'Right')
 extents = OrderedDict()
 extents['Whole Body'] = ['Label'] + every_extent_feature_ids
 extents['Upper Body'] = upper_body_extents = OrderedDict()
@@ -409,39 +397,90 @@ for upper_body_extent_id in (
     'Collar',
     'Shoulder',
     'Sleeve',
-    'Torso'
+    'Cuff',
+    'Torso',
+    None
 ):
     if upper_body_extent_id in ('Shoulder', 'Sleeve'):
         upper_body_extents[upper_body_extent_id] = bilateral_extents = OrderedDict()
-        for side in ('Left', 'Right'):
-            bilateral_extents[side] = every_extent_feature_ids
+        for side in sides:
+            bilateral_extents[side + ' ' + upper_body_extent_id] = every_extent_feature_ids
+        upper_body_extents[upper_body_extent_id][None] = every_extent_feature_ids
     else:
         upper_body_extents[upper_body_extent_id] = every_extent_feature_ids
 upper_body_extents[None] = every_extent_feature_ids
 extents['Waistline'] = every_extent_feature_ids
+extents['Lower Body'] = lower_body_extents = OrderedDict()
 for lower_body_extent_id in (
     'Hip',
     'Leg',
-    'Foot'
+    'Foot',
+    None
 ):
+    if lower_body_extent_id is not None:
+        lower_body_extents[lower_body_extent_id] = bilateral_extents = OrderedDict()
+        for side in sides:
+            bilateral_extents[side + ' ' + lower_body_extent_id] = every_extent_feature_ids
+        lower_body_extents[lower_body_extent_id][None] = every_extent_feature_ids
+    else:
+        lower_body_extents[lower_body_extent_id] = every_extent_feature_ids
 
 
-
-
-
-#
-# extents['Whole'] = (None, 'Top', 'Bottom')
-# extents['Neckline'] = (None,)
-# extents['Collar'] = (None,)
-# extents['Shoulder'] = _horizontal_extents
-# extents['Sleeve'] = _horizontal_extents
-# extents['Cuff'] = _horizontal_extents
-# extents['Front'] = _vertical_extents
-# extents['Back'] = _vertical_extents
-# extents['Interior'] = _vertical_extents
 
 
 # More helper functions
+def __define_extent(extent_item):
+    extent_id, sub = extent_item
+    assert len(sub) > 0
+    
+    extent_feature_set_definition_builder = \
+        WorksheetFeatureSetDefinition.Builder().set_id(extent_id)
+    
+    extent_child_feature_set_definitions = []
+    extent_feature_definitions = []
+
+    if isinstance(sub, (list, tuple)):
+        # The extent has features only
+        extent_feature_definitions.extend(__define_extent_features(extent_id, sub))
+    elif isinstance(sub, OrderedDict):
+        for child_extent_item in sub.iteritems():
+            child_extent_id, child_sub = child_extent_item
+            if child_extent_id is None:
+                # The extent has child extents but its own features, and these are the latter
+                assert isinstance(child_sub, (list, tuple))
+                extent_feature_definitions.extend(__define_extent_features(extent_id, child_sub))
+            else:
+                # The extent has child extents and its own features, and these are the former
+                extent_child_feature_set_definitions.append(__define_extent(child_extent_item))
+            
+    if len(extent_child_feature_set_definitions) > 0:
+        extent_feature_set_definition_builder.set_child_feature_sets(tuple(extent_child_feature_set_definitions))
+    if len(extent_feature_definitions) > 0:
+        extent_feature_set_definition_builder.set_features(tuple(extent_feature_definitions))
+
+    return extent_feature_set_definition_builder.build()
+
+def __define_extent_features(extent_id, feature_ids):
+    extent_feature_definitions = []
+    for feature_id in feature_ids:
+        feature_dict = features[feature_id]
+        
+        feature_definition_builder = \
+            WorksheetFeatureDefinition.Builder()
+
+        if extent_id != feature_id:
+            feature_definition_builder\
+                .set_id(extent_id + ' ' + feature_id)
+        else:
+            # Neckline Neckline -> Neckline Type
+            feature_definition_builder.set_id(extent_id + ' Type')
+
+        if 'values' in feature_dict:
+            feature_definition_builder.set_values_(__define_feature_values(feature_id, feature_dict['values']))
+            
+        extent_feature_definitions.append(feature_definition_builder.build())
+    return extent_feature_definitions
+                
 def __define_feature_values(feature_id, feature_values_dict):
     feature_value_definitions = []
     for feature_value_id, feature_value in feature_values_dict.iteritems():
@@ -484,64 +523,15 @@ def __define_feature_values(feature_id, feature_values_dict):
     return tuple(feature_value_definitions)
 
 
-
-
 root_feature_set_definitions = []
-for extent, sub_extents in extents.iteritems():
-    extent_child_feature_set_definitions = []
-    extent_feature_definitions = []
-
-    for sub_extent in sub_extents:
-        assert extent != sub_extent
-
-        parent_feature_set_ids = [extent]
-        if sub_extent is None:
-            sub_extent_feature_definitions = extent_feature_definitions
-        else:
-            sub_extent_feature_definitions = []
-            parent_feature_set_ids.append(sub_extent)
-
-        for feature_id, feature_dict in features.iteritems():
-            if not __extent_has_feature(feature_dict, extent, sub_extent):
-                continue
-
-            feature_definition_builder = \
-                WorksheetFeatureDefinition.Builder()
-
-            if extent != feature_id:
-                feature_definition_builder\
-                    .set_id(' '.join(parent_feature_set_ids + [feature_id]))
-            else:
-                # Neckline Neckline -> Neckline Type
-                feature_definition_builder.set_id(' '.join(parent_feature_set_ids + ['Type']))
-
-            if 'values' in feature_dict:
-                feature_definition_builder.set_values_(__define_feature_values(feature_id, feature_dict['values']))
-
-            sub_extent_feature_definitions.append(feature_definition_builder.build())
-
-        if sub_extent is not None:
-            assert len(sub_extent_feature_definitions) > 0, extent
-            extent_child_feature_set_definitions.append(
-                WorksheetFeatureSetDefinition.Builder()
-                    .set_features(tuple(sub_extent_feature_definitions))
-                    .set_id(sub_extent)
-                    .build()
-            )
-
-    extent_feature_set_definition_builder = \
-        WorksheetFeatureSetDefinition.Builder().set_id(extent)
-    if len(extent_child_feature_set_definitions) > 0:
-        extent_feature_set_definition_builder.set_child_feature_sets(tuple(extent_child_feature_set_definitions))
-    if len(extent_feature_definitions) > 0:
-        extent_feature_set_definition_builder.set_features(tuple(extent_feature_definitions))
-    extent_feature_set_definitions.append(extent_feature_set_definition_builder.build())
+for extent_item in extents.iteritems():
+    root_feature_set_definitions.append(__define_extent(extent_item))
 
 WORKSHEET_DEFINITION = \
     WorksheetDefinition(
         root_feature_set=\
             WorksheetFeatureSetDefinition(
-                child_feature_sets=tuple(extent_feature_set_definitions),
+                child_feature_sets=tuple(root_feature_set_definitions),
                 id='root',
             )
     )

@@ -1,5 +1,4 @@
 import __builtin__
-import str
 
 
 class WorksheetFeatureValueImageRights(object):
