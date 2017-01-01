@@ -115,18 +115,19 @@ export class WorksheetFeatureSetDefinition extends Backbone.Model {
     }
 
     static fromThryftJSON(json: any): WorksheetFeatureSetDefinition {
-        var out: WorksheetFeatureSetDefinition = new WorksheetFeatureSetDefinition;
+        const attributes: any = {};
         for (var fieldName in json) {
             if (fieldName == "id") {
-                out.attributes.id = json[fieldName];
+                attributes["id"] = json[fieldName];
             } else if (fieldName == "child_feature_sets") {
-                out.attributes.childFeatureSets = function(json: any[]): Backbone.Collection<WorksheetFeatureSetDefinition> { var sequence: WorksheetFeatureSetDefinition[] = []; for (var i = 0; i < json.length; i++) { sequence.push(WorksheetFeatureSetDefinition.fromThryftJSON(json[i])); } return new Backbone.Collection<WorksheetFeatureSetDefinition>(sequence); }(json[fieldName]);
+                attributes["childFeatureSets"] = function(json: any[]): Backbone.Collection<WorksheetFeatureSetDefinition> { var sequence: WorksheetFeatureSetDefinition[] = []; for (var i = 0; i < json.length; i++) { sequence.push(WorksheetFeatureSetDefinition.fromThryftJSON(json[i])); } return new Backbone.Collection<WorksheetFeatureSetDefinition>(sequence); }(json[fieldName]);
             } else if (fieldName == "display_name") {
-                out.attributes.displayName = json[fieldName];
+                attributes["displayName"] = json[fieldName];
             } else if (fieldName == "features") {
-                out.attributes.features = function(json: any[]): Backbone.Collection<WorksheetFeatureDefinition> { var sequence: WorksheetFeatureDefinition[] = []; for (var i = 0; i < json.length; i++) { sequence.push(WorksheetFeatureDefinition.fromThryftJSON(json[i])); } return new Backbone.Collection<WorksheetFeatureDefinition>(sequence); }(json[fieldName]);
+                attributes["features"] = function(json: any[]): Backbone.Collection<WorksheetFeatureDefinition> { var sequence: WorksheetFeatureDefinition[] = []; for (var i = 0; i < json.length; i++) { sequence.push(WorksheetFeatureDefinition.fromThryftJSON(json[i])); } return new Backbone.Collection<WorksheetFeatureDefinition>(sequence); }(json[fieldName]);
             }
         }
+        const out = new WorksheetFeatureSetDefinition(attributes);
         if (!out.isValid(true)) {
             throw new Error(out.validationError);
         }

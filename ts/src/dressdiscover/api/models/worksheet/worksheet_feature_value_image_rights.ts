@@ -61,7 +61,7 @@ export class WorksheetFeatureValueImageRights extends Backbone.Model {
 
     validationError: any;
 
-    constructor(attributes?: {author: string, license: string, sourceName: string, sourceUrl: URL}, options?: any) {
+    constructor(attributes?: {author: string, license: string, sourceName: string, sourceUrl: string}, options?: any) {
         super(attributes, options);
     }
 
@@ -89,27 +89,28 @@ export class WorksheetFeatureValueImageRights extends Backbone.Model {
         this.set('sourceName', value, { validate: true });
     }
 
-    get sourceUrl(): URL {
+    get sourceUrl(): string {
         return this.get('sourceUrl');
     }
 
-    set sourceUrl(value: URL) {
+    set sourceUrl(value: string) {
         this.set('sourceUrl', value, { validate: true });
     }
 
     static fromThryftJSON(json: any): WorksheetFeatureValueImageRights {
-        var out: WorksheetFeatureValueImageRights = new WorksheetFeatureValueImageRights;
+        const attributes: any = {};
         for (var fieldName in json) {
             if (fieldName == "author") {
-                out.attributes.author = json[fieldName];
+                attributes["author"] = json[fieldName];
             } else if (fieldName == "license") {
-                out.attributes.license = json[fieldName];
+                attributes["license"] = json[fieldName];
             } else if (fieldName == "source_name") {
-                out.attributes.sourceName = json[fieldName];
+                attributes["sourceName"] = json[fieldName];
             } else if (fieldName == "source_url") {
-                out.attributes.sourceUrl = new URL(json[fieldName]);
+                attributes["sourceUrl"] = json[fieldName];
             }
         }
+        const out = new WorksheetFeatureValueImageRights(attributes);
         if (!out.isValid(true)) {
             throw new Error(out.validationError);
         }
@@ -121,7 +122,7 @@ export class WorksheetFeatureValueImageRights extends Backbone.Model {
         json["author"] = this.author;
         json["license"] = this.license;
         json["source_name"] = this.sourceName;
-        json["source_url"] = this.sourceUrl.toString();
+        json["source_url"] = this.sourceUrl;
         return json;
     }
 }

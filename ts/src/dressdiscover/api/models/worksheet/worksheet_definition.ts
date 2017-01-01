@@ -33,12 +33,13 @@ export class WorksheetDefinition extends Backbone.Model {
     }
 
     static fromThryftJSON(json: any): WorksheetDefinition {
-        var out: WorksheetDefinition = new WorksheetDefinition;
+        const attributes: any = {};
         for (var fieldName in json) {
             if (fieldName == "root_feature_set") {
-                out.attributes.rootFeatureSet = WorksheetFeatureSetDefinition.fromThryftJSON(json[fieldName]);
+                attributes["rootFeatureSet"] = WorksheetFeatureSetDefinition.fromThryftJSON(json[fieldName]);
             }
         }
+        const out = new WorksheetDefinition(attributes);
         if (!out.isValid(true)) {
             throw new Error(out.validationError);
         }

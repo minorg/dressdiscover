@@ -29,12 +29,13 @@ export class IoException extends Backbone.Model {
     }
 
     static fromThryftJSON(json: any): IoException {
-        var out: IoException = new IoException;
+        const attributes: any = {};
         for (var fieldName in json) {
             if (fieldName == "cause_message") {
-                out.attributes.causeMessage = json[fieldName];
+                attributes["causeMessage"] = json[fieldName];
             }
         }
+        const out = new IoException(attributes);
         if (!out.isValid(true)) {
             throw new Error(out.validationError);
         }

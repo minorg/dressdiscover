@@ -81,14 +81,15 @@ export class WorksheetFeatureSetState extends Backbone.Model {
     }
 
     static fromThryftJSON(json: any): WorksheetFeatureSetState {
-        var out: WorksheetFeatureSetState = new WorksheetFeatureSetState;
+        const attributes: any = {};
         for (var fieldName in json) {
             if (fieldName == "child_feature_sets") {
-                out.attributes.childFeatureSets = function (json: any): {[index: string]: WorksheetFeatureSetState} { var map: any = {}; for (var key in json) { map[key] = WorksheetFeatureSetState.fromThryftJSON(json[key]); } return map; }(json[fieldName]);
+                attributes["childFeatureSets"] = function (json: any): {[index: string]: WorksheetFeatureSetState} { var map: any = {}; for (var key in json) { map[key] = WorksheetFeatureSetState.fromThryftJSON(json[key]); } return map; }(json[fieldName]);
             } else if (fieldName == "features") {
-                out.attributes.features = function (json: any): {[index: string]: WorksheetFeatureState} { var map: any = {}; for (var key in json) { map[key] = WorksheetFeatureState.fromThryftJSON(json[key]); } return map; }(json[fieldName]);
+                attributes["features"] = function (json: any): {[index: string]: WorksheetFeatureState} { var map: any = {}; for (var key in json) { map[key] = WorksheetFeatureState.fromThryftJSON(json[key]); } return map; }(json[fieldName]);
             }
         }
+        const out = new WorksheetFeatureSetState(attributes);
         if (!out.isValid(true)) {
             throw new Error(out.validationError);
         }

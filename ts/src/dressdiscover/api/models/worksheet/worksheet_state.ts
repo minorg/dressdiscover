@@ -56,14 +56,15 @@ export class WorksheetState extends Backbone.Model {
     }
 
     static fromThryftJSON(json: any): WorksheetState {
-        var out: WorksheetState = new WorksheetState;
+        const attributes: any = {};
         for (var fieldName in json) {
             if (fieldName == "accession_number") {
-                out.attributes.accessionNumber = json[fieldName];
+                attributes["accessionNumber"] = json[fieldName];
             } else if (fieldName == "root_feature_set") {
-                out.attributes.rootFeatureSet = WorksheetFeatureSetState.fromThryftJSON(json[fieldName]);
+                attributes["rootFeatureSet"] = WorksheetFeatureSetState.fromThryftJSON(json[fieldName]);
             }
         }
+        const out = new WorksheetState(attributes);
         if (!out.isValid(true)) {
             throw new Error(out.validationError);
         }

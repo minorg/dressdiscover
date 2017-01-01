@@ -83,16 +83,17 @@ export class WorksheetFeatureValueImage extends Backbone.Model {
     }
 
     static fromThryftJSON(json: any): WorksheetFeatureValueImage {
-        var out: WorksheetFeatureValueImage = new WorksheetFeatureValueImage;
+        const attributes: any = {};
         for (var fieldName in json) {
             if (fieldName == "rights") {
-                out.attributes.rights = WorksheetFeatureValueImageRights.fromThryftJSON(json[fieldName]);
+                attributes["rights"] = WorksheetFeatureValueImageRights.fromThryftJSON(json[fieldName]);
             } else if (fieldName == "thumbnail_url") {
-                out.attributes.thumbnailUrl = json[fieldName];
+                attributes["thumbnailUrl"] = json[fieldName];
             } else if (fieldName == "full_size_url") {
-                out.attributes.fullSizeUrl = json[fieldName];
+                attributes["fullSizeUrl"] = json[fieldName];
             }
         }
+        const out = new WorksheetFeatureValueImage(attributes);
         if (!out.isValid(true)) {
             throw new Error(out.validationError);
         }

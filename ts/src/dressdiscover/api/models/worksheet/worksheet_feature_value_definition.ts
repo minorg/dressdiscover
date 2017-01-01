@@ -79,16 +79,17 @@ export class WorksheetFeatureValueDefinition extends Backbone.Model {
     }
 
     static fromThryftJSON(json: any): WorksheetFeatureValueDefinition {
-        var out: WorksheetFeatureValueDefinition = new WorksheetFeatureValueDefinition;
+        const attributes: any = {};
         for (var fieldName in json) {
             if (fieldName == "id") {
-                out.attributes.id = json[fieldName];
+                attributes["id"] = json[fieldName];
             } else if (fieldName == "display_name") {
-                out.attributes.displayName = json[fieldName];
+                attributes["displayName"] = json[fieldName];
             } else if (fieldName == "image") {
-                out.attributes.image = WorksheetFeatureValueImage.fromThryftJSON(json[fieldName]);
+                attributes["image"] = WorksheetFeatureValueImage.fromThryftJSON(json[fieldName]);
             }
         }
+        const out = new WorksheetFeatureValueDefinition(attributes);
         if (!out.isValid(true)) {
             throw new Error(out.validationError);
         }

@@ -84,16 +84,17 @@ export class WorksheetFeatureDefinition extends Backbone.Model {
     }
 
     static fromThryftJSON(json: any): WorksheetFeatureDefinition {
-        var out: WorksheetFeatureDefinition = new WorksheetFeatureDefinition;
+        const attributes: any = {};
         for (var fieldName in json) {
             if (fieldName == "id") {
-                out.attributes.id = json[fieldName];
+                attributes["id"] = json[fieldName];
             } else if (fieldName == "display_name") {
-                out.attributes.displayName = json[fieldName];
+                attributes["displayName"] = json[fieldName];
             } else if (fieldName == "values_") {
-                out.attributes.values_ = function(json: any[]): Backbone.Collection<WorksheetFeatureValueDefinition> { var sequence: WorksheetFeatureValueDefinition[] = []; for (var i = 0; i < json.length; i++) { sequence.push(WorksheetFeatureValueDefinition.fromThryftJSON(json[i])); } return new Backbone.Collection<WorksheetFeatureValueDefinition>(sequence); }(json[fieldName]);
+                attributes["values_"] = function(json: any[]): Backbone.Collection<WorksheetFeatureValueDefinition> { var sequence: WorksheetFeatureValueDefinition[] = []; for (var i = 0; i < json.length; i++) { sequence.push(WorksheetFeatureValueDefinition.fromThryftJSON(json[i])); } return new Backbone.Collection<WorksheetFeatureValueDefinition>(sequence); }(json[fieldName]);
             }
         }
+        const out = new WorksheetFeatureDefinition(attributes);
         if (!out.isValid(true)) {
             throw new Error(out.validationError);
         }
