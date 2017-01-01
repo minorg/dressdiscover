@@ -18,52 +18,6 @@ THUMBNAIL_DIMENSIONS = (200, 200)
 
 
 # Mutable helper classes
-class Feature(object):
-    def __init__(
-        self,
-        id_,
-        values=None
-    ):
-        self.__id = id_
-        if values is not None:
-            if isinstance(values, list):
-                values = tuple(values)
-            assert isinstance(values, tuple)
-            assert len(values) > 0
-        self.__values = values
-    
-    @property
-    def id_(self):
-        return self.__id
-    
-    @property
-    def values(self):
-        return self.__values
-    
-    def to_feature_definition(self, extent_id=None):
-        unused_features_by_id.pop(self.id_, None)
-        
-        feature_definition_builder = \
-            WorksheetFeatureDefinition.Builder()
-
-        id_ = self.id_
-        if extent_id is not None:
-            if extent_id != id_:
-                id_ = extent_id + ' ' + id_
-            else:
-                id_ = extent_id + ' Type'
-            
-        feature_definition_builder.set_id(id_)
-
-        if self.values is not None:
-            feature_definition_builder.set_values_(tuple(
-                feature_value.to_feature_value_definition(feature_id=self.id_)
-                for feature_value in self.values
-            ))
-            
-        return feature_definition_builder.build()
-
-
 class Extent(object):
     def __init__(
         self,
@@ -105,7 +59,56 @@ class Extent(object):
             ))
 
         return feature_set_definition_builder.build()
+
+
+class Feature(object):
+    def __init__(
+        self,
+        id_,
+        values=None
+    ):
+        self.__id = id_
+        if values is not None:
+            if isinstance(values, list):
+                values = tuple(values)
+            assert isinstance(values, tuple)
+            assert len(values) > 0
+        self.__values = values
     
+    @property
+    def id_(self):
+        return self.__id
+
+    def replace_values(self, values):
+        return Feature(id_=self.id_, values=values)
+    
+    @property
+    def values(self):
+        return self.__values
+    
+    def to_feature_definition(self, extent_id=None):
+        unused_features_by_id.pop(self.id_, None)
+        
+        feature_definition_builder = \
+            WorksheetFeatureDefinition.Builder()
+
+        id_ = self.id_
+        if extent_id is not None:
+            if extent_id != id_:
+                id_ = extent_id + ' ' + id_
+            else:
+                id_ = extent_id + ' Type'
+            
+        feature_definition_builder.set_id(id_)
+
+        if self.values is not None:
+            feature_definition_builder.set_values_(tuple(
+                feature_value.to_feature_value_definition(feature_id=self.id_)
+                for feature_value in self.values
+            ))
+            
+        return feature_definition_builder.build()
+
 
 class FeatureValue(object):
     def __init__(
@@ -336,17 +339,6 @@ def collar_values():
 features_list.append(Feature('Collar', values=collar_values()))
 
 
-# def cuff_closure_values():
-#     values = []
-#     values.append(FeatureValue('Cufflink',
-#         description='Linked ornamental buttons or buttonlike devices for fastening a shirt cuff.',
-#         description_rights=aat_text_rights(),
-#         image_rights=eft_wikipedia_image_rights(source_file_name='Cuff_links.jpg')
-#     )
-#     return values
-# features_list.append(Feature('Cuff Closure', values=cuff_closure_values()))
-
-
 # colors = [
 #     feature_value('Blue'),
 #     feature_value('Brown'),
@@ -571,10 +563,20 @@ for upper_body_child_extent_id in (
     'Cuff',
     'Torso',
 ):
-    upper_body_child_extent = Extent(upper_body_child_extent_id, features=every_extent_features)
+    upper_body_child_extent = Extent(upper_body_child_extent_id)
     upper_body_extent.child_extents.append(upper_body_child_extent)
 
     # Add features first so they can be present on Left-Right    
+    for feature in every_extent_features:
+        if upper_body_child_extent_id == 'Cuff' and feature.id_ == 'Closure':
+            upper_body_child_extent.features.append(feature.replace_values(list(feature.values) + [FeatureValue('Cufflink',
+                description='Linked ornamental buttons or buttonlike devices for fastening a shirt cuff.',
+                description_rights=aat_text_rights(),
+                image_rights=eft_wikipedia_image_rights(source_file_name='Cuff_links.jpg')
+            )]))
+        else:
+            upper_body_child_extent.features.append(feature)
+    
     if upper_body_child_extent_id in features_by_id:
         upper_body_child_extent.features.append(features_by_id[upper_body_child_extent_id])
 
