@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{A22C4210-3A13-4E24-B7AF-E74662BFCEB7}</ProjectGuid>
+    <ProjectGuid>{B04992C4-EC5C-42DB-9DBB-DE9A03DA2708}</ProjectGuid>
     <OutputType>AppContainerExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>DressDiscover.Windows</RootNamespace>
@@ -136,7 +136,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DressDiscover\DressDiscover.csproj">
-      <Project>{c8e935e3-e2c9-423a-bec8-ecd40c272f21}</Project>
+      <Project>{46ed2795-1458-4857-b4a0-137aefec5ef0}</Project>
       <Name>DressDiscover</Name>
     </ProjectReference>
   </ItemGroup>
