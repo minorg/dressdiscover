@@ -556,11 +556,13 @@ extents.append(Extent('Whole Body', features=[features_by_id['Label']] + every_e
 upper_body_extent = Extent('Upper Body', features=every_extent_features)
 extents.append(upper_body_extent)
 for upper_body_child_extent_id in (
+    'Head Covering',
     'Neckline',
     'Collar',
     'Shoulder',
     'Sleeve',
     'Cuff',
+    'Hand Covering',
     'Torso',
 ):
     upper_body_child_extent = Extent(upper_body_child_extent_id)
@@ -580,7 +582,7 @@ for upper_body_child_extent_id in (
     if upper_body_child_extent_id in features_by_id:
         upper_body_child_extent.features.append(features_by_id[upper_body_child_extent_id])
 
-    if upper_body_child_extent_id in ('Shoulder', 'Sleeve'):
+    if upper_body_child_extent_id in ('Hand Covering', 'Cuff', 'Shoulder', 'Sleeve'):
         for side in sides:
             side_extent = Extent(side + ' ' + upper_body_child_extent_id, features=upper_body_child_extent.features)
             upper_body_child_extent.child_extents.append(side_extent)
