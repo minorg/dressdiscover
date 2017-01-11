@@ -5,7 +5,7 @@
     <Platform Condition=" '$(Platform)' == '' ">iPhoneSimulator</Platform>
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{BB6A95FA-1A97-4181-B7D1-D5522B2065EB}</ProjectGuid>
+    <ProjectGuid>{863ADFDB-CA62-44E8-95AE-5BA46849D3B7}</ProjectGuid>
     <ProjectTypeGuids>{FEACFBD2-3405-455C-9665-78FE426C6842};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <OutputType>Exe</OutputType>
     <RootNamespace>DressDiscover.iOS</RootNamespace>
@@ -139,7 +139,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DressDiscover\DressDiscover.csproj">
-      <Project>{46ed2795-1458-4857-b4a0-137aefec5ef0}</Project>
+      <Project>{13bdc63c-723e-4dbf-abfe-8131659084f3}</Project>
       <Name>DressDiscover</Name>
     </ProjectReference>
   </ItemGroup>

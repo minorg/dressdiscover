@@ -4,8 +4,8 @@
              xmlns:local="clr-namespace:DressDiscover"
              x:Class="DressDiscover.MainPage">
 
-  <Label Text="Welcome to Xamarin Forms! Test"
-           VerticalOptions="End"
+  <Label Text="Welcome to Xamarin Forms! Test x"
+           VerticalOptions="Center"
            HorizontalOptions="Center" />
 
 </ContentPage>
