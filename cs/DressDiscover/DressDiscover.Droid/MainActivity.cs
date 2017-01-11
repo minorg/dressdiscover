@@ -6,6 +6,7 @@ using Android.Runtime;
 using Android.Views;
 using Android.Widget;
 using Android.OS;
+using System.IO;
 
 namespace DressDiscover.Gui.Droid
 {
@@ -20,7 +21,14 @@ namespace DressDiscover.Gui.Droid
             base.OnCreate(bundle);
 
             global::Xamarin.Forms.Forms.Init(this, bundle);
-            LoadApplication(new DressDiscover.Gui.Portable.App());
+
+            string worksheetDefinitionJson;
+            using (StreamReader streamReader = new StreamReader(Assets.Open("worksheet_definition.json")))
+            {
+                worksheetDefinitionJson = streamReader.ReadToEnd();
+            }
+
+            LoadApplication(new DressDiscover.Gui.Portable.App(worksheetDefinitionJson));
         }
     }
 }

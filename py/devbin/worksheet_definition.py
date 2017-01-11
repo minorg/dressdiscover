@@ -10,8 +10,10 @@ from dressdiscover.api.models.worksheet.worksheet_feature_value_image_rights imp
 
 
 # Constants
-ASSETS_DIR_PATH = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..', 'ts', 'assets'))
-assert os.path.isdir(ASSETS_DIR_PATH), ASSETS_DIR_PATH
+ROOT_DIR_PATH = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..'))
+ANDROID_ASSETS_DIR_PATH = os.path.join(ROOT_DIR_PATH, 'cs', 'DressDiscover', 'DressDiscover.Droid', 'Assets')
+TS_ASSETS_DIR_PATH = os.path.join(ROOT_DIR_PATH, 'ts', 'assets')
+assert os.path.isdir(TS_ASSETS_DIR_PATH), TS_ASSETS_DIR_PATH
 CC_BY_SA = 'Creative Commons Attribution-Share Alike'
 PUBLIC_DOMAIN = 'Public domain'
 THUMBNAIL_DIMENSIONS = (200, 200)
@@ -29,23 +31,23 @@ class Extent(object):
         self.__features = []
         if features is not None:
             self.__features.extend(features)
-        
+
     @property
     def child_extents(self):
         return self.__child_extents
-    
+
     @property
     def id_(self):
         return self.__id
-    
+
     @property
     def features(self):
         return self.__features
 
-    def to_feature_set_definition(self):        
+    def to_feature_set_definition(self):
         feature_set_definition_builder = \
             WorksheetFeatureSetDefinition.Builder().set_id(self.id_)
-        
+
         if len(self.child_extents) > 0:
             feature_set_definition_builder.set_child_feature_sets(tuple(
                 child_extent.to_feature_set_definition()
@@ -74,21 +76,21 @@ class Feature(object):
             assert isinstance(values, tuple)
             assert len(values) > 0
         self.__values = values
-    
+
     @property
     def id_(self):
         return self.__id
 
     def replace_values(self, values):
         return Feature(id_=self.id_, values=values)
-    
+
     @property
     def values(self):
         return self.__values
-    
+
     def to_feature_definition(self, extent_id=None):
         unused_features_by_id.pop(self.id_, None)
-        
+
         feature_definition_builder = \
             WorksheetFeatureDefinition.Builder()
 
@@ -98,7 +100,7 @@ class Feature(object):
                 id_ = extent_id + ' ' + id_
             else:
                 id_ = extent_id + ' Type'
-            
+
         feature_definition_builder.set_id(id_)
 
         if self.values is not None:
@@ -106,7 +108,7 @@ class Feature(object):
                 feature_value.to_feature_value_definition(feature_id=self.id_)
                 for feature_value in self.values
             ))
-            
+
         return feature_definition_builder.build()
 
 
@@ -124,14 +126,14 @@ class FeatureValue(object):
     @property
     def id_(self):
         return self.__id
-    
+
     @property
     def image_rights(self):
         return self.__image_rights
 
     def to_feature_value_definition(self, feature_id):
         feature_value_id = self.id_
-        
+
         feature_value_definition_builder = \
             WorksheetFeatureValueDefinition.Builder()\
                 .set_id(feature_value_id)
@@ -146,12 +148,12 @@ class FeatureValue(object):
         file_extension = 'jpg'
         file_name = "%(feature_value_id)s.%(file_extension)s" % locals()
 
-        full_size_file_path = os.path.join(ASSETS_DIR_PATH, 'img', 'full_size', feature_id, file_name)
+        full_size_file_path = os.path.join(TS_ASSETS_DIR_PATH, 'img', 'full_size', feature_id, file_name)
         if not os.path.isfile(full_size_file_path):
             raise ValueError("%(full_size_file_path)s does not exist" % locals())
         image_builder.set_full_size_url("img/full_size/%(feature_id)s/%(file_name)s" % locals())
 
-        thumbnail_dir_path = os.path.join(ASSETS_DIR_PATH, 'img', 'thumbnail', feature_id)
+        thumbnail_dir_path = os.path.join(TS_ASSETS_DIR_PATH, 'img', 'thumbnail', feature_id)
         thumbnail_file_path = os.path.join(thumbnail_dir_path, file_name)
         if not os.path.isfile(thumbnail_file_path):
             from PIL import Image  # @UnresolvedImport
@@ -568,7 +570,7 @@ for upper_body_child_extent_id in (
     upper_body_child_extent = Extent(upper_body_child_extent_id)
     upper_body_extent.child_extents.append(upper_body_child_extent)
 
-    # Add features first so they can be present on Left-Right    
+    # Add features first so they can be present on Left-Right
     for feature in every_extent_features:
         if upper_body_child_extent_id == 'Cuff' and feature.id_ == 'Closure':
             upper_body_child_extent.features.append(feature.replace_values(list(feature.values) + [FeatureValue('Cufflink',
@@ -578,7 +580,7 @@ for upper_body_child_extent_id in (
             )]))
         else:
             upper_body_child_extent.features.append(feature)
-    
+
     if upper_body_child_extent_id in features_by_id:
         upper_body_child_extent.features.append(features_by_id[upper_body_child_extent_id])
 
@@ -586,7 +588,7 @@ for upper_body_child_extent_id in (
         for side in sides:
             side_extent = Extent(side + ' ' + upper_body_child_extent_id, features=upper_body_child_extent.features)
             upper_body_child_extent.child_extents.append(side_extent)
- 
+
 extents.append(Extent('Waistline', every_extent_features + [features_by_id['Waistline']]))
 
 lower_body_extent = Extent('Lower Body', features=every_extent_features)
@@ -598,7 +600,7 @@ for lower_body_child_extent_id in (
 ):
     lower_body_child_extent = Extent(lower_body_child_extent_id, features=every_extent_features)
     lower_body_extent.child_extents.append(lower_body_child_extent)
-        
+
     for side in sides:
         side_extent = Extent(side + ' ' + lower_body_child_extent_id, features=lower_body_child_extent.features)
         lower_body_child_extent.child_extents.append(side_extent)
@@ -608,7 +610,7 @@ root_feature_set_definitions = []
 for extent in extents:
     root_feature_set_definitions.append(extent.to_feature_set_definition())
 assert len(unused_features_by_id) == 0, unused_features_by_id.keys()
-    
+
 
 WORKSHEET_DEFINITION = \
     WorksheetDefinition(
@@ -625,12 +627,15 @@ if __name__ == '__main__':
     from thryft.protocol.builtins_output_protocol import BuiltinsOutputProtocol
     oprot = BuiltinsOutputProtocol()
     WORKSHEET_DEFINITION.write(oprot)
-    js = 'var WORKSHEET_DEFINITION = ' + json.dumps(oprot.value) + "\n"
+    json_ = json.dumps(oprot.value)
+    js = 'var WORKSHEET_DEFINITION = ' + json_ + "\n"
 
-    file_name = 'worksheet_definition.js'
-    for file_path in (
-        os.path.join(ASSETS_DIR_PATH, 'js', file_name),
-        os.path.join(ASSETS_DIR_PATH, '..', 'public', 'js', file_name)
+    js_file_name = 'worksheet_definition.js'
+    json_file_name = 'worksheet_definition.json'
+    for file_path, contents in (
+        (os.path.join(TS_ASSETS_DIR_PATH, 'js', js_file_name), js),
+        (os.path.join(TS_ASSETS_DIR_PATH, '..', 'public', 'js', js_file_name), js),
+        (os.path.join(ANDROID_ASSETS_DIR_PATH, json_file_name), json),
     ):
         with open(file_path, 'w+b') as f:
             f.write(js)
