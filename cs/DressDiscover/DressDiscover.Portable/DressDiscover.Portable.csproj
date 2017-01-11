@@ -8,8 +8,8 @@
     <ProjectGuid>{CAB66ED2-F7BC-4944-BF63-8B621751191E}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>DressDiscover</RootNamespace>
-    <AssemblyName>DressDiscover</AssemblyName>
+    <RootNamespace>DressDiscover.Portable</RootNamespace>
+    <AssemblyName>DressDiscover.Portable</AssemblyName>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <TargetFrameworkProfile>Profile259</TargetFrameworkProfile>
@@ -35,20 +35,32 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="src\App.xaml.cs">
+    <Compile Include="src\DressDiscover\Gui\Portable\App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
-    <Compile Include="src\MainPage.xaml.cs">
+    <Compile Include="src\DressDiscover\Api\Models\Worksheet\WorksheetDefinition.cs" />
+    <Compile Include="src\DressDiscover\Api\Models\Worksheet\WorksheetFeatureDefinition.cs" />
+    <Compile Include="src\DressDiscover\Api\Models\Worksheet\WorksheetFeatureSetDefinition.cs" />
+    <Compile Include="src\DressDiscover\Api\Models\Worksheet\WorksheetFeatureSetState.cs" />
+    <Compile Include="src\DressDiscover\Api\Models\Worksheet\WorksheetFeatureState.cs" />
+    <Compile Include="src\DressDiscover\Api\Models\Worksheet\WorksheetFeatureValueDefinition.cs" />
+    <Compile Include="src\DressDiscover\Api\Models\Worksheet\WorksheetFeatureValueImage.cs" />
+    <Compile Include="src\DressDiscover\Api\Models\Worksheet\WorksheetFeatureValueImageRights.cs" />
+    <Compile Include="src\DressDiscover\Api\Models\Worksheet\WorksheetState.cs" />
+    <Compile Include="src\DressDiscover\Api\Services\IoException.cs" />
+    <Compile Include="src\DressDiscover\Api\Services\Worksheet\WorksheetCommandService.cs" />
+    <Compile Include="src\DressDiscover\Api\Services\Worksheet\WorksheetQueryService.cs" />
+    <Compile Include="src\DressDiscover\Gui\Portable\MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="src\MainPage.xaml">
+    <EmbeddedResource Include="src\DressDiscover\Gui\Portable\MainPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Include="src\App.xaml">
+    <EmbeddedResource Include="src\DressDiscover\Gui\Portable\App.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>

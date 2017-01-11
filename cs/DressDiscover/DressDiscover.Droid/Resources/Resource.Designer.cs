@@ -9,9 +9,9 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-[assembly: global::Android.Runtime.ResourceDesignerAttribute("DressDiscover.Droid.Resource", IsApplication=true)]
+[assembly: global::Android.Runtime.ResourceDesignerAttribute("DressDiscover.Gui.Droid.Resource", IsApplication=true)]
 
-namespace DressDiscover.Droid
+namespace DressDiscover.Gui.Droid
 {
 	
 	
@@ -26,7 +26,7 @@ namespace DressDiscover.Droid
 		
 		public static void UpdateIdValues()
 		{
-			global::Xamarin.Forms.Platform.Android.Resource.Attribute.actionBarSize = global::DressDiscover.Droid.Resource.Attribute.actionBarSize;
+			global::Xamarin.Forms.Platform.Android.Resource.Attribute.actionBarSize = global::DressDiscover.Gui.Droid.Resource.Attribute.actionBarSize;
 		}
 		
 		public partial class Animation
