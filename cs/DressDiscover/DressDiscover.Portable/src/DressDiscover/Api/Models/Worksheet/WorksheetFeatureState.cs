@@ -6,8 +6,19 @@ namespace DressDiscover.Api.Models.Worksheet
         {
         }
 
-        public System.Collections.Generic.List<string> SelectedValues { get; set; }
+        public System.Collections.Generic.List<string> SelectedValues
+        {
+            get { return selectedValues; }
+            set { this.selectedValues = value; }
+        }
 
-        public string Text { get; set; }
+        public string Text
+        {
+            get { return text; }
+            set { this.text = value; }
+        }
+
+        private System.Collections.Generic.List<string> selectedValues;
+        private string text;
     }
 }
