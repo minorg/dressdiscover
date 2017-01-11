@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DressDiscover", "DressDiscover\DressDiscover\DressDiscover.csproj", "{CAB66ED2-F7BC-4944-BF63-8B621751191E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DressDiscover.Portable", "DressDiscover\DressDiscover\DressDiscover.Portable.csproj", "{CAB66ED2-F7BC-4944-BF63-8B621751191E}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DressDiscover.Droid", "DressDiscover\DressDiscover.Droid\DressDiscover.Droid.csproj", "{FA3233CB-3661-484D-B370-5461C7090F07}"
 EndProject

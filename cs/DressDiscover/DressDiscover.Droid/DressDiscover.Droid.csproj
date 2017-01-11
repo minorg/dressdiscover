@@ -133,9 +133,9 @@
     <AndroidResource Include="Resources\values\styles.xml" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\DressDiscover\DressDiscover.csproj">
-      <Project>{440fff9a-9fd3-4c0d-b4a5-a3c1830bf2b6}</Project>
-      <Name>DressDiscover</Name>
+    <ProjectReference Include="..\DressDiscover\DressDiscover.Portable.csproj">
+      <Project>{CAB66ED2-F7BC-4944-BF63-8B621751191E}</Project>
+      <Name>DressDiscover.Portable</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />

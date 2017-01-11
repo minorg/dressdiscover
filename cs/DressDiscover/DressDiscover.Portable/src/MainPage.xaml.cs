@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 
-namespace DressDiscover
+namespace dressdiscover.gui
 {
     public partial class MainPage : ContentPage
     {

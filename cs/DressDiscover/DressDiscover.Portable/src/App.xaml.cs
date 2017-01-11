@@ -5,7 +5,7 @@ using System.Text;
 
 using Xamarin.Forms;
 
-namespace DressDiscover
+namespace dressdiscover.gui
 {
     public partial class App : Application
     {
@@ -13,7 +13,7 @@ namespace DressDiscover
         {
             InitializeComponent();
 
-            MainPage = new DressDiscover.MainPage();
+            MainPage = new dressdiscover.gui.MainPage();
         }
 
         protected override void OnStart()
