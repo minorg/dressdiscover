@@ -1,3 +1,4 @@
+namespace cs DressDiscover.Api.Services
 namespace * dressdiscover.api.services
 
 exception IoException {

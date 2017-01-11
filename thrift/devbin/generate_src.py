@@ -20,6 +20,7 @@ sys.path.insert(0, os.path.join(THRYFT_ROOT_DIR_PATH, 'compiler', 'src'))
 import thryft.main
 from thryft.generators.elastic_search.elastic_search_mappings_generator import ElasticSearchMappingsGenerator
 from thryft.generators.java.bean_java_generator import BeanJavaGenerator
+from thryft.generators.cs.cs_generator import CsGenerator
 from thryft.generators.java.java_generator import JavaGenerator
 from thryft.generators.java.json_rpc_servlet_java_generator import JsonRpcServletJavaGenerator
 from thryft.generators.java.logging_service_java_generator import LoggingServiceJavaGenerator
@@ -33,6 +34,7 @@ from thryft.generators.ts.ts_generator import TsGenerator
 from yutil import indent, upper_camelize
 
 
+CS_OUT_DIR_PATH = os.path.join(ROOT_DIR_PATH, 'cs', 'DressDiscover', 'DressDiscover.Portable', 'src')
 PY_OUT_DIR_PATH = os.path.join(ROOT_DIR_PATH, 'py', 'src')
 TS_OUT_DIR_PATH = os.path.join(ROOT_DIR_PATH, 'ts', 'src')
 
@@ -65,6 +67,8 @@ class Main(thryft.main.Main):
 
     def _clean(self):
         for dir_path in (
+             os.path.join(CS_OUT_DIR_PATH, 'DressDiscover', 'Api'),
+             os.path.join(ROOT_DIR_PATH, 'java', 'api', 'src', 'gen', 'java', 'org', 'dressdiscover'),
              os.path.join(ROOT_DIR_PATH, 'java', 'api', 'src', 'gen', 'java', 'org', 'dressdiscover'),
              os.path.join(ROOT_DIR_PATH, 'java', 'lib', 'src', 'gen', 'java', 'org', 'dressdiscover'),
              os.path.join(ROOT_DIR_PATH, 'java', 'server', 'src', 'gen', 'java', 'org', 'dressdiscover'),
@@ -93,6 +97,7 @@ class Main(thryft.main.Main):
         thrift_src_root_dir_path = os.path.join(ROOT_DIR_PATH, 'thrift', 'src')
 
         async_to_sync_service_ts_generator = AsyncToSyncServiceTsGenerator(ts_out_dir_path=TS_OUT_DIR_PATH)
+        cs_generator = CsGenerator()
         java_generator = \
             JavaGenerator(
                 default_methods=True,
@@ -146,13 +151,18 @@ class Main(thryft.main.Main):
                         if thrift_file_base_name == 'io_exception' or \
                            thrift_file_dir_name == 'worksheet':
                             self._compile_thrift_file(
-                                generator=ts_generator,
-                                out=TS_OUT_DIR_PATH,
+                                generator=cs_generator,
+                                out=CS_OUT_DIR_PATH,
                                 **compile_kwds
                             )
                             self._compile_thrift_file(
                                 generator=py_generator,
                                 out=PY_OUT_DIR_PATH,
+                                **compile_kwds
+                            )
+                            self._compile_thrift_file(
+                                generator=ts_generator,
+                                out=TS_OUT_DIR_PATH,
                                 **compile_kwds
                             )
                             if thrift_file_base_name.endswith('_service'):
