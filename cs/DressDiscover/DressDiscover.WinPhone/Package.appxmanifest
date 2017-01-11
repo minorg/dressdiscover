@@ -1,11 +1,11 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Package xmlns="http://schemas.microsoft.com/appx/2010/manifest" xmlns:m2="http://schemas.microsoft.com/appx/2013/manifest" xmlns:m3="http://schemas.microsoft.com/appx/2014/manifest" xmlns:mp="http://schemas.microsoft.com/appx/2014/phone/manifest">
 
-  <Identity Name="8b09b008-c7a3-454f-a912-74e78a4f306c"
+  <Identity Name="3135fa86-c55e-4ce5-9422-0920ee7f92f0"
             Publisher="CN=minor"
             Version="1.0.0.0" />
 
-  <mp:PhoneIdentity PhoneProductId="8b09b008-c7a3-454f-a912-74e78a4f306c" PhonePublisherId="00000000-0000-0000-0000-000000000000"/>
+  <mp:PhoneIdentity PhoneProductId="3135fa86-c55e-4ce5-9422-0920ee7f92f0" PhonePublisherId="00000000-0000-0000-0000-000000000000"/>
 
   <Properties>
     <DisplayName>DressDiscover.WinPhone</DisplayName>

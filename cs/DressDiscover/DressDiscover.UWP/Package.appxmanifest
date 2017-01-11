@@ -7,11 +7,11 @@
   IgnorableNamespaces="uap mp">
 
   <Identity
-    Name="8b09b008-c7a3-454f-a912-74e78a4f306c"
+    Name="3135fa86-c55e-4ce5-9422-0920ee7f92f0"
     Publisher="CN=minor"
     Version="1.0.0.0" />
 
-  <mp:PhoneIdentity PhoneProductId="8b09b008-c7a3-454f-a912-74e78a4f306c" PhonePublisherId="00000000-0000-0000-0000-000000000000"/>
+  <mp:PhoneIdentity PhoneProductId="3135fa86-c55e-4ce5-9422-0920ee7f92f0" PhonePublisherId="00000000-0000-0000-0000-000000000000"/>
 
   <Properties>
     <DisplayName>DressDiscover.UWP</DisplayName>

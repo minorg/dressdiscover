@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
-    <ProjectGuid>{5999AAA6-5DD4-474B-B5C0-4CD1192FBECE}</ProjectGuid>
+    <ProjectGuid>{2AE5FFEF-50AB-4A24-85FE-0FAA885C4958}</ProjectGuid>
     <OutputType>AppContainerExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>DressDiscover.UWP</RootNamespace>
@@ -129,7 +129,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DressDiscover\DressDiscover.csproj">
-      <Project>{13bdc63c-723e-4dbf-abfe-8131659084f3}</Project>
+      <Project>{440fff9a-9fd3-4c0d-b4a5-a3c1830bf2b6}</Project>
       <Name>DressDiscover</Name>
     </ProjectReference>
   </ItemGroup>
