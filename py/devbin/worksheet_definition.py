@@ -635,7 +635,7 @@ if __name__ == '__main__':
     for file_path, contents in (
         (os.path.join(TS_ASSETS_DIR_PATH, 'js', js_file_name), js),
         (os.path.join(TS_ASSETS_DIR_PATH, '..', 'public', 'js', js_file_name), js),
-        (os.path.join(ANDROID_ASSETS_DIR_PATH, json_file_name), json),
+        (os.path.join(ANDROID_ASSETS_DIR_PATH, json_file_name), json_),
     ):
         with open(file_path, 'w+b') as f:
-            f.write(js)
+            f.write(contents)

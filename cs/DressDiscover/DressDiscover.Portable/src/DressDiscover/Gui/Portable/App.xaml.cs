@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
+using Newtonsoft.Json;
+using DressDiscover.Api.Models.Worksheet;
 using Xamarin.Forms;
 
 namespace DressDiscover.Gui.Portable
@@ -12,6 +14,8 @@ namespace DressDiscover.Gui.Portable
         public App(string worksheetDefinitionJson)
         {
             InitializeComponent();
+
+            var worksheetDefinitionParsed = JsonConvert.DeserializeObject<Dictionary<object, object>>(worksheetDefinitionJson);
 
             MainPage = new DressDiscover.Gui.Portable.MainPage();
         }
