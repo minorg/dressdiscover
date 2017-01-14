@@ -45,7 +45,7 @@ namespace DressDiscover.Api.Models.Worksheet
             }
         }
 
-        public static WorksheetFeatureSetDefinition FromBuiltins(System.Collections.Generic.Dictionary<string, object> _dictionary)
+        public static WorksheetFeatureSetDefinition FromBuiltins(System.Collections.Generic.IDictionary<string, object> _dictionary)
         {
             string id= null;
             System.Collections.Generic.List<DressDiscover.Api.Models.Worksheet.WorksheetFeatureSetDefinition> childFeatureSets= null;
@@ -60,13 +60,13 @@ namespace DressDiscover.Api.Models.Worksheet
                     id = ((string)_item.Value);
                     break;
                 case "child_feature_sets":
-                    childFeatureSets = ((System.Func<System.Collections.Generic.List<object>, System.Collections.Generic.List<DressDiscover.Api.Models.Worksheet.WorksheetFeatureSetDefinition>>)((_sequence0) => { var _newSequence0 = new System.Collections.Generic.List<DressDiscover.Api.Models.Worksheet.WorksheetFeatureSetDefinition>(); foreach (var _element0 in _sequence0) { _newSequence0.Add(DressDiscover.Api.Models.Worksheet.WorksheetFeatureSetDefinition.FromBuiltins((System.Collections.Generic.Dictionary<string, object>)_element0)); } return _newSequence0; }))((System.Collections.Generic.List<object>)_item.Value);
+                    childFeatureSets = ((System.Func<System.Collections.Generic.List<object>, System.Collections.Generic.List<DressDiscover.Api.Models.Worksheet.WorksheetFeatureSetDefinition>>)((_sequence0) => { var _newSequence0 = new System.Collections.Generic.List<DressDiscover.Api.Models.Worksheet.WorksheetFeatureSetDefinition>(); foreach (var _element0 in _sequence0) { _newSequence0.Add(DressDiscover.Api.Models.Worksheet.WorksheetFeatureSetDefinition.FromBuiltins((System.Collections.Generic.IDictionary<string, object>)_element0)); } return _newSequence0; }))((System.Collections.Generic.List<object>)_item.Value);
                     break;
                 case "display_name":
                     displayName = ((string)_item.Value);
                     break;
                 case "features":
-                    features = ((System.Func<System.Collections.Generic.List<object>, System.Collections.Generic.List<DressDiscover.Api.Models.Worksheet.WorksheetFeatureDefinition>>)((_sequence0) => { var _newSequence0 = new System.Collections.Generic.List<DressDiscover.Api.Models.Worksheet.WorksheetFeatureDefinition>(); foreach (var _element0 in _sequence0) { _newSequence0.Add(DressDiscover.Api.Models.Worksheet.WorksheetFeatureDefinition.FromBuiltins((System.Collections.Generic.Dictionary<string, object>)_element0)); } return _newSequence0; }))((System.Collections.Generic.List<object>)_item.Value);
+                    features = ((System.Func<System.Collections.Generic.List<object>, System.Collections.Generic.List<DressDiscover.Api.Models.Worksheet.WorksheetFeatureDefinition>>)((_sequence0) => { var _newSequence0 = new System.Collections.Generic.List<DressDiscover.Api.Models.Worksheet.WorksheetFeatureDefinition>(); foreach (var _element0 in _sequence0) { _newSequence0.Add(DressDiscover.Api.Models.Worksheet.WorksheetFeatureDefinition.FromBuiltins((System.Collections.Generic.IDictionary<string, object>)_element0)); } return _newSequence0; }))((System.Collections.Generic.List<object>)_item.Value);
                     break;
                 }
             }
@@ -74,7 +74,7 @@ namespace DressDiscover.Api.Models.Worksheet
             return new WorksheetFeatureSetDefinition(id, childFeatureSets, displayName, features);
         }
 
-        public System.Collections.Generic.Dictionary<string, object> ToBuiltins()
+        public System.Collections.Generic.IDictionary<string, object> ToBuiltins()
         {
             var _builtins = new System.Collections.Generic.Dictionary<string, object>();
             _builtins["id"] = this.Id;

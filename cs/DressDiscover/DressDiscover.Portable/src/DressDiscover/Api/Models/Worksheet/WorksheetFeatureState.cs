@@ -23,7 +23,7 @@ namespace DressDiscover.Api.Models.Worksheet
             set { this.text = value; }
         }
 
-        public static WorksheetFeatureState FromBuiltins(System.Collections.Generic.Dictionary<string, object> _dictionary)
+        public static WorksheetFeatureState FromBuiltins(System.Collections.Generic.IDictionary<string, object> _dictionary)
         {
             System.Collections.Generic.List<string> selectedValues= null;
             string text= null;
@@ -44,7 +44,7 @@ namespace DressDiscover.Api.Models.Worksheet
             return new WorksheetFeatureState(selectedValues, text);
         }
 
-        public System.Collections.Generic.Dictionary<string, object> ToBuiltins()
+        public System.Collections.Generic.IDictionary<string, object> ToBuiltins()
         {
             var _builtins = new System.Collections.Generic.Dictionary<string, object>();
             if (!(this.SelectedValues != null))

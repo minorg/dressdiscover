@@ -20,7 +20,7 @@ namespace DressDiscover.Api.Models.Worksheet
             }
         }
 
-        public static WorksheetDefinition FromBuiltins(System.Collections.Generic.Dictionary<string, object> _dictionary)
+        public static WorksheetDefinition FromBuiltins(System.Collections.Generic.IDictionary<string, object> _dictionary)
         {
             DressDiscover.Api.Models.Worksheet.WorksheetFeatureSetDefinition rootFeatureSet= null;
 
@@ -29,7 +29,7 @@ namespace DressDiscover.Api.Models.Worksheet
                 switch (_item.Key)
                 {
                 case "root_feature_set":
-                    rootFeatureSet = DressDiscover.Api.Models.Worksheet.WorksheetFeatureSetDefinition.FromBuiltins((System.Collections.Generic.Dictionary<string, object>)_item.Value);
+                    rootFeatureSet = DressDiscover.Api.Models.Worksheet.WorksheetFeatureSetDefinition.FromBuiltins((System.Collections.Generic.IDictionary<string, object>)_item.Value);
                     break;
                 }
             }
@@ -37,7 +37,7 @@ namespace DressDiscover.Api.Models.Worksheet
             return new WorksheetDefinition(rootFeatureSet);
         }
 
-        public System.Collections.Generic.Dictionary<string, object> ToBuiltins()
+        public System.Collections.Generic.IDictionary<string, object> ToBuiltins()
         {
             var _builtins = new System.Collections.Generic.Dictionary<string, object>();
             _builtins["root_feature_set"] = this.RootFeatureSet.ToBuiltins();

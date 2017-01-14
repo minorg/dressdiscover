@@ -23,7 +23,7 @@ namespace DressDiscover.Api.Models.Worksheet
             set { this.features = value; }
         }
 
-        public static WorksheetFeatureSetState FromBuiltins(System.Collections.Generic.Dictionary<string, object> _dictionary)
+        public static WorksheetFeatureSetState FromBuiltins(System.Collections.Generic.IDictionary<string, object> _dictionary)
         {
             System.Collections.Generic.Dictionary<string, DressDiscover.Api.Models.Worksheet.WorksheetFeatureSetState> childFeatureSets= null;
             System.Collections.Generic.Dictionary<string, DressDiscover.Api.Models.Worksheet.WorksheetFeatureState> features= null;
@@ -33,10 +33,10 @@ namespace DressDiscover.Api.Models.Worksheet
                 switch (_item.Key)
                 {
                 case "child_feature_sets":
-                    childFeatureSets = ((System.Func<System.Collections.Generic.Dictionary<object, object>, System.Collections.Generic.Dictionary<string, DressDiscover.Api.Models.Worksheet.WorksheetFeatureSetState>>)((_map0) => { var _newMap0 = new System.Collections.Generic.Dictionary<string, DressDiscover.Api.Models.Worksheet.WorksheetFeatureSetState>(); foreach (var _item0 in _map0) { _newMap0.Add(((string)_item0.Key), DressDiscover.Api.Models.Worksheet.WorksheetFeatureSetState.FromBuiltins((System.Collections.Generic.Dictionary<string, object>)_item0.Value)); } return _newMap0; }))((System.Collections.Generic.Dictionary<object, object>)_item.Value);
+                    childFeatureSets = ((System.Func<System.Collections.Generic.Dictionary<object, object>, System.Collections.Generic.Dictionary<string, DressDiscover.Api.Models.Worksheet.WorksheetFeatureSetState>>)((_map0) => { var _newMap0 = new System.Collections.Generic.Dictionary<string, DressDiscover.Api.Models.Worksheet.WorksheetFeatureSetState>(); foreach (var _item0 in _map0) { _newMap0.Add(((string)_item0.Key), DressDiscover.Api.Models.Worksheet.WorksheetFeatureSetState.FromBuiltins((System.Collections.Generic.IDictionary<string, object>)_item0.Value)); } return _newMap0; }))((System.Collections.Generic.Dictionary<object, object>)_item.Value);
                     break;
                 case "features":
-                    features = ((System.Func<System.Collections.Generic.Dictionary<object, object>, System.Collections.Generic.Dictionary<string, DressDiscover.Api.Models.Worksheet.WorksheetFeatureState>>)((_map0) => { var _newMap0 = new System.Collections.Generic.Dictionary<string, DressDiscover.Api.Models.Worksheet.WorksheetFeatureState>(); foreach (var _item0 in _map0) { _newMap0.Add(((string)_item0.Key), DressDiscover.Api.Models.Worksheet.WorksheetFeatureState.FromBuiltins((System.Collections.Generic.Dictionary<string, object>)_item0.Value)); } return _newMap0; }))((System.Collections.Generic.Dictionary<object, object>)_item.Value);
+                    features = ((System.Func<System.Collections.Generic.Dictionary<object, object>, System.Collections.Generic.Dictionary<string, DressDiscover.Api.Models.Worksheet.WorksheetFeatureState>>)((_map0) => { var _newMap0 = new System.Collections.Generic.Dictionary<string, DressDiscover.Api.Models.Worksheet.WorksheetFeatureState>(); foreach (var _item0 in _map0) { _newMap0.Add(((string)_item0.Key), DressDiscover.Api.Models.Worksheet.WorksheetFeatureState.FromBuiltins((System.Collections.Generic.IDictionary<string, object>)_item0.Value)); } return _newMap0; }))((System.Collections.Generic.Dictionary<object, object>)_item.Value);
                     break;
                 }
             }
@@ -44,7 +44,7 @@ namespace DressDiscover.Api.Models.Worksheet
             return new WorksheetFeatureSetState(childFeatureSets, features);
         }
 
-        public System.Collections.Generic.Dictionary<string, object> ToBuiltins()
+        public System.Collections.Generic.IDictionary<string, object> ToBuiltins()
         {
             var _builtins = new System.Collections.Generic.Dictionary<string, object>();
             if (!(this.ChildFeatureSets != null))

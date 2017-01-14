@@ -62,7 +62,7 @@ namespace DressDiscover.Api.Models.Worksheet
             }
         }
 
-        public static WorksheetFeatureValueImageRights FromBuiltins(System.Collections.Generic.Dictionary<string, object> _dictionary)
+        public static WorksheetFeatureValueImageRights FromBuiltins(System.Collections.Generic.IDictionary<string, object> _dictionary)
         {
             string author= null;
             string license= null;
@@ -91,7 +91,7 @@ namespace DressDiscover.Api.Models.Worksheet
             return new WorksheetFeatureValueImageRights(author, license, sourceName, sourceUrl);
         }
 
-        public System.Collections.Generic.Dictionary<string, object> ToBuiltins()
+        public System.Collections.Generic.IDictionary<string, object> ToBuiltins()
         {
             var _builtins = new System.Collections.Generic.Dictionary<string, object>();
             _builtins["author"] = this.Author;

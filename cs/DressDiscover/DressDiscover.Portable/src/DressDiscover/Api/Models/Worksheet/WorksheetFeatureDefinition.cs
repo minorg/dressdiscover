@@ -38,7 +38,7 @@ namespace DressDiscover.Api.Models.Worksheet
             set { this.values_ = value; }
         }
 
-        public static WorksheetFeatureDefinition FromBuiltins(System.Collections.Generic.Dictionary<string, object> _dictionary)
+        public static WorksheetFeatureDefinition FromBuiltins(System.Collections.Generic.IDictionary<string, object> _dictionary)
         {
             string id= null;
             string displayName= null;
@@ -55,7 +55,7 @@ namespace DressDiscover.Api.Models.Worksheet
                     displayName = ((string)_item.Value);
                     break;
                 case "values_":
-                    values_ = ((System.Func<System.Collections.Generic.List<object>, System.Collections.Generic.List<DressDiscover.Api.Models.Worksheet.WorksheetFeatureValueDefinition>>)((_sequence0) => { var _newSequence0 = new System.Collections.Generic.List<DressDiscover.Api.Models.Worksheet.WorksheetFeatureValueDefinition>(); foreach (var _element0 in _sequence0) { _newSequence0.Add(DressDiscover.Api.Models.Worksheet.WorksheetFeatureValueDefinition.FromBuiltins((System.Collections.Generic.Dictionary<string, object>)_element0)); } return _newSequence0; }))((System.Collections.Generic.List<object>)_item.Value);
+                    values_ = ((System.Func<System.Collections.Generic.List<object>, System.Collections.Generic.List<DressDiscover.Api.Models.Worksheet.WorksheetFeatureValueDefinition>>)((_sequence0) => { var _newSequence0 = new System.Collections.Generic.List<DressDiscover.Api.Models.Worksheet.WorksheetFeatureValueDefinition>(); foreach (var _element0 in _sequence0) { _newSequence0.Add(DressDiscover.Api.Models.Worksheet.WorksheetFeatureValueDefinition.FromBuiltins((System.Collections.Generic.IDictionary<string, object>)_element0)); } return _newSequence0; }))((System.Collections.Generic.List<object>)_item.Value);
                     break;
                 }
             }
@@ -63,7 +63,7 @@ namespace DressDiscover.Api.Models.Worksheet
             return new WorksheetFeatureDefinition(id, displayName, values_);
         }
 
-        public System.Collections.Generic.Dictionary<string, object> ToBuiltins()
+        public System.Collections.Generic.IDictionary<string, object> ToBuiltins()
         {
             var _builtins = new System.Collections.Generic.Dictionary<string, object>();
             _builtins["id"] = this.Id;

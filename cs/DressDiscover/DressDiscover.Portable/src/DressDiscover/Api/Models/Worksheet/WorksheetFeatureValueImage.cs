@@ -46,7 +46,7 @@ namespace DressDiscover.Api.Models.Worksheet
             }
         }
 
-        public static WorksheetFeatureValueImage FromBuiltins(System.Collections.Generic.Dictionary<string, object> _dictionary)
+        public static WorksheetFeatureValueImage FromBuiltins(System.Collections.Generic.IDictionary<string, object> _dictionary)
         {
             DressDiscover.Api.Models.Worksheet.WorksheetFeatureValueImageRights rights= null;
             string thumbnailUrl= null;
@@ -57,7 +57,7 @@ namespace DressDiscover.Api.Models.Worksheet
                 switch (_item.Key)
                 {
                 case "rights":
-                    rights = DressDiscover.Api.Models.Worksheet.WorksheetFeatureValueImageRights.FromBuiltins((System.Collections.Generic.Dictionary<string, object>)_item.Value);
+                    rights = DressDiscover.Api.Models.Worksheet.WorksheetFeatureValueImageRights.FromBuiltins((System.Collections.Generic.IDictionary<string, object>)_item.Value);
                     break;
                 case "thumbnail_url":
                     thumbnailUrl = ((string)_item.Value);
@@ -71,7 +71,7 @@ namespace DressDiscover.Api.Models.Worksheet
             return new WorksheetFeatureValueImage(rights, thumbnailUrl, fullSizeUrl);
         }
 
-        public System.Collections.Generic.Dictionary<string, object> ToBuiltins()
+        public System.Collections.Generic.IDictionary<string, object> ToBuiltins()
         {
             var _builtins = new System.Collections.Generic.Dictionary<string, object>();
             _builtins["rights"] = this.Rights.ToBuiltins();

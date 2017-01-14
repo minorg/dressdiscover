@@ -38,7 +38,7 @@ namespace DressDiscover.Api.Models.Worksheet
             set { this.image = value; }
         }
 
-        public static WorksheetFeatureValueDefinition FromBuiltins(System.Collections.Generic.Dictionary<string, object> _dictionary)
+        public static WorksheetFeatureValueDefinition FromBuiltins(System.Collections.Generic.IDictionary<string, object> _dictionary)
         {
             string id= null;
             string displayName= null;
@@ -55,7 +55,7 @@ namespace DressDiscover.Api.Models.Worksheet
                     displayName = ((string)_item.Value);
                     break;
                 case "image":
-                    image = DressDiscover.Api.Models.Worksheet.WorksheetFeatureValueImage.FromBuiltins((System.Collections.Generic.Dictionary<string, object>)_item.Value);
+                    image = DressDiscover.Api.Models.Worksheet.WorksheetFeatureValueImage.FromBuiltins((System.Collections.Generic.IDictionary<string, object>)_item.Value);
                     break;
                 }
             }
@@ -63,7 +63,7 @@ namespace DressDiscover.Api.Models.Worksheet
             return new WorksheetFeatureValueDefinition(id, displayName, image);
         }
 
-        public System.Collections.Generic.Dictionary<string, object> ToBuiltins()
+        public System.Collections.Generic.IDictionary<string, object> ToBuiltins()
         {
             var _builtins = new System.Collections.Generic.Dictionary<string, object>();
             _builtins["id"] = this.Id;

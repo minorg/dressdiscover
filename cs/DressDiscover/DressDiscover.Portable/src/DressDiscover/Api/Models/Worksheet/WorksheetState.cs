@@ -31,7 +31,7 @@ namespace DressDiscover.Api.Models.Worksheet
             set { this.rootFeatureSet = value; }
         }
 
-        public static WorksheetState FromBuiltins(System.Collections.Generic.Dictionary<string, object> _dictionary)
+        public static WorksheetState FromBuiltins(System.Collections.Generic.IDictionary<string, object> _dictionary)
         {
             string accessionNumber= null;
             DressDiscover.Api.Models.Worksheet.WorksheetFeatureSetState rootFeatureSet= null;
@@ -44,7 +44,7 @@ namespace DressDiscover.Api.Models.Worksheet
                     accessionNumber = ((string)_item.Value);
                     break;
                 case "root_feature_set":
-                    rootFeatureSet = DressDiscover.Api.Models.Worksheet.WorksheetFeatureSetState.FromBuiltins((System.Collections.Generic.Dictionary<string, object>)_item.Value);
+                    rootFeatureSet = DressDiscover.Api.Models.Worksheet.WorksheetFeatureSetState.FromBuiltins((System.Collections.Generic.IDictionary<string, object>)_item.Value);
                     break;
                 }
             }
@@ -52,7 +52,7 @@ namespace DressDiscover.Api.Models.Worksheet
             return new WorksheetState(accessionNumber, rootFeatureSet);
         }
 
-        public System.Collections.Generic.Dictionary<string, object> ToBuiltins()
+        public System.Collections.Generic.IDictionary<string, object> ToBuiltins()
         {
             var _builtins = new System.Collections.Generic.Dictionary<string, object>();
             _builtins["accession_number"] = this.AccessionNumber;

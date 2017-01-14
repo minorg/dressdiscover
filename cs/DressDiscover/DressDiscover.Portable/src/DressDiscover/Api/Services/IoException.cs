@@ -20,7 +20,7 @@ namespace DressDiscover.Api.Services
             }
         }
 
-        public static IoException FromBuiltins(System.Collections.Generic.Dictionary<string, object> _dictionary)
+        public static IoException FromBuiltins(System.Collections.Generic.IDictionary<string, object> _dictionary)
         {
             string causeMessage= null;
 
@@ -37,7 +37,7 @@ namespace DressDiscover.Api.Services
             return new IoException(causeMessage);
         }
 
-        public System.Collections.Generic.Dictionary<string, object> ToBuiltins()
+        public System.Collections.Generic.IDictionary<string, object> ToBuiltins()
         {
             var _builtins = new System.Collections.Generic.Dictionary<string, object>();
             _builtins["cause_message"] = this.CauseMessage;
