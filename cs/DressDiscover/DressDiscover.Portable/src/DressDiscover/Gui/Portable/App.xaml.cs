@@ -15,9 +15,10 @@ namespace DressDiscover.Gui.Portable
         {
             InitializeComponent();
 
-            var worksheetDefinitionParsed = JsonConvert.DeserializeObject<Dictionary<object, object>>(worksheetDefinitionJson);
+            var worksheetDefinitionParsed = JsonConvert.DeserializeObject<Dictionary<string, object>>(worksheetDefinitionJson);
+            var worksheetDefinition = WorksheetDefinition.FromBuiltins(worksheetDefinitionParsed);
 
-            MainPage = new DressDiscover.Gui.Portable.MainPage();
+            MainPage = new DressDiscover.Gui.Portable.MainPage(worksheetDefinition);
         }
 
         protected override void OnStart()

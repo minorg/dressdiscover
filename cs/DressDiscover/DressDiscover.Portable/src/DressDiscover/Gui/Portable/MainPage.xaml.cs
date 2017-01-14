@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DressDiscover.Api.Models.Worksheet;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,7 +10,7 @@ namespace DressDiscover.Gui.Portable
 {
     public partial class MainPage : ContentPage
     {
-        public MainPage()
+        public MainPage(WorksheetDefinition worksheetDefinition)
         {
             InitializeComponent();
         }
