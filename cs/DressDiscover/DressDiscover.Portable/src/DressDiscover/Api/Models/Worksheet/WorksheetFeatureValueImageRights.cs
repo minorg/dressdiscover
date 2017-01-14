@@ -2,7 +2,7 @@ namespace DressDiscover.Api.Models.Worksheet
 {
     public sealed class WorksheetFeatureValueImageRights
     {
-        WorksheetFeatureValueImageRights(string author, string license, string sourceName, string sourceUrl)
+        public WorksheetFeatureValueImageRights(string author, string license, string sourceName, string sourceUrl)
         {
             this.Author = author;
             this.License = license;
@@ -60,6 +60,45 @@ namespace DressDiscover.Api.Models.Worksheet
                 }
                 this.sourceUrl = value;
             }
+        }
+
+        public static WorksheetFeatureValueImageRights FromBuiltins(System.Collections.Generic.Dictionary<string, object> _dictionary)
+        {
+            string author= null;
+            string license= null;
+            string sourceName= null;
+            string sourceUrl= null;
+
+            foreach (var _item in _dictionary)
+            {
+                switch (_item.Key)
+                {
+                case "author":
+                    author = ((string)_item.Value);
+                    break;
+                case "license":
+                    license = ((string)_item.Value);
+                    break;
+                case "source_name":
+                    sourceName = ((string)_item.Value);
+                    break;
+                case "source_url":
+                    sourceUrl = ((string)_item.Value);
+                    break;
+                }
+            }
+
+            return new WorksheetFeatureValueImageRights(author, license, sourceName, sourceUrl);
+        }
+
+        public System.Collections.Generic.Dictionary<string, object> ToBuiltins()
+        {
+            var _builtins = new System.Collections.Generic.Dictionary<string, object>();
+            _builtins["author"] = this.Author;
+            _builtins["license"] = this.License;
+            _builtins["source_name"] = this.SourceName;
+            _builtins["source_url"] = this.SourceUrl;
+            return _builtins;
         }
 
         private string author;
