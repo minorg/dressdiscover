@@ -11,14 +11,16 @@ namespace DressDiscover.Gui.Portable
 {
     public partial class App : Application
     {
+        public static WorksheetDefinition ParseWorksheetDefinitionJson(string worksheetDefinitionJson)
+        {
+            return WorksheetDefinition.FromBuiltins(JsonConvert.DeserializeObject<Dictionary<string, object>>(worksheetDefinitionJson));
+        }
+
         public App(string worksheetDefinitionJson)
         {
             InitializeComponent();
 
-            var worksheetDefinitionParsed = JsonConvert.DeserializeObject<Dictionary<string, object>>(worksheetDefinitionJson);
-            var worksheetDefinition = WorksheetDefinition.FromBuiltins(worksheetDefinitionParsed);
-
-            MainPage = new DressDiscover.Gui.Portable.MainPage(worksheetDefinition);
+            MainPage = new DressDiscover.Gui.Portable.MainPage(ParseWorksheetDefinitionJson(worksheetDefinitionJson));
         }
 
         protected override void OnStart()
