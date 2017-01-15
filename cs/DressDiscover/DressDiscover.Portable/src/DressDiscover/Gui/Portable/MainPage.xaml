@@ -4,15 +4,11 @@
              xmlns:local="clr-namespace:DressDiscover.Gui.Portable"
              x:Class="DressDiscover.Gui.Portable.MainPage">
 
-  <ContentPage.Resources>
-    <ResourceDictionary>
-      <local:MainPageViewModel x:Key="viewModel" />
-    </ResourceDictionary>
-  </ContentPage.Resources>
-
-  <Label Text="Welcome to Xamarin Forms!"
+  <StackLayout>
+  <Label Text="Welcome to Xamarin Forms! test"
            VerticalOptions="Center"
            HorizontalOptions="Center" />
-
-  <Label Text="{Binding Source={StaticResource viewModel}, Path=DateTime.Millisecond, StringFormat='The milliseconds are {0}'}" />
+    <Label>Some other text</Label>
+    <Button Text="Button text"></Button>
+  </StackLayout>
 </ContentPage>
