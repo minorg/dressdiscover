@@ -44,18 +44,53 @@ namespace DressDiscover.Api.Models.Worksheet
             return new WorksheetFeatureState(selectedValues, text);
         }
 
+        public static WorksheetFeatureState FromJson(Newtonsoft.Json.Linq.JObject _dictionary)
+        {
+            System.Collections.Generic.List<string> selectedValues= null;
+            string text= null;
+
+            foreach (var _item in _dictionary)
+            {
+                switch (_item.Key)
+                {
+                case "selected_values":
+                    selectedValues = ((System.Func<Newtonsoft.Json.Linq.JArray, System.Collections.Generic.List<string>>)((_sequence0) => { var _newSequence0 = new System.Collections.Generic.List<string>(); foreach (var _element0 in _sequence0) { _newSequence0.Add(((string)((Newtonsoft.Json.Linq.JValue)_element0))); } return _newSequence0; }))((Newtonsoft.Json.Linq.JArray)_item.Value);
+                    break;
+                case "text":
+                    text = ((string)((Newtonsoft.Json.Linq.JValue)_item.Value));
+                    break;
+                }
+            }
+
+            return new WorksheetFeatureState(selectedValues, text);
+        }
+
         public System.Collections.Generic.IDictionary<string, object> ToBuiltins()
         {
-            var _builtins = new System.Collections.Generic.Dictionary<string, object>();
+            var _dictionary = new System.Collections.Generic.Dictionary<string, object>();
             if (!(this.SelectedValues != null))
             {
-                _builtins["selected_values"] = ((System.Func<System.Collections.Generic.List<string>, System.Collections.Generic.List<object>>)((_sequence0) => { var _newSequence0 = new System.Collections.Generic.List<object>(); foreach (var _element0 in _sequence0) { _newSequence0.Add(_element0); } return _newSequence0; }))((System.Collections.Generic.List<string>)this.SelectedValues);
+                _dictionary["selected_values"] = ((System.Func<System.Collections.Generic.List<string>, System.Collections.Generic.List<object>>)((_sequence0) => { var _newSequence0 = new System.Collections.Generic.List<object>(); foreach (var _element0 in _sequence0) { _newSequence0.Add(_element0); } return _newSequence0; }))((System.Collections.Generic.List<string>)this.SelectedValues);
             }
             if (!(this.Text != null))
             {
-                _builtins["text"] = this.Text;
+                _dictionary["text"] = this.Text;
             }
-            return _builtins;
+            return _dictionary;
+        }
+
+        public Newtonsoft.Json.Linq.JObject ToJson()
+        {
+            var _dictionary = new Newtonsoft.Json.Linq.JObject();
+            if (!(this.SelectedValues != null))
+            {
+                _dictionary["selected_values"] = ((System.Func<System.Collections.Generic.List<string>, Newtonsoft.Json.Linq.JArray>)((_sequence0) => { var _newSequence0 = new Newtonsoft.Json.Linq.JArray(); foreach (var _element0 in _sequence0) { _newSequence0.Add(new Newtonsoft.Json.Linq.JValue((string)_element0)); } return _newSequence0; }))((System.Collections.Generic.List<string>)this.SelectedValues);
+            }
+            if (!(this.Text != null))
+            {
+                _dictionary["text"] = new Newtonsoft.Json.Linq.JValue((string)this.Text);
+            }
+            return _dictionary;
         }
 
         private System.Collections.Generic.List<string> selectedValues;

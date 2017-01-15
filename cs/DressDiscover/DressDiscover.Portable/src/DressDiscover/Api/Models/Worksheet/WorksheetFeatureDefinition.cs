@@ -63,19 +63,59 @@ namespace DressDiscover.Api.Models.Worksheet
             return new WorksheetFeatureDefinition(id, displayName, values_);
         }
 
+        public static WorksheetFeatureDefinition FromJson(Newtonsoft.Json.Linq.JObject _dictionary)
+        {
+            string id= null;
+            string displayName= null;
+            System.Collections.Generic.List<DressDiscover.Api.Models.Worksheet.WorksheetFeatureValueDefinition> values_= null;
+
+            foreach (var _item in _dictionary)
+            {
+                switch (_item.Key)
+                {
+                case "id":
+                    id = ((string)((Newtonsoft.Json.Linq.JValue)_item.Value));
+                    break;
+                case "display_name":
+                    displayName = ((string)((Newtonsoft.Json.Linq.JValue)_item.Value));
+                    break;
+                case "values_":
+                    values_ = ((System.Func<Newtonsoft.Json.Linq.JArray, System.Collections.Generic.List<DressDiscover.Api.Models.Worksheet.WorksheetFeatureValueDefinition>>)((_sequence0) => { var _newSequence0 = new System.Collections.Generic.List<DressDiscover.Api.Models.Worksheet.WorksheetFeatureValueDefinition>(); foreach (var _element0 in _sequence0) { _newSequence0.Add(DressDiscover.Api.Models.Worksheet.WorksheetFeatureValueDefinition.FromJson((Newtonsoft.Json.Linq.JObject)_element0)); } return _newSequence0; }))((Newtonsoft.Json.Linq.JArray)_item.Value);
+                    break;
+                }
+            }
+
+            return new WorksheetFeatureDefinition(id, displayName, values_);
+        }
+
         public System.Collections.Generic.IDictionary<string, object> ToBuiltins()
         {
-            var _builtins = new System.Collections.Generic.Dictionary<string, object>();
-            _builtins["id"] = this.Id;
+            var _dictionary = new System.Collections.Generic.Dictionary<string, object>();
+            _dictionary["id"] = this.Id;
             if (!(this.DisplayName != null))
             {
-                _builtins["display_name"] = this.DisplayName;
+                _dictionary["display_name"] = this.DisplayName;
             }
             if (!(this.Values_ != null))
             {
-                _builtins["values_"] = ((System.Func<System.Collections.Generic.List<DressDiscover.Api.Models.Worksheet.WorksheetFeatureValueDefinition>, System.Collections.Generic.List<object>>)((_sequence0) => { var _newSequence0 = new System.Collections.Generic.List<object>(); foreach (var _element0 in _sequence0) { _newSequence0.Add(_element0.ToBuiltins()); } return _newSequence0; }))((System.Collections.Generic.List<DressDiscover.Api.Models.Worksheet.WorksheetFeatureValueDefinition>)this.Values_);
+                _dictionary["values_"] = ((System.Func<System.Collections.Generic.List<DressDiscover.Api.Models.Worksheet.WorksheetFeatureValueDefinition>, System.Collections.Generic.List<object>>)((_sequence0) => { var _newSequence0 = new System.Collections.Generic.List<object>(); foreach (var _element0 in _sequence0) { _newSequence0.Add(_element0.ToBuiltins()); } return _newSequence0; }))((System.Collections.Generic.List<DressDiscover.Api.Models.Worksheet.WorksheetFeatureValueDefinition>)this.Values_);
             }
-            return _builtins;
+            return _dictionary;
+        }
+
+        public Newtonsoft.Json.Linq.JObject ToJson()
+        {
+            var _dictionary = new Newtonsoft.Json.Linq.JObject();
+            _dictionary["id"] = new Newtonsoft.Json.Linq.JValue((string)this.Id);
+            if (!(this.DisplayName != null))
+            {
+                _dictionary["display_name"] = new Newtonsoft.Json.Linq.JValue((string)this.DisplayName);
+            }
+            if (!(this.Values_ != null))
+            {
+                _dictionary["values_"] = ((System.Func<System.Collections.Generic.List<DressDiscover.Api.Models.Worksheet.WorksheetFeatureValueDefinition>, Newtonsoft.Json.Linq.JArray>)((_sequence0) => { var _newSequence0 = new Newtonsoft.Json.Linq.JArray(); foreach (var _element0 in _sequence0) { _newSequence0.Add(_element0.ToJson()); } return _newSequence0; }))((System.Collections.Generic.List<DressDiscover.Api.Models.Worksheet.WorksheetFeatureValueDefinition>)this.Values_);
+            }
+            return _dictionary;
         }
 
         private string displayName;

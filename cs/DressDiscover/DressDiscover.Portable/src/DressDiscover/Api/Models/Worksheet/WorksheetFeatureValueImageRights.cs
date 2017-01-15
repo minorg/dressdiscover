@@ -91,14 +91,53 @@ namespace DressDiscover.Api.Models.Worksheet
             return new WorksheetFeatureValueImageRights(author, license, sourceName, sourceUrl);
         }
 
+        public static WorksheetFeatureValueImageRights FromJson(Newtonsoft.Json.Linq.JObject _dictionary)
+        {
+            string author= null;
+            string license= null;
+            string sourceName= null;
+            string sourceUrl= null;
+
+            foreach (var _item in _dictionary)
+            {
+                switch (_item.Key)
+                {
+                case "author":
+                    author = ((string)((Newtonsoft.Json.Linq.JValue)_item.Value));
+                    break;
+                case "license":
+                    license = ((string)((Newtonsoft.Json.Linq.JValue)_item.Value));
+                    break;
+                case "source_name":
+                    sourceName = ((string)((Newtonsoft.Json.Linq.JValue)_item.Value));
+                    break;
+                case "source_url":
+                    sourceUrl = ((string)((Newtonsoft.Json.Linq.JValue)_item.Value));
+                    break;
+                }
+            }
+
+            return new WorksheetFeatureValueImageRights(author, license, sourceName, sourceUrl);
+        }
+
         public System.Collections.Generic.IDictionary<string, object> ToBuiltins()
         {
-            var _builtins = new System.Collections.Generic.Dictionary<string, object>();
-            _builtins["author"] = this.Author;
-            _builtins["license"] = this.License;
-            _builtins["source_name"] = this.SourceName;
-            _builtins["source_url"] = this.SourceUrl;
-            return _builtins;
+            var _dictionary = new System.Collections.Generic.Dictionary<string, object>();
+            _dictionary["author"] = this.Author;
+            _dictionary["license"] = this.License;
+            _dictionary["source_name"] = this.SourceName;
+            _dictionary["source_url"] = this.SourceUrl;
+            return _dictionary;
+        }
+
+        public Newtonsoft.Json.Linq.JObject ToJson()
+        {
+            var _dictionary = new Newtonsoft.Json.Linq.JObject();
+            _dictionary["author"] = new Newtonsoft.Json.Linq.JValue((string)this.Author);
+            _dictionary["license"] = new Newtonsoft.Json.Linq.JValue((string)this.License);
+            _dictionary["source_name"] = new Newtonsoft.Json.Linq.JValue((string)this.SourceName);
+            _dictionary["source_url"] = new Newtonsoft.Json.Linq.JValue((string)this.SourceUrl);
+            return _dictionary;
         }
 
         private string author;

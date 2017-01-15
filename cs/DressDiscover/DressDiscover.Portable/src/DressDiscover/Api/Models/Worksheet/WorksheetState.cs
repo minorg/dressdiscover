@@ -52,15 +52,47 @@ namespace DressDiscover.Api.Models.Worksheet
             return new WorksheetState(accessionNumber, rootFeatureSet);
         }
 
+        public static WorksheetState FromJson(Newtonsoft.Json.Linq.JObject _dictionary)
+        {
+            string accessionNumber= null;
+            DressDiscover.Api.Models.Worksheet.WorksheetFeatureSetState rootFeatureSet= null;
+
+            foreach (var _item in _dictionary)
+            {
+                switch (_item.Key)
+                {
+                case "accession_number":
+                    accessionNumber = ((string)((Newtonsoft.Json.Linq.JValue)_item.Value));
+                    break;
+                case "root_feature_set":
+                    rootFeatureSet = DressDiscover.Api.Models.Worksheet.WorksheetFeatureSetState.FromJson((Newtonsoft.Json.Linq.JObject)_item.Value);
+                    break;
+                }
+            }
+
+            return new WorksheetState(accessionNumber, rootFeatureSet);
+        }
+
         public System.Collections.Generic.IDictionary<string, object> ToBuiltins()
         {
-            var _builtins = new System.Collections.Generic.Dictionary<string, object>();
-            _builtins["accession_number"] = this.AccessionNumber;
+            var _dictionary = new System.Collections.Generic.Dictionary<string, object>();
+            _dictionary["accession_number"] = this.AccessionNumber;
             if (!(this.RootFeatureSet != null))
             {
-                _builtins["root_feature_set"] = this.RootFeatureSet.ToBuiltins();
+                _dictionary["root_feature_set"] = this.RootFeatureSet.ToBuiltins();
             }
-            return _builtins;
+            return _dictionary;
+        }
+
+        public Newtonsoft.Json.Linq.JObject ToJson()
+        {
+            var _dictionary = new Newtonsoft.Json.Linq.JObject();
+            _dictionary["accession_number"] = new Newtonsoft.Json.Linq.JValue((string)this.AccessionNumber);
+            if (!(this.RootFeatureSet != null))
+            {
+                _dictionary["root_feature_set"] = this.RootFeatureSet.ToJson();
+            }
+            return _dictionary;
         }
 
         private string accessionNumber;
