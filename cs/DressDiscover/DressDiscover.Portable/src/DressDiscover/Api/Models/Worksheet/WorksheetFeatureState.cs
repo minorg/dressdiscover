@@ -6,12 +6,12 @@ namespace DressDiscover.Api.Models.Worksheet
         {
         }
 
-        public WorksheetFeatureState(System.Collections.Generic.List<string> selectedValues, string text) {
+        public WorksheetFeatureState(System.Collections.Generic.IList<string> selectedValues, string text) {
             this.SelectedValues = selectedValues;
             this.Text = text;
         }
 
-        public System.Collections.Generic.List<string> SelectedValues
+        public System.Collections.Generic.IList<string> SelectedValues
         {
             get { return selectedValues; }
             set { this.selectedValues = value; }
@@ -25,7 +25,7 @@ namespace DressDiscover.Api.Models.Worksheet
 
         public static WorksheetFeatureState FromBuiltins(System.Collections.Generic.IDictionary<string, object> _dictionary)
         {
-            System.Collections.Generic.List<string> selectedValues= null;
+            System.Collections.Generic.IList<string> selectedValues= null;
             string text= null;
 
             foreach (var _item in _dictionary)
@@ -33,7 +33,7 @@ namespace DressDiscover.Api.Models.Worksheet
                 switch (_item.Key)
                 {
                 case "selected_values":
-                    selectedValues = ((System.Func<System.Collections.Generic.List<object>, System.Collections.Generic.List<string>>)((_sequence0) => { var _newSequence0 = new System.Collections.Generic.List<string>(); foreach (var _element0 in _sequence0) { _newSequence0.Add(((string)_element0)); } return _newSequence0; }))((System.Collections.Generic.List<object>)_item.Value);
+                    selectedValues = ((System.Func<System.Collections.Generic.IList<object>, System.Collections.Generic.IList<string>>)((_sequence0) => { var _newSequence0 = new System.Collections.Generic.List<string>(); foreach (var _element0 in _sequence0) { _newSequence0.Add(((string)_element0)); } return _newSequence0; }))((System.Collections.Generic.IList<object>)_item.Value);
                     break;
                 case "text":
                     text = ((string)_item.Value);
@@ -46,7 +46,7 @@ namespace DressDiscover.Api.Models.Worksheet
 
         public static WorksheetFeatureState FromJson(Newtonsoft.Json.Linq.JObject _dictionary)
         {
-            System.Collections.Generic.List<string> selectedValues= null;
+            System.Collections.Generic.IList<string> selectedValues= null;
             string text= null;
 
             foreach (var _item in _dictionary)
@@ -54,7 +54,7 @@ namespace DressDiscover.Api.Models.Worksheet
                 switch (_item.Key)
                 {
                 case "selected_values":
-                    selectedValues = ((System.Func<Newtonsoft.Json.Linq.JArray, System.Collections.Generic.List<string>>)((_sequence0) => { var _newSequence0 = new System.Collections.Generic.List<string>(); foreach (var _element0 in _sequence0) { _newSequence0.Add(((string)((Newtonsoft.Json.Linq.JValue)_element0))); } return _newSequence0; }))((Newtonsoft.Json.Linq.JArray)_item.Value);
+                    selectedValues = ((System.Func<Newtonsoft.Json.Linq.JArray, System.Collections.Generic.IList<string>>)((_sequence0) => { var _newSequence0 = new System.Collections.Generic.List<string>(); foreach (var _element0 in _sequence0) { _newSequence0.Add(((string)((Newtonsoft.Json.Linq.JValue)_element0))); } return _newSequence0; }))((Newtonsoft.Json.Linq.JArray)_item.Value);
                     break;
                 case "text":
                     text = ((string)((Newtonsoft.Json.Linq.JValue)_item.Value));
@@ -70,7 +70,7 @@ namespace DressDiscover.Api.Models.Worksheet
             var _dictionary = new System.Collections.Generic.Dictionary<string, object>();
             if (!(this.SelectedValues != null))
             {
-                _dictionary["selected_values"] = ((System.Func<System.Collections.Generic.List<string>, System.Collections.Generic.List<object>>)((_sequence0) => { var _newSequence0 = new System.Collections.Generic.List<object>(); foreach (var _element0 in _sequence0) { _newSequence0.Add(_element0); } return _newSequence0; }))((System.Collections.Generic.List<string>)this.SelectedValues);
+                _dictionary["selected_values"] = ((System.Func<System.Collections.Generic.IList<string>, System.Collections.Generic.IList<object>>)((_sequence0) => { var _newSequence0 = new System.Collections.Generic.List<object>(); foreach (var _element0 in _sequence0) { _newSequence0.Add(_element0); } return _newSequence0; }))((System.Collections.Generic.IList<string>)this.SelectedValues);
             }
             if (!(this.Text != null))
             {
@@ -84,7 +84,7 @@ namespace DressDiscover.Api.Models.Worksheet
             var _dictionary = new Newtonsoft.Json.Linq.JObject();
             if (!(this.SelectedValues != null))
             {
-                _dictionary["selected_values"] = ((System.Func<System.Collections.Generic.List<string>, Newtonsoft.Json.Linq.JArray>)((_sequence0) => { var _newSequence0 = new Newtonsoft.Json.Linq.JArray(); foreach (var _element0 in _sequence0) { _newSequence0.Add(new Newtonsoft.Json.Linq.JValue((string)_element0)); } return _newSequence0; }))((System.Collections.Generic.List<string>)this.SelectedValues);
+                _dictionary["selected_values"] = ((System.Func<System.Collections.Generic.IList<string>, Newtonsoft.Json.Linq.JArray>)((_sequence0) => { var _newSequence0 = new Newtonsoft.Json.Linq.JArray(); foreach (var _element0 in _sequence0) { _newSequence0.Add(new Newtonsoft.Json.Linq.JValue((string)_element0)); } return _newSequence0; }))((System.Collections.Generic.IList<string>)this.SelectedValues);
             }
             if (!(this.Text != null))
             {
@@ -93,7 +93,7 @@ namespace DressDiscover.Api.Models.Worksheet
             return _dictionary;
         }
 
-        private System.Collections.Generic.List<string> selectedValues;
+        private System.Collections.Generic.IList<string> selectedValues;
         private string text;
     }
 }

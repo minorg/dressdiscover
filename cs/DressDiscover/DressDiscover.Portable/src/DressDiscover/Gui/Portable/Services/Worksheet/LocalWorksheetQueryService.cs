@@ -19,7 +19,7 @@ namespace DressDiscover.Gui.Portable.Services.Worksheet
             return WORKSHEET_ITEM_KEY_PREFIX + accessionNumber;
         }
 
-        public List<string> GetWorksheetAccessionNumbers()
+        public IList<string> GetWorksheetAccessionNumbers()
         {
             //let result: string[] = [];
             //for (var keyI = 0; ; keyI++)

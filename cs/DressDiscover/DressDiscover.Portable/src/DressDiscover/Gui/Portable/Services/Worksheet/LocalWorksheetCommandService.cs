@@ -15,14 +15,14 @@ namespace DressDiscover.Gui.Portable.Services.Worksheet
         public void DeleteWorksheetState(string accessionNumber)
         {
             Debug.WriteLine("delete " + accessionNumber);
-            properties.Remove(LocalWorksheetQueryService.GetWorksheetStateItemKey(accessionNumber);
+            properties.Remove(LocalWorksheetQueryService.GetWorksheetStateItemKey(accessionNumber));
         }
 
         public void PutWorksheetState(WorksheetState state)
         {
             var stateJsonString = state.ToJson().ToString(Newtonsoft.Json.Formatting.None);
             Debug.WriteLine("put {0} <- {1}", state.AccessionNumber, stateJsonString);
-            properties[LocalWorksheetQueryService.GetWorksheetStateItemKey(state.AccessionNumber)] = ;
+            properties[LocalWorksheetQueryService.GetWorksheetStateItemKey(state.AccessionNumber)] = stateJsonString;
         }
 
         private IDictionary<string, object> properties;
