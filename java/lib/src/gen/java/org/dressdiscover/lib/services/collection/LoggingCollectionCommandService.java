@@ -89,17 +89,17 @@ public class LoggingCollectionCommandService implements org.dressdiscover.api.se
         }
     }
 
-    public void putCollection(final org.dressdiscover.api.models.collection.CollectionId id, final org.dressdiscover.api.models.collection.Collection collection) throws org.dressdiscover.api.services.IoException, org.dressdiscover.api.services.institution.NoSuchInstitutionException {
+    public void putCollection(final org.dressdiscover.api.models.collection.Collection collection, final org.dressdiscover.api.models.collection.CollectionId id) throws org.dressdiscover.api.services.IoException, org.dressdiscover.api.services.institution.NoSuchInstitutionException {
         final StringBuilder __logMessageStringBuilder = new StringBuilder();
         final java.util.List<Object> __logMessageArgs = new java.util.ArrayList<Object>();
 
         __logMessageStringBuilder.append("put_collection(");
         __logMessageStringBuilder.append("{}");
-        __logMessageArgs.add(Messages.PutCollectionRequest.create(id, collection));
+        __logMessageArgs.add(Messages.PutCollectionRequest.create(collection, id));
         __logMessageStringBuilder.append(")");
 
         try {
-            delegate.putCollection(id, collection);
+            delegate.putCollection(collection, id);
 
             logger.info(Markers.PUT_COLLECTION, __logMessageStringBuilder.toString(), __logMessageArgs.toArray());
         } catch (final org.dressdiscover.api.services.IoException e) {

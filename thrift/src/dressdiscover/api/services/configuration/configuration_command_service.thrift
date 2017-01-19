@@ -12,16 +12,16 @@ include "dressdiscover/api/services/io_exception.thrift"
 service ConfigurationCommandService {
     void
     put_collection_configuration(
-        collection_id.CollectionId collection_id,
-        collection_configuration.CollectionConfiguration collection_configuration
+        collection_configuration.CollectionConfiguration collection_configuration,
+        collection_id.CollectionId collection_id
     ) throws (
         io_exception.IoException e
     );
 
 	void
 	put_institution_configuration(
-		institution_id.InstitutionId institution_id,
-		institution_configuration.InstitutionConfiguration institution_configuration
+		institution_configuration.InstitutionConfiguration institution_configuration,
+        institution_id.InstitutionId institution_id
 	) throws (
 		io_exception.IoException e
 	);

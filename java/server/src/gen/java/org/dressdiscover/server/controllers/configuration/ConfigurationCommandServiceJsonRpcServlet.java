@@ -157,7 +157,7 @@ public class ConfigurationCommandServiceJsonRpcServlet extends javax.servlet.htt
         }
 
         try {
-            service.putCollectionConfiguration(serviceRequest.getCollectionId(), serviceRequest.getCollectionConfiguration());
+            service.putCollectionConfiguration(serviceRequest.getCollectionConfiguration(), serviceRequest.getCollectionId());
         } catch (final org.dressdiscover.api.services.IoException e) {
             __doPostError(httpServletRequest, httpServletResponse, new org.thryft.protocol.JsonRpcErrorResponse(e, 1, e.getClass().getCanonicalName() + ": " + String.valueOf(e.getMessage())), jsonRpcRequestId);
             return;
@@ -193,7 +193,7 @@ public class ConfigurationCommandServiceJsonRpcServlet extends javax.servlet.htt
         }
 
         try {
-            service.putInstitutionConfiguration(serviceRequest.getInstitutionId(), serviceRequest.getInstitutionConfiguration());
+            service.putInstitutionConfiguration(serviceRequest.getInstitutionConfiguration(), serviceRequest.getInstitutionId());
         } catch (final org.dressdiscover.api.services.IoException e) {
             __doPostError(httpServletRequest, httpServletResponse, new org.thryft.protocol.JsonRpcErrorResponse(e, 1, e.getClass().getCanonicalName() + ": " + String.valueOf(e.getMessage())), jsonRpcRequestId);
             return;

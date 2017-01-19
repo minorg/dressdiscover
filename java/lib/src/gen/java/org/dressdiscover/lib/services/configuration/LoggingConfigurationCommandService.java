@@ -20,17 +20,17 @@ public class LoggingConfigurationCommandService implements org.dressdiscover.api
         this.delegate = com.google.common.base.Preconditions.checkNotNull(delegate);
     }
 
-    public void putCollectionConfiguration(final org.dressdiscover.api.models.collection.CollectionId collectionId, final org.dressdiscover.api.models.configuration.CollectionConfiguration collectionConfiguration) throws org.dressdiscover.api.services.IoException {
+    public void putCollectionConfiguration(final org.dressdiscover.api.models.configuration.CollectionConfiguration collectionConfiguration, final org.dressdiscover.api.models.collection.CollectionId collectionId) throws org.dressdiscover.api.services.IoException {
         final StringBuilder __logMessageStringBuilder = new StringBuilder();
         final java.util.List<Object> __logMessageArgs = new java.util.ArrayList<Object>();
 
         __logMessageStringBuilder.append("put_collection_configuration(");
         __logMessageStringBuilder.append("{}");
-        __logMessageArgs.add(Messages.PutCollectionConfigurationRequest.create(collectionId, collectionConfiguration));
+        __logMessageArgs.add(Messages.PutCollectionConfigurationRequest.create(collectionConfiguration, collectionId));
         __logMessageStringBuilder.append(")");
 
         try {
-            delegate.putCollectionConfiguration(collectionId, collectionConfiguration);
+            delegate.putCollectionConfiguration(collectionConfiguration, collectionId);
 
             logger.info(Markers.PUT_COLLECTION_CONFIGURATION, __logMessageStringBuilder.toString(), __logMessageArgs.toArray());
         } catch (final org.dressdiscover.api.services.IoException e) {
@@ -46,17 +46,17 @@ public class LoggingConfigurationCommandService implements org.dressdiscover.api
         }
     }
 
-    public void putInstitutionConfiguration(final org.dressdiscover.api.models.institution.InstitutionId institutionId, final org.dressdiscover.api.models.configuration.InstitutionConfiguration institutionConfiguration) throws org.dressdiscover.api.services.IoException {
+    public void putInstitutionConfiguration(final org.dressdiscover.api.models.configuration.InstitutionConfiguration institutionConfiguration, final org.dressdiscover.api.models.institution.InstitutionId institutionId) throws org.dressdiscover.api.services.IoException {
         final StringBuilder __logMessageStringBuilder = new StringBuilder();
         final java.util.List<Object> __logMessageArgs = new java.util.ArrayList<Object>();
 
         __logMessageStringBuilder.append("put_institution_configuration(");
         __logMessageStringBuilder.append("{}");
-        __logMessageArgs.add(Messages.PutInstitutionConfigurationRequest.create(institutionId, institutionConfiguration));
+        __logMessageArgs.add(Messages.PutInstitutionConfigurationRequest.create(institutionConfiguration, institutionId));
         __logMessageStringBuilder.append(")");
 
         try {
-            delegate.putInstitutionConfiguration(institutionId, institutionConfiguration);
+            delegate.putInstitutionConfiguration(institutionConfiguration, institutionId);
 
             logger.info(Markers.PUT_INSTITUTION_CONFIGURATION, __logMessageStringBuilder.toString(), __logMessageArgs.toArray());
         } catch (final org.dressdiscover.api.services.IoException e) {

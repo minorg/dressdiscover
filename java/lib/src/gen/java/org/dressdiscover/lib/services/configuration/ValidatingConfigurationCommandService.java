@@ -10,25 +10,25 @@ public class ValidatingConfigurationCommandService implements org.dressdiscover.
     }
 
     @Override
-    public final void putCollectionConfiguration(final org.dressdiscover.api.models.collection.CollectionId collectionId, final org.dressdiscover.api.models.configuration.CollectionConfiguration collectionConfiguration) throws org.dressdiscover.api.services.IoException {
-        _validatePutCollectionConfigurationParameters(collectionId, collectionConfiguration);
-        delegate.putCollectionConfiguration(collectionId, collectionConfiguration);
+    public final void putCollectionConfiguration(final org.dressdiscover.api.models.configuration.CollectionConfiguration collectionConfiguration, final org.dressdiscover.api.models.collection.CollectionId collectionId) throws org.dressdiscover.api.services.IoException {
+        _validatePutCollectionConfigurationParameters(collectionConfiguration, collectionId);
+        delegate.putCollectionConfiguration(collectionConfiguration, collectionId);
     }
 
-    protected void _validatePutCollectionConfigurationParameters(final org.dressdiscover.api.models.collection.CollectionId collectionId, final org.dressdiscover.api.models.configuration.CollectionConfiguration collectionConfiguration) {
-        org.dressdiscover.api.services.configuration.ConfigurationCommandService.Messages.PutCollectionConfigurationRequest.DefaultConstructionValidator.getInstance().validateCollectionId(collectionId);
+    protected void _validatePutCollectionConfigurationParameters(final org.dressdiscover.api.models.configuration.CollectionConfiguration collectionConfiguration, final org.dressdiscover.api.models.collection.CollectionId collectionId) {
         org.dressdiscover.api.services.configuration.ConfigurationCommandService.Messages.PutCollectionConfigurationRequest.DefaultConstructionValidator.getInstance().validateCollectionConfiguration(collectionConfiguration);
+        org.dressdiscover.api.services.configuration.ConfigurationCommandService.Messages.PutCollectionConfigurationRequest.DefaultConstructionValidator.getInstance().validateCollectionId(collectionId);
     }
 
     @Override
-    public final void putInstitutionConfiguration(final org.dressdiscover.api.models.institution.InstitutionId institutionId, final org.dressdiscover.api.models.configuration.InstitutionConfiguration institutionConfiguration) throws org.dressdiscover.api.services.IoException {
-        _validatePutInstitutionConfigurationParameters(institutionId, institutionConfiguration);
-        delegate.putInstitutionConfiguration(institutionId, institutionConfiguration);
+    public final void putInstitutionConfiguration(final org.dressdiscover.api.models.configuration.InstitutionConfiguration institutionConfiguration, final org.dressdiscover.api.models.institution.InstitutionId institutionId) throws org.dressdiscover.api.services.IoException {
+        _validatePutInstitutionConfigurationParameters(institutionConfiguration, institutionId);
+        delegate.putInstitutionConfiguration(institutionConfiguration, institutionId);
     }
 
-    protected void _validatePutInstitutionConfigurationParameters(final org.dressdiscover.api.models.institution.InstitutionId institutionId, final org.dressdiscover.api.models.configuration.InstitutionConfiguration institutionConfiguration) {
-        org.dressdiscover.api.services.configuration.ConfigurationCommandService.Messages.PutInstitutionConfigurationRequest.DefaultConstructionValidator.getInstance().validateInstitutionId(institutionId);
+    protected void _validatePutInstitutionConfigurationParameters(final org.dressdiscover.api.models.configuration.InstitutionConfiguration institutionConfiguration, final org.dressdiscover.api.models.institution.InstitutionId institutionId) {
         org.dressdiscover.api.services.configuration.ConfigurationCommandService.Messages.PutInstitutionConfigurationRequest.DefaultConstructionValidator.getInstance().validateInstitutionConfiguration(institutionConfiguration);
+        org.dressdiscover.api.services.configuration.ConfigurationCommandService.Messages.PutInstitutionConfigurationRequest.DefaultConstructionValidator.getInstance().validateInstitutionId(institutionId);
     }
 
     private final org.dressdiscover.api.services.configuration.ConfigurationCommandService delegate;

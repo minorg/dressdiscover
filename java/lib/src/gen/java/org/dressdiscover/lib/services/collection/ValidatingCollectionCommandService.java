@@ -30,14 +30,14 @@ public class ValidatingCollectionCommandService implements org.dressdiscover.api
     }
 
     @Override
-    public final void putCollection(final org.dressdiscover.api.models.collection.CollectionId id, final org.dressdiscover.api.models.collection.Collection collection) throws org.dressdiscover.api.services.IoException, org.dressdiscover.api.services.institution.NoSuchInstitutionException {
-        _validatePutCollectionParameters(id, collection);
-        delegate.putCollection(id, collection);
+    public final void putCollection(final org.dressdiscover.api.models.collection.Collection collection, final org.dressdiscover.api.models.collection.CollectionId id) throws org.dressdiscover.api.services.IoException, org.dressdiscover.api.services.institution.NoSuchInstitutionException {
+        _validatePutCollectionParameters(collection, id);
+        delegate.putCollection(collection, id);
     }
 
-    protected void _validatePutCollectionParameters(final org.dressdiscover.api.models.collection.CollectionId id, final org.dressdiscover.api.models.collection.Collection collection) {
-        org.dressdiscover.api.services.collection.CollectionCommandService.Messages.PutCollectionRequest.DefaultConstructionValidator.getInstance().validateId(id);
+    protected void _validatePutCollectionParameters(final org.dressdiscover.api.models.collection.Collection collection, final org.dressdiscover.api.models.collection.CollectionId id) {
         org.dressdiscover.api.services.collection.CollectionCommandService.Messages.PutCollectionRequest.DefaultConstructionValidator.getInstance().validateCollection(collection);
+        org.dressdiscover.api.services.collection.CollectionCommandService.Messages.PutCollectionRequest.DefaultConstructionValidator.getInstance().validateId(id);
     }
 
     private final org.dressdiscover.api.services.collection.CollectionCommandService delegate;

@@ -30,8 +30,8 @@ service CollectionCommandService {
 
 	void
 	put_collection(
-		collection_id.CollectionId id,
-		collection.Collection collection
+		collection.Collection collection,
+        collection_id.CollectionId id
 	) throws (
 		io_exception.IoException e1,
         no_such_institution_exception.NoSuchInstitutionException e2

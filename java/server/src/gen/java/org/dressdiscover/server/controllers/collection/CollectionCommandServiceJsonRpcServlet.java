@@ -240,7 +240,7 @@ public class CollectionCommandServiceJsonRpcServlet extends javax.servlet.http.H
         }
 
         try {
-            service.putCollection(serviceRequest.getId(), serviceRequest.getCollection());
+            service.putCollection(serviceRequest.getCollection(), serviceRequest.getId());
         } catch (final org.dressdiscover.api.services.IoException e) {
             __doPostError(httpServletRequest, httpServletResponse, new org.thryft.protocol.JsonRpcErrorResponse(e, 1, e.getClass().getCanonicalName() + ": " + String.valueOf(e.getMessage())), jsonRpcRequestId);
             return;
