@@ -9,18 +9,19 @@ namespace DressDiscover.Gui.Portable.Views.Worksheet
         public WorksheetPage(WorksheetViewModel viewModel)
         {
             this.viewModel = viewModel;
-            Resources["viewModel"] = viewModel;
 
             InitializeComponent();
+
+            Resources["viewModel"] = viewModel;
         }
 
-        protected async override void OnAppearing()
+        protected override void OnAppearing()
         {
-            while (viewModel.AccessionNumber == null)
+            if (viewModel.AccessionNumber == null)
             {
-                await Navigation.PushModalAsync(new WorksheetAccessionNumberPage(viewModel));
+                Navigation.PushModalAsync(new WorksheetAccessionNumberPage(viewModel));
+                return;
             }
-            Debug.WriteLine("New accession number is " + viewModel.AccessionNumber);
         }
 
         private WorksheetViewModel viewModel;

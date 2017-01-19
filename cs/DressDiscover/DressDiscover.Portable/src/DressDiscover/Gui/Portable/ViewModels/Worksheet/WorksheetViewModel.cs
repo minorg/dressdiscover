@@ -1,4 +1,7 @@
-﻿namespace DressDiscover.Gui.Portable.ViewModels.Worksheet
+﻿using System.Windows.Input;
+using Xamarin.Forms;
+
+namespace DressDiscover.Gui.Portable.ViewModels.Worksheet
 {
     public class WorksheetViewModel : ViewModelBase
     {

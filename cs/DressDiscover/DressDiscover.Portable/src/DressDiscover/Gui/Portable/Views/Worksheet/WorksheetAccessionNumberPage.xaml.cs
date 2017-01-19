@@ -11,8 +11,8 @@ namespace DressDiscover.Gui.Portable.Views.Worksheet
             InitializeComponent();
 
             Resources["viewModel"] = viewModel;
-
             SubmitCommand = new Command(Submit);
+            BindingContext = this;
         }
 
         void Submit()
