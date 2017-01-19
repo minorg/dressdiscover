@@ -37,6 +37,7 @@
   <ItemGroup>
     <Compile Include="src\DressDiscover\Api\Services\Worksheet\IWorksheetCommandService.cs" />
     <Compile Include="src\DressDiscover\Api\Services\Worksheet\IWorksheetQueryService.cs" />
+    <Compile Include="src\DressDiscover\Gui\Portable\AppServices.cs" />
     <Compile Include="src\DressDiscover\Gui\Portable\Services\Worksheet\LocalWorksheetCommandService.cs" />
     <Compile Include="src\DressDiscover\Gui\Portable\Services\Worksheet\LocalWorksheetQueryService.cs" />
     <Compile Include="src\DressDiscover\Gui\Portable\ViewModels\ViewModelBase.cs" />

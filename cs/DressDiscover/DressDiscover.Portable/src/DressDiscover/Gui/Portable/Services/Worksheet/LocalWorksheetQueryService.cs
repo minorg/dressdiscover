@@ -21,27 +21,15 @@ namespace DressDiscover.Gui.Portable.Services.Worksheet
 
         public IList<string> GetWorksheetAccessionNumbers()
         {
-            //let result: string[] = [];
-            //for (var keyI = 0; ; keyI++)
-            //{
-            //    const key = localStorage.key(keyI);
-            //    if (key == null)
-            //    {
-            //        break;
-            //    }
-            //    if (!key.match("^" + LocalWorksheetQueryService._WORKSHEET_ITEM_KEY_PREFIX))
-            //    {
-            //        continue;
-            //    }
-            //    else if (key.length == LocalWorksheetQueryService._WORKSHEET_ITEM_KEY_PREFIX.length)
-            //    {
-            //        continue;
-            //    }
-            //    result.push(key.substr(LocalWorksheetQueryService._WORKSHEET_ITEM_KEY_PREFIX.length));
-            //}
-            //return result;
-
-            throw new NotImplementedException();
+            var result = new List<string>();
+            foreach (var key in properties.Keys)
+            {
+                if (key.StartsWith(WORKSHEET_ITEM_KEY_PREFIX) && key.Length > WORKSHEET_ITEM_KEY_PREFIX.Length)
+                {
+                    result.Add(key.Substring(WORKSHEET_ITEM_KEY_PREFIX.Length));
+                }
+            }
+            return result;
         }
 
         public WorksheetDefinition GetWorksheetDefinition()

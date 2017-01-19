@@ -11,11 +11,15 @@ namespace DressDiscover.Gui.Portable
             return WorksheetDefinition.FromJson(JObject.Parse(worksheetDefinitionJson));
         }
 
+        public AppServices Services { get; private set; }
+
         public App(string worksheetDefinitionJson)
         {
             InitializeComponent();
 
-            ParseWorksheetDefinitionJson(worksheetDefinitionJson);
+            var worksheetDefinition = ParseWorksheetDefinitionJson(worksheetDefinitionJson);
+            Services = new AppServices(Properties, worksheetDefinition);
+
             MainPage = new DressDiscover.Gui.Portable.Views.Worksheet.WorksheetPage();
         }
 
