@@ -35,7 +35,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="src\DressDiscover\Gui\Portable\MainPageViewModel.cs" />
+    <Compile Include="src\DressDiscover\Api\Services\Worksheet\IWorksheetCommandService.cs" />
+    <Compile Include="src\DressDiscover\Api\Services\Worksheet\IWorksheetQueryService.cs" />
+    <Compile Include="src\DressDiscover\Gui\Portable\ViewModels\ViewModelBase.cs" />
+    <Compile Include="src\DressDiscover\Gui\Portable\ViewModels\Worksheet\WorksheetViewModel.cs" />
     <Compile Include="src\DressDiscover\Gui\Portable\App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
@@ -49,15 +52,13 @@
     <Compile Include="src\DressDiscover\Api\Models\Worksheet\WorksheetFeatureValueImageRights.cs" />
     <Compile Include="src\DressDiscover\Api\Models\Worksheet\WorksheetState.cs" />
     <Compile Include="src\DressDiscover\Api\Services\IoException.cs" />
-    <Compile Include="src\DressDiscover\Api\Services\Worksheet\WorksheetCommandService.cs" />
-    <Compile Include="src\DressDiscover\Api\Services\Worksheet\WorksheetQueryService.cs" />
-    <Compile Include="src\DressDiscover\Gui\Portable\MainPage.xaml.cs">
-      <DependentUpon>MainPage.xaml</DependentUpon>
+    <Compile Include="src\DressDiscover\Gui\Portable\Views\Worksheet\WorksheetPage.xaml.cs">
+      <DependentUpon>WorksheetPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="src\DressDiscover\Gui\Portable\MainPage.xaml">
+    <EmbeddedResource Include="src\DressDiscover\Gui\Portable\Views\Worksheet\WorksheetPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
@@ -87,6 +88,7 @@
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <Import Project="..\..\packages\Xamarin.Forms.2.3.3.180\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+Xamarin.iOS10+xamarinmac20\Xamarin.Forms.targets" Condition="Exists('..\..\packages\Xamarin.Forms.2.3.3.180\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+Xamarin.iOS10+xamarinmac20\Xamarin.Forms.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
