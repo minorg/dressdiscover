@@ -1,4 +1,5 @@
 ﻿using DressDiscover.Api.Models.Worksheet;
+using DressDiscover.Gui.Portable.ViewModels.Worksheet;
 using Newtonsoft.Json.Linq;
 using Xamarin.Forms;
 
@@ -20,7 +21,7 @@ namespace DressDiscover.Gui.Portable
             var worksheetDefinition = ParseWorksheetDefinitionJson(worksheetDefinitionJson);
             Services = new AppServices(Properties, worksheetDefinition);
 
-            MainPage = new DressDiscover.Gui.Portable.Views.Worksheet.WorksheetPage();
+            MainPage = new NavigationPage(new DressDiscover.Gui.Portable.Views.Worksheet.WorksheetPage(new WorksheetViewModel(Services)));
         }
 
         protected override void OnStart()

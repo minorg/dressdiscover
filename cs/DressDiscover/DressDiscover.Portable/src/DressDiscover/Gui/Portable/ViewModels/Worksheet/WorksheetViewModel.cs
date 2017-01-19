@@ -1,27 +1,19 @@
-﻿using System;
-using System.Diagnostics;
-using Xamarin.Forms;
-
-namespace DressDiscover.Gui.Portable.ViewModels.Worksheet
+﻿namespace DressDiscover.Gui.Portable.ViewModels.Worksheet
 {
     public class WorksheetViewModel : ViewModelBase
     {
-        public WorksheetViewModel()
+        public string AccessionNumber
         {
-            Device.StartTimer(TimeSpan.FromMilliseconds(15), OnTimerTick);
+            get { return accessionNumber; }
+            set { SetProperty(ref accessionNumber, value); }
         }
 
-        bool OnTimerTick()
+        public WorksheetViewModel(AppServices services)
         {
-            DateTime = DateTime.Now;
-            return true;
+            this.services = services;
         }
 
-        public DateTime DateTime {
-            get { return dateTime; }
-            set { SetProperty(ref dateTime, value); }
-        }
-
-        DateTime dateTime = DateTime.Now;
+        private string accessionNumber;
+        private AppServices services;
     }
 }

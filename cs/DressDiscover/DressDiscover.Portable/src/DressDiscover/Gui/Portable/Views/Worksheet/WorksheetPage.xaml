@@ -3,20 +3,4 @@
     x:Class="DressDiscover.Gui.Portable.Views.Worksheet.WorksheetPage"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:viewModels="clr-namespace:DressDiscover.Gui.Portable.ViewModels.Worksheet">
-
-    <ContentPage.Resources>
-        <ResourceDictionary>
-            <viewModels:WorksheetViewModel x:Key="viewModel" />
-        </ResourceDictionary>
-    </ContentPage.Resources>
-
-    <StackLayout BindingContext="{StaticResource viewModel}">
-        <Label
-            HorizontalOptions="Center"
-            Text="Welcome to Xamarin Forms! test xx"
-            VerticalOptions="Center" />
-        <Label Text="{Binding DateTime}" />
-        <Button Text="{Binding DateTime}" />
-    </StackLayout>
-</ContentPage>
+    xmlns:viewModels="clr-namespace:DressDiscover.Gui.Portable.ViewModels.Worksheet" />
