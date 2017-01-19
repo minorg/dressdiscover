@@ -1,6 +1,6 @@
 namespace DressDiscover.Api.Services.Worksheet
 {
-    public interface WorksheetQueryService
+    public interface IWorksheetQueryService
     {
         System.Collections.Generic.List<string> GetWorksheetAccessionNumbers();
         DressDiscover.Api.Models.Worksheet.WorksheetDefinition GetWorksheetDefinition();
