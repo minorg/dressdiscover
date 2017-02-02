@@ -8,7 +8,6 @@ import org.dressdiscover.api.models.institution.InstitutionId;
 import org.dressdiscover.api.services.IoException;
 import org.dressdiscover.lib.properties.GlobalProperties;
 import org.dressdiscover.lib.services.IoExceptions;
-import org.slf4j.Logger;
 import org.slf4j.Marker;
 import org.thryft.protocol.OutputProtocolException;
 import org.thryft.waf.api.models.Model;
@@ -32,8 +31,8 @@ public abstract class AbstractInstitutionCollectionObjectFileSystem<ModelT exten
         return new File(_getInstitutionsDirectoryPath(), _encodeFileName(institutionId.toString()));
     }
 
-    protected final ImmutableList<File> _getInstitutionDirectoryPaths(final Logger logger, final Marker logMarker) {
-        return _getSubdirectoryPaths(_getInstitutionsDirectoryPath(), logger, logMarker);
+    protected final ImmutableList<File> _getInstitutionDirectoryPaths(final Marker logMarker) {
+        return _getSubdirectoryPaths(_getInstitutionsDirectoryPath(), logMarker);
     }
 
     protected final File _getInstitutionsDirectoryPath() {

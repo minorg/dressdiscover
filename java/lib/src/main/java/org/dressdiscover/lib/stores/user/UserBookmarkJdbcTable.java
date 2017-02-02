@@ -20,6 +20,7 @@ import org.dressdiscover.api.services.user.NoSuchUserBookmarkException;
 import org.dressdiscover.lib.properties.StoreProperties;
 import org.dressdiscover.lib.services.IoExceptions;
 import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.slf4j.Marker;
 import org.thryft.protocol.InputProtocolException;
 import org.thryft.protocol.JacksonJsonInputProtocol;
@@ -44,7 +45,7 @@ public class UserBookmarkJdbcTable extends AbstractJdbcTable<UserBookmark> imple
     }
 
     @Override
-    public void deleteUserBookmarkById(final Logger logger, final Marker logMarker, final UserBookmarkId userBookmarkId)
+    public void deleteUserBookmarkById(final Marker logMarker, final UserBookmarkId userBookmarkId)
             throws IoException, NoSuchUserBookmarkException {
         try (Connection connection = _getConnection()) {
             try (PreparedStatement statement = connection.prepareStatement(deleteUserBookmarkByIdSql)) {
@@ -64,14 +65,14 @@ public class UserBookmarkJdbcTable extends AbstractJdbcTable<UserBookmark> imple
     }
 
     @Override
-    public ImmutableList<UserBookmarkEntry> getUserBookmarksByUserId(final Logger logger, final Marker logMarker,
+    public ImmutableList<UserBookmarkEntry> getUserBookmarksByUserId(final Marker logMarker,
             final boolean objectIdsOnly, final UserId userId) throws IoException {
         try (Connection connection = _getConnection()) {
             try (PreparedStatement statement = connection.prepareStatement(
                     objectIdsOnly ? getObjectIdUserBookmarksByUserIdSql : getUserBookmarksByUserIdSql)) {
                 statement.setInt(1, userId.asInteger());
                 try (final ResultSet resultSet = statement.executeQuery()) {
-                    return __getUserBookmarks(logger, logMarker, resultSet);
+                    return __getUserBookmarks(logMarker, resultSet);
                 }
             }
         } catch (final SQLException e) {
@@ -80,7 +81,7 @@ public class UserBookmarkJdbcTable extends AbstractJdbcTable<UserBookmark> imple
     }
 
     @Override
-    public UserBookmarkId postUserBookmark(final Logger logger, final Marker logMarker, final UserBookmark userBookmark)
+    public UserBookmarkId postUserBookmark(final Marker logMarker, final UserBookmark userBookmark)
             throws DuplicateUserBookmarkException, IoException {
         checkState(userBookmark.getObjectId().isPresent() ^ userBookmark.getObjectQuery().isPresent());
 
@@ -143,8 +144,8 @@ public class UserBookmarkJdbcTable extends AbstractJdbcTable<UserBookmark> imple
         }
     }
 
-    private ImmutableList<UserBookmarkEntry> __getUserBookmarks(final Logger logger, final Marker logMarker,
-            final ResultSet resultSet) throws SQLException {
+    private ImmutableList<UserBookmarkEntry> __getUserBookmarks(final Marker logMarker, final ResultSet resultSet)
+            throws SQLException {
         final JdbcResultSetInputProtocol iprot = new JdbcResultSetInputProtocol(resultSet);
         final ImmutableList.Builder<UserBookmarkEntry> userBookmarksBuilder = ImmutableList.builder();
         while (resultSet.next()) {
@@ -179,6 +180,7 @@ public class UserBookmarkJdbcTable extends AbstractJdbcTable<UserBookmark> imple
     private final String getObjectIdUserBookmarksByUserIdSql = getUserBookmarksByUserIdSql
             + String.format(" AND %s IS NOT NULL AND %s IS NULL", UserBookmark.FieldMetadata.OBJECT_ID.getThriftName(),
                     UserBookmark.FieldMetadata.OBJECT_QUERY.getThriftName());
+    private final static Logger logger = LoggerFactory.getLogger(UserBookmarkJdbcTable.class);
     final static String CREATE_TABLE_SQL = "CREATE TABLE IF NOT EXISTS user_bookmark(\n"
             + "    id INTEGER PRIMARY KEY AUTO_INCREMENT NOT NULL,\n" + "    object_query VARCHAR,\n"
             + "    name VARCHAR NOT NULL,\n" + "    user_id INTEGER NOT NULL,\n" + "    folder VARCHAR,\n"

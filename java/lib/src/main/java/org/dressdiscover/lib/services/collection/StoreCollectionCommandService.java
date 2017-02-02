@@ -37,7 +37,7 @@ public class StoreCollectionCommandService implements CollectionCommandService {
             throws IoException, NoSuchCollectionException, NoSuchInstitutionException {
         final CollectionStore collectionStore = collectionStoreCache.getCollectionStore(id);
         try {
-            if (!collectionStore.deleteCollectionById(id, logger, Markers.DELETE_COLLECTION_BY_ID)) {
+            if (!collectionStore.deleteCollectionById(id, Markers.DELETE_COLLECTION_BY_ID)) {
                 throw NoSuchCollectionException.create(id);
             }
         } catch (final PyException e) {
@@ -53,7 +53,7 @@ public class StoreCollectionCommandService implements CollectionCommandService {
 
         ImmutableList<CollectionEntry> collectionEntries;
         try {
-            collectionEntries = collectionStore.getCollectionsByInstitutionId(institutionId, logger,
+            collectionEntries = collectionStore.getCollectionsByInstitutionId(institutionId,
                     Markers.DELETE_COLLECTIONS_BY_INSTITUTION_ID);
         } catch (final PyException e) {
             PythonUtils.log(logger, Markers.DELETE_COLLECTIONS_BY_INSTITUTION_ID, e);
@@ -70,7 +70,7 @@ public class StoreCollectionCommandService implements CollectionCommandService {
         }
 
         try {
-            collectionStore.deleteCollectionsByInstitutionId(institutionId, logger,
+            collectionStore.deleteCollectionsByInstitutionId(institutionId,
                     Markers.DELETE_COLLECTIONS_BY_INSTITUTION_ID);
         } catch (final PyException e) {
             PythonUtils.log(logger, Markers.DELETE_COLLECTIONS_BY_INSTITUTION_ID, e);
@@ -83,7 +83,7 @@ public class StoreCollectionCommandService implements CollectionCommandService {
             throws IoException, NoSuchInstitutionException {
         final CollectionStore collectionStore = collectionStoreCache.getCollectionStore(id);
         try {
-            collectionStore.putCollection(collection, id, logger, Markers.PUT_COLLECTION);
+            collectionStore.putCollection(collection, id, Markers.PUT_COLLECTION);
         } catch (final PyException e) {
             PythonUtils.log(logger, Markers.PUT_COLLECTION, e);
             throw IoException.create("Python exception");

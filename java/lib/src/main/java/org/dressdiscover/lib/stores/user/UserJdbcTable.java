@@ -15,6 +15,7 @@ import org.dressdiscover.api.services.user.NoSuchUserException;
 import org.dressdiscover.lib.properties.StoreProperties;
 import org.dressdiscover.lib.services.IoExceptions;
 import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.slf4j.Marker;
 import org.thryft.protocol.InputProtocolException;
 import org.thryft.protocol.OutputProtocolException;
@@ -37,8 +38,7 @@ public final class UserJdbcTable extends AbstractJdbcTable<User> implements User
     }
 
     @Override
-    public void deleteUserById(final Logger logger, final Marker logMarker, final UserId userId)
-            throws IoException, NoSuchUserException {
+    public void deleteUserById(final Marker logMarker, final UserId userId) throws IoException, NoSuchUserException {
         try (Connection connection = _getConnection()) {
             try (PreparedStatement statement = connection.prepareStatement(deleteUserByIdSql)) {
                 statement.setInt(1, userId.asInteger());
@@ -57,7 +57,7 @@ public final class UserJdbcTable extends AbstractJdbcTable<User> implements User
     }
 
     @Override
-    public void deleteUsers(final Logger logger, final Marker logMarker) throws IoException {
+    public void deleteUsers(final Marker logMarker) throws IoException {
         try (Connection connection = _getConnection()) {
             try (Statement statement = connection.createStatement()) {
                 statement.execute(deleteUsersSql);
@@ -68,13 +68,13 @@ public final class UserJdbcTable extends AbstractJdbcTable<User> implements User
     }
 
     @Override
-    public UserEntry getUserByEmailAddress(final String emailAddress, final Logger logger, final Marker logMarker)
+    public UserEntry getUserByEmailAddress(final String emailAddress, final Marker logMarker)
             throws IoException, NoSuchUserException {
         try (Connection connection = _getConnection()) {
             try (PreparedStatement statement = connection.prepareStatement(getUserByEmailAddressSql)) {
                 statement.setString(1, emailAddress.toString());
                 try (final ResultSet resultSet = statement.executeQuery()) {
-                    final ImmutableList<UserEntry> users = __getUsers(logger, logMarker, resultSet);
+                    final ImmutableList<UserEntry> users = __getUsers(logMarker, resultSet);
                     if (!users.isEmpty()) {
                         return users.get(0);
                     } else {
@@ -88,13 +88,12 @@ public final class UserJdbcTable extends AbstractJdbcTable<User> implements User
     }
 
     @Override
-    public User getUserById(final Logger logger, final Marker logMarker, final UserId userId)
-            throws IoException, NoSuchUserException {
+    public User getUserById(final Marker logMarker, final UserId userId) throws IoException, NoSuchUserException {
         try (Connection connection = _getConnection()) {
             try (PreparedStatement statement = connection.prepareStatement(getUserByIdSql)) {
                 statement.setInt(1, userId.asInteger());
                 try (final ResultSet resultSet = statement.executeQuery()) {
-                    final ImmutableList<UserEntry> users = __getUsers(logger, logMarker, resultSet);
+                    final ImmutableList<UserEntry> users = __getUsers(logMarker, resultSet);
                     if (!users.isEmpty()) {
                         return users.get(0).getModel();
                     } else {
@@ -108,11 +107,11 @@ public final class UserJdbcTable extends AbstractJdbcTable<User> implements User
     }
 
     @Override
-    public ImmutableList<UserEntry> getUsers(final Logger logger, final Marker logMarker) throws IoException {
+    public ImmutableList<UserEntry> getUsers(final Marker logMarker) throws IoException {
         try (Connection connection = _getConnection()) {
             try (Statement statement = connection.createStatement()) {
                 try (final ResultSet resultSet = statement.executeQuery(getUsersSql)) {
-                    return __getUsers(logger, logMarker, resultSet);
+                    return __getUsers(logMarker, resultSet);
                 }
             }
         } catch (final SQLException e) {
@@ -121,7 +120,7 @@ public final class UserJdbcTable extends AbstractJdbcTable<User> implements User
     }
 
     @Override
-    public UserId postUser(final Logger logger, final Marker logMarker, final User user) throws IoException {
+    public UserId postUser(final Marker logMarker, final User user) throws IoException {
         try (Connection connection = _getConnection()) {
             try (PreparedStatement userInsertStatement = connection.prepareStatement(_getInsertSql(user, TABLE_NAME))) {
                 _setParameters(userInsertStatement, user);
@@ -142,7 +141,7 @@ public final class UserJdbcTable extends AbstractJdbcTable<User> implements User
     }
 
     @Override
-    public void putUser(final Logger logger, final Marker logMarker, final User user, final UserId userId)
+    public void putUser(final Marker logMarker, final User user, final UserId userId)
             throws IoException, NoSuchUserException {
         try (Connection connection = _getConnection()) {
             try (PreparedStatement userUpdateStatement = connection
@@ -167,8 +166,7 @@ public final class UserJdbcTable extends AbstractJdbcTable<User> implements User
         }
     }
 
-    private ImmutableList<UserEntry> __getUsers(final Logger logger, final Marker logMarker, final ResultSet resultSet)
-            throws SQLException {
+    private ImmutableList<UserEntry> __getUsers(final Marker logMarker, final ResultSet resultSet) throws SQLException {
         final JdbcResultSetInputProtocol iprot = new JdbcResultSetInputProtocol(resultSet);
         final ImmutableList.Builder<UserEntry> usersBuilder = ImmutableList.builder();
         while (resultSet.next()) {
@@ -193,5 +191,6 @@ public final class UserJdbcTable extends AbstractJdbcTable<User> implements User
             + "    id INTEGER PRIMARY KEY AUTO_INCREMENT NOT NULL,\n" + "    ctime TIMESTAMP NOT NULL,\n"
             + "    email_address VARCHAR NOT NULL UNIQUE\n" + ")";
     private final static String TABLE_NAME = "user";
+    private final static Logger logger = LoggerFactory.getLogger(UserJdbcTable.class);
 
 }

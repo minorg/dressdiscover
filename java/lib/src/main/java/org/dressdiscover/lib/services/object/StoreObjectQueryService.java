@@ -33,7 +33,7 @@ public class StoreObjectQueryService implements ObjectQueryService {
             throws IoException, NoSuchCollectionException, NoSuchInstitutionException, NoSuchObjectException {
         final ObjectStore objectStore = objectStoreCache.getObjectStore(id);
         try {
-            return objectStore.getObjectById(logger, Markers.GET_OBJECT_BY_ID, id);
+            return objectStore.getObjectById(Markers.GET_OBJECT_BY_ID, id);
         } catch (final InvalidModelException e) {
             logger.warn(Markers.GET_OBJECT_BY_ID, "invalid object model {}: ", id, e);
             throw new NoSuchObjectException();

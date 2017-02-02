@@ -59,14 +59,13 @@ public class StoreObjectCommandService implements ObjectCommandService {
 
         final int result;
         try {
-            result = objectStore.deleteObjectsByCollectionId(collectionId, logger,
-                    Markers.DELETE_OBJECTS_BY_COLLECTION_ID);
+            result = objectStore.deleteObjectsByCollectionId(collectionId, Markers.DELETE_OBJECTS_BY_COLLECTION_ID);
         } catch (final PyException e) {
             PythonUtils.log(logger, Markers.DELETE_OBJECTS_BY_COLLECTION_ID, e);
             throw IoException.create("Python exception");
         }
 
-        objectSummaryElasticSearchIndex.deleteModels(logger, Markers.DELETE_OBJECTS_BY_COLLECTION_ID,
+        objectSummaryElasticSearchIndex.deleteModels(Markers.DELETE_OBJECTS_BY_COLLECTION_ID,
                 QueryBuilders.boolQuery().filter(QueryBuilders.termQuery(
                         ObjectSummary.FieldMetadata.COLLECTION_ID.getThriftProtocolKey(), collectionId.toString())));
 
@@ -80,13 +79,13 @@ public class StoreObjectCommandService implements ObjectCommandService {
 
         final ObjectStore objectStore = objectStoreCache.getObjectStore(id);
         try {
-            objectStore.putObject(logger, Markers.PUT_OBJECT, object, id);
+            objectStore.putObject(Markers.PUT_OBJECT, object, id);
         } catch (final PyException e) {
             PythonUtils.log(logger, Markers.PUT_OBJECT, e);
             throw IoException.create("Python exception");
         }
 
-        objectSummaryElasticSearchIndex.putModel(logger, Markers.PUT_OBJECT,
+        objectSummaryElasticSearchIndex.putModel(Markers.PUT_OBJECT,
                 ObjectSummaryEntry.create(id, ObjectSummarizer.getInstance().summarizeObject(object, id)));
     }
 
@@ -98,7 +97,7 @@ public class StoreObjectCommandService implements ObjectCommandService {
         for (final ObjectEntry objectEntry : objects) {
             final ObjectStore objectStore = objectStoreCache.getObjectStore(objectEntry.getId());
             try {
-                objectStore.putObject(logger, Markers.PUT_OBJECTS, objectEntry.getModel(), objectEntry.getId());
+                objectStore.putObject(Markers.PUT_OBJECTS, objectEntry.getModel(), objectEntry.getId());
             } catch (final PyException e) {
                 PythonUtils.log(logger, Markers.PUT_OBJECTS, e);
                 throw IoException.create("Python exception");
@@ -111,13 +110,13 @@ public class StoreObjectCommandService implements ObjectCommandService {
                     ObjectSummarizer.getInstance().summarizeObject(objectEntry)));
         }
 
-        objectSummaryElasticSearchIndex.putModels(logger, Markers.PUT_OBJECTS, objectSummariesBuilder.build());
+        objectSummaryElasticSearchIndex.putModels(Markers.PUT_OBJECTS, objectSummariesBuilder.build());
     }
 
     @Override
     public final void resummarizeObjects() throws IoException {
         try {
-            objectSummaryElasticSearchIndex.deleteModels(logger, Markers.RESUMMARIZE_OBJECTS);
+            objectSummaryElasticSearchIndex.deleteModels(Markers.RESUMMARIZE_OBJECTS);
 
             final List<ObjectSummaryEntry> objectSummaries = new ArrayList<>();
             for (final InstitutionEntry institutionEntry : institutionQueryService.getInstitutions()) {
@@ -126,12 +125,12 @@ public class StoreObjectCommandService implements ObjectCommandService {
                             .getCollectionsByInstitutionId(institutionEntry.getId())) {
                         final ObjectStore objectStore = objectStoreCache.getObjectStore(collectionEntry.getId());
                         try {
-                            for (final ObjectEntry objectEntry : objectStore.getObjectsByCollectionId(
-                                    collectionEntry.getId(), logger, Markers.RESUMMARIZE_OBJECTS)) {
+                            for (final ObjectEntry objectEntry : objectStore
+                                    .getObjectsByCollectionId(collectionEntry.getId(), Markers.RESUMMARIZE_OBJECTS)) {
                                 objectSummaries.add(ObjectSummaryEntry.create(objectEntry.getId(),
                                         ObjectSummarizer.getInstance().summarizeObject(objectEntry)));
                                 if (objectSummaries.size() == resummarizeObjectsBulkRequestSize) {
-                                    objectSummaryElasticSearchIndex.putModels(logger, Markers.RESUMMARIZE_OBJECTS,
+                                    objectSummaryElasticSearchIndex.putModels(Markers.RESUMMARIZE_OBJECTS,
                                             ImmutableList.copyOf(objectSummaries));
                                     logger.info(Markers.RESUMMARIZE_OBJECTS, "put {} object summaries",
                                             objectSummaries.size());
@@ -150,7 +149,7 @@ public class StoreObjectCommandService implements ObjectCommandService {
                 }
             }
             if (!objectSummaries.isEmpty()) {
-                objectSummaryElasticSearchIndex.putModels(logger, Markers.RESUMMARIZE_OBJECTS,
+                objectSummaryElasticSearchIndex.putModels(Markers.RESUMMARIZE_OBJECTS,
                         ImmutableList.copyOf(objectSummaries));
                 logger.info(Markers.RESUMMARIZE_OBJECTS, "put {} object summaries", objectSummaries.size());
             }

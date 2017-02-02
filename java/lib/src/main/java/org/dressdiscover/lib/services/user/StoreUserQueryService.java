@@ -10,8 +10,6 @@ import org.dressdiscover.api.services.IoException;
 import org.dressdiscover.api.services.user.NoSuchUserException;
 import org.dressdiscover.lib.stores.user.UserBookmarkStore;
 import org.dressdiscover.lib.stores.user.UserStore;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import com.google.common.base.Optional;
 import com.google.common.collect.ImmutableList;
@@ -25,29 +23,28 @@ abstract class StoreUserQueryService implements IterableUserQueryService {
     @Override
     public ImmutableList<UserBookmarkEntry> getUserBookmarksByUserId(final UserId userId,
             final Optional<Boolean> objectIdsOnly) throws IoException, NoSuchUserException {
-        return userBookmarkStore.getUserBookmarksByUserId(logger,
+        return userBookmarkStore.getUserBookmarksByUserId(
                 org.dressdiscover.lib.services.user.LoggingUserQueryService.Markers.GET_USER_BOOKMARKS_BY_USER_ID,
                 objectIdsOnly.or(Boolean.FALSE), userId);
     }
 
     @Override
     public UserEntry getUserByEmailAddress(final String emailAddress) throws IoException, NoSuchUserException {
-        return userStore.getUserByEmailAddress(emailAddress, logger,
+        return userStore.getUserByEmailAddress(emailAddress,
                 org.dressdiscover.lib.services.user.LoggingUserQueryService.Markers.GET_USER_BY_ID);
     }
 
     @Override
     public User getUserById(final UserId id) throws IoException, NoSuchUserException {
-        return userStore.getUserById(logger,
-                org.dressdiscover.lib.services.user.LoggingUserQueryService.Markers.GET_USER_BY_ID, id);
+        return userStore.getUserById(org.dressdiscover.lib.services.user.LoggingUserQueryService.Markers.GET_USER_BY_ID,
+                id);
     }
 
     @Override
     public Iterable<UserEntry> getUsers() throws IoException {
-        return userStore.getUsers(logger, Markers.GET_USERS);
+        return userStore.getUsers(Markers.GET_USERS);
     }
 
     private final UserBookmarkStore userBookmarkStore;
     private final UserStore userStore;
-    private final static Logger logger = LoggerFactory.getLogger(StoreUserQueryService.class);
 }

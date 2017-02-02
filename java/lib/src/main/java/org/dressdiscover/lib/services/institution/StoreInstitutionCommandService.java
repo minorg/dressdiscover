@@ -10,8 +10,6 @@ import org.dressdiscover.api.services.institution.InstitutionCommandService;
 import org.dressdiscover.api.services.institution.NoSuchInstitutionException;
 import org.dressdiscover.lib.services.institution.LoggingInstitutionCommandService.Markers;
 import org.dressdiscover.lib.stores.institution.InstitutionStore;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
@@ -31,17 +29,16 @@ public class StoreInstitutionCommandService implements InstitutionCommandService
         // its collection store
         collectionCommandService.deleteCollectionsByInstitutionId(id);
 
-        if (!store.deleteInstitutionById(id, logger, Markers.DELETE_INSTITUTION_BY_ID)) {
+        if (!store.deleteInstitutionById(id, Markers.DELETE_INSTITUTION_BY_ID)) {
             throw new NoSuchInstitutionException();
         }
     }
 
     @Override
     public final void putInstitution(final InstitutionId id, final Institution institution) throws IoException {
-        store.putInstitution(institution, id, logger, Markers.PUT_INSTITUTION);
+        store.putInstitution(institution, id, Markers.PUT_INSTITUTION);
     }
 
     private final InstitutionStore store;
     private final CollectionCommandService collectionCommandService;
-    private final static Logger logger = LoggerFactory.getLogger(StoreInstitutionCommandService.class);
 }

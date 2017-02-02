@@ -22,8 +22,6 @@ import org.dressdiscover.lib.stores.object.ObjectSummaryElasticSearchIndex;
 import org.dressdiscover.testdata.TestData;
 import org.junit.After;
 import org.junit.Before;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.slf4j.Marker;
 import org.thryft.waf.lib.logging.LoggingUtils;
 
@@ -50,12 +48,12 @@ public abstract class ObjectServiceTest extends ServiceTest {
     @After
     public void tearDown() throws Exception {
         InstitutionServiceTest.deleteInstitutions(institutionCommandService);
-        objectSummaryElasticSearchIndex.deleteModels(logger, logMarker);
+        objectSummaryElasticSearchIndex.deleteModels(logMarker);
         try {
             objectSummaryElasticSearchIndex.refresh();
         } catch (final IoException e) {
         }
-        assertEquals(0, objectSummaryElasticSearchIndex.countModels(logger, logMarker));
+        assertEquals(0, objectSummaryElasticSearchIndex.countModels(logMarker));
     }
 
     protected final int _getObjectCount() throws Exception {
@@ -82,7 +80,7 @@ public abstract class ObjectServiceTest extends ServiceTest {
             for (int i = 0; i < 100; i++) {
                 objectSummaryElasticSearchIndex.refresh();
 
-                if (objectSummaryElasticSearchIndex.countModels(logger, logMarker) > 0) {
+                if (objectSummaryElasticSearchIndex.countModels(logMarker) > 0) {
                     return objectEntry;
                 }
                 Thread.sleep(100);
@@ -98,7 +96,7 @@ public abstract class ObjectServiceTest extends ServiceTest {
         for (int i = 0; i < 100; i++) {
             objectSummaryElasticSearchIndex.refresh();
 
-            if (objectSummaryElasticSearchIndex.countModels(logger, logMarker) > 0) {
+            if (objectSummaryElasticSearchIndex.countModels(logMarker) > 0) {
                 return objects;
             }
             Thread.sleep(100);
@@ -113,6 +111,5 @@ public abstract class ObjectServiceTest extends ServiceTest {
     protected ObjectQueryService objectQueryService;
     protected ObjectSummaryElasticSearchIndex objectSummaryElasticSearchIndex;
     protected ObjectSummaryQueryService objectSummaryQueryService;
-    private final static Logger logger = LoggerFactory.getLogger(ObjectServiceTest.class);
     private final static Marker logMarker = LoggingUtils.getMarker(ObjectServiceTest.class);
 }

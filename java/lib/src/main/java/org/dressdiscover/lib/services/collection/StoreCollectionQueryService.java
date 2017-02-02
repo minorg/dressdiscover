@@ -35,7 +35,7 @@ public class StoreCollectionQueryService implements CollectionQueryService {
             throws IoException, NoSuchCollectionException, NoSuchInstitutionException {
         final CollectionStore collectionStore = collectionStoreCache.getCollectionStore(id);
         try {
-            return collectionStore.getCollectionById(id, logger, Markers.GET_COLLECTION_BY_ID);
+            return collectionStore.getCollectionById(id, Markers.GET_COLLECTION_BY_ID);
         } catch (final InvalidModelException e) {
             logger.warn(Markers.GET_COLLECTION_BY_ID, "invalid collection model {}: ", id, e);
             throw NoSuchCollectionException.create(id);
@@ -55,8 +55,7 @@ public class StoreCollectionQueryService implements CollectionQueryService {
         for (final CollectionId collectionId : ids) {
             final CollectionStore collectionStore = collectionStoreCache.getCollectionStore(collectionId);
             try {
-                collectionsBuilder
-                        .add(collectionStore.getCollectionById(collectionId, logger, Markers.GET_COLLECTIONS_BY_IDS));
+                collectionsBuilder.add(collectionStore.getCollectionById(collectionId, Markers.GET_COLLECTIONS_BY_IDS));
             } catch (final InvalidModelException e) {
                 logger.warn(Markers.GET_COLLECTIONS_BY_IDS, "invalid collection model {}: ", collectionId, e);
                 throw NoSuchCollectionException.create(collectionId);
@@ -73,7 +72,7 @@ public class StoreCollectionQueryService implements CollectionQueryService {
             throws IoException, NoSuchInstitutionException {
         final CollectionStore collectionStore = collectionStoreCache.getCollectionStore(institutionId);
         try {
-            return collectionStore.getCollectionsByInstitutionId(institutionId, logger,
+            return collectionStore.getCollectionsByInstitutionId(institutionId,
                     Markers.GET_COLLECTIONS_BY_INSTITUTION_ID);
         } catch (final PyException e) {
             PythonUtils.log(logger, Markers.GET_COLLECTIONS_BY_INSTITUTION_ID, e);

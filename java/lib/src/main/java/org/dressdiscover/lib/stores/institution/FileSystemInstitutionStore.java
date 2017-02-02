@@ -12,7 +12,6 @@ import org.dressdiscover.api.services.institution.NoSuchInstitutionException;
 import org.dressdiscover.lib.properties.GlobalProperties;
 import org.dressdiscover.lib.properties.StoreProperties;
 import org.dressdiscover.lib.stores.AbstractInstitutionCollectionObjectFileSystem;
-import org.slf4j.Logger;
 import org.slf4j.Marker;
 import org.thryft.protocol.InputProtocol;
 import org.thryft.protocol.InputProtocolException;
@@ -32,26 +31,25 @@ public class FileSystemInstitutionStore
     }
 
     @Override
-    public final boolean deleteInstitutionById(final InstitutionId institutionId, final Logger logger,
-            final Marker logMarker) throws IoException {
-        return _deleteDirectory(_getInstitutionDirectoryPath(institutionId), logger, logMarker) > 0;
-    }
-
-    @Override
-    public final void deleteInstitutions(final Logger logger, final Marker logMarker) throws IoException {
-        _deleteDirectoryContents(true, _getInstitutionsDirectoryPath(), logger, logMarker);
-    }
-
-    @Override
-    public final Institution getInstitutionById(final InstitutionId institutionId, final Logger logger,
-            final Marker logMarker) throws InvalidModelException, IoException, NoSuchInstitutionException {
-        return _getModel(__getInstitutionFilePath(institutionId), logger, logMarker);
-    }
-
-    @Override
-    public final ImmutableList<InstitutionEntry> getInstitutions(final Logger logger, final Marker logMarker)
+    public final boolean deleteInstitutionById(final InstitutionId institutionId, final Marker logMarker)
             throws IoException {
-        final ImmutableList<File> institutionDirectoryPaths = _getInstitutionDirectoryPaths(logger, logMarker);
+        return _deleteDirectory(_getInstitutionDirectoryPath(institutionId), logMarker) > 0;
+    }
+
+    @Override
+    public final void deleteInstitutions(final Marker logMarker) throws IoException {
+        _deleteDirectoryContents(true, _getInstitutionsDirectoryPath(), logMarker);
+    }
+
+    @Override
+    public final Institution getInstitutionById(final InstitutionId institutionId, final Marker logMarker)
+            throws InvalidModelException, IoException, NoSuchInstitutionException {
+        return _getModel(__getInstitutionFilePath(institutionId), logMarker);
+    }
+
+    @Override
+    public final ImmutableList<InstitutionEntry> getInstitutions(final Marker logMarker) throws IoException {
+        final ImmutableList<File> institutionDirectoryPaths = _getInstitutionDirectoryPaths(logMarker);
         if (institutionDirectoryPaths.isEmpty()) {
             return ImmutableList.of();
         }
@@ -70,7 +68,7 @@ public class FileSystemInstitutionStore
             }
             Institution institution;
             try {
-                institution = _getModel(institutionFilePath, logger, logMarker);
+                institution = _getModel(institutionFilePath, logMarker);
             } catch (InvalidModelException | NoSuchInstitutionException e) {
                 logger.warn(logMarker, "error reading institution file {}: {}", institutionFilePath,
                         ExceptionUtils.getRootCauseMessage(e));
@@ -83,8 +81,8 @@ public class FileSystemInstitutionStore
 
     @Override
     public final void putInstitution(final Institution institution, final InstitutionId institutionId,
-            final Logger logger, final Marker logMarker) throws IoException {
-        _putModel(__getInstitutionFilePath(institutionId), logger, logMarker, institution);
+            final Marker logMarker) throws IoException {
+        _putModel(__getInstitutionFilePath(institutionId), logMarker, institution);
     }
 
     @Override

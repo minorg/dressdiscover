@@ -12,6 +12,7 @@ import org.dressdiscover.api.models.institution.InstitutionId;
 import org.dressdiscover.api.services.IoException;
 import org.dressdiscover.api.services.collection.NoSuchCollectionException;
 import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.slf4j.Marker;
 import org.thryft.waf.lib.stores.InvalidModelException;
 
@@ -23,51 +24,51 @@ public class CachingCollectionStore implements CollectionStore {
     }
 
     @Override
-    public synchronized boolean deleteCollectionById(final CollectionId collectionId, final Logger logger,
-            final Marker logMarker) throws IoException {
-        __clear(logger, logMarker);
-        return underlyingCollectionStore.deleteCollectionById(collectionId, logger, logMarker);
+    public synchronized boolean deleteCollectionById(final CollectionId collectionId, final Marker logMarker)
+            throws IoException {
+        __clear(logMarker);
+        return underlyingCollectionStore.deleteCollectionById(collectionId, logMarker);
     }
 
     @Override
-    public synchronized void deleteCollectionsByInstitutionId(final InstitutionId institutionId, final Logger logger,
-            final Marker logMarker) throws IoException {
-        __clear(logger, logMarker);
-        underlyingCollectionStore.deleteCollectionsByInstitutionId(institutionId, logger, logMarker);
+    public synchronized void deleteCollectionsByInstitutionId(final InstitutionId institutionId, final Marker logMarker)
+            throws IoException {
+        __clear(logMarker);
+        underlyingCollectionStore.deleteCollectionsByInstitutionId(institutionId, logMarker);
     }
 
     @Override
-    public synchronized Collection getCollectionById(final CollectionId collectionId, final Logger logger,
-            final Marker logMarker) throws InvalidModelException, IoException, NoSuchCollectionException {
+    public synchronized Collection getCollectionById(final CollectionId collectionId, final Marker logMarker)
+            throws InvalidModelException, IoException, NoSuchCollectionException {
         Collection result = collectionsById.get(collectionId);
         if (result != null) {
             return result;
         }
-        result = underlyingCollectionStore.getCollectionById(collectionId, logger, logMarker);
+        result = underlyingCollectionStore.getCollectionById(collectionId, logMarker);
         collectionsById.put(collectionId, result);
         return result;
     }
 
     @Override
     public synchronized ImmutableList<CollectionEntry> getCollectionsByInstitutionId(final InstitutionId institutionId,
-            final Logger logger, final Marker logMarker) throws IoException {
+            final Marker logMarker) throws IoException {
         ImmutableList<CollectionEntry> result = collectionsByInstitutionId.get(institutionId);
         if (result != null) {
             return result;
         }
-        result = underlyingCollectionStore.getCollectionsByInstitutionId(institutionId, logger, logMarker);
+        result = underlyingCollectionStore.getCollectionsByInstitutionId(institutionId, logMarker);
         collectionsByInstitutionId.put(institutionId, result);
         return result;
     }
 
     @Override
     public synchronized void putCollection(final Collection collection, final CollectionId collectionId,
-            final Logger logger, final Marker logMarker) throws IoException {
-        __clear(logger, logMarker);
-        underlyingCollectionStore.putCollection(collection, collectionId, logger, logMarker);
+            final Marker logMarker) throws IoException {
+        __clear(logMarker);
+        underlyingCollectionStore.putCollection(collection, collectionId, logMarker);
     }
 
-    private void __clear(final Logger logger, final Marker logMarker) {
+    private void __clear(final Marker logMarker) {
         logger.debug(logMarker, "clearing collection cache");
         collectionsById.clear();
         collectionsByInstitutionId.clear();
@@ -76,4 +77,5 @@ public class CachingCollectionStore implements CollectionStore {
     private final Map<CollectionId, Collection> collectionsById = new HashMap<>();
     private final Map<InstitutionId, ImmutableList<CollectionEntry>> collectionsByInstitutionId = new HashMap<>();
     private final CollectionStore underlyingCollectionStore;
+    private final static Logger logger = LoggerFactory.getLogger(CachingCollectionStore.class);
 }

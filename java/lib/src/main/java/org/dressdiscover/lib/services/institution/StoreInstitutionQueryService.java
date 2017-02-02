@@ -28,7 +28,7 @@ public class StoreInstitutionQueryService implements InstitutionQueryService {
     @Override
     public final Institution getInstitutionById(final InstitutionId id) throws IoException, NoSuchInstitutionException {
         try {
-            return store.getInstitutionById(id, logger, Markers.GET_INSTITUTION_BY_ID);
+            return store.getInstitutionById(id, Markers.GET_INSTITUTION_BY_ID);
         } catch (final InvalidModelException e) {
             logger.warn(Markers.GET_INSTITUTION_BY_ID, "invalid institution model {}: ", id, e);
             throw new NoSuchInstitutionException();
@@ -37,7 +37,7 @@ public class StoreInstitutionQueryService implements InstitutionQueryService {
 
     @Override
     public final ImmutableList<InstitutionEntry> getInstitutions() throws IoException {
-        return store.getInstitutions(logger, Markers.GET_INSTITUTIONS);
+        return store.getInstitutions(Markers.GET_INSTITUTIONS);
     }
 
     @Override
@@ -49,7 +49,7 @@ public class StoreInstitutionQueryService implements InstitutionQueryService {
         final ImmutableList.Builder<Institution> resultBuilder = ImmutableList.builder();
         for (final InstitutionId institutionId : ids) {
             try {
-                resultBuilder.add(store.getInstitutionById(institutionId, logger, Markers.GET_INSTITUTIONS_BY_IDS));
+                resultBuilder.add(store.getInstitutionById(institutionId, Markers.GET_INSTITUTIONS_BY_IDS));
             } catch (final InvalidModelException e) {
                 logger.warn(Markers.GET_INSTITUTIONS_BY_IDS, "invalid institution model {}: ", institutionId, e);
                 throw NoSuchInstitutionException.create(institutionId);

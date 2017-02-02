@@ -8,6 +8,7 @@ import org.dressdiscover.api.models.institution.InstitutionId;
 import org.dressdiscover.api.services.IoException;
 import org.dressdiscover.api.services.institution.NoSuchInstitutionException;
 import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.slf4j.Marker;
 import org.thryft.waf.lib.stores.InvalidModelException;
 
@@ -24,22 +25,22 @@ public class CachingInstitutionStore implements InstitutionStore {
     }
 
     @Override
-    public final synchronized boolean deleteInstitutionById(final InstitutionId institutionId, final Logger logger,
-            final Marker logMarker) throws IoException {
-        __clear(logger, logMarker);
-        return underlyingInstitutionStore.deleteInstitutionById(institutionId, logger, logMarker);
+    public final synchronized boolean deleteInstitutionById(final InstitutionId institutionId, final Marker logMarker)
+            throws IoException {
+        __clear(logMarker);
+        return underlyingInstitutionStore.deleteInstitutionById(institutionId, logMarker);
     }
 
     @Override
-    public final synchronized void deleteInstitutions(final Logger logger, final Marker logMarker) throws IoException {
-        __clear(logger, logMarker);
-        underlyingInstitutionStore.deleteInstitutions(logger, logMarker);
+    public final synchronized void deleteInstitutions(final Marker logMarker) throws IoException {
+        __clear(logMarker);
+        underlyingInstitutionStore.deleteInstitutions(logMarker);
     }
 
     @Override
-    public final synchronized Institution getInstitutionById(final InstitutionId institutionId, final Logger logger,
-            final Marker logMarker) throws InvalidModelException, IoException, NoSuchInstitutionException {
-        __fill(logger, logMarker);
+    public final synchronized Institution getInstitutionById(final InstitutionId institutionId, final Marker logMarker)
+            throws InvalidModelException, IoException, NoSuchInstitutionException {
+        __fill(logMarker);
         final Institution institution = institutionsById.get(institutionId);
         if (institution != null) {
             return institution;
@@ -49,33 +50,33 @@ public class CachingInstitutionStore implements InstitutionStore {
     }
 
     @Override
-    public final synchronized ImmutableList<InstitutionEntry> getInstitutions(final Logger logger,
-            final Marker logMarker) throws IoException {
-        __fill(logger, logMarker);
+    public final synchronized ImmutableList<InstitutionEntry> getInstitutions(final Marker logMarker)
+            throws IoException {
+        __fill(logMarker);
         return institutions;
     }
 
     @Override
     public final synchronized void putInstitution(final Institution institution, final InstitutionId institutionId,
-            final Logger logger, final Marker logMarker) throws IoException {
-        __clear(logger, logMarker);
-        underlyingInstitutionStore.putInstitution(institution, institutionId, logger, logMarker);
+            final Marker logMarker) throws IoException {
+        __clear(logMarker);
+        underlyingInstitutionStore.putInstitution(institution, institutionId, logMarker);
     }
 
-    private void __clear(final Logger logger, final Marker logMarker) {
+    private void __clear(final Marker logMarker) {
         logger.debug(logMarker, "clearing institution cache");
         institutions = ImmutableList.of();
         institutionsById = ImmutableMap.of();
     }
 
-    private void __fill(final Logger logger, final Marker logMarker) throws IoException {
+    private void __fill(final Marker logMarker) throws IoException {
         if (!institutions.isEmpty()) {
             return;
         }
 
         logger.debug(logMarker, "filling institution cache");
 
-        institutions = underlyingInstitutionStore.getInstitutions(logger, logMarker);
+        institutions = underlyingInstitutionStore.getInstitutions(logMarker);
 
         final ImmutableMap.Builder<InstitutionId, Institution> institutionsByIdBuilder = ImmutableMap.builder();
         for (final InstitutionEntry institutionEntry : institutions) {
@@ -87,4 +88,5 @@ public class CachingInstitutionStore implements InstitutionStore {
     private ImmutableList<InstitutionEntry> institutions = ImmutableList.of();
     private ImmutableMap<InstitutionId, Institution> institutionsById = ImmutableMap.of();
     private final InstitutionStore underlyingInstitutionStore;
+    private final static Logger logger = LoggerFactory.getLogger(CachingInstitutionStore.class);
 }

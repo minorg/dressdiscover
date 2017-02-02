@@ -6,18 +6,15 @@ import org.dressdiscover.api.models.user.User;
 import org.dressdiscover.api.models.user.UserBookmark;
 import org.dressdiscover.api.models.user.UserBookmarkId;
 import org.dressdiscover.api.models.user.UserId;
-import org.dressdiscover.lib.services.user.LoggingUserCommandService.Markers;
-import org.dressdiscover.lib.stores.user.UserBookmarkStore;
-import org.dressdiscover.lib.stores.user.UserStore;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import org.dressdiscover.api.services.IoException;
 import org.dressdiscover.api.services.user.DuplicateUserBookmarkException;
 import org.dressdiscover.api.services.user.DuplicateUserException;
 import org.dressdiscover.api.services.user.NoSuchUserBookmarkException;
 import org.dressdiscover.api.services.user.NoSuchUserException;
 import org.dressdiscover.api.services.user.UserCommandService;
+import org.dressdiscover.lib.services.user.LoggingUserCommandService.Markers;
+import org.dressdiscover.lib.stores.user.UserBookmarkStore;
+import org.dressdiscover.lib.stores.user.UserStore;
 
 abstract class StoreUserCommandService implements UserCommandService {
     protected StoreUserCommandService(final UserBookmarkStore userBookmarkStore, final UserStore userStore) {
@@ -27,22 +24,22 @@ abstract class StoreUserCommandService implements UserCommandService {
 
     @Override
     public void deleteUserBookmarkById(final UserBookmarkId id) throws IoException, NoSuchUserBookmarkException {
-        userBookmarkStore.deleteUserBookmarkById(logger, Markers.DELETE_USER_BOOKMARK_BY_ID, id);
+        userBookmarkStore.deleteUserBookmarkById(Markers.DELETE_USER_BOOKMARK_BY_ID, id);
     }
 
     @Override
     public void deleteUserById(final UserId id) throws IoException, NoSuchUserException {
-        userStore.deleteUserById(logger, Markers.DELETE_USER_BY_ID, id);
+        userStore.deleteUserById(Markers.DELETE_USER_BY_ID, id);
     }
 
     @Override
     public void deleteUsers() throws IoException {
-        userStore.deleteUsers(logger, Markers.DELETE_USERS);
+        userStore.deleteUsers(Markers.DELETE_USERS);
     }
 
     @Override
     public UserId postUser(final User user) throws DuplicateUserException, IoException {
-        return userStore.postUser(logger, Markers.POST_USER, user);
+        return userStore.postUser(Markers.POST_USER, user);
     }
 
     @Override
@@ -52,15 +49,14 @@ abstract class StoreUserCommandService implements UserCommandService {
             throw IoException.create("user bookmark must have object_id xor object_query");
         }
 
-        return userBookmarkStore.postUserBookmark(logger, Markers.POST_USER_BOOKMARK, userBookmark);
+        return userBookmarkStore.postUserBookmark(Markers.POST_USER_BOOKMARK, userBookmark);
     }
 
     @Override
     public void putUser(final UserId id, final User user) throws IoException, NoSuchUserException {
-        userStore.putUser(logger, Markers.PUT_USER, user, id);
+        userStore.putUser(Markers.PUT_USER, user, id);
     }
 
     private final UserBookmarkStore userBookmarkStore;
     private final UserStore userStore;
-    private final static Logger logger = LoggerFactory.getLogger(StoreUserCommandService.class);
 }

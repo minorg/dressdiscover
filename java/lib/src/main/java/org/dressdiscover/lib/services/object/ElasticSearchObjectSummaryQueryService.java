@@ -347,8 +347,8 @@ public class ElasticSearchObjectSummaryQueryService implements ObjectSummaryQuer
 
                             SearchResponse searchResponse;
                             try {
-                                searchResponse = objectSummaryElasticSearchIndex.getModels(logger,
-                                        Markers.GET_OBJECT_SUMMARIES, searchRequestBuilder);
+                                searchResponse = objectSummaryElasticSearchIndex.getModels(Markers.GET_OBJECT_SUMMARIES,
+                                        searchRequestBuilder);
                             } catch (final IndexNotFoundException e) {
                                 logger.warn(Markers.GET_OBJECT_SUMMARIES,
                                         "object summaries index does not exist, returning empty results");
