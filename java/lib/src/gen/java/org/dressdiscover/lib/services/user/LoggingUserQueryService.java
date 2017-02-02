@@ -58,7 +58,7 @@ public class LoggingUserQueryService implements org.dressdiscover.api.services.u
         }
     }
 
-    public org.dressdiscover.api.models.user.UserEntry getUserByEmailAddress(final org.thryft.native_.EmailAddress emailAddress) throws org.dressdiscover.api.services.IoException, org.dressdiscover.api.services.user.NoSuchUserException {
+    public org.dressdiscover.api.models.user.UserEntry getUserByEmailAddress(final String emailAddress) throws org.dressdiscover.api.services.IoException, org.dressdiscover.api.services.user.NoSuchUserException {
         final StringBuilder __logMessageStringBuilder = new StringBuilder();
         final java.util.List<Object> __logMessageArgs = new java.util.ArrayList<Object>();
 

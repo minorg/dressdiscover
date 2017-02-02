@@ -1279,7 +1279,7 @@ public interface UserQueryService {
                     this.emailAddress = other.getEmailAddress();
                 }
 
-                protected GetUserByEmailAddressRequest _build(final org.thryft.native_.EmailAddress emailAddress) {
+                protected GetUserByEmailAddressRequest _build(final String emailAddress) {
                     return new GetUserByEmailAddressRequest(emailAddress, DefaultConstructionValidator.getInstance());
                 }
 
@@ -1287,7 +1287,7 @@ public interface UserQueryService {
                     return _build(emailAddress);
                 }
 
-                public final org.thryft.native_.EmailAddress getEmailAddress() {
+                public final String getEmailAddress() {
                     return emailAddress;
                 }
 
@@ -1309,7 +1309,7 @@ public interface UserQueryService {
                 public Builder readAsList(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
                     try {
                         iprot.readListBegin();
-                        emailAddress = new org.thryft.native_.EmailAddress(iprot.readString());
+                        emailAddress = iprot.readString();
                         iprot.readListEnd();
                     } catch (final RuntimeException e) {
                         throw new IllegalStateException(e);
@@ -1331,7 +1331,7 @@ public interface UserQueryService {
                             }
                             switch (ifield.getName()) {
                             case "email_address": {
-                                emailAddress = new org.thryft.native_.EmailAddress(iprot.readString());
+                                emailAddress = iprot.readString();
                                 break;
                             }
                             default:
@@ -1364,13 +1364,13 @@ public interface UserQueryService {
                     com.google.common.base.Preconditions.checkNotNull(fieldMetadata);
 
                     switch (fieldMetadata) {
-                    case EMAIL_ADDRESS: setEmailAddress((org.thryft.native_.EmailAddress)value); return this;
+                    case EMAIL_ADDRESS: setEmailAddress((String)value); return this;
                     default:
                         throw new IllegalStateException();
                     }
                 }
 
-                public Builder setEmailAddress(final org.thryft.native_.EmailAddress emailAddress) {
+                public Builder setEmailAddress(final String emailAddress) {
                     this.emailAddress = DefaultConstructionValidator.getInstance().validateEmailAddress(emailAddress);
                     return this;
                 }
@@ -1409,7 +1409,7 @@ public interface UserQueryService {
                     return this;
                 }
 
-                private org.thryft.native_.EmailAddress emailAddress;
+                private String emailAddress;
             }
 
             public final static class Factory implements org.thryft.CompoundType.Factory<GetUserByEmailAddressRequest> {
@@ -1443,7 +1443,7 @@ public interface UserQueryService {
 
             @SuppressWarnings("serial")
             public enum FieldMetadata implements org.thryft.CompoundType.FieldMetadata {
-                EMAIL_ADDRESS("emailAddress", new com.google.common.reflect.TypeToken<org.thryft.native_.EmailAddress>() {}, true, 0, "email_address", org.thryft.protocol.Type.STRING);
+                EMAIL_ADDRESS("emailAddress", new com.google.common.reflect.TypeToken<String>() {}, true, 0, "email_address", org.thryft.protocol.Type.STRING);
 
                 @Override
                 public String getJavaName() {
@@ -1525,7 +1525,7 @@ public interface UserQueryService {
             }
 
             public interface Validator<ExceptionT extends Exception> {
-                public org.thryft.native_.EmailAddress validateEmailAddress(final org.thryft.native_.EmailAddress emailAddress) throws ExceptionT;
+                public String validateEmailAddress(final String emailAddress) throws ExceptionT;
             }
 
             public interface ConstructionValidator extends Validator<RuntimeException> {
@@ -1540,9 +1540,25 @@ public interface UserQueryService {
                 }
 
                 @Override
-                public org.thryft.native_.EmailAddress validateEmailAddress(final org.thryft.native_.EmailAddress emailAddress) throws RuntimeException {
+                public String validateEmailAddress(final String emailAddress) throws RuntimeException {
                     if (emailAddress == null) {
                         throw new NullPointerException("org.dressdiscover.api.services.user.GetUserByEmailAddressRequest: emailAddress is null");
+                    }
+                    if (emailAddress.isEmpty()) {
+                        throw new IllegalArgumentException("org.dressdiscover.api.services.user.GetUserByEmailAddressRequest: emailAddress is less than min length 1");
+                    }
+                    {
+                        final int __strLen = emailAddress.length();
+                        boolean __blank = true;
+                        for (int i = 0; i < __strLen; i++) {
+                            if (!Character.isWhitespace(emailAddress.charAt(i))) {
+                                __blank = false;
+                                break;
+                            }
+                        }
+                        if (__blank) {
+                            throw new IllegalArgumentException(String.format("org.dressdiscover.api.services.user.GetUserByEmailAddressRequest: emailAddress is blank: '%s' (length=%d)", emailAddress, __strLen));
+                        }
                     }
                     return emailAddress;
                 }
@@ -1559,7 +1575,7 @@ public interface UserQueryService {
                 }
 
                 @Override
-                public org.thryft.native_.EmailAddress validateEmailAddress(final org.thryft.native_.EmailAddress emailAddress) {
+                public String validateEmailAddress(final String emailAddress) {
                     return emailAddress;
                 }
 
@@ -1578,9 +1594,25 @@ public interface UserQueryService {
                 }
 
                 @Override
-                public org.thryft.native_.EmailAddress validateEmailAddress(final org.thryft.native_.EmailAddress emailAddress) throws org.thryft.protocol.InputProtocolException {
+                public String validateEmailAddress(final String emailAddress) throws org.thryft.protocol.InputProtocolException {
                     if (emailAddress == null) {
                         throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.EMAIL_ADDRESS, "org.dressdiscover.api.services.user.GetUserByEmailAddressRequest: emailAddress is null");
+                    }
+                    if (emailAddress.isEmpty()) {
+                        throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.EMAIL_ADDRESS, "org.dressdiscover.api.services.user.GetUserByEmailAddressRequest: emailAddress is less than min length 1");
+                    }
+                    {
+                        final int __strLen = emailAddress.length();
+                        boolean __blank = true;
+                        for (int i = 0; i < __strLen; i++) {
+                            if (!Character.isWhitespace(emailAddress.charAt(i))) {
+                                __blank = false;
+                                break;
+                            }
+                        }
+                        if (__blank) {
+                            throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.EMAIL_ADDRESS, String.format("org.dressdiscover.api.services.user.GetUserByEmailAddressRequest: emailAddress is blank: '%s' (length=%d)", emailAddress, __strLen));
+                        }
                     }
                     return emailAddress;
                 }
@@ -1597,7 +1629,7 @@ public interface UserQueryService {
                 }
 
                 @Override
-                public org.thryft.native_.EmailAddress validateEmailAddress(final org.thryft.native_.EmailAddress emailAddress) {
+                public String validateEmailAddress(final String emailAddress) {
                     return emailAddress;
                 }
 
@@ -1611,7 +1643,7 @@ public interface UserQueryService {
                 this(other.getEmailAddress(), NopConstructionValidator.getInstance());
             }
 
-            protected GetUserByEmailAddressRequest(final org.thryft.native_.EmailAddress emailAddress, ConstructionValidator validator) {
+            protected GetUserByEmailAddressRequest(final String emailAddress, ConstructionValidator validator) {
                 this.emailAddress = validator.validateEmailAddress(emailAddress);
             }
 
@@ -1630,7 +1662,7 @@ public interface UserQueryService {
             /**
              * Optional factory method
              */
-            public static GetUserByEmailAddressRequest create(final org.thryft.native_.EmailAddress emailAddress) {
+            public static GetUserByEmailAddressRequest create(final String emailAddress) {
                 return new GetUserByEmailAddressRequest(emailAddress, DefaultConstructionValidator.getInstance());
             }
 
@@ -1673,7 +1705,7 @@ public interface UserQueryService {
                 }
             }
 
-            public final org.thryft.native_.EmailAddress getEmailAddress() {
+            public final String getEmailAddress() {
                 return emailAddress;
             }
 
@@ -1700,11 +1732,11 @@ public interface UserQueryService {
             }
 
             public static GetUserByEmailAddressRequest readAsList(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
-                org.thryft.native_.EmailAddress emailAddress = null;
+                String emailAddress = null;
 
                 try {
                     iprot.readListBegin();
-                    emailAddress = new org.thryft.native_.EmailAddress(iprot.readString());
+                    emailAddress = iprot.readString();
                     iprot.readListEnd();
                 } catch (final RuntimeException e) {
                     throw new IllegalStateException(e);
@@ -1717,7 +1749,7 @@ public interface UserQueryService {
             }
 
             public static GetUserByEmailAddressRequest readAsStruct(final org.thryft.protocol.InputProtocol iprot, final com.google.common.base.Optional<UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
-                org.thryft.native_.EmailAddress emailAddress = null;
+                String emailAddress = null;
 
                 try {
                     iprot.readStructBegin();
@@ -1728,7 +1760,7 @@ public interface UserQueryService {
                         }
                         switch (ifield.getName()) {
                         case "email_address": {
-                            emailAddress = new org.thryft.native_.EmailAddress(iprot.readString());
+                            emailAddress = iprot.readString();
                             break;
                         }
                         default:
@@ -1746,7 +1778,7 @@ public interface UserQueryService {
                 return new GetUserByEmailAddressRequest(DefaultReadValidator.getInstance().validateEmailAddress(emailAddress), NopConstructionValidator.getInstance());
             }
 
-            public GetUserByEmailAddressRequest replaceEmailAddress(final org.thryft.native_.EmailAddress emailAddress) {
+            public GetUserByEmailAddressRequest replaceEmailAddress(final String emailAddress) {
                 return new GetUserByEmailAddressRequest(DefaultConstructionValidator.getInstance().validateEmailAddress(emailAddress), NopConstructionValidator.getInstance());
             }
 
@@ -1759,7 +1791,7 @@ public interface UserQueryService {
             public void writeAsList(final org.thryft.protocol.OutputProtocol oprot) throws org.thryft.protocol.OutputProtocolException {
                 oprot.writeListBegin(org.thryft.protocol.Type.VOID_, 1);
 
-                oprot.writeString(getEmailAddress().toString());
+                oprot.writeString(getEmailAddress());
 
                 oprot.writeListEnd();
             }
@@ -1774,13 +1806,13 @@ public interface UserQueryService {
             @Override
             public void writeFields(final org.thryft.protocol.OutputProtocol oprot) throws org.thryft.protocol.OutputProtocolException {
                 oprot.writeFieldBegin("email_address", org.thryft.protocol.Type.STRING, (short)0);
-                oprot.writeString(getEmailAddress().toString());
+                oprot.writeString(getEmailAddress());
                 oprot.writeFieldEnd();
 
                 oprot.writeFieldStop();
             }
 
-            private final org.thryft.native_.EmailAddress emailAddress;
+            private final String emailAddress;
         }
 
         public final static class GetUserByEmailAddressResponse implements org.thryft.Struct {
@@ -3348,7 +3380,7 @@ public interface UserQueryService {
 
     public com.google.common.collect.ImmutableList<org.dressdiscover.api.models.user.UserBookmarkEntry> getUserBookmarksByUserId(final org.dressdiscover.api.models.user.UserId userId, final com.google.common.base.Optional<Boolean> objectIdsOnly) throws org.dressdiscover.api.services.IoException, org.dressdiscover.api.services.user.NoSuchUserException;
 
-    public org.dressdiscover.api.models.user.UserEntry getUserByEmailAddress(final org.thryft.native_.EmailAddress emailAddress) throws org.dressdiscover.api.services.IoException, org.dressdiscover.api.services.user.NoSuchUserException;
+    public org.dressdiscover.api.models.user.UserEntry getUserByEmailAddress(final String emailAddress) throws org.dressdiscover.api.services.IoException, org.dressdiscover.api.services.user.NoSuchUserException;
 
     public org.dressdiscover.api.models.user.User getUserById(final org.dressdiscover.api.models.user.UserId id) throws org.dressdiscover.api.services.IoException, org.dressdiscover.api.services.user.NoSuchUserException;
 }

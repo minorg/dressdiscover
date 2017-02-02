@@ -12,7 +12,7 @@ public final class User implements org.thryft.Struct, org.thryft.waf.api.models.
             this.emailAddress = other.getEmailAddress();
         }
 
-        protected User _build(final java.util.Date ctime, final org.thryft.native_.EmailAddress emailAddress) {
+        protected User _build(final java.util.Date ctime, final String emailAddress) {
             return new User(ctime, emailAddress, DefaultConstructionValidator.getInstance());
         }
 
@@ -24,7 +24,7 @@ public final class User implements org.thryft.Struct, org.thryft.waf.api.models.
             return ctime;
         }
 
-        public final org.thryft.native_.EmailAddress getEmailAddress() {
+        public final String getEmailAddress() {
             return emailAddress;
         }
 
@@ -51,7 +51,7 @@ public final class User implements org.thryft.Struct, org.thryft.waf.api.models.
                 } catch (final IllegalArgumentException e) {
                      throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.CTIME, e);
                 }
-                emailAddress = new org.thryft.native_.EmailAddress(iprot.readString());
+                emailAddress = iprot.readString();
                 iprot.readListEnd();
             } catch (final RuntimeException e) {
                 throw new IllegalStateException(e);
@@ -81,7 +81,7 @@ public final class User implements org.thryft.Struct, org.thryft.waf.api.models.
                         break;
                     }
                     case "email_address": {
-                        emailAddress = new org.thryft.native_.EmailAddress(iprot.readString());
+                        emailAddress = iprot.readString();
                         break;
                     }
                     default:
@@ -115,7 +115,7 @@ public final class User implements org.thryft.Struct, org.thryft.waf.api.models.
 
             switch (fieldMetadata) {
             case CTIME: setCtime((java.util.Date)value); return this;
-            case EMAIL_ADDRESS: setEmailAddress((org.thryft.native_.EmailAddress)value); return this;
+            case EMAIL_ADDRESS: setEmailAddress((String)value); return this;
             default:
                 throw new IllegalStateException();
             }
@@ -126,7 +126,7 @@ public final class User implements org.thryft.Struct, org.thryft.waf.api.models.
             return this;
         }
 
-        public Builder setEmailAddress(final org.thryft.native_.EmailAddress emailAddress) {
+        public Builder setEmailAddress(final String emailAddress) {
             this.emailAddress = DefaultConstructionValidator.getInstance().validateEmailAddress(emailAddress);
             return this;
         }
@@ -173,7 +173,7 @@ public final class User implements org.thryft.Struct, org.thryft.waf.api.models.
         }
 
         private java.util.Date ctime;
-        private org.thryft.native_.EmailAddress emailAddress;
+        private String emailAddress;
     }
 
     public final static class Factory implements org.thryft.CompoundType.Factory<User> {
@@ -208,7 +208,7 @@ public final class User implements org.thryft.Struct, org.thryft.waf.api.models.
     @SuppressWarnings("serial")
     public enum FieldMetadata implements org.thryft.CompoundType.FieldMetadata {
         CTIME("ctime", new com.google.common.reflect.TypeToken<java.util.Date>() {}, true, 0, "ctime", org.thryft.protocol.Type.I64),
-        EMAIL_ADDRESS("emailAddress", new com.google.common.reflect.TypeToken<org.thryft.native_.EmailAddress>() {}, true, 0, "email_address", org.thryft.protocol.Type.STRING);
+        EMAIL_ADDRESS("emailAddress", new com.google.common.reflect.TypeToken<String>() {}, true, 0, "email_address", org.thryft.protocol.Type.STRING);
 
         @Override
         public String getJavaName() {
@@ -294,7 +294,7 @@ public final class User implements org.thryft.Struct, org.thryft.waf.api.models.
     public interface Validator<ExceptionT extends Exception> {
         public java.util.Date validateCtime(final java.util.Date ctime) throws ExceptionT;
 
-        public org.thryft.native_.EmailAddress validateEmailAddress(final org.thryft.native_.EmailAddress emailAddress) throws ExceptionT;
+        public String validateEmailAddress(final String emailAddress) throws ExceptionT;
     }
 
     public interface ConstructionValidator extends Validator<RuntimeException> {
@@ -317,9 +317,25 @@ public final class User implements org.thryft.Struct, org.thryft.waf.api.models.
         }
 
         @Override
-        public org.thryft.native_.EmailAddress validateEmailAddress(final org.thryft.native_.EmailAddress emailAddress) throws RuntimeException {
+        public String validateEmailAddress(final String emailAddress) throws RuntimeException {
             if (emailAddress == null) {
                 throw new NullPointerException("org.dressdiscover.api.models.user.User: emailAddress is null");
+            }
+            if (emailAddress.isEmpty()) {
+                throw new IllegalArgumentException("org.dressdiscover.api.models.user.User: emailAddress is less than min length 1");
+            }
+            {
+                final int __strLen = emailAddress.length();
+                boolean __blank = true;
+                for (int i = 0; i < __strLen; i++) {
+                    if (!Character.isWhitespace(emailAddress.charAt(i))) {
+                        __blank = false;
+                        break;
+                    }
+                }
+                if (__blank) {
+                    throw new IllegalArgumentException(String.format("org.dressdiscover.api.models.user.User: emailAddress is blank: '%s' (length=%d)", emailAddress, __strLen));
+                }
             }
             return emailAddress;
         }
@@ -341,7 +357,7 @@ public final class User implements org.thryft.Struct, org.thryft.waf.api.models.
         }
 
         @Override
-        public org.thryft.native_.EmailAddress validateEmailAddress(final org.thryft.native_.EmailAddress emailAddress) {
+        public String validateEmailAddress(final String emailAddress) {
             return emailAddress;
         }
 
@@ -368,9 +384,25 @@ public final class User implements org.thryft.Struct, org.thryft.waf.api.models.
         }
 
         @Override
-        public org.thryft.native_.EmailAddress validateEmailAddress(final org.thryft.native_.EmailAddress emailAddress) throws org.thryft.protocol.InputProtocolException {
+        public String validateEmailAddress(final String emailAddress) throws org.thryft.protocol.InputProtocolException {
             if (emailAddress == null) {
                 throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.EMAIL_ADDRESS, "org.dressdiscover.api.models.user.User: emailAddress is null");
+            }
+            if (emailAddress.isEmpty()) {
+                throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.EMAIL_ADDRESS, "org.dressdiscover.api.models.user.User: emailAddress is less than min length 1");
+            }
+            {
+                final int __strLen = emailAddress.length();
+                boolean __blank = true;
+                for (int i = 0; i < __strLen; i++) {
+                    if (!Character.isWhitespace(emailAddress.charAt(i))) {
+                        __blank = false;
+                        break;
+                    }
+                }
+                if (__blank) {
+                    throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.EMAIL_ADDRESS, String.format("org.dressdiscover.api.models.user.User: emailAddress is blank: '%s' (length=%d)", emailAddress, __strLen));
+                }
             }
             return emailAddress;
         }
@@ -392,7 +424,7 @@ public final class User implements org.thryft.Struct, org.thryft.waf.api.models.
         }
 
         @Override
-        public org.thryft.native_.EmailAddress validateEmailAddress(final org.thryft.native_.EmailAddress emailAddress) {
+        public String validateEmailAddress(final String emailAddress) {
             return emailAddress;
         }
 
@@ -406,7 +438,7 @@ public final class User implements org.thryft.Struct, org.thryft.waf.api.models.
         this(other.getCtime(), other.getEmailAddress(), NopConstructionValidator.getInstance());
     }
 
-    protected User(final java.util.Date ctime, final org.thryft.native_.EmailAddress emailAddress, ConstructionValidator validator) {
+    protected User(final java.util.Date ctime, final String emailAddress, ConstructionValidator validator) {
         this.ctime = validator.validateCtime(ctime);
         this.emailAddress = validator.validateEmailAddress(emailAddress);
     }
@@ -426,7 +458,7 @@ public final class User implements org.thryft.Struct, org.thryft.waf.api.models.
     /**
      * Optional factory method
      */
-    public static User create(final java.util.Date ctime, final org.thryft.native_.EmailAddress emailAddress) {
+    public static User create(final java.util.Date ctime, final String emailAddress) {
         return new User(ctime, emailAddress, DefaultConstructionValidator.getInstance());
     }
 
@@ -478,7 +510,7 @@ public final class User implements org.thryft.Struct, org.thryft.waf.api.models.
         return ctime;
     }
 
-    public final org.thryft.native_.EmailAddress getEmailAddress() {
+    public final String getEmailAddress() {
         return emailAddress;
     }
 
@@ -507,7 +539,7 @@ public final class User implements org.thryft.Struct, org.thryft.waf.api.models.
 
     public static User readAsList(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
         java.util.Date ctime = null;
-        org.thryft.native_.EmailAddress emailAddress = null;
+        String emailAddress = null;
 
         try {
             iprot.readListBegin();
@@ -516,7 +548,7 @@ public final class User implements org.thryft.Struct, org.thryft.waf.api.models.
             } catch (final IllegalArgumentException e) {
                  throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.CTIME, e);
             }
-            emailAddress = new org.thryft.native_.EmailAddress(iprot.readString());
+            emailAddress = iprot.readString();
             iprot.readListEnd();
         } catch (final RuntimeException e) {
             throw new IllegalStateException(e);
@@ -530,7 +562,7 @@ public final class User implements org.thryft.Struct, org.thryft.waf.api.models.
 
     public static User readAsStruct(final org.thryft.protocol.InputProtocol iprot, final com.google.common.base.Optional<UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
         java.util.Date ctime = null;
-        org.thryft.native_.EmailAddress emailAddress = null;
+        String emailAddress = null;
 
         try {
             iprot.readStructBegin();
@@ -549,7 +581,7 @@ public final class User implements org.thryft.Struct, org.thryft.waf.api.models.
                     break;
                 }
                 case "email_address": {
-                    emailAddress = new org.thryft.native_.EmailAddress(iprot.readString());
+                    emailAddress = iprot.readString();
                     break;
                 }
                 default:
@@ -571,7 +603,7 @@ public final class User implements org.thryft.Struct, org.thryft.waf.api.models.
         return new User(DefaultConstructionValidator.getInstance().validateCtime(ctime), this.emailAddress, NopConstructionValidator.getInstance());
     }
 
-    public User replaceEmailAddress(final org.thryft.native_.EmailAddress emailAddress) {
+    public User replaceEmailAddress(final String emailAddress) {
         return new User(this.ctime, DefaultConstructionValidator.getInstance().validateEmailAddress(emailAddress), NopConstructionValidator.getInstance());
     }
 
@@ -586,7 +618,7 @@ public final class User implements org.thryft.Struct, org.thryft.waf.api.models.
 
         oprot.writeDateTime(getCtime());
 
-        oprot.writeString(getEmailAddress().toString());
+        oprot.writeString(getEmailAddress());
 
         oprot.writeListEnd();
     }
@@ -605,7 +637,7 @@ public final class User implements org.thryft.Struct, org.thryft.waf.api.models.
         oprot.writeFieldEnd();
 
         oprot.writeFieldBegin("email_address", org.thryft.protocol.Type.STRING, (short)0);
-        oprot.writeString(getEmailAddress().toString());
+        oprot.writeString(getEmailAddress());
         oprot.writeFieldEnd();
 
         oprot.writeFieldStop();
@@ -613,5 +645,5 @@ public final class User implements org.thryft.Struct, org.thryft.waf.api.models.
 
     private final java.util.Date ctime;
 
-    private final org.thryft.native_.EmailAddress emailAddress;
+    private final String emailAddress;
 }

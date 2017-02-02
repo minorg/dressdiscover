@@ -21,12 +21,12 @@ public class ValidatingUserQueryService implements org.dressdiscover.api.service
     }
 
     @Override
-    public final org.dressdiscover.api.models.user.UserEntry getUserByEmailAddress(final org.thryft.native_.EmailAddress emailAddress) throws org.dressdiscover.api.services.IoException, org.dressdiscover.api.services.user.NoSuchUserException {
+    public final org.dressdiscover.api.models.user.UserEntry getUserByEmailAddress(final String emailAddress) throws org.dressdiscover.api.services.IoException, org.dressdiscover.api.services.user.NoSuchUserException {
         _validateGetUserByEmailAddressParameters(emailAddress);
         return org.dressdiscover.api.services.user.UserQueryService.Messages.GetUserByEmailAddressResponse.DefaultConstructionValidator.getInstance().validateReturnValue(delegate.getUserByEmailAddress(emailAddress));
     }
 
-    protected void _validateGetUserByEmailAddressParameters(final org.thryft.native_.EmailAddress emailAddress) {
+    protected void _validateGetUserByEmailAddressParameters(final String emailAddress) {
         org.dressdiscover.api.services.user.UserQueryService.Messages.GetUserByEmailAddressRequest.DefaultConstructionValidator.getInstance().validateEmailAddress(emailAddress);
     }
 

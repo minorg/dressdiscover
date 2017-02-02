@@ -121,9 +121,6 @@ class Main(thryft.main.Main):
             # Two passes: one to test-compile all .thrift files, the other to generate them
             # ASTs are cached in the compiler so this only costs us the file system traversal,
             # and avoids generating code when there's a compilation error
-            if pass_i == 1:
-                self._clean()
-
             for thrift_subdir_name in ('api', 'lib', 'server'):
                 thrift_src_dir_path = os.path.join(thrift_src_root_dir_path, 'dressdiscover', thrift_subdir_name)
                 if not os.path.isdir(thrift_src_dir_path):
