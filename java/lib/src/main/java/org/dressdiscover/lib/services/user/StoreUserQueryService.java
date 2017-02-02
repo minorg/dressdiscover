@@ -6,17 +6,15 @@ import org.dressdiscover.api.models.user.User;
 import org.dressdiscover.api.models.user.UserBookmarkEntry;
 import org.dressdiscover.api.models.user.UserEntry;
 import org.dressdiscover.api.models.user.UserId;
+import org.dressdiscover.api.services.IoException;
+import org.dressdiscover.api.services.user.NoSuchUserException;
 import org.dressdiscover.lib.stores.user.UserBookmarkStore;
 import org.dressdiscover.lib.stores.user.UserStore;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.thryft.native_.EmailAddress;
 
 import com.google.common.base.Optional;
 import com.google.common.collect.ImmutableList;
-
-import org.dressdiscover.api.services.IoException;
-import org.dressdiscover.api.services.user.NoSuchUserException;
 
 abstract class StoreUserQueryService implements IterableUserQueryService {
     protected StoreUserQueryService(final UserBookmarkStore userBookmarkStore, final UserStore userStore) {
@@ -33,7 +31,7 @@ abstract class StoreUserQueryService implements IterableUserQueryService {
     }
 
     @Override
-    public UserEntry getUserByEmailAddress(final EmailAddress emailAddress) throws IoException, NoSuchUserException {
+    public UserEntry getUserByEmailAddress(final String emailAddress) throws IoException, NoSuchUserException {
         return userStore.getUserByEmailAddress(emailAddress, logger,
                 org.dressdiscover.lib.services.user.LoggingUserQueryService.Markers.GET_USER_BY_ID);
     }

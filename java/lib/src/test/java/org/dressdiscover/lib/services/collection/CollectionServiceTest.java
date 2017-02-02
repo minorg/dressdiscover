@@ -2,6 +2,9 @@ package org.dressdiscover.lib.services.collection;
 
 import org.dressdiscover.api.models.collection.CollectionEntry;
 import org.dressdiscover.api.models.institution.InstitutionId;
+import org.dressdiscover.api.services.collection.CollectionCommandService;
+import org.dressdiscover.api.services.collection.CollectionQueryService;
+import org.dressdiscover.api.services.institution.InstitutionCommandService;
 import org.dressdiscover.lib.services.ServiceTest;
 import org.dressdiscover.lib.services.institution.InstitutionServiceTest;
 import org.dressdiscover.testdata.TestData;
@@ -10,10 +13,6 @@ import org.junit.Before;
 
 import com.google.common.collect.ImmutableList;
 
-import org.dressdiscover.api.services.collection.CollectionCommandService;
-import org.dressdiscover.api.services.collection.CollectionQueryService;
-import org.dressdiscover.api.services.institution.InstitutionCommandService;
-
 public abstract class CollectionServiceTest extends ServiceTest {
     public static ImmutableList<CollectionEntry> putCollections(
             final InstitutionCommandService institutionCommandService,
@@ -21,7 +20,7 @@ public abstract class CollectionServiceTest extends ServiceTest {
         InstitutionServiceTest.putInstitutions(institutionCommandService);
 
         for (final CollectionEntry collectionEntry : TestData.getInstance().getCollections().values()) {
-            collectionCommandService.putCollection(collectionEntry.getId(), collectionEntry.getModel());
+            collectionCommandService.putCollection(collectionEntry.getModel(), collectionEntry.getId());
         }
         return ImmutableList.copyOf(TestData.getInstance().getCollections().values());
     }

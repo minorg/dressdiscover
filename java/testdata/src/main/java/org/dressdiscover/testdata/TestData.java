@@ -30,7 +30,6 @@ import org.dressdiscover.api.vocabularies.vra_core.subject.SubjectTermType;
 import org.dressdiscover.api.vocabularies.vra_core.title.Title;
 import org.dressdiscover.api.vocabularies.vra_core.title.TitleSet;
 import org.dressdiscover.api.vocabularies.vra_core.title.TitleType;
-import org.thryft.native_.EmailAddress;
 import org.thryft.native_.Url;
 
 import com.google.common.collect.ImmutableList;
@@ -108,8 +107,8 @@ public final class TestData {
 
         final ImmutableList.Builder<User> usersBuilder = ImmutableList.builder();
         for (int i = 0; i < 2; i++) {
-            usersBuilder.add(User.builder().setCtime(new Date())
-                    .setEmailAddress(new EmailAddress("testuser" + i + "@example.com")).build());
+            usersBuilder
+                    .add(User.builder().setCtime(new Date()).setEmailAddress("testuser" + i + "@example.com").build());
         }
         users = usersBuilder.build();
     }

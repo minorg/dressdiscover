@@ -11,14 +11,12 @@ import static org.junit.Assert.fail;
 import org.dressdiscover.api.models.user.User;
 import org.dressdiscover.api.models.user.UserBookmarkEntry;
 import org.dressdiscover.api.models.user.UserEntry;
-import org.dressdiscover.testdata.TestData;
-import org.junit.Test;
-import org.thryft.native_.EmailAddress;
-
-import com.google.common.collect.ImmutableList;
-
 import org.dressdiscover.api.services.user.DuplicateUserBookmarkException;
 import org.dressdiscover.api.services.user.NoSuchUserException;
+import org.dressdiscover.testdata.TestData;
+import org.junit.Test;
+
+import com.google.common.collect.ImmutableList;
 
 public final class JdbcUserCommandServiceTest extends UserServiceTest {
     @Test
@@ -100,7 +98,7 @@ public final class JdbcUserCommandServiceTest extends UserServiceTest {
     public void testPutUser() throws Exception {
         assertEquals(0, _getUsers().size());
         final UserEntry expected = _postUsers().iterator().next();
-        final EmailAddress newEmailAddress = new EmailAddress("testother@example.com");
+        final String newEmailAddress = "testother@example.com";
         userCommandService.putUser(expected.getId(),
                 User.builder(expected.getModel()).setEmailAddress(newEmailAddress).build());
         final User actual = userQueryService.getUserById(expected.getId());

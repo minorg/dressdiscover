@@ -21,14 +21,14 @@ public class StoreConfigurationCommandService implements ConfigurationCommandSer
     }
 
     @Override
-    public void putCollectionConfiguration(final CollectionId collectionId,
-            final CollectionConfiguration collectionConfiguration) throws IoException {
+    public void putCollectionConfiguration(final CollectionConfiguration collectionConfiguration,
+            final CollectionId collectionId) throws IoException {
         store.getCollectionConfigurationMap().put(collectionId, collectionConfiguration);
     }
 
     @Override
-    public void putInstitutionConfiguration(final InstitutionId institutionId,
-            final InstitutionConfiguration institutionConfiguration) throws IoException {
+    public void putInstitutionConfiguration(final InstitutionConfiguration institutionConfiguration,
+            final InstitutionId institutionId) throws IoException {
         store.getInstitutionConfigurationMap().put(institutionId, institutionConfiguration);
     }
 

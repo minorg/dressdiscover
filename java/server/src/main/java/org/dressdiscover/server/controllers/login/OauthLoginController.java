@@ -18,7 +18,7 @@ import org.dressdiscover.api.services.user.UserQueryService;
 import org.dressdiscover.lib.models.user.UserEntryPasswordToken;
 import org.dressdiscover.server.properties.ServerProperties;
 import org.thryft.waf.server.controllers.oauth.AbstractOauthLoginController;
-import org.thryft.waf.server.controllers.oauth.GoogleOauthServiceProvider;
+import org.thryft.waf.server.controllers.oauth.GoogleOauth2ServiceProvider;
 import org.thryft.waf.server.controllers.oauth.OauthUserProfile;
 
 import com.google.common.base.Optional;
@@ -33,7 +33,7 @@ public class OauthLoginController extends AbstractOauthLoginController<UserEntry
     public OauthLoginController(final ServerProperties properties, final UserCommandService userCommandService,
             final UserQueryService userQueryService) {
         super(ImmutableMap.of("google",
-                new GoogleOauthServiceProvider(properties.getGoogleOauthKey(), properties.getGoogleOauthSecret())));
+                new GoogleOauth2ServiceProvider(properties.getGoogleOauthKey(), properties.getGoogleOauthSecret())));
         this.userCommandService = checkNotNull(userCommandService);
         this.userQueryService = checkNotNull(userQueryService);
     }

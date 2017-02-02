@@ -16,7 +16,6 @@ import org.dressdiscover.lib.properties.StoreProperties;
 import org.dressdiscover.lib.services.IoExceptions;
 import org.slf4j.Logger;
 import org.slf4j.Marker;
-import org.thryft.native_.EmailAddress;
 import org.thryft.protocol.InputProtocolException;
 import org.thryft.protocol.OutputProtocolException;
 import org.thryft.waf.lib.protocols.JdbcResultSetInputProtocol;
@@ -69,7 +68,7 @@ public final class UserJdbcTable extends AbstractJdbcTable<User> implements User
     }
 
     @Override
-    public UserEntry getUserByEmailAddress(final EmailAddress emailAddress, final Logger logger, final Marker logMarker)
+    public UserEntry getUserByEmailAddress(final String emailAddress, final Logger logger, final Marker logMarker)
             throws IoException, NoSuchUserException {
         try (Connection connection = _getConnection()) {
             try (PreparedStatement statement = connection.prepareStatement(getUserByEmailAddressSql)) {

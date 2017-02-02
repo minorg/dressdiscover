@@ -79,7 +79,7 @@ public class StoreCollectionCommandService implements CollectionCommandService {
     }
 
     @Override
-    public void putCollection(final CollectionId id, final Collection collection)
+    public void putCollection(final Collection collection, final CollectionId id)
             throws IoException, NoSuchInstitutionException {
         final CollectionStore collectionStore = collectionStoreCache.getCollectionStore(id);
         try {
