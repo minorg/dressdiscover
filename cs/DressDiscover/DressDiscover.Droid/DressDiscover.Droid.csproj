@@ -115,6 +115,7 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidAsset Include="Assets\worksheet_definition.json" />
+    <None Include="app.config" />
     <None Include="packages.config" />
     <None Include="Resources\AboutResources.txt" />
     <None Include="Assets\AboutAssets.txt" />

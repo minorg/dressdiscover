@@ -1,6 +1,4 @@
-﻿using DressDiscover.Gui.Portable;
-using NUnit.Framework;
-using System;
+﻿using NUnit.Framework;
 
 namespace DressDiscover.Gui.Portable.Test
 {
