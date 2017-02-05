@@ -1,0 +1,10 @@
+cached_uglify/
+node_modules/
+bin/
+*.csproj.user
+obj/
+*.pyc
+.vs/
+web.config
+web.Debug.config
+web.Release.config
