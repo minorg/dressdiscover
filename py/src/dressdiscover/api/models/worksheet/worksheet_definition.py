@@ -68,7 +68,14 @@ class WorksheetDefinition(object):
             self.__type = type_
             self.__validation = validation
 
+        @property
+        def name(self):
+            return self.__name
+
         def __repr__(self):
+            return self.__name
+
+        def __str__(self):
             return self.__name
 
         @property
