@@ -7578,10 +7578,6 @@ return /******/ (function(modules) { // webpackBootstrap
 	            newAccessionNumberInput: "#newAccessionNumberInput"
 	        };
 	    };
-	    WorksheetAccessionNumberPickerView.prototype.onClickCloseButton = function () {
-	        application_1.Application.instance.modalRegion.empty();
-	        application_1.Application.instance.router.navigate("", { trigger: true });
-	    };
 	    WorksheetAccessionNumberPickerView.prototype.onClickOkButton = function () {
 	        var accessionNumber = this.ui.accessionNumberSelect.val();
 	        if (!accessionNumber) {
@@ -7631,7 +7627,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /* 26 */
 /***/ function(module, exports) {
 
-	module.exports = "<div class=\"modal-dialog\" role=\"document\" id=\"worksheet-accession-number-picker\">\n    <div class=\"modal-content\">\n        <div class=\"modal-header\">\n            <button type=\"button\" class=\"close\" aria-label=\"Close\" id=\"header-close-button\"><span aria-hidden=\"true\">&times;</span></button>\n            <h4 class=\"modal-title\">Worksheet</h4>\n        </div>\n        <div class=\"modal-body\">\n            <% if (availableAccessionNumbers.length > 0) { %>\n                <select class=\"selectpicker show-menu-arrow show-tick\" data-width=\"auto\" id=\"accessionNumberSelect\" title=\"Choose an existing worksheet\">\n                    <% for (var i = 0; i < availableAccessionNumbers.length; i++) { %>\n                        <option value=\"<%= availableAccessionNumbers[i] %>\"><%- availableAccessionNumbers[i] %></option>\n                    <% } %>\n                </select>\n                <br /><br />\n            <% } %>\n            <div>\n                <div>\n                    <% if (availableAccessionNumbers.length > 0) { %>\n                    Or enter a new accession number:\n                    <% } else { %>\n                    Enter a new accession number:\n                    <% } %>\n                </div>\n                <input id=\"newAccessionNumberInput\" placeholder=\"New accession number\" size=\"26\" type=\"text\" />\n            </div>\n            <br/>\n            <div class=\"modal-footer\">\n                <button type=\"button\" class=\"btn btn-default\" id=\"footer-close-button\">Cancel</button>\n                <button type=\"button\" class=\"btn btn-primary\" id=\"footer-ok-button\">OK</button>\n            </div>\n            <div class=\"alert alert-warning\" hidden=\"hidden\" id=\"alert\" role=\"alert\">\n                <strong>Please select or enter an accession number</strong>\n            </div>\n        </div>\n    </div>\n</div>\n"
+	module.exports = "<div class=\"modal-dialog\" role=\"document\" id=\"worksheet-accession-number-picker\">\n    <div class=\"modal-content\">\n        <div class=\"modal-header\">\n            <h4 class=\"modal-title\">Worksheet</h4>\n        </div>\n        <div class=\"modal-body\">\n            <% if (availableAccessionNumbers.length > 0) { %>\n                <select class=\"selectpicker show-menu-arrow show-tick\" data-width=\"auto\" id=\"accessionNumberSelect\" title=\"Choose an existing worksheet\">\n                    <% for (var i = 0; i < availableAccessionNumbers.length; i++) { %>\n                        <option value=\"<%= availableAccessionNumbers[i] %>\"><%- availableAccessionNumbers[i] %></option>\n                    <% } %>\n                </select>\n                <br /><br />\n            <% } %>\n            <div>\n                <div>\n                    <% if (availableAccessionNumbers.length > 0) { %>\n                    Or enter a new accession number:\n                    <% } else { %>\n                    Enter a new accession number:\n                    <% } %>\n                </div>\n                <input id=\"newAccessionNumberInput\" placeholder=\"New accession number\" size=\"26\" type=\"text\" />\n            </div>\n            <br/>\n            <div class=\"modal-footer\">\n                <button type=\"button\" class=\"btn btn-primary\" id=\"footer-ok-button\">OK</button>\n            </div>\n            <div class=\"alert alert-warning\" hidden=\"hidden\" id=\"alert\" role=\"alert\">\n                <strong>Please select or enter an accession number</strong>\n            </div>\n        </div>\n    </div>\n</div>\n"
 
 /***/ },
 /* 27 */
@@ -7728,7 +7724,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /* 30 */
 /***/ function(module, exports) {
 
-	module.exports = "<nav class=\"navbar navbar-default\">\n    <div class=\"container-fluid\">\n        <!-- Brand and toggle get grouped for better mobile display -->\n        <div class=\"navbar-header\">\n            <button type=\"button\" class=\"navbar-toggle collapsed\" data-toggle=\"collapse\" data-target=\"#navbar-collapse-1\" aria-expanded=\"false\">\n                <span class=\"sr-only\">Toggle navigation</span>\n                <span class=\"icon-bar\"></span>\n                <span class=\"icon-bar\"></span>\n                <span class=\"icon-bar\"></span>\n            </button>\n            <a class=\"navbar-brand\" href=\"#\">DressDiscover</a>\n        </div>\n        <!-- Collect the nav links, forms, and other content for toggling -->\n        <div class=\"collapse navbar-collapse\" id=\"navbar-collapse-1\">\n            <ul class=\"nav navbar-nav\">\n                <li class=\"active\"><a href=\"#worksheet\">Worksheet <span class=\"sr-only\">(current)</span></a></li>\n            </ul>\n        </div><!-- /.navbar-collapse -->\n    </div><!-- /.container-fluid -->\n</nav>\n"
+	module.exports = "<nav class=\"navbar navbar-default\">\n    <div class=\"container-fluid\">\n        <!-- Brand and toggle get grouped for better mobile display -->\n        <div class=\"navbar-header\">\n            <button type=\"button\" class=\"navbar-toggle collapsed\" data-toggle=\"collapse\" data-target=\"#navbar-collapse-1\" aria-expanded=\"false\">\n                <span class=\"sr-only\">Toggle navigation</span>\n                <span class=\"icon-bar\"></span>\n                <span class=\"icon-bar\"></span>\n                <span class=\"icon-bar\"></span>\n            </button>\n            <a class=\"navbar-brand\" href=\"#worksheet\">DressDiscover Worksheet</a>\n        </div>\n        <!-- Collect the nav links, forms, and other content for toggling -->\n        <div class=\"collapse navbar-collapse\" id=\"navbar-collapse-1\">\n            <ul class=\"nav navbar-nav\">\n                <!--<li class=\"active\"><a href=\"#worksheet\">Worksheet <span class=\"sr-only\">(current)</span></a></li>-->\n            </ul>\n        </div><!-- /.navbar-collapse -->\n    </div><!-- /.container-fluid -->\n</nav>\n"
 
 /***/ },
 /* 31 */
@@ -10782,7 +10778,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        this.$el.on('hidden.bs.modal', { region: this }, function (event) {
 	            event.data.region.empty();
 	        });
-	        this.$el.modal('show');
+	        this.$el.modal({ show: true, keyboard: false });
 	    };
 	    return ModalRegion;
 	}(Marionette.Region));
