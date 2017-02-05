@@ -36,7 +36,7 @@ from yutil import indent, upper_camelize
 
 CS_OUT_DIR_PATH = os.path.join(ROOT_DIR_PATH, 'cs', 'DressDiscover', 'DressDiscover.Portable', 'src')
 PY_OUT_DIR_PATH = os.path.join(ROOT_DIR_PATH, 'py', 'src')
-TS_OUT_DIR_PATH = os.path.join(ROOT_DIR_PATH, 'ts', 'src')
+WORKSHEET_TS_OUT_DIR_PATH = os.path.join(ROOT_DIR_PATH, 'ts', 'worksheet', 'src')
 
 
 ELASTIC_SEARCH_INDEX_SETTINGS = \
@@ -75,7 +75,7 @@ class Main(thryft.main.Main):
              os.path.join(PY_OUT_DIR_PATH, 'dressdiscover', 'api'),
              os.path.join(PY_OUT_DIR_PATH, 'thryft'),
              os.path.join(ROOT_DIR_PATH, 'sql'),
-             os.path.join(TS_OUT_DIR_PATH, 'dressdiscover', 'api'),
+             os.path.join(WORKSHEET_TS_OUT_DIR_PATH, 'dressdiscover', 'api'),
         ):
             if os.path.isdir(dir_path):
                 for i in xrange(10):
@@ -85,7 +85,7 @@ class Main(thryft.main.Main):
                         pass
 
         os.makedirs(os.path.join(PY_OUT_DIR_PATH, 'dressdiscover', 'api'))
-        os.makedirs(os.path.join(TS_OUT_DIR_PATH, 'dressdiscover', 'api'))
+        os.makedirs(os.path.join(WORKSHEET_TS_OUT_DIR_PATH, 'dressdiscover', 'api'))
 
         # Copy thryft/lib/py to py/src
         shutil.copytree(
@@ -96,7 +96,7 @@ class Main(thryft.main.Main):
     def _compile(self):
         thrift_src_root_dir_path = os.path.join(ROOT_DIR_PATH, 'thrift', 'src')
 
-        async_to_sync_service_ts_generator = AsyncToSyncServiceTsGenerator(ts_out_dir_path=TS_OUT_DIR_PATH)
+        async_to_sync_service_ts_generator = AsyncToSyncServiceTsGenerator(ts_out_dir_path=WORKSHEET_TS_OUT_DIR_PATH)
         cs_generator = CsGenerator()
         java_generator = \
             JavaGenerator(
@@ -114,7 +114,7 @@ class Main(thryft.main.Main):
         properties_java_generator = PropertiesJavaGenerator(project_name='dressdiscover', namespace_prefix='org.')
         py_generator = PyGenerator()
         sql_generator = CreateTableSqlGenerator()
-        ts_generator = TsGenerator(ts_out_dir_path=TS_OUT_DIR_PATH)
+        ts_generator = TsGenerator(ts_out_dir_path=WORKSHEET_TS_OUT_DIR_PATH)
         validating_service_java_generator = ValidatingServiceJavaGenerator(namespace_prefix='org.')
 
         for pass_i in xrange(2):
@@ -159,13 +159,13 @@ class Main(thryft.main.Main):
                             )
                             self._compile_thrift_file(
                                 generator=ts_generator,
-                                out=TS_OUT_DIR_PATH,
+                                out=WORKSHEET_TS_OUT_DIR_PATH,
                                 **compile_kwds
                             )
                             if thrift_file_base_name.endswith('_service'):
                                 self._compile_thrift_file(
                                     generator=async_to_sync_service_ts_generator,
-                                    out=TS_OUT_DIR_PATH,
+                                    out=WORKSHEET_TS_OUT_DIR_PATH,
                                     **compile_kwds
                                 )
                             if thrift_file_dir_name == 'worksheet':
