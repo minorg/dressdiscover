@@ -73,13 +73,13 @@ return /******/ (function(modules) { // webpackBootstrap
 	var Marionette = __webpack_require__(5);
 	var radio_1 = __webpack_require__(8);
 	var router_1 = __webpack_require__(10);
-	var modal_region_1 = __webpack_require__(82);
-	var services_1 = __webpack_require__(83);
-	__webpack_require__(94);
-	__webpack_require__(95);
-	__webpack_require__(97);
-	__webpack_require__(98);
-	__webpack_require__(100);
+	var modal_region_1 = __webpack_require__(71);
+	var services_1 = __webpack_require__(72);
+	__webpack_require__(83);
+	__webpack_require__(84);
+	__webpack_require__(86);
+	__webpack_require__(87);
+	__webpack_require__(89);
 	var Application = (function (_super) {
 	    __extends(Application, _super);
 	    function Application() {
@@ -6781,7 +6781,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /* 20 */
 /***/ function(module, exports) {
 
-	module.exports = "<nav class=\"navbar navbar-default\">\r\n    <div class=\"container-fluid\">\r\n        <!-- Brand and toggle get grouped for better mobile display -->\r\n        <div class=\"navbar-header\">\r\n            <button type=\"button\" class=\"navbar-toggle collapsed\" data-toggle=\"collapse\" data-target=\"#navbar-collapse-1\" aria-expanded=\"false\">\r\n                <span class=\"sr-only\">Toggle navigation</span>\r\n                <span class=\"icon-bar\"></span>\r\n                <span class=\"icon-bar\"></span>\r\n                <span class=\"icon-bar\"></span>\r\n            </button>\r\n            <a class=\"navbar-brand\" href=\"#\">DressDiscover</a>\r\n        </div>\r\n        <!-- Collect the nav links, forms, and other content for toggling -->\r\n        <div class=\"collapse navbar-collapse\" id=\"navbar-collapse-1\">\r\n            <ul class=\"nav navbar-nav\">\r\n                <li class=\"active\"><a href=\"#worksheet\">Worksheet <span class=\"sr-only\">(current)</span></a></li>\r\n            </ul>\r\n        </div><!-- /.navbar-collapse -->\r\n    </div><!-- /.container-fluid -->\r\n</nav>\r\n"
+	module.exports = "<nav class=\"navbar navbar-default\">\n    <div class=\"container-fluid\">\n        <!-- Brand and toggle get grouped for better mobile display -->\n        <div class=\"navbar-header\">\n            <button type=\"button\" class=\"navbar-toggle collapsed\" data-toggle=\"collapse\" data-target=\"#navbar-collapse-1\" aria-expanded=\"false\">\n                <span class=\"sr-only\">Toggle navigation</span>\n                <span class=\"icon-bar\"></span>\n                <span class=\"icon-bar\"></span>\n                <span class=\"icon-bar\"></span>\n            </button>\n            <a class=\"navbar-brand\" href=\"#\">DressDiscover</a>\n        </div>\n        <!-- Collect the nav links, forms, and other content for toggling -->\n        <div class=\"collapse navbar-collapse\" id=\"navbar-collapse-1\">\n            <ul class=\"nav navbar-nav\">\n                <li class=\"active\"><a href=\"#worksheet\">Worksheet <span class=\"sr-only\">(current)</span></a></li>\n            </ul>\n        </div><!-- /.navbar-collapse -->\n    </div><!-- /.container-fluid -->\n</nav>\n"
 
 /***/ },
 /* 21 */
@@ -7834,7 +7834,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	var worksheet_feature_navigation_event_1 = __webpack_require__(39);
 	var worksheet_input_view_1 = __webpack_require__(40);
 	var worksheet_sidebar_view_1 = __webpack_require__(59);
-	__webpack_require__(79);
+	__webpack_require__(68);
 	var WorksheetTwoColumnView = (function (_super) {
 	    __extends(WorksheetTwoColumnView, _super);
 	    function WorksheetTwoColumnView(options) {
@@ -7843,7 +7843,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	                leftColumn: "#left-column",
 	                rightColumn: "#right-column"
 	            },
-	            template: _.template(__webpack_require__(81))
+	            template: _.template(__webpack_require__(70))
 	        }));
 	    }
 	    WorksheetTwoColumnView.prototype.initialize = function () {
@@ -8434,7 +8434,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /* 53 */
 /***/ function(module, exports) {
 
-	module.exports = "<div class=\"col-sm-3 feature-value\">\n    <a class=\"display-name\"><h5><%- displayName %></h5></a>\n    <% if (image) { %>\n    <div class=\"container-fluid image\">\n        <div class=\"row thumbnail\">\n            <a class=\"thumbnail\"><img alt=\"<%- displayName %>\" class=\"img-responsive\" src=\"<%- image.thumbnailUrl %>\" title=\"<%- displayName %>\"></a>\n            <a class=\"full-size\"><i class=\"glyphicon glyphicon-search\"></i></a>\n        </div>\n        <div class=\"row rights\">\n            <div class=\"panel-group\" id=\"rights-panel-group\">\r\n                <div class=\"panel panel-default\">\r\n                    <div class=\"panel-heading\">\r\n                        <h4 class=\"panel-title\">\r\n                            <a class=\"collapsed rights-toggle\" data-toggle=\"collapse\" data-parent=\"#rights-panel-group\" href=\"#rightsCollapseOne\">\r\n                                (C) <%- image.rights.author %>\r\n                            </a>\r\n                        </h4>\r\n                    </div>\r\n                    <div id=\"rightsCollapseOne\" class=\"panel-collapse collapse\">\r\n                        <div class=\"panel-body\">\r\n                            <table>\r\n                                <tr><td class=\"rights-field-name\">Author</td><td class=\"rights-field-value\"><%- image.rights.author %></td></tr>\r\n                                <tr><td class=\"rights-field-name\">License</td><td class=\"rights-field-value\"><%- image.rights.license %></td></tr>\r\n                                <tr><td class=\"rights-field-name\">Source</td><td class=\"rights-field-value\"><a href=\"<%= image.rights.sourceUrl %>\"><%- image.rights.sourceName %></a></td></tr>\r\n                            </table>\r\n                        </div>\r\n                    </div>\r\n                </div>\r\n            </div>\n        </div>\n    </div>\n    <% } %>\n    <div class=\"checkbox\">\n        <input class=\"form-check-input\" name=\"feature-value-checkbox\" type=\"checkbox\" value=\"\" />\n        <label for=\"feature-value-checkbox\"><%- displayName %></label>\n    </div>\n</div>\n"
+	module.exports = "<div class=\"col-sm-3 feature-value\">\n    <a class=\"display-name\"><h5><%- displayName %></h5></a>\n    <% if (image) { %>\n    <div class=\"container-fluid image\">\n        <div class=\"row thumbnail\">\n            <a class=\"thumbnail\"><img alt=\"<%- displayName %>\" class=\"img-responsive\" src=\"<%- image.thumbnailUrl %>\" title=\"<%- displayName %>\"></a>\n            <a class=\"full-size\"><i class=\"glyphicon glyphicon-search\"></i></a>\n        </div>\n        <div class=\"row rights\">\n            <div class=\"panel-group\" id=\"rights-panel-group\">\n                <div class=\"panel panel-default\">\n                    <div class=\"panel-heading\">\n                        <h4 class=\"panel-title\">\n                            <a class=\"collapsed rights-toggle\" data-toggle=\"collapse\" data-parent=\"#rights-panel-group\" href=\"#rightsCollapseOne\">\n                                (C) <%- image.rights.author %>\n                            </a>\n                        </h4>\n                    </div>\n                    <div id=\"rightsCollapseOne\" class=\"panel-collapse collapse\">\n                        <div class=\"panel-body\">\n                            <table>\n                                <tr><td class=\"rights-field-name\">Author</td><td class=\"rights-field-value\"><%- image.rights.author %></td></tr>\n                                <tr><td class=\"rights-field-name\">License</td><td class=\"rights-field-value\"><%- image.rights.license %></td></tr>\n                                <tr><td class=\"rights-field-name\">Source</td><td class=\"rights-field-value\"><a href=\"<%= image.rights.sourceUrl %>\"><%- image.rights.sourceName %></a></td></tr>\n                            </table>\n                        </div>\n                    </div>\n                </div>\n            </div>\n        </div>\n    </div>\n    <% } %>\n    <div class=\"checkbox\">\n        <input class=\"form-check-input\" name=\"feature-value-checkbox\" type=\"checkbox\" value=\"\" />\n        <label for=\"feature-value-checkbox\"><%- displayName %></label>\n    </div>\n</div>\n"
 
 /***/ },
 /* 54 */
@@ -9168,7 +9168,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	var Marionette = __webpack_require__(5);
 	var worksheet_navigation_view_1 = __webpack_require__(60);
 	var worksheet_output_view_1 = __webpack_require__(61);
-	__webpack_require__(76);
+	__webpack_require__(65);
 	var WorksheetSidebarView = (function (_super) {
 	    __extends(WorksheetSidebarView, _super);
 	    function WorksheetSidebarView(options) {
@@ -9181,7 +9181,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	                navigation: "#navigation",
 	                output: "#output"
 	            },
-	            template: _.template(__webpack_require__(78))
+	            template: _.template(__webpack_require__(67))
 	        }));
 	    }
 	    WorksheetSidebarView.prototype.onBeforeShow = function () {
@@ -9332,9 +9332,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	var Marionette = __webpack_require__(5);
 	var worksheet_feature_input_event_1 = __webpack_require__(37);
 	var worksheet_feature_navigation_event_1 = __webpack_require__(39);
-	var Clipboard = __webpack_require__(62);
-	__webpack_require__(70);
-	__webpack_require__(73);
+	var Clipboard = __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"Clipboard\""); e.code = 'MODULE_NOT_FOUND'; throw e; }()));
+	__webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"../../../../../../node_modules/clipboard-js/clipboard.js\""); e.code = 'MODULE_NOT_FOUND'; throw e; }()));
+	__webpack_require__(62);
 	var WorksheetCsvOutputFormat = (function () {
 	    function WorksheetCsvOutputFormat() {
 	    }
@@ -9437,7 +9437,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	                "click #email": "onClickEmail"
 	            },
 	            id: "output",
-	            template: _.template(__webpack_require__(75))
+	            template: _.template(__webpack_require__(64))
 	        }));
 	        this._outputFormats = {
 	            "CSV": new WorksheetCsvOutputFormat(),
@@ -9554,1261 +9554,45 @@ return /******/ (function(modules) { // webpackBootstrap
 
 /***/ },
 /* 62 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ function(module, exports) {
 
-	var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;(function (global, factory) {
-	    if (true) {
-	        !(__WEBPACK_AMD_DEFINE_ARRAY__ = [module, __webpack_require__(63), __webpack_require__(65), __webpack_require__(66)], __WEBPACK_AMD_DEFINE_FACTORY__ = (factory), __WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ? (__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
-	    } else if (typeof exports !== "undefined") {
-	        factory(module, require('./clipboard-action'), require('tiny-emitter'), require('good-listener'));
-	    } else {
-	        var mod = {
-	            exports: {}
-	        };
-	        factory(mod, global.clipboardAction, global.tinyEmitter, global.goodListener);
-	        global.clipboard = mod.exports;
-	    }
-	})(this, function (module, _clipboardAction, _tinyEmitter, _goodListener) {
-	    'use strict';
-	
-	    var _clipboardAction2 = _interopRequireDefault(_clipboardAction);
-	
-	    var _tinyEmitter2 = _interopRequireDefault(_tinyEmitter);
-	
-	    var _goodListener2 = _interopRequireDefault(_goodListener);
-	
-	    function _interopRequireDefault(obj) {
-	        return obj && obj.__esModule ? obj : {
-	            default: obj
-	        };
-	    }
-	
-	    function _classCallCheck(instance, Constructor) {
-	        if (!(instance instanceof Constructor)) {
-	            throw new TypeError("Cannot call a class as a function");
-	        }
-	    }
-	
-	    var _createClass = function () {
-	        function defineProperties(target, props) {
-	            for (var i = 0; i < props.length; i++) {
-	                var descriptor = props[i];
-	                descriptor.enumerable = descriptor.enumerable || false;
-	                descriptor.configurable = true;
-	                if ("value" in descriptor) descriptor.writable = true;
-	                Object.defineProperty(target, descriptor.key, descriptor);
-	            }
-	        }
-	
-	        return function (Constructor, protoProps, staticProps) {
-	            if (protoProps) defineProperties(Constructor.prototype, protoProps);
-	            if (staticProps) defineProperties(Constructor, staticProps);
-	            return Constructor;
-	        };
-	    }();
-	
-	    function _possibleConstructorReturn(self, call) {
-	        if (!self) {
-	            throw new ReferenceError("this hasn't been initialised - super() hasn't been called");
-	        }
-	
-	        return call && (typeof call === "object" || typeof call === "function") ? call : self;
-	    }
-	
-	    function _inherits(subClass, superClass) {
-	        if (typeof superClass !== "function" && superClass !== null) {
-	            throw new TypeError("Super expression must either be null or a function, not " + typeof superClass);
-	        }
-	
-	        subClass.prototype = Object.create(superClass && superClass.prototype, {
-	            constructor: {
-	                value: subClass,
-	                enumerable: false,
-	                writable: true,
-	                configurable: true
-	            }
-	        });
-	        if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass;
-	    }
-	
-	    var Clipboard = function (_Emitter) {
-	        _inherits(Clipboard, _Emitter);
-	
-	        /**
-	         * @param {String|HTMLElement|HTMLCollection|NodeList} trigger
-	         * @param {Object} options
-	         */
-	        function Clipboard(trigger, options) {
-	            _classCallCheck(this, Clipboard);
-	
-	            var _this = _possibleConstructorReturn(this, (Clipboard.__proto__ || Object.getPrototypeOf(Clipboard)).call(this));
-	
-	            _this.resolveOptions(options);
-	            _this.listenClick(trigger);
-	            return _this;
-	        }
-	
-	        /**
-	         * Defines if attributes would be resolved using internal setter functions
-	         * or custom functions that were passed in the constructor.
-	         * @param {Object} options
-	         */
-	
-	
-	        _createClass(Clipboard, [{
-	            key: 'resolveOptions',
-	            value: function resolveOptions() {
-	                var options = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
-	
-	                this.action = typeof options.action === 'function' ? options.action : this.defaultAction;
-	                this.target = typeof options.target === 'function' ? options.target : this.defaultTarget;
-	                this.text = typeof options.text === 'function' ? options.text : this.defaultText;
-	            }
-	        }, {
-	            key: 'listenClick',
-	            value: function listenClick(trigger) {
-	                var _this2 = this;
-	
-	                this.listener = (0, _goodListener2.default)(trigger, 'click', function (e) {
-	                    return _this2.onClick(e);
-	                });
-	            }
-	        }, {
-	            key: 'onClick',
-	            value: function onClick(e) {
-	                var trigger = e.delegateTarget || e.currentTarget;
-	
-	                if (this.clipboardAction) {
-	                    this.clipboardAction = null;
-	                }
-	
-	                this.clipboardAction = new _clipboardAction2.default({
-	                    action: this.action(trigger),
-	                    target: this.target(trigger),
-	                    text: this.text(trigger),
-	                    trigger: trigger,
-	                    emitter: this
-	                });
-	            }
-	        }, {
-	            key: 'defaultAction',
-	            value: function defaultAction(trigger) {
-	                return getAttributeValue('action', trigger);
-	            }
-	        }, {
-	            key: 'defaultTarget',
-	            value: function defaultTarget(trigger) {
-	                var selector = getAttributeValue('target', trigger);
-	
-	                if (selector) {
-	                    return document.querySelector(selector);
-	                }
-	            }
-	        }, {
-	            key: 'defaultText',
-	            value: function defaultText(trigger) {
-	                return getAttributeValue('text', trigger);
-	            }
-	        }, {
-	            key: 'destroy',
-	            value: function destroy() {
-	                this.listener.destroy();
-	
-	                if (this.clipboardAction) {
-	                    this.clipboardAction.destroy();
-	                    this.clipboardAction = null;
-	                }
-	            }
-	        }]);
-	
-	        return Clipboard;
-	    }(_tinyEmitter2.default);
-	
-	    /**
-	     * Helper function to retrieve attribute value.
-	     * @param {String} suffix
-	     * @param {Element} element
-	     */
-	    function getAttributeValue(suffix, element) {
-	        var attribute = 'data-clipboard-' + suffix;
-	
-	        if (!element.hasAttribute(attribute)) {
-	            return;
-	        }
-	
-	        return element.getAttribute(attribute);
-	    }
-	
-	    module.exports = Clipboard;
-	});
+	// removed by extract-text-webpack-plugin
 
 /***/ },
-/* 63 */
-/***/ function(module, exports, __webpack_require__) {
-
-	var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;(function (global, factory) {
-	    if (true) {
-	        !(__WEBPACK_AMD_DEFINE_ARRAY__ = [module, __webpack_require__(64)], __WEBPACK_AMD_DEFINE_FACTORY__ = (factory), __WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ? (__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
-	    } else if (typeof exports !== "undefined") {
-	        factory(module, require('select'));
-	    } else {
-	        var mod = {
-	            exports: {}
-	        };
-	        factory(mod, global.select);
-	        global.clipboardAction = mod.exports;
-	    }
-	})(this, function (module, _select) {
-	    'use strict';
-	
-	    var _select2 = _interopRequireDefault(_select);
-	
-	    function _interopRequireDefault(obj) {
-	        return obj && obj.__esModule ? obj : {
-	            default: obj
-	        };
-	    }
-	
-	    var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) {
-	        return typeof obj;
-	    } : function (obj) {
-	        return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj;
-	    };
-	
-	    function _classCallCheck(instance, Constructor) {
-	        if (!(instance instanceof Constructor)) {
-	            throw new TypeError("Cannot call a class as a function");
-	        }
-	    }
-	
-	    var _createClass = function () {
-	        function defineProperties(target, props) {
-	            for (var i = 0; i < props.length; i++) {
-	                var descriptor = props[i];
-	                descriptor.enumerable = descriptor.enumerable || false;
-	                descriptor.configurable = true;
-	                if ("value" in descriptor) descriptor.writable = true;
-	                Object.defineProperty(target, descriptor.key, descriptor);
-	            }
-	        }
-	
-	        return function (Constructor, protoProps, staticProps) {
-	            if (protoProps) defineProperties(Constructor.prototype, protoProps);
-	            if (staticProps) defineProperties(Constructor, staticProps);
-	            return Constructor;
-	        };
-	    }();
-	
-	    var ClipboardAction = function () {
-	        /**
-	         * @param {Object} options
-	         */
-	        function ClipboardAction(options) {
-	            _classCallCheck(this, ClipboardAction);
-	
-	            this.resolveOptions(options);
-	            this.initSelection();
-	        }
-	
-	        /**
-	         * Defines base properties passed from constructor.
-	         * @param {Object} options
-	         */
-	
-	
-	        _createClass(ClipboardAction, [{
-	            key: 'resolveOptions',
-	            value: function resolveOptions() {
-	                var options = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
-	
-	                this.action = options.action;
-	                this.emitter = options.emitter;
-	                this.target = options.target;
-	                this.text = options.text;
-	                this.trigger = options.trigger;
-	
-	                this.selectedText = '';
-	            }
-	        }, {
-	            key: 'initSelection',
-	            value: function initSelection() {
-	                if (this.text) {
-	                    this.selectFake();
-	                } else if (this.target) {
-	                    this.selectTarget();
-	                }
-	            }
-	        }, {
-	            key: 'selectFake',
-	            value: function selectFake() {
-	                var _this = this;
-	
-	                var isRTL = document.documentElement.getAttribute('dir') == 'rtl';
-	
-	                this.removeFake();
-	
-	                this.fakeHandlerCallback = function () {
-	                    return _this.removeFake();
-	                };
-	                this.fakeHandler = document.body.addEventListener('click', this.fakeHandlerCallback) || true;
-	
-	                this.fakeElem = document.createElement('textarea');
-	                // Prevent zooming on iOS
-	                this.fakeElem.style.fontSize = '12pt';
-	                // Reset box model
-	                this.fakeElem.style.border = '0';
-	                this.fakeElem.style.padding = '0';
-	                this.fakeElem.style.margin = '0';
-	                // Move element out of screen horizontally
-	                this.fakeElem.style.position = 'absolute';
-	                this.fakeElem.style[isRTL ? 'right' : 'left'] = '-9999px';
-	                // Move element to the same position vertically
-	                var yPosition = window.pageYOffset || document.documentElement.scrollTop;
-	                this.fakeElem.addEventListener('focus', window.scrollTo(0, yPosition));
-	                this.fakeElem.style.top = yPosition + 'px';
-	
-	                this.fakeElem.setAttribute('readonly', '');
-	                this.fakeElem.value = this.text;
-	
-	                document.body.appendChild(this.fakeElem);
-	
-	                this.selectedText = (0, _select2.default)(this.fakeElem);
-	                this.copyText();
-	            }
-	        }, {
-	            key: 'removeFake',
-	            value: function removeFake() {
-	                if (this.fakeHandler) {
-	                    document.body.removeEventListener('click', this.fakeHandlerCallback);
-	                    this.fakeHandler = null;
-	                    this.fakeHandlerCallback = null;
-	                }
-	
-	                if (this.fakeElem) {
-	                    document.body.removeChild(this.fakeElem);
-	                    this.fakeElem = null;
-	                }
-	            }
-	        }, {
-	            key: 'selectTarget',
-	            value: function selectTarget() {
-	                this.selectedText = (0, _select2.default)(this.target);
-	                this.copyText();
-	            }
-	        }, {
-	            key: 'copyText',
-	            value: function copyText() {
-	                var succeeded = void 0;
-	
-	                try {
-	                    succeeded = document.execCommand(this.action);
-	                } catch (err) {
-	                    succeeded = false;
-	                }
-	
-	                this.handleResult(succeeded);
-	            }
-	        }, {
-	            key: 'handleResult',
-	            value: function handleResult(succeeded) {
-	                this.emitter.emit(succeeded ? 'success' : 'error', {
-	                    action: this.action,
-	                    text: this.selectedText,
-	                    trigger: this.trigger,
-	                    clearSelection: this.clearSelection.bind(this)
-	                });
-	            }
-	        }, {
-	            key: 'clearSelection',
-	            value: function clearSelection() {
-	                if (this.target) {
-	                    this.target.blur();
-	                }
-	
-	                window.getSelection().removeAllRanges();
-	            }
-	        }, {
-	            key: 'destroy',
-	            value: function destroy() {
-	                this.removeFake();
-	            }
-	        }, {
-	            key: 'action',
-	            set: function set() {
-	                var action = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 'copy';
-	
-	                this._action = action;
-	
-	                if (this._action !== 'copy' && this._action !== 'cut') {
-	                    throw new Error('Invalid "action" value, use either "copy" or "cut"');
-	                }
-	            },
-	            get: function get() {
-	                return this._action;
-	            }
-	        }, {
-	            key: 'target',
-	            set: function set(target) {
-	                if (target !== undefined) {
-	                    if (target && (typeof target === 'undefined' ? 'undefined' : _typeof(target)) === 'object' && target.nodeType === 1) {
-	                        if (this.action === 'copy' && target.hasAttribute('disabled')) {
-	                            throw new Error('Invalid "target" attribute. Please use "readonly" instead of "disabled" attribute');
-	                        }
-	
-	                        if (this.action === 'cut' && (target.hasAttribute('readonly') || target.hasAttribute('disabled'))) {
-	                            throw new Error('Invalid "target" attribute. You can\'t cut text from elements with "readonly" or "disabled" attributes');
-	                        }
-	
-	                        this._target = target;
-	                    } else {
-	                        throw new Error('Invalid "target" value, use a valid Element');
-	                    }
-	                }
-	            },
-	            get: function get() {
-	                return this._target;
-	            }
-	        }]);
-	
-	        return ClipboardAction;
-	    }();
-	
-	    module.exports = ClipboardAction;
-	});
-
-/***/ },
+/* 63 */,
 /* 64 */
 /***/ function(module, exports) {
 
-	function select(element) {
-	    var selectedText;
-	
-	    if (element.nodeName === 'SELECT') {
-	        element.focus();
-	
-	        selectedText = element.value;
-	    }
-	    else if (element.nodeName === 'INPUT' || element.nodeName === 'TEXTAREA') {
-	        element.focus();
-	        element.setSelectionRange(0, element.value.length);
-	
-	        selectedText = element.value;
-	    }
-	    else {
-	        if (element.hasAttribute('contenteditable')) {
-	            element.focus();
-	        }
-	
-	        var selection = window.getSelection();
-	        var range = document.createRange();
-	
-	        range.selectNodeContents(element);
-	        selection.removeAllRanges();
-	        selection.addRange(range);
-	
-	        selectedText = selection.toString();
-	    }
-	
-	    return selectedText;
-	}
-	
-	module.exports = select;
-
+	module.exports = "<% if (output) { %>\n    <% for (var outputKey in output) { _.each(output[outputKey].values, function(outputValue) { %>\n<div class=\"row\">\n    <div class=\"col-sm-6 feature-name\"><a><%- outputKey %></a></div>\n    <div class=\"col-sm-6 feature-value\"><%- outputValue %></div>\n</div>\n    <% }); } %>\n<div class=\"row\"><div class=\"col-sm-12\">&nbsp;</div></div>\n<div class=\"row\" id=\"actions\">\n    <div class=\"col-sm-2\"></div>\n    <div class=\"col-sm-10\">\n        <div class=\"form-inline\">\n            <a class=\"action btn btn-secondary\" id=\"copy\">Copy</a>\n            <a class=\"action btn btn-secondary\" id=\"email\">Email</a>\n            <a class=\"action btn btn-secondary\" id=\"download\">Download</a>\n            <select class=\"form-control\" id=\"format\">\n                <option>CSV</option>\n                <option>JSON</option>\n                <option>TSV</option>\n            </select>\n        </div>\n    </div>\n</div>\n<% } else { %>\nSelect values on the right to generate a description.\n<% } %>\n"
 
 /***/ },
 /* 65 */
 /***/ function(module, exports) {
 
-	function E () {
-	  // Keep this empty so it's easier to inherit from
-	  // (via https://github.com/lipsmack from https://github.com/scottcorgan/tiny-emitter/issues/3)
-	}
-	
-	E.prototype = {
-	  on: function (name, callback, ctx) {
-	    var e = this.e || (this.e = {});
-	
-	    (e[name] || (e[name] = [])).push({
-	      fn: callback,
-	      ctx: ctx
-	    });
-	
-	    return this;
-	  },
-	
-	  once: function (name, callback, ctx) {
-	    var self = this;
-	    function listener () {
-	      self.off(name, listener);
-	      callback.apply(ctx, arguments);
-	    };
-	
-	    listener._ = callback
-	    return this.on(name, listener, ctx);
-	  },
-	
-	  emit: function (name) {
-	    var data = [].slice.call(arguments, 1);
-	    var evtArr = ((this.e || (this.e = {}))[name] || []).slice();
-	    var i = 0;
-	    var len = evtArr.length;
-	
-	    for (i; i < len; i++) {
-	      evtArr[i].fn.apply(evtArr[i].ctx, data);
-	    }
-	
-	    return this;
-	  },
-	
-	  off: function (name, callback) {
-	    var e = this.e || (this.e = {});
-	    var evts = e[name];
-	    var liveEvents = [];
-	
-	    if (evts && callback) {
-	      for (var i = 0, len = evts.length; i < len; i++) {
-	        if (evts[i].fn !== callback && evts[i].fn._ !== callback)
-	          liveEvents.push(evts[i]);
-	      }
-	    }
-	
-	    // Remove event from queue to prevent memory leak
-	    // Suggested by https://github.com/lazd
-	    // Ref: https://github.com/scottcorgan/tiny-emitter/commit/c6ebfaa9bc973b33d110a84a307742b7cf94c953#commitcomment-5024910
-	
-	    (liveEvents.length)
-	      ? e[name] = liveEvents
-	      : delete e[name];
-	
-	    return this;
-	  }
-	};
-	
-	module.exports = E;
-
+	// removed by extract-text-webpack-plugin
 
 /***/ },
-/* 66 */
-/***/ function(module, exports, __webpack_require__) {
-
-	var is = __webpack_require__(67);
-	var delegate = __webpack_require__(68);
-	
-	/**
-	 * Validates all params and calls the right
-	 * listener function based on its target type.
-	 *
-	 * @param {String|HTMLElement|HTMLCollection|NodeList} target
-	 * @param {String} type
-	 * @param {Function} callback
-	 * @return {Object}
-	 */
-	function listen(target, type, callback) {
-	    if (!target && !type && !callback) {
-	        throw new Error('Missing required arguments');
-	    }
-	
-	    if (!is.string(type)) {
-	        throw new TypeError('Second argument must be a String');
-	    }
-	
-	    if (!is.fn(callback)) {
-	        throw new TypeError('Third argument must be a Function');
-	    }
-	
-	    if (is.node(target)) {
-	        return listenNode(target, type, callback);
-	    }
-	    else if (is.nodeList(target)) {
-	        return listenNodeList(target, type, callback);
-	    }
-	    else if (is.string(target)) {
-	        return listenSelector(target, type, callback);
-	    }
-	    else {
-	        throw new TypeError('First argument must be a String, HTMLElement, HTMLCollection, or NodeList');
-	    }
-	}
-	
-	/**
-	 * Adds an event listener to a HTML element
-	 * and returns a remove listener function.
-	 *
-	 * @param {HTMLElement} node
-	 * @param {String} type
-	 * @param {Function} callback
-	 * @return {Object}
-	 */
-	function listenNode(node, type, callback) {
-	    node.addEventListener(type, callback);
-	
-	    return {
-	        destroy: function() {
-	            node.removeEventListener(type, callback);
-	        }
-	    }
-	}
-	
-	/**
-	 * Add an event listener to a list of HTML elements
-	 * and returns a remove listener function.
-	 *
-	 * @param {NodeList|HTMLCollection} nodeList
-	 * @param {String} type
-	 * @param {Function} callback
-	 * @return {Object}
-	 */
-	function listenNodeList(nodeList, type, callback) {
-	    Array.prototype.forEach.call(nodeList, function(node) {
-	        node.addEventListener(type, callback);
-	    });
-	
-	    return {
-	        destroy: function() {
-	            Array.prototype.forEach.call(nodeList, function(node) {
-	                node.removeEventListener(type, callback);
-	            });
-	        }
-	    }
-	}
-	
-	/**
-	 * Add an event listener to a selector
-	 * and returns a remove listener function.
-	 *
-	 * @param {String} selector
-	 * @param {String} type
-	 * @param {Function} callback
-	 * @return {Object}
-	 */
-	function listenSelector(selector, type, callback) {
-	    return delegate(document.body, selector, type, callback);
-	}
-	
-	module.exports = listen;
-
-
-/***/ },
+/* 66 */,
 /* 67 */
 /***/ function(module, exports) {
 
-	/**
-	 * Check if argument is a HTML element.
-	 *
-	 * @param {Object} value
-	 * @return {Boolean}
-	 */
-	exports.node = function(value) {
-	    return value !== undefined
-	        && value instanceof HTMLElement
-	        && value.nodeType === 1;
-	};
-	
-	/**
-	 * Check if argument is a list of HTML elements.
-	 *
-	 * @param {Object} value
-	 * @return {Boolean}
-	 */
-	exports.nodeList = function(value) {
-	    var type = Object.prototype.toString.call(value);
-	
-	    return value !== undefined
-	        && (type === '[object NodeList]' || type === '[object HTMLCollection]')
-	        && ('length' in value)
-	        && (value.length === 0 || exports.node(value[0]));
-	};
-	
-	/**
-	 * Check if argument is a string.
-	 *
-	 * @param {Object} value
-	 * @return {Boolean}
-	 */
-	exports.string = function(value) {
-	    return typeof value === 'string'
-	        || value instanceof String;
-	};
-	
-	/**
-	 * Check if argument is a function.
-	 *
-	 * @param {Object} value
-	 * @return {Boolean}
-	 */
-	exports.fn = function(value) {
-	    var type = Object.prototype.toString.call(value);
-	
-	    return type === '[object Function]';
-	};
-
+	module.exports = "<div class=\"panel-group\" id=\"sidebar\" role=\"tablist\" aria-multiselectable=\"true\">\n    <div class=\"panel panel-default\">\n        <div class=\"panel-heading\" role=\"tab\" id=\"sidebarHeadingOne\">\n            <h4 class=\"panel-title\">\n                <a role=\"button\" data-toggle=\"collapse\" href=\"#sidebarCollapseOne\" aria-expanded=\"true\" aria-controls=\"sidebarCollapseOne\">\n                    Accession number\n                </a>\n            </h4>\n            <div class=\"container-fluid\">\n                <div class=\"row\">\n                    <div class=\"col-sm-4\" id=\"accessionNumber\">\n                        <%- accessionNumber %>\n                    </div>\n                    <div class=\"col-sm-4\">\n                        <button type=\"button\" class=\"btn btn-primary\" id=\"changeAccessionNumberButton\">Change</button>\n                    </div>\n                    <div class=\"col-sm-4\">\n                        <button type=\"button\" class=\"btn btn-warning\" id=\"deleteAccessionNumberButton\">Delete</button>\n                    </div>\n                </div>\n            </div>\n        </div>\n        <div id=\"sidebarCollapseOne\" class=\"panel-collapse collapse in\" role=\"tabpanel\" aria-labelledby=\"sidebarHeadingOne\">\n            <div class=\"panel-body\" id=\"output\">\n            </div>\n        </div>\n    </div>\n    <div class=\"panel panel-default\">\n        <div class=\"panel-heading\" role=\"tab\" id=\"sidebarHeadingTwo\">\n            <h4 class=\"panel-title\">\n                <a class=\"collapsed\" role=\"button\" data-toggle=\"collapse\" href=\"#sidebarCollapseTwo\" aria-expanded=\"true\" aria-controls=\"sidebarCollapseTwo\">\n                    Features\n                </a>\n            </h4>\n        </div>\n        <div id=\"sidebarCollapseTwo\" class=\"panel-collapse collapse in\" role=\"tabpanel\" aria-labelledby=\"sidebarHeadingTwo\">\n            <div class=\"panel-body\" id=\"navigation\">\n            </div>\n        </div>\n    </div>\n</div>\n"
 
 /***/ },
 /* 68 */
-/***/ function(module, exports, __webpack_require__) {
-
-	var closest = __webpack_require__(69);
-	
-	/**
-	 * Delegates event to a selector.
-	 *
-	 * @param {Element} element
-	 * @param {String} selector
-	 * @param {String} type
-	 * @param {Function} callback
-	 * @param {Boolean} useCapture
-	 * @return {Object}
-	 */
-	function delegate(element, selector, type, callback, useCapture) {
-	    var listenerFn = listener.apply(this, arguments);
-	
-	    element.addEventListener(type, listenerFn, useCapture);
-	
-	    return {
-	        destroy: function() {
-	            element.removeEventListener(type, listenerFn, useCapture);
-	        }
-	    }
-	}
-	
-	/**
-	 * Finds closest match and invokes callback.
-	 *
-	 * @param {Element} element
-	 * @param {String} selector
-	 * @param {String} type
-	 * @param {Function} callback
-	 * @return {Function}
-	 */
-	function listener(element, selector, type, callback) {
-	    return function(e) {
-	        e.delegateTarget = closest(e.target, selector);
-	
-	        if (e.delegateTarget) {
-	            callback.call(element, e);
-	        }
-	    }
-	}
-	
-	module.exports = delegate;
-
-
-/***/ },
-/* 69 */
 /***/ function(module, exports) {
 
-	var DOCUMENT_NODE_TYPE = 9;
-	
-	/**
-	 * A polyfill for Element.matches()
-	 */
-	if (Element && !Element.prototype.matches) {
-	    var proto = Element.prototype;
-	
-	    proto.matches = proto.matchesSelector ||
-	                    proto.mozMatchesSelector ||
-	                    proto.msMatchesSelector ||
-	                    proto.oMatchesSelector ||
-	                    proto.webkitMatchesSelector;
-	}
-	
-	/**
-	 * Finds the closest parent that matches a selector.
-	 *
-	 * @param {Element} element
-	 * @param {String} selector
-	 * @return {Function}
-	 */
-	function closest (element, selector) {
-	    while (element && element.nodeType !== DOCUMENT_NODE_TYPE) {
-	        if (element.matches(selector)) return element;
-	        element = element.parentNode;
-	    }
-	}
-	
-	module.exports = closest;
-
+	// removed by extract-text-webpack-plugin
 
 /***/ },
+/* 69 */,
 /* 70 */
-/***/ function(module, exports, __webpack_require__) {
-
-	/* WEBPACK VAR INJECTION */(function(setImmediate) {//  Import support https://stackoverflow.com/questions/13673346/supporting-both-commonjs-and-amd
-	(function(name, definition) {
-	    if (true) { module.exports = definition(); }
-	    else if (typeof define === "function" && typeof define.amd === "object") { define(definition); }
-	    else { this[name] = definition(); }
-	}("clipboard", function() {
-	  if (typeof document === 'undefined' || !document.addEventListener) {
-	    return null;
-	  }
-	
-	  var clipboard = {};
-	
-	  clipboard.copy = (function() {
-	    var _intercept = false;
-	    var _data = null; // Map from data type (e.g. "text/html") to value.
-	    var _bogusSelection = false;
-	
-	    function cleanup() {
-	      _intercept = false;
-	      _data = null;
-	      if (_bogusSelection) {
-	        window.getSelection().removeAllRanges();
-	      }
-	      _bogusSelection = false;
-	    }
-	
-	    document.addEventListener("copy", function(e) {
-	      if (_intercept) {
-	        for (var key in _data) {
-	          e.clipboardData.setData(key, _data[key]);
-	        }
-	        e.preventDefault();
-	      }
-	    });
-	
-	    // Workaround for Safari: https://bugs.webkit.org/show_bug.cgi?id=156529
-	    function bogusSelect() {
-	      var sel = document.getSelection();
-	      // If "nothing" is selected...
-	      if (!document.queryCommandEnabled("copy") && sel.isCollapsed) {
-	        // ... temporarily select the entire body.
-	        //
-	        // We select the entire body because:
-	        // - it's guaranteed to exist,
-	        // - it works (unlike, say, document.head, or phantom element that is
-	        //   not inserted into the DOM),
-	        // - it doesn't seem to flicker (due to the synchronous copy event), and
-	        // - it avoids modifying the DOM (can trigger mutation observers).
-	        //
-	        // Because we can't do proper feature detection (we already checked
-	        // document.queryCommandEnabled("copy") , which actually gives a false
-	        // negative for Blink when nothing is selected) and UA sniffing is not
-	        // reliable (a lot of UA strings contain "Safari"), this will also
-	        // happen for some browsers other than Safari. :-()
-	        var range = document.createRange();
-	        range.selectNodeContents(document.body);
-	        sel.addRange(range);
-	        _bogusSelection = true;
-	      }
-	    };
-	
-	    return function(data) {
-	      return new Promise(function(resolve, reject) {
-	        _intercept = true;
-	        if (typeof data === "string") {
-	          _data = {"text/plain": data};
-	        } else if (data instanceof Node) {
-	          _data = {"text/html": new XMLSerializer().serializeToString(data)};
-	        } else {
-	          _data = data;
-	        }
-	        try {
-	          bogusSelect();
-	          if (document.execCommand("copy")) {
-	            // document.execCommand is synchronous: http://www.w3.org/TR/2015/WD-clipboard-apis-20150421/#integration-with-rich-text-editing-apis
-	            // So we can call resolve() back here.
-	            cleanup();
-	            resolve();
-	          }
-	          else {
-	            throw new Error("Unable to copy. Perhaps it's not available in your browser?");
-	          }
-	        } catch (e) {
-	          cleanup();
-	          reject(e);
-	        }
-	      });
-	    };
-	  })();
-	
-	  clipboard.paste = (function() {
-	    var _intercept = false;
-	    var _resolve;
-	    var _dataType;
-	
-	    document.addEventListener("paste", function(e) {
-	      if (_intercept) {
-	        _intercept = false;
-	        e.preventDefault();
-	        var resolve = _resolve;
-	        _resolve = null;
-	        resolve(e.clipboardData.getData(_dataType));
-	      }
-	    });
-	
-	    return function(dataType) {
-	      return new Promise(function(resolve, reject) {
-	        _intercept = true;
-	        _resolve = resolve;
-	        _dataType = dataType || "text/plain";
-	        try {
-	          if (!document.execCommand("paste")) {
-	            _intercept = false;
-	            reject(new Error("Unable to paste. Pasting only works in Internet Explorer at the moment."));
-	          }
-	        } catch (e) {
-	          _intercept = false;
-	          reject(new Error(e));
-	        }
-	      });
-	    };
-	  })();
-	
-	  // Handle IE behaviour.
-	  if (typeof ClipboardEvent === "undefined" &&
-	      typeof window.clipboardData !== "undefined" &&
-	      typeof window.clipboardData.setData !== "undefined") {
-	
-	    /*! promise-polyfill 2.0.1 */
-	    (function(a){function b(a,b){return function(){a.apply(b,arguments)}}function c(a){if("object"!=typeof this)throw new TypeError("Promises must be constructed via new");if("function"!=typeof a)throw new TypeError("not a function");this._state=null,this._value=null,this._deferreds=[],i(a,b(e,this),b(f,this))}function d(a){var b=this;return null===this._state?void this._deferreds.push(a):void j(function(){var c=b._state?a.onFulfilled:a.onRejected;if(null===c)return void(b._state?a.resolve:a.reject)(b._value);var d;try{d=c(b._value)}catch(e){return void a.reject(e)}a.resolve(d)})}function e(a){try{if(a===this)throw new TypeError("A promise cannot be resolved with itself.");if(a&&("object"==typeof a||"function"==typeof a)){var c=a.then;if("function"==typeof c)return void i(b(c,a),b(e,this),b(f,this))}this._state=!0,this._value=a,g.call(this)}catch(d){f.call(this,d)}}function f(a){this._state=!1,this._value=a,g.call(this)}function g(){for(var a=0,b=this._deferreds.length;b>a;a++)d.call(this,this._deferreds[a]);this._deferreds=null}function h(a,b,c,d){this.onFulfilled="function"==typeof a?a:null,this.onRejected="function"==typeof b?b:null,this.resolve=c,this.reject=d}function i(a,b,c){var d=!1;try{a(function(a){d||(d=!0,b(a))},function(a){d||(d=!0,c(a))})}catch(e){if(d)return;d=!0,c(e)}}var j=c.immediateFn||"function"==typeof setImmediate&&setImmediate||function(a){setTimeout(a,1)},k=Array.isArray||function(a){return"[object Array]"===Object.prototype.toString.call(a)};c.prototype["catch"]=function(a){return this.then(null,a)},c.prototype.then=function(a,b){var e=this;return new c(function(c,f){d.call(e,new h(a,b,c,f))})},c.all=function(){var a=Array.prototype.slice.call(1===arguments.length&&k(arguments[0])?arguments[0]:arguments);return new c(function(b,c){function d(f,g){try{if(g&&("object"==typeof g||"function"==typeof g)){var h=g.then;if("function"==typeof h)return void h.call(g,function(a){d(f,a)},c)}a[f]=g,0===--e&&b(a)}catch(i){c(i)}}if(0===a.length)return b([]);for(var e=a.length,f=0;f<a.length;f++)d(f,a[f])})},c.resolve=function(a){return a&&"object"==typeof a&&a.constructor===c?a:new c(function(b){b(a)})},c.reject=function(a){return new c(function(b,c){c(a)})},c.race=function(a){return new c(function(b,c){for(var d=0,e=a.length;e>d;d++)a[d].then(b,c)})},"undefined"!=typeof module&&module.exports?module.exports=c:a.Promise||(a.Promise=c)})(this);
-	
-	    clipboard.copy = function(data) {
-	      return new Promise(function(resolve, reject) {
-	        // IE supports string and URL types: https://msdn.microsoft.com/en-us/library/ms536744(v=vs.85).aspx
-	        // We only support the string type for now.
-	        if (typeof data !== "string" && !("text/plain" in data)) {
-	          throw new Error("You must provide a text/plain type.");
-	        }
-	
-	        var strData = (typeof data === "string" ? data : data["text/plain"]);
-	        var copySucceeded = window.clipboardData.setData("Text", strData);
-	        if (copySucceeded) {
-	          resolve();
-	        } else {
-	          reject(new Error("Copying was rejected."));
-	        }
-	      });
-	    };
-	
-	    clipboard.paste = function() {
-	      return new Promise(function(resolve, reject) {
-	        var strData = window.clipboardData.getData("Text");
-	        if (strData) {
-	          resolve(strData);
-	        } else {
-	          // The user rejected the paste request.
-	          reject(new Error("Pasting was rejected."));
-	        }
-	      });
-	    };
-	  }
-	
-	  return clipboard;
-	}));
-	
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(71).setImmediate))
-
-/***/ },
-/* 71 */
-/***/ function(module, exports, __webpack_require__) {
-
-	/* WEBPACK VAR INJECTION */(function(setImmediate, clearImmediate) {var nextTick = __webpack_require__(72).nextTick;
-	var apply = Function.prototype.apply;
-	var slice = Array.prototype.slice;
-	var immediateIds = {};
-	var nextImmediateId = 0;
-	
-	// DOM APIs, for completeness
-	
-	exports.setTimeout = function() {
-	  return new Timeout(apply.call(setTimeout, window, arguments), clearTimeout);
-	};
-	exports.setInterval = function() {
-	  return new Timeout(apply.call(setInterval, window, arguments), clearInterval);
-	};
-	exports.clearTimeout =
-	exports.clearInterval = function(timeout) { timeout.close(); };
-	
-	function Timeout(id, clearFn) {
-	  this._id = id;
-	  this._clearFn = clearFn;
-	}
-	Timeout.prototype.unref = Timeout.prototype.ref = function() {};
-	Timeout.prototype.close = function() {
-	  this._clearFn.call(window, this._id);
-	};
-	
-	// Does not start the time, just sets up the members needed.
-	exports.enroll = function(item, msecs) {
-	  clearTimeout(item._idleTimeoutId);
-	  item._idleTimeout = msecs;
-	};
-	
-	exports.unenroll = function(item) {
-	  clearTimeout(item._idleTimeoutId);
-	  item._idleTimeout = -1;
-	};
-	
-	exports._unrefActive = exports.active = function(item) {
-	  clearTimeout(item._idleTimeoutId);
-	
-	  var msecs = item._idleTimeout;
-	  if (msecs >= 0) {
-	    item._idleTimeoutId = setTimeout(function onTimeout() {
-	      if (item._onTimeout)
-	        item._onTimeout();
-	    }, msecs);
-	  }
-	};
-	
-	// That's not how node.js implements it but the exposed api is the same.
-	exports.setImmediate = typeof setImmediate === "function" ? setImmediate : function(fn) {
-	  var id = nextImmediateId++;
-	  var args = arguments.length < 2 ? false : slice.call(arguments, 1);
-	
-	  immediateIds[id] = true;
-	
-	  nextTick(function onNextTick() {
-	    if (immediateIds[id]) {
-	      // fn.call() is faster so we optimize for the common use-case
-	      // @see http://jsperf.com/call-apply-segu
-	      if (args) {
-	        fn.apply(null, args);
-	      } else {
-	        fn.call(null);
-	      }
-	      // Prevent ids from leaking
-	      exports.clearImmediate(id);
-	    }
-	  });
-	
-	  return id;
-	};
-	
-	exports.clearImmediate = typeof clearImmediate === "function" ? clearImmediate : function(id) {
-	  delete immediateIds[id];
-	};
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(71).setImmediate, __webpack_require__(71).clearImmediate))
-
-/***/ },
-/* 72 */
-/***/ function(module, exports) {
-
-	// shim for using process in browser
-	var process = module.exports = {};
-	
-	// cached from whatever global is present so that test runners that stub it
-	// don't break things.  But we need to wrap it in a try catch in case it is
-	// wrapped in strict mode code which doesn't define any globals.  It's inside a
-	// function because try/catches deoptimize in certain engines.
-	
-	var cachedSetTimeout;
-	var cachedClearTimeout;
-	
-	function defaultSetTimout() {
-	    throw new Error('setTimeout has not been defined');
-	}
-	function defaultClearTimeout () {
-	    throw new Error('clearTimeout has not been defined');
-	}
-	(function () {
-	    try {
-	        if (typeof setTimeout === 'function') {
-	            cachedSetTimeout = setTimeout;
-	        } else {
-	            cachedSetTimeout = defaultSetTimout;
-	        }
-	    } catch (e) {
-	        cachedSetTimeout = defaultSetTimout;
-	    }
-	    try {
-	        if (typeof clearTimeout === 'function') {
-	            cachedClearTimeout = clearTimeout;
-	        } else {
-	            cachedClearTimeout = defaultClearTimeout;
-	        }
-	    } catch (e) {
-	        cachedClearTimeout = defaultClearTimeout;
-	    }
-	} ())
-	function runTimeout(fun) {
-	    if (cachedSetTimeout === setTimeout) {
-	        //normal enviroments in sane situations
-	        return setTimeout(fun, 0);
-	    }
-	    // if setTimeout wasn't available but was latter defined
-	    if ((cachedSetTimeout === defaultSetTimout || !cachedSetTimeout) && setTimeout) {
-	        cachedSetTimeout = setTimeout;
-	        return setTimeout(fun, 0);
-	    }
-	    try {
-	        // when when somebody has screwed with setTimeout but no I.E. maddness
-	        return cachedSetTimeout(fun, 0);
-	    } catch(e){
-	        try {
-	            // When we are in I.E. but the script has been evaled so I.E. doesn't trust the global object when called normally
-	            return cachedSetTimeout.call(null, fun, 0);
-	        } catch(e){
-	            // same as above but when it's a version of I.E. that must have the global object for 'this', hopfully our context correct otherwise it will throw a global error
-	            return cachedSetTimeout.call(this, fun, 0);
-	        }
-	    }
-	
-	
-	}
-	function runClearTimeout(marker) {
-	    if (cachedClearTimeout === clearTimeout) {
-	        //normal enviroments in sane situations
-	        return clearTimeout(marker);
-	    }
-	    // if clearTimeout wasn't available but was latter defined
-	    if ((cachedClearTimeout === defaultClearTimeout || !cachedClearTimeout) && clearTimeout) {
-	        cachedClearTimeout = clearTimeout;
-	        return clearTimeout(marker);
-	    }
-	    try {
-	        // when when somebody has screwed with setTimeout but no I.E. maddness
-	        return cachedClearTimeout(marker);
-	    } catch (e){
-	        try {
-	            // When we are in I.E. but the script has been evaled so I.E. doesn't  trust the global object when called normally
-	            return cachedClearTimeout.call(null, marker);
-	        } catch (e){
-	            // same as above but when it's a version of I.E. that must have the global object for 'this', hopfully our context correct otherwise it will throw a global error.
-	            // Some versions of I.E. have different rules for clearTimeout vs setTimeout
-	            return cachedClearTimeout.call(this, marker);
-	        }
-	    }
-	
-	
-	
-	}
-	var queue = [];
-	var draining = false;
-	var currentQueue;
-	var queueIndex = -1;
-	
-	function cleanUpNextTick() {
-	    if (!draining || !currentQueue) {
-	        return;
-	    }
-	    draining = false;
-	    if (currentQueue.length) {
-	        queue = currentQueue.concat(queue);
-	    } else {
-	        queueIndex = -1;
-	    }
-	    if (queue.length) {
-	        drainQueue();
-	    }
-	}
-	
-	function drainQueue() {
-	    if (draining) {
-	        return;
-	    }
-	    var timeout = runTimeout(cleanUpNextTick);
-	    draining = true;
-	
-	    var len = queue.length;
-	    while(len) {
-	        currentQueue = queue;
-	        queue = [];
-	        while (++queueIndex < len) {
-	            if (currentQueue) {
-	                currentQueue[queueIndex].run();
-	            }
-	        }
-	        queueIndex = -1;
-	        len = queue.length;
-	    }
-	    currentQueue = null;
-	    draining = false;
-	    runClearTimeout(timeout);
-	}
-	
-	process.nextTick = function (fun) {
-	    var args = new Array(arguments.length - 1);
-	    if (arguments.length > 1) {
-	        for (var i = 1; i < arguments.length; i++) {
-	            args[i - 1] = arguments[i];
-	        }
-	    }
-	    queue.push(new Item(fun, args));
-	    if (queue.length === 1 && !draining) {
-	        runTimeout(drainQueue);
-	    }
-	};
-	
-	// v8 likes predictible objects
-	function Item(fun, array) {
-	    this.fun = fun;
-	    this.array = array;
-	}
-	Item.prototype.run = function () {
-	    this.fun.apply(null, this.array);
-	};
-	process.title = 'browser';
-	process.browser = true;
-	process.env = {};
-	process.argv = [];
-	process.version = ''; // empty string to avoid regexp issues
-	process.versions = {};
-	
-	function noop() {}
-	
-	process.on = noop;
-	process.addListener = noop;
-	process.once = noop;
-	process.off = noop;
-	process.removeListener = noop;
-	process.removeAllListeners = noop;
-	process.emit = noop;
-	
-	process.binding = function (name) {
-	    throw new Error('process.binding is not supported');
-	};
-	
-	process.cwd = function () { return '/' };
-	process.chdir = function (dir) {
-	    throw new Error('process.chdir is not supported');
-	};
-	process.umask = function() { return 0; };
-
-
-/***/ },
-/* 73 */
-/***/ function(module, exports) {
-
-	// removed by extract-text-webpack-plugin
-
-/***/ },
-/* 74 */,
-/* 75 */
-/***/ function(module, exports) {
-
-	module.exports = "<% if (output) { %>\n    <% for (var outputKey in output) { _.each(output[outputKey].values, function(outputValue) { %>\n<div class=\"row\">\n    <div class=\"col-sm-6 feature-name\"><a><%- outputKey %></a></div>\n    <div class=\"col-sm-6 feature-value\"><%- outputValue %></div>\n</div>\n    <% }); } %>\n<div class=\"row\"><div class=\"col-sm-12\">&nbsp;</div></div>\n<div class=\"row\" id=\"actions\">\n    <div class=\"col-sm-2\"></div>\n    <div class=\"col-sm-10\">\n        <div class=\"form-inline\">\n            <a class=\"action btn btn-secondary\" id=\"copy\">Copy</a>\n            <a class=\"action btn btn-secondary\" id=\"email\">Email</a>\n            <a class=\"action btn btn-secondary\" id=\"download\">Download</a>\n            <select class=\"form-control\" id=\"format\">\n                <option>CSV</option>\n                <option>JSON</option>\n                <option>TSV</option>\r\n            </select>\n        </div>\n    </div>\n</div>\n<% } else { %>\nSelect values on the right to generate a description.\n<% } %>\n"
-
-/***/ },
-/* 76 */
-/***/ function(module, exports) {
-
-	// removed by extract-text-webpack-plugin
-
-/***/ },
-/* 77 */,
-/* 78 */
-/***/ function(module, exports) {
-
-	module.exports = "<div class=\"panel-group\" id=\"sidebar\" role=\"tablist\" aria-multiselectable=\"true\">\r\n    <div class=\"panel panel-default\">\r\n        <div class=\"panel-heading\" role=\"tab\" id=\"sidebarHeadingOne\">\r\n            <h4 class=\"panel-title\">\r\n                <a role=\"button\" data-toggle=\"collapse\" href=\"#sidebarCollapseOne\" aria-expanded=\"true\" aria-controls=\"sidebarCollapseOne\">\r\n                    Accession number\r\n                </a>\r\n            </h4>\r\n            <div class=\"container-fluid\">\r\n                <div class=\"row\">\r\n                    <div class=\"col-sm-4\" id=\"accessionNumber\">\r\n                        <%- accessionNumber %>\r\n                    </div>\r\n                    <div class=\"col-sm-4\">\r\n                        <button type=\"button\" class=\"btn btn-primary\" id=\"changeAccessionNumberButton\">Change</button>\r\n                    </div>\r\n                    <div class=\"col-sm-4\">\r\n                        <button type=\"button\" class=\"btn btn-warning\" id=\"deleteAccessionNumberButton\">Delete</button>\r\n                    </div>\r\n                </div>\r\n            </div>\r\n        </div>\r\n        <div id=\"sidebarCollapseOne\" class=\"panel-collapse collapse in\" role=\"tabpanel\" aria-labelledby=\"sidebarHeadingOne\">\r\n            <div class=\"panel-body\" id=\"output\">\r\n            </div>\r\n        </div>\r\n    </div>\r\n    <div class=\"panel panel-default\">\r\n        <div class=\"panel-heading\" role=\"tab\" id=\"sidebarHeadingTwo\">\r\n            <h4 class=\"panel-title\">\r\n                <a class=\"collapsed\" role=\"button\" data-toggle=\"collapse\" href=\"#sidebarCollapseTwo\" aria-expanded=\"true\" aria-controls=\"sidebarCollapseTwo\">\r\n                    Features\r\n                </a>\r\n            </h4>\r\n        </div>\r\n        <div id=\"sidebarCollapseTwo\" class=\"panel-collapse collapse in\" role=\"tabpanel\" aria-labelledby=\"sidebarHeadingTwo\">\r\n            <div class=\"panel-body\" id=\"navigation\">\r\n            </div>\r\n        </div>\r\n    </div>\r\n</div>\r\n"
-
-/***/ },
-/* 79 */
-/***/ function(module, exports) {
-
-	// removed by extract-text-webpack-plugin
-
-/***/ },
-/* 80 */,
-/* 81 */
 /***/ function(module, exports) {
 
 	module.exports = "<div class=\"container-fluid\" id=\"worksheet\">\n    <div class=\"row\" id=\"two-columns\">\n        <div class=\"col-sm-4\" id=\"left-column\"></div>\n        <div class=\"col-sm-8\" id=\"right-column\"></div>\n    </div>\n</div>\n"
 
 /***/ },
-/* 82 */
+/* 71 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function($) {"use strict";
@@ -10845,12 +9629,12 @@ return /******/ (function(modules) { // webpackBootstrap
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)))
 
 /***/ },
-/* 83 */
+/* 72 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
-	var local_worksheet_command_service_1 = __webpack_require__(84);
-	var local_worksheet_query_service_1 = __webpack_require__(86);
+	var local_worksheet_command_service_1 = __webpack_require__(73);
+	var local_worksheet_query_service_1 = __webpack_require__(75);
 	var Services = (function () {
 	    function Services() {
 	        this._worksheetCommandService = new local_worksheet_command_service_1.LocalWorksheetCommandService;
@@ -10876,7 +9660,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ },
-/* 84 */
+/* 73 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -10885,8 +9669,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	    function __() { this.constructor = d; }
 	    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 	};
-	var async_to_sync_worksheet_command_service_1 = __webpack_require__(85);
-	var local_worksheet_query_service_1 = __webpack_require__(86);
+	var async_to_sync_worksheet_command_service_1 = __webpack_require__(74);
+	var local_worksheet_query_service_1 = __webpack_require__(75);
 	var LocalWorksheetCommandService = (function (_super) {
 	    __extends(LocalWorksheetCommandService, _super);
 	    function LocalWorksheetCommandService() {
@@ -10907,7 +9691,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ },
-/* 85 */
+/* 74 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -10938,7 +9722,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ },
-/* 86 */
+/* 75 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -10947,8 +9731,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	    function __() { this.constructor = d; }
 	    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 	};
-	var async_to_sync_worksheet_query_service_1 = __webpack_require__(87);
-	var worksheet_definition_1 = __webpack_require__(88);
+	var async_to_sync_worksheet_query_service_1 = __webpack_require__(76);
+	var worksheet_definition_1 = __webpack_require__(77);
 	var worksheet_state_1 = __webpack_require__(31);
 	var LocalWorksheetQueryService = (function (_super) {
 	    __extends(LocalWorksheetQueryService, _super);
@@ -10994,7 +9778,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ },
-/* 87 */
+/* 76 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -11031,7 +9815,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ },
-/* 88 */
+/* 77 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -11041,7 +9825,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 	};
 	var Backbone = __webpack_require__(4);
-	var worksheet_feature_set_definition_1 = __webpack_require__(89);
+	var worksheet_feature_set_definition_1 = __webpack_require__(78);
 	var WorksheetDefinition = (function (_super) {
 	    __extends(WorksheetDefinition, _super);
 	    function WorksheetDefinition(attributes, options) {
@@ -11095,7 +9879,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ },
-/* 89 */
+/* 78 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -11105,7 +9889,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 	};
 	var Backbone = __webpack_require__(4);
-	var worksheet_feature_definition_1 = __webpack_require__(90);
+	var worksheet_feature_definition_1 = __webpack_require__(79);
 	var WorksheetFeatureSetDefinition = (function (_super) {
 	    __extends(WorksheetFeatureSetDefinition, _super);
 	    function WorksheetFeatureSetDefinition(attributes, options) {
@@ -11266,7 +10050,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ },
-/* 90 */
+/* 79 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -11276,7 +10060,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 	};
 	var Backbone = __webpack_require__(4);
-	var worksheet_feature_value_definition_1 = __webpack_require__(91);
+	var worksheet_feature_value_definition_1 = __webpack_require__(80);
 	var WorksheetFeatureDefinition = (function (_super) {
 	    __extends(WorksheetFeatureDefinition, _super);
 	    function WorksheetFeatureDefinition(attributes, options) {
@@ -11396,7 +10180,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ },
-/* 91 */
+/* 80 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -11406,7 +10190,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 	};
 	var Backbone = __webpack_require__(4);
-	var worksheet_feature_value_image_1 = __webpack_require__(92);
+	var worksheet_feature_value_image_1 = __webpack_require__(81);
 	var WorksheetFeatureValueDefinition = (function (_super) {
 	    __extends(WorksheetFeatureValueDefinition, _super);
 	    function WorksheetFeatureValueDefinition(attributes, options) {
@@ -11516,7 +10300,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ },
-/* 92 */
+/* 81 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -11526,7 +10310,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 	};
 	var Backbone = __webpack_require__(4);
-	var worksheet_feature_value_image_rights_1 = __webpack_require__(93);
+	var worksheet_feature_value_image_rights_1 = __webpack_require__(82);
 	var WorksheetFeatureValueImage = (function (_super) {
 	    __extends(WorksheetFeatureValueImage, _super);
 	    function WorksheetFeatureValueImage(attributes, options) {
@@ -11637,7 +10421,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ },
-/* 93 */
+/* 82 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -11775,7 +10559,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ },
-/* 94 */
+/* 83 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(_) {// Backbone.Validation v0.7.1
@@ -11789,14 +10573,14 @@ return /******/ (function(modules) { // webpackBootstrap
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
 
 /***/ },
-/* 95 */
+/* 84 */
 /***/ function(module, exports) {
 
 	// removed by extract-text-webpack-plugin
 
 /***/ },
-/* 96 */,
-/* 97 */
+/* 85 */,
+/* 86 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
@@ -11810,14 +10594,14 @@ return /******/ (function(modules) { // webpackBootstrap
 	//# sourceMappingURL=bootstrap-select.js.map
 
 /***/ },
-/* 98 */
+/* 87 */
 /***/ function(module, exports) {
 
 	// removed by extract-text-webpack-plugin
 
 /***/ },
-/* 99 */,
-/* 100 */
+/* 88 */,
+/* 89 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(jQuery) {!function(a,b,c,d){"use strict";var e="treeview",f={};f.settings={injectStyle:!0,levels:2,expandIcon:"glyphicon glyphicon-plus",collapseIcon:"glyphicon glyphicon-minus",emptyIcon:"glyphicon",nodeIcon:"",selectedIcon:"",checkedIcon:"glyphicon glyphicon-check",uncheckedIcon:"glyphicon glyphicon-unchecked",color:d,backColor:d,borderColor:d,onhoverColor:"#F5F5F5",selectedColor:"#FFFFFF",selectedBackColor:"#428bca",searchResultColor:"#D9534F",searchResultBackColor:d,enableLinks:!1,highlightSelected:!0,highlightSearchResults:!0,showBorder:!0,showIcon:!0,showCheckbox:!1,showTags:!1,multiSelect:!1,onNodeChecked:d,onNodeCollapsed:d,onNodeDisabled:d,onNodeEnabled:d,onNodeExpanded:d,onNodeSelected:d,onNodeUnchecked:d,onNodeUnselected:d,onSearchComplete:d,onSearchCleared:d},f.options={silent:!1,ignoreChildren:!1},f.searchOptions={ignoreCase:!0,exactMatch:!1,revealResults:!0};var g=function(b,c){return this.$element=a(b),this.elementId=b.id,this.styleId=this.elementId+"-style",this.init(c),{options:this.options,init:a.proxy(this.init,this),remove:a.proxy(this.remove,this),getNode:a.proxy(this.getNode,this),getParent:a.proxy(this.getParent,this),getSiblings:a.proxy(this.getSiblings,this),getSelected:a.proxy(this.getSelected,this),getUnselected:a.proxy(this.getUnselected,this),getExpanded:a.proxy(this.getExpanded,this),getCollapsed:a.proxy(this.getCollapsed,this),getChecked:a.proxy(this.getChecked,this),getUnchecked:a.proxy(this.getUnchecked,this),getDisabled:a.proxy(this.getDisabled,this),getEnabled:a.proxy(this.getEnabled,this),selectNode:a.proxy(this.selectNode,this),unselectNode:a.proxy(this.unselectNode,this),toggleNodeSelected:a.proxy(this.toggleNodeSelected,this),collapseAll:a.proxy(this.collapseAll,this),collapseNode:a.proxy(this.collapseNode,this),expandAll:a.proxy(this.expandAll,this),expandNode:a.proxy(this.expandNode,this),toggleNodeExpanded:a.proxy(this.toggleNodeExpanded,this),revealNode:a.proxy(this.revealNode,this),checkAll:a.proxy(this.checkAll,this),checkNode:a.proxy(this.checkNode,this),uncheckAll:a.proxy(this.uncheckAll,this),uncheckNode:a.proxy(this.uncheckNode,this),toggleNodeChecked:a.proxy(this.toggleNodeChecked,this),disableAll:a.proxy(this.disableAll,this),disableNode:a.proxy(this.disableNode,this),enableAll:a.proxy(this.enableAll,this),enableNode:a.proxy(this.enableNode,this),toggleNodeDisabled:a.proxy(this.toggleNodeDisabled,this),search:a.proxy(this.search,this),clearSearch:a.proxy(this.clearSearch,this)}};g.prototype.init=function(b){this.tree=[],this.nodes=[],b.data&&("string"==typeof b.data&&(b.data=a.parseJSON(b.data)),this.tree=a.extend(!0,[],b.data),delete b.data),this.options=a.extend({},f.settings,b),this.destroy(),this.subscribeEvents(),this.setInitialStates({nodes:this.tree},0),this.render()},g.prototype.remove=function(){this.destroy(),a.removeData(this,e),a("#"+this.styleId).remove()},g.prototype.destroy=function(){this.initialized&&(this.$wrapper.remove(),this.$wrapper=null,this.unsubscribeEvents(),this.initialized=!1)},g.prototype.unsubscribeEvents=function(){this.$element.off("click"),this.$element.off("nodeChecked"),this.$element.off("nodeCollapsed"),this.$element.off("nodeDisabled"),this.$element.off("nodeEnabled"),this.$element.off("nodeExpanded"),this.$element.off("nodeSelected"),this.$element.off("nodeUnchecked"),this.$element.off("nodeUnselected"),this.$element.off("searchComplete"),this.$element.off("searchCleared")},g.prototype.subscribeEvents=function(){this.unsubscribeEvents(),this.$element.on("click",a.proxy(this.clickHandler,this)),"function"==typeof this.options.onNodeChecked&&this.$element.on("nodeChecked",this.options.onNodeChecked),"function"==typeof this.options.onNodeCollapsed&&this.$element.on("nodeCollapsed",this.options.onNodeCollapsed),"function"==typeof this.options.onNodeDisabled&&this.$element.on("nodeDisabled",this.options.onNodeDisabled),"function"==typeof this.options.onNodeEnabled&&this.$element.on("nodeEnabled",this.options.onNodeEnabled),"function"==typeof this.options.onNodeExpanded&&this.$element.on("nodeExpanded",this.options.onNodeExpanded),"function"==typeof this.options.onNodeSelected&&this.$element.on("nodeSelected",this.options.onNodeSelected),"function"==typeof this.options.onNodeUnchecked&&this.$element.on("nodeUnchecked",this.options.onNodeUnchecked),"function"==typeof this.options.onNodeUnselected&&this.$element.on("nodeUnselected",this.options.onNodeUnselected),"function"==typeof this.options.onSearchComplete&&this.$element.on("searchComplete",this.options.onSearchComplete),"function"==typeof this.options.onSearchCleared&&this.$element.on("searchCleared",this.options.onSearchCleared)},g.prototype.setInitialStates=function(b,c){if(b.nodes){c+=1;var d=b,e=this;a.each(b.nodes,function(a,b){b.nodeId=e.nodes.length,b.parentId=d.nodeId,b.hasOwnProperty("selectable")||(b.selectable=!0),b.state=b.state||{},b.state.hasOwnProperty("checked")||(b.state.checked=!1),b.state.hasOwnProperty("disabled")||(b.state.disabled=!1),b.state.hasOwnProperty("expanded")||(!b.state.disabled&&c<e.options.levels&&b.nodes&&b.nodes.length>0?b.state.expanded=!0:b.state.expanded=!1),b.state.hasOwnProperty("selected")||(b.state.selected=!1),e.nodes.push(b),b.nodes&&e.setInitialStates(b,c)})}},g.prototype.clickHandler=function(b){this.options.enableLinks||b.preventDefault();var c=a(b.target),d=this.findNode(c);if(d&&!d.state.disabled){var e=c.attr("class")?c.attr("class").split(" "):[];-1!==e.indexOf("expand-icon")?(this.toggleExpandedState(d,f.options),this.render()):-1!==e.indexOf("check-icon")?(this.toggleCheckedState(d,f.options),this.render()):(d.selectable?this.toggleSelectedState(d,f.options):this.toggleExpandedState(d,f.options),this.render())}},g.prototype.findNode=function(a){var b=a.closest("li.list-group-item").attr("data-nodeid"),c=this.nodes[b];return c||console.log("Error: node does not exist"),c},g.prototype.toggleExpandedState=function(a,b){a&&this.setExpandedState(a,!a.state.expanded,b)},g.prototype.setExpandedState=function(b,c,d){c!==b.state.expanded&&(c&&b.nodes?(b.state.expanded=!0,d.silent||this.$element.trigger("nodeExpanded",a.extend(!0,{},b))):c||(b.state.expanded=!1,d.silent||this.$element.trigger("nodeCollapsed",a.extend(!0,{},b)),b.nodes&&!d.ignoreChildren&&a.each(b.nodes,a.proxy(function(a,b){this.setExpandedState(b,!1,d)},this))))},g.prototype.toggleSelectedState=function(a,b){a&&this.setSelectedState(a,!a.state.selected,b)},g.prototype.setSelectedState=function(b,c,d){c!==b.state.selected&&(c?(this.options.multiSelect||a.each(this.findNodes("true","g","state.selected"),a.proxy(function(a,b){this.setSelectedState(b,!1,d)},this)),b.state.selected=!0,d.silent||this.$element.trigger("nodeSelected",a.extend(!0,{},b))):(b.state.selected=!1,d.silent||this.$element.trigger("nodeUnselected",a.extend(!0,{},b))))},g.prototype.toggleCheckedState=function(a,b){a&&this.setCheckedState(a,!a.state.checked,b)},g.prototype.setCheckedState=function(b,c,d){c!==b.state.checked&&(c?(b.state.checked=!0,d.silent||this.$element.trigger("nodeChecked",a.extend(!0,{},b))):(b.state.checked=!1,d.silent||this.$element.trigger("nodeUnchecked",a.extend(!0,{},b))))},g.prototype.setDisabledState=function(b,c,d){c!==b.state.disabled&&(c?(b.state.disabled=!0,this.setExpandedState(b,!1,d),this.setSelectedState(b,!1,d),this.setCheckedState(b,!1,d),d.silent||this.$element.trigger("nodeDisabled",a.extend(!0,{},b))):(b.state.disabled=!1,d.silent||this.$element.trigger("nodeEnabled",a.extend(!0,{},b))))},g.prototype.render=function(){this.initialized||(this.$element.addClass(e),this.$wrapper=a(this.template.list),this.injectStyle(),this.initialized=!0),this.$element.empty().append(this.$wrapper.empty()),this.buildTree(this.tree,0)},g.prototype.buildTree=function(b,c){if(b){c+=1;var d=this;a.each(b,function(b,e){for(var f=a(d.template.item).addClass("node-"+d.elementId).addClass(e.state.checked?"node-checked":"").addClass(e.state.disabled?"node-disabled":"").addClass(e.state.selected?"node-selected":"").addClass(e.searchResult?"search-result":"").attr("data-nodeid",e.nodeId).attr("style",d.buildStyleOverride(e)),g=0;c-1>g;g++)f.append(d.template.indent);var h=[];if(e.nodes?(h.push("expand-icon"),h.push(e.state.expanded?d.options.collapseIcon:d.options.expandIcon)):h.push(d.options.emptyIcon),f.append(a(d.template.icon).addClass(h.join(" "))),d.options.showIcon){var h=["node-icon"];h.push(e.icon||d.options.nodeIcon),e.state.selected&&(h.pop(),h.push(e.selectedIcon||d.options.selectedIcon||e.icon||d.options.nodeIcon)),f.append(a(d.template.icon).addClass(h.join(" ")))}if(d.options.showCheckbox){var h=["check-icon"];h.push(e.state.checked?d.options.checkedIcon:d.options.uncheckedIcon),f.append(a(d.template.icon).addClass(h.join(" ")))}return f.append(d.options.enableLinks?a(d.template.link).attr("href",e.href).append(e.text):e.text),d.options.showTags&&e.tags&&a.each(e.tags,function(b,c){f.append(a(d.template.badge).append(c))}),d.$wrapper.append(f),e.nodes&&e.state.expanded&&!e.state.disabled?d.buildTree(e.nodes,c):void 0})}},g.prototype.buildStyleOverride=function(a){if(a.state.disabled)return"";var b=a.color,c=a.backColor;return this.options.highlightSelected&&a.state.selected&&(this.options.selectedColor&&(b=this.options.selectedColor),this.options.selectedBackColor&&(c=this.options.selectedBackColor)),this.options.highlightSearchResults&&a.searchResult&&!a.state.disabled&&(this.options.searchResultColor&&(b=this.options.searchResultColor),this.options.searchResultBackColor&&(c=this.options.searchResultBackColor)),"color:"+b+";background-color:"+c+";"},g.prototype.injectStyle=function(){this.options.injectStyle&&!c.getElementById(this.styleId)&&a('<style type="text/css" id="'+this.styleId+'"> '+this.buildStyle()+" </style>").appendTo("head")},g.prototype.buildStyle=function(){var a=".node-"+this.elementId+"{";return this.options.color&&(a+="color:"+this.options.color+";"),this.options.backColor&&(a+="background-color:"+this.options.backColor+";"),this.options.showBorder?this.options.borderColor&&(a+="border:1px solid "+this.options.borderColor+";"):a+="border:none;",a+="}",this.options.onhoverColor&&(a+=".node-"+this.elementId+":not(.node-disabled):hover{background-color:"+this.options.onhoverColor+";}"),this.css+a},g.prototype.template={list:'<ul class="list-group"></ul>',item:'<li class="list-group-item"></li>',indent:'<span class="indent"></span>',icon:'<span class="icon"></span>',link:'<a href="#" style="color:inherit;"></a>',badge:'<span class="badge"></span>'},g.prototype.css=".treeview .list-group-item{cursor:pointer}.treeview span.indent{margin-left:10px;margin-right:10px}.treeview span.icon{width:12px;margin-right:5px}.treeview .node-disabled{color:silver;cursor:not-allowed}",g.prototype.getNode=function(a){return this.nodes[a]},g.prototype.getParent=function(a){var b=this.identifyNode(a);return this.nodes[b.parentId]},g.prototype.getSiblings=function(a){var b=this.identifyNode(a),c=this.getParent(b),d=c?c.nodes:this.tree;return d.filter(function(a){return a.nodeId!==b.nodeId})},g.prototype.getSelected=function(){return this.findNodes("true","g","state.selected")},g.prototype.getUnselected=function(){return this.findNodes("false","g","state.selected")},g.prototype.getExpanded=function(){return this.findNodes("true","g","state.expanded")},g.prototype.getCollapsed=function(){return this.findNodes("false","g","state.expanded")},g.prototype.getChecked=function(){return this.findNodes("true","g","state.checked")},g.prototype.getUnchecked=function(){return this.findNodes("false","g","state.checked")},g.prototype.getDisabled=function(){return this.findNodes("true","g","state.disabled")},g.prototype.getEnabled=function(){return this.findNodes("false","g","state.disabled")},g.prototype.selectNode=function(b,c){this.forEachIdentifier(b,c,a.proxy(function(a,b){this.setSelectedState(a,!0,b)},this)),this.render()},g.prototype.unselectNode=function(b,c){this.forEachIdentifier(b,c,a.proxy(function(a,b){this.setSelectedState(a,!1,b)},this)),this.render()},g.prototype.toggleNodeSelected=function(b,c){this.forEachIdentifier(b,c,a.proxy(function(a,b){this.toggleSelectedState(a,b)},this)),this.render()},g.prototype.collapseAll=function(b){var c=this.findNodes("true","g","state.expanded");this.forEachIdentifier(c,b,a.proxy(function(a,b){this.setExpandedState(a,!1,b)},this)),this.render()},g.prototype.collapseNode=function(b,c){this.forEachIdentifier(b,c,a.proxy(function(a,b){this.setExpandedState(a,!1,b)},this)),this.render()},g.prototype.expandAll=function(b){if(b=a.extend({},f.options,b),b&&b.levels)this.expandLevels(this.tree,b.levels,b);else{var c=this.findNodes("false","g","state.expanded");this.forEachIdentifier(c,b,a.proxy(function(a,b){this.setExpandedState(a,!0,b)},this))}this.render()},g.prototype.expandNode=function(b,c){this.forEachIdentifier(b,c,a.proxy(function(a,b){this.setExpandedState(a,!0,b),a.nodes&&b&&b.levels&&this.expandLevels(a.nodes,b.levels-1,b)},this)),this.render()},g.prototype.expandLevels=function(b,c,d){d=a.extend({},f.options,d),a.each(b,a.proxy(function(a,b){this.setExpandedState(b,c>0?!0:!1,d),b.nodes&&this.expandLevels(b.nodes,c-1,d)},this))},g.prototype.revealNode=function(b,c){this.forEachIdentifier(b,c,a.proxy(function(a,b){for(var c=this.getParent(a);c;)this.setExpandedState(c,!0,b),c=this.getParent(c)},this)),this.render()},g.prototype.toggleNodeExpanded=function(b,c){this.forEachIdentifier(b,c,a.proxy(function(a,b){this.toggleExpandedState(a,b)},this)),this.render()},g.prototype.checkAll=function(b){var c=this.findNodes("false","g","state.checked");this.forEachIdentifier(c,b,a.proxy(function(a,b){this.setCheckedState(a,!0,b)},this)),this.render()},g.prototype.checkNode=function(b,c){this.forEachIdentifier(b,c,a.proxy(function(a,b){this.setCheckedState(a,!0,b)},this)),this.render()},g.prototype.uncheckAll=function(b){var c=this.findNodes("true","g","state.checked");this.forEachIdentifier(c,b,a.proxy(function(a,b){this.setCheckedState(a,!1,b)},this)),this.render()},g.prototype.uncheckNode=function(b,c){this.forEachIdentifier(b,c,a.proxy(function(a,b){this.setCheckedState(a,!1,b)},this)),this.render()},g.prototype.toggleNodeChecked=function(b,c){this.forEachIdentifier(b,c,a.proxy(function(a,b){this.toggleCheckedState(a,b)},this)),this.render()},g.prototype.disableAll=function(b){var c=this.findNodes("false","g","state.disabled");this.forEachIdentifier(c,b,a.proxy(function(a,b){this.setDisabledState(a,!0,b)},this)),this.render()},g.prototype.disableNode=function(b,c){this.forEachIdentifier(b,c,a.proxy(function(a,b){this.setDisabledState(a,!0,b)},this)),this.render()},g.prototype.enableAll=function(b){var c=this.findNodes("true","g","state.disabled");this.forEachIdentifier(c,b,a.proxy(function(a,b){this.setDisabledState(a,!1,b)},this)),this.render()},g.prototype.enableNode=function(b,c){this.forEachIdentifier(b,c,a.proxy(function(a,b){this.setDisabledState(a,!1,b)},this)),this.render()},g.prototype.toggleNodeDisabled=function(b,c){this.forEachIdentifier(b,c,a.proxy(function(a,b){this.setDisabledState(a,!a.state.disabled,b)},this)),this.render()},g.prototype.forEachIdentifier=function(b,c,d){c=a.extend({},f.options,c),b instanceof Array||(b=[b]),a.each(b,a.proxy(function(a,b){d(this.identifyNode(b),c)},this))},g.prototype.identifyNode=function(a){return"number"==typeof a?this.nodes[a]:a},g.prototype.search=function(b,c){c=a.extend({},f.searchOptions,c),this.clearSearch({render:!1});var d=[];if(b&&b.length>0){c.exactMatch&&(b="^"+b+"$");var e="g";c.ignoreCase&&(e+="i"),d=this.findNodes(b,e),a.each(d,function(a,b){b.searchResult=!0})}return c.revealResults?this.revealNode(d):this.render(),this.$element.trigger("searchComplete",a.extend(!0,{},d)),d},g.prototype.clearSearch=function(b){b=a.extend({},{render:!0},b);var c=a.each(this.findNodes("true","g","searchResult"),function(a,b){b.searchResult=!1});b.render&&this.render(),this.$element.trigger("searchCleared",a.extend(!0,{},c))},g.prototype.findNodes=function(b,c,d){c=c||"g",d=d||"text";var e=this;return a.grep(this.nodes,function(a){var f=e.getNodeValue(a,d);return"string"==typeof f?f.match(new RegExp(b,c)):void 0})},g.prototype.getNodeValue=function(a,b){var c=b.indexOf(".");if(c>0){var e=a[b.substring(0,c)],f=b.substring(c+1,b.length);return this.getNodeValue(e,f)}return a.hasOwnProperty(b)?a[b].toString():d};var h=function(a){b.console&&b.console.error(a)};a.fn[e]=function(b,c){var d;return this.each(function(){var f=a.data(this,e);"string"==typeof b?f?a.isFunction(f[b])&&"_"!==b.charAt(0)?(c instanceof Array||(c=[c]),d=f[b].apply(f,c)):h("No such method : "+b):h("Not initialized, can not call method : "+b):"boolean"==typeof b?d=f:a.data(this,e,new g(this,a.extend(!0,{},b)))}),d||this}}(jQuery,window,document);
