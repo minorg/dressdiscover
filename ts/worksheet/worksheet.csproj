@@ -24,8 +24,6 @@
   <ItemGroup>
     <Content Include="package.json" />
     <Content Include="src\.gitignore" />
-    <None Include="src\dressdiscover\gui\views\home\home_content_view.less" />
-    <Content Include="src\dressdiscover\gui\views\home\home_content_view.html" />
     <Content Include="src\dressdiscover\gui\views\navbar_view.html" />
     <Content Include="src\dressdiscover\gui\views\top_level_view.html" />
     <Content Include="src\dressdiscover\gui\views\worksheet\input\worksheet_feature_value_full_size_image_view.less" />
@@ -82,8 +80,6 @@
     <TypeScriptCompile Include="src\dressdiscover\gui\services\services.ts" />
     <TypeScriptCompile Include="src\dressdiscover\gui\services\worksheet\local_worksheet_command_service.ts" />
     <TypeScriptCompile Include="src\dressdiscover\gui\services\worksheet\local_worksheet_query_service.ts" />
-    <TypeScriptCompile Include="src\dressdiscover\gui\views\home\home_content_view.ts" />
-    <TypeScriptCompile Include="src\dressdiscover\gui\views\home\home_top_level_view.ts" />
     <TypeScriptCompile Include="src\dressdiscover\gui\views\navbar_view.ts" />
     <TypeScriptCompile Include="src\dressdiscover\gui\views\top_level_view.ts" />
     <TypeScriptCompile Include="src\dressdiscover\gui\views\worksheet\input\worksheet_feature_values_input_view.ts" />
