@@ -30,11 +30,6 @@ export class WorksheetAccessionNumberPickerView extends Marionette.ItemView<Back
         };
     }
 
-    onClickCloseButton() {
-        Application.instance.modalRegion.empty();
-        Application.instance.router.navigate("", { trigger: true });
-    }
-
     onClickOkButton() {
         let accessionNumber: string = this.ui.accessionNumberSelect.val();
         if (!accessionNumber) {
