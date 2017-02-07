@@ -19,7 +19,7 @@ export class QuestionSetDefinition {
 
     toThryftJSON(): any {
         var json: {[index: string]: any} = {};
-        json["features"] = function (__inArray: QuestionDefinition[]): any[] { var __outArray: any[] = []; for (var __i = 0; __i < __inArray.length; __i++) { __outArray.push(__inArray[__i].toThryftJSON()); } return __outArray; }(this.features.models);
+        json["features"] = function (__inArray: QuestionDefinition[]): any[] { var __outArray: any[] = []; for (var __i = 0; __i < __inArray.length; __i++) { __outArray.push(__inArray[__i].toThryftJSON()); } return __outArray; }(this.features);
         return json;
     }
 }

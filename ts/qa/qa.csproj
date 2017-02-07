@@ -22,21 +22,35 @@
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="app.css" />
-    <Content Include="index.html" />
+    <Content Include="assets\css\bootstrap.min.css" />
+    <Content Include="assets\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="assets\robots.txt" />
     <Content Include="web.config" />
+    <Content Include="webpack.config.js" />
   </ItemGroup>
   <ItemGroup>
-    <TypeScriptCompile Include="app.ts" />
-  </ItemGroup>
-  <ItemGroup>
+    <Content Include="package.json" />
+    <Content Include="tsconfig.json" />
+    <Content Include="assets\fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="assets\fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="assets\fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="assets\fonts\glyphicons-halflings-regular.woff2" />
     <None Include="web.Debug.config">
       <DependentUpon>web.config</DependentUpon>
     </None>
     <None Include="web.Release.config">
       <DependentUpon>web.config</DependentUpon>
     </None>
+    <Content Include="webpack.bat" />
   </ItemGroup>
+  <ItemGroup>
+    <TypeScriptCompile Include="src\dressdiscover\api\models\qa\question_definition.ts" />
+    <TypeScriptCompile Include="src\dressdiscover\api\models\qa\question_set_definition.ts" />
+    <TypeScriptCompile Include="src\dressdiscover\api\models\qa\question_value_definition.ts" />
+    <TypeScriptCompile Include="src\dressdiscover\api\services\io_exception.ts" />
+    <TypeScriptCompile Include="src\dressdiscover\gui\application.ts" />
+  </ItemGroup>
+  <ItemGroup />
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">12.0</VisualStudioVersion>
   </PropertyGroup>

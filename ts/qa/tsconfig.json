@@ -1,0 +1,23 @@
+{
+    "compileOnSave": true,
+    "compilerOptions": {
+        "baseUrl": ".",
+        "module": "commonjs",
+        "moduleResolution": "node",
+        "paths": {
+            "dressdiscover/*": [ "src/dressdiscover/*" ],
+            "node_modules/*": [ "node_modules/*" ]
+        },
+        "noImplicitAny": false,
+        "noImplicitReturns": true,
+        "noImplicitThis": true,
+        "noFallthroughCasesInSwitch": true,
+        "noUnusedLocals": true,
+        "sourceMap": true,
+        "strictNullChecks": true,
+        "target": "es5"
+    },
+    "include": [
+        "src/**/*"
+    ]
+}

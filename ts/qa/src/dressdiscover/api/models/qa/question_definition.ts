@@ -25,7 +25,7 @@ export class QuestionDefinition {
         var json: {[index: string]: any} = {};
         json["id"] = this.id;
         if (this.values_ != null) {
-            json["values_"] = function (__inArray: QuestionValueDefinition[]): any[] { var __outArray: any[] = []; for (var __i = 0; __i < __inArray.length; __i++) { __outArray.push(__inArray[__i].toThryftJSON()); } return __outArray; }(this.values_.models);
+            json["values_"] = function (__inArray: QuestionValueDefinition[]): any[] { var __outArray: any[] = []; for (var __i = 0; __i < __inArray.length; __i++) { __outArray.push(__inArray[__i].toThryftJSON()); } return __outArray; }(this.values_);
         }
         return json;
     }
