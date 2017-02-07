@@ -30,6 +30,7 @@ from thryft.generators.lint.lint_generator import LintGenerator
 from thryft.generators.py.py_generator import PyGenerator
 from thryft.generators.sql.create_table_sql_generator import CreateTableSqlGenerator
 from thryft.generators.ts.async_to_sync_service_ts_generator import AsyncToSyncServiceTsGenerator
+from thryft.generators.ts.backbone_ts_generator import BackboneTsGenerator
 from thryft.generators.ts.ts_generator import TsGenerator
 from yutil import indent, upper_camelize
 
@@ -97,6 +98,7 @@ class Main(thryft.main.Main):
         thrift_src_root_dir_path = os.path.join(ROOT_DIR_PATH, 'thrift', 'src')
 
         async_to_sync_service_ts_generator = AsyncToSyncServiceTsGenerator(ts_out_dir_path=WORKSHEET_TS_OUT_DIR_PATH)
+        backbone_ts_generator = BackboneTsGenerator(ts_out_dir_path=WORKSHEET_TS_OUT_DIR_PATH)
         cs_generator = CsGenerator()
         java_generator = \
             JavaGenerator(
@@ -114,7 +116,6 @@ class Main(thryft.main.Main):
         properties_java_generator = PropertiesJavaGenerator(project_name='dressdiscover', namespace_prefix='org.')
         py_generator = PyGenerator()
         sql_generator = CreateTableSqlGenerator()
-        ts_generator = TsGenerator(ts_out_dir_path=WORKSHEET_TS_OUT_DIR_PATH)
         validating_service_java_generator = ValidatingServiceJavaGenerator(namespace_prefix='org.')
 
         for pass_i in xrange(2):
@@ -158,7 +159,7 @@ class Main(thryft.main.Main):
                                 **compile_kwds
                             )
                             self._compile_thrift_file(
-                                generator=ts_generator,
+                                generator=backbone_ts_generator,
                                 out=WORKSHEET_TS_OUT_DIR_PATH,
                                 **compile_kwds
                             )
