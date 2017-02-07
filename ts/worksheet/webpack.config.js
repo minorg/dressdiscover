@@ -15,7 +15,7 @@ module.exports = {
   },
   devtool: 'source-map',
   entry: {
-      app: ['./src/dressdiscover/gui/application.ts']
+      app: ['./src/dressdiscover/gui/worksheet/application.ts']
   },
   externals: {
     // require("jquery") is external and available

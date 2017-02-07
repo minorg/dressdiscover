@@ -24,25 +24,25 @@
   <ItemGroup>
     <Content Include="package.json" />
     <Content Include="src\.gitignore" />
-    <Content Include="src\dressdiscover\gui\views\navbar_view.html" />
-    <Content Include="src\dressdiscover\gui\views\top_level_view.html" />
-    <Content Include="src\dressdiscover\gui\views\worksheet\input\worksheet_feature_value_full_size_image_view.less" />
-    <None Include="src\dressdiscover\gui\views\worksheet\input\worksheet_feature_value_input_view.less" />
-    <Content Include="src\dressdiscover\gui\views\worksheet\input\worksheet_feature_value_full_size_image_view.html" />
-    <Content Include="src\dressdiscover\gui\views\worksheet\input\worksheet_input_view.html" />
-    <Content Include="src\dressdiscover\gui\views\worksheet\input\worksheet_feature_input_view.html" />
-    <Content Include="src\dressdiscover\gui\views\worksheet\input\worksheet_feature_value_input_view.html" />
-    <Content Include="src\dressdiscover\gui\views\worksheet\output\worksheet_output_view.html" />
-    <Content Include="src\dressdiscover\gui\views\worksheet\worksheet_accession_number_picker_view.html" />
-    <Content Include="src\dressdiscover\gui\views\worksheet\worksheet_two_column_view.html" />
-    <Content Include="src\dressdiscover\gui\views\worksheet\worksheet_sidebar_view.html" />
+    <Content Include="src\dressdiscover\gui\worksheet\views\navbar_view.html" />
+    <Content Include="src\dressdiscover\gui\worksheet\views\top_level_view.html" />
+    <Content Include="src\dressdiscover\gui\worksheet\views\input\worksheet_feature_value_full_size_image_view.less" />
+    <None Include="src\dressdiscover\gui\worksheet\views\input\worksheet_feature_value_input_view.less" />
+    <Content Include="src\dressdiscover\gui\worksheet\views\input\worksheet_feature_value_full_size_image_view.html" />
+    <Content Include="src\dressdiscover\gui\worksheet\views\input\worksheet_input_view.html" />
+    <Content Include="src\dressdiscover\gui\worksheet\views\input\worksheet_feature_input_view.html" />
+    <Content Include="src\dressdiscover\gui\worksheet\views\input\worksheet_feature_value_input_view.html" />
+    <Content Include="src\dressdiscover\gui\worksheet\views\output\worksheet_output_view.html" />
+    <Content Include="src\dressdiscover\gui\worksheet\views\worksheet_accession_number_picker_view.html" />
+    <Content Include="src\dressdiscover\gui\worksheet\views\worksheet_two_column_view.html" />
+    <Content Include="src\dressdiscover\gui\worksheet\views\worksheet_sidebar_view.html" />
     <Content Include="src\index.html" />
     <Content Include="tsconfig.json" />
     <Content Include="webpack.config.js" />
-    <Content Include="src\dressdiscover\gui\views\worksheet\output\worksheet_output_view.less" />
-    <Content Include="src\dressdiscover\gui\views\worksheet\worksheet_sidebar_view.less" />
-    <Content Include="src\dressdiscover\gui\views\worksheet\worksheet_two_column_view.less" />
-    <Content Include="src\dressdiscover\gui\views\worksheet\input\worksheet_feature_input_view.less" />
+    <Content Include="src\dressdiscover\gui\worksheet\views\output\worksheet_output_view.less" />
+    <Content Include="src\dressdiscover\gui\worksheet\views\worksheet_sidebar_view.less" />
+    <Content Include="src\dressdiscover\gui\worksheet\views\worksheet_two_column_view.less" />
+    <Content Include="src\dressdiscover\gui\worksheet\views\input\worksheet_feature_input_view.less" />
   </ItemGroup>
   <ItemGroup>
     <TypeScriptCompile Include="src\dressdiscover\api\models\worksheet\worksheet_definition.ts" />
@@ -58,39 +58,40 @@
     <TypeScriptCompile Include="src\dressdiscover\api\services\worksheet\async_to_sync_worksheet_query_service.ts" />
     <TypeScriptCompile Include="src\dressdiscover\api\services\worksheet\worksheet_command_service.ts" />
     <TypeScriptCompile Include="src\dressdiscover\api\services\worksheet\worksheet_query_service.ts" />
-    <TypeScriptCompile Include="src\dressdiscover\gui\application.ts" />
-    <TypeScriptCompile Include="src\dressdiscover\gui\radio.ts" />
-    <TypeScriptCompile Include="src\dressdiscover\gui\router.ts" />
-    <TypeScriptCompile Include="src\dressdiscover\gui\events\worksheet\worksheet_feature_input_event.ts" />
-    <TypeScriptCompile Include="src\dressdiscover\gui\events\worksheet\worksheet_feature_navigation_event.ts" />
-    <TypeScriptCompile Include="src\dressdiscover\gui\models\worksheet\worksheet_feature_collection.ts" />
-    <TypeScriptCompile Include="src\dressdiscover\gui\models\worksheet\worksheet_feature.ts" />
-    <TypeScriptCompile Include="src\dressdiscover\gui\models\worksheet\worksheet_feature_set_collection.ts" />
-    <TypeScriptCompile Include="src\dressdiscover\gui\models\worksheet\worksheet_feature_set.ts" />
-    <TypeScriptCompile Include="src\dressdiscover\gui\models\worksheet\worksheet_feature_value_collection.ts" />
-    <TypeScriptCompile Include="src\dressdiscover\gui\models\worksheet\worksheet_feature_value.ts" />
-    <TypeScriptCompile Include="src\dressdiscover\gui\models\worksheet\worksheet.ts" />
-    <TypeScriptCompile Include="src\dressdiscover\gui\services\services.ts" />
-    <TypeScriptCompile Include="src\dressdiscover\gui\services\worksheet\local_worksheet_command_service.ts" />
-    <TypeScriptCompile Include="src\dressdiscover\gui\services\worksheet\local_worksheet_query_service.ts" />
-    <TypeScriptCompile Include="src\dressdiscover\gui\views\navbar_view.ts" />
-    <TypeScriptCompile Include="src\dressdiscover\gui\views\top_level_view.ts" />
-    <TypeScriptCompile Include="src\dressdiscover\gui\views\worksheet\input\worksheet_feature_values_input_view.ts" />
-    <TypeScriptCompile Include="src\dressdiscover\gui\views\worksheet\input\worksheet_feature_value_full_size_image_view.ts" />
-    <TypeScriptCompile Include="src\dressdiscover\gui\views\worksheet\navigation\worksheet_navigation_view.ts" />
-    <TypeScriptCompile Include="src\dressdiscover\gui\views\worksheet\input\worksheet_feature_input_view.ts" />
-    <TypeScriptCompile Include="src\dressdiscover\gui\views\worksheet\input\worksheet_feature_value_input_view.ts" />
-    <TypeScriptCompile Include="src\dressdiscover\gui\views\worksheet\input\worksheet_input_view.ts" />
-    <TypeScriptCompile Include="src\dressdiscover\gui\views\worksheet\output\worksheet_output_view.ts" />
-    <TypeScriptCompile Include="src\dressdiscover\gui\modal_region.ts" />
-    <TypeScriptCompile Include="src\dressdiscover\gui\views\worksheet\worksheet_accession_number_picker_view.ts" />
-    <TypeScriptCompile Include="src\dressdiscover\gui\views\worksheet\worksheet_two_column_view.ts" />
-    <TypeScriptCompile Include="src\dressdiscover\gui\views\worksheet\worksheet_sidebar_view.ts" />
-    <TypeScriptCompile Include="src\dressdiscover\gui\views\worksheet\worksheet_top_level_view.ts" />
+    <TypeScriptCompile Include="src\dressdiscover\gui\worksheet\application.ts" />
+    <TypeScriptCompile Include="src\dressdiscover\gui\worksheet\radio.ts" />
+    <TypeScriptCompile Include="src\dressdiscover\gui\worksheet\router.ts" />
+    <TypeScriptCompile Include="src\dressdiscover\gui\worksheet\events\worksheet_feature_input_event.ts" />
+    <TypeScriptCompile Include="src\dressdiscover\gui\worksheet\events\worksheet_feature_navigation_event.ts" />
+    <TypeScriptCompile Include="src\dressdiscover\gui\worksheet\models\worksheet_feature_collection.ts" />
+    <TypeScriptCompile Include="src\dressdiscover\gui\worksheet\models\worksheet_feature.ts" />
+    <TypeScriptCompile Include="src\dressdiscover\gui\worksheet\models\worksheet_feature_set_collection.ts" />
+    <TypeScriptCompile Include="src\dressdiscover\gui\worksheet\models\worksheet_feature_set.ts" />
+    <TypeScriptCompile Include="src\dressdiscover\gui\worksheet\models\worksheet_feature_value_collection.ts" />
+    <TypeScriptCompile Include="src\dressdiscover\gui\worksheet\models\worksheet_feature_value.ts" />
+    <TypeScriptCompile Include="src\dressdiscover\gui\worksheet\models\worksheet.ts" />
+    <TypeScriptCompile Include="src\dressdiscover\gui\worksheet\services\services.ts" />
+    <TypeScriptCompile Include="src\dressdiscover\gui\worksheet\services\local_worksheet_command_service.ts" />
+    <TypeScriptCompile Include="src\dressdiscover\gui\worksheet\services\local_worksheet_query_service.ts" />
+    <TypeScriptCompile Include="src\dressdiscover\gui\worksheet\views\navbar_view.ts" />
+    <TypeScriptCompile Include="src\dressdiscover\gui\worksheet\views\top_level_view.ts" />
+    <TypeScriptCompile Include="src\dressdiscover\gui\worksheet\views\input\worksheet_feature_values_input_view.ts" />
+    <TypeScriptCompile Include="src\dressdiscover\gui\worksheet\views\input\worksheet_feature_value_full_size_image_view.ts" />
+    <TypeScriptCompile Include="src\dressdiscover\gui\worksheet\views\navigation\worksheet_navigation_view.ts" />
+    <TypeScriptCompile Include="src\dressdiscover\gui\worksheet\views\input\worksheet_feature_input_view.ts" />
+    <TypeScriptCompile Include="src\dressdiscover\gui\worksheet\views\input\worksheet_feature_value_input_view.ts" />
+    <TypeScriptCompile Include="src\dressdiscover\gui\worksheet\views\input\worksheet_input_view.ts" />
+    <TypeScriptCompile Include="src\dressdiscover\gui\worksheet\views\output\worksheet_output_view.ts" />
+    <TypeScriptCompile Include="src\dressdiscover\gui\worksheet\modal_region.ts" />
+    <TypeScriptCompile Include="src\dressdiscover\gui\worksheet\views\worksheet_accession_number_picker_view.ts" />
+    <TypeScriptCompile Include="src\dressdiscover\gui\worksheet\views\worksheet_two_column_view.ts" />
+    <TypeScriptCompile Include="src\dressdiscover\gui\worksheet\views\worksheet_sidebar_view.ts" />
+    <TypeScriptCompile Include="src\dressdiscover\gui\worksheet\views\worksheet_top_level_view.ts" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="src\dressdiscover\gui\views\worksheet\worksheet_accession_number_picker_view.less" />
+    <Content Include="src\dressdiscover\gui\worksheet\views\worksheet_accession_number_picker_view.less" />
   </ItemGroup>
+  <ItemGroup />
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">12.0</VisualStudioVersion>
   </PropertyGroup>
