@@ -37,7 +37,8 @@ from yutil import indent, upper_camelize
 
 CS_OUT_DIR_PATH = os.path.join(ROOT_DIR_PATH, 'cs', 'DressDiscover', 'DressDiscover.Portable', 'src')
 PY_OUT_DIR_PATH = os.path.join(ROOT_DIR_PATH, 'py', 'src')
-WORKSHEET_TS_OUT_DIR_PATH = os.path.join(ROOT_DIR_PATH, 'ts', 'worksheet', 'src')
+TS_OUT_DIR_PATH = os.path.join(ROOT_DIR_PATH, 'ts')
+TS_PROJECT_NAMES = ('qa', 'worksheet')
 
 
 ELASTIC_SEARCH_INDEX_SETTINGS = \
@@ -67,7 +68,7 @@ class Main(thryft.main.Main):
         )
 
     def _clean(self):
-        for dir_path in (
+        dir_paths = [
              os.path.join(CS_OUT_DIR_PATH, 'DressDiscover', 'Api'),
              os.path.join(ROOT_DIR_PATH, 'java', 'api', 'src', 'gen', 'java', 'org', 'dressdiscover'),
              os.path.join(ROOT_DIR_PATH, 'java', 'api', 'src', 'gen', 'java', 'org', 'dressdiscover'),
@@ -76,8 +77,11 @@ class Main(thryft.main.Main):
              os.path.join(PY_OUT_DIR_PATH, 'dressdiscover', 'api'),
              os.path.join(PY_OUT_DIR_PATH, 'thryft'),
              os.path.join(ROOT_DIR_PATH, 'sql'),
-             os.path.join(WORKSHEET_TS_OUT_DIR_PATH, 'dressdiscover', 'api'),
-        ):
+        ]
+        for ts_project_name in TS_PROJECT_NAMES:
+            dir_paths.append(os.path.join(TS_OUT_DIR_PATH, ts_project_name, 'src', 'dressdiscover', 'api'))
+
+        for dir_path in dir_paths:
             if os.path.isdir(dir_path):
                 for i in xrange(10):
                     try:
@@ -86,7 +90,8 @@ class Main(thryft.main.Main):
                         pass
 
         os.makedirs(os.path.join(PY_OUT_DIR_PATH, 'dressdiscover', 'api'))
-        os.makedirs(os.path.join(WORKSHEET_TS_OUT_DIR_PATH, 'dressdiscover', 'api'))
+        for ts_project_name in TS_PROJECT_NAMES:
+            os.makedirs(os.path.join(TS_OUT_DIR_PATH, ts_project_name, 'src', 'dressdiscover', 'api'))
 
         # Copy thryft/lib/py to py/src
         shutil.copytree(
@@ -97,8 +102,6 @@ class Main(thryft.main.Main):
     def _compile(self):
         thrift_src_root_dir_path = os.path.join(ROOT_DIR_PATH, 'thrift', 'src')
 
-        async_to_sync_service_ts_generator = AsyncToSyncServiceTsGenerator(ts_out_dir_path=WORKSHEET_TS_OUT_DIR_PATH)
-        backbone_ts_generator = BackboneTsGenerator(ts_out_dir_path=WORKSHEET_TS_OUT_DIR_PATH)
         cs_generator = CsGenerator()
         java_generator = \
             JavaGenerator(
@@ -147,29 +150,48 @@ class Main(thryft.main.Main):
 
                     if thrift_subdir_name == 'api':
                         if thrift_file_base_name == 'io_exception' or \
-                           thrift_file_dir_name == 'worksheet':
-                            self._compile_thrift_file(
-                                generator=cs_generator,
-                                out=CS_OUT_DIR_PATH,
-                                **compile_kwds
-                            )
+                           thrift_file_dir_name in TS_PROJECT_NAMES:
+                            if thrift_file_dir_name == 'worksheet':
+                                self._compile_thrift_file(
+                                    generator=cs_generator,
+                                    out=CS_OUT_DIR_PATH,
+                                    **compile_kwds
+                                )
+
                             self._compile_thrift_file(
                                 generator=py_generator,
                                 out=PY_OUT_DIR_PATH,
                                 **compile_kwds
                             )
-                            self._compile_thrift_file(
-                                generator=backbone_ts_generator,
-                                out=WORKSHEET_TS_OUT_DIR_PATH,
-                                **compile_kwds
-                            )
-                            if thrift_file_base_name.endswith('_service'):
+
+                            ts_out = []
+                            for ts_project_name in TS_PROJECT_NAMES:
+                                if thrift_file_dir_name not in TS_PROJECT_NAMES or \
+                                   thrift_file_dir_name == ts_project_name:
+                                    ts_out_dir_path = os.path.join(TS_OUT_DIR_PATH, ts_project_name, 'src')
+                                else:
+                                    continue
+                                if ts_project_name == 'qa':
+                                    ts_generator = TsGenerator(ts_out_dir_path=ts_out_dir_path)
+                                else:
+                                    ts_generator = BackboneTsGenerator(ts_out_dir_path=ts_out_dir_path)
+                                ts_out.append((ts_generator, ts_out_dir_path))
+
+                            for ts_generator, ts_out_dir_path in ts_out:
                                 self._compile_thrift_file(
-                                    generator=async_to_sync_service_ts_generator,
-                                    out=WORKSHEET_TS_OUT_DIR_PATH,
+                                    generator=ts_generator,
+                                    out=ts_out_dir_path,
                                     **compile_kwds
                                 )
-                            if thrift_file_dir_name == 'worksheet':
+
+                                if thrift_file_base_name.endswith('_service'):
+                                    self._compile_thrift_file(
+                                        generator=AsyncToSyncServiceTsGenerator(ts_out_dir_path=ts_out_dir_path),
+                                        out=ts_out_dir_path,
+                                        **compile_kwds
+                                    )
+
+                            if thrift_file_dir_name in TS_PROJECT_NAMES:
                                 continue
 
                     if thrift_subdir_name in ('lib', 'server') and thrift_file_base_name.endswith('_properties'):
