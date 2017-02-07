@@ -1,13 +1,16 @@
 export class IoException {
-    constructor(private causeMessage: string) {
+    constructor(public causeMessage: string) {
     }
 
     static fromThryftJSON(json: any): IoException {
-        causeMessage: string;
+        var causeMessage: string | undefined;
         for (var fieldName in json) {
             if (fieldName == "cause_message") {
                 causeMessage = json[fieldName];
             }
+        }
+        if (causeMessage == null) {
+            throw new Error('causeMessage is required');
         }
         return new IoException(causeMessage);
     }

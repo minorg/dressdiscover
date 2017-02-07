@@ -1,13 +1,16 @@
 export class QuestionValueDefinition {
-    constructor(private id: string) {
+    constructor(public id: string) {
     }
 
     static fromThryftJSON(json: any): QuestionValueDefinition {
-        id: string;
+        var id: string | undefined;
         for (var fieldName in json) {
             if (fieldName == "id") {
                 id = json[fieldName];
             }
+        }
+        if (id == null) {
+            throw new Error('id is required');
         }
         return new QuestionValueDefinition(id);
     }

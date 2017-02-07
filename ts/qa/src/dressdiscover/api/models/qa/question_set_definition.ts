@@ -1,15 +1,18 @@
 import { QuestionDefinition } from "./question_definition";
 
 export class QuestionSetDefinition {
-    constructor(private features: QuestionDefinition[]) {
+    constructor(public features: QuestionDefinition[]) {
     }
 
     static fromThryftJSON(json: any): QuestionSetDefinition {
-        features: QuestionDefinition[];
+        var features: QuestionDefinition[] | undefined;
         for (var fieldName in json) {
             if (fieldName == "features") {
                 features = function(json: any[]): QuestionDefinition[] { var sequence: QuestionDefinition[] = []; for (var i = 0; i < json.length; i++) { sequence.push(QuestionDefinition.fromThryftJSON(json[i])); } return sequence; }(json[fieldName]);
             }
+        }
+        if (features == null) {
+            throw new Error('features is required');
         }
         return new QuestionSetDefinition(features);
     }
