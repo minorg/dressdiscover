@@ -25,6 +25,8 @@
     <Content Include="assets\css\bootstrap.min.css" />
     <Content Include="assets\fonts\glyphicons-halflings-regular.svg" />
     <Content Include="assets\robots.txt" />
+    <Content Include="src\.gitignore" />
+    <Content Include="src\index.html" />
     <Content Include="web.config" />
     <Content Include="webpack.config.js" />
   </ItemGroup>
