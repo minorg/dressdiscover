@@ -1,7 +1,7 @@
 {
-  "name": "dressdiscover",
+  "name": "dressdiscover-worksheet",
   "author": "Minor G.",
-  "description": "DressDiscover",
+  "description": "DressDiscover Worksheet",
   "license": "GPL-3.0",
   "repository": {
     "type": "git",
@@ -46,6 +46,6 @@
     "webpack-dev-server": "^1.16.2"
   },
   "scripts": {
-    "uglify": "webpack && uglifyjs ./public/js/dressdiscover.js -c -m -o ./public/js/dressdiscover.min.js --source-map ./public/js/dressdiscover.min.js.map"
+    "uglify": "webpack && uglifyjs ./public/js/worksheet.js -c -m -o ./public/js/worksheet.min.js --source-map ./public/js/worksheet.min.js.map"
   }
 }

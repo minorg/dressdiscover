@@ -42,7 +42,7 @@ module.exports = {
     ]
   },
   output: {
-    filename: 'js/dressdiscover.js',
+    filename: 'js/worksheet.js',
     libraryTarget: 'umd',
     path: path.join(__dirname, './public')
   },
@@ -74,7 +74,7 @@ module.exports = {
             to: './'
         }
     ]),
-    new ExtractTextPlugin('./css/dressdiscover.css'),
+    new ExtractTextPlugin('./css/worksheet.css'),
     new webpack.ProvidePlugin({
         $: 'jquery',
         jQuery: "jquery",
