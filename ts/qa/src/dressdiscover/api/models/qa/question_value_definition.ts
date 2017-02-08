@@ -1,5 +1,16 @@
 export class QuestionValueDefinition {
-    constructor(public id: string) {
+    private _id: string;
+
+    constructor(id: string) {
+        this.id = id;
+    }
+
+    get id(): string {
+        return this._id;
+    }
+
+    set id(id: string) {
+        this._id = id;
     }
 
     static fromThryftJSON(json: any): QuestionValueDefinition {
@@ -10,7 +21,7 @@ export class QuestionValueDefinition {
             }
         }
         if (id == null) {
-            throw new Error('id is required');
+            throw new TypeError('id is required');
         }
         return new QuestionValueDefinition(id);
     }

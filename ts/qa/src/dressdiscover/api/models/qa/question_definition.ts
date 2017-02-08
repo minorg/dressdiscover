@@ -1,7 +1,34 @@
 import { QuestionValueDefinition } from "./question_value_definition";
 
 export class QuestionDefinition {
-    constructor(public id: string, public values_?: QuestionValueDefinition[]) {
+    private _id: string;
+
+    private _values_?: QuestionValueDefinition[];
+
+    constructor(id: string, values_?: QuestionValueDefinition[]) {
+        this.id = id;
+        this.values_ = values_;
+    }
+
+    get id(): string {
+        return this._id;
+    }
+
+    set id(id: string) {
+        this._id = id;
+    }
+
+    get values_(): QuestionValueDefinition[] | undefined {
+        return this._values_;
+    }
+
+    set values_(values_: QuestionValueDefinition[] | undefined) {
+        if (values_ != null) {
+            if (values_.length < 1) {
+                throw new RangeError("expected len(values_) to be >= 1, was " + values_.length)
+            }
+        }
+        this._values_ = values_;
     }
 
     static fromThryftJSON(json: any): QuestionDefinition {
@@ -15,9 +42,8 @@ export class QuestionDefinition {
             }
         }
         if (id == null) {
-            throw new Error('id is required');
+            throw new TypeError('id is required');
         }
-
         return new QuestionDefinition(id, values_);
     }
 

@@ -1,5 +1,16 @@
 export class IoException {
-    constructor(public causeMessage: string) {
+    private _causeMessage: string;
+
+    constructor(causeMessage: string) {
+        this.causeMessage = causeMessage;
+    }
+
+    get causeMessage(): string {
+        return this._causeMessage;
+    }
+
+    set causeMessage(causeMessage: string) {
+        this._causeMessage = causeMessage;
     }
 
     static fromThryftJSON(json: any): IoException {
@@ -10,7 +21,7 @@ export class IoException {
             }
         }
         if (causeMessage == null) {
-            throw new Error('causeMessage is required');
+            throw new TypeError('causeMessage is required');
         }
         return new IoException(causeMessage);
     }
