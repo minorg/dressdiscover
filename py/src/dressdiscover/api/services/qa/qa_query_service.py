@@ -1,0 +1,3 @@
+class QaQueryService(object):
+    pass
+

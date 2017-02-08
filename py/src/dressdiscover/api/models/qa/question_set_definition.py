@@ -7,46 +7,46 @@ class QuestionSetDefinition(object):
     class Builder(object):
         def __init__(
             self,
-            features=None,
+            questions=None,
         ):
             '''
-            :type features: tuple(dressdiscover.api.models.qa.question_definition.QuestionDefinition)
+            :type questions: tuple(dressdiscover.api.models.qa.question_definition.QuestionDefinition)
             '''
 
-            self.__features = features
+            self.__questions = questions
 
         def build(self):
-            return QuestionSetDefinition(features=self.__features)
+            return QuestionSetDefinition(questions=self.__questions)
 
         @property
-        def features(self):
+        def questions(self):
             '''
             :rtype: tuple(dressdiscover.api.models.qa.question_definition.QuestionDefinition)
             '''
 
-            return self.__features
+            return self.__questions
 
-        def set_features(self, features):
+        def set_questions(self, questions):
             '''
-            :type features: tuple(dressdiscover.api.models.qa.question_definition.QuestionDefinition)
+            :type questions: tuple(dressdiscover.api.models.qa.question_definition.QuestionDefinition)
             '''
 
-            if features is None:
-                raise ValueError('features is required')
-            if not (isinstance(features, tuple) and len(list(ifilterfalse(lambda _: isinstance(_, dressdiscover.api.models.qa.question_definition.QuestionDefinition), features))) == 0):
-                raise TypeError("expected features to be a tuple(dressdiscover.api.models.qa.question_definition.QuestionDefinition) but it is a %s" % getattr(__builtin__, 'type')(features))
-            if len(features) < 1:
-                raise ValueError("expected len(features) to be >= 1, was %d" % len(features))
-            self.__features = features
+            if questions is None:
+                raise ValueError('questions is required')
+            if not (isinstance(questions, tuple) and len(list(ifilterfalse(lambda _: isinstance(_, dressdiscover.api.models.qa.question_definition.QuestionDefinition), questions))) == 0):
+                raise TypeError("expected questions to be a tuple(dressdiscover.api.models.qa.question_definition.QuestionDefinition) but it is a %s" % getattr(__builtin__, 'type')(questions))
+            if len(questions) < 1:
+                raise ValueError("expected len(questions) to be >= 1, was %d" % len(questions))
+            self.__questions = questions
             return self
 
         def update(self, question_set_definition):
             '''
-            :type features: tuple(dressdiscover.api.models.qa.question_definition.QuestionDefinition)
+            :type questions: tuple(dressdiscover.api.models.qa.question_definition.QuestionDefinition)
             '''
 
             if isinstance(question_set_definition, QuestionSetDefinition):
-                self.set_features(question_set_definition.features)
+                self.set_questions(question_set_definition.questions)
             elif isinstance(question_set_definition, dict):
                 for key, value in question_set_definition.iteritems():
                     getattr(self, 'set_' + key)(value)
@@ -54,16 +54,16 @@ class QuestionSetDefinition(object):
                 raise TypeError(question_set_definition)
             return self
 
-        @features.setter
-        def features(self, features):
+        @questions.setter
+        def questions(self, questions):
             '''
-            :type features: tuple(dressdiscover.api.models.qa.question_definition.QuestionDefinition)
+            :type questions: tuple(dressdiscover.api.models.qa.question_definition.QuestionDefinition)
             '''
 
-            self.set_features(features)
+            self.set_questions(questions)
 
     class FieldMetadata(object):
-        FEATURES = None
+        QUESTIONS = None
 
         def __init__(self, name, type_, validation):
             object.__init__(self)
@@ -91,57 +91,57 @@ class QuestionSetDefinition(object):
 
         @classmethod
         def values(cls):
-            return (cls.FEATURES,)
+            return (cls.QUESTIONS,)
 
-    FieldMetadata.FEATURES = FieldMetadata('features', tuple, {u'minLength': 1})
+    FieldMetadata.QUESTIONS = FieldMetadata('questions', tuple, {u'minLength': 1})
 
     def __init__(
         self,
-        features,
+        questions,
     ):
         '''
-        :type features: tuple(dressdiscover.api.models.qa.question_definition.QuestionDefinition)
+        :type questions: tuple(dressdiscover.api.models.qa.question_definition.QuestionDefinition)
         '''
 
-        if features is None:
-            raise ValueError('features is required')
-        if not (isinstance(features, tuple) and len(list(ifilterfalse(lambda _: isinstance(_, dressdiscover.api.models.qa.question_definition.QuestionDefinition), features))) == 0):
-            raise TypeError("expected features to be a tuple(dressdiscover.api.models.qa.question_definition.QuestionDefinition) but it is a %s" % getattr(__builtin__, 'type')(features))
-        if len(features) < 1:
-            raise ValueError("expected len(features) to be >= 1, was %d" % len(features))
-        self.__features = features
+        if questions is None:
+            raise ValueError('questions is required')
+        if not (isinstance(questions, tuple) and len(list(ifilterfalse(lambda _: isinstance(_, dressdiscover.api.models.qa.question_definition.QuestionDefinition), questions))) == 0):
+            raise TypeError("expected questions to be a tuple(dressdiscover.api.models.qa.question_definition.QuestionDefinition) but it is a %s" % getattr(__builtin__, 'type')(questions))
+        if len(questions) < 1:
+            raise ValueError("expected len(questions) to be >= 1, was %d" % len(questions))
+        self.__questions = questions
 
     def __eq__(self, other):
-        if self.features != other.features:
+        if self.questions != other.questions:
             return False
         return True
 
     def __hash__(self):
-        return hash(self.features)
+        return hash(self.questions)
 
     def __iter__(self):
-        return iter((self.features,))
+        return iter((self.questions,))
 
     def __ne__(self, other):
         return not self.__eq__(other)
 
     def __repr__(self):
         field_reprs = []
-        field_reprs.append('features=' + repr(self.features))
+        field_reprs.append('questions=' + repr(self.questions))
         return 'QuestionSetDefinition(' + ', '.join(field_reprs) + ')'
 
     def __str__(self):
         field_reprs = []
-        field_reprs.append('features=' + repr(self.features))
+        field_reprs.append('questions=' + repr(self.questions))
         return 'QuestionSetDefinition(' + ', '.join(field_reprs) + ')'
 
     @property
-    def features(self):
+    def questions(self):
         '''
         :rtype: tuple(dressdiscover.api.models.qa.question_definition.QuestionDefinition)
         '''
 
-        return self.__features
+        return self.__questions
 
     @classmethod
     def read(cls, iprot):
@@ -159,8 +159,8 @@ class QuestionSetDefinition(object):
             ifield_name, ifield_type, _ifield_id = iprot.read_field_begin()
             if ifield_type == 0: # STOP
                 break
-            elif ifield_name == 'features':
-                init_kwds['features'] = tuple([dressdiscover.api.models.qa.question_definition.QuestionDefinition.read(iprot) for _ in xrange(iprot.read_list_begin()[1])] + (iprot.read_list_end() is None and []))
+            elif ifield_name == 'questions':
+                init_kwds['questions'] = tuple([dressdiscover.api.models.qa.question_definition.QuestionDefinition.read(iprot) for _ in xrange(iprot.read_list_begin()[1])] + (iprot.read_list_end() is None and []))
             iprot.read_field_end()
         iprot.read_struct_end()
 
@@ -168,18 +168,18 @@ class QuestionSetDefinition(object):
 
     def replace(
         self,
-        features=None,
+        questions=None,
     ):
         '''
         Copy this object, replace one or more fields, and return the copy.
 
-        :type features: tuple(dressdiscover.api.models.qa.question_definition.QuestionDefinition) or None
+        :type questions: tuple(dressdiscover.api.models.qa.question_definition.QuestionDefinition) or None
         :rtype: dressdiscover.api.models.qa.question_set_definition.QuestionSetDefinition
         '''
 
-        if features is None:
-            features = self.features
-        return self.__class__(features=features)
+        if questions is None:
+            questions = self.questions
+        return self.__class__(questions=questions)
 
     def write(self, oprot):
         '''
@@ -191,9 +191,9 @@ class QuestionSetDefinition(object):
 
         oprot.write_struct_begin('QuestionSetDefinition')
 
-        oprot.write_field_begin(name='features', type=15, id=None)
-        oprot.write_list_begin(12, len(self.features))
-        for _0 in self.features:
+        oprot.write_field_begin(name='questions', type=15, id=None)
+        oprot.write_list_begin(12, len(self.questions))
+        for _0 in self.questions:
             _0.write(oprot)
         oprot.write_list_end()
         oprot.write_field_end()

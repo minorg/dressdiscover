@@ -1,0 +1,3 @@
+class QaCommandService(object):
+    pass
+
