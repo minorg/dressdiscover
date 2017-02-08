@@ -5,9 +5,12 @@ export class QuestionSet {
 
     private _questions: Question[];
 
-    constructor(id: string, questions: Question[]) {
+    private _title: string;
+
+    constructor(id: string, questions: Question[], title: string) {
         this.id = id;
         this.questions = questions;
+        this.title = title;
     }
 
     get id(): string {
@@ -38,14 +41,31 @@ export class QuestionSet {
         this._questions = questions;
     }
 
+    get title(): string {
+        return this._title;
+    }
+
+    set title(title: string) {
+        if (title.trim().length == 0) {
+            throw new RangeError('title is blank');
+        }
+        if (title.length < 1) {
+            throw new RangeError("expected len(title) to be >= 1, was " + title.length)
+        }
+        this._title = title;
+    }
+
     static fromThryftJSON(json: any): QuestionSet {
         var id: string | undefined;
         var questions: Question[] | undefined;
+        var title: string | undefined;
         for (var fieldName in json) {
             if (fieldName == "id") {
                 id = json[fieldName];
             } else if (fieldName == "questions") {
                 questions = function(json: any[]): Question[] { var sequence: Question[] = []; for (var i = 0; i < json.length; i++) { sequence.push(Question.fromThryftJSON(json[i])); } return sequence; }(json[fieldName]);
+            } else if (fieldName == "title") {
+                title = json[fieldName];
             }
         }
         if (id == null) {
@@ -54,13 +74,17 @@ export class QuestionSet {
         if (questions == null) {
             throw new TypeError('questions is required');
         }
-        return new QuestionSet(id, questions);
+        if (title == null) {
+            throw new TypeError('title is required');
+        }
+        return new QuestionSet(id, questions, title);
     }
 
     toThryftJSON(): any {
         var json: {[index: string]: any} = {};
         json["id"] = this.id;
         json["questions"] = function (__inArray: Question[]): any[] { var __outArray: any[] = []; for (var __i = 0; __i < __inArray.length; __i++) { __outArray.push(__inArray[__i].toThryftJSON()); } return __outArray; }(this.questions);
+        json["title"] = this.title;
         return json;
     }
 }

@@ -8,4 +8,7 @@ struct QuestionSet {
 
     // @validation {"minLength": 1}
     list<question.Question> questions;
+
+    // @validation {"blank": false, "minLength": 1}
+    string title;
 }
