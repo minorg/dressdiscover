@@ -1,21 +1,21 @@
 import __builtin__
-import dressdiscover.api.models.worksheet.question_value_id
+import dressdiscover.api.models.qa.question_set_id
 
 
-class QuestionValueDefinition(object):
+class NoSuchQuestionSetException(Exception):
     class Builder(object):
         def __init__(
             self,
             id=None,  # @ReservedAssignment
         ):
             '''
-            :type id: str
+            :type id: str or None
             '''
 
             self.__id = id
 
         def build(self):
-            return QuestionValueDefinition(id=self.__id)
+            return NoSuchQuestionSetException(id=self.__id)
 
         @property
         def id(self):  # @ReservedAssignment
@@ -27,34 +27,33 @@ class QuestionValueDefinition(object):
 
         def set_id(self, id):  # @ReservedAssignment
             '''
-            :type id: str
+            :type id: str or None
             '''
 
-            if id is None:
-                raise ValueError('id is required')
-            if not isinstance(id, basestring):
-                raise TypeError("expected id to be a str but it is a %s" % getattr(__builtin__, 'type')(id))
+            if id is not None:
+                if not isinstance(id, basestring):
+                    raise TypeError("expected id to be a str but it is a %s" % getattr(__builtin__, 'type')(id))
             self.__id = id
             return self
 
-        def update(self, question_value_definition):
+        def update(self, no_such_question_set_exception):
             '''
-            :type id: str
+            :type id: str or None
             '''
 
-            if isinstance(question_value_definition, QuestionValueDefinition):
-                self.set_id(question_value_definition.id)
-            elif isinstance(question_value_definition, dict):
-                for key, value in question_value_definition.iteritems():
+            if isinstance(no_such_question_set_exception, NoSuchQuestionSetException):
+                self.set_id(no_such_question_set_exception.id)
+            elif isinstance(no_such_question_set_exception, dict):
+                for key, value in no_such_question_set_exception.iteritems():
                     getattr(self, 'set_' + key)(value)
             else:
-                raise TypeError(question_value_definition)
+                raise TypeError(no_such_question_set_exception)
             return self
 
         @id.setter
         def id(self, id):  # @ReservedAssignment
             '''
-            :type id: str
+            :type id: str or None
             '''
 
             self.set_id(id)
@@ -90,20 +89,19 @@ class QuestionValueDefinition(object):
         def values(cls):
             return (cls.ID,)
 
-    FieldMetadata.ID = FieldMetadata('id', dressdiscover.api.models.worksheet.question_value_id.QuestionValueId, None)
+    FieldMetadata.ID = FieldMetadata('id', dressdiscover.api.models.qa.question_set_id.QuestionSetId, None)
 
     def __init__(
         self,
-        id,  # @ReservedAssignment
+        id=None,  # @ReservedAssignment
     ):
         '''
-        :type id: str
+        :type id: str or None
         '''
 
-        if id is None:
-            raise ValueError('id is required')
-        if not isinstance(id, basestring):
-            raise TypeError("expected id to be a str but it is a %s" % getattr(__builtin__, 'type')(id))
+        if id is not None:
+            if not isinstance(id, basestring):
+                raise TypeError("expected id to be a str but it is a %s" % getattr(__builtin__, 'type')(id))
         self.__id = id
 
     def __eq__(self, other):
@@ -122,13 +120,15 @@ class QuestionValueDefinition(object):
 
     def __repr__(self):
         field_reprs = []
-        field_reprs.append('id=' + "'" + self.id.encode('ascii', 'replace') + "'")
-        return 'QuestionValueDefinition(' + ', '.join(field_reprs) + ')'
+        if self.id is not None:
+            field_reprs.append('id=' + "'" + self.id.encode('ascii', 'replace') + "'")
+        return 'NoSuchQuestionSetException(' + ', '.join(field_reprs) + ')'
 
     def __str__(self):
         field_reprs = []
-        field_reprs.append('id=' + "'" + self.id.encode('ascii', 'replace') + "'")
-        return 'QuestionValueDefinition(' + ', '.join(field_reprs) + ')'
+        if self.id is not None:
+            field_reprs.append('id=' + "'" + self.id.encode('ascii', 'replace') + "'")
+        return 'NoSuchQuestionSetException(' + ', '.join(field_reprs) + ')'
 
     @property
     def id(self):  # @ReservedAssignment
@@ -144,7 +144,7 @@ class QuestionValueDefinition(object):
         Read a new object from the given input protocol and return the object.
 
         :type iprot: thryft.protocol._input_protocol._InputProtocol
-        :rtype: dressdiscover.api.models.qa.question_value_definition.QuestionValueDefinition
+        :rtype: dressdiscover.api.services.qa.no_such_question_set_exception.NoSuchQuestionSetException
         '''
 
         init_kwds = {}
@@ -155,7 +155,10 @@ class QuestionValueDefinition(object):
             if ifield_type == 0: # STOP
                 break
             elif ifield_name == 'id':
-                init_kwds['id'] = iprot.read_string()
+                try:
+                    init_kwds['id'] = iprot.read_string()
+                except (TypeError, ValueError,):
+                    pass
             iprot.read_field_end()
         iprot.read_struct_end()
 
@@ -169,7 +172,7 @@ class QuestionValueDefinition(object):
         Copy this object, replace one or more fields, and return the copy.
 
         :type id: str or None
-        :rtype: dressdiscover.api.models.qa.question_value_definition.QuestionValueDefinition
+        :rtype: dressdiscover.api.services.qa.no_such_question_set_exception.NoSuchQuestionSetException
         '''
 
         if id is None:
@@ -181,14 +184,15 @@ class QuestionValueDefinition(object):
         Write this object to the given output protocol and return self.
 
         :type oprot: thryft.protocol._output_protocol._OutputProtocol
-        :rtype: dressdiscover.api.models.qa.question_value_definition.QuestionValueDefinition
+        :rtype: dressdiscover.api.services.qa.no_such_question_set_exception.NoSuchQuestionSetException
         '''
 
-        oprot.write_struct_begin('QuestionValueDefinition')
+        oprot.write_struct_begin('NoSuchQuestionSetException')
 
-        oprot.write_field_begin(name='id', type=11, id=None)
-        oprot.write_string(self.id)
-        oprot.write_field_end()
+        if self.id is not None:
+            oprot.write_field_begin(name='id', type=11, id=None)
+            oprot.write_string(self.id)
+            oprot.write_field_end()
 
         oprot.write_field_stop()
 
