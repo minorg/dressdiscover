@@ -1,4 +1,4 @@
-namespace * dressdiscover.api.models.worksheet
+namespace * dressdiscover.api.models.qa
 
 include "dressdiscover/api/models/qa/uuid4.thrift"
 

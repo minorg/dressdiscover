@@ -140,12 +140,12 @@ class Main(thryft.main.Main):
                         'thrift_file_path': thrift_file_path
                     }
 
-                    self._compile_thrift_file(
-                        generator=lint_generator,
-                        **compile_kwds
-                    )
-
                     if pass_i == 0:
+                        self._compile_thrift_file(
+                            generator=lint_generator,
+                            **compile_kwds
+                        )
+
                         continue
 
                     if thrift_subdir_name == 'api':
