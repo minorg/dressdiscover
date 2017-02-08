@@ -1,4 +1,5 @@
 namespace * dressdiscover.api.models.qa
 
-// @validation {"blank": false, "minLength": 1}
-typedef string QuestionId
+include "dressdiscover/api/models/qa/uuid4.thrift"
+
+typedef uuid.Uuid4 QuestionId
