@@ -7,6 +7,9 @@ export class Application {
             ////doStuff 
             //var baz = context.params.foobar;
         });
+        this.sammy.get('/:questionid', (context: any) => {
+            alert("Question route");
+        });
     }
 
     static get instance() {
