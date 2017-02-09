@@ -31,6 +31,7 @@ from thryft.generators.py.py_generator import PyGenerator
 from thryft.generators.sql.create_table_sql_generator import CreateTableSqlGenerator
 from thryft.generators.ts.async_to_sync_service_ts_generator import AsyncToSyncServiceTsGenerator
 from thryft.generators.ts.backbone_ts_generator import BackboneTsGenerator
+from thryft.generators.ts.json_rpc_client_ts_generator import JsonRpcClientTsGenerator
 from thryft.generators.ts.ts_generator import TsGenerator
 from yutil import indent, upper_camelize
 
@@ -185,6 +186,13 @@ class Main(thryft.main.Main):
                                 )
 
                                 if thrift_file_base_name.endswith('_service'):
+                                    if thrift_file_dir_name == 'qa':
+                                        self._compile_thrift_file(
+                                            generator=JsonRpcClientTsGenerator(ts_out_dir_path=ts_out_dir_path),
+                                            out=ts_out_dir_path,
+                                            **compile_kwds
+                                        )
+
                                     self._compile_thrift_file(
                                         generator=AsyncToSyncServiceTsGenerator(ts_out_dir_path=ts_out_dir_path),
                                         out=ts_out_dir_path,

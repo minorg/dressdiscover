@@ -26,7 +26,7 @@
     <Content Include="assets\fonts\glyphicons-halflings-regular.svg" />
     <Content Include="assets\robots.txt" />
     <Content Include="src\.gitignore" />
-    <Content Include="src\dressdiscover\gui\qa\views\question_view.html" />
+    <Content Include="src\dressdiscover\gui\qa\views\user_id_input_view.html" />
     <Content Include="src\index.html" />
     <Content Include="web.config" />
     <Content Include="webpack.config.js" />
@@ -47,11 +47,29 @@
     <Content Include="webpack.bat" />
   </ItemGroup>
   <ItemGroup>
-    <TypeScriptCompile Include="src\dressdiscover\api\models\qa\question_definition.ts" />
-    <TypeScriptCompile Include="src\dressdiscover\api\models\qa\question_set_definition.ts" />
-    <TypeScriptCompile Include="src\dressdiscover\api\models\qa\question_value_definition.ts" />
+    <TypeScriptCompile Include="src\dressdiscover\api\models\qa\answer.ts" />
+    <TypeScriptCompile Include="src\dressdiscover\api\models\qa\answer_set.ts" />
+    <TypeScriptCompile Include="src\dressdiscover\api\models\qa\qa_image.ts" />
+    <TypeScriptCompile Include="src\dressdiscover\api\models\qa\qa_image_rights.ts" />
+    <TypeScriptCompile Include="src\dressdiscover\api\models\qa\qa_object.ts" />
+    <TypeScriptCompile Include="src\dressdiscover\api\models\qa\question.ts" />
+    <TypeScriptCompile Include="src\dressdiscover\api\models\qa\question_set.ts" />
+    <TypeScriptCompile Include="src\dressdiscover\api\models\qa\question_value.ts" />
     <TypeScriptCompile Include="src\dressdiscover\api\services\io_exception.ts" />
+    <TypeScriptCompile Include="src\dressdiscover\api\services\qa\async_to_sync_qa_command_service.ts" />
+    <TypeScriptCompile Include="src\dressdiscover\api\services\qa\async_to_sync_qa_query_service.ts" />
+    <TypeScriptCompile Include="src\dressdiscover\api\services\qa\json_rpc_qa_command_service.ts" />
+    <TypeScriptCompile Include="src\dressdiscover\api\services\qa\json_rpc_qa_query_service.ts" />
+    <TypeScriptCompile Include="src\dressdiscover\api\services\qa\no_such_answer_set_exception.ts" />
+    <TypeScriptCompile Include="src\dressdiscover\api\services\qa\no_such_question_set_exception.ts" />
+    <TypeScriptCompile Include="src\dressdiscover\api\services\qa\qa_command_service.ts" />
+    <TypeScriptCompile Include="src\dressdiscover\api\services\qa\qa_query_service.ts" />
     <TypeScriptCompile Include="src\dressdiscover\gui\qa\application.ts" />
+    <TypeScriptCompile Include="src\dressdiscover\gui\qa\views\view.ts" />
+    <TypeScriptCompile Include="src\dressdiscover\gui\qa\view_models\user_id_input_view_model.ts" />
+    <TypeScriptCompile Include="src\dressdiscover\gui\qa\view_models\view_model.ts" />
+    <TypeScriptCompile Include="src\dressdiscover\gui\qa\views\modal_view.ts" />
+    <TypeScriptCompile Include="src\dressdiscover\gui\qa\views\user_id_input_view.ts" />
   </ItemGroup>
   <ItemGroup />
   <PropertyGroup>
