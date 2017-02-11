@@ -1,5 +1,5 @@
 namespace * dressdiscover.api.models.qa
 
-include "dressdiscover/api/models/qa/uuid4.thrift"
+include "dressdiscover/api/models/qa/id.thrift"
 
-typedef uuid4.Uuid4 QaObjectId
+typedef id.Id QaObjectId
