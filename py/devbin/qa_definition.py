@@ -177,19 +177,19 @@ def thumbnail(full_size_file_path, thumbnail_file_path):
 def material_culture_question_set():
     return \
         question_set(
-            id_='59d8bb45-8bdc-4da3-8979-14556e890cf8',
+            id_='589f8edd69cfa172fc69d28b',
             title='Material Culture',
             questions=(
                 question(
-                    id_='ae3259e5-37f0-4335-8c35-44fd1594ab20',
+                    id_="589f8f9c69cfa172fc69d28c",
                     text='Is it large or small?',
                     values=(
                         question_value(
-                            id_='25479002-755c-40cc-b853-04c86a37f711',
+                            id_="589f8fa569cfa172fc69d28d",
                             text='Large',
                         ),
                         question_value(
-                            id_='2fe4dc46-3264-46a1-9d99-e0b4f3e72d57',
+                            id_="589f8fb369cfa172fc69d28e",
                             text='Small',
                         ),
                     )
@@ -204,7 +204,7 @@ QUESTION_SETS_BY_ID[MATERIAL_CULTURE_QUESTION_SET.id] = MATERIAL_CULTURE_QUESTIO
 # Objects
 OBJECTS.append(
     object_(
-        id_='52b1d748-1720-4834-b1c4-23c09e7f5609',
+        id_="589f8fbe69cfa172fc69d28f",
         image_rights=met_rights(source_url='http://images.metmuseum.org/CRDImages/ci/original/26.359a-b_front_CP4.jpg'),
         question_set_ids=frozenset((
             MATERIAL_CULTURE_QUESTION_SET.id,
