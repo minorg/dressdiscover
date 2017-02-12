@@ -63,20 +63,31 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	/* WEBPACK VAR INJECTION */(function($) {"use strict";
 	var Sammy = __webpack_require__(3);
-	var user_id_input_view_1 = __webpack_require__(4);
+	var router_1 = __webpack_require__(4);
+	var session_1 = __webpack_require__(24);
 	var Application = (function () {
 	    function Application() {
 	        this.sammy = Sammy();
-	        this.sammy.get('', function (context) {
-	            new user_id_input_view_1.UserIdInputView();
-	        });
-	        this.sammy.get('/:questionid', function (context) {
-	            alert("Question route");
-	        });
+	        this._session = new session_1.Session();
+	        this._router = new router_1.Router(this.sammy, this.session);
 	    }
 	    Object.defineProperty(Application, "instance", {
 	        get: function () {
 	            return Application._instance;
+	        },
+	        enumerable: true,
+	        configurable: true
+	    });
+	    Object.defineProperty(Application.prototype, "router", {
+	        get: function () {
+	            return this._router;
+	        },
+	        enumerable: true,
+	        configurable: true
+	    });
+	    Object.defineProperty(Application.prototype, "session", {
+	        get: function () {
+	            return this._session;
 	        },
 	        enumerable: true,
 	        configurable: true
@@ -2267,17 +2278,57 @@ return /******/ (function(modules) { // webpackBootstrap
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
+	var user_id_input_view_1 = __webpack_require__(5);
+	var Router = (function () {
+	    function Router(sammy, session) {
+	        this._sammy = sammy;
+	        this._session = session;
+	        var self = this;
+	        sammy.get('', function (context) {
+	            self.onGetRoot(context);
+	        });
+	        sammy.get('#/question/:objectId/:questionSetId/:questionId', function (context) {
+	            self.onGetQuestion(context);
+	        });
+	    }
+	    Router.prototype.checkAuthentication = function (onSuccess) {
+	        while (!this._session.currentUserId) {
+	            new user_id_input_view_1.UserIdInputView(onSuccess).show();
+	        }
+	        onSuccess();
+	    };
+	    Router.prototype.onGetRoot = function (context) {
+	        this.checkAuthentication(function () {
+	            // Load root page
+	        });
+	    };
+	    Router.prototype.goToQuestion = function (objectId, questionId, questionSetId) {
+	    };
+	    Router.prototype.onGetQuestion = function (context) {
+	        this.checkAuthentication(function () {
+	        });
+	    };
+	    return Router;
+	}());
+	exports.Router = Router;
+
+
+/***/ },
+/* 5 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
 	var __extends = (this && this.__extends) || function (d, b) {
 	    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
 	    function __() { this.constructor = d; }
 	    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 	};
-	var modal_view_1 = __webpack_require__(5);
-	var user_id_input_view_model_1 = __webpack_require__(18);
+	var modal_view_1 = __webpack_require__(6);
+	var user_id_input_view_model_1 = __webpack_require__(22);
 	var UserIdInputView = (function (_super) {
 	    __extends(UserIdInputView, _super);
-	    function UserIdInputView() {
-	        return _super.call(this, "user_id_input_view.html", new user_id_input_view_model_1.UserIdInputViewModel()) || this;
+	    function UserIdInputView(onHide) {
+	        return _super.call(this, "user_id_input_view.html", new user_id_input_view_model_1.UserIdInputViewModel(onHide)) || this;
 	    }
 	    return UserIdInputView;
 	}(modal_view_1.ModalView));
@@ -2285,7 +2336,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ },
-/* 5 */
+/* 6 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function($) {"use strict";
@@ -2294,19 +2345,24 @@ return /******/ (function(modules) { // webpackBootstrap
 	    function __() { this.constructor = d; }
 	    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 	};
-	var view_1 = __webpack_require__(6);
+	var ko = __webpack_require__(7);
+	var view_1 = __webpack_require__(10);
 	var ModalView = (function (_super) {
 	    __extends(ModalView, _super);
 	    function ModalView(htmlFileName, viewModel) {
-	        var _this = _super.call(this, htmlFileName, viewModel) || this;
-	        _this.show();
-	        return _this;
+	        return _super.call(this, htmlFileName, viewModel) || this;
 	    }
-	    ModalView.prototype.hide = function () {
+	    ModalView.hide = function () {
 	        $('#modal').modal('hide');
 	    };
 	    ModalView.prototype.show = function () {
-	        $('#modal').modal({ show: true, keyboard: false });
+	        var el = $("#modal");
+	        el.html(this.html);
+	        el.modal({ show: true, keyboard: false });
+	        var self = this;
+	        el.ready(function () {
+	            ko.applyBindings(self.viewModel, el.get()[0]);
+	        });
 	    };
 	    return ModalView;
 	}(view_1.View));
@@ -2315,154 +2371,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)))
 
 /***/ },
-/* 6 */
-/***/ function(module, exports, __webpack_require__) {
-
-	"use strict";
-	var View = (function () {
-	    function View(htmlFileName, viewModel) {
-	        this._html = __webpack_require__(7)("./" + htmlFileName);
-	        this._viewModel = viewModel;
-	    }
-	    Object.defineProperty(View.prototype, "html", {
-	        get: function () {
-	            return this._html;
-	        },
-	        enumerable: true,
-	        configurable: true
-	    });
-	    Object.defineProperty(View.prototype, "viewModel", {
-	        get: function () {
-	            return this._viewModel;
-	        },
-	        enumerable: true,
-	        configurable: true
-	    });
-	    return View;
-	}());
-	exports.View = View;
-
-
-/***/ },
 /* 7 */
-/***/ function(module, exports, __webpack_require__) {
-
-	var map = {
-		"./modal_view": 8,
-		"./modal_view.js": 9,
-		"./modal_view.js.map": 10,
-		"./modal_view.ts": 8,
-		"./user_id_input_view": 11,
-		"./user_id_input_view.html": 12,
-		"./user_id_input_view.js": 13,
-		"./user_id_input_view.js.map": 14,
-		"./user_id_input_view.ts": 11,
-		"./view": 15,
-		"./view.js": 16,
-		"./view.js.map": 17,
-		"./view.ts": 15
-	};
-	function webpackContext(req) {
-		return __webpack_require__(webpackContextResolve(req));
-	};
-	function webpackContextResolve(req) {
-		return map[req] || (function() { throw new Error("Cannot find module '" + req + "'.") }());
-	};
-	webpackContext.keys = function webpackContextKeys() {
-		return Object.keys(map);
-	};
-	webpackContext.resolve = webpackContextResolve;
-	module.exports = webpackContext;
-	webpackContext.id = 7;
-
-
-/***/ },
-/* 8 */
-/***/ function(module, exports) {
-
-	module.exports = "\"use strict\";\r\nvar __extends = (this && this.__extends) || function (d, b) {\r\n    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];\r\n    function __() { this.constructor = d; }\r\n    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());\r\n};\r\nvar view_1 = require(\"dressdiscover/gui/qa/views/view\");\r\nvar ModalView = (function (_super) {\r\n    __extends(ModalView, _super);\r\n    function ModalView(htmlFileName, viewModel) {\r\n        var _this = _super.call(this, htmlFileName, viewModel) || this;\r\n        _this.show();\r\n        return _this;\r\n    }\r\n    ModalView.prototype.hide = function () {\r\n        $('#modal').modal('hide');\r\n    };\r\n    ModalView.prototype.show = function () {\r\n        $('#modal').modal({ show: true, keyboard: false });\r\n    };\r\n    return ModalView;\r\n}(view_1.View));\r\nexports.ModalView = ModalView;\r\n"
-
-/***/ },
-/* 9 */
-/***/ function(module, exports) {
-
-	module.exports = "\"use strict\";\r\nvar __extends = (this && this.__extends) || function (d, b) {\r\n    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];\r\n    function __() { this.constructor = d; }\r\n    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());\r\n};\r\nvar view_1 = require(\"dressdiscover/gui/qa/views/view\");\r\nvar ModalView = (function (_super) {\r\n    __extends(ModalView, _super);\r\n    function ModalView(htmlFileName, viewModel) {\r\n        var _this = _super.call(this, htmlFileName, viewModel) || this;\r\n        _this.show();\r\n        return _this;\r\n    }\r\n    ModalView.prototype.hide = function () {\r\n        $('#modal').modal('hide');\r\n    };\r\n    ModalView.prototype.show = function () {\r\n        $('#modal').modal({ show: true, keyboard: false });\r\n    };\r\n    return ModalView;\r\n}(view_1.View));\r\nexports.ModalView = ModalView;\r\n//# sourceMappingURL=modal_view.js.map"
-
-/***/ },
-/* 10 */
-/***/ function(module, exports) {
-
-	module.exports = "{\"version\":3,\"file\":\"modal_view.js\",\"sourceRoot\":\"\",\"sources\":[\"modal_view.ts\"],\"names\":[],\"mappings\":\";;;;;;AAAA,wDAAuD;AAGvD;IAAsE,6BAAgB;IAClF,mBAAY,YAAoB,EAAE,SAAqB;QAAvD,YACI,kBAAM,YAAY,EAAE,SAAS,CAAC,SAEjC;QADG,KAAI,CAAC,IAAI,EAAE,CAAC;;IAChB,CAAC;IAED,wBAAI,GAAJ;QACK,CAAC,CAAC,QAAQ,CAAS,CAAC,KAAK,CAAC,MAAM,CAAC,CAAC;IACvC,CAAC;IAED,wBAAI,GAAJ;QACK,CAAC,CAAC,QAAQ,CAAS,CAAC,KAAK,CAAC,EAAE,IAAI,EAAE,IAAI,EAAE,QAAQ,EAAE,KAAK,EAAE,CAAC,CAAC;IAChE,CAAC;IACL,gBAAC;AAAD,CAAC,AAbD,CAAsE,WAAI,GAazE;AAbqB,8BAAS\"}"
-
-/***/ },
-/* 11 */
-/***/ function(module, exports) {
-
-	module.exports = "\"use strict\";\r\nvar __extends = (this && this.__extends) || function (d, b) {\r\n    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];\r\n    function __() { this.constructor = d; }\r\n    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());\r\n};\r\nvar modal_view_1 = require(\"dressdiscover/gui/qa/views/modal_view\");\r\nvar user_id_input_view_model_1 = require(\"dressdiscover/gui/qa/view_models/user_id_input_view_model\");\r\nvar UserIdInputView = (function (_super) {\r\n    __extends(UserIdInputView, _super);\r\n    function UserIdInputView() {\r\n        return _super.call(this, \"user_id_input_view.html\", new user_id_input_view_model_1.UserIdInputViewModel()) || this;\r\n    }\r\n    return UserIdInputView;\r\n}(modal_view_1.ModalView));\r\nexports.UserIdInputView = UserIdInputView;\r\n"
-
-/***/ },
-/* 12 */
-/***/ function(module, exports) {
-
-	module.exports = "<div class=\"modal-dialog\" role=\"document\" id=\"worksheet-accession-number-picker\">\r\n    <div class=\"modal-content\">\r\n        <div class=\"modal-header\">\r\n            <h4 class=\"modal-title\">Please enter your name</h4>\r\n        </div>\r\n        <div class=\"modal-body\">\r\n            <input data-bind=\"userId\" placeholder=\"Your name\" size=\"32\" type=\"text\" />\r\n        </div>\r\n        <br />\r\n        <div class=\"modal-footer\">\r\n            <button type=\"button\" class=\"btn btn-primary\" data-bind=\"enable: userId().length > 0\">OK</button>\r\n        </div>\r\n    </div>\r\n</div>\r\n"
-
-/***/ },
-/* 13 */
-/***/ function(module, exports) {
-
-	module.exports = "\"use strict\";\r\nvar __extends = (this && this.__extends) || function (d, b) {\r\n    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];\r\n    function __() { this.constructor = d; }\r\n    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());\r\n};\r\nvar modal_view_1 = require(\"dressdiscover/gui/qa/views/modal_view\");\r\nvar user_id_input_view_model_1 = require(\"dressdiscover/gui/qa/view_models/user_id_input_view_model\");\r\nvar UserIdInputView = (function (_super) {\r\n    __extends(UserIdInputView, _super);\r\n    function UserIdInputView() {\r\n        return _super.call(this, \"user_id_input_view.html\", new user_id_input_view_model_1.UserIdInputViewModel()) || this;\r\n    }\r\n    return UserIdInputView;\r\n}(modal_view_1.ModalView));\r\nexports.UserIdInputView = UserIdInputView;\r\n//# sourceMappingURL=user_id_input_view.js.map"
-
-/***/ },
-/* 14 */
-/***/ function(module, exports) {
-
-	module.exports = "{\"version\":3,\"file\":\"user_id_input_view.js\",\"sourceRoot\":\"\",\"sources\":[\"user_id_input_view.ts\"],\"names\":[],\"mappings\":\";;;;;;AAAA,oEAAkE;AAClE,sGAAiG;AAEjG;IAAqC,mCAA+B;IAChE;eACI,kBAAM,yBAAyB,EAAE,IAAI,+CAAoB,EAAE,CAAC;IAChE,CAAC;IACL,sBAAC;AAAD,CAAC,AAJD,CAAqC,sBAAS,GAI7C;AAJY,0CAAe\"}"
-
-/***/ },
-/* 15 */
-/***/ function(module, exports) {
-
-	module.exports = "\"use strict\";\r\nvar View = (function () {\r\n    function View(htmlFileName, viewModel) {\r\n        this._html = require(\"raw!./\" + htmlFileName);\r\n        this._viewModel = viewModel;\r\n    }\r\n    Object.defineProperty(View.prototype, \"html\", {\r\n        get: function () {\r\n            return this._html;\r\n        },\r\n        enumerable: true,\r\n        configurable: true\r\n    });\r\n    Object.defineProperty(View.prototype, \"viewModel\", {\r\n        get: function () {\r\n            return this._viewModel;\r\n        },\r\n        enumerable: true,\r\n        configurable: true\r\n    });\r\n    return View;\r\n}());\r\nexports.View = View;\r\n"
-
-/***/ },
-/* 16 */
-/***/ function(module, exports) {
-
-	module.exports = "\"use strict\";\r\nvar View = (function () {\r\n    function View(htmlFileName, viewModel) {\r\n        this._html = require(\"raw!./\" + htmlFileName);\r\n        this._viewModel = viewModel;\r\n    }\r\n    Object.defineProperty(View.prototype, \"html\", {\r\n        get: function () {\r\n            return this._html;\r\n        },\r\n        enumerable: true,\r\n        configurable: true\r\n    });\r\n    Object.defineProperty(View.prototype, \"viewModel\", {\r\n        get: function () {\r\n            return this._viewModel;\r\n        },\r\n        enumerable: true,\r\n        configurable: true\r\n    });\r\n    return View;\r\n}());\r\nexports.View = View;\r\n//# sourceMappingURL=view.js.map"
-
-/***/ },
-/* 17 */
-/***/ function(module, exports) {
-
-	module.exports = "{\"version\":3,\"file\":\"view.js\",\"sourceRoot\":\"\",\"sources\":[\"view.ts\"],\"names\":[],\"mappings\":\";AAIA;IACI,cAAY,YAAoB,EAAE,SAAqB;QACnD,IAAI,CAAC,KAAK,GAAG,OAAO,CAAC,QAAQ,GAAG,YAAY,CAAC,CAAC;QAC9C,IAAI,CAAC,UAAU,GAAG,SAAS,CAAC;IAChC,CAAC;IAED,sBAAI,sBAAI;aAAR;YACI,MAAM,CAAC,IAAI,CAAC,KAAK,CAAC;QACtB,CAAC;;;OAAA;IAED,sBAAI,2BAAS;aAAb;YACI,MAAM,CAAC,IAAI,CAAC,UAAU,CAAC;QAC3B,CAAC;;;OAAA;IAIL,WAAC;AAAD,CAAC,AAhBD,IAgBC;AAhBY,oBAAI\"}"
-
-/***/ },
-/* 18 */
-/***/ function(module, exports, __webpack_require__) {
-
-	"use strict";
-	var __extends = (this && this.__extends) || function (d, b) {
-	    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
-	    function __() { this.constructor = d; }
-	    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-	};
-	var ko = __webpack_require__(19);
-	var view_model_1 = __webpack_require__(22);
-	var UserIdInputViewModel = (function (_super) {
-	    __extends(UserIdInputViewModel, _super);
-	    function UserIdInputViewModel() {
-	        var _this = _super !== null && _super.apply(this, arguments) || this;
-	        _this.okButtonEnabled = ko.observable(false);
-	        _this.userId = ko.observable();
-	        return _this;
-	    }
-	    return UserIdInputViewModel;
-	}(view_model_1.ViewModel));
-	exports.UserIdInputViewModel = UserIdInputViewModel;
-
-
-/***/ },
-/* 19 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/* WEBPACK VAR INJECTION */(function(module) {/*!
@@ -2483,7 +2392,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        JSON = window["JSON"];
 	(function(factory) {
 	    // Support three module loading scenarios
-	    if ("function" === 'function' && __webpack_require__(21)['amd']) {
+	    if ("function" === 'function' && __webpack_require__(9)['amd']) {
 	        // [1] AMD anonymous module
 	        !(__WEBPACK_AMD_DEFINE_ARRAY__ = [exports, __webpack_require__], __WEBPACK_AMD_DEFINE_FACTORY__ = (factory), __WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ? (__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
 	    } else if (true) {
@@ -8360,10 +8269,10 @@ return /******/ (function(modules) { // webpackBootstrap
 	}());
 	})();
 	
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(20)(module)))
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(8)(module)))
 
 /***/ },
-/* 20 */
+/* 8 */
 /***/ function(module, exports) {
 
 	module.exports = function(module) {
@@ -8379,14 +8288,170 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ },
-/* 21 */
+/* 9 */
 /***/ function(module, exports) {
 
 	module.exports = function() { throw new Error("define cannot be used indirect"); };
 
 
 /***/ },
+/* 10 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+	var View = (function () {
+	    function View(htmlFileName, viewModel) {
+	        this._html = __webpack_require__(11)("./" + htmlFileName);
+	        this._viewModel = viewModel;
+	    }
+	    Object.defineProperty(View.prototype, "html", {
+	        get: function () {
+	            return this._html;
+	        },
+	        enumerable: true,
+	        configurable: true
+	    });
+	    Object.defineProperty(View.prototype, "viewModel", {
+	        get: function () {
+	            return this._viewModel;
+	        },
+	        enumerable: true,
+	        configurable: true
+	    });
+	    return View;
+	}());
+	exports.View = View;
+
+
+/***/ },
+/* 11 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var map = {
+		"./modal_view": 12,
+		"./modal_view.js": 13,
+		"./modal_view.js.map": 14,
+		"./modal_view.ts": 12,
+		"./user_id_input_view": 15,
+		"./user_id_input_view.html": 16,
+		"./user_id_input_view.js": 17,
+		"./user_id_input_view.js.map": 18,
+		"./user_id_input_view.ts": 15,
+		"./view": 19,
+		"./view.js": 20,
+		"./view.js.map": 21,
+		"./view.ts": 19
+	};
+	function webpackContext(req) {
+		return __webpack_require__(webpackContextResolve(req));
+	};
+	function webpackContextResolve(req) {
+		return map[req] || (function() { throw new Error("Cannot find module '" + req + "'.") }());
+	};
+	webpackContext.keys = function webpackContextKeys() {
+		return Object.keys(map);
+	};
+	webpackContext.resolve = webpackContextResolve;
+	module.exports = webpackContext;
+	webpackContext.id = 11;
+
+
+/***/ },
+/* 12 */
+/***/ function(module, exports) {
+
+	module.exports = "\"use strict\";\r\nvar __extends = (this && this.__extends) || function (d, b) {\r\n    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];\r\n    function __() { this.constructor = d; }\r\n    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());\r\n};\r\nvar ko = require(\"knockout\");\r\nvar view_1 = require(\"dressdiscover/gui/qa/views/view\");\r\nvar ModalView = (function (_super) {\r\n    __extends(ModalView, _super);\r\n    function ModalView(htmlFileName, viewModel) {\r\n        return _super.call(this, htmlFileName, viewModel) || this;\r\n    }\r\n    ModalView.hide = function () {\r\n        $('#modal').modal('hide');\r\n    };\r\n    ModalView.prototype.show = function () {\r\n        var el = $(\"#modal\");\r\n        el.html(this.html);\r\n        el.modal({ show: true, keyboard: false });\r\n        var self = this;\r\n        el.ready(function () {\r\n            ko.applyBindings(self.viewModel, el.get()[0]);\r\n        });\r\n    };\r\n    return ModalView;\r\n}(view_1.View));\r\nexports.ModalView = ModalView;\r\n"
+
+/***/ },
+/* 13 */
+/***/ function(module, exports) {
+
+	module.exports = "\"use strict\";\r\nvar __extends = (this && this.__extends) || function (d, b) {\r\n    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];\r\n    function __() { this.constructor = d; }\r\n    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());\r\n};\r\nvar ko = require(\"knockout\");\r\nvar view_1 = require(\"dressdiscover/gui/qa/views/view\");\r\nvar ModalView = (function (_super) {\r\n    __extends(ModalView, _super);\r\n    function ModalView(htmlFileName, viewModel) {\r\n        return _super.call(this, htmlFileName, viewModel) || this;\r\n    }\r\n    ModalView.hide = function () {\r\n        $('#modal').modal('hide');\r\n    };\r\n    ModalView.prototype.show = function () {\r\n        var el = $(\"#modal\");\r\n        el.html(this.html);\r\n        el.modal({ show: true, keyboard: false });\r\n        var self = this;\r\n        el.ready(function () {\r\n            ko.applyBindings(self.viewModel, el.get()[0]);\r\n        });\r\n    };\r\n    return ModalView;\r\n}(view_1.View));\r\nexports.ModalView = ModalView;\r\n//# sourceMappingURL=modal_view.js.map"
+
+/***/ },
+/* 14 */
+/***/ function(module, exports) {
+
+	module.exports = "{\"version\":3,\"file\":\"modal_view.js\",\"sourceRoot\":\"\",\"sources\":[\"modal_view.ts\"],\"names\":[],\"mappings\":\";;;;;;AAAA,6BAA+B;AAC/B,wDAAuD;AAGvD;IAAsE,6BAAgB;IAClF,mBAAY,YAAoB,EAAE,SAAqB;eACnD,kBAAM,YAAY,EAAE,SAAS,CAAC;IAClC,CAAC;IAEM,cAAI,GAAX;QACK,CAAC,CAAC,QAAQ,CAAS,CAAC,KAAK,CAAC,MAAM,CAAC,CAAC;IACvC,CAAC;IAED,wBAAI,GAAJ;QACI,IAAM,EAAE,GAAG,CAAC,CAAC,QAAQ,CAAC,CAAC;QACvB,EAAE,CAAC,IAAI,CAAC,IAAI,CAAC,IAAI,CAAC,CAAC;QAClB,EAAU,CAAC,KAAK,CAAC,EAAE,IAAI,EAAE,IAAI,EAAE,QAAQ,EAAE,KAAK,EAAE,CAAC,CAAC;QACnD,IAAM,IAAI,GAAG,IAAI,CAAC;QAClB,EAAE,CAAC,KAAK,CAAC;YACL,EAAE,CAAC,aAAa,CAAC,IAAI,CAAC,SAAS,EAAE,EAAE,CAAC,GAAG,EAAE,CAAC,CAAC,CAAC,CAAC,CAAC;QAClD,CAAC,CAAC,CAAC;IACP,CAAC;IACL,gBAAC;AAAD,CAAC,AAlBD,CAAsE,WAAI,GAkBzE;AAlBqB,8BAAS\"}"
+
+/***/ },
+/* 15 */
+/***/ function(module, exports) {
+
+	module.exports = "\"use strict\";\r\nvar __extends = (this && this.__extends) || function (d, b) {\r\n    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];\r\n    function __() { this.constructor = d; }\r\n    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());\r\n};\r\nvar modal_view_1 = require(\"dressdiscover/gui/qa/views/modal_view\");\r\nvar user_id_input_view_model_1 = require(\"dressdiscover/gui/qa/view_models/user_id_input_view_model\");\r\nvar UserIdInputView = (function (_super) {\r\n    __extends(UserIdInputView, _super);\r\n    function UserIdInputView(onHide) {\r\n        return _super.call(this, \"user_id_input_view.html\", new user_id_input_view_model_1.UserIdInputViewModel(onHide)) || this;\r\n    }\r\n    return UserIdInputView;\r\n}(modal_view_1.ModalView));\r\nexports.UserIdInputView = UserIdInputView;\r\n"
+
+/***/ },
+/* 16 */
+/***/ function(module, exports) {
+
+	module.exports = "<div class=\"modal-dialog\" role=\"document\" id=\"worksheet-accession-number-picker\">\r\n    <div class=\"modal-content\">\r\n        <div class=\"modal-header\">\r\n            <h4 class=\"modal-title\">Please enter your name</h4>\r\n        </div>\r\n        <div class=\"modal-body\">\r\n            <input data-bind=\"textInput: userId\" id=\"userIdInput\" placeholder=\"Your name\" size=\"32\" type=\"text\" />\r\n        </div>\r\n        <br />\r\n        <div class=\"modal-footer\">\r\n            <button type=\"button\" class=\"btn btn-primary\" data-bind=\"click: submit, enable: userIdComplete\">OK</button>\r\n        </div>\r\n    </div>\r\n</div>\r\n"
+
+/***/ },
+/* 17 */
+/***/ function(module, exports) {
+
+	module.exports = "\"use strict\";\r\nvar __extends = (this && this.__extends) || function (d, b) {\r\n    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];\r\n    function __() { this.constructor = d; }\r\n    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());\r\n};\r\nvar modal_view_1 = require(\"dressdiscover/gui/qa/views/modal_view\");\r\nvar user_id_input_view_model_1 = require(\"dressdiscover/gui/qa/view_models/user_id_input_view_model\");\r\nvar UserIdInputView = (function (_super) {\r\n    __extends(UserIdInputView, _super);\r\n    function UserIdInputView(onHide) {\r\n        return _super.call(this, \"user_id_input_view.html\", new user_id_input_view_model_1.UserIdInputViewModel(onHide)) || this;\r\n    }\r\n    return UserIdInputView;\r\n}(modal_view_1.ModalView));\r\nexports.UserIdInputView = UserIdInputView;\r\n//# sourceMappingURL=user_id_input_view.js.map"
+
+/***/ },
+/* 18 */
+/***/ function(module, exports) {
+
+	module.exports = "{\"version\":3,\"file\":\"user_id_input_view.js\",\"sourceRoot\":\"\",\"sources\":[\"user_id_input_view.ts\"],\"names\":[],\"mappings\":\";;;;;;AAAA,oEAAkE;AAClE,sGAAiG;AAEjG;IAAqC,mCAA+B;IAChE,yBAAY,MAAkB;eAC1B,kBAAM,yBAAyB,EAAE,IAAI,+CAAoB,CAAC,MAAM,CAAC,CAAC;IACtE,CAAC;IACL,sBAAC;AAAD,CAAC,AAJD,CAAqC,sBAAS,GAI7C;AAJY,0CAAe\"}"
+
+/***/ },
+/* 19 */
+/***/ function(module, exports) {
+
+	module.exports = "\"use strict\";\r\nvar View = (function () {\r\n    function View(htmlFileName, viewModel) {\r\n        this._html = require(\"raw!./\" + htmlFileName);\r\n        this._viewModel = viewModel;\r\n    }\r\n    Object.defineProperty(View.prototype, \"html\", {\r\n        get: function () {\r\n            return this._html;\r\n        },\r\n        enumerable: true,\r\n        configurable: true\r\n    });\r\n    Object.defineProperty(View.prototype, \"viewModel\", {\r\n        get: function () {\r\n            return this._viewModel;\r\n        },\r\n        enumerable: true,\r\n        configurable: true\r\n    });\r\n    return View;\r\n}());\r\nexports.View = View;\r\n"
+
+/***/ },
+/* 20 */
+/***/ function(module, exports) {
+
+	module.exports = "\"use strict\";\r\nvar View = (function () {\r\n    function View(htmlFileName, viewModel) {\r\n        this._html = require(\"raw!./\" + htmlFileName);\r\n        this._viewModel = viewModel;\r\n    }\r\n    Object.defineProperty(View.prototype, \"html\", {\r\n        get: function () {\r\n            return this._html;\r\n        },\r\n        enumerable: true,\r\n        configurable: true\r\n    });\r\n    Object.defineProperty(View.prototype, \"viewModel\", {\r\n        get: function () {\r\n            return this._viewModel;\r\n        },\r\n        enumerable: true,\r\n        configurable: true\r\n    });\r\n    return View;\r\n}());\r\nexports.View = View;\r\n//# sourceMappingURL=view.js.map"
+
+/***/ },
+/* 21 */
+/***/ function(module, exports) {
+
+	module.exports = "{\"version\":3,\"file\":\"view.js\",\"sourceRoot\":\"\",\"sources\":[\"view.ts\"],\"names\":[],\"mappings\":\";AAIA;IACI,cAAY,YAAoB,EAAE,SAAqB;QACnD,IAAI,CAAC,KAAK,GAAG,OAAO,CAAC,QAAQ,GAAG,YAAY,CAAC,CAAC;QAC9C,IAAI,CAAC,UAAU,GAAG,SAAS,CAAC;IAChC,CAAC;IAED,sBAAI,sBAAI;aAAR;YACI,MAAM,CAAC,IAAI,CAAC,KAAK,CAAC;QACtB,CAAC;;;OAAA;IAED,sBAAI,2BAAS;aAAb;YACI,MAAM,CAAC,IAAI,CAAC,UAAU,CAAC;QAC3B,CAAC;;;OAAA;IAIL,WAAC;AAAD,CAAC,AAhBD,IAgBC;AAhBY,oBAAI\"}"
+
+/***/ },
 /* 22 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+	var __extends = (this && this.__extends) || function (d, b) {
+	    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
+	    function __() { this.constructor = d; }
+	    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+	};
+	var ko = __webpack_require__(7);
+	var modal_view_1 = __webpack_require__(6);
+	var view_model_1 = __webpack_require__(23);
+	var UserIdInputViewModel = (function (_super) {
+	    __extends(UserIdInputViewModel, _super);
+	    function UserIdInputViewModel(onHide) {
+	        var _this = _super.call(this) || this;
+	        _this.userId = ko.observable("");
+	        _this.userIdComplete = ko.pureComputed(function () {
+	            return _this.userId().length > 0;
+	        }, _this);
+	        _this._onHide = onHide;
+	        return _this;
+	    }
+	    UserIdInputViewModel.prototype.submit = function () {
+	        alert(this.userId());
+	        modal_view_1.ModalView.hide();
+	        this._onHide();
+	    };
+	    return UserIdInputViewModel;
+	}(view_model_1.ViewModel));
+	exports.UserIdInputViewModel = UserIdInputViewModel;
+
+
+/***/ },
+/* 23 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -8396,6 +8461,34 @@ return /******/ (function(modules) { // webpackBootstrap
 	    return ViewModel;
 	}());
 	exports.ViewModel = ViewModel;
+
+
+/***/ },
+/* 24 */
+/***/ function(module, exports) {
+
+	"use strict";
+	var Session = (function () {
+	    function Session() {
+	    }
+	    Object.defineProperty(Session.prototype, "currentUserId", {
+	        get: function () {
+	            return sessionStorage.getItem("currentUserId");
+	        },
+	        set: function (value) {
+	            if (value) {
+	                sessionStorage.setItem("currentUserId", value);
+	            }
+	            else {
+	                sessionStorage.removeItem("currentUserId");
+	            }
+	        },
+	        enumerable: true,
+	        configurable: true
+	    });
+	    return Session;
+	}());
+	exports.Session = Session;
 
 
 /***/ }

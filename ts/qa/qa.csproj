@@ -48,7 +48,6 @@
   </ItemGroup>
   <ItemGroup>
     <TypeScriptCompile Include="src\dressdiscover\api\models\qa\answer.ts" />
-    <TypeScriptCompile Include="src\dressdiscover\api\models\qa\answer_set.ts" />
     <TypeScriptCompile Include="src\dressdiscover\api\models\qa\qa_image.ts" />
     <TypeScriptCompile Include="src\dressdiscover\api\models\qa\qa_image_rights.ts" />
     <TypeScriptCompile Include="src\dressdiscover\api\models\qa\qa_object.ts" />
@@ -65,6 +64,8 @@
     <TypeScriptCompile Include="src\dressdiscover\api\services\qa\qa_command_service.ts" />
     <TypeScriptCompile Include="src\dressdiscover\api\services\qa\qa_query_service.ts" />
     <TypeScriptCompile Include="src\dressdiscover\gui\qa\application.ts" />
+    <TypeScriptCompile Include="src\dressdiscover\gui\qa\models\session.ts" />
+    <TypeScriptCompile Include="src\dressdiscover\gui\qa\router.ts" />
     <TypeScriptCompile Include="src\dressdiscover\gui\qa\views\view.ts" />
     <TypeScriptCompile Include="src\dressdiscover\gui\qa\view_models\user_id_input_view_model.ts" />
     <TypeScriptCompile Include="src\dressdiscover\gui\qa\view_models\view_model.ts" />

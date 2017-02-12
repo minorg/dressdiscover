@@ -1,25 +1,32 @@
 import * as Sammy from "sammy";
-import { UserIdInputView } from "dressdiscover/gui/qa/views/user_id_input_view";
+import { Router } from "dressdiscover/gui/qa/router";
+import { Session } from "dressdiscover/gui/qa/models/session";
 
 export class Application {
     private constructor() {
-        this.sammy.get('', (context: any) => {
-            new UserIdInputView();
-        });
-        this.sammy.get('/:questionid', (context: any) => {
-            alert("Question route");
-        });
+        this._session = new Session();
+        this._router = new Router(this.sammy, this.session);
     }
 
     static get instance() {
         return Application._instance;
     }
 
+    get router() {
+        return this._router;
+    }
+
+    get session() {
+        return this._session;
+    }
+
     run() {
         this.sammy.run();
     }
 
+    private _router: Router;
     private sammy: Sammy.Application = Sammy();
+    private _session: Session;
     private static _instance: Application = new Application();
 }
 

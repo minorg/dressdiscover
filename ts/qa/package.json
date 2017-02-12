@@ -11,12 +11,11 @@
   "dependencies": {
     "@types/jquery": "^2.0.34",
     "@types/knockout": "~3.4.39",
-    "@types/sammy": "~0.0.17",
     "@types/underscore": "^1.7.33",
     "bootstrap": "~3.3.7",
     "knockout": "~3.4.1",
     "jquery": "^2.0.34",
-    "sammy": "~0.7.6",
+    "navigo": "~4.0.1",
     "underscore": "~1.8.3"
   },
   "devDependencies": {

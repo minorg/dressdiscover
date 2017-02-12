@@ -5,7 +5,6 @@ import { ViewModel } from "dressdiscover/gui/qa/view_models/view_model";
 export abstract class ModalView<ViewModelT extends ViewModel> extends View<ViewModelT> {
     constructor(htmlFileName: string, viewModel: ViewModelT) {
         super(htmlFileName, viewModel);
-        this.show();
     }
 
     static hide() {
