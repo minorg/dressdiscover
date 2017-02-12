@@ -47,7 +47,7 @@ module.exports = {
   plugins: [
     new CleanWebpackPlugin(['public'], {
         root: __dirname,
-        exclude: ["bootstrap.min.css", "bootstrap.min.js", "fonts/", "img/", "jquery.min.js", "robots.txt", "underscore-min.js"],
+        exclude: ["css/bootstrap.min.css", "fonts", "img", "js/bootstrap.min.js", "js/jquery.min.js", "js/underscore-min.js", "robots.txt"],
         verbose: true, 
         dry: false
     }),

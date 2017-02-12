@@ -4,7 +4,7 @@
             <h4 class="modal-title">Please enter your name</h4>
         </div>
         <div class="modal-body">
-            <input data-bind="textInput: userId" id="userIdInput" placeholder="Your name" size="32" type="text" />
+            <input data-bind="hasFocus: !userIdComplete, textInput: userId" id="userIdInput" placeholder="Your name" size="32" type="text" />
         </div>
         <br />
         <div class="modal-footer">

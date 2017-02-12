@@ -17,16 +17,16 @@ export class Router {
     }
 
     private checkAuthentication(onSuccess: () => void) {
-        while (!this._session.currentUserId) {
-            new UserIdInputView(onSuccess).show();
-        }        
-
-        onSuccess();
+        if (this._session.currentUserId) {
+            onSuccess();
+        } else {
+            new UserIdInputView(onSuccess, this._session).show();
+        }       
     }
 
     private onGetRoot(context: any) {
         this.checkAuthentication(() => {
-            // Load root page
+            alert("Load root");
         });
     }
 
