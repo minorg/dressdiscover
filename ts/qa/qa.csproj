@@ -26,6 +26,9 @@
     <Content Include="assets\fonts\glyphicons-halflings-regular.svg" />
     <Content Include="assets\robots.txt" />
     <Content Include="src\.gitignore" />
+    <Content Include="src\dressdiscover\gui\qa\views\home_view.html" />
+    <Content Include="src\dressdiscover\gui\qa\views\navbar_view.html" />
+    <Content Include="src\dressdiscover\gui\qa\views\top_level_view.html" />
     <Content Include="src\dressdiscover\gui\qa\views\user_id_input_view.html" />
     <Content Include="src\index.html" />
     <Content Include="web.config" />
@@ -66,6 +69,9 @@
     <TypeScriptCompile Include="src\dressdiscover\gui\qa\application.ts" />
     <TypeScriptCompile Include="src\dressdiscover\gui\qa\models\session.ts" />
     <TypeScriptCompile Include="src\dressdiscover\gui\qa\router.ts" />
+    <TypeScriptCompile Include="src\dressdiscover\gui\qa\views\home_view.ts" />
+    <TypeScriptCompile Include="src\dressdiscover\gui\qa\views\navbar_view.ts" />
+    <TypeScriptCompile Include="src\dressdiscover\gui\qa\views\top_level_view.ts" />
     <TypeScriptCompile Include="src\dressdiscover\gui\qa\views\view.ts" />
     <TypeScriptCompile Include="src\dressdiscover\gui\qa\view_models\user_id_input_view_model.ts" />
     <TypeScriptCompile Include="src\dressdiscover\gui\qa\view_models\view_model.ts" />

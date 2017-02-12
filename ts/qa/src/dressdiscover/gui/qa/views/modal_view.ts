@@ -4,7 +4,8 @@ import { ViewModel } from "dressdiscover/gui/qa/view_models/view_model";
 
 export abstract class ModalView<ViewModelT extends ViewModel> extends View<ViewModelT> {
     constructor(htmlFileName: string, viewModel: ViewModelT) {
-        super(htmlFileName, viewModel);
+        super(viewModel);
+        this._html = View._requireHtml(htmlFileName);
     }
 
     static hide() {
@@ -13,11 +14,13 @@ export abstract class ModalView<ViewModelT extends ViewModel> extends View<ViewM
 
     show() {
         const el = $("#modal");
-        el.html(this.html);
+        el.html(this._html);
         (el as any).modal({ show: true, keyboard: false });
         const self = this;
         el.ready(() => {
             ko.applyBindings(self.viewModel, el.get()[0]);
         });
     }
+
+    private _html: string;
 }

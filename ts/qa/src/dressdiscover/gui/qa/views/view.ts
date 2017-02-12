@@ -3,19 +3,17 @@
 declare function require(moduleName: string): any;
 
 export class View<ViewModelT extends ViewModel> {
-    constructor(htmlFileName: string, viewModel: ViewModelT) {
-        this._html = require("raw!./" + htmlFileName);
+    constructor(viewModel: ViewModelT) {
         this._viewModel = viewModel;
     }
 
-    get html() {
-        return this._html;
+    protected static _requireHtml(htmlFileName: string): string {
+        return require("raw!./" + htmlFileName)
     }
 
     get viewModel() {
         return this._viewModel;
     }
 
-    private _html: string;
     private _viewModel: ViewModelT;
 }

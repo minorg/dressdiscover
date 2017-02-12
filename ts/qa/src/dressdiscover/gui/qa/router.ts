@@ -1,4 +1,5 @@
 ﻿import * as Sammy from "sammy";
+import { HomeView } from "dressdiscover/gui/qa/views/home_view";
 import { Session } from "dressdiscover/gui/qa/models/session";
 import { UserIdInputView } from "dressdiscover/gui/qa/views/user_id_input_view";
 
@@ -26,7 +27,7 @@ export class Router {
 
     private onGetRoot(context: any) {
         this.checkAuthentication(() => {
-            alert("Load root");
+            new HomeView().show();
         });
     }
 

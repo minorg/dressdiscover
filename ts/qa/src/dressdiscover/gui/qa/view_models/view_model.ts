@@ -1,2 +1,2 @@
-﻿export abstract class ViewModel {
+﻿export class ViewModel {
 }
