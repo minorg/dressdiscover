@@ -1,10 +1,10 @@
-import { AnswerSet } from "../../models/qa/answer_set";
+import { Answer } from "../../models/qa/answer";
 import { QaObject } from "../../models/qa/qa_object";
 import { QuestionSet } from "../../models/qa/question_set";
 
 export interface QaQueryService {
-    getAnswerSetAsync(kwds: {objectId: string, questionSetId: string, userId: string, error: (jqXHR: JQueryXHR | null, textStatus: string, errorThrown: string | null) => any, success: (returnValue: AnswerSet) => void}): void;
-    getAnswerSetSync(kwds: {objectId: string, questionSetId: string, userId: string}): AnswerSet;
+    getAnswersAsync(kwds: {objectId: string, questionSetId: string, questionIds?: string[], userId?: string, error: (jqXHR: JQueryXHR | null, textStatus: string, errorThrown: string | null) => any, success: (returnValue: Answer[]) => void}): void;
+    getAnswersSync(kwds: {objectId: string, questionSetId: string, questionIds?: string[], userId?: string}): Answer[];
 
     getObjectsAsync(kwds: {error: (jqXHR: JQueryXHR | null, textStatus: string, errorThrown: string | null) => any, success: (returnValue: QaObject[]) => void}): void;
     getObjectsSync(): QaObject[];

@@ -1,6 +1,5 @@
 from itertools import ifilterfalse
 import __builtin__
-import dressdiscover.api.models.qa.question
 import dressdiscover.api.models.qa.question_set_id
 
 
@@ -9,21 +8,21 @@ class QuestionSet(object):
         def __init__(
             self,
             id=None,  # @ReservedAssignment
-            questions=None,
+            question_ids=None,
             title=None,
         ):
             '''
             :type id: str
-            :type questions: tuple(dressdiscover.api.models.qa.question.Question)
+            :type question_ids: tuple(str)
             :type title: str
             '''
 
             self.__id = id
-            self.__questions = questions
+            self.__question_ids = question_ids
             self.__title = title
 
         def build(self):
-            return QuestionSet(id=self.__id, questions=self.__questions, title=self.__title)
+            return QuestionSet(id=self.__id, question_ids=self.__question_ids, title=self.__title)
 
         @property
         def id(self):  # @ReservedAssignment
@@ -34,12 +33,12 @@ class QuestionSet(object):
             return self.__id
 
         @property
-        def questions(self):
+        def question_ids(self):
             '''
-            :rtype: tuple(dressdiscover.api.models.qa.question.Question)
+            :rtype: tuple(str)
             '''
 
-            return self.__questions
+            return self.__question_ids
 
         def set_id(self, id):  # @ReservedAssignment
             '''
@@ -53,18 +52,18 @@ class QuestionSet(object):
             self.__id = id
             return self
 
-        def set_questions(self, questions):
+        def set_question_ids(self, question_ids):
             '''
-            :type questions: tuple(dressdiscover.api.models.qa.question.Question)
+            :type question_ids: tuple(str)
             '''
 
-            if questions is None:
-                raise ValueError('questions is required')
-            if not (isinstance(questions, tuple) and len(list(ifilterfalse(lambda _: isinstance(_, dressdiscover.api.models.qa.question.Question), questions))) == 0):
-                raise TypeError("expected questions to be a tuple(dressdiscover.api.models.qa.question.Question) but it is a %s" % getattr(__builtin__, 'type')(questions))
-            if len(questions) < 1:
-                raise ValueError("expected len(questions) to be >= 1, was %d" % len(questions))
-            self.__questions = questions
+            if question_ids is None:
+                raise ValueError('question_ids is required')
+            if not (isinstance(question_ids, tuple) and len(list(ifilterfalse(lambda _: isinstance(_, basestring), question_ids))) == 0):
+                raise TypeError("expected question_ids to be a tuple(str) but it is a %s" % getattr(__builtin__, 'type')(question_ids))
+            if len(question_ids) < 1:
+                raise ValueError("expected len(question_ids) to be >= 1, was %d" % len(question_ids))
+            self.__question_ids = question_ids
             return self
 
         def set_title(self, title):
@@ -94,13 +93,13 @@ class QuestionSet(object):
         def update(self, question_set):
             '''
             :type id: str
-            :type questions: tuple(dressdiscover.api.models.qa.question.Question)
+            :type question_ids: tuple(str)
             :type title: str
             '''
 
             if isinstance(question_set, QuestionSet):
                 self.set_id(question_set.id)
-                self.set_questions(question_set.questions)
+                self.set_question_ids(question_set.question_ids)
                 self.set_title(question_set.title)
             elif isinstance(question_set, dict):
                 for key, value in question_set.iteritems():
@@ -117,13 +116,13 @@ class QuestionSet(object):
 
             self.set_id(id)
 
-        @questions.setter
-        def questions(self, questions):
+        @question_ids.setter
+        def question_ids(self, question_ids):
             '''
-            :type questions: tuple(dressdiscover.api.models.qa.question.Question)
+            :type question_ids: tuple(str)
             '''
 
-            self.set_questions(questions)
+            self.set_question_ids(question_ids)
 
         @title.setter
         def title(self, title):
@@ -135,7 +134,7 @@ class QuestionSet(object):
 
     class FieldMetadata(object):
         ID = None
-        QUESTIONS = None
+        QUESTION_IDS = None
         TITLE = None
 
         def __init__(self, name, type_, validation):
@@ -164,21 +163,21 @@ class QuestionSet(object):
 
         @classmethod
         def values(cls):
-            return (cls.ID, cls.QUESTIONS, cls.TITLE,)
+            return (cls.ID, cls.QUESTION_IDS, cls.TITLE,)
 
     FieldMetadata.ID = FieldMetadata('id', dressdiscover.api.models.qa.question_set_id.QuestionSetId, None)
-    FieldMetadata.QUESTIONS = FieldMetadata('questions', tuple, {u'minLength': 1})
+    FieldMetadata.QUESTION_IDS = FieldMetadata('question_ids', tuple, {u'minLength': 1})
     FieldMetadata.TITLE = FieldMetadata('title', str, {u'blank': False, u'minLength': 1})
 
     def __init__(
         self,
         id,  # @ReservedAssignment
-        questions,
+        question_ids,
         title,
     ):
         '''
         :type id: str
-        :type questions: tuple(dressdiscover.api.models.qa.question.Question)
+        :type question_ids: tuple(str)
         :type title: str
         '''
 
@@ -188,13 +187,13 @@ class QuestionSet(object):
             raise TypeError("expected id to be a str but it is a %s" % getattr(__builtin__, 'type')(id))
         self.__id = id
 
-        if questions is None:
-            raise ValueError('questions is required')
-        if not (isinstance(questions, tuple) and len(list(ifilterfalse(lambda _: isinstance(_, dressdiscover.api.models.qa.question.Question), questions))) == 0):
-            raise TypeError("expected questions to be a tuple(dressdiscover.api.models.qa.question.Question) but it is a %s" % getattr(__builtin__, 'type')(questions))
-        if len(questions) < 1:
-            raise ValueError("expected len(questions) to be >= 1, was %d" % len(questions))
-        self.__questions = questions
+        if question_ids is None:
+            raise ValueError('question_ids is required')
+        if not (isinstance(question_ids, tuple) and len(list(ifilterfalse(lambda _: isinstance(_, basestring), question_ids))) == 0):
+            raise TypeError("expected question_ids to be a tuple(str) but it is a %s" % getattr(__builtin__, 'type')(question_ids))
+        if len(question_ids) < 1:
+            raise ValueError("expected len(question_ids) to be >= 1, was %d" % len(question_ids))
+        self.__question_ids = question_ids
 
         if title is None:
             raise ValueError('title is required')
@@ -209,17 +208,17 @@ class QuestionSet(object):
     def __eq__(self, other):
         if self.id != other.id:
             return False
-        if self.questions != other.questions:
+        if self.question_ids != other.question_ids:
             return False
         if self.title != other.title:
             return False
         return True
 
     def __hash__(self):
-        return hash((self.id,self.questions,self.title,))
+        return hash((self.id,self.question_ids,self.title,))
 
     def __iter__(self):
-        return iter((self.id, self.questions, self.title,))
+        return iter((self.id, self.question_ids, self.title,))
 
     def __ne__(self, other):
         return not self.__eq__(other)
@@ -227,14 +226,14 @@ class QuestionSet(object):
     def __repr__(self):
         field_reprs = []
         field_reprs.append('id=' + "'" + self.id.encode('ascii', 'replace') + "'")
-        field_reprs.append('questions=' + repr(self.questions))
+        field_reprs.append('question_ids=' + repr(self.question_ids))
         field_reprs.append('title=' + "'" + self.title.encode('ascii', 'replace') + "'")
         return 'QuestionSet(' + ', '.join(field_reprs) + ')'
 
     def __str__(self):
         field_reprs = []
         field_reprs.append('id=' + "'" + self.id.encode('ascii', 'replace') + "'")
-        field_reprs.append('questions=' + repr(self.questions))
+        field_reprs.append('question_ids=' + repr(self.question_ids))
         field_reprs.append('title=' + "'" + self.title.encode('ascii', 'replace') + "'")
         return 'QuestionSet(' + ', '.join(field_reprs) + ')'
 
@@ -247,12 +246,12 @@ class QuestionSet(object):
         return self.__id
 
     @property
-    def questions(self):
+    def question_ids(self):
         '''
-        :rtype: tuple(dressdiscover.api.models.qa.question.Question)
+        :rtype: tuple(str)
         '''
 
-        return self.__questions
+        return self.__question_ids
 
     @classmethod
     def read(cls, iprot):
@@ -272,8 +271,8 @@ class QuestionSet(object):
                 break
             elif ifield_name == 'id':
                 init_kwds['id'] = iprot.read_string()
-            elif ifield_name == 'questions':
-                init_kwds['questions'] = tuple([dressdiscover.api.models.qa.question.Question.read(iprot) for _ in xrange(iprot.read_list_begin()[1])] + (iprot.read_list_end() is None and []))
+            elif ifield_name == 'question_ids':
+                init_kwds['question_ids'] = tuple([iprot.read_string() for _ in xrange(iprot.read_list_begin()[1])] + (iprot.read_list_end() is None and []))
             elif ifield_name == 'title':
                 init_kwds['title'] = iprot.read_string()
             iprot.read_field_end()
@@ -284,25 +283,25 @@ class QuestionSet(object):
     def replace(
         self,
         id=None,  # @ReservedAssignment
-        questions=None,
+        question_ids=None,
         title=None,
     ):
         '''
         Copy this object, replace one or more fields, and return the copy.
 
         :type id: str or None
-        :type questions: tuple(dressdiscover.api.models.qa.question.Question) or None
+        :type question_ids: tuple(str) or None
         :type title: str or None
         :rtype: dressdiscover.api.models.qa.question_set.QuestionSet
         '''
 
         if id is None:
             id = self.id  # @ReservedAssignment
-        if questions is None:
-            questions = self.questions
+        if question_ids is None:
+            question_ids = self.question_ids
         if title is None:
             title = self.title
-        return self.__class__(id=id, questions=questions, title=title)
+        return self.__class__(id=id, question_ids=question_ids, title=title)
 
     @property
     def title(self):
@@ -326,10 +325,10 @@ class QuestionSet(object):
         oprot.write_string(self.id)
         oprot.write_field_end()
 
-        oprot.write_field_begin(name='questions', type=15, id=None)
-        oprot.write_list_begin(12, len(self.questions))
-        for _0 in self.questions:
-            _0.write(oprot)
+        oprot.write_field_begin(name='question_ids', type=15, id=None)
+        oprot.write_list_begin(11, len(self.question_ids))
+        for _0 in self.question_ids:
+            oprot.write_string(_0)
         oprot.write_list_end()
         oprot.write_field_end()
 

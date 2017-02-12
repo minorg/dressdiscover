@@ -1,5 +1,7 @@
 from itertools import ifilterfalse
 import __builtin__
+import dressdiscover.api.models.qa.qa_object_id
+import dressdiscover.api.models.qa.qa_user_id
 import dressdiscover.api.models.qa.question_id
 
 
@@ -7,22 +9,36 @@ class Answer(object):
     class Builder(object):
         def __init__(
             self,
+            object_id=None,
             question_id=None,
+            user_id=None,
             selected_values=None,
             text=None,
         ):
             '''
+            :type object_id: str
             :type question_id: str
+            :type user_id: str
             :type selected_values: tuple(str) or None
             :type text: str or None
             '''
 
+            self.__object_id = object_id
             self.__question_id = question_id
+            self.__user_id = user_id
             self.__selected_values = selected_values
             self.__text = text
 
         def build(self):
-            return Answer(question_id=self.__question_id, selected_values=self.__selected_values, text=self.__text)
+            return Answer(object_id=self.__object_id, question_id=self.__question_id, user_id=self.__user_id, selected_values=self.__selected_values, text=self.__text)
+
+        @property
+        def object_id(self):
+            '''
+            :rtype: str
+            '''
+
+            return self.__object_id
 
         @property
         def question_id(self):
@@ -39,6 +55,18 @@ class Answer(object):
             '''
 
             return self.__selected_values
+
+        def set_object_id(self, object_id):
+            '''
+            :type object_id: str
+            '''
+
+            if object_id is None:
+                raise ValueError('object_id is required')
+            if not isinstance(object_id, basestring):
+                raise TypeError("expected object_id to be a str but it is a %s" % getattr(__builtin__, 'type')(object_id))
+            self.__object_id = object_id
+            return self
 
         def set_question_id(self, question_id):
             '''
@@ -80,6 +108,18 @@ class Answer(object):
             self.__text = text
             return self
 
+        def set_user_id(self, user_id):
+            '''
+            :type user_id: str
+            '''
+
+            if user_id is None:
+                raise ValueError('user_id is required')
+            if not isinstance(user_id, basestring):
+                raise TypeError("expected user_id to be a str but it is a %s" % getattr(__builtin__, 'type')(user_id))
+            self.__user_id = user_id
+            return self
+
         @property
         def text(self):
             '''
@@ -90,13 +130,17 @@ class Answer(object):
 
         def update(self, answer):
             '''
+            :type object_id: str
             :type question_id: str
+            :type user_id: str
             :type selected_values: tuple(str) or None
             :type text: str or None
             '''
 
             if isinstance(answer, Answer):
+                self.set_object_id(answer.object_id)
                 self.set_question_id(answer.question_id)
+                self.set_user_id(answer.user_id)
                 self.set_selected_values(answer.selected_values)
                 self.set_text(answer.text)
             elif isinstance(answer, dict):
@@ -105,6 +149,22 @@ class Answer(object):
             else:
                 raise TypeError(answer)
             return self
+
+        @property
+        def user_id(self):
+            '''
+            :rtype: str
+            '''
+
+            return self.__user_id
+
+        @object_id.setter
+        def object_id(self, object_id):
+            '''
+            :type object_id: str
+            '''
+
+            self.set_object_id(object_id)
 
         @question_id.setter
         def question_id(self, question_id):
@@ -130,8 +190,18 @@ class Answer(object):
 
             self.set_text(text)
 
+        @user_id.setter
+        def user_id(self, user_id):
+            '''
+            :type user_id: str
+            '''
+
+            self.set_user_id(user_id)
+
     class FieldMetadata(object):
+        OBJECT_ID = None
         QUESTION_ID = None
+        USER_ID = None
         SELECTED_VALUES = None
         TEXT = None
 
@@ -161,29 +231,47 @@ class Answer(object):
 
         @classmethod
         def values(cls):
-            return (cls.QUESTION_ID, cls.SELECTED_VALUES, cls.TEXT,)
+            return (cls.OBJECT_ID, cls.QUESTION_ID, cls.USER_ID, cls.SELECTED_VALUES, cls.TEXT,)
 
+    FieldMetadata.OBJECT_ID = FieldMetadata('object_id', dressdiscover.api.models.qa.qa_object_id.QaObjectId, None)
     FieldMetadata.QUESTION_ID = FieldMetadata('question_id', dressdiscover.api.models.qa.question_id.QuestionId, None)
+    FieldMetadata.USER_ID = FieldMetadata('user_id', dressdiscover.api.models.qa.qa_user_id.QaUserId, None)
     FieldMetadata.SELECTED_VALUES = FieldMetadata('selected_values', tuple, {u'minLength': 1})
     FieldMetadata.TEXT = FieldMetadata('text', str, {u'blank': False, u'minLength': 1})
 
     def __init__(
         self,
+        object_id,
         question_id,
+        user_id,
         selected_values=None,
         text=None,
     ):
         '''
+        :type object_id: str
         :type question_id: str
+        :type user_id: str
         :type selected_values: tuple(str) or None
         :type text: str or None
         '''
+
+        if object_id is None:
+            raise ValueError('object_id is required')
+        if not isinstance(object_id, basestring):
+            raise TypeError("expected object_id to be a str but it is a %s" % getattr(__builtin__, 'type')(object_id))
+        self.__object_id = object_id
 
         if question_id is None:
             raise ValueError('question_id is required')
         if not isinstance(question_id, basestring):
             raise TypeError("expected question_id to be a str but it is a %s" % getattr(__builtin__, 'type')(question_id))
         self.__question_id = question_id
+
+        if user_id is None:
+            raise ValueError('user_id is required')
+        if not isinstance(user_id, basestring):
+            raise TypeError("expected user_id to be a str but it is a %s" % getattr(__builtin__, 'type')(user_id))
+        self.__user_id = user_id
 
         if selected_values is not None:
             if not (isinstance(selected_values, tuple) and len(list(ifilterfalse(lambda _: isinstance(_, basestring), selected_values))) == 0):
@@ -202,7 +290,11 @@ class Answer(object):
         self.__text = text
 
     def __eq__(self, other):
+        if self.object_id != other.object_id:
+            return False
         if self.question_id != other.question_id:
+            return False
+        if self.user_id != other.user_id:
             return False
         if self.selected_values != other.selected_values:
             return False
@@ -211,17 +303,19 @@ class Answer(object):
         return True
 
     def __hash__(self):
-        return hash((self.question_id,self.selected_values,self.text,))
+        return hash((self.object_id,self.question_id,self.user_id,self.selected_values,self.text,))
 
     def __iter__(self):
-        return iter((self.question_id, self.selected_values, self.text,))
+        return iter((self.object_id, self.question_id, self.user_id, self.selected_values, self.text,))
 
     def __ne__(self, other):
         return not self.__eq__(other)
 
     def __repr__(self):
         field_reprs = []
+        field_reprs.append('object_id=' + "'" + self.object_id.encode('ascii', 'replace') + "'")
         field_reprs.append('question_id=' + "'" + self.question_id.encode('ascii', 'replace') + "'")
+        field_reprs.append('user_id=' + "'" + self.user_id.encode('ascii', 'replace') + "'")
         if self.selected_values is not None:
             field_reprs.append('selected_values=' + repr(self.selected_values))
         if self.text is not None:
@@ -230,12 +324,22 @@ class Answer(object):
 
     def __str__(self):
         field_reprs = []
+        field_reprs.append('object_id=' + "'" + self.object_id.encode('ascii', 'replace') + "'")
         field_reprs.append('question_id=' + "'" + self.question_id.encode('ascii', 'replace') + "'")
+        field_reprs.append('user_id=' + "'" + self.user_id.encode('ascii', 'replace') + "'")
         if self.selected_values is not None:
             field_reprs.append('selected_values=' + repr(self.selected_values))
         if self.text is not None:
             field_reprs.append('text=' + "'" + self.text.encode('ascii', 'replace') + "'")
         return 'Answer(' + ', '.join(field_reprs) + ')'
+
+    @property
+    def object_id(self):
+        '''
+        :rtype: str
+        '''
+
+        return self.__object_id
 
     @property
     def question_id(self):
@@ -261,8 +365,12 @@ class Answer(object):
             ifield_name, ifield_type, _ifield_id = iprot.read_field_begin()
             if ifield_type == 0: # STOP
                 break
+            elif ifield_name == 'object_id':
+                init_kwds['object_id'] = iprot.read_string()
             elif ifield_name == 'question_id':
                 init_kwds['question_id'] = iprot.read_string()
+            elif ifield_name == 'user_id':
+                init_kwds['user_id'] = iprot.read_string()
             elif ifield_name == 'selected_values':
                 init_kwds['selected_values'] = tuple([iprot.read_string() for _ in xrange(iprot.read_list_begin()[1])] + (iprot.read_list_end() is None and []))
             elif ifield_name == 'text':
@@ -277,26 +385,34 @@ class Answer(object):
 
     def replace(
         self,
+        object_id=None,
         question_id=None,
+        user_id=None,
         selected_values=None,
         text=None,
     ):
         '''
         Copy this object, replace one or more fields, and return the copy.
 
+        :type object_id: str or None
         :type question_id: str or None
+        :type user_id: str or None
         :type selected_values: tuple(str) or None
         :type text: str or None
         :rtype: dressdiscover.api.models.qa.answer.Answer
         '''
 
+        if object_id is None:
+            object_id = self.object_id
         if question_id is None:
             question_id = self.question_id
+        if user_id is None:
+            user_id = self.user_id
         if selected_values is None:
             selected_values = self.selected_values
         if text is None:
             text = self.text
-        return self.__class__(question_id=question_id, selected_values=selected_values, text=text)
+        return self.__class__(object_id=object_id, question_id=question_id, user_id=user_id, selected_values=selected_values, text=text)
 
     @property
     def selected_values(self):
@@ -314,6 +430,14 @@ class Answer(object):
 
         return self.__text
 
+    @property
+    def user_id(self):
+        '''
+        :rtype: str
+        '''
+
+        return self.__user_id
+
     def write(self, oprot):
         '''
         Write this object to the given output protocol and return self.
@@ -324,8 +448,16 @@ class Answer(object):
 
         oprot.write_struct_begin('Answer')
 
+        oprot.write_field_begin(name='object_id', type=11, id=None)
+        oprot.write_string(self.object_id)
+        oprot.write_field_end()
+
         oprot.write_field_begin(name='question_id', type=11, id=None)
         oprot.write_string(self.question_id)
+        oprot.write_field_end()
+
+        oprot.write_field_begin(name='user_id', type=11, id=None)
+        oprot.write_string(self.user_id)
         oprot.write_field_end()
 
         if self.selected_values is not None:

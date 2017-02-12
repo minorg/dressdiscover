@@ -21,11 +21,11 @@ export class Question {
         if (id.trim().length == 0) {
             throw new RangeError('id is blank');
         }
-        if (id.length > 36) {
-            throw new RangeError("expected len(id) to be <= 36, was " + id.length)
+        if (id.length > 24) {
+            throw new RangeError("expected len(id) to be <= 24, was " + id.length)
         }
-        if (id.length < 36) {
-            throw new RangeError("expected len(id) to be >= 36, was " + id.length)
+        if (id.length < 24) {
+            throw new RangeError("expected len(id) to be >= 24, was " + id.length)
         }
         this._id = id;
     }

@@ -1,20 +1,25 @@
-import { AnswerSet } from "../../models/qa/answer_set";
+import { Answer } from "../../models/qa/answer";
 import { QaObject } from "../../models/qa/qa_object";
 import { QaQueryService } from "./qa_query_service";
 import { QuestionSet } from "../../models/qa/question_set";
 
 export class JsonRpcQaQueryService implements QaQueryService {
-    getAnswerSetAsync(kwds: {objectId: string, questionSetId: string, userId: string, error: (jqXHR: JQueryXHR | null, textStatus: string, errorThrown: string | null) => any, success: (returnValue: AnswerSet) => void}): void {
+    getAnswersAsync(kwds: {objectId: string, questionSetId: string, questionIds?: string[], userId?: string, error: (jqXHR: JQueryXHR | null, textStatus: string, errorThrown: string | null) => any, success: (returnValue: Answer[]) => void}): void {
         var __jsonrpc_params: {[index: string]: any} = {};
         __jsonrpc_params["object_id"] = kwds.objectId;
         __jsonrpc_params["question_set_id"] = kwds.questionSetId;
-        __jsonrpc_params["user_id"] = kwds.userId;
+        if (typeof kwds.questionIds !== "undefined") {
+            __jsonrpc_params["question_ids"] = function (__inArray: string[]): any[] { var __outArray: any[] = []; for (var __i = 0; __i < __inArray.length; __i++) { __outArray.push(__inArray[__i]); } return __outArray; }(kwds.questionIds);
+        }
+        if (typeof kwds.userId !== "undefined") {
+            __jsonrpc_params["user_id"] = kwds.userId;
+        }
 
         $.ajax({
             async: true,
             data: JSON.stringify({
                 jsonrpc: '2.0',
-                method: 'get_answer_set',
+                method: 'get_answers',
                 params: __jsonrpc_params,
                 id: '1234'
             }),
@@ -26,7 +31,7 @@ export class JsonRpcQaQueryService implements QaQueryService {
             type: 'POST',
             success: function(__response: any) {
                 if (typeof __response.result !== "undefined") {
-                    kwds.success(AnswerSet.fromThryftJSON(__response.result));
+                    kwds.success(function(json: any[]): Answer[] { var sequence: Answer[] = []; for (var i = 0; i < json.length; i++) { sequence.push(Answer.fromThryftJSON(json[i])); } return sequence; }(__response.result));
                 } else {
                     kwds.error(null, __response.error.message, null);
                 }
@@ -35,19 +40,24 @@ export class JsonRpcQaQueryService implements QaQueryService {
         });
     }
 
-    getAnswerSetSync(kwds: {objectId: string, questionSetId: string, userId: string}): AnswerSet {
+    getAnswersSync(kwds: {objectId: string, questionSetId: string, questionIds?: string[], userId?: string}): Answer[] {
         var __jsonrpc_params: {[index: string]: any} = {};
         __jsonrpc_params["object_id"] = kwds.objectId;
         __jsonrpc_params["question_set_id"] = kwds.questionSetId;
-        __jsonrpc_params["user_id"] = kwds.userId;
+        if (typeof kwds.questionIds !== "undefined") {
+            __jsonrpc_params["question_ids"] = function (__inArray: string[]): any[] { var __outArray: any[] = []; for (var __i = 0; __i < __inArray.length; __i++) { __outArray.push(__inArray[__i]); } return __outArray; }(kwds.questionIds);
+        }
+        if (typeof kwds.userId !== "undefined") {
+            __jsonrpc_params["user_id"] = kwds.userId;
+        }
 
-        var returnValue: AnswerSet | undefined = undefined;
+        var returnValue: Answer[] | undefined = undefined;
 
         $.ajax({
             async: false,
             data: JSON.stringify({
                 jsonrpc: '2.0',
-                method: 'get_answer_set',
+                method: 'get_answers',
                 params: __jsonrpc_params,
                 id: '1234'
             }),
@@ -59,7 +69,7 @@ export class JsonRpcQaQueryService implements QaQueryService {
             type: 'POST',
             success: function(__response: any) {
                 if (typeof __response.result !== "undefined") {
-                    returnValue = AnswerSet.fromThryftJSON(__response.result);
+                    returnValue = function(json: any[]): Answer[] { var sequence: Answer[] = []; for (var i = 0; i < json.length; i++) { sequence.push(Answer.fromThryftJSON(json[i])); } return sequence; }(__response.result);
                 } else {
                     throw new Error(__response.error);
                 }

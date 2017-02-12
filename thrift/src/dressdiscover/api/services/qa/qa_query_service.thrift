@@ -1,5 +1,6 @@
 namespace * dressdiscover.api.services.qa
 
+include "dressdiscover/api/models/qa/answer.thrift"
 include "dressdiscover/api/models/qa/qa_object.thrift"
 include "dressdiscover/api/models/qa/qa_object_id.thrift"
 include "dressdiscover/api/models/qa/qa_user_id.thrift"

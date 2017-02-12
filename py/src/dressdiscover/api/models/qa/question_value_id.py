@@ -1,4 +1,4 @@
-import dressdiscover.api.models.qa.uuid4
+import dressdiscover.api.models.qa.id
 
 
-QuestionValueId = dressdiscover.api.models.qa.uuid4.Uuid4
+QuestionValueId = dressdiscover.api.models.qa.id.Id

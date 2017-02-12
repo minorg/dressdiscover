@@ -1,22 +1,24 @@
 from itertools import ifilterfalse
 import __builtin__
-import dressdiscover.api.models.qa.answer_set
+import dressdiscover.api.models.qa.answer
 import dressdiscover.api.models.qa.qa_object
 import dressdiscover.api.models.qa.question_set
 
 
 class QaQueryService(object):
-    def get_answer_set(
+    def get_answers(
         self,
         object_id=None,
         question_set_id=None,
+        question_ids=None,
         user_id=None,
     ):
         '''
         :type object_id: str
         :type question_set_id: str
-        :type user_id: str
-        :rtype: dressdiscover.api.models.qa.answer_set.AnswerSet
+        :type question_ids: tuple(str) or None
+        :type user_id: str or None
+        :rtype: tuple(dressdiscover.api.models.qa.answer.Answer)
         '''
 
         if object_id is None:
@@ -27,25 +29,30 @@ class QaQueryService(object):
             raise ValueError('question_set_id is required')
         if not isinstance(question_set_id, basestring):
             raise TypeError("expected question_set_id to be a str but it is a %s" % getattr(__builtin__, 'type')(question_set_id))
-        if user_id is None:
-            raise ValueError('user_id is required')
-        if not isinstance(user_id, basestring):
-            raise TypeError("expected user_id to be a str but it is a %s" % getattr(__builtin__, 'type')(user_id))
+        if question_ids is not None:
+            if not (isinstance(question_ids, tuple) and len(list(ifilterfalse(lambda _: isinstance(_, basestring), question_ids))) == 0):
+                raise TypeError("expected question_ids to be a tuple(str) but it is a %s" % getattr(__builtin__, 'type')(question_ids))
+            if len(question_ids) < 1:
+                raise ValueError("expected len(question_ids) to be >= 1, was %d" % len(question_ids))
+        if user_id is not None:
+            if not isinstance(user_id, basestring):
+                raise TypeError("expected user_id to be a str but it is a %s" % getattr(__builtin__, 'type')(user_id))
 
-        get_answer_set_return_value = self._get_answer_set(object_id=object_id, question_set_id=question_set_id, user_id=user_id)
+        get_answers_return_value = self._get_answers(object_id=object_id, question_set_id=question_set_id, question_ids=question_ids, user_id=user_id)
 
-        if not isinstance(get_answer_set_return_value, dressdiscover.api.models.qa.answer_set.AnswerSet):
-            raise TypeError(getattr(__builtin__, 'type')(get_answer_set_return_value))
+        if not (isinstance(get_answers_return_value, tuple) and len(list(ifilterfalse(lambda _: isinstance(_, dressdiscover.api.models.qa.answer.Answer), get_answers_return_value))) == 0):
+            raise TypeError(getattr(__builtin__, 'type')(get_answers_return_value))
 
-        return get_answer_set_return_value
+        return get_answers_return_value
 
-    def _get_answer_set(
+    def _get_answers(
         self,
         object_id,
         question_set_id,
+        question_ids,
         user_id,
     ):
-        raise NotImplementedError(self.__class__.__module__ + '.' + self.__class__.__name__ + '._get_answer_set')
+        raise NotImplementedError(self.__class__.__module__ + '.' + self.__class__.__name__ + '._get_answers')
 
     def get_objects(
         self,
