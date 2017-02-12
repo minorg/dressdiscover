@@ -21,12 +21,18 @@ THUMBNAIL_DIMENSIONS = (200, 200)
 # Outputs
 QUESTION_SETS_BY_ID = OrderedDict()
 OBJECTS = []
-IDS = {}
+QUESTIONS_BY_ID = OrderedDict()
 
+_IDS = {}
 
 # Helper functions
 def asset_url(asset_file_path):
     return os.path.relpath(asset_file_path, TS_ASSETS_DIR_PATH).replace(os.path.sep, '/')
+
+
+def check_id(id_):
+    assert not id_ in _IDS
+    _IDS[id_] = None, id_
 
 
 def met_rights(source_url):
@@ -43,8 +49,7 @@ def object_(
     image_rights,
     question_set_ids
 ):
-    assert not id_ in IDS
-    IDS[id_] = None, id_
+    check_id(id_)
 
     object_id = id_
 
@@ -79,29 +84,31 @@ def question(
     text,
     values=None
 ):
-    assert not id_ in IDS
-    IDS[id_] = None, id_
+    check_id(id_)
 
     question_builder = Question.Builder().set_id(id_).set_text(text)
     if values is not None:
         question_builder.set_values(values)
-    return question_builder.build()
+    question = question_builder.build()
+    QUESTIONS_BY_ID[question.id] = question
+    return question
 
 
 def question_set(
     id_,
-    questions,
+    question_ids,
     title,
 ):
-    assert not id_ in IDS
-    IDS[id_] = None, id_
+    check_id(id_)
 
-    return \
+    question_set = \
         QuestionSet.Builder()\
             .set_id(id_)\
             .set_title(title)\
-            .set_questions(questions)\
+            .set_question_ids(question_ids)\
             .build()
+    QUESTION_SETS_BY_ID[question_set.id] = question_set
+    return question_set
 
 
 def question_value(
@@ -109,8 +116,7 @@ def question_value(
     text,
     image_rights=None
 ):
-    assert not id_ in IDS
-    IDS[id_] = None, id_
+    check_id(id_)
 
     question_value_id = id_
 
@@ -175,30 +181,30 @@ def thumbnail(full_size_file_path, thumbnail_file_path):
 
 # Question sets
 def material_culture_question_set():
+    questions = []
+    questions.append(
+        question(
+            id_="589f8f9c69cfa172fc69d28c",
+            text='Is it large or small?',
+            values=(
+                question_value(
+                    id_="589f8fa569cfa172fc69d28d",
+                    text='Large',
+                ),
+                question_value(
+                    id_="589f8fb369cfa172fc69d28e",
+                    text='Small',
+                ),
+            )
+        )
+    )
     return \
         question_set(
             id_='589f8edd69cfa172fc69d28b',
             title='Material Culture',
-            questions=(
-                question(
-                    id_="589f8f9c69cfa172fc69d28c",
-                    text='Is it large or small?',
-                    values=(
-                        question_value(
-                            id_="589f8fa569cfa172fc69d28d",
-                            text='Large',
-                        ),
-                        question_value(
-                            id_="589f8fb369cfa172fc69d28e",
-                            text='Small',
-                        ),
-                    )
-                ),
-            ),
+            question_ids=tuple(question.id for question in questions)
         )
-
 MATERIAL_CULTURE_QUESTION_SET = material_culture_question_set()
-QUESTION_SETS_BY_ID[MATERIAL_CULTURE_QUESTION_SET.id] = MATERIAL_CULTURE_QUESTION_SET
 
 
 # Objects
@@ -217,23 +223,29 @@ if __name__ == '__main__':
     import json
     from thryft.protocol.builtins_output_protocol import BuiltinsOutputProtocol
 
-    objects_json = []
-    for object_ in OBJECTS:
-        oprot = BuiltinsOutputProtocol()
-        object_.write(oprot)
-        objects_json.append(oprot.value)
+    def to_json_array(object_list):
+        objects_json = []
+        for object_ in object_list:
+            oprot = BuiltinsOutputProtocol()
+            object_.write(oprot)
+            objects_json.append(oprot.value)
+        return objects_json
 
-    questions_json = []
-    for question_set in QUESTION_SETS_BY_ID.itervalues():
-        oprot = BuiltinsOutputProtocol()
-        question_set.write(oprot)
-        questions_json.append(oprot.value)
+    objects_json = to_json_array(OBJECTS)
+    question_sets_json = to_json_array(QUESTION_SETS_BY_ID.itervalues())
+    questions_json = to_json_array(QUESTIONS_BY_ID.itervalues())
 
     js = """\
 var OBJECTS = %s;
 
 var QUESTION_SETS = %s;
-""" % (json.dumps(objects_json, indent=4), json.dumps(questions_json, indent=4))
+
+var QUESTIONS = %s;
+""" % (
+    json.dumps(objects_json, indent=4),
+    json.dumps(question_sets_json, indent=4),
+    json.dumps(questions_json, indent=4),
+)
 
     js_file_name = 'definitions.js'
     json_file_name = 'definitions.json'

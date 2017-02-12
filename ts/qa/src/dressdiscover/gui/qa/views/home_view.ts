@@ -1,8 +1,8 @@
 ﻿import { TopLevelView } from "dressdiscover/gui/qa/views/top_level_view";
-import { ViewModel } from "dressdiscover/gui/qa/view_models/view_model";
+import { HomeViewModel } from "dressdiscover/gui/qa/view_models/home_view_model";
 
-export class HomeView extends TopLevelView<ViewModel> {
+export class HomeView extends TopLevelView<HomeViewModel> {
     constructor() {
-        super("home_view.html", new ViewModel());
+        super("home_view.html", new HomeViewModel());
     }
 }

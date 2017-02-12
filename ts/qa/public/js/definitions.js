@@ -19,23 +19,27 @@ var OBJECTS = [
 
 var QUESTION_SETS = [
     {
+        "question_ids": [
+            "589f8f9c69cfa172fc69d28c"
+        ], 
         "id": "589f8edd69cfa172fc69d28b", 
-        "questions": [
+        "title": "Material Culture"
+    }
+];
+
+var QUESTIONS = [
+    {
+        "text": "Is it large or small?", 
+        "values": [
             {
-                "text": "Is it large or small?", 
-                "values": [
-                    {
-                        "text": "Large", 
-                        "id": "589f8fa569cfa172fc69d28d"
-                    }, 
-                    {
-                        "text": "Small", 
-                        "id": "589f8fb369cfa172fc69d28e"
-                    }
-                ], 
-                "id": "589f8f9c69cfa172fc69d28c"
+                "text": "Large", 
+                "id": "589f8fa569cfa172fc69d28d"
+            }, 
+            {
+                "text": "Small", 
+                "id": "589f8fb369cfa172fc69d28e"
             }
         ], 
-        "title": "Material Culture"
+        "id": "589f8f9c69cfa172fc69d28c"
     }
 ];
