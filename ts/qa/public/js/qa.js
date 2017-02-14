@@ -64,8 +64,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	/* WEBPACK VAR INJECTION */(function($) {"use strict";
 	var Sammy = __webpack_require__(3);
 	var router_1 = __webpack_require__(4);
-	var session_1 = __webpack_require__(39);
-	var services_1 = __webpack_require__(40);
+	var session_1 = __webpack_require__(40);
+	var services_1 = __webpack_require__(41);
 	var Application = (function () {
 	    function Application() {
 	        this.sammy = Sammy();
@@ -2288,7 +2288,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	"use strict";
 	var home_view_1 = __webpack_require__(5);
-	var user_id_input_view_1 = __webpack_require__(33);
+	var user_id_input_view_1 = __webpack_require__(34);
 	var Router = (function () {
 	    function Router(sammy, session) {
 	        this._sammy = sammy;
@@ -2336,11 +2336,11 @@ return /******/ (function(modules) { // webpackBootstrap
 	    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 	};
 	var top_level_view_1 = __webpack_require__(6);
-	var view_model_1 = __webpack_require__(32);
+	var home_view_model_1 = __webpack_require__(33);
 	var HomeView = (function (_super) {
 	    __extends(HomeView, _super);
 	    function HomeView() {
-	        return _super.call(this, "home_view.html", new view_model_1.ViewModel()) || this;
+	        return _super.call(this, "home_view.html", new home_view_model_1.HomeViewModel()) || this;
 	    }
 	    return HomeView;
 	}(top_level_view_1.TopLevelView));
@@ -2488,7 +2488,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /* 10 */
 /***/ function(module, exports) {
 
-	module.exports = "\"use strict\";\r\nvar __extends = (this && this.__extends) || function (d, b) {\r\n    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];\r\n    function __() { this.constructor = d; }\r\n    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());\r\n};\r\nvar top_level_view_1 = require(\"dressdiscover/gui/qa/views/top_level_view\");\r\nvar view_model_1 = require(\"dressdiscover/gui/qa/view_models/view_model\");\r\nvar HomeView = (function (_super) {\r\n    __extends(HomeView, _super);\r\n    function HomeView() {\r\n        return _super.call(this, \"home_view.html\", new view_model_1.ViewModel()) || this;\r\n    }\r\n    return HomeView;\r\n}(top_level_view_1.TopLevelView));\r\nexports.HomeView = HomeView;\r\n"
+	module.exports = "\"use strict\";\r\nvar __extends = (this && this.__extends) || function (d, b) {\r\n    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];\r\n    function __() { this.constructor = d; }\r\n    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());\r\n};\r\nvar top_level_view_1 = require(\"dressdiscover/gui/qa/views/top_level_view\");\r\nvar home_view_model_1 = require(\"dressdiscover/gui/qa/view_models/home_view_model\");\r\nvar HomeView = (function (_super) {\r\n    __extends(HomeView, _super);\r\n    function HomeView() {\r\n        return _super.call(this, \"home_view.html\", new home_view_model_1.HomeViewModel()) || this;\r\n    }\r\n    return HomeView;\r\n}(top_level_view_1.TopLevelView));\r\nexports.HomeView = HomeView;\r\n"
 
 /***/ },
 /* 11 */
@@ -2500,13 +2500,13 @@ return /******/ (function(modules) { // webpackBootstrap
 /* 12 */
 /***/ function(module, exports) {
 
-	module.exports = "\"use strict\";\r\nvar __extends = (this && this.__extends) || function (d, b) {\r\n    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];\r\n    function __() { this.constructor = d; }\r\n    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());\r\n};\r\nvar top_level_view_1 = require(\"dressdiscover/gui/qa/views/top_level_view\");\r\nvar view_model_1 = require(\"dressdiscover/gui/qa/view_models/view_model\");\r\nvar HomeView = (function (_super) {\r\n    __extends(HomeView, _super);\r\n    function HomeView() {\r\n        return _super.call(this, \"home_view.html\", new view_model_1.ViewModel()) || this;\r\n    }\r\n    return HomeView;\r\n}(top_level_view_1.TopLevelView));\r\nexports.HomeView = HomeView;\r\n//# sourceMappingURL=home_view.js.map"
+	module.exports = "\"use strict\";\r\nvar __extends = (this && this.__extends) || function (d, b) {\r\n    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];\r\n    function __() { this.constructor = d; }\r\n    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());\r\n};\r\nvar top_level_view_1 = require(\"dressdiscover/gui/qa/views/top_level_view\");\r\nvar home_view_model_1 = require(\"dressdiscover/gui/qa/view_models/home_view_model\");\r\nvar HomeView = (function (_super) {\r\n    __extends(HomeView, _super);\r\n    function HomeView() {\r\n        return _super.call(this, \"home_view.html\", new home_view_model_1.HomeViewModel()) || this;\r\n    }\r\n    return HomeView;\r\n}(top_level_view_1.TopLevelView));\r\nexports.HomeView = HomeView;\r\n//# sourceMappingURL=home_view.js.map"
 
 /***/ },
 /* 13 */
 /***/ function(module, exports) {
 
-	module.exports = "{\"version\":3,\"file\":\"home_view.js\",\"sourceRoot\":\"\",\"sources\":[\"home_view.ts\"],\"names\":[],\"mappings\":\";;;;;;AAAA,4EAAyE;AACzE,0EAAwE;AAExE;IAA8B,4BAAuB;IACjD;eACI,kBAAM,gBAAgB,EAAE,IAAI,sBAAS,EAAE,CAAC;IAC5C,CAAC;IACL,eAAC;AAAD,CAAC,AAJD,CAA8B,6BAAY,GAIzC;AAJY,4BAAQ\"}"
+	module.exports = "{\"version\":3,\"file\":\"home_view.js\",\"sourceRoot\":\"\",\"sources\":[\"home_view.ts\"],\"names\":[],\"mappings\":\";;;;;;AAAA,4EAAyE;AACzE,oFAAiF;AAEjF;IAA8B,4BAA2B;IACrD;eACI,kBAAM,gBAAgB,EAAE,IAAI,+BAAa,EAAE,CAAC;IAChD,CAAC;IACL,eAAC;AAAD,CAAC,AAJD,CAA8B,6BAAY,GAIzC;AAJY,4BAAQ\"}"
 
 /***/ },
 /* 14 */
@@ -2639,8 +2639,30 @@ return /******/ (function(modules) { // webpackBootstrap
 	    function __() { this.constructor = d; }
 	    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 	};
-	var modal_view_1 = __webpack_require__(34);
-	var user_id_input_view_model_1 = __webpack_require__(38);
+	// import { Application } from "dressdiscover/gui/qa/application";
+	var view_model_1 = __webpack_require__(32);
+	var HomeViewModel = (function (_super) {
+	    __extends(HomeViewModel, _super);
+	    function HomeViewModel() {
+	        return _super.call(this) || this;
+	    }
+	    return HomeViewModel;
+	}(view_model_1.ViewModel));
+	exports.HomeViewModel = HomeViewModel;
+
+
+/***/ },
+/* 34 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+	var __extends = (this && this.__extends) || function (d, b) {
+	    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
+	    function __() { this.constructor = d; }
+	    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+	};
+	var modal_view_1 = __webpack_require__(35);
+	var user_id_input_view_model_1 = __webpack_require__(39);
 	var UserIdInputView = (function (_super) {
 	    __extends(UserIdInputView, _super);
 	    function UserIdInputView(onHide, session) {
@@ -2652,7 +2674,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ },
-/* 34 */
+/* 35 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function($) {"use strict";
@@ -2661,7 +2683,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    function __() { this.constructor = d; }
 	    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 	};
-	var ko = __webpack_require__(35);
+	var ko = __webpack_require__(36);
 	var view_1 = __webpack_require__(8);
 	var ModalView = (function (_super) {
 	    __extends(ModalView, _super);
@@ -2689,7 +2711,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)))
 
 /***/ },
-/* 35 */
+/* 36 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/* WEBPACK VAR INJECTION */(function(module) {/*!
@@ -2710,7 +2732,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        JSON = window["JSON"];
 	(function(factory) {
 	    // Support three module loading scenarios
-	    if ("function" === 'function' && __webpack_require__(37)['amd']) {
+	    if ("function" === 'function' && __webpack_require__(38)['amd']) {
 	        // [1] AMD anonymous module
 	        !(__WEBPACK_AMD_DEFINE_ARRAY__ = [exports, __webpack_require__], __WEBPACK_AMD_DEFINE_FACTORY__ = (factory), __WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ? (__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
 	    } else if (true) {
@@ -8587,10 +8609,10 @@ return /******/ (function(modules) { // webpackBootstrap
 	}());
 	})();
 	
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(36)(module)))
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(37)(module)))
 
 /***/ },
-/* 36 */
+/* 37 */
 /***/ function(module, exports) {
 
 	module.exports = function(module) {
@@ -8606,14 +8628,14 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ },
-/* 37 */
+/* 38 */
 /***/ function(module, exports) {
 
 	module.exports = function() { throw new Error("define cannot be used indirect"); };
 
 
 /***/ },
-/* 38 */
+/* 39 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -8622,8 +8644,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	    function __() { this.constructor = d; }
 	    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 	};
-	var ko = __webpack_require__(35);
-	var modal_view_1 = __webpack_require__(34);
+	var ko = __webpack_require__(36);
+	var modal_view_1 = __webpack_require__(35);
 	var view_model_1 = __webpack_require__(32);
 	var UserIdInputViewModel = (function (_super) {
 	    __extends(UserIdInputViewModel, _super);
@@ -8648,7 +8670,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ },
-/* 39 */
+/* 40 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -8676,11 +8698,11 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ },
-/* 40 */
+/* 41 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
-	var local_qa_query_service_1 = __webpack_require__(41);
+	var local_qa_query_service_1 = __webpack_require__(42);
 	var Services = (function () {
 	    function Services() {
 	        this._queryService = new local_qa_query_service_1.LocalQaQueryService();
@@ -8698,7 +8720,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ },
-/* 41 */
+/* 42 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -8707,20 +8729,28 @@ return /******/ (function(modules) { // webpackBootstrap
 	    function __() { this.constructor = d; }
 	    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 	};
-	var qa_object_1 = __webpack_require__(42);
-	var question_set_1 = __webpack_require__(45);
-	var async_to_sync_qa_query_service_1 = __webpack_require__(46);
+	var qa_object_1 = __webpack_require__(43);
+	var question_1 = __webpack_require__(48);
+	var question_set_1 = __webpack_require__(52);
+	var async_to_sync_qa_query_service_1 = __webpack_require__(53);
 	var LocalQaQueryService = (function (_super) {
 	    __extends(LocalQaQueryService, _super);
 	    function LocalQaQueryService() {
 	        var _this = _super.call(this) || this;
 	        _this._objects = [];
+	        _this._questionsById = {};
 	        _this._questionSets = [];
-	        for (var objectJson in OBJECTS) {
+	        for (var _i = 0, OBJECTS_1 = OBJECTS; _i < OBJECTS_1.length; _i++) {
+	            var objectJson = OBJECTS_1[_i];
 	            _this._objects.push(qa_object_1.QaObject.fromThryftJSON(objectJson));
 	        }
-	        alert(_this._objects[_this._objects.length - 1].image);
-	        for (var questionSetJson in QUESTION_SETS) {
+	        for (var _a = 0, QUESTIONS_1 = QUESTIONS; _a < QUESTIONS_1.length; _a++) {
+	            var questionJson = QUESTIONS_1[_a];
+	            var question = question_1.Question.fromThryftJSON(questionJson);
+	            _this._questionsById[question.id.toString()] = question;
+	        }
+	        for (var _b = 0, QUESTION_SETS_1 = QUESTION_SETS; _b < QUESTION_SETS_1.length; _b++) {
+	            var questionSetJson = QUESTION_SETS_1[_b];
 	            _this._questionSets.push(question_set_1.QuestionSet.fromThryftJSON(questionSetJson));
 	        }
 	        return _this;
@@ -8740,11 +8770,13 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ },
-/* 42 */
+/* 43 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
-	var qa_image_1 = __webpack_require__(43);
+	var qa_image_1 = __webpack_require__(44);
+	var qa_object_id_1 = __webpack_require__(46);
+	var question_set_id_1 = __webpack_require__(47);
 	var QaObject = (function () {
 	    function QaObject(id, image, questionSetIds) {
 	        this.id = id;
@@ -8756,15 +8788,6 @@ return /******/ (function(modules) { // webpackBootstrap
 	            return this._id;
 	        },
 	        set: function (id) {
-	            if (id.trim().length == 0) {
-	                throw new RangeError('id is blank');
-	            }
-	            if (id.length > 24) {
-	                throw new RangeError("expected len(id) to be <= 24, was " + id.length);
-	            }
-	            if (id.length < 24) {
-	                throw new RangeError("expected len(id) to be >= 24, was " + id.length);
-	            }
 	            this._id = id;
 	        },
 	        enumerable: true,
@@ -8796,14 +8819,14 @@ return /******/ (function(modules) { // webpackBootstrap
 	        var questionSetIds;
 	        for (var fieldName in json) {
 	            if (fieldName == "id") {
-	                id = json[fieldName];
+	                id = qa_object_id_1.QaObjectId.parse(json[fieldName]);
 	            }
 	            else if (fieldName == "image") {
 	                image = qa_image_1.QaImage.fromThryftJSON(json[fieldName]);
 	            }
 	            else if (fieldName == "question_set_ids") {
 	                questionSetIds = function (json) { var sequence = []; for (var i = 0; i < json.length; i++) {
-	                    sequence.push(json[i]);
+	                    sequence.push(question_set_id_1.QuestionSetId.parse(json[i]));
 	                } return sequence; }(json[fieldName]);
 	            }
 	        }
@@ -8820,10 +8843,10 @@ return /******/ (function(modules) { // webpackBootstrap
 	    };
 	    QaObject.prototype.toThryftJSON = function () {
 	        var json = {};
-	        json["id"] = this.id;
+	        json["id"] = this.id.toString();
 	        json["image"] = this.image.toThryftJSON();
 	        json["question_set_ids"] = function (__inArray) { var __outArray = []; for (var __i = 0; __i < __inArray.length; __i++) {
-	            __outArray.push(__inArray[__i]);
+	            __outArray.push(__inArray[__i].toString());
 	        } return __outArray; }(this.questionSetIds);
 	        return json;
 	    };
@@ -8833,11 +8856,11 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ },
-/* 43 */
+/* 44 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
-	var qa_image_rights_1 = __webpack_require__(44);
+	var qa_image_rights_1 = __webpack_require__(45);
 	var QaImage = (function () {
 	    function QaImage(fullSizeUrl, rights, thumbnailUrl) {
 	        this.fullSizeUrl = fullSizeUrl;
@@ -8925,7 +8948,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ },
-/* 44 */
+/* 45 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -9041,10 +9064,287 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ },
-/* 45 */
+/* 46 */
 /***/ function(module, exports) {
 
 	"use strict";
+	var QaObjectId = (function () {
+	    function QaObjectId(id) {
+	        this._id = id;
+	    }
+	    QaObjectId.parse = function (id) {
+	        if (id.trim().length != 24) {
+	            throw new RangeError('id is not the right length');
+	        }
+	        return new QaObjectId(id);
+	    };
+	    QaObjectId.prototype.toString = function () {
+	        return this._id;
+	    };
+	    return QaObjectId;
+	}());
+	exports.QaObjectId = QaObjectId;
+
+
+/***/ },
+/* 47 */
+/***/ function(module, exports) {
+
+	"use strict";
+	var QuestionSetId = (function () {
+	    function QuestionSetId(id) {
+	        this._id = id;
+	    }
+	    QuestionSetId.parse = function (id) {
+	        if (id.trim().length != 24) {
+	            throw new RangeError('id is not the right length');
+	        }
+	        return new QuestionSetId(id);
+	    };
+	    QuestionSetId.prototype.toString = function () {
+	        return this._id;
+	    };
+	    return QuestionSetId;
+	}());
+	exports.QuestionSetId = QuestionSetId;
+
+
+/***/ },
+/* 48 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+	var question_id_1 = __webpack_require__(49);
+	var question_value_1 = __webpack_require__(50);
+	var Question = (function () {
+	    function Question(id, text, values) {
+	        this.id = id;
+	        this.text = text;
+	        this.values = values;
+	    }
+	    Object.defineProperty(Question.prototype, "id", {
+	        get: function () {
+	            return this._id;
+	        },
+	        set: function (id) {
+	            this._id = id;
+	        },
+	        enumerable: true,
+	        configurable: true
+	    });
+	    Object.defineProperty(Question.prototype, "text", {
+	        get: function () {
+	            return this._text;
+	        },
+	        set: function (text) {
+	            if (text.trim().length == 0) {
+	                throw new RangeError('text is blank');
+	            }
+	            if (text.length < 1) {
+	                throw new RangeError("expected len(text) to be >= 1, was " + text.length);
+	            }
+	            this._text = text;
+	        },
+	        enumerable: true,
+	        configurable: true
+	    });
+	    Object.defineProperty(Question.prototype, "values", {
+	        get: function () {
+	            return this._values;
+	        },
+	        set: function (values) {
+	            if (values != null) {
+	                if (values.length < 1) {
+	                    throw new RangeError("expected len(values) to be >= 1, was " + values.length);
+	                }
+	            }
+	            this._values = values;
+	        },
+	        enumerable: true,
+	        configurable: true
+	    });
+	    Question.fromThryftJSON = function (json) {
+	        var id;
+	        var text;
+	        var values;
+	        for (var fieldName in json) {
+	            if (fieldName == "id") {
+	                id = question_id_1.QuestionId.parse(json[fieldName]);
+	            }
+	            else if (fieldName == "text") {
+	                text = json[fieldName];
+	            }
+	            else if (fieldName == "values") {
+	                values = function (json) { var sequence = []; for (var i = 0; i < json.length; i++) {
+	                    sequence.push(question_value_1.QuestionValue.fromThryftJSON(json[i]));
+	                } return sequence; }(json[fieldName]);
+	            }
+	        }
+	        if (id == null) {
+	            throw new TypeError('id is required');
+	        }
+	        if (text == null) {
+	            throw new TypeError('text is required');
+	        }
+	        return new Question(id, text, values);
+	    };
+	    Question.prototype.toThryftJSON = function () {
+	        var json = {};
+	        json["id"] = this.id.toString();
+	        json["text"] = this.text;
+	        if (this.values != null) {
+	            json["values"] = function (__inArray) { var __outArray = []; for (var __i = 0; __i < __inArray.length; __i++) {
+	                __outArray.push(__inArray[__i].toThryftJSON());
+	            } return __outArray; }(this.values);
+	        }
+	        return json;
+	    };
+	    return Question;
+	}());
+	exports.Question = Question;
+
+
+/***/ },
+/* 49 */
+/***/ function(module, exports) {
+
+	"use strict";
+	var QuestionId = (function () {
+	    function QuestionId(id) {
+	        this._id = id;
+	    }
+	    QuestionId.parse = function (id) {
+	        if (id.trim().length != 24) {
+	            throw new RangeError('id is not the right length');
+	        }
+	        return new QuestionId(id);
+	    };
+	    QuestionId.prototype.toString = function () {
+	        return this._id;
+	    };
+	    return QuestionId;
+	}());
+	exports.QuestionId = QuestionId;
+
+
+/***/ },
+/* 50 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+	var qa_image_1 = __webpack_require__(44);
+	var question_value_id_1 = __webpack_require__(51);
+	var QuestionValue = (function () {
+	    function QuestionValue(id, text, image) {
+	        this.id = id;
+	        this.text = text;
+	        this.image = image;
+	    }
+	    Object.defineProperty(QuestionValue.prototype, "id", {
+	        get: function () {
+	            return this._id;
+	        },
+	        set: function (id) {
+	            this._id = id;
+	        },
+	        enumerable: true,
+	        configurable: true
+	    });
+	    Object.defineProperty(QuestionValue.prototype, "text", {
+	        get: function () {
+	            return this._text;
+	        },
+	        set: function (text) {
+	            if (text.trim().length == 0) {
+	                throw new RangeError('text is blank');
+	            }
+	            if (text.length < 1) {
+	                throw new RangeError("expected len(text) to be >= 1, was " + text.length);
+	            }
+	            this._text = text;
+	        },
+	        enumerable: true,
+	        configurable: true
+	    });
+	    Object.defineProperty(QuestionValue.prototype, "image", {
+	        get: function () {
+	            return this._image;
+	        },
+	        set: function (image) {
+	            if (image != null) {
+	            }
+	            this._image = image;
+	        },
+	        enumerable: true,
+	        configurable: true
+	    });
+	    QuestionValue.fromThryftJSON = function (json) {
+	        var id;
+	        var text;
+	        var image;
+	        for (var fieldName in json) {
+	            if (fieldName == "id") {
+	                id = question_value_id_1.QuestionValueId.parse(json[fieldName]);
+	            }
+	            else if (fieldName == "text") {
+	                text = json[fieldName];
+	            }
+	            else if (fieldName == "image") {
+	                image = qa_image_1.QaImage.fromThryftJSON(json[fieldName]);
+	            }
+	        }
+	        if (id == null) {
+	            throw new TypeError('id is required');
+	        }
+	        if (text == null) {
+	            throw new TypeError('text is required');
+	        }
+	        return new QuestionValue(id, text, image);
+	    };
+	    QuestionValue.prototype.toThryftJSON = function () {
+	        var json = {};
+	        json["id"] = this.id.toString();
+	        json["text"] = this.text;
+	        if (this.image != null) {
+	            json["image"] = this.image.toThryftJSON();
+	        }
+	        return json;
+	    };
+	    return QuestionValue;
+	}());
+	exports.QuestionValue = QuestionValue;
+
+
+/***/ },
+/* 51 */
+/***/ function(module, exports) {
+
+	"use strict";
+	var QuestionValueId = (function () {
+	    function QuestionValueId(id) {
+	        this._id = id;
+	    }
+	    QuestionValueId.parse = function (id) {
+	        if (id.trim().length != 24) {
+	            throw new RangeError('id is not the right length');
+	        }
+	        return new QuestionValueId(id);
+	    };
+	    QuestionValueId.prototype.toString = function () {
+	        return this._id;
+	    };
+	    return QuestionValueId;
+	}());
+	exports.QuestionValueId = QuestionValueId;
+
+
+/***/ },
+/* 52 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+	var question_id_1 = __webpack_require__(49);
+	var question_set_id_1 = __webpack_require__(47);
 	var QuestionSet = (function () {
 	    function QuestionSet(id, questionIds, title) {
 	        this.id = id;
@@ -9056,15 +9356,6 @@ return /******/ (function(modules) { // webpackBootstrap
 	            return this._id;
 	        },
 	        set: function (id) {
-	            if (id.trim().length == 0) {
-	                throw new RangeError('id is blank');
-	            }
-	            if (id.length > 24) {
-	                throw new RangeError("expected len(id) to be <= 24, was " + id.length);
-	            }
-	            if (id.length < 24) {
-	                throw new RangeError("expected len(id) to be >= 24, was " + id.length);
-	            }
 	            this._id = id;
 	        },
 	        enumerable: true,
@@ -9105,11 +9396,11 @@ return /******/ (function(modules) { // webpackBootstrap
 	        var title;
 	        for (var fieldName in json) {
 	            if (fieldName == "id") {
-	                id = json[fieldName];
+	                id = question_set_id_1.QuestionSetId.parse(json[fieldName]);
 	            }
 	            else if (fieldName == "question_ids") {
 	                questionIds = function (json) { var sequence = []; for (var i = 0; i < json.length; i++) {
-	                    sequence.push(json[i]);
+	                    sequence.push(question_id_1.QuestionId.parse(json[i]));
 	                } return sequence; }(json[fieldName]);
 	            }
 	            else if (fieldName == "title") {
@@ -9129,9 +9420,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	    };
 	    QuestionSet.prototype.toThryftJSON = function () {
 	        var json = {};
-	        json["id"] = this.id;
+	        json["id"] = this.id.toString();
 	        json["question_ids"] = function (__inArray) { var __outArray = []; for (var __i = 0; __i < __inArray.length; __i++) {
-	            __outArray.push(__inArray[__i]);
+	            __outArray.push(__inArray[__i].toString());
 	        } return __outArray; }(this.questionIds);
 	        json["title"] = this.title;
 	        return json;
@@ -9142,7 +9433,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ },
-/* 46 */
+/* 53 */
 /***/ function(module, exports) {
 
 	"use strict";

@@ -1,4 +1,4 @@
 namespace * dressdiscover.api.models.qa
 
-// @validation {"blank": false, "minLength": 1}
+// @native
 typedef string QaUserId

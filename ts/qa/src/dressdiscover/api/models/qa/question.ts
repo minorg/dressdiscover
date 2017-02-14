@@ -1,32 +1,24 @@
+import { QuestionId } from "./question_id";
 import { QuestionValue } from "./question_value";
 
 export class Question {
-    private _id: string;
+    private _id: QuestionId;
 
     private _text: string;
 
     private _values?: QuestionValue[];
 
-    constructor(id: string, text: string, values?: QuestionValue[]) {
+    constructor(id: QuestionId, text: string, values?: QuestionValue[]) {
         this.id = id;
         this.text = text;
         this.values = values;
     }
 
-    get id(): string {
+    get id(): QuestionId {
         return this._id;
     }
 
-    set id(id: string) {
-        if (id.trim().length == 0) {
-            throw new RangeError('id is blank');
-        }
-        if (id.length > 24) {
-            throw new RangeError("expected len(id) to be <= 24, was " + id.length)
-        }
-        if (id.length < 24) {
-            throw new RangeError("expected len(id) to be >= 24, was " + id.length)
-        }
+    set id(id: QuestionId) {
         this._id = id;
     }
 
@@ -58,12 +50,12 @@ export class Question {
     }
 
     static fromThryftJSON(json: any): Question {
-        var id: string | undefined;
+        var id: QuestionId | undefined;
         var text: string | undefined;
         var values: QuestionValue[] | undefined;
         for (var fieldName in json) {
             if (fieldName == "id") {
-                id = json[fieldName];
+                id = QuestionId.parse(json[fieldName]);
             } else if (fieldName == "text") {
                 text = json[fieldName];
             } else if (fieldName == "values") {
@@ -81,7 +73,7 @@ export class Question {
 
     toThryftJSON(): any {
         var json: {[index: string]: any} = {};
-        json["id"] = this.id;
+        json["id"] = this.id.toString();
         json["text"] = this.text;
         if (this.values != null) {
             json["values"] = function (__inArray: QuestionValue[]): any[] { var __outArray: any[] = []; for (var __i = 0; __i < __inArray.length; __i++) { __outArray.push(__inArray[__i].toThryftJSON()); } return __outArray; }(this.values);

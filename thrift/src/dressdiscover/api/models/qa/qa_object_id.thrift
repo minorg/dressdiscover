@@ -1,5 +1,4 @@
 namespace * dressdiscover.api.models.qa
 
-include "dressdiscover/api/models/qa/id.thrift"
-
-typedef id.Id QaObjectId
+// @native
+typedef string QaObjectId

@@ -1,18 +1,22 @@
 import { Answer } from "../../models/qa/answer";
 import { QaObject } from "../../models/qa/qa_object";
+import { QaObjectId } from "../../models/qa/qa_object_id";
 import { QaQueryService } from "./qa_query_service";
+import { QaUserId } from "../../models/qa/qa_user_id";
+import { QuestionId } from "../../models/qa/question_id";
 import { QuestionSet } from "../../models/qa/question_set";
+import { QuestionSetId } from "../../models/qa/question_set_id";
 
 export class JsonRpcQaQueryService implements QaQueryService {
-    getAnswersAsync(kwds: {objectId: string, questionSetId: string, questionIds?: string[], userId?: string, error: (jqXHR: JQueryXHR | null, textStatus: string, errorThrown: string | null) => any, success: (returnValue: Answer[]) => void}): void {
+    getAnswersAsync(kwds: {objectId: QaObjectId, questionSetId: QuestionSetId, questionIds?: QuestionId[], userId?: QaUserId, error: (jqXHR: JQueryXHR | null, textStatus: string, errorThrown: string | null) => any, success: (returnValue: Answer[]) => void}): void {
         var __jsonrpc_params: {[index: string]: any} = {};
-        __jsonrpc_params["object_id"] = kwds.objectId;
-        __jsonrpc_params["question_set_id"] = kwds.questionSetId;
+        __jsonrpc_params["object_id"] = kwds.objectId.toString();
+        __jsonrpc_params["question_set_id"] = kwds.questionSetId.toString();
         if (typeof kwds.questionIds !== "undefined") {
-            __jsonrpc_params["question_ids"] = function (__inArray: string[]): any[] { var __outArray: any[] = []; for (var __i = 0; __i < __inArray.length; __i++) { __outArray.push(__inArray[__i]); } return __outArray; }(kwds.questionIds);
+            __jsonrpc_params["question_ids"] = function (__inArray: QuestionId[]): any[] { var __outArray: any[] = []; for (var __i = 0; __i < __inArray.length; __i++) { __outArray.push(__inArray[__i].toString()); } return __outArray; }(kwds.questionIds);
         }
         if (typeof kwds.userId !== "undefined") {
-            __jsonrpc_params["user_id"] = kwds.userId;
+            __jsonrpc_params["user_id"] = kwds.userId.toString();
         }
 
         $.ajax({
@@ -40,15 +44,15 @@ export class JsonRpcQaQueryService implements QaQueryService {
         });
     }
 
-    getAnswersSync(kwds: {objectId: string, questionSetId: string, questionIds?: string[], userId?: string}): Answer[] {
+    getAnswersSync(kwds: {objectId: QaObjectId, questionSetId: QuestionSetId, questionIds?: QuestionId[], userId?: QaUserId}): Answer[] {
         var __jsonrpc_params: {[index: string]: any} = {};
-        __jsonrpc_params["object_id"] = kwds.objectId;
-        __jsonrpc_params["question_set_id"] = kwds.questionSetId;
+        __jsonrpc_params["object_id"] = kwds.objectId.toString();
+        __jsonrpc_params["question_set_id"] = kwds.questionSetId.toString();
         if (typeof kwds.questionIds !== "undefined") {
-            __jsonrpc_params["question_ids"] = function (__inArray: string[]): any[] { var __outArray: any[] = []; for (var __i = 0; __i < __inArray.length; __i++) { __outArray.push(__inArray[__i]); } return __outArray; }(kwds.questionIds);
+            __jsonrpc_params["question_ids"] = function (__inArray: QuestionId[]): any[] { var __outArray: any[] = []; for (var __i = 0; __i < __inArray.length; __i++) { __outArray.push(__inArray[__i].toString()); } return __outArray; }(kwds.questionIds);
         }
         if (typeof kwds.userId !== "undefined") {
-            __jsonrpc_params["user_id"] = kwds.userId;
+            __jsonrpc_params["user_id"] = kwds.userId.toString();
         }
 
         var returnValue: Answer[] | undefined = undefined;
@@ -142,9 +146,9 @@ export class JsonRpcQaQueryService implements QaQueryService {
         return returnValue;
     }
 
-    getQuestionSetsAsync(kwds: {ids: string[], error: (jqXHR: JQueryXHR | null, textStatus: string, errorThrown: string | null) => any, success: (returnValue: QuestionSet[]) => void}): void {
+    getQuestionSetsAsync(kwds: {ids: QuestionSetId[], error: (jqXHR: JQueryXHR | null, textStatus: string, errorThrown: string | null) => any, success: (returnValue: QuestionSet[]) => void}): void {
         var __jsonrpc_params: {[index: string]: any} = {};
-        __jsonrpc_params["ids"] = function (__inArray: string[]): any[] { var __outArray: any[] = []; for (var __i = 0; __i < __inArray.length; __i++) { __outArray.push(__inArray[__i]); } return __outArray; }(kwds.ids);
+        __jsonrpc_params["ids"] = function (__inArray: QuestionSetId[]): any[] { var __outArray: any[] = []; for (var __i = 0; __i < __inArray.length; __i++) { __outArray.push(__inArray[__i].toString()); } return __outArray; }(kwds.ids);
 
         $.ajax({
             async: true,
@@ -171,9 +175,9 @@ export class JsonRpcQaQueryService implements QaQueryService {
         });
     }
 
-    getQuestionSetsSync(kwds: {ids: string[]}): QuestionSet[] {
+    getQuestionSetsSync(kwds: {ids: QuestionSetId[]}): QuestionSet[] {
         var __jsonrpc_params: {[index: string]: any} = {};
-        __jsonrpc_params["ids"] = function (__inArray: string[]): any[] { var __outArray: any[] = []; for (var __i = 0; __i < __inArray.length; __i++) { __outArray.push(__inArray[__i]); } return __outArray; }(kwds.ids);
+        __jsonrpc_params["ids"] = function (__inArray: QuestionSetId[]): any[] { var __outArray: any[] = []; for (var __i = 0; __i < __inArray.length; __i++) { __outArray.push(__inArray[__i].toString()); } return __outArray; }(kwds.ids);
 
         var returnValue: QuestionSet[] | undefined = undefined;
 

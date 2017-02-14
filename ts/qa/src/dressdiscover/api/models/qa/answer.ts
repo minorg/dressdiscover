@@ -1,15 +1,20 @@
+import { QaObjectId } from "./qa_object_id";
+import { QaUserId } from "./qa_user_id";
+import { QuestionId } from "./question_id";
+import { QuestionValueId } from "./question_value_id";
+
 export class Answer {
-    private _objectId: string;
+    private _objectId: QaObjectId;
 
-    private _questionId: string;
+    private _questionId: QuestionId;
 
-    private _selectedValues?: string[];
+    private _selectedValues?: QuestionValueId[];
 
     private _text?: string;
 
-    private _userId: string;
+    private _userId: QaUserId;
 
-    constructor(objectId: string, questionId: string, userId: string, selectedValues?: string[], text?: string) {
+    constructor(objectId: QaObjectId, questionId: QuestionId, userId: QaUserId, selectedValues?: QuestionValueId[], text?: string) {
         this.objectId = objectId;
         this.questionId = questionId;
         this.userId = userId;
@@ -17,59 +22,35 @@ export class Answer {
         this.text = text;
     }
 
-    get objectId(): string {
+    get objectId(): QaObjectId {
         return this._objectId;
     }
 
-    set objectId(objectId: string) {
-        if (objectId.trim().length == 0) {
-            throw new RangeError('objectId is blank');
-        }
-        if (objectId.length > 24) {
-            throw new RangeError("expected len(objectId) to be <= 24, was " + objectId.length)
-        }
-        if (objectId.length < 24) {
-            throw new RangeError("expected len(objectId) to be >= 24, was " + objectId.length)
-        }
+    set objectId(objectId: QaObjectId) {
         this._objectId = objectId;
     }
 
-    get questionId(): string {
+    get questionId(): QuestionId {
         return this._questionId;
     }
 
-    set questionId(questionId: string) {
-        if (questionId.trim().length == 0) {
-            throw new RangeError('questionId is blank');
-        }
-        if (questionId.length > 24) {
-            throw new RangeError("expected len(questionId) to be <= 24, was " + questionId.length)
-        }
-        if (questionId.length < 24) {
-            throw new RangeError("expected len(questionId) to be >= 24, was " + questionId.length)
-        }
+    set questionId(questionId: QuestionId) {
         this._questionId = questionId;
     }
 
-    get userId(): string {
+    get userId(): QaUserId {
         return this._userId;
     }
 
-    set userId(userId: string) {
-        if (userId.trim().length == 0) {
-            throw new RangeError('userId is blank');
-        }
-        if (userId.length < 1) {
-            throw new RangeError("expected len(userId) to be >= 1, was " + userId.length)
-        }
+    set userId(userId: QaUserId) {
         this._userId = userId;
     }
 
-    get selectedValues(): string[] | undefined {
+    get selectedValues(): QuestionValueId[] | undefined {
         return this._selectedValues;
     }
 
-    set selectedValues(selectedValues: string[] | undefined) {
+    set selectedValues(selectedValues: QuestionValueId[] | undefined) {
         if (selectedValues != null) {
             if (selectedValues.length < 1) {
                 throw new RangeError("expected len(selectedValues) to be >= 1, was " + selectedValues.length)
@@ -95,20 +76,20 @@ export class Answer {
     }
 
     static fromThryftJSON(json: any): Answer {
-        var objectId: string | undefined;
-        var questionId: string | undefined;
-        var userId: string | undefined;
-        var selectedValues: string[] | undefined;
+        var objectId: QaObjectId | undefined;
+        var questionId: QuestionId | undefined;
+        var userId: QaUserId | undefined;
+        var selectedValues: QuestionValueId[] | undefined;
         var text: string | undefined;
         for (var fieldName in json) {
             if (fieldName == "object_id") {
-                objectId = json[fieldName];
+                objectId = QaObjectId.parse(json[fieldName]);
             } else if (fieldName == "question_id") {
-                questionId = json[fieldName];
+                questionId = QuestionId.parse(json[fieldName]);
             } else if (fieldName == "user_id") {
-                userId = json[fieldName];
+                userId = QaUserId.parse(json[fieldName]);
             } else if (fieldName == "selected_values") {
-                selectedValues = function(json: any[]): string[] { var sequence: string[] = []; for (var i = 0; i < json.length; i++) { sequence.push(json[i]); } return sequence; }(json[fieldName]);
+                selectedValues = function(json: any[]): QuestionValueId[] { var sequence: QuestionValueId[] = []; for (var i = 0; i < json.length; i++) { sequence.push(QuestionValueId.parse(json[i])); } return sequence; }(json[fieldName]);
             } else if (fieldName == "text") {
                 text = json[fieldName];
             }
@@ -127,11 +108,11 @@ export class Answer {
 
     toThryftJSON(): any {
         var json: {[index: string]: any} = {};
-        json["object_id"] = this.objectId;
-        json["question_id"] = this.questionId;
-        json["user_id"] = this.userId;
+        json["object_id"] = this.objectId.toString();
+        json["question_id"] = this.questionId.toString();
+        json["user_id"] = this.userId.toString();
         if (this.selectedValues != null) {
-            json["selected_values"] = function (__inArray: string[]): any[] { var __outArray: any[] = []; for (var __i = 0; __i < __inArray.length; __i++) { __outArray.push(__inArray[__i]); } return __outArray; }(this.selectedValues);
+            json["selected_values"] = function (__inArray: QuestionValueId[]): any[] { var __outArray: any[] = []; for (var __i = 0; __i < __inArray.length; __i++) { __outArray.push(__inArray[__i].toString()); } return __outArray; }(this.selectedValues);
         }
         if (this.text != null) {
             json["text"] = this.text;

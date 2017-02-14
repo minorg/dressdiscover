@@ -1,38 +1,32 @@
-export class QuestionSet {
-    private _id: string;
+import { QuestionId } from "./question_id";
+import { QuestionSetId } from "./question_set_id";
 
-    private _questionIds: string[];
+export class QuestionSet {
+    private _id: QuestionSetId;
+
+    private _questionIds: QuestionId[];
 
     private _title: string;
 
-    constructor(id: string, questionIds: string[], title: string) {
+    constructor(id: QuestionSetId, questionIds: QuestionId[], title: string) {
         this.id = id;
         this.questionIds = questionIds;
         this.title = title;
     }
 
-    get id(): string {
+    get id(): QuestionSetId {
         return this._id;
     }
 
-    set id(id: string) {
-        if (id.trim().length == 0) {
-            throw new RangeError('id is blank');
-        }
-        if (id.length > 24) {
-            throw new RangeError("expected len(id) to be <= 24, was " + id.length)
-        }
-        if (id.length < 24) {
-            throw new RangeError("expected len(id) to be >= 24, was " + id.length)
-        }
+    set id(id: QuestionSetId) {
         this._id = id;
     }
 
-    get questionIds(): string[] {
+    get questionIds(): QuestionId[] {
         return this._questionIds;
     }
 
-    set questionIds(questionIds: string[]) {
+    set questionIds(questionIds: QuestionId[]) {
         if (questionIds.length < 1) {
             throw new RangeError("expected len(questionIds) to be >= 1, was " + questionIds.length)
         }
@@ -54,14 +48,14 @@ export class QuestionSet {
     }
 
     static fromThryftJSON(json: any): QuestionSet {
-        var id: string | undefined;
-        var questionIds: string[] | undefined;
+        var id: QuestionSetId | undefined;
+        var questionIds: QuestionId[] | undefined;
         var title: string | undefined;
         for (var fieldName in json) {
             if (fieldName == "id") {
-                id = json[fieldName];
+                id = QuestionSetId.parse(json[fieldName]);
             } else if (fieldName == "question_ids") {
-                questionIds = function(json: any[]): string[] { var sequence: string[] = []; for (var i = 0; i < json.length; i++) { sequence.push(json[i]); } return sequence; }(json[fieldName]);
+                questionIds = function(json: any[]): QuestionId[] { var sequence: QuestionId[] = []; for (var i = 0; i < json.length; i++) { sequence.push(QuestionId.parse(json[i])); } return sequence; }(json[fieldName]);
             } else if (fieldName == "title") {
                 title = json[fieldName];
             }
@@ -80,8 +74,8 @@ export class QuestionSet {
 
     toThryftJSON(): any {
         var json: {[index: string]: any} = {};
-        json["id"] = this.id;
-        json["question_ids"] = function (__inArray: string[]): any[] { var __outArray: any[] = []; for (var __i = 0; __i < __inArray.length; __i++) { __outArray.push(__inArray[__i]); } return __outArray; }(this.questionIds);
+        json["id"] = this.id.toString();
+        json["question_ids"] = function (__inArray: QuestionId[]): any[] { var __outArray: any[] = []; for (var __i = 0; __i < __inArray.length; __i++) { __outArray.push(__inArray[__i].toString()); } return __outArray; }(this.questionIds);
         json["title"] = this.title;
         return json;
     }

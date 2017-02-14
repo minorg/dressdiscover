@@ -1,7 +1,11 @@
 ﻿import { Answer } from "dressdiscover/api/models/qa/answer";
 import { QaObject } from "dressdiscover/api/models/qa/qa_object";
+import { QaObjectId } from "dressdiscover/api/models/qa/qa_object_id";
+import { QaUserId } from "dressdiscover/api/models/qa/qa_user_id";
 import { Question } from "dressdiscover/api/models/qa/question";
+import { QuestionId } from "dressdiscover/api/models/qa/question_id";
 import { QuestionSet } from "dressdiscover/api/models/qa/question_set";
+import { QuestionSetId } from "dressdiscover/api/models/qa/question_set_id";
 import { AsyncToSyncQaQueryService } from "dressdiscover/api/services/qa/async_to_sync_qa_query_service";
 
 declare var OBJECTS: any[];
@@ -16,14 +20,14 @@ export class LocalQaQueryService extends AsyncToSyncQaQueryService {
         }
         for (let questionJson of QUESTIONS) {
             const question = Question.fromThryftJSON(questionJson);
-            this._questionsById[question.id] = question;
+            this._questionsById[question.id.toString()] = question;
         }
         for (let questionSetJson of QUESTION_SETS) {
             this._questionSets.push(QuestionSet.fromThryftJSON(questionSetJson));
         }
     }
 
-    getAnswersSync(kwds: { objectId: string, questionSetId: string, questionIds?: string[], userId?: string }): Answer[] {
+    getAnswersSync(kwds: { objectId: QaObjectId, questionSetId: QuestionSetId, questionIds?: QuestionId[], userId?: QaUserId }): Answer[] {
         return [];
     }
 
@@ -31,7 +35,7 @@ export class LocalQaQueryService extends AsyncToSyncQaQueryService {
         return this._objects;
     }
 
-    getQuestionSetsSync(kwds: { ids: string[] }): QuestionSet[] {
+    getQuestionSetsSync(kwds: { ids: QuestionSetId[] }): QuestionSet[] {
         return this._questionSets;
     }
 

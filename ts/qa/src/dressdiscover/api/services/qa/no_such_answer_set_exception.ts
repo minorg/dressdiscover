@@ -1,34 +1,28 @@
-export class NoSuchAnswerSetException {
-    private _id?: string;
+import { QuestionSetId } from "../../models/qa/question_set_id";
 
-    constructor(id?: string) {
+export class NoSuchAnswerSetException {
+    private _id?: QuestionSetId;
+
+    constructor(id?: QuestionSetId) {
         this.id = id;
     }
 
-    get id(): string | undefined {
+    get id(): QuestionSetId | undefined {
         return this._id;
     }
 
-    set id(id: string | undefined) {
+    set id(id: QuestionSetId | undefined) {
         if (id != null) {
-            if (id.trim().length == 0) {
-                throw new RangeError('id is blank');
-            }
-            if (id.length > 24) {
-                throw new RangeError("expected len(id) to be <= 24, was " + id.length)
-            }
-            if (id.length < 24) {
-                throw new RangeError("expected len(id) to be >= 24, was " + id.length)
-            }
+
         }
         this._id = id;
     }
 
     static fromThryftJSON(json: any): NoSuchAnswerSetException {
-        var id: string | undefined;
+        var id: QuestionSetId | undefined;
         for (var fieldName in json) {
             if (fieldName == "id") {
-                id = json[fieldName];
+                id = QuestionSetId.parse(json[fieldName]);
             }
         }
 
@@ -38,7 +32,7 @@ export class NoSuchAnswerSetException {
     toThryftJSON(): any {
         var json: {[index: string]: any} = {};
         if (this.id != null) {
-            json["id"] = this.id;
+            json["id"] = this.id.toString();
         }
         return json;
     }

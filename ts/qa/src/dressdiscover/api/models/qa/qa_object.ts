@@ -1,32 +1,25 @@
 import { QaImage } from "./qa_image";
+import { QaObjectId } from "./qa_object_id";
+import { QuestionSetId } from "./question_set_id";
 
 export class QaObject {
-    private _id: string;
+    private _id: QaObjectId;
 
     private _image: QaImage;
 
-    private _questionSetIds: string[];
+    private _questionSetIds: QuestionSetId[];
 
-    constructor(id: string, image: QaImage, questionSetIds: string[]) {
+    constructor(id: QaObjectId, image: QaImage, questionSetIds: QuestionSetId[]) {
         this.id = id;
         this.image = image;
         this.questionSetIds = questionSetIds;
     }
 
-    get id(): string {
+    get id(): QaObjectId {
         return this._id;
     }
 
-    set id(id: string) {
-        if (id.trim().length == 0) {
-            throw new RangeError('id is blank');
-        }
-        if (id.length > 24) {
-            throw new RangeError("expected len(id) to be <= 24, was " + id.length)
-        }
-        if (id.length < 24) {
-            throw new RangeError("expected len(id) to be >= 24, was " + id.length)
-        }
+    set id(id: QaObjectId) {
         this._id = id;
     }
 
@@ -38,25 +31,25 @@ export class QaObject {
         this._image = image;
     }
 
-    get questionSetIds(): string[] {
+    get questionSetIds(): QuestionSetId[] {
         return this._questionSetIds;
     }
 
-    set questionSetIds(questionSetIds: string[]) {
+    set questionSetIds(questionSetIds: QuestionSetId[]) {
         this._questionSetIds = questionSetIds;
     }
 
     static fromThryftJSON(json: any): QaObject {
-        var id: string | undefined;
+        var id: QaObjectId | undefined;
         var image: QaImage | undefined;
-        var questionSetIds: string[] | undefined;
+        var questionSetIds: QuestionSetId[] | undefined;
         for (var fieldName in json) {
             if (fieldName == "id") {
-                id = json[fieldName];
+                id = QaObjectId.parse(json[fieldName]);
             } else if (fieldName == "image") {
                 image = QaImage.fromThryftJSON(json[fieldName]);
             } else if (fieldName == "question_set_ids") {
-                questionSetIds = function(json: any[]): string[] { var sequence: string[] = []; for (var i = 0; i < json.length; i++) { sequence.push(json[i]); } return sequence; }(json[fieldName]);
+                questionSetIds = function(json: any[]): QuestionSetId[] { var sequence: QuestionSetId[] = []; for (var i = 0; i < json.length; i++) { sequence.push(QuestionSetId.parse(json[i])); } return sequence; }(json[fieldName]);
             }
         }
         if (id == null) {
@@ -73,9 +66,9 @@ export class QaObject {
 
     toThryftJSON(): any {
         var json: {[index: string]: any} = {};
-        json["id"] = this.id;
+        json["id"] = this.id.toString();
         json["image"] = this.image.toThryftJSON();
-        json["question_set_ids"] = function (__inArray: string[]): any[] { var __outArray: any[] = []; for (var __i = 0; __i < __inArray.length; __i++) { __outArray.push(__inArray[__i]); } return __outArray; }(this.questionSetIds);
+        json["question_set_ids"] = function (__inArray: QuestionSetId[]): any[] { var __outArray: any[] = []; for (var __i = 0; __i < __inArray.length; __i++) { __outArray.push(__inArray[__i].toString()); } return __outArray; }(this.questionSetIds);
         return json;
     }
 }

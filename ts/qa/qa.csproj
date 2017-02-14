@@ -55,9 +55,14 @@
     <TypeScriptCompile Include="src\dressdiscover\api\models\qa\qa_image.ts" />
     <TypeScriptCompile Include="src\dressdiscover\api\models\qa\qa_image_rights.ts" />
     <TypeScriptCompile Include="src\dressdiscover\api\models\qa\qa_object.ts" />
+    <TypeScriptCompile Include="src\dressdiscover\api\models\qa\qa_object_id.ts" />
+    <TypeScriptCompile Include="src\dressdiscover\api\models\qa\qa_user_id.ts" />
     <TypeScriptCompile Include="src\dressdiscover\api\models\qa\question.ts" />
+    <TypeScriptCompile Include="src\dressdiscover\api\models\qa\question_id.ts" />
     <TypeScriptCompile Include="src\dressdiscover\api\models\qa\question_set.ts" />
+    <TypeScriptCompile Include="src\dressdiscover\api\models\qa\question_set_id.ts" />
     <TypeScriptCompile Include="src\dressdiscover\api\models\qa\question_value.ts" />
+    <TypeScriptCompile Include="src\dressdiscover\api\models\qa\question_value_id.ts" />
     <TypeScriptCompile Include="src\dressdiscover\api\services\io_exception.ts" />
     <TypeScriptCompile Include="src\dressdiscover\api\services\qa\async_to_sync_qa_command_service.ts" />
     <TypeScriptCompile Include="src\dressdiscover\api\services\qa\async_to_sync_qa_query_service.ts" />

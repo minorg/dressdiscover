@@ -1,32 +1,24 @@
 import { QaImage } from "./qa_image";
+import { QuestionValueId } from "./question_value_id";
 
 export class QuestionValue {
-    private _id: string;
+    private _id: QuestionValueId;
 
     private _image?: QaImage;
 
     private _text: string;
 
-    constructor(id: string, text: string, image?: QaImage) {
+    constructor(id: QuestionValueId, text: string, image?: QaImage) {
         this.id = id;
         this.text = text;
         this.image = image;
     }
 
-    get id(): string {
+    get id(): QuestionValueId {
         return this._id;
     }
 
-    set id(id: string) {
-        if (id.trim().length == 0) {
-            throw new RangeError('id is blank');
-        }
-        if (id.length > 24) {
-            throw new RangeError("expected len(id) to be <= 24, was " + id.length)
-        }
-        if (id.length < 24) {
-            throw new RangeError("expected len(id) to be >= 24, was " + id.length)
-        }
+    set id(id: QuestionValueId) {
         this._id = id;
     }
 
@@ -56,12 +48,12 @@ export class QuestionValue {
     }
 
     static fromThryftJSON(json: any): QuestionValue {
-        var id: string | undefined;
+        var id: QuestionValueId | undefined;
         var text: string | undefined;
         var image: QaImage | undefined;
         for (var fieldName in json) {
             if (fieldName == "id") {
-                id = json[fieldName];
+                id = QuestionValueId.parse(json[fieldName]);
             } else if (fieldName == "text") {
                 text = json[fieldName];
             } else if (fieldName == "image") {
@@ -79,7 +71,7 @@ export class QuestionValue {
 
     toThryftJSON(): any {
         var json: {[index: string]: any} = {};
-        json["id"] = this.id;
+        json["id"] = this.id.toString();
         json["text"] = this.text;
         if (this.image != null) {
             json["image"] = this.image.toThryftJSON();
