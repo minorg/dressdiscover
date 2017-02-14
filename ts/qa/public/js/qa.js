@@ -64,8 +64,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	/* WEBPACK VAR INJECTION */(function($) {"use strict";
 	var Sammy = __webpack_require__(3);
 	var router_1 = __webpack_require__(4);
-	var session_1 = __webpack_require__(40);
-	var services_1 = __webpack_require__(41);
+	var session_1 = __webpack_require__(41);
+	var services_1 = __webpack_require__(42);
 	var Application = (function () {
 	    function Application() {
 	        this.sammy = Sammy();
@@ -8646,6 +8646,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	};
 	var ko = __webpack_require__(36);
 	var modal_view_1 = __webpack_require__(35);
+	var qa_user_id_1 = __webpack_require__(40);
 	var view_model_1 = __webpack_require__(32);
 	var UserIdInputViewModel = (function (_super) {
 	    __extends(UserIdInputViewModel, _super);
@@ -8660,7 +8661,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        return _this;
 	    }
 	    UserIdInputViewModel.prototype.submit = function () {
-	        this._session.currentUserId = this.userId();
+	        this._session.currentUserId = qa_user_id_1.QaUserId.parse(this.userId());
 	        modal_view_1.ModalView.hide();
 	        this._onHide();
 	    };
@@ -8674,16 +8675,41 @@ return /******/ (function(modules) { // webpackBootstrap
 /***/ function(module, exports) {
 
 	"use strict";
+	var QaUserId = (function () {
+	    function QaUserId(id) {
+	        this._id = id;
+	    }
+	    QaUserId.parse = function (id) {
+	        if (id.trim().length == 0) {
+	            throw new RangeError('id is not the right length');
+	        }
+	        return new QaUserId(id);
+	    };
+	    QaUserId.prototype.toString = function () {
+	        return this._id;
+	    };
+	    return QaUserId;
+	}());
+	exports.QaUserId = QaUserId;
+
+
+/***/ },
+/* 41 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+	var qa_user_id_1 = __webpack_require__(40);
 	var Session = (function () {
 	    function Session() {
 	    }
 	    Object.defineProperty(Session.prototype, "currentUserId", {
 	        get: function () {
-	            return sessionStorage.getItem("currentUserId");
+	            var value = sessionStorage.getItem("currentUserId");
+	            return value ? qa_user_id_1.QaUserId.parse(value) : null;
 	        },
 	        set: function (value) {
 	            if (value) {
-	                sessionStorage.setItem("currentUserId", value);
+	                sessionStorage.setItem("currentUserId", value.toString());
 	            }
 	            else {
 	                sessionStorage.removeItem("currentUserId");
@@ -8698,11 +8724,11 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ },
-/* 41 */
+/* 42 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
-	var local_qa_query_service_1 = __webpack_require__(42);
+	var local_qa_query_service_1 = __webpack_require__(43);
 	var Services = (function () {
 	    function Services() {
 	        this._queryService = new local_qa_query_service_1.LocalQaQueryService();
@@ -8720,7 +8746,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ },
-/* 42 */
+/* 43 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -8729,10 +8755,10 @@ return /******/ (function(modules) { // webpackBootstrap
 	    function __() { this.constructor = d; }
 	    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 	};
-	var qa_object_1 = __webpack_require__(43);
-	var question_1 = __webpack_require__(48);
-	var question_set_1 = __webpack_require__(52);
-	var async_to_sync_qa_query_service_1 = __webpack_require__(53);
+	var qa_object_1 = __webpack_require__(44);
+	var question_1 = __webpack_require__(49);
+	var question_set_1 = __webpack_require__(53);
+	var async_to_sync_qa_query_service_1 = __webpack_require__(54);
 	var LocalQaQueryService = (function (_super) {
 	    __extends(LocalQaQueryService, _super);
 	    function LocalQaQueryService() {
@@ -8770,13 +8796,13 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ },
-/* 43 */
+/* 44 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
-	var qa_image_1 = __webpack_require__(44);
-	var qa_object_id_1 = __webpack_require__(46);
-	var question_set_id_1 = __webpack_require__(47);
+	var qa_image_1 = __webpack_require__(45);
+	var qa_object_id_1 = __webpack_require__(47);
+	var question_set_id_1 = __webpack_require__(48);
 	var QaObject = (function () {
 	    function QaObject(id, image, questionSetIds) {
 	        this.id = id;
@@ -8856,11 +8882,11 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ },
-/* 44 */
+/* 45 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
-	var qa_image_rights_1 = __webpack_require__(45);
+	var qa_image_rights_1 = __webpack_require__(46);
 	var QaImage = (function () {
 	    function QaImage(fullSizeUrl, rights, thumbnailUrl) {
 	        this.fullSizeUrl = fullSizeUrl;
@@ -8948,7 +8974,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ },
-/* 45 */
+/* 46 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -9064,7 +9090,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ },
-/* 46 */
+/* 47 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -9087,7 +9113,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ },
-/* 47 */
+/* 48 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -9110,12 +9136,12 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ },
-/* 48 */
+/* 49 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
-	var question_id_1 = __webpack_require__(49);
-	var question_value_1 = __webpack_require__(50);
+	var question_id_1 = __webpack_require__(50);
+	var question_value_1 = __webpack_require__(51);
 	var Question = (function () {
 	    function Question(id, text, values) {
 	        this.id = id;
@@ -9205,7 +9231,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ },
-/* 49 */
+/* 50 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -9228,12 +9254,12 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ },
-/* 50 */
+/* 51 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
-	var qa_image_1 = __webpack_require__(44);
-	var question_value_id_1 = __webpack_require__(51);
+	var qa_image_1 = __webpack_require__(45);
+	var question_value_id_1 = __webpack_require__(52);
 	var QuestionValue = (function () {
 	    function QuestionValue(id, text, image) {
 	        this.id = id;
@@ -9316,7 +9342,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ },
-/* 51 */
+/* 52 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -9339,12 +9365,12 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ },
-/* 52 */
+/* 53 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
-	var question_id_1 = __webpack_require__(49);
-	var question_set_id_1 = __webpack_require__(47);
+	var question_id_1 = __webpack_require__(50);
+	var question_set_id_1 = __webpack_require__(48);
 	var QuestionSet = (function () {
 	    function QuestionSet(id, questionIds, title) {
 	        this.id = id;
@@ -9433,7 +9459,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ },
-/* 53 */
+/* 54 */
 /***/ function(module, exports) {
 
 	"use strict";

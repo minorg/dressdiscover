@@ -1,5 +1,6 @@
 ﻿import * as ko from "knockout";
 import { ModalView } from "dressdiscover/gui/qa/views/modal_view";
+import { QaUserId } from "dressdiscover/api/models/qa/qa_user_id";
 import { Session } from "dressdiscover/gui/qa/models/session";
 import { ViewModel } from "dressdiscover/gui/qa/view_models/view_model";
 
@@ -11,7 +12,7 @@ export class UserIdInputViewModel extends ViewModel {
     }
 
     submit() {
-        this._session.currentUserId = this.userId();
+        this._session.currentUserId = QaUserId.parse(this.userId());
         ModalView.hide();
         this._onHide();
     }

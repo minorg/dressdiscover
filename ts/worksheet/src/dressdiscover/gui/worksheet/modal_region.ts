@@ -20,6 +20,6 @@ export class ModalRegion extends Marionette.Region {
         (this as any).$el.on('hidden.bs.modal', { region: this }, (event: any) => {
             event.data.region.empty();
         });
-        (this as any).$el.modal({ show: true, keyboard: false });
+        (this as any).$el.modal({ backdrop: 'static', show: true, keyboard: false });
     }
 }

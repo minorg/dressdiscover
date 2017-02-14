@@ -12,14 +12,17 @@ export abstract class ModalView<ViewModelT extends ViewModel> extends View<ViewM
         ($('#modal') as any).modal('hide');
     }
 
-    show() {
+    show(onShown: ()=>void | undefined) {
+        const self = this;
         const el = $("#modal");
         el.html(this._html);
-        (el as any).modal({ show: true, keyboard: false });
-        const self = this;
-        el.ready(() => {
+        el.on('shown.bs.modal', function (e) {
             ko.applyBindings(self.viewModel, el.get()[0]);
+            if (onShown) {
+                onShown();
+            }
         });
+        (el as any).modal({ backdrop: 'static', show: true, keyboard: false });
     }
 
     private _html: string;

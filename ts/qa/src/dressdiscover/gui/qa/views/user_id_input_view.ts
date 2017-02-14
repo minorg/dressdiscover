@@ -6,4 +6,8 @@ export class UserIdInputView extends ModalView<UserIdInputViewModel> {
     constructor(onHide: () => void, session: Session) {
         super("user_id_input_view.html", new UserIdInputViewModel(onHide, session));
     }
+
+    show() {
+        super.show(() => { $('#userIdInput').focus(); return; });
+    }
 }
