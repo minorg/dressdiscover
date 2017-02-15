@@ -11,7 +11,7 @@ from dressdiscover.api.models.qa.question_value import QuestionValue
 
 # Constants
 ROOT_DIR_PATH = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..'))
-TS_ASSETS_DIR_PATH = os.path.join(ROOT_DIR_PATH, 'ts', 'qa', 'assets')
+TS_ASSETS_DIR_PATH = os.path.join(ROOT_DIR_PATH, 'ts', 'qa', 'public')
 assert os.path.isdir(TS_ASSETS_DIR_PATH), TS_ASSETS_DIR_PATH
 CC_BY_SA = 'Creative Commons Attribution-Share Alike'
 PUBLIC_DOMAIN = 'Public domain'
@@ -247,11 +247,5 @@ var QUESTIONS = %s;
     json.dumps(questions_json, indent=4),
 )
 
-    js_file_name = 'definitions.js'
-    json_file_name = 'definitions.json'
-    for file_path, contents in (
-        (os.path.join(TS_ASSETS_DIR_PATH, 'js', js_file_name), js),
-        (os.path.join(TS_ASSETS_DIR_PATH, '..', 'public', 'js', js_file_name), js),
-    ):
-        with open(file_path, 'w+b') as f:
-            f.write(contents)
+    with open(os.path.join(TS_ASSETS_DIR_PATH, 'js', 'definitions.js'), 'w+b') as f:
+        f.write(js)
