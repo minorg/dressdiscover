@@ -12,7 +12,7 @@ export abstract class ModalView<ViewModelT extends ViewModel> extends View<ViewM
         ($('#modal') as any).modal('hide');
     }
 
-    show(onShown: ()=>void | undefined) {
+    show(onShown?: ()=>void) {
         const self = this;
         const el = $("#modal");
         el.html(this._html);

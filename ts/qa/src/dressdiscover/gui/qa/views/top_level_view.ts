@@ -1,4 +1,5 @@
-﻿import { NavbarView } from "dressdiscover/gui/qa/views/navbar_view";
+﻿import * as ko from "knockout";
+import { NavbarView } from "dressdiscover/gui/qa/views/navbar_view";
 import { View } from "dressdiscover/gui/qa/views/view";
 import { ViewModel } from "dressdiscover/gui/qa/view_models/view_model";
 
@@ -14,7 +15,9 @@ export class TopLevelView<ViewModelT extends ViewModel> extends View<ViewModelT>
         const navbarHtml = new NavbarView().html;
         $("#app").html(this._frameHtml).ready(() => {
             $("#navbar").html(navbarHtml);
-            $("#content").html(self._contentHtml);
+            const contentEl = $("#content");
+            contentEl.html(self._contentHtml);
+            ko.applyBindings(self.viewModel, contentEl[0]);
         });
     }
 
