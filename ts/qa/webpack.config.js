@@ -46,6 +46,7 @@ module.exports = {
   },
   plugins: [
     new CleanWebpackPlugin([path.join(__dirname, 'public', 'css', 'qa.css'),
+                            path.join(__dirname, 'public', 'css', 'qa.css.map'),
                             path.join(__dirname, 'public', 'js', 'qa.js'),
                             path.join(__dirname, 'public', 'js', 'qa.js.map')], {
         root: __dirname,

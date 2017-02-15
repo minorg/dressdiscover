@@ -47,29 +47,15 @@ module.exports = {
     path: path.join(__dirname, './public')
   },
   plugins: [
-    new CleanWebpackPlugin(['public'], {
+    new CleanWebpackPlugin([path.join(__dirname, 'public', 'css', 'worksheet.css'),
+                            path.join(__dirname, 'public', 'css', 'worksheet.css.map'),
+                            path.join(__dirname, 'public', 'js', 'worksheet.js'),
+                            path.join(__dirname, 'public', 'js', 'worksheet.js.map')], {
         root: __dirname,
-        exclude: ["bootstrap.min.css", "bootstrap.min.js", "fonts/", "img/", "jquery.min.js", "robots.txt", "underscore-min.js"],
         verbose: true,
         dry: false
     }),
     new CopyWebpackPlugin([
-        {
-          from: './assets',
-          to: './'
-        },
-        {
-            from: './node_modules/bootstrap/dist/js/bootstrap.min.js',
-            to: './js/'
-        },
-        {
-            from: './node_modules/jquery/dist/jquery.min.js',
-            to: './js/'
-        },
-        {
-            from: './node_modules/underscore/underscore-min.js',
-            to: './js/'
-        },
         {
             from: './src/index.html',
             to: './'

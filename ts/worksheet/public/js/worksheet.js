@@ -10778,7 +10778,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        this.$el.on('hidden.bs.modal', { region: this }, function (event) {
 	            event.data.region.empty();
 	        });
-	        this.$el.modal({ show: true, keyboard: false });
+	        this.$el.modal({ backdrop: 'static', show: true, keyboard: false });
 	    };
 	    return ModalRegion;
 	}(Marionette.Region));

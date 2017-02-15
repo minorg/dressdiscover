@@ -12,7 +12,7 @@ from dressdiscover.api.models.worksheet.worksheet_feature_value_image_rights imp
 # Constants
 ROOT_DIR_PATH = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..'))
 ANDROID_ASSETS_DIR_PATH = os.path.join(ROOT_DIR_PATH, 'cs', 'DressDiscover', 'DressDiscover.Droid', 'Assets')
-TS_ASSETS_DIR_PATH = os.path.join(ROOT_DIR_PATH, 'ts', 'worksheet', 'assets')
+TS_ASSETS_DIR_PATH = os.path.join(ROOT_DIR_PATH, 'ts', 'worksheet', 'public')
 assert os.path.isdir(TS_ASSETS_DIR_PATH), TS_ASSETS_DIR_PATH
 CC_BY_SA = 'Creative Commons Attribution-Share Alike'
 PUBLIC_DOMAIN = 'Public domain'
@@ -634,7 +634,6 @@ if __name__ == '__main__':
     json_file_name = 'worksheet_definition.json'
     for file_path, contents in (
         (os.path.join(TS_ASSETS_DIR_PATH, 'js', js_file_name), js),
-        (os.path.join(TS_ASSETS_DIR_PATH, '..', 'public', 'js', js_file_name), js),
         (os.path.join(ANDROID_ASSETS_DIR_PATH, json_file_name), json_),
     ):
         with open(file_path, 'w+b') as f:
