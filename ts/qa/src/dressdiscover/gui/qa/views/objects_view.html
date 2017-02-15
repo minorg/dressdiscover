@@ -1,32 +1,18 @@
 ﻿<div class="container-fluid" id="objects">
-    <div class="row" data-bind="foreach: objects">
+    <div class="row" data-bind="foreach: {data: objects, as: 'object'}">
         <div class="col-sm-2 object">
             <div class="container-fluid image">
                 <div class="row thumbnail">
                     <img class="img-responsive" data-bind="attr: {src: image.thumbnailUrl}" class="thumbnail" />
-                    <a class="full-size" data-bind="click: $parent.onFullSizeClick"><i class="glyphicon glyphicon-search"></i></a>
+                    <a class="full-size" data-bind="click: $parent.onClickFullSize"><i class="glyphicon glyphicon-search"></i></a>
                 </div>
-                <div class="row rights">
-                    <div class="panel-group" id="rights-panel-group">
-                        <div class="panel panel-default">
-                            <div class="panel-heading">
-                                <h4 class="panel-title">
-                                    <a class="collapsed rights-toggle" data-toggle="collapse" data-parent="#rights-panel-group" href="#rightsCollapseOne">
-                                        Image (C) <span data-bind="text: image.rights.author"></span>
-                                    </a>
-                                </h4>
-                            </div>
-                            <div id="rightsCollapseOne" class="panel-collapse collapse">
-                                <div class="panel-body">
-                                    <table>
-                                        <tr><td class="rights-field-name">Author</td><td class="rights-field-value" data-bind="text: image.rights.author"></td></tr>
-                                        <tr><td class="rights-field-name">License</td><td class="rights-field-value" data-bind="text: image.rights.license"></td></tr>
-                                        <tr><td class="rights-field-name">Source</td><td class="rights-field-value"><a data-bind="attr: {href: image.rights.sourceUrl}, text: image.rights.sourceName"></a></td></tr>
-                                    </table>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                <div class="row rights" data-bind="template: { data: image.rights, name: 'image-rights-template'}">
+                </div>
+                <div class="row question-sets">
+                    <div class="questions">Questions</div>
+                    <ul class="list-group" data-bind="foreach: { data: questionSetIds, as: 'questionSetId'}">
+                        <li class="list-group-item"><a data-bind="click: function(data, event) { $root.onClickQuestionSet(object, $root.questionSetsById[questionSetId.toString()]) }, text: $root.questionSetsById[questionSetId.toString()].title"></a></li>
+                    </ul>
                 </div>
             </div>
         </div> 

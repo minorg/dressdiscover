@@ -6,16 +6,21 @@ export class ObjectsViewModel extends ViewModel {
     constructor(objects: QaObject[], questionSetsById: { [index: string]: QuestionSet }) {
         super();
         this._objects = objects;
+        this._questionSetsById = questionSetsById;
     }
 
     get objects() {
         return this._objects;
     }
 
-    onFullSizeClick(object) {
+    onClickFullSize(object) {
         const el = $("#modal");
         el.html("<img src=\"" + object.image.fullSizeUrl + "\" id=\"full-size\">");
         (el as any).modal("show");
+    }
+
+    onClickQuestionSet(object, questionSet) {
+        alert(questionSet.id);
     }
 
     get questionSetsById() {

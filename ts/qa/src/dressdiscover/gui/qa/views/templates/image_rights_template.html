@@ -1,0 +1,22 @@
+﻿<script type="text/html" id="image-rights-template">
+    <div class="panel-group" id="rights-panel-group">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h4 class="panel-title">
+                    <a class="collapsed rights-toggle" data-toggle="collapse" data-parent="#rights-panel-group" href="#rightsCollapseOne">
+                        Image (C) <span data-bind="text: author"></span>
+                    </a>
+                </h4>
+            </div>
+            <div id="rightsCollapseOne" class="panel-collapse collapse">
+                <div class="panel-body">
+                    <table>
+                        <tr><td class="rights-field-name">Author</td><td class="rights-field-value" data-bind="text: author"></td></tr>
+                        <tr><td class="rights-field-name">License</td><td class="rights-field-value" data-bind="text: license"></td></tr>
+                        <tr><td class="rights-field-name">Source</td><td class="rights-field-value"><a data-bind="attr: {href: sourceUrl}, text: sourceName"></a></td></tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</script>

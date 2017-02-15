@@ -4,6 +4,6 @@ import "./objects_view.less";
 
 export class ObjectsView extends TopLevelView<ObjectsViewModel> {
     constructor(viewModel: ObjectsViewModel) {
-        super("objects_view.html", viewModel);
+        super("objects_view.html", ["templates/image_rights_template.html"], viewModel);
     }
 }

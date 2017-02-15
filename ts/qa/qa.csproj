@@ -25,6 +25,7 @@
     <Content Include="src\.gitignore" />
     <Content Include="src\dressdiscover\gui\qa\views\objects_view.html" />
     <Content Include="src\dressdiscover\gui\qa\views\navbar_view.html" />
+    <Content Include="src\dressdiscover\gui\qa\views\templates\image_rights_template.html" />
     <Content Include="src\dressdiscover\gui\qa\views\top_level_view.html" />
     <Content Include="src\dressdiscover\gui\qa\views\user_id_input_view.html" />
     <Content Include="src\index.html" />

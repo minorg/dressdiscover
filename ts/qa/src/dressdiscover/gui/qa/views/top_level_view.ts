@@ -4,9 +4,12 @@ import { View } from "dressdiscover/gui/qa/views/view";
 import { ViewModel } from "dressdiscover/gui/qa/view_models/view_model";
 
 export class TopLevelView<ViewModelT extends ViewModel> extends View<ViewModelT> {
-    constructor(contentHtmlFileName: string, viewModel: ViewModelT) {
+    constructor(contentHtmlFileName: string, templateHtmlFileNames: string[], viewModel: ViewModelT) {
         super(viewModel);
         this._contentHtml = View._requireHtml(contentHtmlFileName);
+        for (let templateHtmlFileName of templateHtmlFileNames) {
+            this._contentHtml = View._requireHtml(templateHtmlFileName) + this._contentHtml;
+        }
         this._frameHtml = View._requireHtml("top_level_view.html");
     }
 

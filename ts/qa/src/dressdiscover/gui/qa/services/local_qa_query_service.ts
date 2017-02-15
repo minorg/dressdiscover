@@ -36,7 +36,15 @@ export class LocalQaQueryService extends AsyncToSyncQaQueryService {
     }
 
     getQuestionSetsSync(kwds: { ids: QuestionSetId[] }): QuestionSet[] {
-        return this._questionSets;
+        const result: QuestionSet[] = [];
+        for (let id of kwds.ids) {
+            for (let questionSet of this._questionSets) {
+                if (questionSet.id.toString() === id.toString()) {
+                    result.push(questionSet);
+                }
+            }
+        }
+        return result;
     }
 
     private _objects: QaObject[] = [];
