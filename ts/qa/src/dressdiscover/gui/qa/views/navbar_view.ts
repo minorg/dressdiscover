@@ -1,9 +1,9 @@
-﻿import { View } from "dressdiscover/gui/qa/views/view";
-import { ViewModel } from "dressdiscover/gui/qa/view_models/view_model";
+﻿import { NavbarViewModel } from "dressdiscover/gui/qa/view_models/navbar_view_model";
+import { View } from "dressdiscover/gui/qa/views/view";
 
-export class NavbarView extends View<ViewModel>  {
+export class NavbarView extends View<NavbarViewModel>  {
     constructor() {
-        super(new ViewModel());
+        super(new NavbarViewModel());
         this._html = View._requireHtml("navbar_view.html");
     }
 

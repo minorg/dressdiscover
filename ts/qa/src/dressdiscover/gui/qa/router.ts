@@ -1,41 +1,65 @@
 ﻿import * as Sammy from "sammy";
-import { HomeView } from "dressdiscover/gui/qa/views/home_view";
-import { HomeViewModel } from "dressdiscover/gui/qa/view_models/home_view_model";
-import { Session } from "dressdiscover/gui/qa/models/session";
-import { Services } from "dressdiscover/gui/qa/services/services";
+import * as _ from "underscore";
+import { Application } from "dressdiscover/gui/qa/application";
+import { ObjectsView } from "dressdiscover/gui/qa/views/objects_view";
+import { ObjectsViewModel } from "dressdiscover/gui/qa/view_models/objects_view_model";
+import { QaObjectId } from "dressdiscover/api/models/qa/qa_object_id";
+import { QuestionId } from "dressdiscover/api/models/qa/question_id";
+import { QuestionSet } from "dressdiscover/api/models/qa/question_set";
+import { QuestionSetId } from "dressdiscover/api/models/qa/question_set_id";
 import { UserIdInputView } from "dressdiscover/gui/qa/views/user_id_input_view";
 
 export class Router {
-    constructor(sammy: Sammy.Application, session: Session, services: Services) {
-        this._sammy = sammy;
-        this._session = session;
-        this._services = services;
-
+    constructor() {
         const self = this;
-        sammy.get('', (context: any) => {
+        this._sammy.get('', (context: any) => {
             self.onGetRoot(context);
         });
-        sammy.get('#/question/:objectId/:questionSetId/:questionId', (context: any) => {
-            self.onGetQuestion(context);        
+        this._sammy.get('#/question/:objectId/:questionSetId/:questionId', (context: any) => {
+            self.onGetQuestion(context);
         });
     }
 
     private checkAuthentication(onSuccess: () => void) {
-        if (this._session.currentUserId) {
+        if (Application.instance.session.currentUserId) {
             onSuccess();
         } else {
-            new UserIdInputView(onSuccess, this._session).show();
+            new UserIdInputView(onSuccess).show();
         }       
     }
 
     private onGetRoot(context: any) {
         this.checkAuthentication(() => {
-            const objects = this._services.queryService.getObjectsSync();
-            new HomeView(new HomeViewModel(objects)).show();
+            const objects = Application.instance.services.queryService.getObjectsSync();
+
+            const questionSetIds: { [index: string]: QuestionSetId } = {};
+            for (let object of objects) {
+                for (let questionSetId of object.questionSetIds) {
+                    if (!(questionSetId.toString() in questionSetIds)) {
+                        questionSetIds[questionSetId.toString()] = questionSetId;
+                    }
+                }
+            }
+
+            const questionSets = Application.instance.services.queryService.getQuestionSetsSync({ ids: _.values(questionSetIds) });
+            const questionSetsById: { [index: string]: QuestionSet } = {};
+            for (let questionSet of questionSets) {
+                questionSetsById[questionSet.id.toString()] = questionSet;
+            }
+
+            new ObjectsView(new ObjectsViewModel(objects, questionSetsById)).show();
         });
     }
 
-    goToQuestion(objectId: string, questionId: string, questionSetId: string) {
+    goToQuestionSet(objectId: QaObjectId, questionSetId: QuestionSetId) {
+    
+    }
+
+    goToQuestion(objectId: QaObjectId, questionId: QuestionId, questionSetId: QuestionSetId) {
+    }
+
+    run() {
+        this._sammy.run();
     }
 
     private onGetQuestion(context: any) {
@@ -44,7 +68,5 @@ export class Router {
         });
     }
 
-    private _sammy: Sammy.Application;
-    private _session: Session;
-    private _services: Services;
+    private _sammy: Sammy.Application = Sammy();
 }

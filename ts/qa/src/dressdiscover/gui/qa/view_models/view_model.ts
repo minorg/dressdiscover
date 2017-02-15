@@ -1,2 +1,4 @@
-﻿export class ViewModel {
+﻿export abstract class ViewModel {
+    constructor() {
+    }
 }
