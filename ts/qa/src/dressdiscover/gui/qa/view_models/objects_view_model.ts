@@ -1,16 +1,11 @@
-﻿import { QaObject } from "dressdiscover/api/models/qa/qa_object";
+﻿import { Application } from "dressdiscover/gui/qa/application";
+import { QaObject } from "dressdiscover/api/models/qa/qa_object";
 import { QuestionSet } from "dressdiscover/api/models/qa/question_set";
 import { ViewModel } from "dressdiscover/gui/qa/view_models/view_model";
 
 export class ObjectsViewModel extends ViewModel {
-    constructor(objects: QaObject[], questionSetsById: { [index: string]: QuestionSet }) {
+    constructor(public readonly objects: QaObject[], public readonly questionSetsById: { [index: string]: QuestionSet }) {
         super();
-        this._objects = objects;
-        this._questionSetsById = questionSetsById;
-    }
-
-    get objects() {
-        return this._objects;
     }
 
     onClickFullSize(object) {
@@ -20,13 +15,7 @@ export class ObjectsViewModel extends ViewModel {
     }
 
     onClickQuestionSet(object, questionSet) {
-        alert(questionSet.id);
+        Application.instance.router.goToQuestions(object.id, questionSet.id);
+        return false;
     }
-
-    get questionSetsById() {
-        return this._questionSetsById;
-    }
-
-    private _objects: QaObject[];
-    private _questionSetsById: { [index: string]: QuestionSet };
 }

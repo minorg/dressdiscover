@@ -11,7 +11,7 @@
                 <div class="row question-sets">
                     <div class="questions">Questions</div>
                     <ul class="list-group" data-bind="foreach: { data: questionSetIds, as: 'questionSetId'}">
-                        <li class="list-group-item"><a data-bind="click: function(data, event) { $root.onClickQuestionSet(object, $root.questionSetsById[questionSetId.toString()]) }, text: $root.questionSetsById[questionSetId.toString()].title"></a></li>
+                        <li class="list-group-item"><a data-bind="click: function(data, event) { return $root.onClickQuestionSet(object, $root.questionSetsById[questionSetId.toString()]) }, text: $root.questionSetsById[questionSetId.toString()].title"></a></li>
                     </ul>
                 </div>
             </div>

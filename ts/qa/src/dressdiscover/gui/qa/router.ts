@@ -7,16 +7,21 @@ import { QaObjectId } from "dressdiscover/api/models/qa/qa_object_id";
 import { QuestionId } from "dressdiscover/api/models/qa/question_id";
 import { QuestionSet } from "dressdiscover/api/models/qa/question_set";
 import { QuestionSetId } from "dressdiscover/api/models/qa/question_set_id";
+import { QuestionsView } from "dressdiscover/gui/qa/views/questions_view";
+import { QuestionsViewModel } from "dressdiscover/gui/qa/view_models/questions_view_model";
 import { UserIdInputView } from "dressdiscover/gui/qa/views/user_id_input_view";
 
 export class Router {
     constructor() {
         const self = this;
-        this._sammy.get('', (context: any) => {
-            self.onGetRoot(context);
-        });
         this._sammy.get('#/question/:objectId/:questionSetId/:questionId', (context: any) => {
             self.onGetQuestion(context);
+        });
+        this._sammy.get('#/questions/:objectId/:questionSetId', (context: any) => {
+            self.onGetQuestions(context);
+        });
+        this._sammy.get('', (context: any) => {
+            self.onGetRoot(context);
         });
     }
 
@@ -26,6 +31,37 @@ export class Router {
         } else {
             new UserIdInputView(onSuccess).show();
         }       
+    }
+
+    goToQuestions(objectId: QaObjectId, questionSetId: QuestionSetId) {
+        this._sammy.setLocation("#/questions/" + objectId.toString() + "/" + questionSetId.toString());
+    }
+
+    goToQuestion(objectId: QaObjectId, questionId: QuestionId, questionSetId: QuestionSetId) {
+        alert("Go to question " + questionId.toString());
+    }
+
+    run() {
+        this._sammy.run();
+    }
+
+    private onGetQuestion(context: any) {
+        this.checkAuthentication(() => {
+        
+        });
+    }
+
+    private onGetQuestions(context: any) {
+        this.checkAuthentication(() => {
+            const objectId = QaObjectId.parse(context.params.objectId);
+            const questionSetId = QuestionSetId.parse(context.params.questionSetId);
+
+            const object = Application.instance.services.queryService.getObjectByIdSync({ id: objectId });
+            const questionSet = Application.instance.services.queryService.getQuestionSetsSync({ ids: [questionSetId] })[0];
+            const questions = Application.instance.services.queryService.getQuestionsSync({ ids: questionSet.questionIds });
+
+            new QuestionsView(new QuestionsViewModel(object, questionSet, questions)).show();
+        });
     }
 
     private onGetRoot(context: any) {
@@ -48,23 +84,6 @@ export class Router {
             }
 
             new ObjectsView(new ObjectsViewModel(objects, questionSetsById)).show();
-        });
-    }
-
-    goToQuestionSet(objectId: QaObjectId, questionSetId: QuestionSetId) {
-    
-    }
-
-    goToQuestion(objectId: QaObjectId, questionId: QuestionId, questionSetId: QuestionSetId) {
-    }
-
-    run() {
-        this._sammy.run();
-    }
-
-    private onGetQuestion(context: any) {
-        this.checkAuthentication(() => {
-        
         });
     }
 

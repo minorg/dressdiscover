@@ -23,6 +23,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="src\.gitignore" />
+    <Content Include="src\dressdiscover\gui\qa\views\questions_view.html" />
     <Content Include="src\dressdiscover\gui\qa\views\objects_view.html" />
     <Content Include="src\dressdiscover\gui\qa\views\navbar_view.html" />
     <Content Include="src\dressdiscover\gui\qa\views\templates\image_rights_template.html" />
@@ -71,10 +72,12 @@
     <TypeScriptCompile Include="src\dressdiscover\gui\qa\router.ts" />
     <TypeScriptCompile Include="src\dressdiscover\gui\qa\services\local_qa_query_service.ts" />
     <TypeScriptCompile Include="src\dressdiscover\gui\qa\services\services.ts" />
+    <TypeScriptCompile Include="src\dressdiscover\gui\qa\views\questions_view.ts" />
     <TypeScriptCompile Include="src\dressdiscover\gui\qa\views\objects_view.ts" />
     <TypeScriptCompile Include="src\dressdiscover\gui\qa\views\navbar_view.ts" />
     <TypeScriptCompile Include="src\dressdiscover\gui\qa\views\top_level_view.ts" />
     <TypeScriptCompile Include="src\dressdiscover\gui\qa\views\view.ts" />
+    <TypeScriptCompile Include="src\dressdiscover\gui\qa\view_models\questions_view_model.ts" />
     <TypeScriptCompile Include="src\dressdiscover\gui\qa\view_models\objects_view_model.ts" />
     <TypeScriptCompile Include="src\dressdiscover\gui\qa\view_models\user_id_input_view_model.ts" />
     <TypeScriptCompile Include="src\dressdiscover\gui\qa\view_models\navbar_view_model.ts" />

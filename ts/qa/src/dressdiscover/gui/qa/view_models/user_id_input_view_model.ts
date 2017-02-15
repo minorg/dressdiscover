@@ -6,9 +6,8 @@ import { QaUserId } from "dressdiscover/api/models/qa/qa_user_id";
 import { ViewModel } from "dressdiscover/gui/qa/view_models/view_model";
 
 export class UserIdInputViewModel extends ViewModel {
-    constructor(onHide: () => void) {
+    constructor(private onHide: () => void) {
         super();
-        this._onHide = onHide;
         _.bind(this.onKeypress, this);
     }
 
@@ -22,13 +21,11 @@ export class UserIdInputViewModel extends ViewModel {
     submit() {
         Application.instance.session.currentUserId = QaUserId.parse(this.userId());
         ModalView.hide();
-        this._onHide();
+        this.onHide();
     }
 
     userId = ko.observable<string>("");
     userIdComplete = ko.pureComputed(() => {
         return this.userId().length > 0;
     }, this);
-
-    private _onHide: () => void;
 }

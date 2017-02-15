@@ -2,6 +2,7 @@ from itertools import ifilterfalse
 import __builtin__
 import dressdiscover.api.models.qa.answer
 import dressdiscover.api.models.qa.qa_object
+import dressdiscover.api.models.qa.question
 import dressdiscover.api.models.qa.question_set
 
 
@@ -54,6 +55,33 @@ class QaQueryService(object):
     ):
         raise NotImplementedError(self.__class__.__module__ + '.' + self.__class__.__name__ + '._get_answers')
 
+    def get_object_by_id(
+        self,
+        id=None,  # @ReservedAssignment
+    ):
+        '''
+        :type id: str
+        :rtype: dressdiscover.api.models.qa.qa_object.QaObject
+        '''
+
+        if id is None:
+            raise ValueError('id is required')
+        if not isinstance(id, basestring):
+            raise TypeError("expected id to be a str but it is a %s" % getattr(__builtin__, 'type')(id))
+
+        get_object_by_id_return_value = self._get_object_by_id(id=id)
+
+        if not isinstance(get_object_by_id_return_value, dressdiscover.api.models.qa.qa_object.QaObject):
+            raise TypeError(getattr(__builtin__, 'type')(get_object_by_id_return_value))
+
+        return get_object_by_id_return_value
+
+    def _get_object_by_id(
+        self,
+        id,  # @ReservedAssignment
+    ):
+        raise NotImplementedError(self.__class__.__module__ + '.' + self.__class__.__name__ + '._get_object_by_id')
+
     def get_objects(
         self,
     ):
@@ -99,3 +127,30 @@ class QaQueryService(object):
         ids,
     ):
         raise NotImplementedError(self.__class__.__module__ + '.' + self.__class__.__name__ + '._get_question_sets')
+
+    def get_questions(
+        self,
+        ids=None,
+    ):
+        '''
+        :type ids: tuple(str)
+        :rtype: tuple(dressdiscover.api.models.qa.question.Question)
+        '''
+
+        if ids is None:
+            raise ValueError('ids is required')
+        if not (isinstance(ids, tuple) and len(list(ifilterfalse(lambda _: isinstance(_, basestring), ids))) == 0):
+            raise TypeError("expected ids to be a tuple(str) but it is a %s" % getattr(__builtin__, 'type')(ids))
+
+        get_questions_return_value = self._get_questions(ids=ids)
+
+        if not (isinstance(get_questions_return_value, tuple) and len(list(ifilterfalse(lambda _: isinstance(_, dressdiscover.api.models.qa.question.Question), get_questions_return_value))) == 0):
+            raise TypeError(getattr(__builtin__, 'type')(get_questions_return_value))
+
+        return get_questions_return_value
+
+    def _get_questions(
+        self,
+        ids,
+    ):
+        raise NotImplementedError(self.__class__.__module__ + '.' + self.__class__.__name__ + '._get_questions')

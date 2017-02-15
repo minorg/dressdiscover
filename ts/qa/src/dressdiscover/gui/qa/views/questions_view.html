@@ -1,0 +1,7 @@
+﻿<h3 data-bind="text: questionSet.title"></h3>
+<h5>Questions</h5>
+<div class="container-fluid" id="questions">
+    <ul class="row" data-bind="foreach: {data: questions, as: 'question'}">
+        <li><a data-bind="click: function(data, event) { return $root.onClickQuestion($root.object, question, $root.questionSet); }, text: text" /></li>
+    </ul>
+</div>
