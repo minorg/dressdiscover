@@ -45,29 +45,14 @@ module.exports = {
     path: path.join(__dirname, './public')
   },
   plugins: [
-    new CleanWebpackPlugin(['public'], {
+    new CleanWebpackPlugin([path.join(__dirname, 'public', 'css', 'qa.css'),
+                            path.join(__dirname, 'public', 'js', 'qa.js'),
+                            path.join(__dirname, 'public', 'js', 'qa.js.map')], {
         root: __dirname,
-        exclude: ["css/bootstrap.min.css", "fonts", "img", "js/bootstrap.min.js", "js/jquery.min.js", "js/underscore-min.js", "robots.txt"],
         verbose: true, 
         dry: false
     }),
     new CopyWebpackPlugin([
-        {
-          from: './assets',
-          to: './'
-        },
-        {
-            from: './node_modules/bootstrap/dist/js/bootstrap.min.js',
-            to: './js/'
-        },
-        {
-            from: './node_modules/jquery/dist/jquery.min.js',
-            to: './js/'
-        },
-        {
-            from: './node_modules/underscore/underscore-min.js',
-            to: './js/'
-        },
         {
             from: './src/index.html',
             to: './'
