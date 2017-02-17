@@ -1,0 +1,25 @@
+﻿<div class="container-fluid" id="question">
+    <div class="row">
+        <div class="col-sm-2" id="left-column">
+            <div id="questions-list">
+                <h5 data-bind="text: questionSet.title"/>
+                <h6>Questions</h6>
+                <div class="container-fluid">
+                    <ul class="row" data-bind="foreach: {data: questions, as: 'question'}" id="questions-list">
+                        <li><a data-bind="click: function(data, event) { return $root.onClickQuestion($root, question); }, text: text" /></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-10" id="right-column">
+            <div data-bind="if: currentQuestion">
+                Current question here.
+            </div>
+            <div data-bind="ifnot: currentQuestion">
+                <h3 data-bind="text: questionSet.title"></h3>
+                <div data-bind="if: questionSet.description"><div data-bind="text: questionSet.description"></div></div>
+                Select a question to the left or <a data-bind="click: $root.onClickFirstQuestion">go to the first one.</a>
+            </div>
+        </div>
+    </div>
+</div>

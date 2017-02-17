@@ -23,11 +23,10 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="src\.gitignore" />
-    <Content Include="src\dressdiscover\gui\qa\views\questions_view.html" />
+    <Content Include="src\dressdiscover\gui\qa\views\question_view.html" />
     <Content Include="src\dressdiscover\gui\qa\views\objects_view.html" />
     <Content Include="src\dressdiscover\gui\qa\views\navbar_view.html" />
     <Content Include="src\dressdiscover\gui\qa\views\templates\image_rights_template.html" />
-    <Content Include="src\dressdiscover\gui\qa\views\templates\questions_list_template.html" />
     <Content Include="src\dressdiscover\gui\qa\views\top_level_view.html" />
     <Content Include="src\dressdiscover\gui\qa\views\user_id_input_view.html" />
     <Content Include="src\index.html" />
@@ -39,8 +38,7 @@
     <Content Include="tsconfig.json" />
     <Content Include="src\dressdiscover\gui\qa\views\objects_view.less" />
     <Content Include="src\dressdiscover\gui\qa\views\templates\image_rights_template.less" />
-    <Content Include="src\dressdiscover\gui\qa\views\questions_view.less" />
-    <Content Include="src\dressdiscover\gui\qa\views\templates\questions_list_template.less" />
+    <Content Include="src\dressdiscover\gui\qa\views\question_view.less" />
     <None Include="web.Debug.config">
       <DependentUpon>web.config</DependentUpon>
     </None>
@@ -76,12 +74,12 @@
     <TypeScriptCompile Include="src\dressdiscover\gui\qa\router.ts" />
     <TypeScriptCompile Include="src\dressdiscover\gui\qa\services\local_qa_query_service.ts" />
     <TypeScriptCompile Include="src\dressdiscover\gui\qa\services\services.ts" />
-    <TypeScriptCompile Include="src\dressdiscover\gui\qa\views\questions_view.ts" />
+    <TypeScriptCompile Include="src\dressdiscover\gui\qa\views\question_view.ts" />
     <TypeScriptCompile Include="src\dressdiscover\gui\qa\views\objects_view.ts" />
     <TypeScriptCompile Include="src\dressdiscover\gui\qa\views\navbar_view.ts" />
     <TypeScriptCompile Include="src\dressdiscover\gui\qa\views\top_level_view.ts" />
     <TypeScriptCompile Include="src\dressdiscover\gui\qa\views\view.ts" />
-    <TypeScriptCompile Include="src\dressdiscover\gui\qa\view_models\questions_view_model.ts" />
+    <TypeScriptCompile Include="src\dressdiscover\gui\qa\view_models\question_view_model.ts" />
     <TypeScriptCompile Include="src\dressdiscover\gui\qa\view_models\objects_view_model.ts" />
     <TypeScriptCompile Include="src\dressdiscover\gui\qa\view_models\user_id_input_view_model.ts" />
     <TypeScriptCompile Include="src\dressdiscover\gui\qa\view_models\navbar_view_model.ts" />

@@ -15,7 +15,7 @@ export class ObjectsViewModel extends ViewModel {
     }
 
     onClickQuestionSet(object, questionSet) {
-        Application.instance.router.goToQuestions(object.id, questionSet.id);
+        Application.instance.router.goToQuestionSet(object.id, questionSet.id);
         return false;
     }
 }
