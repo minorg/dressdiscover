@@ -1,0 +1,10 @@
+﻿<script type="text/html" id="questions-list-template">
+    <div id="questions-list">
+        <h5 id="header">Questions</h5>
+        <div class="container-fluid">
+            <ul class="row" data-bind="foreach: {data: $data, as: 'question'}" id="questions-list">
+                <li><a data-bind="click: function(data, event) { return $root.onClickQuestion($root, question); }, text: text" /></li>
+            </ul>
+        </div>
+    </div>
+</script>

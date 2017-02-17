@@ -3,7 +3,7 @@
         <div class="col-sm-2 object">
             <div class="container-fluid image">
                 <div class="row thumbnail">
-                    <img class="img-responsive" data-bind="attr: {src: image.thumbnailUrl}" class="thumbnail" />
+                    <img class="img-responsive thumbnail" data-bind="attr: {src: image.thumbnailUrl}" />
                     <a class="full-size" data-bind="click: $parent.onClickFullSize"><i class="glyphicon glyphicon-search"></i></a>
                 </div>
                 <div class="row rights" data-bind="template: { data: image.rights, name: 'image-rights-template'}">

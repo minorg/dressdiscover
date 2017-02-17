@@ -1,13 +1,6 @@
 ﻿<div class="container-fluid" id="questions">
     <div class="row">
-        <div class="col-sm-4" id="left-column">
-            <h5 id="questions-header">Questions</h5>
-            <div class="container-fluid" id="questions-container">
-                <ul class="row" data-bind="foreach: {data: questions, as: 'question'}" id="questions-list">
-                    <li><a data-bind="click: function(data, event) { return $root.onClickQuestion($root, question); }, text: text" /></li>
-                </ul>
-            </div>
-        </div>
+        <div class="col-sm-4" data-bind="template: {data: questions, name: 'questions-list-template'}" id="left-column" />
         <div class="col-sm-8" id="right-column">
             <h3 data-bind="text: questionSet.title"></h3>
             <div data-bind="if: questionSet.description"><div data-bind="text: questionSet.description"></div></div>
