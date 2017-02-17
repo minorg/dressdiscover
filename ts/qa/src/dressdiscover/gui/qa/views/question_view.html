@@ -12,15 +12,13 @@
             </div>
         </div>
         <div class="col-sm-10" id="right-column">
-            <div class="container-fluid">
-                <div class="row" id="input-navigation">
-                    <div class="col-sm-2"><button class="btn btn-primary" data-bind="click: onClickPreviousQuestionButton, enable: previousQuestionButtonEnabled" type="button">Previous question</button></div>
-                    <div class="col-sm-8">&nbsp;</div>
-                    <div class="col-sm-2"><button class="btn btn-primary" data-bind="click: onClickNextQuestionButton, enable: nextQuestionButtonEnabled" type="button">Next question</button></div>
-                </div>
-            </div>
             <div data-bind="if: currentQuestion" id="current-question">
-                <div class="container">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-sm-2"><button class="btn btn-primary" data-bind="click: onClickPreviousQuestionButton, enable: previousQuestionButtonEnabled" type="button">Previous question</button></div>
+                        <div class="col-sm-4">&nbsp;</div>
+                        <div class="col-sm-2"><button class="btn btn-primary" data-bind="click: onClickNextQuestionButton, enable: nextQuestionButtonEnabled" type="button">Next question</button></div>
+                    </div>
                     <div class="row">
                         <div class="col-sm-8">
                             <h3 data-bind="text: currentQuestion.text" id="text"></h3>
