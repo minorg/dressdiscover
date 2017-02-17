@@ -12,10 +12,24 @@
             </div>
         </div>
         <div class="col-sm-10" id="right-column">
-            <div data-bind="if: currentQuestion">
-                Current question here.
+            <div data-bind="if: currentQuestion" id="current-question">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-sm-8">
+                            <h3 data-bind="text: currentQuestion.text" id="text"></h3>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-8">
+                            <img class="img-responsive" data-bind="attr: {src: object.image.fullSizeUrl}" />
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-8 rights" data-bind="template: { data: object.image.rights, name: 'image-rights-template'}" />
+                    </div>
+                </div>
             </div>
-            <div data-bind="ifnot: currentQuestion">
+            <div data-bind="ifnot: currentQuestion" id="question-set">
                 <h3 data-bind="text: questionSet.title"></h3>
                 <div data-bind="if: questionSet.description"><div data-bind="text: questionSet.description"></div></div>
                 Select a question to the left or <a data-bind="click: $root.onClickFirstQuestion">go to the first one.</a>
