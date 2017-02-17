@@ -10,19 +10,30 @@ class QuestionSet(object):
             id=None,  # @ReservedAssignment
             question_ids=None,
             title=None,
+            description=None,
         ):
             '''
             :type id: str
             :type question_ids: tuple(str)
             :type title: str
+            :type description: str or None
             '''
 
             self.__id = id
             self.__question_ids = question_ids
             self.__title = title
+            self.__description = description
 
         def build(self):
-            return QuestionSet(id=self.__id, question_ids=self.__question_ids, title=self.__title)
+            return QuestionSet(id=self.__id, question_ids=self.__question_ids, title=self.__title, description=self.__description)
+
+        @property
+        def description(self):
+            '''
+            :rtype: str
+            '''
+
+            return self.__description
 
         @property
         def id(self):  # @ReservedAssignment
@@ -39,6 +50,21 @@ class QuestionSet(object):
             '''
 
             return self.__question_ids
+
+        def set_description(self, description):
+            '''
+            :type description: str or None
+            '''
+
+            if description is not None:
+                if not isinstance(description, basestring):
+                    raise TypeError("expected description to be a str but it is a %s" % getattr(__builtin__, 'type')(description))
+                if description.isspace():
+                    raise ValueError("expected description not to be blank")
+                if len(description) < 1:
+                    raise ValueError("expected len(description) to be >= 1, was %d" % len(description))
+            self.__description = description
+            return self
 
         def set_id(self, id):  # @ReservedAssignment
             '''
@@ -95,18 +121,28 @@ class QuestionSet(object):
             :type id: str
             :type question_ids: tuple(str)
             :type title: str
+            :type description: str or None
             '''
 
             if isinstance(question_set, QuestionSet):
                 self.set_id(question_set.id)
                 self.set_question_ids(question_set.question_ids)
                 self.set_title(question_set.title)
+                self.set_description(question_set.description)
             elif isinstance(question_set, dict):
                 for key, value in question_set.iteritems():
                     getattr(self, 'set_' + key)(value)
             else:
                 raise TypeError(question_set)
             return self
+
+        @description.setter
+        def description(self, description):
+            '''
+            :type description: str or None
+            '''
+
+            self.set_description(description)
 
         @id.setter
         def id(self, id):  # @ReservedAssignment
@@ -136,6 +172,7 @@ class QuestionSet(object):
         ID = None
         QUESTION_IDS = None
         TITLE = None
+        DESCRIPTION = None
 
         def __init__(self, name, type_, validation):
             object.__init__(self)
@@ -163,22 +200,25 @@ class QuestionSet(object):
 
         @classmethod
         def values(cls):
-            return (cls.ID, cls.QUESTION_IDS, cls.TITLE,)
+            return (cls.ID, cls.QUESTION_IDS, cls.TITLE, cls.DESCRIPTION,)
 
     FieldMetadata.ID = FieldMetadata('id', dressdiscover.api.models.qa.question_set_id.QuestionSetId, None)
     FieldMetadata.QUESTION_IDS = FieldMetadata('question_ids', tuple, {u'minLength': 1})
     FieldMetadata.TITLE = FieldMetadata('title', str, {u'blank': False, u'minLength': 1})
+    FieldMetadata.DESCRIPTION = FieldMetadata('description', str, {u'blank': False, u'minLength': 1})
 
     def __init__(
         self,
         id,  # @ReservedAssignment
         question_ids,
         title,
+        description=None,
     ):
         '''
         :type id: str
         :type question_ids: tuple(str)
         :type title: str
+        :type description: str or None
         '''
 
         if id is None:
@@ -205,6 +245,15 @@ class QuestionSet(object):
             raise ValueError("expected len(title) to be >= 1, was %d" % len(title))
         self.__title = title
 
+        if description is not None:
+            if not isinstance(description, basestring):
+                raise TypeError("expected description to be a str but it is a %s" % getattr(__builtin__, 'type')(description))
+            if description.isspace():
+                raise ValueError("expected description not to be blank")
+            if len(description) < 1:
+                raise ValueError("expected len(description) to be >= 1, was %d" % len(description))
+        self.__description = description
+
     def __eq__(self, other):
         if self.id != other.id:
             return False
@@ -212,13 +261,15 @@ class QuestionSet(object):
             return False
         if self.title != other.title:
             return False
+        if self.description != other.description:
+            return False
         return True
 
     def __hash__(self):
-        return hash((self.id,self.question_ids,self.title,))
+        return hash((self.id,self.question_ids,self.title,self.description,))
 
     def __iter__(self):
-        return iter((self.id, self.question_ids, self.title,))
+        return iter((self.id, self.question_ids, self.title, self.description,))
 
     def __ne__(self, other):
         return not self.__eq__(other)
@@ -228,6 +279,8 @@ class QuestionSet(object):
         field_reprs.append('id=' + "'" + self.id.encode('ascii', 'replace') + "'")
         field_reprs.append('question_ids=' + repr(self.question_ids))
         field_reprs.append('title=' + "'" + self.title.encode('ascii', 'replace') + "'")
+        if self.description is not None:
+            field_reprs.append('description=' + "'" + self.description.encode('ascii', 'replace') + "'")
         return 'QuestionSet(' + ', '.join(field_reprs) + ')'
 
     def __str__(self):
@@ -235,7 +288,17 @@ class QuestionSet(object):
         field_reprs.append('id=' + "'" + self.id.encode('ascii', 'replace') + "'")
         field_reprs.append('question_ids=' + repr(self.question_ids))
         field_reprs.append('title=' + "'" + self.title.encode('ascii', 'replace') + "'")
+        if self.description is not None:
+            field_reprs.append('description=' + "'" + self.description.encode('ascii', 'replace') + "'")
         return 'QuestionSet(' + ', '.join(field_reprs) + ')'
+
+    @property
+    def description(self):
+        '''
+        :rtype: str
+        '''
+
+        return self.__description
 
     @property
     def id(self):  # @ReservedAssignment
@@ -275,6 +338,11 @@ class QuestionSet(object):
                 init_kwds['question_ids'] = tuple([iprot.read_string() for _ in xrange(iprot.read_list_begin()[1])] + (iprot.read_list_end() is None and []))
             elif ifield_name == 'title':
                 init_kwds['title'] = iprot.read_string()
+            elif ifield_name == 'description':
+                try:
+                    init_kwds['description'] = iprot.read_string()
+                except (TypeError, ValueError,):
+                    pass
             iprot.read_field_end()
         iprot.read_struct_end()
 
@@ -285,6 +353,7 @@ class QuestionSet(object):
         id=None,  # @ReservedAssignment
         question_ids=None,
         title=None,
+        description=None,
     ):
         '''
         Copy this object, replace one or more fields, and return the copy.
@@ -292,6 +361,7 @@ class QuestionSet(object):
         :type id: str or None
         :type question_ids: tuple(str) or None
         :type title: str or None
+        :type description: str or None
         :rtype: dressdiscover.api.models.qa.question_set.QuestionSet
         '''
 
@@ -301,7 +371,9 @@ class QuestionSet(object):
             question_ids = self.question_ids
         if title is None:
             title = self.title
-        return self.__class__(id=id, question_ids=question_ids, title=title)
+        if description is None:
+            description = self.description
+        return self.__class__(id=id, question_ids=question_ids, title=title, description=description)
 
     @property
     def title(self):
@@ -335,6 +407,11 @@ class QuestionSet(object):
         oprot.write_field_begin(name='title', type=11, id=None)
         oprot.write_string(self.title)
         oprot.write_field_end()
+
+        if self.description is not None:
+            oprot.write_field_begin(name='description', type=11, id=None)
+            oprot.write_string(self.description)
+            oprot.write_field_end()
 
         oprot.write_field_stop()
 

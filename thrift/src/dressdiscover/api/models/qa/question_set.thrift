@@ -11,4 +11,7 @@ struct QuestionSet {
 
     // @validation {"blank": false, "minLength": 1}
     string title;
+
+    // @validation {"blank": false, "minLength": 1}
+    optional string description;
 }

@@ -185,7 +185,7 @@ def material_culture_question_set():
     questions.append(
         question(
             id_="589f8f9c69cfa172fc69d28c",
-            text='Is it large or small?',
+            text='Is the object large or small?',
             values=(
                 question_value(
                     id_="589f8fa569cfa172fc69d28d",

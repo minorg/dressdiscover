@@ -29,7 +29,7 @@ var QUESTION_SETS = [
 
 var QUESTIONS = [
     {
-        "text": "Is it large or small?", 
+        "text": "Is the object large or small?", 
         "values": [
             {
                 "text": "Large", 
