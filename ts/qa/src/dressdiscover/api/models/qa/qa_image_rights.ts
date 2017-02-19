@@ -7,11 +7,11 @@ export class QaImageRights {
 
     private _sourceUrl: string;
 
-    constructor(author: string, license: string, sourceName: string, sourceUrl: string) {
-        this.author = author;
-        this.license = license;
-        this.sourceName = sourceName;
-        this.sourceUrl = sourceUrl;
+    constructor(kwds: {author: string, license: string, sourceName: string, sourceUrl: string}) {
+        this.author = kwds.author;
+        this.license = kwds.license;
+        this.sourceName = kwds.sourceName;
+        this.sourceUrl = kwds.sourceUrl;
     }
 
     get author(): string {
@@ -92,7 +92,7 @@ export class QaImageRights {
         if (sourceUrl == null) {
             throw new TypeError('sourceUrl is required');
         }
-        return new QaImageRights(author, license, sourceName, sourceUrl);
+        return new QaImageRights({author: author, license: license, sourceName: sourceName, sourceUrl: sourceUrl});
     }
 
     toThryftJSON(): any {

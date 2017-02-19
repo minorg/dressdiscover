@@ -3,8 +3,8 @@ import { QaObjectId } from "../../models/qa/qa_object_id";
 export class NoSuchObjectException {
     private _id?: QaObjectId;
 
-    constructor(id?: QaObjectId) {
-        this.id = id;
+    constructor(kwds: {id?: QaObjectId}) {
+        this.id = kwds.id;
     }
 
     get id(): QaObjectId | undefined {
@@ -26,7 +26,7 @@ export class NoSuchObjectException {
             }
         }
 
-        return new NoSuchObjectException(id);
+        return new NoSuchObjectException({id: id});
     }
 
     toThryftJSON(): any {

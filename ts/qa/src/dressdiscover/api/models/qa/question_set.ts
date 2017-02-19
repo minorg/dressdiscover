@@ -10,11 +10,11 @@ export class QuestionSet {
 
     private _title: string;
 
-    constructor(id: QuestionSetId, questionIds: QuestionId[], title: string, description?: string) {
-        this.id = id;
-        this.questionIds = questionIds;
-        this.title = title;
-        this.description = description;
+    constructor(kwds: {id: QuestionSetId, questionIds: QuestionId[], title: string, description?: string}) {
+        this.id = kwds.id;
+        this.questionIds = kwds.questionIds;
+        this.title = kwds.title;
+        this.description = kwds.description;
     }
 
     get id(): QuestionSetId {
@@ -91,7 +91,7 @@ export class QuestionSet {
         if (title == null) {
             throw new TypeError('title is required');
         }
-        return new QuestionSet(id, questionIds, title, description);
+        return new QuestionSet({id: id, questionIds: questionIds, title: title, description: description});
     }
 
     toThryftJSON(): any {

@@ -7,10 +7,10 @@ export class QaImage {
 
     private _thumbnailUrl: string;
 
-    constructor(fullSizeUrl: string, rights: QaImageRights, thumbnailUrl: string) {
-        this.fullSizeUrl = fullSizeUrl;
-        this.rights = rights;
-        this.thumbnailUrl = thumbnailUrl;
+    constructor(kwds: {fullSizeUrl: string, rights: QaImageRights, thumbnailUrl: string}) {
+        this.fullSizeUrl = kwds.fullSizeUrl;
+        this.rights = kwds.rights;
+        this.thumbnailUrl = kwds.thumbnailUrl;
     }
 
     get fullSizeUrl(): string {
@@ -71,7 +71,7 @@ export class QaImage {
         if (thumbnailUrl == null) {
             throw new TypeError('thumbnailUrl is required');
         }
-        return new QaImage(fullSizeUrl, rights, thumbnailUrl);
+        return new QaImage({fullSizeUrl: fullSizeUrl, rights: rights, thumbnailUrl: thumbnailUrl});
     }
 
     toThryftJSON(): any {

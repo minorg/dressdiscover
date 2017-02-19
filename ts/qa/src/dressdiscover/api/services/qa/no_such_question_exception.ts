@@ -3,8 +3,8 @@ import { QuestionId } from "../../models/qa/question_id";
 export class NoSuchQuestionException {
     private _id?: QuestionId;
 
-    constructor(id?: QuestionId) {
-        this.id = id;
+    constructor(kwds: {id?: QuestionId}) {
+        this.id = kwds.id;
     }
 
     get id(): QuestionId | undefined {
@@ -26,7 +26,7 @@ export class NoSuchQuestionException {
             }
         }
 
-        return new NoSuchQuestionException(id);
+        return new NoSuchQuestionException({id: id});
     }
 
     toThryftJSON(): any {

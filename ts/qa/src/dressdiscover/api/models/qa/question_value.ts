@@ -8,10 +8,10 @@ export class QuestionValue {
 
     private _text: string;
 
-    constructor(id: QuestionValueId, text: string, image?: QaImage) {
-        this.id = id;
-        this.text = text;
-        this.image = image;
+    constructor(kwds: {id: QuestionValueId, text: string, image?: QaImage}) {
+        this.id = kwds.id;
+        this.text = kwds.text;
+        this.image = kwds.image;
     }
 
     get id(): QuestionValueId {
@@ -66,7 +66,7 @@ export class QuestionValue {
         if (text == null) {
             throw new TypeError('text is required');
         }
-        return new QuestionValue(id, text, image);
+        return new QuestionValue({id: id, text: text, image: image});
     }
 
     toThryftJSON(): any {

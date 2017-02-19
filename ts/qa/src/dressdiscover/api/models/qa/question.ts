@@ -11,11 +11,11 @@ export class Question {
 
     private _values?: QuestionValue[];
 
-    constructor(id: QuestionId, text: string, type_: QuestionType, values?: QuestionValue[]) {
-        this.id = id;
-        this.text = text;
-        this.type_ = type_;
-        this.values = values;
+    constructor(kwds: {id: QuestionId, text: string, type_: QuestionType, values?: QuestionValue[]}) {
+        this.id = kwds.id;
+        this.text = kwds.text;
+        this.type_ = kwds.type_;
+        this.values = kwds.values;
     }
 
     get id(): QuestionId {
@@ -86,7 +86,7 @@ export class Question {
         if (type_ == null) {
             throw new TypeError('type_ is required');
         }
-        return new Question(id, text, type_, values);
+        return new Question({id: id, text: text, type_: type_, values: values});
     }
 
     toThryftJSON(): any {

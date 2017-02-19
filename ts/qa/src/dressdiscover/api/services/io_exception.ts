@@ -1,8 +1,8 @@
 export class IoException {
     private _causeMessage: string;
 
-    constructor(causeMessage: string) {
-        this.causeMessage = causeMessage;
+    constructor(kwds: {causeMessage: string}) {
+        this.causeMessage = kwds.causeMessage;
     }
 
     get causeMessage(): string {
@@ -23,7 +23,7 @@ export class IoException {
         if (causeMessage == null) {
             throw new TypeError('causeMessage is required');
         }
-        return new IoException(causeMessage);
+        return new IoException({causeMessage: causeMessage});
     }
 
     toThryftJSON(): any {

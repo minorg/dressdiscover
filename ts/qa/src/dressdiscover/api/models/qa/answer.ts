@@ -14,12 +14,12 @@ export class Answer {
 
     private _userId: QaUserId;
 
-    constructor(objectId: QaObjectId, questionId: QuestionId, userId: QaUserId, selectedValues?: QuestionValueId[], text?: string) {
-        this.objectId = objectId;
-        this.questionId = questionId;
-        this.userId = userId;
-        this.selectedValues = selectedValues;
-        this.text = text;
+    constructor(kwds: {objectId: QaObjectId, questionId: QuestionId, userId: QaUserId, selectedValues?: QuestionValueId[], text?: string}) {
+        this.objectId = kwds.objectId;
+        this.questionId = kwds.questionId;
+        this.userId = kwds.userId;
+        this.selectedValues = kwds.selectedValues;
+        this.text = kwds.text;
     }
 
     get objectId(): QaObjectId {
@@ -103,7 +103,7 @@ export class Answer {
         if (userId == null) {
             throw new TypeError('userId is required');
         }
-        return new Answer(objectId, questionId, userId, selectedValues, text);
+        return new Answer({objectId: objectId, questionId: questionId, userId: userId, selectedValues: selectedValues, text: text});
     }
 
     toThryftJSON(): any {

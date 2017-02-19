@@ -73,6 +73,7 @@
     <TypeScriptCompile Include="src\dressdiscover\gui\qa\application.ts" />
     <TypeScriptCompile Include="src\dressdiscover\gui\qa\models\session.ts" />
     <TypeScriptCompile Include="src\dressdiscover\gui\qa\router.ts" />
+    <TypeScriptCompile Include="src\dressdiscover\gui\qa\services\local_qa_command_service.ts" />
     <TypeScriptCompile Include="src\dressdiscover\gui\qa\services\local_qa_query_service.ts" />
     <TypeScriptCompile Include="src\dressdiscover\gui\qa\services\services.ts" />
     <TypeScriptCompile Include="src\dressdiscover\gui\qa\views\question_view.ts" />

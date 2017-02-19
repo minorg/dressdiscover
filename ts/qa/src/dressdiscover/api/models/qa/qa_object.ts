@@ -9,10 +9,10 @@ export class QaObject {
 
     private _questionSetIds: QuestionSetId[];
 
-    constructor(id: QaObjectId, image: QaImage, questionSetIds: QuestionSetId[]) {
-        this.id = id;
-        this.image = image;
-        this.questionSetIds = questionSetIds;
+    constructor(kwds: {id: QaObjectId, image: QaImage, questionSetIds: QuestionSetId[]}) {
+        this.id = kwds.id;
+        this.image = kwds.image;
+        this.questionSetIds = kwds.questionSetIds;
     }
 
     get id(): QaObjectId {
@@ -61,7 +61,7 @@ export class QaObject {
         if (questionSetIds == null) {
             throw new TypeError('questionSetIds is required');
         }
-        return new QaObject(id, image, questionSetIds);
+        return new QaObject({id: id, image: image, questionSetIds: questionSetIds});
     }
 
     toThryftJSON(): any {
