@@ -28,7 +28,7 @@
                     <div class="form-group row" data-bind="if: currentQuestionType == 'SELECT_ONE'">
                         <label for="select" class="col-sm-1 col-form-label">Select one:</label>
                         <div class="col-sm-2">
-                            <select class="form-control" data-bind="hasFocus: true, options: currentQuestion.values, optionsText: 'text'" name="select"></select>
+                            <select class="form-control" data-bind="hasFocus: true, options: currentQuestion.values, optionsText: 'text', optionsValue: 'id', value: undefined, valueAllowUnset: true" name="select"></select>
                         </div>
                     </div>
                     <div class="row" data-bind="if: currentQuestionType == 'TEXT'">
