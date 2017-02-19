@@ -11,23 +11,23 @@ class Question(object):
             self,
             id=None,  # @ReservedAssignment
             text=None,
-            type=None,  # @ReservedAssignment
+            type_=None,
             values=None,
         ):
             '''
             :type id: str
             :type text: str
-            :type type: dressdiscover.api.models.qa.question_type.QuestionType
+            :type type_: dressdiscover.api.models.qa.question_type.QuestionType
             :type values: tuple(dressdiscover.api.models.qa.question_value.QuestionValue) or None
             '''
 
             self.__id = id
             self.__text = text
-            self.__type = type
+            self.__type_ = type_
             self.__values = values
 
         def build(self):
-            return Question(id=self.__id, text=self.__text, type=self.__type, values=self.__values)
+            return Question(id=self.__id, text=self.__text, type_=self.__type_, values=self.__values)
 
         @property
         def id(self):  # @ReservedAssignment
@@ -65,16 +65,16 @@ class Question(object):
             self.__text = text
             return self
 
-        def set_type(self, type):  # @ReservedAssignment
+        def set_type_(self, type_):
             '''
-            :type type: dressdiscover.api.models.qa.question_type.QuestionType
+            :type type_: dressdiscover.api.models.qa.question_type.QuestionType
             '''
 
-            if type is None:
-                raise ValueError('type is required')
-            if not isinstance(type, dressdiscover.api.models.qa.question_type.QuestionType):
-                raise TypeError("expected type to be a dressdiscover.api.models.qa.question_type.QuestionType but it is a %s" % getattr(__builtin__, 'type')(type))
-            self.__type = type
+            if type_ is None:
+                raise ValueError('type_ is required')
+            if not isinstance(type_, dressdiscover.api.models.qa.question_type.QuestionType):
+                raise TypeError("expected type_ to be a dressdiscover.api.models.qa.question_type.QuestionType but it is a %s" % getattr(__builtin__, 'type')(type_))
+            self.__type_ = type_
             return self
 
         def set_values(self, values):
@@ -99,25 +99,25 @@ class Question(object):
             return self.__text
 
         @property
-        def type(self):  # @ReservedAssignment
+        def type_(self):
             '''
             :rtype: dressdiscover.api.models.qa.question_type.QuestionType
             '''
 
-            return self.__type
+            return self.__type_
 
         def update(self, question):
             '''
             :type id: str
             :type text: str
-            :type type: dressdiscover.api.models.qa.question_type.QuestionType
+            :type type_: dressdiscover.api.models.qa.question_type.QuestionType
             :type values: tuple(dressdiscover.api.models.qa.question_value.QuestionValue) or None
             '''
 
             if isinstance(question, Question):
                 self.set_id(question.id)
                 self.set_text(question.text)
-                self.set_type(question.type)
+                self.set_type_(question.type_)
                 self.set_values(question.values)
             elif isinstance(question, dict):
                 for key, value in question.iteritems():
@@ -150,13 +150,13 @@ class Question(object):
 
             self.set_text(text)
 
-        @type.setter
-        def type(self, type):  # @ReservedAssignment
+        @type_.setter
+        def type_(self, type_):
             '''
-            :type type: dressdiscover.api.models.qa.question_type.QuestionType
+            :type type_: dressdiscover.api.models.qa.question_type.QuestionType
             '''
 
-            self.set_type(type)
+            self.set_type_(type_)
 
         @values.setter
         def values(self, values):
@@ -169,7 +169,7 @@ class Question(object):
     class FieldMetadata(object):
         ID = None
         TEXT = None
-        TYPE = None
+        TYPE_ = None
         VALUES = None
 
         def __init__(self, name, type_, validation):
@@ -198,24 +198,24 @@ class Question(object):
 
         @classmethod
         def values(cls):
-            return (cls.ID, cls.TEXT, cls.TYPE, cls.VALUES,)
+            return (cls.ID, cls.TEXT, cls.TYPE_, cls.VALUES,)
 
     FieldMetadata.ID = FieldMetadata('id', dressdiscover.api.models.qa.question_id.QuestionId, None)
     FieldMetadata.TEXT = FieldMetadata('text', str, {u'blank': False, u'minLength': 1})
-    FieldMetadata.TYPE = FieldMetadata('type', dressdiscover.api.models.qa.question_type.QuestionType, None)
+    FieldMetadata.TYPE_ = FieldMetadata('type_', dressdiscover.api.models.qa.question_type.QuestionType, None)
     FieldMetadata.VALUES = FieldMetadata('values', tuple, {u'minLength': 1})
 
     def __init__(
         self,
         id,  # @ReservedAssignment
         text,
-        type,  # @ReservedAssignment
+        type_,
         values=None,
     ):
         '''
         :type id: str
         :type text: str
-        :type type: dressdiscover.api.models.qa.question_type.QuestionType
+        :type type_: dressdiscover.api.models.qa.question_type.QuestionType
         :type values: tuple(dressdiscover.api.models.qa.question_value.QuestionValue) or None
         '''
 
@@ -235,11 +235,11 @@ class Question(object):
             raise ValueError("expected len(text) to be >= 1, was %d" % len(text))
         self.__text = text
 
-        if type is None:
-            raise ValueError('type is required')
-        if not isinstance(type, dressdiscover.api.models.qa.question_type.QuestionType):
-            raise TypeError("expected type to be a dressdiscover.api.models.qa.question_type.QuestionType but it is a %s" % getattr(__builtin__, 'type')(type))
-        self.__type = type
+        if type_ is None:
+            raise ValueError('type_ is required')
+        if not isinstance(type_, dressdiscover.api.models.qa.question_type.QuestionType):
+            raise TypeError("expected type_ to be a dressdiscover.api.models.qa.question_type.QuestionType but it is a %s" % getattr(__builtin__, 'type')(type_))
+        self.__type_ = type_
 
         if values is not None:
             if not (isinstance(values, tuple) and len(list(ifilterfalse(lambda _: isinstance(_, dressdiscover.api.models.qa.question_value.QuestionValue), values))) == 0):
@@ -253,17 +253,17 @@ class Question(object):
             return False
         if self.text != other.text:
             return False
-        if self.type != other.type:
+        if self.type_ != other.type_:
             return False
         if self.values != other.values:
             return False
         return True
 
     def __hash__(self):
-        return hash((self.id,self.text,self.type,self.values,))
+        return hash((self.id,self.text,self.type_,self.values,))
 
     def __iter__(self):
-        return iter((self.id, self.text, self.type, self.values,))
+        return iter((self.id, self.text, self.type_, self.values,))
 
     def __ne__(self, other):
         return not self.__eq__(other)
@@ -272,7 +272,7 @@ class Question(object):
         field_reprs = []
         field_reprs.append('id=' + "'" + self.id.encode('ascii', 'replace') + "'")
         field_reprs.append('text=' + "'" + self.text.encode('ascii', 'replace') + "'")
-        field_reprs.append('type=' + repr(self.type))
+        field_reprs.append('type_=' + repr(self.type_))
         if self.values is not None:
             field_reprs.append('values=' + repr(self.values))
         return 'Question(' + ', '.join(field_reprs) + ')'
@@ -281,7 +281,7 @@ class Question(object):
         field_reprs = []
         field_reprs.append('id=' + "'" + self.id.encode('ascii', 'replace') + "'")
         field_reprs.append('text=' + "'" + self.text.encode('ascii', 'replace') + "'")
-        field_reprs.append('type=' + repr(self.type))
+        field_reprs.append('type_=' + repr(self.type_))
         if self.values is not None:
             field_reprs.append('values=' + repr(self.values))
         return 'Question(' + ', '.join(field_reprs) + ')'
@@ -314,8 +314,8 @@ class Question(object):
                 init_kwds['id'] = iprot.read_string()
             elif ifield_name == 'text':
                 init_kwds['text'] = iprot.read_string()
-            elif ifield_name == 'type':
-                init_kwds['type'] = dressdiscover.api.models.qa.question_type.QuestionType.value_of(iprot.read_string().strip().upper())
+            elif ifield_name == 'type_':
+                init_kwds['type_'] = dressdiscover.api.models.qa.question_type.QuestionType.value_of(iprot.read_string().strip().upper())
             elif ifield_name == 'values':
                 init_kwds['values'] = tuple([dressdiscover.api.models.qa.question_value.QuestionValue.read(iprot) for _ in xrange(iprot.read_list_begin()[1])] + (iprot.read_list_end() is None and []))
             iprot.read_field_end()
@@ -327,7 +327,7 @@ class Question(object):
         self,
         id=None,  # @ReservedAssignment
         text=None,
-        type=None,  # @ReservedAssignment
+        type_=None,
         values=None,
     ):
         '''
@@ -335,7 +335,7 @@ class Question(object):
 
         :type id: str or None
         :type text: str or None
-        :type type: dressdiscover.api.models.qa.question_type.QuestionType or None
+        :type type_: dressdiscover.api.models.qa.question_type.QuestionType or None
         :type values: tuple(dressdiscover.api.models.qa.question_value.QuestionValue) or None
         :rtype: dressdiscover.api.models.qa.question.Question
         '''
@@ -344,11 +344,11 @@ class Question(object):
             id = self.id  # @ReservedAssignment
         if text is None:
             text = self.text
-        if type is None:
-            type = self.type  # @ReservedAssignment
+        if type_ is None:
+            type_ = self.type_
         if values is None:
             values = self.values
-        return self.__class__(id=id, text=text, type=type, values=values)
+        return self.__class__(id=id, text=text, type_=type_, values=values)
 
     @property
     def text(self):
@@ -359,12 +359,12 @@ class Question(object):
         return self.__text
 
     @property
-    def type(self):  # @ReservedAssignment
+    def type_(self):
         '''
         :rtype: dressdiscover.api.models.qa.question_type.QuestionType
         '''
 
-        return self.__type
+        return self.__type_
 
     @property
     def values(self):
@@ -392,8 +392,8 @@ class Question(object):
         oprot.write_string(self.text)
         oprot.write_field_end()
 
-        oprot.write_field_begin(name='type', type=11, id=None)
-        oprot.write_string(str(self.type))
+        oprot.write_field_begin(name='type_', type=11, id=None)
+        oprot.write_string(str(self.type_))
         oprot.write_field_end()
 
         if self.values is not None:

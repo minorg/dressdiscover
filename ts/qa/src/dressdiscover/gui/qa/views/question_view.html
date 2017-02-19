@@ -24,6 +24,14 @@
                             <h3 data-bind="text: currentQuestion.text" id="text"></h3>
                         </div>
                     </div>
+                    <div class="row" data-bind="if currentQuestion.type == QuestionType.TEXT">
+                        <div class="form-group">
+                            <div class="col-sm-8">
+                                <textarea class="form-control" data-bind="hasFocus: true" placeholder="Enter text" rows="10"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <br/>
                     <div class="row">
                         <div class="col-sm-8">
                             <img class="img-responsive" data-bind="attr: {src: object.image.fullSizeUrl}" />

@@ -88,7 +88,7 @@ def question(
 ):
     check_id(id_)
 
-    question_builder = Question.Builder().set_id(id_).set_text(text).set_type(type_)
+    question_builder = Question.Builder().set_id(id_).set_text(text).set_type_(type_)
     if values is not None:
         question_builder.set_values(values)
     question = question_builder.build()
@@ -208,6 +208,14 @@ def material_culture_question_set():
             id_="58a9d06abfd8c5aa5d089b1d",
             text='When do you think this object was made?',
             type_=QuestionType.DATE
+        )
+    )
+
+    questions.append(
+        question(
+            id_="58a9d264bfd8c5aa5d089b1e",
+            text='Who do you think would have worn or used this object?',
+            type_=QuestionType.TEXT
         )
     )
 

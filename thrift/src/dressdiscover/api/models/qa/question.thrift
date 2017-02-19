@@ -10,7 +10,7 @@ struct Question {
     // @validation {"blank": false, "minLength": 1}
     string text;
 
-    question_type.QuestionType type;
+    question_type.QuestionType type_;
 
     // @validation {"minLength": 1}
     optional list<question_value.QuestionValue> values;
