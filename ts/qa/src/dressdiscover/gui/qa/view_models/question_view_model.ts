@@ -2,6 +2,7 @@
 import { QaObject } from "dressdiscover/api/models/qa/qa_object";
 import { Question } from "dressdiscover/api/models/qa/question";
 import { QuestionSet } from "dressdiscover/api/models/qa/question_set";
+import { QuestionType } from "dressdiscover/api/models/qa/question_type";
 import { ViewModel } from "dressdiscover/gui/qa/view_models/view_model";
 
 export class QuestionViewModel extends ViewModel {
@@ -13,7 +14,12 @@ export class QuestionViewModel extends ViewModel {
                     break;
                 }
             }
+            this._currentQuestionType = QuestionType[currentQuestion.type_];
         }
+    }
+
+    get currentQuestionType() {
+        return this._currentQuestionType;
     }
 
     get nextQuestionButtonEnabled() {
@@ -40,4 +46,5 @@ export class QuestionViewModel extends ViewModel {
     }
 
     private _currentQuestionIndex: number | undefined;
+    private _currentQuestionType: string | undefined;
 }

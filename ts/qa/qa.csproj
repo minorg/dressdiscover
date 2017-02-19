@@ -58,6 +58,7 @@
     <TypeScriptCompile Include="src\dressdiscover\api\models\qa\question_id.ts" />
     <TypeScriptCompile Include="src\dressdiscover\api\models\qa\question_set.ts" />
     <TypeScriptCompile Include="src\dressdiscover\api\models\qa\question_set_id.ts" />
+    <TypeScriptCompile Include="src\dressdiscover\api\models\qa\question_type.ts" />
     <TypeScriptCompile Include="src\dressdiscover\api\models\qa\question_value.ts" />
     <TypeScriptCompile Include="src\dressdiscover\api\models\qa\question_value_id.ts" />
     <TypeScriptCompile Include="src\dressdiscover\api\services\io_exception.ts" />
