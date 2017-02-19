@@ -1,4 +1,5 @@
 import { QuestionId } from "./question_id";
+import { QuestionType } from "./question_type";
 import { QuestionValue } from "./question_value";
 
 export class Question {
@@ -6,11 +7,14 @@ export class Question {
 
     private _text: string;
 
+    private _type: QuestionType;
+
     private _values?: QuestionValue[];
 
-    constructor(id: QuestionId, text: string, values?: QuestionValue[]) {
+    constructor(id: QuestionId, text: string, type: QuestionType, values?: QuestionValue[]) {
         this.id = id;
         this.text = text;
+        this.type = type;
         this.values = values;
     }
 
@@ -36,6 +40,14 @@ export class Question {
         this._text = text;
     }
 
+    get type(): QuestionType {
+        return this._type;
+    }
+
+    set type(type: QuestionType) {
+        this._type = type;
+    }
+
     get values(): QuestionValue[] | undefined {
         return this._values;
     }
@@ -52,12 +64,15 @@ export class Question {
     static fromThryftJSON(json: any): Question {
         var id: QuestionId | undefined;
         var text: string | undefined;
+        var type: QuestionType | undefined;
         var values: QuestionValue[] | undefined;
         for (var fieldName in json) {
             if (fieldName == "id") {
                 id = QuestionId.parse(json[fieldName]);
             } else if (fieldName == "text") {
                 text = json[fieldName];
+            } else if (fieldName == "type") {
+                type = QuestionType[json[fieldName]];
             } else if (fieldName == "values") {
                 values = function(json: any[]): QuestionValue[] { var sequence: QuestionValue[] = []; for (var i = 0; i < json.length; i++) { sequence.push(QuestionValue.fromThryftJSON(json[i])); } return sequence; }(json[fieldName]);
             }
@@ -68,13 +83,17 @@ export class Question {
         if (text == null) {
             throw new TypeError('text is required');
         }
-        return new Question(id, text, values);
+        if (type == null) {
+            throw new TypeError('type is required');
+        }
+        return new Question(id, text, type, values);
     }
 
     toThryftJSON(): any {
         var json: {[index: string]: any} = {};
         json["id"] = this.id.toString();
         json["text"] = this.text;
+        json["type"] = QuestionType[this.type];
         if (this.values != null) {
             json["values"] = function (__inArray: QuestionValue[]): any[] { var __outArray: any[] = []; for (var __i = 0; __i < __inArray.length; __i++) { __outArray.push(__inArray[__i].toThryftJSON()); } return __outArray; }(this.values);
         }

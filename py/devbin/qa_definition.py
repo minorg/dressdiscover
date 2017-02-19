@@ -6,6 +6,7 @@ from dressdiscover.api.models.qa.qa_image_rights import QaImageRights
 from dressdiscover.api.models.qa.qa_object import QaObject
 from dressdiscover.api.models.qa.question import Question
 from dressdiscover.api.models.qa.question_set import QuestionSet
+from dressdiscover.api.models.qa.question_type import QuestionType
 from dressdiscover.api.models.qa.question_value import QuestionValue
 
 
@@ -82,11 +83,12 @@ def object_(
 def question(
     id_,
     text,
+    type_,
     values=None
 ):
     check_id(id_)
 
-    question_builder = Question.Builder().set_id(id_).set_text(text)
+    question_builder = Question.Builder().set_id(id_).set_text(text).set_type(type_)
     if values is not None:
         question_builder.set_values(values)
     question = question_builder.build()
@@ -182,10 +184,12 @@ def thumbnail(full_size_file_path, thumbnail_file_path):
 # Question sets
 def material_culture_question_set():
     questions = []
+
     questions.append(
         question(
             id_="589f8f9c69cfa172fc69d28c",
             text='Is the object large or small?',
+            type_=QuestionType.SELECT_ONE,
             values=(
                 question_value(
                     id_="589f8fa569cfa172fc69d28d",
@@ -198,6 +202,15 @@ def material_culture_question_set():
             )
         )
     )
+
+    questions.append(
+        question(
+            id_="58a9d06abfd8c5aa5d089b1d",
+            text='When do you think this object was made?',
+            type_=QuestionType.DATE
+        )
+    )
+
     return \
         question_set(
             id_='589f8edd69cfa172fc69d28b',
@@ -246,6 +259,7 @@ var QUESTIONS = %s;
     json.dumps(question_sets_json, indent=4),
     json.dumps(questions_json, indent=4),
 )
+    js = js.replace("\r\n", "\n")
 
     with open(os.path.join(TS_ASSETS_DIR_PATH, 'js', 'definitions.js'), 'w+b') as f:
         f.write(js)

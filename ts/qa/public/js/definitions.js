@@ -20,7 +20,8 @@ var OBJECTS = [
 var QUESTION_SETS = [
     {
         "question_ids": [
-            "589f8f9c69cfa172fc69d28c"
+            "589f8f9c69cfa172fc69d28c", 
+            "58a9d06abfd8c5aa5d089b1d"
         ], 
         "id": "589f8edd69cfa172fc69d28b", 
         "title": "Material Culture"
@@ -29,7 +30,6 @@ var QUESTION_SETS = [
 
 var QUESTIONS = [
     {
-        "text": "Is the object large or small?", 
         "values": [
             {
                 "text": "Large", 
@@ -40,6 +40,13 @@ var QUESTIONS = [
                 "id": "589f8fb369cfa172fc69d28e"
             }
         ], 
+        "text": "Is the object large or small?", 
+        "type": "SELECT_ONE", 
         "id": "589f8f9c69cfa172fc69d28c"
+    }, 
+    {
+        "text": "When do you think this object was made?", 
+        "type": "DATE", 
+        "id": "58a9d06abfd8c5aa5d089b1d"
     }
 ];
