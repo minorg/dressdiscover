@@ -34,7 +34,7 @@ export class LocalQaQueryService extends AsyncToSyncQaQueryService {
     }
 
     getAnswersSync(kwds: { objectId: QaObjectId, questionSetId: QuestionSetId, questionIds?: QuestionId[], userId?: QaUserId }): Answer[] {
-        return [];
+        throw new Error("not implemented");
     }
 
     getObjectByIdSync(kwds: { id: QaObjectId }): QaObject {
