@@ -7,7 +7,7 @@ import com.google.inject.Inject;
 import com.google.inject.Singleton;
 
 @Singleton
-public class JdbcUserCommandService extends StoreUserCommandService {
+class JdbcUserCommandService extends StoreUserCommandService {
     @Inject
     public JdbcUserCommandService(final UserBookmarkJdbcTable userBookmarkStore, final UserJdbcTable userStore) {
         super(userBookmarkStore, userStore);

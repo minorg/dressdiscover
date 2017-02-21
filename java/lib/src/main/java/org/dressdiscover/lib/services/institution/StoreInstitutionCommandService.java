@@ -15,7 +15,7 @@ import com.google.inject.Inject;
 import com.google.inject.Singleton;
 
 @Singleton
-public class StoreInstitutionCommandService implements InstitutionCommandService {
+class StoreInstitutionCommandService implements InstitutionCommandService {
     @Inject
     public StoreInstitutionCommandService(final CollectionCommandService collectionCommandService,
             final InstitutionStore store) {

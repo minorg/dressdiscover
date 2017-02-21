@@ -24,7 +24,7 @@ import com.google.inject.Inject;
 import com.google.inject.Singleton;
 
 @Singleton
-public class StoreCollectionCommandService implements CollectionCommandService {
+class StoreCollectionCommandService implements CollectionCommandService {
     @Inject
     public StoreCollectionCommandService(final CollectionStoreCache collectionStoreCache,
             final ObjectCommandService objectCommandService) {
@@ -33,7 +33,7 @@ public class StoreCollectionCommandService implements CollectionCommandService {
     }
 
     @Override
-    public void deleteCollectionById(final CollectionId id)
+    public final void deleteCollectionById(final CollectionId id)
             throws IoException, NoSuchCollectionException, NoSuchInstitutionException {
         final CollectionStore collectionStore = collectionStoreCache.getCollectionStore(id);
         try {
@@ -47,7 +47,7 @@ public class StoreCollectionCommandService implements CollectionCommandService {
     }
 
     @Override
-    public void deleteCollectionsByInstitutionId(final InstitutionId institutionId)
+    public final void deleteCollectionsByInstitutionId(final InstitutionId institutionId)
             throws IoException, NoSuchInstitutionException {
         final CollectionStore collectionStore = collectionStoreCache.getCollectionStore(institutionId);
 
@@ -79,7 +79,7 @@ public class StoreCollectionCommandService implements CollectionCommandService {
     }
 
     @Override
-    public void putCollection(final Collection collection, final CollectionId id)
+    public final void putCollection(final Collection collection, final CollectionId id)
             throws IoException, NoSuchInstitutionException {
         final CollectionStore collectionStore = collectionStoreCache.getCollectionStore(id);
         try {

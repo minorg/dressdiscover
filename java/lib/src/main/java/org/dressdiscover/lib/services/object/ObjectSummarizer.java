@@ -56,7 +56,7 @@ public final class ObjectSummarizer {
     private ObjectSummarizer() {
     }
 
-    public ObjectSummary summarizeObject(final Object object, final ObjectId objectId) {
+    public final ObjectSummary summarizeObject(final Object object, final ObjectId objectId) {
         final ObjectSummary.Builder builder = ObjectSummary.builder();
 
         if (object.getVraCore().isPresent() && object.getVraCore().get().getAgentSets().isPresent()) {

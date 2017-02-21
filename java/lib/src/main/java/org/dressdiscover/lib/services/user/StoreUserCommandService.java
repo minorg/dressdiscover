@@ -23,27 +23,27 @@ abstract class StoreUserCommandService implements UserCommandService {
     }
 
     @Override
-    public void deleteUserBookmarkById(final UserBookmarkId id) throws IoException, NoSuchUserBookmarkException {
+    public final void deleteUserBookmarkById(final UserBookmarkId id) throws IoException, NoSuchUserBookmarkException {
         userBookmarkStore.deleteUserBookmarkById(Markers.DELETE_USER_BOOKMARK_BY_ID, id);
     }
 
     @Override
-    public void deleteUserById(final UserId id) throws IoException, NoSuchUserException {
+    public final void deleteUserById(final UserId id) throws IoException, NoSuchUserException {
         userStore.deleteUserById(Markers.DELETE_USER_BY_ID, id);
     }
 
     @Override
-    public void deleteUsers() throws IoException {
+    public final void deleteUsers() throws IoException {
         userStore.deleteUsers(Markers.DELETE_USERS);
     }
 
     @Override
-    public UserId postUser(final User user) throws DuplicateUserException, IoException {
+    public final UserId postUser(final User user) throws DuplicateUserException, IoException {
         return userStore.postUser(Markers.POST_USER, user);
     }
 
     @Override
-    public UserBookmarkId postUserBookmark(final UserBookmark userBookmark)
+    public final UserBookmarkId postUserBookmark(final UserBookmark userBookmark)
             throws DuplicateUserBookmarkException, IoException {
         if (!(userBookmark.getObjectId().isPresent() ^ userBookmark.getObjectQuery().isPresent())) {
             throw IoException.create("user bookmark must have object_id xor object_query");
@@ -53,7 +53,7 @@ abstract class StoreUserCommandService implements UserCommandService {
     }
 
     @Override
-    public void putUser(final UserId id, final User user) throws IoException, NoSuchUserException {
+    public final void putUser(final UserId id, final User user) throws IoException, NoSuchUserException {
         userStore.putUser(Markers.PUT_USER, user, id);
     }
 

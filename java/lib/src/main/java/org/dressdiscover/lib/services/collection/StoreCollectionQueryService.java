@@ -24,14 +24,14 @@ import com.google.inject.Inject;
 import com.google.inject.Singleton;
 
 @Singleton
-public class StoreCollectionQueryService implements CollectionQueryService {
+class StoreCollectionQueryService implements CollectionQueryService {
     @Inject
     public StoreCollectionQueryService(final CollectionStoreCache collectionStoreCache) {
         this.collectionStoreCache = checkNotNull(collectionStoreCache);
     }
 
     @Override
-    public Collection getCollectionById(final CollectionId id)
+    public final Collection getCollectionById(final CollectionId id)
             throws IoException, NoSuchCollectionException, NoSuchInstitutionException {
         final CollectionStore collectionStore = collectionStoreCache.getCollectionStore(id);
         try {
@@ -46,7 +46,7 @@ public class StoreCollectionQueryService implements CollectionQueryService {
     }
 
     @Override
-    public ImmutableList<Collection> getCollectionsByIds(final ImmutableList<CollectionId> ids)
+    public final ImmutableList<Collection> getCollectionsByIds(final ImmutableList<CollectionId> ids)
             throws IoException, NoSuchCollectionException, NoSuchInstitutionException {
         if (ids.isEmpty()) {
             return ImmutableList.of();
@@ -68,7 +68,7 @@ public class StoreCollectionQueryService implements CollectionQueryService {
     }
 
     @Override
-    public ImmutableList<CollectionEntry> getCollectionsByInstitutionId(final InstitutionId institutionId)
+    public final ImmutableList<CollectionEntry> getCollectionsByInstitutionId(final InstitutionId institutionId)
             throws IoException, NoSuchInstitutionException {
         final CollectionStore collectionStore = collectionStoreCache.getCollectionStore(institutionId);
         try {

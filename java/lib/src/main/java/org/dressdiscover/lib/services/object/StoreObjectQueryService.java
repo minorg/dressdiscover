@@ -22,14 +22,14 @@ import com.google.inject.Inject;
 import com.google.inject.Singleton;
 
 @Singleton
-public class StoreObjectQueryService implements ObjectQueryService {
+class StoreObjectQueryService implements ObjectQueryService {
     @Inject
     public StoreObjectQueryService(final ObjectStoreCache objectStoreCache) {
         this.objectStoreCache = checkNotNull(objectStoreCache);
     }
 
     @Override
-    public Object getObjectById(final ObjectId id)
+    public final Object getObjectById(final ObjectId id)
             throws IoException, NoSuchCollectionException, NoSuchInstitutionException, NoSuchObjectException {
         final ObjectStore objectStore = objectStoreCache.getObjectStore(id);
         try {

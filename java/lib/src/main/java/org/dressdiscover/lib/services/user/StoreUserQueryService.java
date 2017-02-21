@@ -21,7 +21,7 @@ abstract class StoreUserQueryService implements IterableUserQueryService {
     }
 
     @Override
-    public ImmutableList<UserBookmarkEntry> getUserBookmarksByUserId(final UserId userId,
+    public final ImmutableList<UserBookmarkEntry> getUserBookmarksByUserId(final UserId userId,
             final Optional<Boolean> objectIdsOnly) throws IoException, NoSuchUserException {
         return userBookmarkStore.getUserBookmarksByUserId(
                 org.dressdiscover.lib.services.user.LoggingUserQueryService.Markers.GET_USER_BOOKMARKS_BY_USER_ID,
@@ -29,19 +29,19 @@ abstract class StoreUserQueryService implements IterableUserQueryService {
     }
 
     @Override
-    public UserEntry getUserByEmailAddress(final String emailAddress) throws IoException, NoSuchUserException {
+    public final UserEntry getUserByEmailAddress(final String emailAddress) throws IoException, NoSuchUserException {
         return userStore.getUserByEmailAddress(emailAddress,
                 org.dressdiscover.lib.services.user.LoggingUserQueryService.Markers.GET_USER_BY_ID);
     }
 
     @Override
-    public User getUserById(final UserId id) throws IoException, NoSuchUserException {
+    public final User getUserById(final UserId id) throws IoException, NoSuchUserException {
         return userStore.getUserById(org.dressdiscover.lib.services.user.LoggingUserQueryService.Markers.GET_USER_BY_ID,
                 id);
     }
 
     @Override
-    public Iterable<UserEntry> getUsers() throws IoException {
+    public final Iterable<UserEntry> getUsers() throws IoException {
         return userStore.getUsers(Markers.GET_USERS);
     }
 

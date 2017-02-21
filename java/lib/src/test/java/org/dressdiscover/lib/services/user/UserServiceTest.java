@@ -52,12 +52,9 @@ public abstract class UserServiceTest extends ServiceTest {
     protected final ServicesModule _newServicesModule(final StoreProperties storeProperties) {
         return new ServicesModule(storeProperties) {
             @Override
-            protected void _configureUserCommandService() {
+            protected void _configureUserServices() {
                 bind(UserCommandService.class).to(JdbcUserCommandService.class);
-            }
 
-            @Override
-            protected void _configureUserQueryService() {
                 try {
                     bind(UserBookmarkJdbcTable.class).toInstance(
                             new UserBookmarkJdbcTable(storeProperties, "jdbc:h2:mem:test_mem;DB_CLOSE_DELAY=-1"));

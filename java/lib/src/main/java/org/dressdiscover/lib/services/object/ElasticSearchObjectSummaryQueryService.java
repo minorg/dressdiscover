@@ -69,7 +69,7 @@ import com.google.inject.Inject;
 import com.google.inject.Singleton;
 
 @Singleton
-public class ElasticSearchObjectSummaryQueryService implements ObjectSummaryQueryService {
+class ElasticSearchObjectSummaryQueryService implements ObjectSummaryQueryService {
     public final static class ObjectElasticSearchModelFactory implements ElasticSearchIndex.ModelFactory<ObjectEntry> {
         public static ObjectElasticSearchModelFactory getInstance() {
             return instance;
@@ -302,7 +302,7 @@ public class ElasticSearchObjectSummaryQueryService implements ObjectSummaryQuer
     }
 
     @Override
-    public GetObjectSummariesResult getObjectSummaries(final Optional<GetObjectSummariesOptions> options,
+    public final GetObjectSummariesResult getObjectSummaries(final Optional<GetObjectSummariesOptions> options,
             final Optional<ObjectQuery> query) throws IoException {
         if (__isExcludeAllQuery(query)) {
             return __getEmptyObjectSummariesResult(options);

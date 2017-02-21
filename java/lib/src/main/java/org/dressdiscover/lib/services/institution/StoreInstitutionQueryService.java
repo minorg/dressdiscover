@@ -19,7 +19,7 @@ import com.google.inject.Inject;
 import com.google.inject.Singleton;
 
 @Singleton
-public class StoreInstitutionQueryService implements InstitutionQueryService {
+class StoreInstitutionQueryService implements InstitutionQueryService {
     @Inject
     public StoreInstitutionQueryService(final InstitutionStore store) {
         this.store = checkNotNull(store);

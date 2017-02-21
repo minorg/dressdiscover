@@ -14,20 +14,20 @@ import com.google.inject.Inject;
 import com.google.inject.Singleton;
 
 @Singleton
-public class StoreConfigurationCommandService implements ConfigurationCommandService {
+class StoreConfigurationCommandService implements ConfigurationCommandService {
     @Inject
     public StoreConfigurationCommandService(final MemConfigurationStore store) {
         this.store = checkNotNull(store);
     }
 
     @Override
-    public void putCollectionConfiguration(final CollectionConfiguration collectionConfiguration,
+    public final void putCollectionConfiguration(final CollectionConfiguration collectionConfiguration,
             final CollectionId collectionId) throws IoException {
         store.getCollectionConfigurationMap().put(collectionId, collectionConfiguration);
     }
 
     @Override
-    public void putInstitutionConfiguration(final InstitutionConfiguration institutionConfiguration,
+    public final void putInstitutionConfiguration(final InstitutionConfiguration institutionConfiguration,
             final InstitutionId institutionId) throws IoException {
         store.getInstitutionConfigurationMap().put(institutionId, institutionConfiguration);
     }

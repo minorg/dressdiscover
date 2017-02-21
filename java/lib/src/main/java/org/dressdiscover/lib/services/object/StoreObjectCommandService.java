@@ -35,7 +35,7 @@ import com.google.inject.Inject;
 import com.google.inject.Singleton;
 
 @Singleton
-public class StoreObjectCommandService implements ObjectCommandService {
+class StoreObjectCommandService implements ObjectCommandService {
     @Inject
     public StoreObjectCommandService(final CollectionQueryService collectionQueryService,
             final InstitutionQueryService institutionQueryService, final ObjectStoreCache objectStoreCache,

@@ -20,7 +20,7 @@ import com.google.inject.Inject;
 import com.google.inject.Singleton;
 
 @Singleton
-public class StoreConfigurationQueryService implements ConfigurationQueryService {
+class StoreConfigurationQueryService implements ConfigurationQueryService {
     @Inject
     public StoreConfigurationQueryService(final MemConfigurationStore store, final StoreProperties storeProperties) {
         defaultCollectionConfiguration = CollectionConfiguration.builder()
@@ -37,7 +37,8 @@ public class StoreConfigurationQueryService implements ConfigurationQueryService
     }
 
     @Override
-    public CollectionConfiguration getCollectionConfiguration(final CollectionId collectionId) throws IoException {
+    public final CollectionConfiguration getCollectionConfiguration(final CollectionId collectionId)
+            throws IoException {
         {
             @Nullable
             final CollectionConfiguration collectionConfiguration = store.getCollectionConfigurationMap()
@@ -62,7 +63,8 @@ public class StoreConfigurationQueryService implements ConfigurationQueryService
     }
 
     @Override
-    public InstitutionConfiguration getInstitutionConfiguration(final InstitutionId institutionId) throws IoException {
+    public final InstitutionConfiguration getInstitutionConfiguration(final InstitutionId institutionId)
+            throws IoException {
         {
             @Nullable
             final InstitutionConfiguration institutionConfiguration = store.getInstitutionConfigurationMap()
@@ -76,8 +78,6 @@ public class StoreConfigurationQueryService implements ConfigurationQueryService
     }
 
     private final InstitutionConfiguration defaultInstitutionConfiguration;
-
     private final CollectionConfiguration defaultCollectionConfiguration;
-
     private final MemConfigurationStore store;
 }
