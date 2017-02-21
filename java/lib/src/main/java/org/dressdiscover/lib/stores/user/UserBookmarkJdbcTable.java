@@ -24,9 +24,9 @@ import org.slf4j.LoggerFactory;
 import org.slf4j.Marker;
 import org.thryft.protocol.InputProtocolException;
 import org.thryft.protocol.OutputProtocolException;
-import org.thryft.waf.lib.protocols.jdbc.JdbcResultSetInputProtocol;
-import org.thryft.waf.lib.protocols.json.JacksonJsonInputProtocol;
-import org.thryft.waf.lib.protocols.json.JacksonJsonOutputProtocol;
+import org.thryft.waf.lib.protocol.jdbc.JdbcResultSetInputProtocol;
+import org.thryft.waf.lib.protocol.json.JacksonJsonInputProtocol;
+import org.thryft.waf.lib.protocol.json.JacksonJsonOutputProtocol;
 
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;

@@ -17,7 +17,7 @@ import org.dressdiscover.lib.stores.collection.CollectionStoreCache;
 import org.python.core.PyException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.thryft.waf.lib.stores.InvalidModelException;
+import org.thryft.waf.lib.store.InvalidModelException;
 
 import com.google.common.collect.ImmutableList;
 import com.google.inject.Inject;

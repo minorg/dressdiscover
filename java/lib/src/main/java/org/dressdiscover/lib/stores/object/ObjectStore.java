@@ -7,7 +7,7 @@ import org.dressdiscover.api.models.object.ObjectId;
 import org.dressdiscover.api.services.IoException;
 import org.dressdiscover.api.services.object.NoSuchObjectException;
 import org.slf4j.Marker;
-import org.thryft.waf.lib.stores.InvalidModelException;
+import org.thryft.waf.lib.store.InvalidModelException;
 
 public interface ObjectStore {
     public int deleteObjectsByCollectionId(final CollectionId collectionId, final Marker logMarker) throws IoException;

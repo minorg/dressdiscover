@@ -15,7 +15,7 @@ import org.dressdiscover.lib.stores.AbstractInstitutionCollectionObjectFileSyste
 import org.slf4j.Marker;
 import org.thryft.protocol.InputProtocol;
 import org.thryft.protocol.InputProtocolException;
-import org.thryft.waf.lib.stores.InvalidModelException;
+import org.thryft.waf.lib.store.InvalidModelException;
 
 import com.google.common.collect.ImmutableList;
 

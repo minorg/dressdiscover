@@ -12,7 +12,7 @@ import org.dressdiscover.lib.services.institution.LoggingInstitutionQueryService
 import org.dressdiscover.lib.stores.institution.InstitutionStore;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.thryft.waf.lib.stores.InvalidModelException;
+import org.thryft.waf.lib.store.InvalidModelException;
 
 import com.google.common.collect.ImmutableList;
 import com.google.inject.Inject;

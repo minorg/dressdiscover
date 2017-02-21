@@ -12,7 +12,7 @@ import org.dressdiscover.api.models.object.ObjectSummaryEntry;
 import org.dressdiscover.api.services.object.GetObjectSummariesOptions;
 import org.dressdiscover.testdata.TestData;
 import org.junit.Test;
-import org.thryft.waf.lib.stores.elasticsearch.ElasticSearchIndex;
+import org.thryft.waf.lib.store.elasticsearch.ElasticSearchIndex;
 
 import com.google.common.base.Optional;
 import com.google.common.collect.ImmutableList;
