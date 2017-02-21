@@ -12,8 +12,8 @@ import org.dressdiscover.lib.properties.StoreProperties;
 import org.dressdiscover.lib.services.IoExceptions;
 import org.elasticsearch.ElasticsearchException;
 import org.thryft.protocol.OutputProtocolException;
-import org.thryft.waf.lib.clients.ElasticSearchClient;
-import org.thryft.waf.lib.stores.ElasticSearchIndex;
+import org.thryft.waf.lib.clients.elasticsearch.ElasticSearchClient;
+import org.thryft.waf.lib.stores.elasticsearch.ElasticSearchIndex;
 
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
