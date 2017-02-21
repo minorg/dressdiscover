@@ -3,6 +3,7 @@ import __builtin__
 import dressdiscover.api.models.qa.question_id
 import dressdiscover.api.models.qa.question_type
 import dressdiscover.api.models.qa.question_value
+import dressdiscover.api.models.qa.question_value_range
 
 
 class Question(object):
@@ -12,22 +13,25 @@ class Question(object):
             id=None,  # @ReservedAssignment
             text=None,
             type_=None,
+            value_range=None,
             values=None,
         ):
             '''
             :type id: str
             :type text: str
             :type type_: dressdiscover.api.models.qa.question_type.QuestionType
+            :type value_range: dressdiscover.api.models.qa.question_value_range.QuestionValueRange or None
             :type values: tuple(dressdiscover.api.models.qa.question_value.QuestionValue) or None
             '''
 
             self.__id = id
             self.__text = text
             self.__type_ = type_
+            self.__value_range = value_range
             self.__values = values
 
         def build(self):
-            return Question(id=self.__id, text=self.__text, type_=self.__type_, values=self.__values)
+            return Question(id=self.__id, text=self.__text, type_=self.__type_, value_range=self.__value_range, values=self.__values)
 
         @property
         def id(self):  # @ReservedAssignment
@@ -77,6 +81,17 @@ class Question(object):
             self.__type_ = type_
             return self
 
+        def set_value_range(self, value_range):
+            '''
+            :type value_range: dressdiscover.api.models.qa.question_value_range.QuestionValueRange or None
+            '''
+
+            if value_range is not None:
+                if not isinstance(value_range, dressdiscover.api.models.qa.question_value_range.QuestionValueRange):
+                    raise TypeError("expected value_range to be a dressdiscover.api.models.qa.question_value_range.QuestionValueRange but it is a %s" % getattr(__builtin__, 'type')(value_range))
+            self.__value_range = value_range
+            return self
+
         def set_values(self, values):
             '''
             :type values: tuple(dressdiscover.api.models.qa.question_value.QuestionValue) or None
@@ -111,6 +126,7 @@ class Question(object):
             :type id: str
             :type text: str
             :type type_: dressdiscover.api.models.qa.question_type.QuestionType
+            :type value_range: dressdiscover.api.models.qa.question_value_range.QuestionValueRange or None
             :type values: tuple(dressdiscover.api.models.qa.question_value.QuestionValue) or None
             '''
 
@@ -118,6 +134,7 @@ class Question(object):
                 self.set_id(question.id)
                 self.set_text(question.text)
                 self.set_type_(question.type_)
+                self.set_value_range(question.value_range)
                 self.set_values(question.values)
             elif isinstance(question, dict):
                 for key, value in question.iteritems():
@@ -125,6 +142,14 @@ class Question(object):
             else:
                 raise TypeError(question)
             return self
+
+        @property
+        def value_range(self):
+            '''
+            :rtype: dressdiscover.api.models.qa.question_value_range.QuestionValueRange
+            '''
+
+            return self.__value_range
 
         @property
         def values(self):
@@ -158,6 +183,14 @@ class Question(object):
 
             self.set_type_(type_)
 
+        @value_range.setter
+        def value_range(self, value_range):
+            '''
+            :type value_range: dressdiscover.api.models.qa.question_value_range.QuestionValueRange or None
+            '''
+
+            self.set_value_range(value_range)
+
         @values.setter
         def values(self, values):
             '''
@@ -170,6 +203,7 @@ class Question(object):
         ID = None
         TEXT = None
         TYPE_ = None
+        VALUE_RANGE = None
         VALUES = None
 
         def __init__(self, name, type_, validation):
@@ -198,11 +232,12 @@ class Question(object):
 
         @classmethod
         def values(cls):
-            return (cls.ID, cls.TEXT, cls.TYPE_, cls.VALUES,)
+            return (cls.ID, cls.TEXT, cls.TYPE_, cls.VALUE_RANGE, cls.VALUES,)
 
     FieldMetadata.ID = FieldMetadata('id', dressdiscover.api.models.qa.question_id.QuestionId, None)
     FieldMetadata.TEXT = FieldMetadata('text', str, {u'blank': False, u'minLength': 1})
     FieldMetadata.TYPE_ = FieldMetadata('type_', dressdiscover.api.models.qa.question_type.QuestionType, None)
+    FieldMetadata.VALUE_RANGE = FieldMetadata('value_range', dressdiscover.api.models.qa.question_value_range.QuestionValueRange, None)
     FieldMetadata.VALUES = FieldMetadata('values', tuple, {u'minLength': 1})
 
     def __init__(
@@ -210,12 +245,14 @@ class Question(object):
         id,  # @ReservedAssignment
         text,
         type_,
+        value_range=None,
         values=None,
     ):
         '''
         :type id: str
         :type text: str
         :type type_: dressdiscover.api.models.qa.question_type.QuestionType
+        :type value_range: dressdiscover.api.models.qa.question_value_range.QuestionValueRange or None
         :type values: tuple(dressdiscover.api.models.qa.question_value.QuestionValue) or None
         '''
 
@@ -241,6 +278,11 @@ class Question(object):
             raise TypeError("expected type_ to be a dressdiscover.api.models.qa.question_type.QuestionType but it is a %s" % getattr(__builtin__, 'type')(type_))
         self.__type_ = type_
 
+        if value_range is not None:
+            if not isinstance(value_range, dressdiscover.api.models.qa.question_value_range.QuestionValueRange):
+                raise TypeError("expected value_range to be a dressdiscover.api.models.qa.question_value_range.QuestionValueRange but it is a %s" % getattr(__builtin__, 'type')(value_range))
+        self.__value_range = value_range
+
         if values is not None:
             if not (isinstance(values, tuple) and len(list(ifilterfalse(lambda _: isinstance(_, dressdiscover.api.models.qa.question_value.QuestionValue), values))) == 0):
                 raise TypeError("expected values to be a tuple(dressdiscover.api.models.qa.question_value.QuestionValue) but it is a %s" % getattr(__builtin__, 'type')(values))
@@ -255,15 +297,17 @@ class Question(object):
             return False
         if self.type_ != other.type_:
             return False
+        if self.value_range != other.value_range:
+            return False
         if self.values != other.values:
             return False
         return True
 
     def __hash__(self):
-        return hash((self.id,self.text,self.type_,self.values,))
+        return hash((self.id,self.text,self.type_,self.value_range,self.values,))
 
     def __iter__(self):
-        return iter((self.id, self.text, self.type_, self.values,))
+        return iter((self.id, self.text, self.type_, self.value_range, self.values,))
 
     def __ne__(self, other):
         return not self.__eq__(other)
@@ -273,6 +317,8 @@ class Question(object):
         field_reprs.append('id=' + "'" + self.id.encode('ascii', 'replace') + "'")
         field_reprs.append('text=' + "'" + self.text.encode('ascii', 'replace') + "'")
         field_reprs.append('type_=' + repr(self.type_))
+        if self.value_range is not None:
+            field_reprs.append('value_range=' + repr(self.value_range))
         if self.values is not None:
             field_reprs.append('values=' + repr(self.values))
         return 'Question(' + ', '.join(field_reprs) + ')'
@@ -282,6 +328,8 @@ class Question(object):
         field_reprs.append('id=' + "'" + self.id.encode('ascii', 'replace') + "'")
         field_reprs.append('text=' + "'" + self.text.encode('ascii', 'replace') + "'")
         field_reprs.append('type_=' + repr(self.type_))
+        if self.value_range is not None:
+            field_reprs.append('value_range=' + repr(self.value_range))
         if self.values is not None:
             field_reprs.append('values=' + repr(self.values))
         return 'Question(' + ', '.join(field_reprs) + ')'
@@ -316,6 +364,8 @@ class Question(object):
                 init_kwds['text'] = iprot.read_string()
             elif ifield_name == 'type_':
                 init_kwds['type_'] = dressdiscover.api.models.qa.question_type.QuestionType.value_of(iprot.read_string().strip().upper())
+            elif ifield_name == 'value_range':
+                init_kwds['value_range'] = dressdiscover.api.models.qa.question_value_range.QuestionValueRange.read(iprot)
             elif ifield_name == 'values':
                 init_kwds['values'] = tuple([dressdiscover.api.models.qa.question_value.QuestionValue.read(iprot) for _ in xrange(iprot.read_list_begin()[1])] + (iprot.read_list_end() is None and []))
             iprot.read_field_end()
@@ -328,6 +378,7 @@ class Question(object):
         id=None,  # @ReservedAssignment
         text=None,
         type_=None,
+        value_range=None,
         values=None,
     ):
         '''
@@ -336,6 +387,7 @@ class Question(object):
         :type id: str or None
         :type text: str or None
         :type type_: dressdiscover.api.models.qa.question_type.QuestionType or None
+        :type value_range: dressdiscover.api.models.qa.question_value_range.QuestionValueRange or None
         :type values: tuple(dressdiscover.api.models.qa.question_value.QuestionValue) or None
         :rtype: dressdiscover.api.models.qa.question.Question
         '''
@@ -346,9 +398,11 @@ class Question(object):
             text = self.text
         if type_ is None:
             type_ = self.type_
+        if value_range is None:
+            value_range = self.value_range
         if values is None:
             values = self.values
-        return self.__class__(id=id, text=text, type_=type_, values=values)
+        return self.__class__(id=id, text=text, type_=type_, value_range=value_range, values=values)
 
     @property
     def text(self):
@@ -365,6 +419,14 @@ class Question(object):
         '''
 
         return self.__type_
+
+    @property
+    def value_range(self):
+        '''
+        :rtype: dressdiscover.api.models.qa.question_value_range.QuestionValueRange
+        '''
+
+        return self.__value_range
 
     @property
     def values(self):
@@ -395,6 +457,11 @@ class Question(object):
         oprot.write_field_begin(name='type_', type=11, id=None)
         oprot.write_string(str(self.type_))
         oprot.write_field_end()
+
+        if self.value_range is not None:
+            oprot.write_field_begin(name='value_range', type=12, id=None)
+            self.value_range.write(oprot)
+            oprot.write_field_end()
 
         if self.values is not None:
             oprot.write_field_begin(name='values', type=15, id=None)

@@ -1,7 +1,7 @@
 namespace * dressdiscover.api.models.qa
 
 enum QuestionType {
-    DATE,
+    DATE_RANGE,
     SELECT_MULTIPLE,
     SELECT_ONE,
     TEXT

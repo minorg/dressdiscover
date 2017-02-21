@@ -47,8 +47,13 @@ var QUESTIONS = [
     }, 
     {
         "text": "When do you think this object was made?", 
-        "type_": "DATE", 
-        "id": "58a9d06abfd8c5aa5d089b1d"
+        "type_": "DATE_RANGE", 
+        "id": "58a9d06abfd8c5aa5d089b1d", 
+        "value_range": {
+            "start": 1600, 
+            "step": 10, 
+            "stop": 2020
+        }
     }, 
     {
         "text": "Who do you think would have worn or used this object?", 

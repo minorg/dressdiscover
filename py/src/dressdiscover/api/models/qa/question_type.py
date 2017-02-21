@@ -1,5 +1,5 @@
 class QuestionType(object):
-    DATE = None
+    DATE_RANGE = None
     SELECT_MULTIPLE = None
     SELECT_ONE = None
     TEXT = None
@@ -20,8 +20,8 @@ class QuestionType(object):
 
     @classmethod
     def value_of(cls, name):
-        if name == 'DATE' or name == '0':
-            return getattr(QuestionType, 'DATE')
+        if name == 'DATE_RANGE' or name == '0':
+            return getattr(QuestionType, 'DATE_RANGE')
         elif name == 'SELECT_MULTIPLE' or name == '1':
             return getattr(QuestionType, 'SELECT_MULTIPLE')
         elif name == 'SELECT_ONE' or name == '2':
@@ -32,9 +32,9 @@ class QuestionType(object):
 
     @classmethod
     def values(cls):
-        return (QuestionType.DATE, QuestionType.SELECT_MULTIPLE, QuestionType.SELECT_ONE, QuestionType.TEXT,)
+        return (QuestionType.DATE_RANGE, QuestionType.SELECT_MULTIPLE, QuestionType.SELECT_ONE, QuestionType.TEXT,)
 
-QuestionType.DATE = QuestionType('DATE', 0)
+QuestionType.DATE_RANGE = QuestionType('DATE_RANGE', 0)
 QuestionType.SELECT_MULTIPLE = QuestionType('SELECT_MULTIPLE', 1)
 QuestionType.SELECT_ONE = QuestionType('SELECT_ONE', 2)
 QuestionType.TEXT = QuestionType('TEXT', 3)

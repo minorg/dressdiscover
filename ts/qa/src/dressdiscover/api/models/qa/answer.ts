@@ -1,25 +1,22 @@
+import { AnswerValue } from "./answer_value";
 import { QaObjectId } from "./qa_object_id";
 import { QaUserId } from "./qa_user_id";
 import { QuestionId } from "./question_id";
-import { QuestionValueId } from "./question_value_id";
 
 export class Answer {
     private _objectId: QaObjectId;
 
     private _questionId: QuestionId;
 
-    private _selectedValues?: QuestionValueId[];
-
-    private _text?: string;
-
     private _userId: QaUserId;
 
-    constructor(kwds: {objectId: QaObjectId, questionId: QuestionId, userId: QaUserId, selectedValues?: QuestionValueId[], text?: string}) {
+    private _values: AnswerValue[];
+
+    constructor(kwds: {objectId: QaObjectId, questionId: QuestionId, userId: QaUserId, values: AnswerValue[]}) {
         this.objectId = kwds.objectId;
         this.questionId = kwds.questionId;
         this.userId = kwds.userId;
-        this.selectedValues = kwds.selectedValues;
-        this.text = kwds.text;
+        this.values = kwds.values;
     }
 
     get objectId(): QaObjectId {
@@ -46,41 +43,22 @@ export class Answer {
         this._userId = userId;
     }
 
-    get selectedValues(): QuestionValueId[] | undefined {
-        return this._selectedValues;
+    get values(): AnswerValue[] {
+        return this._values;
     }
 
-    set selectedValues(selectedValues: QuestionValueId[] | undefined) {
-        if (selectedValues != null) {
-            if (selectedValues.length < 1) {
-                throw new RangeError("expected len(selectedValues) to be >= 1, was " + selectedValues.length)
-            }
+    set values(values: AnswerValue[]) {
+        if (values.length < 1) {
+            throw new RangeError("expected len(values) to be >= 1, was " + values.length)
         }
-        this._selectedValues = selectedValues;
-    }
-
-    get text(): string | undefined {
-        return this._text;
-    }
-
-    set text(text: string | undefined) {
-        if (text != null) {
-            if (text.trim().length == 0) {
-                throw new RangeError('text is blank');
-            }
-            if (text.length < 1) {
-                throw new RangeError("expected len(text) to be >= 1, was " + text.length)
-            }
-        }
-        this._text = text;
+        this._values = values;
     }
 
     static fromThryftJSON(json: any): Answer {
         var objectId: QaObjectId | undefined;
         var questionId: QuestionId | undefined;
         var userId: QaUserId | undefined;
-        var selectedValues: QuestionValueId[] | undefined;
-        var text: string | undefined;
+        var values: AnswerValue[] | undefined;
         for (var fieldName in json) {
             if (fieldName == "object_id") {
                 objectId = QaObjectId.parse(json[fieldName]);
@@ -88,10 +66,8 @@ export class Answer {
                 questionId = QuestionId.parse(json[fieldName]);
             } else if (fieldName == "user_id") {
                 userId = QaUserId.parse(json[fieldName]);
-            } else if (fieldName == "selected_values") {
-                selectedValues = function(json: any[]): QuestionValueId[] { var sequence: QuestionValueId[] = []; for (var i = 0; i < json.length; i++) { sequence.push(QuestionValueId.parse(json[i])); } return sequence; }(json[fieldName]);
-            } else if (fieldName == "text") {
-                text = json[fieldName];
+            } else if (fieldName == "values") {
+                values = function(json: any[]): AnswerValue[] { var sequence: AnswerValue[] = []; for (var i = 0; i < json.length; i++) { sequence.push(AnswerValue.fromThryftJSON(json[i])); } return sequence; }(json[fieldName]);
             }
         }
         if (objectId == null) {
@@ -103,7 +79,10 @@ export class Answer {
         if (userId == null) {
             throw new TypeError('userId is required');
         }
-        return new Answer({objectId: objectId, questionId: questionId, userId: userId, selectedValues: selectedValues, text: text});
+        if (values == null) {
+            throw new TypeError('values is required');
+        }
+        return new Answer({objectId: objectId, questionId: questionId, userId: userId, values: values});
     }
 
     toThryftJSON(): any {
@@ -111,12 +90,7 @@ export class Answer {
         json["object_id"] = this.objectId.toString();
         json["question_id"] = this.questionId.toString();
         json["user_id"] = this.userId.toString();
-        if (this.selectedValues != null) {
-            json["selected_values"] = function (__inArray: QuestionValueId[]): any[] { var __outArray: any[] = []; for (var __i = 0; __i < __inArray.length; __i++) { __outArray.push(__inArray[__i].toString()); } return __outArray; }(this.selectedValues);
-        }
-        if (this.text != null) {
-            json["text"] = this.text;
-        }
+        json["values"] = function (__inArray: AnswerValue[]): any[] { var __outArray: any[] = []; for (var __i = 0; __i < __inArray.length; __i++) { __outArray.push(__inArray[__i].toThryftJSON()); } return __outArray; }(this.values);
         return json;
     }
 }

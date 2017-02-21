@@ -8,6 +8,7 @@ from dressdiscover.api.models.qa.question import Question
 from dressdiscover.api.models.qa.question_set import QuestionSet
 from dressdiscover.api.models.qa.question_type import QuestionType
 from dressdiscover.api.models.qa.question_value import QuestionValue
+from dressdiscover.api.models.qa.question_value_range import QuestionValueRange
 
 
 # Constants
@@ -84,11 +85,14 @@ def question(
     id_,
     text,
     type_,
-    values=None
+    value_range=None,
+    values=None,
 ):
     check_id(id_)
 
     question_builder = Question.Builder().set_id(id_).set_text(text).set_type_(type_)
+    if value_range is not None:
+        question_builder.set_value_range(value_range)
     if values is not None:
         question_builder.set_values(values)
     question = question_builder.build()
@@ -207,7 +211,8 @@ def material_culture_question_set():
         question(
             id_="58a9d06abfd8c5aa5d089b1d",
             text='When do you think this object was made?',
-            type_=QuestionType.DATE
+            type_=QuestionType.DATE_RANGE,
+            value_range=QuestionValueRange(start=1600, stop=2020, step=10),
         )
     )
 
