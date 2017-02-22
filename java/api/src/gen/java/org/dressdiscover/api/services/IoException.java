@@ -1,7 +1,7 @@
 package org.dressdiscover.api.services;
 
 @SuppressWarnings({"serial"})
-public final class IoException extends org.thryft.Exception {
+public final class IoException extends org.thryft.waf.api.services.IoException {
     public final static class Builder {
         public Builder() {
             causeMessage = null;
