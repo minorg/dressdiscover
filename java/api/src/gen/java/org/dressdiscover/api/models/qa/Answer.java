@@ -1,6 +1,6 @@
 package org.dressdiscover.api.models.qa;
 
-public final class Answer implements org.thryft.Struct {
+public final class Answer implements org.thryft.Struct, org.thryft.waf.api.models.Model {
     public final static class Builder {
         public Builder() {
             objectId = null;
