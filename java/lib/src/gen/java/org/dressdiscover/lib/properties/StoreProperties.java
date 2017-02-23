@@ -7,10 +7,10 @@ public final class StoreProperties implements org.thryft.Struct, org.thryft.waf.
             cacheInstitutions = true;
             dataDirectoryPath = null;
             elasticSearchHost = "elasticsearch";
-            elasticSearchPort = ((int)9300);
-            objectSummariesResultCacheSize = ((int)1024);
-            objectSummaryCacheSize = ((int)1024);
-            resummarizeObjectsBulkRequestSize = ((int)1000);
+            elasticSearchPort = 9300;
+            objectSummariesResultCacheSize = 1024;
+            objectSummaryCacheSize = 1024;
+            resummarizeObjectsBulkRequestSize = 1000;
         }
 
         public Builder(final StoreProperties other) {
@@ -321,22 +321,22 @@ public final class StoreProperties implements org.thryft.Struct, org.thryft.waf.
         }
 
         public Builder unsetElasticSearchPort() {
-            this.elasticSearchPort = ((int)9300);
+            this.elasticSearchPort = 9300;
             return this;
         }
 
         public Builder unsetObjectSummariesResultCacheSize() {
-            this.objectSummariesResultCacheSize = ((int)1024);
+            this.objectSummariesResultCacheSize = 1024;
             return this;
         }
 
         public Builder unsetObjectSummaryCacheSize() {
-            this.objectSummaryCacheSize = ((int)1024);
+            this.objectSummaryCacheSize = 1024;
             return this;
         }
 
         public Builder unsetResummarizeObjectsBulkRequestSize() {
-            this.resummarizeObjectsBulkRequestSize = ((int)1000);
+            this.resummarizeObjectsBulkRequestSize = 1000;
             return this;
         }
 
@@ -808,7 +808,7 @@ public final class StoreProperties implements org.thryft.Struct, org.thryft.waf.
      * Required factory method
      */
     public static StoreProperties create(final String dataDirectoryPath) {
-        return new StoreProperties(true, true, dataDirectoryPath, "elasticsearch", ((int)9300), ((int)1024), ((int)1024), ((int)1000), DefaultConstructionValidator.getInstance());
+        return new StoreProperties(true, true, dataDirectoryPath, "elasticsearch", 9300, 1024, 1024, 1000, DefaultConstructionValidator.getInstance());
     }
 
     /**
@@ -1036,11 +1036,11 @@ public final class StoreProperties implements org.thryft.Struct, org.thryft.waf.
         {
             Object elasticSearchPortObject = __properties.remove("elastic_search_port");
             if (!(elasticSearchPortObject instanceof String)) {
-                elasticSearchPort = ((int)9300);
+                elasticSearchPort = 9300;
             } else {
                 final String elasticSearchPortString = ((String)elasticSearchPortObject).trim();
                 if (elasticSearchPortString.isEmpty()) {
-                    elasticSearchPort = ((int)9300);
+                    elasticSearchPort = 9300;
                 } else {
                     elasticSearchPort = Integer.parseInt(elasticSearchPortString);
                 }
@@ -1051,11 +1051,11 @@ public final class StoreProperties implements org.thryft.Struct, org.thryft.waf.
         {
             Object objectSummariesResultCacheSizeObject = __properties.remove("object_summaries_result_cache_size");
             if (!(objectSummariesResultCacheSizeObject instanceof String)) {
-                objectSummariesResultCacheSize = ((int)1024);
+                objectSummariesResultCacheSize = 1024;
             } else {
                 final String objectSummariesResultCacheSizeString = ((String)objectSummariesResultCacheSizeObject).trim();
                 if (objectSummariesResultCacheSizeString.isEmpty()) {
-                    objectSummariesResultCacheSize = ((int)1024);
+                    objectSummariesResultCacheSize = 1024;
                 } else {
                     objectSummariesResultCacheSize = Integer.parseInt(objectSummariesResultCacheSizeString);
                 }
@@ -1066,11 +1066,11 @@ public final class StoreProperties implements org.thryft.Struct, org.thryft.waf.
         {
             Object objectSummaryCacheSizeObject = __properties.remove("object_summary_cache_size");
             if (!(objectSummaryCacheSizeObject instanceof String)) {
-                objectSummaryCacheSize = ((int)1024);
+                objectSummaryCacheSize = 1024;
             } else {
                 final String objectSummaryCacheSizeString = ((String)objectSummaryCacheSizeObject).trim();
                 if (objectSummaryCacheSizeString.isEmpty()) {
-                    objectSummaryCacheSize = ((int)1024);
+                    objectSummaryCacheSize = 1024;
                 } else {
                     objectSummaryCacheSize = Integer.parseInt(objectSummaryCacheSizeString);
                 }
@@ -1081,11 +1081,11 @@ public final class StoreProperties implements org.thryft.Struct, org.thryft.waf.
         {
             Object resummarizeObjectsBulkRequestSizeObject = __properties.remove("resummarize_objects_bulk_request_size");
             if (!(resummarizeObjectsBulkRequestSizeObject instanceof String)) {
-                resummarizeObjectsBulkRequestSize = ((int)1000);
+                resummarizeObjectsBulkRequestSize = 1000;
             } else {
                 final String resummarizeObjectsBulkRequestSizeString = ((String)resummarizeObjectsBulkRequestSizeObject).trim();
                 if (resummarizeObjectsBulkRequestSizeString.isEmpty()) {
-                    resummarizeObjectsBulkRequestSize = ((int)1000);
+                    resummarizeObjectsBulkRequestSize = 1000;
                 } else {
                     resummarizeObjectsBulkRequestSize = Integer.parseInt(resummarizeObjectsBulkRequestSizeString);
                 }
@@ -1119,10 +1119,10 @@ public final class StoreProperties implements org.thryft.Struct, org.thryft.waf.
         boolean cacheInstitutions = true;
         String dataDirectoryPath = null;
         String elasticSearchHost = "elasticsearch";
-        int elasticSearchPort = ((int)9300);
-        int objectSummariesResultCacheSize = ((int)1024);
-        int objectSummaryCacheSize = ((int)1024);
-        int resummarizeObjectsBulkRequestSize = ((int)1000);
+        int elasticSearchPort = 9300;
+        int objectSummariesResultCacheSize = 1024;
+        int objectSummaryCacheSize = 1024;
+        int resummarizeObjectsBulkRequestSize = 1000;
 
         try {
             iprot.readListBegin();
@@ -1166,10 +1166,10 @@ public final class StoreProperties implements org.thryft.Struct, org.thryft.waf.
         boolean cacheInstitutions = true;
         String dataDirectoryPath = null;
         String elasticSearchHost = "elasticsearch";
-        int elasticSearchPort = ((int)9300);
-        int objectSummariesResultCacheSize = ((int)1024);
-        int objectSummaryCacheSize = ((int)1024);
-        int resummarizeObjectsBulkRequestSize = ((int)1000);
+        int elasticSearchPort = 9300;
+        int objectSummariesResultCacheSize = 1024;
+        int objectSummaryCacheSize = 1024;
+        int resummarizeObjectsBulkRequestSize = 1000;
 
         try {
             iprot.readStructBegin();

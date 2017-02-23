@@ -788,7 +788,7 @@ public final class CostumeCoreObject implements org.thryft.Struct {
             if (!quantity.isPresent()) {
                 return quantity;
             }
-            if (quantity.get().intValue() < ((int)1)) {
+            if (quantity.get().intValue() < 1) {
                 throw new IllegalArgumentException("org.dressdiscover.api.vocabularies.costume_core.CostumeCoreObject: quantity is less than min 1");
             }
             return quantity;
@@ -953,7 +953,7 @@ public final class CostumeCoreObject implements org.thryft.Struct {
             if (!quantity.isPresent()) {
                 return quantity;
             }
-            if (quantity.get().intValue() < ((int)1)) {
+            if (quantity.get().intValue() < 1) {
                 throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.QUANTITY, "org.dressdiscover.api.vocabularies.costume_core.CostumeCoreObject: quantity is less than min 1");
             }
             return quantity;
