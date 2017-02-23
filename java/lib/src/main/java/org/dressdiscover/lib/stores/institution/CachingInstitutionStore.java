@@ -10,7 +10,7 @@ import org.dressdiscover.api.services.institution.NoSuchInstitutionException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.slf4j.Marker;
-import org.thryft.waf.lib.store.InvalidModelException;
+import org.thryft.waf.lib.stores.InvalidModelException;
 
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;

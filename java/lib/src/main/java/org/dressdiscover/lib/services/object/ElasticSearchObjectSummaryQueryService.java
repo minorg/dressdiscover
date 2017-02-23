@@ -55,9 +55,9 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.thryft.protocol.InputProtocolException;
 import org.thryft.waf.lib.ExceptionUtils;
-import org.thryft.waf.lib.protocol.elasticsearch.ElasticSearchInputProtocol;
-import org.thryft.waf.lib.store.InvalidModelException;
-import org.thryft.waf.lib.store.elasticsearch.ElasticSearchIndex;
+import org.thryft.waf.lib.protocols.elasticsearch.ElasticSearchInputProtocol;
+import org.thryft.waf.lib.stores.InvalidModelException;
+import org.thryft.waf.lib.stores.elasticsearch.ElasticSearchIndex;
 
 import com.google.common.base.Function;
 import com.google.common.base.Optional;

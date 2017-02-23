@@ -11,7 +11,7 @@ import org.dressdiscover.lib.services.IoExceptions;
 import org.slf4j.Marker;
 import org.thryft.protocol.OutputProtocolException;
 import org.thryft.waf.api.models.Model;
-import org.thryft.waf.lib.store.fs.AbstractFileSystem;
+import org.thryft.waf.lib.stores.fs.AbstractFileSystem;
 
 import com.google.common.collect.ImmutableList;
 

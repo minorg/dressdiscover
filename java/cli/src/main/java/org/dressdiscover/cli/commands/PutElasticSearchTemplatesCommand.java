@@ -7,7 +7,7 @@ import org.dressdiscover.api.services.IoException;
 import org.dressdiscover.lib.services.IoExceptions;
 import org.dressdiscover.lib.stores.object.ObjectSummaryElasticSearchIndex;
 import org.thryft.waf.cli.Command;
-import org.thryft.waf.lib.store.elasticsearch.ElasticSearchIndex;
+import org.thryft.waf.lib.stores.elasticsearch.ElasticSearchIndex;
 
 import com.google.inject.Injector;
 

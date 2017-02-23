@@ -7,7 +7,7 @@ import org.dressdiscover.api.models.institution.InstitutionId;
 import org.dressdiscover.api.services.IoException;
 import org.dressdiscover.api.services.collection.NoSuchCollectionException;
 import org.slf4j.Marker;
-import org.thryft.waf.lib.store.InvalidModelException;
+import org.thryft.waf.lib.stores.InvalidModelException;
 
 import com.google.common.collect.ImmutableList;
 

@@ -9,7 +9,7 @@ import org.dressdiscover.api.services.IoException;
 import org.dressdiscover.lib.properties.StoreProperties;
 import org.thryft.waf.api.models.Model;
 
-abstract class AbstractJdbcTable<ModelT extends Model> extends org.thryft.waf.lib.store.jdbc.AbstractJdbcTable<ModelT> {
+abstract class AbstractJdbcTable<ModelT extends Model> extends org.thryft.waf.lib.stores.jdbc.AbstractJdbcTable<ModelT> {
     protected static IoException _wrap(final SQLException cause, final String message) {
         final IoException exception = IoException.create(message);
         exception.initCause(cause);
