@@ -199,7 +199,7 @@ class Main(thryft.main.Main):
                                         **compile_kwds
                                     )
 
-                            if thrift_file_dir_name in TS_PROJECT_NAMES:
+                            if thrift_file_dir_name == 'worksheet':
                                 continue
 
                     if thrift_subdir_name in ('lib', 'server') and thrift_file_base_name.endswith('_properties'):
