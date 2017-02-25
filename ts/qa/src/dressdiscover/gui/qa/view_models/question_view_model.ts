@@ -122,7 +122,7 @@ export class QuestionViewModel extends ViewModel {
                 throw new Error("not implemented: " + this.currentQuestionType);
         }
         const answer = new Answer({ objectId: this.object.id, questionId: this.currentQuestion.id, userId: Application.instance.session.currentUserId as QaUserId, values: values });
-        Application.instance.services.commandService.putAnswerSync({ answer: answer });
+        Application.instance.services.answerCommandService.putAnswerSync({ answer: answer });
     }
 
     public answerText = ko.observable<string>();

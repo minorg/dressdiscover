@@ -51,14 +51,14 @@ export class Router {
             const objectId = QaObjectId.parse(context.params.objectId);
             const questionSetId = QuestionSetId.parse(context.params.questionSetId);
 
-            const object = Application.instance.services.queryService.getObjectByIdSync({ id: objectId });
-            const questionSet = Application.instance.services.queryService.getQuestionSetsSync({ ids: [questionSetId] })[0];
-            const questions = Application.instance.services.queryService.getQuestionsSync({ ids: questionSet.questionIds });
+            const object = Application.instance.services.objectQueryService.getObjectByIdSync({ id: objectId });
+            const questionSet = Application.instance.services.questionSetQueryService.getQuestionSetsSync({ ids: [questionSetId] })[0];
+            const questions = Application.instance.services.questionQueryService.getQuestionsSync({ ids: questionSet.questionIds });
 
             var currentQuestion: Question | undefined;
             if (context.params.questionId) {
                 const currentQuestionId = QuestionId.parse(context.params.questionId);
-                currentQuestion = Application.instance.services.queryService.getQuestionsSync({ ids: [currentQuestionId] })[0];
+                currentQuestion = Application.instance.services.questionQueryService.getQuestionsSync({ ids: [currentQuestionId] })[0];
             }
 
             new QuestionView(new QuestionViewModel(object, questionSet, questions, currentQuestion)).show();
@@ -67,7 +67,7 @@ export class Router {
 
     private onGetRoot(context: any) {
         this.checkAuthentication(() => {
-            const objects = Application.instance.services.queryService.getObjectsSync();
+            const objects = Application.instance.services.objectQueryService.getObjectsSync();
 
             const questionSetIds: { [index: string]: QuestionSetId } = {};
             for (let object of objects) {
@@ -78,7 +78,7 @@ export class Router {
                 }
             }
 
-            const questionSets = Application.instance.services.queryService.getQuestionSetsSync({ ids: _.values(questionSetIds) });
+            const questionSets = Application.instance.services.questionSetQueryService.getQuestionSetsSync({ ids: _.values(questionSetIds) });
             const questionSetsById: { [index: string]: QuestionSet } = {};
             for (let questionSet of questionSets) {
                 questionSetsById[questionSet.id.toString()] = questionSet;
