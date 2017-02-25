@@ -2,7 +2,10 @@ import { Answer } from "../../models/qa/answer";
 import { AnswerCommandService } from "./answer_command_service";
 
 export class JsonRpcAnswerCommandService implements AnswerCommandService {
-    putAnswerAsync(kwds: {answer: Answer, error: (jqXHR: JQueryXHR | null, textStatus: string, errorThrown: string | null) => any, success: () => void}): void {
+    constructor(private baseUrl?: string) {
+    }
+
+    putAnswerAsync(kwds: {answer: Answer, error?: (jqXHR: JQueryXHR | null, textStatus: string, errorThrown: string | null) => any, success?: success?: () => void}): void {
         var __jsonrpc_params: {[index: string]: any} = {};
         __jsonrpc_params["answer"] = kwds.answer.toThryftJSON();
 
@@ -16,18 +19,24 @@ export class JsonRpcAnswerCommandService implements AnswerCommandService {
             }),
             dataType: 'json',
             error: function(jqXHR: any, textStatus: any, errorThrown: any) {
-                kwds.error(jqXHR as JQueryXHR, textStatus as string, errorThrown as string);
+                if (kwds.error) {
+                    kwds.error(jqXHR as JQueryXHR, textStatus as string, errorThrown as string);
+                }
             },
             mimeType: 'application/json',
             type: 'POST',
             success: function(__response: any) {
                 if (typeof __response.result !== "undefined") {
-                    kwds.success();
+                    if (kwds.success) {
+                        kwds.success();
+                    }
                 } else {
-                    kwds.error(null, __response.error.message, null);
+                    if (kwds.error) {
+                        kwds.error(null, __response.error.message, null);
+                    }
                 }
             },
-            url: '/api/jsonrpc/answer_command',
+            url: (this.baseUrl ? this.baseUrl : "") + '/api/jsonrpc/answer_command',
         });
     }
 
@@ -54,7 +63,7 @@ export class JsonRpcAnswerCommandService implements AnswerCommandService {
                     throw new Error(__response.error);
                 }
             },
-            url: '/api/jsonrpc/answer_command',
+            url: (this.baseUrl ? this.baseUrl : "") + '/api/jsonrpc/answer_command',
         });
     }
 }

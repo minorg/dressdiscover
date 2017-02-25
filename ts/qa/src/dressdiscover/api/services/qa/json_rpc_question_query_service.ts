@@ -3,7 +3,10 @@ import { QuestionId } from "../../models/qa/question_id";
 import { QuestionQueryService } from "./question_query_service";
 
 export class JsonRpcQuestionQueryService implements QuestionQueryService {
-    getQuestionsAsync(kwds: {ids: QuestionId[], error: (jqXHR: JQueryXHR | null, textStatus: string, errorThrown: string | null) => any, success: (returnValue: Question[]) => void}): void {
+    constructor(private baseUrl?: string) {
+    }
+
+    getQuestionsAsync(kwds: {ids: QuestionId[], error?: (jqXHR: JQueryXHR | null, textStatus: string, errorThrown: string | null) => any, success?: (returnValue: Question[]) => void}): void {
         var __jsonrpc_params: {[index: string]: any} = {};
         __jsonrpc_params["ids"] = function (__inArray: QuestionId[]): any[] { var __outArray: any[] = []; for (var __i = 0; __i < __inArray.length; __i++) { __outArray.push(__inArray[__i].toString()); } return __outArray; }(kwds.ids);
 
@@ -17,18 +20,24 @@ export class JsonRpcQuestionQueryService implements QuestionQueryService {
             }),
             dataType: 'json',
             error: function(jqXHR: any, textStatus: any, errorThrown: any) {
-                kwds.error(jqXHR as JQueryXHR, textStatus as string, errorThrown as string);
+                if (kwds.error) {
+                    kwds.error(jqXHR as JQueryXHR, textStatus as string, errorThrown as string);
+                }
             },
             mimeType: 'application/json',
             type: 'POST',
             success: function(__response: any) {
                 if (typeof __response.result !== "undefined") {
-                    kwds.success(function(json: any[]): Question[] { var sequence: Question[] = []; for (var i = 0; i < json.length; i++) { sequence.push(Question.fromThryftJSON(json[i])); } return sequence; }(__response.result));
+                    if (kwds.success) {
+                        kwds.success(function(json: any[]): Question[] { var sequence: Question[] = []; for (var i = 0; i < json.length; i++) { sequence.push(Question.fromThryftJSON(json[i])); } return sequence; }(__response.result));
+                    }
                 } else {
-                    kwds.error(null, __response.error.message, null);
+                    if (kwds.error) {
+                        kwds.error(null, __response.error.message, null);
+                    }
                 }
             },
-            url: '/api/jsonrpc/question_query',
+            url: (this.baseUrl ? this.baseUrl : "") + '/api/jsonrpc/question_query',
         });
     }
 
@@ -59,7 +68,7 @@ export class JsonRpcQuestionQueryService implements QuestionQueryService {
                     throw new Error(__response.error);
                 }
             },
-            url: '/api/jsonrpc/question_query',
+            url: (this.baseUrl ? this.baseUrl : "") + '/api/jsonrpc/question_query',
         });
 
         if (typeof returnValue === "undefined") {

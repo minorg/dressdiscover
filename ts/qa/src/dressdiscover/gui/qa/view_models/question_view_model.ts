@@ -58,8 +58,7 @@ export class QuestionViewModel extends ViewModel {
     }
     
     onClickNextButton() {
-        this._submit()
-        this._goToNext();
+        this._submit(() => this._goToNext());
         return false;
     }
 
@@ -69,21 +68,19 @@ export class QuestionViewModel extends ViewModel {
     }
 
     onClickPreviousQuestionButton() {
-        this._submit();
-        this._goToPreviousQuestion();
+        this._submit(() => this._goToPreviousQuestion());
         return false;
     }
 
     onClickSubmitButton() {
-        this._submit();
-        this._goToNext();
+        this._submit(() => this._goToNext());
     }
 
     get previousQuestionButtonEnabled() {
         return _.isNumber(this._currentQuestionIndex) && this._currentQuestionIndex > 0;
     }
 
-    private _submit() {
+    private _submit(complete: () => void) {
         if (!this.currentQuestion) {
             return;
         }
@@ -122,7 +119,7 @@ export class QuestionViewModel extends ViewModel {
                 throw new Error("not implemented: " + this.currentQuestionType);
         }
         const answer = new Answer({ objectId: this.object.id, questionId: this.currentQuestion.id, userId: Application.instance.session.currentUserId as QaUserId, values: values });
-        Application.instance.services.answerCommandService.putAnswerSync({ answer: answer });
+        Application.instance.services.answerCommandService.putAnswerAsync({ answer: answer });
     }
 
     public answerText = ko.observable<string>();

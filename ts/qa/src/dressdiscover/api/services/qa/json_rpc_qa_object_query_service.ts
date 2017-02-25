@@ -3,7 +3,10 @@ import { QaObjectId } from "../../models/qa/qa_object_id";
 import { QaObjectQueryService } from "./qa_object_query_service";
 
 export class JsonRpcQaObjectQueryService implements QaObjectQueryService {
-    getObjectByIdAsync(kwds: {id: QaObjectId, error: (jqXHR: JQueryXHR | null, textStatus: string, errorThrown: string | null) => any, success: (returnValue: QaObject) => void}): void {
+    constructor(private baseUrl?: string) {
+    }
+
+    getObjectByIdAsync(kwds: {id: QaObjectId, error?: (jqXHR: JQueryXHR | null, textStatus: string, errorThrown: string | null) => any, success?: (returnValue: QaObject) => void}): void {
         var __jsonrpc_params: {[index: string]: any} = {};
         __jsonrpc_params["id"] = kwds.id.toString();
 
@@ -17,18 +20,24 @@ export class JsonRpcQaObjectQueryService implements QaObjectQueryService {
             }),
             dataType: 'json',
             error: function(jqXHR: any, textStatus: any, errorThrown: any) {
-                kwds.error(jqXHR as JQueryXHR, textStatus as string, errorThrown as string);
+                if (kwds.error) {
+                    kwds.error(jqXHR as JQueryXHR, textStatus as string, errorThrown as string);
+                }
             },
             mimeType: 'application/json',
             type: 'POST',
             success: function(__response: any) {
                 if (typeof __response.result !== "undefined") {
-                    kwds.success(QaObject.fromThryftJSON(__response.result));
+                    if (kwds.success) {
+                        kwds.success(QaObject.fromThryftJSON(__response.result));
+                    }
                 } else {
-                    kwds.error(null, __response.error.message, null);
+                    if (kwds.error) {
+                        kwds.error(null, __response.error.message, null);
+                    }
                 }
             },
-            url: '/api/jsonrpc/qa_object_query',
+            url: (this.baseUrl ? this.baseUrl : "") + '/api/jsonrpc/qa_object_query',
         });
     }
 
@@ -59,7 +68,7 @@ export class JsonRpcQaObjectQueryService implements QaObjectQueryService {
                     throw new Error(__response.error);
                 }
             },
-            url: '/api/jsonrpc/qa_object_query',
+            url: (this.baseUrl ? this.baseUrl : "") + '/api/jsonrpc/qa_object_query',
         });
 
         if (typeof returnValue === "undefined") {
@@ -68,7 +77,7 @@ export class JsonRpcQaObjectQueryService implements QaObjectQueryService {
         return returnValue;
     }
 
-    getObjectsAsync(kwds: {error: (jqXHR: JQueryXHR | null, textStatus: string, errorThrown: string | null) => any, success: (returnValue: QaObject[]) => void}): void {
+    getObjectsAsync(kwds: {error?: (jqXHR: JQueryXHR | null, textStatus: string, errorThrown: string | null) => any, success?: (returnValue: QaObject[]) => void}): void {
         $.ajax({
             async: true,
             data: JSON.stringify({
@@ -79,18 +88,24 @@ export class JsonRpcQaObjectQueryService implements QaObjectQueryService {
             }),
             dataType: 'json',
             error: function(jqXHR: any, textStatus: any, errorThrown: any) {
-                kwds.error(jqXHR as JQueryXHR, textStatus as string, errorThrown as string);
+                if (kwds.error) {
+                    kwds.error(jqXHR as JQueryXHR, textStatus as string, errorThrown as string);
+                }
             },
             mimeType: 'application/json',
             type: 'POST',
             success: function(__response: any) {
                 if (typeof __response.result !== "undefined") {
-                    kwds.success(function(json: any[]): QaObject[] { var sequence: QaObject[] = []; for (var i = 0; i < json.length; i++) { sequence.push(QaObject.fromThryftJSON(json[i])); } return sequence; }(__response.result));
+                    if (kwds.success) {
+                        kwds.success(function(json: any[]): QaObject[] { var sequence: QaObject[] = []; for (var i = 0; i < json.length; i++) { sequence.push(QaObject.fromThryftJSON(json[i])); } return sequence; }(__response.result));
+                    }
                 } else {
-                    kwds.error(null, __response.error.message, null);
+                    if (kwds.error) {
+                        kwds.error(null, __response.error.message, null);
+                    }
                 }
             },
-            url: '/api/jsonrpc/qa_object_query',
+            url: (this.baseUrl ? this.baseUrl : "") + '/api/jsonrpc/qa_object_query',
         });
     }
 
@@ -118,7 +133,7 @@ export class JsonRpcQaObjectQueryService implements QaObjectQueryService {
                     throw new Error(__response.error);
                 }
             },
-            url: '/api/jsonrpc/qa_object_query',
+            url: (this.baseUrl ? this.baseUrl : "") + '/api/jsonrpc/qa_object_query',
         });
 
         if (typeof returnValue === "undefined") {
