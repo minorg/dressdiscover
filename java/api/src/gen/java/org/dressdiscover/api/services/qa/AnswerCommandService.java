@@ -1,6 +1,6 @@
 package org.dressdiscover.api.services.qa;
 
-public interface QaCommandService {
+public interface AnswerCommandService {
     public enum FunctionMetadata {
         PUT_ANSWER("put_answer");
 
@@ -583,12 +583,8 @@ public interface QaCommandService {
                             if (ifield.getType() == org.thryft.protocol.Type.STOP) {
                                 break;
                             }
-                            switch (ifield.getName()) {
-                            default:
-                                if (unknownFieldCallback.isPresent()) {
-                                    unknownFieldCallback.get().apply(ifield);
-                                }
-                                break;
+                            if (unknownFieldCallback.isPresent()) {
+                                unknownFieldCallback.get().apply(ifield);
                             }
                             iprot.readFieldEnd();
                         }
@@ -796,12 +792,8 @@ public interface QaCommandService {
                         if (ifield.getType() == org.thryft.protocol.Type.STOP) {
                             break;
                         }
-                        switch (ifield.getName()) {
-                        default:
-                            if (unknownFieldCallback.isPresent()) {
-                                unknownFieldCallback.get().apply(ifield);
-                            }
-                            break;
+                        if (unknownFieldCallback.isPresent()) {
+                            unknownFieldCallback.get().apply(ifield);
                         }
                         iprot.readFieldEnd();
                     }

@@ -1749,12 +1749,8 @@ public interface ObjectCommandService {
                             if (ifield.getType() == org.thryft.protocol.Type.STOP) {
                                 break;
                             }
-                            switch (ifield.getName()) {
-                            default:
-                                if (unknownFieldCallback.isPresent()) {
-                                    unknownFieldCallback.get().apply(ifield);
-                                }
-                                break;
+                            if (unknownFieldCallback.isPresent()) {
+                                unknownFieldCallback.get().apply(ifield);
                             }
                             iprot.readFieldEnd();
                         }
@@ -1962,12 +1958,8 @@ public interface ObjectCommandService {
                         if (ifield.getType() == org.thryft.protocol.Type.STOP) {
                             break;
                         }
-                        switch (ifield.getName()) {
-                        default:
-                            if (unknownFieldCallback.isPresent()) {
-                                unknownFieldCallback.get().apply(ifield);
-                            }
-                            break;
+                        if (unknownFieldCallback.isPresent()) {
+                            unknownFieldCallback.get().apply(ifield);
                         }
                         iprot.readFieldEnd();
                     }
@@ -2654,12 +2646,8 @@ public interface ObjectCommandService {
                             if (ifield.getType() == org.thryft.protocol.Type.STOP) {
                                 break;
                             }
-                            switch (ifield.getName()) {
-                            default:
-                                if (unknownFieldCallback.isPresent()) {
-                                    unknownFieldCallback.get().apply(ifield);
-                                }
-                                break;
+                            if (unknownFieldCallback.isPresent()) {
+                                unknownFieldCallback.get().apply(ifield);
                             }
                             iprot.readFieldEnd();
                         }
@@ -2867,12 +2855,8 @@ public interface ObjectCommandService {
                         if (ifield.getType() == org.thryft.protocol.Type.STOP) {
                             break;
                         }
-                        switch (ifield.getName()) {
-                        default:
-                            if (unknownFieldCallback.isPresent()) {
-                                unknownFieldCallback.get().apply(ifield);
-                            }
-                            break;
+                        if (unknownFieldCallback.isPresent()) {
+                            unknownFieldCallback.get().apply(ifield);
                         }
                         iprot.readFieldEnd();
                     }
@@ -2960,12 +2944,8 @@ public interface ObjectCommandService {
                             if (ifield.getType() == org.thryft.protocol.Type.STOP) {
                                 break;
                             }
-                            switch (ifield.getName()) {
-                            default:
-                                if (unknownFieldCallback.isPresent()) {
-                                    unknownFieldCallback.get().apply(ifield);
-                                }
-                                break;
+                            if (unknownFieldCallback.isPresent()) {
+                                unknownFieldCallback.get().apply(ifield);
                             }
                             iprot.readFieldEnd();
                         }
@@ -3173,12 +3153,8 @@ public interface ObjectCommandService {
                         if (ifield.getType() == org.thryft.protocol.Type.STOP) {
                             break;
                         }
-                        switch (ifield.getName()) {
-                        default:
-                            if (unknownFieldCallback.isPresent()) {
-                                unknownFieldCallback.get().apply(ifield);
-                            }
-                            break;
+                        if (unknownFieldCallback.isPresent()) {
+                            unknownFieldCallback.get().apply(ifield);
                         }
                         iprot.readFieldEnd();
                     }
@@ -3266,12 +3242,8 @@ public interface ObjectCommandService {
                             if (ifield.getType() == org.thryft.protocol.Type.STOP) {
                                 break;
                             }
-                            switch (ifield.getName()) {
-                            default:
-                                if (unknownFieldCallback.isPresent()) {
-                                    unknownFieldCallback.get().apply(ifield);
-                                }
-                                break;
+                            if (unknownFieldCallback.isPresent()) {
+                                unknownFieldCallback.get().apply(ifield);
                             }
                             iprot.readFieldEnd();
                         }
@@ -3479,12 +3451,8 @@ public interface ObjectCommandService {
                         if (ifield.getType() == org.thryft.protocol.Type.STOP) {
                             break;
                         }
-                        switch (ifield.getName()) {
-                        default:
-                            if (unknownFieldCallback.isPresent()) {
-                                unknownFieldCallback.get().apply(ifield);
-                            }
-                            break;
+                        if (unknownFieldCallback.isPresent()) {
+                            unknownFieldCallback.get().apply(ifield);
                         }
                         iprot.readFieldEnd();
                     }

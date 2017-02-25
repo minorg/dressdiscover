@@ -1,7 +1,7 @@
 import { Answer } from "../../models/qa/answer";
-import { QaCommandService } from "./qa_command_service";
+import { AnswerCommandService } from "./answer_command_service";
 
-export class JsonRpcQaCommandService implements QaCommandService {
+export class JsonRpcAnswerCommandService implements AnswerCommandService {
     putAnswerAsync(kwds: {answer: Answer, error: (jqXHR: JQueryXHR | null, textStatus: string, errorThrown: string | null) => any, success: () => void}): void {
         var __jsonrpc_params: {[index: string]: any} = {};
         __jsonrpc_params["answer"] = kwds.answer.toThryftJSON();
@@ -27,7 +27,7 @@ export class JsonRpcQaCommandService implements QaCommandService {
                     kwds.error(null, __response.error.message, null);
                 }
             },
-            url: '/api/jsonrpc/qa_command',
+            url: '/api/jsonrpc/answer_command',
         });
     }
 
@@ -54,7 +54,7 @@ export class JsonRpcQaCommandService implements QaCommandService {
                     throw new Error(__response.error);
                 }
             },
-            url: '/api/jsonrpc/qa_command',
+            url: '/api/jsonrpc/answer_command',
         });
     }
 }

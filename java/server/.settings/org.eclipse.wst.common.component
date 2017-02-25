@@ -8,19 +8,16 @@
         <dependent-module archiveName="dressdiscover-lib-1.0.8-SNAPSHOT.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/dressdiscover-java-lib/dressdiscover-java-lib">
             <dependency-type>uses</dependency-type>
         </dependent-module>
-        <dependent-module archiveName="dressdiscover-api-1.0.8-SNAPSHOT.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/dressdiscover-java-api/dressdiscover-java-api">
+        <dependent-module archiveName="thryft-waf-server-1.0.4-SNAPSHOT.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/thryft-waf-java-server/thryft-waf-java-server">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="thryft-waf-lib-1.0.4-SNAPSHOT.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/thryft-waf-java-lib/thryft-waf-java-lib">
             <dependency-type>uses</dependency-type>
         </dependent-module>
         <dependent-module archiveName="thryft-waf-api-1.0.4-SNAPSHOT.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/thryft-waf-java-api/thryft-waf-java-api">
             <dependency-type>uses</dependency-type>
         </dependent-module>
         <dependent-module archiveName="libthryft-2.0.4-SNAPSHOT.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/thryft-lib-java/thryft-lib-java">
-            <dependency-type>uses</dependency-type>
-        </dependent-module>
-        <dependent-module archiveName="thryft-waf-lib-1.0.4-SNAPSHOT.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/thryft-waf-java-lib/thryft-waf-java-lib">
-            <dependency-type>uses</dependency-type>
-        </dependent-module>
-        <dependent-module archiveName="thryft-waf-server-1.0.4-SNAPSHOT.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/thryft-waf-java-server/thryft-waf-java-server">
             <dependency-type>uses</dependency-type>
         </dependent-module>
         <property name="java-output-path" value="/dressdiscover-java-server/target/classes"/>

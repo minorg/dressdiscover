@@ -1,20 +1,20 @@
 package org.dressdiscover.api.services.qa;
 
 @com.google.inject.Singleton
-public class LoggingQaCommandService implements org.dressdiscover.api.services.qa.QaCommandService {
+public class LoggingAnswerCommandService implements org.dressdiscover.api.services.qa.AnswerCommandService {
     public static class Markers {
         public final static org.slf4j.Marker PUT_ANSWER = org.slf4j.MarkerFactory.getMarker("PUT_ANSWER");
 
-        public final static org.slf4j.Marker QA_COMMAND_SERVICE = org.slf4j.MarkerFactory.getMarker("QA_COMMAND_SERVICE");
+        public final static org.slf4j.Marker ANSWER_COMMAND_SERVICE = org.slf4j.MarkerFactory.getMarker("ANSWER_COMMAND_SERVICE");
         static {
-            QA_COMMAND_SERVICE.add(PUT_ANSWER);
+            ANSWER_COMMAND_SERVICE.add(PUT_ANSWER);
         }
     }
 
-    public final static com.google.inject.name.Named DELEGATE_NAME = com.google.inject.name.Names.named("org.dressdiscover.api.services.qa.LoggingQaCommandService.delegate");
+    public final static com.google.inject.name.Named DELEGATE_NAME = com.google.inject.name.Names.named("org.dressdiscover.api.services.qa.LoggingAnswerCommandService.delegate");
 
     @com.google.inject.Inject
-    public LoggingQaCommandService(@com.google.inject.name.Named("org.dressdiscover.api.services.qa.LoggingQaCommandService.delegate") final org.dressdiscover.api.services.qa.QaCommandService delegate) {
+    public LoggingAnswerCommandService(@com.google.inject.name.Named("org.dressdiscover.api.services.qa.LoggingAnswerCommandService.delegate") final org.dressdiscover.api.services.qa.AnswerCommandService delegate) {
         this.delegate = com.google.common.base.Preconditions.checkNotNull(delegate);
     }
 
@@ -44,6 +44,6 @@ public class LoggingQaCommandService implements org.dressdiscover.api.services.q
         }
     }
 
-    private final static org.slf4j.Logger logger = org.slf4j.LoggerFactory.getLogger(LoggingQaCommandService.class);
-    private final org.dressdiscover.api.services.qa.QaCommandService delegate;
+    private final static org.slf4j.Logger logger = org.slf4j.LoggerFactory.getLogger(LoggingAnswerCommandService.class);
+    private final org.dressdiscover.api.services.qa.AnswerCommandService delegate;
 }

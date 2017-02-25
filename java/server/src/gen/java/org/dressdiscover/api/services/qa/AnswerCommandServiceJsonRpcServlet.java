@@ -2,9 +2,9 @@ package org.dressdiscover.api.services.qa;
 
 @com.google.inject.Singleton
 @SuppressWarnings("serial")
-public class QaCommandServiceJsonRpcServlet extends javax.servlet.http.HttpServlet {
+public class AnswerCommandServiceJsonRpcServlet extends javax.servlet.http.HttpServlet {
     @com.google.inject.Inject
-    public QaCommandServiceJsonRpcServlet(final org.dressdiscover.api.services.qa.QaCommandService service) {
+    public AnswerCommandServiceJsonRpcServlet(final org.dressdiscover.api.services.qa.AnswerCommandService service) {
         this.service = service;
     }
 
@@ -145,9 +145,9 @@ public class QaCommandServiceJsonRpcServlet extends javax.servlet.http.HttpServl
     }
 
     public void doPostPutAnswer(final javax.servlet.http.HttpServletRequest httpServletRequest, final javax.servlet.http.HttpServletResponse httpServletResponse, final org.thryft.waf.lib.protocols.json.JsonRpcInputProtocol iprot, final Object jsonRpcRequestId) throws java.io.IOException {
-        final org.dressdiscover.api.services.qa.QaCommandService.Messages.PutAnswerRequest serviceRequest;
+        final org.dressdiscover.api.services.qa.AnswerCommandService.Messages.PutAnswerRequest serviceRequest;
         try {
-            serviceRequest = org.dressdiscover.api.services.qa.QaCommandService.Messages.PutAnswerRequest.readAs(iprot, iprot.getCurrentFieldType(), unknownFieldCallback);
+            serviceRequest = org.dressdiscover.api.services.qa.AnswerCommandService.Messages.PutAnswerRequest.readAs(iprot, iprot.getCurrentFieldType(), unknownFieldCallback);
         } catch (final IllegalArgumentException | org.thryft.protocol.InputProtocolException | NullPointerException e) {
             logger.debug("error deserializing service request: ", e);
             __doPostError(httpServletRequest, httpServletResponse, new org.thryft.waf.lib.protocols.json.JsonRpcErrorResponse(e, -32602, "invalid JSON-RPC request method parameters: " + String.valueOf(e.getMessage())), jsonRpcRequestId);
@@ -180,7 +180,7 @@ public class QaCommandServiceJsonRpcServlet extends javax.servlet.http.HttpServl
         __doPostResponse(httpServletRequest, httpServletResponse, httpServletResponseBody);
     }
 
-    private final static org.slf4j.Logger logger = org.slf4j.LoggerFactory.getLogger(QaCommandServiceJsonRpcServlet.class);
+    private final static org.slf4j.Logger logger = org.slf4j.LoggerFactory.getLogger(AnswerCommandServiceJsonRpcServlet.class);
     private final static com.google.common.base.Optional<org.thryft.CompoundType.UnknownFieldCallback> unknownFieldCallback = com.google.common.base.Optional.of(new org.thryft.CompoundType.UnknownFieldCallback() { public void apply(final org.thryft.protocol.FieldBegin field) throws org.thryft.protocol.InputProtocolException { throw new org.thryft.protocol.InputProtocolException("unknown field " + field); } });
-    private final org.dressdiscover.api.services.qa.QaCommandService service;
+    private final org.dressdiscover.api.services.qa.AnswerCommandService service;
 }

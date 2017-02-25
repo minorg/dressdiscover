@@ -2,7 +2,7 @@ import __builtin__
 import dressdiscover.api.models.qa.answer
 
 
-class QaCommandService(object):
+class AnswerCommandService(object):
     def put_answer(
         self,
         answer=None,
