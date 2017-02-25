@@ -3,21 +3,33 @@ import { QaObjectId } from "../../models/qa/qa_object_id";
 import { QaObjectQueryService } from "./qa_object_query_service";
 
 export abstract class AsyncToSyncQaObjectQueryService implements QaObjectQueryService {
-    getObjectByIdAsync(kwds: {id: QaObjectId, error?: (jqXHR: JQueryXHR | null, textStatus: string, errorThrown: string | null) => any, success?: (returnValue: QaObject) => void}): void {
+    getObjectByIdAsync(kwds: {id: QaObjectId, error?: (errorKwds: {textStatus: string, errorThrown: any, [index: string]: any}) => any, success?: (returnValue: QaObject) => void}): void {
         try {
-            kwds.success(this.getObjectByIdSync({id: kwds.id}));
+            if (kwds.success) {
+                kwds.success(this.getObjectByIdSync({id: kwds.id}));
+            } else {
+                this.getObjectByIdSync({id: kwds.id});
+            }
         } catch (e) {
-            kwds.error(null, e.message, e);
+            if (kwds.error) {
+                kwds.error({textStatus: e.message, errorThrown: e});
+            }
         }
     }
 
     abstract getObjectByIdSync(kwds: {id: QaObjectId}): QaObject;
 
-    getObjectsAsync(kwds: {error?: (jqXHR: JQueryXHR | null, textStatus: string, errorThrown: string | null) => any, success?: (returnValue: QaObject[]) => void}): void {
+    getObjectsAsync(kwds: {error?: (errorKwds: {textStatus: string, errorThrown: any, [index: string]: any}) => any, success?: (returnValue: QaObject[]) => void}): void {
         try {
-            kwds.success(this.getObjectsSync());
+            if (kwds.success) {
+                kwds.success(this.getObjectsSync());
+            } else {
+                this.getObjectsSync();
+            }
         } catch (e) {
-            kwds.error(null, e.message, e);
+            if (kwds.error) {
+                kwds.error({textStatus: e.message, errorThrown: e});
+            }
         }
     }
 

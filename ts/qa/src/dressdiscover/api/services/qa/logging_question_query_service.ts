@@ -6,8 +6,8 @@ export class LoggingQuestionQueryService implements QuestionQueryService {
     constructor(private delegate: LoggingQuestionQueryService) {
     }
 
-    getQuestionsAsync(kwds: {ids: QuestionId[], error?: (jqXHR: JQueryXHR | null, textStatus: string, errorThrown: string | null) => any, success?: (returnValue: Question[]) => void}): void {
-        this.delegate.getQuestionsAsync({ids: kwds.ids, error: (jqXHR: JQueryXHR | null, textStatus: string, errorThrown: string | null) => { console.warn("getQuestionsAsync({", "ids: ", kwds.ids, "}) -> ", textStatus); console.warn(errorThrown); if (kwds.error) { kwds.error(jqXHR, textStatus, errorThrown); } }, success: (returnValue: Question[]) => { console.debug("getQuestionsSync({", "ids: ", kwds.ids, "}) -> ", returnValue); if (kwds.success) { kwds.success(returnValue); } }});
+    getQuestionsAsync(kwds: {ids: QuestionId[], error?: (errorKwds: {textStatus: string, errorThrown: any, [index: string]: any}) => any, success?: (returnValue: Question[]) => void}): void {
+        this.delegate.getQuestionsAsync({ids: kwds.ids, error: (errorKwds: {textStatus: string, errorThrown: any, [index: string]: any}) => { console.warn("getQuestionsAsync({", "ids: ", kwds.ids, "}) -> ", errorKwds.textStatus); console.warn(errorKwds.errorThrown); if (kwds.error) { kwds.error(errorKwds); } }, success: (returnValue: Question[]) => { console.debug("getQuestionsSync({", "ids: ", kwds.ids, "}) -> ", returnValue); if (kwds.success) { kwds.success(returnValue); } }});
     }
 
     getQuestionsSync(kwds: {ids: QuestionId[]}): Question[] {

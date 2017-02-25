@@ -3,11 +3,17 @@ import { QuestionId } from "../../models/qa/question_id";
 import { QuestionQueryService } from "./question_query_service";
 
 export abstract class AsyncToSyncQuestionQueryService implements QuestionQueryService {
-    getQuestionsAsync(kwds: {ids: QuestionId[], error?: (jqXHR: JQueryXHR | null, textStatus: string, errorThrown: string | null) => any, success?: (returnValue: Question[]) => void}): void {
+    getQuestionsAsync(kwds: {ids: QuestionId[], error?: (errorKwds: {textStatus: string, errorThrown: any, [index: string]: any}) => any, success?: (returnValue: Question[]) => void}): void {
         try {
-            kwds.success(this.getQuestionsSync({ids: kwds.ids}));
+            if (kwds.success) {
+                kwds.success(this.getQuestionsSync({ids: kwds.ids}));
+            } else {
+                this.getQuestionsSync({ids: kwds.ids});
+            }
         } catch (e) {
-            kwds.error(null, e.message, e);
+            if (kwds.error) {
+                kwds.error({textStatus: e.message, errorThrown: e});
+            }
         }
     }
 

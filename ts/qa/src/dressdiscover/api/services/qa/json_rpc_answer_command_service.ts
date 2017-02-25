@@ -5,7 +5,7 @@ export class JsonRpcAnswerCommandService implements AnswerCommandService {
     constructor(private baseUrl?: string) {
     }
 
-    putAnswerAsync(kwds: {answer: Answer, error?: (jqXHR: JQueryXHR | null, textStatus: string, errorThrown: string | null) => any, success?: success?: () => void}): void {
+    putAnswerAsync(kwds: {answer: Answer, error?: (errorKwds: {textStatus: string, errorThrown: any, [index: string]: any}) => any, success?: () => void}): void {
         var __jsonrpc_params: {[index: string]: any} = {};
         __jsonrpc_params["answer"] = kwds.answer.toThryftJSON();
 
@@ -20,19 +20,23 @@ export class JsonRpcAnswerCommandService implements AnswerCommandService {
             dataType: 'json',
             error: function(jqXHR: any, textStatus: any, errorThrown: any) {
                 if (kwds.error) {
-                    kwds.error(jqXHR as JQueryXHR, textStatus as string, errorThrown as string);
+                    kwds.error({jqXHR: jqXHR as JQueryXHR, textStatus: textStatus as string, errorThrown: errorThrown as string});
                 }
             },
             mimeType: 'application/json',
             type: 'POST',
-            success: function(__response: any) {
-                if (typeof __response.result !== "undefined") {
+            success: function(data: any, textStatus: string, jqXHR: JQueryXHR) {
+                // data is a JSON-RPC 2.0 response, either
+                // {"jsonrpc": "2.0", "result": -19, "id": 2} on success
+                // or
+                // {"jsonrpc": "2.0", "error": {"code": -32601, "message": "Method not found"}, "id": "1"} on error
+                if (typeof data.result !== "undefined") {
                     if (kwds.success) {
                         kwds.success();
                     }
                 } else {
                     if (kwds.error) {
-                        kwds.error(null, __response.error.message, null);
+                        kwds.error({jqXHR: jqXHR, textStatus: data.error.message, errorThrown: null});
                     }
                 }
             },
@@ -58,9 +62,9 @@ export class JsonRpcAnswerCommandService implements AnswerCommandService {
             },
             mimeType: 'application/json',
             type: 'POST',
-            success: function(__response: any) {
-                if (typeof __response.result === "undefined") {
-                    throw new Error(__response.error);
+            success: function(data: any) {
+                if (typeof data.result === "undefined") {
+                    throw new Error(data.error);
                 }
             },
             url: (this.baseUrl ? this.baseUrl : "") + '/api/jsonrpc/answer_command',

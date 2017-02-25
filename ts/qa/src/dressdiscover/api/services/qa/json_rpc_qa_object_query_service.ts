@@ -6,7 +6,7 @@ export class JsonRpcQaObjectQueryService implements QaObjectQueryService {
     constructor(private baseUrl?: string) {
     }
 
-    getObjectByIdAsync(kwds: {id: QaObjectId, error?: (jqXHR: JQueryXHR | null, textStatus: string, errorThrown: string | null) => any, success?: (returnValue: QaObject) => void}): void {
+    getObjectByIdAsync(kwds: {id: QaObjectId, error?: (errorKwds: {textStatus: string, errorThrown: any, [index: string]: any}) => any, success?: (returnValue: QaObject) => void}): void {
         var __jsonrpc_params: {[index: string]: any} = {};
         __jsonrpc_params["id"] = kwds.id.toString();
 
@@ -21,19 +21,23 @@ export class JsonRpcQaObjectQueryService implements QaObjectQueryService {
             dataType: 'json',
             error: function(jqXHR: any, textStatus: any, errorThrown: any) {
                 if (kwds.error) {
-                    kwds.error(jqXHR as JQueryXHR, textStatus as string, errorThrown as string);
+                    kwds.error({jqXHR: jqXHR as JQueryXHR, textStatus: textStatus as string, errorThrown: errorThrown as string});
                 }
             },
             mimeType: 'application/json',
             type: 'POST',
-            success: function(__response: any) {
-                if (typeof __response.result !== "undefined") {
+            success: function(data: any, textStatus: string, jqXHR: JQueryXHR) {
+                // data is a JSON-RPC 2.0 response, either
+                // {"jsonrpc": "2.0", "result": -19, "id": 2} on success
+                // or
+                // {"jsonrpc": "2.0", "error": {"code": -32601, "message": "Method not found"}, "id": "1"} on error
+                if (typeof data.result !== "undefined") {
                     if (kwds.success) {
-                        kwds.success(QaObject.fromThryftJSON(__response.result));
+                        kwds.success(QaObject.fromThryftJSON(data.result));
                     }
                 } else {
                     if (kwds.error) {
-                        kwds.error(null, __response.error.message, null);
+                        kwds.error({jqXHR: jqXHR, textStatus: data.error.message, errorThrown: null});
                     }
                 }
             },
@@ -61,11 +65,11 @@ export class JsonRpcQaObjectQueryService implements QaObjectQueryService {
             },
             mimeType: 'application/json',
             type: 'POST',
-            success: function(__response: any) {
-                if (typeof __response.result !== "undefined") {
-                    returnValue = QaObject.fromThryftJSON(__response.result);
+            success: function(data: any) {
+                if (typeof data.result !== "undefined") {
+                    returnValue = QaObject.fromThryftJSON(data.result);
                 } else {
-                    throw new Error(__response.error);
+                    throw new Error(data.error);
                 }
             },
             url: (this.baseUrl ? this.baseUrl : "") + '/api/jsonrpc/qa_object_query',
@@ -77,7 +81,7 @@ export class JsonRpcQaObjectQueryService implements QaObjectQueryService {
         return returnValue;
     }
 
-    getObjectsAsync(kwds: {error?: (jqXHR: JQueryXHR | null, textStatus: string, errorThrown: string | null) => any, success?: (returnValue: QaObject[]) => void}): void {
+    getObjectsAsync(kwds: {error?: (errorKwds: {textStatus: string, errorThrown: any, [index: string]: any}) => any, success?: (returnValue: QaObject[]) => void}): void {
         $.ajax({
             async: true,
             data: JSON.stringify({
@@ -89,19 +93,23 @@ export class JsonRpcQaObjectQueryService implements QaObjectQueryService {
             dataType: 'json',
             error: function(jqXHR: any, textStatus: any, errorThrown: any) {
                 if (kwds.error) {
-                    kwds.error(jqXHR as JQueryXHR, textStatus as string, errorThrown as string);
+                    kwds.error({jqXHR: jqXHR as JQueryXHR, textStatus: textStatus as string, errorThrown: errorThrown as string});
                 }
             },
             mimeType: 'application/json',
             type: 'POST',
-            success: function(__response: any) {
-                if (typeof __response.result !== "undefined") {
+            success: function(data: any, textStatus: string, jqXHR: JQueryXHR) {
+                // data is a JSON-RPC 2.0 response, either
+                // {"jsonrpc": "2.0", "result": -19, "id": 2} on success
+                // or
+                // {"jsonrpc": "2.0", "error": {"code": -32601, "message": "Method not found"}, "id": "1"} on error
+                if (typeof data.result !== "undefined") {
                     if (kwds.success) {
-                        kwds.success(function(json: any[]): QaObject[] { var sequence: QaObject[] = []; for (var i = 0; i < json.length; i++) { sequence.push(QaObject.fromThryftJSON(json[i])); } return sequence; }(__response.result));
+                        kwds.success(function(json: any[]): QaObject[] { var sequence: QaObject[] = []; for (var i = 0; i < json.length; i++) { sequence.push(QaObject.fromThryftJSON(json[i])); } return sequence; }(data.result));
                     }
                 } else {
                     if (kwds.error) {
-                        kwds.error(null, __response.error.message, null);
+                        kwds.error({jqXHR: jqXHR, textStatus: data.error.message, errorThrown: null});
                     }
                 }
             },
@@ -126,11 +134,11 @@ export class JsonRpcQaObjectQueryService implements QaObjectQueryService {
             },
             mimeType: 'application/json',
             type: 'POST',
-            success: function(__response: any) {
-                if (typeof __response.result !== "undefined") {
-                    returnValue = function(json: any[]): QaObject[] { var sequence: QaObject[] = []; for (var i = 0; i < json.length; i++) { sequence.push(QaObject.fromThryftJSON(json[i])); } return sequence; }(__response.result);
+            success: function(data: any) {
+                if (typeof data.result !== "undefined") {
+                    returnValue = function(json: any[]): QaObject[] { var sequence: QaObject[] = []; for (var i = 0; i < json.length; i++) { sequence.push(QaObject.fromThryftJSON(json[i])); } return sequence; }(data.result);
                 } else {
-                    throw new Error(__response.error);
+                    throw new Error(data.error);
                 }
             },
             url: (this.baseUrl ? this.baseUrl : "") + '/api/jsonrpc/qa_object_query',

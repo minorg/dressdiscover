@@ -6,8 +6,8 @@ export class LoggingQaObjectQueryService implements QaObjectQueryService {
     constructor(private delegate: LoggingQaObjectQueryService) {
     }
 
-    getObjectByIdAsync(kwds: {id: QaObjectId, error?: (jqXHR: JQueryXHR | null, textStatus: string, errorThrown: string | null) => any, success?: (returnValue: QaObject) => void}): void {
-        this.delegate.getObjectByIdAsync({id: kwds.id, error: (jqXHR: JQueryXHR | null, textStatus: string, errorThrown: string | null) => { console.warn("getObjectByIdAsync({", "id: ", kwds.id, "}) -> ", textStatus); console.warn(errorThrown); if (kwds.error) { kwds.error(jqXHR, textStatus, errorThrown); } }, success: (returnValue: QaObject) => { console.debug("getObjectByIdSync({", "id: ", kwds.id, "}) -> ", returnValue); if (kwds.success) { kwds.success(returnValue); } }});
+    getObjectByIdAsync(kwds: {id: QaObjectId, error?: (errorKwds: {textStatus: string, errorThrown: any, [index: string]: any}) => any, success?: (returnValue: QaObject) => void}): void {
+        this.delegate.getObjectByIdAsync({id: kwds.id, error: (errorKwds: {textStatus: string, errorThrown: any, [index: string]: any}) => { console.warn("getObjectByIdAsync({", "id: ", kwds.id, "}) -> ", errorKwds.textStatus); console.warn(errorKwds.errorThrown); if (kwds.error) { kwds.error(errorKwds); } }, success: (returnValue: QaObject) => { console.debug("getObjectByIdSync({", "id: ", kwds.id, "}) -> ", returnValue); if (kwds.success) { kwds.success(returnValue); } }});
     }
 
     getObjectByIdSync(kwds: {id: QaObjectId}): QaObject {
@@ -22,8 +22,8 @@ export class LoggingQaObjectQueryService implements QaObjectQueryService {
         }
     }
 
-    getObjectsAsync(kwds: {error?: (jqXHR: JQueryXHR | null, textStatus: string, errorThrown: string | null) => any, success?: (returnValue: QaObject[]) => void}): void {
-        this.delegate.getObjectsAsync({error: (jqXHR: JQueryXHR | null, textStatus: string, errorThrown: string | null) => { console.warn("getObjectsAsync() -> ", textStatus); console.warn(errorThrown); if (kwds.error) { kwds.error(jqXHR, textStatus, errorThrown); } }, success: (returnValue: QaObject[]) => { console.debug("getObjectsSync() -> ", returnValue); if (kwds.success) { kwds.success(returnValue); } }});
+    getObjectsAsync(kwds: {error?: (errorKwds: {textStatus: string, errorThrown: any, [index: string]: any}) => any, success?: (returnValue: QaObject[]) => void}): void {
+        this.delegate.getObjectsAsync({error: (errorKwds: {textStatus: string, errorThrown: any, [index: string]: any}) => { console.warn("getObjectsAsync() -> ", errorKwds.textStatus); console.warn(errorKwds.errorThrown); if (kwds.error) { kwds.error(errorKwds); } }, success: (returnValue: QaObject[]) => { console.debug("getObjectsSync() -> ", returnValue); if (kwds.success) { kwds.success(returnValue); } }});
     }
 
     getObjectsSync(): QaObject[] {

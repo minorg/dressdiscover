@@ -6,11 +6,17 @@ import { QuestionId } from "../../models/qa/question_id";
 import { QuestionSetId } from "../../models/qa/question_set_id";
 
 export abstract class AsyncToSyncAnswerQueryService implements AnswerQueryService {
-    getAnswersAsync(kwds: {objectId: QaObjectId, questionSetId: QuestionSetId, questionIds?: QuestionId[], userId?: QaUserId, error?: (jqXHR: JQueryXHR | null, textStatus: string, errorThrown: string | null) => any, success?: (returnValue: Answer[]) => void}): void {
+    getAnswersAsync(kwds: {objectId: QaObjectId, questionSetId: QuestionSetId, questionIds?: QuestionId[], userId?: QaUserId, error?: (errorKwds: {textStatus: string, errorThrown: any, [index: string]: any}) => any, success?: (returnValue: Answer[]) => void}): void {
         try {
-            kwds.success(this.getAnswersSync({objectId: kwds.objectId, questionSetId: kwds.questionSetId, questionIds: kwds.questionIds, userId: kwds.userId}));
+            if (kwds.success) {
+                kwds.success(this.getAnswersSync({objectId: kwds.objectId, questionSetId: kwds.questionSetId, questionIds: kwds.questionIds, userId: kwds.userId}));
+            } else {
+                this.getAnswersSync({objectId: kwds.objectId, questionSetId: kwds.questionSetId, questionIds: kwds.questionIds, userId: kwds.userId});
+            }
         } catch (e) {
-            kwds.error(null, e.message, e);
+            if (kwds.error) {
+                kwds.error({textStatus: e.message, errorThrown: e});
+            }
         }
     }
 

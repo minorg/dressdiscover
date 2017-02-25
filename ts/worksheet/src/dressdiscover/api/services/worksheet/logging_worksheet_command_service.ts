@@ -5,8 +5,8 @@ export class LoggingWorksheetCommandService implements WorksheetCommandService {
     constructor(private delegate: LoggingWorksheetCommandService) {
     }
 
-    deleteWorksheetStateAsync(kwds: {accessionNumber: string, error?: (jqXHR: JQueryXHR | null, textStatus: string, errorThrown: string | null) => any, success?: success?: () => void}): void {
-        this.delegate.deleteWorksheetStateAsync({accessionNumber: kwds.accessionNumber, error: (jqXHR: JQueryXHR | null, textStatus: string, errorThrown: string | null) => { console.warn("deleteWorksheetStateAsync({", "accessionNumber: ", kwds.accessionNumber, "}) -> ", textStatus); console.warn(errorThrown); if (kwds.error) { kwds.error(jqXHR, textStatus, errorThrown); } }, success: () => { console.debug("deleteWorksheetStateSync({", "accessionNumber: ", kwds.accessionNumber, "}) -> success"); if (kwds.success) { kwds.success(); } }});
+    deleteWorksheetStateAsync(kwds: {accessionNumber: string, error?: (errorKwds: {textStatus: string, errorThrown: any, [index: string]: any}) => any, success?: () => void}): void {
+        this.delegate.deleteWorksheetStateAsync({accessionNumber: kwds.accessionNumber, error: (errorKwds: {textStatus: string, errorThrown: any, [index: string]: any}) => { console.warn("deleteWorksheetStateAsync({", "accessionNumber: ", kwds.accessionNumber, "}) -> ", errorKwds.textStatus); console.warn(errorKwds.errorThrown); if (kwds.error) { kwds.error(errorKwds); } }, success: () => { console.debug("deleteWorksheetStateSync({", "accessionNumber: ", kwds.accessionNumber, "}) -> success"); if (kwds.success) { kwds.success(); } }});
     }
 
     deleteWorksheetStateSync(kwds: {accessionNumber: string}): void {
@@ -20,8 +20,8 @@ export class LoggingWorksheetCommandService implements WorksheetCommandService {
         }
     }
 
-    putWorksheetStateAsync(kwds: {state: WorksheetState, error?: (jqXHR: JQueryXHR | null, textStatus: string, errorThrown: string | null) => any, success?: success?: () => void}): void {
-        this.delegate.putWorksheetStateAsync({state: kwds.state, error: (jqXHR: JQueryXHR | null, textStatus: string, errorThrown: string | null) => { console.warn("putWorksheetStateAsync({", "state: ", kwds.state, "}) -> ", textStatus); console.warn(errorThrown); if (kwds.error) { kwds.error(jqXHR, textStatus, errorThrown); } }, success: () => { console.debug("putWorksheetStateSync({", "state: ", kwds.state, "}) -> success"); if (kwds.success) { kwds.success(); } }});
+    putWorksheetStateAsync(kwds: {state: WorksheetState, error?: (errorKwds: {textStatus: string, errorThrown: any, [index: string]: any}) => any, success?: () => void}): void {
+        this.delegate.putWorksheetStateAsync({state: kwds.state, error: (errorKwds: {textStatus: string, errorThrown: any, [index: string]: any}) => { console.warn("putWorksheetStateAsync({", "state: ", kwds.state, "}) -> ", errorKwds.textStatus); console.warn(errorKwds.errorThrown); if (kwds.error) { kwds.error(errorKwds); } }, success: () => { console.debug("putWorksheetStateSync({", "state: ", kwds.state, "}) -> success"); if (kwds.success) { kwds.success(); } }});
     }
 
     putWorksheetStateSync(kwds: {state: WorksheetState}): void {

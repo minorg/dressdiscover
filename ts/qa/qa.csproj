@@ -74,6 +74,11 @@
     <TypeScriptCompile Include="src\dressdiscover\api\services\qa\json_rpc_qa_object_query_service.ts" />
     <TypeScriptCompile Include="src\dressdiscover\api\services\qa\json_rpc_question_query_service.ts" />
     <TypeScriptCompile Include="src\dressdiscover\api\services\qa\json_rpc_question_set_query_service.ts" />
+    <TypeScriptCompile Include="src\dressdiscover\api\services\qa\logging_answer_command_service.ts" />
+    <TypeScriptCompile Include="src\dressdiscover\api\services\qa\logging_answer_query_service.ts" />
+    <TypeScriptCompile Include="src\dressdiscover\api\services\qa\logging_qa_object_query_service.ts" />
+    <TypeScriptCompile Include="src\dressdiscover\api\services\qa\logging_question_query_service.ts" />
+    <TypeScriptCompile Include="src\dressdiscover\api\services\qa\logging_question_set_query_service.ts" />
     <TypeScriptCompile Include="src\dressdiscover\api\services\qa\no_such_object_exception.ts" />
     <TypeScriptCompile Include="src\dressdiscover\api\services\qa\no_such_question_exception.ts" />
     <TypeScriptCompile Include="src\dressdiscover\api\services\qa\no_such_question_set_exception.ts" />
