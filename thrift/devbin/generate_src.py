@@ -32,7 +32,7 @@ from thryft.generators.sql.create_table_sql_generator import CreateTableSqlGener
 from thryft.generators.ts.async_to_sync_service_ts_generator import AsyncToSyncServiceTsGenerator
 from thryft.generators.ts.backbone_ts_generator import BackboneTsGenerator
 from thryft.generators.ts.json_rpc_client_ts_generator import JsonRpcClientTsGenerator
-from thryft.generators.ts.logging_ts_service_generator import LoggingTsServiceGenerator
+from thryft.generators.ts.logging_service_ts_generator import LoggingServiceTsGenerator
 from thryft.generators.ts.ts_generator import TsGenerator
 from yutil import indent, upper_camelize
 
@@ -201,7 +201,7 @@ class Main(thryft.main.Main):
                                     )
 
                                     self._compile_thrift_file(
-                                        generator=LoggingTsServiceGenerator(ts_out_dir_path=ts_out_dir_path),
+                                        generator=LoggingServiceTsGenerator(ts_out_dir_path=ts_out_dir_path),
                                         out=ts_out_dir_path,
                                         **compile_kwds
                                     )
