@@ -3,7 +3,7 @@ import { QaObjectId } from "../../models/qa/qa_object_id";
 import { QaObjectQueryService } from "./qa_object_query_service";
 
 export class LoggingQaObjectQueryService implements QaObjectQueryService {
-    constructor(private delegate: LoggingQaObjectQueryService) {
+    constructor(private delegate: QaObjectQueryService) {
     }
 
     getObjectByIdAsync(kwds: {id: QaObjectId, error?: (errorKwds: {textStatus: string, errorThrown: any, [index: string]: any}) => any, success?: (returnValue: QaObject) => void}): void {

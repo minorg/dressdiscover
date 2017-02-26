@@ -6,7 +6,7 @@ import { QuestionId } from "../../models/qa/question_id";
 import { QuestionSetId } from "../../models/qa/question_set_id";
 
 export class LoggingAnswerQueryService implements AnswerQueryService {
-    constructor(private delegate: LoggingAnswerQueryService) {
+    constructor(private delegate: AnswerQueryService) {
     }
 
     getAnswersAsync(kwds: {objectId: QaObjectId, questionSetId: QuestionSetId, questionIds?: QuestionId[], userId?: QaUserId, error?: (errorKwds: {textStatus: string, errorThrown: any, [index: string]: any}) => any, success?: (returnValue: Answer[]) => void}): void {

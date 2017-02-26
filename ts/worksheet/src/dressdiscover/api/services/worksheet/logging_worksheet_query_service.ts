@@ -3,7 +3,7 @@ import { WorksheetQueryService } from "./worksheet_query_service";
 import { WorksheetState } from "../../models/worksheet/worksheet_state";
 
 export class LoggingWorksheetQueryService implements WorksheetQueryService {
-    constructor(private delegate: LoggingWorksheetQueryService) {
+    constructor(private delegate: WorksheetQueryService) {
     }
 
     getWorksheetAccessionNumbersAsync(kwds: {error?: (errorKwds: {textStatus: string, errorThrown: any, [index: string]: any}) => any, success?: (returnValue: string[]) => void}): void {

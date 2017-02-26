@@ -2,7 +2,7 @@ import { Answer } from "../../models/qa/answer";
 import { AnswerCommandService } from "./answer_command_service";
 
 export class LoggingAnswerCommandService implements AnswerCommandService {
-    constructor(private delegate: LoggingAnswerCommandService) {
+    constructor(private delegate: AnswerCommandService) {
     }
 
     putAnswerAsync(kwds: {answer: Answer, error?: (errorKwds: {textStatus: string, errorThrown: any, [index: string]: any}) => any, success?: () => void}): void {

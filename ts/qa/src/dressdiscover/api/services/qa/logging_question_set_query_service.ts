@@ -3,7 +3,7 @@ import { QuestionSetId } from "../../models/qa/question_set_id";
 import { QuestionSetQueryService } from "./question_set_query_service";
 
 export class LoggingQuestionSetQueryService implements QuestionSetQueryService {
-    constructor(private delegate: LoggingQuestionSetQueryService) {
+    constructor(private delegate: QuestionSetQueryService) {
     }
 
     getQuestionSetsAsync(kwds: {ids: QuestionSetId[], error?: (errorKwds: {textStatus: string, errorThrown: any, [index: string]: any}) => any, success?: (returnValue: QuestionSet[]) => void}): void {
