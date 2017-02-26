@@ -56,11 +56,11 @@ export class AnswerValue {
         var valueId: QuestionValueId | undefined;
         var valueString: string | undefined;
         for (var fieldName in json) {
-            if (fieldName == "value_i32") {
+            if (fieldName == "value_i32" || fieldName == "1:value_i32") {
                 valueI32 = json[fieldName];
-            } else if (fieldName == "value_id") {
+            } else if (fieldName == "value_id" || fieldName == "2:value_id") {
                 valueId = QuestionValueId.parse(json[fieldName]);
-            } else if (fieldName == "value_string") {
+            } else if (fieldName == "value_string" || fieldName == "3:value_string") {
                 valueString = json[fieldName];
             }
         }
@@ -71,13 +71,13 @@ export class AnswerValue {
     toThryftJSON(): any {
         var json: {[index: string]: any} = {};
         if (this.valueI32 != null) {
-            json["value_i32"] = this.valueI32;
+            json["1:value_i32"] = this.valueI32;
         }
         if (this.valueId != null) {
-            json["value_id"] = this.valueId.toString();
+            json["2:value_id"] = this.valueId.toString();
         }
         if (this.valueString != null) {
-            json["value_string"] = this.valueString;
+            json["3:value_string"] = this.valueString;
         }
         return json;
     }

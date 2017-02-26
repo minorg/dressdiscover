@@ -12,8 +12,11 @@ public abstract class AbstractTest {
     @Before
     public final void checkReadWrite() {
         if (!readOnly) {
-            if (!libPropertiesModule.getGlobalProperties().getEnvironment().equals("dev")
-                    && !libPropertiesModule.getGlobalProperties().getEnvironment().equals("jenkins")) {
+            switch (libPropertiesModule.getGlobalProperties().getEnvironment()) {
+            case DEV:
+            case JENKINS:
+                break;
+            default:
                 throw new AssertionError();
             }
         }

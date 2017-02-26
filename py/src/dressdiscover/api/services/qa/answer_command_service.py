@@ -3,6 +3,16 @@ import dressdiscover.api.models.qa.answer
 
 
 class AnswerCommandService(object):
+    def delete_answers(
+        self,
+    ):
+        self._delete_answers()
+
+    def _delete_answers(
+        self,
+    ):
+        raise NotImplementedError(self.__class__.__module__ + '.' + self.__class__.__name__ + '._delete_answers')
+
     def put_answer(
         self,
         answer=None,

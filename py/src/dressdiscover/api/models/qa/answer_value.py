@@ -245,20 +245,20 @@ class AnswerValue(object):
 
         iprot.read_struct_begin()
         while True:
-            ifield_name, ifield_type, _ifield_id = iprot.read_field_begin()
+            ifield_name, ifield_type, ifield_id = iprot.read_field_begin()
             if ifield_type == 0: # STOP
                 break
-            elif ifield_name == 'value_i32':
+            elif ifield_name == 'value_i32' and ifield_id == 1:
                 try:
                     init_kwds['value_i32'] = iprot.read_i32()
                 except (TypeError, ValueError,):
                     pass
-            elif ifield_name == 'value_id':
+            elif ifield_name == 'value_id' and ifield_id == 2:
                 try:
                     init_kwds['value_id'] = iprot.read_string()
                 except (TypeError, ValueError,):
                     pass
-            elif ifield_name == 'value_string':
+            elif ifield_name == 'value_string' and ifield_id == 3:
                 try:
                     init_kwds['value_string'] = iprot.read_string()
                 except (TypeError, ValueError,):
@@ -326,17 +326,17 @@ class AnswerValue(object):
         oprot.write_struct_begin('AnswerValue')
 
         if self.value_i32 is not None:
-            oprot.write_field_begin(name='value_i32', type=8, id=None)
+            oprot.write_field_begin(name='value_i32', type=8, id=1)
             oprot.write_i32(self.value_i32)
             oprot.write_field_end()
 
         if self.value_id is not None:
-            oprot.write_field_begin(name='value_id', type=11, id=None)
+            oprot.write_field_begin(name='value_id', type=11, id=2)
             oprot.write_string(self.value_id)
             oprot.write_field_end()
 
         if self.value_string is not None:
-            oprot.write_field_begin(name='value_string', type=11, id=None)
+            oprot.write_field_begin(name='value_string', type=11, id=3)
             oprot.write_string(self.value_string)
             oprot.write_field_end()
 

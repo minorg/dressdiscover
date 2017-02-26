@@ -1,56 +1,27 @@
 package org.dressdiscover.lib.stores.object;
 
-import java.io.IOException;
-
 import org.dressdiscover.api.models.object.ObjectId;
 import org.dressdiscover.api.models.object.ObjectSummary;
 import org.dressdiscover.api.models.object.ObjectSummaryEntry;
-import org.dressdiscover.api.services.IoException;
 import org.dressdiscover.api.services.object.NoSuchObjectException;
 import org.dressdiscover.lib.properties.GlobalProperties;
-import org.dressdiscover.lib.properties.StoreProperties;
-import org.dressdiscover.lib.services.IoExceptions;
-import org.elasticsearch.ElasticsearchException;
-import org.thryft.protocol.OutputProtocolException;
-import org.thryft.waf.lib.clients.elasticsearch.ElasticSearchClient;
-import org.thryft.waf.lib.stores.elasticsearch.ElasticSearchIndex;
+import org.dressdiscover.lib.stores.ElasticSearchClient;
+import org.dressdiscover.lib.stores.ElasticSearchIndex;
 
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
 
 @Singleton
 public class ObjectSummaryElasticSearchIndex
-        extends ElasticSearchIndex<IoException, ObjectSummary, ObjectSummaryEntry, ObjectId, NoSuchObjectException> {
+        extends ElasticSearchIndex<ObjectSummary, ObjectSummaryEntry, ObjectId, NoSuchObjectException> {
     @Inject
-    public ObjectSummaryElasticSearchIndex(final GlobalProperties globalProperties,
-            final StoreProperties storeProperties) {
-        super(new ElasticSearchClient(storeProperties.getElasticSearchHost(), storeProperties.getElasticSearchPort()),
-                DOCUMENT_TYPE, new ExceptionFactory<IoException, ObjectId, NoSuchObjectException>() {
-                    @Override
-                    public IoException newIoException(final ElasticsearchException cause, final String message) {
-                        return IoExceptions.wrap(cause, message);
-                    }
-
-                    @Override
-                    public IoException newIoException(final IOException cause, final String message) {
-                        return IoExceptions.wrap(cause, message);
-                    }
-
-                    @Override
-                    public IoException newIoException(final OutputProtocolException cause, final String message) {
-                        return IoExceptions.wrap(cause, message);
-                    }
-
-                    @Override
-                    public IoException newIoException(final String message) {
-                        return IoException.create(message);
-                    }
-
-                    @Override
-                    public NoSuchObjectException newNoSuchModelException(final ObjectId id) {
-                        return new NoSuchObjectException();
-                    }
-                }, INDEX_NAME_PREFIX + '_' + globalProperties.getEnvironment());
+    public ObjectSummaryElasticSearchIndex(final ElasticSearchClient client, final GlobalProperties properties) {
+        super(client, DOCUMENT_TYPE, new AbstractExceptionFactory<ObjectId, NoSuchObjectException>() {
+            @Override
+            public NoSuchObjectException newNoSuchModelException(final ObjectId id) {
+                return NoSuchObjectException.create(id);
+            }
+        }, INDEX_NAME_PREFIX + '_' + properties.getEnvironment().name().toLowerCase());
     }
 
     public final static String DOCUMENT_TYPE = "object_summary";

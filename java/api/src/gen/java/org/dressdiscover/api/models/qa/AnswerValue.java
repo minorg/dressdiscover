@@ -88,21 +88,27 @@ public final class AnswerValue implements org.thryft.Struct {
                     }
                     switch (ifield.getName()) {
                     case "value_i32": {
-                        try {
-                            valueI32 = com.google.common.base.Optional.of(iprot.readI32());
-                        } catch (final NumberFormatException e) {
+                        if (!ifield.hasId() || ifield.getId() == 1) {
+                            try {
+                                valueI32 = com.google.common.base.Optional.of(iprot.readI32());
+                            } catch (final NumberFormatException e) {
+                            }
                         }
                         break;
                     }
                     case "value_id": {
-                        try {
-                            valueId = com.google.common.base.Optional.of(org.dressdiscover.api.models.qa.QuestionValueId.parse(iprot.readString()));
-                        } catch (final IllegalArgumentException e) {
+                        if (!ifield.hasId() || ifield.getId() == 2) {
+                            try {
+                                valueId = com.google.common.base.Optional.of(org.dressdiscover.api.models.qa.QuestionValueId.parse(iprot.readString()));
+                            } catch (final IllegalArgumentException e) {
+                            }
                         }
                         break;
                     }
                     case "value_string": {
-                        valueString = com.google.common.base.Optional.of(iprot.readString());
+                        if (!ifield.hasId() || ifield.getId() == 3) {
+                            valueString = com.google.common.base.Optional.of(iprot.readString());
+                        }
                         break;
                     }
                     default:
@@ -260,9 +266,9 @@ public final class AnswerValue implements org.thryft.Struct {
 
     @SuppressWarnings("serial")
     public enum FieldMetadata implements org.thryft.CompoundType.FieldMetadata {
-        VALUE_I32("valueI32", new com.google.common.reflect.TypeToken<Integer>() {}, false, 0, "value_i32", org.thryft.protocol.Type.I32),
-        VALUE_ID("valueId", new com.google.common.reflect.TypeToken<org.dressdiscover.api.models.qa.QuestionValueId>() {}, false, 0, "value_id", org.thryft.protocol.Type.STRING),
-        VALUE_STRING("valueString", new com.google.common.reflect.TypeToken<String>() {}, false, 0, "value_string", org.thryft.protocol.Type.STRING);
+        VALUE_I32("valueI32", new com.google.common.reflect.TypeToken<Integer>() {}, false, 1, "value_i32", org.thryft.protocol.Type.I32),
+        VALUE_ID("valueId", new com.google.common.reflect.TypeToken<org.dressdiscover.api.models.qa.QuestionValueId>() {}, false, 2, "value_id", org.thryft.protocol.Type.STRING),
+        VALUE_STRING("valueString", new com.google.common.reflect.TypeToken<String>() {}, false, 3, "value_string", org.thryft.protocol.Type.STRING);
 
         @Override
         public String getJavaName() {
@@ -717,21 +723,27 @@ public final class AnswerValue implements org.thryft.Struct {
                 }
                 switch (ifield.getName()) {
                 case "value_i32": {
-                    try {
-                        valueI32 = com.google.common.base.Optional.of(iprot.readI32());
-                    } catch (final NumberFormatException e) {
+                    if (!ifield.hasId() || ifield.getId() == 1) {
+                        try {
+                            valueI32 = com.google.common.base.Optional.of(iprot.readI32());
+                        } catch (final NumberFormatException e) {
+                        }
                     }
                     break;
                 }
                 case "value_id": {
-                    try {
-                        valueId = com.google.common.base.Optional.of(org.dressdiscover.api.models.qa.QuestionValueId.parse(iprot.readString()));
-                    } catch (final IllegalArgumentException e) {
+                    if (!ifield.hasId() || ifield.getId() == 2) {
+                        try {
+                            valueId = com.google.common.base.Optional.of(org.dressdiscover.api.models.qa.QuestionValueId.parse(iprot.readString()));
+                        } catch (final IllegalArgumentException e) {
+                        }
                     }
                     break;
                 }
                 case "value_string": {
-                    valueString = com.google.common.base.Optional.of(iprot.readString());
+                    if (!ifield.hasId() || ifield.getId() == 3) {
+                        valueString = com.google.common.base.Optional.of(iprot.readString());
+                    }
                     break;
                 }
                 default:
@@ -813,19 +825,19 @@ public final class AnswerValue implements org.thryft.Struct {
     @Override
     public void writeFields(final org.thryft.protocol.OutputProtocol oprot) throws org.thryft.protocol.OutputProtocolException {
         if (getValueI32().isPresent()) {
-            oprot.writeFieldBegin("value_i32", org.thryft.protocol.Type.I32, (short)0);
+            oprot.writeFieldBegin("value_i32", org.thryft.protocol.Type.I32, (short)1);
             oprot.writeI32(getValueI32().get());
             oprot.writeFieldEnd();
         }
 
         if (getValueId().isPresent()) {
-            oprot.writeFieldBegin("value_id", org.thryft.protocol.Type.STRING, (short)0);
+            oprot.writeFieldBegin("value_id", org.thryft.protocol.Type.STRING, (short)2);
             oprot.writeString(getValueId().get().toString());
             oprot.writeFieldEnd();
         }
 
         if (getValueString().isPresent()) {
-            oprot.writeFieldBegin("value_string", org.thryft.protocol.Type.STRING, (short)0);
+            oprot.writeFieldBegin("value_string", org.thryft.protocol.Type.STRING, (short)3);
             oprot.writeString(getValueString().get());
             oprot.writeFieldEnd();
         }

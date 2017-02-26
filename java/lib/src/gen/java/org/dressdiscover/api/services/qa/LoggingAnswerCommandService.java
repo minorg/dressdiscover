@@ -3,10 +3,12 @@ package org.dressdiscover.api.services.qa;
 @com.google.inject.Singleton
 public class LoggingAnswerCommandService implements org.dressdiscover.api.services.qa.AnswerCommandService {
     public static class Markers {
+        public final static org.slf4j.Marker DELETE_ANSWERS = org.slf4j.MarkerFactory.getMarker("DELETE_ANSWERS");
         public final static org.slf4j.Marker PUT_ANSWER = org.slf4j.MarkerFactory.getMarker("PUT_ANSWER");
 
         public final static org.slf4j.Marker ANSWER_COMMAND_SERVICE = org.slf4j.MarkerFactory.getMarker("ANSWER_COMMAND_SERVICE");
         static {
+            ANSWER_COMMAND_SERVICE.add(DELETE_ANSWERS);
             ANSWER_COMMAND_SERVICE.add(PUT_ANSWER);
         }
     }
@@ -16,6 +18,30 @@ public class LoggingAnswerCommandService implements org.dressdiscover.api.servic
     @com.google.inject.Inject
     public LoggingAnswerCommandService(@com.google.inject.name.Named("org.dressdiscover.api.services.qa.LoggingAnswerCommandService.delegate") final org.dressdiscover.api.services.qa.AnswerCommandService delegate) {
         this.delegate = com.google.common.base.Preconditions.checkNotNull(delegate);
+    }
+
+    public void deleteAnswers() throws org.dressdiscover.api.services.IoException {
+        final StringBuilder __logMessageStringBuilder = new StringBuilder();
+        final java.util.List<Object> __logMessageArgs = new java.util.ArrayList<Object>();
+
+        __logMessageStringBuilder.append("delete_answers(");
+        __logMessageStringBuilder.append(")");
+
+        try {
+            delegate.deleteAnswers();
+
+            logger.info(Markers.DELETE_ANSWERS, __logMessageStringBuilder.toString(), __logMessageArgs.toArray());
+        } catch (final org.dressdiscover.api.services.IoException e) {
+            __logMessageStringBuilder.append(" -> {}");
+            __logMessageArgs.add(e.toString());
+            logger.error(Markers.DELETE_ANSWERS, __logMessageStringBuilder.toString(), __logMessageArgs.toArray());
+            throw e;
+        } catch (final RuntimeException e) {
+            __logMessageStringBuilder.append(" -> ");
+            __logMessageArgs.add(e);
+            logger.error(Markers.DELETE_ANSWERS, __logMessageStringBuilder.toString(), __logMessageArgs.toArray());
+            throw e;
+        }
     }
 
     public void putAnswer(final org.dressdiscover.api.models.qa.Answer answer) throws org.dressdiscover.api.services.IoException {

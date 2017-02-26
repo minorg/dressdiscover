@@ -2,6 +2,7 @@ package org.dressdiscover.api.services.qa;
 
 public interface AnswerCommandService {
     public enum FunctionMetadata {
+        DELETE_ANSWERS("delete_answers"),
         PUT_ANSWER("put_answer");
 
         public String getThriftName() {
@@ -16,6 +17,602 @@ public interface AnswerCommandService {
     }
 
     public static class Messages {
+        public final static class DeleteAnswersRequest implements org.thryft.Struct {
+            public final static class Builder {
+                public Builder() {
+                }
+
+                public Builder(final DeleteAnswersRequest other) {
+                }
+
+                protected DeleteAnswersRequest _build() {
+                    return new DeleteAnswersRequest();
+                }
+
+                public DeleteAnswersRequest build() {
+                    return _build();
+                }
+
+                public Builder readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type) throws org.thryft.protocol.InputProtocolException {
+                    return readAs(iprot, type, com.google.common.base.Optional.<UnknownFieldCallback> absent());
+                }
+
+                public Builder readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type, final com.google.common.base.Optional<UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
+                    switch (type) {
+                    case LIST:
+                        return readAsList(iprot);
+                    case STRUCT:
+                        return readAsStruct(iprot, unknownFieldCallback);
+                    default:
+                        throw new IllegalArgumentException("cannot read as " + type);
+                    }
+                }
+
+                public Builder readAsList(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
+                    try {
+                        iprot.readListBegin();
+                        iprot.readListEnd();
+                    } catch (final RuntimeException e) {
+                        throw new IllegalStateException(e);
+                    }
+                    return this;
+                }
+
+                public Builder readAsStruct(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
+                    return readAsStruct(iprot, com.google.common.base.Optional.<UnknownFieldCallback> absent());
+                }
+
+                public Builder readAsStruct(final org.thryft.protocol.InputProtocol iprot, final com.google.common.base.Optional<UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
+                    try {
+                        iprot.readStructBegin();
+                        while (true) {
+                            final org.thryft.protocol.FieldBegin ifield = iprot.readFieldBegin();
+                            if (ifield.getType() == org.thryft.protocol.Type.STOP) {
+                                break;
+                            }
+                            if (unknownFieldCallback.isPresent()) {
+                                unknownFieldCallback.get().apply(ifield);
+                            }
+                            iprot.readFieldEnd();
+                        }
+                        iprot.readStructEnd();
+                    } catch (final RuntimeException e) {
+                        throw new IllegalStateException(e);
+                    }
+                    return this;
+                }
+
+                public Builder set(final String fieldThriftName, @javax.annotation.Nullable final java.lang.Object value) {
+                    throw new IllegalArgumentException();
+                }
+
+                public Builder set(final org.thryft.Struct.FieldMetadata fieldMetadata, @javax.annotation.Nullable final java.lang.Object value) {
+                    throw new IllegalArgumentException();
+                }
+
+                public Builder setIfPresent(final DeleteAnswersRequest other) {
+                    com.google.common.base.Preconditions.checkNotNull(other);
+
+
+
+                    return this;
+                }
+
+                public Builder unset(final String fieldThriftName) {
+                    throw new IllegalArgumentException();
+                }
+
+                public Builder unset(final org.thryft.Struct.FieldMetadata fieldMetadata) {
+                    throw new IllegalArgumentException();
+                }
+            }
+
+            public final static class Factory implements org.thryft.CompoundType.Factory<DeleteAnswersRequest> {
+                @Override
+                public DeleteAnswersRequest readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type) throws org.thryft.protocol.InputProtocolException {
+                    return DeleteAnswersRequest.readAs(iprot, type);
+                }
+
+                @Override
+                public DeleteAnswersRequest readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type,
+                        final com.google.common.base.Optional<org.thryft.CompoundType.UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
+                    return DeleteAnswersRequest.readAs(iprot, type, unknownFieldCallback);
+                }
+
+                @Override
+                public DeleteAnswersRequest readAsList(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
+                    return DeleteAnswersRequest.readAsList(iprot);
+                }
+
+                @Override
+                public DeleteAnswersRequest readAsStruct(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
+                    return DeleteAnswersRequest.readAsStruct(iprot);
+                }
+
+                @Override
+                public DeleteAnswersRequest readAsStruct(final org.thryft.protocol.InputProtocol iprot,
+                        final com.google.common.base.Optional<org.thryft.CompoundType.UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
+                    return DeleteAnswersRequest.readAsStruct(iprot, unknownFieldCallback);
+                }
+            }
+
+            public interface Validator<ExceptionT extends Exception> {
+            }
+
+            public interface ConstructionValidator extends Validator<RuntimeException> {
+            }
+
+            public static class DefaultConstructionValidator implements ConstructionValidator {
+                public static DefaultConstructionValidator getInstance() {
+                    return instance;
+                }
+
+                public DefaultConstructionValidator() {
+                }
+
+                private final static DefaultConstructionValidator instance = new DefaultConstructionValidator();
+            }
+
+            public static class NopConstructionValidator implements ConstructionValidator {
+                public static NopConstructionValidator getInstance() {
+                    return instance;
+                }
+
+                public NopConstructionValidator() {
+                }
+
+                private final static NopConstructionValidator instance = new NopConstructionValidator();
+            }
+
+            public interface ReadValidator extends Validator<org.thryft.protocol.InputProtocolException> {
+            }
+
+            public static class DefaultReadValidator implements ReadValidator {
+                public static DefaultReadValidator getInstance() {
+                    return instance;
+                }
+
+                public DefaultReadValidator() {
+                }
+
+                private final static DefaultReadValidator instance = new DefaultReadValidator();
+            }
+
+            public static class NopReadValidator implements ReadValidator {
+                public static NopReadValidator getInstance() {
+                    return instance;
+                }
+
+                public NopReadValidator() {
+                }
+
+                private final static NopReadValidator instance = new NopReadValidator();
+            }
+
+            public DeleteAnswersRequest() {
+            }
+
+            /**
+             * Copy constructor
+             */
+            public DeleteAnswersRequest(final DeleteAnswersRequest other) {
+            }
+
+            public static Builder builder() {
+                return new Builder();
+            }
+
+            public static Builder builder(final DeleteAnswersRequest other) {
+                return new Builder(other);
+            }
+
+            public static Builder builder(final com.google.common.base.Optional<DeleteAnswersRequest> other) {
+                return other.isPresent() ? new Builder(other.get()) : new Builder();
+            }
+
+            public static DeleteAnswersRequest create() {
+                return new DeleteAnswersRequest();
+            }
+
+            @Override
+            public boolean equals(final java.lang.Object otherObject) {
+                if (otherObject == this) {
+                    return true;
+                }
+                if (!(otherObject instanceof DeleteAnswersRequest)) {
+                    return false;
+                }
+
+                return true;
+            }
+
+            @Override
+            public java.lang.Object get(final String fieldThriftName) {
+                throw new IllegalArgumentException(fieldThriftName);
+            }
+
+            @Override
+            public java.lang.Object get(final org.thryft.CompoundType.FieldMetadata fieldMetadata) {
+                throw new IllegalArgumentException();
+            }
+
+            @Override
+            public int hashCode() {
+                int hashCode = 17;
+                return hashCode;
+            }
+
+            public static DeleteAnswersRequest readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type) throws org.thryft.protocol.InputProtocolException {
+                return readAs(iprot, type, com.google.common.base.Optional.<UnknownFieldCallback> absent());
+            }
+
+            public static DeleteAnswersRequest readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type, final com.google.common.base.Optional<UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
+                switch (type) {
+                case LIST:
+                    return readAsList(iprot);
+                case STRUCT:
+                    return readAsStruct(iprot, unknownFieldCallback);
+                default:
+                    throw new IllegalArgumentException("cannot read as " + type);
+                }
+            }
+
+            public static DeleteAnswersRequest readAsList(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
+                try {
+                    iprot.readListBegin();
+                    iprot.readListEnd();
+                } catch (final RuntimeException e) {
+                    throw new IllegalStateException(e);
+                }
+                return new DeleteAnswersRequest();
+            }
+
+            public static DeleteAnswersRequest readAsStruct(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
+                return readAsStruct(iprot, com.google.common.base.Optional.<UnknownFieldCallback> absent());
+            }
+
+            public static DeleteAnswersRequest readAsStruct(final org.thryft.protocol.InputProtocol iprot, final com.google.common.base.Optional<UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
+                try {
+                    iprot.readStructBegin();
+                    while (true) {
+                        final org.thryft.protocol.FieldBegin ifield = iprot.readFieldBegin();
+                        if (ifield.getType() == org.thryft.protocol.Type.STOP) {
+                            break;
+                        }
+                        if (unknownFieldCallback.isPresent()) {
+                            unknownFieldCallback.get().apply(ifield);
+                        }
+                        iprot.readFieldEnd();
+                    }
+                    iprot.readStructEnd();
+                } catch (final RuntimeException e) {
+                    throw new IllegalStateException(e);
+                }
+                return new DeleteAnswersRequest();
+            }
+
+            @Override
+            public String toString() {
+                return com.google.common.base.MoreObjects.toStringHelper(this).omitNullValues().toString();
+            }
+
+            @Override
+            public void writeAsList(final org.thryft.protocol.OutputProtocol oprot) throws org.thryft.protocol.OutputProtocolException {
+                oprot.writeListBegin(org.thryft.protocol.Type.VOID_, 0);
+                oprot.writeListEnd();
+            }
+
+            @Override
+            public void writeAsStruct(final org.thryft.protocol.OutputProtocol oprot) throws org.thryft.protocol.OutputProtocolException {
+                oprot.writeStructBegin("org.dressdiscover.api.services.qa.DeleteAnswersRequest");
+                writeFields(oprot);
+                oprot.writeStructEnd();
+            }
+
+            @Override
+            public void writeFields(final org.thryft.protocol.OutputProtocol oprot) throws org.thryft.protocol.OutputProtocolException {
+                oprot.writeFieldStop();
+            }
+        }
+
+        public final static class DeleteAnswersResponse implements org.thryft.Struct {
+            public final static class Builder {
+                public Builder() {
+                }
+
+                public Builder(final DeleteAnswersResponse other) {
+                }
+
+                protected DeleteAnswersResponse _build() {
+                    return new DeleteAnswersResponse();
+                }
+
+                public DeleteAnswersResponse build() {
+                    return _build();
+                }
+
+                public Builder readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type) throws org.thryft.protocol.InputProtocolException {
+                    return readAs(iprot, type, com.google.common.base.Optional.<UnknownFieldCallback> absent());
+                }
+
+                public Builder readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type, final com.google.common.base.Optional<UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
+                    switch (type) {
+                    case LIST:
+                        return readAsList(iprot);
+                    case STRUCT:
+                        return readAsStruct(iprot, unknownFieldCallback);
+                    default:
+                        throw new IllegalArgumentException("cannot read as " + type);
+                    }
+                }
+
+                public Builder readAsList(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
+                    try {
+                        iprot.readListBegin();
+                        iprot.readListEnd();
+                    } catch (final RuntimeException e) {
+                        throw new IllegalStateException(e);
+                    }
+                    return this;
+                }
+
+                public Builder readAsStruct(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
+                    return readAsStruct(iprot, com.google.common.base.Optional.<UnknownFieldCallback> absent());
+                }
+
+                public Builder readAsStruct(final org.thryft.protocol.InputProtocol iprot, final com.google.common.base.Optional<UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
+                    try {
+                        iprot.readStructBegin();
+                        while (true) {
+                            final org.thryft.protocol.FieldBegin ifield = iprot.readFieldBegin();
+                            if (ifield.getType() == org.thryft.protocol.Type.STOP) {
+                                break;
+                            }
+                            if (unknownFieldCallback.isPresent()) {
+                                unknownFieldCallback.get().apply(ifield);
+                            }
+                            iprot.readFieldEnd();
+                        }
+                        iprot.readStructEnd();
+                    } catch (final RuntimeException e) {
+                        throw new IllegalStateException(e);
+                    }
+                    return this;
+                }
+
+                public Builder set(final String fieldThriftName, @javax.annotation.Nullable final java.lang.Object value) {
+                    throw new IllegalArgumentException();
+                }
+
+                public Builder set(final org.thryft.Struct.FieldMetadata fieldMetadata, @javax.annotation.Nullable final java.lang.Object value) {
+                    throw new IllegalArgumentException();
+                }
+
+                public Builder setIfPresent(final DeleteAnswersResponse other) {
+                    com.google.common.base.Preconditions.checkNotNull(other);
+
+
+
+                    return this;
+                }
+
+                public Builder unset(final String fieldThriftName) {
+                    throw new IllegalArgumentException();
+                }
+
+                public Builder unset(final org.thryft.Struct.FieldMetadata fieldMetadata) {
+                    throw new IllegalArgumentException();
+                }
+            }
+
+            public final static class Factory implements org.thryft.CompoundType.Factory<DeleteAnswersResponse> {
+                @Override
+                public DeleteAnswersResponse readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type) throws org.thryft.protocol.InputProtocolException {
+                    return DeleteAnswersResponse.readAs(iprot, type);
+                }
+
+                @Override
+                public DeleteAnswersResponse readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type,
+                        final com.google.common.base.Optional<org.thryft.CompoundType.UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
+                    return DeleteAnswersResponse.readAs(iprot, type, unknownFieldCallback);
+                }
+
+                @Override
+                public DeleteAnswersResponse readAsList(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
+                    return DeleteAnswersResponse.readAsList(iprot);
+                }
+
+                @Override
+                public DeleteAnswersResponse readAsStruct(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
+                    return DeleteAnswersResponse.readAsStruct(iprot);
+                }
+
+                @Override
+                public DeleteAnswersResponse readAsStruct(final org.thryft.protocol.InputProtocol iprot,
+                        final com.google.common.base.Optional<org.thryft.CompoundType.UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
+                    return DeleteAnswersResponse.readAsStruct(iprot, unknownFieldCallback);
+                }
+            }
+
+            public interface Validator<ExceptionT extends Exception> {
+            }
+
+            public interface ConstructionValidator extends Validator<RuntimeException> {
+            }
+
+            public static class DefaultConstructionValidator implements ConstructionValidator {
+                public static DefaultConstructionValidator getInstance() {
+                    return instance;
+                }
+
+                public DefaultConstructionValidator() {
+                }
+
+                private final static DefaultConstructionValidator instance = new DefaultConstructionValidator();
+            }
+
+            public static class NopConstructionValidator implements ConstructionValidator {
+                public static NopConstructionValidator getInstance() {
+                    return instance;
+                }
+
+                public NopConstructionValidator() {
+                }
+
+                private final static NopConstructionValidator instance = new NopConstructionValidator();
+            }
+
+            public interface ReadValidator extends Validator<org.thryft.protocol.InputProtocolException> {
+            }
+
+            public static class DefaultReadValidator implements ReadValidator {
+                public static DefaultReadValidator getInstance() {
+                    return instance;
+                }
+
+                public DefaultReadValidator() {
+                }
+
+                private final static DefaultReadValidator instance = new DefaultReadValidator();
+            }
+
+            public static class NopReadValidator implements ReadValidator {
+                public static NopReadValidator getInstance() {
+                    return instance;
+                }
+
+                public NopReadValidator() {
+                }
+
+                private final static NopReadValidator instance = new NopReadValidator();
+            }
+
+            public DeleteAnswersResponse() {
+            }
+
+            /**
+             * Copy constructor
+             */
+            public DeleteAnswersResponse(final DeleteAnswersResponse other) {
+            }
+
+            public static Builder builder() {
+                return new Builder();
+            }
+
+            public static Builder builder(final DeleteAnswersResponse other) {
+                return new Builder(other);
+            }
+
+            public static Builder builder(final com.google.common.base.Optional<DeleteAnswersResponse> other) {
+                return other.isPresent() ? new Builder(other.get()) : new Builder();
+            }
+
+            public static DeleteAnswersResponse create() {
+                return new DeleteAnswersResponse();
+            }
+
+            @Override
+            public boolean equals(final java.lang.Object otherObject) {
+                if (otherObject == this) {
+                    return true;
+                }
+                if (!(otherObject instanceof DeleteAnswersResponse)) {
+                    return false;
+                }
+
+                return true;
+            }
+
+            @Override
+            public java.lang.Object get(final String fieldThriftName) {
+                throw new IllegalArgumentException(fieldThriftName);
+            }
+
+            @Override
+            public java.lang.Object get(final org.thryft.CompoundType.FieldMetadata fieldMetadata) {
+                throw new IllegalArgumentException();
+            }
+
+            @Override
+            public int hashCode() {
+                int hashCode = 17;
+                return hashCode;
+            }
+
+            public static DeleteAnswersResponse readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type) throws org.thryft.protocol.InputProtocolException {
+                return readAs(iprot, type, com.google.common.base.Optional.<UnknownFieldCallback> absent());
+            }
+
+            public static DeleteAnswersResponse readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type, final com.google.common.base.Optional<UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
+                switch (type) {
+                case LIST:
+                    return readAsList(iprot);
+                case STRUCT:
+                    return readAsStruct(iprot, unknownFieldCallback);
+                default:
+                    throw new IllegalArgumentException("cannot read as " + type);
+                }
+            }
+
+            public static DeleteAnswersResponse readAsList(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
+                try {
+                    iprot.readListBegin();
+                    iprot.readListEnd();
+                } catch (final RuntimeException e) {
+                    throw new IllegalStateException(e);
+                }
+                return new DeleteAnswersResponse();
+            }
+
+            public static DeleteAnswersResponse readAsStruct(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
+                return readAsStruct(iprot, com.google.common.base.Optional.<UnknownFieldCallback> absent());
+            }
+
+            public static DeleteAnswersResponse readAsStruct(final org.thryft.protocol.InputProtocol iprot, final com.google.common.base.Optional<UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
+                try {
+                    iprot.readStructBegin();
+                    while (true) {
+                        final org.thryft.protocol.FieldBegin ifield = iprot.readFieldBegin();
+                        if (ifield.getType() == org.thryft.protocol.Type.STOP) {
+                            break;
+                        }
+                        if (unknownFieldCallback.isPresent()) {
+                            unknownFieldCallback.get().apply(ifield);
+                        }
+                        iprot.readFieldEnd();
+                    }
+                    iprot.readStructEnd();
+                } catch (final RuntimeException e) {
+                    throw new IllegalStateException(e);
+                }
+                return new DeleteAnswersResponse();
+            }
+
+            @Override
+            public String toString() {
+                return com.google.common.base.MoreObjects.toStringHelper(this).omitNullValues().toString();
+            }
+
+            @Override
+            public void writeAsList(final org.thryft.protocol.OutputProtocol oprot) throws org.thryft.protocol.OutputProtocolException {
+                oprot.writeListBegin(org.thryft.protocol.Type.VOID_, 0);
+                oprot.writeListEnd();
+            }
+
+            @Override
+            public void writeAsStruct(final org.thryft.protocol.OutputProtocol oprot) throws org.thryft.protocol.OutputProtocolException {
+                oprot.writeStructBegin("org.dressdiscover.api.services.qa.DeleteAnswersResponse");
+                writeFields(oprot);
+                oprot.writeStructEnd();
+            }
+
+            @Override
+            public void writeFields(final org.thryft.protocol.OutputProtocol oprot) throws org.thryft.protocol.OutputProtocolException {
+                oprot.writeFieldStop();
+            }
+        }
+
         public final static class PutAnswerRequest implements org.thryft.Struct {
             public final static class Builder {
                 public Builder() {
@@ -828,6 +1425,8 @@ public interface AnswerCommandService {
             }
         }
     }
+
+    public void deleteAnswers() throws org.dressdiscover.api.services.IoException;
 
     public void putAnswer(final org.dressdiscover.api.models.qa.Answer answer) throws org.dressdiscover.api.services.IoException;
 }

@@ -5,6 +5,21 @@ export class LoggingAnswerCommandService implements AnswerCommandService {
     constructor(private delegate: AnswerCommandService) {
     }
 
+    deleteAnswersAsync(kwds: {error?: (errorKwds: {textStatus: string, errorThrown: any, [index: string]: any}) => any, success?: () => void}): void {
+        this.delegate.deleteAnswersAsync({error: (errorKwds: {textStatus: string, errorThrown: any, [index: string]: any}) => { console.warn("deleteAnswersAsync() -> ", errorKwds.textStatus); console.warn(errorKwds.errorThrown); if (kwds.error) { kwds.error(errorKwds); } }, success: () => { console.debug("deleteAnswersSync() -> success"); if (kwds.success) { kwds.success(); } }});
+    }
+
+    deleteAnswersSync(): void {
+        try {
+            this.delegate.deleteAnswersSync();
+            console.debug("deleteAnswersSync() -> success");
+        } catch (e) {
+            console.warn("deleteAnswersSync() -> exception");
+            console.warn(e);
+            throw e;
+        }
+    }
+
     putAnswerAsync(kwds: {answer: Answer, error?: (errorKwds: {textStatus: string, errorThrown: any, [index: string]: any}) => any, success?: () => void}): void {
         this.delegate.putAnswerAsync({answer: kwds.answer, error: (errorKwds: {textStatus: string, errorThrown: any, [index: string]: any}) => { console.warn("putAnswerAsync({", "answer: ", kwds.answer, "}) -> ", errorKwds.textStatus); console.warn(errorKwds.errorThrown); if (kwds.error) { kwds.error(errorKwds); } }, success: () => { console.debug("putAnswerSync({", "answer: ", kwds.answer, "}) -> success"); if (kwds.success) { kwds.success(); } }});
     }

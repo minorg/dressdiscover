@@ -7,6 +7,7 @@ import org.dressdiscover.lib.services.collection.CollectionServicesModule;
 import org.dressdiscover.lib.services.configuration.ConfigurationServicesModule;
 import org.dressdiscover.lib.services.institution.InstitutionServicesModule;
 import org.dressdiscover.lib.services.object.ObjectServicesModule;
+import org.dressdiscover.lib.services.qa.QaServicesModule;
 import org.dressdiscover.lib.services.user.UserServicesModule;
 
 import com.google.inject.AbstractModule;
@@ -32,6 +33,10 @@ public class ServicesModule extends AbstractModule {
         install(new ObjectServicesModule());
     }
 
+    protected void _configureQaServices() {
+        install(new QaServicesModule());
+    }
+
     protected void _configureUserServices() {
         install(new UserServicesModule());
     }
@@ -42,6 +47,7 @@ public class ServicesModule extends AbstractModule {
         _configureConfigurationServices();
         _configureInstitutionServices();
         _configureObjectServices();
+        _configureQaServices();
         _configureUserServices();
     }
 

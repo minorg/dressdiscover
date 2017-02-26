@@ -4,6 +4,7 @@ import dressdiscover.api.models.qa.answer_value
 import dressdiscover.api.models.qa.qa_object_id
 import dressdiscover.api.models.qa.qa_user_id
 import dressdiscover.api.models.qa.question_id
+import dressdiscover.api.models.qa.question_set_id
 
 
 class Answer(object):
@@ -12,23 +13,26 @@ class Answer(object):
             self,
             object_id=None,
             question_id=None,
+            question_set_id=None,
             user_id=None,
             values=None,
         ):
             '''
             :type object_id: str
             :type question_id: str
+            :type question_set_id: str
             :type user_id: str
             :type values: tuple(dressdiscover.api.models.qa.answer_value.AnswerValue)
             '''
 
             self.__object_id = object_id
             self.__question_id = question_id
+            self.__question_set_id = question_set_id
             self.__user_id = user_id
             self.__values = values
 
         def build(self):
-            return Answer(object_id=self.__object_id, question_id=self.__question_id, user_id=self.__user_id, values=self.__values)
+            return Answer(object_id=self.__object_id, question_id=self.__question_id, question_set_id=self.__question_set_id, user_id=self.__user_id, values=self.__values)
 
         @property
         def object_id(self):
@@ -45,6 +49,14 @@ class Answer(object):
             '''
 
             return self.__question_id
+
+        @property
+        def question_set_id(self):
+            '''
+            :rtype: str
+            '''
+
+            return self.__question_set_id
 
         def set_object_id(self, object_id):
             '''
@@ -68,6 +80,18 @@ class Answer(object):
             if not isinstance(question_id, basestring):
                 raise TypeError("expected question_id to be a str but it is a %s" % getattr(__builtin__, 'type')(question_id))
             self.__question_id = question_id
+            return self
+
+        def set_question_set_id(self, question_set_id):
+            '''
+            :type question_set_id: str
+            '''
+
+            if question_set_id is None:
+                raise ValueError('question_set_id is required')
+            if not isinstance(question_set_id, basestring):
+                raise TypeError("expected question_set_id to be a str but it is a %s" % getattr(__builtin__, 'type')(question_set_id))
+            self.__question_set_id = question_set_id
             return self
 
         def set_user_id(self, user_id):
@@ -100,6 +124,7 @@ class Answer(object):
             '''
             :type object_id: str
             :type question_id: str
+            :type question_set_id: str
             :type user_id: str
             :type values: tuple(dressdiscover.api.models.qa.answer_value.AnswerValue)
             '''
@@ -107,6 +132,7 @@ class Answer(object):
             if isinstance(answer, Answer):
                 self.set_object_id(answer.object_id)
                 self.set_question_id(answer.question_id)
+                self.set_question_set_id(answer.question_set_id)
                 self.set_user_id(answer.user_id)
                 self.set_values(answer.values)
             elif isinstance(answer, dict):
@@ -148,6 +174,14 @@ class Answer(object):
 
             self.set_question_id(question_id)
 
+        @question_set_id.setter
+        def question_set_id(self, question_set_id):
+            '''
+            :type question_set_id: str
+            '''
+
+            self.set_question_set_id(question_set_id)
+
         @user_id.setter
         def user_id(self, user_id):
             '''
@@ -167,6 +201,7 @@ class Answer(object):
     class FieldMetadata(object):
         OBJECT_ID = None
         QUESTION_ID = None
+        QUESTION_SET_ID = None
         USER_ID = None
         VALUES = None
 
@@ -196,10 +231,11 @@ class Answer(object):
 
         @classmethod
         def values(cls):
-            return (cls.OBJECT_ID, cls.QUESTION_ID, cls.USER_ID, cls.VALUES,)
+            return (cls.OBJECT_ID, cls.QUESTION_ID, cls.QUESTION_SET_ID, cls.USER_ID, cls.VALUES,)
 
     FieldMetadata.OBJECT_ID = FieldMetadata('object_id', dressdiscover.api.models.qa.qa_object_id.QaObjectId, None)
     FieldMetadata.QUESTION_ID = FieldMetadata('question_id', dressdiscover.api.models.qa.question_id.QuestionId, None)
+    FieldMetadata.QUESTION_SET_ID = FieldMetadata('question_set_id', dressdiscover.api.models.qa.question_set_id.QuestionSetId, None)
     FieldMetadata.USER_ID = FieldMetadata('user_id', dressdiscover.api.models.qa.qa_user_id.QaUserId, None)
     FieldMetadata.VALUES = FieldMetadata('values', tuple, {u'minLength': 1})
 
@@ -207,12 +243,14 @@ class Answer(object):
         self,
         object_id,
         question_id,
+        question_set_id,
         user_id,
         values,
     ):
         '''
         :type object_id: str
         :type question_id: str
+        :type question_set_id: str
         :type user_id: str
         :type values: tuple(dressdiscover.api.models.qa.answer_value.AnswerValue)
         '''
@@ -228,6 +266,12 @@ class Answer(object):
         if not isinstance(question_id, basestring):
             raise TypeError("expected question_id to be a str but it is a %s" % getattr(__builtin__, 'type')(question_id))
         self.__question_id = question_id
+
+        if question_set_id is None:
+            raise ValueError('question_set_id is required')
+        if not isinstance(question_set_id, basestring):
+            raise TypeError("expected question_set_id to be a str but it is a %s" % getattr(__builtin__, 'type')(question_set_id))
+        self.__question_set_id = question_set_id
 
         if user_id is None:
             raise ValueError('user_id is required')
@@ -248,6 +292,8 @@ class Answer(object):
             return False
         if self.question_id != other.question_id:
             return False
+        if self.question_set_id != other.question_set_id:
+            return False
         if self.user_id != other.user_id:
             return False
         if self.values != other.values:
@@ -255,10 +301,10 @@ class Answer(object):
         return True
 
     def __hash__(self):
-        return hash((self.object_id,self.question_id,self.user_id,self.values,))
+        return hash((self.object_id,self.question_id,self.question_set_id,self.user_id,self.values,))
 
     def __iter__(self):
-        return iter((self.object_id, self.question_id, self.user_id, self.values,))
+        return iter((self.object_id, self.question_id, self.question_set_id, self.user_id, self.values,))
 
     def __ne__(self, other):
         return not self.__eq__(other)
@@ -267,6 +313,7 @@ class Answer(object):
         field_reprs = []
         field_reprs.append('object_id=' + "'" + self.object_id.encode('ascii', 'replace') + "'")
         field_reprs.append('question_id=' + "'" + self.question_id.encode('ascii', 'replace') + "'")
+        field_reprs.append('question_set_id=' + "'" + self.question_set_id.encode('ascii', 'replace') + "'")
         field_reprs.append('user_id=' + "'" + self.user_id.encode('ascii', 'replace') + "'")
         field_reprs.append('values=' + repr(self.values))
         return 'Answer(' + ', '.join(field_reprs) + ')'
@@ -275,6 +322,7 @@ class Answer(object):
         field_reprs = []
         field_reprs.append('object_id=' + "'" + self.object_id.encode('ascii', 'replace') + "'")
         field_reprs.append('question_id=' + "'" + self.question_id.encode('ascii', 'replace') + "'")
+        field_reprs.append('question_set_id=' + "'" + self.question_set_id.encode('ascii', 'replace') + "'")
         field_reprs.append('user_id=' + "'" + self.user_id.encode('ascii', 'replace') + "'")
         field_reprs.append('values=' + repr(self.values))
         return 'Answer(' + ', '.join(field_reprs) + ')'
@@ -295,6 +343,14 @@ class Answer(object):
 
         return self.__question_id
 
+    @property
+    def question_set_id(self):
+        '''
+        :rtype: str
+        '''
+
+        return self.__question_set_id
+
     @classmethod
     def read(cls, iprot):
         '''
@@ -308,16 +364,18 @@ class Answer(object):
 
         iprot.read_struct_begin()
         while True:
-            ifield_name, ifield_type, _ifield_id = iprot.read_field_begin()
+            ifield_name, ifield_type, ifield_id = iprot.read_field_begin()
             if ifield_type == 0: # STOP
                 break
-            elif ifield_name == 'object_id':
+            elif ifield_name == 'object_id' and ifield_id == 1:
                 init_kwds['object_id'] = iprot.read_string()
-            elif ifield_name == 'question_id':
+            elif ifield_name == 'question_id' and ifield_id == 2:
                 init_kwds['question_id'] = iprot.read_string()
-            elif ifield_name == 'user_id':
+            elif ifield_name == 'question_set_id' and ifield_id == 3:
+                init_kwds['question_set_id'] = iprot.read_string()
+            elif ifield_name == 'user_id' and ifield_id == 4:
                 init_kwds['user_id'] = iprot.read_string()
-            elif ifield_name == 'values':
+            elif ifield_name == 'values' and ifield_id == 5:
                 init_kwds['values'] = tuple([dressdiscover.api.models.qa.answer_value.AnswerValue.read(iprot) for _ in xrange(iprot.read_list_begin()[1])] + (iprot.read_list_end() is None and []))
             iprot.read_field_end()
         iprot.read_struct_end()
@@ -328,6 +386,7 @@ class Answer(object):
         self,
         object_id=None,
         question_id=None,
+        question_set_id=None,
         user_id=None,
         values=None,
     ):
@@ -336,6 +395,7 @@ class Answer(object):
 
         :type object_id: str or None
         :type question_id: str or None
+        :type question_set_id: str or None
         :type user_id: str or None
         :type values: tuple(dressdiscover.api.models.qa.answer_value.AnswerValue) or None
         :rtype: dressdiscover.api.models.qa.answer.Answer
@@ -345,11 +405,13 @@ class Answer(object):
             object_id = self.object_id
         if question_id is None:
             question_id = self.question_id
+        if question_set_id is None:
+            question_set_id = self.question_set_id
         if user_id is None:
             user_id = self.user_id
         if values is None:
             values = self.values
-        return self.__class__(object_id=object_id, question_id=question_id, user_id=user_id, values=values)
+        return self.__class__(object_id=object_id, question_id=question_id, question_set_id=question_set_id, user_id=user_id, values=values)
 
     @property
     def user_id(self):
@@ -377,19 +439,23 @@ class Answer(object):
 
         oprot.write_struct_begin('Answer')
 
-        oprot.write_field_begin(name='object_id', type=11, id=None)
+        oprot.write_field_begin(name='object_id', type=11, id=1)
         oprot.write_string(self.object_id)
         oprot.write_field_end()
 
-        oprot.write_field_begin(name='question_id', type=11, id=None)
+        oprot.write_field_begin(name='question_id', type=11, id=2)
         oprot.write_string(self.question_id)
         oprot.write_field_end()
 
-        oprot.write_field_begin(name='user_id', type=11, id=None)
+        oprot.write_field_begin(name='question_set_id', type=11, id=3)
+        oprot.write_string(self.question_set_id)
+        oprot.write_field_end()
+
+        oprot.write_field_begin(name='user_id', type=11, id=4)
         oprot.write_string(self.user_id)
         oprot.write_field_end()
 
-        oprot.write_field_begin(name='values', type=15, id=None)
+        oprot.write_field_begin(name='values', type=15, id=5)
         oprot.write_list_begin(12, len(self.values))
         for _0 in self.values:
             _0.write(oprot)

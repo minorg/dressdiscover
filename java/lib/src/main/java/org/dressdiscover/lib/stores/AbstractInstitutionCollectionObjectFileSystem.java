@@ -19,7 +19,7 @@ public abstract class AbstractInstitutionCollectionObjectFileSystem<ModelT exten
         extends AbstractFileSystem<IoException, ModelT, NoSuchModelExceptionT> {
     protected AbstractInstitutionCollectionObjectFileSystem(final File dataDirectoryPath,
             final GlobalProperties globalProperties) {
-        super(new File(dataDirectoryPath, globalProperties.getEnvironment()));
+        super(new File(dataDirectoryPath, globalProperties.getEnvironment().name().toLowerCase()));
     }
 
     protected final File _getCollectionDirectoryPath(final CollectionId collectionId) {

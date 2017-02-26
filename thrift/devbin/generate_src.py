@@ -218,13 +218,14 @@ class Main(thryft.main.Main):
 
                         continue
 
-                    assert thrift_subdir_name == 'api'
-
                     self._compile_thrift_file(
                         generator=java_generator,
                         out=os.path.join(ROOT_DIR_PATH, 'java', thrift_subdir_name, 'src', 'gen', 'java'),
                         **compile_kwds
                     )
+
+                    if thrift_subdir_name != 'api':
+                        continue
 
                     if thrift_file_base_name in ('object_summary',):
                         elastic_search_templates_dir_path = os.path.join(ROOT_DIR_PATH, 'java', 'lib', 'src', 'main', 'resources', 'elastic_search_templates')

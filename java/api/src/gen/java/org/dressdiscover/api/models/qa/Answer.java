@@ -5,6 +5,7 @@ public final class Answer implements org.thryft.Struct, org.thryft.waf.api.model
         public Builder() {
             objectId = null;
             questionId = null;
+            questionSetId = null;
             userId = null;
             values = null;
         }
@@ -12,16 +13,17 @@ public final class Answer implements org.thryft.Struct, org.thryft.waf.api.model
         public Builder(final Answer other) {
             this.objectId = other.getObjectId();
             this.questionId = other.getQuestionId();
+            this.questionSetId = other.getQuestionSetId();
             this.userId = other.getUserId();
             this.values = other.getValues();
         }
 
-        protected Answer _build(final org.dressdiscover.api.models.qa.QaObjectId objectId, final org.dressdiscover.api.models.qa.QuestionId questionId, final org.dressdiscover.api.models.qa.QaUserId userId, final com.google.common.collect.ImmutableList<org.dressdiscover.api.models.qa.AnswerValue> values) {
-            return new Answer(objectId, questionId, userId, values, DefaultConstructionValidator.getInstance());
+        protected Answer _build(final org.dressdiscover.api.models.qa.QaObjectId objectId, final org.dressdiscover.api.models.qa.QuestionId questionId, final org.dressdiscover.api.models.qa.QuestionSetId questionSetId, final org.dressdiscover.api.models.qa.QaUserId userId, final com.google.common.collect.ImmutableList<org.dressdiscover.api.models.qa.AnswerValue> values) {
+            return new Answer(objectId, questionId, questionSetId, userId, values, DefaultConstructionValidator.getInstance());
         }
 
         public Answer build() {
-            return _build(objectId, questionId, userId, values);
+            return _build(objectId, questionId, questionSetId, userId, values);
         }
 
         public final org.dressdiscover.api.models.qa.QaObjectId getObjectId() {
@@ -30,6 +32,10 @@ public final class Answer implements org.thryft.Struct, org.thryft.waf.api.model
 
         public final org.dressdiscover.api.models.qa.QuestionId getQuestionId() {
             return questionId;
+        }
+
+        public final org.dressdiscover.api.models.qa.QuestionSetId getQuestionSetId() {
+            return questionSetId;
         }
 
         public final org.dressdiscover.api.models.qa.QaUserId getUserId() {
@@ -67,6 +73,11 @@ public final class Answer implements org.thryft.Struct, org.thryft.waf.api.model
                     questionId = org.dressdiscover.api.models.qa.QuestionId.parse(iprot.readString());
                 } catch (final IllegalArgumentException e) {
                      throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.QUESTION_ID, e);
+                }
+                try {
+                    questionSetId = org.dressdiscover.api.models.qa.QuestionSetId.parse(iprot.readString());
+                } catch (final IllegalArgumentException e) {
+                     throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.QUESTION_SET_ID, e);
                 }
                 try {
                     userId = org.dressdiscover.api.models.qa.QaUserId.parse(iprot.readString());
@@ -114,49 +125,67 @@ public final class Answer implements org.thryft.Struct, org.thryft.waf.api.model
                     }
                     switch (ifield.getName()) {
                     case "object_id": {
-                        try {
-                            objectId = org.dressdiscover.api.models.qa.QaObjectId.parse(iprot.readString());
-                        } catch (final IllegalArgumentException e) {
-                             throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.OBJECT_ID, e);
+                        if (!ifield.hasId() || ifield.getId() == 1) {
+                            try {
+                                objectId = org.dressdiscover.api.models.qa.QaObjectId.parse(iprot.readString());
+                            } catch (final IllegalArgumentException e) {
+                                 throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.OBJECT_ID, e);
+                            }
                         }
                         break;
                     }
                     case "question_id": {
-                        try {
-                            questionId = org.dressdiscover.api.models.qa.QuestionId.parse(iprot.readString());
-                        } catch (final IllegalArgumentException e) {
-                             throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.QUESTION_ID, e);
+                        if (!ifield.hasId() || ifield.getId() == 2) {
+                            try {
+                                questionId = org.dressdiscover.api.models.qa.QuestionId.parse(iprot.readString());
+                            } catch (final IllegalArgumentException e) {
+                                 throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.QUESTION_ID, e);
+                            }
+                        }
+                        break;
+                    }
+                    case "question_set_id": {
+                        if (!ifield.hasId() || ifield.getId() == 3) {
+                            try {
+                                questionSetId = org.dressdiscover.api.models.qa.QuestionSetId.parse(iprot.readString());
+                            } catch (final IllegalArgumentException e) {
+                                 throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.QUESTION_SET_ID, e);
+                            }
                         }
                         break;
                     }
                     case "user_id": {
-                        try {
-                            userId = org.dressdiscover.api.models.qa.QaUserId.parse(iprot.readString());
-                        } catch (final IllegalArgumentException e) {
-                             throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.USER_ID, e);
+                        if (!ifield.hasId() || ifield.getId() == 4) {
+                            try {
+                                userId = org.dressdiscover.api.models.qa.QaUserId.parse(iprot.readString());
+                            } catch (final IllegalArgumentException e) {
+                                 throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.USER_ID, e);
+                            }
                         }
                         break;
                     }
                     case "values": {
-                        try {
-                            values = (new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableList<org.dressdiscover.api.models.qa.AnswerValue>>() {
-                                @Override
-                                public com.google.common.collect.ImmutableList<org.dressdiscover.api.models.qa.AnswerValue> apply(final org.thryft.protocol.InputProtocol iprot) {
-                                    try {
-                                        final org.thryft.protocol.ListBegin sequenceBegin = iprot.readListBegin();
-                                        final com.google.common.collect.ImmutableList.Builder<org.dressdiscover.api.models.qa.AnswerValue> sequenceBuilder = com.google.common.collect.ImmutableList.builder();
-                                        for (int elementI = 0; elementI < sequenceBegin.getSize(); elementI++) {
-                                            sequenceBuilder.add(org.dressdiscover.api.models.qa.AnswerValue.readAsStruct(iprot));
+                        if (!ifield.hasId() || ifield.getId() == 5) {
+                            try {
+                                values = (new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableList<org.dressdiscover.api.models.qa.AnswerValue>>() {
+                                    @Override
+                                    public com.google.common.collect.ImmutableList<org.dressdiscover.api.models.qa.AnswerValue> apply(final org.thryft.protocol.InputProtocol iprot) {
+                                        try {
+                                            final org.thryft.protocol.ListBegin sequenceBegin = iprot.readListBegin();
+                                            final com.google.common.collect.ImmutableList.Builder<org.dressdiscover.api.models.qa.AnswerValue> sequenceBuilder = com.google.common.collect.ImmutableList.builder();
+                                            for (int elementI = 0; elementI < sequenceBegin.getSize(); elementI++) {
+                                                sequenceBuilder.add(org.dressdiscover.api.models.qa.AnswerValue.readAsStruct(iprot));
+                                            }
+                                            iprot.readListEnd();
+                                            return sequenceBuilder.build();
+                                        } catch (final org.thryft.protocol.InputProtocolException e) {
+                                            throw new org.thryft.protocol.UncheckedInputProtocolException(e);
                                         }
-                                        iprot.readListEnd();
-                                        return sequenceBuilder.build();
-                                    } catch (final org.thryft.protocol.InputProtocolException e) {
-                                        throw new org.thryft.protocol.UncheckedInputProtocolException(e);
                                     }
-                                }
-                            }).apply(iprot);
-                        } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
-                             throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.VALUES, e.getCause());
+                                }).apply(iprot);
+                            } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
+                                 throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.VALUES, e.getCause());
+                            }
                         }
                         break;
                     }
@@ -193,6 +222,7 @@ public final class Answer implements org.thryft.Struct, org.thryft.waf.api.model
             switch (fieldMetadata) {
             case OBJECT_ID: setObjectId((org.dressdiscover.api.models.qa.QaObjectId)value); return this;
             case QUESTION_ID: setQuestionId((org.dressdiscover.api.models.qa.QuestionId)value); return this;
+            case QUESTION_SET_ID: setQuestionSetId((org.dressdiscover.api.models.qa.QuestionSetId)value); return this;
             case USER_ID: setUserId((org.dressdiscover.api.models.qa.QaUserId)value); return this;
             case VALUES: setValues((com.google.common.collect.ImmutableList<org.dressdiscover.api.models.qa.AnswerValue>)value); return this;
             default:
@@ -205,6 +235,7 @@ public final class Answer implements org.thryft.Struct, org.thryft.waf.api.model
 
             setObjectId(other.getObjectId());
             setQuestionId(other.getQuestionId());
+            setQuestionSetId(other.getQuestionSetId());
             setUserId(other.getUserId());
             setValues(other.getValues());
 
@@ -218,6 +249,11 @@ public final class Answer implements org.thryft.Struct, org.thryft.waf.api.model
 
         public Builder setQuestionId(final org.dressdiscover.api.models.qa.QuestionId questionId) {
             this.questionId = DefaultConstructionValidator.getInstance().validateQuestionId(questionId);
+            return this;
+        }
+
+        public Builder setQuestionSetId(final org.dressdiscover.api.models.qa.QuestionSetId questionSetId) {
+            this.questionSetId = DefaultConstructionValidator.getInstance().validateQuestionSetId(questionSetId);
             return this;
         }
 
@@ -248,6 +284,7 @@ public final class Answer implements org.thryft.Struct, org.thryft.waf.api.model
             switch (fieldMetadata) {
             case OBJECT_ID: return unsetObjectId();
             case QUESTION_ID: return unsetQuestionId();
+            case QUESTION_SET_ID: return unsetQuestionSetId();
             case USER_ID: return unsetUserId();
             case VALUES: return unsetValues();
             default:
@@ -265,6 +302,11 @@ public final class Answer implements org.thryft.Struct, org.thryft.waf.api.model
             return this;
         }
 
+        public Builder unsetQuestionSetId() {
+            this.questionSetId = null;
+            return this;
+        }
+
         public Builder unsetUserId() {
             this.userId = null;
             return this;
@@ -277,6 +319,7 @@ public final class Answer implements org.thryft.Struct, org.thryft.waf.api.model
 
         private org.dressdiscover.api.models.qa.QaObjectId objectId;
         private org.dressdiscover.api.models.qa.QuestionId questionId;
+        private org.dressdiscover.api.models.qa.QuestionSetId questionSetId;
         private org.dressdiscover.api.models.qa.QaUserId userId;
         private com.google.common.collect.ImmutableList<org.dressdiscover.api.models.qa.AnswerValue> values;
     }
@@ -312,10 +355,11 @@ public final class Answer implements org.thryft.Struct, org.thryft.waf.api.model
 
     @SuppressWarnings("serial")
     public enum FieldMetadata implements org.thryft.CompoundType.FieldMetadata {
-        OBJECT_ID("objectId", new com.google.common.reflect.TypeToken<org.dressdiscover.api.models.qa.QaObjectId>() {}, true, 0, "object_id", org.thryft.protocol.Type.STRING),
-        QUESTION_ID("questionId", new com.google.common.reflect.TypeToken<org.dressdiscover.api.models.qa.QuestionId>() {}, true, 0, "question_id", org.thryft.protocol.Type.STRING),
-        USER_ID("userId", new com.google.common.reflect.TypeToken<org.dressdiscover.api.models.qa.QaUserId>() {}, true, 0, "user_id", org.thryft.protocol.Type.STRING),
-        VALUES("values", new com.google.common.reflect.TypeToken<com.google.common.collect.ImmutableList<org.dressdiscover.api.models.qa.AnswerValue>>() {}, true, 0, "values", org.thryft.protocol.Type.LIST);
+        OBJECT_ID("objectId", new com.google.common.reflect.TypeToken<org.dressdiscover.api.models.qa.QaObjectId>() {}, true, 1, "object_id", org.thryft.protocol.Type.STRING),
+        QUESTION_ID("questionId", new com.google.common.reflect.TypeToken<org.dressdiscover.api.models.qa.QuestionId>() {}, true, 2, "question_id", org.thryft.protocol.Type.STRING),
+        QUESTION_SET_ID("questionSetId", new com.google.common.reflect.TypeToken<org.dressdiscover.api.models.qa.QuestionSetId>() {}, true, 3, "question_set_id", org.thryft.protocol.Type.STRING),
+        USER_ID("userId", new com.google.common.reflect.TypeToken<org.dressdiscover.api.models.qa.QaUserId>() {}, true, 4, "user_id", org.thryft.protocol.Type.STRING),
+        VALUES("values", new com.google.common.reflect.TypeToken<com.google.common.collect.ImmutableList<org.dressdiscover.api.models.qa.AnswerValue>>() {}, true, 5, "values", org.thryft.protocol.Type.LIST);
 
         @Override
         public String getJavaName() {
@@ -361,6 +405,7 @@ public final class Answer implements org.thryft.Struct, org.thryft.waf.api.model
             switch (javaName) {
             case "objectId": return OBJECT_ID;
             case "questionId": return QUESTION_ID;
+            case "questionSetId": return QUESTION_SET_ID;
             case "userId": return USER_ID;
             case "values": return VALUES;
             default:
@@ -372,6 +417,7 @@ public final class Answer implements org.thryft.Struct, org.thryft.waf.api.model
             switch (thriftName) {
             case "object_id": return OBJECT_ID;
             case "question_id": return QUESTION_ID;
+            case "question_set_id": return QUESTION_SET_ID;
             case "user_id": return USER_ID;
             case "values": return VALUES;
             default:
@@ -407,6 +453,8 @@ public final class Answer implements org.thryft.Struct, org.thryft.waf.api.model
 
         public org.dressdiscover.api.models.qa.QuestionId validateQuestionId(final org.dressdiscover.api.models.qa.QuestionId questionId) throws ExceptionT;
 
+        public org.dressdiscover.api.models.qa.QuestionSetId validateQuestionSetId(final org.dressdiscover.api.models.qa.QuestionSetId questionSetId) throws ExceptionT;
+
         public org.dressdiscover.api.models.qa.QaUserId validateUserId(final org.dressdiscover.api.models.qa.QaUserId userId) throws ExceptionT;
 
         public com.google.common.collect.ImmutableList<org.dressdiscover.api.models.qa.AnswerValue> validateValues(final com.google.common.collect.ImmutableList<org.dressdiscover.api.models.qa.AnswerValue> values) throws ExceptionT;
@@ -437,6 +485,14 @@ public final class Answer implements org.thryft.Struct, org.thryft.waf.api.model
                 throw new NullPointerException("org.dressdiscover.api.models.qa.Answer: questionId is null");
             }
             return questionId;
+        }
+
+        @Override
+        public org.dressdiscover.api.models.qa.QuestionSetId validateQuestionSetId(final org.dressdiscover.api.models.qa.QuestionSetId questionSetId) throws RuntimeException {
+            if (questionSetId == null) {
+                throw new NullPointerException("org.dressdiscover.api.models.qa.Answer: questionSetId is null");
+            }
+            return questionSetId;
         }
 
         @Override
@@ -480,6 +536,11 @@ public final class Answer implements org.thryft.Struct, org.thryft.waf.api.model
         }
 
         @Override
+        public org.dressdiscover.api.models.qa.QuestionSetId validateQuestionSetId(final org.dressdiscover.api.models.qa.QuestionSetId questionSetId) {
+            return questionSetId;
+        }
+
+        @Override
         public org.dressdiscover.api.models.qa.QaUserId validateUserId(final org.dressdiscover.api.models.qa.QaUserId userId) {
             return userId;
         }
@@ -517,6 +578,14 @@ public final class Answer implements org.thryft.Struct, org.thryft.waf.api.model
                 throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.QUESTION_ID, "org.dressdiscover.api.models.qa.Answer: questionId is null");
             }
             return questionId;
+        }
+
+        @Override
+        public org.dressdiscover.api.models.qa.QuestionSetId validateQuestionSetId(final org.dressdiscover.api.models.qa.QuestionSetId questionSetId) throws org.thryft.protocol.InputProtocolException {
+            if (questionSetId == null) {
+                throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.QUESTION_SET_ID, "org.dressdiscover.api.models.qa.Answer: questionSetId is null");
+            }
+            return questionSetId;
         }
 
         @Override
@@ -560,6 +629,11 @@ public final class Answer implements org.thryft.Struct, org.thryft.waf.api.model
         }
 
         @Override
+        public org.dressdiscover.api.models.qa.QuestionSetId validateQuestionSetId(final org.dressdiscover.api.models.qa.QuestionSetId questionSetId) {
+            return questionSetId;
+        }
+
+        @Override
         public org.dressdiscover.api.models.qa.QaUserId validateUserId(final org.dressdiscover.api.models.qa.QaUserId userId) {
             return userId;
         }
@@ -576,12 +650,13 @@ public final class Answer implements org.thryft.Struct, org.thryft.waf.api.model
      * Copy constructor
      */
     public Answer(final Answer other) {
-        this(other.getObjectId(), other.getQuestionId(), other.getUserId(), other.getValues(), NopConstructionValidator.getInstance());
+        this(other.getObjectId(), other.getQuestionId(), other.getQuestionSetId(), other.getUserId(), other.getValues(), NopConstructionValidator.getInstance());
     }
 
-    protected Answer(final org.dressdiscover.api.models.qa.QaObjectId objectId, final org.dressdiscover.api.models.qa.QuestionId questionId, final org.dressdiscover.api.models.qa.QaUserId userId, final com.google.common.collect.ImmutableList<org.dressdiscover.api.models.qa.AnswerValue> values, ConstructionValidator validator) {
+    protected Answer(final org.dressdiscover.api.models.qa.QaObjectId objectId, final org.dressdiscover.api.models.qa.QuestionId questionId, final org.dressdiscover.api.models.qa.QuestionSetId questionSetId, final org.dressdiscover.api.models.qa.QaUserId userId, final com.google.common.collect.ImmutableList<org.dressdiscover.api.models.qa.AnswerValue> values, ConstructionValidator validator) {
         this.objectId = validator.validateObjectId(objectId);
         this.questionId = validator.validateQuestionId(questionId);
+        this.questionSetId = validator.validateQuestionSetId(questionSetId);
         this.userId = validator.validateUserId(userId);
         this.values = validator.validateValues(values);
     }
@@ -601,8 +676,8 @@ public final class Answer implements org.thryft.Struct, org.thryft.waf.api.model
     /**
      * Optional factory method
      */
-    public static Answer create(final org.dressdiscover.api.models.qa.QaObjectId objectId, final org.dressdiscover.api.models.qa.QuestionId questionId, final org.dressdiscover.api.models.qa.QaUserId userId, final com.google.common.collect.ImmutableList<org.dressdiscover.api.models.qa.AnswerValue> values) {
-        return new Answer(objectId, questionId, userId, values, DefaultConstructionValidator.getInstance());
+    public static Answer create(final org.dressdiscover.api.models.qa.QaObjectId objectId, final org.dressdiscover.api.models.qa.QuestionId questionId, final org.dressdiscover.api.models.qa.QuestionSetId questionSetId, final org.dressdiscover.api.models.qa.QaUserId userId, final com.google.common.collect.ImmutableList<org.dressdiscover.api.models.qa.AnswerValue> values) {
+        return new Answer(objectId, questionId, questionSetId, userId, values, DefaultConstructionValidator.getInstance());
     }
 
     @Override
@@ -621,6 +696,10 @@ public final class Answer implements org.thryft.Struct, org.thryft.waf.api.model
         }
 
         if (!(getQuestionId().equals(other.getQuestionId()))) {
+            return false;
+        }
+
+        if (!(getQuestionSetId().equals(other.getQuestionSetId()))) {
             return false;
         }
 
@@ -652,6 +731,7 @@ public final class Answer implements org.thryft.Struct, org.thryft.waf.api.model
         switch (fieldMetadata) {
         case OBJECT_ID: return getObjectId();
         case QUESTION_ID: return getQuestionId();
+        case QUESTION_SET_ID: return getQuestionSetId();
         case USER_ID: return getUserId();
         case VALUES: return getValues();
         default:
@@ -667,6 +747,10 @@ public final class Answer implements org.thryft.Struct, org.thryft.waf.api.model
         return questionId;
     }
 
+    public final org.dressdiscover.api.models.qa.QuestionSetId getQuestionSetId() {
+        return questionSetId;
+    }
+
     public final org.dressdiscover.api.models.qa.QaUserId getUserId() {
         return userId;
     }
@@ -680,6 +764,7 @@ public final class Answer implements org.thryft.Struct, org.thryft.waf.api.model
         int hashCode = 17;
         hashCode = 31 * hashCode + getObjectId().hashCode();
         hashCode = 31 * hashCode + getQuestionId().hashCode();
+        hashCode = 31 * hashCode + getQuestionSetId().hashCode();
         hashCode = 31 * hashCode + getUserId().hashCode();
         hashCode = 31 * hashCode + getValues().hashCode();
         return hashCode;
@@ -703,6 +788,7 @@ public final class Answer implements org.thryft.Struct, org.thryft.waf.api.model
     public static Answer readAsList(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
         org.dressdiscover.api.models.qa.QaObjectId objectId = null;
         org.dressdiscover.api.models.qa.QuestionId questionId = null;
+        org.dressdiscover.api.models.qa.QuestionSetId questionSetId = null;
         org.dressdiscover.api.models.qa.QaUserId userId = null;
         com.google.common.collect.ImmutableList<org.dressdiscover.api.models.qa.AnswerValue> values = null;
 
@@ -717,6 +803,11 @@ public final class Answer implements org.thryft.Struct, org.thryft.waf.api.model
                 questionId = org.dressdiscover.api.models.qa.QuestionId.parse(iprot.readString());
             } catch (final IllegalArgumentException e) {
                  throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.QUESTION_ID, e);
+            }
+            try {
+                questionSetId = org.dressdiscover.api.models.qa.QuestionSetId.parse(iprot.readString());
+            } catch (final IllegalArgumentException e) {
+                 throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.QUESTION_SET_ID, e);
             }
             try {
                 userId = org.dressdiscover.api.models.qa.QaUserId.parse(iprot.readString());
@@ -747,7 +838,7 @@ public final class Answer implements org.thryft.Struct, org.thryft.waf.api.model
         } catch (final RuntimeException e) {
             throw new IllegalStateException(e);
         }
-        return new Answer(DefaultReadValidator.getInstance().validateObjectId(objectId), DefaultReadValidator.getInstance().validateQuestionId(questionId), DefaultReadValidator.getInstance().validateUserId(userId), DefaultReadValidator.getInstance().validateValues(values), NopConstructionValidator.getInstance());
+        return new Answer(DefaultReadValidator.getInstance().validateObjectId(objectId), DefaultReadValidator.getInstance().validateQuestionId(questionId), DefaultReadValidator.getInstance().validateQuestionSetId(questionSetId), DefaultReadValidator.getInstance().validateUserId(userId), DefaultReadValidator.getInstance().validateValues(values), NopConstructionValidator.getInstance());
     }
 
     public static Answer readAsStruct(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
@@ -757,6 +848,7 @@ public final class Answer implements org.thryft.Struct, org.thryft.waf.api.model
     public static Answer readAsStruct(final org.thryft.protocol.InputProtocol iprot, final com.google.common.base.Optional<UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
         org.dressdiscover.api.models.qa.QaObjectId objectId = null;
         org.dressdiscover.api.models.qa.QuestionId questionId = null;
+        org.dressdiscover.api.models.qa.QuestionSetId questionSetId = null;
         org.dressdiscover.api.models.qa.QaUserId userId = null;
         com.google.common.collect.ImmutableList<org.dressdiscover.api.models.qa.AnswerValue> values = null;
 
@@ -769,49 +861,67 @@ public final class Answer implements org.thryft.Struct, org.thryft.waf.api.model
                 }
                 switch (ifield.getName()) {
                 case "object_id": {
-                    try {
-                        objectId = org.dressdiscover.api.models.qa.QaObjectId.parse(iprot.readString());
-                    } catch (final IllegalArgumentException e) {
-                         throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.OBJECT_ID, e);
+                    if (!ifield.hasId() || ifield.getId() == 1) {
+                        try {
+                            objectId = org.dressdiscover.api.models.qa.QaObjectId.parse(iprot.readString());
+                        } catch (final IllegalArgumentException e) {
+                             throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.OBJECT_ID, e);
+                        }
                     }
                     break;
                 }
                 case "question_id": {
-                    try {
-                        questionId = org.dressdiscover.api.models.qa.QuestionId.parse(iprot.readString());
-                    } catch (final IllegalArgumentException e) {
-                         throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.QUESTION_ID, e);
+                    if (!ifield.hasId() || ifield.getId() == 2) {
+                        try {
+                            questionId = org.dressdiscover.api.models.qa.QuestionId.parse(iprot.readString());
+                        } catch (final IllegalArgumentException e) {
+                             throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.QUESTION_ID, e);
+                        }
+                    }
+                    break;
+                }
+                case "question_set_id": {
+                    if (!ifield.hasId() || ifield.getId() == 3) {
+                        try {
+                            questionSetId = org.dressdiscover.api.models.qa.QuestionSetId.parse(iprot.readString());
+                        } catch (final IllegalArgumentException e) {
+                             throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.QUESTION_SET_ID, e);
+                        }
                     }
                     break;
                 }
                 case "user_id": {
-                    try {
-                        userId = org.dressdiscover.api.models.qa.QaUserId.parse(iprot.readString());
-                    } catch (final IllegalArgumentException e) {
-                         throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.USER_ID, e);
+                    if (!ifield.hasId() || ifield.getId() == 4) {
+                        try {
+                            userId = org.dressdiscover.api.models.qa.QaUserId.parse(iprot.readString());
+                        } catch (final IllegalArgumentException e) {
+                             throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.USER_ID, e);
+                        }
                     }
                     break;
                 }
                 case "values": {
-                    try {
-                        values = (new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableList<org.dressdiscover.api.models.qa.AnswerValue>>() {
-                            @Override
-                            public com.google.common.collect.ImmutableList<org.dressdiscover.api.models.qa.AnswerValue> apply(final org.thryft.protocol.InputProtocol iprot) {
-                                try {
-                                    final org.thryft.protocol.ListBegin sequenceBegin = iprot.readListBegin();
-                                    final com.google.common.collect.ImmutableList.Builder<org.dressdiscover.api.models.qa.AnswerValue> sequenceBuilder = com.google.common.collect.ImmutableList.builder();
-                                    for (int elementI = 0; elementI < sequenceBegin.getSize(); elementI++) {
-                                        sequenceBuilder.add(org.dressdiscover.api.models.qa.AnswerValue.readAsStruct(iprot));
+                    if (!ifield.hasId() || ifield.getId() == 5) {
+                        try {
+                            values = (new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableList<org.dressdiscover.api.models.qa.AnswerValue>>() {
+                                @Override
+                                public com.google.common.collect.ImmutableList<org.dressdiscover.api.models.qa.AnswerValue> apply(final org.thryft.protocol.InputProtocol iprot) {
+                                    try {
+                                        final org.thryft.protocol.ListBegin sequenceBegin = iprot.readListBegin();
+                                        final com.google.common.collect.ImmutableList.Builder<org.dressdiscover.api.models.qa.AnswerValue> sequenceBuilder = com.google.common.collect.ImmutableList.builder();
+                                        for (int elementI = 0; elementI < sequenceBegin.getSize(); elementI++) {
+                                            sequenceBuilder.add(org.dressdiscover.api.models.qa.AnswerValue.readAsStruct(iprot));
+                                        }
+                                        iprot.readListEnd();
+                                        return sequenceBuilder.build();
+                                    } catch (final org.thryft.protocol.InputProtocolException e) {
+                                        throw new org.thryft.protocol.UncheckedInputProtocolException(e);
                                     }
-                                    iprot.readListEnd();
-                                    return sequenceBuilder.build();
-                                } catch (final org.thryft.protocol.InputProtocolException e) {
-                                    throw new org.thryft.protocol.UncheckedInputProtocolException(e);
                                 }
-                            }
-                        }).apply(iprot);
-                    } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
-                         throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.VALUES, e.getCause());
+                            }).apply(iprot);
+                        } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
+                             throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.VALUES, e.getCause());
+                        }
                     }
                     break;
                 }
@@ -827,37 +937,43 @@ public final class Answer implements org.thryft.Struct, org.thryft.waf.api.model
         } catch (final RuntimeException e) {
             throw new IllegalStateException(e);
         }
-        return new Answer(DefaultReadValidator.getInstance().validateObjectId(objectId), DefaultReadValidator.getInstance().validateQuestionId(questionId), DefaultReadValidator.getInstance().validateUserId(userId), DefaultReadValidator.getInstance().validateValues(values), NopConstructionValidator.getInstance());
+        return new Answer(DefaultReadValidator.getInstance().validateObjectId(objectId), DefaultReadValidator.getInstance().validateQuestionId(questionId), DefaultReadValidator.getInstance().validateQuestionSetId(questionSetId), DefaultReadValidator.getInstance().validateUserId(userId), DefaultReadValidator.getInstance().validateValues(values), NopConstructionValidator.getInstance());
     }
 
     public Answer replaceObjectId(final org.dressdiscover.api.models.qa.QaObjectId objectId) {
-        return new Answer(DefaultConstructionValidator.getInstance().validateObjectId(objectId), this.questionId, this.userId, this.values, NopConstructionValidator.getInstance());
+        return new Answer(DefaultConstructionValidator.getInstance().validateObjectId(objectId), this.questionId, this.questionSetId, this.userId, this.values, NopConstructionValidator.getInstance());
     }
 
     public Answer replaceQuestionId(final org.dressdiscover.api.models.qa.QuestionId questionId) {
-        return new Answer(this.objectId, DefaultConstructionValidator.getInstance().validateQuestionId(questionId), this.userId, this.values, NopConstructionValidator.getInstance());
+        return new Answer(this.objectId, DefaultConstructionValidator.getInstance().validateQuestionId(questionId), this.questionSetId, this.userId, this.values, NopConstructionValidator.getInstance());
+    }
+
+    public Answer replaceQuestionSetId(final org.dressdiscover.api.models.qa.QuestionSetId questionSetId) {
+        return new Answer(this.objectId, this.questionId, DefaultConstructionValidator.getInstance().validateQuestionSetId(questionSetId), this.userId, this.values, NopConstructionValidator.getInstance());
     }
 
     public Answer replaceUserId(final org.dressdiscover.api.models.qa.QaUserId userId) {
-        return new Answer(this.objectId, this.questionId, DefaultConstructionValidator.getInstance().validateUserId(userId), this.values, NopConstructionValidator.getInstance());
+        return new Answer(this.objectId, this.questionId, this.questionSetId, DefaultConstructionValidator.getInstance().validateUserId(userId), this.values, NopConstructionValidator.getInstance());
     }
 
     public Answer replaceValues(final com.google.common.collect.ImmutableList<org.dressdiscover.api.models.qa.AnswerValue> values) {
-        return new Answer(this.objectId, this.questionId, this.userId, DefaultConstructionValidator.getInstance().validateValues(values), NopConstructionValidator.getInstance());
+        return new Answer(this.objectId, this.questionId, this.questionSetId, this.userId, DefaultConstructionValidator.getInstance().validateValues(values), NopConstructionValidator.getInstance());
     }
 
     @Override
     public String toString() {
-        return com.google.common.base.MoreObjects.toStringHelper(this).omitNullValues().add("object_id", getObjectId()).add("question_id", getQuestionId()).add("user_id", getUserId()).add("values", getValues()).toString();
+        return com.google.common.base.MoreObjects.toStringHelper(this).omitNullValues().add("object_id", getObjectId()).add("question_id", getQuestionId()).add("question_set_id", getQuestionSetId()).add("user_id", getUserId()).add("values", getValues()).toString();
     }
 
     @Override
     public void writeAsList(final org.thryft.protocol.OutputProtocol oprot) throws org.thryft.protocol.OutputProtocolException {
-        oprot.writeListBegin(org.thryft.protocol.Type.VOID_, 4);
+        oprot.writeListBegin(org.thryft.protocol.Type.VOID_, 5);
 
         oprot.writeString(getObjectId().toString());
 
         oprot.writeString(getQuestionId().toString());
+
+        oprot.writeString(getQuestionSetId().toString());
 
         oprot.writeString(getUserId().toString());
 
@@ -879,19 +995,23 @@ public final class Answer implements org.thryft.Struct, org.thryft.waf.api.model
 
     @Override
     public void writeFields(final org.thryft.protocol.OutputProtocol oprot) throws org.thryft.protocol.OutputProtocolException {
-        oprot.writeFieldBegin("object_id", org.thryft.protocol.Type.STRING, (short)0);
+        oprot.writeFieldBegin("object_id", org.thryft.protocol.Type.STRING, (short)1);
         oprot.writeString(getObjectId().toString());
         oprot.writeFieldEnd();
 
-        oprot.writeFieldBegin("question_id", org.thryft.protocol.Type.STRING, (short)0);
+        oprot.writeFieldBegin("question_id", org.thryft.protocol.Type.STRING, (short)2);
         oprot.writeString(getQuestionId().toString());
         oprot.writeFieldEnd();
 
-        oprot.writeFieldBegin("user_id", org.thryft.protocol.Type.STRING, (short)0);
+        oprot.writeFieldBegin("question_set_id", org.thryft.protocol.Type.STRING, (short)3);
+        oprot.writeString(getQuestionSetId().toString());
+        oprot.writeFieldEnd();
+
+        oprot.writeFieldBegin("user_id", org.thryft.protocol.Type.STRING, (short)4);
         oprot.writeString(getUserId().toString());
         oprot.writeFieldEnd();
 
-        oprot.writeFieldBegin("values", org.thryft.protocol.Type.LIST, (short)0);
+        oprot.writeFieldBegin("values", org.thryft.protocol.Type.LIST, (short)5);
         oprot.writeListBegin(org.thryft.protocol.Type.STRUCT, getValues().size());
         for (final org.dressdiscover.api.models.qa.AnswerValue _iter0 : getValues()) {
             _iter0.writeAsStruct(oprot);
@@ -905,6 +1025,8 @@ public final class Answer implements org.thryft.Struct, org.thryft.waf.api.model
     private final org.dressdiscover.api.models.qa.QaObjectId objectId;
 
     private final org.dressdiscover.api.models.qa.QuestionId questionId;
+
+    private final org.dressdiscover.api.models.qa.QuestionSetId questionSetId;
 
     private final org.dressdiscover.api.models.qa.QaUserId userId;
 

@@ -10,6 +10,11 @@ public class ValidatingAnswerCommandService implements org.dressdiscover.api.ser
     }
 
     @Override
+    public final void deleteAnswers() throws org.dressdiscover.api.services.IoException {
+        delegate.deleteAnswers();
+    }
+
+    @Override
     public final void putAnswer(final org.dressdiscover.api.models.qa.Answer answer) throws org.dressdiscover.api.services.IoException {
         _validatePutAnswerParameters(answer);
         delegate.putAnswer(answer);

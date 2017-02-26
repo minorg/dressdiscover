@@ -118,7 +118,13 @@ export class QuestionViewModel extends ViewModel {
             default:
                 throw new Error("not implemented: " + this.currentQuestionType);
         }
-        const answer = new Answer({ objectId: this.object.id, questionId: this.currentQuestion.id, userId: Application.instance.session.currentUserId as QaUserId, values: values });
+        const answer = new Answer({
+            objectId: this.object.id,
+            questionId: this.currentQuestion.id,
+            questionSetId: this.questionSet.id,
+            userId: Application.instance.session.currentUserId as QaUserId,
+            values: values
+        });
         Application.instance.services.answerCommandService.putAnswerAsync({
             answer: answer,
             error: (kwds: { errorThrown: any, textStatus: string }) => {

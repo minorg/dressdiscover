@@ -46,7 +46,9 @@ public class AnswerCommandServiceJsonRpcServlet extends javax.servlet.http.HttpS
             if (messageBegin.getType() != org.thryft.protocol.MessageType.CALL) {
                 throw new org.thryft.waf.lib.protocols.json.JsonRpcInputProtocolException(-32600, "expected request");
             }
-            if (messageBegin.getName().equals("put_answer")) {
+            if (messageBegin.getName().equals("delete_answers")) {
+                doPostDeleteAnswers(httpServletRequest, httpServletResponse, iprot, messageBegin.getId());
+            } else if (messageBegin.getName().equals("put_answer")) {
                 doPostPutAnswer(httpServletRequest, httpServletResponse, iprot, messageBegin.getId());
             } else {
                 __doPostError(httpServletRequest, httpServletResponse, new org.thryft.waf.lib.protocols.json.JsonRpcErrorResponse(-32601, String.format("the method '%s' does not exist / is not available", messageBegin.getName())), messageBegin.getId());
@@ -142,6 +144,33 @@ public class AnswerCommandServiceJsonRpcServlet extends javax.servlet.http.HttpS
         }
 
         httpServletResponse.getOutputStream().write(httpServletResponseBody.getBytes("UTF-8"));
+    }
+
+    public void doPostDeleteAnswers(final javax.servlet.http.HttpServletRequest httpServletRequest, final javax.servlet.http.HttpServletResponse httpServletResponse, final org.thryft.waf.lib.protocols.json.JsonRpcInputProtocol iprot, final Object jsonRpcRequestId) throws java.io.IOException {
+        try {
+            service.deleteAnswers();
+        } catch (final org.dressdiscover.api.services.IoException e) {
+            __doPostError(httpServletRequest, httpServletResponse, new org.thryft.waf.lib.protocols.json.JsonRpcErrorResponse(e, 1, e.getClass().getCanonicalName() + ": " + String.valueOf(e.getMessage())), jsonRpcRequestId);
+            return;
+        }
+
+        final String httpServletResponseBody;
+        {
+            final java.io.StringWriter httpServletResponseBodyWriter = new java.io.StringWriter();
+            try {
+                final org.thryft.waf.lib.protocols.json.JsonRpcOutputProtocol oprot = new org.thryft.waf.lib.protocols.json.JsonRpcOutputProtocol(new org.thryft.waf.lib.protocols.json.JacksonJsonOutputProtocol(httpServletResponseBodyWriter));
+                oprot.writeMessageBegin("", org.thryft.protocol.MessageType.REPLY, jsonRpcRequestId);
+                oprot.writeStructBegin("response");
+                oprot.writeStructEnd();
+                oprot.writeMessageEnd();
+                oprot.flush();
+            } catch (final org.thryft.protocol.OutputProtocolException e) {
+                logger.error("error serializing service error response: ", e);
+                throw new IllegalStateException(e);
+            }
+            httpServletResponseBody = httpServletResponseBodyWriter.toString();
+        }
+        __doPostResponse(httpServletRequest, httpServletResponse, httpServletResponseBody);
     }
 
     public void doPostPutAnswer(final javax.servlet.http.HttpServletRequest httpServletRequest, final javax.servlet.http.HttpServletResponse httpServletResponse, final org.thryft.waf.lib.protocols.json.JsonRpcInputProtocol iprot, final Object jsonRpcRequestId) throws java.io.IOException {

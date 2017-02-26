@@ -1,5 +1,7 @@
 namespace * dressdiscover.lib.properties
 
+include "thryft/native/host_and_port.thrift"
+
 // @java_implements org.thryft.waf.lib.Properties
 struct StoreProperties {
     bool cache_collections = true;
@@ -7,8 +9,9 @@ struct StoreProperties {
 
     string data_directory_path;
 
-	string elastic_search_host = "elasticsearch";
-	i32 elastic_search_port = 9300;
+    host_and_port.HostAndPort elastic_search_host = "elasticsearch:9300";
+
+    list<host_and_port.HostAndPort> mongo_hosts = ["mongodb:27017"];
 
 	i32 object_summaries_result_cache_size = 1024;
 
