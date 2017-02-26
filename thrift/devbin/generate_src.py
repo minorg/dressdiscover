@@ -111,7 +111,13 @@ class Main(thryft.main.Main):
                 function_overloads=True,
                 namespace_prefix='org.',
             )
-        json_rpc_servlet_java_generator = JsonRpcServletJavaGenerator(namespace_prefix='org.')
+        json_rpc_servlet_java_generator = \
+            JsonRpcServletJavaGenerator(
+                namespace_prefix='org.',
+                set_headers={
+                    'Access-Control-Allow-Origin': '*'
+                }
+            )
         lint_generator = LintGenerator()
         logging_service_java_generator = \
             LoggingServiceJavaGenerator(

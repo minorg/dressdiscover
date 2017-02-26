@@ -41,7 +41,7 @@ export class QuestionViewModel extends ViewModel {
         if (_.isNumber(this._currentQuestionIndex) && this._currentQuestionIndex + 1 < this.questions.length) {
             Application.instance.router.goToQuestion(this.object.id, this.questions[this._currentQuestionIndex + 1].id, this.questionSet.id);
         } else {
-            // TODO: go to answers
+            alert("Go to answers");
         }
     }
 
@@ -128,7 +128,6 @@ export class QuestionViewModel extends ViewModel {
         Application.instance.services.answerCommandService.putAnswerAsync({
             answer: answer,
             error: (kwds: { errorThrown: any, textStatus: string }) => {
-                alert("Error: " + kwds.textStatus);
                 complete();
             },
             success: () => {

@@ -76,6 +76,7 @@ public class AnswerCommandServiceJsonRpcServlet extends javax.servlet.http.HttpS
     }
 
     private void __doPostResponse(final javax.servlet.http.HttpServletRequest httpServletRequest, final javax.servlet.http.HttpServletResponse httpServletResponse, final String httpServletResponseBody) throws java.io.IOException {
+        httpServletResponse.setHeader("Access-Control-Allow-Origin", "*");
         httpServletResponse.setContentType("application/json; charset=utf-8");
 
         if (httpServletResponseBody.length() >= 128) {

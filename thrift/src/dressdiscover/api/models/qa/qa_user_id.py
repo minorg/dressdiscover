@@ -4,6 +4,22 @@ from _qa_id import _QaId
 
 
 class QaUserId(_QaId):
+    def java_repr(self):
+       name = self.java_name()
+       return """\
+public final class %(name)s extends org.thryft.waf.api.models.StringModelId {
+    public static %(name)s parse(final String value) {
+        if (value.trim().isEmpty()) {
+            throw new IllegalArgumentException(value);
+        }
+        return new %(name)s(value);
+    }
+
+    private %(name)s(final String value) {
+        super(value);
+    }
+}""" % locals()
+
     def ts_repr(self):
         name = self.ts_name()
         return """\

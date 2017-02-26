@@ -11,7 +11,4 @@
   <listener>
     <listener-class>org.dressdiscover.server.ServletContextListener</listener-class>
   </listener>
-  <listener>
-    <listener-class>org.atmosphere.cpr.SessionSupport</listener-class>
-  </listener>
 </web-app>

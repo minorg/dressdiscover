@@ -35,8 +35,8 @@ export class Services {
         return this._questionSetQueryService;
     }
 
-    private _answerCommandService: AnswerCommandService = new LoggingAnswerCommandService(new JsonRpcAnswerCommandService("http://api.dressdiscover.org"));
-    private _answerQueryService: AnswerQueryService = new LoggingAnswerQueryService(new JsonRpcAnswerQueryService("http://api.dressdiscover.org"));
+    private _answerCommandService: AnswerCommandService = new LoggingAnswerCommandService(new JsonRpcAnswerCommandService("http://api.dressdiscover.org:8081"));
+    private _answerQueryService: AnswerQueryService = new LoggingAnswerQueryService(new JsonRpcAnswerQueryService("http://api.dressdiscover.org:8081"));
     private _objectQueryService: QaObjectQueryService = new LoggingQaObjectQueryService(new LocalQaObjectQueryService());
     private _questionQueryService: QuestionQueryService = new LoggingQuestionQueryService(new LocalQuestionQueryService());
     private _questionSetQueryService: QuestionSetQueryService = new LoggingQuestionSetQueryService(new LocalQuestionSetQueryService());

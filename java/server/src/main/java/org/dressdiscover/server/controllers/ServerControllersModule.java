@@ -4,6 +4,8 @@ import static com.google.common.base.Preconditions.checkNotNull;
 
 import javax.servlet.ServletContext;
 
+import org.dressdiscover.api.services.qa.AnswerCommandServiceJsonRpcServlet;
+import org.dressdiscover.api.services.qa.AnswerQueryServiceJsonRpcServlet;
 import org.dressdiscover.server.controllers.collection.CollectionCommandServiceJsonRpcServlet;
 import org.dressdiscover.server.controllers.collection.CollectionQueryServiceJsonRpcServlet;
 import org.dressdiscover.server.controllers.institution.InstitutionCommandServiceJsonRpcServlet;
@@ -20,6 +22,8 @@ public final class ServerControllersModule extends ServletModule {
     private final static class JsonRpcControllersModule extends ServletModule {
         @Override
         protected void configureServlets() {
+            serve("/api/jsonrpc/answer_command").with(AnswerCommandServiceJsonRpcServlet.class);
+            serve("/api/jsonrpc/answer_query").with(AnswerQueryServiceJsonRpcServlet.class);
             serve("/api/jsonrpc/collection_command").with(CollectionCommandServiceJsonRpcServlet.class);
             serve("/api/jsonrpc/collection_query").with(CollectionQueryServiceJsonRpcServlet.class);
             serve("/api/jsonrpc/institution_command").with(InstitutionCommandServiceJsonRpcServlet.class);
