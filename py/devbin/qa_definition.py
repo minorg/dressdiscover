@@ -231,13 +231,14 @@ def material_culture_question_set():
         )
     )
 
-    questions.append(
-        question(
-            id_="58b6f907bfd8c5aa5d089b27",
-            text='What color(s) is the object?',
-            type_=QuestionType.COLORS,
-        )
-    )
+#     questions.append(
+#         question(
+#             id_="58b6f907bfd8c5aa5d089b27",
+#             text='What color(s) is the object?',
+#             type_=QuestionType.COLORS,
+#             value_range=QuestionValueRange(start=0, stop=2020, step=10),
+#         )
+#     )
 
     questions.append(
         question(

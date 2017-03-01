@@ -1,11 +1,10 @@
 package org.dressdiscover.api.models.qa;
 
 public enum QuestionType {
-    COLORS(0),
-    DATE_RANGE(1),
-    SELECT_MULTIPLE(2),
-    SELECT_ONE(3),
-    TEXT(4);
+    DATE_RANGE(0),
+    SELECT_MULTIPLE(1),
+    SELECT_ONE(2),
+    TEXT(3);
 
     private QuestionType(int value) {
         this.value = value;
@@ -13,11 +12,10 @@ public enum QuestionType {
 
     public static QuestionType valueOf(final int value) {
         switch (value) {
-        case 0: return COLORS;
-        case 1: return DATE_RANGE;
-        case 2: return SELECT_MULTIPLE;
-        case 3: return SELECT_ONE;
-        case 4: return TEXT;
+        case 0: return DATE_RANGE;
+        case 1: return SELECT_MULTIPLE;
+        case 2: return SELECT_ONE;
+        case 3: return TEXT;
         default: throw new IllegalArgumentException();
         }
     }

@@ -1,5 +1,4 @@
 class QuestionType(object):
-    COLORS = None
     DATE_RANGE = None
     SELECT_MULTIPLE = None
     SELECT_ONE = None
@@ -21,24 +20,21 @@ class QuestionType(object):
 
     @classmethod
     def value_of(cls, name):
-        if name == 'COLORS' or name == '0':
-            return getattr(QuestionType, 'COLORS')
-        elif name == 'DATE_RANGE' or name == '1':
+        if name == 'DATE_RANGE' or name == '0':
             return getattr(QuestionType, 'DATE_RANGE')
-        elif name == 'SELECT_MULTIPLE' or name == '2':
+        elif name == 'SELECT_MULTIPLE' or name == '1':
             return getattr(QuestionType, 'SELECT_MULTIPLE')
-        elif name == 'SELECT_ONE' or name == '3':
+        elif name == 'SELECT_ONE' or name == '2':
             return getattr(QuestionType, 'SELECT_ONE')
-        elif name == 'TEXT' or name == '4':
+        elif name == 'TEXT' or name == '3':
             return getattr(QuestionType, 'TEXT')
         raise ValueError(name)
 
     @classmethod
     def values(cls):
-        return (QuestionType.COLORS, QuestionType.DATE_RANGE, QuestionType.SELECT_MULTIPLE, QuestionType.SELECT_ONE, QuestionType.TEXT,)
+        return (QuestionType.DATE_RANGE, QuestionType.SELECT_MULTIPLE, QuestionType.SELECT_ONE, QuestionType.TEXT,)
 
-QuestionType.COLORS = QuestionType('COLORS', 0)
-QuestionType.DATE_RANGE = QuestionType('DATE_RANGE', 1)
-QuestionType.SELECT_MULTIPLE = QuestionType('SELECT_MULTIPLE', 2)
-QuestionType.SELECT_ONE = QuestionType('SELECT_ONE', 3)
-QuestionType.TEXT = QuestionType('TEXT', 4)
+QuestionType.DATE_RANGE = QuestionType('DATE_RANGE', 0)
+QuestionType.SELECT_MULTIPLE = QuestionType('SELECT_MULTIPLE', 1)
+QuestionType.SELECT_ONE = QuestionType('SELECT_ONE', 2)
+QuestionType.TEXT = QuestionType('TEXT', 3)

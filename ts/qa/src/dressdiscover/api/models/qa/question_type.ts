@@ -1,3 +1,3 @@
 export enum QuestionType {
-    COLORS = 0, DATE_RANGE = 1, SELECT_MULTIPLE = 2, SELECT_ONE = 3, TEXT = 4
+    DATE_RANGE = 0, SELECT_MULTIPLE = 1, SELECT_ONE = 2, TEXT = 3
 }

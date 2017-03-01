@@ -6,42 +6,22 @@ class AnswerValue(object):
     class Builder(object):
         def __init__(
             self,
-            value_color=None,
             value_i32=None,
             value_id=None,
             value_string=None,
         ):
             '''
-            :type value_color: str or None
             :type value_i32: int or None
             :type value_id: str or None
             :type value_string: str or None
             '''
 
-            self.__value_color = value_color
             self.__value_i32 = value_i32
             self.__value_id = value_id
             self.__value_string = value_string
 
         def build(self):
-            return AnswerValue(value_color=self.__value_color, value_i32=self.__value_i32, value_id=self.__value_id, value_string=self.__value_string)
-
-        def set_value_color(self, value_color):
-            '''
-            :type value_color: str or None
-            '''
-
-            if value_color is not None:
-                if not isinstance(value_color, basestring):
-                    raise TypeError("expected value_color to be a str but it is a %s" % getattr(__builtin__, 'type')(value_color))
-                if value_color.isspace():
-                    raise ValueError("expected value_color not to be blank")
-                if len(value_color) > 6:
-                    raise ValueError("expected len(value_color) to be <= 6, was %d" % len(value_color))
-                if len(value_color) < 6:
-                    raise ValueError("expected len(value_color) to be >= 6, was %d" % len(value_color))
-            self.__value_color = value_color
-            return self
+            return AnswerValue(value_i32=self.__value_i32, value_id=self.__value_id, value_string=self.__value_string)
 
         def set_value_i32(self, value_i32):
             '''
@@ -82,14 +62,12 @@ class AnswerValue(object):
 
         def update(self, answer_value):
             '''
-            :type value_color: str or None
             :type value_i32: int or None
             :type value_id: str or None
             :type value_string: str or None
             '''
 
             if isinstance(answer_value, AnswerValue):
-                self.set_value_color(answer_value.value_color)
                 self.set_value_i32(answer_value.value_i32)
                 self.set_value_id(answer_value.value_id)
                 self.set_value_string(answer_value.value_string)
@@ -99,14 +77,6 @@ class AnswerValue(object):
             else:
                 raise TypeError(answer_value)
             return self
-
-        @property
-        def value_color(self):
-            '''
-            :rtype: str
-            '''
-
-            return self.__value_color
 
         @property
         def value_i32(self):
@@ -131,14 +101,6 @@ class AnswerValue(object):
             '''
 
             return self.__value_string
-
-        @value_color.setter
-        def value_color(self, value_color):
-            '''
-            :type value_color: str or None
-            '''
-
-            self.set_value_color(value_color)
 
         @value_i32.setter
         def value_i32(self, value_i32):
@@ -165,7 +127,6 @@ class AnswerValue(object):
             self.set_value_string(value_string)
 
     class FieldMetadata(object):
-        VALUE_COLOR = None
         VALUE_I32 = None
         VALUE_ID = None
         VALUE_STRING = None
@@ -196,37 +157,23 @@ class AnswerValue(object):
 
         @classmethod
         def values(cls):
-            return (cls.VALUE_COLOR, cls.VALUE_I32, cls.VALUE_ID, cls.VALUE_STRING,)
+            return (cls.VALUE_I32, cls.VALUE_ID, cls.VALUE_STRING,)
 
-    FieldMetadata.VALUE_COLOR = FieldMetadata('value_color', str, {u'blank': False, u'maxLength': 6, u'minLength': 6})
     FieldMetadata.VALUE_I32 = FieldMetadata('value_i32', int, None)
     FieldMetadata.VALUE_ID = FieldMetadata('value_id', dressdiscover.api.models.qa.question_value_id.QuestionValueId, None)
     FieldMetadata.VALUE_STRING = FieldMetadata('value_string', str, {u'blank': False, u'minLength': 1})
 
     def __init__(
         self,
-        value_color=None,
         value_i32=None,
         value_id=None,
         value_string=None,
     ):
         '''
-        :type value_color: str or None
         :type value_i32: int or None
         :type value_id: str or None
         :type value_string: str or None
         '''
-
-        if value_color is not None:
-            if not isinstance(value_color, basestring):
-                raise TypeError("expected value_color to be a str but it is a %s" % getattr(__builtin__, 'type')(value_color))
-            if value_color.isspace():
-                raise ValueError("expected value_color not to be blank")
-            if len(value_color) > 6:
-                raise ValueError("expected len(value_color) to be <= 6, was %d" % len(value_color))
-            if len(value_color) < 6:
-                raise ValueError("expected len(value_color) to be >= 6, was %d" % len(value_color))
-        self.__value_color = value_color
 
         if value_i32 is not None:
             if not isinstance(value_i32, int):
@@ -248,8 +195,6 @@ class AnswerValue(object):
         self.__value_string = value_string
 
     def __eq__(self, other):
-        if self.value_color != other.value_color:
-            return False
         if self.value_i32 != other.value_i32:
             return False
         if self.value_id != other.value_id:
@@ -259,18 +204,16 @@ class AnswerValue(object):
         return True
 
     def __hash__(self):
-        return hash((self.value_color,self.value_i32,self.value_id,self.value_string,))
+        return hash((self.value_i32,self.value_id,self.value_string,))
 
     def __iter__(self):
-        return iter((self.value_color, self.value_i32, self.value_id, self.value_string,))
+        return iter((self.value_i32, self.value_id, self.value_string,))
 
     def __ne__(self, other):
         return not self.__eq__(other)
 
     def __repr__(self):
         field_reprs = []
-        if self.value_color is not None:
-            field_reprs.append('value_color=' + "'" + self.value_color.encode('ascii', 'replace') + "'")
         if self.value_i32 is not None:
             field_reprs.append('value_i32=' + repr(self.value_i32))
         if self.value_id is not None:
@@ -281,8 +224,6 @@ class AnswerValue(object):
 
     def __str__(self):
         field_reprs = []
-        if self.value_color is not None:
-            field_reprs.append('value_color=' + "'" + self.value_color.encode('ascii', 'replace') + "'")
         if self.value_i32 is not None:
             field_reprs.append('value_i32=' + repr(self.value_i32))
         if self.value_id is not None:
@@ -307,11 +248,6 @@ class AnswerValue(object):
             ifield_name, ifield_type, ifield_id = iprot.read_field_begin()
             if ifield_type == 0: # STOP
                 break
-            elif ifield_name == 'value_color' and ifield_id == 4:
-                try:
-                    init_kwds['value_color'] = iprot.read_string()
-                except (TypeError, ValueError,):
-                    pass
             elif ifield_name == 'value_i32' and ifield_id == 1:
                 try:
                     init_kwds['value_i32'] = iprot.read_i32()
@@ -334,7 +270,6 @@ class AnswerValue(object):
 
     def replace(
         self,
-        value_color=None,
         value_i32=None,
         value_id=None,
         value_string=None,
@@ -342,30 +277,19 @@ class AnswerValue(object):
         '''
         Copy this object, replace one or more fields, and return the copy.
 
-        :type value_color: str or None
         :type value_i32: int or None
         :type value_id: str or None
         :type value_string: str or None
         :rtype: dressdiscover.api.models.qa.answer_value.AnswerValue
         '''
 
-        if value_color is None:
-            value_color = self.value_color
         if value_i32 is None:
             value_i32 = self.value_i32
         if value_id is None:
             value_id = self.value_id
         if value_string is None:
             value_string = self.value_string
-        return self.__class__(value_color=value_color, value_i32=value_i32, value_id=value_id, value_string=value_string)
-
-    @property
-    def value_color(self):
-        '''
-        :rtype: str
-        '''
-
-        return self.__value_color
+        return self.__class__(value_i32=value_i32, value_id=value_id, value_string=value_string)
 
     @property
     def value_i32(self):
@@ -400,11 +324,6 @@ class AnswerValue(object):
         '''
 
         oprot.write_struct_begin('AnswerValue')
-
-        if self.value_color is not None:
-            oprot.write_field_begin(name='value_color', type=11, id=4)
-            oprot.write_string(self.value_color)
-            oprot.write_field_end()
 
         if self.value_i32 is not None:
             oprot.write_field_begin(name='value_i32', type=8, id=1)
