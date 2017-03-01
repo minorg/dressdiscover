@@ -22,14 +22,8 @@ export class QuestionViewModel extends ViewModel {
             }
             this._currentQuestionType = QuestionType[currentQuestion.type_];
             if (currentQuestion.valueRange) {
-                if (currentQuestion.type_ == QuestionType.COLORS) {
-                    for (var i = currentQuestion.valueRange.start; i < currentQuestion.valueRange.stop; i += currentQuestion.valueRange.step) {
-                        this._currentQuestionValueRange.push({ i32: currentQuestion.valueRange.step > 1 ? (i + currentQuestion.valueRange.step / 2) : i, text: i + "-" + (i + currentQuestion.valueRange.step) });
-                    }
-                } else {
-                    for (var i = currentQuestion.valueRange.start; i < currentQuestion.valueRange.stop; i += currentQuestion.valueRange.step) {
-                        this._currentQuestionValueRange.push({ i32: currentQuestion.valueRange.step > 1 ? (i + currentQuestion.valueRange.step / 2) : i, text: i + "-" + (i + currentQuestion.valueRange.step) });
-                    }
+                for (var i = currentQuestion.valueRange.start; i < currentQuestion.valueRange.stop; i += currentQuestion.valueRange.step) {
+                    this._currentQuestionValueRange.push({ i32: currentQuestion.valueRange.step > 1 ? (i + currentQuestion.valueRange.step / 2) : i, text: i + "-" + (i + currentQuestion.valueRange.step) });
                 }
             }
         }
@@ -92,7 +86,6 @@ export class QuestionViewModel extends ViewModel {
         }
         const values: AnswerValue[] = [];
         switch (this.currentQuestion.type_) {
-            case QuestionType.COLORS:
             case QuestionType.DATE_RANGE: {
                 if (this.selectedValueI32s().length == 0) {
                     return;
