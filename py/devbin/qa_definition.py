@@ -33,8 +33,8 @@ def asset_url(asset_file_path):
 
 
 def check_id(id_):
-    assert not id_ in _IDS
-    _IDS[id_] = None, id_
+    assert not id_ in _IDS, id_
+    _IDS[id_] = None
 
 
 def met_rights(source_url):
@@ -191,6 +191,30 @@ def material_culture_question_set():
 
     questions.append(
         question(
+            id_="58b6f5dcbfd8c5aa5d089b1f",
+            text='Why have you chosen this object?',
+            type_=QuestionType.TEXT
+        )
+    )
+
+    questions.append(
+        question(
+            id_="58b6f61dbfd8c5aa5d089b20",
+            text='What do you think this object is? What evidence or features of the object did you use to decide?',
+            type_=QuestionType.TEXT
+        )
+    )
+
+    questions.append(
+        question(
+            id_="58b6f772bfd8c5aa5d089b25",
+            text='What was the most significant thing you noticed about the object?',
+            type_=QuestionType.TEXT
+        )
+    )
+
+    questions.append(
+        question(
             id_="589f8f9c69cfa172fc69d28c",
             text='Is the object large or small?',
             type_=QuestionType.SELECT_ONE,
@@ -209,6 +233,22 @@ def material_culture_question_set():
 
     questions.append(
         question(
+            id_="58b6f907bfd8c5aa5d089b27",
+            text='What color(s) is the object?',
+            type_=QuestionType.COLORS,
+        )
+    )
+
+    questions.append(
+        question(
+            id_="58b6f67cbfd8c5aa5d089b22",
+            text='What material do you think the object is made out of?',
+            type_=QuestionType.TEXT
+        )
+    )
+
+    questions.append(
+        question(
             id_="58a9d06abfd8c5aa5d089b1d",
             text='When do you think this object was made?',
             type_=QuestionType.DATE_RANGE,
@@ -216,10 +256,159 @@ def material_culture_question_set():
         )
     )
 
+#     questions.append(
+#         question(
+#             id_="58b6f6bbbfd8c5aa5d089b23",
+#             text='For what activities would the garment have been worn?',
+#             type_=QuestionType.TEXT
+#         )
+#     )
+
     questions.append(
         question(
             id_="58a9d264bfd8c5aa5d089b1e",
-            text='Who do you think would have worn or used this object?',
+            text='Where do you think the object comes from?',
+            type_=QuestionType.TEXT
+        )
+    )
+
+    questions.append(
+        question(
+            id_="58b6fa13bfd8c5aa5d089b2a",
+            text='Would the object belong to a man, a woman, or a child?',
+            type_=QuestionType.SELECT_MULTIPLE,
+            values=(
+                question_value(
+                    id_="58b6fa3dbfd8c5aa5d089b2b",
+                    text='Man',
+                ),
+                question_value(
+                    id_="58b6fa45bfd8c5aa5d089b2c",
+                    text='Woman',
+                ),
+                question_value(
+                    id_="58b6fa4bbfd8c5aa5d089b2d",
+                    text='Child',
+                ),
+                question_value(
+                    id_="58b6fa54bfd8c5aa5d089b2e",
+                    text='Other',
+                ),
+            )
+        )
+    )
+
+    questions.append(
+        question(
+            id_="58b6fb78bfd8c5aa5d089b36",
+            text='Who do you think would have worn or used the object?',
+            type_=QuestionType.TEXT
+        )
+    )
+
+    questions.append(
+        question(
+            id_="58b6fbf8bfd8c5aa5d089b37",
+            text='What season would you wear this object?',
+            type_=QuestionType.SELECT_MULTIPLE,
+            values=(
+                question_value(
+                    id_="58b6fbfebfd8c5aa5d089b38",
+                    text='Spring',
+                ),
+                question_value(
+                    id_="58b6fc05bfd8c5aa5d089b39",
+                    text='Summer',
+                ),
+                question_value(
+                    id_="58b6fc0bbfd8c5aa5d089b3a",
+                    text='Fall',
+                ),
+                question_value(
+                    id_="58b6fc12bfd8c5aa5d089b3b",
+                    text='Winter',
+                ),
+            )
+        )
+    )
+
+    questions.append(
+        question(
+            id_="58b6fc42bfd8c5aa5d089b3c",
+            text='What time of day would you wear this object?',
+            type_=QuestionType.SELECT_MULTIPLE,
+            values=(
+                question_value(
+                    id_="58b6fc48bfd8c5aa5d089b3d",
+                    text='Morning',
+                ),
+                question_value(
+                    id_="58b6fc52bfd8c5aa5d089b3e",
+                    text='Afternoon',
+                ),
+                question_value(
+                    id_="58b6fc59bfd8c5aa5d089b3f",
+                    text='Evening',
+                ),
+                question_value(
+                    id_="58b6fc60bfd8c5aa5d089b40",
+                    text='Night',
+                ),
+            )
+        )
+    )
+# What time of day would you wear this?
+
+    questions.append(
+        question(
+            id_="58b6f738bfd8c5aa5d089b24",
+            text='What sort of insight might this object give you about the environment and/or period of time it came/comes from?',
+            type_=QuestionType.TEXT
+        )
+    )
+
+    questions.append(
+        question(
+            id_="58b6fa8cbfd8c5aa5d089b2f",
+            text='How does it make you feel when you look at it?',
+            type_=QuestionType.TEXT
+        )
+    )
+
+    questions.append(
+        question(
+            id_="58b6fab7bfd8c5aa5d089b30",
+            text='Do you think the object was expensive? Why?',
+            type_=QuestionType.SELECT_ONE,
+            values=(
+                question_value(
+                    id_="58b6fb0cbfd8c5aa5d089b31",
+                    text='Very expensive',
+                ),
+                question_value(
+                    id_="58b6fb17bfd8c5aa5d089b32",
+                    text='Expensive',
+                ),
+                question_value(
+                    id_="58b6fb1fbfd8c5aa5d089b33",
+                    text='Affordable',
+                ),
+                question_value(
+                    id_="58b6fb26bfd8c5aa5d089b34",
+                    text='Inexpensive',
+                ),
+                question_value(
+                    id_="58b6fb2dbfd8c5aa5d089b35",
+                    text='Very inexpensive',
+                ),
+            )
+        )
+    )
+
+    questions.append(
+        question(
+            id_="58b6f646bfd8c5aa5d089b21",
+            text='Can you think of any experience that might relate to this object?',
             type_=QuestionType.TEXT
         )
     )

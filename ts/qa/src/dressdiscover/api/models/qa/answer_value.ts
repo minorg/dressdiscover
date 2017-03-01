@@ -1,16 +1,38 @@
 import { QuestionValueId } from "./question_value_id";
 
 export class AnswerValue {
+    private _valueColor?: string;
+
     private _valueI32?: number;
 
     private _valueId?: QuestionValueId;
 
     private _valueString?: string;
 
-    constructor(kwds: {valueI32?: number, valueId?: QuestionValueId, valueString?: string}) {
+    constructor(kwds: {valueColor?: string, valueI32?: number, valueId?: QuestionValueId, valueString?: string}) {
+        this.valueColor = kwds.valueColor;
         this.valueI32 = kwds.valueI32;
         this.valueId = kwds.valueId;
         this.valueString = kwds.valueString;
+    }
+
+    get valueColor(): string | undefined {
+        return this._valueColor;
+    }
+
+    set valueColor(valueColor: string | undefined) {
+        if (valueColor != null) {
+            if (valueColor.trim().length == 0) {
+                throw new RangeError('valueColor is blank');
+            }
+            if (valueColor.length > 6) {
+                throw new RangeError("expected len(valueColor) to be <= 6, was " + valueColor.length)
+            }
+            if (valueColor.length < 6) {
+                throw new RangeError("expected len(valueColor) to be >= 6, was " + valueColor.length)
+            }
+        }
+        this._valueColor = valueColor;
     }
 
     get valueI32(): number | undefined {
@@ -52,11 +74,14 @@ export class AnswerValue {
     }
 
     static fromThryftJSON(json: any): AnswerValue {
+        var valueColor: string | undefined;
         var valueI32: number | undefined;
         var valueId: QuestionValueId | undefined;
         var valueString: string | undefined;
         for (var fieldName in json) {
-            if (fieldName == "value_i32" || fieldName == "1:value_i32") {
+            if (fieldName == "value_color" || fieldName == "4:value_color") {
+                valueColor = json[fieldName];
+            } else if (fieldName == "value_i32" || fieldName == "1:value_i32") {
                 valueI32 = json[fieldName];
             } else if (fieldName == "value_id" || fieldName == "2:value_id") {
                 valueId = QuestionValueId.parse(json[fieldName]);
@@ -65,11 +90,14 @@ export class AnswerValue {
             }
         }
 
-        return new AnswerValue({valueI32: valueI32, valueId: valueId, valueString: valueString});
+        return new AnswerValue({valueColor: valueColor, valueI32: valueI32, valueId: valueId, valueString: valueString});
     }
 
     toThryftJSON(): any {
         var json: {[index: string]: any} = {};
+        if (this.valueColor != null) {
+            json["4:value_color"] = this.valueColor;
+        }
         if (this.valueI32 != null) {
             json["1:value_i32"] = this.valueI32;
         }
