@@ -1,8 +1,9 @@
 from collections import OrderedDict
 from itertools import filterfalse
 import builtins
+import dressdiscover.api.models.worksheet.worksheet_extent_id_set
 import dressdiscover.api.models.worksheet.worksheet_feature_id
-import dressdiscover.api.models.worksheet.worksheet_feature_value_definition
+import thryft.waf.api.models.non_blank_string
 
 
 class WorksheetFeatureDefinition(object):
@@ -11,20 +12,23 @@ class WorksheetFeatureDefinition(object):
             self,
             id=None,  # @ReservedAssignment
             display_name=None,
-            values_=None,
+            extent_ids=None,
+            value_ids=None,
         ):
             '''
             :type id: str
             :type display_name: str or None
-            :type values_: tuple(dressdiscover.api.models.worksheet.worksheet_feature_value_definition.WorksheetFeatureValueDefinition) or None
+            :type extent_ids: frozenset(str) or None
+            :type value_ids: tuple(str) or None
             '''
 
             self.__id = id
             self.__display_name = display_name
-            self.__values_ = values_
+            self.__extent_ids = extent_ids
+            self.__value_ids = value_ids
 
         def build(self):
-            return WorksheetFeatureDefinition(id=self.__id, display_name=self.__display_name, values_=self.__values_)
+            return WorksheetFeatureDefinition(id=self.__id, display_name=self.__display_name, extent_ids=self.__extent_ids, value_ids=self.__value_ids)
 
         @property
         def display_name(self):
@@ -33,6 +37,14 @@ class WorksheetFeatureDefinition(object):
             '''
 
             return self.__display_name
+
+        @property
+        def extent_ids(self):
+            '''
+            :rtype: frozenset(str)
+            '''
+
+            return self.__extent_ids
 
         @classmethod
         def from_template(cls, template):
@@ -44,7 +56,8 @@ class WorksheetFeatureDefinition(object):
             builder = cls()
             builder.id = id
             builder.display_name = display_name
-            builder.values_ = values_
+            builder.extent_ids = extent_ids
+            builder.value_ids = value_ids
             return builder
 
         @property
@@ -63,11 +76,18 @@ class WorksheetFeatureDefinition(object):
             if display_name is not None:
                 if not isinstance(display_name, str):
                     raise TypeError("expected display_name to be a str but it is a %s" % builtins.type(display_name))
-                if display_name.isspace():
-                    raise ValueError("expected display_name not to be blank")
-                if len(display_name) < 1:
-                    raise ValueError("expected len(display_name) to be >= 1, was %d" % len(display_name))
             self.__display_name = display_name
+            return self
+
+        def set_extent_ids(self, extent_ids):
+            '''
+            :type extent_ids: frozenset(str) or None
+            '''
+
+            if extent_ids is not None:
+                if not (isinstance(extent_ids, frozenset) and len(list(filterfalse(lambda _: isinstance(_, str), extent_ids))) == 0):
+                    raise TypeError("expected extent_ids to be a frozenset(str) but it is a %s" % builtins.type(extent_ids))
+            self.__extent_ids = extent_ids
             return self
 
         def set_id(self, id):  # @ReservedAssignment
@@ -82,30 +102,32 @@ class WorksheetFeatureDefinition(object):
             self.__id = id
             return self
 
-        def set_values_(self, values_):
+        def set_value_ids(self, value_ids):
             '''
-            :type values_: tuple(dressdiscover.api.models.worksheet.worksheet_feature_value_definition.WorksheetFeatureValueDefinition) or None
+            :type value_ids: tuple(str) or None
             '''
 
-            if values_ is not None:
-                if not (isinstance(values_, tuple) and len(list(filterfalse(lambda _: isinstance(_, dressdiscover.api.models.worksheet.worksheet_feature_value_definition.WorksheetFeatureValueDefinition), values_))) == 0):
-                    raise TypeError("expected values_ to be a tuple(dressdiscover.api.models.worksheet.worksheet_feature_value_definition.WorksheetFeatureValueDefinition) but it is a %s" % builtins.type(values_))
-                if len(values_) < 1:
-                    raise ValueError("expected len(values_) to be >= 1, was %d" % len(values_))
-            self.__values_ = values_
+            if value_ids is not None:
+                if not (isinstance(value_ids, tuple) and len(list(filterfalse(lambda _: isinstance(_, str), value_ids))) == 0):
+                    raise TypeError("expected value_ids to be a tuple(str) but it is a %s" % builtins.type(value_ids))
+                if len(value_ids) < 1:
+                    raise ValueError("expected len(value_ids) to be >= 1, was %d" % len(value_ids))
+            self.__value_ids = value_ids
             return self
 
         def update(self, worksheet_feature_definition):
             '''
             :type id: str
             :type display_name: str or None
-            :type values_: tuple(dressdiscover.api.models.worksheet.worksheet_feature_value_definition.WorksheetFeatureValueDefinition) or None
+            :type extent_ids: frozenset(str) or None
+            :type value_ids: tuple(str) or None
             '''
 
             if isinstance(worksheet_feature_definition, WorksheetFeatureDefinition):
                 self.set_id(worksheet_feature_definition.id)
                 self.set_display_name(worksheet_feature_definition.display_name)
-                self.set_values_(worksheet_feature_definition.values_)
+                self.set_extent_ids(worksheet_feature_definition.extent_ids)
+                self.set_value_ids(worksheet_feature_definition.value_ids)
             elif isinstance(worksheet_feature_definition, dict):
                 for key, value in worksheet_feature_definition.items():
                     getattr(self, 'set_' + key)(value)
@@ -114,12 +136,12 @@ class WorksheetFeatureDefinition(object):
             return self
 
         @property
-        def values_(self):
+        def value_ids(self):
             '''
-            :rtype: tuple(dressdiscover.api.models.worksheet.worksheet_feature_value_definition.WorksheetFeatureValueDefinition)
+            :rtype: tuple(str)
             '''
 
-            return self.__values_
+            return self.__value_ids
 
         @display_name.setter
         def display_name(self, display_name):
@@ -129,6 +151,14 @@ class WorksheetFeatureDefinition(object):
 
             self.set_display_name(display_name)
 
+        @extent_ids.setter
+        def extent_ids(self, extent_ids):
+            '''
+            :type extent_ids: frozenset(str) or None
+            '''
+
+            self.set_extent_ids(extent_ids)
+
         @id.setter
         def id(self, id):  # @ReservedAssignment
             '''
@@ -137,18 +167,19 @@ class WorksheetFeatureDefinition(object):
 
             self.set_id(id)
 
-        @values_.setter
-        def values_(self, values_):
+        @value_ids.setter
+        def value_ids(self, value_ids):
             '''
-            :type values_: tuple(dressdiscover.api.models.worksheet.worksheet_feature_value_definition.WorksheetFeatureValueDefinition) or None
+            :type value_ids: tuple(str) or None
             '''
 
-            self.set_values_(values_)
+            self.set_value_ids(value_ids)
 
     class FieldMetadata(object):
         ID = None
         DISPLAY_NAME = None
-        VALUES_ = None
+        EXTENT_IDS = None
+        VALUE_IDS = None
 
         def __init__(self, name, type_, validation):
             object.__init__(self)
@@ -176,22 +207,25 @@ class WorksheetFeatureDefinition(object):
 
         @classmethod
         def values(cls):
-            return (cls.ID, cls.DISPLAY_NAME, cls.VALUES_,)
+            return (cls.ID, cls.DISPLAY_NAME, cls.EXTENT_IDS, cls.VALUE_IDS,)
 
     FieldMetadata.ID = FieldMetadata('id', dressdiscover.api.models.worksheet.worksheet_feature_id.WorksheetFeatureId, None)
-    FieldMetadata.DISPLAY_NAME = FieldMetadata('display_name', str, OrderedDict([('blank', False), ('minLength', 1)]))
-    FieldMetadata.VALUES_ = FieldMetadata('values_', tuple, OrderedDict([('minLength', 1)]))
+    FieldMetadata.DISPLAY_NAME = FieldMetadata('display_name', thryft.waf.api.models.non_blank_string.NonBlankString, None)
+    FieldMetadata.EXTENT_IDS = FieldMetadata('extent_ids', dressdiscover.api.models.worksheet.worksheet_extent_id_set.WorksheetExtentIdSet, None)
+    FieldMetadata.VALUE_IDS = FieldMetadata('value_ids', tuple, OrderedDict([('minLength', 1)]))
 
     def __init__(
         self,
         id,  # @ReservedAssignment
         display_name=None,
-        values_=None,
+        extent_ids=None,
+        value_ids=None,
     ):
         '''
         :type id: str
         :type display_name: str or None
-        :type values_: tuple(dressdiscover.api.models.worksheet.worksheet_feature_value_definition.WorksheetFeatureValueDefinition) or None
+        :type extent_ids: frozenset(str) or None
+        :type value_ids: tuple(str) or None
         '''
 
         if id is None:
@@ -203,33 +237,36 @@ class WorksheetFeatureDefinition(object):
         if display_name is not None:
             if not isinstance(display_name, str):
                 raise TypeError("expected display_name to be a str but it is a %s" % builtins.type(display_name))
-            if display_name.isspace():
-                raise ValueError("expected display_name not to be blank")
-            if len(display_name) < 1:
-                raise ValueError("expected len(display_name) to be >= 1, was %d" % len(display_name))
         self.__display_name = display_name
 
-        if values_ is not None:
-            if not (isinstance(values_, tuple) and len(list(filterfalse(lambda _: isinstance(_, dressdiscover.api.models.worksheet.worksheet_feature_value_definition.WorksheetFeatureValueDefinition), values_))) == 0):
-                raise TypeError("expected values_ to be a tuple(dressdiscover.api.models.worksheet.worksheet_feature_value_definition.WorksheetFeatureValueDefinition) but it is a %s" % builtins.type(values_))
-            if len(values_) < 1:
-                raise ValueError("expected len(values_) to be >= 1, was %d" % len(values_))
-        self.__values_ = values_
+        if extent_ids is not None:
+            if not (isinstance(extent_ids, frozenset) and len(list(filterfalse(lambda _: isinstance(_, str), extent_ids))) == 0):
+                raise TypeError("expected extent_ids to be a frozenset(str) but it is a %s" % builtins.type(extent_ids))
+        self.__extent_ids = extent_ids
+
+        if value_ids is not None:
+            if not (isinstance(value_ids, tuple) and len(list(filterfalse(lambda _: isinstance(_, str), value_ids))) == 0):
+                raise TypeError("expected value_ids to be a tuple(str) but it is a %s" % builtins.type(value_ids))
+            if len(value_ids) < 1:
+                raise ValueError("expected len(value_ids) to be >= 1, was %d" % len(value_ids))
+        self.__value_ids = value_ids
 
     def __eq__(self, other):
         if self.id != other.id:
             return False
         if self.display_name != other.display_name:
             return False
-        if self.values_ != other.values_:
+        if self.extent_ids != other.extent_ids:
+            return False
+        if self.value_ids != other.value_ids:
             return False
         return True
 
     def __hash__(self):
-        return hash((self.id, self.display_name, self.values_,))
+        return hash((self.id, self.display_name, self.extent_ids, self.value_ids,))
 
     def __iter__(self):
-        return iter((self.id, self.display_name, self.values_,))
+        return iter((self.id, self.display_name, self.extent_ids, self.value_ids,))
 
     def __ne__(self, other):
         return not self.__eq__(other)
@@ -239,8 +276,10 @@ class WorksheetFeatureDefinition(object):
         field_reprs.append('id=' + "'" + self.id.encode('ascii', 'replace').decode('ascii') + "'")
         if self.display_name is not None:
             field_reprs.append('display_name=' + "'" + self.display_name.encode('ascii', 'replace').decode('ascii') + "'")
-        if self.values_ is not None:
-            field_reprs.append('values_=' + repr(self.values_))
+        if self.extent_ids is not None:
+            field_reprs.append('extent_ids=' + repr(self.extent_ids))
+        if self.value_ids is not None:
+            field_reprs.append('value_ids=' + repr(self.value_ids))
         return 'WorksheetFeatureDefinition(' + ', '.join(field_reprs) + ')'
 
     def __str__(self):
@@ -248,8 +287,10 @@ class WorksheetFeatureDefinition(object):
         field_reprs.append('id=' + "'" + self.id.encode('ascii', 'replace').decode('ascii') + "'")
         if self.display_name is not None:
             field_reprs.append('display_name=' + "'" + self.display_name.encode('ascii', 'replace').decode('ascii') + "'")
-        if self.values_ is not None:
-            field_reprs.append('values_=' + repr(self.values_))
+        if self.extent_ids is not None:
+            field_reprs.append('extent_ids=' + repr(self.extent_ids))
+        if self.value_ids is not None:
+            field_reprs.append('value_ids=' + repr(self.value_ids))
         return 'WorksheetFeatureDefinition(' + ', '.join(field_reprs) + ')'
 
     @classmethod
@@ -263,6 +304,14 @@ class WorksheetFeatureDefinition(object):
         '''
 
         return self.__display_name
+
+    @property
+    def extent_ids(self):
+        '''
+        :rtype: frozenset(str)
+        '''
+
+        return self.__extent_ids
 
     @property
     def id(self):  # @ReservedAssignment
@@ -295,8 +344,10 @@ class WorksheetFeatureDefinition(object):
                     init_kwds['display_name'] = iprot.read_string()
                 except (TypeError, ValueError,):
                     pass
-            elif ifield_name == 'values_':
-                init_kwds['values_'] = tuple([dressdiscover.api.models.worksheet.worksheet_feature_value_definition.WorksheetFeatureValueDefinition.read(iprot) for _ in xrange(iprot.read_list_begin()[1])] + (iprot.read_list_end() is None and []))
+            elif ifield_name == 'extent_ids':
+                init_kwds['extent_ids'] = frozenset([iprot.read_string() for _ in xrange(iprot.read_set_begin()[1])] + (iprot.read_set_end() is None and []))
+            elif ifield_name == 'value_ids':
+                init_kwds['value_ids'] = tuple([iprot.read_string() for _ in xrange(iprot.read_list_begin()[1])] + (iprot.read_list_end() is None and []))
             iprot.read_field_end()
         iprot.read_struct_end()
 
@@ -306,12 +357,12 @@ class WorksheetFeatureDefinition(object):
         return cls.Builder.from_template(template=self)
 
     @property
-    def values_(self):
+    def value_ids(self):
         '''
-        :rtype: tuple(dressdiscover.api.models.worksheet.worksheet_feature_value_definition.WorksheetFeatureValueDefinition)
+        :rtype: tuple(str)
         '''
 
-        return self.__values_
+        return self.__value_ids
 
     def write(self, oprot):
         '''
@@ -332,11 +383,19 @@ class WorksheetFeatureDefinition(object):
             oprot.write_string(self.display_name)
             oprot.write_field_end()
 
-        if self.values_ is not None:
-            oprot.write_field_begin(name='values_', type=15, id=None)
-            oprot.write_list_begin(12, len(self.values_))
-            for _0 in self.values_:
-                _0.write(oprot)
+        if self.extent_ids is not None:
+            oprot.write_field_begin(name='extent_ids', type=14, id=None)
+            oprot.write_set_begin(11, len(self.extent_ids))
+            for _0 in self.extent_ids:
+                oprot.write_string(_0)
+            oprot.write_set_end()
+            oprot.write_field_end()
+
+        if self.value_ids is not None:
+            oprot.write_field_begin(name='value_ids', type=15, id=None)
+            oprot.write_list_begin(11, len(self.value_ids))
+            for _0 in self.value_ids:
+                oprot.write_string(_0)
             oprot.write_list_end()
             oprot.write_field_end()
 

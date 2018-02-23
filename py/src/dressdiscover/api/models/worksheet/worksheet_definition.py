@@ -1,6 +1,7 @@
 from collections import OrderedDict
 from itertools import filterfalse
 import builtins
+import dressdiscover.api.models.worksheet.worksheet_extent_definition
 import dressdiscover.api.models.worksheet.worksheet_feature_definition
 import dressdiscover.api.models.worksheet.worksheet_feature_set_definition
 
@@ -9,19 +10,30 @@ class WorksheetDefinition(object):
     class Builder(object):
         def __init__(
             self,
+            extents=None,
             feature_sets=None,
             features=None,
         ):
             '''
+            :type extents: tuple(dressdiscover.api.models.worksheet.worksheet_extent_definition.WorksheetExtentDefinition)
             :type feature_sets: tuple(dressdiscover.api.models.worksheet.worksheet_feature_set_definition.WorksheetFeatureSetDefinition)
             :type features: tuple(dressdiscover.api.models.worksheet.worksheet_feature_definition.WorksheetFeatureDefinition)
             '''
 
+            self.__extents = extents
             self.__feature_sets = feature_sets
             self.__features = features
 
         def build(self):
-            return WorksheetDefinition(feature_sets=self.__feature_sets, features=self.__features)
+            return WorksheetDefinition(extents=self.__extents, feature_sets=self.__feature_sets, features=self.__features)
+
+        @property
+        def extents(self):
+            '''
+            :rtype: tuple(dressdiscover.api.models.worksheet.worksheet_extent_definition.WorksheetExtentDefinition)
+            '''
+
+            return self.__extents
 
         @property
         def feature_sets(self):
@@ -47,9 +59,22 @@ class WorksheetDefinition(object):
             '''
 
             builder = cls()
+            builder.extents = extents
             builder.feature_sets = feature_sets
             builder.features = features
             return builder
+
+        def set_extents(self, extents):
+            '''
+            :type extents: tuple(dressdiscover.api.models.worksheet.worksheet_extent_definition.WorksheetExtentDefinition)
+            '''
+
+            if extents is None:
+                raise ValueError('extents is required')
+            if not (isinstance(extents, tuple) and len(list(filterfalse(lambda _: isinstance(_, dressdiscover.api.models.worksheet.worksheet_extent_definition.WorksheetExtentDefinition), extents))) == 0):
+                raise TypeError("expected extents to be a tuple(dressdiscover.api.models.worksheet.worksheet_extent_definition.WorksheetExtentDefinition) but it is a %s" % builtins.type(extents))
+            self.__extents = extents
+            return self
 
         def set_feature_sets(self, feature_sets):
             '''
@@ -77,11 +102,13 @@ class WorksheetDefinition(object):
 
         def update(self, worksheet_definition):
             '''
+            :type extents: tuple(dressdiscover.api.models.worksheet.worksheet_extent_definition.WorksheetExtentDefinition)
             :type feature_sets: tuple(dressdiscover.api.models.worksheet.worksheet_feature_set_definition.WorksheetFeatureSetDefinition)
             :type features: tuple(dressdiscover.api.models.worksheet.worksheet_feature_definition.WorksheetFeatureDefinition)
             '''
 
             if isinstance(worksheet_definition, WorksheetDefinition):
+                self.set_extents(worksheet_definition.extents)
                 self.set_feature_sets(worksheet_definition.feature_sets)
                 self.set_features(worksheet_definition.features)
             elif isinstance(worksheet_definition, dict):
@@ -90,6 +117,14 @@ class WorksheetDefinition(object):
             else:
                 raise TypeError(worksheet_definition)
             return self
+
+        @extents.setter
+        def extents(self, extents):
+            '''
+            :type extents: tuple(dressdiscover.api.models.worksheet.worksheet_extent_definition.WorksheetExtentDefinition)
+            '''
+
+            self.set_extents(extents)
 
         @feature_sets.setter
         def feature_sets(self, feature_sets):
@@ -108,6 +143,7 @@ class WorksheetDefinition(object):
             self.set_features(features)
 
     class FieldMetadata(object):
+        EXTENTS = None
         FEATURE_SETS = None
         FEATURES = None
 
@@ -137,20 +173,29 @@ class WorksheetDefinition(object):
 
         @classmethod
         def values(cls):
-            return (cls.FEATURE_SETS, cls.FEATURES,)
+            return (cls.EXTENTS, cls.FEATURE_SETS, cls.FEATURES,)
 
+    FieldMetadata.EXTENTS = FieldMetadata('extents', tuple, None)
     FieldMetadata.FEATURE_SETS = FieldMetadata('feature_sets', tuple, None)
     FieldMetadata.FEATURES = FieldMetadata('features', tuple, None)
 
     def __init__(
         self,
+        extents,
         feature_sets,
         features,
     ):
         '''
+        :type extents: tuple(dressdiscover.api.models.worksheet.worksheet_extent_definition.WorksheetExtentDefinition)
         :type feature_sets: tuple(dressdiscover.api.models.worksheet.worksheet_feature_set_definition.WorksheetFeatureSetDefinition)
         :type features: tuple(dressdiscover.api.models.worksheet.worksheet_feature_definition.WorksheetFeatureDefinition)
         '''
+
+        if extents is None:
+            raise ValueError('extents is required')
+        if not (isinstance(extents, tuple) and len(list(filterfalse(lambda _: isinstance(_, dressdiscover.api.models.worksheet.worksheet_extent_definition.WorksheetExtentDefinition), extents))) == 0):
+            raise TypeError("expected extents to be a tuple(dressdiscover.api.models.worksheet.worksheet_extent_definition.WorksheetExtentDefinition) but it is a %s" % builtins.type(extents))
+        self.__extents = extents
 
         if feature_sets is None:
             raise ValueError('feature_sets is required')
@@ -165,6 +210,8 @@ class WorksheetDefinition(object):
         self.__features = features
 
     def __eq__(self, other):
+        if self.extents != other.extents:
+            return False
         if self.feature_sets != other.feature_sets:
             return False
         if self.features != other.features:
@@ -172,22 +219,24 @@ class WorksheetDefinition(object):
         return True
 
     def __hash__(self):
-        return hash((self.feature_sets, self.features,))
+        return hash((self.extents, self.feature_sets, self.features,))
 
     def __iter__(self):
-        return iter((self.feature_sets, self.features,))
+        return iter((self.extents, self.feature_sets, self.features,))
 
     def __ne__(self, other):
         return not self.__eq__(other)
 
     def __repr__(self):
         field_reprs = []
+        field_reprs.append('extents=' + repr(self.extents))
         field_reprs.append('feature_sets=' + repr(self.feature_sets))
         field_reprs.append('features=' + repr(self.features))
         return 'WorksheetDefinition(' + ', '.join(field_reprs) + ')'
 
     def __str__(self):
         field_reprs = []
+        field_reprs.append('extents=' + repr(self.extents))
         field_reprs.append('feature_sets=' + repr(self.feature_sets))
         field_reprs.append('features=' + repr(self.features))
         return 'WorksheetDefinition(' + ', '.join(field_reprs) + ')'
@@ -195,6 +244,14 @@ class WorksheetDefinition(object):
     @classmethod
     def builder(cls):
         return cls.Builder()
+
+    @property
+    def extents(self):
+        '''
+        :rtype: tuple(dressdiscover.api.models.worksheet.worksheet_extent_definition.WorksheetExtentDefinition)
+        '''
+
+        return self.__extents
 
     @property
     def feature_sets(self):
@@ -228,6 +285,8 @@ class WorksheetDefinition(object):
             ifield_name, ifield_type, _ifield_id = iprot.read_field_begin()
             if ifield_type == 0: # STOP
                 break
+            elif ifield_name == 'extents':
+                init_kwds['extents'] = tuple([dressdiscover.api.models.worksheet.worksheet_extent_definition.WorksheetExtentDefinition.read(iprot) for _ in xrange(iprot.read_list_begin()[1])] + (iprot.read_list_end() is None and []))
             elif ifield_name == 'feature_sets':
                 init_kwds['feature_sets'] = tuple([dressdiscover.api.models.worksheet.worksheet_feature_set_definition.WorksheetFeatureSetDefinition.read(iprot) for _ in xrange(iprot.read_list_begin()[1])] + (iprot.read_list_end() is None and []))
             elif ifield_name == 'features':
@@ -249,6 +308,13 @@ class WorksheetDefinition(object):
         '''
 
         oprot.write_struct_begin('WorksheetDefinition')
+
+        oprot.write_field_begin(name='extents', type=15, id=None)
+        oprot.write_list_begin(12, len(self.extents))
+        for _0 in self.extents:
+            _0.write(oprot)
+        oprot.write_list_end()
+        oprot.write_field_end()
 
         oprot.write_field_begin(name='feature_sets', type=15, id=None)
         oprot.write_list_begin(12, len(self.feature_sets))

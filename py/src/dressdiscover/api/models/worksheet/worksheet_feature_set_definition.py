@@ -1,7 +1,9 @@
 from collections import OrderedDict
 from itertools import filterfalse
 import builtins
+import dressdiscover.api.models.worksheet.worksheet_extent_id_set
 import dressdiscover.api.models.worksheet.worksheet_feature_set_id
+import thryft.waf.api.models.non_blank_string
 
 
 class WorksheetFeatureSetDefinition(object):
@@ -10,20 +12,23 @@ class WorksheetFeatureSetDefinition(object):
             self,
             id=None,  # @ReservedAssignment
             display_name=None,
+            extent_ids=None,
             feature_ids=None,
         ):
             '''
             :type id: str
             :type display_name: str or None
+            :type extent_ids: frozenset(str) or None
             :type feature_ids: tuple(str) or None
             '''
 
             self.__id = id
             self.__display_name = display_name
+            self.__extent_ids = extent_ids
             self.__feature_ids = feature_ids
 
         def build(self):
-            return WorksheetFeatureSetDefinition(id=self.__id, display_name=self.__display_name, feature_ids=self.__feature_ids)
+            return WorksheetFeatureSetDefinition(id=self.__id, display_name=self.__display_name, extent_ids=self.__extent_ids, feature_ids=self.__feature_ids)
 
         @property
         def display_name(self):
@@ -32,6 +37,14 @@ class WorksheetFeatureSetDefinition(object):
             '''
 
             return self.__display_name
+
+        @property
+        def extent_ids(self):
+            '''
+            :rtype: frozenset(str)
+            '''
+
+            return self.__extent_ids
 
         @property
         def feature_ids(self):
@@ -51,6 +64,7 @@ class WorksheetFeatureSetDefinition(object):
             builder = cls()
             builder.id = id
             builder.display_name = display_name
+            builder.extent_ids = extent_ids
             builder.feature_ids = feature_ids
             return builder
 
@@ -70,11 +84,18 @@ class WorksheetFeatureSetDefinition(object):
             if display_name is not None:
                 if not isinstance(display_name, str):
                     raise TypeError("expected display_name to be a str but it is a %s" % builtins.type(display_name))
-                if display_name.isspace():
-                    raise ValueError("expected display_name not to be blank")
-                if len(display_name) < 1:
-                    raise ValueError("expected len(display_name) to be >= 1, was %d" % len(display_name))
             self.__display_name = display_name
+            return self
+
+        def set_extent_ids(self, extent_ids):
+            '''
+            :type extent_ids: frozenset(str) or None
+            '''
+
+            if extent_ids is not None:
+                if not (isinstance(extent_ids, frozenset) and len(list(filterfalse(lambda _: isinstance(_, str), extent_ids))) == 0):
+                    raise TypeError("expected extent_ids to be a frozenset(str) but it is a %s" % builtins.type(extent_ids))
+            self.__extent_ids = extent_ids
             return self
 
         def set_feature_ids(self, feature_ids):
@@ -106,12 +127,14 @@ class WorksheetFeatureSetDefinition(object):
             '''
             :type id: str
             :type display_name: str or None
+            :type extent_ids: frozenset(str) or None
             :type feature_ids: tuple(str) or None
             '''
 
             if isinstance(worksheet_feature_set_definition, WorksheetFeatureSetDefinition):
                 self.set_id(worksheet_feature_set_definition.id)
                 self.set_display_name(worksheet_feature_set_definition.display_name)
+                self.set_extent_ids(worksheet_feature_set_definition.extent_ids)
                 self.set_feature_ids(worksheet_feature_set_definition.feature_ids)
             elif isinstance(worksheet_feature_set_definition, dict):
                 for key, value in worksheet_feature_set_definition.items():
@@ -127,6 +150,14 @@ class WorksheetFeatureSetDefinition(object):
             '''
 
             self.set_display_name(display_name)
+
+        @extent_ids.setter
+        def extent_ids(self, extent_ids):
+            '''
+            :type extent_ids: frozenset(str) or None
+            '''
+
+            self.set_extent_ids(extent_ids)
 
         @feature_ids.setter
         def feature_ids(self, feature_ids):
@@ -147,6 +178,7 @@ class WorksheetFeatureSetDefinition(object):
     class FieldMetadata(object):
         ID = None
         DISPLAY_NAME = None
+        EXTENT_IDS = None
         FEATURE_IDS = None
 
         def __init__(self, name, type_, validation):
@@ -175,21 +207,24 @@ class WorksheetFeatureSetDefinition(object):
 
         @classmethod
         def values(cls):
-            return (cls.ID, cls.DISPLAY_NAME, cls.FEATURE_IDS,)
+            return (cls.ID, cls.DISPLAY_NAME, cls.EXTENT_IDS, cls.FEATURE_IDS,)
 
     FieldMetadata.ID = FieldMetadata('id', dressdiscover.api.models.worksheet.worksheet_feature_set_id.WorksheetFeatureSetId, None)
-    FieldMetadata.DISPLAY_NAME = FieldMetadata('display_name', str, OrderedDict([('blank', False), ('minLength', 1)]))
+    FieldMetadata.DISPLAY_NAME = FieldMetadata('display_name', thryft.waf.api.models.non_blank_string.NonBlankString, None)
+    FieldMetadata.EXTENT_IDS = FieldMetadata('extent_ids', dressdiscover.api.models.worksheet.worksheet_extent_id_set.WorksheetExtentIdSet, None)
     FieldMetadata.FEATURE_IDS = FieldMetadata('feature_ids', tuple, OrderedDict([('minLength', 1)]))
 
     def __init__(
         self,
         id,  # @ReservedAssignment
         display_name=None,
+        extent_ids=None,
         feature_ids=None,
     ):
         '''
         :type id: str
         :type display_name: str or None
+        :type extent_ids: frozenset(str) or None
         :type feature_ids: tuple(str) or None
         '''
 
@@ -202,11 +237,12 @@ class WorksheetFeatureSetDefinition(object):
         if display_name is not None:
             if not isinstance(display_name, str):
                 raise TypeError("expected display_name to be a str but it is a %s" % builtins.type(display_name))
-            if display_name.isspace():
-                raise ValueError("expected display_name not to be blank")
-            if len(display_name) < 1:
-                raise ValueError("expected len(display_name) to be >= 1, was %d" % len(display_name))
         self.__display_name = display_name
+
+        if extent_ids is not None:
+            if not (isinstance(extent_ids, frozenset) and len(list(filterfalse(lambda _: isinstance(_, str), extent_ids))) == 0):
+                raise TypeError("expected extent_ids to be a frozenset(str) but it is a %s" % builtins.type(extent_ids))
+        self.__extent_ids = extent_ids
 
         if feature_ids is not None:
             if not (isinstance(feature_ids, tuple) and len(list(filterfalse(lambda _: isinstance(_, str), feature_ids))) == 0):
@@ -220,15 +256,17 @@ class WorksheetFeatureSetDefinition(object):
             return False
         if self.display_name != other.display_name:
             return False
+        if self.extent_ids != other.extent_ids:
+            return False
         if self.feature_ids != other.feature_ids:
             return False
         return True
 
     def __hash__(self):
-        return hash((self.id, self.display_name, self.feature_ids,))
+        return hash((self.id, self.display_name, self.extent_ids, self.feature_ids,))
 
     def __iter__(self):
-        return iter((self.id, self.display_name, self.feature_ids,))
+        return iter((self.id, self.display_name, self.extent_ids, self.feature_ids,))
 
     def __ne__(self, other):
         return not self.__eq__(other)
@@ -238,6 +276,8 @@ class WorksheetFeatureSetDefinition(object):
         field_reprs.append('id=' + "'" + self.id.encode('ascii', 'replace').decode('ascii') + "'")
         if self.display_name is not None:
             field_reprs.append('display_name=' + "'" + self.display_name.encode('ascii', 'replace').decode('ascii') + "'")
+        if self.extent_ids is not None:
+            field_reprs.append('extent_ids=' + repr(self.extent_ids))
         if self.feature_ids is not None:
             field_reprs.append('feature_ids=' + repr(self.feature_ids))
         return 'WorksheetFeatureSetDefinition(' + ', '.join(field_reprs) + ')'
@@ -247,6 +287,8 @@ class WorksheetFeatureSetDefinition(object):
         field_reprs.append('id=' + "'" + self.id.encode('ascii', 'replace').decode('ascii') + "'")
         if self.display_name is not None:
             field_reprs.append('display_name=' + "'" + self.display_name.encode('ascii', 'replace').decode('ascii') + "'")
+        if self.extent_ids is not None:
+            field_reprs.append('extent_ids=' + repr(self.extent_ids))
         if self.feature_ids is not None:
             field_reprs.append('feature_ids=' + repr(self.feature_ids))
         return 'WorksheetFeatureSetDefinition(' + ', '.join(field_reprs) + ')'
@@ -262,6 +304,14 @@ class WorksheetFeatureSetDefinition(object):
         '''
 
         return self.__display_name
+
+    @property
+    def extent_ids(self):
+        '''
+        :rtype: frozenset(str)
+        '''
+
+        return self.__extent_ids
 
     @property
     def feature_ids(self):
@@ -302,6 +352,8 @@ class WorksheetFeatureSetDefinition(object):
                     init_kwds['display_name'] = iprot.read_string()
                 except (TypeError, ValueError,):
                     pass
+            elif ifield_name == 'extent_ids':
+                init_kwds['extent_ids'] = frozenset([iprot.read_string() for _ in xrange(iprot.read_set_begin()[1])] + (iprot.read_set_end() is None and []))
             elif ifield_name == 'feature_ids':
                 init_kwds['feature_ids'] = tuple([iprot.read_string() for _ in xrange(iprot.read_list_begin()[1])] + (iprot.read_list_end() is None and []))
             iprot.read_field_end()
@@ -329,6 +381,14 @@ class WorksheetFeatureSetDefinition(object):
         if self.display_name is not None:
             oprot.write_field_begin(name='display_name', type=11, id=None)
             oprot.write_string(self.display_name)
+            oprot.write_field_end()
+
+        if self.extent_ids is not None:
+            oprot.write_field_begin(name='extent_ids', type=14, id=None)
+            oprot.write_set_begin(11, len(self.extent_ids))
+            for _0 in self.extent_ids:
+                oprot.write_string(_0)
+            oprot.write_set_end()
             oprot.write_field_end()
 
         if self.feature_ids is not None:

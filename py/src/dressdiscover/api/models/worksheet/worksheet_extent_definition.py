@@ -1,30 +1,26 @@
 from collections import OrderedDict
 import builtins
-import dressdiscover.api.models.worksheet.worksheet_feature_value_id
-import dressdiscover.api.models.worksheet.worksheet_feature_value_image
+import dressdiscover.api.models.worksheet.worksheet_extent_id
 import thryft.waf.api.models.non_blank_string
 
 
-class WorksheetFeatureValueDefinition(object):
+class WorksheetExtentDefinition(object):
     class Builder(object):
         def __init__(
             self,
             id=None,  # @ReservedAssignment
             display_name=None,
-            image=None,
         ):
             '''
             :type id: str
             :type display_name: str or None
-            :type image: dressdiscover.api.models.worksheet.worksheet_feature_value_image.WorksheetFeatureValueImage or None
             '''
 
             self.__id = id
             self.__display_name = display_name
-            self.__image = image
 
         def build(self):
-            return WorksheetFeatureValueDefinition(id=self.__id, display_name=self.__display_name, image=self.__image)
+            return WorksheetExtentDefinition(id=self.__id, display_name=self.__display_name)
 
         @property
         def display_name(self):
@@ -37,14 +33,13 @@ class WorksheetFeatureValueDefinition(object):
         @classmethod
         def from_template(cls, template):
             '''
-            :type template: dressdiscover.api.models.worksheet.worksheet_feature_value_definition.WorksheetFeatureValueDefinition
-            :rtype: dressdiscover.api.models.worksheet.worksheet_feature_value_definition.WorksheetFeatureValueDefinition
+            :type template: dressdiscover.api.models.worksheet.worksheet_extent_definition.WorksheetExtentDefinition
+            :rtype: dressdiscover.api.models.worksheet.worksheet_extent_definition.WorksheetExtentDefinition
             '''
 
             builder = cls()
             builder.id = id
             builder.display_name = display_name
-            builder.image = image
             return builder
 
         @property
@@ -54,14 +49,6 @@ class WorksheetFeatureValueDefinition(object):
             '''
 
             return self.__id
-
-        @property
-        def image(self):
-            '''
-            :rtype: dressdiscover.api.models.worksheet.worksheet_feature_value_image.WorksheetFeatureValueImage
-            '''
-
-            return self.__image
 
         def set_display_name(self, display_name):
             '''
@@ -86,33 +73,20 @@ class WorksheetFeatureValueDefinition(object):
             self.__id = id
             return self
 
-        def set_image(self, image):
-            '''
-            :type image: dressdiscover.api.models.worksheet.worksheet_feature_value_image.WorksheetFeatureValueImage or None
-            '''
-
-            if image is not None:
-                if not isinstance(image, dressdiscover.api.models.worksheet.worksheet_feature_value_image.WorksheetFeatureValueImage):
-                    raise TypeError("expected image to be a dressdiscover.api.models.worksheet.worksheet_feature_value_image.WorksheetFeatureValueImage but it is a %s" % builtins.type(image))
-            self.__image = image
-            return self
-
-        def update(self, worksheet_feature_value_definition):
+        def update(self, worksheet_extent_definition):
             '''
             :type id: str
             :type display_name: str or None
-            :type image: dressdiscover.api.models.worksheet.worksheet_feature_value_image.WorksheetFeatureValueImage or None
             '''
 
-            if isinstance(worksheet_feature_value_definition, WorksheetFeatureValueDefinition):
-                self.set_id(worksheet_feature_value_definition.id)
-                self.set_display_name(worksheet_feature_value_definition.display_name)
-                self.set_image(worksheet_feature_value_definition.image)
-            elif isinstance(worksheet_feature_value_definition, dict):
-                for key, value in worksheet_feature_value_definition.items():
+            if isinstance(worksheet_extent_definition, WorksheetExtentDefinition):
+                self.set_id(worksheet_extent_definition.id)
+                self.set_display_name(worksheet_extent_definition.display_name)
+            elif isinstance(worksheet_extent_definition, dict):
+                for key, value in worksheet_extent_definition.items():
                     getattr(self, 'set_' + key)(value)
             else:
-                raise TypeError(worksheet_feature_value_definition)
+                raise TypeError(worksheet_extent_definition)
             return self
 
         @display_name.setter
@@ -131,18 +105,9 @@ class WorksheetFeatureValueDefinition(object):
 
             self.set_id(id)
 
-        @image.setter
-        def image(self, image):
-            '''
-            :type image: dressdiscover.api.models.worksheet.worksheet_feature_value_image.WorksheetFeatureValueImage or None
-            '''
-
-            self.set_image(image)
-
     class FieldMetadata(object):
         ID = None
         DISPLAY_NAME = None
-        IMAGE = None
 
         def __init__(self, name, type_, validation):
             object.__init__(self)
@@ -170,22 +135,19 @@ class WorksheetFeatureValueDefinition(object):
 
         @classmethod
         def values(cls):
-            return (cls.ID, cls.DISPLAY_NAME, cls.IMAGE,)
+            return (cls.ID, cls.DISPLAY_NAME,)
 
-    FieldMetadata.ID = FieldMetadata('id', dressdiscover.api.models.worksheet.worksheet_feature_value_id.WorksheetFeatureValueId, None)
+    FieldMetadata.ID = FieldMetadata('id', dressdiscover.api.models.worksheet.worksheet_extent_id.WorksheetExtentId, None)
     FieldMetadata.DISPLAY_NAME = FieldMetadata('display_name', thryft.waf.api.models.non_blank_string.NonBlankString, None)
-    FieldMetadata.IMAGE = FieldMetadata('image', dressdiscover.api.models.worksheet.worksheet_feature_value_image.WorksheetFeatureValueImage, None)
 
     def __init__(
         self,
         id,  # @ReservedAssignment
         display_name=None,
-        image=None,
     ):
         '''
         :type id: str
         :type display_name: str or None
-        :type image: dressdiscover.api.models.worksheet.worksheet_feature_value_image.WorksheetFeatureValueImage or None
         '''
 
         if id is None:
@@ -199,25 +161,18 @@ class WorksheetFeatureValueDefinition(object):
                 raise TypeError("expected display_name to be a str but it is a %s" % builtins.type(display_name))
         self.__display_name = display_name
 
-        if image is not None:
-            if not isinstance(image, dressdiscover.api.models.worksheet.worksheet_feature_value_image.WorksheetFeatureValueImage):
-                raise TypeError("expected image to be a dressdiscover.api.models.worksheet.worksheet_feature_value_image.WorksheetFeatureValueImage but it is a %s" % builtins.type(image))
-        self.__image = image
-
     def __eq__(self, other):
         if self.id != other.id:
             return False
         if self.display_name != other.display_name:
             return False
-        if self.image != other.image:
-            return False
         return True
 
     def __hash__(self):
-        return hash((self.id, self.display_name, self.image,))
+        return hash((self.id, self.display_name,))
 
     def __iter__(self):
-        return iter((self.id, self.display_name, self.image,))
+        return iter((self.id, self.display_name,))
 
     def __ne__(self, other):
         return not self.__eq__(other)
@@ -227,18 +182,14 @@ class WorksheetFeatureValueDefinition(object):
         field_reprs.append('id=' + "'" + self.id.encode('ascii', 'replace').decode('ascii') + "'")
         if self.display_name is not None:
             field_reprs.append('display_name=' + "'" + self.display_name.encode('ascii', 'replace').decode('ascii') + "'")
-        if self.image is not None:
-            field_reprs.append('image=' + repr(self.image))
-        return 'WorksheetFeatureValueDefinition(' + ', '.join(field_reprs) + ')'
+        return 'WorksheetExtentDefinition(' + ', '.join(field_reprs) + ')'
 
     def __str__(self):
         field_reprs = []
         field_reprs.append('id=' + "'" + self.id.encode('ascii', 'replace').decode('ascii') + "'")
         if self.display_name is not None:
             field_reprs.append('display_name=' + "'" + self.display_name.encode('ascii', 'replace').decode('ascii') + "'")
-        if self.image is not None:
-            field_reprs.append('image=' + repr(self.image))
-        return 'WorksheetFeatureValueDefinition(' + ', '.join(field_reprs) + ')'
+        return 'WorksheetExtentDefinition(' + ', '.join(field_reprs) + ')'
 
     @classmethod
     def builder(cls):
@@ -260,21 +211,13 @@ class WorksheetFeatureValueDefinition(object):
 
         return self.__id
 
-    @property
-    def image(self):
-        '''
-        :rtype: dressdiscover.api.models.worksheet.worksheet_feature_value_image.WorksheetFeatureValueImage
-        '''
-
-        return self.__image
-
     @classmethod
     def read(cls, iprot):
         '''
         Read a new object from the given input protocol and return the object.
 
         :type iprot: thryft.protocol._input_protocol._InputProtocol
-        :rtype: dressdiscover.api.models.worksheet.worksheet_feature_value_definition.WorksheetFeatureValueDefinition
+        :rtype: dressdiscover.api.models.worksheet.worksheet_extent_definition.WorksheetExtentDefinition
         '''
 
         init_kwds = {}
@@ -291,8 +234,6 @@ class WorksheetFeatureValueDefinition(object):
                     init_kwds['display_name'] = iprot.read_string()
                 except (TypeError, ValueError,):
                     pass
-            elif ifield_name == 'image':
-                init_kwds['image'] = dressdiscover.api.models.worksheet.worksheet_feature_value_image.WorksheetFeatureValueImage.read(iprot)
             iprot.read_field_end()
         iprot.read_struct_end()
 
@@ -306,10 +247,10 @@ class WorksheetFeatureValueDefinition(object):
         Write this object to the given output protocol and return self.
 
         :type oprot: thryft.protocol._output_protocol._OutputProtocol
-        :rtype: dressdiscover.api.models.worksheet.worksheet_feature_value_definition.WorksheetFeatureValueDefinition
+        :rtype: dressdiscover.api.models.worksheet.worksheet_extent_definition.WorksheetExtentDefinition
         '''
 
-        oprot.write_struct_begin('WorksheetFeatureValueDefinition')
+        oprot.write_struct_begin('WorksheetExtentDefinition')
 
         oprot.write_field_begin(name='id', type=11, id=None)
         oprot.write_string(self.id)
@@ -318,11 +259,6 @@ class WorksheetFeatureValueDefinition(object):
         if self.display_name is not None:
             oprot.write_field_begin(name='display_name', type=11, id=None)
             oprot.write_string(self.display_name)
-            oprot.write_field_end()
-
-        if self.image is not None:
-            oprot.write_field_begin(name='image', type=12, id=None)
-            self.image.write(oprot)
             oprot.write_field_end()
 
         oprot.write_field_stop()

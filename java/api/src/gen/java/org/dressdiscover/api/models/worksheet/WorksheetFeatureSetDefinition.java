@@ -5,27 +5,33 @@ public final class WorksheetFeatureSetDefinition implements org.thryft.Struct {
         public Builder() {
             id = null;
             displayName = com.google.common.base.Optional.<String> absent();
+            extentIds = com.google.common.base.Optional.<com.google.common.collect.ImmutableSet<String>> absent();
             featureIds = com.google.common.base.Optional.<com.google.common.collect.ImmutableList<String>> absent();
         }
 
         public Builder(final WorksheetFeatureSetDefinition other) {
             this.id = other.getId();
             this.displayName = other.getDisplayName();
+            this.extentIds = other.getExtentIds();
             this.featureIds = other.getFeatureIds();
         }
 
-        protected WorksheetFeatureSetDefinition _build(final String id, final com.google.common.base.Optional<String> displayName, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> featureIds) {
-            return new WorksheetFeatureSetDefinition(id, displayName, featureIds);
+        protected WorksheetFeatureSetDefinition _build(final String id, final com.google.common.base.Optional<String> displayName, final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> extentIds, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> featureIds) {
+            return new WorksheetFeatureSetDefinition(id, displayName, extentIds, featureIds);
         }
 
         public WorksheetFeatureSetDefinition build() {
-            UncheckedValidator.validate(id, displayName, featureIds);
+            UncheckedValidator.validate(id, displayName, extentIds, featureIds);
 
-            return _build(id, displayName, featureIds);
+            return _build(id, displayName, extentIds, featureIds);
         }
 
         public final com.google.common.base.Optional<String> getDisplayName() {
             return displayName;
+        }
+
+        public final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> getExtentIds() {
+            return extentIds;
         }
 
         public final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> getFeatureIds() {
@@ -59,6 +65,28 @@ public final class WorksheetFeatureSetDefinition implements org.thryft.Struct {
                     displayName = com.google.common.base.Optional.of(iprot.readString());
                 }
                 if (__list.getSize() > 2) {
+                    try {
+                        extentIds = com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableSet<String>>() {
+                            @Override
+                            public com.google.common.collect.ImmutableSet<String> apply(final org.thryft.protocol.InputProtocol iprot) {
+                                try {
+                                    final org.thryft.protocol.SetBegin sequenceBegin = iprot.readSetBegin();
+                                    final com.google.common.collect.ImmutableSet.Builder<String> sequenceBuilder = com.google.common.collect.ImmutableSet.builder();
+                                    for (int elementI = 0; elementI < sequenceBegin.getSize(); elementI++) {
+                                        sequenceBuilder.add(iprot.readString());
+                                    }
+                                    iprot.readSetEnd();
+                                    return sequenceBuilder.build();
+                                } catch (final org.thryft.protocol.InputProtocolException e) {
+                                    throw new org.thryft.protocol.UncheckedInputProtocolException(e);
+                                }
+                            }
+                        }).apply(iprot));
+                    } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
+                         throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.EXTENT_IDS, e.getCause());
+                    }
+                }
+                if (__list.getSize() > 3) {
                     try {
                         featureIds = com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableList<String>>() {
                             @Override
@@ -106,6 +134,29 @@ public final class WorksheetFeatureSetDefinition implements org.thryft.Struct {
                     }
                     case "display_name": {
                         displayName = com.google.common.base.Optional.of(iprot.readString());
+                        break;
+                    }
+                    case "extent_ids": {
+                        try {
+                            extentIds = com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableSet<String>>() {
+                                @Override
+                                public com.google.common.collect.ImmutableSet<String> apply(final org.thryft.protocol.InputProtocol iprot) {
+                                    try {
+                                        final org.thryft.protocol.SetBegin sequenceBegin = iprot.readSetBegin();
+                                        final com.google.common.collect.ImmutableSet.Builder<String> sequenceBuilder = com.google.common.collect.ImmutableSet.builder();
+                                        for (int elementI = 0; elementI < sequenceBegin.getSize(); elementI++) {
+                                            sequenceBuilder.add(iprot.readString());
+                                        }
+                                        iprot.readSetEnd();
+                                        return sequenceBuilder.build();
+                                    } catch (final org.thryft.protocol.InputProtocolException e) {
+                                        throw new org.thryft.protocol.UncheckedInputProtocolException(e);
+                                    }
+                                }
+                            }).apply(iprot));
+                        } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
+                             throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.EXTENT_IDS, e.getCause());
+                        }
                         break;
                     }
                     case "feature_ids": {
@@ -164,6 +215,7 @@ public final class WorksheetFeatureSetDefinition implements org.thryft.Struct {
             switch (fieldMetadata) {
             case ID: setId((String)value); return this;
             case DISPLAY_NAME: setDisplayName((String)value); return this;
+            case EXTENT_IDS: setExtentIds((com.google.common.collect.ImmutableSet<String>)value); return this;
             case FEATURE_IDS: setFeatureIds((com.google.common.collect.ImmutableList<String>)value); return this;
             default:
                 throw new IllegalStateException();
@@ -178,6 +230,16 @@ public final class WorksheetFeatureSetDefinition implements org.thryft.Struct {
 
         public Builder setDisplayName(final @javax.annotation.Nullable String displayName) {
             return setDisplayName(com.google.common.base.Optional.fromNullable(displayName));
+        }
+
+        public Builder setExtentIds(final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> extentIds) {
+            UncheckedValidator.validateExtentIds(extentIds);
+            this.extentIds = extentIds;
+            return this;
+        }
+
+        public Builder setExtentIds(final @javax.annotation.Nullable com.google.common.collect.ImmutableSet<String> extentIds) {
+            return setExtentIds(com.google.common.base.Optional.fromNullable(extentIds));
         }
 
         public Builder setFeatureIds(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> featureIds) {
@@ -203,6 +265,9 @@ public final class WorksheetFeatureSetDefinition implements org.thryft.Struct {
             if (other.getDisplayName().isPresent()) {
                 setDisplayName(other.getDisplayName());
             }
+            if (other.getExtentIds().isPresent()) {
+                setExtentIds(other.getExtentIds());
+            }
             if (other.getFeatureIds().isPresent()) {
                 setFeatureIds(other.getFeatureIds());
             }
@@ -227,6 +292,7 @@ public final class WorksheetFeatureSetDefinition implements org.thryft.Struct {
             switch (fieldMetadata) {
             case ID: return unsetId();
             case DISPLAY_NAME: return unsetDisplayName();
+            case EXTENT_IDS: return unsetExtentIds();
             case FEATURE_IDS: return unsetFeatureIds();
             default:
                 throw new IllegalStateException();
@@ -235,6 +301,11 @@ public final class WorksheetFeatureSetDefinition implements org.thryft.Struct {
 
         public Builder unsetDisplayName() {
             this.displayName = com.google.common.base.Optional.<String> absent();
+            return this;
+        }
+
+        public Builder unsetExtentIds() {
+            this.extentIds = com.google.common.base.Optional.<com.google.common.collect.ImmutableSet<String>> absent();
             return this;
         }
 
@@ -250,6 +321,7 @@ public final class WorksheetFeatureSetDefinition implements org.thryft.Struct {
 
         private @javax.annotation.Nullable String id;
         private com.google.common.base.Optional<String> displayName;
+        private com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> extentIds;
         private com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> featureIds;
     }
 
@@ -286,6 +358,7 @@ public final class WorksheetFeatureSetDefinition implements org.thryft.Struct {
     public enum FieldMetadata implements org.thryft.CompoundType.FieldMetadata {
         ID("id", new com.google.common.reflect.TypeToken<String>() {}, true, (short)0, "id", org.thryft.protocol.Type.STRING),
         DISPLAY_NAME("displayName", new com.google.common.reflect.TypeToken<String>() {}, false, (short)0, "display_name", org.thryft.protocol.Type.STRING),
+        EXTENT_IDS("extentIds", new com.google.common.reflect.TypeToken<com.google.common.collect.ImmutableSet<String>>() {}, false, (short)0, "extent_ids", org.thryft.protocol.Type.SET),
         FEATURE_IDS("featureIds", new com.google.common.reflect.TypeToken<com.google.common.collect.ImmutableList<String>>() {}, false, (short)0, "feature_ids", org.thryft.protocol.Type.LIST);
 
         @Override
@@ -332,6 +405,7 @@ public final class WorksheetFeatureSetDefinition implements org.thryft.Struct {
             switch (javaName) {
             case "id": return ID;
             case "displayName": return DISPLAY_NAME;
+            case "extentIds": return EXTENT_IDS;
             case "featureIds": return FEATURE_IDS;
             default:
                 throw new IllegalArgumentException(javaName);
@@ -342,6 +416,7 @@ public final class WorksheetFeatureSetDefinition implements org.thryft.Struct {
             switch (thriftName) {
             case "id": return ID;
             case "display_name": return DISPLAY_NAME;
+            case "extent_ids": return EXTENT_IDS;
             case "feature_ids": return FEATURE_IDS;
             default:
                 throw new IllegalArgumentException(thriftName);
@@ -372,9 +447,10 @@ public final class WorksheetFeatureSetDefinition implements org.thryft.Struct {
     }
 
     public final static class ReadValidator {
-        public static void validate(final String id, final com.google.common.base.Optional<String> displayName, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> featureIds) throws org.thryft.protocol.InputProtocolException {
+        public static void validate(final String id, final com.google.common.base.Optional<String> displayName, final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> extentIds, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> featureIds) throws org.thryft.protocol.InputProtocolException {
             validateId(id);
             validateDisplayName(displayName);
+            validateExtentIds(extentIds);
             validateFeatureIds(featureIds);
         }
 
@@ -407,6 +483,9 @@ public final class WorksheetFeatureSetDefinition implements org.thryft.Struct {
             if (!displayName.isPresent()) {
                 return;
             }
+            if (displayName.get().isEmpty()) {
+                throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.DISPLAY_NAME, "org.dressdiscover.api.models.worksheet.WorksheetFeatureSetDefinition.displayName: less than min length 1");
+            }
             {
                 final int __strLen = displayName.get().length();
                 boolean __blank = true;
@@ -420,8 +499,35 @@ public final class WorksheetFeatureSetDefinition implements org.thryft.Struct {
                     throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.DISPLAY_NAME, String.format("org.dressdiscover.api.models.worksheet.WorksheetFeatureSetDefinition.displayName: blank '%s' (length=%d)", displayName.get(), __strLen));
                 }
             }
-            if (displayName.get().isEmpty()) {
-                throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.DISPLAY_NAME, "org.dressdiscover.api.models.worksheet.WorksheetFeatureSetDefinition.displayName: less than min length 1");
+        }
+
+        public static void validateExtentIds(final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> extentIds) throws org.thryft.protocol.InputProtocolException {
+            if (extentIds == null) {
+                throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.EXTENT_IDS, "org.dressdiscover.api.models.worksheet.WorksheetFeatureSetDefinition: extentIds is null");
+            }
+            if (!extentIds.isPresent()) {
+                return;
+            }
+            if (extentIds.get().isEmpty()) {
+                throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.EXTENT_IDS, "org.dressdiscover.api.models.worksheet.WorksheetFeatureSetDefinition.extentIds: less than min length 1");
+            }
+            for (final String __element0 : extentIds.get()) {
+                {
+                    final int __strLen = __element0.length();
+                    boolean __blank = true;
+                    for (int i = 0; i < __strLen; i++) {
+                        if (!Character.isWhitespace(__element0.charAt(i))) {
+                            __blank = false;
+                            break;
+                        }
+                    }
+                    if (__blank) {
+                        throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.EXTENT_IDS, String.format("org.dressdiscover.api.models.worksheet.WorksheetFeatureSetDefinition.extentIds: element: blank '%s' (length=%d)", __element0, __strLen));
+                    }
+                }
+                if (__element0.isEmpty()) {
+                    throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.EXTENT_IDS, "org.dressdiscover.api.models.worksheet.WorksheetFeatureSetDefinition.extentIds: element: less than min length 1");
+                }
             }
         }
 
@@ -457,9 +563,10 @@ public final class WorksheetFeatureSetDefinition implements org.thryft.Struct {
     }
 
     public final static class UncheckedValidator {
-        public static void validate(final String id, final com.google.common.base.Optional<String> displayName, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> featureIds) {
+        public static void validate(final String id, final com.google.common.base.Optional<String> displayName, final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> extentIds, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> featureIds) {
             validateId(id);
             validateDisplayName(displayName);
+            validateExtentIds(extentIds);
             validateFeatureIds(featureIds);
         }
 
@@ -492,6 +599,9 @@ public final class WorksheetFeatureSetDefinition implements org.thryft.Struct {
             if (!displayName.isPresent()) {
                 return;
             }
+            if (displayName.get().isEmpty()) {
+                throw new IllegalArgumentException("org.dressdiscover.api.models.worksheet.WorksheetFeatureSetDefinition.displayName: less than min length 1");
+            }
             {
                 final int __strLen = displayName.get().length();
                 boolean __blank = true;
@@ -505,8 +615,35 @@ public final class WorksheetFeatureSetDefinition implements org.thryft.Struct {
                     throw new IllegalArgumentException(String.format("org.dressdiscover.api.models.worksheet.WorksheetFeatureSetDefinition.displayName: blank '%s' (length=%d)", displayName.get(), __strLen));
                 }
             }
-            if (displayName.get().isEmpty()) {
-                throw new IllegalArgumentException("org.dressdiscover.api.models.worksheet.WorksheetFeatureSetDefinition.displayName: less than min length 1");
+        }
+
+        public static void validateExtentIds(final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> extentIds) {
+            if (extentIds == null) {
+                throw new NullPointerException("org.dressdiscover.api.models.worksheet.WorksheetFeatureSetDefinition: extentIds is null");
+            }
+            if (!extentIds.isPresent()) {
+                return;
+            }
+            if (extentIds.get().isEmpty()) {
+                throw new IllegalArgumentException("org.dressdiscover.api.models.worksheet.WorksheetFeatureSetDefinition.extentIds: less than min length 1");
+            }
+            for (final String __element0 : extentIds.get()) {
+                {
+                    final int __strLen = __element0.length();
+                    boolean __blank = true;
+                    for (int i = 0; i < __strLen; i++) {
+                        if (!Character.isWhitespace(__element0.charAt(i))) {
+                            __blank = false;
+                            break;
+                        }
+                    }
+                    if (__blank) {
+                        throw new IllegalArgumentException(String.format("org.dressdiscover.api.models.worksheet.WorksheetFeatureSetDefinition.extentIds: element: blank '%s' (length=%d)", __element0, __strLen));
+                    }
+                }
+                if (__element0.isEmpty()) {
+                    throw new IllegalArgumentException("org.dressdiscover.api.models.worksheet.WorksheetFeatureSetDefinition.extentIds: element: less than min length 1");
+                }
             }
         }
 
@@ -545,7 +682,7 @@ public final class WorksheetFeatureSetDefinition implements org.thryft.Struct {
      * Copy constructor
      */
     public WorksheetFeatureSetDefinition(final WorksheetFeatureSetDefinition other) {
-        this(other.getId(), other.getDisplayName(), other.getFeatureIds());
+        this(other.getId(), other.getDisplayName(), other.getExtentIds(), other.getFeatureIds());
     }
 
     /**
@@ -553,9 +690,10 @@ public final class WorksheetFeatureSetDefinition implements org.thryft.Struct {
      *
      * All fields should have been validated before calling this.
      */
-    protected WorksheetFeatureSetDefinition(final String id, final com.google.common.base.Optional<String> displayName, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> featureIds) {
+    protected WorksheetFeatureSetDefinition(final String id, final com.google.common.base.Optional<String> displayName, final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> extentIds, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> featureIds) {
         this.id = id;
         this.displayName = displayName;
+        this.extentIds = extentIds;
         this.featureIds = featureIds;
     }
 
@@ -575,26 +713,27 @@ public final class WorksheetFeatureSetDefinition implements org.thryft.Struct {
      * Required factory method
      */
     public static WorksheetFeatureSetDefinition create(final String id) {
-        UncheckedValidator.validate(id, com.google.common.base.Optional.<String> absent(), com.google.common.base.Optional.<com.google.common.collect.ImmutableList<String>> absent());
-        return new WorksheetFeatureSetDefinition(id, com.google.common.base.Optional.<String> absent(), com.google.common.base.Optional.<com.google.common.collect.ImmutableList<String>> absent());
+        UncheckedValidator.validate(id, com.google.common.base.Optional.<String> absent(), com.google.common.base.Optional.<com.google.common.collect.ImmutableSet<String>> absent(), com.google.common.base.Optional.<com.google.common.collect.ImmutableList<String>> absent());
+        return new WorksheetFeatureSetDefinition(id, com.google.common.base.Optional.<String> absent(), com.google.common.base.Optional.<com.google.common.collect.ImmutableSet<String>> absent(), com.google.common.base.Optional.<com.google.common.collect.ImmutableList<String>> absent());
     }
 
     /**
      * Total Nullable factory method
      */
-    public static WorksheetFeatureSetDefinition create(final String id, @javax.annotation.Nullable final String displayName, @javax.annotation.Nullable final com.google.common.collect.ImmutableList<String> featureIds) {
+    public static WorksheetFeatureSetDefinition create(final String id, @javax.annotation.Nullable final String displayName, @javax.annotation.Nullable final com.google.common.collect.ImmutableSet<String> extentIds, @javax.annotation.Nullable final com.google.common.collect.ImmutableList<String> featureIds) {
         final com.google.common.base.Optional<String> displayNameOptional = com.google.common.base.Optional.fromNullable(displayName);
+        final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> extentIdsOptional = com.google.common.base.Optional.fromNullable(extentIds);
         final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> featureIdsOptional = com.google.common.base.Optional.fromNullable(featureIds);
-        UncheckedValidator.validate(id, displayNameOptional, featureIdsOptional);
-        return new WorksheetFeatureSetDefinition(id, displayNameOptional, featureIdsOptional);
+        UncheckedValidator.validate(id, displayNameOptional, extentIdsOptional, featureIdsOptional);
+        return new WorksheetFeatureSetDefinition(id, displayNameOptional, extentIdsOptional, featureIdsOptional);
     }
 
     /**
      * Optional factory method
      */
-    public static WorksheetFeatureSetDefinition create(final String id, final com.google.common.base.Optional<String> displayName, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> featureIds) {
-        UncheckedValidator.validate(id, displayName, featureIds);
-        return new WorksheetFeatureSetDefinition(id, displayName, featureIds);
+    public static WorksheetFeatureSetDefinition create(final String id, final com.google.common.base.Optional<String> displayName, final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> extentIds, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> featureIds) {
+        UncheckedValidator.validate(id, displayName, extentIds, featureIds);
+        return new WorksheetFeatureSetDefinition(id, displayName, extentIds, featureIds);
     }
 
     @Override
@@ -613,6 +752,10 @@ public final class WorksheetFeatureSetDefinition implements org.thryft.Struct {
         }
 
         if (!(((getDisplayName().isPresent() && other.getDisplayName().isPresent()) ? (getDisplayName().get().equals(other.getDisplayName().get())) : (!getDisplayName().isPresent() && !other.getDisplayName().isPresent())))) {
+            return false;
+        }
+
+        if (!(((getExtentIds().isPresent() && other.getExtentIds().isPresent()) ? (getExtentIds().get().equals(other.getExtentIds().get())) : (!getExtentIds().isPresent() && !other.getExtentIds().isPresent())))) {
             return false;
         }
 
@@ -640,6 +783,7 @@ public final class WorksheetFeatureSetDefinition implements org.thryft.Struct {
         switch (fieldMetadata) {
         case ID: return getId();
         case DISPLAY_NAME: return getDisplayName();
+        case EXTENT_IDS: return getExtentIds();
         case FEATURE_IDS: return getFeatureIds();
         default:
             throw new IllegalStateException();
@@ -648,6 +792,10 @@ public final class WorksheetFeatureSetDefinition implements org.thryft.Struct {
 
     public final com.google.common.base.Optional<String> getDisplayName() {
         return displayName;
+    }
+
+    public final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> getExtentIds() {
+        return extentIds;
     }
 
     public final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> getFeatureIds() {
@@ -664,6 +812,9 @@ public final class WorksheetFeatureSetDefinition implements org.thryft.Struct {
         hashCode = 31 * hashCode + getId().hashCode();
         if (getDisplayName().isPresent()) {
             hashCode = 31 * hashCode + getDisplayName().get().hashCode();
+        }
+        if (getExtentIds().isPresent()) {
+            hashCode = 31 * hashCode + getExtentIds().get().hashCode();
         }
         if (getFeatureIds().isPresent()) {
             hashCode = 31 * hashCode + getFeatureIds().get().hashCode();
@@ -689,6 +840,7 @@ public final class WorksheetFeatureSetDefinition implements org.thryft.Struct {
     public static WorksheetFeatureSetDefinition readAsList(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
         String id;
         com.google.common.base.Optional<String> displayName = com.google.common.base.Optional.<String> absent();
+        com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> extentIds = com.google.common.base.Optional.<com.google.common.collect.ImmutableSet<String>> absent();
         com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> featureIds = com.google.common.base.Optional.<com.google.common.collect.ImmutableList<String>> absent();
 
         try {
@@ -698,6 +850,28 @@ public final class WorksheetFeatureSetDefinition implements org.thryft.Struct {
                 displayName = com.google.common.base.Optional.of(iprot.readString());
             }
             if (__list.getSize() > 2) {
+                try {
+                    extentIds = com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableSet<String>>() {
+                        @Override
+                        public com.google.common.collect.ImmutableSet<String> apply(final org.thryft.protocol.InputProtocol iprot) {
+                            try {
+                                final org.thryft.protocol.SetBegin sequenceBegin = iprot.readSetBegin();
+                                final com.google.common.collect.ImmutableSet.Builder<String> sequenceBuilder = com.google.common.collect.ImmutableSet.builder();
+                                for (int elementI = 0; elementI < sequenceBegin.getSize(); elementI++) {
+                                    sequenceBuilder.add(iprot.readString());
+                                }
+                                iprot.readSetEnd();
+                                return sequenceBuilder.build();
+                            } catch (final org.thryft.protocol.InputProtocolException e) {
+                                throw new org.thryft.protocol.UncheckedInputProtocolException(e);
+                            }
+                        }
+                    }).apply(iprot));
+                } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
+                     throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.EXTENT_IDS, e.getCause());
+                }
+            }
+            if (__list.getSize() > 3) {
                 try {
                     featureIds = com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableList<String>>() {
                         @Override
@@ -724,9 +898,9 @@ public final class WorksheetFeatureSetDefinition implements org.thryft.Struct {
             throw new IllegalStateException(e);
         }
 
-        ReadValidator.validate(id, displayName, featureIds);
+        ReadValidator.validate(id, displayName, extentIds, featureIds);
 
-        return new WorksheetFeatureSetDefinition(id, displayName, featureIds);
+        return new WorksheetFeatureSetDefinition(id, displayName, extentIds, featureIds);
     }
 
     public static WorksheetFeatureSetDefinition readAsStruct(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
@@ -736,6 +910,7 @@ public final class WorksheetFeatureSetDefinition implements org.thryft.Struct {
     public static WorksheetFeatureSetDefinition readAsStruct(final org.thryft.protocol.InputProtocol iprot, final com.google.common.base.Optional<UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
         @javax.annotation.Nullable String id = null;
         com.google.common.base.Optional<String> displayName = com.google.common.base.Optional.<String> absent();
+        com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> extentIds = com.google.common.base.Optional.<com.google.common.collect.ImmutableSet<String>> absent();
         com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> featureIds = com.google.common.base.Optional.<com.google.common.collect.ImmutableList<String>> absent();
 
         try {
@@ -752,6 +927,29 @@ public final class WorksheetFeatureSetDefinition implements org.thryft.Struct {
                 }
                 case "display_name": {
                     displayName = com.google.common.base.Optional.of(iprot.readString());
+                    break;
+                }
+                case "extent_ids": {
+                    try {
+                        extentIds = com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableSet<String>>() {
+                            @Override
+                            public com.google.common.collect.ImmutableSet<String> apply(final org.thryft.protocol.InputProtocol iprot) {
+                                try {
+                                    final org.thryft.protocol.SetBegin sequenceBegin = iprot.readSetBegin();
+                                    final com.google.common.collect.ImmutableSet.Builder<String> sequenceBuilder = com.google.common.collect.ImmutableSet.builder();
+                                    for (int elementI = 0; elementI < sequenceBegin.getSize(); elementI++) {
+                                        sequenceBuilder.add(iprot.readString());
+                                    }
+                                    iprot.readSetEnd();
+                                    return sequenceBuilder.build();
+                                } catch (final org.thryft.protocol.InputProtocolException e) {
+                                    throw new org.thryft.protocol.UncheckedInputProtocolException(e);
+                                }
+                            }
+                        }).apply(iprot));
+                    } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
+                         throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.EXTENT_IDS, e.getCause());
+                    }
                     break;
                 }
                 case "feature_ids": {
@@ -790,23 +988,32 @@ public final class WorksheetFeatureSetDefinition implements org.thryft.Struct {
             throw new IllegalStateException(e);
         }
 
-        ReadValidator.validate(id, displayName, featureIds);
+        ReadValidator.validate(id, displayName, extentIds, featureIds);
 
-        return new WorksheetFeatureSetDefinition(id, displayName, featureIds);
+        return new WorksheetFeatureSetDefinition(id, displayName, extentIds, featureIds);
     }
 
     public WorksheetFeatureSetDefinition replaceDisplayName(final com.google.common.base.Optional<String> displayName) {
         UncheckedValidator.validateDisplayName(displayName);
-        return new WorksheetFeatureSetDefinition(this.id, displayName, this.featureIds);
+        return new WorksheetFeatureSetDefinition(this.id, displayName, this.extentIds, this.featureIds);
     }
 
     public WorksheetFeatureSetDefinition replaceDisplayName(@javax.annotation.Nullable final String displayName) {
         return replaceDisplayName(com.google.common.base.Optional.fromNullable(displayName));
     }
 
+    public WorksheetFeatureSetDefinition replaceExtentIds(final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> extentIds) {
+        UncheckedValidator.validateExtentIds(extentIds);
+        return new WorksheetFeatureSetDefinition(this.id, this.displayName, extentIds, this.featureIds);
+    }
+
+    public WorksheetFeatureSetDefinition replaceExtentIds(@javax.annotation.Nullable final com.google.common.collect.ImmutableSet<String> extentIds) {
+        return replaceExtentIds(com.google.common.base.Optional.fromNullable(extentIds));
+    }
+
     public WorksheetFeatureSetDefinition replaceFeatureIds(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> featureIds) {
         UncheckedValidator.validateFeatureIds(featureIds);
-        return new WorksheetFeatureSetDefinition(this.id, this.displayName, featureIds);
+        return new WorksheetFeatureSetDefinition(this.id, this.displayName, this.extentIds, featureIds);
     }
 
     public WorksheetFeatureSetDefinition replaceFeatureIds(@javax.annotation.Nullable final com.google.common.collect.ImmutableList<String> featureIds) {
@@ -815,22 +1022,32 @@ public final class WorksheetFeatureSetDefinition implements org.thryft.Struct {
 
     public WorksheetFeatureSetDefinition replaceId(final String id) {
         UncheckedValidator.validateId(id);
-        return new WorksheetFeatureSetDefinition(id, this.displayName, this.featureIds);
+        return new WorksheetFeatureSetDefinition(id, this.displayName, this.extentIds, this.featureIds);
     }
 
     @Override
     public String toString() {
-        return com.google.common.base.MoreObjects.toStringHelper(this).omitNullValues().add("id", getId()).add("display_name", getDisplayName().orNull()).add("feature_ids", getFeatureIds().orNull()).toString();
+        return com.google.common.base.MoreObjects.toStringHelper(this).omitNullValues().add("id", getId()).add("display_name", getDisplayName().orNull()).add("extent_ids", getExtentIds().orNull()).add("feature_ids", getFeatureIds().orNull()).toString();
     }
 
     @Override
     public void writeAsList(final org.thryft.protocol.OutputProtocol oprot) throws org.thryft.protocol.OutputProtocolException {
-        oprot.writeListBegin(org.thryft.protocol.Type.VOID_, 3);
+        oprot.writeListBegin(org.thryft.protocol.Type.VOID_, 4);
 
         oprot.writeString(getId());
 
         if (getDisplayName().isPresent()) {
             oprot.writeString(getDisplayName().get());
+        } else {
+            oprot.writeNull();
+        }
+
+        if (getExtentIds().isPresent()) {
+            oprot.writeSetBegin(org.thryft.protocol.Type.STRING, getExtentIds().get().size());
+            for (final String _iter0 : getExtentIds().get()) {
+                oprot.writeString(_iter0);
+            }
+            oprot.writeSetEnd();
         } else {
             oprot.writeNull();
         }
@@ -863,6 +1080,18 @@ public final class WorksheetFeatureSetDefinition implements org.thryft.Struct {
         }
     }
 
+    public void writeExtentIdsField(final org.thryft.protocol.OutputProtocol oprot) throws org.thryft.protocol.OutputProtocolException {
+        if (getExtentIds().isPresent()) {
+            oprot.writeFieldBegin(FieldMetadata.EXTENT_IDS);
+            oprot.writeSetBegin(org.thryft.protocol.Type.STRING, getExtentIds().get().size());
+            for (final String _iter0 : getExtentIds().get()) {
+                oprot.writeString(_iter0);
+            }
+            oprot.writeSetEnd();
+            oprot.writeFieldEnd();
+        }
+    }
+
     public void writeFeatureIdsField(final org.thryft.protocol.OutputProtocol oprot) throws org.thryft.protocol.OutputProtocolException {
         if (getFeatureIds().isPresent()) {
             oprot.writeFieldBegin(FieldMetadata.FEATURE_IDS);
@@ -881,6 +1110,8 @@ public final class WorksheetFeatureSetDefinition implements org.thryft.Struct {
 
         writeDisplayNameField(oprot);
 
+        writeExtentIdsField(oprot);
+
         writeFeatureIdsField(oprot);
 
         oprot.writeFieldStop();
@@ -895,6 +1126,8 @@ public final class WorksheetFeatureSetDefinition implements org.thryft.Struct {
     private final String id;
 
     private final com.google.common.base.Optional<String> displayName;
+
+    private final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> extentIds;
 
     private final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> featureIds;
 }
