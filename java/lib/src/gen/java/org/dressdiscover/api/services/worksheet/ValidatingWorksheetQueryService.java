@@ -17,13 +17,6 @@ public class ValidatingWorksheetQueryService implements org.dressdiscover.api.se
     }
 
     @Override
-    public final org.dressdiscover.api.models.worksheet.WorksheetDefinition getWorksheetDefinition() throws org.dressdiscover.api.services.IoException {
-        final org.dressdiscover.api.models.worksheet.WorksheetDefinition __returnValue = delegate.getWorksheetDefinition();
-        org.dressdiscover.api.services.worksheet.WorksheetQueryService.Messages.GetWorksheetDefinitionResponse.UncheckedValidator.validateReturnValue(__returnValue);
-        return __returnValue;
-    }
-
-    @Override
     public final org.dressdiscover.api.models.worksheet.WorksheetState getWorksheetState(final String accessionNumber) throws org.dressdiscover.api.services.IoException {
         org.dressdiscover.api.services.worksheet.WorksheetQueryService.Messages.GetWorksheetStateRequest.UncheckedValidator.validate(accessionNumber);
         final org.dressdiscover.api.models.worksheet.WorksheetState __returnValue = delegate.getWorksheetState(accessionNumber);

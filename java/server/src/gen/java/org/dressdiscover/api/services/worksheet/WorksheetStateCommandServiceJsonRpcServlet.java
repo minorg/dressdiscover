@@ -2,9 +2,9 @@ package org.dressdiscover.api.services.worksheet;
 
 @com.google.inject.Singleton
 @SuppressWarnings("serial")
-public class WorksheetQueryServiceJsonRpcServlet extends javax.servlet.http.HttpServlet {
+public class WorksheetStateCommandServiceJsonRpcServlet extends javax.servlet.http.HttpServlet {
     @com.google.inject.Inject
-    public WorksheetQueryServiceJsonRpcServlet(final org.dressdiscover.api.services.worksheet.WorksheetQueryService service) {
+    public WorksheetStateCommandServiceJsonRpcServlet(final org.dressdiscover.api.services.worksheet.WorksheetStateCommandService service) {
         this.service = service;
     }
 
@@ -35,10 +35,10 @@ public class WorksheetQueryServiceJsonRpcServlet extends javax.servlet.http.Http
             if (messageBegin.getType() != org.thryft.protocol.MessageType.CALL) {
                 throw new org.thryft.waf.lib.protocols.json.JsonRpcInputProtocolException(-32600, "expected request");
             }
-            if (messageBegin.getName().equals("get_worksheet_accession_numbers")) {
-                doPostGetWorksheetAccessionNumbers(httpServletRequest, httpServletResponse, iprot, messageBegin.getId());
-            } else if (messageBegin.getName().equals("get_worksheet_state")) {
-                doPostGetWorksheetState(httpServletRequest, httpServletResponse, iprot, messageBegin.getId());
+            if (messageBegin.getName().equals("delete_worksheet_state")) {
+                doPostDeleteWorksheetState(httpServletRequest, httpServletResponse, iprot, messageBegin.getId());
+            } else if (messageBegin.getName().equals("put_worksheet_state")) {
+                doPostPutWorksheetState(httpServletRequest, httpServletResponse, iprot, messageBegin.getId());
             } else {
                 __doPostError(httpServletRequest, httpServletResponse, new org.thryft.waf.lib.protocols.json.JsonRpcErrorResponse(-32601, String.format("the method '%s' does not exist / is not available", messageBegin.getName())), messageBegin.getId());
                 return;
@@ -72,50 +72,18 @@ public class WorksheetQueryServiceJsonRpcServlet extends javax.servlet.http.Http
         }
     }
 
-    public void doPostGetWorksheetAccessionNumbers(final javax.servlet.http.HttpServletRequest httpServletRequest, final javax.servlet.http.HttpServletResponse httpServletResponse, final org.thryft.waf.lib.protocols.json.JsonRpcInputProtocol iprot, final Object jsonRpcRequestId) throws java.io.IOException {
-        final com.google.common.collect.ImmutableList<String> result;
+    public void doPostDeleteWorksheetState(final javax.servlet.http.HttpServletRequest httpServletRequest, final javax.servlet.http.HttpServletResponse httpServletResponse, final org.thryft.waf.lib.protocols.json.JsonRpcInputProtocol iprot, final Object jsonRpcRequestId) throws java.io.IOException {
+        final org.dressdiscover.api.services.worksheet.WorksheetStateCommandService.Messages.DeleteWorksheetStateRequest serviceRequest;
         try {
-            result = service.getWorksheetAccessionNumbers();
-        } catch (final org.dressdiscover.api.services.IoException e) {
-            __doPostError(httpServletRequest, httpServletResponse, new org.thryft.waf.lib.protocols.json.JsonRpcErrorResponse(e, 1, e.getClass().getCanonicalName() + ": " + String.valueOf(e.getMessage())), jsonRpcRequestId);
-            return;
-        }
-
-        final String httpServletResponseBody;
-        {
-            final java.io.StringWriter httpServletResponseBodyWriter = new java.io.StringWriter();
-            try {
-                final org.thryft.waf.lib.protocols.json.JsonRpcOutputProtocol oprot = new org.thryft.waf.lib.protocols.json.JsonRpcOutputProtocol(new org.thryft.waf.lib.protocols.json.JacksonJsonOutputProtocol(httpServletResponseBodyWriter));
-                oprot.writeMessageBegin("", org.thryft.protocol.MessageType.REPLY, jsonRpcRequestId);
-                oprot.writeListBegin(org.thryft.protocol.Type.STRING, result.size());
-                for (final String _iter0 : result) {
-                    oprot.writeString(_iter0);
-                }
-                oprot.writeListEnd();
-                oprot.writeMessageEnd();
-                oprot.flush();
-            } catch (final org.thryft.protocol.OutputProtocolException e) {
-                logger.error("error serializing service error response: ", e);
-                throw new IllegalStateException(e);
-            }
-            httpServletResponseBody = httpServletResponseBodyWriter.toString();
-        }
-        __doPostResponse(httpServletRequest, httpServletResponse, httpServletResponseBody);
-    }
-
-    public void doPostGetWorksheetState(final javax.servlet.http.HttpServletRequest httpServletRequest, final javax.servlet.http.HttpServletResponse httpServletResponse, final org.thryft.waf.lib.protocols.json.JsonRpcInputProtocol iprot, final Object jsonRpcRequestId) throws java.io.IOException {
-        final org.dressdiscover.api.services.worksheet.WorksheetQueryService.Messages.GetWorksheetStateRequest serviceRequest;
-        try {
-            serviceRequest = org.dressdiscover.api.services.worksheet.WorksheetQueryService.Messages.GetWorksheetStateRequest.readAs(iprot, iprot.getCurrentFieldType(), unknownFieldCallback);
+            serviceRequest = org.dressdiscover.api.services.worksheet.WorksheetStateCommandService.Messages.DeleteWorksheetStateRequest.readAs(iprot, iprot.getCurrentFieldType(), unknownFieldCallback);
         } catch (final IllegalArgumentException | org.thryft.protocol.InputProtocolException | NullPointerException e) {
             logger.debug("error deserializing service request: ", e);
             __doPostError(httpServletRequest, httpServletResponse, new org.thryft.waf.lib.protocols.json.JsonRpcErrorResponse(e, -32602, e.getMessage() != null ? e.getMessage() : "invalid JSON-RPC request method parameters"), jsonRpcRequestId);
             return;
         }
 
-        final org.dressdiscover.api.models.worksheet.WorksheetState result;
         try {
-            result = service.getWorksheetState(serviceRequest.getAccessionNumber());
+            service.deleteWorksheetState(serviceRequest.getAccessionNumber());
         } catch (final org.dressdiscover.api.services.IoException e) {
             __doPostError(httpServletRequest, httpServletResponse, new org.thryft.waf.lib.protocols.json.JsonRpcErrorResponse(e, 1, e.getClass().getCanonicalName() + ": " + String.valueOf(e.getMessage())), jsonRpcRequestId);
             return;
@@ -127,7 +95,8 @@ public class WorksheetQueryServiceJsonRpcServlet extends javax.servlet.http.Http
             try {
                 final org.thryft.waf.lib.protocols.json.JsonRpcOutputProtocol oprot = new org.thryft.waf.lib.protocols.json.JsonRpcOutputProtocol(new org.thryft.waf.lib.protocols.json.JacksonJsonOutputProtocol(httpServletResponseBodyWriter));
                 oprot.writeMessageBegin("", org.thryft.protocol.MessageType.REPLY, jsonRpcRequestId);
-                result.writeAsStruct(oprot);
+                oprot.writeStructBegin("response");
+                oprot.writeStructEnd();
                 oprot.writeMessageEnd();
                 oprot.flush();
             } catch (final org.thryft.protocol.OutputProtocolException e) {
@@ -139,7 +108,43 @@ public class WorksheetQueryServiceJsonRpcServlet extends javax.servlet.http.Http
         __doPostResponse(httpServletRequest, httpServletResponse, httpServletResponseBody);
     }
 
-    private final static org.slf4j.Logger logger = org.slf4j.LoggerFactory.getLogger(WorksheetQueryServiceJsonRpcServlet.class);
+    public void doPostPutWorksheetState(final javax.servlet.http.HttpServletRequest httpServletRequest, final javax.servlet.http.HttpServletResponse httpServletResponse, final org.thryft.waf.lib.protocols.json.JsonRpcInputProtocol iprot, final Object jsonRpcRequestId) throws java.io.IOException {
+        final org.dressdiscover.api.services.worksheet.WorksheetStateCommandService.Messages.PutWorksheetStateRequest serviceRequest;
+        try {
+            serviceRequest = org.dressdiscover.api.services.worksheet.WorksheetStateCommandService.Messages.PutWorksheetStateRequest.readAs(iprot, iprot.getCurrentFieldType(), unknownFieldCallback);
+        } catch (final IllegalArgumentException | org.thryft.protocol.InputProtocolException | NullPointerException e) {
+            logger.debug("error deserializing service request: ", e);
+            __doPostError(httpServletRequest, httpServletResponse, new org.thryft.waf.lib.protocols.json.JsonRpcErrorResponse(e, -32602, e.getMessage() != null ? e.getMessage() : "invalid JSON-RPC request method parameters"), jsonRpcRequestId);
+            return;
+        }
+
+        try {
+            service.putWorksheetState(serviceRequest.getState());
+        } catch (final org.dressdiscover.api.services.IoException e) {
+            __doPostError(httpServletRequest, httpServletResponse, new org.thryft.waf.lib.protocols.json.JsonRpcErrorResponse(e, 1, e.getClass().getCanonicalName() + ": " + String.valueOf(e.getMessage())), jsonRpcRequestId);
+            return;
+        }
+
+        final String httpServletResponseBody;
+        {
+            final java.io.StringWriter httpServletResponseBodyWriter = new java.io.StringWriter();
+            try {
+                final org.thryft.waf.lib.protocols.json.JsonRpcOutputProtocol oprot = new org.thryft.waf.lib.protocols.json.JsonRpcOutputProtocol(new org.thryft.waf.lib.protocols.json.JacksonJsonOutputProtocol(httpServletResponseBodyWriter));
+                oprot.writeMessageBegin("", org.thryft.protocol.MessageType.REPLY, jsonRpcRequestId);
+                oprot.writeStructBegin("response");
+                oprot.writeStructEnd();
+                oprot.writeMessageEnd();
+                oprot.flush();
+            } catch (final org.thryft.protocol.OutputProtocolException e) {
+                logger.error("error serializing service error response: ", e);
+                throw new IllegalStateException(e);
+            }
+            httpServletResponseBody = httpServletResponseBodyWriter.toString();
+        }
+        __doPostResponse(httpServletRequest, httpServletResponse, httpServletResponseBody);
+    }
+
+    private final static org.slf4j.Logger logger = org.slf4j.LoggerFactory.getLogger(WorksheetStateCommandServiceJsonRpcServlet.class);
     private final static com.google.common.base.Optional<org.thryft.CompoundType.UnknownFieldCallback> unknownFieldCallback = com.google.common.base.Optional.of(new org.thryft.CompoundType.UnknownFieldCallback() { @Override public void apply(final org.thryft.protocol.FieldBegin field) throws org.thryft.protocol.InputProtocolException { throw new org.thryft.protocol.InputProtocolException("unknown field " + field); } });
-    private final org.dressdiscover.api.services.worksheet.WorksheetQueryService service;
+    private final org.dressdiscover.api.services.worksheet.WorksheetStateCommandService service;
 }

@@ -1,6 +1,6 @@
 package org.dressdiscover.api.services.worksheet;
 
-public interface WorksheetCommandService {
+public interface WorksheetStateCommandService {
     public enum FunctionMetadata {
         DELETE_WORKSHEET_STATE("delete_worksheet_state"),
         PUT_WORKSHEET_STATE("put_worksheet_state");

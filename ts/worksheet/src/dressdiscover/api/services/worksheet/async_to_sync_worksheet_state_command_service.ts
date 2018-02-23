@@ -1,7 +1,7 @@
-import { WorksheetCommandService } from "./worksheet_command_service";
 import { WorksheetState } from "../../models/worksheet/worksheet_state";
+import { WorksheetStateCommandService } from "./worksheet_state_command_service";
 
-export abstract class AsyncToSyncWorksheetCommandService implements WorksheetCommandService {
+export abstract class AsyncToSyncWorksheetStateCommandService implements WorksheetStateCommandService {
     deleteWorksheetStateAsync(kwds: {accessionNumber: string, error: (errorKwds: {textStatus: string, errorThrown: any, [index: string]: any}) => any, success: () => void}): void {
         try {
             this.deleteWorksheetStateSync({accessionNumber: kwds.accessionNumber})

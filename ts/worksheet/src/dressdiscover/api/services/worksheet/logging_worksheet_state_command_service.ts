@@ -1,8 +1,8 @@
-import { WorksheetCommandService } from "./worksheet_command_service";
 import { WorksheetState } from "../../models/worksheet/worksheet_state";
+import { WorksheetStateCommandService } from "./worksheet_state_command_service";
 
-export class LoggingWorksheetCommandService implements WorksheetCommandService {
-    constructor(private delegate: WorksheetCommandService) {
+export class LoggingWorksheetStateCommandService implements WorksheetStateCommandService {
+    constructor(private delegate: WorksheetStateCommandService) {
     }
 
     deleteWorksheetStateAsync(kwds: {accessionNumber: string, error: (errorKwds: {textStatus: string, errorThrown: any, [index: string]: any}) => any, success: () => void}): void {
