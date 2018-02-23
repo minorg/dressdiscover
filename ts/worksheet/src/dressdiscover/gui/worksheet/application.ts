@@ -1,3 +1,4 @@
+import './custom.scss';
 import 'bootstrap';
 
 // import { Session } from 'thingsworth/gui/models/session';

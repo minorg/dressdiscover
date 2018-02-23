@@ -2,6 +2,11 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const path = require('path');
 
+const extractTextPlugin = new ExtractTextPlugin({
+  filename: 'css/worksheet.css',
+  allChunks: true
+});
+
 module.exports = {
   devtool: 'source-map',
   entry: {
@@ -13,23 +18,10 @@ module.exports = {
   module: {
     rules: [{
         test: /\.(scss)$/,
-        use: [{
-          loader: 'style-loader'
-        }, {
-          loader: 'css-loader'
-        }, {
-          loader: 'postcss-loader', // Run post css actions
-          options: {
-            plugins: function () { // post css plugins, can be exported to postcss.config.js
-              return [
-                require('precss'),
-                require('autoprefixer')
-              ];
-            }
-          }
-        }, {
-          loader: 'sass-loader' // compiles Sass to CSS
-        }]
+        use: extractTextPlugin.extract({
+          fallback: 'style-loader',
+          use: ["css-loader", "postcss-loader", "sass-loader"]
+        })
       },
       {
         test: /\.ts$/,
@@ -43,7 +35,7 @@ module.exports = {
     path: path.join(__dirname, './wwwroot')
   },
   plugins: [
-    new ExtractTextPlugin('./css/worksheet.css'),
+    extractTextPlugin,
     new HtmlWebpackPlugin({
       filename: 'index.html',
       hash: true,
