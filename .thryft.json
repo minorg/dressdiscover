@@ -1,0 +1,130 @@
+{
+    "version": 1,
+
+    "tasks": {
+        "clean": [
+            "java/api/src/gen/java/org/dressdiscover",
+            "java/lib/src/gen/java/org/dressdiscover",
+            "py/src/dressdiscover/apy",
+            "ts/worksheet/src/dressdiscover/api"
+        ],
+        "generate": [{
+                "description": "ElasticSearch mappings",
+                "thrift_root_dir": "thrift/src",
+                "thrift_include_dirs": ["../thryft-waf/thrift/src"],
+                "thrift_files": "thrift/src/**/object_summary.thrift",
+                "gen": {
+                    "elastic_search_mappings_json": {
+                        "out": "java/lib/src/main/resources/elastic_search_templates/object_summary_template.json",
+                        "template": "object_summary_*"
+                    }
+                }
+            },
+            {
+                "description": "lib .properties Java",
+                "thrift_root_dir": "thrift/src",
+                "thrift_include_dirs": ["../thryft-waf/thrift/src"],
+                "thrift_files": "thrift/src/dressdiscover/lib/properties/*_properties.thrift",
+                "gen": {
+                    "properties_java": {
+                        "out": "java/lib/src/gen/java",
+                        "namespace_prefix": "org.",
+                        "project_name": "dressdiscover"
+                    }
+                }
+            },
+            {
+                "description": "api Java and TypeScript",
+                "thrift_root_dir": "thrift/src",
+                "thrift_include_dirs": ["../thryft-waf/thrift/src"],
+                "thrift_files": "thrift/src/dressdiscover/api/**/*.thrift",
+                "gen": {
+                    "java": {
+                        "default_methods": true,
+                        "function_overloads": true,
+                        "namespace_prefix": "org.",
+                        "out": "java/api/src/gen/java"
+                    },
+                    "ts": {
+                        "out": "ts/src"
+                    }
+                }
+            },
+            {
+                "description": "lib Java",
+                "thrift_root_dir": "thrift/src",
+                "thrift_include_dirs": ["../thryft-waf/thrift/src"],
+                "thrift_files": {
+                    "include": "thrift/src/dressdiscover/lib/**/*.thrift",
+                    "exclude": "thrift/src/dressdiscover/lib/properties/*_properties.thrift"
+                },
+                "gen": {
+                    "java": {
+                        "default_methods": true,
+                        "function_overloads": true,
+                        "namespace_prefix": "org.",
+                        "out": "java/lib/src/gen/java"
+                    }
+                }
+            },
+            {
+                "description": "logging and validating Java services",
+                "thrift_root_dir": "thrift/src",
+                "thrift_include_dirs": ["../thryft-waf/thrift/src"],
+                "thrift_files": ["thrift/src/**/*_service.thrift"],
+                "gen": {
+                    "logging_service_java": {
+                        "exception_log_level_default": "error",
+                        "namespace_prefix": "org.",
+                        "out": "java/lib/src/gen/java"
+                    },
+                    "validating_service_java": {
+                        "namespace_prefix": "org.",
+                        "out": "java/lib/src/gen/java"
+                    }
+                }
+            },
+            {
+                "description": "API services Java and TypeScript",
+                "thrift_root_dir": "thrift/src",
+                "thrift_include_dirs": ["../thryft-waf/thrift/src"],
+                "thrift_files": ["thrift/src/dressdiscover/api/services/**/*_service.thrift"],
+                "gen": {
+                    "async_to_sync_ts": "ts/src",
+                    "json_rpc_client_ts": {
+                        "cors": true,
+                        "out": "ts/src"
+                    },
+                    "json_rpc_servlet_java": {
+                        "cors": true,
+                        "namespace_prefix": "org.",
+                        "out": "java/server/src/gen/java"
+                    },
+                    "logging_service_ts": "ts/src"
+                }
+            },
+            {
+                "description": "Worksheet API py",
+                "thrift_root_dir": "thrift/src",
+                "thrift_include_dirs": ["../thryft-waf/thrift/src"],
+                "thrift_files": [
+                    "thrift/src/dressdiscover/api/models/worksheet/**/*_.thrift"
+                ],
+                "gen": {
+                    "py": "py/src"
+                }
+            }
+        ],
+        "lint": [{
+            "thrift_root_dir": "thrift/src",
+            "thrift_include_dirs": ["../thryft-waf/thrift/src"]
+        }],
+        "package_info_java": [{
+            "description": "package-info.java",
+            "java_root_dir": "java/lib/src/main/java",
+            "java_dirs": "java/lib/src/main/java/org/dressdiscover/lib/**/"
+        }]
+    },
+
+    "pythonpath": ["../thryft-waf/thrift/src/thryft"]
+}
