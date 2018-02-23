@@ -1,48 +1,54 @@
-import * as Backbone from "backbone";
+export class IoException {
+    private _causeMessage: string;
 
-export class IoException extends Backbone.Model {
-    validation = {
-        causeMessage: {
-            "fn": function(value: any, attr: any, computedState: any) {
-                if (typeof value !== "string") {
-                    return "expected IoException.cause_message to be a string";
-                }
-
-                return undefined;
-            },
-            "required": true
-        }
-    }
-
-    validationError: any;
-
-    constructor(attributes?: {causeMessage: string}, options?: any) {
-        super(attributes, options);
+    constructor(kwds: {causeMessage: string}) {
+        this.causeMessage = kwds.causeMessage;
     }
 
     get causeMessage(): string {
-        return this.get('causeMessage');
+        return this._causeMessage;
     }
 
-    set causeMessage(value: string) {
-        this.set('causeMessage', value, { validate: true });
+    set causeMessage(causeMessage: string) {
+        this._causeMessage = causeMessage;
     }
 
-    static fromThryftJSON(json: any): IoException {
-        const attributes: any = {};
+    deepCopy(): IoException {
+        return new IoException({ causeMessage: this.causeMessage });
+    }
+
+    equals(other: IoException): boolean {
+        if (!(this.causeMessage === other.causeMessage)) {
+            return false;
+        }
+
+        return true;
+    }
+
+    static fromThryftJsonObject(json: any): IoException {
+        var causeMessage: string | undefined;
         for (var fieldName in json) {
             if (fieldName == "cause_message") {
-                attributes["causeMessage"] = json[fieldName];
+                causeMessage = json[fieldName];
             }
         }
-        const out = new IoException(attributes);
-        if (!out.isValid(true)) {
-            throw new Error(out.validationError);
+        if (causeMessage == null) {
+            throw new TypeError('causeMessage is required');
         }
-        return out;
+        return new IoException({causeMessage: causeMessage});
     }
 
-    toThryftJSON(): any {
+    toJsonObject(): any {
+        var json: {[index: string]: any} = {};
+        json["cause_message"] = this.causeMessage;
+        return json;
+    }
+
+    toString(): string {
+        return "IoException(" + JSON.stringify(this.toThryftJsonObject()) + ")";
+    }
+
+    toThryftJsonObject(): any {
         var json: {[index: string]: any} = {};
         json["cause_message"] = this.causeMessage;
         return json;

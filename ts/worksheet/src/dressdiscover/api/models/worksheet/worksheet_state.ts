@@ -1,81 +1,90 @@
-import * as Backbone from "backbone";
 import { WorksheetFeatureSetState } from "./worksheet_feature_set_state";
 
-export class WorksheetState extends Backbone.Model {
-    validation = {
-        accessionNumber: {
-            "fn": function(value: any, attr: any, computedState: any) {
-                if (typeof value !== "string") {
-                    return "expected WorksheetState.accession_number to be a string";
-                }
+export class WorksheetState {
+    private _accessionNumber: string;
 
-                return undefined;
-            },
-            "required": true
-        },
+    private _rootFeatureSet?: WorksheetFeatureSetState;
 
-        rootFeatureSet: {
-            "fn": function(value: any, attr: any, computedState: any) {
-                if (typeof attr === "undefined" || attr === null) {
-                    return undefined;
-                }
-
-                if (!(value instanceof WorksheetFeatureSetState)) {
-                    return "expected WorksheetState.root_feature_set to be a WorksheetFeatureSetState";
-                }
-                if (!value.isValid(true)) {
-                    return value.validationError;
-                }
-
-                return undefined;
-            },
-            "required": false
-        }
-    }
-
-    validationError: any;
-
-    constructor(attributes?: {accessionNumber: string, rootFeatureSet?: WorksheetFeatureSetState}, options?: any) {
-        super(attributes, options);
+    constructor(kwds: {accessionNumber: string, rootFeatureSet?: WorksheetFeatureSetState}) {
+        this.accessionNumber = kwds.accessionNumber;
+        this.rootFeatureSet = kwds.rootFeatureSet;
     }
 
     get accessionNumber(): string {
-        return this.get('accessionNumber');
+        return this._accessionNumber;
     }
 
-    set accessionNumber(value: string) {
-        this.set('accessionNumber', value, { validate: true });
+    set accessionNumber(accessionNumber: string) {
+        if (accessionNumber.trim().length == 0) {
+            throw new RangeError('accessionNumber is blank');
+        }
+        if (accessionNumber.length < 1) {
+            throw new RangeError("expected len(accessionNumber) to be >= 1, was " + accessionNumber.length);
+        }
+        this._accessionNumber = accessionNumber;
     }
 
-    get rootFeatureSet(): WorksheetFeatureSetState {
-        return this.get('rootFeatureSet');
+    get rootFeatureSet(): WorksheetFeatureSetState | undefined {
+        return this._rootFeatureSet;
     }
 
-    set rootFeatureSet(value: WorksheetFeatureSetState) {
-        this.set('rootFeatureSet', value, { validate: true });
+    set rootFeatureSet(rootFeatureSet: WorksheetFeatureSetState | undefined) {
+        if (rootFeatureSet != null) {
+
+        }
+        this._rootFeatureSet = rootFeatureSet;
     }
 
-    static fromThryftJSON(json: any): WorksheetState {
-        const attributes: any = {};
+    deepCopy(): WorksheetState {
+        return new WorksheetState({ accessionNumber: this.accessionNumber, rootFeatureSet: (this.rootFeatureSet ? (this.rootFeatureSet.deepCopy()) : undefined) });
+    }
+
+    equals(other: WorksheetState): boolean {
+        if (!(this.accessionNumber === other.accessionNumber)) {
+            return false;
+        }
+
+        if (!((!((typeof (this.rootFeatureSet)) === "undefined") && !((typeof (other.rootFeatureSet)) === "undefined")) ? ((this.rootFeatureSet as WorksheetFeatureSetState).equals((other.rootFeatureSet as WorksheetFeatureSetState))) : (((typeof (this.rootFeatureSet)) === "undefined") && ((typeof (other.rootFeatureSet)) === "undefined")))) {
+            return false;
+        }
+
+        return true;
+    }
+
+    static fromThryftJsonObject(json: any): WorksheetState {
+        var accessionNumber: string | undefined;
+        var rootFeatureSet: WorksheetFeatureSetState | undefined;
         for (var fieldName in json) {
             if (fieldName == "accession_number") {
-                attributes["accessionNumber"] = json[fieldName];
+                accessionNumber = json[fieldName];
             } else if (fieldName == "root_feature_set") {
-                attributes["rootFeatureSet"] = WorksheetFeatureSetState.fromThryftJSON(json[fieldName]);
+                rootFeatureSet = WorksheetFeatureSetState.fromThryftJsonObject(json[fieldName]);
             }
         }
-        const out = new WorksheetState(attributes);
-        if (!out.isValid(true)) {
-            throw new Error(out.validationError);
+        if (accessionNumber == null) {
+            throw new TypeError('accessionNumber is required');
         }
-        return out;
+        return new WorksheetState({accessionNumber: accessionNumber, rootFeatureSet: rootFeatureSet});
     }
 
-    toThryftJSON(): any {
+    toJsonObject(): any {
         var json: {[index: string]: any} = {};
         json["accession_number"] = this.accessionNumber;
-        if (this.has("rootFeatureSet")) {
-            json["root_feature_set"] = this.rootFeatureSet.toThryftJSON();
+        if (this.rootFeatureSet != null) {
+            json["root_feature_set"] = this.rootFeatureSet.toJsonObject();
+        }
+        return json;
+    }
+
+    toString(): string {
+        return "WorksheetState(" + JSON.stringify(this.toThryftJsonObject()) + ")";
+    }
+
+    toThryftJsonObject(): any {
+        var json: {[index: string]: any} = {};
+        json["accession_number"] = this.accessionNumber;
+        if (this.rootFeatureSet != null) {
+            json["root_feature_set"] = this.rootFeatureSet.toThryftJsonObject();
         }
         return json;
     }

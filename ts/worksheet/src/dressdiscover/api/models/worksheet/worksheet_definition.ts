@@ -1,54 +1,58 @@
-import * as Backbone from "backbone";
-import { WorksheetFeatureSetDefinition } from "./worksheet_feature_set_definition";
+import { WorksheetFeatureSetDefinition } from "./dressdiscover/api/models/worksheet/worksheet_feature_set_definition";
 
-export class WorksheetDefinition extends Backbone.Model {
-    validation = {
-        rootFeatureSet: {
-            "fn": function(value: any, attr: any, computedState: any) {
-                if (!(value instanceof WorksheetFeatureSetDefinition)) {
-                    return "expected WorksheetDefinition.root_feature_set to be a WorksheetFeatureSetDefinition";
-                }
-                if (!value.isValid(true)) {
-                    return value.validationError;
-                }
+export class WorksheetDefinition {
+    private _rootFeatureSet: WorksheetFeatureSetDefinition;
 
-                return undefined;
-            },
-            "required": true
-        }
-    }
-
-    validationError: any;
-
-    constructor(attributes?: {rootFeatureSet: WorksheetFeatureSetDefinition}, options?: any) {
-        super(attributes, options);
+    constructor(kwds: {rootFeatureSet: WorksheetFeatureSetDefinition}) {
+        this.rootFeatureSet = kwds.rootFeatureSet;
     }
 
     get rootFeatureSet(): WorksheetFeatureSetDefinition {
-        return this.get('rootFeatureSet');
+        return this._rootFeatureSet;
     }
 
-    set rootFeatureSet(value: WorksheetFeatureSetDefinition) {
-        this.set('rootFeatureSet', value, { validate: true });
+    set rootFeatureSet(rootFeatureSet: WorksheetFeatureSetDefinition) {
+        this._rootFeatureSet = rootFeatureSet;
     }
 
-    static fromThryftJSON(json: any): WorksheetDefinition {
-        const attributes: any = {};
+    deepCopy(): WorksheetDefinition {
+        return new WorksheetDefinition({ rootFeatureSet: this.rootFeatureSet.deepCopy() });
+    }
+
+    equals(other: WorksheetDefinition): boolean {
+        if (!(this.rootFeatureSet.equals(other.rootFeatureSet))) {
+            return false;
+        }
+
+        return true;
+    }
+
+    static fromThryftJsonObject(json: any): WorksheetDefinition {
+        var rootFeatureSet: WorksheetFeatureSetDefinition | undefined;
         for (var fieldName in json) {
             if (fieldName == "root_feature_set") {
-                attributes["rootFeatureSet"] = WorksheetFeatureSetDefinition.fromThryftJSON(json[fieldName]);
+                rootFeatureSet = WorksheetFeatureSetDefinition.fromThryftJsonObject(json[fieldName]);
             }
         }
-        const out = new WorksheetDefinition(attributes);
-        if (!out.isValid(true)) {
-            throw new Error(out.validationError);
+        if (rootFeatureSet == null) {
+            throw new TypeError('rootFeatureSet is required');
         }
-        return out;
+        return new WorksheetDefinition({rootFeatureSet: rootFeatureSet});
     }
 
-    toThryftJSON(): any {
+    toJsonObject(): any {
         var json: {[index: string]: any} = {};
-        json["root_feature_set"] = this.rootFeatureSet.toThryftJSON();
+        json["root_feature_set"] = this.rootFeatureSet.toJsonObject();
+        return json;
+    }
+
+    toString(): string {
+        return "WorksheetDefinition(" + JSON.stringify(this.toThryftJsonObject()) + ")";
+    }
+
+    toThryftJsonObject(): any {
+        var json: {[index: string]: any} = {};
+        json["root_feature_set"] = this.rootFeatureSet.toThryftJsonObject();
         return json;
     }
 }

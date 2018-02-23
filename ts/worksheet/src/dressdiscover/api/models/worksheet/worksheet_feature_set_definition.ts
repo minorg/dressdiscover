@@ -1,150 +1,153 @@
-import * as Backbone from "backbone";
 import { WorksheetFeatureDefinition } from "./worksheet_feature_definition";
 
-export class WorksheetFeatureSetDefinition extends Backbone.Model {
-    validation = {
-        id: {
-            "fn": function(value: any, attr: any, computedState: any) {
-                if (typeof value !== "string") {
-                    return "expected WorksheetFeatureSetDefinition.id to be a string";
-                }
+export class WorksheetFeatureSetDefinition {
+    private _childFeatureSets?: WorksheetFeatureSetDefinition[];
 
-                return undefined;
-            },
-            "required": true
-        },
+    private _displayName?: string;
 
-        childFeatureSets: {
-            "fn": function(value: any, attr: any, computedState: any) {
-                if (typeof attr === "undefined" || attr === null) {
-                    return undefined;
-                }
+    private _features?: WorksheetFeatureDefinition[];
 
-                if (!(value instanceof Backbone.Collection)) {
-                    return "expected WorksheetFeatureSetDefinition.child_feature_sets to be a Backbone.Collection";
-                }
-                if (value.model !== WorksheetFeatureSetDefinition) {
-                    return "expected WorksheetFeatureSetDefinition.child_feature_sets to be a Backbone.Collection with model=WorksheetFeatureSetDefinition";
-                }
-                for (let __model0 of value.models) {
-                    if (!__model0.isValid(true)) {
-                        return __model0.validationError;
-                    }
-                }
+    private _id: string;
 
-                return undefined;
-            },
-            "minLength": 1, "required": false
-        },
-
-        displayName: {
-            "fn": function(value: any, attr: any, computedState: any) {
-                if (typeof attr === "undefined" || attr === null) {
-                    return undefined;
-                }
-
-                if (typeof value !== "string") {
-                    return "expected WorksheetFeatureSetDefinition.display_name to be a string";
-                }
-
-                if (/^\s*$/.test(value)) {
-                    return "WorksheetFeatureSetDefinition.display_name is blank";
-                }
-
-                return undefined;
-            },
-            "minLength": 1, "required": false
-        },
-
-        features: {
-            "fn": function(value: any, attr: any, computedState: any) {
-                if (typeof attr === "undefined" || attr === null) {
-                    return undefined;
-                }
-
-                if (!(value instanceof Backbone.Collection)) {
-                    return "expected WorksheetFeatureSetDefinition.features to be a Backbone.Collection";
-                }
-                if (value.model !== WorksheetFeatureDefinition) {
-                    return "expected WorksheetFeatureSetDefinition.features to be a Backbone.Collection with model=WorksheetFeatureDefinition";
-                }
-                for (let __model0 of value.models) {
-                    if (!__model0.isValid(true)) {
-                        return __model0.validationError;
-                    }
-                }
-
-                return undefined;
-            },
-            "minLength": 1, "required": false
-        }
-    }
-
-    validationError: any;
-
-    constructor(attributes?: {id: string, childFeatureSets?: Backbone.Collection<WorksheetFeatureSetDefinition>, displayName?: string, features?: Backbone.Collection<WorksheetFeatureDefinition>}, options?: any) {
-        super(attributes, options);
+    constructor(kwds: {id: string, childFeatureSets?: WorksheetFeatureSetDefinition[], displayName?: string, features?: WorksheetFeatureDefinition[]}) {
+        this.id = kwds.id;
+        this.childFeatureSets = kwds.childFeatureSets;
+        this.displayName = kwds.displayName;
+        this.features = kwds.features;
     }
 
     get id(): string {
-        return this.get('id');
+        return this._id;
     }
 
-    get childFeatureSets(): Backbone.Collection<WorksheetFeatureSetDefinition> {
-        return this.get('childFeatureSets');
+    set id(id: string) {
+        if (id.trim().length == 0) {
+            throw new RangeError('id is blank');
+        }
+        if (id.length < 1) {
+            throw new RangeError("expected len(id) to be >= 1, was " + id.length);
+        }
+        this._id = id;
     }
 
-    set childFeatureSets(value: Backbone.Collection<WorksheetFeatureSetDefinition>) {
-        this.set('childFeatureSets', value, { validate: true });
+    get childFeatureSets(): WorksheetFeatureSetDefinition[] | undefined {
+        return this._childFeatureSets;
     }
 
-    get displayName(): string {
-        return this.get('displayName');
-    }
-
-    set displayName(value: string) {
-        this.set('displayName', value, { validate: true });
-    }
-
-    get features(): Backbone.Collection<WorksheetFeatureDefinition> {
-        return this.get('features');
-    }
-
-    set features(value: Backbone.Collection<WorksheetFeatureDefinition>) {
-        this.set('features', value, { validate: true });
-    }
-
-    static fromThryftJSON(json: any): WorksheetFeatureSetDefinition {
-        const attributes: any = {};
-        for (var fieldName in json) {
-            if (fieldName == "id") {
-                attributes["id"] = json[fieldName];
-            } else if (fieldName == "child_feature_sets") {
-                attributes["childFeatureSets"] = function(json: any[]): Backbone.Collection<WorksheetFeatureSetDefinition> { var sequence: WorksheetFeatureSetDefinition[] = []; for (var i = 0; i < json.length; i++) { sequence.push(WorksheetFeatureSetDefinition.fromThryftJSON(json[i])); } return new Backbone.Collection<WorksheetFeatureSetDefinition>(sequence); }(json[fieldName]);
-            } else if (fieldName == "display_name") {
-                attributes["displayName"] = json[fieldName];
-            } else if (fieldName == "features") {
-                attributes["features"] = function(json: any[]): Backbone.Collection<WorksheetFeatureDefinition> { var sequence: WorksheetFeatureDefinition[] = []; for (var i = 0; i < json.length; i++) { sequence.push(WorksheetFeatureDefinition.fromThryftJSON(json[i])); } return new Backbone.Collection<WorksheetFeatureDefinition>(sequence); }(json[fieldName]);
+    set childFeatureSets(childFeatureSets: WorksheetFeatureSetDefinition[] | undefined) {
+        if (childFeatureSets != null) {
+            if (childFeatureSets.length < 1) {
+                throw new RangeError("expected len(childFeatureSets) to be >= 1, was " + childFeatureSets.length);
             }
         }
-        const out = new WorksheetFeatureSetDefinition(attributes);
-        if (!out.isValid(true)) {
-            throw new Error(out.validationError);
-        }
-        return out;
+        this._childFeatureSets = childFeatureSets;
     }
 
-    toThryftJSON(): any {
+    get displayName(): string | undefined {
+        return this._displayName;
+    }
+
+    set displayName(displayName: string | undefined) {
+        if (displayName != null) {
+            if (displayName.trim().length == 0) {
+                throw new RangeError('displayName is blank');
+            }
+            if (displayName.length < 1) {
+                throw new RangeError("expected len(displayName) to be >= 1, was " + displayName.length);
+            }
+        }
+        this._displayName = displayName;
+    }
+
+    get features(): WorksheetFeatureDefinition[] | undefined {
+        return this._features;
+    }
+
+    set features(features: WorksheetFeatureDefinition[] | undefined) {
+        if (features != null) {
+            if (features.length < 1) {
+                throw new RangeError("expected len(features) to be >= 1, was " + features.length);
+            }
+        }
+        this._features = features;
+    }
+
+    deepCopy(): WorksheetFeatureSetDefinition {
+        return new WorksheetFeatureSetDefinition({ id: this.id, childFeatureSets: (this.childFeatureSets ? (function(__value0: WorksheetFeatureSetDefinition[]) { let __copy0: WorksheetFeatureSetDefinition[] = []; for (var __i0 = 0; __i0 < __value0.length; __i0++) { __copy0.push(__value0[__i0].deepCopy()); } return __copy0; }(this.childFeatureSets)) : undefined), displayName: this.displayName, features: (this.features ? (function(__value0: WorksheetFeatureDefinition[]) { let __copy0: WorksheetFeatureDefinition[] = []; for (var __i0 = 0; __i0 < __value0.length; __i0++) { __copy0.push(__value0[__i0].deepCopy()); } return __copy0; }(this.features)) : undefined) });
+    }
+
+    equals(other: WorksheetFeatureSetDefinition): boolean {
+        if (!(this.id === other.id)) {
+            return false;
+        }
+
+        if (!((!((typeof (this.childFeatureSets)) === "undefined") && !((typeof (other.childFeatureSets)) === "undefined")) ? (function(left: WorksheetFeatureSetDefinition[], right: WorksheetFeatureSetDefinition[]): boolean { if (left.length != right.length) { return false; } for (var elementI = 0; elementI < left.length; elementI++) { if (!(left[elementI].equals(right[elementI]))) { return false; } } return true; }((this.childFeatureSets as WorksheetFeatureSetDefinition[]), (other.childFeatureSets as WorksheetFeatureSetDefinition[]))) : (((typeof (this.childFeatureSets)) === "undefined") && ((typeof (other.childFeatureSets)) === "undefined")))) {
+            return false;
+        }
+
+        if (!((!((typeof (this.displayName)) === "undefined") && !((typeof (other.displayName)) === "undefined")) ? ((this.displayName as string) === (other.displayName as string)) : (((typeof (this.displayName)) === "undefined") && ((typeof (other.displayName)) === "undefined")))) {
+            return false;
+        }
+
+        if (!((!((typeof (this.features)) === "undefined") && !((typeof (other.features)) === "undefined")) ? (function(left: WorksheetFeatureDefinition[], right: WorksheetFeatureDefinition[]): boolean { if (left.length != right.length) { return false; } for (var elementI = 0; elementI < left.length; elementI++) { if (!(left[elementI].equals(right[elementI]))) { return false; } } return true; }((this.features as WorksheetFeatureDefinition[]), (other.features as WorksheetFeatureDefinition[]))) : (((typeof (this.features)) === "undefined") && ((typeof (other.features)) === "undefined")))) {
+            return false;
+        }
+
+        return true;
+    }
+
+    static fromThryftJsonObject(json: any): WorksheetFeatureSetDefinition {
+        var id: string | undefined;
+        var childFeatureSets: WorksheetFeatureSetDefinition[] | undefined;
+        var displayName: string | undefined;
+        var features: WorksheetFeatureDefinition[] | undefined;
+        for (var fieldName in json) {
+            if (fieldName == "id") {
+                id = json[fieldName];
+            } else if (fieldName == "child_feature_sets") {
+                childFeatureSets = function(json: any[]): WorksheetFeatureSetDefinition[] { var sequence: WorksheetFeatureSetDefinition[] = []; for (var i = 0; i < json.length; i++) { sequence.push(WorksheetFeatureSetDefinition.fromThryftJsonObject(json[i])); } return sequence; }(json[fieldName]);
+            } else if (fieldName == "display_name") {
+                displayName = json[fieldName];
+            } else if (fieldName == "features") {
+                features = function(json: any[]): WorksheetFeatureDefinition[] { var sequence: WorksheetFeatureDefinition[] = []; for (var i = 0; i < json.length; i++) { sequence.push(WorksheetFeatureDefinition.fromThryftJsonObject(json[i])); } return sequence; }(json[fieldName]);
+            }
+        }
+        if (id == null) {
+            throw new TypeError('id is required');
+        }
+        return new WorksheetFeatureSetDefinition({id: id, childFeatureSets: childFeatureSets, displayName: displayName, features: features});
+    }
+
+    toJsonObject(): any {
         var json: {[index: string]: any} = {};
         json["id"] = this.id;
-        if (this.has("childFeatureSets")) {
-            json["child_feature_sets"] = function (__inArray: WorksheetFeatureSetDefinition[]): any[] { var __outArray: any[] = []; for (var __i = 0; __i < __inArray.length; __i++) { __outArray.push(__inArray[__i].toThryftJSON()); } return __outArray; }(this.childFeatureSets.models);
+        if (this.childFeatureSets != null) {
+            json["child_feature_sets"] = function (__inArray: WorksheetFeatureSetDefinition[]): any[] { var __outArray: any[] = []; for (var __i = 0; __i < __inArray.length; __i++) { __outArray.push(__inArray[__i].toJsonObject()); } return __outArray; }(this.childFeatureSets);
         }
-        if (this.has("displayName")) {
+        if (this.displayName != null) {
             json["display_name"] = this.displayName;
         }
-        if (this.has("features")) {
-            json["features"] = function (__inArray: WorksheetFeatureDefinition[]): any[] { var __outArray: any[] = []; for (var __i = 0; __i < __inArray.length; __i++) { __outArray.push(__inArray[__i].toThryftJSON()); } return __outArray; }(this.features.models);
+        if (this.features != null) {
+            json["features"] = function (__inArray: WorksheetFeatureDefinition[]): any[] { var __outArray: any[] = []; for (var __i = 0; __i < __inArray.length; __i++) { __outArray.push(__inArray[__i].toJsonObject()); } return __outArray; }(this.features);
+        }
+        return json;
+    }
+
+    toString(): string {
+        return "WorksheetFeatureSetDefinition(" + JSON.stringify(this.toThryftJsonObject()) + ")";
+    }
+
+    toThryftJsonObject(): any {
+        var json: {[index: string]: any} = {};
+        json["id"] = this.id;
+        if (this.childFeatureSets != null) {
+            json["child_feature_sets"] = function (__inArray: WorksheetFeatureSetDefinition[]): any[] { var __outArray: any[] = []; for (var __i = 0; __i < __inArray.length; __i++) { __outArray.push(__inArray[__i].toThryftJsonObject()); } return __outArray; }(this.childFeatureSets);
+        }
+        if (this.displayName != null) {
+            json["display_name"] = this.displayName;
+        }
+        if (this.features != null) {
+            json["features"] = function (__inArray: WorksheetFeatureDefinition[]): any[] { var __outArray: any[] = []; for (var __i = 0; __i < __inArray.length; __i++) { __outArray.push(__inArray[__i].toThryftJsonObject()); } return __outArray; }(this.features);
         }
         return json;
     }

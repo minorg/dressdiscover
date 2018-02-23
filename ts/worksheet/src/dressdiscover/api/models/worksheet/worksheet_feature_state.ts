@@ -1,91 +1,96 @@
-import * as Backbone from "backbone";
+export class WorksheetFeatureState {
+    private _selectedValues?: string[];
 
-export class WorksheetFeatureState extends Backbone.Model {
-    validation = {
-        selectedValues: {
-            "fn": function(value: any, attr: any, computedState: any) {
-                if (typeof attr === "undefined" || attr === null) {
-                    return undefined;
-                }
+    private _text?: string;
 
-                if (!Array.isArray(value)) {
-                    return "expected WorksheetFeatureState.selected_values to be an Array";
-                }
-                for (var __i0 = 0; __i0 < value.length; __i0++) {
-                    if (typeof value[__i0] !== "string") {
-                        return "expected WorksheetFeatureState.selected_values[i] to be a string";
-                    }
-                }
-
-                return undefined;
-            },
-            "minLength": 1, "required": false
-        },
-
-        text: {
-            "fn": function(value: any, attr: any, computedState: any) {
-                if (typeof attr === "undefined" || attr === null) {
-                    return undefined;
-                }
-
-                if (typeof value !== "string") {
-                    return "expected WorksheetFeatureState.text to be a string";
-                }
-
-                if (/^\s*$/.test(value)) {
-                    return "WorksheetFeatureState.text is blank";
-                }
-
-                return undefined;
-            },
-            "minLength": 1, "required": false
+    constructor(kwds?: {selectedValues?: string[], text?: string}) {
+        if (!kwds) {
+            return;
         }
+        this.selectedValues = kwds.selectedValues;
+        this.text = kwds.text;
     }
 
-    validationError: any;
-
-    constructor(attributes?: {selectedValues?: string[], text?: string}, options?: any) {
-        super(attributes, options);
+    get selectedValues(): string[] | undefined {
+        return this._selectedValues;
     }
 
-    get selectedValues(): string[] {
-        return this.get('selectedValues');
-    }
-
-    set selectedValues(value: string[]) {
-        this.set('selectedValues', value, { validate: true });
-    }
-
-    get text(): string {
-        return this.get('text');
-    }
-
-    set text(value: string) {
-        this.set('text', value, { validate: true });
-    }
-
-    static fromThryftJSON(json: any): WorksheetFeatureState {
-        const attributes: any = {};
-        for (var fieldName in json) {
-            if (fieldName == "selected_values") {
-                attributes["selectedValues"] = function(json: any[]): string[] { var sequence: string[] = []; for (var i = 0; i < json.length; i++) { sequence.push(json[i]); } return sequence; }(json[fieldName]);
-            } else if (fieldName == "text") {
-                attributes["text"] = json[fieldName];
+    set selectedValues(selectedValues: string[] | undefined) {
+        if (selectedValues != null) {
+            if (selectedValues.length < 1) {
+                throw new RangeError("expected len(selectedValues) to be >= 1, was " + selectedValues.length);
             }
         }
-        const out = new WorksheetFeatureState(attributes);
-        if (!out.isValid(true)) {
-            throw new Error(out.validationError);
-        }
-        return out;
+        this._selectedValues = selectedValues;
     }
 
-    toThryftJSON(): any {
+    get text(): string | undefined {
+        return this._text;
+    }
+
+    set text(text: string | undefined) {
+        if (text != null) {
+            if (text.trim().length == 0) {
+                throw new RangeError('text is blank');
+            }
+            if (text.length < 1) {
+                throw new RangeError("expected len(text) to be >= 1, was " + text.length);
+            }
+        }
+        this._text = text;
+    }
+
+    deepCopy(): WorksheetFeatureState {
+        return new WorksheetFeatureState({ selectedValues: (this.selectedValues ? (function(__value0: string[]) { let __copy0: string[] = []; for (var __i0 = 0; __i0 < __value0.length; __i0++) { __copy0.push(__value0[__i0]); } return __copy0; }(this.selectedValues)) : undefined), text: this.text });
+    }
+
+    equals(other: WorksheetFeatureState): boolean {
+        if (!((!((typeof (this.selectedValues)) === "undefined") && !((typeof (other.selectedValues)) === "undefined")) ? (function(left: string[], right: string[]): boolean { if (left.length != right.length) { return false; } for (var elementI = 0; elementI < left.length; elementI++) { if (!(left[elementI] === right[elementI])) { return false; } } return true; }((this.selectedValues as string[]), (other.selectedValues as string[]))) : (((typeof (this.selectedValues)) === "undefined") && ((typeof (other.selectedValues)) === "undefined")))) {
+            return false;
+        }
+
+        if (!((!((typeof (this.text)) === "undefined") && !((typeof (other.text)) === "undefined")) ? ((this.text as string) === (other.text as string)) : (((typeof (this.text)) === "undefined") && ((typeof (other.text)) === "undefined")))) {
+            return false;
+        }
+
+        return true;
+    }
+
+    static fromThryftJsonObject(json: any): WorksheetFeatureState {
+        var selectedValues: string[] | undefined;
+        var text: string | undefined;
+        for (var fieldName in json) {
+            if (fieldName == "selected_values") {
+                selectedValues = function(json: any[]): string[] { var sequence: string[] = []; for (var i = 0; i < json.length; i++) { sequence.push(json[i]); } return sequence; }(json[fieldName]);
+            } else if (fieldName == "text") {
+                text = json[fieldName];
+            }
+        }
+
+        return new WorksheetFeatureState({selectedValues: selectedValues, text: text});
+    }
+
+    toJsonObject(): any {
         var json: {[index: string]: any} = {};
-        if (this.has("selectedValues")) {
+        if (this.selectedValues != null) {
             json["selected_values"] = function (__inArray: string[]): any[] { var __outArray: any[] = []; for (var __i = 0; __i < __inArray.length; __i++) { __outArray.push(__inArray[__i]); } return __outArray; }(this.selectedValues);
         }
-        if (this.has("text")) {
+        if (this.text != null) {
+            json["text"] = this.text;
+        }
+        return json;
+    }
+
+    toString(): string {
+        return "WorksheetFeatureState(" + JSON.stringify(this.toThryftJsonObject()) + ")";
+    }
+
+    toThryftJsonObject(): any {
+        var json: {[index: string]: any} = {};
+        if (this.selectedValues != null) {
+            json["selected_values"] = function (__inArray: string[]): any[] { var __outArray: any[] = []; for (var __i = 0; __i < __inArray.length; __i++) { __outArray.push(__inArray[__i]); } return __outArray; }(this.selectedValues);
+        }
+        if (this.text != null) {
             json["text"] = this.text;
         }
         return json;

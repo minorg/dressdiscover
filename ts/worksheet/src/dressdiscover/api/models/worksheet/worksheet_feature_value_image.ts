@@ -1,110 +1,117 @@
-import * as Backbone from "backbone";
-import { WorksheetFeatureValueImageRights } from "./worksheet_feature_value_image_rights";
+import { WorksheetFeatureValueImageRights } from "./dressdiscover/api/models/worksheet/worksheet_feature_value_image_rights";
 
-export class WorksheetFeatureValueImage extends Backbone.Model {
-    validation = {
-        rights: {
-            "fn": function(value: any, attr: any, computedState: any) {
-                if (!(value instanceof WorksheetFeatureValueImageRights)) {
-                    return "expected WorksheetFeatureValueImage.rights to be a WorksheetFeatureValueImageRights";
-                }
-                if (!value.isValid(true)) {
-                    return value.validationError;
-                }
+export class WorksheetFeatureValueImage {
+    private _fullSizeUrl?: string;
 
-                return undefined;
-            },
-            "required": true
-        },
+    private _rights: WorksheetFeatureValueImageRights;
 
-        thumbnailUrl: {
-            "fn": function(value: any, attr: any, computedState: any) {
-                if (typeof value !== "string") {
-                    return "expected WorksheetFeatureValueImage.thumbnail_url to be a string";
-                }
+    private _thumbnailUrl: string;
 
-                if (/^\s*$/.test(value)) {
-                    return "WorksheetFeatureValueImage.thumbnail_url is blank";
-                }
-
-                return undefined;
-            },
-            "minLength": 1, "required": true
-        },
-
-        fullSizeUrl: {
-            "fn": function(value: any, attr: any, computedState: any) {
-                if (typeof attr === "undefined" || attr === null) {
-                    return undefined;
-                }
-
-                if (typeof value !== "string") {
-                    return "expected WorksheetFeatureValueImage.full_size_url to be a string";
-                }
-
-                if (/^\s*$/.test(value)) {
-                    return "WorksheetFeatureValueImage.full_size_url is blank";
-                }
-
-                return undefined;
-            },
-            "minLength": 1, "required": false
-        }
-    }
-
-    validationError: any;
-
-    constructor(attributes?: {rights: WorksheetFeatureValueImageRights, thumbnailUrl: string, fullSizeUrl?: string}, options?: any) {
-        super(attributes, options);
+    constructor(kwds: {rights: WorksheetFeatureValueImageRights, thumbnailUrl: string, fullSizeUrl?: string}) {
+        this.rights = kwds.rights;
+        this.thumbnailUrl = kwds.thumbnailUrl;
+        this.fullSizeUrl = kwds.fullSizeUrl;
     }
 
     get rights(): WorksheetFeatureValueImageRights {
-        return this.get('rights');
+        return this._rights;
     }
 
-    set rights(value: WorksheetFeatureValueImageRights) {
-        this.set('rights', value, { validate: true });
+    set rights(rights: WorksheetFeatureValueImageRights) {
+        this._rights = rights;
     }
 
     get thumbnailUrl(): string {
-        return this.get('thumbnailUrl');
+        return this._thumbnailUrl;
     }
 
-    set thumbnailUrl(value: string) {
-        this.set('thumbnailUrl', value, { validate: true });
+    set thumbnailUrl(thumbnailUrl: string) {
+        if (thumbnailUrl.trim().length == 0) {
+            throw new RangeError('thumbnailUrl is blank');
+        }
+        if (thumbnailUrl.length < 1) {
+            throw new RangeError("expected len(thumbnailUrl) to be >= 1, was " + thumbnailUrl.length);
+        }
+        this._thumbnailUrl = thumbnailUrl;
     }
 
-    get fullSizeUrl(): string {
-        return this.get('fullSizeUrl');
+    get fullSizeUrl(): string | undefined {
+        return this._fullSizeUrl;
     }
 
-    set fullSizeUrl(value: string) {
-        this.set('fullSizeUrl', value, { validate: true });
-    }
-
-    static fromThryftJSON(json: any): WorksheetFeatureValueImage {
-        const attributes: any = {};
-        for (var fieldName in json) {
-            if (fieldName == "rights") {
-                attributes["rights"] = WorksheetFeatureValueImageRights.fromThryftJSON(json[fieldName]);
-            } else if (fieldName == "thumbnail_url") {
-                attributes["thumbnailUrl"] = json[fieldName];
-            } else if (fieldName == "full_size_url") {
-                attributes["fullSizeUrl"] = json[fieldName];
+    set fullSizeUrl(fullSizeUrl: string | undefined) {
+        if (fullSizeUrl != null) {
+            if (fullSizeUrl.trim().length == 0) {
+                throw new RangeError('fullSizeUrl is blank');
+            }
+            if (fullSizeUrl.length < 1) {
+                throw new RangeError("expected len(fullSizeUrl) to be >= 1, was " + fullSizeUrl.length);
             }
         }
-        const out = new WorksheetFeatureValueImage(attributes);
-        if (!out.isValid(true)) {
-            throw new Error(out.validationError);
-        }
-        return out;
+        this._fullSizeUrl = fullSizeUrl;
     }
 
-    toThryftJSON(): any {
+    deepCopy(): WorksheetFeatureValueImage {
+        return new WorksheetFeatureValueImage({ rights: this.rights.deepCopy(), thumbnailUrl: this.thumbnailUrl, fullSizeUrl: this.fullSizeUrl });
+    }
+
+    equals(other: WorksheetFeatureValueImage): boolean {
+        if (!(this.rights.equals(other.rights))) {
+            return false;
+        }
+
+        if (!(this.thumbnailUrl === other.thumbnailUrl)) {
+            return false;
+        }
+
+        if (!((!((typeof (this.fullSizeUrl)) === "undefined") && !((typeof (other.fullSizeUrl)) === "undefined")) ? ((this.fullSizeUrl as string) === (other.fullSizeUrl as string)) : (((typeof (this.fullSizeUrl)) === "undefined") && ((typeof (other.fullSizeUrl)) === "undefined")))) {
+            return false;
+        }
+
+        return true;
+    }
+
+    static fromThryftJsonObject(json: any): WorksheetFeatureValueImage {
+        var rights: WorksheetFeatureValueImageRights | undefined;
+        var thumbnailUrl: string | undefined;
+        var fullSizeUrl: string | undefined;
+        for (var fieldName in json) {
+            if (fieldName == "rights") {
+                rights = WorksheetFeatureValueImageRights.fromThryftJsonObject(json[fieldName]);
+            } else if (fieldName == "thumbnail_url") {
+                thumbnailUrl = json[fieldName];
+            } else if (fieldName == "full_size_url") {
+                fullSizeUrl = json[fieldName];
+            }
+        }
+        if (rights == null) {
+            throw new TypeError('rights is required');
+        }
+        if (thumbnailUrl == null) {
+            throw new TypeError('thumbnailUrl is required');
+        }
+        return new WorksheetFeatureValueImage({rights: rights, thumbnailUrl: thumbnailUrl, fullSizeUrl: fullSizeUrl});
+    }
+
+    toJsonObject(): any {
         var json: {[index: string]: any} = {};
-        json["rights"] = this.rights.toThryftJSON();
+        json["rights"] = this.rights.toJsonObject();
         json["thumbnail_url"] = this.thumbnailUrl;
-        if (this.has("fullSizeUrl")) {
+        if (this.fullSizeUrl != null) {
+            json["full_size_url"] = this.fullSizeUrl;
+        }
+        return json;
+    }
+
+    toString(): string {
+        return "WorksheetFeatureValueImage(" + JSON.stringify(this.toThryftJsonObject()) + ")";
+    }
+
+    toThryftJsonObject(): any {
+        var json: {[index: string]: any} = {};
+        json["rights"] = this.rights.toThryftJsonObject();
+        json["thumbnail_url"] = this.thumbnailUrl;
+        if (this.fullSizeUrl != null) {
             json["full_size_url"] = this.fullSizeUrl;
         }
         return json;

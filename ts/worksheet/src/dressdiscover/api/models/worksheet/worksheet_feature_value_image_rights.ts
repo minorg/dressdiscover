@@ -1,123 +1,138 @@
-import * as Backbone from "backbone";
+export class WorksheetFeatureValueImageRights {
+    private _author: string;
 
-export class WorksheetFeatureValueImageRights extends Backbone.Model {
-    validation = {
-        author: {
-            "fn": function(value: any, attr: any, computedState: any) {
-                if (typeof value !== "string") {
-                    return "expected WorksheetFeatureValueImageRights.author to be a string";
-                }
+    private _license: string;
 
-                if (/^\s*$/.test(value)) {
-                    return "WorksheetFeatureValueImageRights.author is blank";
-                }
+    private _sourceName: string;
 
-                return undefined;
-            },
-            "minLength": 1, "required": true
-        },
+    private _sourceUrl: string;
 
-        license: {
-            "fn": function(value: any, attr: any, computedState: any) {
-                if (typeof value !== "string") {
-                    return "expected WorksheetFeatureValueImageRights.license to be a string";
-                }
-
-                if (/^\s*$/.test(value)) {
-                    return "WorksheetFeatureValueImageRights.license is blank";
-                }
-
-                return undefined;
-            },
-            "minLength": 1, "required": true
-        },
-
-        sourceName: {
-            "fn": function(value: any, attr: any, computedState: any) {
-                if (typeof value !== "string") {
-                    return "expected WorksheetFeatureValueImageRights.source_name to be a string";
-                }
-
-                if (/^\s*$/.test(value)) {
-                    return "WorksheetFeatureValueImageRights.source_name is blank";
-                }
-
-                return undefined;
-            },
-            "minLength": 1, "required": true
-        },
-
-        sourceUrl: {
-            "fn": function(value: any, attr: any, computedState: any) {
-                if (typeof value !== "string") {
-                    return "expected WorksheetFeatureValueImageRights.source_url to be a string";
-                }
-
-                return undefined;
-            },
-            "required": true
-        }
-    }
-
-    validationError: any;
-
-    constructor(attributes?: {author: string, license: string, sourceName: string, sourceUrl: string}, options?: any) {
-        super(attributes, options);
+    constructor(kwds: {author: string, license: string, sourceName: string, sourceUrl: string}) {
+        this.author = kwds.author;
+        this.license = kwds.license;
+        this.sourceName = kwds.sourceName;
+        this.sourceUrl = kwds.sourceUrl;
     }
 
     get author(): string {
-        return this.get('author');
+        return this._author;
     }
 
-    set author(value: string) {
-        this.set('author', value, { validate: true });
+    set author(author: string) {
+        if (author.trim().length == 0) {
+            throw new RangeError('author is blank');
+        }
+        if (author.length < 1) {
+            throw new RangeError("expected len(author) to be >= 1, was " + author.length);
+        }
+        this._author = author;
     }
 
     get license(): string {
-        return this.get('license');
+        return this._license;
     }
 
-    set license(value: string) {
-        this.set('license', value, { validate: true });
+    set license(license: string) {
+        if (license.trim().length == 0) {
+            throw new RangeError('license is blank');
+        }
+        if (license.length < 1) {
+            throw new RangeError("expected len(license) to be >= 1, was " + license.length);
+        }
+        this._license = license;
     }
 
     get sourceName(): string {
-        return this.get('sourceName');
+        return this._sourceName;
     }
 
-    set sourceName(value: string) {
-        this.set('sourceName', value, { validate: true });
+    set sourceName(sourceName: string) {
+        if (sourceName.trim().length == 0) {
+            throw new RangeError('sourceName is blank');
+        }
+        if (sourceName.length < 1) {
+            throw new RangeError("expected len(sourceName) to be >= 1, was " + sourceName.length);
+        }
+        this._sourceName = sourceName;
     }
 
     get sourceUrl(): string {
-        return this.get('sourceUrl');
+        return this._sourceUrl;
     }
 
-    set sourceUrl(value: string) {
-        this.set('sourceUrl', value, { validate: true });
+    set sourceUrl(sourceUrl: string) {
+        this._sourceUrl = sourceUrl;
     }
 
-    static fromThryftJSON(json: any): WorksheetFeatureValueImageRights {
-        const attributes: any = {};
+    deepCopy(): WorksheetFeatureValueImageRights {
+        return new WorksheetFeatureValueImageRights({ author: this.author, license: this.license, sourceName: this.sourceName, sourceUrl: this.sourceUrl });
+    }
+
+    equals(other: WorksheetFeatureValueImageRights): boolean {
+        if (!(this.author === other.author)) {
+            return false;
+        }
+
+        if (!(this.license === other.license)) {
+            return false;
+        }
+
+        if (!(this.sourceName === other.sourceName)) {
+            return false;
+        }
+
+        if (!(this.sourceUrl === other.sourceUrl)) {
+            return false;
+        }
+
+        return true;
+    }
+
+    static fromThryftJsonObject(json: any): WorksheetFeatureValueImageRights {
+        var author: string | undefined;
+        var license: string | undefined;
+        var sourceName: string | undefined;
+        var sourceUrl: string | undefined;
         for (var fieldName in json) {
             if (fieldName == "author") {
-                attributes["author"] = json[fieldName];
+                author = json[fieldName];
             } else if (fieldName == "license") {
-                attributes["license"] = json[fieldName];
+                license = json[fieldName];
             } else if (fieldName == "source_name") {
-                attributes["sourceName"] = json[fieldName];
+                sourceName = json[fieldName];
             } else if (fieldName == "source_url") {
-                attributes["sourceUrl"] = json[fieldName];
+                sourceUrl = json[fieldName];
             }
         }
-        const out = new WorksheetFeatureValueImageRights(attributes);
-        if (!out.isValid(true)) {
-            throw new Error(out.validationError);
+        if (author == null) {
+            throw new TypeError('author is required');
         }
-        return out;
+        if (license == null) {
+            throw new TypeError('license is required');
+        }
+        if (sourceName == null) {
+            throw new TypeError('sourceName is required');
+        }
+        if (sourceUrl == null) {
+            throw new TypeError('sourceUrl is required');
+        }
+        return new WorksheetFeatureValueImageRights({author: author, license: license, sourceName: sourceName, sourceUrl: sourceUrl});
     }
 
-    toThryftJSON(): any {
+    toJsonObject(): any {
+        var json: {[index: string]: any} = {};
+        json["author"] = this.author;
+        json["license"] = this.license;
+        json["source_name"] = this.sourceName;
+        json["source_url"] = this.sourceUrl;
+        return json;
+    }
+
+    toString(): string {
+        return "WorksheetFeatureValueImageRights(" + JSON.stringify(this.toThryftJsonObject()) + ")";
+    }
+
+    toThryftJsonObject(): any {
         var json: {[index: string]: any} = {};
         json["author"] = this.author;
         json["license"] = this.license;

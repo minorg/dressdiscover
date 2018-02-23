@@ -1,109 +1,122 @@
-import * as Backbone from "backbone";
-import { WorksheetFeatureValueImage } from "./worksheet_feature_value_image";
+import { WorksheetFeatureValueImage } from "./dressdiscover/api/models/worksheet/worksheet_feature_value_image";
 
-export class WorksheetFeatureValueDefinition extends Backbone.Model {
-    validation = {
-        id: {
-            "fn": function(value: any, attr: any, computedState: any) {
-                if (typeof value !== "string") {
-                    return "expected WorksheetFeatureValueDefinition.id to be a string";
-                }
+export class WorksheetFeatureValueDefinition {
+    private _displayName?: string;
 
-                return undefined;
-            },
-            "required": true
-        },
+    private _id: string;
 
-        displayName: {
-            "fn": function(value: any, attr: any, computedState: any) {
-                if (typeof attr === "undefined" || attr === null) {
-                    return undefined;
-                }
+    private _image?: WorksheetFeatureValueImage;
 
-                if (typeof value !== "string") {
-                    return "expected WorksheetFeatureValueDefinition.display_name to be a string";
-                }
-
-                if (/^\s*$/.test(value)) {
-                    return "WorksheetFeatureValueDefinition.display_name is blank";
-                }
-
-                return undefined;
-            },
-            "minLength": 1, "required": false
-        },
-
-        image: {
-            "fn": function(value: any, attr: any, computedState: any) {
-                if (typeof attr === "undefined" || attr === null) {
-                    return undefined;
-                }
-
-                if (!(value instanceof WorksheetFeatureValueImage)) {
-                    return "expected WorksheetFeatureValueDefinition.image to be a WorksheetFeatureValueImage";
-                }
-                if (!value.isValid(true)) {
-                    return value.validationError;
-                }
-
-                return undefined;
-            },
-            "required": false
-        }
-    }
-
-    validationError: any;
-
-    constructor(attributes?: {id: string, displayName?: string, image?: WorksheetFeatureValueImage}, options?: any) {
-        super(attributes, options);
+    constructor(kwds: {id: string, displayName?: string, image?: WorksheetFeatureValueImage}) {
+        this.id = kwds.id;
+        this.displayName = kwds.displayName;
+        this.image = kwds.image;
     }
 
     get id(): string {
-        return this.get('id');
+        return this._id;
     }
 
-    get displayName(): string {
-        return this.get('displayName');
+    set id(id: string) {
+        if (id.trim().length == 0) {
+            throw new RangeError('id is blank');
+        }
+        if (id.length < 1) {
+            throw new RangeError("expected len(id) to be >= 1, was " + id.length);
+        }
+        this._id = id;
     }
 
-    set displayName(value: string) {
-        this.set('displayName', value, { validate: true });
+    get displayName(): string | undefined {
+        return this._displayName;
     }
 
-    get image(): WorksheetFeatureValueImage {
-        return this.get('image');
-    }
-
-    set image(value: WorksheetFeatureValueImage) {
-        this.set('image', value, { validate: true });
-    }
-
-    static fromThryftJSON(json: any): WorksheetFeatureValueDefinition {
-        const attributes: any = {};
-        for (var fieldName in json) {
-            if (fieldName == "id") {
-                attributes["id"] = json[fieldName];
-            } else if (fieldName == "display_name") {
-                attributes["displayName"] = json[fieldName];
-            } else if (fieldName == "image") {
-                attributes["image"] = WorksheetFeatureValueImage.fromThryftJSON(json[fieldName]);
+    set displayName(displayName: string | undefined) {
+        if (displayName != null) {
+            if (displayName.trim().length == 0) {
+                throw new RangeError('displayName is blank');
+            }
+            if (displayName.length < 1) {
+                throw new RangeError("expected len(displayName) to be >= 1, was " + displayName.length);
             }
         }
-        const out = new WorksheetFeatureValueDefinition(attributes);
-        if (!out.isValid(true)) {
-            throw new Error(out.validationError);
-        }
-        return out;
+        this._displayName = displayName;
     }
 
-    toThryftJSON(): any {
+    get image(): WorksheetFeatureValueImage | undefined {
+        return this._image;
+    }
+
+    set image(image: WorksheetFeatureValueImage | undefined) {
+        if (image != null) {
+
+        }
+        this._image = image;
+    }
+
+    deepCopy(): WorksheetFeatureValueDefinition {
+        return new WorksheetFeatureValueDefinition({ id: this.id, displayName: this.displayName, image: (this.image ? (this.image.deepCopy()) : undefined) });
+    }
+
+    equals(other: WorksheetFeatureValueDefinition): boolean {
+        if (!(this.id === other.id)) {
+            return false;
+        }
+
+        if (!((!((typeof (this.displayName)) === "undefined") && !((typeof (other.displayName)) === "undefined")) ? ((this.displayName as string) === (other.displayName as string)) : (((typeof (this.displayName)) === "undefined") && ((typeof (other.displayName)) === "undefined")))) {
+            return false;
+        }
+
+        if (!((!((typeof (this.image)) === "undefined") && !((typeof (other.image)) === "undefined")) ? ((this.image as WorksheetFeatureValueImage).equals((other.image as WorksheetFeatureValueImage))) : (((typeof (this.image)) === "undefined") && ((typeof (other.image)) === "undefined")))) {
+            return false;
+        }
+
+        return true;
+    }
+
+    static fromThryftJsonObject(json: any): WorksheetFeatureValueDefinition {
+        var id: string | undefined;
+        var displayName: string | undefined;
+        var image: WorksheetFeatureValueImage | undefined;
+        for (var fieldName in json) {
+            if (fieldName == "id") {
+                id = json[fieldName];
+            } else if (fieldName == "display_name") {
+                displayName = json[fieldName];
+            } else if (fieldName == "image") {
+                image = WorksheetFeatureValueImage.fromThryftJsonObject(json[fieldName]);
+            }
+        }
+        if (id == null) {
+            throw new TypeError('id is required');
+        }
+        return new WorksheetFeatureValueDefinition({id: id, displayName: displayName, image: image});
+    }
+
+    toJsonObject(): any {
         var json: {[index: string]: any} = {};
         json["id"] = this.id;
-        if (this.has("displayName")) {
+        if (this.displayName != null) {
             json["display_name"] = this.displayName;
         }
-        if (this.has("image")) {
-            json["image"] = this.image.toThryftJSON();
+        if (this.image != null) {
+            json["image"] = this.image.toJsonObject();
+        }
+        return json;
+    }
+
+    toString(): string {
+        return "WorksheetFeatureValueDefinition(" + JSON.stringify(this.toThryftJsonObject()) + ")";
+    }
+
+    toThryftJsonObject(): any {
+        var json: {[index: string]: any} = {};
+        json["id"] = this.id;
+        if (this.displayName != null) {
+            json["display_name"] = this.displayName;
+        }
+        if (this.image != null) {
+            json["image"] = this.image.toThryftJsonObject();
         }
         return json;
     }

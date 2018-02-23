@@ -1,8 +1,8 @@
-import { WorksheetCommandService } from "./worksheet_command_service";
-import { WorksheetState } from "../../models/worksheet/worksheet_state";
+import { WorksheetCommandService } from "./async_to_sync_worksheet_command_service";
+import { WorksheetState } from "./dressdiscover/api/models/worksheet/worksheet_state";
 
 export abstract class AsyncToSyncWorksheetCommandService implements WorksheetCommandService {
-    deleteWorksheetStateAsync(kwds: {accessionNumber: string, error?: (errorKwds: {textStatus: string, errorThrown: any, [index: string]: any}) => any, success?: () => void}): void {
+    deleteWorksheetStateAsync(kwds: {accessionNumber: string, error: (errorKwds: {textStatus: string, errorThrown: any, [index: string]: any}) => any, success: () => void}): void {
         try {
             this.deleteWorksheetStateSync({accessionNumber: kwds.accessionNumber})
             if (kwds.success) {
@@ -17,7 +17,7 @@ export abstract class AsyncToSyncWorksheetCommandService implements WorksheetCom
 
     abstract deleteWorksheetStateSync(kwds: {accessionNumber: string}): void;
 
-    putWorksheetStateAsync(kwds: {state: WorksheetState, error?: (errorKwds: {textStatus: string, errorThrown: any, [index: string]: any}) => any, success?: () => void}): void {
+    putWorksheetStateAsync(kwds: {state: WorksheetState, error: (errorKwds: {textStatus: string, errorThrown: any, [index: string]: any}) => any, success: () => void}): void {
         try {
             this.putWorksheetStateSync({state: kwds.state})
             if (kwds.success) {
