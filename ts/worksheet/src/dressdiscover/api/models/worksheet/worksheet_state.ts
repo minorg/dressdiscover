@@ -2,9 +2,11 @@ import { WorksheetFeatureSetState } from "./worksheet_feature_set_state";
 
 export class WorksheetState {
     constructor(kwds: {accessionNumber: string, featureSets?: {[index: string]: WorksheetFeatureSetState}}) {
-        this.accessionNumber = kwds.accessionNumber;
+        this._accessionNumber = WorksheetState._validateAccessionNumber(kwds.accessionNumber);
         if (kwds.featureSets != null) {
-            this.featureSets = kwds.featureSets;
+            this._featureSets = WorksheetState._validateFeatureSets(kwds.featureSets);
+        } else {
+            this._featureSets = undefined;
         }
     }
 
@@ -13,13 +15,7 @@ export class WorksheetState {
     }
 
     set accessionNumber(accessionNumber: string) {
-        if (accessionNumber.trim().length == 0) {
-            throw new RangeError('accessionNumber is blank');
-        }
-        if (accessionNumber.length < 1) {
-            throw new RangeError("expected len(accessionNumber) to be >= 1, was " + accessionNumber.length);
-        }
-        this._accessionNumber = accessionNumber;
+        this._accessionNumber = WorksheetState._validateAccessionNumber(accessionNumber);
     }
 
     get featureSets(): {[index: string]: WorksheetFeatureSetState} | undefined {
@@ -27,12 +23,24 @@ export class WorksheetState {
     }
 
     set featureSets(featureSets: {[index: string]: WorksheetFeatureSetState} | undefined) {
-        if (featureSets != null) {
-            if (featureSets.length < 1) {
-                throw new RangeError("expected len(featureSets) to be >= 1, was " + featureSets.length);
-            }
+        this._featureSets = WorksheetState._validateFeatureSets(featureSets);
+    }
+
+    private static _validateAccessionNumber(accessionNumber: string): string {
+        if (accessionNumber.trim().length == 0) {
+            throw new RangeError('accessionNumber is blank');
         }
-        this._featureSets = featureSets;
+        if (accessionNumber.length < 1) {
+            throw new RangeError("expected len(accessionNumber) to be >= 1, was " + accessionNumber.length);
+        }
+        return accessionNumber;
+    }
+
+    private static _validateFeatureSets(featureSets: {[index: string]: WorksheetFeatureSetState} | undefined): {[index: string]: WorksheetFeatureSetState} | undefined {
+        if (featureSets != null) {
+
+        }
+        return featureSets;
     }
 
     deepCopy(): WorksheetState {
@@ -89,7 +97,7 @@ export class WorksheetState {
         return json;
     }
 
-    private _accessionNumber: string = "";
+    private _accessionNumber: string;
 
-    private _featureSets?: {[index: string]: WorksheetFeatureSetState} = undefined;
+    private _featureSets?: {[index: string]: WorksheetFeatureSetState};
 }

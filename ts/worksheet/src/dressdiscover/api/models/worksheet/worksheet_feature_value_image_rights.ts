@@ -1,9 +1,9 @@
 export class WorksheetFeatureValueImageRights {
     constructor(kwds: {author: string, license: string, sourceName: string, sourceUrl: string}) {
-        this.author = kwds.author;
-        this.license = kwds.license;
-        this.sourceName = kwds.sourceName;
-        this.sourceUrl = kwds.sourceUrl;
+        this._author = WorksheetFeatureValueImageRights._validateAuthor(kwds.author);
+        this._license = WorksheetFeatureValueImageRights._validateLicense(kwds.license);
+        this._sourceName = WorksheetFeatureValueImageRights._validateSourceName(kwds.sourceName);
+        this._sourceUrl = WorksheetFeatureValueImageRights._validateSourceUrl(kwds.sourceUrl);
     }
 
     get author(): string {
@@ -11,13 +11,7 @@ export class WorksheetFeatureValueImageRights {
     }
 
     set author(author: string) {
-        if (author.trim().length == 0) {
-            throw new RangeError('author is blank');
-        }
-        if (author.length < 1) {
-            throw new RangeError("expected len(author) to be >= 1, was " + author.length);
-        }
-        this._author = author;
+        this._author = WorksheetFeatureValueImageRights._validateAuthor(author);
     }
 
     get license(): string {
@@ -25,13 +19,7 @@ export class WorksheetFeatureValueImageRights {
     }
 
     set license(license: string) {
-        if (license.trim().length == 0) {
-            throw new RangeError('license is blank');
-        }
-        if (license.length < 1) {
-            throw new RangeError("expected len(license) to be >= 1, was " + license.length);
-        }
-        this._license = license;
+        this._license = WorksheetFeatureValueImageRights._validateLicense(license);
     }
 
     get sourceName(): string {
@@ -39,13 +27,7 @@ export class WorksheetFeatureValueImageRights {
     }
 
     set sourceName(sourceName: string) {
-        if (sourceName.trim().length == 0) {
-            throw new RangeError('sourceName is blank');
-        }
-        if (sourceName.length < 1) {
-            throw new RangeError("expected len(sourceName) to be >= 1, was " + sourceName.length);
-        }
-        this._sourceName = sourceName;
+        this._sourceName = WorksheetFeatureValueImageRights._validateSourceName(sourceName);
     }
 
     get sourceUrl(): string {
@@ -53,7 +35,41 @@ export class WorksheetFeatureValueImageRights {
     }
 
     set sourceUrl(sourceUrl: string) {
-        this._sourceUrl = sourceUrl;
+        this._sourceUrl = WorksheetFeatureValueImageRights._validateSourceUrl(sourceUrl);
+    }
+
+    private static _validateAuthor(author: string): string {
+        if (author.trim().length == 0) {
+            throw new RangeError('author is blank');
+        }
+        if (author.length < 1) {
+            throw new RangeError("expected len(author) to be >= 1, was " + author.length);
+        }
+        return author;
+    }
+
+    private static _validateLicense(license: string): string {
+        if (license.trim().length == 0) {
+            throw new RangeError('license is blank');
+        }
+        if (license.length < 1) {
+            throw new RangeError("expected len(license) to be >= 1, was " + license.length);
+        }
+        return license;
+    }
+
+    private static _validateSourceName(sourceName: string): string {
+        if (sourceName.trim().length == 0) {
+            throw new RangeError('sourceName is blank');
+        }
+        if (sourceName.length < 1) {
+            throw new RangeError("expected len(sourceName) to be >= 1, was " + sourceName.length);
+        }
+        return sourceName;
+    }
+
+    private static _validateSourceUrl(sourceUrl: string): string {
+        return sourceUrl;
     }
 
     deepCopy(): WorksheetFeatureValueImageRights {
@@ -133,11 +149,11 @@ export class WorksheetFeatureValueImageRights {
         return json;
     }
 
-    private _author: string = "";
+    private _author: string;
 
-    private _license: string = "";
+    private _license: string;
 
-    private _sourceName: string = "";
+    private _sourceName: string;
 
-    private _sourceUrl: string = "";
+    private _sourceUrl: string;
 }

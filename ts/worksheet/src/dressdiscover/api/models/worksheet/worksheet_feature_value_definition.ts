@@ -2,12 +2,16 @@ import { WorksheetFeatureValueImage } from "./worksheet_feature_value_image";
 
 export class WorksheetFeatureValueDefinition {
     constructor(kwds: {id: string, displayName?: string, image?: WorksheetFeatureValueImage}) {
-        this.id = kwds.id;
+        this._id = WorksheetFeatureValueDefinition._validateId(kwds.id);
         if (kwds.displayName != null) {
-            this.displayName = kwds.displayName;
+            this._displayName = WorksheetFeatureValueDefinition._validateDisplayName(kwds.displayName);
+        } else {
+            this._displayName = undefined;
         }
         if (kwds.image != null) {
-            this.image = kwds.image;
+            this._image = WorksheetFeatureValueDefinition._validateImage(kwds.image);
+        } else {
+            this._image = undefined;
         }
     }
 
@@ -16,13 +20,7 @@ export class WorksheetFeatureValueDefinition {
     }
 
     set id(id: string) {
-        if (id.trim().length == 0) {
-            throw new RangeError('id is blank');
-        }
-        if (id.length < 1) {
-            throw new RangeError("expected len(id) to be >= 1, was " + id.length);
-        }
-        this._id = id;
+        this._id = WorksheetFeatureValueDefinition._validateId(id);
     }
 
     get displayName(): string | undefined {
@@ -30,6 +28,18 @@ export class WorksheetFeatureValueDefinition {
     }
 
     set displayName(displayName: string | undefined) {
+        this._displayName = WorksheetFeatureValueDefinition._validateDisplayName(displayName);
+    }
+
+    get image(): WorksheetFeatureValueImage | undefined {
+        return this._image;
+    }
+
+    set image(image: WorksheetFeatureValueImage | undefined) {
+        this._image = WorksheetFeatureValueDefinition._validateImage(image);
+    }
+
+    private static _validateDisplayName(displayName: string | undefined): string | undefined {
         if (displayName != null) {
             if (displayName.trim().length == 0) {
                 throw new RangeError('displayName is blank');
@@ -38,18 +48,24 @@ export class WorksheetFeatureValueDefinition {
                 throw new RangeError("expected len(displayName) to be >= 1, was " + displayName.length);
             }
         }
-        this._displayName = displayName;
+        return displayName;
     }
 
-    get image(): WorksheetFeatureValueImage | undefined {
-        return this._image;
+    private static _validateId(id: string): string {
+        if (id.trim().length == 0) {
+            throw new RangeError('id is blank');
+        }
+        if (id.length < 1) {
+            throw new RangeError("expected len(id) to be >= 1, was " + id.length);
+        }
+        return id;
     }
 
-    set image(image: WorksheetFeatureValueImage | undefined) {
+    private static _validateImage(image: WorksheetFeatureValueImage | undefined): WorksheetFeatureValueImage | undefined {
         if (image != null) {
 
         }
-        this._image = image;
+        return image;
     }
 
     deepCopy(): WorksheetFeatureValueDefinition {
@@ -119,9 +135,9 @@ export class WorksheetFeatureValueDefinition {
         return json;
     }
 
-    private _displayName?: string = undefined;
+    private _displayName?: string;
 
-    private _id: string = "";
+    private _id: string;
 
-    private _image?: WorksheetFeatureValueImage = undefined;
+    private _image?: WorksheetFeatureValueImage;
 }

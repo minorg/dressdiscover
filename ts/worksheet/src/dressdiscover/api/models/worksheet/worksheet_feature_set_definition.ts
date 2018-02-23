@@ -1,11 +1,15 @@
 export class WorksheetFeatureSetDefinition {
     constructor(kwds: {id: string, displayName?: string, featureIds?: string[]}) {
-        this.id = kwds.id;
+        this._id = WorksheetFeatureSetDefinition._validateId(kwds.id);
         if (kwds.displayName != null) {
-            this.displayName = kwds.displayName;
+            this._displayName = WorksheetFeatureSetDefinition._validateDisplayName(kwds.displayName);
+        } else {
+            this._displayName = undefined;
         }
         if (kwds.featureIds != null) {
-            this.featureIds = kwds.featureIds;
+            this._featureIds = WorksheetFeatureSetDefinition._validateFeatureIds(kwds.featureIds);
+        } else {
+            this._featureIds = undefined;
         }
     }
 
@@ -14,13 +18,7 @@ export class WorksheetFeatureSetDefinition {
     }
 
     set id(id: string) {
-        if (id.trim().length == 0) {
-            throw new RangeError('id is blank');
-        }
-        if (id.length < 1) {
-            throw new RangeError("expected len(id) to be >= 1, was " + id.length);
-        }
-        this._id = id;
+        this._id = WorksheetFeatureSetDefinition._validateId(id);
     }
 
     get displayName(): string | undefined {
@@ -28,6 +26,18 @@ export class WorksheetFeatureSetDefinition {
     }
 
     set displayName(displayName: string | undefined) {
+        this._displayName = WorksheetFeatureSetDefinition._validateDisplayName(displayName);
+    }
+
+    get featureIds(): string[] | undefined {
+        return this._featureIds;
+    }
+
+    set featureIds(featureIds: string[] | undefined) {
+        this._featureIds = WorksheetFeatureSetDefinition._validateFeatureIds(featureIds);
+    }
+
+    private static _validateDisplayName(displayName: string | undefined): string | undefined {
         if (displayName != null) {
             if (displayName.trim().length == 0) {
                 throw new RangeError('displayName is blank');
@@ -36,20 +46,26 @@ export class WorksheetFeatureSetDefinition {
                 throw new RangeError("expected len(displayName) to be >= 1, was " + displayName.length);
             }
         }
-        this._displayName = displayName;
+        return displayName;
     }
 
-    get featureIds(): string[] | undefined {
-        return this._featureIds;
-    }
-
-    set featureIds(featureIds: string[] | undefined) {
+    private static _validateFeatureIds(featureIds: string[] | undefined): string[] | undefined {
         if (featureIds != null) {
             if (featureIds.length < 1) {
                 throw new RangeError("expected len(featureIds) to be >= 1, was " + featureIds.length);
             }
         }
-        this._featureIds = featureIds;
+        return featureIds;
+    }
+
+    private static _validateId(id: string): string {
+        if (id.trim().length == 0) {
+            throw new RangeError('id is blank');
+        }
+        if (id.length < 1) {
+            throw new RangeError("expected len(id) to be >= 1, was " + id.length);
+        }
+        return id;
     }
 
     deepCopy(): WorksheetFeatureSetDefinition {
@@ -119,9 +135,9 @@ export class WorksheetFeatureSetDefinition {
         return json;
     }
 
-    private _displayName?: string = undefined;
+    private _displayName?: string;
 
-    private _featureIds?: string[] = undefined;
+    private _featureIds?: string[];
 
-    private _id: string = "";
+    private _id: string;
 }

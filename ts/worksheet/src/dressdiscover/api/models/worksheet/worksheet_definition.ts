@@ -2,7 +2,7 @@ import { WorksheetFeatureSetDefinition } from "./worksheet_feature_set_definitio
 
 export class WorksheetDefinition {
     constructor(kwds: {featureSets: WorksheetFeatureSetDefinition[]}) {
-        this.featureSets = kwds.featureSets;
+        this._featureSets = WorksheetDefinition._validateFeatureSets(kwds.featureSets);
     }
 
     get featureSets(): WorksheetFeatureSetDefinition[] {
@@ -10,7 +10,11 @@ export class WorksheetDefinition {
     }
 
     set featureSets(featureSets: WorksheetFeatureSetDefinition[]) {
-        this._featureSets = featureSets;
+        this._featureSets = WorksheetDefinition._validateFeatureSets(featureSets);
+    }
+
+    private static _validateFeatureSets(featureSets: WorksheetFeatureSetDefinition[]): WorksheetFeatureSetDefinition[] {
+        return featureSets;
     }
 
     deepCopy(): WorksheetDefinition {
@@ -54,5 +58,5 @@ export class WorksheetDefinition {
         return json;
     }
 
-    private _featureSets: WorksheetFeatureSetDefinition[] = [];
+    private _featureSets: WorksheetFeatureSetDefinition[];
 }

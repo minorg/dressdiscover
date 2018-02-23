@@ -1,6 +1,6 @@
 export class IoException {
     constructor(kwds: {causeMessage: string}) {
-        this.causeMessage = kwds.causeMessage;
+        this._causeMessage = IoException._validateCauseMessage(kwds.causeMessage);
     }
 
     get causeMessage(): string {
@@ -8,7 +8,11 @@ export class IoException {
     }
 
     set causeMessage(causeMessage: string) {
-        this._causeMessage = causeMessage;
+        this._causeMessage = IoException._validateCauseMessage(causeMessage);
+    }
+
+    private static _validateCauseMessage(causeMessage: string): string {
+        return causeMessage;
     }
 
     deepCopy(): IoException {
@@ -52,5 +56,5 @@ export class IoException {
         return json;
     }
 
-    private _causeMessage: string = "";
+    private _causeMessage: string;
 }

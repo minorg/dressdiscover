@@ -2,10 +2,12 @@ import { WorksheetFeatureValueImageRights } from "./worksheet_feature_value_imag
 
 export class WorksheetFeatureValueImage {
     constructor(kwds: {rights: WorksheetFeatureValueImageRights, thumbnailUrl: string, fullSizeUrl?: string}) {
-        this.rights = kwds.rights;
-        this.thumbnailUrl = kwds.thumbnailUrl;
+        this._rights = WorksheetFeatureValueImage._validateRights(kwds.rights);
+        this._thumbnailUrl = WorksheetFeatureValueImage._validateThumbnailUrl(kwds.thumbnailUrl);
         if (kwds.fullSizeUrl != null) {
-            this.fullSizeUrl = kwds.fullSizeUrl;
+            this._fullSizeUrl = WorksheetFeatureValueImage._validateFullSizeUrl(kwds.fullSizeUrl);
+        } else {
+            this._fullSizeUrl = undefined;
         }
     }
 
@@ -14,7 +16,7 @@ export class WorksheetFeatureValueImage {
     }
 
     set rights(rights: WorksheetFeatureValueImageRights) {
-        this._rights = rights;
+        this._rights = WorksheetFeatureValueImage._validateRights(rights);
     }
 
     get thumbnailUrl(): string {
@@ -22,13 +24,7 @@ export class WorksheetFeatureValueImage {
     }
 
     set thumbnailUrl(thumbnailUrl: string) {
-        if (thumbnailUrl.trim().length == 0) {
-            throw new RangeError('thumbnailUrl is blank');
-        }
-        if (thumbnailUrl.length < 1) {
-            throw new RangeError("expected len(thumbnailUrl) to be >= 1, was " + thumbnailUrl.length);
-        }
-        this._thumbnailUrl = thumbnailUrl;
+        this._thumbnailUrl = WorksheetFeatureValueImage._validateThumbnailUrl(thumbnailUrl);
     }
 
     get fullSizeUrl(): string | undefined {
@@ -36,6 +32,10 @@ export class WorksheetFeatureValueImage {
     }
 
     set fullSizeUrl(fullSizeUrl: string | undefined) {
+        this._fullSizeUrl = WorksheetFeatureValueImage._validateFullSizeUrl(fullSizeUrl);
+    }
+
+    private static _validateFullSizeUrl(fullSizeUrl: string | undefined): string | undefined {
         if (fullSizeUrl != null) {
             if (fullSizeUrl.trim().length == 0) {
                 throw new RangeError('fullSizeUrl is blank');
@@ -44,7 +44,21 @@ export class WorksheetFeatureValueImage {
                 throw new RangeError("expected len(fullSizeUrl) to be >= 1, was " + fullSizeUrl.length);
             }
         }
-        this._fullSizeUrl = fullSizeUrl;
+        return fullSizeUrl;
+    }
+
+    private static _validateRights(rights: WorksheetFeatureValueImageRights): WorksheetFeatureValueImageRights {
+        return rights;
+    }
+
+    private static _validateThumbnailUrl(thumbnailUrl: string): string {
+        if (thumbnailUrl.trim().length == 0) {
+            throw new RangeError('thumbnailUrl is blank');
+        }
+        if (thumbnailUrl.length < 1) {
+            throw new RangeError("expected len(thumbnailUrl) to be >= 1, was " + thumbnailUrl.length);
+        }
+        return thumbnailUrl;
     }
 
     deepCopy(): WorksheetFeatureValueImage {
@@ -113,9 +127,9 @@ export class WorksheetFeatureValueImage {
         return json;
     }
 
-    private _fullSizeUrl?: string = undefined;
+    private _fullSizeUrl?: string;
 
-    private _rights: WorksheetFeatureValueImageRights = new WorksheetFeatureValueImageRights();
+    private _rights: WorksheetFeatureValueImageRights;
 
-    private _thumbnailUrl: string = "";
+    private _thumbnailUrl: string;
 }

@@ -71,8 +71,6 @@ class WorksheetState(object):
             if feature_sets is not None:
                 if not (isinstance(feature_sets, dict) and len(list(filterfalse(lambda __item: isinstance(__item[0], str) and isinstance(__item[1], dressdiscover.api.models.worksheet.worksheet_feature_set_state.WorksheetFeatureSetState), feature_sets.items()))) == 0):
                     raise TypeError("expected feature_sets to be a dict(str: dressdiscover.api.models.worksheet.worksheet_feature_set_state.WorksheetFeatureSetState) but it is a %s" % builtins.type(feature_sets))
-                if len(feature_sets) < 1:
-                    raise ValueError("expected len(feature_sets) to be >= 1, was %d" % len(feature_sets))
             self.__feature_sets = feature_sets
             return self
 
@@ -141,7 +139,7 @@ class WorksheetState(object):
             return (cls.ACCESSION_NUMBER, cls.FEATURE_SETS,)
 
     FieldMetadata.ACCESSION_NUMBER = FieldMetadata('accession_number', dressdiscover.api.models.worksheet.worksheet_accession_number.WorksheetAccessionNumber, None)
-    FieldMetadata.FEATURE_SETS = FieldMetadata('feature_sets', dict, OrderedDict([('minLength', 1)]))
+    FieldMetadata.FEATURE_SETS = FieldMetadata('feature_sets', dict, None)
 
     def __init__(
         self,
@@ -162,8 +160,6 @@ class WorksheetState(object):
         if feature_sets is not None:
             if not (isinstance(feature_sets, dict) and len(list(filterfalse(lambda __item: isinstance(__item[0], str) and isinstance(__item[1], dressdiscover.api.models.worksheet.worksheet_feature_set_state.WorksheetFeatureSetState), feature_sets.items()))) == 0):
                 raise TypeError("expected feature_sets to be a dict(str: dressdiscover.api.models.worksheet.worksheet_feature_set_state.WorksheetFeatureSetState) but it is a %s" % builtins.type(feature_sets))
-            if len(feature_sets) < 1:
-                raise ValueError("expected len(feature_sets) to be >= 1, was %d" % len(feature_sets))
         self.__feature_sets = feature_sets.copy() if feature_sets is not None else None
 
     def __eq__(self, other):

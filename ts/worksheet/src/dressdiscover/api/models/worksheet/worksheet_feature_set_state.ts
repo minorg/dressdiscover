@@ -6,7 +6,9 @@ export class WorksheetFeatureSetState {
             return;
         }
         if (kwds.features != null) {
-            this.features = kwds.features;
+            this._features = WorksheetFeatureSetState._validateFeatures(kwds.features);
+        } else {
+            this._features = undefined;
         }
     }
 
@@ -15,12 +17,14 @@ export class WorksheetFeatureSetState {
     }
 
     set features(features: {[index: string]: WorksheetFeatureState} | undefined) {
+        this._features = WorksheetFeatureSetState._validateFeatures(features);
+    }
+
+    private static _validateFeatures(features: {[index: string]: WorksheetFeatureState} | undefined): {[index: string]: WorksheetFeatureState} | undefined {
         if (features != null) {
-            if (features.length < 1) {
-                throw new RangeError("expected len(features) to be >= 1, was " + features.length);
-            }
+
         }
-        this._features = features;
+        return features;
     }
 
     deepCopy(): WorksheetFeatureSetState {
@@ -66,5 +70,5 @@ export class WorksheetFeatureSetState {
         return json;
     }
 
-    private _features?: {[index: string]: WorksheetFeatureState} = undefined;
+    private _features?: {[index: string]: WorksheetFeatureState};
 }

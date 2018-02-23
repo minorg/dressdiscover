@@ -4,10 +4,14 @@ export class WorksheetFeatureState {
             return;
         }
         if (kwds.selectedValueIds != null) {
-            this.selectedValueIds = kwds.selectedValueIds;
+            this._selectedValueIds = WorksheetFeatureState._validateSelectedValueIds(kwds.selectedValueIds);
+        } else {
+            this._selectedValueIds = undefined;
         }
         if (kwds.text != null) {
-            this.text = kwds.text;
+            this._text = WorksheetFeatureState._validateText(kwds.text);
+        } else {
+            this._text = undefined;
         }
     }
 
@@ -16,12 +20,7 @@ export class WorksheetFeatureState {
     }
 
     set selectedValueIds(selectedValueIds: string[] | undefined) {
-        if (selectedValueIds != null) {
-            if (selectedValueIds.length < 1) {
-                throw new RangeError("expected len(selectedValueIds) to be >= 1, was " + selectedValueIds.length);
-            }
-        }
-        this._selectedValueIds = selectedValueIds;
+        this._selectedValueIds = WorksheetFeatureState._validateSelectedValueIds(selectedValueIds);
     }
 
     get text(): string | undefined {
@@ -29,6 +28,19 @@ export class WorksheetFeatureState {
     }
 
     set text(text: string | undefined) {
+        this._text = WorksheetFeatureState._validateText(text);
+    }
+
+    private static _validateSelectedValueIds(selectedValueIds: string[] | undefined): string[] | undefined {
+        if (selectedValueIds != null) {
+            if (selectedValueIds.length < 1) {
+                throw new RangeError("expected len(selectedValueIds) to be >= 1, was " + selectedValueIds.length);
+            }
+        }
+        return selectedValueIds;
+    }
+
+    private static _validateText(text: string | undefined): string | undefined {
         if (text != null) {
             if (text.trim().length == 0) {
                 throw new RangeError('text is blank');
@@ -37,7 +49,7 @@ export class WorksheetFeatureState {
                 throw new RangeError("expected len(text) to be >= 1, was " + text.length);
             }
         }
-        this._text = text;
+        return text;
     }
 
     deepCopy(): WorksheetFeatureState {
@@ -96,7 +108,7 @@ export class WorksheetFeatureState {
         return json;
     }
 
-    private _selectedValueIds?: string[] = undefined;
+    private _selectedValueIds?: string[];
 
-    private _text?: string = undefined;
+    private _text?: string;
 }

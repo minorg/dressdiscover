@@ -46,8 +46,6 @@ class WorksheetFeatureSetState(object):
             if features is not None:
                 if not (isinstance(features, dict) and len(list(filterfalse(lambda __item: isinstance(__item[0], str) and isinstance(__item[1], dressdiscover.api.models.worksheet.worksheet_feature_state.WorksheetFeatureState), features.items()))) == 0):
                     raise TypeError("expected features to be a dict(str: dressdiscover.api.models.worksheet.worksheet_feature_state.WorksheetFeatureState) but it is a %s" % builtins.type(features))
-                if len(features) < 1:
-                    raise ValueError("expected len(features) to be >= 1, was %d" % len(features))
             self.__features = features
             return self
 
@@ -104,7 +102,7 @@ class WorksheetFeatureSetState(object):
         def values(cls):
             return (cls.FEATURES,)
 
-    FieldMetadata.FEATURES = FieldMetadata('features', dict, OrderedDict([('minLength', 1)]))
+    FieldMetadata.FEATURES = FieldMetadata('features', dict, None)
 
     def __init__(
         self,
@@ -117,8 +115,6 @@ class WorksheetFeatureSetState(object):
         if features is not None:
             if not (isinstance(features, dict) and len(list(filterfalse(lambda __item: isinstance(__item[0], str) and isinstance(__item[1], dressdiscover.api.models.worksheet.worksheet_feature_state.WorksheetFeatureState), features.items()))) == 0):
                 raise TypeError("expected features to be a dict(str: dressdiscover.api.models.worksheet.worksheet_feature_state.WorksheetFeatureState) but it is a %s" % builtins.type(features))
-            if len(features) < 1:
-                raise ValueError("expected len(features) to be >= 1, was %d" % len(features))
         self.__features = features.copy() if features is not None else None
 
     def __eq__(self, other):

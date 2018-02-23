@@ -377,27 +377,6 @@ public final class WorksheetState implements org.thryft.Struct {
             if (!featureSets.isPresent()) {
                 return;
             }
-            if (featureSets.get().isEmpty()) {
-                throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.FEATURE_SETS, "org.dressdiscover.api.models.worksheet.WorksheetState.featureSets: less than min length 1");
-            }
-            for (final java.util.Map.Entry<String, org.dressdiscover.api.models.worksheet.WorksheetFeatureSetState> __entry0 : featureSets.get().entrySet()) {
-                {
-                    final int __strLen = __entry0.getKey().length();
-                    boolean __blank = true;
-                    for (int i = 0; i < __strLen; i++) {
-                        if (!Character.isWhitespace(__entry0.getKey().charAt(i))) {
-                            __blank = false;
-                            break;
-                        }
-                    }
-                    if (__blank) {
-                        throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.FEATURE_SETS, String.format("org.dressdiscover.api.models.worksheet.WorksheetState.featureSets: key: blank '%s' (length=%d)", __entry0.getKey(), __strLen));
-                    }
-                }
-                if (__entry0.getKey().isEmpty()) {
-                    throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.FEATURE_SETS, "org.dressdiscover.api.models.worksheet.WorksheetState.featureSets: key: less than min length 1");
-                }
-            }
         }
     }
 
@@ -435,27 +414,6 @@ public final class WorksheetState implements org.thryft.Struct {
             }
             if (!featureSets.isPresent()) {
                 return;
-            }
-            if (featureSets.get().isEmpty()) {
-                throw new IllegalArgumentException("org.dressdiscover.api.models.worksheet.WorksheetState.featureSets: less than min length 1");
-            }
-            for (final java.util.Map.Entry<String, org.dressdiscover.api.models.worksheet.WorksheetFeatureSetState> __entry0 : featureSets.get().entrySet()) {
-                {
-                    final int __strLen = __entry0.getKey().length();
-                    boolean __blank = true;
-                    for (int i = 0; i < __strLen; i++) {
-                        if (!Character.isWhitespace(__entry0.getKey().charAt(i))) {
-                            __blank = false;
-                            break;
-                        }
-                    }
-                    if (__blank) {
-                        throw new IllegalArgumentException(String.format("org.dressdiscover.api.models.worksheet.WorksheetState.featureSets: key: blank '%s' (length=%d)", __entry0.getKey(), __strLen));
-                    }
-                }
-                if (__entry0.getKey().isEmpty()) {
-                    throw new IllegalArgumentException("org.dressdiscover.api.models.worksheet.WorksheetState.featureSets: key: less than min length 1");
-                }
             }
         }
     }
