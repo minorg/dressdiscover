@@ -1,9 +1,9 @@
 namespace * dressdiscover.api.models.worksheet
 
-include "dressdiscover/api/models/worksheet/worksheet_feature_value_image_rights.thrift"
+include "dressdiscover/api/models/worksheet/worksheet_rights.thrift"
 
 struct WorksheetFeatureValueImage {
-    worksheet_feature_value_image_rights.WorksheetFeatureValueImageRights rights;
+    worksheet_rights.WorksheetRights rights;
     // Thumbnail and full size URLs can be relative
     // @validation {"blank": false, "minLength": 1}
     string thumbnail_url;

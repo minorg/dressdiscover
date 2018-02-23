@@ -1,7 +1,7 @@
-import { WorksheetFeatureValueImageRights } from "./worksheet_feature_value_image_rights";
+import { WorksheetRights } from "./worksheet_rights";
 
 export class WorksheetFeatureValueImage {
-    constructor(kwds: {rights: WorksheetFeatureValueImageRights, thumbnailUrl: string, fullSizeUrl?: string}) {
+    constructor(kwds: {rights: WorksheetRights, thumbnailUrl: string, fullSizeUrl?: string}) {
         this._rights = WorksheetFeatureValueImage._validateRights(kwds.rights);
         this._thumbnailUrl = WorksheetFeatureValueImage._validateThumbnailUrl(kwds.thumbnailUrl);
         if (kwds.fullSizeUrl != null) {
@@ -11,11 +11,11 @@ export class WorksheetFeatureValueImage {
         }
     }
 
-    get rights(): WorksheetFeatureValueImageRights {
+    get rights(): WorksheetRights {
         return this._rights;
     }
 
-    set rights(rights: WorksheetFeatureValueImageRights) {
+    set rights(rights: WorksheetRights) {
         this._rights = WorksheetFeatureValueImage._validateRights(rights);
     }
 
@@ -47,7 +47,7 @@ export class WorksheetFeatureValueImage {
         return fullSizeUrl;
     }
 
-    private static _validateRights(rights: WorksheetFeatureValueImageRights): WorksheetFeatureValueImageRights {
+    private static _validateRights(rights: WorksheetRights): WorksheetRights {
         return rights;
     }
 
@@ -82,12 +82,12 @@ export class WorksheetFeatureValueImage {
     }
 
     static fromThryftJsonObject(json: any): WorksheetFeatureValueImage {
-        var rights: WorksheetFeatureValueImageRights | undefined;
+        var rights: WorksheetRights | undefined;
         var thumbnailUrl: string | undefined;
         var fullSizeUrl: string | undefined;
         for (var fieldName in json) {
             if (fieldName == "rights") {
-                rights = WorksheetFeatureValueImageRights.fromThryftJsonObject(json[fieldName]);
+                rights = WorksheetRights.fromThryftJsonObject(json[fieldName]);
             } else if (fieldName == "thumbnail_url") {
                 thumbnailUrl = json[fieldName];
             } else if (fieldName == "full_size_url") {
@@ -129,7 +129,7 @@ export class WorksheetFeatureValueImage {
 
     private _fullSizeUrl?: string;
 
-    private _rights: WorksheetFeatureValueImageRights;
+    private _rights: WorksheetRights;
 
     private _thumbnailUrl: string;
 }

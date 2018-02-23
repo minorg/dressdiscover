@@ -14,7 +14,7 @@ public final class WorksheetFeatureValueImage implements org.thryft.Struct {
             this.fullSizeUrl = other.getFullSizeUrl();
         }
 
-        protected WorksheetFeatureValueImage _build(final org.dressdiscover.api.models.worksheet.WorksheetFeatureValueImageRights rights, final String thumbnailUrl, final com.google.common.base.Optional<String> fullSizeUrl) {
+        protected WorksheetFeatureValueImage _build(final org.dressdiscover.api.models.worksheet.WorksheetRights rights, final String thumbnailUrl, final com.google.common.base.Optional<String> fullSizeUrl) {
             return new WorksheetFeatureValueImage(rights, thumbnailUrl, fullSizeUrl);
         }
 
@@ -28,7 +28,7 @@ public final class WorksheetFeatureValueImage implements org.thryft.Struct {
             return fullSizeUrl;
         }
 
-        public final @javax.annotation.Nullable org.dressdiscover.api.models.worksheet.WorksheetFeatureValueImageRights getRights() {
+        public final @javax.annotation.Nullable org.dressdiscover.api.models.worksheet.WorksheetRights getRights() {
             return rights;
         }
 
@@ -57,7 +57,7 @@ public final class WorksheetFeatureValueImage implements org.thryft.Struct {
         public Builder readAsList(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
             try {
                 final org.thryft.protocol.ListBegin __list = iprot.readListBegin();
-                rights = org.dressdiscover.api.models.worksheet.WorksheetFeatureValueImageRights.readAsStruct(iprot);
+                rights = org.dressdiscover.api.models.worksheet.WorksheetRights.readAsStruct(iprot);
                 thumbnailUrl = iprot.readString();
                 if (__list.getSize() > 2) {
                     fullSizeUrl = com.google.common.base.Optional.of(iprot.readString());
@@ -83,7 +83,7 @@ public final class WorksheetFeatureValueImage implements org.thryft.Struct {
                     }
                     switch (ifield.getName()) {
                     case "rights": {
-                        rights = org.dressdiscover.api.models.worksheet.WorksheetFeatureValueImageRights.readAsStruct(iprot, unknownFieldCallback);
+                        rights = org.dressdiscover.api.models.worksheet.WorksheetRights.readAsStruct(iprot, unknownFieldCallback);
                         break;
                     }
                     case "thumbnail_url": {
@@ -124,7 +124,7 @@ public final class WorksheetFeatureValueImage implements org.thryft.Struct {
             com.google.common.base.Preconditions.checkNotNull(fieldMetadata);
 
             switch (fieldMetadata) {
-            case RIGHTS: setRights((org.dressdiscover.api.models.worksheet.WorksheetFeatureValueImageRights)value); return this;
+            case RIGHTS: setRights((org.dressdiscover.api.models.worksheet.WorksheetRights)value); return this;
             case THUMBNAIL_URL: setThumbnailUrl((String)value); return this;
             case FULL_SIZE_URL: setFullSizeUrl((String)value); return this;
             default:
@@ -154,7 +154,7 @@ public final class WorksheetFeatureValueImage implements org.thryft.Struct {
             return this;
         }
 
-        public Builder setRights(final org.dressdiscover.api.models.worksheet.WorksheetFeatureValueImageRights rights) {
+        public Builder setRights(final org.dressdiscover.api.models.worksheet.WorksheetRights rights) {
             UncheckedValidator.validateRights(rights);
             this.rights = rights;
             return this;
@@ -204,7 +204,7 @@ public final class WorksheetFeatureValueImage implements org.thryft.Struct {
             return this;
         }
 
-        private @javax.annotation.Nullable org.dressdiscover.api.models.worksheet.WorksheetFeatureValueImageRights rights;
+        private @javax.annotation.Nullable org.dressdiscover.api.models.worksheet.WorksheetRights rights;
         /**
          * Thumbnail and full size URLs can be relative
          */
@@ -243,7 +243,7 @@ public final class WorksheetFeatureValueImage implements org.thryft.Struct {
 
     @SuppressWarnings("serial")
     public enum FieldMetadata implements org.thryft.CompoundType.FieldMetadata {
-        RIGHTS("rights", new com.google.common.reflect.TypeToken<org.dressdiscover.api.models.worksheet.WorksheetFeatureValueImageRights>() {}, true, (short)0, "rights", org.thryft.protocol.Type.STRUCT),
+        RIGHTS("rights", new com.google.common.reflect.TypeToken<org.dressdiscover.api.models.worksheet.WorksheetRights>() {}, true, (short)0, "rights", org.thryft.protocol.Type.STRUCT),
         THUMBNAIL_URL("thumbnailUrl", new com.google.common.reflect.TypeToken<String>() {}, true, (short)0, "thumbnail_url", org.thryft.protocol.Type.STRING),
         FULL_SIZE_URL("fullSizeUrl", new com.google.common.reflect.TypeToken<String>() {}, false, (short)0, "full_size_url", org.thryft.protocol.Type.STRING);
 
@@ -331,13 +331,13 @@ public final class WorksheetFeatureValueImage implements org.thryft.Struct {
     }
 
     public final static class ReadValidator {
-        public static void validate(final org.dressdiscover.api.models.worksheet.WorksheetFeatureValueImageRights rights, final String thumbnailUrl, final com.google.common.base.Optional<String> fullSizeUrl) throws org.thryft.protocol.InputProtocolException {
+        public static void validate(final org.dressdiscover.api.models.worksheet.WorksheetRights rights, final String thumbnailUrl, final com.google.common.base.Optional<String> fullSizeUrl) throws org.thryft.protocol.InputProtocolException {
             validateRights(rights);
             validateThumbnailUrl(thumbnailUrl);
             validateFullSizeUrl(fullSizeUrl);
         }
 
-        public static void validateRights(final org.dressdiscover.api.models.worksheet.WorksheetFeatureValueImageRights rights) throws org.thryft.protocol.InputProtocolException {
+        public static void validateRights(final org.dressdiscover.api.models.worksheet.WorksheetRights rights) throws org.thryft.protocol.InputProtocolException {
             if (rights == null) {
                 throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.RIGHTS, "org.dressdiscover.api.models.worksheet.WorksheetFeatureValueImage: rights is null");
             }
@@ -392,13 +392,13 @@ public final class WorksheetFeatureValueImage implements org.thryft.Struct {
     }
 
     public final static class UncheckedValidator {
-        public static void validate(final org.dressdiscover.api.models.worksheet.WorksheetFeatureValueImageRights rights, final String thumbnailUrl, final com.google.common.base.Optional<String> fullSizeUrl) {
+        public static void validate(final org.dressdiscover.api.models.worksheet.WorksheetRights rights, final String thumbnailUrl, final com.google.common.base.Optional<String> fullSizeUrl) {
             validateRights(rights);
             validateThumbnailUrl(thumbnailUrl);
             validateFullSizeUrl(fullSizeUrl);
         }
 
-        public static void validateRights(final org.dressdiscover.api.models.worksheet.WorksheetFeatureValueImageRights rights) {
+        public static void validateRights(final org.dressdiscover.api.models.worksheet.WorksheetRights rights) {
             if (rights == null) {
                 throw new NullPointerException("org.dressdiscover.api.models.worksheet.WorksheetFeatureValueImage: rights is null");
             }
@@ -464,7 +464,7 @@ public final class WorksheetFeatureValueImage implements org.thryft.Struct {
      *
      * All fields should have been validated before calling this.
      */
-    protected WorksheetFeatureValueImage(final org.dressdiscover.api.models.worksheet.WorksheetFeatureValueImageRights rights, final String thumbnailUrl, final com.google.common.base.Optional<String> fullSizeUrl) {
+    protected WorksheetFeatureValueImage(final org.dressdiscover.api.models.worksheet.WorksheetRights rights, final String thumbnailUrl, final com.google.common.base.Optional<String> fullSizeUrl) {
         this.rights = rights;
         this.thumbnailUrl = thumbnailUrl;
         this.fullSizeUrl = fullSizeUrl;
@@ -485,7 +485,7 @@ public final class WorksheetFeatureValueImage implements org.thryft.Struct {
     /**
      * Required factory method
      */
-    public static WorksheetFeatureValueImage create(final org.dressdiscover.api.models.worksheet.WorksheetFeatureValueImageRights rights, final String thumbnailUrl) {
+    public static WorksheetFeatureValueImage create(final org.dressdiscover.api.models.worksheet.WorksheetRights rights, final String thumbnailUrl) {
         UncheckedValidator.validate(rights, thumbnailUrl, com.google.common.base.Optional.<String> absent());
         return new WorksheetFeatureValueImage(rights, thumbnailUrl, com.google.common.base.Optional.<String> absent());
     }
@@ -493,7 +493,7 @@ public final class WorksheetFeatureValueImage implements org.thryft.Struct {
     /**
      * Total Nullable factory method
      */
-    public static WorksheetFeatureValueImage create(final org.dressdiscover.api.models.worksheet.WorksheetFeatureValueImageRights rights, final String thumbnailUrl, @javax.annotation.Nullable final String fullSizeUrl) {
+    public static WorksheetFeatureValueImage create(final org.dressdiscover.api.models.worksheet.WorksheetRights rights, final String thumbnailUrl, @javax.annotation.Nullable final String fullSizeUrl) {
         final com.google.common.base.Optional<String> fullSizeUrlOptional = com.google.common.base.Optional.fromNullable(fullSizeUrl);
         UncheckedValidator.validate(rights, thumbnailUrl, fullSizeUrlOptional);
         return new WorksheetFeatureValueImage(rights, thumbnailUrl, fullSizeUrlOptional);
@@ -502,7 +502,7 @@ public final class WorksheetFeatureValueImage implements org.thryft.Struct {
     /**
      * Optional factory method
      */
-    public static WorksheetFeatureValueImage create(final org.dressdiscover.api.models.worksheet.WorksheetFeatureValueImageRights rights, final String thumbnailUrl, final com.google.common.base.Optional<String> fullSizeUrl) {
+    public static WorksheetFeatureValueImage create(final org.dressdiscover.api.models.worksheet.WorksheetRights rights, final String thumbnailUrl, final com.google.common.base.Optional<String> fullSizeUrl) {
         UncheckedValidator.validate(rights, thumbnailUrl, fullSizeUrl);
         return new WorksheetFeatureValueImage(rights, thumbnailUrl, fullSizeUrl);
     }
@@ -560,7 +560,7 @@ public final class WorksheetFeatureValueImage implements org.thryft.Struct {
         return fullSizeUrl;
     }
 
-    public final org.dressdiscover.api.models.worksheet.WorksheetFeatureValueImageRights getRights() {
+    public final org.dressdiscover.api.models.worksheet.WorksheetRights getRights() {
         return rights;
     }
 
@@ -598,13 +598,13 @@ public final class WorksheetFeatureValueImage implements org.thryft.Struct {
     }
 
     public static WorksheetFeatureValueImage readAsList(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
-        org.dressdiscover.api.models.worksheet.WorksheetFeatureValueImageRights rights;
+        org.dressdiscover.api.models.worksheet.WorksheetRights rights;
         String thumbnailUrl;
         com.google.common.base.Optional<String> fullSizeUrl = com.google.common.base.Optional.<String> absent();
 
         try {
             final org.thryft.protocol.ListBegin __list = iprot.readListBegin();
-            rights = org.dressdiscover.api.models.worksheet.WorksheetFeatureValueImageRights.readAsStruct(iprot);
+            rights = org.dressdiscover.api.models.worksheet.WorksheetRights.readAsStruct(iprot);
             thumbnailUrl = iprot.readString();
             if (__list.getSize() > 2) {
                 fullSizeUrl = com.google.common.base.Optional.of(iprot.readString());
@@ -624,7 +624,7 @@ public final class WorksheetFeatureValueImage implements org.thryft.Struct {
     }
 
     public static WorksheetFeatureValueImage readAsStruct(final org.thryft.protocol.InputProtocol iprot, final com.google.common.base.Optional<UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
-        @javax.annotation.Nullable org.dressdiscover.api.models.worksheet.WorksheetFeatureValueImageRights rights = null;
+        @javax.annotation.Nullable org.dressdiscover.api.models.worksheet.WorksheetRights rights = null;
         @javax.annotation.Nullable String thumbnailUrl = null;
         com.google.common.base.Optional<String> fullSizeUrl = com.google.common.base.Optional.<String> absent();
 
@@ -637,7 +637,7 @@ public final class WorksheetFeatureValueImage implements org.thryft.Struct {
                 }
                 switch (ifield.getName()) {
                 case "rights": {
-                    rights = org.dressdiscover.api.models.worksheet.WorksheetFeatureValueImageRights.readAsStruct(iprot, unknownFieldCallback);
+                    rights = org.dressdiscover.api.models.worksheet.WorksheetRights.readAsStruct(iprot, unknownFieldCallback);
                     break;
                 }
                 case "thumbnail_url": {
@@ -675,7 +675,7 @@ public final class WorksheetFeatureValueImage implements org.thryft.Struct {
         return replaceFullSizeUrl(com.google.common.base.Optional.fromNullable(fullSizeUrl));
     }
 
-    public WorksheetFeatureValueImage replaceRights(final org.dressdiscover.api.models.worksheet.WorksheetFeatureValueImageRights rights) {
+    public WorksheetFeatureValueImage replaceRights(final org.dressdiscover.api.models.worksheet.WorksheetRights rights) {
         UncheckedValidator.validateRights(rights);
         return new WorksheetFeatureValueImage(rights, this.thumbnailUrl, this.fullSizeUrl);
     }
@@ -745,7 +745,7 @@ public final class WorksheetFeatureValueImage implements org.thryft.Struct {
         oprot.writeFieldEnd();
     }
 
-    private final org.dressdiscover.api.models.worksheet.WorksheetFeatureValueImageRights rights;
+    private final org.dressdiscover.api.models.worksheet.WorksheetRights rights;
 
     /**
      * Thumbnail and full size URLs can be relative

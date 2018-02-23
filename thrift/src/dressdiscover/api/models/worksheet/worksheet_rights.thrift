@@ -2,7 +2,7 @@ namespace * dressdiscover.api.models.worksheet
 
 include "thryft/native/url.thrift"
 
-struct WorksheetFeatureValueImageRights {
+struct WorksheetRights {
     // @validation {"blank": false, "minLength": 1}
     string author;
     // @validation {"blank": false, "minLength": 1}
