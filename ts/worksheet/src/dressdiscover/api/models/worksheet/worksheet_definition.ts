@@ -1,8 +1,6 @@
 import { WorksheetFeatureSetDefinition } from "./worksheet_feature_set_definition";
 
 export class WorksheetDefinition {
-    private _rootFeatureSet: WorksheetFeatureSetDefinition;
-
     constructor(kwds: {rootFeatureSet: WorksheetFeatureSetDefinition}) {
         this.rootFeatureSet = kwds.rootFeatureSet;
     }
@@ -55,4 +53,6 @@ export class WorksheetDefinition {
         json["root_feature_set"] = this.rootFeatureSet.toThryftJsonObject();
         return json;
     }
+
+    private _rootFeatureSet: WorksheetFeatureSetDefinition = new WorksheetFeatureSetDefinition();
 }

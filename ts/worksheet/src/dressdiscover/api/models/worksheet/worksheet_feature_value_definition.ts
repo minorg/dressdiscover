@@ -1,16 +1,14 @@
 import { WorksheetFeatureValueImage } from "./worksheet_feature_value_image";
 
 export class WorksheetFeatureValueDefinition {
-    private _displayName?: string;
-
-    private _id: string;
-
-    private _image?: WorksheetFeatureValueImage;
-
     constructor(kwds: {id: string, displayName?: string, image?: WorksheetFeatureValueImage}) {
         this.id = kwds.id;
-        this.displayName = kwds.displayName;
-        this.image = kwds.image;
+        if (kwds.displayName != null) {
+            this.displayName = kwds.displayName;
+        }
+        if (kwds.image != null) {
+            this.image = kwds.image;
+        }
     }
 
     get id(): string {
@@ -120,4 +118,10 @@ export class WorksheetFeatureValueDefinition {
         }
         return json;
     }
+
+    private _displayName?: string = undefined;
+
+    private _id: string = "";
+
+    private _image?: WorksheetFeatureValueImage = undefined;
 }

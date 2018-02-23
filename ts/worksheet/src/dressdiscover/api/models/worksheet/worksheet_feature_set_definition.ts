@@ -1,19 +1,17 @@
 import { WorksheetFeatureDefinition } from "./worksheet_feature_definition";
 
 export class WorksheetFeatureSetDefinition {
-    private _childFeatureSets?: WorksheetFeatureSetDefinition[];
-
-    private _displayName?: string;
-
-    private _features?: WorksheetFeatureDefinition[];
-
-    private _id: string;
-
     constructor(kwds: {id: string, childFeatureSets?: WorksheetFeatureSetDefinition[], displayName?: string, features?: WorksheetFeatureDefinition[]}) {
         this.id = kwds.id;
-        this.childFeatureSets = kwds.childFeatureSets;
-        this.displayName = kwds.displayName;
-        this.features = kwds.features;
+        if (kwds.childFeatureSets != null) {
+            this.childFeatureSets = kwds.childFeatureSets;
+        }
+        if (kwds.displayName != null) {
+            this.displayName = kwds.displayName;
+        }
+        if (kwds.features != null) {
+            this.features = kwds.features;
+        }
     }
 
     get id(): string {
@@ -151,4 +149,12 @@ export class WorksheetFeatureSetDefinition {
         }
         return json;
     }
+
+    private _childFeatureSets?: WorksheetFeatureSetDefinition[] = undefined;
+
+    private _displayName?: string = undefined;
+
+    private _features?: WorksheetFeatureDefinition[] = undefined;
+
+    private _id: string = "";
 }

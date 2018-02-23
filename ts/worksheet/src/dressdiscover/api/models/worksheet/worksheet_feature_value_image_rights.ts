@@ -1,12 +1,4 @@
 export class WorksheetFeatureValueImageRights {
-    private _author: string;
-
-    private _license: string;
-
-    private _sourceName: string;
-
-    private _sourceUrl: string;
-
     constructor(kwds: {author: string, license: string, sourceName: string, sourceUrl: string}) {
         this.author = kwds.author;
         this.license = kwds.license;
@@ -140,4 +132,12 @@ export class WorksheetFeatureValueImageRights {
         json["source_url"] = this.sourceUrl;
         return json;
     }
+
+    private _author: string = "";
+
+    private _license: string = "";
+
+    private _sourceName: string = "";
+
+    private _sourceUrl: string = "";
 }

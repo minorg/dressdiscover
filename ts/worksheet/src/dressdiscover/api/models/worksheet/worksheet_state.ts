@@ -1,13 +1,11 @@
 import { WorksheetFeatureSetState } from "./worksheet_feature_set_state";
 
 export class WorksheetState {
-    private _accessionNumber: string;
-
-    private _rootFeatureSet?: WorksheetFeatureSetState;
-
     constructor(kwds: {accessionNumber: string, rootFeatureSet?: WorksheetFeatureSetState}) {
         this.accessionNumber = kwds.accessionNumber;
-        this.rootFeatureSet = kwds.rootFeatureSet;
+        if (kwds.rootFeatureSet != null) {
+            this.rootFeatureSet = kwds.rootFeatureSet;
+        }
     }
 
     get accessionNumber(): string {
@@ -88,4 +86,8 @@ export class WorksheetState {
         }
         return json;
     }
+
+    private _accessionNumber: string = "";
+
+    private _rootFeatureSet?: WorksheetFeatureSetState = undefined;
 }

@@ -1,16 +1,12 @@
 import { WorksheetFeatureValueImageRights } from "./worksheet_feature_value_image_rights";
 
 export class WorksheetFeatureValueImage {
-    private _fullSizeUrl?: string;
-
-    private _rights: WorksheetFeatureValueImageRights;
-
-    private _thumbnailUrl: string;
-
     constructor(kwds: {rights: WorksheetFeatureValueImageRights, thumbnailUrl: string, fullSizeUrl?: string}) {
         this.rights = kwds.rights;
         this.thumbnailUrl = kwds.thumbnailUrl;
-        this.fullSizeUrl = kwds.fullSizeUrl;
+        if (kwds.fullSizeUrl != null) {
+            this.fullSizeUrl = kwds.fullSizeUrl;
+        }
     }
 
     get rights(): WorksheetFeatureValueImageRights {
@@ -116,4 +112,10 @@ export class WorksheetFeatureValueImage {
         }
         return json;
     }
+
+    private _fullSizeUrl?: string = undefined;
+
+    private _rights: WorksheetFeatureValueImageRights = new WorksheetFeatureValueImageRights();
+
+    private _thumbnailUrl: string = "";
 }

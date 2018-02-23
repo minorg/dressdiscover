@@ -1,16 +1,16 @@
 import { WorksheetFeatureState } from "./worksheet_feature_state";
 
 export class WorksheetFeatureSetState {
-    private _childFeatureSets?: {[index: string]: WorksheetFeatureSetState};
-
-    private _features?: {[index: string]: WorksheetFeatureState};
-
     constructor(kwds?: {childFeatureSets?: {[index: string]: WorksheetFeatureSetState}, features?: {[index: string]: WorksheetFeatureState}}) {
         if (!kwds) {
             return;
         }
-        this.childFeatureSets = kwds.childFeatureSets;
-        this.features = kwds.features;
+        if (kwds.childFeatureSets != null) {
+            this.childFeatureSets = kwds.childFeatureSets;
+        }
+        if (kwds.features != null) {
+            this.features = kwds.features;
+        }
     }
 
     get childFeatureSets(): {[index: string]: WorksheetFeatureSetState} | undefined {
@@ -94,4 +94,8 @@ export class WorksheetFeatureSetState {
         }
         return json;
     }
+
+    private _childFeatureSets?: {[index: string]: WorksheetFeatureSetState} = undefined;
+
+    private _features?: {[index: string]: WorksheetFeatureState} = undefined;
 }

@@ -1,6 +1,4 @@
 export class IoException {
-    private _causeMessage: string;
-
     constructor(kwds: {causeMessage: string}) {
         this.causeMessage = kwds.causeMessage;
     }
@@ -53,4 +51,6 @@ export class IoException {
         json["cause_message"] = this.causeMessage;
         return json;
     }
+
+    private _causeMessage: string = "";
 }

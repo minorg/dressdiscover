@@ -1,14 +1,14 @@
 export class WorksheetFeatureState {
-    private _selectedValues?: string[];
-
-    private _text?: string;
-
     constructor(kwds?: {selectedValues?: string[], text?: string}) {
         if (!kwds) {
             return;
         }
-        this.selectedValues = kwds.selectedValues;
-        this.text = kwds.text;
+        if (kwds.selectedValues != null) {
+            this.selectedValues = kwds.selectedValues;
+        }
+        if (kwds.text != null) {
+            this.text = kwds.text;
+        }
     }
 
     get selectedValues(): string[] | undefined {
@@ -95,4 +95,8 @@ export class WorksheetFeatureState {
         }
         return json;
     }
+
+    private _selectedValues?: string[] = undefined;
+
+    private _text?: string = undefined;
 }
