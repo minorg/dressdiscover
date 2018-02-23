@@ -12,9 +12,30 @@ module.exports = {
   },
   module: {
     rules: [{
-      test: /\.ts$/,
-      loader: 'awesome-typescript-loader'
-    }]
+        test: /\.(scss)$/,
+        use: [{
+          loader: 'style-loader'
+        }, {
+          loader: 'css-loader'
+        }, {
+          loader: 'postcss-loader', // Run post css actions
+          options: {
+            plugins: function () { // post css plugins, can be exported to postcss.config.js
+              return [
+                require('precss'),
+                require('autoprefixer')
+              ];
+            }
+          }
+        }, {
+          loader: 'sass-loader' // compiles Sass to CSS
+        }]
+      },
+      {
+        test: /\.ts$/,
+        loader: 'awesome-typescript-loader'
+      }
+    ]
   },
   output: {
     filename: 'js/worksheet.js',

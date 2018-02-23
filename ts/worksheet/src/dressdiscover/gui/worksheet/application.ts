@@ -1,57 +1,66 @@
-import $ = require("jquery");
-import _ = require("underscore");
-import Backbone = require("backbone");
-import Marionette = require("backbone.marionette");
-import { Radio } from "dressdiscover/gui/worksheet/radio";
-import { Router } from "dressdiscover/gui/worksheet/router";
-import { ModalRegion } from "dressdiscover/gui/worksheet/modal_region";
-import { Services } from "dressdiscover/gui/worksheet/services/services";
+import 'bootstrap';
 
-import "../../../../node_modules/backbone.validation/dist/backbone-validation-min.js";
-import "../../../../node_modules/bootstrap-select/dist/css/bootstrap-select.min.css";
-import "../../../../node_modules/bootstrap-select/dist/js/bootstrap-select.min.js";
-import "../../../../node_modules/bootstrap-treeview/dist/bootstrap-treeview.min.css";
-import "../../../../node_modules/bootstrap-treeview/dist/bootstrap-treeview.min.js";
+// import { Session } from 'thingsworth/gui/models/session';
+// import { Router } from 'thingsworth/gui/router';
+// import { Services } from 'thingsworth/gui/services/services';
 
-export class Application extends Marionette.Application {
-    onStart() {
-        this._modalRegion = new ModalRegion();
-        this._radio = new Radio()
-        this._router = new Router();
-        this._services = new Services();
-        if (!Backbone.history.start({ hashChange: true, pushState: false } as any)) {
-            console.error("didn't route");
-        }
-    }
+export class Application {
+    // private constructor(services: Services, session: Session) {
+    //     this._session = session;
+    //     this._services = services;
+    //     this._router = new Router();
+    // }
 
     static get instance() {
+        if (!Application._instance) {
+            throw new Error("instance not initialized");
+        }
         return Application._instance;
     }
 
-    get radio() {
-        return this._radio;
+    static run() {
+        if (Application._instance) {
+            throw new Error("instance already initialized");
+        }
+
+        // const services = new Services();
+        // services.thingQueryService.getThingCategoryDefinitionsAsync({
+        //     error: (errorKwds) => {
+        //         const session = new Session(new ThingCategoryDefinitions(new ThingCategoryDefinition({ id: 1, text: "Root" })));
+        //         const instance = new Application(services, session);
+        //         Application._instance = instance;
+        //         ErrorModalView.fromAsyncError(errorKwds).show({
+        //             onHidden: () => {
+        //                 instance.router.run();
+        //             }
+        //         });
+        //     },
+        //     success: (definitions) => {
+        //         const session = new Session(new ThingCategoryDefinitions(definitions));
+        //         Application._instance = new Application(services, session);
+        //         Application._instance.router.run();
+        //     }
+        // });
     }
 
-    get modalRegion() {
-        return this._modalRegion;
-    }
+    // get router() {
+    //     return this._router;
+    // }
 
-    get router() {
-        return this._router;
-    }
+    // get session() {
+    //     return this._session;
+    // }
 
-    get services() {
-        return this._services;
-    }
+    // get services() {
+    //     return this._services;
+    // }
 
-    private static _instance: Application = new Application();
-    private _modalRegion: ModalRegion;
-    private _radio: Radio;
-    private _router: Router;
-    private _services: Services;
+    // private _router: Router;
+    // private _session: Session;
+    // private _services: Services;
+    private static _instance?: Application;
 }
 
 $(() => {
-    _.extend(Backbone.Model.prototype, (Backbone as any).Validation.mixin);
-    Application.instance.start();
+    Application.run();
 });

@@ -6,18 +6,18 @@
     "**/.hg": true,
     "**/CVS": true,
     "**/.DS_Store": true,
-    "src/**/*.css.map": true,
-    "src/**/*.js": true,
-    "src/**/*.js.map": true,
-    "wwwroot/css/dressdiscover.css*": true,
-    "wwwroot/js/dressdiscover.js*": true
+    "**/src/**/*.css.map": true,
+    "**/src/**/*.js": true,
+    "**/src/**/*.js.map": true,
+    "worksheet/wwwroot/css/worksheet.css*": true,
+    "worksheet/wwwroot/js/worksheet.js*": true
   },
   "search.exclude": {
     "**/node_modules": true,
-    "src/**/*.js": true,
-    "src/**/*.js.map": true,
-    "wwwroot/css/dressdiscover.css*": true,
-    "wwwroot/js/dressdiscover.js*": true
+    "**/src/**/*.js": true,
+    "**/src/**/*.js.map": true,
+    "worksheet/wwwroot/css/worksheet.css*": true,
+    "worksheet/wwwroot/js/worksheet.js*": true
   },
   "tslint.configFile": "tslint.json"
 }
