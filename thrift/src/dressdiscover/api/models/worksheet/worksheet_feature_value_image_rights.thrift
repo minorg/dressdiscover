@@ -1,4 +1,3 @@
-namespace cs DressDiscover.Api.Models.Worksheet
 namespace * dressdiscover.api.models.worksheet
 
 include "thryft/native/url.thrift"

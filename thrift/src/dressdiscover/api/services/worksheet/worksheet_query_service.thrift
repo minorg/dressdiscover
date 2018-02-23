@@ -1,4 +1,3 @@
-namespace cs DressDiscover.Api.Services.Worksheet
 namespace * dressdiscover.api.services.worksheet
 
 include "dressdiscover/api/models/worksheet/worksheet_accession_number.thrift"
