@@ -1,9 +1,9 @@
 import './custom.scss';
 import 'bootstrap';
 
-// import { Session } from 'thingsworth/gui/models/session';
-// import { Router } from 'thingsworth/gui/router';
-// import { Services } from 'thingsworth/gui/services/services';
+// import { Session } from 'dressdiscover/gui/models/session';
+// import { Router } from 'dressdiscover/gui/router';
+// import { Services } from 'dressdiscover/gui/services/services';
 
 export class Application {
     // private constructor(services: Services, session: Session) {
