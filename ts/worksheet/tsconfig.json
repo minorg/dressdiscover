@@ -2,19 +2,19 @@
     "compileOnSave": true,
     "compilerOptions": {
         "baseUrl": ".",
-        "module": "commonjs",
+        "module": "amd",
         "moduleResolution": "node",
         "paths": {
-            "dressdiscover/*": [ "src/dressdiscover/*" ],
-            "node_modules/*": [ "node_modules/*" ]
+            "dressdiscover/*": ["src/dressdiscover/*"],
+            "node_modules/*": ["node_modules/*"]
         },
-        "noImplicitAny": true,
+        "noImplicitAny": false,
         "noImplicitReturns": true,
         "noImplicitThis": true,
         "noFallthroughCasesInSwitch": true,
         "noUnusedLocals": true,
         "sourceMap": true,
-        "strictNullChecks": true,
+        "strict": true,
         "target": "es5"
     },
     "include": [

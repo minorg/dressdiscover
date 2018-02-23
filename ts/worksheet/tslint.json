@@ -1,0 +1,5 @@
+{
+    "rules": {
+        "call-signature": false
+    }
+}
