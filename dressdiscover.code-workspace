@@ -5,6 +5,9 @@
 		},
 		{
 			"path": "thrift"
+		},
+		{
+			"path": "py"
 		}
 	],
 	"settings": {}
