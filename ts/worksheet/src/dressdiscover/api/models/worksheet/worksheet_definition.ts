@@ -1,24 +1,24 @@
 import { WorksheetFeatureSetDefinition } from "./worksheet_feature_set_definition";
 
 export class WorksheetDefinition {
-    constructor(kwds: {rootFeatureSet: WorksheetFeatureSetDefinition}) {
-        this.rootFeatureSet = kwds.rootFeatureSet;
+    constructor(kwds: {featureSets: WorksheetFeatureSetDefinition[]}) {
+        this.featureSets = kwds.featureSets;
     }
 
-    get rootFeatureSet(): WorksheetFeatureSetDefinition {
-        return this._rootFeatureSet;
+    get featureSets(): WorksheetFeatureSetDefinition[] {
+        return this._featureSets;
     }
 
-    set rootFeatureSet(rootFeatureSet: WorksheetFeatureSetDefinition) {
-        this._rootFeatureSet = rootFeatureSet;
+    set featureSets(featureSets: WorksheetFeatureSetDefinition[]) {
+        this._featureSets = featureSets;
     }
 
     deepCopy(): WorksheetDefinition {
-        return new WorksheetDefinition({ rootFeatureSet: this.rootFeatureSet.deepCopy() });
+        return new WorksheetDefinition({ featureSets: function(__value0: WorksheetFeatureSetDefinition[]) { let __copy0: WorksheetFeatureSetDefinition[] = []; for (var __i0 = 0; __i0 < __value0.length; __i0++) { __copy0.push(__value0[__i0].deepCopy()); } return __copy0; }(this.featureSets) });
     }
 
     equals(other: WorksheetDefinition): boolean {
-        if (!(this.rootFeatureSet.equals(other.rootFeatureSet))) {
+        if (!(function(left: WorksheetFeatureSetDefinition[], right: WorksheetFeatureSetDefinition[]): boolean { if (left.length != right.length) { return false; } for (var elementI = 0; elementI < left.length; elementI++) { if (!(left[elementI].equals(right[elementI]))) { return false; } } return true; }(this.featureSets, other.featureSets))) {
             return false;
         }
 
@@ -26,21 +26,21 @@ export class WorksheetDefinition {
     }
 
     static fromThryftJsonObject(json: any): WorksheetDefinition {
-        var rootFeatureSet: WorksheetFeatureSetDefinition | undefined;
+        var featureSets: WorksheetFeatureSetDefinition[] | undefined;
         for (var fieldName in json) {
-            if (fieldName == "root_feature_set") {
-                rootFeatureSet = WorksheetFeatureSetDefinition.fromThryftJsonObject(json[fieldName]);
+            if (fieldName == "feature_sets") {
+                featureSets = function(json: any[]): WorksheetFeatureSetDefinition[] { var sequence: WorksheetFeatureSetDefinition[] = []; for (var i = 0; i < json.length; i++) { sequence.push(WorksheetFeatureSetDefinition.fromThryftJsonObject(json[i])); } return sequence; }(json[fieldName]);
             }
         }
-        if (rootFeatureSet == null) {
-            throw new TypeError('rootFeatureSet is required');
+        if (featureSets == null) {
+            throw new TypeError('featureSets is required');
         }
-        return new WorksheetDefinition({rootFeatureSet: rootFeatureSet});
+        return new WorksheetDefinition({featureSets: featureSets});
     }
 
     toJsonObject(): any {
         var json: {[index: string]: any} = {};
-        json["root_feature_set"] = this.rootFeatureSet.toJsonObject();
+        json["feature_sets"] = function (__inArray: WorksheetFeatureSetDefinition[]): any[] { var __outArray: any[] = []; for (var __i = 0; __i < __inArray.length; __i++) { __outArray.push(__inArray[__i].toJsonObject()); } return __outArray; }(this.featureSets);
         return json;
     }
 
@@ -50,9 +50,9 @@ export class WorksheetDefinition {
 
     toThryftJsonObject(): any {
         var json: {[index: string]: any} = {};
-        json["root_feature_set"] = this.rootFeatureSet.toThryftJsonObject();
+        json["feature_sets"] = function (__inArray: WorksheetFeatureSetDefinition[]): any[] { var __outArray: any[] = []; for (var __i = 0; __i < __inArray.length; __i++) { __outArray.push(__inArray[__i].toThryftJsonObject()); } return __outArray; }(this.featureSets);
         return json;
     }
 
-    private _rootFeatureSet: WorksheetFeatureSetDefinition = new WorksheetFeatureSetDefinition();
+    private _featureSets: WorksheetFeatureSetDefinition[] = [];
 }

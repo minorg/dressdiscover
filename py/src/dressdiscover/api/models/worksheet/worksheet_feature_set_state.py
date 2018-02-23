@@ -8,27 +8,16 @@ class WorksheetFeatureSetState(object):
     class Builder(object):
         def __init__(
             self,
-            child_feature_sets=None,
             features=None,
         ):
             '''
-            :type child_feature_sets: dict(str: dressdiscover.api.models.worksheet.worksheet_feature_set_state.WorksheetFeatureSetState) or None
             :type features: dict(str: dressdiscover.api.models.worksheet.worksheet_feature_state.WorksheetFeatureState) or None
             '''
 
-            self.__child_feature_sets = child_feature_sets
             self.__features = features
 
         def build(self):
-            return WorksheetFeatureSetState(child_feature_sets=self.__child_feature_sets, features=self.__features)
-
-        @property
-        def child_feature_sets(self):
-            '''
-            :rtype: dict(str: dressdiscover.api.models.worksheet.worksheet_feature_set_state.WorksheetFeatureSetState)
-            '''
-
-            return self.__child_feature_sets.copy() if self.__child_feature_sets is not None else None
+            return WorksheetFeatureSetState(features=self.__features)
 
         @property
         def features(self):
@@ -46,22 +35,8 @@ class WorksheetFeatureSetState(object):
             '''
 
             builder = cls()
-            builder.child_feature_sets = child_feature_sets
             builder.features = features
             return builder
-
-        def set_child_feature_sets(self, child_feature_sets):
-            '''
-            :type child_feature_sets: dict(str: dressdiscover.api.models.worksheet.worksheet_feature_set_state.WorksheetFeatureSetState) or None
-            '''
-
-            if child_feature_sets is not None:
-                if not (isinstance(child_feature_sets, dict) and len(list(filterfalse(lambda __item: isinstance(__item[0], str) and isinstance(__item[1], dressdiscover.api.models.worksheet.worksheet_feature_set_state.WorksheetFeatureSetState), child_feature_sets.items()))) == 0):
-                    raise TypeError("expected child_feature_sets to be a dict(str: dressdiscover.api.models.worksheet.worksheet_feature_set_state.WorksheetFeatureSetState) but it is a %s" % builtins.type(child_feature_sets))
-                if len(child_feature_sets) < 1:
-                    raise ValueError("expected len(child_feature_sets) to be >= 1, was %d" % len(child_feature_sets))
-            self.__child_feature_sets = child_feature_sets
-            return self
 
         def set_features(self, features):
             '''
@@ -78,12 +53,10 @@ class WorksheetFeatureSetState(object):
 
         def update(self, worksheet_feature_set_state):
             '''
-            :type child_feature_sets: dict(str: dressdiscover.api.models.worksheet.worksheet_feature_set_state.WorksheetFeatureSetState) or None
             :type features: dict(str: dressdiscover.api.models.worksheet.worksheet_feature_state.WorksheetFeatureState) or None
             '''
 
             if isinstance(worksheet_feature_set_state, WorksheetFeatureSetState):
-                self.set_child_feature_sets(worksheet_feature_set_state.child_feature_sets)
                 self.set_features(worksheet_feature_set_state.features)
             elif isinstance(worksheet_feature_set_state, dict):
                 for key, value in worksheet_feature_set_state.items():
@@ -91,14 +64,6 @@ class WorksheetFeatureSetState(object):
             else:
                 raise TypeError(worksheet_feature_set_state)
             return self
-
-        @child_feature_sets.setter
-        def child_feature_sets(self, child_feature_sets):
-            '''
-            :type child_feature_sets: dict(str: dressdiscover.api.models.worksheet.worksheet_feature_set_state.WorksheetFeatureSetState) or None
-            '''
-
-            self.set_child_feature_sets(child_feature_sets)
 
         @features.setter
         def features(self, features):
@@ -109,7 +74,6 @@ class WorksheetFeatureSetState(object):
             self.set_features(features)
 
     class FieldMetadata(object):
-        CHILD_FEATURE_SETS = None
         FEATURES = None
 
         def __init__(self, name, type_, validation):
@@ -138,27 +102,17 @@ class WorksheetFeatureSetState(object):
 
         @classmethod
         def values(cls):
-            return (cls.CHILD_FEATURE_SETS, cls.FEATURES,)
+            return (cls.FEATURES,)
 
-    FieldMetadata.CHILD_FEATURE_SETS = FieldMetadata('child_feature_sets', dict, OrderedDict([('minLength', 1)]))
     FieldMetadata.FEATURES = FieldMetadata('features', dict, OrderedDict([('minLength', 1)]))
 
     def __init__(
         self,
-        child_feature_sets=None,
         features=None,
     ):
         '''
-        :type child_feature_sets: dict(str: dressdiscover.api.models.worksheet.worksheet_feature_set_state.WorksheetFeatureSetState) or None
         :type features: dict(str: dressdiscover.api.models.worksheet.worksheet_feature_state.WorksheetFeatureState) or None
         '''
-
-        if child_feature_sets is not None:
-            if not (isinstance(child_feature_sets, dict) and len(list(filterfalse(lambda __item: isinstance(__item[0], str) and isinstance(__item[1], dressdiscover.api.models.worksheet.worksheet_feature_set_state.WorksheetFeatureSetState), child_feature_sets.items()))) == 0):
-                raise TypeError("expected child_feature_sets to be a dict(str: dressdiscover.api.models.worksheet.worksheet_feature_set_state.WorksheetFeatureSetState) but it is a %s" % builtins.type(child_feature_sets))
-            if len(child_feature_sets) < 1:
-                raise ValueError("expected len(child_feature_sets) to be >= 1, was %d" % len(child_feature_sets))
-        self.__child_feature_sets = child_feature_sets.copy() if child_feature_sets is not None else None
 
         if features is not None:
             if not (isinstance(features, dict) and len(list(filterfalse(lambda __item: isinstance(__item[0], str) and isinstance(__item[1], dressdiscover.api.models.worksheet.worksheet_feature_state.WorksheetFeatureState), features.items()))) == 0):
@@ -168,33 +122,27 @@ class WorksheetFeatureSetState(object):
         self.__features = features.copy() if features is not None else None
 
     def __eq__(self, other):
-        if self.child_feature_sets != other.child_feature_sets:
-            return False
         if self.features != other.features:
             return False
         return True
 
     def __hash__(self):
-        return hash((self.child_feature_sets, self.features,))
+        return hash(self.features)
 
     def __iter__(self):
-        return iter((self.child_feature_sets, self.features,))
+        return iter((self.features,))
 
     def __ne__(self, other):
         return not self.__eq__(other)
 
     def __repr__(self):
         field_reprs = []
-        if self.child_feature_sets is not None:
-            field_reprs.append('child_feature_sets=' + repr(self.child_feature_sets))
         if self.features is not None:
             field_reprs.append('features=' + repr(self.features))
         return 'WorksheetFeatureSetState(' + ', '.join(field_reprs) + ')'
 
     def __str__(self):
         field_reprs = []
-        if self.child_feature_sets is not None:
-            field_reprs.append('child_feature_sets=' + repr(self.child_feature_sets))
         if self.features is not None:
             field_reprs.append('features=' + repr(self.features))
         return 'WorksheetFeatureSetState(' + ', '.join(field_reprs) + ')'
@@ -202,14 +150,6 @@ class WorksheetFeatureSetState(object):
     @classmethod
     def builder(cls):
         return cls.Builder()
-
-    @property
-    def child_feature_sets(self):
-        '''
-        :rtype: dict(str: dressdiscover.api.models.worksheet.worksheet_feature_set_state.WorksheetFeatureSetState)
-        '''
-
-        return self.__child_feature_sets.copy() if self.__child_feature_sets is not None else None
 
     @property
     def features(self):
@@ -235,8 +175,6 @@ class WorksheetFeatureSetState(object):
             ifield_name, ifield_type, _ifield_id = iprot.read_field_begin()
             if ifield_type == 0: # STOP
                 break
-            elif ifield_name == 'child_feature_sets':
-                init_kwds['child_feature_sets'] = dict([(iprot.read_string(), dressdiscover.api.models.worksheet.worksheet_feature_set_state.WorksheetFeatureSetState.read(iprot)) for _ in xrange(iprot.read_map_begin()[2])] + (iprot.read_map_end() is None and []))
             elif ifield_name == 'features':
                 init_kwds['features'] = dict([(iprot.read_string(), dressdiscover.api.models.worksheet.worksheet_feature_state.WorksheetFeatureState.read(iprot)) for _ in xrange(iprot.read_map_begin()[2])] + (iprot.read_map_end() is None and []))
             iprot.read_field_end()
@@ -256,15 +194,6 @@ class WorksheetFeatureSetState(object):
         '''
 
         oprot.write_struct_begin('WorksheetFeatureSetState')
-
-        if self.child_feature_sets is not None:
-            oprot.write_field_begin(name='child_feature_sets', type=13, id=None)
-            oprot.write_map_begin(11, len(self.child_feature_sets), 12)
-            for __key0, __value0 in self.child_feature_sets.items():
-                oprot.write_string(__key0)
-                __value0.write(oprot)
-            oprot.write_map_end()
-            oprot.write_field_end()
 
         if self.features is not None:
             oprot.write_field_begin(name='features', type=13, id=None)

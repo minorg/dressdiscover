@@ -3,27 +3,27 @@ package org.dressdiscover.api.models.worksheet;
 public final class WorksheetFeatureState implements org.thryft.Struct {
     public final static class Builder {
         public Builder() {
-            selectedValues = com.google.common.base.Optional.<com.google.common.collect.ImmutableList<String>> absent();
+            selectedValueIds = com.google.common.base.Optional.<com.google.common.collect.ImmutableList<String>> absent();
             text = com.google.common.base.Optional.<String> absent();
         }
 
         public Builder(final WorksheetFeatureState other) {
-            this.selectedValues = other.getSelectedValues();
+            this.selectedValueIds = other.getSelectedValueIds();
             this.text = other.getText();
         }
 
-        protected WorksheetFeatureState _build(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> selectedValues, final com.google.common.base.Optional<String> text) {
-            return new WorksheetFeatureState(selectedValues, text);
+        protected WorksheetFeatureState _build(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> selectedValueIds, final com.google.common.base.Optional<String> text) {
+            return new WorksheetFeatureState(selectedValueIds, text);
         }
 
         public WorksheetFeatureState build() {
-            UncheckedValidator.validate(selectedValues, text);
+            UncheckedValidator.validate(selectedValueIds, text);
 
-            return _build(selectedValues, text);
+            return _build(selectedValueIds, text);
         }
 
-        public final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> getSelectedValues() {
-            return selectedValues;
+        public final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> getSelectedValueIds() {
+            return selectedValueIds;
         }
 
         public final com.google.common.base.Optional<String> getText() {
@@ -50,7 +50,7 @@ public final class WorksheetFeatureState implements org.thryft.Struct {
                 final org.thryft.protocol.ListBegin __list = iprot.readListBegin();
                 if (__list.getSize() > 0) {
                     try {
-                        selectedValues = com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableList<String>>() {
+                        selectedValueIds = com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableList<String>>() {
                             @Override
                             public com.google.common.collect.ImmutableList<String> apply(final org.thryft.protocol.InputProtocol iprot) {
                                 try {
@@ -67,7 +67,7 @@ public final class WorksheetFeatureState implements org.thryft.Struct {
                             }
                         }).apply(iprot));
                     } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
-                         throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.SELECTED_VALUES, e.getCause());
+                         throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.SELECTED_VALUE_IDS, e.getCause());
                     }
                 }
                 if (__list.getSize() > 1) {
@@ -93,9 +93,9 @@ public final class WorksheetFeatureState implements org.thryft.Struct {
                         break;
                     }
                     switch (ifield.getName()) {
-                    case "selected_values": {
+                    case "selected_value_ids": {
                         try {
-                            selectedValues = com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableList<String>>() {
+                            selectedValueIds = com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableList<String>>() {
                                 @Override
                                 public com.google.common.collect.ImmutableList<String> apply(final org.thryft.protocol.InputProtocol iprot) {
                                     try {
@@ -112,7 +112,7 @@ public final class WorksheetFeatureState implements org.thryft.Struct {
                                 }
                             }).apply(iprot));
                         } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
-                             throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.SELECTED_VALUES, e.getCause());
+                             throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.SELECTED_VALUE_IDS, e.getCause());
                         }
                         break;
                     }
@@ -151,7 +151,7 @@ public final class WorksheetFeatureState implements org.thryft.Struct {
             com.google.common.base.Preconditions.checkNotNull(fieldMetadata);
 
             switch (fieldMetadata) {
-            case SELECTED_VALUES: setSelectedValues((com.google.common.collect.ImmutableList<String>)value); return this;
+            case SELECTED_VALUE_IDS: setSelectedValueIds((com.google.common.collect.ImmutableList<String>)value); return this;
             case TEXT: setText((String)value); return this;
             default:
                 throw new IllegalStateException();
@@ -161,8 +161,8 @@ public final class WorksheetFeatureState implements org.thryft.Struct {
         public Builder setIfPresent(final WorksheetFeatureState other) {
             com.google.common.base.Preconditions.checkNotNull(other);
 
-            if (other.getSelectedValues().isPresent()) {
-                setSelectedValues(other.getSelectedValues());
+            if (other.getSelectedValueIds().isPresent()) {
+                setSelectedValueIds(other.getSelectedValueIds());
             }
             if (other.getText().isPresent()) {
                 setText(other.getText());
@@ -171,14 +171,14 @@ public final class WorksheetFeatureState implements org.thryft.Struct {
             return this;
         }
 
-        public Builder setSelectedValues(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> selectedValues) {
-            UncheckedValidator.validateSelectedValues(selectedValues);
-            this.selectedValues = selectedValues;
+        public Builder setSelectedValueIds(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> selectedValueIds) {
+            UncheckedValidator.validateSelectedValueIds(selectedValueIds);
+            this.selectedValueIds = selectedValueIds;
             return this;
         }
 
-        public Builder setSelectedValues(final @javax.annotation.Nullable com.google.common.collect.ImmutableList<String> selectedValues) {
-            return setSelectedValues(com.google.common.base.Optional.fromNullable(selectedValues));
+        public Builder setSelectedValueIds(final @javax.annotation.Nullable com.google.common.collect.ImmutableList<String> selectedValueIds) {
+            return setSelectedValueIds(com.google.common.base.Optional.fromNullable(selectedValueIds));
         }
 
         public Builder setText(final com.google.common.base.Optional<String> text) {
@@ -206,15 +206,15 @@ public final class WorksheetFeatureState implements org.thryft.Struct {
             com.google.common.base.Preconditions.checkNotNull(fieldMetadata);
 
             switch (fieldMetadata) {
-            case SELECTED_VALUES: return unsetSelectedValues();
+            case SELECTED_VALUE_IDS: return unsetSelectedValueIds();
             case TEXT: return unsetText();
             default:
                 throw new IllegalStateException();
             }
         }
 
-        public Builder unsetSelectedValues() {
-            this.selectedValues = com.google.common.base.Optional.<com.google.common.collect.ImmutableList<String>> absent();
+        public Builder unsetSelectedValueIds() {
+            this.selectedValueIds = com.google.common.base.Optional.<com.google.common.collect.ImmutableList<String>> absent();
             return this;
         }
 
@@ -223,7 +223,7 @@ public final class WorksheetFeatureState implements org.thryft.Struct {
             return this;
         }
 
-        private com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> selectedValues;
+        private com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> selectedValueIds;
         private com.google.common.base.Optional<String> text;
     }
 
@@ -258,7 +258,7 @@ public final class WorksheetFeatureState implements org.thryft.Struct {
 
     @SuppressWarnings("serial")
     public enum FieldMetadata implements org.thryft.CompoundType.FieldMetadata {
-        SELECTED_VALUES("selectedValues", new com.google.common.reflect.TypeToken<com.google.common.collect.ImmutableList<String>>() {}, false, (short)0, "selected_values", org.thryft.protocol.Type.LIST),
+        SELECTED_VALUE_IDS("selectedValueIds", new com.google.common.reflect.TypeToken<com.google.common.collect.ImmutableList<String>>() {}, false, (short)0, "selected_value_ids", org.thryft.protocol.Type.LIST),
         TEXT("text", new com.google.common.reflect.TypeToken<String>() {}, false, (short)0, "text", org.thryft.protocol.Type.STRING);
 
         @Override
@@ -303,7 +303,7 @@ public final class WorksheetFeatureState implements org.thryft.Struct {
 
         public static FieldMetadata valueOfJavaName(final String javaName) {
             switch (javaName) {
-            case "selectedValues": return SELECTED_VALUES;
+            case "selectedValueIds": return SELECTED_VALUE_IDS;
             case "text": return TEXT;
             default:
                 throw new IllegalArgumentException(javaName);
@@ -312,7 +312,7 @@ public final class WorksheetFeatureState implements org.thryft.Struct {
 
         public static FieldMetadata valueOfThriftName(final String thriftName) {
             switch (thriftName) {
-            case "selected_values": return SELECTED_VALUES;
+            case "selected_value_ids": return SELECTED_VALUE_IDS;
             case "text": return TEXT;
             default:
                 throw new IllegalArgumentException(thriftName);
@@ -343,22 +343,22 @@ public final class WorksheetFeatureState implements org.thryft.Struct {
     }
 
     public final static class ReadValidator {
-        public static void validate(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> selectedValues, final com.google.common.base.Optional<String> text) throws org.thryft.protocol.InputProtocolException {
-            validateSelectedValues(selectedValues);
+        public static void validate(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> selectedValueIds, final com.google.common.base.Optional<String> text) throws org.thryft.protocol.InputProtocolException {
+            validateSelectedValueIds(selectedValueIds);
             validateText(text);
         }
 
-        public static void validateSelectedValues(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> selectedValues) throws org.thryft.protocol.InputProtocolException {
-            if (selectedValues == null) {
-                throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.SELECTED_VALUES, "org.dressdiscover.api.models.worksheet.WorksheetFeatureState: selectedValues is null");
+        public static void validateSelectedValueIds(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> selectedValueIds) throws org.thryft.protocol.InputProtocolException {
+            if (selectedValueIds == null) {
+                throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.SELECTED_VALUE_IDS, "org.dressdiscover.api.models.worksheet.WorksheetFeatureState: selectedValueIds is null");
             }
-            if (!selectedValues.isPresent()) {
+            if (!selectedValueIds.isPresent()) {
                 return;
             }
-            if (selectedValues.get().isEmpty()) {
-                throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.SELECTED_VALUES, "org.dressdiscover.api.models.worksheet.WorksheetFeatureState.selectedValues: less than min length 1");
+            if (selectedValueIds.get().isEmpty()) {
+                throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.SELECTED_VALUE_IDS, "org.dressdiscover.api.models.worksheet.WorksheetFeatureState.selectedValueIds: less than min length 1");
             }
-            for (final String __element0 : selectedValues.get()) {
+            for (final String __element0 : selectedValueIds.get()) {
                 {
                     final int __strLen = __element0.length();
                     boolean __blank = true;
@@ -369,11 +369,11 @@ public final class WorksheetFeatureState implements org.thryft.Struct {
                         }
                     }
                     if (__blank) {
-                        throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.SELECTED_VALUES, String.format("org.dressdiscover.api.models.worksheet.WorksheetFeatureState.selectedValues: element: blank '%s' (length=%d)", __element0, __strLen));
+                        throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.SELECTED_VALUE_IDS, String.format("org.dressdiscover.api.models.worksheet.WorksheetFeatureState.selectedValueIds: element: blank '%s' (length=%d)", __element0, __strLen));
                     }
                 }
                 if (__element0.isEmpty()) {
-                    throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.SELECTED_VALUES, "org.dressdiscover.api.models.worksheet.WorksheetFeatureState.selectedValues: element: less than min length 1");
+                    throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.SELECTED_VALUE_IDS, "org.dressdiscover.api.models.worksheet.WorksheetFeatureState.selectedValueIds: element: less than min length 1");
                 }
             }
         }
@@ -405,22 +405,22 @@ public final class WorksheetFeatureState implements org.thryft.Struct {
     }
 
     public final static class UncheckedValidator {
-        public static void validate(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> selectedValues, final com.google.common.base.Optional<String> text) {
-            validateSelectedValues(selectedValues);
+        public static void validate(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> selectedValueIds, final com.google.common.base.Optional<String> text) {
+            validateSelectedValueIds(selectedValueIds);
             validateText(text);
         }
 
-        public static void validateSelectedValues(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> selectedValues) {
-            if (selectedValues == null) {
-                throw new NullPointerException("org.dressdiscover.api.models.worksheet.WorksheetFeatureState: selectedValues is null");
+        public static void validateSelectedValueIds(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> selectedValueIds) {
+            if (selectedValueIds == null) {
+                throw new NullPointerException("org.dressdiscover.api.models.worksheet.WorksheetFeatureState: selectedValueIds is null");
             }
-            if (!selectedValues.isPresent()) {
+            if (!selectedValueIds.isPresent()) {
                 return;
             }
-            if (selectedValues.get().isEmpty()) {
-                throw new IllegalArgumentException("org.dressdiscover.api.models.worksheet.WorksheetFeatureState.selectedValues: less than min length 1");
+            if (selectedValueIds.get().isEmpty()) {
+                throw new IllegalArgumentException("org.dressdiscover.api.models.worksheet.WorksheetFeatureState.selectedValueIds: less than min length 1");
             }
-            for (final String __element0 : selectedValues.get()) {
+            for (final String __element0 : selectedValueIds.get()) {
                 {
                     final int __strLen = __element0.length();
                     boolean __blank = true;
@@ -431,11 +431,11 @@ public final class WorksheetFeatureState implements org.thryft.Struct {
                         }
                     }
                     if (__blank) {
-                        throw new IllegalArgumentException(String.format("org.dressdiscover.api.models.worksheet.WorksheetFeatureState.selectedValues: element: blank '%s' (length=%d)", __element0, __strLen));
+                        throw new IllegalArgumentException(String.format("org.dressdiscover.api.models.worksheet.WorksheetFeatureState.selectedValueIds: element: blank '%s' (length=%d)", __element0, __strLen));
                     }
                 }
                 if (__element0.isEmpty()) {
-                    throw new IllegalArgumentException("org.dressdiscover.api.models.worksheet.WorksheetFeatureState.selectedValues: element: less than min length 1");
+                    throw new IllegalArgumentException("org.dressdiscover.api.models.worksheet.WorksheetFeatureState.selectedValueIds: element: less than min length 1");
                 }
             }
         }
@@ -471,7 +471,7 @@ public final class WorksheetFeatureState implements org.thryft.Struct {
      */
     @Deprecated
     public WorksheetFeatureState() {
-        selectedValues = com.google.common.base.Optional.<com.google.common.collect.ImmutableList<String>> absent();
+        selectedValueIds = com.google.common.base.Optional.<com.google.common.collect.ImmutableList<String>> absent();
         text = com.google.common.base.Optional.<String> absent();
     }
 
@@ -479,7 +479,7 @@ public final class WorksheetFeatureState implements org.thryft.Struct {
      * Copy constructor
      */
     public WorksheetFeatureState(final WorksheetFeatureState other) {
-        this(other.getSelectedValues(), other.getText());
+        this(other.getSelectedValueIds(), other.getText());
     }
 
     /**
@@ -487,8 +487,8 @@ public final class WorksheetFeatureState implements org.thryft.Struct {
      *
      * All fields should have been validated before calling this.
      */
-    protected WorksheetFeatureState(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> selectedValues, final com.google.common.base.Optional<String> text) {
-        this.selectedValues = selectedValues;
+    protected WorksheetFeatureState(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> selectedValueIds, final com.google.common.base.Optional<String> text) {
+        this.selectedValueIds = selectedValueIds;
         this.text = text;
     }
 
@@ -512,19 +512,19 @@ public final class WorksheetFeatureState implements org.thryft.Struct {
     /**
      * Total Nullable factory method
      */
-    public static WorksheetFeatureState create(@javax.annotation.Nullable final com.google.common.collect.ImmutableList<String> selectedValues, @javax.annotation.Nullable final String text) {
-        final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> selectedValuesOptional = com.google.common.base.Optional.fromNullable(selectedValues);
+    public static WorksheetFeatureState create(@javax.annotation.Nullable final com.google.common.collect.ImmutableList<String> selectedValueIds, @javax.annotation.Nullable final String text) {
+        final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> selectedValueIdsOptional = com.google.common.base.Optional.fromNullable(selectedValueIds);
         final com.google.common.base.Optional<String> textOptional = com.google.common.base.Optional.fromNullable(text);
-        UncheckedValidator.validate(selectedValuesOptional, textOptional);
-        return new WorksheetFeatureState(selectedValuesOptional, textOptional);
+        UncheckedValidator.validate(selectedValueIdsOptional, textOptional);
+        return new WorksheetFeatureState(selectedValueIdsOptional, textOptional);
     }
 
     /**
      * Optional factory method
      */
-    public static WorksheetFeatureState create(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> selectedValues, final com.google.common.base.Optional<String> text) {
-        UncheckedValidator.validate(selectedValues, text);
-        return new WorksheetFeatureState(selectedValues, text);
+    public static WorksheetFeatureState create(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> selectedValueIds, final com.google.common.base.Optional<String> text) {
+        UncheckedValidator.validate(selectedValueIds, text);
+        return new WorksheetFeatureState(selectedValueIds, text);
     }
 
     @Override
@@ -538,7 +538,7 @@ public final class WorksheetFeatureState implements org.thryft.Struct {
 
         final WorksheetFeatureState other = (WorksheetFeatureState)otherObject;
 
-        if (!(((getSelectedValues().isPresent() && other.getSelectedValues().isPresent()) ? (getSelectedValues().get().equals(other.getSelectedValues().get())) : (!getSelectedValues().isPresent() && !other.getSelectedValues().isPresent())))) {
+        if (!(((getSelectedValueIds().isPresent() && other.getSelectedValueIds().isPresent()) ? (getSelectedValueIds().get().equals(other.getSelectedValueIds().get())) : (!getSelectedValueIds().isPresent() && !other.getSelectedValueIds().isPresent())))) {
             return false;
         }
 
@@ -564,15 +564,15 @@ public final class WorksheetFeatureState implements org.thryft.Struct {
 
     public java.lang.Object get(final FieldMetadata fieldMetadata) {
         switch (fieldMetadata) {
-        case SELECTED_VALUES: return getSelectedValues();
+        case SELECTED_VALUE_IDS: return getSelectedValueIds();
         case TEXT: return getText();
         default:
             throw new IllegalStateException();
         }
     }
 
-    public final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> getSelectedValues() {
-        return selectedValues;
+    public final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> getSelectedValueIds() {
+        return selectedValueIds;
     }
 
     public final com.google.common.base.Optional<String> getText() {
@@ -582,8 +582,8 @@ public final class WorksheetFeatureState implements org.thryft.Struct {
     @Override
     public int hashCode() {
         int hashCode = 17;
-        if (getSelectedValues().isPresent()) {
-            hashCode = 31 * hashCode + getSelectedValues().get().hashCode();
+        if (getSelectedValueIds().isPresent()) {
+            hashCode = 31 * hashCode + getSelectedValueIds().get().hashCode();
         }
         if (getText().isPresent()) {
             hashCode = 31 * hashCode + getText().get().hashCode();
@@ -607,14 +607,14 @@ public final class WorksheetFeatureState implements org.thryft.Struct {
     }
 
     public static WorksheetFeatureState readAsList(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
-        com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> selectedValues = com.google.common.base.Optional.<com.google.common.collect.ImmutableList<String>> absent();
+        com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> selectedValueIds = com.google.common.base.Optional.<com.google.common.collect.ImmutableList<String>> absent();
         com.google.common.base.Optional<String> text = com.google.common.base.Optional.<String> absent();
 
         try {
             final org.thryft.protocol.ListBegin __list = iprot.readListBegin();
             if (__list.getSize() > 0) {
                 try {
-                    selectedValues = com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableList<String>>() {
+                    selectedValueIds = com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableList<String>>() {
                         @Override
                         public com.google.common.collect.ImmutableList<String> apply(final org.thryft.protocol.InputProtocol iprot) {
                             try {
@@ -631,7 +631,7 @@ public final class WorksheetFeatureState implements org.thryft.Struct {
                         }
                     }).apply(iprot));
                 } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
-                     throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.SELECTED_VALUES, e.getCause());
+                     throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.SELECTED_VALUE_IDS, e.getCause());
                 }
             }
             if (__list.getSize() > 1) {
@@ -642,9 +642,9 @@ public final class WorksheetFeatureState implements org.thryft.Struct {
             throw new IllegalStateException(e);
         }
 
-        ReadValidator.validate(selectedValues, text);
+        ReadValidator.validate(selectedValueIds, text);
 
-        return new WorksheetFeatureState(selectedValues, text);
+        return new WorksheetFeatureState(selectedValueIds, text);
     }
 
     public static WorksheetFeatureState readAsStruct(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
@@ -652,7 +652,7 @@ public final class WorksheetFeatureState implements org.thryft.Struct {
     }
 
     public static WorksheetFeatureState readAsStruct(final org.thryft.protocol.InputProtocol iprot, final com.google.common.base.Optional<UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
-        com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> selectedValues = com.google.common.base.Optional.<com.google.common.collect.ImmutableList<String>> absent();
+        com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> selectedValueIds = com.google.common.base.Optional.<com.google.common.collect.ImmutableList<String>> absent();
         com.google.common.base.Optional<String> text = com.google.common.base.Optional.<String> absent();
 
         try {
@@ -663,9 +663,9 @@ public final class WorksheetFeatureState implements org.thryft.Struct {
                     break;
                 }
                 switch (ifield.getName()) {
-                case "selected_values": {
+                case "selected_value_ids": {
                     try {
-                        selectedValues = com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableList<String>>() {
+                        selectedValueIds = com.google.common.base.Optional.of((new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableList<String>>() {
                             @Override
                             public com.google.common.collect.ImmutableList<String> apply(final org.thryft.protocol.InputProtocol iprot) {
                                 try {
@@ -682,7 +682,7 @@ public final class WorksheetFeatureState implements org.thryft.Struct {
                             }
                         }).apply(iprot));
                     } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
-                         throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.SELECTED_VALUES, e.getCause());
+                         throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.SELECTED_VALUE_IDS, e.getCause());
                     }
                     break;
                 }
@@ -703,23 +703,23 @@ public final class WorksheetFeatureState implements org.thryft.Struct {
             throw new IllegalStateException(e);
         }
 
-        ReadValidator.validate(selectedValues, text);
+        ReadValidator.validate(selectedValueIds, text);
 
-        return new WorksheetFeatureState(selectedValues, text);
+        return new WorksheetFeatureState(selectedValueIds, text);
     }
 
-    public WorksheetFeatureState replaceSelectedValues(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> selectedValues) {
-        UncheckedValidator.validateSelectedValues(selectedValues);
-        return new WorksheetFeatureState(selectedValues, this.text);
+    public WorksheetFeatureState replaceSelectedValueIds(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> selectedValueIds) {
+        UncheckedValidator.validateSelectedValueIds(selectedValueIds);
+        return new WorksheetFeatureState(selectedValueIds, this.text);
     }
 
-    public WorksheetFeatureState replaceSelectedValues(@javax.annotation.Nullable final com.google.common.collect.ImmutableList<String> selectedValues) {
-        return replaceSelectedValues(com.google.common.base.Optional.fromNullable(selectedValues));
+    public WorksheetFeatureState replaceSelectedValueIds(@javax.annotation.Nullable final com.google.common.collect.ImmutableList<String> selectedValueIds) {
+        return replaceSelectedValueIds(com.google.common.base.Optional.fromNullable(selectedValueIds));
     }
 
     public WorksheetFeatureState replaceText(final com.google.common.base.Optional<String> text) {
         UncheckedValidator.validateText(text);
-        return new WorksheetFeatureState(this.selectedValues, text);
+        return new WorksheetFeatureState(this.selectedValueIds, text);
     }
 
     public WorksheetFeatureState replaceText(@javax.annotation.Nullable final String text) {
@@ -728,16 +728,16 @@ public final class WorksheetFeatureState implements org.thryft.Struct {
 
     @Override
     public String toString() {
-        return com.google.common.base.MoreObjects.toStringHelper(this).omitNullValues().add("selected_values", getSelectedValues().orNull()).add("text", getText().orNull()).toString();
+        return com.google.common.base.MoreObjects.toStringHelper(this).omitNullValues().add("selected_value_ids", getSelectedValueIds().orNull()).add("text", getText().orNull()).toString();
     }
 
     @Override
     public void writeAsList(final org.thryft.protocol.OutputProtocol oprot) throws org.thryft.protocol.OutputProtocolException {
         oprot.writeListBegin(org.thryft.protocol.Type.VOID_, 2);
 
-        if (getSelectedValues().isPresent()) {
-            oprot.writeListBegin(org.thryft.protocol.Type.STRING, getSelectedValues().get().size());
-            for (final String _iter0 : getSelectedValues().get()) {
+        if (getSelectedValueIds().isPresent()) {
+            oprot.writeListBegin(org.thryft.protocol.Type.STRING, getSelectedValueIds().get().size());
+            for (final String _iter0 : getSelectedValueIds().get()) {
                 oprot.writeString(_iter0);
             }
             oprot.writeListEnd();
@@ -763,18 +763,18 @@ public final class WorksheetFeatureState implements org.thryft.Struct {
 
     @Override
     public void writeFields(final org.thryft.protocol.OutputProtocol oprot) throws org.thryft.protocol.OutputProtocolException {
-        writeSelectedValuesField(oprot);
+        writeSelectedValueIdsField(oprot);
 
         writeTextField(oprot);
 
         oprot.writeFieldStop();
     }
 
-    public void writeSelectedValuesField(final org.thryft.protocol.OutputProtocol oprot) throws org.thryft.protocol.OutputProtocolException {
-        if (getSelectedValues().isPresent()) {
-            oprot.writeFieldBegin(FieldMetadata.SELECTED_VALUES);
-            oprot.writeListBegin(org.thryft.protocol.Type.STRING, getSelectedValues().get().size());
-            for (final String _iter0 : getSelectedValues().get()) {
+    public void writeSelectedValueIdsField(final org.thryft.protocol.OutputProtocol oprot) throws org.thryft.protocol.OutputProtocolException {
+        if (getSelectedValueIds().isPresent()) {
+            oprot.writeFieldBegin(FieldMetadata.SELECTED_VALUE_IDS);
+            oprot.writeListBegin(org.thryft.protocol.Type.STRING, getSelectedValueIds().get().size());
+            for (final String _iter0 : getSelectedValueIds().get()) {
                 oprot.writeString(_iter0);
             }
             oprot.writeListEnd();
@@ -792,7 +792,7 @@ public final class WorksheetFeatureState implements org.thryft.Struct {
 
     public final static WorksheetFeatureState EMPTY = new WorksheetFeatureState();
 
-    private final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> selectedValues;
+    private final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> selectedValueIds;
 
     private final com.google.common.base.Optional<String> text;
 }

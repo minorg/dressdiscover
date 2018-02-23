@@ -1,4 +1,5 @@
 from collections import OrderedDict
+from itertools import filterfalse
 import builtins
 import dressdiscover.api.models.worksheet.worksheet_feature_set_definition
 
@@ -7,16 +8,24 @@ class WorksheetDefinition(object):
     class Builder(object):
         def __init__(
             self,
-            root_feature_set=None,
+            feature_sets=None,
         ):
             '''
-            :type root_feature_set: dressdiscover.api.models.worksheet.worksheet_feature_set_definition.WorksheetFeatureSetDefinition
+            :type feature_sets: tuple(dressdiscover.api.models.worksheet.worksheet_feature_set_definition.WorksheetFeatureSetDefinition)
             '''
 
-            self.__root_feature_set = root_feature_set
+            self.__feature_sets = feature_sets
 
         def build(self):
-            return WorksheetDefinition(root_feature_set=self.__root_feature_set)
+            return WorksheetDefinition(feature_sets=self.__feature_sets)
+
+        @property
+        def feature_sets(self):
+            '''
+            :rtype: tuple(dressdiscover.api.models.worksheet.worksheet_feature_set_definition.WorksheetFeatureSetDefinition)
+            '''
+
+            return self.__feature_sets
 
         @classmethod
         def from_template(cls, template):
@@ -26,36 +35,28 @@ class WorksheetDefinition(object):
             '''
 
             builder = cls()
-            builder.root_feature_set = root_feature_set
+            builder.feature_sets = feature_sets
             return builder
 
-        @property
-        def root_feature_set(self):
+        def set_feature_sets(self, feature_sets):
             '''
-            :rtype: dressdiscover.api.models.worksheet.worksheet_feature_set_definition.WorksheetFeatureSetDefinition
-            '''
-
-            return self.__root_feature_set
-
-        def set_root_feature_set(self, root_feature_set):
-            '''
-            :type root_feature_set: dressdiscover.api.models.worksheet.worksheet_feature_set_definition.WorksheetFeatureSetDefinition
+            :type feature_sets: tuple(dressdiscover.api.models.worksheet.worksheet_feature_set_definition.WorksheetFeatureSetDefinition)
             '''
 
-            if root_feature_set is None:
-                raise ValueError('root_feature_set is required')
-            if not isinstance(root_feature_set, dressdiscover.api.models.worksheet.worksheet_feature_set_definition.WorksheetFeatureSetDefinition):
-                raise TypeError("expected root_feature_set to be a dressdiscover.api.models.worksheet.worksheet_feature_set_definition.WorksheetFeatureSetDefinition but it is a %s" % builtins.type(root_feature_set))
-            self.__root_feature_set = root_feature_set
+            if feature_sets is None:
+                raise ValueError('feature_sets is required')
+            if not (isinstance(feature_sets, tuple) and len(list(filterfalse(lambda _: isinstance(_, dressdiscover.api.models.worksheet.worksheet_feature_set_definition.WorksheetFeatureSetDefinition), feature_sets))) == 0):
+                raise TypeError("expected feature_sets to be a tuple(dressdiscover.api.models.worksheet.worksheet_feature_set_definition.WorksheetFeatureSetDefinition) but it is a %s" % builtins.type(feature_sets))
+            self.__feature_sets = feature_sets
             return self
 
         def update(self, worksheet_definition):
             '''
-            :type root_feature_set: dressdiscover.api.models.worksheet.worksheet_feature_set_definition.WorksheetFeatureSetDefinition
+            :type feature_sets: tuple(dressdiscover.api.models.worksheet.worksheet_feature_set_definition.WorksheetFeatureSetDefinition)
             '''
 
             if isinstance(worksheet_definition, WorksheetDefinition):
-                self.set_root_feature_set(worksheet_definition.root_feature_set)
+                self.set_feature_sets(worksheet_definition.feature_sets)
             elif isinstance(worksheet_definition, dict):
                 for key, value in worksheet_definition.items():
                     getattr(self, 'set_' + key)(value)
@@ -63,16 +64,16 @@ class WorksheetDefinition(object):
                 raise TypeError(worksheet_definition)
             return self
 
-        @root_feature_set.setter
-        def root_feature_set(self, root_feature_set):
+        @feature_sets.setter
+        def feature_sets(self, feature_sets):
             '''
-            :type root_feature_set: dressdiscover.api.models.worksheet.worksheet_feature_set_definition.WorksheetFeatureSetDefinition
+            :type feature_sets: tuple(dressdiscover.api.models.worksheet.worksheet_feature_set_definition.WorksheetFeatureSetDefinition)
             '''
 
-            self.set_root_feature_set(root_feature_set)
+            self.set_feature_sets(feature_sets)
 
     class FieldMetadata(object):
-        ROOT_FEATURE_SET = None
+        FEATURE_SETS = None
 
         def __init__(self, name, type_, validation):
             object.__init__(self)
@@ -100,51 +101,59 @@ class WorksheetDefinition(object):
 
         @classmethod
         def values(cls):
-            return (cls.ROOT_FEATURE_SET,)
+            return (cls.FEATURE_SETS,)
 
-    FieldMetadata.ROOT_FEATURE_SET = FieldMetadata('root_feature_set', dressdiscover.api.models.worksheet.worksheet_feature_set_definition.WorksheetFeatureSetDefinition, None)
+    FieldMetadata.FEATURE_SETS = FieldMetadata('feature_sets', tuple, None)
 
     def __init__(
         self,
-        root_feature_set,
+        feature_sets,
     ):
         '''
-        :type root_feature_set: dressdiscover.api.models.worksheet.worksheet_feature_set_definition.WorksheetFeatureSetDefinition
+        :type feature_sets: tuple(dressdiscover.api.models.worksheet.worksheet_feature_set_definition.WorksheetFeatureSetDefinition)
         '''
 
-        if root_feature_set is None:
-            raise ValueError('root_feature_set is required')
-        if not isinstance(root_feature_set, dressdiscover.api.models.worksheet.worksheet_feature_set_definition.WorksheetFeatureSetDefinition):
-            raise TypeError("expected root_feature_set to be a dressdiscover.api.models.worksheet.worksheet_feature_set_definition.WorksheetFeatureSetDefinition but it is a %s" % builtins.type(root_feature_set))
-        self.__root_feature_set = root_feature_set
+        if feature_sets is None:
+            raise ValueError('feature_sets is required')
+        if not (isinstance(feature_sets, tuple) and len(list(filterfalse(lambda _: isinstance(_, dressdiscover.api.models.worksheet.worksheet_feature_set_definition.WorksheetFeatureSetDefinition), feature_sets))) == 0):
+            raise TypeError("expected feature_sets to be a tuple(dressdiscover.api.models.worksheet.worksheet_feature_set_definition.WorksheetFeatureSetDefinition) but it is a %s" % builtins.type(feature_sets))
+        self.__feature_sets = feature_sets
 
     def __eq__(self, other):
-        if self.root_feature_set != other.root_feature_set:
+        if self.feature_sets != other.feature_sets:
             return False
         return True
 
     def __hash__(self):
-        return hash(self.root_feature_set)
+        return hash(self.feature_sets)
 
     def __iter__(self):
-        return iter((self.root_feature_set,))
+        return iter((self.feature_sets,))
 
     def __ne__(self, other):
         return not self.__eq__(other)
 
     def __repr__(self):
         field_reprs = []
-        field_reprs.append('root_feature_set=' + repr(self.root_feature_set))
+        field_reprs.append('feature_sets=' + repr(self.feature_sets))
         return 'WorksheetDefinition(' + ', '.join(field_reprs) + ')'
 
     def __str__(self):
         field_reprs = []
-        field_reprs.append('root_feature_set=' + repr(self.root_feature_set))
+        field_reprs.append('feature_sets=' + repr(self.feature_sets))
         return 'WorksheetDefinition(' + ', '.join(field_reprs) + ')'
 
     @classmethod
     def builder(cls):
         return cls.Builder()
+
+    @property
+    def feature_sets(self):
+        '''
+        :rtype: tuple(dressdiscover.api.models.worksheet.worksheet_feature_set_definition.WorksheetFeatureSetDefinition)
+        '''
+
+        return self.__feature_sets
 
     @classmethod
     def read(cls, iprot):
@@ -162,8 +171,8 @@ class WorksheetDefinition(object):
             ifield_name, ifield_type, _ifield_id = iprot.read_field_begin()
             if ifield_type == 0: # STOP
                 break
-            elif ifield_name == 'root_feature_set':
-                init_kwds['root_feature_set'] = dressdiscover.api.models.worksheet.worksheet_feature_set_definition.WorksheetFeatureSetDefinition.read(iprot)
+            elif ifield_name == 'feature_sets':
+                init_kwds['feature_sets'] = tuple([dressdiscover.api.models.worksheet.worksheet_feature_set_definition.WorksheetFeatureSetDefinition.read(iprot) for _ in xrange(iprot.read_list_begin()[1])] + (iprot.read_list_end() is None and []))
             iprot.read_field_end()
         iprot.read_struct_end()
 
@@ -171,14 +180,6 @@ class WorksheetDefinition(object):
 
     def replacer(self):
         return cls.Builder.from_template(template=self)
-
-    @property
-    def root_feature_set(self):
-        '''
-        :rtype: dressdiscover.api.models.worksheet.worksheet_feature_set_definition.WorksheetFeatureSetDefinition
-        '''
-
-        return self.__root_feature_set
 
     def write(self, oprot):
         '''
@@ -190,8 +191,11 @@ class WorksheetDefinition(object):
 
         oprot.write_struct_begin('WorksheetDefinition')
 
-        oprot.write_field_begin(name='root_feature_set', type=12, id=None)
-        self.root_feature_set.write(oprot)
+        oprot.write_field_begin(name='feature_sets', type=15, id=None)
+        oprot.write_list_begin(12, len(self.feature_sets))
+        for _0 in self.feature_sets:
+            _0.write(oprot)
+        oprot.write_list_end()
         oprot.write_field_end()
 
         oprot.write_field_stop()

@@ -1,16 +1,11 @@
-import { WorksheetFeatureDefinition } from "./worksheet_feature_definition";
-
 export class WorksheetFeatureSetDefinition {
-    constructor(kwds: {id: string, childFeatureSets?: WorksheetFeatureSetDefinition[], displayName?: string, features?: WorksheetFeatureDefinition[]}) {
+    constructor(kwds: {id: string, displayName?: string, featureIds?: string[]}) {
         this.id = kwds.id;
-        if (kwds.childFeatureSets != null) {
-            this.childFeatureSets = kwds.childFeatureSets;
-        }
         if (kwds.displayName != null) {
             this.displayName = kwds.displayName;
         }
-        if (kwds.features != null) {
-            this.features = kwds.features;
+        if (kwds.featureIds != null) {
+            this.featureIds = kwds.featureIds;
         }
     }
 
@@ -26,19 +21,6 @@ export class WorksheetFeatureSetDefinition {
             throw new RangeError("expected len(id) to be >= 1, was " + id.length);
         }
         this._id = id;
-    }
-
-    get childFeatureSets(): WorksheetFeatureSetDefinition[] | undefined {
-        return this._childFeatureSets;
-    }
-
-    set childFeatureSets(childFeatureSets: WorksheetFeatureSetDefinition[] | undefined) {
-        if (childFeatureSets != null) {
-            if (childFeatureSets.length < 1) {
-                throw new RangeError("expected len(childFeatureSets) to be >= 1, was " + childFeatureSets.length);
-            }
-        }
-        this._childFeatureSets = childFeatureSets;
     }
 
     get displayName(): string | undefined {
@@ -57,21 +39,21 @@ export class WorksheetFeatureSetDefinition {
         this._displayName = displayName;
     }
 
-    get features(): WorksheetFeatureDefinition[] | undefined {
-        return this._features;
+    get featureIds(): string[] | undefined {
+        return this._featureIds;
     }
 
-    set features(features: WorksheetFeatureDefinition[] | undefined) {
-        if (features != null) {
-            if (features.length < 1) {
-                throw new RangeError("expected len(features) to be >= 1, was " + features.length);
+    set featureIds(featureIds: string[] | undefined) {
+        if (featureIds != null) {
+            if (featureIds.length < 1) {
+                throw new RangeError("expected len(featureIds) to be >= 1, was " + featureIds.length);
             }
         }
-        this._features = features;
+        this._featureIds = featureIds;
     }
 
     deepCopy(): WorksheetFeatureSetDefinition {
-        return new WorksheetFeatureSetDefinition({ id: this.id, childFeatureSets: (this.childFeatureSets ? (function(__value0: WorksheetFeatureSetDefinition[]) { let __copy0: WorksheetFeatureSetDefinition[] = []; for (var __i0 = 0; __i0 < __value0.length; __i0++) { __copy0.push(__value0[__i0].deepCopy()); } return __copy0; }(this.childFeatureSets)) : undefined), displayName: this.displayName, features: (this.features ? (function(__value0: WorksheetFeatureDefinition[]) { let __copy0: WorksheetFeatureDefinition[] = []; for (var __i0 = 0; __i0 < __value0.length; __i0++) { __copy0.push(__value0[__i0].deepCopy()); } return __copy0; }(this.features)) : undefined) });
+        return new WorksheetFeatureSetDefinition({ id: this.id, displayName: this.displayName, featureIds: (this.featureIds ? (function(__value0: string[]) { let __copy0: string[] = []; for (var __i0 = 0; __i0 < __value0.length; __i0++) { __copy0.push(__value0[__i0]); } return __copy0; }(this.featureIds)) : undefined) });
     }
 
     equals(other: WorksheetFeatureSetDefinition): boolean {
@@ -79,15 +61,11 @@ export class WorksheetFeatureSetDefinition {
             return false;
         }
 
-        if (!((!((typeof (this.childFeatureSets)) === "undefined") && !((typeof (other.childFeatureSets)) === "undefined")) ? (function(left: WorksheetFeatureSetDefinition[], right: WorksheetFeatureSetDefinition[]): boolean { if (left.length != right.length) { return false; } for (var elementI = 0; elementI < left.length; elementI++) { if (!(left[elementI].equals(right[elementI]))) { return false; } } return true; }((this.childFeatureSets as WorksheetFeatureSetDefinition[]), (other.childFeatureSets as WorksheetFeatureSetDefinition[]))) : (((typeof (this.childFeatureSets)) === "undefined") && ((typeof (other.childFeatureSets)) === "undefined")))) {
-            return false;
-        }
-
         if (!((!((typeof (this.displayName)) === "undefined") && !((typeof (other.displayName)) === "undefined")) ? ((this.displayName as string) === (other.displayName as string)) : (((typeof (this.displayName)) === "undefined") && ((typeof (other.displayName)) === "undefined")))) {
             return false;
         }
 
-        if (!((!((typeof (this.features)) === "undefined") && !((typeof (other.features)) === "undefined")) ? (function(left: WorksheetFeatureDefinition[], right: WorksheetFeatureDefinition[]): boolean { if (left.length != right.length) { return false; } for (var elementI = 0; elementI < left.length; elementI++) { if (!(left[elementI].equals(right[elementI]))) { return false; } } return true; }((this.features as WorksheetFeatureDefinition[]), (other.features as WorksheetFeatureDefinition[]))) : (((typeof (this.features)) === "undefined") && ((typeof (other.features)) === "undefined")))) {
+        if (!((!((typeof (this.featureIds)) === "undefined") && !((typeof (other.featureIds)) === "undefined")) ? (function(left: string[], right: string[]): boolean { if (left.length != right.length) { return false; } for (var elementI = 0; elementI < left.length; elementI++) { if (!(left[elementI] === right[elementI])) { return false; } } return true; }((this.featureIds as string[]), (other.featureIds as string[]))) : (((typeof (this.featureIds)) === "undefined") && ((typeof (other.featureIds)) === "undefined")))) {
             return false;
         }
 
@@ -96,37 +74,31 @@ export class WorksheetFeatureSetDefinition {
 
     static fromThryftJsonObject(json: any): WorksheetFeatureSetDefinition {
         var id: string | undefined;
-        var childFeatureSets: WorksheetFeatureSetDefinition[] | undefined;
         var displayName: string | undefined;
-        var features: WorksheetFeatureDefinition[] | undefined;
+        var featureIds: string[] | undefined;
         for (var fieldName in json) {
             if (fieldName == "id") {
                 id = json[fieldName];
-            } else if (fieldName == "child_feature_sets") {
-                childFeatureSets = function(json: any[]): WorksheetFeatureSetDefinition[] { var sequence: WorksheetFeatureSetDefinition[] = []; for (var i = 0; i < json.length; i++) { sequence.push(WorksheetFeatureSetDefinition.fromThryftJsonObject(json[i])); } return sequence; }(json[fieldName]);
             } else if (fieldName == "display_name") {
                 displayName = json[fieldName];
-            } else if (fieldName == "features") {
-                features = function(json: any[]): WorksheetFeatureDefinition[] { var sequence: WorksheetFeatureDefinition[] = []; for (var i = 0; i < json.length; i++) { sequence.push(WorksheetFeatureDefinition.fromThryftJsonObject(json[i])); } return sequence; }(json[fieldName]);
+            } else if (fieldName == "feature_ids") {
+                featureIds = function(json: any[]): string[] { var sequence: string[] = []; for (var i = 0; i < json.length; i++) { sequence.push(json[i]); } return sequence; }(json[fieldName]);
             }
         }
         if (id == null) {
             throw new TypeError('id is required');
         }
-        return new WorksheetFeatureSetDefinition({id: id, childFeatureSets: childFeatureSets, displayName: displayName, features: features});
+        return new WorksheetFeatureSetDefinition({id: id, displayName: displayName, featureIds: featureIds});
     }
 
     toJsonObject(): any {
         var json: {[index: string]: any} = {};
         json["id"] = this.id;
-        if (this.childFeatureSets != null) {
-            json["child_feature_sets"] = function (__inArray: WorksheetFeatureSetDefinition[]): any[] { var __outArray: any[] = []; for (var __i = 0; __i < __inArray.length; __i++) { __outArray.push(__inArray[__i].toJsonObject()); } return __outArray; }(this.childFeatureSets);
-        }
         if (this.displayName != null) {
             json["display_name"] = this.displayName;
         }
-        if (this.features != null) {
-            json["features"] = function (__inArray: WorksheetFeatureDefinition[]): any[] { var __outArray: any[] = []; for (var __i = 0; __i < __inArray.length; __i++) { __outArray.push(__inArray[__i].toJsonObject()); } return __outArray; }(this.features);
+        if (this.featureIds != null) {
+            json["feature_ids"] = function (__inArray: string[]): any[] { var __outArray: any[] = []; for (var __i = 0; __i < __inArray.length; __i++) { __outArray.push(__inArray[__i]); } return __outArray; }(this.featureIds);
         }
         return json;
     }
@@ -138,23 +110,18 @@ export class WorksheetFeatureSetDefinition {
     toThryftJsonObject(): any {
         var json: {[index: string]: any} = {};
         json["id"] = this.id;
-        if (this.childFeatureSets != null) {
-            json["child_feature_sets"] = function (__inArray: WorksheetFeatureSetDefinition[]): any[] { var __outArray: any[] = []; for (var __i = 0; __i < __inArray.length; __i++) { __outArray.push(__inArray[__i].toThryftJsonObject()); } return __outArray; }(this.childFeatureSets);
-        }
         if (this.displayName != null) {
             json["display_name"] = this.displayName;
         }
-        if (this.features != null) {
-            json["features"] = function (__inArray: WorksheetFeatureDefinition[]): any[] { var __outArray: any[] = []; for (var __i = 0; __i < __inArray.length; __i++) { __outArray.push(__inArray[__i].toThryftJsonObject()); } return __outArray; }(this.features);
+        if (this.featureIds != null) {
+            json["feature_ids"] = function (__inArray: string[]): any[] { var __outArray: any[] = []; for (var __i = 0; __i < __inArray.length; __i++) { __outArray.push(__inArray[__i]); } return __outArray; }(this.featureIds);
         }
         return json;
     }
 
-    private _childFeatureSets?: WorksheetFeatureSetDefinition[] = undefined;
-
     private _displayName?: string = undefined;
 
-    private _features?: WorksheetFeatureDefinition[] = undefined;
+    private _featureIds?: string[] = undefined;
 
     private _id: string = "";
 }

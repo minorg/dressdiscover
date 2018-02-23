@@ -3,25 +3,25 @@ package org.dressdiscover.api.models.worksheet;
 public final class WorksheetDefinition implements org.thryft.Struct {
     public final static class Builder {
         public Builder() {
-            rootFeatureSet = null;
+            featureSets = null;
         }
 
         public Builder(final WorksheetDefinition other) {
-            this.rootFeatureSet = other.getRootFeatureSet();
+            this.featureSets = other.getFeatureSets();
         }
 
-        protected WorksheetDefinition _build(final org.dressdiscover.api.models.worksheet.WorksheetFeatureSetDefinition rootFeatureSet) {
-            return new WorksheetDefinition(rootFeatureSet);
+        protected WorksheetDefinition _build(final com.google.common.collect.ImmutableList<org.dressdiscover.api.models.worksheet.WorksheetFeatureSetDefinition> featureSets) {
+            return new WorksheetDefinition(featureSets);
         }
 
         public WorksheetDefinition build() {
-            UncheckedValidator.validate(rootFeatureSet);
+            UncheckedValidator.validate(featureSets);
 
-            return _build(rootFeatureSet);
+            return _build(featureSets);
         }
 
-        public final @javax.annotation.Nullable org.dressdiscover.api.models.worksheet.WorksheetFeatureSetDefinition getRootFeatureSet() {
-            return rootFeatureSet;
+        public final @javax.annotation.Nullable com.google.common.collect.ImmutableList<org.dressdiscover.api.models.worksheet.WorksheetFeatureSetDefinition> getFeatureSets() {
+            return featureSets;
         }
 
         public Builder readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type) throws org.thryft.protocol.InputProtocolException {
@@ -42,7 +42,26 @@ public final class WorksheetDefinition implements org.thryft.Struct {
         public Builder readAsList(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
             try {
                 iprot.readListBegin();
-                rootFeatureSet = org.dressdiscover.api.models.worksheet.WorksheetFeatureSetDefinition.readAsStruct(iprot);
+                try {
+                    featureSets = (new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableList<org.dressdiscover.api.models.worksheet.WorksheetFeatureSetDefinition>>() {
+                        @Override
+                        public com.google.common.collect.ImmutableList<org.dressdiscover.api.models.worksheet.WorksheetFeatureSetDefinition> apply(final org.thryft.protocol.InputProtocol iprot) {
+                            try {
+                                final org.thryft.protocol.ListBegin sequenceBegin = iprot.readListBegin();
+                                final com.google.common.collect.ImmutableList.Builder<org.dressdiscover.api.models.worksheet.WorksheetFeatureSetDefinition> sequenceBuilder = com.google.common.collect.ImmutableList.builder();
+                                for (int elementI = 0; elementI < sequenceBegin.getSize(); elementI++) {
+                                    sequenceBuilder.add(org.dressdiscover.api.models.worksheet.WorksheetFeatureSetDefinition.readAsStruct(iprot));
+                                }
+                                iprot.readListEnd();
+                                return sequenceBuilder.build();
+                            } catch (final org.thryft.protocol.InputProtocolException e) {
+                                throw new org.thryft.protocol.UncheckedInputProtocolException(e);
+                            }
+                        }
+                    }).apply(iprot);
+                } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
+                     throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.FEATURE_SETS, e.getCause());
+                }
                 iprot.readListEnd();
             } catch (final RuntimeException e) {
                 throw new IllegalStateException(e);
@@ -63,8 +82,27 @@ public final class WorksheetDefinition implements org.thryft.Struct {
                         break;
                     }
                     switch (ifield.getName()) {
-                    case "root_feature_set": {
-                        rootFeatureSet = org.dressdiscover.api.models.worksheet.WorksheetFeatureSetDefinition.readAsStruct(iprot, unknownFieldCallback);
+                    case "feature_sets": {
+                        try {
+                            featureSets = (new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableList<org.dressdiscover.api.models.worksheet.WorksheetFeatureSetDefinition>>() {
+                                @Override
+                                public com.google.common.collect.ImmutableList<org.dressdiscover.api.models.worksheet.WorksheetFeatureSetDefinition> apply(final org.thryft.protocol.InputProtocol iprot) {
+                                    try {
+                                        final org.thryft.protocol.ListBegin sequenceBegin = iprot.readListBegin();
+                                        final com.google.common.collect.ImmutableList.Builder<org.dressdiscover.api.models.worksheet.WorksheetFeatureSetDefinition> sequenceBuilder = com.google.common.collect.ImmutableList.builder();
+                                        for (int elementI = 0; elementI < sequenceBegin.getSize(); elementI++) {
+                                            sequenceBuilder.add(org.dressdiscover.api.models.worksheet.WorksheetFeatureSetDefinition.readAsStruct(iprot, unknownFieldCallback));
+                                        }
+                                        iprot.readListEnd();
+                                        return sequenceBuilder.build();
+                                    } catch (final org.thryft.protocol.InputProtocolException e) {
+                                        throw new org.thryft.protocol.UncheckedInputProtocolException(e);
+                                    }
+                                }
+                            }).apply(iprot);
+                        } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
+                             throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.FEATURE_SETS, e.getCause());
+                        }
                         break;
                     }
                     default:
@@ -93,27 +131,28 @@ public final class WorksheetDefinition implements org.thryft.Struct {
             return set((FieldMetadata)fieldMetadata, value);
         }
 
+        @SuppressWarnings({"unchecked"})
         public Builder set(final FieldMetadata fieldMetadata, @javax.annotation.Nullable final java.lang.Object value) {
             com.google.common.base.Preconditions.checkNotNull(fieldMetadata);
 
             switch (fieldMetadata) {
-            case ROOT_FEATURE_SET: setRootFeatureSet((org.dressdiscover.api.models.worksheet.WorksheetFeatureSetDefinition)value); return this;
+            case FEATURE_SETS: setFeatureSets((com.google.common.collect.ImmutableList<org.dressdiscover.api.models.worksheet.WorksheetFeatureSetDefinition>)value); return this;
             default:
                 throw new IllegalStateException();
             }
         }
 
-        public Builder setIfPresent(final WorksheetDefinition other) {
-            com.google.common.base.Preconditions.checkNotNull(other);
-
-            setRootFeatureSet(other.getRootFeatureSet());
-
+        public Builder setFeatureSets(final com.google.common.collect.ImmutableList<org.dressdiscover.api.models.worksheet.WorksheetFeatureSetDefinition> featureSets) {
+            UncheckedValidator.validateFeatureSets(featureSets);
+            this.featureSets = featureSets;
             return this;
         }
 
-        public Builder setRootFeatureSet(final org.dressdiscover.api.models.worksheet.WorksheetFeatureSetDefinition rootFeatureSet) {
-            UncheckedValidator.validateRootFeatureSet(rootFeatureSet);
-            this.rootFeatureSet = rootFeatureSet;
+        public Builder setIfPresent(final WorksheetDefinition other) {
+            com.google.common.base.Preconditions.checkNotNull(other);
+
+            setFeatureSets(other.getFeatureSets());
+
             return this;
         }
 
@@ -132,18 +171,18 @@ public final class WorksheetDefinition implements org.thryft.Struct {
             com.google.common.base.Preconditions.checkNotNull(fieldMetadata);
 
             switch (fieldMetadata) {
-            case ROOT_FEATURE_SET: return unsetRootFeatureSet();
+            case FEATURE_SETS: return unsetFeatureSets();
             default:
                 throw new IllegalStateException();
             }
         }
 
-        public Builder unsetRootFeatureSet() {
-            this.rootFeatureSet = null;
+        public Builder unsetFeatureSets() {
+            this.featureSets = null;
             return this;
         }
 
-        private @javax.annotation.Nullable org.dressdiscover.api.models.worksheet.WorksheetFeatureSetDefinition rootFeatureSet;
+        private @javax.annotation.Nullable com.google.common.collect.ImmutableList<org.dressdiscover.api.models.worksheet.WorksheetFeatureSetDefinition> featureSets;
     }
 
     public final static class Factory implements org.thryft.CompoundType.Factory<WorksheetDefinition> {
@@ -177,7 +216,7 @@ public final class WorksheetDefinition implements org.thryft.Struct {
 
     @SuppressWarnings("serial")
     public enum FieldMetadata implements org.thryft.CompoundType.FieldMetadata {
-        ROOT_FEATURE_SET("rootFeatureSet", new com.google.common.reflect.TypeToken<org.dressdiscover.api.models.worksheet.WorksheetFeatureSetDefinition>() {}, true, (short)0, "root_feature_set", org.thryft.protocol.Type.STRUCT);
+        FEATURE_SETS("featureSets", new com.google.common.reflect.TypeToken<com.google.common.collect.ImmutableList<org.dressdiscover.api.models.worksheet.WorksheetFeatureSetDefinition>>() {}, true, (short)0, "feature_sets", org.thryft.protocol.Type.LIST);
 
         @Override
         public String getJavaName() {
@@ -221,7 +260,7 @@ public final class WorksheetDefinition implements org.thryft.Struct {
 
         public static FieldMetadata valueOfJavaName(final String javaName) {
             switch (javaName) {
-            case "rootFeatureSet": return ROOT_FEATURE_SET;
+            case "featureSets": return FEATURE_SETS;
             default:
                 throw new IllegalArgumentException(javaName);
             }
@@ -229,7 +268,7 @@ public final class WorksheetDefinition implements org.thryft.Struct {
 
         public static FieldMetadata valueOfThriftName(final String thriftName) {
             switch (thriftName) {
-            case "root_feature_set": return ROOT_FEATURE_SET;
+            case "feature_sets": return FEATURE_SETS;
             default:
                 throw new IllegalArgumentException(thriftName);
             }
@@ -259,25 +298,25 @@ public final class WorksheetDefinition implements org.thryft.Struct {
     }
 
     public final static class ReadValidator {
-        public static void validate(final org.dressdiscover.api.models.worksheet.WorksheetFeatureSetDefinition rootFeatureSet) throws org.thryft.protocol.InputProtocolException {
-            validateRootFeatureSet(rootFeatureSet);
+        public static void validate(final com.google.common.collect.ImmutableList<org.dressdiscover.api.models.worksheet.WorksheetFeatureSetDefinition> featureSets) throws org.thryft.protocol.InputProtocolException {
+            validateFeatureSets(featureSets);
         }
 
-        public static void validateRootFeatureSet(final org.dressdiscover.api.models.worksheet.WorksheetFeatureSetDefinition rootFeatureSet) throws org.thryft.protocol.InputProtocolException {
-            if (rootFeatureSet == null) {
-                throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.ROOT_FEATURE_SET, "org.dressdiscover.api.models.worksheet.WorksheetDefinition: rootFeatureSet is null");
+        public static void validateFeatureSets(final com.google.common.collect.ImmutableList<org.dressdiscover.api.models.worksheet.WorksheetFeatureSetDefinition> featureSets) throws org.thryft.protocol.InputProtocolException {
+            if (featureSets == null) {
+                throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.FEATURE_SETS, "org.dressdiscover.api.models.worksheet.WorksheetDefinition: featureSets is null");
             }
         }
     }
 
     public final static class UncheckedValidator {
-        public static void validate(final org.dressdiscover.api.models.worksheet.WorksheetFeatureSetDefinition rootFeatureSet) {
-            validateRootFeatureSet(rootFeatureSet);
+        public static void validate(final com.google.common.collect.ImmutableList<org.dressdiscover.api.models.worksheet.WorksheetFeatureSetDefinition> featureSets) {
+            validateFeatureSets(featureSets);
         }
 
-        public static void validateRootFeatureSet(final org.dressdiscover.api.models.worksheet.WorksheetFeatureSetDefinition rootFeatureSet) {
-            if (rootFeatureSet == null) {
-                throw new NullPointerException("org.dressdiscover.api.models.worksheet.WorksheetDefinition: rootFeatureSet is null");
+        public static void validateFeatureSets(final com.google.common.collect.ImmutableList<org.dressdiscover.api.models.worksheet.WorksheetFeatureSetDefinition> featureSets) {
+            if (featureSets == null) {
+                throw new NullPointerException("org.dressdiscover.api.models.worksheet.WorksheetDefinition: featureSets is null");
             }
         }
     }
@@ -286,7 +325,7 @@ public final class WorksheetDefinition implements org.thryft.Struct {
      * Copy constructor
      */
     public WorksheetDefinition(final WorksheetDefinition other) {
-        this(other.getRootFeatureSet());
+        this(other.getFeatureSets());
     }
 
     /**
@@ -294,8 +333,8 @@ public final class WorksheetDefinition implements org.thryft.Struct {
      *
      * All fields should have been validated before calling this.
      */
-    protected WorksheetDefinition(final org.dressdiscover.api.models.worksheet.WorksheetFeatureSetDefinition rootFeatureSet) {
-        this.rootFeatureSet = rootFeatureSet;
+    protected WorksheetDefinition(final com.google.common.collect.ImmutableList<org.dressdiscover.api.models.worksheet.WorksheetFeatureSetDefinition> featureSets) {
+        this.featureSets = featureSets;
     }
 
     public static Builder builder() {
@@ -313,9 +352,9 @@ public final class WorksheetDefinition implements org.thryft.Struct {
     /**
      * Optional factory method
      */
-    public static WorksheetDefinition create(final org.dressdiscover.api.models.worksheet.WorksheetFeatureSetDefinition rootFeatureSet) {
-        UncheckedValidator.validate(rootFeatureSet);
-        return new WorksheetDefinition(rootFeatureSet);
+    public static WorksheetDefinition create(final com.google.common.collect.ImmutableList<org.dressdiscover.api.models.worksheet.WorksheetFeatureSetDefinition> featureSets) {
+        UncheckedValidator.validate(featureSets);
+        return new WorksheetDefinition(featureSets);
     }
 
     @Override
@@ -329,7 +368,7 @@ public final class WorksheetDefinition implements org.thryft.Struct {
 
         final WorksheetDefinition other = (WorksheetDefinition)otherObject;
 
-        if (!(getRootFeatureSet().equals(other.getRootFeatureSet()))) {
+        if (!(getFeatureSets().equals(other.getFeatureSets()))) {
             return false;
         }
 
@@ -351,20 +390,20 @@ public final class WorksheetDefinition implements org.thryft.Struct {
 
     public java.lang.Object get(final FieldMetadata fieldMetadata) {
         switch (fieldMetadata) {
-        case ROOT_FEATURE_SET: return getRootFeatureSet();
+        case FEATURE_SETS: return getFeatureSets();
         default:
             throw new IllegalStateException();
         }
     }
 
-    public final org.dressdiscover.api.models.worksheet.WorksheetFeatureSetDefinition getRootFeatureSet() {
-        return rootFeatureSet;
+    public final com.google.common.collect.ImmutableList<org.dressdiscover.api.models.worksheet.WorksheetFeatureSetDefinition> getFeatureSets() {
+        return featureSets;
     }
 
     @Override
     public int hashCode() {
         int hashCode = 17;
-        hashCode = 31 * hashCode + getRootFeatureSet().hashCode();
+        hashCode = 31 * hashCode + getFeatureSets().hashCode();
         return hashCode;
     }
 
@@ -384,19 +423,38 @@ public final class WorksheetDefinition implements org.thryft.Struct {
     }
 
     public static WorksheetDefinition readAsList(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
-        org.dressdiscover.api.models.worksheet.WorksheetFeatureSetDefinition rootFeatureSet;
+        com.google.common.collect.ImmutableList<org.dressdiscover.api.models.worksheet.WorksheetFeatureSetDefinition> featureSets;
 
         try {
             iprot.readListBegin();
-            rootFeatureSet = org.dressdiscover.api.models.worksheet.WorksheetFeatureSetDefinition.readAsStruct(iprot);
+            try {
+                featureSets = (new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableList<org.dressdiscover.api.models.worksheet.WorksheetFeatureSetDefinition>>() {
+                    @Override
+                    public com.google.common.collect.ImmutableList<org.dressdiscover.api.models.worksheet.WorksheetFeatureSetDefinition> apply(final org.thryft.protocol.InputProtocol iprot) {
+                        try {
+                            final org.thryft.protocol.ListBegin sequenceBegin = iprot.readListBegin();
+                            final com.google.common.collect.ImmutableList.Builder<org.dressdiscover.api.models.worksheet.WorksheetFeatureSetDefinition> sequenceBuilder = com.google.common.collect.ImmutableList.builder();
+                            for (int elementI = 0; elementI < sequenceBegin.getSize(); elementI++) {
+                                sequenceBuilder.add(org.dressdiscover.api.models.worksheet.WorksheetFeatureSetDefinition.readAsStruct(iprot));
+                            }
+                            iprot.readListEnd();
+                            return sequenceBuilder.build();
+                        } catch (final org.thryft.protocol.InputProtocolException e) {
+                            throw new org.thryft.protocol.UncheckedInputProtocolException(e);
+                        }
+                    }
+                }).apply(iprot);
+            } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
+                 throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.FEATURE_SETS, e.getCause());
+            }
             iprot.readListEnd();
         } catch (final RuntimeException e) {
             throw new IllegalStateException(e);
         }
 
-        ReadValidator.validate(rootFeatureSet);
+        ReadValidator.validate(featureSets);
 
-        return new WorksheetDefinition(rootFeatureSet);
+        return new WorksheetDefinition(featureSets);
     }
 
     public static WorksheetDefinition readAsStruct(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
@@ -404,7 +462,7 @@ public final class WorksheetDefinition implements org.thryft.Struct {
     }
 
     public static WorksheetDefinition readAsStruct(final org.thryft.protocol.InputProtocol iprot, final com.google.common.base.Optional<UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
-        @javax.annotation.Nullable org.dressdiscover.api.models.worksheet.WorksheetFeatureSetDefinition rootFeatureSet = null;
+        @javax.annotation.Nullable com.google.common.collect.ImmutableList<org.dressdiscover.api.models.worksheet.WorksheetFeatureSetDefinition> featureSets = null;
 
         try {
             iprot.readStructBegin();
@@ -414,8 +472,27 @@ public final class WorksheetDefinition implements org.thryft.Struct {
                     break;
                 }
                 switch (ifield.getName()) {
-                case "root_feature_set": {
-                    rootFeatureSet = org.dressdiscover.api.models.worksheet.WorksheetFeatureSetDefinition.readAsStruct(iprot, unknownFieldCallback);
+                case "feature_sets": {
+                    try {
+                        featureSets = (new com.google.common.base.Function<org.thryft.protocol.InputProtocol, com.google.common.collect.ImmutableList<org.dressdiscover.api.models.worksheet.WorksheetFeatureSetDefinition>>() {
+                            @Override
+                            public com.google.common.collect.ImmutableList<org.dressdiscover.api.models.worksheet.WorksheetFeatureSetDefinition> apply(final org.thryft.protocol.InputProtocol iprot) {
+                                try {
+                                    final org.thryft.protocol.ListBegin sequenceBegin = iprot.readListBegin();
+                                    final com.google.common.collect.ImmutableList.Builder<org.dressdiscover.api.models.worksheet.WorksheetFeatureSetDefinition> sequenceBuilder = com.google.common.collect.ImmutableList.builder();
+                                    for (int elementI = 0; elementI < sequenceBegin.getSize(); elementI++) {
+                                        sequenceBuilder.add(org.dressdiscover.api.models.worksheet.WorksheetFeatureSetDefinition.readAsStruct(iprot, unknownFieldCallback));
+                                    }
+                                    iprot.readListEnd();
+                                    return sequenceBuilder.build();
+                                } catch (final org.thryft.protocol.InputProtocolException e) {
+                                    throw new org.thryft.protocol.UncheckedInputProtocolException(e);
+                                }
+                            }
+                        }).apply(iprot);
+                    } catch (final org.thryft.protocol.UncheckedInputProtocolException e) {
+                         throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.FEATURE_SETS, e.getCause());
+                    }
                     break;
                 }
                 default:
@@ -431,26 +508,30 @@ public final class WorksheetDefinition implements org.thryft.Struct {
             throw new IllegalStateException(e);
         }
 
-        ReadValidator.validate(rootFeatureSet);
+        ReadValidator.validate(featureSets);
 
-        return new WorksheetDefinition(rootFeatureSet);
+        return new WorksheetDefinition(featureSets);
     }
 
-    public WorksheetDefinition replaceRootFeatureSet(final org.dressdiscover.api.models.worksheet.WorksheetFeatureSetDefinition rootFeatureSet) {
-        UncheckedValidator.validateRootFeatureSet(rootFeatureSet);
-        return new WorksheetDefinition(rootFeatureSet);
+    public WorksheetDefinition replaceFeatureSets(final com.google.common.collect.ImmutableList<org.dressdiscover.api.models.worksheet.WorksheetFeatureSetDefinition> featureSets) {
+        UncheckedValidator.validateFeatureSets(featureSets);
+        return new WorksheetDefinition(featureSets);
     }
 
     @Override
     public String toString() {
-        return com.google.common.base.MoreObjects.toStringHelper(this).omitNullValues().add("root_feature_set", getRootFeatureSet()).toString();
+        return com.google.common.base.MoreObjects.toStringHelper(this).omitNullValues().add("feature_sets", getFeatureSets()).toString();
     }
 
     @Override
     public void writeAsList(final org.thryft.protocol.OutputProtocol oprot) throws org.thryft.protocol.OutputProtocolException {
         oprot.writeListBegin(org.thryft.protocol.Type.VOID_, 1);
 
-        getRootFeatureSet().writeAsStruct(oprot);
+        oprot.writeListBegin(org.thryft.protocol.Type.STRUCT, getFeatureSets().size());
+        for (final org.dressdiscover.api.models.worksheet.WorksheetFeatureSetDefinition _iter0 : getFeatureSets()) {
+            _iter0.writeAsStruct(oprot);
+        }
+        oprot.writeListEnd();
 
         oprot.writeListEnd();
     }
@@ -462,18 +543,22 @@ public final class WorksheetDefinition implements org.thryft.Struct {
         oprot.writeStructEnd();
     }
 
+    public void writeFeatureSetsField(final org.thryft.protocol.OutputProtocol oprot) throws org.thryft.protocol.OutputProtocolException {
+        oprot.writeFieldBegin(FieldMetadata.FEATURE_SETS);
+        oprot.writeListBegin(org.thryft.protocol.Type.STRUCT, getFeatureSets().size());
+        for (final org.dressdiscover.api.models.worksheet.WorksheetFeatureSetDefinition _iter0 : getFeatureSets()) {
+            _iter0.writeAsStruct(oprot);
+        }
+        oprot.writeListEnd();
+        oprot.writeFieldEnd();
+    }
+
     @Override
     public void writeFields(final org.thryft.protocol.OutputProtocol oprot) throws org.thryft.protocol.OutputProtocolException {
-        writeRootFeatureSetField(oprot);
+        writeFeatureSetsField(oprot);
 
         oprot.writeFieldStop();
     }
 
-    public void writeRootFeatureSetField(final org.thryft.protocol.OutputProtocol oprot) throws org.thryft.protocol.OutputProtocolException {
-        oprot.writeFieldBegin(FieldMetadata.ROOT_FEATURE_SET);
-        getRootFeatureSet().writeAsStruct(oprot);
-        oprot.writeFieldEnd();
-    }
-
-    private final org.dressdiscover.api.models.worksheet.WorksheetFeatureSetDefinition rootFeatureSet;
+    private final com.google.common.collect.ImmutableList<org.dressdiscover.api.models.worksheet.WorksheetFeatureSetDefinition> featureSets;
 }

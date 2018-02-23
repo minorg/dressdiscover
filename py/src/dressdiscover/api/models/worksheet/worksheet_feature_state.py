@@ -7,19 +7,19 @@ class WorksheetFeatureState(object):
     class Builder(object):
         def __init__(
             self,
-            selected_values=None,
+            selected_value_ids=None,
             text=None,
         ):
             '''
-            :type selected_values: tuple(str) or None
+            :type selected_value_ids: tuple(str) or None
             :type text: str or None
             '''
 
-            self.__selected_values = selected_values
+            self.__selected_value_ids = selected_value_ids
             self.__text = text
 
         def build(self):
-            return WorksheetFeatureState(selected_values=self.__selected_values, text=self.__text)
+            return WorksheetFeatureState(selected_value_ids=self.__selected_value_ids, text=self.__text)
 
         @classmethod
         def from_template(cls, template):
@@ -29,29 +29,29 @@ class WorksheetFeatureState(object):
             '''
 
             builder = cls()
-            builder.selected_values = selected_values
+            builder.selected_value_ids = selected_value_ids
             builder.text = text
             return builder
 
         @property
-        def selected_values(self):
+        def selected_value_ids(self):
             '''
             :rtype: tuple(str)
             '''
 
-            return self.__selected_values
+            return self.__selected_value_ids
 
-        def set_selected_values(self, selected_values):
+        def set_selected_value_ids(self, selected_value_ids):
             '''
-            :type selected_values: tuple(str) or None
+            :type selected_value_ids: tuple(str) or None
             '''
 
-            if selected_values is not None:
-                if not (isinstance(selected_values, tuple) and len(list(filterfalse(lambda _: isinstance(_, str), selected_values))) == 0):
-                    raise TypeError("expected selected_values to be a tuple(str) but it is a %s" % builtins.type(selected_values))
-                if len(selected_values) < 1:
-                    raise ValueError("expected len(selected_values) to be >= 1, was %d" % len(selected_values))
-            self.__selected_values = selected_values
+            if selected_value_ids is not None:
+                if not (isinstance(selected_value_ids, tuple) and len(list(filterfalse(lambda _: isinstance(_, str), selected_value_ids))) == 0):
+                    raise TypeError("expected selected_value_ids to be a tuple(str) but it is a %s" % builtins.type(selected_value_ids))
+                if len(selected_value_ids) < 1:
+                    raise ValueError("expected len(selected_value_ids) to be >= 1, was %d" % len(selected_value_ids))
+            self.__selected_value_ids = selected_value_ids
             return self
 
         def set_text(self, text):
@@ -79,12 +79,12 @@ class WorksheetFeatureState(object):
 
         def update(self, worksheet_feature_state):
             '''
-            :type selected_values: tuple(str) or None
+            :type selected_value_ids: tuple(str) or None
             :type text: str or None
             '''
 
             if isinstance(worksheet_feature_state, WorksheetFeatureState):
-                self.set_selected_values(worksheet_feature_state.selected_values)
+                self.set_selected_value_ids(worksheet_feature_state.selected_value_ids)
                 self.set_text(worksheet_feature_state.text)
             elif isinstance(worksheet_feature_state, dict):
                 for key, value in worksheet_feature_state.items():
@@ -93,13 +93,13 @@ class WorksheetFeatureState(object):
                 raise TypeError(worksheet_feature_state)
             return self
 
-        @selected_values.setter
-        def selected_values(self, selected_values):
+        @selected_value_ids.setter
+        def selected_value_ids(self, selected_value_ids):
             '''
-            :type selected_values: tuple(str) or None
+            :type selected_value_ids: tuple(str) or None
             '''
 
-            self.set_selected_values(selected_values)
+            self.set_selected_value_ids(selected_value_ids)
 
         @text.setter
         def text(self, text):
@@ -110,7 +110,7 @@ class WorksheetFeatureState(object):
             self.set_text(text)
 
     class FieldMetadata(object):
-        SELECTED_VALUES = None
+        SELECTED_VALUE_IDS = None
         TEXT = None
 
         def __init__(self, name, type_, validation):
@@ -139,27 +139,27 @@ class WorksheetFeatureState(object):
 
         @classmethod
         def values(cls):
-            return (cls.SELECTED_VALUES, cls.TEXT,)
+            return (cls.SELECTED_VALUE_IDS, cls.TEXT,)
 
-    FieldMetadata.SELECTED_VALUES = FieldMetadata('selected_values', tuple, OrderedDict([('minLength', 1)]))
+    FieldMetadata.SELECTED_VALUE_IDS = FieldMetadata('selected_value_ids', tuple, OrderedDict([('minLength', 1)]))
     FieldMetadata.TEXT = FieldMetadata('text', str, OrderedDict([('blank', False), ('minLength', 1)]))
 
     def __init__(
         self,
-        selected_values=None,
+        selected_value_ids=None,
         text=None,
     ):
         '''
-        :type selected_values: tuple(str) or None
+        :type selected_value_ids: tuple(str) or None
         :type text: str or None
         '''
 
-        if selected_values is not None:
-            if not (isinstance(selected_values, tuple) and len(list(filterfalse(lambda _: isinstance(_, str), selected_values))) == 0):
-                raise TypeError("expected selected_values to be a tuple(str) but it is a %s" % builtins.type(selected_values))
-            if len(selected_values) < 1:
-                raise ValueError("expected len(selected_values) to be >= 1, was %d" % len(selected_values))
-        self.__selected_values = selected_values
+        if selected_value_ids is not None:
+            if not (isinstance(selected_value_ids, tuple) and len(list(filterfalse(lambda _: isinstance(_, str), selected_value_ids))) == 0):
+                raise TypeError("expected selected_value_ids to be a tuple(str) but it is a %s" % builtins.type(selected_value_ids))
+            if len(selected_value_ids) < 1:
+                raise ValueError("expected len(selected_value_ids) to be >= 1, was %d" % len(selected_value_ids))
+        self.__selected_value_ids = selected_value_ids
 
         if text is not None:
             if not isinstance(text, str):
@@ -171,33 +171,33 @@ class WorksheetFeatureState(object):
         self.__text = text
 
     def __eq__(self, other):
-        if self.selected_values != other.selected_values:
+        if self.selected_value_ids != other.selected_value_ids:
             return False
         if self.text != other.text:
             return False
         return True
 
     def __hash__(self):
-        return hash((self.selected_values, self.text,))
+        return hash((self.selected_value_ids, self.text,))
 
     def __iter__(self):
-        return iter((self.selected_values, self.text,))
+        return iter((self.selected_value_ids, self.text,))
 
     def __ne__(self, other):
         return not self.__eq__(other)
 
     def __repr__(self):
         field_reprs = []
-        if self.selected_values is not None:
-            field_reprs.append('selected_values=' + repr(self.selected_values))
+        if self.selected_value_ids is not None:
+            field_reprs.append('selected_value_ids=' + repr(self.selected_value_ids))
         if self.text is not None:
             field_reprs.append('text=' + "'" + self.text.encode('ascii', 'replace').decode('ascii') + "'")
         return 'WorksheetFeatureState(' + ', '.join(field_reprs) + ')'
 
     def __str__(self):
         field_reprs = []
-        if self.selected_values is not None:
-            field_reprs.append('selected_values=' + repr(self.selected_values))
+        if self.selected_value_ids is not None:
+            field_reprs.append('selected_value_ids=' + repr(self.selected_value_ids))
         if self.text is not None:
             field_reprs.append('text=' + "'" + self.text.encode('ascii', 'replace').decode('ascii') + "'")
         return 'WorksheetFeatureState(' + ', '.join(field_reprs) + ')'
@@ -222,8 +222,8 @@ class WorksheetFeatureState(object):
             ifield_name, ifield_type, _ifield_id = iprot.read_field_begin()
             if ifield_type == 0: # STOP
                 break
-            elif ifield_name == 'selected_values':
-                init_kwds['selected_values'] = tuple([iprot.read_string() for _ in xrange(iprot.read_list_begin()[1])] + (iprot.read_list_end() is None and []))
+            elif ifield_name == 'selected_value_ids':
+                init_kwds['selected_value_ids'] = tuple([iprot.read_string() for _ in xrange(iprot.read_list_begin()[1])] + (iprot.read_list_end() is None and []))
             elif ifield_name == 'text':
                 try:
                     init_kwds['text'] = iprot.read_string()
@@ -238,12 +238,12 @@ class WorksheetFeatureState(object):
         return cls.Builder.from_template(template=self)
 
     @property
-    def selected_values(self):
+    def selected_value_ids(self):
         '''
         :rtype: tuple(str)
         '''
 
-        return self.__selected_values
+        return self.__selected_value_ids
 
     @property
     def text(self):
@@ -263,10 +263,10 @@ class WorksheetFeatureState(object):
 
         oprot.write_struct_begin('WorksheetFeatureState')
 
-        if self.selected_values is not None:
-            oprot.write_field_begin(name='selected_values', type=15, id=None)
-            oprot.write_list_begin(11, len(self.selected_values))
-            for _0 in self.selected_values:
+        if self.selected_value_ids is not None:
+            oprot.write_field_begin(name='selected_value_ids', type=15, id=None)
+            oprot.write_list_begin(11, len(self.selected_value_ids))
+            for _0 in self.selected_value_ids:
                 oprot.write_string(_0)
             oprot.write_list_end()
             oprot.write_field_end()

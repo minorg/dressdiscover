@@ -1,10 +1,10 @@
 import { WorksheetFeatureSetState } from "./worksheet_feature_set_state";
 
 export class WorksheetState {
-    constructor(kwds: {accessionNumber: string, rootFeatureSet?: WorksheetFeatureSetState}) {
+    constructor(kwds: {accessionNumber: string, featureSets?: {[index: string]: WorksheetFeatureSetState}}) {
         this.accessionNumber = kwds.accessionNumber;
-        if (kwds.rootFeatureSet != null) {
-            this.rootFeatureSet = kwds.rootFeatureSet;
+        if (kwds.featureSets != null) {
+            this.featureSets = kwds.featureSets;
         }
     }
 
@@ -22,19 +22,21 @@ export class WorksheetState {
         this._accessionNumber = accessionNumber;
     }
 
-    get rootFeatureSet(): WorksheetFeatureSetState | undefined {
-        return this._rootFeatureSet;
+    get featureSets(): {[index: string]: WorksheetFeatureSetState} | undefined {
+        return this._featureSets;
     }
 
-    set rootFeatureSet(rootFeatureSet: WorksheetFeatureSetState | undefined) {
-        if (rootFeatureSet != null) {
-
+    set featureSets(featureSets: {[index: string]: WorksheetFeatureSetState} | undefined) {
+        if (featureSets != null) {
+            if (featureSets.length < 1) {
+                throw new RangeError("expected len(featureSets) to be >= 1, was " + featureSets.length);
+            }
         }
-        this._rootFeatureSet = rootFeatureSet;
+        this._featureSets = featureSets;
     }
 
     deepCopy(): WorksheetState {
-        return new WorksheetState({ accessionNumber: this.accessionNumber, rootFeatureSet: (this.rootFeatureSet ? (this.rootFeatureSet.deepCopy()) : undefined) });
+        return new WorksheetState({ accessionNumber: this.accessionNumber, featureSets: (this.featureSets ? (function(__value0: {[index: string]: WorksheetFeatureSetState}) { let __copy0: {[index: string]: WorksheetFeatureSetState} = {}; for (var __key0 in __value0) { __copy0[__key0] = __value0[__key0].deepCopy(); } return __copy0; }(this.featureSets)) : undefined) });
     }
 
     equals(other: WorksheetState): boolean {
@@ -42,7 +44,7 @@ export class WorksheetState {
             return false;
         }
 
-        if (!((!((typeof (this.rootFeatureSet)) === "undefined") && !((typeof (other.rootFeatureSet)) === "undefined")) ? ((this.rootFeatureSet as WorksheetFeatureSetState).equals((other.rootFeatureSet as WorksheetFeatureSetState))) : (((typeof (this.rootFeatureSet)) === "undefined") && ((typeof (other.rootFeatureSet)) === "undefined")))) {
+        if (!((!((typeof (this.featureSets)) === "undefined") && !((typeof (other.featureSets)) === "undefined")) ? (function(left: {[index: string]: WorksheetFeatureSetState}, right: {[index: string]: WorksheetFeatureSetState}): boolean { for (var leftKey in left) { var keyFound = false; for (var rightKey in right) { if (leftKey === rightKey) { if (!(left[leftKey].equals(right[rightKey]))) { return false; } keyFound = true; break; } } if (!keyFound) { return false; } } return true; }((this.featureSets as {[index: string]: WorksheetFeatureSetState}), (other.featureSets as {[index: string]: WorksheetFeatureSetState}))) : (((typeof (this.featureSets)) === "undefined") && ((typeof (other.featureSets)) === "undefined")))) {
             return false;
         }
 
@@ -51,25 +53,25 @@ export class WorksheetState {
 
     static fromThryftJsonObject(json: any): WorksheetState {
         var accessionNumber: string | undefined;
-        var rootFeatureSet: WorksheetFeatureSetState | undefined;
+        var featureSets: {[index: string]: WorksheetFeatureSetState} | undefined;
         for (var fieldName in json) {
             if (fieldName == "accession_number") {
                 accessionNumber = json[fieldName];
-            } else if (fieldName == "root_feature_set") {
-                rootFeatureSet = WorksheetFeatureSetState.fromThryftJsonObject(json[fieldName]);
+            } else if (fieldName == "feature_sets") {
+                featureSets = function (json: any): {[index: string]: WorksheetFeatureSetState} { var map: any = {}; for (var key in json) { map[key] = WorksheetFeatureSetState.fromThryftJsonObject(json[key]); } return map; }(json[fieldName]);
             }
         }
         if (accessionNumber == null) {
             throw new TypeError('accessionNumber is required');
         }
-        return new WorksheetState({accessionNumber: accessionNumber, rootFeatureSet: rootFeatureSet});
+        return new WorksheetState({accessionNumber: accessionNumber, featureSets: featureSets});
     }
 
     toJsonObject(): any {
         var json: {[index: string]: any} = {};
         json["accession_number"] = this.accessionNumber;
-        if (this.rootFeatureSet != null) {
-            json["root_feature_set"] = this.rootFeatureSet.toJsonObject();
+        if (this.featureSets != null) {
+            json["feature_sets"] = function (value: {[index: string]: WorksheetFeatureSetState}): {[index: string]: WorksheetFeatureSetState} { var outObject: {[index: string]: WorksheetFeatureSetState} = {}; for (var key in value) { outObject[key] = value[key].toJsonObject(); } return outObject; }(this.featureSets);
         }
         return json;
     }
@@ -81,13 +83,13 @@ export class WorksheetState {
     toThryftJsonObject(): any {
         var json: {[index: string]: any} = {};
         json["accession_number"] = this.accessionNumber;
-        if (this.rootFeatureSet != null) {
-            json["root_feature_set"] = this.rootFeatureSet.toThryftJsonObject();
+        if (this.featureSets != null) {
+            json["feature_sets"] = function (value: {[index: string]: WorksheetFeatureSetState}): {[index: string]: WorksheetFeatureSetState} { var outObject: {[index: string]: WorksheetFeatureSetState} = {}; for (var key in value) { outObject[key] = value[key].toThryftJsonObject(); } return outObject; }(this.featureSets);
         }
         return json;
     }
 
     private _accessionNumber: string = "";
 
-    private _rootFeatureSet?: WorksheetFeatureSetState = undefined;
+    private _featureSets?: {[index: string]: WorksheetFeatureSetState} = undefined;
 }

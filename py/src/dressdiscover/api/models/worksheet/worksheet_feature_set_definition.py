@@ -1,7 +1,6 @@
 from collections import OrderedDict
 from itertools import filterfalse
 import builtins
-import dressdiscover.api.models.worksheet.worksheet_feature_definition
 import dressdiscover.api.models.worksheet.worksheet_feature_set_id
 
 
@@ -10,32 +9,21 @@ class WorksheetFeatureSetDefinition(object):
         def __init__(
             self,
             id=None,  # @ReservedAssignment
-            child_feature_sets=None,
             display_name=None,
-            features=None,
+            feature_ids=None,
         ):
             '''
             :type id: str
-            :type child_feature_sets: tuple(dressdiscover.api.models.worksheet.worksheet_feature_set_definition.WorksheetFeatureSetDefinition) or None
             :type display_name: str or None
-            :type features: tuple(dressdiscover.api.models.worksheet.worksheet_feature_definition.WorksheetFeatureDefinition) or None
+            :type feature_ids: tuple(str) or None
             '''
 
             self.__id = id
-            self.__child_feature_sets = child_feature_sets
             self.__display_name = display_name
-            self.__features = features
+            self.__feature_ids = feature_ids
 
         def build(self):
-            return WorksheetFeatureSetDefinition(id=self.__id, child_feature_sets=self.__child_feature_sets, display_name=self.__display_name, features=self.__features)
-
-        @property
-        def child_feature_sets(self):
-            '''
-            :rtype: tuple(dressdiscover.api.models.worksheet.worksheet_feature_set_definition.WorksheetFeatureSetDefinition)
-            '''
-
-            return self.__child_feature_sets
+            return WorksheetFeatureSetDefinition(id=self.__id, display_name=self.__display_name, feature_ids=self.__feature_ids)
 
         @property
         def display_name(self):
@@ -46,12 +34,12 @@ class WorksheetFeatureSetDefinition(object):
             return self.__display_name
 
         @property
-        def features(self):
+        def feature_ids(self):
             '''
-            :rtype: tuple(dressdiscover.api.models.worksheet.worksheet_feature_definition.WorksheetFeatureDefinition)
+            :rtype: tuple(str)
             '''
 
-            return self.__features
+            return self.__feature_ids
 
         @classmethod
         def from_template(cls, template):
@@ -62,9 +50,8 @@ class WorksheetFeatureSetDefinition(object):
 
             builder = cls()
             builder.id = id
-            builder.child_feature_sets = child_feature_sets
             builder.display_name = display_name
-            builder.features = features
+            builder.feature_ids = feature_ids
             return builder
 
         @property
@@ -74,19 +61,6 @@ class WorksheetFeatureSetDefinition(object):
             '''
 
             return self.__id
-
-        def set_child_feature_sets(self, child_feature_sets):
-            '''
-            :type child_feature_sets: tuple(dressdiscover.api.models.worksheet.worksheet_feature_set_definition.WorksheetFeatureSetDefinition) or None
-            '''
-
-            if child_feature_sets is not None:
-                if not (isinstance(child_feature_sets, tuple) and len(list(filterfalse(lambda _: isinstance(_, dressdiscover.api.models.worksheet.worksheet_feature_set_definition.WorksheetFeatureSetDefinition), child_feature_sets))) == 0):
-                    raise TypeError("expected child_feature_sets to be a tuple(dressdiscover.api.models.worksheet.worksheet_feature_set_definition.WorksheetFeatureSetDefinition) but it is a %s" % builtins.type(child_feature_sets))
-                if len(child_feature_sets) < 1:
-                    raise ValueError("expected len(child_feature_sets) to be >= 1, was %d" % len(child_feature_sets))
-            self.__child_feature_sets = child_feature_sets
-            return self
 
         def set_display_name(self, display_name):
             '''
@@ -103,17 +77,17 @@ class WorksheetFeatureSetDefinition(object):
             self.__display_name = display_name
             return self
 
-        def set_features(self, features):
+        def set_feature_ids(self, feature_ids):
             '''
-            :type features: tuple(dressdiscover.api.models.worksheet.worksheet_feature_definition.WorksheetFeatureDefinition) or None
+            :type feature_ids: tuple(str) or None
             '''
 
-            if features is not None:
-                if not (isinstance(features, tuple) and len(list(filterfalse(lambda _: isinstance(_, dressdiscover.api.models.worksheet.worksheet_feature_definition.WorksheetFeatureDefinition), features))) == 0):
-                    raise TypeError("expected features to be a tuple(dressdiscover.api.models.worksheet.worksheet_feature_definition.WorksheetFeatureDefinition) but it is a %s" % builtins.type(features))
-                if len(features) < 1:
-                    raise ValueError("expected len(features) to be >= 1, was %d" % len(features))
-            self.__features = features
+            if feature_ids is not None:
+                if not (isinstance(feature_ids, tuple) and len(list(filterfalse(lambda _: isinstance(_, str), feature_ids))) == 0):
+                    raise TypeError("expected feature_ids to be a tuple(str) but it is a %s" % builtins.type(feature_ids))
+                if len(feature_ids) < 1:
+                    raise ValueError("expected len(feature_ids) to be >= 1, was %d" % len(feature_ids))
+            self.__feature_ids = feature_ids
             return self
 
         def set_id(self, id):  # @ReservedAssignment
@@ -131,30 +105,20 @@ class WorksheetFeatureSetDefinition(object):
         def update(self, worksheet_feature_set_definition):
             '''
             :type id: str
-            :type child_feature_sets: tuple(dressdiscover.api.models.worksheet.worksheet_feature_set_definition.WorksheetFeatureSetDefinition) or None
             :type display_name: str or None
-            :type features: tuple(dressdiscover.api.models.worksheet.worksheet_feature_definition.WorksheetFeatureDefinition) or None
+            :type feature_ids: tuple(str) or None
             '''
 
             if isinstance(worksheet_feature_set_definition, WorksheetFeatureSetDefinition):
                 self.set_id(worksheet_feature_set_definition.id)
-                self.set_child_feature_sets(worksheet_feature_set_definition.child_feature_sets)
                 self.set_display_name(worksheet_feature_set_definition.display_name)
-                self.set_features(worksheet_feature_set_definition.features)
+                self.set_feature_ids(worksheet_feature_set_definition.feature_ids)
             elif isinstance(worksheet_feature_set_definition, dict):
                 for key, value in worksheet_feature_set_definition.items():
                     getattr(self, 'set_' + key)(value)
             else:
                 raise TypeError(worksheet_feature_set_definition)
             return self
-
-        @child_feature_sets.setter
-        def child_feature_sets(self, child_feature_sets):
-            '''
-            :type child_feature_sets: tuple(dressdiscover.api.models.worksheet.worksheet_feature_set_definition.WorksheetFeatureSetDefinition) or None
-            '''
-
-            self.set_child_feature_sets(child_feature_sets)
 
         @display_name.setter
         def display_name(self, display_name):
@@ -164,13 +128,13 @@ class WorksheetFeatureSetDefinition(object):
 
             self.set_display_name(display_name)
 
-        @features.setter
-        def features(self, features):
+        @feature_ids.setter
+        def feature_ids(self, feature_ids):
             '''
-            :type features: tuple(dressdiscover.api.models.worksheet.worksheet_feature_definition.WorksheetFeatureDefinition) or None
+            :type feature_ids: tuple(str) or None
             '''
 
-            self.set_features(features)
+            self.set_feature_ids(feature_ids)
 
         @id.setter
         def id(self, id):  # @ReservedAssignment
@@ -182,9 +146,8 @@ class WorksheetFeatureSetDefinition(object):
 
     class FieldMetadata(object):
         ID = None
-        CHILD_FEATURE_SETS = None
         DISPLAY_NAME = None
-        FEATURES = None
+        FEATURE_IDS = None
 
         def __init__(self, name, type_, validation):
             object.__init__(self)
@@ -212,25 +175,22 @@ class WorksheetFeatureSetDefinition(object):
 
         @classmethod
         def values(cls):
-            return (cls.ID, cls.CHILD_FEATURE_SETS, cls.DISPLAY_NAME, cls.FEATURES,)
+            return (cls.ID, cls.DISPLAY_NAME, cls.FEATURE_IDS,)
 
     FieldMetadata.ID = FieldMetadata('id', dressdiscover.api.models.worksheet.worksheet_feature_set_id.WorksheetFeatureSetId, None)
-    FieldMetadata.CHILD_FEATURE_SETS = FieldMetadata('child_feature_sets', tuple, OrderedDict([('minLength', 1)]))
     FieldMetadata.DISPLAY_NAME = FieldMetadata('display_name', str, OrderedDict([('blank', False), ('minLength', 1)]))
-    FieldMetadata.FEATURES = FieldMetadata('features', tuple, OrderedDict([('minLength', 1)]))
+    FieldMetadata.FEATURE_IDS = FieldMetadata('feature_ids', tuple, OrderedDict([('minLength', 1)]))
 
     def __init__(
         self,
         id,  # @ReservedAssignment
-        child_feature_sets=None,
         display_name=None,
-        features=None,
+        feature_ids=None,
     ):
         '''
         :type id: str
-        :type child_feature_sets: tuple(dressdiscover.api.models.worksheet.worksheet_feature_set_definition.WorksheetFeatureSetDefinition) or None
         :type display_name: str or None
-        :type features: tuple(dressdiscover.api.models.worksheet.worksheet_feature_definition.WorksheetFeatureDefinition) or None
+        :type feature_ids: tuple(str) or None
         '''
 
         if id is None:
@@ -238,13 +198,6 @@ class WorksheetFeatureSetDefinition(object):
         if not isinstance(id, str):
             raise TypeError("expected id to be a str but it is a %s" % builtins.type(id))
         self.__id = id
-
-        if child_feature_sets is not None:
-            if not (isinstance(child_feature_sets, tuple) and len(list(filterfalse(lambda _: isinstance(_, dressdiscover.api.models.worksheet.worksheet_feature_set_definition.WorksheetFeatureSetDefinition), child_feature_sets))) == 0):
-                raise TypeError("expected child_feature_sets to be a tuple(dressdiscover.api.models.worksheet.worksheet_feature_set_definition.WorksheetFeatureSetDefinition) but it is a %s" % builtins.type(child_feature_sets))
-            if len(child_feature_sets) < 1:
-                raise ValueError("expected len(child_feature_sets) to be >= 1, was %d" % len(child_feature_sets))
-        self.__child_feature_sets = child_feature_sets
 
         if display_name is not None:
             if not isinstance(display_name, str):
@@ -255,29 +208,27 @@ class WorksheetFeatureSetDefinition(object):
                 raise ValueError("expected len(display_name) to be >= 1, was %d" % len(display_name))
         self.__display_name = display_name
 
-        if features is not None:
-            if not (isinstance(features, tuple) and len(list(filterfalse(lambda _: isinstance(_, dressdiscover.api.models.worksheet.worksheet_feature_definition.WorksheetFeatureDefinition), features))) == 0):
-                raise TypeError("expected features to be a tuple(dressdiscover.api.models.worksheet.worksheet_feature_definition.WorksheetFeatureDefinition) but it is a %s" % builtins.type(features))
-            if len(features) < 1:
-                raise ValueError("expected len(features) to be >= 1, was %d" % len(features))
-        self.__features = features
+        if feature_ids is not None:
+            if not (isinstance(feature_ids, tuple) and len(list(filterfalse(lambda _: isinstance(_, str), feature_ids))) == 0):
+                raise TypeError("expected feature_ids to be a tuple(str) but it is a %s" % builtins.type(feature_ids))
+            if len(feature_ids) < 1:
+                raise ValueError("expected len(feature_ids) to be >= 1, was %d" % len(feature_ids))
+        self.__feature_ids = feature_ids
 
     def __eq__(self, other):
         if self.id != other.id:
             return False
-        if self.child_feature_sets != other.child_feature_sets:
-            return False
         if self.display_name != other.display_name:
             return False
-        if self.features != other.features:
+        if self.feature_ids != other.feature_ids:
             return False
         return True
 
     def __hash__(self):
-        return hash((self.id, self.child_feature_sets, self.display_name, self.features,))
+        return hash((self.id, self.display_name, self.feature_ids,))
 
     def __iter__(self):
-        return iter((self.id, self.child_feature_sets, self.display_name, self.features,))
+        return iter((self.id, self.display_name, self.feature_ids,))
 
     def __ne__(self, other):
         return not self.__eq__(other)
@@ -285,36 +236,24 @@ class WorksheetFeatureSetDefinition(object):
     def __repr__(self):
         field_reprs = []
         field_reprs.append('id=' + "'" + self.id.encode('ascii', 'replace').decode('ascii') + "'")
-        if self.child_feature_sets is not None:
-            field_reprs.append('child_feature_sets=' + repr(self.child_feature_sets))
         if self.display_name is not None:
             field_reprs.append('display_name=' + "'" + self.display_name.encode('ascii', 'replace').decode('ascii') + "'")
-        if self.features is not None:
-            field_reprs.append('features=' + repr(self.features))
+        if self.feature_ids is not None:
+            field_reprs.append('feature_ids=' + repr(self.feature_ids))
         return 'WorksheetFeatureSetDefinition(' + ', '.join(field_reprs) + ')'
 
     def __str__(self):
         field_reprs = []
         field_reprs.append('id=' + "'" + self.id.encode('ascii', 'replace').decode('ascii') + "'")
-        if self.child_feature_sets is not None:
-            field_reprs.append('child_feature_sets=' + repr(self.child_feature_sets))
         if self.display_name is not None:
             field_reprs.append('display_name=' + "'" + self.display_name.encode('ascii', 'replace').decode('ascii') + "'")
-        if self.features is not None:
-            field_reprs.append('features=' + repr(self.features))
+        if self.feature_ids is not None:
+            field_reprs.append('feature_ids=' + repr(self.feature_ids))
         return 'WorksheetFeatureSetDefinition(' + ', '.join(field_reprs) + ')'
 
     @classmethod
     def builder(cls):
         return cls.Builder()
-
-    @property
-    def child_feature_sets(self):
-        '''
-        :rtype: tuple(dressdiscover.api.models.worksheet.worksheet_feature_set_definition.WorksheetFeatureSetDefinition)
-        '''
-
-        return self.__child_feature_sets
 
     @property
     def display_name(self):
@@ -325,12 +264,12 @@ class WorksheetFeatureSetDefinition(object):
         return self.__display_name
 
     @property
-    def features(self):
+    def feature_ids(self):
         '''
-        :rtype: tuple(dressdiscover.api.models.worksheet.worksheet_feature_definition.WorksheetFeatureDefinition)
+        :rtype: tuple(str)
         '''
 
-        return self.__features
+        return self.__feature_ids
 
     @property
     def id(self):  # @ReservedAssignment
@@ -358,15 +297,13 @@ class WorksheetFeatureSetDefinition(object):
                 break
             elif ifield_name == 'id':
                 init_kwds['id'] = iprot.read_string()
-            elif ifield_name == 'child_feature_sets':
-                init_kwds['child_feature_sets'] = tuple([dressdiscover.api.models.worksheet.worksheet_feature_set_definition.WorksheetFeatureSetDefinition.read(iprot) for _ in xrange(iprot.read_list_begin()[1])] + (iprot.read_list_end() is None and []))
             elif ifield_name == 'display_name':
                 try:
                     init_kwds['display_name'] = iprot.read_string()
                 except (TypeError, ValueError,):
                     pass
-            elif ifield_name == 'features':
-                init_kwds['features'] = tuple([dressdiscover.api.models.worksheet.worksheet_feature_definition.WorksheetFeatureDefinition.read(iprot) for _ in xrange(iprot.read_list_begin()[1])] + (iprot.read_list_end() is None and []))
+            elif ifield_name == 'feature_ids':
+                init_kwds['feature_ids'] = tuple([iprot.read_string() for _ in xrange(iprot.read_list_begin()[1])] + (iprot.read_list_end() is None and []))
             iprot.read_field_end()
         iprot.read_struct_end()
 
@@ -389,24 +326,16 @@ class WorksheetFeatureSetDefinition(object):
         oprot.write_string(self.id)
         oprot.write_field_end()
 
-        if self.child_feature_sets is not None:
-            oprot.write_field_begin(name='child_feature_sets', type=15, id=None)
-            oprot.write_list_begin(12, len(self.child_feature_sets))
-            for _0 in self.child_feature_sets:
-                _0.write(oprot)
-            oprot.write_list_end()
-            oprot.write_field_end()
-
         if self.display_name is not None:
             oprot.write_field_begin(name='display_name', type=11, id=None)
             oprot.write_string(self.display_name)
             oprot.write_field_end()
 
-        if self.features is not None:
-            oprot.write_field_begin(name='features', type=15, id=None)
-            oprot.write_list_begin(12, len(self.features))
-            for _0 in self.features:
-                _0.write(oprot)
+        if self.feature_ids is not None:
+            oprot.write_field_begin(name='feature_ids', type=15, id=None)
+            oprot.write_list_begin(11, len(self.feature_ids))
+            for _0 in self.feature_ids:
+                oprot.write_string(_0)
             oprot.write_list_end()
             oprot.write_field_end()
 
