@@ -13,18 +13,20 @@ public final class LocationCoordinates implements org.thryft.Struct {
         }
 
         protected LocationCoordinates _build(final java.math.BigDecimal latitude, final java.math.BigDecimal longitude) {
-            return new LocationCoordinates(latitude, longitude, DefaultConstructionValidator.getInstance());
+            return new LocationCoordinates(latitude, longitude);
         }
 
         public LocationCoordinates build() {
+            UncheckedValidator.validate(latitude, longitude);
+
             return _build(latitude, longitude);
         }
 
-        public final java.math.BigDecimal getLatitude() {
+        public final @javax.annotation.Nullable java.math.BigDecimal getLatitude() {
             return latitude;
         }
 
-        public final java.math.BigDecimal getLongitude() {
+        public final @javax.annotation.Nullable java.math.BigDecimal getLongitude() {
             return longitude;
         }
 
@@ -143,12 +145,14 @@ public final class LocationCoordinates implements org.thryft.Struct {
         }
 
         public Builder setLatitude(final java.math.BigDecimal latitude) {
-            this.latitude = DefaultConstructionValidator.getInstance().validateLatitude(latitude);
+            UncheckedValidator.validateLatitude(latitude);
+            this.latitude = latitude;
             return this;
         }
 
         public Builder setLongitude(final java.math.BigDecimal longitude) {
-            this.longitude = DefaultConstructionValidator.getInstance().validateLongitude(longitude);
+            UncheckedValidator.validateLongitude(longitude);
+            this.longitude = longitude;
             return this;
         }
 
@@ -184,8 +188,8 @@ public final class LocationCoordinates implements org.thryft.Struct {
             return this;
         }
 
-        private java.math.BigDecimal latitude;
-        private java.math.BigDecimal longitude;
+        private @javax.annotation.Nullable java.math.BigDecimal latitude;
+        private @javax.annotation.Nullable java.math.BigDecimal longitude;
     }
 
     public final static class Factory implements org.thryft.CompoundType.Factory<LocationCoordinates> {
@@ -219,8 +223,8 @@ public final class LocationCoordinates implements org.thryft.Struct {
 
     @SuppressWarnings("serial")
     public enum FieldMetadata implements org.thryft.CompoundType.FieldMetadata {
-        LATITUDE("latitude", new com.google.common.reflect.TypeToken<java.math.BigDecimal>() {}, true, 1, "latitude", org.thryft.protocol.Type.STRING),
-        LONGITUDE("longitude", new com.google.common.reflect.TypeToken<java.math.BigDecimal>() {}, true, 2, "longitude", org.thryft.protocol.Type.STRING);
+        LATITUDE("latitude", new com.google.common.reflect.TypeToken<java.math.BigDecimal>() {}, true, (short)1, "latitude", org.thryft.protocol.Type.STRING),
+        LONGITUDE("longitude", new com.google.common.reflect.TypeToken<java.math.BigDecimal>() {}, true, (short)2, "longitude", org.thryft.protocol.Type.STRING);
 
         @Override
         public String getJavaName() {
@@ -233,7 +237,7 @@ public final class LocationCoordinates implements org.thryft.Struct {
         }
 
         @Override
-        public int getThriftId() {
+        public short getThriftId() {
             return thriftId;
         }
 
@@ -280,7 +284,7 @@ public final class LocationCoordinates implements org.thryft.Struct {
             }
         }
 
-        private FieldMetadata(final String javaName, final com.google.common.reflect.TypeToken<?> javaType, final boolean required, final int thriftId, final String thriftName, final org.thryft.protocol.Type thriftProtocolType) {
+        private FieldMetadata(final String javaName, final com.google.common.reflect.TypeToken<?> javaType, final boolean required, final short thriftId, final String thriftName, final org.thryft.protocol.Type thriftProtocolType) {
             this.javaName = javaName;
             this.javaType = javaType;
             this.required = required;
@@ -297,130 +301,65 @@ public final class LocationCoordinates implements org.thryft.Struct {
         private final String javaName;
         private final com.google.common.reflect.TypeToken<?> javaType;
         private final boolean required;
-        private final int thriftId;
+        private final short thriftId;
         private final String thriftName;
         private final String thriftProtocolKey;
         private final org.thryft.protocol.Type thriftProtocolType;
     }
 
-    public interface Validator<ExceptionT extends Exception> {
-        public java.math.BigDecimal validateLatitude(final java.math.BigDecimal latitude) throws ExceptionT;
-
-        public java.math.BigDecimal validateLongitude(final java.math.BigDecimal longitude) throws ExceptionT;
-    }
-
-    public interface ConstructionValidator extends Validator<RuntimeException> {
-    }
-
-    public static class DefaultConstructionValidator implements ConstructionValidator {
-        public static DefaultConstructionValidator getInstance() {
-            return instance;
+    public final static class ReadValidator {
+        public static void validate(final java.math.BigDecimal latitude, final java.math.BigDecimal longitude) throws org.thryft.protocol.InputProtocolException {
+            validateLatitude(latitude);
+            validateLongitude(longitude);
         }
 
-        public DefaultConstructionValidator() {
-        }
-
-        @Override
-        public java.math.BigDecimal validateLatitude(final java.math.BigDecimal latitude) throws RuntimeException {
-            if (latitude == null) {
-                throw new NullPointerException("org.dressdiscover.api.vocabularies.vra_core.location.LocationCoordinates: latitude is null");
-            }
-            return latitude;
-        }
-
-        @Override
-        public java.math.BigDecimal validateLongitude(final java.math.BigDecimal longitude) throws RuntimeException {
-            if (longitude == null) {
-                throw new NullPointerException("org.dressdiscover.api.vocabularies.vra_core.location.LocationCoordinates: longitude is null");
-            }
-            return longitude;
-        }
-
-        private final static DefaultConstructionValidator instance = new DefaultConstructionValidator();
-    }
-
-    public static class NopConstructionValidator implements ConstructionValidator {
-        public static NopConstructionValidator getInstance() {
-            return instance;
-        }
-
-        public NopConstructionValidator() {
-        }
-
-        @Override
-        public java.math.BigDecimal validateLatitude(final java.math.BigDecimal latitude) {
-            return latitude;
-        }
-
-        @Override
-        public java.math.BigDecimal validateLongitude(final java.math.BigDecimal longitude) {
-            return longitude;
-        }
-
-        private final static NopConstructionValidator instance = new NopConstructionValidator();
-    }
-
-    public interface ReadValidator extends Validator<org.thryft.protocol.InputProtocolException> {
-    }
-
-    public static class DefaultReadValidator implements ReadValidator {
-        public static DefaultReadValidator getInstance() {
-            return instance;
-        }
-
-        public DefaultReadValidator() {
-        }
-
-        @Override
-        public java.math.BigDecimal validateLatitude(final java.math.BigDecimal latitude) throws org.thryft.protocol.InputProtocolException {
+        public static void validateLatitude(final java.math.BigDecimal latitude) throws org.thryft.protocol.InputProtocolException {
             if (latitude == null) {
                 throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.LATITUDE, "org.dressdiscover.api.vocabularies.vra_core.location.LocationCoordinates: latitude is null");
             }
-            return latitude;
         }
 
-        @Override
-        public java.math.BigDecimal validateLongitude(final java.math.BigDecimal longitude) throws org.thryft.protocol.InputProtocolException {
+        public static void validateLongitude(final java.math.BigDecimal longitude) throws org.thryft.protocol.InputProtocolException {
             if (longitude == null) {
                 throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.LONGITUDE, "org.dressdiscover.api.vocabularies.vra_core.location.LocationCoordinates: longitude is null");
             }
-            return longitude;
         }
-
-        private final static DefaultReadValidator instance = new DefaultReadValidator();
     }
 
-    public static class NopReadValidator implements ReadValidator {
-        public static NopReadValidator getInstance() {
-            return instance;
+    public final static class UncheckedValidator {
+        public static void validate(final java.math.BigDecimal latitude, final java.math.BigDecimal longitude) {
+            validateLatitude(latitude);
+            validateLongitude(longitude);
         }
 
-        public NopReadValidator() {
+        public static void validateLatitude(final java.math.BigDecimal latitude) {
+            if (latitude == null) {
+                throw new NullPointerException("org.dressdiscover.api.vocabularies.vra_core.location.LocationCoordinates: latitude is null");
+            }
         }
 
-        @Override
-        public java.math.BigDecimal validateLatitude(final java.math.BigDecimal latitude) {
-            return latitude;
+        public static void validateLongitude(final java.math.BigDecimal longitude) {
+            if (longitude == null) {
+                throw new NullPointerException("org.dressdiscover.api.vocabularies.vra_core.location.LocationCoordinates: longitude is null");
+            }
         }
-
-        @Override
-        public java.math.BigDecimal validateLongitude(final java.math.BigDecimal longitude) {
-            return longitude;
-        }
-
-        private final static NopReadValidator instance = new NopReadValidator();
     }
 
     /**
      * Copy constructor
      */
     public LocationCoordinates(final LocationCoordinates other) {
-        this(other.getLatitude(), other.getLongitude(), NopConstructionValidator.getInstance());
+        this(other.getLatitude(), other.getLongitude());
     }
 
-    protected LocationCoordinates(final java.math.BigDecimal latitude, final java.math.BigDecimal longitude, ConstructionValidator validator) {
-        this.latitude = validator.validateLatitude(latitude);
-        this.longitude = validator.validateLongitude(longitude);
+    /**
+     * Total constructor
+     *
+     * All fields should have been validated before calling this.
+     */
+    protected LocationCoordinates(final java.math.BigDecimal latitude, final java.math.BigDecimal longitude) {
+        this.latitude = latitude;
+        this.longitude = longitude;
     }
 
     public static Builder builder() {
@@ -439,7 +378,8 @@ public final class LocationCoordinates implements org.thryft.Struct {
      * Optional factory method
      */
     public static LocationCoordinates create(final java.math.BigDecimal latitude, final java.math.BigDecimal longitude) {
-        return new LocationCoordinates(latitude, longitude, DefaultConstructionValidator.getInstance());
+        UncheckedValidator.validate(latitude, longitude);
+        return new LocationCoordinates(latitude, longitude);
     }
 
     @Override
@@ -518,8 +458,8 @@ public final class LocationCoordinates implements org.thryft.Struct {
     }
 
     public static LocationCoordinates readAsList(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
-        java.math.BigDecimal latitude = null;
-        java.math.BigDecimal longitude = null;
+        java.math.BigDecimal latitude;
+        java.math.BigDecimal longitude;
 
         try {
             iprot.readListBegin();
@@ -537,7 +477,10 @@ public final class LocationCoordinates implements org.thryft.Struct {
         } catch (final RuntimeException e) {
             throw new IllegalStateException(e);
         }
-        return new LocationCoordinates(DefaultReadValidator.getInstance().validateLatitude(latitude), DefaultReadValidator.getInstance().validateLongitude(longitude), NopConstructionValidator.getInstance());
+
+        ReadValidator.validate(latitude, longitude);
+
+        return new LocationCoordinates(latitude, longitude);
     }
 
     public static LocationCoordinates readAsStruct(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
@@ -545,8 +488,8 @@ public final class LocationCoordinates implements org.thryft.Struct {
     }
 
     public static LocationCoordinates readAsStruct(final org.thryft.protocol.InputProtocol iprot, final com.google.common.base.Optional<UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
-        java.math.BigDecimal latitude = null;
-        java.math.BigDecimal longitude = null;
+        @javax.annotation.Nullable java.math.BigDecimal latitude = null;
+        @javax.annotation.Nullable java.math.BigDecimal longitude = null;
 
         try {
             iprot.readStructBegin();
@@ -588,15 +531,20 @@ public final class LocationCoordinates implements org.thryft.Struct {
         } catch (final RuntimeException e) {
             throw new IllegalStateException(e);
         }
-        return new LocationCoordinates(DefaultReadValidator.getInstance().validateLatitude(latitude), DefaultReadValidator.getInstance().validateLongitude(longitude), NopConstructionValidator.getInstance());
+
+        ReadValidator.validate(latitude, longitude);
+
+        return new LocationCoordinates(latitude, longitude);
     }
 
     public LocationCoordinates replaceLatitude(final java.math.BigDecimal latitude) {
-        return new LocationCoordinates(DefaultConstructionValidator.getInstance().validateLatitude(latitude), this.longitude, NopConstructionValidator.getInstance());
+        UncheckedValidator.validateLatitude(latitude);
+        return new LocationCoordinates(latitude, this.longitude);
     }
 
     public LocationCoordinates replaceLongitude(final java.math.BigDecimal longitude) {
-        return new LocationCoordinates(this.latitude, DefaultConstructionValidator.getInstance().validateLongitude(longitude), NopConstructionValidator.getInstance());
+        UncheckedValidator.validateLongitude(longitude);
+        return new LocationCoordinates(this.latitude, longitude);
     }
 
     @Override
@@ -624,15 +572,23 @@ public final class LocationCoordinates implements org.thryft.Struct {
 
     @Override
     public void writeFields(final org.thryft.protocol.OutputProtocol oprot) throws org.thryft.protocol.OutputProtocolException {
-        oprot.writeFieldBegin("latitude", org.thryft.protocol.Type.STRING, (short)1);
-        oprot.writeDecimal(getLatitude());
-        oprot.writeFieldEnd();
+        writeLatitudeField(oprot);
 
-        oprot.writeFieldBegin("longitude", org.thryft.protocol.Type.STRING, (short)2);
-        oprot.writeDecimal(getLongitude());
-        oprot.writeFieldEnd();
+        writeLongitudeField(oprot);
 
         oprot.writeFieldStop();
+    }
+
+    public void writeLatitudeField(final org.thryft.protocol.OutputProtocol oprot) throws org.thryft.protocol.OutputProtocolException {
+        oprot.writeFieldBegin(FieldMetadata.LATITUDE);
+        oprot.writeDecimal(getLatitude());
+        oprot.writeFieldEnd();
+    }
+
+    public void writeLongitudeField(final org.thryft.protocol.OutputProtocol oprot) throws org.thryft.protocol.OutputProtocolException {
+        oprot.writeFieldBegin(FieldMetadata.LONGITUDE);
+        oprot.writeDecimal(getLongitude());
+        oprot.writeFieldEnd();
     }
 
     private final java.math.BigDecimal latitude;

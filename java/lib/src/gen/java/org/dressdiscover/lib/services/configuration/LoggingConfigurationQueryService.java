@@ -2,7 +2,7 @@ package org.dressdiscover.lib.services.configuration;
 
 @com.google.inject.Singleton
 public class LoggingConfigurationQueryService implements org.dressdiscover.api.services.configuration.ConfigurationQueryService {
-    public static class Markers {
+    public final static class ConfigurationQueryServiceLogMarkers {
         public final static org.slf4j.Marker GET_COLLECTION_CONFIGURATION = org.slf4j.MarkerFactory.getMarker("GET_COLLECTION_CONFIGURATION");
         public final static org.slf4j.Marker GET_INSTITUTION_CONFIGURATION = org.slf4j.MarkerFactory.getMarker("GET_INSTITUTION_CONFIGURATION");
 
@@ -20,68 +20,65 @@ public class LoggingConfigurationQueryService implements org.dressdiscover.api.s
         this.delegate = com.google.common.base.Preconditions.checkNotNull(delegate);
     }
 
+    @Override
     public org.dressdiscover.api.models.configuration.CollectionConfiguration getCollectionConfiguration(final org.dressdiscover.api.models.collection.CollectionId collectionId) throws org.dressdiscover.api.services.IoException {
-        final StringBuilder __logMessageStringBuilder = new StringBuilder();
-        final java.util.List<Object> __logMessageArgs = new java.util.ArrayList<Object>();
+        final Object[] __logMessageArgs = new Object[2];
+        __logMessageArgs[0] = Messages.GetCollectionConfigurationRequest.create(collectionId);
 
-        __logMessageStringBuilder.append("get_collection_configuration(");
-        __logMessageStringBuilder.append("{}");
-        __logMessageArgs.add(Messages.GetCollectionConfigurationRequest.create(collectionId));
-        __logMessageStringBuilder.append(")");
+        __logMessageArgs[__logMessageArgs.length - 1] = PRE_RETURN_VALUE;
+        logger.debug(ConfigurationQueryServiceLogMarkers.GET_COLLECTION_CONFIGURATION, LogMessages.GET_COLLECTION_CONFIGURATION, __logMessageArgs);
 
         try {
-            org.dressdiscover.api.models.configuration.CollectionConfiguration __returnValue = delegate.getCollectionConfiguration(collectionId);
+            final org.dressdiscover.api.models.configuration.CollectionConfiguration __returnValue = delegate.getCollectionConfiguration(collectionId);
 
-            __logMessageStringBuilder.append(" -> {}");
-            __logMessageArgs.add(__returnValue);
-
-            logger.info(Markers.GET_COLLECTION_CONFIGURATION, __logMessageStringBuilder.toString(), __logMessageArgs.toArray());
+            __logMessageArgs[__logMessageArgs.length - 1] = __returnValue;
+            logger.info(ConfigurationQueryServiceLogMarkers.GET_COLLECTION_CONFIGURATION, LogMessages.GET_COLLECTION_CONFIGURATION, __logMessageArgs);
 
             return __returnValue;
         } catch (final org.dressdiscover.api.services.IoException e) {
-            __logMessageStringBuilder.append(" -> {}");
-            __logMessageArgs.add(e.toString());
-            logger.error(Markers.GET_COLLECTION_CONFIGURATION, __logMessageStringBuilder.toString(), __logMessageArgs.toArray());
+            __logMessageArgs[__logMessageArgs.length - 1] = e.toString();
+            logger.error(ConfigurationQueryServiceLogMarkers.GET_COLLECTION_CONFIGURATION, LogMessages.GET_COLLECTION_CONFIGURATION, __logMessageArgs);
             throw e;
         } catch (final RuntimeException e) {
-            __logMessageStringBuilder.append(" -> ");
-            __logMessageArgs.add(e);
-            logger.error(Markers.GET_COLLECTION_CONFIGURATION, __logMessageStringBuilder.toString(), __logMessageArgs.toArray());
+            __logMessageArgs[__logMessageArgs.length - 1] = e;
+            logger.error(ConfigurationQueryServiceLogMarkers.GET_COLLECTION_CONFIGURATION, LogMessages.GET_COLLECTION_CONFIGURATION, __logMessageArgs);
             throw e;
         }
     }
 
+    @Override
     public org.dressdiscover.api.models.configuration.InstitutionConfiguration getInstitutionConfiguration(final org.dressdiscover.api.models.institution.InstitutionId institutionId) throws org.dressdiscover.api.services.IoException {
-        final StringBuilder __logMessageStringBuilder = new StringBuilder();
-        final java.util.List<Object> __logMessageArgs = new java.util.ArrayList<Object>();
+        final Object[] __logMessageArgs = new Object[2];
+        __logMessageArgs[0] = Messages.GetInstitutionConfigurationRequest.create(institutionId);
 
-        __logMessageStringBuilder.append("get_institution_configuration(");
-        __logMessageStringBuilder.append("{}");
-        __logMessageArgs.add(Messages.GetInstitutionConfigurationRequest.create(institutionId));
-        __logMessageStringBuilder.append(")");
+        __logMessageArgs[__logMessageArgs.length - 1] = PRE_RETURN_VALUE;
+        logger.debug(ConfigurationQueryServiceLogMarkers.GET_INSTITUTION_CONFIGURATION, LogMessages.GET_INSTITUTION_CONFIGURATION, __logMessageArgs);
 
         try {
-            org.dressdiscover.api.models.configuration.InstitutionConfiguration __returnValue = delegate.getInstitutionConfiguration(institutionId);
+            final org.dressdiscover.api.models.configuration.InstitutionConfiguration __returnValue = delegate.getInstitutionConfiguration(institutionId);
 
-            __logMessageStringBuilder.append(" -> {}");
-            __logMessageArgs.add(__returnValue);
-
-            logger.info(Markers.GET_INSTITUTION_CONFIGURATION, __logMessageStringBuilder.toString(), __logMessageArgs.toArray());
+            __logMessageArgs[__logMessageArgs.length - 1] = __returnValue;
+            logger.info(ConfigurationQueryServiceLogMarkers.GET_INSTITUTION_CONFIGURATION, LogMessages.GET_INSTITUTION_CONFIGURATION, __logMessageArgs);
 
             return __returnValue;
         } catch (final org.dressdiscover.api.services.IoException e) {
-            __logMessageStringBuilder.append(" -> {}");
-            __logMessageArgs.add(e.toString());
-            logger.error(Markers.GET_INSTITUTION_CONFIGURATION, __logMessageStringBuilder.toString(), __logMessageArgs.toArray());
+            __logMessageArgs[__logMessageArgs.length - 1] = e.toString();
+            logger.error(ConfigurationQueryServiceLogMarkers.GET_INSTITUTION_CONFIGURATION, LogMessages.GET_INSTITUTION_CONFIGURATION, __logMessageArgs);
             throw e;
         } catch (final RuntimeException e) {
-            __logMessageStringBuilder.append(" -> ");
-            __logMessageArgs.add(e);
-            logger.error(Markers.GET_INSTITUTION_CONFIGURATION, __logMessageStringBuilder.toString(), __logMessageArgs.toArray());
+            __logMessageArgs[__logMessageArgs.length - 1] = e;
+            logger.error(ConfigurationQueryServiceLogMarkers.GET_INSTITUTION_CONFIGURATION, LogMessages.GET_INSTITUTION_CONFIGURATION, __logMessageArgs);
             throw e;
         }
     }
 
     private final static org.slf4j.Logger logger = org.slf4j.LoggerFactory.getLogger(LoggingConfigurationQueryService.class);
     private final org.dressdiscover.api.services.configuration.ConfigurationQueryService delegate;
+
+    private final static class LogMessages {
+        public final static String GET_COLLECTION_CONFIGURATION = "get_collection_configuration({}) -> {}";
+        public final static String GET_INSTITUTION_CONFIGURATION = "get_institution_configuration({}) -> {}";
+    }
+
+    public final static String PRE_RETURN_VALUE = "...";
 }

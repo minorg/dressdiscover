@@ -30,14 +30,16 @@ public interface ObjectCommandService {
                 }
 
                 protected DeleteObjectsByCollectionIdRequest _build(final org.dressdiscover.api.models.collection.CollectionId collectionId) {
-                    return new DeleteObjectsByCollectionIdRequest(collectionId, DefaultConstructionValidator.getInstance());
+                    return new DeleteObjectsByCollectionIdRequest(collectionId);
                 }
 
                 public DeleteObjectsByCollectionIdRequest build() {
+                    UncheckedValidator.validate(collectionId);
+
                     return _build(collectionId);
                 }
 
-                public final org.dressdiscover.api.models.collection.CollectionId getCollectionId() {
+                public final @javax.annotation.Nullable org.dressdiscover.api.models.collection.CollectionId getCollectionId() {
                     return collectionId;
                 }
 
@@ -62,6 +64,8 @@ public interface ObjectCommandService {
                         try {
                             collectionId = org.dressdiscover.api.models.collection.CollectionId.parse(iprot.readString());
                         } catch (final org.dressdiscover.api.models.collection.InvalidCollectionIdException e) {
+                             throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.COLLECTION_ID, e);
+                        } catch (final IllegalArgumentException e) {
                              throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.COLLECTION_ID, e);
                         }
                         iprot.readListEnd();
@@ -88,6 +92,8 @@ public interface ObjectCommandService {
                                 try {
                                     collectionId = org.dressdiscover.api.models.collection.CollectionId.parse(iprot.readString());
                                 } catch (final org.dressdiscover.api.models.collection.InvalidCollectionIdException e) {
+                                     throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.COLLECTION_ID, e);
+                                } catch (final IllegalArgumentException e) {
                                      throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.COLLECTION_ID, e);
                                 }
                                 break;
@@ -129,7 +135,8 @@ public interface ObjectCommandService {
                 }
 
                 public Builder setCollectionId(final org.dressdiscover.api.models.collection.CollectionId collectionId) {
-                    this.collectionId = DefaultConstructionValidator.getInstance().validateCollectionId(collectionId);
+                    UncheckedValidator.validateCollectionId(collectionId);
+                    this.collectionId = collectionId;
                     return this;
                 }
 
@@ -167,7 +174,7 @@ public interface ObjectCommandService {
                     return this;
                 }
 
-                private org.dressdiscover.api.models.collection.CollectionId collectionId;
+                private @javax.annotation.Nullable org.dressdiscover.api.models.collection.CollectionId collectionId;
             }
 
             public final static class Factory implements org.thryft.CompoundType.Factory<DeleteObjectsByCollectionIdRequest> {
@@ -201,7 +208,7 @@ public interface ObjectCommandService {
 
             @SuppressWarnings("serial")
             public enum FieldMetadata implements org.thryft.CompoundType.FieldMetadata {
-                COLLECTION_ID("collectionId", new com.google.common.reflect.TypeToken<org.dressdiscover.api.models.collection.CollectionId>() {}, true, 0, "collection_id", org.thryft.protocol.Type.STRING);
+                COLLECTION_ID("collectionId", new com.google.common.reflect.TypeToken<org.dressdiscover.api.models.collection.CollectionId>() {}, true, (short)0, "collection_id", org.thryft.protocol.Type.STRING);
 
                 @Override
                 public String getJavaName() {
@@ -214,7 +221,7 @@ public interface ObjectCommandService {
                 }
 
                 @Override
-                public int getThriftId() {
+                public short getThriftId() {
                     return thriftId;
                 }
 
@@ -259,7 +266,7 @@ public interface ObjectCommandService {
                     }
                 }
 
-                private FieldMetadata(final String javaName, final com.google.common.reflect.TypeToken<?> javaType, final boolean required, final int thriftId, final String thriftName, final org.thryft.protocol.Type thriftProtocolType) {
+                private FieldMetadata(final String javaName, final com.google.common.reflect.TypeToken<?> javaType, final boolean required, final short thriftId, final String thriftName, final org.thryft.protocol.Type thriftProtocolType) {
                     this.javaName = javaName;
                     this.javaType = javaType;
                     this.required = required;
@@ -276,101 +283,50 @@ public interface ObjectCommandService {
                 private final String javaName;
                 private final com.google.common.reflect.TypeToken<?> javaType;
                 private final boolean required;
-                private final int thriftId;
+                private final short thriftId;
                 private final String thriftName;
                 private final String thriftProtocolKey;
                 private final org.thryft.protocol.Type thriftProtocolType;
             }
 
-            public interface Validator<ExceptionT extends Exception> {
-                public org.dressdiscover.api.models.collection.CollectionId validateCollectionId(final org.dressdiscover.api.models.collection.CollectionId collectionId) throws ExceptionT;
-            }
-
-            public interface ConstructionValidator extends Validator<RuntimeException> {
-            }
-
-            public static class DefaultConstructionValidator implements ConstructionValidator {
-                public static DefaultConstructionValidator getInstance() {
-                    return instance;
+            public final static class ReadValidator {
+                public static void validate(final org.dressdiscover.api.models.collection.CollectionId collectionId) throws org.thryft.protocol.InputProtocolException {
+                    validateCollectionId(collectionId);
                 }
 
-                public DefaultConstructionValidator() {
-                }
-
-                @Override
-                public org.dressdiscover.api.models.collection.CollectionId validateCollectionId(final org.dressdiscover.api.models.collection.CollectionId collectionId) throws RuntimeException {
-                    if (collectionId == null) {
-                        throw new NullPointerException("org.dressdiscover.api.services.object.DeleteObjectsByCollectionIdRequest: collectionId is null");
-                    }
-                    return collectionId;
-                }
-
-                private final static DefaultConstructionValidator instance = new DefaultConstructionValidator();
-            }
-
-            public static class NopConstructionValidator implements ConstructionValidator {
-                public static NopConstructionValidator getInstance() {
-                    return instance;
-                }
-
-                public NopConstructionValidator() {
-                }
-
-                @Override
-                public org.dressdiscover.api.models.collection.CollectionId validateCollectionId(final org.dressdiscover.api.models.collection.CollectionId collectionId) {
-                    return collectionId;
-                }
-
-                private final static NopConstructionValidator instance = new NopConstructionValidator();
-            }
-
-            public interface ReadValidator extends Validator<org.thryft.protocol.InputProtocolException> {
-            }
-
-            public static class DefaultReadValidator implements ReadValidator {
-                public static DefaultReadValidator getInstance() {
-                    return instance;
-                }
-
-                public DefaultReadValidator() {
-                }
-
-                @Override
-                public org.dressdiscover.api.models.collection.CollectionId validateCollectionId(final org.dressdiscover.api.models.collection.CollectionId collectionId) throws org.thryft.protocol.InputProtocolException {
+                public static void validateCollectionId(final org.dressdiscover.api.models.collection.CollectionId collectionId) throws org.thryft.protocol.InputProtocolException {
                     if (collectionId == null) {
                         throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.COLLECTION_ID, "org.dressdiscover.api.services.object.DeleteObjectsByCollectionIdRequest: collectionId is null");
                     }
-                    return collectionId;
                 }
-
-                private final static DefaultReadValidator instance = new DefaultReadValidator();
             }
 
-            public static class NopReadValidator implements ReadValidator {
-                public static NopReadValidator getInstance() {
-                    return instance;
+            public final static class UncheckedValidator {
+                public static void validate(final org.dressdiscover.api.models.collection.CollectionId collectionId) {
+                    validateCollectionId(collectionId);
                 }
 
-                public NopReadValidator() {
+                public static void validateCollectionId(final org.dressdiscover.api.models.collection.CollectionId collectionId) {
+                    if (collectionId == null) {
+                        throw new NullPointerException("org.dressdiscover.api.services.object.DeleteObjectsByCollectionIdRequest: collectionId is null");
+                    }
                 }
-
-                @Override
-                public org.dressdiscover.api.models.collection.CollectionId validateCollectionId(final org.dressdiscover.api.models.collection.CollectionId collectionId) {
-                    return collectionId;
-                }
-
-                private final static NopReadValidator instance = new NopReadValidator();
             }
 
             /**
              * Copy constructor
              */
             public DeleteObjectsByCollectionIdRequest(final DeleteObjectsByCollectionIdRequest other) {
-                this(other.getCollectionId(), NopConstructionValidator.getInstance());
+                this(other.getCollectionId());
             }
 
-            protected DeleteObjectsByCollectionIdRequest(final org.dressdiscover.api.models.collection.CollectionId collectionId, ConstructionValidator validator) {
-                this.collectionId = validator.validateCollectionId(collectionId);
+            /**
+             * Total constructor
+             *
+             * All fields should have been validated before calling this.
+             */
+            protected DeleteObjectsByCollectionIdRequest(final org.dressdiscover.api.models.collection.CollectionId collectionId) {
+                this.collectionId = collectionId;
             }
 
             public static Builder builder() {
@@ -389,7 +345,8 @@ public interface ObjectCommandService {
              * Optional factory method
              */
             public static DeleteObjectsByCollectionIdRequest create(final org.dressdiscover.api.models.collection.CollectionId collectionId) {
-                return new DeleteObjectsByCollectionIdRequest(collectionId, DefaultConstructionValidator.getInstance());
+                UncheckedValidator.validate(collectionId);
+                return new DeleteObjectsByCollectionIdRequest(collectionId);
             }
 
             @Override
@@ -458,7 +415,7 @@ public interface ObjectCommandService {
             }
 
             public static DeleteObjectsByCollectionIdRequest readAsList(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
-                org.dressdiscover.api.models.collection.CollectionId collectionId = null;
+                org.dressdiscover.api.models.collection.CollectionId collectionId;
 
                 try {
                     iprot.readListBegin();
@@ -466,12 +423,17 @@ public interface ObjectCommandService {
                         collectionId = org.dressdiscover.api.models.collection.CollectionId.parse(iprot.readString());
                     } catch (final org.dressdiscover.api.models.collection.InvalidCollectionIdException e) {
                          throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.COLLECTION_ID, e);
+                    } catch (final IllegalArgumentException e) {
+                         throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.COLLECTION_ID, e);
                     }
                     iprot.readListEnd();
                 } catch (final RuntimeException e) {
                     throw new IllegalStateException(e);
                 }
-                return new DeleteObjectsByCollectionIdRequest(DefaultReadValidator.getInstance().validateCollectionId(collectionId), NopConstructionValidator.getInstance());
+
+                ReadValidator.validate(collectionId);
+
+                return new DeleteObjectsByCollectionIdRequest(collectionId);
             }
 
             public static DeleteObjectsByCollectionIdRequest readAsStruct(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
@@ -479,7 +441,7 @@ public interface ObjectCommandService {
             }
 
             public static DeleteObjectsByCollectionIdRequest readAsStruct(final org.thryft.protocol.InputProtocol iprot, final com.google.common.base.Optional<UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
-                org.dressdiscover.api.models.collection.CollectionId collectionId = null;
+                @javax.annotation.Nullable org.dressdiscover.api.models.collection.CollectionId collectionId = null;
 
                 try {
                     iprot.readStructBegin();
@@ -493,6 +455,8 @@ public interface ObjectCommandService {
                             try {
                                 collectionId = org.dressdiscover.api.models.collection.CollectionId.parse(iprot.readString());
                             } catch (final org.dressdiscover.api.models.collection.InvalidCollectionIdException e) {
+                                 throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.COLLECTION_ID, e);
+                            } catch (final IllegalArgumentException e) {
                                  throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.COLLECTION_ID, e);
                             }
                             break;
@@ -509,11 +473,15 @@ public interface ObjectCommandService {
                 } catch (final RuntimeException e) {
                     throw new IllegalStateException(e);
                 }
-                return new DeleteObjectsByCollectionIdRequest(DefaultReadValidator.getInstance().validateCollectionId(collectionId), NopConstructionValidator.getInstance());
+
+                ReadValidator.validate(collectionId);
+
+                return new DeleteObjectsByCollectionIdRequest(collectionId);
             }
 
             public DeleteObjectsByCollectionIdRequest replaceCollectionId(final org.dressdiscover.api.models.collection.CollectionId collectionId) {
-                return new DeleteObjectsByCollectionIdRequest(DefaultConstructionValidator.getInstance().validateCollectionId(collectionId), NopConstructionValidator.getInstance());
+                UncheckedValidator.validateCollectionId(collectionId);
+                return new DeleteObjectsByCollectionIdRequest(collectionId);
             }
 
             @Override
@@ -537,11 +505,15 @@ public interface ObjectCommandService {
                 oprot.writeStructEnd();
             }
 
-            @Override
-            public void writeFields(final org.thryft.protocol.OutputProtocol oprot) throws org.thryft.protocol.OutputProtocolException {
-                oprot.writeFieldBegin("collection_id", org.thryft.protocol.Type.STRING, (short)0);
+            public void writeCollectionIdField(final org.thryft.protocol.OutputProtocol oprot) throws org.thryft.protocol.OutputProtocolException {
+                oprot.writeFieldBegin(FieldMetadata.COLLECTION_ID);
                 oprot.writeString(getCollectionId().toString());
                 oprot.writeFieldEnd();
+            }
+
+            @Override
+            public void writeFields(final org.thryft.protocol.OutputProtocol oprot) throws org.thryft.protocol.OutputProtocolException {
+                writeCollectionIdField(oprot);
 
                 oprot.writeFieldStop();
             }
@@ -560,10 +532,12 @@ public interface ObjectCommandService {
                 }
 
                 protected DeleteObjectsByCollectionIdResponse _build(final int returnValue) {
-                    return new DeleteObjectsByCollectionIdResponse(returnValue, DefaultConstructionValidator.getInstance());
+                    return new DeleteObjectsByCollectionIdResponse(returnValue);
                 }
 
                 public DeleteObjectsByCollectionIdResponse build() {
+                    UncheckedValidator.validate(returnValue);
+
                     return _build(returnValue);
                 }
 
@@ -667,7 +641,8 @@ public interface ObjectCommandService {
                 }
 
                 public Builder setReturnValue(final int returnValue) {
-                    this.returnValue = DefaultConstructionValidator.getInstance().validateReturnValue(returnValue);
+                    UncheckedValidator.validateReturnValue(returnValue);
+                    this.returnValue = returnValue;
                     return this;
                 }
 
@@ -697,7 +672,7 @@ public interface ObjectCommandService {
                     return this;
                 }
 
-                private Integer returnValue;
+                private int returnValue;
             }
 
             public final static class Factory implements org.thryft.CompoundType.Factory<DeleteObjectsByCollectionIdResponse> {
@@ -731,7 +706,7 @@ public interface ObjectCommandService {
 
             @SuppressWarnings("serial")
             public enum FieldMetadata implements org.thryft.CompoundType.FieldMetadata {
-                RETURN_VALUE("returnValue", new com.google.common.reflect.TypeToken<Integer>() {}, true, 0, "return_value", org.thryft.protocol.Type.I32);
+                RETURN_VALUE("returnValue", new com.google.common.reflect.TypeToken<Integer>() {}, true, (short)0, "return_value", org.thryft.protocol.Type.I32);
 
                 @Override
                 public String getJavaName() {
@@ -744,7 +719,7 @@ public interface ObjectCommandService {
                 }
 
                 @Override
-                public int getThriftId() {
+                public short getThriftId() {
                     return thriftId;
                 }
 
@@ -789,7 +764,7 @@ public interface ObjectCommandService {
                     }
                 }
 
-                private FieldMetadata(final String javaName, final com.google.common.reflect.TypeToken<?> javaType, final boolean required, final int thriftId, final String thriftName, final org.thryft.protocol.Type thriftProtocolType) {
+                private FieldMetadata(final String javaName, final com.google.common.reflect.TypeToken<?> javaType, final boolean required, final short thriftId, final String thriftName, final org.thryft.protocol.Type thriftProtocolType) {
                     this.javaName = javaName;
                     this.javaType = javaType;
                     this.required = required;
@@ -806,95 +781,44 @@ public interface ObjectCommandService {
                 private final String javaName;
                 private final com.google.common.reflect.TypeToken<?> javaType;
                 private final boolean required;
-                private final int thriftId;
+                private final short thriftId;
                 private final String thriftName;
                 private final String thriftProtocolKey;
                 private final org.thryft.protocol.Type thriftProtocolType;
             }
 
-            public interface Validator<ExceptionT extends Exception> {
-                public int validateReturnValue(final int returnValue) throws ExceptionT;
+            public final static class ReadValidator {
+                public static void validate(final int returnValue) {
+                    validateReturnValue(returnValue);
+                }
+
+                public static void validateReturnValue(final int returnValue) {
+                }
             }
 
-            public interface ConstructionValidator extends Validator<RuntimeException> {
-            }
-
-            public static class DefaultConstructionValidator implements ConstructionValidator {
-                public static DefaultConstructionValidator getInstance() {
-                    return instance;
+            public final static class UncheckedValidator {
+                public static void validate(final int returnValue) {
+                    validateReturnValue(returnValue);
                 }
 
-                public DefaultConstructionValidator() {
+                public static void validateReturnValue(final int returnValue) {
                 }
-
-                @Override
-                public int validateReturnValue(final int returnValue) throws RuntimeException {
-                    return returnValue;
-                }
-
-                private final static DefaultConstructionValidator instance = new DefaultConstructionValidator();
-            }
-
-            public static class NopConstructionValidator implements ConstructionValidator {
-                public static NopConstructionValidator getInstance() {
-                    return instance;
-                }
-
-                public NopConstructionValidator() {
-                }
-
-                @Override
-                public int validateReturnValue(final int returnValue) {
-                    return returnValue;
-                }
-
-                private final static NopConstructionValidator instance = new NopConstructionValidator();
-            }
-
-            public interface ReadValidator extends Validator<org.thryft.protocol.InputProtocolException> {
-            }
-
-            public static class DefaultReadValidator implements ReadValidator {
-                public static DefaultReadValidator getInstance() {
-                    return instance;
-                }
-
-                public DefaultReadValidator() {
-                }
-
-                @Override
-                public int validateReturnValue(final int returnValue) throws org.thryft.protocol.InputProtocolException {
-                    return returnValue;
-                }
-
-                private final static DefaultReadValidator instance = new DefaultReadValidator();
-            }
-
-            public static class NopReadValidator implements ReadValidator {
-                public static NopReadValidator getInstance() {
-                    return instance;
-                }
-
-                public NopReadValidator() {
-                }
-
-                @Override
-                public int validateReturnValue(final int returnValue) {
-                    return returnValue;
-                }
-
-                private final static NopReadValidator instance = new NopReadValidator();
             }
 
             /**
              * Copy constructor
              */
             public DeleteObjectsByCollectionIdResponse(final DeleteObjectsByCollectionIdResponse other) {
-                this(other.getReturnValue(), NopConstructionValidator.getInstance());
+                this(other.getReturnValue());
             }
 
-            protected DeleteObjectsByCollectionIdResponse(final int returnValue, ConstructionValidator validator) {
-                this.returnValue = validator.validateReturnValue(returnValue);
+            /**
+             * Total constructor
+             *
+             * All fields should have been validated before calling this.
+             */
+            protected DeleteObjectsByCollectionIdResponse(final int returnValue) {
+                this.returnValue = returnValue;
             }
 
             public static Builder builder() {
@@ -913,14 +837,16 @@ public interface ObjectCommandService {
              * Total boxed factory method
              */
             public static DeleteObjectsByCollectionIdResponse create(Integer returnValue) {
-                return new DeleteObjectsByCollectionIdResponse(returnValue, DefaultConstructionValidator.getInstance());
+                UncheckedValidator.validate(returnValue);
+                return new DeleteObjectsByCollectionIdResponse(returnValue);
             }
 
             /**
              * Optional factory method
              */
             public static DeleteObjectsByCollectionIdResponse create(final int returnValue) {
-                return new DeleteObjectsByCollectionIdResponse(returnValue, DefaultConstructionValidator.getInstance());
+                UncheckedValidator.validate(returnValue);
+                return new DeleteObjectsByCollectionIdResponse(returnValue);
             }
 
             @Override
@@ -989,7 +915,7 @@ public interface ObjectCommandService {
             }
 
             public static DeleteObjectsByCollectionIdResponse readAsList(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
-                int returnValue = 0;
+                int returnValue;
 
                 try {
                     iprot.readListBegin();
@@ -1002,7 +928,10 @@ public interface ObjectCommandService {
                 } catch (final RuntimeException e) {
                     throw new IllegalStateException(e);
                 }
-                return new DeleteObjectsByCollectionIdResponse(DefaultReadValidator.getInstance().validateReturnValue(returnValue), NopConstructionValidator.getInstance());
+
+                ReadValidator.validate(returnValue);
+
+                return new DeleteObjectsByCollectionIdResponse(returnValue);
             }
 
             public static DeleteObjectsByCollectionIdResponse readAsStruct(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
@@ -1040,11 +969,15 @@ public interface ObjectCommandService {
                 } catch (final RuntimeException e) {
                     throw new IllegalStateException(e);
                 }
-                return new DeleteObjectsByCollectionIdResponse(DefaultReadValidator.getInstance().validateReturnValue(returnValue), NopConstructionValidator.getInstance());
+
+                ReadValidator.validate(returnValue);
+
+                return new DeleteObjectsByCollectionIdResponse(returnValue);
             }
 
             public DeleteObjectsByCollectionIdResponse replaceReturnValue(final int returnValue) {
-                return new DeleteObjectsByCollectionIdResponse(DefaultConstructionValidator.getInstance().validateReturnValue(returnValue), NopConstructionValidator.getInstance());
+                UncheckedValidator.validateReturnValue(returnValue);
+                return new DeleteObjectsByCollectionIdResponse(returnValue);
             }
 
             @Override
@@ -1070,11 +1003,15 @@ public interface ObjectCommandService {
 
             @Override
             public void writeFields(final org.thryft.protocol.OutputProtocol oprot) throws org.thryft.protocol.OutputProtocolException {
-                oprot.writeFieldBegin("return_value", org.thryft.protocol.Type.I32, (short)0);
-                oprot.writeI32(getReturnValue());
-                oprot.writeFieldEnd();
+                writeReturnValueField(oprot);
 
                 oprot.writeFieldStop();
+            }
+
+            public void writeReturnValueField(final org.thryft.protocol.OutputProtocol oprot) throws org.thryft.protocol.OutputProtocolException {
+                oprot.writeFieldBegin(FieldMetadata.RETURN_VALUE);
+                oprot.writeI32(getReturnValue());
+                oprot.writeFieldEnd();
             }
 
             private final int returnValue;
@@ -1093,18 +1030,20 @@ public interface ObjectCommandService {
                 }
 
                 protected PutObjectRequest _build(final org.dressdiscover.api.models.object.ObjectId id, final org.dressdiscover.api.models.object.Object object) {
-                    return new PutObjectRequest(id, object, DefaultConstructionValidator.getInstance());
+                    return new PutObjectRequest(id, object);
                 }
 
                 public PutObjectRequest build() {
+                    UncheckedValidator.validate(id, object);
+
                     return _build(id, object);
                 }
 
-                public final org.dressdiscover.api.models.object.ObjectId getId() {
+                public final @javax.annotation.Nullable org.dressdiscover.api.models.object.ObjectId getId() {
                     return id;
                 }
 
-                public final org.dressdiscover.api.models.object.Object getObject() {
+                public final @javax.annotation.Nullable org.dressdiscover.api.models.object.Object getObject() {
                     return object;
                 }
 
@@ -1129,6 +1068,8 @@ public interface ObjectCommandService {
                         try {
                             id = org.dressdiscover.api.models.object.ObjectId.parse(iprot.readString());
                         } catch (final org.dressdiscover.api.models.object.InvalidObjectIdException e) {
+                             throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.ID, e);
+                        } catch (final IllegalArgumentException e) {
                              throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.ID, e);
                         }
                         object = org.dressdiscover.api.models.object.Object.readAsStruct(iprot);
@@ -1157,11 +1098,13 @@ public interface ObjectCommandService {
                                     id = org.dressdiscover.api.models.object.ObjectId.parse(iprot.readString());
                                 } catch (final org.dressdiscover.api.models.object.InvalidObjectIdException e) {
                                      throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.ID, e);
+                                } catch (final IllegalArgumentException e) {
+                                     throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.ID, e);
                                 }
                                 break;
                             }
                             case "object": {
-                                object = org.dressdiscover.api.models.object.Object.readAsStruct(iprot);
+                                object = org.dressdiscover.api.models.object.Object.readAsStruct(iprot, unknownFieldCallback);
                                 break;
                             }
                             default:
@@ -1202,7 +1145,8 @@ public interface ObjectCommandService {
                 }
 
                 public Builder setId(final org.dressdiscover.api.models.object.ObjectId id) {
-                    this.id = DefaultConstructionValidator.getInstance().validateId(id);
+                    UncheckedValidator.validateId(id);
+                    this.id = id;
                     return this;
                 }
 
@@ -1216,7 +1160,8 @@ public interface ObjectCommandService {
                 }
 
                 public Builder setObject(final org.dressdiscover.api.models.object.Object object) {
-                    this.object = DefaultConstructionValidator.getInstance().validateObject(object);
+                    UncheckedValidator.validateObject(object);
+                    this.object = object;
                     return this;
                 }
 
@@ -1252,8 +1197,8 @@ public interface ObjectCommandService {
                     return this;
                 }
 
-                private org.dressdiscover.api.models.object.ObjectId id;
-                private org.dressdiscover.api.models.object.Object object;
+                private @javax.annotation.Nullable org.dressdiscover.api.models.object.ObjectId id;
+                private @javax.annotation.Nullable org.dressdiscover.api.models.object.Object object;
             }
 
             public final static class Factory implements org.thryft.CompoundType.Factory<PutObjectRequest> {
@@ -1287,8 +1232,8 @@ public interface ObjectCommandService {
 
             @SuppressWarnings("serial")
             public enum FieldMetadata implements org.thryft.CompoundType.FieldMetadata {
-                ID("id", new com.google.common.reflect.TypeToken<org.dressdiscover.api.models.object.ObjectId>() {}, true, 0, "id", org.thryft.protocol.Type.STRING),
-                OBJECT("object", new com.google.common.reflect.TypeToken<org.dressdiscover.api.models.object.Object>() {}, true, 0, "object", org.thryft.protocol.Type.STRUCT);
+                ID("id", new com.google.common.reflect.TypeToken<org.dressdiscover.api.models.object.ObjectId>() {}, true, (short)0, "id", org.thryft.protocol.Type.STRING),
+                OBJECT("object", new com.google.common.reflect.TypeToken<org.dressdiscover.api.models.object.Object>() {}, true, (short)0, "object", org.thryft.protocol.Type.STRUCT);
 
                 @Override
                 public String getJavaName() {
@@ -1301,7 +1246,7 @@ public interface ObjectCommandService {
                 }
 
                 @Override
-                public int getThriftId() {
+                public short getThriftId() {
                     return thriftId;
                 }
 
@@ -1348,7 +1293,7 @@ public interface ObjectCommandService {
                     }
                 }
 
-                private FieldMetadata(final String javaName, final com.google.common.reflect.TypeToken<?> javaType, final boolean required, final int thriftId, final String thriftName, final org.thryft.protocol.Type thriftProtocolType) {
+                private FieldMetadata(final String javaName, final com.google.common.reflect.TypeToken<?> javaType, final boolean required, final short thriftId, final String thriftName, final org.thryft.protocol.Type thriftProtocolType) {
                     this.javaName = javaName;
                     this.javaType = javaType;
                     this.required = required;
@@ -1365,130 +1310,65 @@ public interface ObjectCommandService {
                 private final String javaName;
                 private final com.google.common.reflect.TypeToken<?> javaType;
                 private final boolean required;
-                private final int thriftId;
+                private final short thriftId;
                 private final String thriftName;
                 private final String thriftProtocolKey;
                 private final org.thryft.protocol.Type thriftProtocolType;
             }
 
-            public interface Validator<ExceptionT extends Exception> {
-                public org.dressdiscover.api.models.object.ObjectId validateId(final org.dressdiscover.api.models.object.ObjectId id) throws ExceptionT;
-
-                public org.dressdiscover.api.models.object.Object validateObject(final org.dressdiscover.api.models.object.Object object) throws ExceptionT;
-            }
-
-            public interface ConstructionValidator extends Validator<RuntimeException> {
-            }
-
-            public static class DefaultConstructionValidator implements ConstructionValidator {
-                public static DefaultConstructionValidator getInstance() {
-                    return instance;
+            public final static class ReadValidator {
+                public static void validate(final org.dressdiscover.api.models.object.ObjectId id, final org.dressdiscover.api.models.object.Object object) throws org.thryft.protocol.InputProtocolException {
+                    validateId(id);
+                    validateObject(object);
                 }
 
-                public DefaultConstructionValidator() {
-                }
-
-                @Override
-                public org.dressdiscover.api.models.object.ObjectId validateId(final org.dressdiscover.api.models.object.ObjectId id) throws RuntimeException {
-                    if (id == null) {
-                        throw new NullPointerException("org.dressdiscover.api.services.object.PutObjectRequest: id is null");
-                    }
-                    return id;
-                }
-
-                @Override
-                public org.dressdiscover.api.models.object.Object validateObject(final org.dressdiscover.api.models.object.Object object) throws RuntimeException {
-                    if (object == null) {
-                        throw new NullPointerException("org.dressdiscover.api.services.object.PutObjectRequest: object is null");
-                    }
-                    return object;
-                }
-
-                private final static DefaultConstructionValidator instance = new DefaultConstructionValidator();
-            }
-
-            public static class NopConstructionValidator implements ConstructionValidator {
-                public static NopConstructionValidator getInstance() {
-                    return instance;
-                }
-
-                public NopConstructionValidator() {
-                }
-
-                @Override
-                public org.dressdiscover.api.models.object.ObjectId validateId(final org.dressdiscover.api.models.object.ObjectId id) {
-                    return id;
-                }
-
-                @Override
-                public org.dressdiscover.api.models.object.Object validateObject(final org.dressdiscover.api.models.object.Object object) {
-                    return object;
-                }
-
-                private final static NopConstructionValidator instance = new NopConstructionValidator();
-            }
-
-            public interface ReadValidator extends Validator<org.thryft.protocol.InputProtocolException> {
-            }
-
-            public static class DefaultReadValidator implements ReadValidator {
-                public static DefaultReadValidator getInstance() {
-                    return instance;
-                }
-
-                public DefaultReadValidator() {
-                }
-
-                @Override
-                public org.dressdiscover.api.models.object.ObjectId validateId(final org.dressdiscover.api.models.object.ObjectId id) throws org.thryft.protocol.InputProtocolException {
+                public static void validateId(final org.dressdiscover.api.models.object.ObjectId id) throws org.thryft.protocol.InputProtocolException {
                     if (id == null) {
                         throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.ID, "org.dressdiscover.api.services.object.PutObjectRequest: id is null");
                     }
-                    return id;
                 }
 
-                @Override
-                public org.dressdiscover.api.models.object.Object validateObject(final org.dressdiscover.api.models.object.Object object) throws org.thryft.protocol.InputProtocolException {
+                public static void validateObject(final org.dressdiscover.api.models.object.Object object) throws org.thryft.protocol.InputProtocolException {
                     if (object == null) {
                         throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.OBJECT, "org.dressdiscover.api.services.object.PutObjectRequest: object is null");
                     }
-                    return object;
                 }
-
-                private final static DefaultReadValidator instance = new DefaultReadValidator();
             }
 
-            public static class NopReadValidator implements ReadValidator {
-                public static NopReadValidator getInstance() {
-                    return instance;
+            public final static class UncheckedValidator {
+                public static void validate(final org.dressdiscover.api.models.object.ObjectId id, final org.dressdiscover.api.models.object.Object object) {
+                    validateId(id);
+                    validateObject(object);
                 }
 
-                public NopReadValidator() {
+                public static void validateId(final org.dressdiscover.api.models.object.ObjectId id) {
+                    if (id == null) {
+                        throw new NullPointerException("org.dressdiscover.api.services.object.PutObjectRequest: id is null");
+                    }
                 }
 
-                @Override
-                public org.dressdiscover.api.models.object.ObjectId validateId(final org.dressdiscover.api.models.object.ObjectId id) {
-                    return id;
+                public static void validateObject(final org.dressdiscover.api.models.object.Object object) {
+                    if (object == null) {
+                        throw new NullPointerException("org.dressdiscover.api.services.object.PutObjectRequest: object is null");
+                    }
                 }
-
-                @Override
-                public org.dressdiscover.api.models.object.Object validateObject(final org.dressdiscover.api.models.object.Object object) {
-                    return object;
-                }
-
-                private final static NopReadValidator instance = new NopReadValidator();
             }
 
             /**
              * Copy constructor
              */
             public PutObjectRequest(final PutObjectRequest other) {
-                this(other.getId(), other.getObject(), NopConstructionValidator.getInstance());
+                this(other.getId(), other.getObject());
             }
 
-            protected PutObjectRequest(final org.dressdiscover.api.models.object.ObjectId id, final org.dressdiscover.api.models.object.Object object, ConstructionValidator validator) {
-                this.id = validator.validateId(id);
-                this.object = validator.validateObject(object);
+            /**
+             * Total constructor
+             *
+             * All fields should have been validated before calling this.
+             */
+            protected PutObjectRequest(final org.dressdiscover.api.models.object.ObjectId id, final org.dressdiscover.api.models.object.Object object) {
+                this.id = id;
+                this.object = object;
             }
 
             public static Builder builder() {
@@ -1507,7 +1387,8 @@ public interface ObjectCommandService {
              * Optional factory method
              */
             public static PutObjectRequest create(final org.dressdiscover.api.models.object.ObjectId id, final org.dressdiscover.api.models.object.Object object) {
-                return new PutObjectRequest(id, object, DefaultConstructionValidator.getInstance());
+                UncheckedValidator.validate(id, object);
+                return new PutObjectRequest(id, object);
             }
 
             @Override
@@ -1586,8 +1467,8 @@ public interface ObjectCommandService {
             }
 
             public static PutObjectRequest readAsList(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
-                org.dressdiscover.api.models.object.ObjectId id = null;
-                org.dressdiscover.api.models.object.Object object = null;
+                org.dressdiscover.api.models.object.ObjectId id;
+                org.dressdiscover.api.models.object.Object object;
 
                 try {
                     iprot.readListBegin();
@@ -1595,13 +1476,18 @@ public interface ObjectCommandService {
                         id = org.dressdiscover.api.models.object.ObjectId.parse(iprot.readString());
                     } catch (final org.dressdiscover.api.models.object.InvalidObjectIdException e) {
                          throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.ID, e);
+                    } catch (final IllegalArgumentException e) {
+                         throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.ID, e);
                     }
                     object = org.dressdiscover.api.models.object.Object.readAsStruct(iprot);
                     iprot.readListEnd();
                 } catch (final RuntimeException e) {
                     throw new IllegalStateException(e);
                 }
-                return new PutObjectRequest(DefaultReadValidator.getInstance().validateId(id), DefaultReadValidator.getInstance().validateObject(object), NopConstructionValidator.getInstance());
+
+                ReadValidator.validate(id, object);
+
+                return new PutObjectRequest(id, object);
             }
 
             public static PutObjectRequest readAsStruct(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
@@ -1609,8 +1495,8 @@ public interface ObjectCommandService {
             }
 
             public static PutObjectRequest readAsStruct(final org.thryft.protocol.InputProtocol iprot, final com.google.common.base.Optional<UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
-                org.dressdiscover.api.models.object.ObjectId id = null;
-                org.dressdiscover.api.models.object.Object object = null;
+                @javax.annotation.Nullable org.dressdiscover.api.models.object.ObjectId id = null;
+                @javax.annotation.Nullable org.dressdiscover.api.models.object.Object object = null;
 
                 try {
                     iprot.readStructBegin();
@@ -1625,11 +1511,13 @@ public interface ObjectCommandService {
                                 id = org.dressdiscover.api.models.object.ObjectId.parse(iprot.readString());
                             } catch (final org.dressdiscover.api.models.object.InvalidObjectIdException e) {
                                  throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.ID, e);
+                            } catch (final IllegalArgumentException e) {
+                                 throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.ID, e);
                             }
                             break;
                         }
                         case "object": {
-                            object = org.dressdiscover.api.models.object.Object.readAsStruct(iprot);
+                            object = org.dressdiscover.api.models.object.Object.readAsStruct(iprot, unknownFieldCallback);
                             break;
                         }
                         default:
@@ -1644,15 +1532,20 @@ public interface ObjectCommandService {
                 } catch (final RuntimeException e) {
                     throw new IllegalStateException(e);
                 }
-                return new PutObjectRequest(DefaultReadValidator.getInstance().validateId(id), DefaultReadValidator.getInstance().validateObject(object), NopConstructionValidator.getInstance());
+
+                ReadValidator.validate(id, object);
+
+                return new PutObjectRequest(id, object);
             }
 
             public PutObjectRequest replaceId(final org.dressdiscover.api.models.object.ObjectId id) {
-                return new PutObjectRequest(DefaultConstructionValidator.getInstance().validateId(id), this.object, NopConstructionValidator.getInstance());
+                UncheckedValidator.validateId(id);
+                return new PutObjectRequest(id, this.object);
             }
 
             public PutObjectRequest replaceObject(final org.dressdiscover.api.models.object.Object object) {
-                return new PutObjectRequest(this.id, DefaultConstructionValidator.getInstance().validateObject(object), NopConstructionValidator.getInstance());
+                UncheckedValidator.validateObject(object);
+                return new PutObjectRequest(this.id, object);
             }
 
             @Override
@@ -1680,15 +1573,23 @@ public interface ObjectCommandService {
 
             @Override
             public void writeFields(final org.thryft.protocol.OutputProtocol oprot) throws org.thryft.protocol.OutputProtocolException {
-                oprot.writeFieldBegin("id", org.thryft.protocol.Type.STRING, (short)0);
-                oprot.writeString(getId().toString());
-                oprot.writeFieldEnd();
+                writeIdField(oprot);
 
-                oprot.writeFieldBegin("object", org.thryft.protocol.Type.STRUCT, (short)0);
-                getObject().writeAsStruct(oprot);
-                oprot.writeFieldEnd();
+                writeObjectField(oprot);
 
                 oprot.writeFieldStop();
+            }
+
+            public void writeIdField(final org.thryft.protocol.OutputProtocol oprot) throws org.thryft.protocol.OutputProtocolException {
+                oprot.writeFieldBegin(FieldMetadata.ID);
+                oprot.writeString(getId().toString());
+                oprot.writeFieldEnd();
+            }
+
+            public void writeObjectField(final org.thryft.protocol.OutputProtocol oprot) throws org.thryft.protocol.OutputProtocolException {
+                oprot.writeFieldBegin(FieldMetadata.OBJECT);
+                getObject().writeAsStruct(oprot);
+                oprot.writeFieldEnd();
             }
 
             private final org.dressdiscover.api.models.object.ObjectId id;
@@ -1697,95 +1598,6 @@ public interface ObjectCommandService {
         }
 
         public final static class PutObjectResponse implements org.thryft.Struct {
-            public final static class Builder {
-                public Builder() {
-                }
-
-                public Builder(final PutObjectResponse other) {
-                }
-
-                protected PutObjectResponse _build() {
-                    return new PutObjectResponse();
-                }
-
-                public PutObjectResponse build() {
-                    return _build();
-                }
-
-                public Builder readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type) throws org.thryft.protocol.InputProtocolException {
-                    return readAs(iprot, type, com.google.common.base.Optional.<UnknownFieldCallback> absent());
-                }
-
-                public Builder readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type, final com.google.common.base.Optional<UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
-                    switch (type) {
-                    case LIST:
-                        return readAsList(iprot);
-                    case STRUCT:
-                        return readAsStruct(iprot, unknownFieldCallback);
-                    default:
-                        throw new IllegalArgumentException("cannot read as " + type);
-                    }
-                }
-
-                public Builder readAsList(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
-                    try {
-                        iprot.readListBegin();
-                        iprot.readListEnd();
-                    } catch (final RuntimeException e) {
-                        throw new IllegalStateException(e);
-                    }
-                    return this;
-                }
-
-                public Builder readAsStruct(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
-                    return readAsStruct(iprot, com.google.common.base.Optional.<UnknownFieldCallback> absent());
-                }
-
-                public Builder readAsStruct(final org.thryft.protocol.InputProtocol iprot, final com.google.common.base.Optional<UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
-                    try {
-                        iprot.readStructBegin();
-                        while (true) {
-                            final org.thryft.protocol.FieldBegin ifield = iprot.readFieldBegin();
-                            if (ifield.getType() == org.thryft.protocol.Type.STOP) {
-                                break;
-                            }
-                            if (unknownFieldCallback.isPresent()) {
-                                unknownFieldCallback.get().apply(ifield);
-                            }
-                            iprot.readFieldEnd();
-                        }
-                        iprot.readStructEnd();
-                    } catch (final RuntimeException e) {
-                        throw new IllegalStateException(e);
-                    }
-                    return this;
-                }
-
-                public Builder set(final String fieldThriftName, @javax.annotation.Nullable final java.lang.Object value) {
-                    throw new IllegalArgumentException();
-                }
-
-                public Builder set(final org.thryft.Struct.FieldMetadata fieldMetadata, @javax.annotation.Nullable final java.lang.Object value) {
-                    throw new IllegalArgumentException();
-                }
-
-                public Builder setIfPresent(final PutObjectResponse other) {
-                    com.google.common.base.Preconditions.checkNotNull(other);
-
-
-
-                    return this;
-                }
-
-                public Builder unset(final String fieldThriftName) {
-                    throw new IllegalArgumentException();
-                }
-
-                public Builder unset(final org.thryft.Struct.FieldMetadata fieldMetadata) {
-                    throw new IllegalArgumentException();
-                }
-            }
-
             public final static class Factory implements org.thryft.CompoundType.Factory<PutObjectResponse> {
                 @Override
                 public PutObjectResponse readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type) throws org.thryft.protocol.InputProtocolException {
@@ -1815,82 +1627,7 @@ public interface ObjectCommandService {
                 }
             }
 
-            public interface Validator<ExceptionT extends Exception> {
-            }
-
-            public interface ConstructionValidator extends Validator<RuntimeException> {
-            }
-
-            public static class DefaultConstructionValidator implements ConstructionValidator {
-                public static DefaultConstructionValidator getInstance() {
-                    return instance;
-                }
-
-                public DefaultConstructionValidator() {
-                }
-
-                private final static DefaultConstructionValidator instance = new DefaultConstructionValidator();
-            }
-
-            public static class NopConstructionValidator implements ConstructionValidator {
-                public static NopConstructionValidator getInstance() {
-                    return instance;
-                }
-
-                public NopConstructionValidator() {
-                }
-
-                private final static NopConstructionValidator instance = new NopConstructionValidator();
-            }
-
-            public interface ReadValidator extends Validator<org.thryft.protocol.InputProtocolException> {
-            }
-
-            public static class DefaultReadValidator implements ReadValidator {
-                public static DefaultReadValidator getInstance() {
-                    return instance;
-                }
-
-                public DefaultReadValidator() {
-                }
-
-                private final static DefaultReadValidator instance = new DefaultReadValidator();
-            }
-
-            public static class NopReadValidator implements ReadValidator {
-                public static NopReadValidator getInstance() {
-                    return instance;
-                }
-
-                public NopReadValidator() {
-                }
-
-                private final static NopReadValidator instance = new NopReadValidator();
-            }
-
-            public PutObjectResponse() {
-            }
-
-            /**
-             * Copy constructor
-             */
-            public PutObjectResponse(final PutObjectResponse other) {
-            }
-
-            public static Builder builder() {
-                return new Builder();
-            }
-
-            public static Builder builder(final PutObjectResponse other) {
-                return new Builder(other);
-            }
-
-            public static Builder builder(final com.google.common.base.Optional<PutObjectResponse> other) {
-                return other.isPresent() ? new Builder(other.get()) : new Builder();
-            }
-
-            public static PutObjectResponse create() {
-                return new PutObjectResponse();
+            private PutObjectResponse() {
             }
 
             @Override
@@ -1943,7 +1680,8 @@ public interface ObjectCommandService {
                 } catch (final RuntimeException e) {
                     throw new IllegalStateException(e);
                 }
-                return new PutObjectResponse();
+
+                return INSTANCE;
             }
 
             public static PutObjectResponse readAsStruct(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
@@ -1967,7 +1705,8 @@ public interface ObjectCommandService {
                 } catch (final RuntimeException e) {
                     throw new IllegalStateException(e);
                 }
-                return new PutObjectResponse();
+
+                return INSTANCE;
             }
 
             @Override
@@ -1992,6 +1731,8 @@ public interface ObjectCommandService {
             public void writeFields(final org.thryft.protocol.OutputProtocol oprot) throws org.thryft.protocol.OutputProtocolException {
                 oprot.writeFieldStop();
             }
+
+            public final static PutObjectResponse INSTANCE = new PutObjectResponse();
         }
 
         public final static class PutObjectsRequest implements org.thryft.Struct {
@@ -2005,14 +1746,16 @@ public interface ObjectCommandService {
                 }
 
                 protected PutObjectsRequest _build(final com.google.common.collect.ImmutableList<org.dressdiscover.api.models.object.ObjectEntry> objects) {
-                    return new PutObjectsRequest(objects, DefaultConstructionValidator.getInstance());
+                    return new PutObjectsRequest(objects);
                 }
 
                 public PutObjectsRequest build() {
+                    UncheckedValidator.validate(objects);
+
                     return _build(objects);
                 }
 
-                public final com.google.common.collect.ImmutableList<org.dressdiscover.api.models.object.ObjectEntry> getObjects() {
+                public final @javax.annotation.Nullable com.google.common.collect.ImmutableList<org.dressdiscover.api.models.object.ObjectEntry> getObjects() {
                     return objects;
                 }
 
@@ -2083,7 +1826,7 @@ public interface ObjectCommandService {
                                                 final org.thryft.protocol.ListBegin sequenceBegin = iprot.readListBegin();
                                                 final com.google.common.collect.ImmutableList.Builder<org.dressdiscover.api.models.object.ObjectEntry> sequenceBuilder = com.google.common.collect.ImmutableList.builder();
                                                 for (int elementI = 0; elementI < sequenceBegin.getSize(); elementI++) {
-                                                    sequenceBuilder.add(org.dressdiscover.api.models.object.ObjectEntry.readAsStruct(iprot));
+                                                    sequenceBuilder.add(org.dressdiscover.api.models.object.ObjectEntry.readAsStruct(iprot, unknownFieldCallback));
                                                 }
                                                 iprot.readListEnd();
                                                 return sequenceBuilder.build();
@@ -2143,7 +1886,8 @@ public interface ObjectCommandService {
                 }
 
                 public Builder setObjects(final com.google.common.collect.ImmutableList<org.dressdiscover.api.models.object.ObjectEntry> objects) {
-                    this.objects = DefaultConstructionValidator.getInstance().validateObjects(objects);
+                    UncheckedValidator.validateObjects(objects);
+                    this.objects = objects;
                     return this;
                 }
 
@@ -2173,7 +1917,7 @@ public interface ObjectCommandService {
                     return this;
                 }
 
-                private com.google.common.collect.ImmutableList<org.dressdiscover.api.models.object.ObjectEntry> objects;
+                private @javax.annotation.Nullable com.google.common.collect.ImmutableList<org.dressdiscover.api.models.object.ObjectEntry> objects;
             }
 
             public final static class Factory implements org.thryft.CompoundType.Factory<PutObjectsRequest> {
@@ -2207,7 +1951,7 @@ public interface ObjectCommandService {
 
             @SuppressWarnings("serial")
             public enum FieldMetadata implements org.thryft.CompoundType.FieldMetadata {
-                OBJECTS("objects", new com.google.common.reflect.TypeToken<com.google.common.collect.ImmutableList<org.dressdiscover.api.models.object.ObjectEntry>>() {}, true, 0, "objects", org.thryft.protocol.Type.LIST);
+                OBJECTS("objects", new com.google.common.reflect.TypeToken<com.google.common.collect.ImmutableList<org.dressdiscover.api.models.object.ObjectEntry>>() {}, true, (short)0, "objects", org.thryft.protocol.Type.LIST);
 
                 @Override
                 public String getJavaName() {
@@ -2220,7 +1964,7 @@ public interface ObjectCommandService {
                 }
 
                 @Override
-                public int getThriftId() {
+                public short getThriftId() {
                     return thriftId;
                 }
 
@@ -2265,7 +2009,7 @@ public interface ObjectCommandService {
                     }
                 }
 
-                private FieldMetadata(final String javaName, final com.google.common.reflect.TypeToken<?> javaType, final boolean required, final int thriftId, final String thriftName, final org.thryft.protocol.Type thriftProtocolType) {
+                private FieldMetadata(final String javaName, final com.google.common.reflect.TypeToken<?> javaType, final boolean required, final short thriftId, final String thriftName, final org.thryft.protocol.Type thriftProtocolType) {
                     this.javaName = javaName;
                     this.javaType = javaType;
                     this.required = required;
@@ -2282,101 +2026,50 @@ public interface ObjectCommandService {
                 private final String javaName;
                 private final com.google.common.reflect.TypeToken<?> javaType;
                 private final boolean required;
-                private final int thriftId;
+                private final short thriftId;
                 private final String thriftName;
                 private final String thriftProtocolKey;
                 private final org.thryft.protocol.Type thriftProtocolType;
             }
 
-            public interface Validator<ExceptionT extends Exception> {
-                public com.google.common.collect.ImmutableList<org.dressdiscover.api.models.object.ObjectEntry> validateObjects(final com.google.common.collect.ImmutableList<org.dressdiscover.api.models.object.ObjectEntry> objects) throws ExceptionT;
-            }
-
-            public interface ConstructionValidator extends Validator<RuntimeException> {
-            }
-
-            public static class DefaultConstructionValidator implements ConstructionValidator {
-                public static DefaultConstructionValidator getInstance() {
-                    return instance;
+            public final static class ReadValidator {
+                public static void validate(final com.google.common.collect.ImmutableList<org.dressdiscover.api.models.object.ObjectEntry> objects) throws org.thryft.protocol.InputProtocolException {
+                    validateObjects(objects);
                 }
 
-                public DefaultConstructionValidator() {
-                }
-
-                @Override
-                public com.google.common.collect.ImmutableList<org.dressdiscover.api.models.object.ObjectEntry> validateObjects(final com.google.common.collect.ImmutableList<org.dressdiscover.api.models.object.ObjectEntry> objects) throws RuntimeException {
-                    if (objects == null) {
-                        throw new NullPointerException("org.dressdiscover.api.services.object.PutObjectsRequest: objects is null");
-                    }
-                    return objects;
-                }
-
-                private final static DefaultConstructionValidator instance = new DefaultConstructionValidator();
-            }
-
-            public static class NopConstructionValidator implements ConstructionValidator {
-                public static NopConstructionValidator getInstance() {
-                    return instance;
-                }
-
-                public NopConstructionValidator() {
-                }
-
-                @Override
-                public com.google.common.collect.ImmutableList<org.dressdiscover.api.models.object.ObjectEntry> validateObjects(final com.google.common.collect.ImmutableList<org.dressdiscover.api.models.object.ObjectEntry> objects) {
-                    return objects;
-                }
-
-                private final static NopConstructionValidator instance = new NopConstructionValidator();
-            }
-
-            public interface ReadValidator extends Validator<org.thryft.protocol.InputProtocolException> {
-            }
-
-            public static class DefaultReadValidator implements ReadValidator {
-                public static DefaultReadValidator getInstance() {
-                    return instance;
-                }
-
-                public DefaultReadValidator() {
-                }
-
-                @Override
-                public com.google.common.collect.ImmutableList<org.dressdiscover.api.models.object.ObjectEntry> validateObjects(final com.google.common.collect.ImmutableList<org.dressdiscover.api.models.object.ObjectEntry> objects) throws org.thryft.protocol.InputProtocolException {
+                public static void validateObjects(final com.google.common.collect.ImmutableList<org.dressdiscover.api.models.object.ObjectEntry> objects) throws org.thryft.protocol.InputProtocolException {
                     if (objects == null) {
                         throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.OBJECTS, "org.dressdiscover.api.services.object.PutObjectsRequest: objects is null");
                     }
-                    return objects;
                 }
-
-                private final static DefaultReadValidator instance = new DefaultReadValidator();
             }
 
-            public static class NopReadValidator implements ReadValidator {
-                public static NopReadValidator getInstance() {
-                    return instance;
+            public final static class UncheckedValidator {
+                public static void validate(final com.google.common.collect.ImmutableList<org.dressdiscover.api.models.object.ObjectEntry> objects) {
+                    validateObjects(objects);
                 }
 
-                public NopReadValidator() {
+                public static void validateObjects(final com.google.common.collect.ImmutableList<org.dressdiscover.api.models.object.ObjectEntry> objects) {
+                    if (objects == null) {
+                        throw new NullPointerException("org.dressdiscover.api.services.object.PutObjectsRequest: objects is null");
+                    }
                 }
-
-                @Override
-                public com.google.common.collect.ImmutableList<org.dressdiscover.api.models.object.ObjectEntry> validateObjects(final com.google.common.collect.ImmutableList<org.dressdiscover.api.models.object.ObjectEntry> objects) {
-                    return objects;
-                }
-
-                private final static NopReadValidator instance = new NopReadValidator();
             }
 
             /**
              * Copy constructor
              */
             public PutObjectsRequest(final PutObjectsRequest other) {
-                this(other.getObjects(), NopConstructionValidator.getInstance());
+                this(other.getObjects());
             }
 
-            protected PutObjectsRequest(final com.google.common.collect.ImmutableList<org.dressdiscover.api.models.object.ObjectEntry> objects, ConstructionValidator validator) {
-                this.objects = validator.validateObjects(objects);
+            /**
+             * Total constructor
+             *
+             * All fields should have been validated before calling this.
+             */
+            protected PutObjectsRequest(final com.google.common.collect.ImmutableList<org.dressdiscover.api.models.object.ObjectEntry> objects) {
+                this.objects = objects;
             }
 
             public static Builder builder() {
@@ -2395,7 +2088,8 @@ public interface ObjectCommandService {
              * Optional factory method
              */
             public static PutObjectsRequest create(final com.google.common.collect.ImmutableList<org.dressdiscover.api.models.object.ObjectEntry> objects) {
-                return new PutObjectsRequest(objects, DefaultConstructionValidator.getInstance());
+                UncheckedValidator.validate(objects);
+                return new PutObjectsRequest(objects);
             }
 
             @Override
@@ -2464,7 +2158,7 @@ public interface ObjectCommandService {
             }
 
             public static PutObjectsRequest readAsList(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
-                com.google.common.collect.ImmutableList<org.dressdiscover.api.models.object.ObjectEntry> objects = null;
+                com.google.common.collect.ImmutableList<org.dressdiscover.api.models.object.ObjectEntry> objects;
 
                 try {
                     iprot.readListBegin();
@@ -2492,7 +2186,10 @@ public interface ObjectCommandService {
                 } catch (final RuntimeException e) {
                     throw new IllegalStateException(e);
                 }
-                return new PutObjectsRequest(DefaultReadValidator.getInstance().validateObjects(objects), NopConstructionValidator.getInstance());
+
+                ReadValidator.validate(objects);
+
+                return new PutObjectsRequest(objects);
             }
 
             public static PutObjectsRequest readAsStruct(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
@@ -2500,7 +2197,7 @@ public interface ObjectCommandService {
             }
 
             public static PutObjectsRequest readAsStruct(final org.thryft.protocol.InputProtocol iprot, final com.google.common.base.Optional<UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
-                com.google.common.collect.ImmutableList<org.dressdiscover.api.models.object.ObjectEntry> objects = null;
+                @javax.annotation.Nullable com.google.common.collect.ImmutableList<org.dressdiscover.api.models.object.ObjectEntry> objects = null;
 
                 try {
                     iprot.readStructBegin();
@@ -2519,7 +2216,7 @@ public interface ObjectCommandService {
                                             final org.thryft.protocol.ListBegin sequenceBegin = iprot.readListBegin();
                                             final com.google.common.collect.ImmutableList.Builder<org.dressdiscover.api.models.object.ObjectEntry> sequenceBuilder = com.google.common.collect.ImmutableList.builder();
                                             for (int elementI = 0; elementI < sequenceBegin.getSize(); elementI++) {
-                                                sequenceBuilder.add(org.dressdiscover.api.models.object.ObjectEntry.readAsStruct(iprot));
+                                                sequenceBuilder.add(org.dressdiscover.api.models.object.ObjectEntry.readAsStruct(iprot, unknownFieldCallback));
                                             }
                                             iprot.readListEnd();
                                             return sequenceBuilder.build();
@@ -2545,11 +2242,15 @@ public interface ObjectCommandService {
                 } catch (final RuntimeException e) {
                     throw new IllegalStateException(e);
                 }
-                return new PutObjectsRequest(DefaultReadValidator.getInstance().validateObjects(objects), NopConstructionValidator.getInstance());
+
+                ReadValidator.validate(objects);
+
+                return new PutObjectsRequest(objects);
             }
 
             public PutObjectsRequest replaceObjects(final com.google.common.collect.ImmutableList<org.dressdiscover.api.models.object.ObjectEntry> objects) {
-                return new PutObjectsRequest(DefaultConstructionValidator.getInstance().validateObjects(objects), NopConstructionValidator.getInstance());
+                UncheckedValidator.validateObjects(objects);
+                return new PutObjectsRequest(objects);
             }
 
             @Override
@@ -2579,110 +2280,25 @@ public interface ObjectCommandService {
 
             @Override
             public void writeFields(final org.thryft.protocol.OutputProtocol oprot) throws org.thryft.protocol.OutputProtocolException {
-                oprot.writeFieldBegin("objects", org.thryft.protocol.Type.LIST, (short)0);
+                writeObjectsField(oprot);
+
+                oprot.writeFieldStop();
+            }
+
+            public void writeObjectsField(final org.thryft.protocol.OutputProtocol oprot) throws org.thryft.protocol.OutputProtocolException {
+                oprot.writeFieldBegin(FieldMetadata.OBJECTS);
                 oprot.writeListBegin(org.thryft.protocol.Type.STRUCT, getObjects().size());
                 for (final org.dressdiscover.api.models.object.ObjectEntry _iter0 : getObjects()) {
                     _iter0.writeAsStruct(oprot);
                 }
                 oprot.writeListEnd();
                 oprot.writeFieldEnd();
-
-                oprot.writeFieldStop();
             }
 
             private final com.google.common.collect.ImmutableList<org.dressdiscover.api.models.object.ObjectEntry> objects;
         }
 
         public final static class PutObjectsResponse implements org.thryft.Struct {
-            public final static class Builder {
-                public Builder() {
-                }
-
-                public Builder(final PutObjectsResponse other) {
-                }
-
-                protected PutObjectsResponse _build() {
-                    return new PutObjectsResponse();
-                }
-
-                public PutObjectsResponse build() {
-                    return _build();
-                }
-
-                public Builder readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type) throws org.thryft.protocol.InputProtocolException {
-                    return readAs(iprot, type, com.google.common.base.Optional.<UnknownFieldCallback> absent());
-                }
-
-                public Builder readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type, final com.google.common.base.Optional<UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
-                    switch (type) {
-                    case LIST:
-                        return readAsList(iprot);
-                    case STRUCT:
-                        return readAsStruct(iprot, unknownFieldCallback);
-                    default:
-                        throw new IllegalArgumentException("cannot read as " + type);
-                    }
-                }
-
-                public Builder readAsList(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
-                    try {
-                        iprot.readListBegin();
-                        iprot.readListEnd();
-                    } catch (final RuntimeException e) {
-                        throw new IllegalStateException(e);
-                    }
-                    return this;
-                }
-
-                public Builder readAsStruct(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
-                    return readAsStruct(iprot, com.google.common.base.Optional.<UnknownFieldCallback> absent());
-                }
-
-                public Builder readAsStruct(final org.thryft.protocol.InputProtocol iprot, final com.google.common.base.Optional<UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
-                    try {
-                        iprot.readStructBegin();
-                        while (true) {
-                            final org.thryft.protocol.FieldBegin ifield = iprot.readFieldBegin();
-                            if (ifield.getType() == org.thryft.protocol.Type.STOP) {
-                                break;
-                            }
-                            if (unknownFieldCallback.isPresent()) {
-                                unknownFieldCallback.get().apply(ifield);
-                            }
-                            iprot.readFieldEnd();
-                        }
-                        iprot.readStructEnd();
-                    } catch (final RuntimeException e) {
-                        throw new IllegalStateException(e);
-                    }
-                    return this;
-                }
-
-                public Builder set(final String fieldThriftName, @javax.annotation.Nullable final java.lang.Object value) {
-                    throw new IllegalArgumentException();
-                }
-
-                public Builder set(final org.thryft.Struct.FieldMetadata fieldMetadata, @javax.annotation.Nullable final java.lang.Object value) {
-                    throw new IllegalArgumentException();
-                }
-
-                public Builder setIfPresent(final PutObjectsResponse other) {
-                    com.google.common.base.Preconditions.checkNotNull(other);
-
-
-
-                    return this;
-                }
-
-                public Builder unset(final String fieldThriftName) {
-                    throw new IllegalArgumentException();
-                }
-
-                public Builder unset(final org.thryft.Struct.FieldMetadata fieldMetadata) {
-                    throw new IllegalArgumentException();
-                }
-            }
-
             public final static class Factory implements org.thryft.CompoundType.Factory<PutObjectsResponse> {
                 @Override
                 public PutObjectsResponse readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type) throws org.thryft.protocol.InputProtocolException {
@@ -2712,82 +2328,7 @@ public interface ObjectCommandService {
                 }
             }
 
-            public interface Validator<ExceptionT extends Exception> {
-            }
-
-            public interface ConstructionValidator extends Validator<RuntimeException> {
-            }
-
-            public static class DefaultConstructionValidator implements ConstructionValidator {
-                public static DefaultConstructionValidator getInstance() {
-                    return instance;
-                }
-
-                public DefaultConstructionValidator() {
-                }
-
-                private final static DefaultConstructionValidator instance = new DefaultConstructionValidator();
-            }
-
-            public static class NopConstructionValidator implements ConstructionValidator {
-                public static NopConstructionValidator getInstance() {
-                    return instance;
-                }
-
-                public NopConstructionValidator() {
-                }
-
-                private final static NopConstructionValidator instance = new NopConstructionValidator();
-            }
-
-            public interface ReadValidator extends Validator<org.thryft.protocol.InputProtocolException> {
-            }
-
-            public static class DefaultReadValidator implements ReadValidator {
-                public static DefaultReadValidator getInstance() {
-                    return instance;
-                }
-
-                public DefaultReadValidator() {
-                }
-
-                private final static DefaultReadValidator instance = new DefaultReadValidator();
-            }
-
-            public static class NopReadValidator implements ReadValidator {
-                public static NopReadValidator getInstance() {
-                    return instance;
-                }
-
-                public NopReadValidator() {
-                }
-
-                private final static NopReadValidator instance = new NopReadValidator();
-            }
-
-            public PutObjectsResponse() {
-            }
-
-            /**
-             * Copy constructor
-             */
-            public PutObjectsResponse(final PutObjectsResponse other) {
-            }
-
-            public static Builder builder() {
-                return new Builder();
-            }
-
-            public static Builder builder(final PutObjectsResponse other) {
-                return new Builder(other);
-            }
-
-            public static Builder builder(final com.google.common.base.Optional<PutObjectsResponse> other) {
-                return other.isPresent() ? new Builder(other.get()) : new Builder();
-            }
-
-            public static PutObjectsResponse create() {
-                return new PutObjectsResponse();
+            private PutObjectsResponse() {
             }
 
             @Override
@@ -2840,7 +2381,8 @@ public interface ObjectCommandService {
                 } catch (final RuntimeException e) {
                     throw new IllegalStateException(e);
                 }
-                return new PutObjectsResponse();
+
+                return INSTANCE;
             }
 
             public static PutObjectsResponse readAsStruct(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
@@ -2864,7 +2406,8 @@ public interface ObjectCommandService {
                 } catch (final RuntimeException e) {
                     throw new IllegalStateException(e);
                 }
-                return new PutObjectsResponse();
+
+                return INSTANCE;
             }
 
             @Override
@@ -2889,98 +2432,11 @@ public interface ObjectCommandService {
             public void writeFields(final org.thryft.protocol.OutputProtocol oprot) throws org.thryft.protocol.OutputProtocolException {
                 oprot.writeFieldStop();
             }
+
+            public final static PutObjectsResponse INSTANCE = new PutObjectsResponse();
         }
 
         public final static class ResummarizeObjectsRequest implements org.thryft.Struct {
-            public final static class Builder {
-                public Builder() {
-                }
-
-                public Builder(final ResummarizeObjectsRequest other) {
-                }
-
-                protected ResummarizeObjectsRequest _build() {
-                    return new ResummarizeObjectsRequest();
-                }
-
-                public ResummarizeObjectsRequest build() {
-                    return _build();
-                }
-
-                public Builder readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type) throws org.thryft.protocol.InputProtocolException {
-                    return readAs(iprot, type, com.google.common.base.Optional.<UnknownFieldCallback> absent());
-                }
-
-                public Builder readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type, final com.google.common.base.Optional<UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
-                    switch (type) {
-                    case LIST:
-                        return readAsList(iprot);
-                    case STRUCT:
-                        return readAsStruct(iprot, unknownFieldCallback);
-                    default:
-                        throw new IllegalArgumentException("cannot read as " + type);
-                    }
-                }
-
-                public Builder readAsList(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
-                    try {
-                        iprot.readListBegin();
-                        iprot.readListEnd();
-                    } catch (final RuntimeException e) {
-                        throw new IllegalStateException(e);
-                    }
-                    return this;
-                }
-
-                public Builder readAsStruct(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
-                    return readAsStruct(iprot, com.google.common.base.Optional.<UnknownFieldCallback> absent());
-                }
-
-                public Builder readAsStruct(final org.thryft.protocol.InputProtocol iprot, final com.google.common.base.Optional<UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
-                    try {
-                        iprot.readStructBegin();
-                        while (true) {
-                            final org.thryft.protocol.FieldBegin ifield = iprot.readFieldBegin();
-                            if (ifield.getType() == org.thryft.protocol.Type.STOP) {
-                                break;
-                            }
-                            if (unknownFieldCallback.isPresent()) {
-                                unknownFieldCallback.get().apply(ifield);
-                            }
-                            iprot.readFieldEnd();
-                        }
-                        iprot.readStructEnd();
-                    } catch (final RuntimeException e) {
-                        throw new IllegalStateException(e);
-                    }
-                    return this;
-                }
-
-                public Builder set(final String fieldThriftName, @javax.annotation.Nullable final java.lang.Object value) {
-                    throw new IllegalArgumentException();
-                }
-
-                public Builder set(final org.thryft.Struct.FieldMetadata fieldMetadata, @javax.annotation.Nullable final java.lang.Object value) {
-                    throw new IllegalArgumentException();
-                }
-
-                public Builder setIfPresent(final ResummarizeObjectsRequest other) {
-                    com.google.common.base.Preconditions.checkNotNull(other);
-
-
-
-                    return this;
-                }
-
-                public Builder unset(final String fieldThriftName) {
-                    throw new IllegalArgumentException();
-                }
-
-                public Builder unset(final org.thryft.Struct.FieldMetadata fieldMetadata) {
-                    throw new IllegalArgumentException();
-                }
-            }
-
             public final static class Factory implements org.thryft.CompoundType.Factory<ResummarizeObjectsRequest> {
                 @Override
                 public ResummarizeObjectsRequest readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type) throws org.thryft.protocol.InputProtocolException {
@@ -3010,82 +2466,7 @@ public interface ObjectCommandService {
                 }
             }
 
-            public interface Validator<ExceptionT extends Exception> {
-            }
-
-            public interface ConstructionValidator extends Validator<RuntimeException> {
-            }
-
-            public static class DefaultConstructionValidator implements ConstructionValidator {
-                public static DefaultConstructionValidator getInstance() {
-                    return instance;
-                }
-
-                public DefaultConstructionValidator() {
-                }
-
-                private final static DefaultConstructionValidator instance = new DefaultConstructionValidator();
-            }
-
-            public static class NopConstructionValidator implements ConstructionValidator {
-                public static NopConstructionValidator getInstance() {
-                    return instance;
-                }
-
-                public NopConstructionValidator() {
-                }
-
-                private final static NopConstructionValidator instance = new NopConstructionValidator();
-            }
-
-            public interface ReadValidator extends Validator<org.thryft.protocol.InputProtocolException> {
-            }
-
-            public static class DefaultReadValidator implements ReadValidator {
-                public static DefaultReadValidator getInstance() {
-                    return instance;
-                }
-
-                public DefaultReadValidator() {
-                }
-
-                private final static DefaultReadValidator instance = new DefaultReadValidator();
-            }
-
-            public static class NopReadValidator implements ReadValidator {
-                public static NopReadValidator getInstance() {
-                    return instance;
-                }
-
-                public NopReadValidator() {
-                }
-
-                private final static NopReadValidator instance = new NopReadValidator();
-            }
-
-            public ResummarizeObjectsRequest() {
-            }
-
-            /**
-             * Copy constructor
-             */
-            public ResummarizeObjectsRequest(final ResummarizeObjectsRequest other) {
-            }
-
-            public static Builder builder() {
-                return new Builder();
-            }
-
-            public static Builder builder(final ResummarizeObjectsRequest other) {
-                return new Builder(other);
-            }
-
-            public static Builder builder(final com.google.common.base.Optional<ResummarizeObjectsRequest> other) {
-                return other.isPresent() ? new Builder(other.get()) : new Builder();
-            }
-
-            public static ResummarizeObjectsRequest create() {
-                return new ResummarizeObjectsRequest();
+            private ResummarizeObjectsRequest() {
             }
 
             @Override
@@ -3138,7 +2519,8 @@ public interface ObjectCommandService {
                 } catch (final RuntimeException e) {
                     throw new IllegalStateException(e);
                 }
-                return new ResummarizeObjectsRequest();
+
+                return INSTANCE;
             }
 
             public static ResummarizeObjectsRequest readAsStruct(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
@@ -3162,7 +2544,8 @@ public interface ObjectCommandService {
                 } catch (final RuntimeException e) {
                     throw new IllegalStateException(e);
                 }
-                return new ResummarizeObjectsRequest();
+
+                return INSTANCE;
             }
 
             @Override
@@ -3187,98 +2570,11 @@ public interface ObjectCommandService {
             public void writeFields(final org.thryft.protocol.OutputProtocol oprot) throws org.thryft.protocol.OutputProtocolException {
                 oprot.writeFieldStop();
             }
+
+            public final static ResummarizeObjectsRequest INSTANCE = new ResummarizeObjectsRequest();
         }
 
         public final static class ResummarizeObjectsResponse implements org.thryft.Struct {
-            public final static class Builder {
-                public Builder() {
-                }
-
-                public Builder(final ResummarizeObjectsResponse other) {
-                }
-
-                protected ResummarizeObjectsResponse _build() {
-                    return new ResummarizeObjectsResponse();
-                }
-
-                public ResummarizeObjectsResponse build() {
-                    return _build();
-                }
-
-                public Builder readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type) throws org.thryft.protocol.InputProtocolException {
-                    return readAs(iprot, type, com.google.common.base.Optional.<UnknownFieldCallback> absent());
-                }
-
-                public Builder readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type, final com.google.common.base.Optional<UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
-                    switch (type) {
-                    case LIST:
-                        return readAsList(iprot);
-                    case STRUCT:
-                        return readAsStruct(iprot, unknownFieldCallback);
-                    default:
-                        throw new IllegalArgumentException("cannot read as " + type);
-                    }
-                }
-
-                public Builder readAsList(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
-                    try {
-                        iprot.readListBegin();
-                        iprot.readListEnd();
-                    } catch (final RuntimeException e) {
-                        throw new IllegalStateException(e);
-                    }
-                    return this;
-                }
-
-                public Builder readAsStruct(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
-                    return readAsStruct(iprot, com.google.common.base.Optional.<UnknownFieldCallback> absent());
-                }
-
-                public Builder readAsStruct(final org.thryft.protocol.InputProtocol iprot, final com.google.common.base.Optional<UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
-                    try {
-                        iprot.readStructBegin();
-                        while (true) {
-                            final org.thryft.protocol.FieldBegin ifield = iprot.readFieldBegin();
-                            if (ifield.getType() == org.thryft.protocol.Type.STOP) {
-                                break;
-                            }
-                            if (unknownFieldCallback.isPresent()) {
-                                unknownFieldCallback.get().apply(ifield);
-                            }
-                            iprot.readFieldEnd();
-                        }
-                        iprot.readStructEnd();
-                    } catch (final RuntimeException e) {
-                        throw new IllegalStateException(e);
-                    }
-                    return this;
-                }
-
-                public Builder set(final String fieldThriftName, @javax.annotation.Nullable final java.lang.Object value) {
-                    throw new IllegalArgumentException();
-                }
-
-                public Builder set(final org.thryft.Struct.FieldMetadata fieldMetadata, @javax.annotation.Nullable final java.lang.Object value) {
-                    throw new IllegalArgumentException();
-                }
-
-                public Builder setIfPresent(final ResummarizeObjectsResponse other) {
-                    com.google.common.base.Preconditions.checkNotNull(other);
-
-
-
-                    return this;
-                }
-
-                public Builder unset(final String fieldThriftName) {
-                    throw new IllegalArgumentException();
-                }
-
-                public Builder unset(final org.thryft.Struct.FieldMetadata fieldMetadata) {
-                    throw new IllegalArgumentException();
-                }
-            }
-
             public final static class Factory implements org.thryft.CompoundType.Factory<ResummarizeObjectsResponse> {
                 @Override
                 public ResummarizeObjectsResponse readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type) throws org.thryft.protocol.InputProtocolException {
@@ -3308,82 +2604,7 @@ public interface ObjectCommandService {
                 }
             }
 
-            public interface Validator<ExceptionT extends Exception> {
-            }
-
-            public interface ConstructionValidator extends Validator<RuntimeException> {
-            }
-
-            public static class DefaultConstructionValidator implements ConstructionValidator {
-                public static DefaultConstructionValidator getInstance() {
-                    return instance;
-                }
-
-                public DefaultConstructionValidator() {
-                }
-
-                private final static DefaultConstructionValidator instance = new DefaultConstructionValidator();
-            }
-
-            public static class NopConstructionValidator implements ConstructionValidator {
-                public static NopConstructionValidator getInstance() {
-                    return instance;
-                }
-
-                public NopConstructionValidator() {
-                }
-
-                private final static NopConstructionValidator instance = new NopConstructionValidator();
-            }
-
-            public interface ReadValidator extends Validator<org.thryft.protocol.InputProtocolException> {
-            }
-
-            public static class DefaultReadValidator implements ReadValidator {
-                public static DefaultReadValidator getInstance() {
-                    return instance;
-                }
-
-                public DefaultReadValidator() {
-                }
-
-                private final static DefaultReadValidator instance = new DefaultReadValidator();
-            }
-
-            public static class NopReadValidator implements ReadValidator {
-                public static NopReadValidator getInstance() {
-                    return instance;
-                }
-
-                public NopReadValidator() {
-                }
-
-                private final static NopReadValidator instance = new NopReadValidator();
-            }
-
-            public ResummarizeObjectsResponse() {
-            }
-
-            /**
-             * Copy constructor
-             */
-            public ResummarizeObjectsResponse(final ResummarizeObjectsResponse other) {
-            }
-
-            public static Builder builder() {
-                return new Builder();
-            }
-
-            public static Builder builder(final ResummarizeObjectsResponse other) {
-                return new Builder(other);
-            }
-
-            public static Builder builder(final com.google.common.base.Optional<ResummarizeObjectsResponse> other) {
-                return other.isPresent() ? new Builder(other.get()) : new Builder();
-            }
-
-            public static ResummarizeObjectsResponse create() {
-                return new ResummarizeObjectsResponse();
+            private ResummarizeObjectsResponse() {
             }
 
             @Override
@@ -3436,7 +2657,8 @@ public interface ObjectCommandService {
                 } catch (final RuntimeException e) {
                     throw new IllegalStateException(e);
                 }
-                return new ResummarizeObjectsResponse();
+
+                return INSTANCE;
             }
 
             public static ResummarizeObjectsResponse readAsStruct(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
@@ -3460,7 +2682,8 @@ public interface ObjectCommandService {
                 } catch (final RuntimeException e) {
                     throw new IllegalStateException(e);
                 }
-                return new ResummarizeObjectsResponse();
+
+                return INSTANCE;
             }
 
             @Override
@@ -3485,6 +2708,8 @@ public interface ObjectCommandService {
             public void writeFields(final org.thryft.protocol.OutputProtocol oprot) throws org.thryft.protocol.OutputProtocolException {
                 oprot.writeFieldStop();
             }
+
+            public final static ResummarizeObjectsResponse INSTANCE = new ResummarizeObjectsResponse();
         }
     }
 

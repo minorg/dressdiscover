@@ -1,6 +1,6 @@
 package org.dressdiscover.api.vocabularies.vra_core.inscription;
 
-public enum InscriptionTextType {
+public enum InscriptionTextType implements org.thryft.ThryftEnum {
     SIGNATURE(0),
     MARK(1),
     CAPTION(2),
@@ -9,6 +9,25 @@ public enum InscriptionTextType {
     TEXT(5),
     TRANSLATION(6),
     OTHER(7);
+
+    public final static class Factory implements org.thryft.ThryftEnum.Factory<InscriptionTextType> {
+        public final static Factory getInstance() {
+            return instance;
+        }
+
+        public final InscriptionTextType valueOf(final String name) {
+            return InscriptionTextType.valueOf(name);
+        }
+
+        public final InscriptionTextType valueOf(final int value) {
+            return InscriptionTextType.valueOf(value);
+        }
+
+        private Factory() {
+        }
+
+        private final static Factory instance = new Factory();
+    }
 
     private InscriptionTextType(int value) {
         this.value = value;
@@ -26,10 +45,6 @@ public enum InscriptionTextType {
         case 7: return OTHER;
         default: throw new IllegalArgumentException();
         }
-    }
-
-    public static InscriptionTextType valueOf(final Integer value) {
-        return valueOf(value.intValue());
     }
 
     public final int value() {

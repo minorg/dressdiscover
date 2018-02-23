@@ -25,10 +25,12 @@ public final class CostumeCoreObject implements org.thryft.Struct {
         }
 
         protected CostumeCoreObject _build(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.costume_core.closure.ClosureSet>> closureSets, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.costume_core.color.ColorSet>> colorSets, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.costume_core.component.ComponentSet>> componentSets, final com.google.common.base.Optional<org.dressdiscover.api.vocabularies.costume_core.condition.Condition> condition, final com.google.common.base.Optional<org.dressdiscover.api.vocabularies.costume_core.gender.Gender> gender, final com.google.common.base.Optional<Integer> quantity, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.costume_core.structure.StructureSet>> structureSets, final com.google.common.base.Optional<org.dressdiscover.api.vocabularies.costume_core.view_type.ViewType> viewType) {
-            return new CostumeCoreObject(closureSets, colorSets, componentSets, condition, gender, quantity, structureSets, viewType, DefaultConstructionValidator.getInstance());
+            return new CostumeCoreObject(closureSets, colorSets, componentSets, condition, gender, quantity, structureSets, viewType);
         }
 
         public CostumeCoreObject build() {
+            UncheckedValidator.validate(closureSets, colorSets, componentSets, condition, gender, quantity, structureSets, viewType);
+
             return _build(closureSets, colorSets, componentSets, condition, gender, quantity, structureSets, viewType);
         }
 
@@ -149,14 +151,14 @@ public final class CostumeCoreObject implements org.thryft.Struct {
                     }
                 }
                 if (__list.getSize() > 3) {
-                    condition = com.google.common.base.Optional.of(iprot.readEnum(org.dressdiscover.api.vocabularies.costume_core.condition.Condition.class));
+                    condition = com.google.common.base.Optional.of(iprot.readEnum(org.dressdiscover.api.vocabularies.costume_core.condition.Condition.Factory.getInstance()));
                 }
                 if (__list.getSize() > 4) {
-                    gender = com.google.common.base.Optional.of(iprot.readEnum(org.dressdiscover.api.vocabularies.costume_core.gender.Gender.class));
+                    gender = com.google.common.base.Optional.of(iprot.readEnum(org.dressdiscover.api.vocabularies.costume_core.gender.Gender.Factory.getInstance()));
                 }
                 if (__list.getSize() > 5) {
                     try {
-                        quantity = com.google.common.base.Optional.of(iprot.readI32());
+                        quantity = org.thryft.Optionals.of(iprot.readI32());
                     } catch (final NumberFormatException e) {
                     }
                 }
@@ -183,7 +185,7 @@ public final class CostumeCoreObject implements org.thryft.Struct {
                     }
                 }
                 if (__list.getSize() > 7) {
-                    viewType = com.google.common.base.Optional.of(iprot.readEnum(org.dressdiscover.api.vocabularies.costume_core.view_type.ViewType.class));
+                    viewType = com.google.common.base.Optional.of(iprot.readEnum(org.dressdiscover.api.vocabularies.costume_core.view_type.ViewType.Factory.getInstance()));
                 }
                 iprot.readListEnd();
             } catch (final RuntimeException e) {
@@ -215,7 +217,7 @@ public final class CostumeCoreObject implements org.thryft.Struct {
                                             final org.thryft.protocol.ListBegin sequenceBegin = iprot.readListBegin();
                                             final com.google.common.collect.ImmutableList.Builder<org.dressdiscover.api.vocabularies.costume_core.closure.ClosureSet> sequenceBuilder = com.google.common.collect.ImmutableList.builder();
                                             for (int elementI = 0; elementI < sequenceBegin.getSize(); elementI++) {
-                                                sequenceBuilder.add(org.dressdiscover.api.vocabularies.costume_core.closure.ClosureSet.readAsStruct(iprot));
+                                                sequenceBuilder.add(org.dressdiscover.api.vocabularies.costume_core.closure.ClosureSet.readAsStruct(iprot, unknownFieldCallback));
                                             }
                                             iprot.readListEnd();
                                             return sequenceBuilder.build();
@@ -240,7 +242,7 @@ public final class CostumeCoreObject implements org.thryft.Struct {
                                             final org.thryft.protocol.ListBegin sequenceBegin = iprot.readListBegin();
                                             final com.google.common.collect.ImmutableList.Builder<org.dressdiscover.api.vocabularies.costume_core.color.ColorSet> sequenceBuilder = com.google.common.collect.ImmutableList.builder();
                                             for (int elementI = 0; elementI < sequenceBegin.getSize(); elementI++) {
-                                                sequenceBuilder.add(org.dressdiscover.api.vocabularies.costume_core.color.ColorSet.readAsStruct(iprot));
+                                                sequenceBuilder.add(org.dressdiscover.api.vocabularies.costume_core.color.ColorSet.readAsStruct(iprot, unknownFieldCallback));
                                             }
                                             iprot.readListEnd();
                                             return sequenceBuilder.build();
@@ -265,7 +267,7 @@ public final class CostumeCoreObject implements org.thryft.Struct {
                                             final org.thryft.protocol.ListBegin sequenceBegin = iprot.readListBegin();
                                             final com.google.common.collect.ImmutableList.Builder<org.dressdiscover.api.vocabularies.costume_core.component.ComponentSet> sequenceBuilder = com.google.common.collect.ImmutableList.builder();
                                             for (int elementI = 0; elementI < sequenceBegin.getSize(); elementI++) {
-                                                sequenceBuilder.add(org.dressdiscover.api.vocabularies.costume_core.component.ComponentSet.readAsStruct(iprot));
+                                                sequenceBuilder.add(org.dressdiscover.api.vocabularies.costume_core.component.ComponentSet.readAsStruct(iprot, unknownFieldCallback));
                                             }
                                             iprot.readListEnd();
                                             return sequenceBuilder.build();
@@ -282,20 +284,20 @@ public final class CostumeCoreObject implements org.thryft.Struct {
                     }
                     case "condition": {
                         if (!ifield.hasId() || ifield.getId() == 4) {
-                            condition = com.google.common.base.Optional.of(iprot.readEnum(org.dressdiscover.api.vocabularies.costume_core.condition.Condition.class));
+                            condition = com.google.common.base.Optional.of(iprot.readEnum(org.dressdiscover.api.vocabularies.costume_core.condition.Condition.Factory.getInstance()));
                         }
                         break;
                     }
                     case "gender": {
                         if (!ifield.hasId() || ifield.getId() == 5) {
-                            gender = com.google.common.base.Optional.of(iprot.readEnum(org.dressdiscover.api.vocabularies.costume_core.gender.Gender.class));
+                            gender = com.google.common.base.Optional.of(iprot.readEnum(org.dressdiscover.api.vocabularies.costume_core.gender.Gender.Factory.getInstance()));
                         }
                         break;
                     }
                     case "quantity": {
                         if (!ifield.hasId() || ifield.getId() == 8) {
                             try {
-                                quantity = com.google.common.base.Optional.of(iprot.readI32());
+                                quantity = org.thryft.Optionals.of(iprot.readI32());
                             } catch (final NumberFormatException e) {
                             }
                         }
@@ -311,7 +313,7 @@ public final class CostumeCoreObject implements org.thryft.Struct {
                                             final org.thryft.protocol.ListBegin sequenceBegin = iprot.readListBegin();
                                             final com.google.common.collect.ImmutableList.Builder<org.dressdiscover.api.vocabularies.costume_core.structure.StructureSet> sequenceBuilder = com.google.common.collect.ImmutableList.builder();
                                             for (int elementI = 0; elementI < sequenceBegin.getSize(); elementI++) {
-                                                sequenceBuilder.add(org.dressdiscover.api.vocabularies.costume_core.structure.StructureSet.readAsStruct(iprot));
+                                                sequenceBuilder.add(org.dressdiscover.api.vocabularies.costume_core.structure.StructureSet.readAsStruct(iprot, unknownFieldCallback));
                                             }
                                             iprot.readListEnd();
                                             return sequenceBuilder.build();
@@ -328,7 +330,7 @@ public final class CostumeCoreObject implements org.thryft.Struct {
                     }
                     case "view_type": {
                         if (!ifield.hasId() || ifield.getId() == 7) {
-                            viewType = com.google.common.base.Optional.of(iprot.readEnum(org.dressdiscover.api.vocabularies.costume_core.view_type.ViewType.class));
+                            viewType = com.google.common.base.Optional.of(iprot.readEnum(org.dressdiscover.api.vocabularies.costume_core.view_type.ViewType.Factory.getInstance()));
                         }
                         break;
                     }
@@ -377,47 +379,52 @@ public final class CostumeCoreObject implements org.thryft.Struct {
         }
 
         public Builder setClosureSets(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.costume_core.closure.ClosureSet>> closureSets) {
-            this.closureSets = DefaultConstructionValidator.getInstance().validateClosureSets(closureSets);
+            UncheckedValidator.validateClosureSets(closureSets);
+            this.closureSets = closureSets;
             return this;
         }
 
-        public Builder setClosureSets(@javax.annotation.Nullable final com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.costume_core.closure.ClosureSet> closureSets) {
+        public Builder setClosureSets(final @javax.annotation.Nullable com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.costume_core.closure.ClosureSet> closureSets) {
             return setClosureSets(com.google.common.base.Optional.fromNullable(closureSets));
         }
 
         public Builder setColorSets(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.costume_core.color.ColorSet>> colorSets) {
-            this.colorSets = DefaultConstructionValidator.getInstance().validateColorSets(colorSets);
+            UncheckedValidator.validateColorSets(colorSets);
+            this.colorSets = colorSets;
             return this;
         }
 
-        public Builder setColorSets(@javax.annotation.Nullable final com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.costume_core.color.ColorSet> colorSets) {
+        public Builder setColorSets(final @javax.annotation.Nullable com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.costume_core.color.ColorSet> colorSets) {
             return setColorSets(com.google.common.base.Optional.fromNullable(colorSets));
         }
 
         public Builder setComponentSets(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.costume_core.component.ComponentSet>> componentSets) {
-            this.componentSets = DefaultConstructionValidator.getInstance().validateComponentSets(componentSets);
+            UncheckedValidator.validateComponentSets(componentSets);
+            this.componentSets = componentSets;
             return this;
         }
 
-        public Builder setComponentSets(@javax.annotation.Nullable final com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.costume_core.component.ComponentSet> componentSets) {
+        public Builder setComponentSets(final @javax.annotation.Nullable com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.costume_core.component.ComponentSet> componentSets) {
             return setComponentSets(com.google.common.base.Optional.fromNullable(componentSets));
         }
 
         public Builder setCondition(final com.google.common.base.Optional<org.dressdiscover.api.vocabularies.costume_core.condition.Condition> condition) {
-            this.condition = DefaultConstructionValidator.getInstance().validateCondition(condition);
+            UncheckedValidator.validateCondition(condition);
+            this.condition = condition;
             return this;
         }
 
-        public Builder setCondition(@javax.annotation.Nullable final org.dressdiscover.api.vocabularies.costume_core.condition.Condition condition) {
+        public Builder setCondition(final @javax.annotation.Nullable org.dressdiscover.api.vocabularies.costume_core.condition.Condition condition) {
             return setCondition(com.google.common.base.Optional.fromNullable(condition));
         }
 
         public Builder setGender(final com.google.common.base.Optional<org.dressdiscover.api.vocabularies.costume_core.gender.Gender> gender) {
-            this.gender = DefaultConstructionValidator.getInstance().validateGender(gender);
+            UncheckedValidator.validateGender(gender);
+            this.gender = gender;
             return this;
         }
 
-        public Builder setGender(@javax.annotation.Nullable final org.dressdiscover.api.vocabularies.costume_core.gender.Gender gender) {
+        public Builder setGender(final @javax.annotation.Nullable org.dressdiscover.api.vocabularies.costume_core.gender.Gender gender) {
             return setGender(com.google.common.base.Optional.fromNullable(gender));
         }
 
@@ -453,29 +460,36 @@ public final class CostumeCoreObject implements org.thryft.Struct {
         }
 
         public Builder setQuantity(final com.google.common.base.Optional<Integer> quantity) {
-            this.quantity = DefaultConstructionValidator.getInstance().validateQuantity(quantity);
+            UncheckedValidator.validateQuantity(quantity);
+            this.quantity = quantity;
             return this;
         }
 
-        public Builder setQuantity(@javax.annotation.Nullable final Integer quantity) {
-            return setQuantity(com.google.common.base.Optional.fromNullable(quantity));
+        public Builder setQuantity(final @javax.annotation.Nullable Integer quantity) {
+            return setQuantity(org.thryft.Optionals.fromNullable(quantity));
+        }
+
+        public Builder setQuantity(final int quantity) {
+            return setQuantity(org.thryft.Optionals.of(quantity));
         }
 
         public Builder setStructureSets(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.costume_core.structure.StructureSet>> structureSets) {
-            this.structureSets = DefaultConstructionValidator.getInstance().validateStructureSets(structureSets);
+            UncheckedValidator.validateStructureSets(structureSets);
+            this.structureSets = structureSets;
             return this;
         }
 
-        public Builder setStructureSets(@javax.annotation.Nullable final com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.costume_core.structure.StructureSet> structureSets) {
+        public Builder setStructureSets(final @javax.annotation.Nullable com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.costume_core.structure.StructureSet> structureSets) {
             return setStructureSets(com.google.common.base.Optional.fromNullable(structureSets));
         }
 
         public Builder setViewType(final com.google.common.base.Optional<org.dressdiscover.api.vocabularies.costume_core.view_type.ViewType> viewType) {
-            this.viewType = DefaultConstructionValidator.getInstance().validateViewType(viewType);
+            UncheckedValidator.validateViewType(viewType);
+            this.viewType = viewType;
             return this;
         }
 
-        public Builder setViewType(@javax.annotation.Nullable final org.dressdiscover.api.vocabularies.costume_core.view_type.ViewType viewType) {
+        public Builder setViewType(final @javax.annotation.Nullable org.dressdiscover.api.vocabularies.costume_core.view_type.ViewType viewType) {
             return setViewType(com.google.common.base.Optional.fromNullable(viewType));
         }
 
@@ -588,14 +602,14 @@ public final class CostumeCoreObject implements org.thryft.Struct {
 
     @SuppressWarnings("serial")
     public enum FieldMetadata implements org.thryft.CompoundType.FieldMetadata {
-        CLOSURE_SETS("closureSets", new com.google.common.reflect.TypeToken<com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.costume_core.closure.ClosureSet>>() {}, false, 1, "closure_sets", org.thryft.protocol.Type.LIST),
-        COLOR_SETS("colorSets", new com.google.common.reflect.TypeToken<com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.costume_core.color.ColorSet>>() {}, false, 2, "color_sets", org.thryft.protocol.Type.LIST),
-        COMPONENT_SETS("componentSets", new com.google.common.reflect.TypeToken<com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.costume_core.component.ComponentSet>>() {}, false, 3, "component_sets", org.thryft.protocol.Type.LIST),
-        CONDITION("condition", new com.google.common.reflect.TypeToken<org.dressdiscover.api.vocabularies.costume_core.condition.Condition>() {}, false, 4, "condition", org.thryft.protocol.Type.STRING),
-        GENDER("gender", new com.google.common.reflect.TypeToken<org.dressdiscover.api.vocabularies.costume_core.gender.Gender>() {}, false, 5, "gender", org.thryft.protocol.Type.STRING),
-        QUANTITY("quantity", new com.google.common.reflect.TypeToken<Integer>() {}, false, 8, "quantity", org.thryft.protocol.Type.I32),
-        STRUCTURE_SETS("structureSets", new com.google.common.reflect.TypeToken<com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.costume_core.structure.StructureSet>>() {}, false, 6, "structure_sets", org.thryft.protocol.Type.LIST),
-        VIEW_TYPE("viewType", new com.google.common.reflect.TypeToken<org.dressdiscover.api.vocabularies.costume_core.view_type.ViewType>() {}, false, 7, "view_type", org.thryft.protocol.Type.STRING);
+        CLOSURE_SETS("closureSets", new com.google.common.reflect.TypeToken<com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.costume_core.closure.ClosureSet>>() {}, false, (short)1, "closure_sets", org.thryft.protocol.Type.LIST),
+        COLOR_SETS("colorSets", new com.google.common.reflect.TypeToken<com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.costume_core.color.ColorSet>>() {}, false, (short)2, "color_sets", org.thryft.protocol.Type.LIST),
+        COMPONENT_SETS("componentSets", new com.google.common.reflect.TypeToken<com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.costume_core.component.ComponentSet>>() {}, false, (short)3, "component_sets", org.thryft.protocol.Type.LIST),
+        CONDITION("condition", new com.google.common.reflect.TypeToken<org.dressdiscover.api.vocabularies.costume_core.condition.Condition>() {}, false, (short)4, "condition", org.thryft.protocol.Type.STRING),
+        GENDER("gender", new com.google.common.reflect.TypeToken<org.dressdiscover.api.vocabularies.costume_core.gender.Gender>() {}, false, (short)5, "gender", org.thryft.protocol.Type.STRING),
+        QUANTITY("quantity", new com.google.common.reflect.TypeToken<Integer>() {}, false, (short)8, "quantity", org.thryft.protocol.Type.I32),
+        STRUCTURE_SETS("structureSets", new com.google.common.reflect.TypeToken<com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.costume_core.structure.StructureSet>>() {}, false, (short)6, "structure_sets", org.thryft.protocol.Type.LIST),
+        VIEW_TYPE("viewType", new com.google.common.reflect.TypeToken<org.dressdiscover.api.vocabularies.costume_core.view_type.ViewType>() {}, false, (short)7, "view_type", org.thryft.protocol.Type.STRING);
 
         @Override
         public String getJavaName() {
@@ -608,7 +622,7 @@ public final class CostumeCoreObject implements org.thryft.Struct {
         }
 
         @Override
-        public int getThriftId() {
+        public short getThriftId() {
             return thriftId;
         }
 
@@ -667,7 +681,7 @@ public final class CostumeCoreObject implements org.thryft.Struct {
             }
         }
 
-        private FieldMetadata(final String javaName, final com.google.common.reflect.TypeToken<?> javaType, final boolean required, final int thriftId, final String thriftName, final org.thryft.protocol.Type thriftProtocolType) {
+        private FieldMetadata(final String javaName, final com.google.common.reflect.TypeToken<?> javaType, final boolean required, final short thriftId, final String thriftName, final org.thryft.protocol.Type thriftProtocolType) {
             this.javaName = javaName;
             this.javaType = javaType;
             this.required = required;
@@ -684,363 +698,216 @@ public final class CostumeCoreObject implements org.thryft.Struct {
         private final String javaName;
         private final com.google.common.reflect.TypeToken<?> javaType;
         private final boolean required;
-        private final int thriftId;
+        private final short thriftId;
         private final String thriftName;
         private final String thriftProtocolKey;
         private final org.thryft.protocol.Type thriftProtocolType;
     }
 
-    public interface Validator<ExceptionT extends Exception> {
-        public com.google.common.base.Optional<com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.costume_core.closure.ClosureSet>> validateClosureSets(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.costume_core.closure.ClosureSet>> closureSets) throws ExceptionT;
-
-        public com.google.common.base.Optional<com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.costume_core.color.ColorSet>> validateColorSets(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.costume_core.color.ColorSet>> colorSets) throws ExceptionT;
-
-        public com.google.common.base.Optional<com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.costume_core.component.ComponentSet>> validateComponentSets(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.costume_core.component.ComponentSet>> componentSets) throws ExceptionT;
-
-        public com.google.common.base.Optional<org.dressdiscover.api.vocabularies.costume_core.condition.Condition> validateCondition(final com.google.common.base.Optional<org.dressdiscover.api.vocabularies.costume_core.condition.Condition> condition) throws ExceptionT;
-
-        public com.google.common.base.Optional<org.dressdiscover.api.vocabularies.costume_core.gender.Gender> validateGender(final com.google.common.base.Optional<org.dressdiscover.api.vocabularies.costume_core.gender.Gender> gender) throws ExceptionT;
-
-        public com.google.common.base.Optional<Integer> validateQuantity(final com.google.common.base.Optional<Integer> quantity) throws ExceptionT;
-
-        public com.google.common.base.Optional<com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.costume_core.structure.StructureSet>> validateStructureSets(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.costume_core.structure.StructureSet>> structureSets) throws ExceptionT;
-
-        public com.google.common.base.Optional<org.dressdiscover.api.vocabularies.costume_core.view_type.ViewType> validateViewType(final com.google.common.base.Optional<org.dressdiscover.api.vocabularies.costume_core.view_type.ViewType> viewType) throws ExceptionT;
-    }
-
-    public interface ConstructionValidator extends Validator<RuntimeException> {
-    }
-
-    public static class DefaultConstructionValidator implements ConstructionValidator {
-        public static DefaultConstructionValidator getInstance() {
-            return instance;
+    public final static class ReadValidator {
+        public static void validate(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.costume_core.closure.ClosureSet>> closureSets, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.costume_core.color.ColorSet>> colorSets, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.costume_core.component.ComponentSet>> componentSets, final com.google.common.base.Optional<org.dressdiscover.api.vocabularies.costume_core.condition.Condition> condition, final com.google.common.base.Optional<org.dressdiscover.api.vocabularies.costume_core.gender.Gender> gender, final com.google.common.base.Optional<Integer> quantity, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.costume_core.structure.StructureSet>> structureSets, final com.google.common.base.Optional<org.dressdiscover.api.vocabularies.costume_core.view_type.ViewType> viewType) throws org.thryft.protocol.InputProtocolException {
+            validateClosureSets(closureSets);
+            validateColorSets(colorSets);
+            validateComponentSets(componentSets);
+            validateCondition(condition);
+            validateGender(gender);
+            validateQuantity(quantity);
+            validateStructureSets(structureSets);
+            validateViewType(viewType);
         }
 
-        public DefaultConstructionValidator() {
-        }
-
-        @Override
-        public com.google.common.base.Optional<com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.costume_core.closure.ClosureSet>> validateClosureSets(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.costume_core.closure.ClosureSet>> closureSets) throws RuntimeException {
-            if (closureSets == null) {
-                throw new NullPointerException("org.dressdiscover.api.vocabularies.costume_core.CostumeCoreObject: closureSets is null");
-            }
-            if (!closureSets.isPresent()) {
-                return closureSets;
-            }
-            if (closureSets.get().isEmpty()) {
-                throw new IllegalArgumentException("org.dressdiscover.api.vocabularies.costume_core.CostumeCoreObject: closureSets is less than min length 1");
-            }
-            return closureSets;
-        }
-
-        @Override
-        public com.google.common.base.Optional<com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.costume_core.color.ColorSet>> validateColorSets(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.costume_core.color.ColorSet>> colorSets) throws RuntimeException {
-            if (colorSets == null) {
-                throw new NullPointerException("org.dressdiscover.api.vocabularies.costume_core.CostumeCoreObject: colorSets is null");
-            }
-            if (!colorSets.isPresent()) {
-                return colorSets;
-            }
-            if (colorSets.get().isEmpty()) {
-                throw new IllegalArgumentException("org.dressdiscover.api.vocabularies.costume_core.CostumeCoreObject: colorSets is less than min length 1");
-            }
-            return colorSets;
-        }
-
-        @Override
-        public com.google.common.base.Optional<com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.costume_core.component.ComponentSet>> validateComponentSets(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.costume_core.component.ComponentSet>> componentSets) throws RuntimeException {
-            if (componentSets == null) {
-                throw new NullPointerException("org.dressdiscover.api.vocabularies.costume_core.CostumeCoreObject: componentSets is null");
-            }
-            if (!componentSets.isPresent()) {
-                return componentSets;
-            }
-            if (componentSets.get().isEmpty()) {
-                throw new IllegalArgumentException("org.dressdiscover.api.vocabularies.costume_core.CostumeCoreObject: componentSets is less than min length 1");
-            }
-            return componentSets;
-        }
-
-        @Override
-        public com.google.common.base.Optional<org.dressdiscover.api.vocabularies.costume_core.condition.Condition> validateCondition(final com.google.common.base.Optional<org.dressdiscover.api.vocabularies.costume_core.condition.Condition> condition) throws RuntimeException {
-            if (condition == null) {
-                throw new NullPointerException("org.dressdiscover.api.vocabularies.costume_core.CostumeCoreObject: condition is null");
-            }
-            if (!condition.isPresent()) {
-                return condition;
-            }
-            return condition;
-        }
-
-        @Override
-        public com.google.common.base.Optional<org.dressdiscover.api.vocabularies.costume_core.gender.Gender> validateGender(final com.google.common.base.Optional<org.dressdiscover.api.vocabularies.costume_core.gender.Gender> gender) throws RuntimeException {
-            if (gender == null) {
-                throw new NullPointerException("org.dressdiscover.api.vocabularies.costume_core.CostumeCoreObject: gender is null");
-            }
-            if (!gender.isPresent()) {
-                return gender;
-            }
-            return gender;
-        }
-
-        @Override
-        public com.google.common.base.Optional<Integer> validateQuantity(final com.google.common.base.Optional<Integer> quantity) throws RuntimeException {
-            if (!quantity.isPresent()) {
-                return quantity;
-            }
-            if (quantity.get().intValue() < 1) {
-                throw new IllegalArgumentException("org.dressdiscover.api.vocabularies.costume_core.CostumeCoreObject: quantity is less than min 1");
-            }
-            return quantity;
-        }
-
-        @Override
-        public com.google.common.base.Optional<com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.costume_core.structure.StructureSet>> validateStructureSets(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.costume_core.structure.StructureSet>> structureSets) throws RuntimeException {
-            if (structureSets == null) {
-                throw new NullPointerException("org.dressdiscover.api.vocabularies.costume_core.CostumeCoreObject: structureSets is null");
-            }
-            if (!structureSets.isPresent()) {
-                return structureSets;
-            }
-            if (structureSets.get().isEmpty()) {
-                throw new IllegalArgumentException("org.dressdiscover.api.vocabularies.costume_core.CostumeCoreObject: structureSets is less than min length 1");
-            }
-            return structureSets;
-        }
-
-        @Override
-        public com.google.common.base.Optional<org.dressdiscover.api.vocabularies.costume_core.view_type.ViewType> validateViewType(final com.google.common.base.Optional<org.dressdiscover.api.vocabularies.costume_core.view_type.ViewType> viewType) throws RuntimeException {
-            if (viewType == null) {
-                throw new NullPointerException("org.dressdiscover.api.vocabularies.costume_core.CostumeCoreObject: viewType is null");
-            }
-            if (!viewType.isPresent()) {
-                return viewType;
-            }
-            return viewType;
-        }
-
-        private final static DefaultConstructionValidator instance = new DefaultConstructionValidator();
-    }
-
-    public static class NopConstructionValidator implements ConstructionValidator {
-        public static NopConstructionValidator getInstance() {
-            return instance;
-        }
-
-        public NopConstructionValidator() {
-        }
-
-        @Override
-        public com.google.common.base.Optional<com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.costume_core.closure.ClosureSet>> validateClosureSets(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.costume_core.closure.ClosureSet>> closureSets) {
-            return closureSets;
-        }
-
-        @Override
-        public com.google.common.base.Optional<com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.costume_core.color.ColorSet>> validateColorSets(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.costume_core.color.ColorSet>> colorSets) {
-            return colorSets;
-        }
-
-        @Override
-        public com.google.common.base.Optional<com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.costume_core.component.ComponentSet>> validateComponentSets(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.costume_core.component.ComponentSet>> componentSets) {
-            return componentSets;
-        }
-
-        @Override
-        public com.google.common.base.Optional<org.dressdiscover.api.vocabularies.costume_core.condition.Condition> validateCondition(final com.google.common.base.Optional<org.dressdiscover.api.vocabularies.costume_core.condition.Condition> condition) {
-            return condition;
-        }
-
-        @Override
-        public com.google.common.base.Optional<org.dressdiscover.api.vocabularies.costume_core.gender.Gender> validateGender(final com.google.common.base.Optional<org.dressdiscover.api.vocabularies.costume_core.gender.Gender> gender) {
-            return gender;
-        }
-
-        @Override
-        public com.google.common.base.Optional<Integer> validateQuantity(final com.google.common.base.Optional<Integer> quantity) {
-            return quantity;
-        }
-
-        @Override
-        public com.google.common.base.Optional<com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.costume_core.structure.StructureSet>> validateStructureSets(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.costume_core.structure.StructureSet>> structureSets) {
-            return structureSets;
-        }
-
-        @Override
-        public com.google.common.base.Optional<org.dressdiscover.api.vocabularies.costume_core.view_type.ViewType> validateViewType(final com.google.common.base.Optional<org.dressdiscover.api.vocabularies.costume_core.view_type.ViewType> viewType) {
-            return viewType;
-        }
-
-        private final static NopConstructionValidator instance = new NopConstructionValidator();
-    }
-
-    public interface ReadValidator extends Validator<org.thryft.protocol.InputProtocolException> {
-    }
-
-    public static class DefaultReadValidator implements ReadValidator {
-        public static DefaultReadValidator getInstance() {
-            return instance;
-        }
-
-        public DefaultReadValidator() {
-        }
-
-        @Override
-        public com.google.common.base.Optional<com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.costume_core.closure.ClosureSet>> validateClosureSets(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.costume_core.closure.ClosureSet>> closureSets) throws org.thryft.protocol.InputProtocolException {
+        public static void validateClosureSets(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.costume_core.closure.ClosureSet>> closureSets) throws org.thryft.protocol.InputProtocolException {
             if (closureSets == null) {
                 throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.CLOSURE_SETS, "org.dressdiscover.api.vocabularies.costume_core.CostumeCoreObject: closureSets is null");
             }
             if (!closureSets.isPresent()) {
-                return closureSets;
+                return;
             }
             if (closureSets.get().isEmpty()) {
-                throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.CLOSURE_SETS, "org.dressdiscover.api.vocabularies.costume_core.CostumeCoreObject: closureSets is less than min length 1");
+                throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.CLOSURE_SETS, "org.dressdiscover.api.vocabularies.costume_core.CostumeCoreObject.closureSets: less than min length 1");
             }
-            return closureSets;
         }
 
-        @Override
-        public com.google.common.base.Optional<com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.costume_core.color.ColorSet>> validateColorSets(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.costume_core.color.ColorSet>> colorSets) throws org.thryft.protocol.InputProtocolException {
+        public static void validateColorSets(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.costume_core.color.ColorSet>> colorSets) throws org.thryft.protocol.InputProtocolException {
             if (colorSets == null) {
                 throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.COLOR_SETS, "org.dressdiscover.api.vocabularies.costume_core.CostumeCoreObject: colorSets is null");
             }
             if (!colorSets.isPresent()) {
-                return colorSets;
+                return;
             }
             if (colorSets.get().isEmpty()) {
-                throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.COLOR_SETS, "org.dressdiscover.api.vocabularies.costume_core.CostumeCoreObject: colorSets is less than min length 1");
+                throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.COLOR_SETS, "org.dressdiscover.api.vocabularies.costume_core.CostumeCoreObject.colorSets: less than min length 1");
             }
-            return colorSets;
         }
 
-        @Override
-        public com.google.common.base.Optional<com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.costume_core.component.ComponentSet>> validateComponentSets(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.costume_core.component.ComponentSet>> componentSets) throws org.thryft.protocol.InputProtocolException {
+        public static void validateComponentSets(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.costume_core.component.ComponentSet>> componentSets) throws org.thryft.protocol.InputProtocolException {
             if (componentSets == null) {
                 throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.COMPONENT_SETS, "org.dressdiscover.api.vocabularies.costume_core.CostumeCoreObject: componentSets is null");
             }
             if (!componentSets.isPresent()) {
-                return componentSets;
+                return;
             }
             if (componentSets.get().isEmpty()) {
-                throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.COMPONENT_SETS, "org.dressdiscover.api.vocabularies.costume_core.CostumeCoreObject: componentSets is less than min length 1");
+                throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.COMPONENT_SETS, "org.dressdiscover.api.vocabularies.costume_core.CostumeCoreObject.componentSets: less than min length 1");
             }
-            return componentSets;
         }
 
-        @Override
-        public com.google.common.base.Optional<org.dressdiscover.api.vocabularies.costume_core.condition.Condition> validateCondition(final com.google.common.base.Optional<org.dressdiscover.api.vocabularies.costume_core.condition.Condition> condition) throws org.thryft.protocol.InputProtocolException {
+        public static void validateCondition(final com.google.common.base.Optional<org.dressdiscover.api.vocabularies.costume_core.condition.Condition> condition) throws org.thryft.protocol.InputProtocolException {
             if (condition == null) {
                 throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.CONDITION, "org.dressdiscover.api.vocabularies.costume_core.CostumeCoreObject: condition is null");
             }
             if (!condition.isPresent()) {
-                return condition;
+                return;
             }
-            return condition;
         }
 
-        @Override
-        public com.google.common.base.Optional<org.dressdiscover.api.vocabularies.costume_core.gender.Gender> validateGender(final com.google.common.base.Optional<org.dressdiscover.api.vocabularies.costume_core.gender.Gender> gender) throws org.thryft.protocol.InputProtocolException {
+        public static void validateGender(final com.google.common.base.Optional<org.dressdiscover.api.vocabularies.costume_core.gender.Gender> gender) throws org.thryft.protocol.InputProtocolException {
             if (gender == null) {
                 throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.GENDER, "org.dressdiscover.api.vocabularies.costume_core.CostumeCoreObject: gender is null");
             }
             if (!gender.isPresent()) {
-                return gender;
+                return;
             }
-            return gender;
         }
 
-        @Override
-        public com.google.common.base.Optional<Integer> validateQuantity(final com.google.common.base.Optional<Integer> quantity) throws org.thryft.protocol.InputProtocolException {
+        public static void validateQuantity(final com.google.common.base.Optional<Integer> quantity) throws org.thryft.protocol.InputProtocolException {
+            if (quantity == null) {
+                throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.QUANTITY, "org.dressdiscover.api.vocabularies.costume_core.CostumeCoreObject: quantity is null");
+            }
             if (!quantity.isPresent()) {
-                return quantity;
+                return;
             }
             if (quantity.get().intValue() < 1) {
-                throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.QUANTITY, "org.dressdiscover.api.vocabularies.costume_core.CostumeCoreObject: quantity is less than min 1");
+                throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.QUANTITY, "org.dressdiscover.api.vocabularies.costume_core.CostumeCoreObject.quantity: less than min 1");
             }
-            return quantity;
         }
 
-        @Override
-        public com.google.common.base.Optional<com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.costume_core.structure.StructureSet>> validateStructureSets(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.costume_core.structure.StructureSet>> structureSets) throws org.thryft.protocol.InputProtocolException {
+        public static void validateStructureSets(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.costume_core.structure.StructureSet>> structureSets) throws org.thryft.protocol.InputProtocolException {
             if (structureSets == null) {
                 throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.STRUCTURE_SETS, "org.dressdiscover.api.vocabularies.costume_core.CostumeCoreObject: structureSets is null");
             }
             if (!structureSets.isPresent()) {
-                return structureSets;
+                return;
             }
             if (structureSets.get().isEmpty()) {
-                throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.STRUCTURE_SETS, "org.dressdiscover.api.vocabularies.costume_core.CostumeCoreObject: structureSets is less than min length 1");
+                throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.STRUCTURE_SETS, "org.dressdiscover.api.vocabularies.costume_core.CostumeCoreObject.structureSets: less than min length 1");
             }
-            return structureSets;
         }
 
-        @Override
-        public com.google.common.base.Optional<org.dressdiscover.api.vocabularies.costume_core.view_type.ViewType> validateViewType(final com.google.common.base.Optional<org.dressdiscover.api.vocabularies.costume_core.view_type.ViewType> viewType) throws org.thryft.protocol.InputProtocolException {
+        public static void validateViewType(final com.google.common.base.Optional<org.dressdiscover.api.vocabularies.costume_core.view_type.ViewType> viewType) throws org.thryft.protocol.InputProtocolException {
             if (viewType == null) {
                 throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.VIEW_TYPE, "org.dressdiscover.api.vocabularies.costume_core.CostumeCoreObject: viewType is null");
             }
             if (!viewType.isPresent()) {
-                return viewType;
+                return;
             }
-            return viewType;
         }
-
-        private final static DefaultReadValidator instance = new DefaultReadValidator();
     }
 
-    public static class NopReadValidator implements ReadValidator {
-        public static NopReadValidator getInstance() {
-            return instance;
+    public final static class UncheckedValidator {
+        public static void validate(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.costume_core.closure.ClosureSet>> closureSets, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.costume_core.color.ColorSet>> colorSets, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.costume_core.component.ComponentSet>> componentSets, final com.google.common.base.Optional<org.dressdiscover.api.vocabularies.costume_core.condition.Condition> condition, final com.google.common.base.Optional<org.dressdiscover.api.vocabularies.costume_core.gender.Gender> gender, final com.google.common.base.Optional<Integer> quantity, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.costume_core.structure.StructureSet>> structureSets, final com.google.common.base.Optional<org.dressdiscover.api.vocabularies.costume_core.view_type.ViewType> viewType) {
+            validateClosureSets(closureSets);
+            validateColorSets(colorSets);
+            validateComponentSets(componentSets);
+            validateCondition(condition);
+            validateGender(gender);
+            validateQuantity(quantity);
+            validateStructureSets(structureSets);
+            validateViewType(viewType);
         }
 
-        public NopReadValidator() {
+        public static void validateClosureSets(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.costume_core.closure.ClosureSet>> closureSets) {
+            if (closureSets == null) {
+                throw new NullPointerException("org.dressdiscover.api.vocabularies.costume_core.CostumeCoreObject: closureSets is null");
+            }
+            if (!closureSets.isPresent()) {
+                return;
+            }
+            if (closureSets.get().isEmpty()) {
+                throw new IllegalArgumentException("org.dressdiscover.api.vocabularies.costume_core.CostumeCoreObject.closureSets: less than min length 1");
+            }
         }
 
-        @Override
-        public com.google.common.base.Optional<com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.costume_core.closure.ClosureSet>> validateClosureSets(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.costume_core.closure.ClosureSet>> closureSets) {
-            return closureSets;
+        public static void validateColorSets(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.costume_core.color.ColorSet>> colorSets) {
+            if (colorSets == null) {
+                throw new NullPointerException("org.dressdiscover.api.vocabularies.costume_core.CostumeCoreObject: colorSets is null");
+            }
+            if (!colorSets.isPresent()) {
+                return;
+            }
+            if (colorSets.get().isEmpty()) {
+                throw new IllegalArgumentException("org.dressdiscover.api.vocabularies.costume_core.CostumeCoreObject.colorSets: less than min length 1");
+            }
         }
 
-        @Override
-        public com.google.common.base.Optional<com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.costume_core.color.ColorSet>> validateColorSets(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.costume_core.color.ColorSet>> colorSets) {
-            return colorSets;
+        public static void validateComponentSets(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.costume_core.component.ComponentSet>> componentSets) {
+            if (componentSets == null) {
+                throw new NullPointerException("org.dressdiscover.api.vocabularies.costume_core.CostumeCoreObject: componentSets is null");
+            }
+            if (!componentSets.isPresent()) {
+                return;
+            }
+            if (componentSets.get().isEmpty()) {
+                throw new IllegalArgumentException("org.dressdiscover.api.vocabularies.costume_core.CostumeCoreObject.componentSets: less than min length 1");
+            }
         }
 
-        @Override
-        public com.google.common.base.Optional<com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.costume_core.component.ComponentSet>> validateComponentSets(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.costume_core.component.ComponentSet>> componentSets) {
-            return componentSets;
+        public static void validateCondition(final com.google.common.base.Optional<org.dressdiscover.api.vocabularies.costume_core.condition.Condition> condition) {
+            if (condition == null) {
+                throw new NullPointerException("org.dressdiscover.api.vocabularies.costume_core.CostumeCoreObject: condition is null");
+            }
+            if (!condition.isPresent()) {
+                return;
+            }
         }
 
-        @Override
-        public com.google.common.base.Optional<org.dressdiscover.api.vocabularies.costume_core.condition.Condition> validateCondition(final com.google.common.base.Optional<org.dressdiscover.api.vocabularies.costume_core.condition.Condition> condition) {
-            return condition;
+        public static void validateGender(final com.google.common.base.Optional<org.dressdiscover.api.vocabularies.costume_core.gender.Gender> gender) {
+            if (gender == null) {
+                throw new NullPointerException("org.dressdiscover.api.vocabularies.costume_core.CostumeCoreObject: gender is null");
+            }
+            if (!gender.isPresent()) {
+                return;
+            }
         }
 
-        @Override
-        public com.google.common.base.Optional<org.dressdiscover.api.vocabularies.costume_core.gender.Gender> validateGender(final com.google.common.base.Optional<org.dressdiscover.api.vocabularies.costume_core.gender.Gender> gender) {
-            return gender;
+        public static void validateQuantity(final com.google.common.base.Optional<Integer> quantity) {
+            if (quantity == null) {
+                throw new NullPointerException("org.dressdiscover.api.vocabularies.costume_core.CostumeCoreObject: quantity is null");
+            }
+            if (!quantity.isPresent()) {
+                return;
+            }
+            if (quantity.get().intValue() < 1) {
+                throw new IllegalArgumentException("org.dressdiscover.api.vocabularies.costume_core.CostumeCoreObject.quantity: less than min 1");
+            }
         }
 
-        @Override
-        public com.google.common.base.Optional<Integer> validateQuantity(final com.google.common.base.Optional<Integer> quantity) {
-            return quantity;
+        public static void validateStructureSets(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.costume_core.structure.StructureSet>> structureSets) {
+            if (structureSets == null) {
+                throw new NullPointerException("org.dressdiscover.api.vocabularies.costume_core.CostumeCoreObject: structureSets is null");
+            }
+            if (!structureSets.isPresent()) {
+                return;
+            }
+            if (structureSets.get().isEmpty()) {
+                throw new IllegalArgumentException("org.dressdiscover.api.vocabularies.costume_core.CostumeCoreObject.structureSets: less than min length 1");
+            }
         }
 
-        @Override
-        public com.google.common.base.Optional<com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.costume_core.structure.StructureSet>> validateStructureSets(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.costume_core.structure.StructureSet>> structureSets) {
-            return structureSets;
+        public static void validateViewType(final com.google.common.base.Optional<org.dressdiscover.api.vocabularies.costume_core.view_type.ViewType> viewType) {
+            if (viewType == null) {
+                throw new NullPointerException("org.dressdiscover.api.vocabularies.costume_core.CostumeCoreObject: viewType is null");
+            }
+            if (!viewType.isPresent()) {
+                return;
+            }
         }
-
-        @Override
-        public com.google.common.base.Optional<org.dressdiscover.api.vocabularies.costume_core.view_type.ViewType> validateViewType(final com.google.common.base.Optional<org.dressdiscover.api.vocabularies.costume_core.view_type.ViewType> viewType) {
-            return viewType;
-        }
-
-        private final static NopReadValidator instance = new NopReadValidator();
     }
 
     /**
      * Default constructor
      */
+    @Deprecated
     public CostumeCoreObject() {
         closureSets = com.google.common.base.Optional.<com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.costume_core.closure.ClosureSet>> absent();
         colorSets = com.google.common.base.Optional.<com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.costume_core.color.ColorSet>> absent();
@@ -1056,18 +923,23 @@ public final class CostumeCoreObject implements org.thryft.Struct {
      * Copy constructor
      */
     public CostumeCoreObject(final CostumeCoreObject other) {
-        this(other.getClosureSets(), other.getColorSets(), other.getComponentSets(), other.getCondition(), other.getGender(), other.getQuantity(), other.getStructureSets(), other.getViewType(), NopConstructionValidator.getInstance());
+        this(other.getClosureSets(), other.getColorSets(), other.getComponentSets(), other.getCondition(), other.getGender(), other.getQuantity(), other.getStructureSets(), other.getViewType());
     }
 
-    protected CostumeCoreObject(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.costume_core.closure.ClosureSet>> closureSets, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.costume_core.color.ColorSet>> colorSets, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.costume_core.component.ComponentSet>> componentSets, final com.google.common.base.Optional<org.dressdiscover.api.vocabularies.costume_core.condition.Condition> condition, final com.google.common.base.Optional<org.dressdiscover.api.vocabularies.costume_core.gender.Gender> gender, final com.google.common.base.Optional<Integer> quantity, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.costume_core.structure.StructureSet>> structureSets, final com.google.common.base.Optional<org.dressdiscover.api.vocabularies.costume_core.view_type.ViewType> viewType, ConstructionValidator validator) {
-        this.closureSets = validator.validateClosureSets(closureSets);
-        this.colorSets = validator.validateColorSets(colorSets);
-        this.componentSets = validator.validateComponentSets(componentSets);
-        this.condition = validator.validateCondition(condition);
-        this.gender = validator.validateGender(gender);
-        this.quantity = validator.validateQuantity(quantity);
-        this.structureSets = validator.validateStructureSets(structureSets);
-        this.viewType = validator.validateViewType(viewType);
+    /**
+     * Total constructor
+     *
+     * All fields should have been validated before calling this.
+     */
+    protected CostumeCoreObject(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.costume_core.closure.ClosureSet>> closureSets, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.costume_core.color.ColorSet>> colorSets, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.costume_core.component.ComponentSet>> componentSets, final com.google.common.base.Optional<org.dressdiscover.api.vocabularies.costume_core.condition.Condition> condition, final com.google.common.base.Optional<org.dressdiscover.api.vocabularies.costume_core.gender.Gender> gender, final com.google.common.base.Optional<Integer> quantity, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.costume_core.structure.StructureSet>> structureSets, final com.google.common.base.Optional<org.dressdiscover.api.vocabularies.costume_core.view_type.ViewType> viewType) {
+        this.closureSets = closureSets;
+        this.colorSets = colorSets;
+        this.componentSets = componentSets;
+        this.condition = condition;
+        this.gender = gender;
+        this.quantity = quantity;
+        this.structureSets = structureSets;
+        this.viewType = viewType;
     }
 
     public static Builder builder() {
@@ -1082,6 +954,7 @@ public final class CostumeCoreObject implements org.thryft.Struct {
         return other.isPresent() ? new Builder(other.get()) : new Builder();
     }
 
+    @Deprecated
     public static CostumeCoreObject create() {
         return new CostumeCoreObject();
     }
@@ -1089,15 +962,25 @@ public final class CostumeCoreObject implements org.thryft.Struct {
     /**
      * Total Nullable factory method
      */
-    public static CostumeCoreObject create(final @javax.annotation.Nullable com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.costume_core.closure.ClosureSet> closureSets, final @javax.annotation.Nullable com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.costume_core.color.ColorSet> colorSets, final @javax.annotation.Nullable com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.costume_core.component.ComponentSet> componentSets, final @javax.annotation.Nullable org.dressdiscover.api.vocabularies.costume_core.condition.Condition condition, final @javax.annotation.Nullable org.dressdiscover.api.vocabularies.costume_core.gender.Gender gender, final @javax.annotation.Nullable Integer quantity, final @javax.annotation.Nullable com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.costume_core.structure.StructureSet> structureSets, final @javax.annotation.Nullable org.dressdiscover.api.vocabularies.costume_core.view_type.ViewType viewType) {
-        return new CostumeCoreObject(com.google.common.base.Optional.fromNullable(closureSets), com.google.common.base.Optional.fromNullable(colorSets), com.google.common.base.Optional.fromNullable(componentSets), com.google.common.base.Optional.fromNullable(condition), com.google.common.base.Optional.fromNullable(gender), com.google.common.base.Optional.fromNullable(quantity), com.google.common.base.Optional.fromNullable(structureSets), com.google.common.base.Optional.fromNullable(viewType), DefaultConstructionValidator.getInstance());
+    public static CostumeCoreObject create(@javax.annotation.Nullable final com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.costume_core.closure.ClosureSet> closureSets, @javax.annotation.Nullable final com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.costume_core.color.ColorSet> colorSets, @javax.annotation.Nullable final com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.costume_core.component.ComponentSet> componentSets, @javax.annotation.Nullable final org.dressdiscover.api.vocabularies.costume_core.condition.Condition condition, @javax.annotation.Nullable final org.dressdiscover.api.vocabularies.costume_core.gender.Gender gender, @javax.annotation.Nullable final Integer quantity, @javax.annotation.Nullable final com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.costume_core.structure.StructureSet> structureSets, @javax.annotation.Nullable final org.dressdiscover.api.vocabularies.costume_core.view_type.ViewType viewType) {
+        final com.google.common.base.Optional<com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.costume_core.closure.ClosureSet>> closureSetsOptional = com.google.common.base.Optional.fromNullable(closureSets);
+        final com.google.common.base.Optional<com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.costume_core.color.ColorSet>> colorSetsOptional = com.google.common.base.Optional.fromNullable(colorSets);
+        final com.google.common.base.Optional<com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.costume_core.component.ComponentSet>> componentSetsOptional = com.google.common.base.Optional.fromNullable(componentSets);
+        final com.google.common.base.Optional<org.dressdiscover.api.vocabularies.costume_core.condition.Condition> conditionOptional = com.google.common.base.Optional.fromNullable(condition);
+        final com.google.common.base.Optional<org.dressdiscover.api.vocabularies.costume_core.gender.Gender> genderOptional = com.google.common.base.Optional.fromNullable(gender);
+        final com.google.common.base.Optional<Integer> quantityOptional = org.thryft.Optionals.fromNullable(quantity);
+        final com.google.common.base.Optional<com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.costume_core.structure.StructureSet>> structureSetsOptional = com.google.common.base.Optional.fromNullable(structureSets);
+        final com.google.common.base.Optional<org.dressdiscover.api.vocabularies.costume_core.view_type.ViewType> viewTypeOptional = com.google.common.base.Optional.fromNullable(viewType);
+        UncheckedValidator.validate(closureSetsOptional, colorSetsOptional, componentSetsOptional, conditionOptional, genderOptional, quantityOptional, structureSetsOptional, viewTypeOptional);
+        return new CostumeCoreObject(closureSetsOptional, colorSetsOptional, componentSetsOptional, conditionOptional, genderOptional, quantityOptional, structureSetsOptional, viewTypeOptional);
     }
 
     /**
      * Optional factory method
      */
     public static CostumeCoreObject create(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.costume_core.closure.ClosureSet>> closureSets, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.costume_core.color.ColorSet>> colorSets, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.costume_core.component.ComponentSet>> componentSets, final com.google.common.base.Optional<org.dressdiscover.api.vocabularies.costume_core.condition.Condition> condition, final com.google.common.base.Optional<org.dressdiscover.api.vocabularies.costume_core.gender.Gender> gender, final com.google.common.base.Optional<Integer> quantity, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.costume_core.structure.StructureSet>> structureSets, final com.google.common.base.Optional<org.dressdiscover.api.vocabularies.costume_core.view_type.ViewType> viewType) {
-        return new CostumeCoreObject(closureSets, colorSets, componentSets, condition, gender, quantity, structureSets, viewType, DefaultConstructionValidator.getInstance());
+        UncheckedValidator.validate(closureSets, colorSets, componentSets, condition, gender, quantity, structureSets, viewType);
+        return new CostumeCoreObject(closureSets, colorSets, componentSets, condition, gender, quantity, structureSets, viewType);
     }
 
     @Override
@@ -1330,14 +1213,14 @@ public final class CostumeCoreObject implements org.thryft.Struct {
                 }
             }
             if (__list.getSize() > 3) {
-                condition = com.google.common.base.Optional.of(iprot.readEnum(org.dressdiscover.api.vocabularies.costume_core.condition.Condition.class));
+                condition = com.google.common.base.Optional.of(iprot.readEnum(org.dressdiscover.api.vocabularies.costume_core.condition.Condition.Factory.getInstance()));
             }
             if (__list.getSize() > 4) {
-                gender = com.google.common.base.Optional.of(iprot.readEnum(org.dressdiscover.api.vocabularies.costume_core.gender.Gender.class));
+                gender = com.google.common.base.Optional.of(iprot.readEnum(org.dressdiscover.api.vocabularies.costume_core.gender.Gender.Factory.getInstance()));
             }
             if (__list.getSize() > 5) {
                 try {
-                    quantity = com.google.common.base.Optional.of(iprot.readI32());
+                    quantity = org.thryft.Optionals.of(iprot.readI32());
                 } catch (final NumberFormatException e) {
                 }
             }
@@ -1364,13 +1247,16 @@ public final class CostumeCoreObject implements org.thryft.Struct {
                 }
             }
             if (__list.getSize() > 7) {
-                viewType = com.google.common.base.Optional.of(iprot.readEnum(org.dressdiscover.api.vocabularies.costume_core.view_type.ViewType.class));
+                viewType = com.google.common.base.Optional.of(iprot.readEnum(org.dressdiscover.api.vocabularies.costume_core.view_type.ViewType.Factory.getInstance()));
             }
             iprot.readListEnd();
         } catch (final RuntimeException e) {
             throw new IllegalStateException(e);
         }
-        return new CostumeCoreObject(DefaultReadValidator.getInstance().validateClosureSets(closureSets), DefaultReadValidator.getInstance().validateColorSets(colorSets), DefaultReadValidator.getInstance().validateComponentSets(componentSets), DefaultReadValidator.getInstance().validateCondition(condition), DefaultReadValidator.getInstance().validateGender(gender), DefaultReadValidator.getInstance().validateQuantity(quantity), DefaultReadValidator.getInstance().validateStructureSets(structureSets), DefaultReadValidator.getInstance().validateViewType(viewType), NopConstructionValidator.getInstance());
+
+        ReadValidator.validate(closureSets, colorSets, componentSets, condition, gender, quantity, structureSets, viewType);
+
+        return new CostumeCoreObject(closureSets, colorSets, componentSets, condition, gender, quantity, structureSets, viewType);
     }
 
     public static CostumeCoreObject readAsStruct(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
@@ -1405,7 +1291,7 @@ public final class CostumeCoreObject implements org.thryft.Struct {
                                         final org.thryft.protocol.ListBegin sequenceBegin = iprot.readListBegin();
                                         final com.google.common.collect.ImmutableList.Builder<org.dressdiscover.api.vocabularies.costume_core.closure.ClosureSet> sequenceBuilder = com.google.common.collect.ImmutableList.builder();
                                         for (int elementI = 0; elementI < sequenceBegin.getSize(); elementI++) {
-                                            sequenceBuilder.add(org.dressdiscover.api.vocabularies.costume_core.closure.ClosureSet.readAsStruct(iprot));
+                                            sequenceBuilder.add(org.dressdiscover.api.vocabularies.costume_core.closure.ClosureSet.readAsStruct(iprot, unknownFieldCallback));
                                         }
                                         iprot.readListEnd();
                                         return sequenceBuilder.build();
@@ -1430,7 +1316,7 @@ public final class CostumeCoreObject implements org.thryft.Struct {
                                         final org.thryft.protocol.ListBegin sequenceBegin = iprot.readListBegin();
                                         final com.google.common.collect.ImmutableList.Builder<org.dressdiscover.api.vocabularies.costume_core.color.ColorSet> sequenceBuilder = com.google.common.collect.ImmutableList.builder();
                                         for (int elementI = 0; elementI < sequenceBegin.getSize(); elementI++) {
-                                            sequenceBuilder.add(org.dressdiscover.api.vocabularies.costume_core.color.ColorSet.readAsStruct(iprot));
+                                            sequenceBuilder.add(org.dressdiscover.api.vocabularies.costume_core.color.ColorSet.readAsStruct(iprot, unknownFieldCallback));
                                         }
                                         iprot.readListEnd();
                                         return sequenceBuilder.build();
@@ -1455,7 +1341,7 @@ public final class CostumeCoreObject implements org.thryft.Struct {
                                         final org.thryft.protocol.ListBegin sequenceBegin = iprot.readListBegin();
                                         final com.google.common.collect.ImmutableList.Builder<org.dressdiscover.api.vocabularies.costume_core.component.ComponentSet> sequenceBuilder = com.google.common.collect.ImmutableList.builder();
                                         for (int elementI = 0; elementI < sequenceBegin.getSize(); elementI++) {
-                                            sequenceBuilder.add(org.dressdiscover.api.vocabularies.costume_core.component.ComponentSet.readAsStruct(iprot));
+                                            sequenceBuilder.add(org.dressdiscover.api.vocabularies.costume_core.component.ComponentSet.readAsStruct(iprot, unknownFieldCallback));
                                         }
                                         iprot.readListEnd();
                                         return sequenceBuilder.build();
@@ -1472,20 +1358,20 @@ public final class CostumeCoreObject implements org.thryft.Struct {
                 }
                 case "condition": {
                     if (!ifield.hasId() || ifield.getId() == 4) {
-                        condition = com.google.common.base.Optional.of(iprot.readEnum(org.dressdiscover.api.vocabularies.costume_core.condition.Condition.class));
+                        condition = com.google.common.base.Optional.of(iprot.readEnum(org.dressdiscover.api.vocabularies.costume_core.condition.Condition.Factory.getInstance()));
                     }
                     break;
                 }
                 case "gender": {
                     if (!ifield.hasId() || ifield.getId() == 5) {
-                        gender = com.google.common.base.Optional.of(iprot.readEnum(org.dressdiscover.api.vocabularies.costume_core.gender.Gender.class));
+                        gender = com.google.common.base.Optional.of(iprot.readEnum(org.dressdiscover.api.vocabularies.costume_core.gender.Gender.Factory.getInstance()));
                     }
                     break;
                 }
                 case "quantity": {
                     if (!ifield.hasId() || ifield.getId() == 8) {
                         try {
-                            quantity = com.google.common.base.Optional.of(iprot.readI32());
+                            quantity = org.thryft.Optionals.of(iprot.readI32());
                         } catch (final NumberFormatException e) {
                         }
                     }
@@ -1501,7 +1387,7 @@ public final class CostumeCoreObject implements org.thryft.Struct {
                                         final org.thryft.protocol.ListBegin sequenceBegin = iprot.readListBegin();
                                         final com.google.common.collect.ImmutableList.Builder<org.dressdiscover.api.vocabularies.costume_core.structure.StructureSet> sequenceBuilder = com.google.common.collect.ImmutableList.builder();
                                         for (int elementI = 0; elementI < sequenceBegin.getSize(); elementI++) {
-                                            sequenceBuilder.add(org.dressdiscover.api.vocabularies.costume_core.structure.StructureSet.readAsStruct(iprot));
+                                            sequenceBuilder.add(org.dressdiscover.api.vocabularies.costume_core.structure.StructureSet.readAsStruct(iprot, unknownFieldCallback));
                                         }
                                         iprot.readListEnd();
                                         return sequenceBuilder.build();
@@ -1518,7 +1404,7 @@ public final class CostumeCoreObject implements org.thryft.Struct {
                 }
                 case "view_type": {
                     if (!ifield.hasId() || ifield.getId() == 7) {
-                        viewType = com.google.common.base.Optional.of(iprot.readEnum(org.dressdiscover.api.vocabularies.costume_core.view_type.ViewType.class));
+                        viewType = com.google.common.base.Optional.of(iprot.readEnum(org.dressdiscover.api.vocabularies.costume_core.view_type.ViewType.Factory.getInstance()));
                     }
                     break;
                 }
@@ -1534,70 +1420,85 @@ public final class CostumeCoreObject implements org.thryft.Struct {
         } catch (final RuntimeException e) {
             throw new IllegalStateException(e);
         }
-        return new CostumeCoreObject(DefaultReadValidator.getInstance().validateClosureSets(closureSets), DefaultReadValidator.getInstance().validateColorSets(colorSets), DefaultReadValidator.getInstance().validateComponentSets(componentSets), DefaultReadValidator.getInstance().validateCondition(condition), DefaultReadValidator.getInstance().validateGender(gender), DefaultReadValidator.getInstance().validateQuantity(quantity), DefaultReadValidator.getInstance().validateStructureSets(structureSets), DefaultReadValidator.getInstance().validateViewType(viewType), NopConstructionValidator.getInstance());
+
+        ReadValidator.validate(closureSets, colorSets, componentSets, condition, gender, quantity, structureSets, viewType);
+
+        return new CostumeCoreObject(closureSets, colorSets, componentSets, condition, gender, quantity, structureSets, viewType);
     }
 
     public CostumeCoreObject replaceClosureSets(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.costume_core.closure.ClosureSet>> closureSets) {
-        return new CostumeCoreObject(DefaultConstructionValidator.getInstance().validateClosureSets(closureSets), this.colorSets, this.componentSets, this.condition, this.gender, this.quantity, this.structureSets, this.viewType, NopConstructionValidator.getInstance());
+        UncheckedValidator.validateClosureSets(closureSets);
+        return new CostumeCoreObject(closureSets, this.colorSets, this.componentSets, this.condition, this.gender, this.quantity, this.structureSets, this.viewType);
     }
 
-    public CostumeCoreObject replaceClosureSets(final com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.costume_core.closure.ClosureSet> closureSets) {
+    public CostumeCoreObject replaceClosureSets(@javax.annotation.Nullable final com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.costume_core.closure.ClosureSet> closureSets) {
         return replaceClosureSets(com.google.common.base.Optional.fromNullable(closureSets));
     }
 
     public CostumeCoreObject replaceColorSets(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.costume_core.color.ColorSet>> colorSets) {
-        return new CostumeCoreObject(this.closureSets, DefaultConstructionValidator.getInstance().validateColorSets(colorSets), this.componentSets, this.condition, this.gender, this.quantity, this.structureSets, this.viewType, NopConstructionValidator.getInstance());
+        UncheckedValidator.validateColorSets(colorSets);
+        return new CostumeCoreObject(this.closureSets, colorSets, this.componentSets, this.condition, this.gender, this.quantity, this.structureSets, this.viewType);
     }
 
-    public CostumeCoreObject replaceColorSets(final com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.costume_core.color.ColorSet> colorSets) {
+    public CostumeCoreObject replaceColorSets(@javax.annotation.Nullable final com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.costume_core.color.ColorSet> colorSets) {
         return replaceColorSets(com.google.common.base.Optional.fromNullable(colorSets));
     }
 
     public CostumeCoreObject replaceComponentSets(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.costume_core.component.ComponentSet>> componentSets) {
-        return new CostumeCoreObject(this.closureSets, this.colorSets, DefaultConstructionValidator.getInstance().validateComponentSets(componentSets), this.condition, this.gender, this.quantity, this.structureSets, this.viewType, NopConstructionValidator.getInstance());
+        UncheckedValidator.validateComponentSets(componentSets);
+        return new CostumeCoreObject(this.closureSets, this.colorSets, componentSets, this.condition, this.gender, this.quantity, this.structureSets, this.viewType);
     }
 
-    public CostumeCoreObject replaceComponentSets(final com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.costume_core.component.ComponentSet> componentSets) {
+    public CostumeCoreObject replaceComponentSets(@javax.annotation.Nullable final com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.costume_core.component.ComponentSet> componentSets) {
         return replaceComponentSets(com.google.common.base.Optional.fromNullable(componentSets));
     }
 
     public CostumeCoreObject replaceCondition(final com.google.common.base.Optional<org.dressdiscover.api.vocabularies.costume_core.condition.Condition> condition) {
-        return new CostumeCoreObject(this.closureSets, this.colorSets, this.componentSets, DefaultConstructionValidator.getInstance().validateCondition(condition), this.gender, this.quantity, this.structureSets, this.viewType, NopConstructionValidator.getInstance());
+        UncheckedValidator.validateCondition(condition);
+        return new CostumeCoreObject(this.closureSets, this.colorSets, this.componentSets, condition, this.gender, this.quantity, this.structureSets, this.viewType);
     }
 
-    public CostumeCoreObject replaceCondition(final org.dressdiscover.api.vocabularies.costume_core.condition.Condition condition) {
+    public CostumeCoreObject replaceCondition(@javax.annotation.Nullable final org.dressdiscover.api.vocabularies.costume_core.condition.Condition condition) {
         return replaceCondition(com.google.common.base.Optional.fromNullable(condition));
     }
 
     public CostumeCoreObject replaceGender(final com.google.common.base.Optional<org.dressdiscover.api.vocabularies.costume_core.gender.Gender> gender) {
-        return new CostumeCoreObject(this.closureSets, this.colorSets, this.componentSets, this.condition, DefaultConstructionValidator.getInstance().validateGender(gender), this.quantity, this.structureSets, this.viewType, NopConstructionValidator.getInstance());
+        UncheckedValidator.validateGender(gender);
+        return new CostumeCoreObject(this.closureSets, this.colorSets, this.componentSets, this.condition, gender, this.quantity, this.structureSets, this.viewType);
     }
 
-    public CostumeCoreObject replaceGender(final org.dressdiscover.api.vocabularies.costume_core.gender.Gender gender) {
+    public CostumeCoreObject replaceGender(@javax.annotation.Nullable final org.dressdiscover.api.vocabularies.costume_core.gender.Gender gender) {
         return replaceGender(com.google.common.base.Optional.fromNullable(gender));
     }
 
     public CostumeCoreObject replaceQuantity(final com.google.common.base.Optional<Integer> quantity) {
-        return new CostumeCoreObject(this.closureSets, this.colorSets, this.componentSets, this.condition, this.gender, DefaultConstructionValidator.getInstance().validateQuantity(quantity), this.structureSets, this.viewType, NopConstructionValidator.getInstance());
+        UncheckedValidator.validateQuantity(quantity);
+        return new CostumeCoreObject(this.closureSets, this.colorSets, this.componentSets, this.condition, this.gender, quantity, this.structureSets, this.viewType);
+    }
+
+    public CostumeCoreObject replaceQuantity(@javax.annotation.Nullable final Integer quantity) {
+        return replaceQuantity(org.thryft.Optionals.fromNullable(quantity));
     }
 
     public CostumeCoreObject replaceQuantity(final int quantity) {
-        return replaceQuantity(com.google.common.base.Optional.fromNullable(quantity));
+        return replaceQuantity(org.thryft.Optionals.of(quantity));
     }
 
     public CostumeCoreObject replaceStructureSets(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.costume_core.structure.StructureSet>> structureSets) {
-        return new CostumeCoreObject(this.closureSets, this.colorSets, this.componentSets, this.condition, this.gender, this.quantity, DefaultConstructionValidator.getInstance().validateStructureSets(structureSets), this.viewType, NopConstructionValidator.getInstance());
+        UncheckedValidator.validateStructureSets(structureSets);
+        return new CostumeCoreObject(this.closureSets, this.colorSets, this.componentSets, this.condition, this.gender, this.quantity, structureSets, this.viewType);
     }
 
-    public CostumeCoreObject replaceStructureSets(final com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.costume_core.structure.StructureSet> structureSets) {
+    public CostumeCoreObject replaceStructureSets(@javax.annotation.Nullable final com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.costume_core.structure.StructureSet> structureSets) {
         return replaceStructureSets(com.google.common.base.Optional.fromNullable(structureSets));
     }
 
     public CostumeCoreObject replaceViewType(final com.google.common.base.Optional<org.dressdiscover.api.vocabularies.costume_core.view_type.ViewType> viewType) {
-        return new CostumeCoreObject(this.closureSets, this.colorSets, this.componentSets, this.condition, this.gender, this.quantity, this.structureSets, DefaultConstructionValidator.getInstance().validateViewType(viewType), NopConstructionValidator.getInstance());
+        UncheckedValidator.validateViewType(viewType);
+        return new CostumeCoreObject(this.closureSets, this.colorSets, this.componentSets, this.condition, this.gender, this.quantity, this.structureSets, viewType);
     }
 
-    public CostumeCoreObject replaceViewType(final org.dressdiscover.api.vocabularies.costume_core.view_type.ViewType viewType) {
+    public CostumeCoreObject replaceViewType(@javax.annotation.Nullable final org.dressdiscover.api.vocabularies.costume_core.view_type.ViewType viewType) {
         return replaceViewType(com.google.common.base.Optional.fromNullable(viewType));
     }
 
@@ -1684,10 +1585,9 @@ public final class CostumeCoreObject implements org.thryft.Struct {
         oprot.writeStructEnd();
     }
 
-    @Override
-    public void writeFields(final org.thryft.protocol.OutputProtocol oprot) throws org.thryft.protocol.OutputProtocolException {
+    public void writeClosureSetsField(final org.thryft.protocol.OutputProtocol oprot) throws org.thryft.protocol.OutputProtocolException {
         if (getClosureSets().isPresent()) {
-            oprot.writeFieldBegin("closure_sets", org.thryft.protocol.Type.LIST, (short)1);
+            oprot.writeFieldBegin(FieldMetadata.CLOSURE_SETS);
             oprot.writeListBegin(org.thryft.protocol.Type.STRUCT, getClosureSets().get().size());
             for (final org.dressdiscover.api.vocabularies.costume_core.closure.ClosureSet _iter0 : getClosureSets().get()) {
                 _iter0.writeAsStruct(oprot);
@@ -1695,9 +1595,11 @@ public final class CostumeCoreObject implements org.thryft.Struct {
             oprot.writeListEnd();
             oprot.writeFieldEnd();
         }
+    }
 
+    public void writeColorSetsField(final org.thryft.protocol.OutputProtocol oprot) throws org.thryft.protocol.OutputProtocolException {
         if (getColorSets().isPresent()) {
-            oprot.writeFieldBegin("color_sets", org.thryft.protocol.Type.LIST, (short)2);
+            oprot.writeFieldBegin(FieldMetadata.COLOR_SETS);
             oprot.writeListBegin(org.thryft.protocol.Type.STRUCT, getColorSets().get().size());
             for (final org.dressdiscover.api.vocabularies.costume_core.color.ColorSet _iter0 : getColorSets().get()) {
                 _iter0.writeAsStruct(oprot);
@@ -1705,9 +1607,11 @@ public final class CostumeCoreObject implements org.thryft.Struct {
             oprot.writeListEnd();
             oprot.writeFieldEnd();
         }
+    }
 
+    public void writeComponentSetsField(final org.thryft.protocol.OutputProtocol oprot) throws org.thryft.protocol.OutputProtocolException {
         if (getComponentSets().isPresent()) {
-            oprot.writeFieldBegin("component_sets", org.thryft.protocol.Type.LIST, (short)3);
+            oprot.writeFieldBegin(FieldMetadata.COMPONENT_SETS);
             oprot.writeListBegin(org.thryft.protocol.Type.STRUCT, getComponentSets().get().size());
             for (final org.dressdiscover.api.vocabularies.costume_core.component.ComponentSet _iter0 : getComponentSets().get()) {
                 _iter0.writeAsStruct(oprot);
@@ -1715,27 +1619,56 @@ public final class CostumeCoreObject implements org.thryft.Struct {
             oprot.writeListEnd();
             oprot.writeFieldEnd();
         }
+    }
 
+    public void writeConditionField(final org.thryft.protocol.OutputProtocol oprot) throws org.thryft.protocol.OutputProtocolException {
         if (getCondition().isPresent()) {
-            oprot.writeFieldBegin("condition", org.thryft.protocol.Type.STRING, (short)4);
+            oprot.writeFieldBegin(FieldMetadata.CONDITION);
             oprot.writeEnum(getCondition().get());
             oprot.writeFieldEnd();
         }
+    }
 
+    @Override
+    public void writeFields(final org.thryft.protocol.OutputProtocol oprot) throws org.thryft.protocol.OutputProtocolException {
+        writeClosureSetsField(oprot);
+
+        writeColorSetsField(oprot);
+
+        writeComponentSetsField(oprot);
+
+        writeConditionField(oprot);
+
+        writeGenderField(oprot);
+
+        writeQuantityField(oprot);
+
+        writeStructureSetsField(oprot);
+
+        writeViewTypeField(oprot);
+
+        oprot.writeFieldStop();
+    }
+
+    public void writeGenderField(final org.thryft.protocol.OutputProtocol oprot) throws org.thryft.protocol.OutputProtocolException {
         if (getGender().isPresent()) {
-            oprot.writeFieldBegin("gender", org.thryft.protocol.Type.STRING, (short)5);
+            oprot.writeFieldBegin(FieldMetadata.GENDER);
             oprot.writeEnum(getGender().get());
             oprot.writeFieldEnd();
         }
+    }
 
+    public void writeQuantityField(final org.thryft.protocol.OutputProtocol oprot) throws org.thryft.protocol.OutputProtocolException {
         if (getQuantity().isPresent()) {
-            oprot.writeFieldBegin("quantity", org.thryft.protocol.Type.I32, (short)8);
+            oprot.writeFieldBegin(FieldMetadata.QUANTITY);
             oprot.writeI32(getQuantity().get());
             oprot.writeFieldEnd();
         }
+    }
 
+    public void writeStructureSetsField(final org.thryft.protocol.OutputProtocol oprot) throws org.thryft.protocol.OutputProtocolException {
         if (getStructureSets().isPresent()) {
-            oprot.writeFieldBegin("structure_sets", org.thryft.protocol.Type.LIST, (short)6);
+            oprot.writeFieldBegin(FieldMetadata.STRUCTURE_SETS);
             oprot.writeListBegin(org.thryft.protocol.Type.STRUCT, getStructureSets().get().size());
             for (final org.dressdiscover.api.vocabularies.costume_core.structure.StructureSet _iter0 : getStructureSets().get()) {
                 _iter0.writeAsStruct(oprot);
@@ -1743,15 +1676,17 @@ public final class CostumeCoreObject implements org.thryft.Struct {
             oprot.writeListEnd();
             oprot.writeFieldEnd();
         }
+    }
 
+    public void writeViewTypeField(final org.thryft.protocol.OutputProtocol oprot) throws org.thryft.protocol.OutputProtocolException {
         if (getViewType().isPresent()) {
-            oprot.writeFieldBegin("view_type", org.thryft.protocol.Type.STRING, (short)7);
+            oprot.writeFieldBegin(FieldMetadata.VIEW_TYPE);
             oprot.writeEnum(getViewType().get());
             oprot.writeFieldEnd();
         }
-
-        oprot.writeFieldStop();
     }
+
+    public final static CostumeCoreObject EMPTY = new CostumeCoreObject();
 
     private final com.google.common.base.Optional<com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.costume_core.closure.ClosureSet>> closureSets;
 

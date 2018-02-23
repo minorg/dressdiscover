@@ -3,11 +3,30 @@ package org.dressdiscover.api.vocabularies.vra_core.location;
 /**
  * VRA Core 4.0 location.refid type= attribute
  */
-public enum LocationRefidType {
+public enum LocationRefidType implements org.thryft.ThryftEnum {
     ACCESSION(0),
     BARCODE(1),
     SHELF_LIST(2),
     OTHER(3);
+
+    public final static class Factory implements org.thryft.ThryftEnum.Factory<LocationRefidType> {
+        public final static Factory getInstance() {
+            return instance;
+        }
+
+        public final LocationRefidType valueOf(final String name) {
+            return LocationRefidType.valueOf(name);
+        }
+
+        public final LocationRefidType valueOf(final int value) {
+            return LocationRefidType.valueOf(value);
+        }
+
+        private Factory() {
+        }
+
+        private final static Factory instance = new Factory();
+    }
 
     private LocationRefidType(int value) {
         this.value = value;
@@ -21,10 +40,6 @@ public enum LocationRefidType {
         case 3: return OTHER;
         default: throw new IllegalArgumentException();
         }
-    }
-
-    public static LocationRefidType valueOf(final Integer value) {
-        return valueOf(value.intValue());
     }
 
     public final int value() {

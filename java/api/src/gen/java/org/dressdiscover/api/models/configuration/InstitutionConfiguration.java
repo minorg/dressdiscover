@@ -13,14 +13,16 @@ public final class InstitutionConfiguration implements org.thryft.Struct {
         }
 
         protected InstitutionConfiguration _build(final org.dressdiscover.api.models.configuration.CollectionStoreConfiguration collectionStoreConfiguration, final com.google.common.base.Optional<org.dressdiscover.api.models.configuration.CollectionConfiguration> defaultCollectionConfiguration) {
-            return new InstitutionConfiguration(collectionStoreConfiguration, defaultCollectionConfiguration, DefaultConstructionValidator.getInstance());
+            return new InstitutionConfiguration(collectionStoreConfiguration, defaultCollectionConfiguration);
         }
 
         public InstitutionConfiguration build() {
+            UncheckedValidator.validate(collectionStoreConfiguration, defaultCollectionConfiguration);
+
             return _build(collectionStoreConfiguration, defaultCollectionConfiguration);
         }
 
-        public final org.dressdiscover.api.models.configuration.CollectionStoreConfiguration getCollectionStoreConfiguration() {
+        public final @javax.annotation.Nullable org.dressdiscover.api.models.configuration.CollectionStoreConfiguration getCollectionStoreConfiguration() {
             return collectionStoreConfiguration;
         }
 
@@ -72,13 +74,13 @@ public final class InstitutionConfiguration implements org.thryft.Struct {
                     switch (ifield.getName()) {
                     case "collection_store_configuration": {
                         if (!ifield.hasId() || ifield.getId() == 1) {
-                            collectionStoreConfiguration = org.dressdiscover.api.models.configuration.CollectionStoreConfiguration.readAsStruct(iprot);
+                            collectionStoreConfiguration = org.dressdiscover.api.models.configuration.CollectionStoreConfiguration.readAsStruct(iprot, unknownFieldCallback);
                         }
                         break;
                     }
                     case "default_collection_configuration": {
                         if (!ifield.hasId() || ifield.getId() == 2) {
-                            defaultCollectionConfiguration = com.google.common.base.Optional.of(org.dressdiscover.api.models.configuration.CollectionConfiguration.readAsStruct(iprot));
+                            defaultCollectionConfiguration = com.google.common.base.Optional.of(org.dressdiscover.api.models.configuration.CollectionConfiguration.readAsStruct(iprot, unknownFieldCallback));
                         }
                         break;
                     }
@@ -120,16 +122,18 @@ public final class InstitutionConfiguration implements org.thryft.Struct {
         }
 
         public Builder setCollectionStoreConfiguration(final org.dressdiscover.api.models.configuration.CollectionStoreConfiguration collectionStoreConfiguration) {
-            this.collectionStoreConfiguration = DefaultConstructionValidator.getInstance().validateCollectionStoreConfiguration(collectionStoreConfiguration);
+            UncheckedValidator.validateCollectionStoreConfiguration(collectionStoreConfiguration);
+            this.collectionStoreConfiguration = collectionStoreConfiguration;
             return this;
         }
 
         public Builder setDefaultCollectionConfiguration(final com.google.common.base.Optional<org.dressdiscover.api.models.configuration.CollectionConfiguration> defaultCollectionConfiguration) {
-            this.defaultCollectionConfiguration = DefaultConstructionValidator.getInstance().validateDefaultCollectionConfiguration(defaultCollectionConfiguration);
+            UncheckedValidator.validateDefaultCollectionConfiguration(defaultCollectionConfiguration);
+            this.defaultCollectionConfiguration = defaultCollectionConfiguration;
             return this;
         }
 
-        public Builder setDefaultCollectionConfiguration(@javax.annotation.Nullable final org.dressdiscover.api.models.configuration.CollectionConfiguration defaultCollectionConfiguration) {
+        public Builder setDefaultCollectionConfiguration(final @javax.annotation.Nullable org.dressdiscover.api.models.configuration.CollectionConfiguration defaultCollectionConfiguration) {
             return setDefaultCollectionConfiguration(com.google.common.base.Optional.fromNullable(defaultCollectionConfiguration));
         }
 
@@ -176,7 +180,7 @@ public final class InstitutionConfiguration implements org.thryft.Struct {
             return this;
         }
 
-        private org.dressdiscover.api.models.configuration.CollectionStoreConfiguration collectionStoreConfiguration;
+        private @javax.annotation.Nullable org.dressdiscover.api.models.configuration.CollectionStoreConfiguration collectionStoreConfiguration;
         private com.google.common.base.Optional<org.dressdiscover.api.models.configuration.CollectionConfiguration> defaultCollectionConfiguration;
     }
 
@@ -211,8 +215,8 @@ public final class InstitutionConfiguration implements org.thryft.Struct {
 
     @SuppressWarnings("serial")
     public enum FieldMetadata implements org.thryft.CompoundType.FieldMetadata {
-        COLLECTION_STORE_CONFIGURATION("collectionStoreConfiguration", new com.google.common.reflect.TypeToken<org.dressdiscover.api.models.configuration.CollectionStoreConfiguration>() {}, true, 1, "collection_store_configuration", org.thryft.protocol.Type.STRUCT),
-        DEFAULT_COLLECTION_CONFIGURATION("defaultCollectionConfiguration", new com.google.common.reflect.TypeToken<org.dressdiscover.api.models.configuration.CollectionConfiguration>() {}, false, 2, "default_collection_configuration", org.thryft.protocol.Type.STRUCT);
+        COLLECTION_STORE_CONFIGURATION("collectionStoreConfiguration", new com.google.common.reflect.TypeToken<org.dressdiscover.api.models.configuration.CollectionStoreConfiguration>() {}, true, (short)1, "collection_store_configuration", org.thryft.protocol.Type.STRUCT),
+        DEFAULT_COLLECTION_CONFIGURATION("defaultCollectionConfiguration", new com.google.common.reflect.TypeToken<org.dressdiscover.api.models.configuration.CollectionConfiguration>() {}, false, (short)2, "default_collection_configuration", org.thryft.protocol.Type.STRUCT);
 
         @Override
         public String getJavaName() {
@@ -225,7 +229,7 @@ public final class InstitutionConfiguration implements org.thryft.Struct {
         }
 
         @Override
-        public int getThriftId() {
+        public short getThriftId() {
             return thriftId;
         }
 
@@ -272,7 +276,7 @@ public final class InstitutionConfiguration implements org.thryft.Struct {
             }
         }
 
-        private FieldMetadata(final String javaName, final com.google.common.reflect.TypeToken<?> javaType, final boolean required, final int thriftId, final String thriftName, final org.thryft.protocol.Type thriftProtocolType) {
+        private FieldMetadata(final String javaName, final com.google.common.reflect.TypeToken<?> javaType, final boolean required, final short thriftId, final String thriftName, final org.thryft.protocol.Type thriftProtocolType) {
             this.javaName = javaName;
             this.javaType = javaType;
             this.required = required;
@@ -289,136 +293,71 @@ public final class InstitutionConfiguration implements org.thryft.Struct {
         private final String javaName;
         private final com.google.common.reflect.TypeToken<?> javaType;
         private final boolean required;
-        private final int thriftId;
+        private final short thriftId;
         private final String thriftName;
         private final String thriftProtocolKey;
         private final org.thryft.protocol.Type thriftProtocolType;
     }
 
-    public interface Validator<ExceptionT extends Exception> {
-        public org.dressdiscover.api.models.configuration.CollectionStoreConfiguration validateCollectionStoreConfiguration(final org.dressdiscover.api.models.configuration.CollectionStoreConfiguration collectionStoreConfiguration) throws ExceptionT;
-
-        public com.google.common.base.Optional<org.dressdiscover.api.models.configuration.CollectionConfiguration> validateDefaultCollectionConfiguration(final com.google.common.base.Optional<org.dressdiscover.api.models.configuration.CollectionConfiguration> defaultCollectionConfiguration) throws ExceptionT;
-    }
-
-    public interface ConstructionValidator extends Validator<RuntimeException> {
-    }
-
-    public static class DefaultConstructionValidator implements ConstructionValidator {
-        public static DefaultConstructionValidator getInstance() {
-            return instance;
+    public final static class ReadValidator {
+        public static void validate(final org.dressdiscover.api.models.configuration.CollectionStoreConfiguration collectionStoreConfiguration, final com.google.common.base.Optional<org.dressdiscover.api.models.configuration.CollectionConfiguration> defaultCollectionConfiguration) throws org.thryft.protocol.InputProtocolException {
+            validateCollectionStoreConfiguration(collectionStoreConfiguration);
+            validateDefaultCollectionConfiguration(defaultCollectionConfiguration);
         }
 
-        public DefaultConstructionValidator() {
-        }
-
-        @Override
-        public org.dressdiscover.api.models.configuration.CollectionStoreConfiguration validateCollectionStoreConfiguration(final org.dressdiscover.api.models.configuration.CollectionStoreConfiguration collectionStoreConfiguration) throws RuntimeException {
-            if (collectionStoreConfiguration == null) {
-                throw new NullPointerException("org.dressdiscover.api.models.configuration.InstitutionConfiguration: collectionStoreConfiguration is null");
-            }
-            return collectionStoreConfiguration;
-        }
-
-        @Override
-        public com.google.common.base.Optional<org.dressdiscover.api.models.configuration.CollectionConfiguration> validateDefaultCollectionConfiguration(final com.google.common.base.Optional<org.dressdiscover.api.models.configuration.CollectionConfiguration> defaultCollectionConfiguration) throws RuntimeException {
-            if (defaultCollectionConfiguration == null) {
-                throw new NullPointerException("org.dressdiscover.api.models.configuration.InstitutionConfiguration: defaultCollectionConfiguration is null");
-            }
-            if (!defaultCollectionConfiguration.isPresent()) {
-                return defaultCollectionConfiguration;
-            }
-            return defaultCollectionConfiguration;
-        }
-
-        private final static DefaultConstructionValidator instance = new DefaultConstructionValidator();
-    }
-
-    public static class NopConstructionValidator implements ConstructionValidator {
-        public static NopConstructionValidator getInstance() {
-            return instance;
-        }
-
-        public NopConstructionValidator() {
-        }
-
-        @Override
-        public org.dressdiscover.api.models.configuration.CollectionStoreConfiguration validateCollectionStoreConfiguration(final org.dressdiscover.api.models.configuration.CollectionStoreConfiguration collectionStoreConfiguration) {
-            return collectionStoreConfiguration;
-        }
-
-        @Override
-        public com.google.common.base.Optional<org.dressdiscover.api.models.configuration.CollectionConfiguration> validateDefaultCollectionConfiguration(final com.google.common.base.Optional<org.dressdiscover.api.models.configuration.CollectionConfiguration> defaultCollectionConfiguration) {
-            return defaultCollectionConfiguration;
-        }
-
-        private final static NopConstructionValidator instance = new NopConstructionValidator();
-    }
-
-    public interface ReadValidator extends Validator<org.thryft.protocol.InputProtocolException> {
-    }
-
-    public static class DefaultReadValidator implements ReadValidator {
-        public static DefaultReadValidator getInstance() {
-            return instance;
-        }
-
-        public DefaultReadValidator() {
-        }
-
-        @Override
-        public org.dressdiscover.api.models.configuration.CollectionStoreConfiguration validateCollectionStoreConfiguration(final org.dressdiscover.api.models.configuration.CollectionStoreConfiguration collectionStoreConfiguration) throws org.thryft.protocol.InputProtocolException {
+        public static void validateCollectionStoreConfiguration(final org.dressdiscover.api.models.configuration.CollectionStoreConfiguration collectionStoreConfiguration) throws org.thryft.protocol.InputProtocolException {
             if (collectionStoreConfiguration == null) {
                 throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.COLLECTION_STORE_CONFIGURATION, "org.dressdiscover.api.models.configuration.InstitutionConfiguration: collectionStoreConfiguration is null");
             }
-            return collectionStoreConfiguration;
         }
 
-        @Override
-        public com.google.common.base.Optional<org.dressdiscover.api.models.configuration.CollectionConfiguration> validateDefaultCollectionConfiguration(final com.google.common.base.Optional<org.dressdiscover.api.models.configuration.CollectionConfiguration> defaultCollectionConfiguration) throws org.thryft.protocol.InputProtocolException {
+        public static void validateDefaultCollectionConfiguration(final com.google.common.base.Optional<org.dressdiscover.api.models.configuration.CollectionConfiguration> defaultCollectionConfiguration) throws org.thryft.protocol.InputProtocolException {
             if (defaultCollectionConfiguration == null) {
                 throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.DEFAULT_COLLECTION_CONFIGURATION, "org.dressdiscover.api.models.configuration.InstitutionConfiguration: defaultCollectionConfiguration is null");
             }
             if (!defaultCollectionConfiguration.isPresent()) {
-                return defaultCollectionConfiguration;
+                return;
             }
-            return defaultCollectionConfiguration;
         }
-
-        private final static DefaultReadValidator instance = new DefaultReadValidator();
     }
 
-    public static class NopReadValidator implements ReadValidator {
-        public static NopReadValidator getInstance() {
-            return instance;
+    public final static class UncheckedValidator {
+        public static void validate(final org.dressdiscover.api.models.configuration.CollectionStoreConfiguration collectionStoreConfiguration, final com.google.common.base.Optional<org.dressdiscover.api.models.configuration.CollectionConfiguration> defaultCollectionConfiguration) {
+            validateCollectionStoreConfiguration(collectionStoreConfiguration);
+            validateDefaultCollectionConfiguration(defaultCollectionConfiguration);
         }
 
-        public NopReadValidator() {
+        public static void validateCollectionStoreConfiguration(final org.dressdiscover.api.models.configuration.CollectionStoreConfiguration collectionStoreConfiguration) {
+            if (collectionStoreConfiguration == null) {
+                throw new NullPointerException("org.dressdiscover.api.models.configuration.InstitutionConfiguration: collectionStoreConfiguration is null");
+            }
         }
 
-        @Override
-        public org.dressdiscover.api.models.configuration.CollectionStoreConfiguration validateCollectionStoreConfiguration(final org.dressdiscover.api.models.configuration.CollectionStoreConfiguration collectionStoreConfiguration) {
-            return collectionStoreConfiguration;
+        public static void validateDefaultCollectionConfiguration(final com.google.common.base.Optional<org.dressdiscover.api.models.configuration.CollectionConfiguration> defaultCollectionConfiguration) {
+            if (defaultCollectionConfiguration == null) {
+                throw new NullPointerException("org.dressdiscover.api.models.configuration.InstitutionConfiguration: defaultCollectionConfiguration is null");
+            }
+            if (!defaultCollectionConfiguration.isPresent()) {
+                return;
+            }
         }
-
-        @Override
-        public com.google.common.base.Optional<org.dressdiscover.api.models.configuration.CollectionConfiguration> validateDefaultCollectionConfiguration(final com.google.common.base.Optional<org.dressdiscover.api.models.configuration.CollectionConfiguration> defaultCollectionConfiguration) {
-            return defaultCollectionConfiguration;
-        }
-
-        private final static NopReadValidator instance = new NopReadValidator();
     }
 
     /**
      * Copy constructor
      */
     public InstitutionConfiguration(final InstitutionConfiguration other) {
-        this(other.getCollectionStoreConfiguration(), other.getDefaultCollectionConfiguration(), NopConstructionValidator.getInstance());
+        this(other.getCollectionStoreConfiguration(), other.getDefaultCollectionConfiguration());
     }
 
-    protected InstitutionConfiguration(final org.dressdiscover.api.models.configuration.CollectionStoreConfiguration collectionStoreConfiguration, final com.google.common.base.Optional<org.dressdiscover.api.models.configuration.CollectionConfiguration> defaultCollectionConfiguration, ConstructionValidator validator) {
-        this.collectionStoreConfiguration = validator.validateCollectionStoreConfiguration(collectionStoreConfiguration);
-        this.defaultCollectionConfiguration = validator.validateDefaultCollectionConfiguration(defaultCollectionConfiguration);
+    /**
+     * Total constructor
+     *
+     * All fields should have been validated before calling this.
+     */
+    protected InstitutionConfiguration(final org.dressdiscover.api.models.configuration.CollectionStoreConfiguration collectionStoreConfiguration, final com.google.common.base.Optional<org.dressdiscover.api.models.configuration.CollectionConfiguration> defaultCollectionConfiguration) {
+        this.collectionStoreConfiguration = collectionStoreConfiguration;
+        this.defaultCollectionConfiguration = defaultCollectionConfiguration;
     }
 
     public static Builder builder() {
@@ -437,21 +376,25 @@ public final class InstitutionConfiguration implements org.thryft.Struct {
      * Required factory method
      */
     public static InstitutionConfiguration create(final org.dressdiscover.api.models.configuration.CollectionStoreConfiguration collectionStoreConfiguration) {
-        return new InstitutionConfiguration(collectionStoreConfiguration, com.google.common.base.Optional.<org.dressdiscover.api.models.configuration.CollectionConfiguration> absent(), DefaultConstructionValidator.getInstance());
+        UncheckedValidator.validate(collectionStoreConfiguration, com.google.common.base.Optional.<org.dressdiscover.api.models.configuration.CollectionConfiguration> absent());
+        return new InstitutionConfiguration(collectionStoreConfiguration, com.google.common.base.Optional.<org.dressdiscover.api.models.configuration.CollectionConfiguration> absent());
     }
 
     /**
      * Total Nullable factory method
      */
-    public static InstitutionConfiguration create(final org.dressdiscover.api.models.configuration.CollectionStoreConfiguration collectionStoreConfiguration, final @javax.annotation.Nullable org.dressdiscover.api.models.configuration.CollectionConfiguration defaultCollectionConfiguration) {
-        return new InstitutionConfiguration(collectionStoreConfiguration, com.google.common.base.Optional.fromNullable(defaultCollectionConfiguration), DefaultConstructionValidator.getInstance());
+    public static InstitutionConfiguration create(final org.dressdiscover.api.models.configuration.CollectionStoreConfiguration collectionStoreConfiguration, @javax.annotation.Nullable final org.dressdiscover.api.models.configuration.CollectionConfiguration defaultCollectionConfiguration) {
+        final com.google.common.base.Optional<org.dressdiscover.api.models.configuration.CollectionConfiguration> defaultCollectionConfigurationOptional = com.google.common.base.Optional.fromNullable(defaultCollectionConfiguration);
+        UncheckedValidator.validate(collectionStoreConfiguration, defaultCollectionConfigurationOptional);
+        return new InstitutionConfiguration(collectionStoreConfiguration, defaultCollectionConfigurationOptional);
     }
 
     /**
      * Optional factory method
      */
     public static InstitutionConfiguration create(final org.dressdiscover.api.models.configuration.CollectionStoreConfiguration collectionStoreConfiguration, final com.google.common.base.Optional<org.dressdiscover.api.models.configuration.CollectionConfiguration> defaultCollectionConfiguration) {
-        return new InstitutionConfiguration(collectionStoreConfiguration, defaultCollectionConfiguration, DefaultConstructionValidator.getInstance());
+        UncheckedValidator.validate(collectionStoreConfiguration, defaultCollectionConfiguration);
+        return new InstitutionConfiguration(collectionStoreConfiguration, defaultCollectionConfiguration);
     }
 
     @Override
@@ -532,7 +475,7 @@ public final class InstitutionConfiguration implements org.thryft.Struct {
     }
 
     public static InstitutionConfiguration readAsList(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
-        org.dressdiscover.api.models.configuration.CollectionStoreConfiguration collectionStoreConfiguration = null;
+        org.dressdiscover.api.models.configuration.CollectionStoreConfiguration collectionStoreConfiguration;
         com.google.common.base.Optional<org.dressdiscover.api.models.configuration.CollectionConfiguration> defaultCollectionConfiguration = com.google.common.base.Optional.<org.dressdiscover.api.models.configuration.CollectionConfiguration> absent();
 
         try {
@@ -545,7 +488,10 @@ public final class InstitutionConfiguration implements org.thryft.Struct {
         } catch (final RuntimeException e) {
             throw new IllegalStateException(e);
         }
-        return new InstitutionConfiguration(DefaultReadValidator.getInstance().validateCollectionStoreConfiguration(collectionStoreConfiguration), DefaultReadValidator.getInstance().validateDefaultCollectionConfiguration(defaultCollectionConfiguration), NopConstructionValidator.getInstance());
+
+        ReadValidator.validate(collectionStoreConfiguration, defaultCollectionConfiguration);
+
+        return new InstitutionConfiguration(collectionStoreConfiguration, defaultCollectionConfiguration);
     }
 
     public static InstitutionConfiguration readAsStruct(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
@@ -553,7 +499,7 @@ public final class InstitutionConfiguration implements org.thryft.Struct {
     }
 
     public static InstitutionConfiguration readAsStruct(final org.thryft.protocol.InputProtocol iprot, final com.google.common.base.Optional<UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
-        org.dressdiscover.api.models.configuration.CollectionStoreConfiguration collectionStoreConfiguration = null;
+        @javax.annotation.Nullable org.dressdiscover.api.models.configuration.CollectionStoreConfiguration collectionStoreConfiguration = null;
         com.google.common.base.Optional<org.dressdiscover.api.models.configuration.CollectionConfiguration> defaultCollectionConfiguration = com.google.common.base.Optional.<org.dressdiscover.api.models.configuration.CollectionConfiguration> absent();
 
         try {
@@ -566,13 +512,13 @@ public final class InstitutionConfiguration implements org.thryft.Struct {
                 switch (ifield.getName()) {
                 case "collection_store_configuration": {
                     if (!ifield.hasId() || ifield.getId() == 1) {
-                        collectionStoreConfiguration = org.dressdiscover.api.models.configuration.CollectionStoreConfiguration.readAsStruct(iprot);
+                        collectionStoreConfiguration = org.dressdiscover.api.models.configuration.CollectionStoreConfiguration.readAsStruct(iprot, unknownFieldCallback);
                     }
                     break;
                 }
                 case "default_collection_configuration": {
                     if (!ifield.hasId() || ifield.getId() == 2) {
-                        defaultCollectionConfiguration = com.google.common.base.Optional.of(org.dressdiscover.api.models.configuration.CollectionConfiguration.readAsStruct(iprot));
+                        defaultCollectionConfiguration = com.google.common.base.Optional.of(org.dressdiscover.api.models.configuration.CollectionConfiguration.readAsStruct(iprot, unknownFieldCallback));
                     }
                     break;
                 }
@@ -588,18 +534,23 @@ public final class InstitutionConfiguration implements org.thryft.Struct {
         } catch (final RuntimeException e) {
             throw new IllegalStateException(e);
         }
-        return new InstitutionConfiguration(DefaultReadValidator.getInstance().validateCollectionStoreConfiguration(collectionStoreConfiguration), DefaultReadValidator.getInstance().validateDefaultCollectionConfiguration(defaultCollectionConfiguration), NopConstructionValidator.getInstance());
+
+        ReadValidator.validate(collectionStoreConfiguration, defaultCollectionConfiguration);
+
+        return new InstitutionConfiguration(collectionStoreConfiguration, defaultCollectionConfiguration);
     }
 
     public InstitutionConfiguration replaceCollectionStoreConfiguration(final org.dressdiscover.api.models.configuration.CollectionStoreConfiguration collectionStoreConfiguration) {
-        return new InstitutionConfiguration(DefaultConstructionValidator.getInstance().validateCollectionStoreConfiguration(collectionStoreConfiguration), this.defaultCollectionConfiguration, NopConstructionValidator.getInstance());
+        UncheckedValidator.validateCollectionStoreConfiguration(collectionStoreConfiguration);
+        return new InstitutionConfiguration(collectionStoreConfiguration, this.defaultCollectionConfiguration);
     }
 
     public InstitutionConfiguration replaceDefaultCollectionConfiguration(final com.google.common.base.Optional<org.dressdiscover.api.models.configuration.CollectionConfiguration> defaultCollectionConfiguration) {
-        return new InstitutionConfiguration(this.collectionStoreConfiguration, DefaultConstructionValidator.getInstance().validateDefaultCollectionConfiguration(defaultCollectionConfiguration), NopConstructionValidator.getInstance());
+        UncheckedValidator.validateDefaultCollectionConfiguration(defaultCollectionConfiguration);
+        return new InstitutionConfiguration(this.collectionStoreConfiguration, defaultCollectionConfiguration);
     }
 
-    public InstitutionConfiguration replaceDefaultCollectionConfiguration(final org.dressdiscover.api.models.configuration.CollectionConfiguration defaultCollectionConfiguration) {
+    public InstitutionConfiguration replaceDefaultCollectionConfiguration(@javax.annotation.Nullable final org.dressdiscover.api.models.configuration.CollectionConfiguration defaultCollectionConfiguration) {
         return replaceDefaultCollectionConfiguration(com.google.common.base.Optional.fromNullable(defaultCollectionConfiguration));
     }
 
@@ -630,17 +581,25 @@ public final class InstitutionConfiguration implements org.thryft.Struct {
         oprot.writeStructEnd();
     }
 
-    @Override
-    public void writeFields(final org.thryft.protocol.OutputProtocol oprot) throws org.thryft.protocol.OutputProtocolException {
-        oprot.writeFieldBegin("collection_store_configuration", org.thryft.protocol.Type.STRUCT, (short)1);
+    public void writeCollectionStoreConfigurationField(final org.thryft.protocol.OutputProtocol oprot) throws org.thryft.protocol.OutputProtocolException {
+        oprot.writeFieldBegin(FieldMetadata.COLLECTION_STORE_CONFIGURATION);
         getCollectionStoreConfiguration().writeAsStruct(oprot);
         oprot.writeFieldEnd();
+    }
 
+    public void writeDefaultCollectionConfigurationField(final org.thryft.protocol.OutputProtocol oprot) throws org.thryft.protocol.OutputProtocolException {
         if (getDefaultCollectionConfiguration().isPresent()) {
-            oprot.writeFieldBegin("default_collection_configuration", org.thryft.protocol.Type.STRUCT, (short)2);
+            oprot.writeFieldBegin(FieldMetadata.DEFAULT_COLLECTION_CONFIGURATION);
             getDefaultCollectionConfiguration().get().writeAsStruct(oprot);
             oprot.writeFieldEnd();
         }
+    }
+
+    @Override
+    public void writeFields(final org.thryft.protocol.OutputProtocol oprot) throws org.thryft.protocol.OutputProtocolException {
+        writeCollectionStoreConfigurationField(oprot);
+
+        writeDefaultCollectionConfigurationField(oprot);
 
         oprot.writeFieldStop();
     }

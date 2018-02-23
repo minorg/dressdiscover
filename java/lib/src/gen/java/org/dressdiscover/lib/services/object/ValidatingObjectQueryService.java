@@ -11,12 +11,10 @@ public class ValidatingObjectQueryService implements org.dressdiscover.api.servi
 
     @Override
     public final org.dressdiscover.api.models.object.Object getObjectById(final org.dressdiscover.api.models.object.ObjectId id) throws org.dressdiscover.api.services.IoException, org.dressdiscover.api.services.collection.NoSuchCollectionException, org.dressdiscover.api.services.institution.NoSuchInstitutionException, org.dressdiscover.api.services.object.NoSuchObjectException {
-        _validateGetObjectByIdParameters(id);
-        return org.dressdiscover.api.services.object.ObjectQueryService.Messages.GetObjectByIdResponse.DefaultConstructionValidator.getInstance().validateReturnValue(delegate.getObjectById(id));
-    }
-
-    protected void _validateGetObjectByIdParameters(final org.dressdiscover.api.models.object.ObjectId id) {
-        org.dressdiscover.api.services.object.ObjectQueryService.Messages.GetObjectByIdRequest.DefaultConstructionValidator.getInstance().validateId(id);
+        org.dressdiscover.api.services.object.ObjectQueryService.Messages.GetObjectByIdRequest.UncheckedValidator.validate(id);
+        final org.dressdiscover.api.models.object.Object __returnValue = delegate.getObjectById(id);
+        org.dressdiscover.api.services.object.ObjectQueryService.Messages.GetObjectByIdResponse.UncheckedValidator.validateReturnValue(__returnValue);
+        return __returnValue;
     }
 
     private final org.dressdiscover.api.services.object.ObjectQueryService delegate;

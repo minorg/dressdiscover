@@ -3,12 +3,12 @@ package org.dressdiscover.api.vocabularies.vra_core.material;
 /**
  * VRA Core 4.0 material element
  */
-public final class Material implements org.thryft.Struct, org.dressdiscover.api.vocabularies.vra_core.Element {
+public final class Material implements org.dressdiscover.api.vocabularies.vra_core.Element {
     public final static class Builder {
         public Builder() {
             text = null;
             type = null;
-            vocabRef = com.google.common.base.Optional.<org.dressdiscover.api.models.VocabRef> absent();
+            vocabRef = com.google.common.base.Optional.<org.dressdiscover.api.vocabularies.vra_core.VocabRef> absent();
         }
 
         public Builder(final Material other) {
@@ -17,23 +17,25 @@ public final class Material implements org.thryft.Struct, org.dressdiscover.api.
             this.vocabRef = other.getVocabRef();
         }
 
-        protected Material _build(final String text, final org.dressdiscover.api.vocabularies.vra_core.material.MaterialType type, final com.google.common.base.Optional<org.dressdiscover.api.models.VocabRef> vocabRef) {
-            return new Material(text, type, vocabRef, DefaultConstructionValidator.getInstance());
+        protected Material _build(final String text, final org.dressdiscover.api.vocabularies.vra_core.material.MaterialType type, final com.google.common.base.Optional<org.dressdiscover.api.vocabularies.vra_core.VocabRef> vocabRef) {
+            return new Material(text, type, vocabRef);
         }
 
         public Material build() {
+            UncheckedValidator.validate(text, type, vocabRef);
+
             return _build(text, type, vocabRef);
         }
 
-        public final String getText() {
+        public final @javax.annotation.Nullable String getText() {
             return text;
         }
 
-        public final org.dressdiscover.api.vocabularies.vra_core.material.MaterialType getType() {
+        public final @javax.annotation.Nullable org.dressdiscover.api.vocabularies.vra_core.material.MaterialType getType() {
             return type;
         }
 
-        public final com.google.common.base.Optional<org.dressdiscover.api.models.VocabRef> getVocabRef() {
+        public final com.google.common.base.Optional<org.dressdiscover.api.vocabularies.vra_core.VocabRef> getVocabRef() {
             return vocabRef;
         }
 
@@ -56,9 +58,9 @@ public final class Material implements org.thryft.Struct, org.dressdiscover.api.
             try {
                 final org.thryft.protocol.ListBegin __list = iprot.readListBegin();
                 text = iprot.readString();
-                type = iprot.readEnum(org.dressdiscover.api.vocabularies.vra_core.material.MaterialType.class);
+                type = iprot.readEnum(org.dressdiscover.api.vocabularies.vra_core.material.MaterialType.Factory.getInstance());
                 if (__list.getSize() > 2) {
-                    vocabRef = com.google.common.base.Optional.of(org.dressdiscover.api.models.VocabRef.readAsStruct(iprot));
+                    vocabRef = com.google.common.base.Optional.of(org.dressdiscover.api.vocabularies.vra_core.VocabRef.readAsStruct(iprot));
                 }
                 iprot.readListEnd();
             } catch (final RuntimeException e) {
@@ -88,13 +90,13 @@ public final class Material implements org.thryft.Struct, org.dressdiscover.api.
                     }
                     case "type": {
                         if (!ifield.hasId() || ifield.getId() == 1) {
-                            type = iprot.readEnum(org.dressdiscover.api.vocabularies.vra_core.material.MaterialType.class);
+                            type = iprot.readEnum(org.dressdiscover.api.vocabularies.vra_core.material.MaterialType.Factory.getInstance());
                         }
                         break;
                     }
                     case "vocab_ref": {
                         if (!ifield.hasId() || ifield.getId() == 5) {
-                            vocabRef = com.google.common.base.Optional.of(org.dressdiscover.api.models.VocabRef.readAsStruct(iprot));
+                            vocabRef = com.google.common.base.Optional.of(org.dressdiscover.api.vocabularies.vra_core.VocabRef.readAsStruct(iprot, unknownFieldCallback));
                         }
                         break;
                     }
@@ -130,7 +132,7 @@ public final class Material implements org.thryft.Struct, org.dressdiscover.api.
             switch (fieldMetadata) {
             case TEXT: setText((String)value); return this;
             case TYPE: setType((org.dressdiscover.api.vocabularies.vra_core.material.MaterialType)value); return this;
-            case VOCAB_REF: setVocabRef((org.dressdiscover.api.models.VocabRef)value); return this;
+            case VOCAB_REF: setVocabRef((org.dressdiscover.api.vocabularies.vra_core.VocabRef)value); return this;
             default:
                 throw new IllegalStateException();
             }
@@ -149,21 +151,24 @@ public final class Material implements org.thryft.Struct, org.dressdiscover.api.
         }
 
         public Builder setText(final String text) {
-            this.text = DefaultConstructionValidator.getInstance().validateText(text);
+            UncheckedValidator.validateText(text);
+            this.text = text;
             return this;
         }
 
         public Builder setType(final org.dressdiscover.api.vocabularies.vra_core.material.MaterialType type) {
-            this.type = DefaultConstructionValidator.getInstance().validateType(type);
+            UncheckedValidator.validateType(type);
+            this.type = type;
             return this;
         }
 
-        public Builder setVocabRef(final com.google.common.base.Optional<org.dressdiscover.api.models.VocabRef> vocabRef) {
-            this.vocabRef = DefaultConstructionValidator.getInstance().validateVocabRef(vocabRef);
+        public Builder setVocabRef(final com.google.common.base.Optional<org.dressdiscover.api.vocabularies.vra_core.VocabRef> vocabRef) {
+            UncheckedValidator.validateVocabRef(vocabRef);
+            this.vocabRef = vocabRef;
             return this;
         }
 
-        public Builder setVocabRef(@javax.annotation.Nullable final org.dressdiscover.api.models.VocabRef vocabRef) {
+        public Builder setVocabRef(final @javax.annotation.Nullable org.dressdiscover.api.vocabularies.vra_core.VocabRef vocabRef) {
             return setVocabRef(com.google.common.base.Optional.fromNullable(vocabRef));
         }
 
@@ -201,13 +206,13 @@ public final class Material implements org.thryft.Struct, org.dressdiscover.api.
         }
 
         public Builder unsetVocabRef() {
-            this.vocabRef = com.google.common.base.Optional.<org.dressdiscover.api.models.VocabRef> absent();
+            this.vocabRef = com.google.common.base.Optional.<org.dressdiscover.api.vocabularies.vra_core.VocabRef> absent();
             return this;
         }
 
-        private String text;
-        private org.dressdiscover.api.vocabularies.vra_core.material.MaterialType type;
-        private com.google.common.base.Optional<org.dressdiscover.api.models.VocabRef> vocabRef;
+        private @javax.annotation.Nullable String text;
+        private @javax.annotation.Nullable org.dressdiscover.api.vocabularies.vra_core.material.MaterialType type;
+        private com.google.common.base.Optional<org.dressdiscover.api.vocabularies.vra_core.VocabRef> vocabRef;
     }
 
     public final static class Factory implements org.thryft.CompoundType.Factory<Material> {
@@ -241,9 +246,9 @@ public final class Material implements org.thryft.Struct, org.dressdiscover.api.
 
     @SuppressWarnings("serial")
     public enum FieldMetadata implements org.thryft.CompoundType.FieldMetadata {
-        TEXT("text", new com.google.common.reflect.TypeToken<String>() {}, true, 2, "text", org.thryft.protocol.Type.STRING),
-        TYPE("type", new com.google.common.reflect.TypeToken<org.dressdiscover.api.vocabularies.vra_core.material.MaterialType>() {}, true, 1, "type", org.thryft.protocol.Type.STRING),
-        VOCAB_REF("vocabRef", new com.google.common.reflect.TypeToken<org.dressdiscover.api.models.VocabRef>() {}, false, 5, "vocab_ref", org.thryft.protocol.Type.STRUCT);
+        TEXT("text", new com.google.common.reflect.TypeToken<String>() {}, true, (short)2, "text", org.thryft.protocol.Type.STRING),
+        TYPE("type", new com.google.common.reflect.TypeToken<org.dressdiscover.api.vocabularies.vra_core.material.MaterialType>() {}, true, (short)1, "type", org.thryft.protocol.Type.STRING),
+        VOCAB_REF("vocabRef", new com.google.common.reflect.TypeToken<org.dressdiscover.api.vocabularies.vra_core.VocabRef>() {}, false, (short)5, "vocab_ref", org.thryft.protocol.Type.STRUCT);
 
         @Override
         public String getJavaName() {
@@ -256,7 +261,7 @@ public final class Material implements org.thryft.Struct, org.dressdiscover.api.
         }
 
         @Override
-        public int getThriftId() {
+        public short getThriftId() {
             return thriftId;
         }
 
@@ -305,7 +310,7 @@ public final class Material implements org.thryft.Struct, org.dressdiscover.api.
             }
         }
 
-        private FieldMetadata(final String javaName, final com.google.common.reflect.TypeToken<?> javaType, final boolean required, final int thriftId, final String thriftName, final org.thryft.protocol.Type thriftProtocolType) {
+        private FieldMetadata(final String javaName, final com.google.common.reflect.TypeToken<?> javaType, final boolean required, final short thriftId, final String thriftName, final org.thryft.protocol.Type thriftProtocolType) {
             this.javaName = javaName;
             this.javaType = javaType;
             this.required = required;
@@ -322,171 +327,92 @@ public final class Material implements org.thryft.Struct, org.dressdiscover.api.
         private final String javaName;
         private final com.google.common.reflect.TypeToken<?> javaType;
         private final boolean required;
-        private final int thriftId;
+        private final short thriftId;
         private final String thriftName;
         private final String thriftProtocolKey;
         private final org.thryft.protocol.Type thriftProtocolType;
     }
 
-    public interface Validator<ExceptionT extends Exception> {
-        public String validateText(final String text) throws ExceptionT;
-
-        public org.dressdiscover.api.vocabularies.vra_core.material.MaterialType validateType(final org.dressdiscover.api.vocabularies.vra_core.material.MaterialType type) throws ExceptionT;
-
-        public com.google.common.base.Optional<org.dressdiscover.api.models.VocabRef> validateVocabRef(final com.google.common.base.Optional<org.dressdiscover.api.models.VocabRef> vocabRef) throws ExceptionT;
-    }
-
-    public interface ConstructionValidator extends Validator<RuntimeException> {
-    }
-
-    public static class DefaultConstructionValidator implements ConstructionValidator {
-        public static DefaultConstructionValidator getInstance() {
-            return instance;
+    public final static class ReadValidator {
+        public static void validate(final String text, final org.dressdiscover.api.vocabularies.vra_core.material.MaterialType type, final com.google.common.base.Optional<org.dressdiscover.api.vocabularies.vra_core.VocabRef> vocabRef) throws org.thryft.protocol.InputProtocolException {
+            validateText(text);
+            validateType(type);
+            validateVocabRef(vocabRef);
         }
 
-        public DefaultConstructionValidator() {
-        }
-
-        @Override
-        public String validateText(final String text) throws RuntimeException {
-            if (text == null) {
-                throw new NullPointerException("org.dressdiscover.api.vocabularies.vra_core.material.Material: text is null");
-            }
-            if (text.isEmpty()) {
-                throw new IllegalArgumentException("org.dressdiscover.api.vocabularies.vra_core.material.Material: text is less than min length 1");
-            }
-            return text;
-        }
-
-        @Override
-        public org.dressdiscover.api.vocabularies.vra_core.material.MaterialType validateType(final org.dressdiscover.api.vocabularies.vra_core.material.MaterialType type) throws RuntimeException {
-            if (type == null) {
-                throw new NullPointerException("org.dressdiscover.api.vocabularies.vra_core.material.Material: type is null");
-            }
-            return type;
-        }
-
-        @Override
-        public com.google.common.base.Optional<org.dressdiscover.api.models.VocabRef> validateVocabRef(final com.google.common.base.Optional<org.dressdiscover.api.models.VocabRef> vocabRef) throws RuntimeException {
-            if (vocabRef == null) {
-                throw new NullPointerException("org.dressdiscover.api.vocabularies.vra_core.material.Material: vocabRef is null");
-            }
-            if (!vocabRef.isPresent()) {
-                return vocabRef;
-            }
-            return vocabRef;
-        }
-
-        private final static DefaultConstructionValidator instance = new DefaultConstructionValidator();
-    }
-
-    public static class NopConstructionValidator implements ConstructionValidator {
-        public static NopConstructionValidator getInstance() {
-            return instance;
-        }
-
-        public NopConstructionValidator() {
-        }
-
-        @Override
-        public String validateText(final String text) {
-            return text;
-        }
-
-        @Override
-        public org.dressdiscover.api.vocabularies.vra_core.material.MaterialType validateType(final org.dressdiscover.api.vocabularies.vra_core.material.MaterialType type) {
-            return type;
-        }
-
-        @Override
-        public com.google.common.base.Optional<org.dressdiscover.api.models.VocabRef> validateVocabRef(final com.google.common.base.Optional<org.dressdiscover.api.models.VocabRef> vocabRef) {
-            return vocabRef;
-        }
-
-        private final static NopConstructionValidator instance = new NopConstructionValidator();
-    }
-
-    public interface ReadValidator extends Validator<org.thryft.protocol.InputProtocolException> {
-    }
-
-    public static class DefaultReadValidator implements ReadValidator {
-        public static DefaultReadValidator getInstance() {
-            return instance;
-        }
-
-        public DefaultReadValidator() {
-        }
-
-        @Override
-        public String validateText(final String text) throws org.thryft.protocol.InputProtocolException {
+        public static void validateText(final String text) throws org.thryft.protocol.InputProtocolException {
             if (text == null) {
                 throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.TEXT, "org.dressdiscover.api.vocabularies.vra_core.material.Material: text is null");
             }
             if (text.isEmpty()) {
-                throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.TEXT, "org.dressdiscover.api.vocabularies.vra_core.material.Material: text is less than min length 1");
+                throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.TEXT, "org.dressdiscover.api.vocabularies.vra_core.material.Material.text: less than min length 1");
             }
-            return text;
         }
 
-        @Override
-        public org.dressdiscover.api.vocabularies.vra_core.material.MaterialType validateType(final org.dressdiscover.api.vocabularies.vra_core.material.MaterialType type) throws org.thryft.protocol.InputProtocolException {
+        public static void validateType(final org.dressdiscover.api.vocabularies.vra_core.material.MaterialType type) throws org.thryft.protocol.InputProtocolException {
             if (type == null) {
                 throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.TYPE, "org.dressdiscover.api.vocabularies.vra_core.material.Material: type is null");
             }
-            return type;
         }
 
-        @Override
-        public com.google.common.base.Optional<org.dressdiscover.api.models.VocabRef> validateVocabRef(final com.google.common.base.Optional<org.dressdiscover.api.models.VocabRef> vocabRef) throws org.thryft.protocol.InputProtocolException {
+        public static void validateVocabRef(final com.google.common.base.Optional<org.dressdiscover.api.vocabularies.vra_core.VocabRef> vocabRef) throws org.thryft.protocol.InputProtocolException {
             if (vocabRef == null) {
                 throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.VOCAB_REF, "org.dressdiscover.api.vocabularies.vra_core.material.Material: vocabRef is null");
             }
             if (!vocabRef.isPresent()) {
-                return vocabRef;
+                return;
             }
-            return vocabRef;
         }
-
-        private final static DefaultReadValidator instance = new DefaultReadValidator();
     }
 
-    public static class NopReadValidator implements ReadValidator {
-        public static NopReadValidator getInstance() {
-            return instance;
+    public final static class UncheckedValidator {
+        public static void validate(final String text, final org.dressdiscover.api.vocabularies.vra_core.material.MaterialType type, final com.google.common.base.Optional<org.dressdiscover.api.vocabularies.vra_core.VocabRef> vocabRef) {
+            validateText(text);
+            validateType(type);
+            validateVocabRef(vocabRef);
         }
 
-        public NopReadValidator() {
+        public static void validateText(final String text) {
+            if (text == null) {
+                throw new NullPointerException("org.dressdiscover.api.vocabularies.vra_core.material.Material: text is null");
+            }
+            if (text.isEmpty()) {
+                throw new IllegalArgumentException("org.dressdiscover.api.vocabularies.vra_core.material.Material.text: less than min length 1");
+            }
         }
 
-        @Override
-        public String validateText(final String text) {
-            return text;
+        public static void validateType(final org.dressdiscover.api.vocabularies.vra_core.material.MaterialType type) {
+            if (type == null) {
+                throw new NullPointerException("org.dressdiscover.api.vocabularies.vra_core.material.Material: type is null");
+            }
         }
 
-        @Override
-        public org.dressdiscover.api.vocabularies.vra_core.material.MaterialType validateType(final org.dressdiscover.api.vocabularies.vra_core.material.MaterialType type) {
-            return type;
+        public static void validateVocabRef(final com.google.common.base.Optional<org.dressdiscover.api.vocabularies.vra_core.VocabRef> vocabRef) {
+            if (vocabRef == null) {
+                throw new NullPointerException("org.dressdiscover.api.vocabularies.vra_core.material.Material: vocabRef is null");
+            }
+            if (!vocabRef.isPresent()) {
+                return;
+            }
         }
-
-        @Override
-        public com.google.common.base.Optional<org.dressdiscover.api.models.VocabRef> validateVocabRef(final com.google.common.base.Optional<org.dressdiscover.api.models.VocabRef> vocabRef) {
-            return vocabRef;
-        }
-
-        private final static NopReadValidator instance = new NopReadValidator();
     }
 
     /**
      * Copy constructor
      */
     public Material(final Material other) {
-        this(other.getText(), other.getType(), other.getVocabRef(), NopConstructionValidator.getInstance());
+        this(other.getText(), other.getType(), other.getVocabRef());
     }
 
-    protected Material(final String text, final org.dressdiscover.api.vocabularies.vra_core.material.MaterialType type, final com.google.common.base.Optional<org.dressdiscover.api.models.VocabRef> vocabRef, ConstructionValidator validator) {
-        this.text = validator.validateText(text);
-        this.type = validator.validateType(type);
-        this.vocabRef = validator.validateVocabRef(vocabRef);
+    /**
+     * Total constructor
+     *
+     * All fields should have been validated before calling this.
+     */
+    protected Material(final String text, final org.dressdiscover.api.vocabularies.vra_core.material.MaterialType type, final com.google.common.base.Optional<org.dressdiscover.api.vocabularies.vra_core.VocabRef> vocabRef) {
+        this.text = text;
+        this.type = type;
+        this.vocabRef = vocabRef;
     }
 
     public static Builder builder() {
@@ -505,21 +431,25 @@ public final class Material implements org.thryft.Struct, org.dressdiscover.api.
      * Required factory method
      */
     public static Material create(final String text, final org.dressdiscover.api.vocabularies.vra_core.material.MaterialType type) {
-        return new Material(text, type, com.google.common.base.Optional.<org.dressdiscover.api.models.VocabRef> absent(), DefaultConstructionValidator.getInstance());
+        UncheckedValidator.validate(text, type, com.google.common.base.Optional.<org.dressdiscover.api.vocabularies.vra_core.VocabRef> absent());
+        return new Material(text, type, com.google.common.base.Optional.<org.dressdiscover.api.vocabularies.vra_core.VocabRef> absent());
     }
 
     /**
      * Total Nullable factory method
      */
-    public static Material create(final String text, final org.dressdiscover.api.vocabularies.vra_core.material.MaterialType type, final @javax.annotation.Nullable org.dressdiscover.api.models.VocabRef vocabRef) {
-        return new Material(text, type, com.google.common.base.Optional.fromNullable(vocabRef), DefaultConstructionValidator.getInstance());
+    public static Material create(final String text, final org.dressdiscover.api.vocabularies.vra_core.material.MaterialType type, @javax.annotation.Nullable final org.dressdiscover.api.vocabularies.vra_core.VocabRef vocabRef) {
+        final com.google.common.base.Optional<org.dressdiscover.api.vocabularies.vra_core.VocabRef> vocabRefOptional = com.google.common.base.Optional.fromNullable(vocabRef);
+        UncheckedValidator.validate(text, type, vocabRefOptional);
+        return new Material(text, type, vocabRefOptional);
     }
 
     /**
      * Optional factory method
      */
-    public static Material create(final String text, final org.dressdiscover.api.vocabularies.vra_core.material.MaterialType type, final com.google.common.base.Optional<org.dressdiscover.api.models.VocabRef> vocabRef) {
-        return new Material(text, type, vocabRef, DefaultConstructionValidator.getInstance());
+    public static Material create(final String text, final org.dressdiscover.api.vocabularies.vra_core.material.MaterialType type, final com.google.common.base.Optional<org.dressdiscover.api.vocabularies.vra_core.VocabRef> vocabRef) {
+        UncheckedValidator.validate(text, type, vocabRef);
+        return new Material(text, type, vocabRef);
     }
 
     @Override
@@ -579,7 +509,7 @@ public final class Material implements org.thryft.Struct, org.dressdiscover.api.
         return type;
     }
 
-    public final com.google.common.base.Optional<org.dressdiscover.api.models.VocabRef> getVocabRef() {
+    public final com.google.common.base.Optional<org.dressdiscover.api.vocabularies.vra_core.VocabRef> getVocabRef() {
         return vocabRef;
     }
 
@@ -610,22 +540,25 @@ public final class Material implements org.thryft.Struct, org.dressdiscover.api.
     }
 
     public static Material readAsList(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
-        String text = null;
-        org.dressdiscover.api.vocabularies.vra_core.material.MaterialType type = null;
-        com.google.common.base.Optional<org.dressdiscover.api.models.VocabRef> vocabRef = com.google.common.base.Optional.<org.dressdiscover.api.models.VocabRef> absent();
+        String text;
+        org.dressdiscover.api.vocabularies.vra_core.material.MaterialType type;
+        com.google.common.base.Optional<org.dressdiscover.api.vocabularies.vra_core.VocabRef> vocabRef = com.google.common.base.Optional.<org.dressdiscover.api.vocabularies.vra_core.VocabRef> absent();
 
         try {
             final org.thryft.protocol.ListBegin __list = iprot.readListBegin();
             text = iprot.readString();
-            type = iprot.readEnum(org.dressdiscover.api.vocabularies.vra_core.material.MaterialType.class);
+            type = iprot.readEnum(org.dressdiscover.api.vocabularies.vra_core.material.MaterialType.Factory.getInstance());
             if (__list.getSize() > 2) {
-                vocabRef = com.google.common.base.Optional.of(org.dressdiscover.api.models.VocabRef.readAsStruct(iprot));
+                vocabRef = com.google.common.base.Optional.of(org.dressdiscover.api.vocabularies.vra_core.VocabRef.readAsStruct(iprot));
             }
             iprot.readListEnd();
         } catch (final RuntimeException e) {
             throw new IllegalStateException(e);
         }
-        return new Material(DefaultReadValidator.getInstance().validateText(text), DefaultReadValidator.getInstance().validateType(type), DefaultReadValidator.getInstance().validateVocabRef(vocabRef), NopConstructionValidator.getInstance());
+
+        ReadValidator.validate(text, type, vocabRef);
+
+        return new Material(text, type, vocabRef);
     }
 
     public static Material readAsStruct(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
@@ -633,9 +566,9 @@ public final class Material implements org.thryft.Struct, org.dressdiscover.api.
     }
 
     public static Material readAsStruct(final org.thryft.protocol.InputProtocol iprot, final com.google.common.base.Optional<UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
-        String text = null;
-        org.dressdiscover.api.vocabularies.vra_core.material.MaterialType type = null;
-        com.google.common.base.Optional<org.dressdiscover.api.models.VocabRef> vocabRef = com.google.common.base.Optional.<org.dressdiscover.api.models.VocabRef> absent();
+        @javax.annotation.Nullable String text = null;
+        @javax.annotation.Nullable org.dressdiscover.api.vocabularies.vra_core.material.MaterialType type = null;
+        com.google.common.base.Optional<org.dressdiscover.api.vocabularies.vra_core.VocabRef> vocabRef = com.google.common.base.Optional.<org.dressdiscover.api.vocabularies.vra_core.VocabRef> absent();
 
         try {
             iprot.readStructBegin();
@@ -653,13 +586,13 @@ public final class Material implements org.thryft.Struct, org.dressdiscover.api.
                 }
                 case "type": {
                     if (!ifield.hasId() || ifield.getId() == 1) {
-                        type = iprot.readEnum(org.dressdiscover.api.vocabularies.vra_core.material.MaterialType.class);
+                        type = iprot.readEnum(org.dressdiscover.api.vocabularies.vra_core.material.MaterialType.Factory.getInstance());
                     }
                     break;
                 }
                 case "vocab_ref": {
                     if (!ifield.hasId() || ifield.getId() == 5) {
-                        vocabRef = com.google.common.base.Optional.of(org.dressdiscover.api.models.VocabRef.readAsStruct(iprot));
+                        vocabRef = com.google.common.base.Optional.of(org.dressdiscover.api.vocabularies.vra_core.VocabRef.readAsStruct(iprot, unknownFieldCallback));
                     }
                     break;
                 }
@@ -675,22 +608,28 @@ public final class Material implements org.thryft.Struct, org.dressdiscover.api.
         } catch (final RuntimeException e) {
             throw new IllegalStateException(e);
         }
-        return new Material(DefaultReadValidator.getInstance().validateText(text), DefaultReadValidator.getInstance().validateType(type), DefaultReadValidator.getInstance().validateVocabRef(vocabRef), NopConstructionValidator.getInstance());
+
+        ReadValidator.validate(text, type, vocabRef);
+
+        return new Material(text, type, vocabRef);
     }
 
     public Material replaceText(final String text) {
-        return new Material(DefaultConstructionValidator.getInstance().validateText(text), this.type, this.vocabRef, NopConstructionValidator.getInstance());
+        UncheckedValidator.validateText(text);
+        return new Material(text, this.type, this.vocabRef);
     }
 
     public Material replaceType(final org.dressdiscover.api.vocabularies.vra_core.material.MaterialType type) {
-        return new Material(this.text, DefaultConstructionValidator.getInstance().validateType(type), this.vocabRef, NopConstructionValidator.getInstance());
+        UncheckedValidator.validateType(type);
+        return new Material(this.text, type, this.vocabRef);
     }
 
-    public Material replaceVocabRef(final com.google.common.base.Optional<org.dressdiscover.api.models.VocabRef> vocabRef) {
-        return new Material(this.text, this.type, DefaultConstructionValidator.getInstance().validateVocabRef(vocabRef), NopConstructionValidator.getInstance());
+    public Material replaceVocabRef(final com.google.common.base.Optional<org.dressdiscover.api.vocabularies.vra_core.VocabRef> vocabRef) {
+        UncheckedValidator.validateVocabRef(vocabRef);
+        return new Material(this.text, this.type, vocabRef);
     }
 
-    public Material replaceVocabRef(final org.dressdiscover.api.models.VocabRef vocabRef) {
+    public Material replaceVocabRef(@javax.annotation.Nullable final org.dressdiscover.api.vocabularies.vra_core.VocabRef vocabRef) {
         return replaceVocabRef(com.google.common.base.Optional.fromNullable(vocabRef));
     }
 
@@ -725,26 +664,38 @@ public final class Material implements org.thryft.Struct, org.dressdiscover.api.
 
     @Override
     public void writeFields(final org.thryft.protocol.OutputProtocol oprot) throws org.thryft.protocol.OutputProtocolException {
-        oprot.writeFieldBegin("text", org.thryft.protocol.Type.STRING, (short)2);
+        writeTextField(oprot);
+
+        writeTypeField(oprot);
+
+        writeVocabRefField(oprot);
+
+        oprot.writeFieldStop();
+    }
+
+    public void writeTextField(final org.thryft.protocol.OutputProtocol oprot) throws org.thryft.protocol.OutputProtocolException {
+        oprot.writeFieldBegin(FieldMetadata.TEXT);
         oprot.writeString(getText());
         oprot.writeFieldEnd();
+    }
 
-        oprot.writeFieldBegin("type", org.thryft.protocol.Type.STRING, (short)1);
+    public void writeTypeField(final org.thryft.protocol.OutputProtocol oprot) throws org.thryft.protocol.OutputProtocolException {
+        oprot.writeFieldBegin(FieldMetadata.TYPE);
         oprot.writeEnum(getType());
         oprot.writeFieldEnd();
+    }
 
+    public void writeVocabRefField(final org.thryft.protocol.OutputProtocol oprot) throws org.thryft.protocol.OutputProtocolException {
         if (getVocabRef().isPresent()) {
-            oprot.writeFieldBegin("vocab_ref", org.thryft.protocol.Type.STRUCT, (short)5);
+            oprot.writeFieldBegin(FieldMetadata.VOCAB_REF);
             getVocabRef().get().writeAsStruct(oprot);
             oprot.writeFieldEnd();
         }
-
-        oprot.writeFieldStop();
     }
 
     private final String text;
 
     private final org.dressdiscover.api.vocabularies.vra_core.material.MaterialType type;
 
-    private final com.google.common.base.Optional<org.dressdiscover.api.models.VocabRef> vocabRef;
+    private final com.google.common.base.Optional<org.dressdiscover.api.vocabularies.vra_core.VocabRef> vocabRef;
 }

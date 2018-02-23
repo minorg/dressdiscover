@@ -9,7 +9,7 @@ public final class LocationName implements org.thryft.Struct {
             text = null;
             type = null;
             extent = com.google.common.base.Optional.<String> absent();
-            vocabRef = com.google.common.base.Optional.<org.dressdiscover.api.models.VocabRef> absent();
+            vocabRef = com.google.common.base.Optional.<org.dressdiscover.api.vocabularies.vra_core.VocabRef> absent();
         }
 
         public Builder(final LocationName other) {
@@ -19,11 +19,13 @@ public final class LocationName implements org.thryft.Struct {
             this.vocabRef = other.getVocabRef();
         }
 
-        protected LocationName _build(final String text, final org.dressdiscover.api.vocabularies.vra_core.location.LocationNameType type, final com.google.common.base.Optional<String> extent, final com.google.common.base.Optional<org.dressdiscover.api.models.VocabRef> vocabRef) {
-            return new LocationName(text, type, extent, vocabRef, DefaultConstructionValidator.getInstance());
+        protected LocationName _build(final String text, final org.dressdiscover.api.vocabularies.vra_core.location.LocationNameType type, final com.google.common.base.Optional<String> extent, final com.google.common.base.Optional<org.dressdiscover.api.vocabularies.vra_core.VocabRef> vocabRef) {
+            return new LocationName(text, type, extent, vocabRef);
         }
 
         public LocationName build() {
+            UncheckedValidator.validate(text, type, extent, vocabRef);
+
             return _build(text, type, extent, vocabRef);
         }
 
@@ -31,15 +33,15 @@ public final class LocationName implements org.thryft.Struct {
             return extent;
         }
 
-        public final String getText() {
+        public final @javax.annotation.Nullable String getText() {
             return text;
         }
 
-        public final org.dressdiscover.api.vocabularies.vra_core.location.LocationNameType getType() {
+        public final @javax.annotation.Nullable org.dressdiscover.api.vocabularies.vra_core.location.LocationNameType getType() {
             return type;
         }
 
-        public final com.google.common.base.Optional<org.dressdiscover.api.models.VocabRef> getVocabRef() {
+        public final com.google.common.base.Optional<org.dressdiscover.api.vocabularies.vra_core.VocabRef> getVocabRef() {
             return vocabRef;
         }
 
@@ -62,12 +64,12 @@ public final class LocationName implements org.thryft.Struct {
             try {
                 final org.thryft.protocol.ListBegin __list = iprot.readListBegin();
                 text = iprot.readString();
-                type = iprot.readEnum(org.dressdiscover.api.vocabularies.vra_core.location.LocationNameType.class);
+                type = iprot.readEnum(org.dressdiscover.api.vocabularies.vra_core.location.LocationNameType.Factory.getInstance());
                 if (__list.getSize() > 2) {
                     extent = com.google.common.base.Optional.of(iprot.readString());
                 }
                 if (__list.getSize() > 3) {
-                    vocabRef = com.google.common.base.Optional.of(org.dressdiscover.api.models.VocabRef.readAsStruct(iprot));
+                    vocabRef = com.google.common.base.Optional.of(org.dressdiscover.api.vocabularies.vra_core.VocabRef.readAsStruct(iprot));
                 }
                 iprot.readListEnd();
             } catch (final RuntimeException e) {
@@ -97,7 +99,7 @@ public final class LocationName implements org.thryft.Struct {
                     }
                     case "type": {
                         if (!ifield.hasId() || ifield.getId() == 2) {
-                            type = iprot.readEnum(org.dressdiscover.api.vocabularies.vra_core.location.LocationNameType.class);
+                            type = iprot.readEnum(org.dressdiscover.api.vocabularies.vra_core.location.LocationNameType.Factory.getInstance());
                         }
                         break;
                     }
@@ -109,7 +111,7 @@ public final class LocationName implements org.thryft.Struct {
                     }
                     case "vocab_ref": {
                         if (!ifield.hasId() || ifield.getId() == 4) {
-                            vocabRef = com.google.common.base.Optional.of(org.dressdiscover.api.models.VocabRef.readAsStruct(iprot));
+                            vocabRef = com.google.common.base.Optional.of(org.dressdiscover.api.vocabularies.vra_core.VocabRef.readAsStruct(iprot, unknownFieldCallback));
                         }
                         break;
                     }
@@ -146,18 +148,19 @@ public final class LocationName implements org.thryft.Struct {
             case TEXT: setText((String)value); return this;
             case TYPE: setType((org.dressdiscover.api.vocabularies.vra_core.location.LocationNameType)value); return this;
             case EXTENT: setExtent((String)value); return this;
-            case VOCAB_REF: setVocabRef((org.dressdiscover.api.models.VocabRef)value); return this;
+            case VOCAB_REF: setVocabRef((org.dressdiscover.api.vocabularies.vra_core.VocabRef)value); return this;
             default:
                 throw new IllegalStateException();
             }
         }
 
         public Builder setExtent(final com.google.common.base.Optional<String> extent) {
-            this.extent = DefaultConstructionValidator.getInstance().validateExtent(extent);
+            UncheckedValidator.validateExtent(extent);
+            this.extent = extent;
             return this;
         }
 
-        public Builder setExtent(@javax.annotation.Nullable final String extent) {
+        public Builder setExtent(final @javax.annotation.Nullable String extent) {
             return setExtent(com.google.common.base.Optional.fromNullable(extent));
         }
 
@@ -177,21 +180,24 @@ public final class LocationName implements org.thryft.Struct {
         }
 
         public Builder setText(final String text) {
-            this.text = DefaultConstructionValidator.getInstance().validateText(text);
+            UncheckedValidator.validateText(text);
+            this.text = text;
             return this;
         }
 
         public Builder setType(final org.dressdiscover.api.vocabularies.vra_core.location.LocationNameType type) {
-            this.type = DefaultConstructionValidator.getInstance().validateType(type);
+            UncheckedValidator.validateType(type);
+            this.type = type;
             return this;
         }
 
-        public Builder setVocabRef(final com.google.common.base.Optional<org.dressdiscover.api.models.VocabRef> vocabRef) {
-            this.vocabRef = DefaultConstructionValidator.getInstance().validateVocabRef(vocabRef);
+        public Builder setVocabRef(final com.google.common.base.Optional<org.dressdiscover.api.vocabularies.vra_core.VocabRef> vocabRef) {
+            UncheckedValidator.validateVocabRef(vocabRef);
+            this.vocabRef = vocabRef;
             return this;
         }
 
-        public Builder setVocabRef(@javax.annotation.Nullable final org.dressdiscover.api.models.VocabRef vocabRef) {
+        public Builder setVocabRef(final @javax.annotation.Nullable org.dressdiscover.api.vocabularies.vra_core.VocabRef vocabRef) {
             return setVocabRef(com.google.common.base.Optional.fromNullable(vocabRef));
         }
 
@@ -235,14 +241,14 @@ public final class LocationName implements org.thryft.Struct {
         }
 
         public Builder unsetVocabRef() {
-            this.vocabRef = com.google.common.base.Optional.<org.dressdiscover.api.models.VocabRef> absent();
+            this.vocabRef = com.google.common.base.Optional.<org.dressdiscover.api.vocabularies.vra_core.VocabRef> absent();
             return this;
         }
 
-        private String text;
-        private org.dressdiscover.api.vocabularies.vra_core.location.LocationNameType type;
+        private @javax.annotation.Nullable String text;
+        private @javax.annotation.Nullable org.dressdiscover.api.vocabularies.vra_core.location.LocationNameType type;
         private com.google.common.base.Optional<String> extent;
-        private com.google.common.base.Optional<org.dressdiscover.api.models.VocabRef> vocabRef;
+        private com.google.common.base.Optional<org.dressdiscover.api.vocabularies.vra_core.VocabRef> vocabRef;
     }
 
     public final static class Factory implements org.thryft.CompoundType.Factory<LocationName> {
@@ -276,10 +282,10 @@ public final class LocationName implements org.thryft.Struct {
 
     @SuppressWarnings("serial")
     public enum FieldMetadata implements org.thryft.CompoundType.FieldMetadata {
-        TEXT("text", new com.google.common.reflect.TypeToken<String>() {}, true, 1, "text", org.thryft.protocol.Type.STRING),
-        TYPE("type", new com.google.common.reflect.TypeToken<org.dressdiscover.api.vocabularies.vra_core.location.LocationNameType>() {}, true, 2, "type", org.thryft.protocol.Type.STRING),
-        EXTENT("extent", new com.google.common.reflect.TypeToken<String>() {}, false, 3, "extent", org.thryft.protocol.Type.STRING),
-        VOCAB_REF("vocabRef", new com.google.common.reflect.TypeToken<org.dressdiscover.api.models.VocabRef>() {}, false, 4, "vocab_ref", org.thryft.protocol.Type.STRUCT);
+        TEXT("text", new com.google.common.reflect.TypeToken<String>() {}, true, (short)1, "text", org.thryft.protocol.Type.STRING),
+        TYPE("type", new com.google.common.reflect.TypeToken<org.dressdiscover.api.vocabularies.vra_core.location.LocationNameType>() {}, true, (short)2, "type", org.thryft.protocol.Type.STRING),
+        EXTENT("extent", new com.google.common.reflect.TypeToken<String>() {}, false, (short)3, "extent", org.thryft.protocol.Type.STRING),
+        VOCAB_REF("vocabRef", new com.google.common.reflect.TypeToken<org.dressdiscover.api.vocabularies.vra_core.VocabRef>() {}, false, (short)4, "vocab_ref", org.thryft.protocol.Type.STRUCT);
 
         @Override
         public String getJavaName() {
@@ -292,7 +298,7 @@ public final class LocationName implements org.thryft.Struct {
         }
 
         @Override
-        public int getThriftId() {
+        public short getThriftId() {
             return thriftId;
         }
 
@@ -343,7 +349,7 @@ public final class LocationName implements org.thryft.Struct {
             }
         }
 
-        private FieldMetadata(final String javaName, final com.google.common.reflect.TypeToken<?> javaType, final boolean required, final int thriftId, final String thriftName, final org.thryft.protocol.Type thriftProtocolType) {
+        private FieldMetadata(final String javaName, final com.google.common.reflect.TypeToken<?> javaType, final boolean required, final short thriftId, final String thriftName, final org.thryft.protocol.Type thriftProtocolType) {
             this.javaName = javaName;
             this.javaType = javaType;
             this.required = required;
@@ -360,212 +366,119 @@ public final class LocationName implements org.thryft.Struct {
         private final String javaName;
         private final com.google.common.reflect.TypeToken<?> javaType;
         private final boolean required;
-        private final int thriftId;
+        private final short thriftId;
         private final String thriftName;
         private final String thriftProtocolKey;
         private final org.thryft.protocol.Type thriftProtocolType;
     }
 
-    public interface Validator<ExceptionT extends Exception> {
-        public String validateText(final String text) throws ExceptionT;
-
-        public org.dressdiscover.api.vocabularies.vra_core.location.LocationNameType validateType(final org.dressdiscover.api.vocabularies.vra_core.location.LocationNameType type) throws ExceptionT;
-
-        public com.google.common.base.Optional<String> validateExtent(final com.google.common.base.Optional<String> extent) throws ExceptionT;
-
-        public com.google.common.base.Optional<org.dressdiscover.api.models.VocabRef> validateVocabRef(final com.google.common.base.Optional<org.dressdiscover.api.models.VocabRef> vocabRef) throws ExceptionT;
-    }
-
-    public interface ConstructionValidator extends Validator<RuntimeException> {
-    }
-
-    public static class DefaultConstructionValidator implements ConstructionValidator {
-        public static DefaultConstructionValidator getInstance() {
-            return instance;
+    public final static class ReadValidator {
+        public static void validate(final String text, final org.dressdiscover.api.vocabularies.vra_core.location.LocationNameType type, final com.google.common.base.Optional<String> extent, final com.google.common.base.Optional<org.dressdiscover.api.vocabularies.vra_core.VocabRef> vocabRef) throws org.thryft.protocol.InputProtocolException {
+            validateText(text);
+            validateType(type);
+            validateExtent(extent);
+            validateVocabRef(vocabRef);
         }
 
-        public DefaultConstructionValidator() {
-        }
-
-        @Override
-        public String validateText(final String text) throws RuntimeException {
-            if (text == null) {
-                throw new NullPointerException("org.dressdiscover.api.vocabularies.vra_core.location.LocationName: text is null");
-            }
-            if (text.isEmpty()) {
-                throw new IllegalArgumentException("org.dressdiscover.api.vocabularies.vra_core.location.LocationName: text is less than min length 1");
-            }
-            return text;
-        }
-
-        @Override
-        public org.dressdiscover.api.vocabularies.vra_core.location.LocationNameType validateType(final org.dressdiscover.api.vocabularies.vra_core.location.LocationNameType type) throws RuntimeException {
-            if (type == null) {
-                throw new NullPointerException("org.dressdiscover.api.vocabularies.vra_core.location.LocationName: type is null");
-            }
-            return type;
-        }
-
-        @Override
-        public com.google.common.base.Optional<String> validateExtent(final com.google.common.base.Optional<String> extent) throws RuntimeException {
-            if (extent == null) {
-                throw new NullPointerException("org.dressdiscover.api.vocabularies.vra_core.location.LocationName: extent is null");
-            }
-            if (!extent.isPresent()) {
-                return extent;
-            }
-            if (extent.get().isEmpty()) {
-                throw new IllegalArgumentException("org.dressdiscover.api.vocabularies.vra_core.location.LocationName: extent is less than min length 1");
-            }
-            return extent;
-        }
-
-        @Override
-        public com.google.common.base.Optional<org.dressdiscover.api.models.VocabRef> validateVocabRef(final com.google.common.base.Optional<org.dressdiscover.api.models.VocabRef> vocabRef) throws RuntimeException {
-            if (vocabRef == null) {
-                throw new NullPointerException("org.dressdiscover.api.vocabularies.vra_core.location.LocationName: vocabRef is null");
-            }
-            if (!vocabRef.isPresent()) {
-                return vocabRef;
-            }
-            return vocabRef;
-        }
-
-        private final static DefaultConstructionValidator instance = new DefaultConstructionValidator();
-    }
-
-    public static class NopConstructionValidator implements ConstructionValidator {
-        public static NopConstructionValidator getInstance() {
-            return instance;
-        }
-
-        public NopConstructionValidator() {
-        }
-
-        @Override
-        public String validateText(final String text) {
-            return text;
-        }
-
-        @Override
-        public org.dressdiscover.api.vocabularies.vra_core.location.LocationNameType validateType(final org.dressdiscover.api.vocabularies.vra_core.location.LocationNameType type) {
-            return type;
-        }
-
-        @Override
-        public com.google.common.base.Optional<String> validateExtent(final com.google.common.base.Optional<String> extent) {
-            return extent;
-        }
-
-        @Override
-        public com.google.common.base.Optional<org.dressdiscover.api.models.VocabRef> validateVocabRef(final com.google.common.base.Optional<org.dressdiscover.api.models.VocabRef> vocabRef) {
-            return vocabRef;
-        }
-
-        private final static NopConstructionValidator instance = new NopConstructionValidator();
-    }
-
-    public interface ReadValidator extends Validator<org.thryft.protocol.InputProtocolException> {
-    }
-
-    public static class DefaultReadValidator implements ReadValidator {
-        public static DefaultReadValidator getInstance() {
-            return instance;
-        }
-
-        public DefaultReadValidator() {
-        }
-
-        @Override
-        public String validateText(final String text) throws org.thryft.protocol.InputProtocolException {
+        public static void validateText(final String text) throws org.thryft.protocol.InputProtocolException {
             if (text == null) {
                 throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.TEXT, "org.dressdiscover.api.vocabularies.vra_core.location.LocationName: text is null");
             }
             if (text.isEmpty()) {
-                throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.TEXT, "org.dressdiscover.api.vocabularies.vra_core.location.LocationName: text is less than min length 1");
+                throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.TEXT, "org.dressdiscover.api.vocabularies.vra_core.location.LocationName.text: less than min length 1");
             }
-            return text;
         }
 
-        @Override
-        public org.dressdiscover.api.vocabularies.vra_core.location.LocationNameType validateType(final org.dressdiscover.api.vocabularies.vra_core.location.LocationNameType type) throws org.thryft.protocol.InputProtocolException {
+        public static void validateType(final org.dressdiscover.api.vocabularies.vra_core.location.LocationNameType type) throws org.thryft.protocol.InputProtocolException {
             if (type == null) {
                 throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.TYPE, "org.dressdiscover.api.vocabularies.vra_core.location.LocationName: type is null");
             }
-            return type;
         }
 
-        @Override
-        public com.google.common.base.Optional<String> validateExtent(final com.google.common.base.Optional<String> extent) throws org.thryft.protocol.InputProtocolException {
+        public static void validateExtent(final com.google.common.base.Optional<String> extent) throws org.thryft.protocol.InputProtocolException {
             if (extent == null) {
                 throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.EXTENT, "org.dressdiscover.api.vocabularies.vra_core.location.LocationName: extent is null");
             }
             if (!extent.isPresent()) {
-                return extent;
+                return;
             }
             if (extent.get().isEmpty()) {
-                throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.EXTENT, "org.dressdiscover.api.vocabularies.vra_core.location.LocationName: extent is less than min length 1");
+                throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.EXTENT, "org.dressdiscover.api.vocabularies.vra_core.location.LocationName.extent: less than min length 1");
             }
-            return extent;
         }
 
-        @Override
-        public com.google.common.base.Optional<org.dressdiscover.api.models.VocabRef> validateVocabRef(final com.google.common.base.Optional<org.dressdiscover.api.models.VocabRef> vocabRef) throws org.thryft.protocol.InputProtocolException {
+        public static void validateVocabRef(final com.google.common.base.Optional<org.dressdiscover.api.vocabularies.vra_core.VocabRef> vocabRef) throws org.thryft.protocol.InputProtocolException {
             if (vocabRef == null) {
                 throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.VOCAB_REF, "org.dressdiscover.api.vocabularies.vra_core.location.LocationName: vocabRef is null");
             }
             if (!vocabRef.isPresent()) {
-                return vocabRef;
+                return;
             }
-            return vocabRef;
         }
-
-        private final static DefaultReadValidator instance = new DefaultReadValidator();
     }
 
-    public static class NopReadValidator implements ReadValidator {
-        public static NopReadValidator getInstance() {
-            return instance;
+    public final static class UncheckedValidator {
+        public static void validate(final String text, final org.dressdiscover.api.vocabularies.vra_core.location.LocationNameType type, final com.google.common.base.Optional<String> extent, final com.google.common.base.Optional<org.dressdiscover.api.vocabularies.vra_core.VocabRef> vocabRef) {
+            validateText(text);
+            validateType(type);
+            validateExtent(extent);
+            validateVocabRef(vocabRef);
         }
 
-        public NopReadValidator() {
+        public static void validateText(final String text) {
+            if (text == null) {
+                throw new NullPointerException("org.dressdiscover.api.vocabularies.vra_core.location.LocationName: text is null");
+            }
+            if (text.isEmpty()) {
+                throw new IllegalArgumentException("org.dressdiscover.api.vocabularies.vra_core.location.LocationName.text: less than min length 1");
+            }
         }
 
-        @Override
-        public String validateText(final String text) {
-            return text;
+        public static void validateType(final org.dressdiscover.api.vocabularies.vra_core.location.LocationNameType type) {
+            if (type == null) {
+                throw new NullPointerException("org.dressdiscover.api.vocabularies.vra_core.location.LocationName: type is null");
+            }
         }
 
-        @Override
-        public org.dressdiscover.api.vocabularies.vra_core.location.LocationNameType validateType(final org.dressdiscover.api.vocabularies.vra_core.location.LocationNameType type) {
-            return type;
+        public static void validateExtent(final com.google.common.base.Optional<String> extent) {
+            if (extent == null) {
+                throw new NullPointerException("org.dressdiscover.api.vocabularies.vra_core.location.LocationName: extent is null");
+            }
+            if (!extent.isPresent()) {
+                return;
+            }
+            if (extent.get().isEmpty()) {
+                throw new IllegalArgumentException("org.dressdiscover.api.vocabularies.vra_core.location.LocationName.extent: less than min length 1");
+            }
         }
 
-        @Override
-        public com.google.common.base.Optional<String> validateExtent(final com.google.common.base.Optional<String> extent) {
-            return extent;
+        public static void validateVocabRef(final com.google.common.base.Optional<org.dressdiscover.api.vocabularies.vra_core.VocabRef> vocabRef) {
+            if (vocabRef == null) {
+                throw new NullPointerException("org.dressdiscover.api.vocabularies.vra_core.location.LocationName: vocabRef is null");
+            }
+            if (!vocabRef.isPresent()) {
+                return;
+            }
         }
-
-        @Override
-        public com.google.common.base.Optional<org.dressdiscover.api.models.VocabRef> validateVocabRef(final com.google.common.base.Optional<org.dressdiscover.api.models.VocabRef> vocabRef) {
-            return vocabRef;
-        }
-
-        private final static NopReadValidator instance = new NopReadValidator();
     }
 
     /**
      * Copy constructor
      */
     public LocationName(final LocationName other) {
-        this(other.getText(), other.getType(), other.getExtent(), other.getVocabRef(), NopConstructionValidator.getInstance());
+        this(other.getText(), other.getType(), other.getExtent(), other.getVocabRef());
     }
 
-    protected LocationName(final String text, final org.dressdiscover.api.vocabularies.vra_core.location.LocationNameType type, final com.google.common.base.Optional<String> extent, final com.google.common.base.Optional<org.dressdiscover.api.models.VocabRef> vocabRef, ConstructionValidator validator) {
-        this.text = validator.validateText(text);
-        this.type = validator.validateType(type);
-        this.extent = validator.validateExtent(extent);
-        this.vocabRef = validator.validateVocabRef(vocabRef);
+    /**
+     * Total constructor
+     *
+     * All fields should have been validated before calling this.
+     */
+    protected LocationName(final String text, final org.dressdiscover.api.vocabularies.vra_core.location.LocationNameType type, final com.google.common.base.Optional<String> extent, final com.google.common.base.Optional<org.dressdiscover.api.vocabularies.vra_core.VocabRef> vocabRef) {
+        this.text = text;
+        this.type = type;
+        this.extent = extent;
+        this.vocabRef = vocabRef;
     }
 
     public static Builder builder() {
@@ -584,21 +497,26 @@ public final class LocationName implements org.thryft.Struct {
      * Required factory method
      */
     public static LocationName create(final String text, final org.dressdiscover.api.vocabularies.vra_core.location.LocationNameType type) {
-        return new LocationName(text, type, com.google.common.base.Optional.<String> absent(), com.google.common.base.Optional.<org.dressdiscover.api.models.VocabRef> absent(), DefaultConstructionValidator.getInstance());
+        UncheckedValidator.validate(text, type, com.google.common.base.Optional.<String> absent(), com.google.common.base.Optional.<org.dressdiscover.api.vocabularies.vra_core.VocabRef> absent());
+        return new LocationName(text, type, com.google.common.base.Optional.<String> absent(), com.google.common.base.Optional.<org.dressdiscover.api.vocabularies.vra_core.VocabRef> absent());
     }
 
     /**
      * Total Nullable factory method
      */
-    public static LocationName create(final String text, final org.dressdiscover.api.vocabularies.vra_core.location.LocationNameType type, final @javax.annotation.Nullable String extent, final @javax.annotation.Nullable org.dressdiscover.api.models.VocabRef vocabRef) {
-        return new LocationName(text, type, com.google.common.base.Optional.fromNullable(extent), com.google.common.base.Optional.fromNullable(vocabRef), DefaultConstructionValidator.getInstance());
+    public static LocationName create(final String text, final org.dressdiscover.api.vocabularies.vra_core.location.LocationNameType type, @javax.annotation.Nullable final String extent, @javax.annotation.Nullable final org.dressdiscover.api.vocabularies.vra_core.VocabRef vocabRef) {
+        final com.google.common.base.Optional<String> extentOptional = com.google.common.base.Optional.fromNullable(extent);
+        final com.google.common.base.Optional<org.dressdiscover.api.vocabularies.vra_core.VocabRef> vocabRefOptional = com.google.common.base.Optional.fromNullable(vocabRef);
+        UncheckedValidator.validate(text, type, extentOptional, vocabRefOptional);
+        return new LocationName(text, type, extentOptional, vocabRefOptional);
     }
 
     /**
      * Optional factory method
      */
-    public static LocationName create(final String text, final org.dressdiscover.api.vocabularies.vra_core.location.LocationNameType type, final com.google.common.base.Optional<String> extent, final com.google.common.base.Optional<org.dressdiscover.api.models.VocabRef> vocabRef) {
-        return new LocationName(text, type, extent, vocabRef, DefaultConstructionValidator.getInstance());
+    public static LocationName create(final String text, final org.dressdiscover.api.vocabularies.vra_core.location.LocationNameType type, final com.google.common.base.Optional<String> extent, final com.google.common.base.Optional<org.dressdiscover.api.vocabularies.vra_core.VocabRef> vocabRef) {
+        UncheckedValidator.validate(text, type, extent, vocabRef);
+        return new LocationName(text, type, extent, vocabRef);
     }
 
     @Override
@@ -667,7 +585,7 @@ public final class LocationName implements org.thryft.Struct {
         return type;
     }
 
-    public final com.google.common.base.Optional<org.dressdiscover.api.models.VocabRef> getVocabRef() {
+    public final com.google.common.base.Optional<org.dressdiscover.api.vocabularies.vra_core.VocabRef> getVocabRef() {
         return vocabRef;
     }
 
@@ -701,26 +619,29 @@ public final class LocationName implements org.thryft.Struct {
     }
 
     public static LocationName readAsList(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
-        String text = null;
-        org.dressdiscover.api.vocabularies.vra_core.location.LocationNameType type = null;
+        String text;
+        org.dressdiscover.api.vocabularies.vra_core.location.LocationNameType type;
         com.google.common.base.Optional<String> extent = com.google.common.base.Optional.<String> absent();
-        com.google.common.base.Optional<org.dressdiscover.api.models.VocabRef> vocabRef = com.google.common.base.Optional.<org.dressdiscover.api.models.VocabRef> absent();
+        com.google.common.base.Optional<org.dressdiscover.api.vocabularies.vra_core.VocabRef> vocabRef = com.google.common.base.Optional.<org.dressdiscover.api.vocabularies.vra_core.VocabRef> absent();
 
         try {
             final org.thryft.protocol.ListBegin __list = iprot.readListBegin();
             text = iprot.readString();
-            type = iprot.readEnum(org.dressdiscover.api.vocabularies.vra_core.location.LocationNameType.class);
+            type = iprot.readEnum(org.dressdiscover.api.vocabularies.vra_core.location.LocationNameType.Factory.getInstance());
             if (__list.getSize() > 2) {
                 extent = com.google.common.base.Optional.of(iprot.readString());
             }
             if (__list.getSize() > 3) {
-                vocabRef = com.google.common.base.Optional.of(org.dressdiscover.api.models.VocabRef.readAsStruct(iprot));
+                vocabRef = com.google.common.base.Optional.of(org.dressdiscover.api.vocabularies.vra_core.VocabRef.readAsStruct(iprot));
             }
             iprot.readListEnd();
         } catch (final RuntimeException e) {
             throw new IllegalStateException(e);
         }
-        return new LocationName(DefaultReadValidator.getInstance().validateText(text), DefaultReadValidator.getInstance().validateType(type), DefaultReadValidator.getInstance().validateExtent(extent), DefaultReadValidator.getInstance().validateVocabRef(vocabRef), NopConstructionValidator.getInstance());
+
+        ReadValidator.validate(text, type, extent, vocabRef);
+
+        return new LocationName(text, type, extent, vocabRef);
     }
 
     public static LocationName readAsStruct(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
@@ -728,10 +649,10 @@ public final class LocationName implements org.thryft.Struct {
     }
 
     public static LocationName readAsStruct(final org.thryft.protocol.InputProtocol iprot, final com.google.common.base.Optional<UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
-        String text = null;
-        org.dressdiscover.api.vocabularies.vra_core.location.LocationNameType type = null;
+        @javax.annotation.Nullable String text = null;
+        @javax.annotation.Nullable org.dressdiscover.api.vocabularies.vra_core.location.LocationNameType type = null;
         com.google.common.base.Optional<String> extent = com.google.common.base.Optional.<String> absent();
-        com.google.common.base.Optional<org.dressdiscover.api.models.VocabRef> vocabRef = com.google.common.base.Optional.<org.dressdiscover.api.models.VocabRef> absent();
+        com.google.common.base.Optional<org.dressdiscover.api.vocabularies.vra_core.VocabRef> vocabRef = com.google.common.base.Optional.<org.dressdiscover.api.vocabularies.vra_core.VocabRef> absent();
 
         try {
             iprot.readStructBegin();
@@ -749,7 +670,7 @@ public final class LocationName implements org.thryft.Struct {
                 }
                 case "type": {
                     if (!ifield.hasId() || ifield.getId() == 2) {
-                        type = iprot.readEnum(org.dressdiscover.api.vocabularies.vra_core.location.LocationNameType.class);
+                        type = iprot.readEnum(org.dressdiscover.api.vocabularies.vra_core.location.LocationNameType.Factory.getInstance());
                     }
                     break;
                 }
@@ -761,7 +682,7 @@ public final class LocationName implements org.thryft.Struct {
                 }
                 case "vocab_ref": {
                     if (!ifield.hasId() || ifield.getId() == 4) {
-                        vocabRef = com.google.common.base.Optional.of(org.dressdiscover.api.models.VocabRef.readAsStruct(iprot));
+                        vocabRef = com.google.common.base.Optional.of(org.dressdiscover.api.vocabularies.vra_core.VocabRef.readAsStruct(iprot, unknownFieldCallback));
                     }
                     break;
                 }
@@ -777,30 +698,37 @@ public final class LocationName implements org.thryft.Struct {
         } catch (final RuntimeException e) {
             throw new IllegalStateException(e);
         }
-        return new LocationName(DefaultReadValidator.getInstance().validateText(text), DefaultReadValidator.getInstance().validateType(type), DefaultReadValidator.getInstance().validateExtent(extent), DefaultReadValidator.getInstance().validateVocabRef(vocabRef), NopConstructionValidator.getInstance());
+
+        ReadValidator.validate(text, type, extent, vocabRef);
+
+        return new LocationName(text, type, extent, vocabRef);
     }
 
     public LocationName replaceExtent(final com.google.common.base.Optional<String> extent) {
-        return new LocationName(this.text, this.type, DefaultConstructionValidator.getInstance().validateExtent(extent), this.vocabRef, NopConstructionValidator.getInstance());
+        UncheckedValidator.validateExtent(extent);
+        return new LocationName(this.text, this.type, extent, this.vocabRef);
     }
 
-    public LocationName replaceExtent(final String extent) {
+    public LocationName replaceExtent(@javax.annotation.Nullable final String extent) {
         return replaceExtent(com.google.common.base.Optional.fromNullable(extent));
     }
 
     public LocationName replaceText(final String text) {
-        return new LocationName(DefaultConstructionValidator.getInstance().validateText(text), this.type, this.extent, this.vocabRef, NopConstructionValidator.getInstance());
+        UncheckedValidator.validateText(text);
+        return new LocationName(text, this.type, this.extent, this.vocabRef);
     }
 
     public LocationName replaceType(final org.dressdiscover.api.vocabularies.vra_core.location.LocationNameType type) {
-        return new LocationName(this.text, DefaultConstructionValidator.getInstance().validateType(type), this.extent, this.vocabRef, NopConstructionValidator.getInstance());
+        UncheckedValidator.validateType(type);
+        return new LocationName(this.text, type, this.extent, this.vocabRef);
     }
 
-    public LocationName replaceVocabRef(final com.google.common.base.Optional<org.dressdiscover.api.models.VocabRef> vocabRef) {
-        return new LocationName(this.text, this.type, this.extent, DefaultConstructionValidator.getInstance().validateVocabRef(vocabRef), NopConstructionValidator.getInstance());
+    public LocationName replaceVocabRef(final com.google.common.base.Optional<org.dressdiscover.api.vocabularies.vra_core.VocabRef> vocabRef) {
+        UncheckedValidator.validateVocabRef(vocabRef);
+        return new LocationName(this.text, this.type, this.extent, vocabRef);
     }
 
-    public LocationName replaceVocabRef(final org.dressdiscover.api.models.VocabRef vocabRef) {
+    public LocationName replaceVocabRef(@javax.annotation.Nullable final org.dressdiscover.api.vocabularies.vra_core.VocabRef vocabRef) {
         return replaceVocabRef(com.google.common.base.Optional.fromNullable(vocabRef));
     }
 
@@ -839,29 +767,45 @@ public final class LocationName implements org.thryft.Struct {
         oprot.writeStructEnd();
     }
 
-    @Override
-    public void writeFields(final org.thryft.protocol.OutputProtocol oprot) throws org.thryft.protocol.OutputProtocolException {
-        oprot.writeFieldBegin("text", org.thryft.protocol.Type.STRING, (short)1);
-        oprot.writeString(getText());
-        oprot.writeFieldEnd();
-
-        oprot.writeFieldBegin("type", org.thryft.protocol.Type.STRING, (short)2);
-        oprot.writeEnum(getType());
-        oprot.writeFieldEnd();
-
+    public void writeExtentField(final org.thryft.protocol.OutputProtocol oprot) throws org.thryft.protocol.OutputProtocolException {
         if (getExtent().isPresent()) {
-            oprot.writeFieldBegin("extent", org.thryft.protocol.Type.STRING, (short)3);
+            oprot.writeFieldBegin(FieldMetadata.EXTENT);
             oprot.writeString(getExtent().get());
             oprot.writeFieldEnd();
         }
+    }
 
+    @Override
+    public void writeFields(final org.thryft.protocol.OutputProtocol oprot) throws org.thryft.protocol.OutputProtocolException {
+        writeTextField(oprot);
+
+        writeTypeField(oprot);
+
+        writeExtentField(oprot);
+
+        writeVocabRefField(oprot);
+
+        oprot.writeFieldStop();
+    }
+
+    public void writeTextField(final org.thryft.protocol.OutputProtocol oprot) throws org.thryft.protocol.OutputProtocolException {
+        oprot.writeFieldBegin(FieldMetadata.TEXT);
+        oprot.writeString(getText());
+        oprot.writeFieldEnd();
+    }
+
+    public void writeTypeField(final org.thryft.protocol.OutputProtocol oprot) throws org.thryft.protocol.OutputProtocolException {
+        oprot.writeFieldBegin(FieldMetadata.TYPE);
+        oprot.writeEnum(getType());
+        oprot.writeFieldEnd();
+    }
+
+    public void writeVocabRefField(final org.thryft.protocol.OutputProtocol oprot) throws org.thryft.protocol.OutputProtocolException {
         if (getVocabRef().isPresent()) {
-            oprot.writeFieldBegin("vocab_ref", org.thryft.protocol.Type.STRUCT, (short)4);
+            oprot.writeFieldBegin(FieldMetadata.VOCAB_REF);
             getVocabRef().get().writeAsStruct(oprot);
             oprot.writeFieldEnd();
         }
-
-        oprot.writeFieldStop();
     }
 
     private final String text;
@@ -870,5 +814,5 @@ public final class LocationName implements org.thryft.Struct {
 
     private final com.google.common.base.Optional<String> extent;
 
-    private final com.google.common.base.Optional<org.dressdiscover.api.models.VocabRef> vocabRef;
+    private final com.google.common.base.Optional<org.dressdiscover.api.vocabularies.vra_core.VocabRef> vocabRef;
 }

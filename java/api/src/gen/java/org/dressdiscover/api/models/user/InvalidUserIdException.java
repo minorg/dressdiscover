@@ -1,7 +1,7 @@
 package org.dressdiscover.api.models.user;
 
 @SuppressWarnings({"serial"})
-public final class InvalidUserIdException extends org.thryft.Exception {
+public final class InvalidUserIdException extends org.thryft.ThryftException {
     public final static class Builder {
         public Builder() {
             causeMessage = null;
@@ -12,14 +12,16 @@ public final class InvalidUserIdException extends org.thryft.Exception {
         }
 
         protected InvalidUserIdException _build(final String causeMessage) {
-            return new InvalidUserIdException(causeMessage, DefaultConstructionValidator.getInstance());
+            return new InvalidUserIdException(causeMessage);
         }
 
         public InvalidUserIdException build() {
+            UncheckedValidator.validate(causeMessage);
+
             return _build(causeMessage);
         }
 
-        public final String getCauseMessage() {
+        public final @javax.annotation.Nullable String getCauseMessage() {
             return causeMessage;
         }
 
@@ -103,7 +105,8 @@ public final class InvalidUserIdException extends org.thryft.Exception {
         }
 
         public Builder setCauseMessage(final String causeMessage) {
-            this.causeMessage = DefaultConstructionValidator.getInstance().validateCauseMessage(causeMessage);
+            UncheckedValidator.validateCauseMessage(causeMessage);
+            this.causeMessage = causeMessage;
             return this;
         }
 
@@ -141,7 +144,7 @@ public final class InvalidUserIdException extends org.thryft.Exception {
             return this;
         }
 
-        private String causeMessage;
+        private @javax.annotation.Nullable String causeMessage;
     }
 
     public final static class Factory implements org.thryft.CompoundType.Factory<InvalidUserIdException> {
@@ -174,7 +177,7 @@ public final class InvalidUserIdException extends org.thryft.Exception {
     }
 
     public enum FieldMetadata implements org.thryft.CompoundType.FieldMetadata {
-        CAUSE_MESSAGE("causeMessage", new com.google.common.reflect.TypeToken<String>() {}, true, 0, "cause_message", org.thryft.protocol.Type.STRING);
+        CAUSE_MESSAGE("causeMessage", new com.google.common.reflect.TypeToken<String>() {}, true, (short)0, "cause_message", org.thryft.protocol.Type.STRING);
 
         @Override
         public String getJavaName() {
@@ -187,7 +190,7 @@ public final class InvalidUserIdException extends org.thryft.Exception {
         }
 
         @Override
-        public int getThriftId() {
+        public short getThriftId() {
             return thriftId;
         }
 
@@ -232,7 +235,7 @@ public final class InvalidUserIdException extends org.thryft.Exception {
             }
         }
 
-        private FieldMetadata(final String javaName, final com.google.common.reflect.TypeToken<?> javaType, final boolean required, final int thriftId, final String thriftName, final org.thryft.protocol.Type thriftProtocolType) {
+        private FieldMetadata(final String javaName, final com.google.common.reflect.TypeToken<?> javaType, final boolean required, final short thriftId, final String thriftName, final org.thryft.protocol.Type thriftProtocolType) {
             this.javaName = javaName;
             this.javaType = javaType;
             this.required = required;
@@ -249,101 +252,50 @@ public final class InvalidUserIdException extends org.thryft.Exception {
         private final String javaName;
         private final com.google.common.reflect.TypeToken<?> javaType;
         private final boolean required;
-        private final int thriftId;
+        private final short thriftId;
         private final String thriftName;
         private final String thriftProtocolKey;
         private final org.thryft.protocol.Type thriftProtocolType;
     }
 
-    public interface Validator<ExceptionT extends Exception> {
-        public String validateCauseMessage(final String causeMessage) throws ExceptionT;
-    }
-
-    public interface ConstructionValidator extends Validator<RuntimeException> {
-    }
-
-    public static class DefaultConstructionValidator implements ConstructionValidator {
-        public static DefaultConstructionValidator getInstance() {
-            return instance;
+    public final static class ReadValidator {
+        public static void validate(final String causeMessage) throws org.thryft.protocol.InputProtocolException {
+            validateCauseMessage(causeMessage);
         }
 
-        public DefaultConstructionValidator() {
-        }
-
-        @Override
-        public String validateCauseMessage(final String causeMessage) throws RuntimeException {
-            if (causeMessage == null) {
-                throw new NullPointerException("org.dressdiscover.api.models.user.InvalidUserIdException: causeMessage is null");
-            }
-            return causeMessage;
-        }
-
-        private final static DefaultConstructionValidator instance = new DefaultConstructionValidator();
-    }
-
-    public static class NopConstructionValidator implements ConstructionValidator {
-        public static NopConstructionValidator getInstance() {
-            return instance;
-        }
-
-        public NopConstructionValidator() {
-        }
-
-        @Override
-        public String validateCauseMessage(final String causeMessage) {
-            return causeMessage;
-        }
-
-        private final static NopConstructionValidator instance = new NopConstructionValidator();
-    }
-
-    public interface ReadValidator extends Validator<org.thryft.protocol.InputProtocolException> {
-    }
-
-    public static class DefaultReadValidator implements ReadValidator {
-        public static DefaultReadValidator getInstance() {
-            return instance;
-        }
-
-        public DefaultReadValidator() {
-        }
-
-        @Override
-        public String validateCauseMessage(final String causeMessage) throws org.thryft.protocol.InputProtocolException {
+        public static void validateCauseMessage(final String causeMessage) throws org.thryft.protocol.InputProtocolException {
             if (causeMessage == null) {
                 throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.CAUSE_MESSAGE, "org.dressdiscover.api.models.user.InvalidUserIdException: causeMessage is null");
             }
-            return causeMessage;
         }
-
-        private final static DefaultReadValidator instance = new DefaultReadValidator();
     }
 
-    public static class NopReadValidator implements ReadValidator {
-        public static NopReadValidator getInstance() {
-            return instance;
+    public final static class UncheckedValidator {
+        public static void validate(final String causeMessage) {
+            validateCauseMessage(causeMessage);
         }
 
-        public NopReadValidator() {
+        public static void validateCauseMessage(final String causeMessage) {
+            if (causeMessage == null) {
+                throw new NullPointerException("org.dressdiscover.api.models.user.InvalidUserIdException: causeMessage is null");
+            }
         }
-
-        @Override
-        public String validateCauseMessage(final String causeMessage) {
-            return causeMessage;
-        }
-
-        private final static NopReadValidator instance = new NopReadValidator();
     }
 
     /**
      * Copy constructor
      */
     public InvalidUserIdException(final InvalidUserIdException other) {
-        this(other.getCauseMessage(), NopConstructionValidator.getInstance());
+        this(other.getCauseMessage());
     }
 
-    protected InvalidUserIdException(final String causeMessage, ConstructionValidator validator) {
-        this.causeMessage = validator.validateCauseMessage(causeMessage);
+    /**
+     * Total constructor
+     *
+     * All fields should have been validated before calling this.
+     */
+    protected InvalidUserIdException(final String causeMessage) {
+        this.causeMessage = causeMessage;
     }
 
     public static Builder builder() {
@@ -362,7 +314,8 @@ public final class InvalidUserIdException extends org.thryft.Exception {
      * Optional factory method
      */
     public static InvalidUserIdException create(final String causeMessage) {
-        return new InvalidUserIdException(causeMessage, DefaultConstructionValidator.getInstance());
+        UncheckedValidator.validate(causeMessage);
+        return new InvalidUserIdException(causeMessage);
     }
 
     @Override
@@ -441,7 +394,7 @@ public final class InvalidUserIdException extends org.thryft.Exception {
     }
 
     public static InvalidUserIdException readAsList(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
-        String causeMessage = null;
+        String causeMessage;
 
         try {
             iprot.readListBegin();
@@ -450,7 +403,10 @@ public final class InvalidUserIdException extends org.thryft.Exception {
         } catch (final RuntimeException e) {
             throw new IllegalStateException(e);
         }
-        return new InvalidUserIdException(DefaultReadValidator.getInstance().validateCauseMessage(causeMessage), NopConstructionValidator.getInstance());
+
+        ReadValidator.validate(causeMessage);
+
+        return new InvalidUserIdException(causeMessage);
     }
 
     public static InvalidUserIdException readAsStruct(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
@@ -458,7 +414,7 @@ public final class InvalidUserIdException extends org.thryft.Exception {
     }
 
     public static InvalidUserIdException readAsStruct(final org.thryft.protocol.InputProtocol iprot, final com.google.common.base.Optional<UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
-        String causeMessage = null;
+        @javax.annotation.Nullable String causeMessage = null;
 
         try {
             iprot.readStructBegin();
@@ -484,11 +440,15 @@ public final class InvalidUserIdException extends org.thryft.Exception {
         } catch (final RuntimeException e) {
             throw new IllegalStateException(e);
         }
-        return new InvalidUserIdException(DefaultReadValidator.getInstance().validateCauseMessage(causeMessage), NopConstructionValidator.getInstance());
+
+        ReadValidator.validate(causeMessage);
+
+        return new InvalidUserIdException(causeMessage);
     }
 
     public InvalidUserIdException replaceCauseMessage(final String causeMessage) {
-        return new InvalidUserIdException(DefaultConstructionValidator.getInstance().validateCauseMessage(causeMessage), NopConstructionValidator.getInstance());
+        UncheckedValidator.validateCauseMessage(causeMessage);
+        return new InvalidUserIdException(causeMessage);
     }
 
     @Override
@@ -508,7 +468,7 @@ public final class InvalidUserIdException extends org.thryft.Exception {
     public void writeAsMessage(final org.thryft.protocol.OutputProtocol oprot) throws org.thryft.protocol.OutputProtocolException {
         oprot.writeMessageBegin("org.dressdiscover.api.models.user.InvalidUserIdException", org.thryft.protocol.MessageType.EXCEPTION, null);
 
-        oprot.writeFieldBegin("cause_message", org.thryft.protocol.Type.STRING, (short)0);
+        oprot.writeFieldBegin(FieldMetadata.CAUSE_MESSAGE);
         oprot.writeString(getCauseMessage());
         oprot.writeFieldEnd();
 
@@ -524,11 +484,15 @@ public final class InvalidUserIdException extends org.thryft.Exception {
         oprot.writeStructEnd();
     }
 
-    @Override
-    public void writeFields(final org.thryft.protocol.OutputProtocol oprot) throws org.thryft.protocol.OutputProtocolException {
-        oprot.writeFieldBegin("cause_message", org.thryft.protocol.Type.STRING, (short)0);
+    public void writeCauseMessageField(final org.thryft.protocol.OutputProtocol oprot) throws org.thryft.protocol.OutputProtocolException {
+        oprot.writeFieldBegin(FieldMetadata.CAUSE_MESSAGE);
         oprot.writeString(getCauseMessage());
         oprot.writeFieldEnd();
+    }
+
+    @Override
+    public void writeFields(final org.thryft.protocol.OutputProtocol oprot) throws org.thryft.protocol.OutputProtocolException {
+        writeCauseMessageField(oprot);
 
         oprot.writeFieldStop();
     }

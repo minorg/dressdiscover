@@ -1,6 +1,6 @@
 package org.dressdiscover.lib.properties;
 
-public final class StoreProperties implements org.thryft.Struct, org.thryft.waf.lib.Properties {
+public final class StoreProperties implements org.thryft.waf.lib.Properties {
     public final static class Builder {
         public Builder() {
             cacheCollections = true;
@@ -25,10 +25,12 @@ public final class StoreProperties implements org.thryft.Struct, org.thryft.waf.
         }
 
         protected StoreProperties _build(final boolean cacheCollections, final boolean cacheInstitutions, final String dataDirectoryPath, final com.google.common.net.HostAndPort elasticSearchHost, final com.google.common.collect.ImmutableList<com.google.common.net.HostAndPort> mongoHosts, final int objectSummariesResultCacheSize, final int objectSummaryCacheSize, final int resummarizeObjectsBulkRequestSize) {
-            return new StoreProperties(cacheCollections, cacheInstitutions, dataDirectoryPath, elasticSearchHost, mongoHosts, objectSummariesResultCacheSize, objectSummaryCacheSize, resummarizeObjectsBulkRequestSize, DefaultConstructionValidator.getInstance());
+            return new StoreProperties(cacheCollections, cacheInstitutions, dataDirectoryPath, elasticSearchHost, mongoHosts, objectSummariesResultCacheSize, objectSummaryCacheSize, resummarizeObjectsBulkRequestSize);
         }
 
         public StoreProperties build() {
+            UncheckedValidator.validate(cacheCollections, cacheInstitutions, dataDirectoryPath, elasticSearchHost, mongoHosts, objectSummariesResultCacheSize, objectSummaryCacheSize, resummarizeObjectsBulkRequestSize);
+
             return _build(cacheCollections, cacheInstitutions, dataDirectoryPath, elasticSearchHost, mongoHosts, objectSummariesResultCacheSize, objectSummaryCacheSize, resummarizeObjectsBulkRequestSize);
         }
 
@@ -40,15 +42,15 @@ public final class StoreProperties implements org.thryft.Struct, org.thryft.waf.
             return cacheInstitutions;
         }
 
-        public final String getDataDirectoryPath() {
+        public final @javax.annotation.Nullable String getDataDirectoryPath() {
             return dataDirectoryPath;
         }
 
-        public final com.google.common.net.HostAndPort getElasticSearchHost() {
+        public final @javax.annotation.Nullable com.google.common.net.HostAndPort getElasticSearchHost() {
             return elasticSearchHost;
         }
 
-        public final com.google.common.collect.ImmutableList<com.google.common.net.HostAndPort> getMongoHosts() {
+        public final @javax.annotation.Nullable com.google.common.collect.ImmutableList<com.google.common.net.HostAndPort> getMongoHosts() {
             return mongoHosts;
         }
 
@@ -265,22 +267,26 @@ public final class StoreProperties implements org.thryft.Struct, org.thryft.waf.
         }
 
         public Builder setCacheCollections(final boolean cacheCollections) {
-            this.cacheCollections = DefaultConstructionValidator.getInstance().validateCacheCollections(cacheCollections);
+            UncheckedValidator.validateCacheCollections(cacheCollections);
+            this.cacheCollections = cacheCollections;
             return this;
         }
 
         public Builder setCacheInstitutions(final boolean cacheInstitutions) {
-            this.cacheInstitutions = DefaultConstructionValidator.getInstance().validateCacheInstitutions(cacheInstitutions);
+            UncheckedValidator.validateCacheInstitutions(cacheInstitutions);
+            this.cacheInstitutions = cacheInstitutions;
             return this;
         }
 
         public Builder setDataDirectoryPath(final String dataDirectoryPath) {
-            this.dataDirectoryPath = DefaultConstructionValidator.getInstance().validateDataDirectoryPath(dataDirectoryPath);
+            UncheckedValidator.validateDataDirectoryPath(dataDirectoryPath);
+            this.dataDirectoryPath = dataDirectoryPath;
             return this;
         }
 
         public Builder setElasticSearchHost(final com.google.common.net.HostAndPort elasticSearchHost) {
-            this.elasticSearchHost = DefaultConstructionValidator.getInstance().validateElasticSearchHost(elasticSearchHost);
+            UncheckedValidator.validateElasticSearchHost(elasticSearchHost);
+            this.elasticSearchHost = elasticSearchHost;
             return this;
         }
 
@@ -300,22 +306,26 @@ public final class StoreProperties implements org.thryft.Struct, org.thryft.waf.
         }
 
         public Builder setMongoHosts(final com.google.common.collect.ImmutableList<com.google.common.net.HostAndPort> mongoHosts) {
-            this.mongoHosts = DefaultConstructionValidator.getInstance().validateMongoHosts(mongoHosts);
+            UncheckedValidator.validateMongoHosts(mongoHosts);
+            this.mongoHosts = mongoHosts;
             return this;
         }
 
         public Builder setObjectSummariesResultCacheSize(final int objectSummariesResultCacheSize) {
-            this.objectSummariesResultCacheSize = DefaultConstructionValidator.getInstance().validateObjectSummariesResultCacheSize(objectSummariesResultCacheSize);
+            UncheckedValidator.validateObjectSummariesResultCacheSize(objectSummariesResultCacheSize);
+            this.objectSummariesResultCacheSize = objectSummariesResultCacheSize;
             return this;
         }
 
         public Builder setObjectSummaryCacheSize(final int objectSummaryCacheSize) {
-            this.objectSummaryCacheSize = DefaultConstructionValidator.getInstance().validateObjectSummaryCacheSize(objectSummaryCacheSize);
+            UncheckedValidator.validateObjectSummaryCacheSize(objectSummaryCacheSize);
+            this.objectSummaryCacheSize = objectSummaryCacheSize;
             return this;
         }
 
         public Builder setResummarizeObjectsBulkRequestSize(final int resummarizeObjectsBulkRequestSize) {
-            this.resummarizeObjectsBulkRequestSize = DefaultConstructionValidator.getInstance().validateResummarizeObjectsBulkRequestSize(resummarizeObjectsBulkRequestSize);
+            UncheckedValidator.validateResummarizeObjectsBulkRequestSize(resummarizeObjectsBulkRequestSize);
+            this.resummarizeObjectsBulkRequestSize = resummarizeObjectsBulkRequestSize;
             return this;
         }
 
@@ -387,14 +397,14 @@ public final class StoreProperties implements org.thryft.Struct, org.thryft.waf.
             return this;
         }
 
-        private Boolean cacheCollections;
-        private Boolean cacheInstitutions;
-        private String dataDirectoryPath;
-        private com.google.common.net.HostAndPort elasticSearchHost;
-        private com.google.common.collect.ImmutableList<com.google.common.net.HostAndPort> mongoHosts;
-        private Integer objectSummariesResultCacheSize;
-        private Integer objectSummaryCacheSize;
-        private Integer resummarizeObjectsBulkRequestSize;
+        private boolean cacheCollections;
+        private boolean cacheInstitutions;
+        private @javax.annotation.Nullable String dataDirectoryPath;
+        private @javax.annotation.Nullable com.google.common.net.HostAndPort elasticSearchHost;
+        private @javax.annotation.Nullable com.google.common.collect.ImmutableList<com.google.common.net.HostAndPort> mongoHosts;
+        private int objectSummariesResultCacheSize;
+        private int objectSummaryCacheSize;
+        private int resummarizeObjectsBulkRequestSize;
     }
 
     public final static class Factory implements org.thryft.CompoundType.Factory<StoreProperties> {
@@ -428,14 +438,14 @@ public final class StoreProperties implements org.thryft.Struct, org.thryft.waf.
 
     @SuppressWarnings("serial")
     public enum FieldMetadata implements org.thryft.CompoundType.FieldMetadata {
-        CACHE_COLLECTIONS("cacheCollections", new com.google.common.reflect.TypeToken<Boolean>() {}, true, 0, "cache_collections", org.thryft.protocol.Type.BOOL),
-        CACHE_INSTITUTIONS("cacheInstitutions", new com.google.common.reflect.TypeToken<Boolean>() {}, true, 0, "cache_institutions", org.thryft.protocol.Type.BOOL),
-        DATA_DIRECTORY_PATH("dataDirectoryPath", new com.google.common.reflect.TypeToken<String>() {}, true, 0, "data_directory_path", org.thryft.protocol.Type.STRING),
-        ELASTIC_SEARCH_HOST("elasticSearchHost", new com.google.common.reflect.TypeToken<com.google.common.net.HostAndPort>() {}, true, 0, "elastic_search_host", org.thryft.protocol.Type.STRING),
-        MONGO_HOSTS("mongoHosts", new com.google.common.reflect.TypeToken<com.google.common.collect.ImmutableList<com.google.common.net.HostAndPort>>() {}, true, 0, "mongo_hosts", org.thryft.protocol.Type.LIST),
-        OBJECT_SUMMARIES_RESULT_CACHE_SIZE("objectSummariesResultCacheSize", new com.google.common.reflect.TypeToken<Integer>() {}, true, 0, "object_summaries_result_cache_size", org.thryft.protocol.Type.I32),
-        OBJECT_SUMMARY_CACHE_SIZE("objectSummaryCacheSize", new com.google.common.reflect.TypeToken<Integer>() {}, true, 0, "object_summary_cache_size", org.thryft.protocol.Type.I32),
-        RESUMMARIZE_OBJECTS_BULK_REQUEST_SIZE("resummarizeObjectsBulkRequestSize", new com.google.common.reflect.TypeToken<Integer>() {}, true, 0, "resummarize_objects_bulk_request_size", org.thryft.protocol.Type.I32);
+        CACHE_COLLECTIONS("cacheCollections", new com.google.common.reflect.TypeToken<Boolean>() {}, true, (short)0, "cache_collections", org.thryft.protocol.Type.BOOL),
+        CACHE_INSTITUTIONS("cacheInstitutions", new com.google.common.reflect.TypeToken<Boolean>() {}, true, (short)0, "cache_institutions", org.thryft.protocol.Type.BOOL),
+        DATA_DIRECTORY_PATH("dataDirectoryPath", new com.google.common.reflect.TypeToken<String>() {}, true, (short)0, "data_directory_path", org.thryft.protocol.Type.STRING),
+        ELASTIC_SEARCH_HOST("elasticSearchHost", new com.google.common.reflect.TypeToken<com.google.common.net.HostAndPort>() {}, true, (short)0, "elastic_search_host", org.thryft.protocol.Type.STRING),
+        MONGO_HOSTS("mongoHosts", new com.google.common.reflect.TypeToken<com.google.common.collect.ImmutableList<com.google.common.net.HostAndPort>>() {}, true, (short)0, "mongo_hosts", org.thryft.protocol.Type.LIST),
+        OBJECT_SUMMARIES_RESULT_CACHE_SIZE("objectSummariesResultCacheSize", new com.google.common.reflect.TypeToken<Integer>() {}, true, (short)0, "object_summaries_result_cache_size", org.thryft.protocol.Type.I32),
+        OBJECT_SUMMARY_CACHE_SIZE("objectSummaryCacheSize", new com.google.common.reflect.TypeToken<Integer>() {}, true, (short)0, "object_summary_cache_size", org.thryft.protocol.Type.I32),
+        RESUMMARIZE_OBJECTS_BULK_REQUEST_SIZE("resummarizeObjectsBulkRequestSize", new com.google.common.reflect.TypeToken<Integer>() {}, true, (short)0, "resummarize_objects_bulk_request_size", org.thryft.protocol.Type.I32);
 
         @Override
         public String getJavaName() {
@@ -448,7 +458,7 @@ public final class StoreProperties implements org.thryft.Struct, org.thryft.waf.
         }
 
         @Override
-        public int getThriftId() {
+        public short getThriftId() {
             return thriftId;
         }
 
@@ -507,7 +517,7 @@ public final class StoreProperties implements org.thryft.Struct, org.thryft.waf.
             }
         }
 
-        private FieldMetadata(final String javaName, final com.google.common.reflect.TypeToken<?> javaType, final boolean required, final int thriftId, final String thriftName, final org.thryft.protocol.Type thriftProtocolType) {
+        private FieldMetadata(final String javaName, final com.google.common.reflect.TypeToken<?> javaType, final boolean required, final short thriftId, final String thriftName, final org.thryft.protocol.Type thriftProtocolType) {
             this.javaName = javaName;
             this.javaType = javaType;
             this.required = required;
@@ -524,274 +534,125 @@ public final class StoreProperties implements org.thryft.Struct, org.thryft.waf.
         private final String javaName;
         private final com.google.common.reflect.TypeToken<?> javaType;
         private final boolean required;
-        private final int thriftId;
+        private final short thriftId;
         private final String thriftName;
         private final String thriftProtocolKey;
         private final org.thryft.protocol.Type thriftProtocolType;
     }
 
-    public interface Validator<ExceptionT extends Exception> {
-        public boolean validateCacheCollections(final boolean cacheCollections) throws ExceptionT;
-
-        public boolean validateCacheInstitutions(final boolean cacheInstitutions) throws ExceptionT;
-
-        public String validateDataDirectoryPath(final String dataDirectoryPath) throws ExceptionT;
-
-        public com.google.common.net.HostAndPort validateElasticSearchHost(final com.google.common.net.HostAndPort elasticSearchHost) throws ExceptionT;
-
-        public com.google.common.collect.ImmutableList<com.google.common.net.HostAndPort> validateMongoHosts(final com.google.common.collect.ImmutableList<com.google.common.net.HostAndPort> mongoHosts) throws ExceptionT;
-
-        public int validateObjectSummariesResultCacheSize(final int objectSummariesResultCacheSize) throws ExceptionT;
-
-        public int validateObjectSummaryCacheSize(final int objectSummaryCacheSize) throws ExceptionT;
-
-        public int validateResummarizeObjectsBulkRequestSize(final int resummarizeObjectsBulkRequestSize) throws ExceptionT;
-    }
-
-    public interface ConstructionValidator extends Validator<RuntimeException> {
-    }
-
-    public static class DefaultConstructionValidator implements ConstructionValidator {
-        public static DefaultConstructionValidator getInstance() {
-            return instance;
+    public final static class ReadValidator {
+        public static void validate(final boolean cacheCollections, final boolean cacheInstitutions, final String dataDirectoryPath, final com.google.common.net.HostAndPort elasticSearchHost, final com.google.common.collect.ImmutableList<com.google.common.net.HostAndPort> mongoHosts, final int objectSummariesResultCacheSize, final int objectSummaryCacheSize, final int resummarizeObjectsBulkRequestSize) throws org.thryft.protocol.InputProtocolException {
+            validateCacheCollections(cacheCollections);
+            validateCacheInstitutions(cacheInstitutions);
+            validateDataDirectoryPath(dataDirectoryPath);
+            validateElasticSearchHost(elasticSearchHost);
+            validateMongoHosts(mongoHosts);
+            validateObjectSummariesResultCacheSize(objectSummariesResultCacheSize);
+            validateObjectSummaryCacheSize(objectSummaryCacheSize);
+            validateResummarizeObjectsBulkRequestSize(resummarizeObjectsBulkRequestSize);
         }
 
-        public DefaultConstructionValidator() {
+        public static void validateCacheCollections(final boolean cacheCollections) {
         }
 
-        @Override
-        public boolean validateCacheCollections(final boolean cacheCollections) throws RuntimeException {
-            return cacheCollections;
+        public static void validateCacheInstitutions(final boolean cacheInstitutions) {
         }
 
-        @Override
-        public boolean validateCacheInstitutions(final boolean cacheInstitutions) throws RuntimeException {
-            return cacheInstitutions;
-        }
-
-        @Override
-        public String validateDataDirectoryPath(final String dataDirectoryPath) throws RuntimeException {
-            if (dataDirectoryPath == null) {
-                throw new NullPointerException("org.dressdiscover.lib.properties.StoreProperties: dataDirectoryPath is null");
-            }
-            return dataDirectoryPath;
-        }
-
-        @Override
-        public com.google.common.net.HostAndPort validateElasticSearchHost(final com.google.common.net.HostAndPort elasticSearchHost) throws RuntimeException {
-            if (elasticSearchHost == null) {
-                throw new NullPointerException("org.dressdiscover.lib.properties.StoreProperties: elasticSearchHost is null");
-            }
-            return elasticSearchHost;
-        }
-
-        @Override
-        public com.google.common.collect.ImmutableList<com.google.common.net.HostAndPort> validateMongoHosts(final com.google.common.collect.ImmutableList<com.google.common.net.HostAndPort> mongoHosts) throws RuntimeException {
-            if (mongoHosts == null) {
-                throw new NullPointerException("org.dressdiscover.lib.properties.StoreProperties: mongoHosts is null");
-            }
-            return mongoHosts;
-        }
-
-        @Override
-        public int validateObjectSummariesResultCacheSize(final int objectSummariesResultCacheSize) throws RuntimeException {
-            return objectSummariesResultCacheSize;
-        }
-
-        @Override
-        public int validateObjectSummaryCacheSize(final int objectSummaryCacheSize) throws RuntimeException {
-            return objectSummaryCacheSize;
-        }
-
-        @Override
-        public int validateResummarizeObjectsBulkRequestSize(final int resummarizeObjectsBulkRequestSize) throws RuntimeException {
-            return resummarizeObjectsBulkRequestSize;
-        }
-
-        private final static DefaultConstructionValidator instance = new DefaultConstructionValidator();
-    }
-
-    public static class NopConstructionValidator implements ConstructionValidator {
-        public static NopConstructionValidator getInstance() {
-            return instance;
-        }
-
-        public NopConstructionValidator() {
-        }
-
-        @Override
-        public boolean validateCacheCollections(final boolean cacheCollections) {
-            return cacheCollections;
-        }
-
-        @Override
-        public boolean validateCacheInstitutions(final boolean cacheInstitutions) {
-            return cacheInstitutions;
-        }
-
-        @Override
-        public String validateDataDirectoryPath(final String dataDirectoryPath) {
-            return dataDirectoryPath;
-        }
-
-        @Override
-        public com.google.common.net.HostAndPort validateElasticSearchHost(final com.google.common.net.HostAndPort elasticSearchHost) {
-            return elasticSearchHost;
-        }
-
-        @Override
-        public com.google.common.collect.ImmutableList<com.google.common.net.HostAndPort> validateMongoHosts(final com.google.common.collect.ImmutableList<com.google.common.net.HostAndPort> mongoHosts) {
-            return mongoHosts;
-        }
-
-        @Override
-        public int validateObjectSummariesResultCacheSize(final int objectSummariesResultCacheSize) {
-            return objectSummariesResultCacheSize;
-        }
-
-        @Override
-        public int validateObjectSummaryCacheSize(final int objectSummaryCacheSize) {
-            return objectSummaryCacheSize;
-        }
-
-        @Override
-        public int validateResummarizeObjectsBulkRequestSize(final int resummarizeObjectsBulkRequestSize) {
-            return resummarizeObjectsBulkRequestSize;
-        }
-
-        private final static NopConstructionValidator instance = new NopConstructionValidator();
-    }
-
-    public interface ReadValidator extends Validator<org.thryft.protocol.InputProtocolException> {
-    }
-
-    public static class DefaultReadValidator implements ReadValidator {
-        public static DefaultReadValidator getInstance() {
-            return instance;
-        }
-
-        public DefaultReadValidator() {
-        }
-
-        @Override
-        public boolean validateCacheCollections(final boolean cacheCollections) throws org.thryft.protocol.InputProtocolException {
-            return cacheCollections;
-        }
-
-        @Override
-        public boolean validateCacheInstitutions(final boolean cacheInstitutions) throws org.thryft.protocol.InputProtocolException {
-            return cacheInstitutions;
-        }
-
-        @Override
-        public String validateDataDirectoryPath(final String dataDirectoryPath) throws org.thryft.protocol.InputProtocolException {
+        public static void validateDataDirectoryPath(final String dataDirectoryPath) throws org.thryft.protocol.InputProtocolException {
             if (dataDirectoryPath == null) {
                 throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.DATA_DIRECTORY_PATH, "org.dressdiscover.lib.properties.StoreProperties: dataDirectoryPath is null");
             }
-            return dataDirectoryPath;
         }
 
-        @Override
-        public com.google.common.net.HostAndPort validateElasticSearchHost(final com.google.common.net.HostAndPort elasticSearchHost) throws org.thryft.protocol.InputProtocolException {
+        public static void validateElasticSearchHost(final com.google.common.net.HostAndPort elasticSearchHost) throws org.thryft.protocol.InputProtocolException {
             if (elasticSearchHost == null) {
                 throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.ELASTIC_SEARCH_HOST, "org.dressdiscover.lib.properties.StoreProperties: elasticSearchHost is null");
             }
-            return elasticSearchHost;
         }
 
-        @Override
-        public com.google.common.collect.ImmutableList<com.google.common.net.HostAndPort> validateMongoHosts(final com.google.common.collect.ImmutableList<com.google.common.net.HostAndPort> mongoHosts) throws org.thryft.protocol.InputProtocolException {
+        public static void validateMongoHosts(final com.google.common.collect.ImmutableList<com.google.common.net.HostAndPort> mongoHosts) throws org.thryft.protocol.InputProtocolException {
             if (mongoHosts == null) {
                 throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.MONGO_HOSTS, "org.dressdiscover.lib.properties.StoreProperties: mongoHosts is null");
             }
-            return mongoHosts;
         }
 
-        @Override
-        public int validateObjectSummariesResultCacheSize(final int objectSummariesResultCacheSize) throws org.thryft.protocol.InputProtocolException {
-            return objectSummariesResultCacheSize;
+        public static void validateObjectSummariesResultCacheSize(final int objectSummariesResultCacheSize) {
         }
 
-        @Override
-        public int validateObjectSummaryCacheSize(final int objectSummaryCacheSize) throws org.thryft.protocol.InputProtocolException {
-            return objectSummaryCacheSize;
+        public static void validateObjectSummaryCacheSize(final int objectSummaryCacheSize) {
         }
 
-        @Override
-        public int validateResummarizeObjectsBulkRequestSize(final int resummarizeObjectsBulkRequestSize) throws org.thryft.protocol.InputProtocolException {
-            return resummarizeObjectsBulkRequestSize;
+        public static void validateResummarizeObjectsBulkRequestSize(final int resummarizeObjectsBulkRequestSize) {
         }
-
-        private final static DefaultReadValidator instance = new DefaultReadValidator();
     }
 
-    public static class NopReadValidator implements ReadValidator {
-        public static NopReadValidator getInstance() {
-            return instance;
+    public final static class UncheckedValidator {
+        public static void validate(final boolean cacheCollections, final boolean cacheInstitutions, final String dataDirectoryPath, final com.google.common.net.HostAndPort elasticSearchHost, final com.google.common.collect.ImmutableList<com.google.common.net.HostAndPort> mongoHosts, final int objectSummariesResultCacheSize, final int objectSummaryCacheSize, final int resummarizeObjectsBulkRequestSize) {
+            validateCacheCollections(cacheCollections);
+            validateCacheInstitutions(cacheInstitutions);
+            validateDataDirectoryPath(dataDirectoryPath);
+            validateElasticSearchHost(elasticSearchHost);
+            validateMongoHosts(mongoHosts);
+            validateObjectSummariesResultCacheSize(objectSummariesResultCacheSize);
+            validateObjectSummaryCacheSize(objectSummaryCacheSize);
+            validateResummarizeObjectsBulkRequestSize(resummarizeObjectsBulkRequestSize);
         }
 
-        public NopReadValidator() {
+        public static void validateCacheCollections(final boolean cacheCollections) {
         }
 
-        @Override
-        public boolean validateCacheCollections(final boolean cacheCollections) {
-            return cacheCollections;
+        public static void validateCacheInstitutions(final boolean cacheInstitutions) {
         }
 
-        @Override
-        public boolean validateCacheInstitutions(final boolean cacheInstitutions) {
-            return cacheInstitutions;
+        public static void validateDataDirectoryPath(final String dataDirectoryPath) {
+            if (dataDirectoryPath == null) {
+                throw new NullPointerException("org.dressdiscover.lib.properties.StoreProperties: dataDirectoryPath is null");
+            }
         }
 
-        @Override
-        public String validateDataDirectoryPath(final String dataDirectoryPath) {
-            return dataDirectoryPath;
+        public static void validateElasticSearchHost(final com.google.common.net.HostAndPort elasticSearchHost) {
+            if (elasticSearchHost == null) {
+                throw new NullPointerException("org.dressdiscover.lib.properties.StoreProperties: elasticSearchHost is null");
+            }
         }
 
-        @Override
-        public com.google.common.net.HostAndPort validateElasticSearchHost(final com.google.common.net.HostAndPort elasticSearchHost) {
-            return elasticSearchHost;
+        public static void validateMongoHosts(final com.google.common.collect.ImmutableList<com.google.common.net.HostAndPort> mongoHosts) {
+            if (mongoHosts == null) {
+                throw new NullPointerException("org.dressdiscover.lib.properties.StoreProperties: mongoHosts is null");
+            }
         }
 
-        @Override
-        public com.google.common.collect.ImmutableList<com.google.common.net.HostAndPort> validateMongoHosts(final com.google.common.collect.ImmutableList<com.google.common.net.HostAndPort> mongoHosts) {
-            return mongoHosts;
+        public static void validateObjectSummariesResultCacheSize(final int objectSummariesResultCacheSize) {
         }
 
-        @Override
-        public int validateObjectSummariesResultCacheSize(final int objectSummariesResultCacheSize) {
-            return objectSummariesResultCacheSize;
+        public static void validateObjectSummaryCacheSize(final int objectSummaryCacheSize) {
         }
 
-        @Override
-        public int validateObjectSummaryCacheSize(final int objectSummaryCacheSize) {
-            return objectSummaryCacheSize;
+        public static void validateResummarizeObjectsBulkRequestSize(final int resummarizeObjectsBulkRequestSize) {
         }
-
-        @Override
-        public int validateResummarizeObjectsBulkRequestSize(final int resummarizeObjectsBulkRequestSize) {
-            return resummarizeObjectsBulkRequestSize;
-        }
-
-        private final static NopReadValidator instance = new NopReadValidator();
     }
 
     /**
      * Copy constructor
      */
     public StoreProperties(final StoreProperties other) {
-        this(other.getCacheCollections(), other.getCacheInstitutions(), other.getDataDirectoryPath(), other.getElasticSearchHost(), other.getMongoHosts(), other.getObjectSummariesResultCacheSize(), other.getObjectSummaryCacheSize(), other.getResummarizeObjectsBulkRequestSize(), NopConstructionValidator.getInstance());
+        this(other.getCacheCollections(), other.getCacheInstitutions(), other.getDataDirectoryPath(), other.getElasticSearchHost(), other.getMongoHosts(), other.getObjectSummariesResultCacheSize(), other.getObjectSummaryCacheSize(), other.getResummarizeObjectsBulkRequestSize());
     }
 
-    protected StoreProperties(final boolean cacheCollections, final boolean cacheInstitutions, final String dataDirectoryPath, final com.google.common.net.HostAndPort elasticSearchHost, final com.google.common.collect.ImmutableList<com.google.common.net.HostAndPort> mongoHosts, final int objectSummariesResultCacheSize, final int objectSummaryCacheSize, final int resummarizeObjectsBulkRequestSize, ConstructionValidator validator) {
-        this.cacheCollections = validator.validateCacheCollections(cacheCollections);
-        this.cacheInstitutions = validator.validateCacheInstitutions(cacheInstitutions);
-        this.dataDirectoryPath = validator.validateDataDirectoryPath(dataDirectoryPath);
-        this.elasticSearchHost = validator.validateElasticSearchHost(elasticSearchHost);
-        this.mongoHosts = validator.validateMongoHosts(mongoHosts);
-        this.objectSummariesResultCacheSize = validator.validateObjectSummariesResultCacheSize(objectSummariesResultCacheSize);
-        this.objectSummaryCacheSize = validator.validateObjectSummaryCacheSize(objectSummaryCacheSize);
-        this.resummarizeObjectsBulkRequestSize = validator.validateResummarizeObjectsBulkRequestSize(resummarizeObjectsBulkRequestSize);
+    /**
+     * Total constructor
+     *
+     * All fields should have been validated before calling this.
+     */
+    protected StoreProperties(final boolean cacheCollections, final boolean cacheInstitutions, final String dataDirectoryPath, final com.google.common.net.HostAndPort elasticSearchHost, final com.google.common.collect.ImmutableList<com.google.common.net.HostAndPort> mongoHosts, final int objectSummariesResultCacheSize, final int objectSummaryCacheSize, final int resummarizeObjectsBulkRequestSize) {
+        this.cacheCollections = cacheCollections;
+        this.cacheInstitutions = cacheInstitutions;
+        this.dataDirectoryPath = dataDirectoryPath;
+        this.elasticSearchHost = elasticSearchHost;
+        this.mongoHosts = mongoHosts;
+        this.objectSummariesResultCacheSize = objectSummariesResultCacheSize;
+        this.objectSummaryCacheSize = objectSummaryCacheSize;
+        this.resummarizeObjectsBulkRequestSize = resummarizeObjectsBulkRequestSize;
     }
 
     private static java.util.Properties __mergeProperties(
@@ -825,20 +686,15 @@ public final class StoreProperties implements org.thryft.Struct, org.thryft.waf.
     private static java.util.Properties __readProperties(final String propertiesResourceName) {
         final java.util.Properties properties = new java.util.Properties();
 
-        final java.io.InputStream propertiesInputStream = StoreProperties.class
-                .getResourceAsStream(propertiesResourceName);
-        if (propertiesInputStream == null) {
-            logger.debug("properties file {} not found in the CLASSPATH", propertiesResourceName);
-            return properties;
-        }
-
-        try {
-            try {
-                properties.load(propertiesInputStream);
-                logger.debug("read properties file {} from CLASSPATH", propertiesResourceName);
-            } finally {
-                propertiesInputStream.close();
+        try (final java.io.InputStream propertiesInputStream = StoreProperties.class
+                .getResourceAsStream(propertiesResourceName)) {
+            if (propertiesInputStream == null) {
+                logger.debug("properties file {} not found in the CLASSPATH", propertiesResourceName);
+                return properties;
             }
+
+            properties.load(propertiesInputStream);
+            logger.debug("read properties file {} from CLASSPATH", propertiesResourceName);
         } catch (final java.io.IOException e) {
             logger.warn("unable to read properties file {} from the CLASSPATH: ", propertiesResourceName, e);
         }
@@ -861,21 +717,24 @@ public final class StoreProperties implements org.thryft.Struct, org.thryft.waf.
      * Required factory method
      */
     public static StoreProperties create(final String dataDirectoryPath) {
-        return new StoreProperties(true, true, dataDirectoryPath, com.google.common.net.HostAndPort.fromString("elasticsearch:9300"), com.google.common.collect.ImmutableList.<com.google.common.net.HostAndPort> of(com.google.common.net.HostAndPort.fromString("mongodb:27017")), 1024, 1024, 1000, DefaultConstructionValidator.getInstance());
+        UncheckedValidator.validate(true, true, dataDirectoryPath, com.google.common.net.HostAndPort.fromString("elasticsearch:9300"), com.google.common.collect.ImmutableList.<com.google.common.net.HostAndPort> of(com.google.common.net.HostAndPort.fromString("mongodb:27017")), 1024, 1024, 1000);
+        return new StoreProperties(true, true, dataDirectoryPath, com.google.common.net.HostAndPort.fromString("elasticsearch:9300"), com.google.common.collect.ImmutableList.<com.google.common.net.HostAndPort> of(com.google.common.net.HostAndPort.fromString("mongodb:27017")), 1024, 1024, 1000);
     }
 
     /**
      * Total boxed factory method
      */
     public static StoreProperties create(Boolean cacheCollections, Boolean cacheInstitutions, String dataDirectoryPath, com.google.common.net.HostAndPort elasticSearchHost, com.google.common.collect.ImmutableList<com.google.common.net.HostAndPort> mongoHosts, Integer objectSummariesResultCacheSize, Integer objectSummaryCacheSize, Integer resummarizeObjectsBulkRequestSize) {
-        return new StoreProperties(cacheCollections, cacheInstitutions, dataDirectoryPath, elasticSearchHost, mongoHosts, objectSummariesResultCacheSize, objectSummaryCacheSize, resummarizeObjectsBulkRequestSize, DefaultConstructionValidator.getInstance());
+        UncheckedValidator.validate(cacheCollections, cacheInstitutions, dataDirectoryPath, elasticSearchHost, mongoHosts, objectSummariesResultCacheSize, objectSummaryCacheSize, resummarizeObjectsBulkRequestSize);
+        return new StoreProperties(cacheCollections, cacheInstitutions, dataDirectoryPath, elasticSearchHost, mongoHosts, objectSummariesResultCacheSize, objectSummaryCacheSize, resummarizeObjectsBulkRequestSize);
     }
 
     /**
      * Optional factory method
      */
     public static StoreProperties create(final boolean cacheCollections, final boolean cacheInstitutions, final String dataDirectoryPath, final com.google.common.net.HostAndPort elasticSearchHost, final com.google.common.collect.ImmutableList<com.google.common.net.HostAndPort> mongoHosts, final int objectSummariesResultCacheSize, final int objectSummaryCacheSize, final int resummarizeObjectsBulkRequestSize) {
-        return new StoreProperties(cacheCollections, cacheInstitutions, dataDirectoryPath, elasticSearchHost, mongoHosts, objectSummariesResultCacheSize, objectSummaryCacheSize, resummarizeObjectsBulkRequestSize, DefaultConstructionValidator.getInstance());
+        UncheckedValidator.validate(cacheCollections, cacheInstitutions, dataDirectoryPath, elasticSearchHost, mongoHosts, objectSummariesResultCacheSize, objectSummaryCacheSize, resummarizeObjectsBulkRequestSize);
+        return new StoreProperties(cacheCollections, cacheInstitutions, dataDirectoryPath, elasticSearchHost, mongoHosts, objectSummariesResultCacheSize, objectSummaryCacheSize, resummarizeObjectsBulkRequestSize);
     }
 
     @Override
@@ -1177,14 +1036,14 @@ public final class StoreProperties implements org.thryft.Struct, org.thryft.waf.
     }
 
     public static StoreProperties readAsList(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
-        boolean cacheCollections = true;
-        boolean cacheInstitutions = true;
-        String dataDirectoryPath = null;
-        com.google.common.net.HostAndPort elasticSearchHost = com.google.common.net.HostAndPort.fromString("elasticsearch:9300");
-        com.google.common.collect.ImmutableList<com.google.common.net.HostAndPort> mongoHosts = com.google.common.collect.ImmutableList.<com.google.common.net.HostAndPort> of(com.google.common.net.HostAndPort.fromString("mongodb:27017"));
-        int objectSummariesResultCacheSize = 1024;
-        int objectSummaryCacheSize = 1024;
-        int resummarizeObjectsBulkRequestSize = 1000;
+        boolean cacheCollections;
+        boolean cacheInstitutions;
+        String dataDirectoryPath;
+        com.google.common.net.HostAndPort elasticSearchHost;
+        com.google.common.collect.ImmutableList<com.google.common.net.HostAndPort> mongoHosts;
+        int objectSummariesResultCacheSize;
+        int objectSummaryCacheSize;
+        int resummarizeObjectsBulkRequestSize;
 
         try {
             iprot.readListBegin();
@@ -1239,7 +1098,10 @@ public final class StoreProperties implements org.thryft.Struct, org.thryft.waf.
         } catch (final RuntimeException e) {
             throw new IllegalStateException(e);
         }
-        return new StoreProperties(DefaultReadValidator.getInstance().validateCacheCollections(cacheCollections), DefaultReadValidator.getInstance().validateCacheInstitutions(cacheInstitutions), DefaultReadValidator.getInstance().validateDataDirectoryPath(dataDirectoryPath), DefaultReadValidator.getInstance().validateElasticSearchHost(elasticSearchHost), DefaultReadValidator.getInstance().validateMongoHosts(mongoHosts), DefaultReadValidator.getInstance().validateObjectSummariesResultCacheSize(objectSummariesResultCacheSize), DefaultReadValidator.getInstance().validateObjectSummaryCacheSize(objectSummaryCacheSize), DefaultReadValidator.getInstance().validateResummarizeObjectsBulkRequestSize(resummarizeObjectsBulkRequestSize), NopConstructionValidator.getInstance());
+
+        ReadValidator.validate(cacheCollections, cacheInstitutions, dataDirectoryPath, elasticSearchHost, mongoHosts, objectSummariesResultCacheSize, objectSummaryCacheSize, resummarizeObjectsBulkRequestSize);
+
+        return new StoreProperties(cacheCollections, cacheInstitutions, dataDirectoryPath, elasticSearchHost, mongoHosts, objectSummariesResultCacheSize, objectSummaryCacheSize, resummarizeObjectsBulkRequestSize);
     }
 
     public static StoreProperties readAsStruct(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
@@ -1249,7 +1111,7 @@ public final class StoreProperties implements org.thryft.Struct, org.thryft.waf.
     public static StoreProperties readAsStruct(final org.thryft.protocol.InputProtocol iprot, final com.google.common.base.Optional<UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
         boolean cacheCollections = true;
         boolean cacheInstitutions = true;
-        String dataDirectoryPath = null;
+        @javax.annotation.Nullable String dataDirectoryPath = null;
         com.google.common.net.HostAndPort elasticSearchHost = com.google.common.net.HostAndPort.fromString("elasticsearch:9300");
         com.google.common.collect.ImmutableList<com.google.common.net.HostAndPort> mongoHosts = com.google.common.collect.ImmutableList.<com.google.common.net.HostAndPort> of(com.google.common.net.HostAndPort.fromString("mongodb:27017"));
         int objectSummariesResultCacheSize = 1024;
@@ -1347,39 +1209,50 @@ public final class StoreProperties implements org.thryft.Struct, org.thryft.waf.
         } catch (final RuntimeException e) {
             throw new IllegalStateException(e);
         }
-        return new StoreProperties(DefaultReadValidator.getInstance().validateCacheCollections(cacheCollections), DefaultReadValidator.getInstance().validateCacheInstitutions(cacheInstitutions), DefaultReadValidator.getInstance().validateDataDirectoryPath(dataDirectoryPath), DefaultReadValidator.getInstance().validateElasticSearchHost(elasticSearchHost), DefaultReadValidator.getInstance().validateMongoHosts(mongoHosts), DefaultReadValidator.getInstance().validateObjectSummariesResultCacheSize(objectSummariesResultCacheSize), DefaultReadValidator.getInstance().validateObjectSummaryCacheSize(objectSummaryCacheSize), DefaultReadValidator.getInstance().validateResummarizeObjectsBulkRequestSize(resummarizeObjectsBulkRequestSize), NopConstructionValidator.getInstance());
+
+        ReadValidator.validate(cacheCollections, cacheInstitutions, dataDirectoryPath, elasticSearchHost, mongoHosts, objectSummariesResultCacheSize, objectSummaryCacheSize, resummarizeObjectsBulkRequestSize);
+
+        return new StoreProperties(cacheCollections, cacheInstitutions, dataDirectoryPath, elasticSearchHost, mongoHosts, objectSummariesResultCacheSize, objectSummaryCacheSize, resummarizeObjectsBulkRequestSize);
     }
 
     public StoreProperties replaceCacheCollections(final boolean cacheCollections) {
-        return new StoreProperties(DefaultConstructionValidator.getInstance().validateCacheCollections(cacheCollections), this.cacheInstitutions, this.dataDirectoryPath, this.elasticSearchHost, this.mongoHosts, this.objectSummariesResultCacheSize, this.objectSummaryCacheSize, this.resummarizeObjectsBulkRequestSize, NopConstructionValidator.getInstance());
+        UncheckedValidator.validateCacheCollections(cacheCollections);
+        return new StoreProperties(cacheCollections, this.cacheInstitutions, this.dataDirectoryPath, this.elasticSearchHost, this.mongoHosts, this.objectSummariesResultCacheSize, this.objectSummaryCacheSize, this.resummarizeObjectsBulkRequestSize);
     }
 
     public StoreProperties replaceCacheInstitutions(final boolean cacheInstitutions) {
-        return new StoreProperties(this.cacheCollections, DefaultConstructionValidator.getInstance().validateCacheInstitutions(cacheInstitutions), this.dataDirectoryPath, this.elasticSearchHost, this.mongoHosts, this.objectSummariesResultCacheSize, this.objectSummaryCacheSize, this.resummarizeObjectsBulkRequestSize, NopConstructionValidator.getInstance());
+        UncheckedValidator.validateCacheInstitutions(cacheInstitutions);
+        return new StoreProperties(this.cacheCollections, cacheInstitutions, this.dataDirectoryPath, this.elasticSearchHost, this.mongoHosts, this.objectSummariesResultCacheSize, this.objectSummaryCacheSize, this.resummarizeObjectsBulkRequestSize);
     }
 
     public StoreProperties replaceDataDirectoryPath(final String dataDirectoryPath) {
-        return new StoreProperties(this.cacheCollections, this.cacheInstitutions, DefaultConstructionValidator.getInstance().validateDataDirectoryPath(dataDirectoryPath), this.elasticSearchHost, this.mongoHosts, this.objectSummariesResultCacheSize, this.objectSummaryCacheSize, this.resummarizeObjectsBulkRequestSize, NopConstructionValidator.getInstance());
+        UncheckedValidator.validateDataDirectoryPath(dataDirectoryPath);
+        return new StoreProperties(this.cacheCollections, this.cacheInstitutions, dataDirectoryPath, this.elasticSearchHost, this.mongoHosts, this.objectSummariesResultCacheSize, this.objectSummaryCacheSize, this.resummarizeObjectsBulkRequestSize);
     }
 
     public StoreProperties replaceElasticSearchHost(final com.google.common.net.HostAndPort elasticSearchHost) {
-        return new StoreProperties(this.cacheCollections, this.cacheInstitutions, this.dataDirectoryPath, DefaultConstructionValidator.getInstance().validateElasticSearchHost(elasticSearchHost), this.mongoHosts, this.objectSummariesResultCacheSize, this.objectSummaryCacheSize, this.resummarizeObjectsBulkRequestSize, NopConstructionValidator.getInstance());
+        UncheckedValidator.validateElasticSearchHost(elasticSearchHost);
+        return new StoreProperties(this.cacheCollections, this.cacheInstitutions, this.dataDirectoryPath, elasticSearchHost, this.mongoHosts, this.objectSummariesResultCacheSize, this.objectSummaryCacheSize, this.resummarizeObjectsBulkRequestSize);
     }
 
     public StoreProperties replaceMongoHosts(final com.google.common.collect.ImmutableList<com.google.common.net.HostAndPort> mongoHosts) {
-        return new StoreProperties(this.cacheCollections, this.cacheInstitutions, this.dataDirectoryPath, this.elasticSearchHost, DefaultConstructionValidator.getInstance().validateMongoHosts(mongoHosts), this.objectSummariesResultCacheSize, this.objectSummaryCacheSize, this.resummarizeObjectsBulkRequestSize, NopConstructionValidator.getInstance());
+        UncheckedValidator.validateMongoHosts(mongoHosts);
+        return new StoreProperties(this.cacheCollections, this.cacheInstitutions, this.dataDirectoryPath, this.elasticSearchHost, mongoHosts, this.objectSummariesResultCacheSize, this.objectSummaryCacheSize, this.resummarizeObjectsBulkRequestSize);
     }
 
     public StoreProperties replaceObjectSummariesResultCacheSize(final int objectSummariesResultCacheSize) {
-        return new StoreProperties(this.cacheCollections, this.cacheInstitutions, this.dataDirectoryPath, this.elasticSearchHost, this.mongoHosts, DefaultConstructionValidator.getInstance().validateObjectSummariesResultCacheSize(objectSummariesResultCacheSize), this.objectSummaryCacheSize, this.resummarizeObjectsBulkRequestSize, NopConstructionValidator.getInstance());
+        UncheckedValidator.validateObjectSummariesResultCacheSize(objectSummariesResultCacheSize);
+        return new StoreProperties(this.cacheCollections, this.cacheInstitutions, this.dataDirectoryPath, this.elasticSearchHost, this.mongoHosts, objectSummariesResultCacheSize, this.objectSummaryCacheSize, this.resummarizeObjectsBulkRequestSize);
     }
 
     public StoreProperties replaceObjectSummaryCacheSize(final int objectSummaryCacheSize) {
-        return new StoreProperties(this.cacheCollections, this.cacheInstitutions, this.dataDirectoryPath, this.elasticSearchHost, this.mongoHosts, this.objectSummariesResultCacheSize, DefaultConstructionValidator.getInstance().validateObjectSummaryCacheSize(objectSummaryCacheSize), this.resummarizeObjectsBulkRequestSize, NopConstructionValidator.getInstance());
+        UncheckedValidator.validateObjectSummaryCacheSize(objectSummaryCacheSize);
+        return new StoreProperties(this.cacheCollections, this.cacheInstitutions, this.dataDirectoryPath, this.elasticSearchHost, this.mongoHosts, this.objectSummariesResultCacheSize, objectSummaryCacheSize, this.resummarizeObjectsBulkRequestSize);
     }
 
     public StoreProperties replaceResummarizeObjectsBulkRequestSize(final int resummarizeObjectsBulkRequestSize) {
-        return new StoreProperties(this.cacheCollections, this.cacheInstitutions, this.dataDirectoryPath, this.elasticSearchHost, this.mongoHosts, this.objectSummariesResultCacheSize, this.objectSummaryCacheSize, DefaultConstructionValidator.getInstance().validateResummarizeObjectsBulkRequestSize(resummarizeObjectsBulkRequestSize), NopConstructionValidator.getInstance());
+        UncheckedValidator.validateResummarizeObjectsBulkRequestSize(resummarizeObjectsBulkRequestSize);
+        return new StoreProperties(this.cacheCollections, this.cacheInstitutions, this.dataDirectoryPath, this.elasticSearchHost, this.mongoHosts, this.objectSummariesResultCacheSize, this.objectSummaryCacheSize, resummarizeObjectsBulkRequestSize);
     }
 
     public com.google.common.collect.ImmutableMap<String, Object> toMap() {
@@ -1434,45 +1307,77 @@ public final class StoreProperties implements org.thryft.Struct, org.thryft.waf.
         oprot.writeStructEnd();
     }
 
-    @Override
-    public void writeFields(final org.thryft.protocol.OutputProtocol oprot) throws org.thryft.protocol.OutputProtocolException {
-        oprot.writeFieldBegin("cache_collections", org.thryft.protocol.Type.BOOL, (short)0);
+    public void writeCacheCollectionsField(final org.thryft.protocol.OutputProtocol oprot) throws org.thryft.protocol.OutputProtocolException {
+        oprot.writeFieldBegin(FieldMetadata.CACHE_COLLECTIONS);
         oprot.writeBool(getCacheCollections());
         oprot.writeFieldEnd();
+    }
 
-        oprot.writeFieldBegin("cache_institutions", org.thryft.protocol.Type.BOOL, (short)0);
+    public void writeCacheInstitutionsField(final org.thryft.protocol.OutputProtocol oprot) throws org.thryft.protocol.OutputProtocolException {
+        oprot.writeFieldBegin(FieldMetadata.CACHE_INSTITUTIONS);
         oprot.writeBool(getCacheInstitutions());
         oprot.writeFieldEnd();
+    }
 
-        oprot.writeFieldBegin("data_directory_path", org.thryft.protocol.Type.STRING, (short)0);
+    public void writeDataDirectoryPathField(final org.thryft.protocol.OutputProtocol oprot) throws org.thryft.protocol.OutputProtocolException {
+        oprot.writeFieldBegin(FieldMetadata.DATA_DIRECTORY_PATH);
         oprot.writeString(getDataDirectoryPath());
         oprot.writeFieldEnd();
+    }
 
-        oprot.writeFieldBegin("elastic_search_host", org.thryft.protocol.Type.STRING, (short)0);
+    public void writeElasticSearchHostField(final org.thryft.protocol.OutputProtocol oprot) throws org.thryft.protocol.OutputProtocolException {
+        oprot.writeFieldBegin(FieldMetadata.ELASTIC_SEARCH_HOST);
         oprot.writeString(getElasticSearchHost().toString());
         oprot.writeFieldEnd();
+    }
 
-        oprot.writeFieldBegin("mongo_hosts", org.thryft.protocol.Type.LIST, (short)0);
+    @Override
+    public void writeFields(final org.thryft.protocol.OutputProtocol oprot) throws org.thryft.protocol.OutputProtocolException {
+        writeCacheCollectionsField(oprot);
+
+        writeCacheInstitutionsField(oprot);
+
+        writeDataDirectoryPathField(oprot);
+
+        writeElasticSearchHostField(oprot);
+
+        writeMongoHostsField(oprot);
+
+        writeObjectSummariesResultCacheSizeField(oprot);
+
+        writeObjectSummaryCacheSizeField(oprot);
+
+        writeResummarizeObjectsBulkRequestSizeField(oprot);
+
+        oprot.writeFieldStop();
+    }
+
+    public void writeMongoHostsField(final org.thryft.protocol.OutputProtocol oprot) throws org.thryft.protocol.OutputProtocolException {
+        oprot.writeFieldBegin(FieldMetadata.MONGO_HOSTS);
         oprot.writeListBegin(org.thryft.protocol.Type.STRING, getMongoHosts().size());
         for (final com.google.common.net.HostAndPort _iter0 : getMongoHosts()) {
             oprot.writeString(_iter0.toString());
         }
         oprot.writeListEnd();
         oprot.writeFieldEnd();
+    }
 
-        oprot.writeFieldBegin("object_summaries_result_cache_size", org.thryft.protocol.Type.I32, (short)0);
+    public void writeObjectSummariesResultCacheSizeField(final org.thryft.protocol.OutputProtocol oprot) throws org.thryft.protocol.OutputProtocolException {
+        oprot.writeFieldBegin(FieldMetadata.OBJECT_SUMMARIES_RESULT_CACHE_SIZE);
         oprot.writeI32(getObjectSummariesResultCacheSize());
         oprot.writeFieldEnd();
+    }
 
-        oprot.writeFieldBegin("object_summary_cache_size", org.thryft.protocol.Type.I32, (short)0);
+    public void writeObjectSummaryCacheSizeField(final org.thryft.protocol.OutputProtocol oprot) throws org.thryft.protocol.OutputProtocolException {
+        oprot.writeFieldBegin(FieldMetadata.OBJECT_SUMMARY_CACHE_SIZE);
         oprot.writeI32(getObjectSummaryCacheSize());
         oprot.writeFieldEnd();
+    }
 
-        oprot.writeFieldBegin("resummarize_objects_bulk_request_size", org.thryft.protocol.Type.I32, (short)0);
+    public void writeResummarizeObjectsBulkRequestSizeField(final org.thryft.protocol.OutputProtocol oprot) throws org.thryft.protocol.OutputProtocolException {
+        oprot.writeFieldBegin(FieldMetadata.RESUMMARIZE_OBJECTS_BULK_REQUEST_SIZE);
         oprot.writeI32(getResummarizeObjectsBulkRequestSize());
         oprot.writeFieldEnd();
-
-        oprot.writeFieldStop();
     }
 
     private final boolean cacheCollections;

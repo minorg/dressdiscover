@@ -2,7 +2,7 @@ package org.dressdiscover.lib.services.institution;
 
 @com.google.inject.Singleton
 public class LoggingInstitutionCommandService implements org.dressdiscover.api.services.institution.InstitutionCommandService {
-    public static class Markers {
+    public final static class InstitutionCommandServiceLogMarkers {
         public final static org.slf4j.Marker DELETE_INSTITUTION_BY_ID = org.slf4j.MarkerFactory.getMarker("DELETE_INSTITUTION_BY_ID");
         public final static org.slf4j.Marker PUT_INSTITUTION = org.slf4j.MarkerFactory.getMarker("PUT_INSTITUTION");
 
@@ -20,63 +20,66 @@ public class LoggingInstitutionCommandService implements org.dressdiscover.api.s
         this.delegate = com.google.common.base.Preconditions.checkNotNull(delegate);
     }
 
+    @Override
     public void deleteInstitutionById(final org.dressdiscover.api.models.institution.InstitutionId id) throws org.dressdiscover.api.services.IoException, org.dressdiscover.api.services.institution.NoSuchInstitutionException {
-        final StringBuilder __logMessageStringBuilder = new StringBuilder();
-        final java.util.List<Object> __logMessageArgs = new java.util.ArrayList<Object>();
+        final Object[] __logMessageArgs = new Object[2];
+        __logMessageArgs[0] = Messages.DeleteInstitutionByIdRequest.create(id);
 
-        __logMessageStringBuilder.append("delete_institution_by_id(");
-        __logMessageStringBuilder.append("{}");
-        __logMessageArgs.add(Messages.DeleteInstitutionByIdRequest.create(id));
-        __logMessageStringBuilder.append(")");
+        __logMessageArgs[__logMessageArgs.length - 1] = PRE_RETURN_VALUE;
+        logger.debug(InstitutionCommandServiceLogMarkers.DELETE_INSTITUTION_BY_ID, LogMessages.DELETE_INSTITUTION_BY_ID, __logMessageArgs);
 
         try {
             delegate.deleteInstitutionById(id);
 
-            logger.info(Markers.DELETE_INSTITUTION_BY_ID, __logMessageStringBuilder.toString(), __logMessageArgs.toArray());
+            __logMessageArgs[__logMessageArgs.length - 1] = VOID_RETURN_VALUE;
+            logger.info(InstitutionCommandServiceLogMarkers.DELETE_INSTITUTION_BY_ID, LogMessages.DELETE_INSTITUTION_BY_ID, __logMessageArgs);
         } catch (final org.dressdiscover.api.services.IoException e) {
-            __logMessageStringBuilder.append(" -> {}");
-            __logMessageArgs.add(e.toString());
-            logger.error(Markers.DELETE_INSTITUTION_BY_ID, __logMessageStringBuilder.toString(), __logMessageArgs.toArray());
+            __logMessageArgs[__logMessageArgs.length - 1] = e.toString();
+            logger.error(InstitutionCommandServiceLogMarkers.DELETE_INSTITUTION_BY_ID, LogMessages.DELETE_INSTITUTION_BY_ID, __logMessageArgs);
             throw e;
         } catch (final org.dressdiscover.api.services.institution.NoSuchInstitutionException e) {
-            __logMessageStringBuilder.append(" -> {}");
-            __logMessageArgs.add(e.toString());
-            logger.error(Markers.DELETE_INSTITUTION_BY_ID, __logMessageStringBuilder.toString(), __logMessageArgs.toArray());
+            __logMessageArgs[__logMessageArgs.length - 1] = e.toString();
+            logger.error(InstitutionCommandServiceLogMarkers.DELETE_INSTITUTION_BY_ID, LogMessages.DELETE_INSTITUTION_BY_ID, __logMessageArgs);
             throw e;
         } catch (final RuntimeException e) {
-            __logMessageStringBuilder.append(" -> ");
-            __logMessageArgs.add(e);
-            logger.error(Markers.DELETE_INSTITUTION_BY_ID, __logMessageStringBuilder.toString(), __logMessageArgs.toArray());
+            __logMessageArgs[__logMessageArgs.length - 1] = e;
+            logger.error(InstitutionCommandServiceLogMarkers.DELETE_INSTITUTION_BY_ID, LogMessages.DELETE_INSTITUTION_BY_ID, __logMessageArgs);
             throw e;
         }
     }
 
+    @Override
     public void putInstitution(final org.dressdiscover.api.models.institution.InstitutionId id, final org.dressdiscover.api.models.institution.Institution institution) throws org.dressdiscover.api.services.IoException {
-        final StringBuilder __logMessageStringBuilder = new StringBuilder();
-        final java.util.List<Object> __logMessageArgs = new java.util.ArrayList<Object>();
+        final Object[] __logMessageArgs = new Object[2];
+        __logMessageArgs[0] = Messages.PutInstitutionRequest.create(id, institution);
 
-        __logMessageStringBuilder.append("put_institution(");
-        __logMessageStringBuilder.append("{}");
-        __logMessageArgs.add(Messages.PutInstitutionRequest.create(id, institution));
-        __logMessageStringBuilder.append(")");
+        __logMessageArgs[__logMessageArgs.length - 1] = PRE_RETURN_VALUE;
+        logger.debug(InstitutionCommandServiceLogMarkers.PUT_INSTITUTION, LogMessages.PUT_INSTITUTION, __logMessageArgs);
 
         try {
             delegate.putInstitution(id, institution);
 
-            logger.info(Markers.PUT_INSTITUTION, __logMessageStringBuilder.toString(), __logMessageArgs.toArray());
+            __logMessageArgs[__logMessageArgs.length - 1] = VOID_RETURN_VALUE;
+            logger.info(InstitutionCommandServiceLogMarkers.PUT_INSTITUTION, LogMessages.PUT_INSTITUTION, __logMessageArgs);
         } catch (final org.dressdiscover.api.services.IoException e) {
-            __logMessageStringBuilder.append(" -> {}");
-            __logMessageArgs.add(e.toString());
-            logger.error(Markers.PUT_INSTITUTION, __logMessageStringBuilder.toString(), __logMessageArgs.toArray());
+            __logMessageArgs[__logMessageArgs.length - 1] = e.toString();
+            logger.error(InstitutionCommandServiceLogMarkers.PUT_INSTITUTION, LogMessages.PUT_INSTITUTION, __logMessageArgs);
             throw e;
         } catch (final RuntimeException e) {
-            __logMessageStringBuilder.append(" -> ");
-            __logMessageArgs.add(e);
-            logger.error(Markers.PUT_INSTITUTION, __logMessageStringBuilder.toString(), __logMessageArgs.toArray());
+            __logMessageArgs[__logMessageArgs.length - 1] = e;
+            logger.error(InstitutionCommandServiceLogMarkers.PUT_INSTITUTION, LogMessages.PUT_INSTITUTION, __logMessageArgs);
             throw e;
         }
     }
 
     private final static org.slf4j.Logger logger = org.slf4j.LoggerFactory.getLogger(LoggingInstitutionCommandService.class);
     private final org.dressdiscover.api.services.institution.InstitutionCommandService delegate;
+
+    private final static class LogMessages {
+        public final static String DELETE_INSTITUTION_BY_ID = "delete_institution_by_id({}) -> {}";
+        public final static String PUT_INSTITUTION = "put_institution({}) -> {}";
+    }
+
+    public final static String PRE_RETURN_VALUE = "...";
+    public final static String VOID_RETURN_VALUE = "void";
 }

@@ -2,7 +2,7 @@ package org.dressdiscover.lib.services.institution;
 
 @com.google.inject.Singleton
 public class LoggingInstitutionQueryService implements org.dressdiscover.api.services.institution.InstitutionQueryService {
-    public static class Markers {
+    public final static class InstitutionQueryServiceLogMarkers {
         public final static org.slf4j.Marker GET_INSTITUTION_BY_ID = org.slf4j.MarkerFactory.getMarker("GET_INSTITUTION_BY_ID");
         public final static org.slf4j.Marker GET_INSTITUTIONS = org.slf4j.MarkerFactory.getMarker("GET_INSTITUTIONS");
         public final static org.slf4j.Marker GET_INSTITUTIONS_BY_IDS = org.slf4j.MarkerFactory.getMarker("GET_INSTITUTIONS_BY_IDS");
@@ -22,107 +22,99 @@ public class LoggingInstitutionQueryService implements org.dressdiscover.api.ser
         this.delegate = com.google.common.base.Preconditions.checkNotNull(delegate);
     }
 
+    @Override
     public org.dressdiscover.api.models.institution.Institution getInstitutionById(final org.dressdiscover.api.models.institution.InstitutionId id) throws org.dressdiscover.api.services.IoException, org.dressdiscover.api.services.institution.NoSuchInstitutionException {
-        final StringBuilder __logMessageStringBuilder = new StringBuilder();
-        final java.util.List<Object> __logMessageArgs = new java.util.ArrayList<Object>();
+        final Object[] __logMessageArgs = new Object[2];
+        __logMessageArgs[0] = Messages.GetInstitutionByIdRequest.create(id);
 
-        __logMessageStringBuilder.append("get_institution_by_id(");
-        __logMessageStringBuilder.append("{}");
-        __logMessageArgs.add(Messages.GetInstitutionByIdRequest.create(id));
-        __logMessageStringBuilder.append(")");
+        __logMessageArgs[__logMessageArgs.length - 1] = PRE_RETURN_VALUE;
+        logger.debug(InstitutionQueryServiceLogMarkers.GET_INSTITUTION_BY_ID, LogMessages.GET_INSTITUTION_BY_ID, __logMessageArgs);
 
         try {
-            org.dressdiscover.api.models.institution.Institution __returnValue = delegate.getInstitutionById(id);
+            final org.dressdiscover.api.models.institution.Institution __returnValue = delegate.getInstitutionById(id);
 
-            __logMessageStringBuilder.append(" -> {}");
-            __logMessageArgs.add(__returnValue);
-
-            logger.info(Markers.GET_INSTITUTION_BY_ID, __logMessageStringBuilder.toString(), __logMessageArgs.toArray());
+            __logMessageArgs[__logMessageArgs.length - 1] = __returnValue;
+            logger.info(InstitutionQueryServiceLogMarkers.GET_INSTITUTION_BY_ID, LogMessages.GET_INSTITUTION_BY_ID, __logMessageArgs);
 
             return __returnValue;
         } catch (final org.dressdiscover.api.services.IoException e) {
-            __logMessageStringBuilder.append(" -> {}");
-            __logMessageArgs.add(e.toString());
-            logger.error(Markers.GET_INSTITUTION_BY_ID, __logMessageStringBuilder.toString(), __logMessageArgs.toArray());
+            __logMessageArgs[__logMessageArgs.length - 1] = e.toString();
+            logger.error(InstitutionQueryServiceLogMarkers.GET_INSTITUTION_BY_ID, LogMessages.GET_INSTITUTION_BY_ID, __logMessageArgs);
             throw e;
         } catch (final org.dressdiscover.api.services.institution.NoSuchInstitutionException e) {
-            __logMessageStringBuilder.append(" -> {}");
-            __logMessageArgs.add(e.toString());
-            logger.error(Markers.GET_INSTITUTION_BY_ID, __logMessageStringBuilder.toString(), __logMessageArgs.toArray());
+            __logMessageArgs[__logMessageArgs.length - 1] = e.toString();
+            logger.error(InstitutionQueryServiceLogMarkers.GET_INSTITUTION_BY_ID, LogMessages.GET_INSTITUTION_BY_ID, __logMessageArgs);
             throw e;
         } catch (final RuntimeException e) {
-            __logMessageStringBuilder.append(" -> ");
-            __logMessageArgs.add(e);
-            logger.error(Markers.GET_INSTITUTION_BY_ID, __logMessageStringBuilder.toString(), __logMessageArgs.toArray());
+            __logMessageArgs[__logMessageArgs.length - 1] = e;
+            logger.error(InstitutionQueryServiceLogMarkers.GET_INSTITUTION_BY_ID, LogMessages.GET_INSTITUTION_BY_ID, __logMessageArgs);
             throw e;
         }
     }
 
+    @Override
     public com.google.common.collect.ImmutableList<org.dressdiscover.api.models.institution.InstitutionEntry> getInstitutions() throws org.dressdiscover.api.services.IoException {
-        final StringBuilder __logMessageStringBuilder = new StringBuilder();
-        final java.util.List<Object> __logMessageArgs = new java.util.ArrayList<Object>();
+        final Object[] __logMessageArgs = new Object[1];
 
-        __logMessageStringBuilder.append("get_institutions(");
-        __logMessageStringBuilder.append(")");
+        __logMessageArgs[__logMessageArgs.length - 1] = PRE_RETURN_VALUE;
+        logger.debug(InstitutionQueryServiceLogMarkers.GET_INSTITUTIONS, LogMessages.GET_INSTITUTIONS, __logMessageArgs);
 
         try {
-            com.google.common.collect.ImmutableList<org.dressdiscover.api.models.institution.InstitutionEntry> __returnValue = delegate.getInstitutions();
+            final com.google.common.collect.ImmutableList<org.dressdiscover.api.models.institution.InstitutionEntry> __returnValue = delegate.getInstitutions();
 
-            __logMessageStringBuilder.append(" -> {}");
-            __logMessageArgs.add(__returnValue);
-
-            logger.info(Markers.GET_INSTITUTIONS, __logMessageStringBuilder.toString(), __logMessageArgs.toArray());
+            __logMessageArgs[__logMessageArgs.length - 1] = __returnValue;
+            logger.info(InstitutionQueryServiceLogMarkers.GET_INSTITUTIONS, LogMessages.GET_INSTITUTIONS, __logMessageArgs);
 
             return __returnValue;
         } catch (final org.dressdiscover.api.services.IoException e) {
-            __logMessageStringBuilder.append(" -> {}");
-            __logMessageArgs.add(e.toString());
-            logger.error(Markers.GET_INSTITUTIONS, __logMessageStringBuilder.toString(), __logMessageArgs.toArray());
+            __logMessageArgs[__logMessageArgs.length - 1] = e.toString();
+            logger.error(InstitutionQueryServiceLogMarkers.GET_INSTITUTIONS, LogMessages.GET_INSTITUTIONS, __logMessageArgs);
             throw e;
         } catch (final RuntimeException e) {
-            __logMessageStringBuilder.append(" -> ");
-            __logMessageArgs.add(e);
-            logger.error(Markers.GET_INSTITUTIONS, __logMessageStringBuilder.toString(), __logMessageArgs.toArray());
+            __logMessageArgs[__logMessageArgs.length - 1] = e;
+            logger.error(InstitutionQueryServiceLogMarkers.GET_INSTITUTIONS, LogMessages.GET_INSTITUTIONS, __logMessageArgs);
             throw e;
         }
     }
 
+    @Override
     public com.google.common.collect.ImmutableList<org.dressdiscover.api.models.institution.Institution> getInstitutionsByIds(final com.google.common.collect.ImmutableList<org.dressdiscover.api.models.institution.InstitutionId> ids) throws org.dressdiscover.api.services.IoException, org.dressdiscover.api.services.institution.NoSuchInstitutionException {
-        final StringBuilder __logMessageStringBuilder = new StringBuilder();
-        final java.util.List<Object> __logMessageArgs = new java.util.ArrayList<Object>();
+        final Object[] __logMessageArgs = new Object[2];
+        __logMessageArgs[0] = Messages.GetInstitutionsByIdsRequest.create(ids);
 
-        __logMessageStringBuilder.append("get_institutions_by_ids(");
-        __logMessageStringBuilder.append("{}");
-        __logMessageArgs.add(Messages.GetInstitutionsByIdsRequest.create(ids));
-        __logMessageStringBuilder.append(")");
+        __logMessageArgs[__logMessageArgs.length - 1] = PRE_RETURN_VALUE;
+        logger.debug(InstitutionQueryServiceLogMarkers.GET_INSTITUTIONS_BY_IDS, LogMessages.GET_INSTITUTIONS_BY_IDS, __logMessageArgs);
 
         try {
-            com.google.common.collect.ImmutableList<org.dressdiscover.api.models.institution.Institution> __returnValue = delegate.getInstitutionsByIds(ids);
+            final com.google.common.collect.ImmutableList<org.dressdiscover.api.models.institution.Institution> __returnValue = delegate.getInstitutionsByIds(ids);
 
-            __logMessageStringBuilder.append(" -> {}");
-            __logMessageArgs.add(__returnValue);
-
-            logger.info(Markers.GET_INSTITUTIONS_BY_IDS, __logMessageStringBuilder.toString(), __logMessageArgs.toArray());
+            __logMessageArgs[__logMessageArgs.length - 1] = __returnValue;
+            logger.info(InstitutionQueryServiceLogMarkers.GET_INSTITUTIONS_BY_IDS, LogMessages.GET_INSTITUTIONS_BY_IDS, __logMessageArgs);
 
             return __returnValue;
         } catch (final org.dressdiscover.api.services.IoException e) {
-            __logMessageStringBuilder.append(" -> {}");
-            __logMessageArgs.add(e.toString());
-            logger.error(Markers.GET_INSTITUTIONS_BY_IDS, __logMessageStringBuilder.toString(), __logMessageArgs.toArray());
+            __logMessageArgs[__logMessageArgs.length - 1] = e.toString();
+            logger.error(InstitutionQueryServiceLogMarkers.GET_INSTITUTIONS_BY_IDS, LogMessages.GET_INSTITUTIONS_BY_IDS, __logMessageArgs);
             throw e;
         } catch (final org.dressdiscover.api.services.institution.NoSuchInstitutionException e) {
-            __logMessageStringBuilder.append(" -> {}");
-            __logMessageArgs.add(e.toString());
-            logger.error(Markers.GET_INSTITUTIONS_BY_IDS, __logMessageStringBuilder.toString(), __logMessageArgs.toArray());
+            __logMessageArgs[__logMessageArgs.length - 1] = e.toString();
+            logger.error(InstitutionQueryServiceLogMarkers.GET_INSTITUTIONS_BY_IDS, LogMessages.GET_INSTITUTIONS_BY_IDS, __logMessageArgs);
             throw e;
         } catch (final RuntimeException e) {
-            __logMessageStringBuilder.append(" -> ");
-            __logMessageArgs.add(e);
-            logger.error(Markers.GET_INSTITUTIONS_BY_IDS, __logMessageStringBuilder.toString(), __logMessageArgs.toArray());
+            __logMessageArgs[__logMessageArgs.length - 1] = e;
+            logger.error(InstitutionQueryServiceLogMarkers.GET_INSTITUTIONS_BY_IDS, LogMessages.GET_INSTITUTIONS_BY_IDS, __logMessageArgs);
             throw e;
         }
     }
 
     private final static org.slf4j.Logger logger = org.slf4j.LoggerFactory.getLogger(LoggingInstitutionQueryService.class);
     private final org.dressdiscover.api.services.institution.InstitutionQueryService delegate;
+
+    private final static class LogMessages {
+        public final static String GET_INSTITUTION_BY_ID = "get_institution_by_id({}) -> {}";
+        public final static String GET_INSTITUTIONS = "get_institutions() -> {}";
+        public final static String GET_INSTITUTIONS_BY_IDS = "get_institutions_by_ids({}) -> {}";
+    }
+
+    public final static String PRE_RETURN_VALUE = "...";
 }

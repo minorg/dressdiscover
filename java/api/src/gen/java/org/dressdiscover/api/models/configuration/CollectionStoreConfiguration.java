@@ -13,10 +13,12 @@ public final class CollectionStoreConfiguration implements org.thryft.Struct {
         }
 
         protected CollectionStoreConfiguration _build(final String type, final com.google.common.base.Optional<com.google.common.collect.ImmutableMap<String, String>> parameters) {
-            return new CollectionStoreConfiguration(type, parameters, DefaultConstructionValidator.getInstance());
+            return new CollectionStoreConfiguration(type, parameters);
         }
 
         public CollectionStoreConfiguration build() {
+            UncheckedValidator.validate(type, parameters);
+
             return _build(type, parameters);
         }
 
@@ -24,7 +26,7 @@ public final class CollectionStoreConfiguration implements org.thryft.Struct {
             return parameters;
         }
 
-        public final String getType() {
+        public final @javax.annotation.Nullable String getType() {
             return type;
         }
 
@@ -178,16 +180,18 @@ public final class CollectionStoreConfiguration implements org.thryft.Struct {
         }
 
         public Builder setParameters(final com.google.common.base.Optional<com.google.common.collect.ImmutableMap<String, String>> parameters) {
-            this.parameters = DefaultConstructionValidator.getInstance().validateParameters(parameters);
+            UncheckedValidator.validateParameters(parameters);
+            this.parameters = parameters;
             return this;
         }
 
-        public Builder setParameters(@javax.annotation.Nullable final com.google.common.collect.ImmutableMap<String, String> parameters) {
+        public Builder setParameters(final @javax.annotation.Nullable com.google.common.collect.ImmutableMap<String, String> parameters) {
             return setParameters(com.google.common.base.Optional.fromNullable(parameters));
         }
 
         public Builder setType(final String type) {
-            this.type = DefaultConstructionValidator.getInstance().validateType(type);
+            UncheckedValidator.validateType(type);
+            this.type = type;
             return this;
         }
 
@@ -223,7 +227,7 @@ public final class CollectionStoreConfiguration implements org.thryft.Struct {
             return this;
         }
 
-        private String type;
+        private @javax.annotation.Nullable String type;
         private com.google.common.base.Optional<com.google.common.collect.ImmutableMap<String, String>> parameters;
     }
 
@@ -258,8 +262,8 @@ public final class CollectionStoreConfiguration implements org.thryft.Struct {
 
     @SuppressWarnings("serial")
     public enum FieldMetadata implements org.thryft.CompoundType.FieldMetadata {
-        TYPE("type", new com.google.common.reflect.TypeToken<String>() {}, true, 1, "type", org.thryft.protocol.Type.STRING),
-        PARAMETERS("parameters", new com.google.common.reflect.TypeToken<com.google.common.collect.ImmutableMap<String, String>>() {}, false, 2, "parameters", org.thryft.protocol.Type.MAP);
+        TYPE("type", new com.google.common.reflect.TypeToken<String>() {}, true, (short)1, "type", org.thryft.protocol.Type.STRING),
+        PARAMETERS("parameters", new com.google.common.reflect.TypeToken<com.google.common.collect.ImmutableMap<String, String>>() {}, false, (short)2, "parameters", org.thryft.protocol.Type.MAP);
 
         @Override
         public String getJavaName() {
@@ -272,7 +276,7 @@ public final class CollectionStoreConfiguration implements org.thryft.Struct {
         }
 
         @Override
-        public int getThriftId() {
+        public short getThriftId() {
             return thriftId;
         }
 
@@ -319,7 +323,7 @@ public final class CollectionStoreConfiguration implements org.thryft.Struct {
             }
         }
 
-        private FieldMetadata(final String javaName, final com.google.common.reflect.TypeToken<?> javaType, final boolean required, final int thriftId, final String thriftName, final org.thryft.protocol.Type thriftProtocolType) {
+        private FieldMetadata(final String javaName, final com.google.common.reflect.TypeToken<?> javaType, final boolean required, final short thriftId, final String thriftName, final org.thryft.protocol.Type thriftProtocolType) {
             this.javaName = javaName;
             this.javaType = javaType;
             this.required = required;
@@ -336,142 +340,77 @@ public final class CollectionStoreConfiguration implements org.thryft.Struct {
         private final String javaName;
         private final com.google.common.reflect.TypeToken<?> javaType;
         private final boolean required;
-        private final int thriftId;
+        private final short thriftId;
         private final String thriftName;
         private final String thriftProtocolKey;
         private final org.thryft.protocol.Type thriftProtocolType;
     }
 
-    public interface Validator<ExceptionT extends Exception> {
-        public String validateType(final String type) throws ExceptionT;
-
-        public com.google.common.base.Optional<com.google.common.collect.ImmutableMap<String, String>> validateParameters(final com.google.common.base.Optional<com.google.common.collect.ImmutableMap<String, String>> parameters) throws ExceptionT;
-    }
-
-    public interface ConstructionValidator extends Validator<RuntimeException> {
-    }
-
-    public static class DefaultConstructionValidator implements ConstructionValidator {
-        public static DefaultConstructionValidator getInstance() {
-            return instance;
+    public final static class ReadValidator {
+        public static void validate(final String type, final com.google.common.base.Optional<com.google.common.collect.ImmutableMap<String, String>> parameters) throws org.thryft.protocol.InputProtocolException {
+            validateType(type);
+            validateParameters(parameters);
         }
 
-        public DefaultConstructionValidator() {
-        }
-
-        @Override
-        public String validateType(final String type) throws RuntimeException {
-            if (type == null) {
-                throw new NullPointerException("org.dressdiscover.api.models.configuration.CollectionStoreConfiguration: type is null");
-            }
-            return type;
-        }
-
-        @Override
-        public com.google.common.base.Optional<com.google.common.collect.ImmutableMap<String, String>> validateParameters(final com.google.common.base.Optional<com.google.common.collect.ImmutableMap<String, String>> parameters) throws RuntimeException {
-            if (parameters == null) {
-                throw new NullPointerException("org.dressdiscover.api.models.configuration.CollectionStoreConfiguration: parameters is null");
-            }
-            if (!parameters.isPresent()) {
-                return parameters;
-            }
-            if (parameters.get().isEmpty()) {
-                throw new IllegalArgumentException("org.dressdiscover.api.models.configuration.CollectionStoreConfiguration: parameters is less than min length 1");
-            }
-            return parameters;
-        }
-
-        private final static DefaultConstructionValidator instance = new DefaultConstructionValidator();
-    }
-
-    public static class NopConstructionValidator implements ConstructionValidator {
-        public static NopConstructionValidator getInstance() {
-            return instance;
-        }
-
-        public NopConstructionValidator() {
-        }
-
-        @Override
-        public String validateType(final String type) {
-            return type;
-        }
-
-        @Override
-        public com.google.common.base.Optional<com.google.common.collect.ImmutableMap<String, String>> validateParameters(final com.google.common.base.Optional<com.google.common.collect.ImmutableMap<String, String>> parameters) {
-            return parameters;
-        }
-
-        private final static NopConstructionValidator instance = new NopConstructionValidator();
-    }
-
-    public interface ReadValidator extends Validator<org.thryft.protocol.InputProtocolException> {
-    }
-
-    public static class DefaultReadValidator implements ReadValidator {
-        public static DefaultReadValidator getInstance() {
-            return instance;
-        }
-
-        public DefaultReadValidator() {
-        }
-
-        @Override
-        public String validateType(final String type) throws org.thryft.protocol.InputProtocolException {
+        public static void validateType(final String type) throws org.thryft.protocol.InputProtocolException {
             if (type == null) {
                 throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.TYPE, "org.dressdiscover.api.models.configuration.CollectionStoreConfiguration: type is null");
             }
-            return type;
         }
 
-        @Override
-        public com.google.common.base.Optional<com.google.common.collect.ImmutableMap<String, String>> validateParameters(final com.google.common.base.Optional<com.google.common.collect.ImmutableMap<String, String>> parameters) throws org.thryft.protocol.InputProtocolException {
+        public static void validateParameters(final com.google.common.base.Optional<com.google.common.collect.ImmutableMap<String, String>> parameters) throws org.thryft.protocol.InputProtocolException {
             if (parameters == null) {
                 throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.PARAMETERS, "org.dressdiscover.api.models.configuration.CollectionStoreConfiguration: parameters is null");
             }
             if (!parameters.isPresent()) {
-                return parameters;
+                return;
             }
             if (parameters.get().isEmpty()) {
-                throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.PARAMETERS, "org.dressdiscover.api.models.configuration.CollectionStoreConfiguration: parameters is less than min length 1");
+                throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.PARAMETERS, "org.dressdiscover.api.models.configuration.CollectionStoreConfiguration.parameters: less than min length 1");
             }
-            return parameters;
         }
-
-        private final static DefaultReadValidator instance = new DefaultReadValidator();
     }
 
-    public static class NopReadValidator implements ReadValidator {
-        public static NopReadValidator getInstance() {
-            return instance;
+    public final static class UncheckedValidator {
+        public static void validate(final String type, final com.google.common.base.Optional<com.google.common.collect.ImmutableMap<String, String>> parameters) {
+            validateType(type);
+            validateParameters(parameters);
         }
 
-        public NopReadValidator() {
+        public static void validateType(final String type) {
+            if (type == null) {
+                throw new NullPointerException("org.dressdiscover.api.models.configuration.CollectionStoreConfiguration: type is null");
+            }
         }
 
-        @Override
-        public String validateType(final String type) {
-            return type;
+        public static void validateParameters(final com.google.common.base.Optional<com.google.common.collect.ImmutableMap<String, String>> parameters) {
+            if (parameters == null) {
+                throw new NullPointerException("org.dressdiscover.api.models.configuration.CollectionStoreConfiguration: parameters is null");
+            }
+            if (!parameters.isPresent()) {
+                return;
+            }
+            if (parameters.get().isEmpty()) {
+                throw new IllegalArgumentException("org.dressdiscover.api.models.configuration.CollectionStoreConfiguration.parameters: less than min length 1");
+            }
         }
-
-        @Override
-        public com.google.common.base.Optional<com.google.common.collect.ImmutableMap<String, String>> validateParameters(final com.google.common.base.Optional<com.google.common.collect.ImmutableMap<String, String>> parameters) {
-            return parameters;
-        }
-
-        private final static NopReadValidator instance = new NopReadValidator();
     }
 
     /**
      * Copy constructor
      */
     public CollectionStoreConfiguration(final CollectionStoreConfiguration other) {
-        this(other.getType(), other.getParameters(), NopConstructionValidator.getInstance());
+        this(other.getType(), other.getParameters());
     }
 
-    protected CollectionStoreConfiguration(final String type, final com.google.common.base.Optional<com.google.common.collect.ImmutableMap<String, String>> parameters, ConstructionValidator validator) {
-        this.type = validator.validateType(type);
-        this.parameters = validator.validateParameters(parameters);
+    /**
+     * Total constructor
+     *
+     * All fields should have been validated before calling this.
+     */
+    protected CollectionStoreConfiguration(final String type, final com.google.common.base.Optional<com.google.common.collect.ImmutableMap<String, String>> parameters) {
+        this.type = type;
+        this.parameters = parameters;
     }
 
     public static Builder builder() {
@@ -490,21 +429,25 @@ public final class CollectionStoreConfiguration implements org.thryft.Struct {
      * Required factory method
      */
     public static CollectionStoreConfiguration create(final String type) {
-        return new CollectionStoreConfiguration(type, com.google.common.base.Optional.<com.google.common.collect.ImmutableMap<String, String>> absent(), DefaultConstructionValidator.getInstance());
+        UncheckedValidator.validate(type, com.google.common.base.Optional.<com.google.common.collect.ImmutableMap<String, String>> absent());
+        return new CollectionStoreConfiguration(type, com.google.common.base.Optional.<com.google.common.collect.ImmutableMap<String, String>> absent());
     }
 
     /**
      * Total Nullable factory method
      */
-    public static CollectionStoreConfiguration create(final String type, final @javax.annotation.Nullable com.google.common.collect.ImmutableMap<String, String> parameters) {
-        return new CollectionStoreConfiguration(type, com.google.common.base.Optional.fromNullable(parameters), DefaultConstructionValidator.getInstance());
+    public static CollectionStoreConfiguration create(final String type, @javax.annotation.Nullable final com.google.common.collect.ImmutableMap<String, String> parameters) {
+        final com.google.common.base.Optional<com.google.common.collect.ImmutableMap<String, String>> parametersOptional = com.google.common.base.Optional.fromNullable(parameters);
+        UncheckedValidator.validate(type, parametersOptional);
+        return new CollectionStoreConfiguration(type, parametersOptional);
     }
 
     /**
      * Optional factory method
      */
     public static CollectionStoreConfiguration create(final String type, final com.google.common.base.Optional<com.google.common.collect.ImmutableMap<String, String>> parameters) {
-        return new CollectionStoreConfiguration(type, parameters, DefaultConstructionValidator.getInstance());
+        UncheckedValidator.validate(type, parameters);
+        return new CollectionStoreConfiguration(type, parameters);
     }
 
     @Override
@@ -585,7 +528,7 @@ public final class CollectionStoreConfiguration implements org.thryft.Struct {
     }
 
     public static CollectionStoreConfiguration readAsList(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
-        String type = null;
+        String type;
         com.google.common.base.Optional<com.google.common.collect.ImmutableMap<String, String>> parameters = com.google.common.base.Optional.<com.google.common.collect.ImmutableMap<String, String>> absent();
 
         try {
@@ -621,7 +564,10 @@ public final class CollectionStoreConfiguration implements org.thryft.Struct {
         } catch (final RuntimeException e) {
             throw new IllegalStateException(e);
         }
-        return new CollectionStoreConfiguration(DefaultReadValidator.getInstance().validateType(type), DefaultReadValidator.getInstance().validateParameters(parameters), NopConstructionValidator.getInstance());
+
+        ReadValidator.validate(type, parameters);
+
+        return new CollectionStoreConfiguration(type, parameters);
     }
 
     public static CollectionStoreConfiguration readAsStruct(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
@@ -629,7 +575,7 @@ public final class CollectionStoreConfiguration implements org.thryft.Struct {
     }
 
     public static CollectionStoreConfiguration readAsStruct(final org.thryft.protocol.InputProtocol iprot, final com.google.common.base.Optional<UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
-        String type = null;
+        @javax.annotation.Nullable String type = null;
         com.google.common.base.Optional<com.google.common.collect.ImmutableMap<String, String>> parameters = com.google.common.base.Optional.<com.google.common.collect.ImmutableMap<String, String>> absent();
 
         try {
@@ -687,19 +633,24 @@ public final class CollectionStoreConfiguration implements org.thryft.Struct {
         } catch (final RuntimeException e) {
             throw new IllegalStateException(e);
         }
-        return new CollectionStoreConfiguration(DefaultReadValidator.getInstance().validateType(type), DefaultReadValidator.getInstance().validateParameters(parameters), NopConstructionValidator.getInstance());
+
+        ReadValidator.validate(type, parameters);
+
+        return new CollectionStoreConfiguration(type, parameters);
     }
 
     public CollectionStoreConfiguration replaceParameters(final com.google.common.base.Optional<com.google.common.collect.ImmutableMap<String, String>> parameters) {
-        return new CollectionStoreConfiguration(this.type, DefaultConstructionValidator.getInstance().validateParameters(parameters), NopConstructionValidator.getInstance());
+        UncheckedValidator.validateParameters(parameters);
+        return new CollectionStoreConfiguration(this.type, parameters);
     }
 
-    public CollectionStoreConfiguration replaceParameters(final com.google.common.collect.ImmutableMap<String, String> parameters) {
+    public CollectionStoreConfiguration replaceParameters(@javax.annotation.Nullable final com.google.common.collect.ImmutableMap<String, String> parameters) {
         return replaceParameters(com.google.common.base.Optional.fromNullable(parameters));
     }
 
     public CollectionStoreConfiguration replaceType(final String type) {
-        return new CollectionStoreConfiguration(DefaultConstructionValidator.getInstance().validateType(type), this.parameters, NopConstructionValidator.getInstance());
+        UncheckedValidator.validateType(type);
+        return new CollectionStoreConfiguration(type, this.parameters);
     }
 
     @Override
@@ -736,12 +687,16 @@ public final class CollectionStoreConfiguration implements org.thryft.Struct {
 
     @Override
     public void writeFields(final org.thryft.protocol.OutputProtocol oprot) throws org.thryft.protocol.OutputProtocolException {
-        oprot.writeFieldBegin("type", org.thryft.protocol.Type.STRING, (short)1);
-        oprot.writeString(getType());
-        oprot.writeFieldEnd();
+        writeTypeField(oprot);
 
+        writeParametersField(oprot);
+
+        oprot.writeFieldStop();
+    }
+
+    public void writeParametersField(final org.thryft.protocol.OutputProtocol oprot) throws org.thryft.protocol.OutputProtocolException {
         if (getParameters().isPresent()) {
-            oprot.writeFieldBegin("parameters", org.thryft.protocol.Type.MAP, (short)2);
+            oprot.writeFieldBegin(FieldMetadata.PARAMETERS);
             oprot.writeMapBegin(org.thryft.protocol.Type.STRING, org.thryft.protocol.Type.STRING, getParameters().get().size());
             for (com.google.common.collect.ImmutableMap.Entry<String, String> _iter0 : getParameters().get().entrySet()) {
                 oprot.writeString(_iter0.getKey());
@@ -750,8 +705,12 @@ public final class CollectionStoreConfiguration implements org.thryft.Struct {
             oprot.writeMapEnd();
             oprot.writeFieldEnd();
         }
+    }
 
-        oprot.writeFieldStop();
+    public void writeTypeField(final org.thryft.protocol.OutputProtocol oprot) throws org.thryft.protocol.OutputProtocolException {
+        oprot.writeFieldBegin(FieldMetadata.TYPE);
+        oprot.writeString(getType());
+        oprot.writeFieldEnd();
     }
 
     private final String type;

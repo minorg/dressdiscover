@@ -28,14 +28,16 @@ public interface InstitutionCommandService {
                 }
 
                 protected DeleteInstitutionByIdRequest _build(final org.dressdiscover.api.models.institution.InstitutionId id) {
-                    return new DeleteInstitutionByIdRequest(id, DefaultConstructionValidator.getInstance());
+                    return new DeleteInstitutionByIdRequest(id);
                 }
 
                 public DeleteInstitutionByIdRequest build() {
+                    UncheckedValidator.validate(id);
+
                     return _build(id);
                 }
 
-                public final org.dressdiscover.api.models.institution.InstitutionId getId() {
+                public final @javax.annotation.Nullable org.dressdiscover.api.models.institution.InstitutionId getId() {
                     return id;
                 }
 
@@ -60,6 +62,8 @@ public interface InstitutionCommandService {
                         try {
                             id = org.dressdiscover.api.models.institution.InstitutionId.parse(iprot.readString());
                         } catch (final org.dressdiscover.api.models.institution.InvalidInstitutionIdException e) {
+                             throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.ID, e);
+                        } catch (final IllegalArgumentException e) {
                              throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.ID, e);
                         }
                         iprot.readListEnd();
@@ -86,6 +90,8 @@ public interface InstitutionCommandService {
                                 try {
                                     id = org.dressdiscover.api.models.institution.InstitutionId.parse(iprot.readString());
                                 } catch (final org.dressdiscover.api.models.institution.InvalidInstitutionIdException e) {
+                                     throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.ID, e);
+                                } catch (final IllegalArgumentException e) {
                                      throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.ID, e);
                                 }
                                 break;
@@ -127,7 +133,8 @@ public interface InstitutionCommandService {
                 }
 
                 public Builder setId(final org.dressdiscover.api.models.institution.InstitutionId id) {
-                    this.id = DefaultConstructionValidator.getInstance().validateId(id);
+                    UncheckedValidator.validateId(id);
+                    this.id = id;
                     return this;
                 }
 
@@ -165,7 +172,7 @@ public interface InstitutionCommandService {
                     return this;
                 }
 
-                private org.dressdiscover.api.models.institution.InstitutionId id;
+                private @javax.annotation.Nullable org.dressdiscover.api.models.institution.InstitutionId id;
             }
 
             public final static class Factory implements org.thryft.CompoundType.Factory<DeleteInstitutionByIdRequest> {
@@ -199,7 +206,7 @@ public interface InstitutionCommandService {
 
             @SuppressWarnings("serial")
             public enum FieldMetadata implements org.thryft.CompoundType.FieldMetadata {
-                ID("id", new com.google.common.reflect.TypeToken<org.dressdiscover.api.models.institution.InstitutionId>() {}, true, 0, "id", org.thryft.protocol.Type.STRING);
+                ID("id", new com.google.common.reflect.TypeToken<org.dressdiscover.api.models.institution.InstitutionId>() {}, true, (short)0, "id", org.thryft.protocol.Type.STRING);
 
                 @Override
                 public String getJavaName() {
@@ -212,7 +219,7 @@ public interface InstitutionCommandService {
                 }
 
                 @Override
-                public int getThriftId() {
+                public short getThriftId() {
                     return thriftId;
                 }
 
@@ -257,7 +264,7 @@ public interface InstitutionCommandService {
                     }
                 }
 
-                private FieldMetadata(final String javaName, final com.google.common.reflect.TypeToken<?> javaType, final boolean required, final int thriftId, final String thriftName, final org.thryft.protocol.Type thriftProtocolType) {
+                private FieldMetadata(final String javaName, final com.google.common.reflect.TypeToken<?> javaType, final boolean required, final short thriftId, final String thriftName, final org.thryft.protocol.Type thriftProtocolType) {
                     this.javaName = javaName;
                     this.javaType = javaType;
                     this.required = required;
@@ -274,101 +281,50 @@ public interface InstitutionCommandService {
                 private final String javaName;
                 private final com.google.common.reflect.TypeToken<?> javaType;
                 private final boolean required;
-                private final int thriftId;
+                private final short thriftId;
                 private final String thriftName;
                 private final String thriftProtocolKey;
                 private final org.thryft.protocol.Type thriftProtocolType;
             }
 
-            public interface Validator<ExceptionT extends Exception> {
-                public org.dressdiscover.api.models.institution.InstitutionId validateId(final org.dressdiscover.api.models.institution.InstitutionId id) throws ExceptionT;
-            }
-
-            public interface ConstructionValidator extends Validator<RuntimeException> {
-            }
-
-            public static class DefaultConstructionValidator implements ConstructionValidator {
-                public static DefaultConstructionValidator getInstance() {
-                    return instance;
+            public final static class ReadValidator {
+                public static void validate(final org.dressdiscover.api.models.institution.InstitutionId id) throws org.thryft.protocol.InputProtocolException {
+                    validateId(id);
                 }
 
-                public DefaultConstructionValidator() {
-                }
-
-                @Override
-                public org.dressdiscover.api.models.institution.InstitutionId validateId(final org.dressdiscover.api.models.institution.InstitutionId id) throws RuntimeException {
-                    if (id == null) {
-                        throw new NullPointerException("org.dressdiscover.api.services.institution.DeleteInstitutionByIdRequest: id is null");
-                    }
-                    return id;
-                }
-
-                private final static DefaultConstructionValidator instance = new DefaultConstructionValidator();
-            }
-
-            public static class NopConstructionValidator implements ConstructionValidator {
-                public static NopConstructionValidator getInstance() {
-                    return instance;
-                }
-
-                public NopConstructionValidator() {
-                }
-
-                @Override
-                public org.dressdiscover.api.models.institution.InstitutionId validateId(final org.dressdiscover.api.models.institution.InstitutionId id) {
-                    return id;
-                }
-
-                private final static NopConstructionValidator instance = new NopConstructionValidator();
-            }
-
-            public interface ReadValidator extends Validator<org.thryft.protocol.InputProtocolException> {
-            }
-
-            public static class DefaultReadValidator implements ReadValidator {
-                public static DefaultReadValidator getInstance() {
-                    return instance;
-                }
-
-                public DefaultReadValidator() {
-                }
-
-                @Override
-                public org.dressdiscover.api.models.institution.InstitutionId validateId(final org.dressdiscover.api.models.institution.InstitutionId id) throws org.thryft.protocol.InputProtocolException {
+                public static void validateId(final org.dressdiscover.api.models.institution.InstitutionId id) throws org.thryft.protocol.InputProtocolException {
                     if (id == null) {
                         throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.ID, "org.dressdiscover.api.services.institution.DeleteInstitutionByIdRequest: id is null");
                     }
-                    return id;
                 }
-
-                private final static DefaultReadValidator instance = new DefaultReadValidator();
             }
 
-            public static class NopReadValidator implements ReadValidator {
-                public static NopReadValidator getInstance() {
-                    return instance;
+            public final static class UncheckedValidator {
+                public static void validate(final org.dressdiscover.api.models.institution.InstitutionId id) {
+                    validateId(id);
                 }
 
-                public NopReadValidator() {
+                public static void validateId(final org.dressdiscover.api.models.institution.InstitutionId id) {
+                    if (id == null) {
+                        throw new NullPointerException("org.dressdiscover.api.services.institution.DeleteInstitutionByIdRequest: id is null");
+                    }
                 }
-
-                @Override
-                public org.dressdiscover.api.models.institution.InstitutionId validateId(final org.dressdiscover.api.models.institution.InstitutionId id) {
-                    return id;
-                }
-
-                private final static NopReadValidator instance = new NopReadValidator();
             }
 
             /**
              * Copy constructor
              */
             public DeleteInstitutionByIdRequest(final DeleteInstitutionByIdRequest other) {
-                this(other.getId(), NopConstructionValidator.getInstance());
+                this(other.getId());
             }
 
-            protected DeleteInstitutionByIdRequest(final org.dressdiscover.api.models.institution.InstitutionId id, ConstructionValidator validator) {
-                this.id = validator.validateId(id);
+            /**
+             * Total constructor
+             *
+             * All fields should have been validated before calling this.
+             */
+            protected DeleteInstitutionByIdRequest(final org.dressdiscover.api.models.institution.InstitutionId id) {
+                this.id = id;
             }
 
             public static Builder builder() {
@@ -387,7 +343,8 @@ public interface InstitutionCommandService {
              * Optional factory method
              */
             public static DeleteInstitutionByIdRequest create(final org.dressdiscover.api.models.institution.InstitutionId id) {
-                return new DeleteInstitutionByIdRequest(id, DefaultConstructionValidator.getInstance());
+                UncheckedValidator.validate(id);
+                return new DeleteInstitutionByIdRequest(id);
             }
 
             @Override
@@ -456,7 +413,7 @@ public interface InstitutionCommandService {
             }
 
             public static DeleteInstitutionByIdRequest readAsList(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
-                org.dressdiscover.api.models.institution.InstitutionId id = null;
+                org.dressdiscover.api.models.institution.InstitutionId id;
 
                 try {
                     iprot.readListBegin();
@@ -464,12 +421,17 @@ public interface InstitutionCommandService {
                         id = org.dressdiscover.api.models.institution.InstitutionId.parse(iprot.readString());
                     } catch (final org.dressdiscover.api.models.institution.InvalidInstitutionIdException e) {
                          throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.ID, e);
+                    } catch (final IllegalArgumentException e) {
+                         throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.ID, e);
                     }
                     iprot.readListEnd();
                 } catch (final RuntimeException e) {
                     throw new IllegalStateException(e);
                 }
-                return new DeleteInstitutionByIdRequest(DefaultReadValidator.getInstance().validateId(id), NopConstructionValidator.getInstance());
+
+                ReadValidator.validate(id);
+
+                return new DeleteInstitutionByIdRequest(id);
             }
 
             public static DeleteInstitutionByIdRequest readAsStruct(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
@@ -477,7 +439,7 @@ public interface InstitutionCommandService {
             }
 
             public static DeleteInstitutionByIdRequest readAsStruct(final org.thryft.protocol.InputProtocol iprot, final com.google.common.base.Optional<UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
-                org.dressdiscover.api.models.institution.InstitutionId id = null;
+                @javax.annotation.Nullable org.dressdiscover.api.models.institution.InstitutionId id = null;
 
                 try {
                     iprot.readStructBegin();
@@ -491,6 +453,8 @@ public interface InstitutionCommandService {
                             try {
                                 id = org.dressdiscover.api.models.institution.InstitutionId.parse(iprot.readString());
                             } catch (final org.dressdiscover.api.models.institution.InvalidInstitutionIdException e) {
+                                 throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.ID, e);
+                            } catch (final IllegalArgumentException e) {
                                  throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.ID, e);
                             }
                             break;
@@ -507,11 +471,15 @@ public interface InstitutionCommandService {
                 } catch (final RuntimeException e) {
                     throw new IllegalStateException(e);
                 }
-                return new DeleteInstitutionByIdRequest(DefaultReadValidator.getInstance().validateId(id), NopConstructionValidator.getInstance());
+
+                ReadValidator.validate(id);
+
+                return new DeleteInstitutionByIdRequest(id);
             }
 
             public DeleteInstitutionByIdRequest replaceId(final org.dressdiscover.api.models.institution.InstitutionId id) {
-                return new DeleteInstitutionByIdRequest(DefaultConstructionValidator.getInstance().validateId(id), NopConstructionValidator.getInstance());
+                UncheckedValidator.validateId(id);
+                return new DeleteInstitutionByIdRequest(id);
             }
 
             @Override
@@ -537,106 +505,21 @@ public interface InstitutionCommandService {
 
             @Override
             public void writeFields(final org.thryft.protocol.OutputProtocol oprot) throws org.thryft.protocol.OutputProtocolException {
-                oprot.writeFieldBegin("id", org.thryft.protocol.Type.STRING, (short)0);
-                oprot.writeString(getId().toString());
-                oprot.writeFieldEnd();
+                writeIdField(oprot);
 
                 oprot.writeFieldStop();
+            }
+
+            public void writeIdField(final org.thryft.protocol.OutputProtocol oprot) throws org.thryft.protocol.OutputProtocolException {
+                oprot.writeFieldBegin(FieldMetadata.ID);
+                oprot.writeString(getId().toString());
+                oprot.writeFieldEnd();
             }
 
             private final org.dressdiscover.api.models.institution.InstitutionId id;
         }
 
         public final static class DeleteInstitutionByIdResponse implements org.thryft.Struct {
-            public final static class Builder {
-                public Builder() {
-                }
-
-                public Builder(final DeleteInstitutionByIdResponse other) {
-                }
-
-                protected DeleteInstitutionByIdResponse _build() {
-                    return new DeleteInstitutionByIdResponse();
-                }
-
-                public DeleteInstitutionByIdResponse build() {
-                    return _build();
-                }
-
-                public Builder readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type) throws org.thryft.protocol.InputProtocolException {
-                    return readAs(iprot, type, com.google.common.base.Optional.<UnknownFieldCallback> absent());
-                }
-
-                public Builder readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type, final com.google.common.base.Optional<UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
-                    switch (type) {
-                    case LIST:
-                        return readAsList(iprot);
-                    case STRUCT:
-                        return readAsStruct(iprot, unknownFieldCallback);
-                    default:
-                        throw new IllegalArgumentException("cannot read as " + type);
-                    }
-                }
-
-                public Builder readAsList(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
-                    try {
-                        iprot.readListBegin();
-                        iprot.readListEnd();
-                    } catch (final RuntimeException e) {
-                        throw new IllegalStateException(e);
-                    }
-                    return this;
-                }
-
-                public Builder readAsStruct(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
-                    return readAsStruct(iprot, com.google.common.base.Optional.<UnknownFieldCallback> absent());
-                }
-
-                public Builder readAsStruct(final org.thryft.protocol.InputProtocol iprot, final com.google.common.base.Optional<UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
-                    try {
-                        iprot.readStructBegin();
-                        while (true) {
-                            final org.thryft.protocol.FieldBegin ifield = iprot.readFieldBegin();
-                            if (ifield.getType() == org.thryft.protocol.Type.STOP) {
-                                break;
-                            }
-                            if (unknownFieldCallback.isPresent()) {
-                                unknownFieldCallback.get().apply(ifield);
-                            }
-                            iprot.readFieldEnd();
-                        }
-                        iprot.readStructEnd();
-                    } catch (final RuntimeException e) {
-                        throw new IllegalStateException(e);
-                    }
-                    return this;
-                }
-
-                public Builder set(final String fieldThriftName, @javax.annotation.Nullable final java.lang.Object value) {
-                    throw new IllegalArgumentException();
-                }
-
-                public Builder set(final org.thryft.Struct.FieldMetadata fieldMetadata, @javax.annotation.Nullable final java.lang.Object value) {
-                    throw new IllegalArgumentException();
-                }
-
-                public Builder setIfPresent(final DeleteInstitutionByIdResponse other) {
-                    com.google.common.base.Preconditions.checkNotNull(other);
-
-
-
-                    return this;
-                }
-
-                public Builder unset(final String fieldThriftName) {
-                    throw new IllegalArgumentException();
-                }
-
-                public Builder unset(final org.thryft.Struct.FieldMetadata fieldMetadata) {
-                    throw new IllegalArgumentException();
-                }
-            }
-
             public final static class Factory implements org.thryft.CompoundType.Factory<DeleteInstitutionByIdResponse> {
                 @Override
                 public DeleteInstitutionByIdResponse readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type) throws org.thryft.protocol.InputProtocolException {
@@ -666,82 +549,7 @@ public interface InstitutionCommandService {
                 }
             }
 
-            public interface Validator<ExceptionT extends Exception> {
-            }
-
-            public interface ConstructionValidator extends Validator<RuntimeException> {
-            }
-
-            public static class DefaultConstructionValidator implements ConstructionValidator {
-                public static DefaultConstructionValidator getInstance() {
-                    return instance;
-                }
-
-                public DefaultConstructionValidator() {
-                }
-
-                private final static DefaultConstructionValidator instance = new DefaultConstructionValidator();
-            }
-
-            public static class NopConstructionValidator implements ConstructionValidator {
-                public static NopConstructionValidator getInstance() {
-                    return instance;
-                }
-
-                public NopConstructionValidator() {
-                }
-
-                private final static NopConstructionValidator instance = new NopConstructionValidator();
-            }
-
-            public interface ReadValidator extends Validator<org.thryft.protocol.InputProtocolException> {
-            }
-
-            public static class DefaultReadValidator implements ReadValidator {
-                public static DefaultReadValidator getInstance() {
-                    return instance;
-                }
-
-                public DefaultReadValidator() {
-                }
-
-                private final static DefaultReadValidator instance = new DefaultReadValidator();
-            }
-
-            public static class NopReadValidator implements ReadValidator {
-                public static NopReadValidator getInstance() {
-                    return instance;
-                }
-
-                public NopReadValidator() {
-                }
-
-                private final static NopReadValidator instance = new NopReadValidator();
-            }
-
-            public DeleteInstitutionByIdResponse() {
-            }
-
-            /**
-             * Copy constructor
-             */
-            public DeleteInstitutionByIdResponse(final DeleteInstitutionByIdResponse other) {
-            }
-
-            public static Builder builder() {
-                return new Builder();
-            }
-
-            public static Builder builder(final DeleteInstitutionByIdResponse other) {
-                return new Builder(other);
-            }
-
-            public static Builder builder(final com.google.common.base.Optional<DeleteInstitutionByIdResponse> other) {
-                return other.isPresent() ? new Builder(other.get()) : new Builder();
-            }
-
-            public static DeleteInstitutionByIdResponse create() {
-                return new DeleteInstitutionByIdResponse();
+            private DeleteInstitutionByIdResponse() {
             }
 
             @Override
@@ -794,7 +602,8 @@ public interface InstitutionCommandService {
                 } catch (final RuntimeException e) {
                     throw new IllegalStateException(e);
                 }
-                return new DeleteInstitutionByIdResponse();
+
+                return INSTANCE;
             }
 
             public static DeleteInstitutionByIdResponse readAsStruct(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
@@ -818,7 +627,8 @@ public interface InstitutionCommandService {
                 } catch (final RuntimeException e) {
                     throw new IllegalStateException(e);
                 }
-                return new DeleteInstitutionByIdResponse();
+
+                return INSTANCE;
             }
 
             @Override
@@ -843,6 +653,8 @@ public interface InstitutionCommandService {
             public void writeFields(final org.thryft.protocol.OutputProtocol oprot) throws org.thryft.protocol.OutputProtocolException {
                 oprot.writeFieldStop();
             }
+
+            public final static DeleteInstitutionByIdResponse INSTANCE = new DeleteInstitutionByIdResponse();
         }
 
         public final static class PutInstitutionRequest implements org.thryft.Struct {
@@ -858,18 +670,20 @@ public interface InstitutionCommandService {
                 }
 
                 protected PutInstitutionRequest _build(final org.dressdiscover.api.models.institution.InstitutionId id, final org.dressdiscover.api.models.institution.Institution institution) {
-                    return new PutInstitutionRequest(id, institution, DefaultConstructionValidator.getInstance());
+                    return new PutInstitutionRequest(id, institution);
                 }
 
                 public PutInstitutionRequest build() {
+                    UncheckedValidator.validate(id, institution);
+
                     return _build(id, institution);
                 }
 
-                public final org.dressdiscover.api.models.institution.InstitutionId getId() {
+                public final @javax.annotation.Nullable org.dressdiscover.api.models.institution.InstitutionId getId() {
                     return id;
                 }
 
-                public final org.dressdiscover.api.models.institution.Institution getInstitution() {
+                public final @javax.annotation.Nullable org.dressdiscover.api.models.institution.Institution getInstitution() {
                     return institution;
                 }
 
@@ -894,6 +708,8 @@ public interface InstitutionCommandService {
                         try {
                             id = org.dressdiscover.api.models.institution.InstitutionId.parse(iprot.readString());
                         } catch (final org.dressdiscover.api.models.institution.InvalidInstitutionIdException e) {
+                             throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.ID, e);
+                        } catch (final IllegalArgumentException e) {
                              throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.ID, e);
                         }
                         institution = org.dressdiscover.api.models.institution.Institution.readAsStruct(iprot);
@@ -922,11 +738,13 @@ public interface InstitutionCommandService {
                                     id = org.dressdiscover.api.models.institution.InstitutionId.parse(iprot.readString());
                                 } catch (final org.dressdiscover.api.models.institution.InvalidInstitutionIdException e) {
                                      throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.ID, e);
+                                } catch (final IllegalArgumentException e) {
+                                     throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.ID, e);
                                 }
                                 break;
                             }
                             case "institution": {
-                                institution = org.dressdiscover.api.models.institution.Institution.readAsStruct(iprot);
+                                institution = org.dressdiscover.api.models.institution.Institution.readAsStruct(iprot, unknownFieldCallback);
                                 break;
                             }
                             default:
@@ -967,7 +785,8 @@ public interface InstitutionCommandService {
                 }
 
                 public Builder setId(final org.dressdiscover.api.models.institution.InstitutionId id) {
-                    this.id = DefaultConstructionValidator.getInstance().validateId(id);
+                    UncheckedValidator.validateId(id);
+                    this.id = id;
                     return this;
                 }
 
@@ -981,7 +800,8 @@ public interface InstitutionCommandService {
                 }
 
                 public Builder setInstitution(final org.dressdiscover.api.models.institution.Institution institution) {
-                    this.institution = DefaultConstructionValidator.getInstance().validateInstitution(institution);
+                    UncheckedValidator.validateInstitution(institution);
+                    this.institution = institution;
                     return this;
                 }
 
@@ -1017,8 +837,8 @@ public interface InstitutionCommandService {
                     return this;
                 }
 
-                private org.dressdiscover.api.models.institution.InstitutionId id;
-                private org.dressdiscover.api.models.institution.Institution institution;
+                private @javax.annotation.Nullable org.dressdiscover.api.models.institution.InstitutionId id;
+                private @javax.annotation.Nullable org.dressdiscover.api.models.institution.Institution institution;
             }
 
             public final static class Factory implements org.thryft.CompoundType.Factory<PutInstitutionRequest> {
@@ -1052,8 +872,8 @@ public interface InstitutionCommandService {
 
             @SuppressWarnings("serial")
             public enum FieldMetadata implements org.thryft.CompoundType.FieldMetadata {
-                ID("id", new com.google.common.reflect.TypeToken<org.dressdiscover.api.models.institution.InstitutionId>() {}, true, 0, "id", org.thryft.protocol.Type.STRING),
-                INSTITUTION("institution", new com.google.common.reflect.TypeToken<org.dressdiscover.api.models.institution.Institution>() {}, true, 0, "institution", org.thryft.protocol.Type.STRUCT);
+                ID("id", new com.google.common.reflect.TypeToken<org.dressdiscover.api.models.institution.InstitutionId>() {}, true, (short)0, "id", org.thryft.protocol.Type.STRING),
+                INSTITUTION("institution", new com.google.common.reflect.TypeToken<org.dressdiscover.api.models.institution.Institution>() {}, true, (short)0, "institution", org.thryft.protocol.Type.STRUCT);
 
                 @Override
                 public String getJavaName() {
@@ -1066,7 +886,7 @@ public interface InstitutionCommandService {
                 }
 
                 @Override
-                public int getThriftId() {
+                public short getThriftId() {
                     return thriftId;
                 }
 
@@ -1113,7 +933,7 @@ public interface InstitutionCommandService {
                     }
                 }
 
-                private FieldMetadata(final String javaName, final com.google.common.reflect.TypeToken<?> javaType, final boolean required, final int thriftId, final String thriftName, final org.thryft.protocol.Type thriftProtocolType) {
+                private FieldMetadata(final String javaName, final com.google.common.reflect.TypeToken<?> javaType, final boolean required, final short thriftId, final String thriftName, final org.thryft.protocol.Type thriftProtocolType) {
                     this.javaName = javaName;
                     this.javaType = javaType;
                     this.required = required;
@@ -1130,130 +950,65 @@ public interface InstitutionCommandService {
                 private final String javaName;
                 private final com.google.common.reflect.TypeToken<?> javaType;
                 private final boolean required;
-                private final int thriftId;
+                private final short thriftId;
                 private final String thriftName;
                 private final String thriftProtocolKey;
                 private final org.thryft.protocol.Type thriftProtocolType;
             }
 
-            public interface Validator<ExceptionT extends Exception> {
-                public org.dressdiscover.api.models.institution.InstitutionId validateId(final org.dressdiscover.api.models.institution.InstitutionId id) throws ExceptionT;
-
-                public org.dressdiscover.api.models.institution.Institution validateInstitution(final org.dressdiscover.api.models.institution.Institution institution) throws ExceptionT;
-            }
-
-            public interface ConstructionValidator extends Validator<RuntimeException> {
-            }
-
-            public static class DefaultConstructionValidator implements ConstructionValidator {
-                public static DefaultConstructionValidator getInstance() {
-                    return instance;
+            public final static class ReadValidator {
+                public static void validate(final org.dressdiscover.api.models.institution.InstitutionId id, final org.dressdiscover.api.models.institution.Institution institution) throws org.thryft.protocol.InputProtocolException {
+                    validateId(id);
+                    validateInstitution(institution);
                 }
 
-                public DefaultConstructionValidator() {
-                }
-
-                @Override
-                public org.dressdiscover.api.models.institution.InstitutionId validateId(final org.dressdiscover.api.models.institution.InstitutionId id) throws RuntimeException {
-                    if (id == null) {
-                        throw new NullPointerException("org.dressdiscover.api.services.institution.PutInstitutionRequest: id is null");
-                    }
-                    return id;
-                }
-
-                @Override
-                public org.dressdiscover.api.models.institution.Institution validateInstitution(final org.dressdiscover.api.models.institution.Institution institution) throws RuntimeException {
-                    if (institution == null) {
-                        throw new NullPointerException("org.dressdiscover.api.services.institution.PutInstitutionRequest: institution is null");
-                    }
-                    return institution;
-                }
-
-                private final static DefaultConstructionValidator instance = new DefaultConstructionValidator();
-            }
-
-            public static class NopConstructionValidator implements ConstructionValidator {
-                public static NopConstructionValidator getInstance() {
-                    return instance;
-                }
-
-                public NopConstructionValidator() {
-                }
-
-                @Override
-                public org.dressdiscover.api.models.institution.InstitutionId validateId(final org.dressdiscover.api.models.institution.InstitutionId id) {
-                    return id;
-                }
-
-                @Override
-                public org.dressdiscover.api.models.institution.Institution validateInstitution(final org.dressdiscover.api.models.institution.Institution institution) {
-                    return institution;
-                }
-
-                private final static NopConstructionValidator instance = new NopConstructionValidator();
-            }
-
-            public interface ReadValidator extends Validator<org.thryft.protocol.InputProtocolException> {
-            }
-
-            public static class DefaultReadValidator implements ReadValidator {
-                public static DefaultReadValidator getInstance() {
-                    return instance;
-                }
-
-                public DefaultReadValidator() {
-                }
-
-                @Override
-                public org.dressdiscover.api.models.institution.InstitutionId validateId(final org.dressdiscover.api.models.institution.InstitutionId id) throws org.thryft.protocol.InputProtocolException {
+                public static void validateId(final org.dressdiscover.api.models.institution.InstitutionId id) throws org.thryft.protocol.InputProtocolException {
                     if (id == null) {
                         throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.ID, "org.dressdiscover.api.services.institution.PutInstitutionRequest: id is null");
                     }
-                    return id;
                 }
 
-                @Override
-                public org.dressdiscover.api.models.institution.Institution validateInstitution(final org.dressdiscover.api.models.institution.Institution institution) throws org.thryft.protocol.InputProtocolException {
+                public static void validateInstitution(final org.dressdiscover.api.models.institution.Institution institution) throws org.thryft.protocol.InputProtocolException {
                     if (institution == null) {
                         throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.INSTITUTION, "org.dressdiscover.api.services.institution.PutInstitutionRequest: institution is null");
                     }
-                    return institution;
                 }
-
-                private final static DefaultReadValidator instance = new DefaultReadValidator();
             }
 
-            public static class NopReadValidator implements ReadValidator {
-                public static NopReadValidator getInstance() {
-                    return instance;
+            public final static class UncheckedValidator {
+                public static void validate(final org.dressdiscover.api.models.institution.InstitutionId id, final org.dressdiscover.api.models.institution.Institution institution) {
+                    validateId(id);
+                    validateInstitution(institution);
                 }
 
-                public NopReadValidator() {
+                public static void validateId(final org.dressdiscover.api.models.institution.InstitutionId id) {
+                    if (id == null) {
+                        throw new NullPointerException("org.dressdiscover.api.services.institution.PutInstitutionRequest: id is null");
+                    }
                 }
 
-                @Override
-                public org.dressdiscover.api.models.institution.InstitutionId validateId(final org.dressdiscover.api.models.institution.InstitutionId id) {
-                    return id;
+                public static void validateInstitution(final org.dressdiscover.api.models.institution.Institution institution) {
+                    if (institution == null) {
+                        throw new NullPointerException("org.dressdiscover.api.services.institution.PutInstitutionRequest: institution is null");
+                    }
                 }
-
-                @Override
-                public org.dressdiscover.api.models.institution.Institution validateInstitution(final org.dressdiscover.api.models.institution.Institution institution) {
-                    return institution;
-                }
-
-                private final static NopReadValidator instance = new NopReadValidator();
             }
 
             /**
              * Copy constructor
              */
             public PutInstitutionRequest(final PutInstitutionRequest other) {
-                this(other.getId(), other.getInstitution(), NopConstructionValidator.getInstance());
+                this(other.getId(), other.getInstitution());
             }
 
-            protected PutInstitutionRequest(final org.dressdiscover.api.models.institution.InstitutionId id, final org.dressdiscover.api.models.institution.Institution institution, ConstructionValidator validator) {
-                this.id = validator.validateId(id);
-                this.institution = validator.validateInstitution(institution);
+            /**
+             * Total constructor
+             *
+             * All fields should have been validated before calling this.
+             */
+            protected PutInstitutionRequest(final org.dressdiscover.api.models.institution.InstitutionId id, final org.dressdiscover.api.models.institution.Institution institution) {
+                this.id = id;
+                this.institution = institution;
             }
 
             public static Builder builder() {
@@ -1272,7 +1027,8 @@ public interface InstitutionCommandService {
              * Optional factory method
              */
             public static PutInstitutionRequest create(final org.dressdiscover.api.models.institution.InstitutionId id, final org.dressdiscover.api.models.institution.Institution institution) {
-                return new PutInstitutionRequest(id, institution, DefaultConstructionValidator.getInstance());
+                UncheckedValidator.validate(id, institution);
+                return new PutInstitutionRequest(id, institution);
             }
 
             @Override
@@ -1351,8 +1107,8 @@ public interface InstitutionCommandService {
             }
 
             public static PutInstitutionRequest readAsList(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
-                org.dressdiscover.api.models.institution.InstitutionId id = null;
-                org.dressdiscover.api.models.institution.Institution institution = null;
+                org.dressdiscover.api.models.institution.InstitutionId id;
+                org.dressdiscover.api.models.institution.Institution institution;
 
                 try {
                     iprot.readListBegin();
@@ -1360,13 +1116,18 @@ public interface InstitutionCommandService {
                         id = org.dressdiscover.api.models.institution.InstitutionId.parse(iprot.readString());
                     } catch (final org.dressdiscover.api.models.institution.InvalidInstitutionIdException e) {
                          throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.ID, e);
+                    } catch (final IllegalArgumentException e) {
+                         throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.ID, e);
                     }
                     institution = org.dressdiscover.api.models.institution.Institution.readAsStruct(iprot);
                     iprot.readListEnd();
                 } catch (final RuntimeException e) {
                     throw new IllegalStateException(e);
                 }
-                return new PutInstitutionRequest(DefaultReadValidator.getInstance().validateId(id), DefaultReadValidator.getInstance().validateInstitution(institution), NopConstructionValidator.getInstance());
+
+                ReadValidator.validate(id, institution);
+
+                return new PutInstitutionRequest(id, institution);
             }
 
             public static PutInstitutionRequest readAsStruct(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
@@ -1374,8 +1135,8 @@ public interface InstitutionCommandService {
             }
 
             public static PutInstitutionRequest readAsStruct(final org.thryft.protocol.InputProtocol iprot, final com.google.common.base.Optional<UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
-                org.dressdiscover.api.models.institution.InstitutionId id = null;
-                org.dressdiscover.api.models.institution.Institution institution = null;
+                @javax.annotation.Nullable org.dressdiscover.api.models.institution.InstitutionId id = null;
+                @javax.annotation.Nullable org.dressdiscover.api.models.institution.Institution institution = null;
 
                 try {
                     iprot.readStructBegin();
@@ -1390,11 +1151,13 @@ public interface InstitutionCommandService {
                                 id = org.dressdiscover.api.models.institution.InstitutionId.parse(iprot.readString());
                             } catch (final org.dressdiscover.api.models.institution.InvalidInstitutionIdException e) {
                                  throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.ID, e);
+                            } catch (final IllegalArgumentException e) {
+                                 throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.ID, e);
                             }
                             break;
                         }
                         case "institution": {
-                            institution = org.dressdiscover.api.models.institution.Institution.readAsStruct(iprot);
+                            institution = org.dressdiscover.api.models.institution.Institution.readAsStruct(iprot, unknownFieldCallback);
                             break;
                         }
                         default:
@@ -1409,15 +1172,20 @@ public interface InstitutionCommandService {
                 } catch (final RuntimeException e) {
                     throw new IllegalStateException(e);
                 }
-                return new PutInstitutionRequest(DefaultReadValidator.getInstance().validateId(id), DefaultReadValidator.getInstance().validateInstitution(institution), NopConstructionValidator.getInstance());
+
+                ReadValidator.validate(id, institution);
+
+                return new PutInstitutionRequest(id, institution);
             }
 
             public PutInstitutionRequest replaceId(final org.dressdiscover.api.models.institution.InstitutionId id) {
-                return new PutInstitutionRequest(DefaultConstructionValidator.getInstance().validateId(id), this.institution, NopConstructionValidator.getInstance());
+                UncheckedValidator.validateId(id);
+                return new PutInstitutionRequest(id, this.institution);
             }
 
             public PutInstitutionRequest replaceInstitution(final org.dressdiscover.api.models.institution.Institution institution) {
-                return new PutInstitutionRequest(this.id, DefaultConstructionValidator.getInstance().validateInstitution(institution), NopConstructionValidator.getInstance());
+                UncheckedValidator.validateInstitution(institution);
+                return new PutInstitutionRequest(this.id, institution);
             }
 
             @Override
@@ -1445,15 +1213,23 @@ public interface InstitutionCommandService {
 
             @Override
             public void writeFields(final org.thryft.protocol.OutputProtocol oprot) throws org.thryft.protocol.OutputProtocolException {
-                oprot.writeFieldBegin("id", org.thryft.protocol.Type.STRING, (short)0);
-                oprot.writeString(getId().toString());
-                oprot.writeFieldEnd();
+                writeIdField(oprot);
 
-                oprot.writeFieldBegin("institution", org.thryft.protocol.Type.STRUCT, (short)0);
-                getInstitution().writeAsStruct(oprot);
-                oprot.writeFieldEnd();
+                writeInstitutionField(oprot);
 
                 oprot.writeFieldStop();
+            }
+
+            public void writeIdField(final org.thryft.protocol.OutputProtocol oprot) throws org.thryft.protocol.OutputProtocolException {
+                oprot.writeFieldBegin(FieldMetadata.ID);
+                oprot.writeString(getId().toString());
+                oprot.writeFieldEnd();
+            }
+
+            public void writeInstitutionField(final org.thryft.protocol.OutputProtocol oprot) throws org.thryft.protocol.OutputProtocolException {
+                oprot.writeFieldBegin(FieldMetadata.INSTITUTION);
+                getInstitution().writeAsStruct(oprot);
+                oprot.writeFieldEnd();
             }
 
             private final org.dressdiscover.api.models.institution.InstitutionId id;
@@ -1462,95 +1238,6 @@ public interface InstitutionCommandService {
         }
 
         public final static class PutInstitutionResponse implements org.thryft.Struct {
-            public final static class Builder {
-                public Builder() {
-                }
-
-                public Builder(final PutInstitutionResponse other) {
-                }
-
-                protected PutInstitutionResponse _build() {
-                    return new PutInstitutionResponse();
-                }
-
-                public PutInstitutionResponse build() {
-                    return _build();
-                }
-
-                public Builder readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type) throws org.thryft.protocol.InputProtocolException {
-                    return readAs(iprot, type, com.google.common.base.Optional.<UnknownFieldCallback> absent());
-                }
-
-                public Builder readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type, final com.google.common.base.Optional<UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
-                    switch (type) {
-                    case LIST:
-                        return readAsList(iprot);
-                    case STRUCT:
-                        return readAsStruct(iprot, unknownFieldCallback);
-                    default:
-                        throw new IllegalArgumentException("cannot read as " + type);
-                    }
-                }
-
-                public Builder readAsList(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
-                    try {
-                        iprot.readListBegin();
-                        iprot.readListEnd();
-                    } catch (final RuntimeException e) {
-                        throw new IllegalStateException(e);
-                    }
-                    return this;
-                }
-
-                public Builder readAsStruct(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
-                    return readAsStruct(iprot, com.google.common.base.Optional.<UnknownFieldCallback> absent());
-                }
-
-                public Builder readAsStruct(final org.thryft.protocol.InputProtocol iprot, final com.google.common.base.Optional<UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
-                    try {
-                        iprot.readStructBegin();
-                        while (true) {
-                            final org.thryft.protocol.FieldBegin ifield = iprot.readFieldBegin();
-                            if (ifield.getType() == org.thryft.protocol.Type.STOP) {
-                                break;
-                            }
-                            if (unknownFieldCallback.isPresent()) {
-                                unknownFieldCallback.get().apply(ifield);
-                            }
-                            iprot.readFieldEnd();
-                        }
-                        iprot.readStructEnd();
-                    } catch (final RuntimeException e) {
-                        throw new IllegalStateException(e);
-                    }
-                    return this;
-                }
-
-                public Builder set(final String fieldThriftName, @javax.annotation.Nullable final java.lang.Object value) {
-                    throw new IllegalArgumentException();
-                }
-
-                public Builder set(final org.thryft.Struct.FieldMetadata fieldMetadata, @javax.annotation.Nullable final java.lang.Object value) {
-                    throw new IllegalArgumentException();
-                }
-
-                public Builder setIfPresent(final PutInstitutionResponse other) {
-                    com.google.common.base.Preconditions.checkNotNull(other);
-
-
-
-                    return this;
-                }
-
-                public Builder unset(final String fieldThriftName) {
-                    throw new IllegalArgumentException();
-                }
-
-                public Builder unset(final org.thryft.Struct.FieldMetadata fieldMetadata) {
-                    throw new IllegalArgumentException();
-                }
-            }
-
             public final static class Factory implements org.thryft.CompoundType.Factory<PutInstitutionResponse> {
                 @Override
                 public PutInstitutionResponse readAs(final org.thryft.protocol.InputProtocol iprot, final org.thryft.protocol.Type type) throws org.thryft.protocol.InputProtocolException {
@@ -1580,82 +1267,7 @@ public interface InstitutionCommandService {
                 }
             }
 
-            public interface Validator<ExceptionT extends Exception> {
-            }
-
-            public interface ConstructionValidator extends Validator<RuntimeException> {
-            }
-
-            public static class DefaultConstructionValidator implements ConstructionValidator {
-                public static DefaultConstructionValidator getInstance() {
-                    return instance;
-                }
-
-                public DefaultConstructionValidator() {
-                }
-
-                private final static DefaultConstructionValidator instance = new DefaultConstructionValidator();
-            }
-
-            public static class NopConstructionValidator implements ConstructionValidator {
-                public static NopConstructionValidator getInstance() {
-                    return instance;
-                }
-
-                public NopConstructionValidator() {
-                }
-
-                private final static NopConstructionValidator instance = new NopConstructionValidator();
-            }
-
-            public interface ReadValidator extends Validator<org.thryft.protocol.InputProtocolException> {
-            }
-
-            public static class DefaultReadValidator implements ReadValidator {
-                public static DefaultReadValidator getInstance() {
-                    return instance;
-                }
-
-                public DefaultReadValidator() {
-                }
-
-                private final static DefaultReadValidator instance = new DefaultReadValidator();
-            }
-
-            public static class NopReadValidator implements ReadValidator {
-                public static NopReadValidator getInstance() {
-                    return instance;
-                }
-
-                public NopReadValidator() {
-                }
-
-                private final static NopReadValidator instance = new NopReadValidator();
-            }
-
-            public PutInstitutionResponse() {
-            }
-
-            /**
-             * Copy constructor
-             */
-            public PutInstitutionResponse(final PutInstitutionResponse other) {
-            }
-
-            public static Builder builder() {
-                return new Builder();
-            }
-
-            public static Builder builder(final PutInstitutionResponse other) {
-                return new Builder(other);
-            }
-
-            public static Builder builder(final com.google.common.base.Optional<PutInstitutionResponse> other) {
-                return other.isPresent() ? new Builder(other.get()) : new Builder();
-            }
-
-            public static PutInstitutionResponse create() {
-                return new PutInstitutionResponse();
+            private PutInstitutionResponse() {
             }
 
             @Override
@@ -1708,7 +1320,8 @@ public interface InstitutionCommandService {
                 } catch (final RuntimeException e) {
                     throw new IllegalStateException(e);
                 }
-                return new PutInstitutionResponse();
+
+                return INSTANCE;
             }
 
             public static PutInstitutionResponse readAsStruct(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
@@ -1732,7 +1345,8 @@ public interface InstitutionCommandService {
                 } catch (final RuntimeException e) {
                     throw new IllegalStateException(e);
                 }
-                return new PutInstitutionResponse();
+
+                return INSTANCE;
             }
 
             @Override
@@ -1757,6 +1371,8 @@ public interface InstitutionCommandService {
             public void writeFields(final org.thryft.protocol.OutputProtocol oprot) throws org.thryft.protocol.OutputProtocolException {
                 oprot.writeFieldStop();
             }
+
+            public final static PutInstitutionResponse INSTANCE = new PutInstitutionResponse();
         }
     }
 

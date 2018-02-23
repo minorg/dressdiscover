@@ -2,7 +2,7 @@ package org.dressdiscover.lib.services.object;
 
 @com.google.inject.Singleton
 public class LoggingObjectCommandService implements org.dressdiscover.api.services.object.ObjectCommandService {
-    public static class Markers {
+    public final static class ObjectCommandServiceLogMarkers {
         public final static org.slf4j.Marker DELETE_OBJECTS_BY_COLLECTION_ID = org.slf4j.MarkerFactory.getMarker("DELETE_OBJECTS_BY_COLLECTION_ID");
         public final static org.slf4j.Marker PUT_OBJECT = org.slf4j.MarkerFactory.getMarker("PUT_OBJECT");
         public final static org.slf4j.Marker PUT_OBJECTS = org.slf4j.MarkerFactory.getMarker("PUT_OBJECTS");
@@ -24,143 +24,137 @@ public class LoggingObjectCommandService implements org.dressdiscover.api.servic
         this.delegate = com.google.common.base.Preconditions.checkNotNull(delegate);
     }
 
+    @Override
     public int deleteObjectsByCollectionId(final org.dressdiscover.api.models.collection.CollectionId collectionId) throws org.dressdiscover.api.services.IoException, org.dressdiscover.api.services.collection.NoSuchCollectionException, org.dressdiscover.api.services.institution.NoSuchInstitutionException {
-        final StringBuilder __logMessageStringBuilder = new StringBuilder();
-        final java.util.List<Object> __logMessageArgs = new java.util.ArrayList<Object>();
+        final Object[] __logMessageArgs = new Object[2];
+        __logMessageArgs[0] = Messages.DeleteObjectsByCollectionIdRequest.create(collectionId);
 
-        __logMessageStringBuilder.append("delete_objects_by_collection_id(");
-        __logMessageStringBuilder.append("{}");
-        __logMessageArgs.add(Messages.DeleteObjectsByCollectionIdRequest.create(collectionId));
-        __logMessageStringBuilder.append(")");
+        __logMessageArgs[__logMessageArgs.length - 1] = PRE_RETURN_VALUE;
+        logger.debug(ObjectCommandServiceLogMarkers.DELETE_OBJECTS_BY_COLLECTION_ID, LogMessages.DELETE_OBJECTS_BY_COLLECTION_ID, __logMessageArgs);
 
         try {
-            int __returnValue = delegate.deleteObjectsByCollectionId(collectionId);
+            final int __returnValue = delegate.deleteObjectsByCollectionId(collectionId);
 
-            __logMessageStringBuilder.append(" -> {}");
-            __logMessageArgs.add(__returnValue);
-
-            logger.info(Markers.DELETE_OBJECTS_BY_COLLECTION_ID, __logMessageStringBuilder.toString(), __logMessageArgs.toArray());
+            __logMessageArgs[__logMessageArgs.length - 1] = __returnValue;
+            logger.info(ObjectCommandServiceLogMarkers.DELETE_OBJECTS_BY_COLLECTION_ID, LogMessages.DELETE_OBJECTS_BY_COLLECTION_ID, __logMessageArgs);
 
             return __returnValue;
         } catch (final org.dressdiscover.api.services.IoException e) {
-            __logMessageStringBuilder.append(" -> {}");
-            __logMessageArgs.add(e.toString());
-            logger.error(Markers.DELETE_OBJECTS_BY_COLLECTION_ID, __logMessageStringBuilder.toString(), __logMessageArgs.toArray());
+            __logMessageArgs[__logMessageArgs.length - 1] = e.toString();
+            logger.error(ObjectCommandServiceLogMarkers.DELETE_OBJECTS_BY_COLLECTION_ID, LogMessages.DELETE_OBJECTS_BY_COLLECTION_ID, __logMessageArgs);
             throw e;
         } catch (final org.dressdiscover.api.services.collection.NoSuchCollectionException e) {
-            __logMessageStringBuilder.append(" -> {}");
-            __logMessageArgs.add(e.toString());
-            logger.error(Markers.DELETE_OBJECTS_BY_COLLECTION_ID, __logMessageStringBuilder.toString(), __logMessageArgs.toArray());
+            __logMessageArgs[__logMessageArgs.length - 1] = e.toString();
+            logger.error(ObjectCommandServiceLogMarkers.DELETE_OBJECTS_BY_COLLECTION_ID, LogMessages.DELETE_OBJECTS_BY_COLLECTION_ID, __logMessageArgs);
             throw e;
         } catch (final org.dressdiscover.api.services.institution.NoSuchInstitutionException e) {
-            __logMessageStringBuilder.append(" -> {}");
-            __logMessageArgs.add(e.toString());
-            logger.error(Markers.DELETE_OBJECTS_BY_COLLECTION_ID, __logMessageStringBuilder.toString(), __logMessageArgs.toArray());
+            __logMessageArgs[__logMessageArgs.length - 1] = e.toString();
+            logger.error(ObjectCommandServiceLogMarkers.DELETE_OBJECTS_BY_COLLECTION_ID, LogMessages.DELETE_OBJECTS_BY_COLLECTION_ID, __logMessageArgs);
             throw e;
         } catch (final RuntimeException e) {
-            __logMessageStringBuilder.append(" -> ");
-            __logMessageArgs.add(e);
-            logger.error(Markers.DELETE_OBJECTS_BY_COLLECTION_ID, __logMessageStringBuilder.toString(), __logMessageArgs.toArray());
+            __logMessageArgs[__logMessageArgs.length - 1] = e;
+            logger.error(ObjectCommandServiceLogMarkers.DELETE_OBJECTS_BY_COLLECTION_ID, LogMessages.DELETE_OBJECTS_BY_COLLECTION_ID, __logMessageArgs);
             throw e;
         }
     }
 
+    @Override
     public void putObject(final org.dressdiscover.api.models.object.ObjectId id, final org.dressdiscover.api.models.object.Object object) throws org.dressdiscover.api.services.IoException, org.dressdiscover.api.services.collection.NoSuchCollectionException, org.dressdiscover.api.services.institution.NoSuchInstitutionException {
-        final StringBuilder __logMessageStringBuilder = new StringBuilder();
-        final java.util.List<Object> __logMessageArgs = new java.util.ArrayList<Object>();
+        final Object[] __logMessageArgs = new Object[2];
+        __logMessageArgs[0] = Messages.PutObjectRequest.create(id, object);
 
-        __logMessageStringBuilder.append("put_object(");
-        __logMessageStringBuilder.append("{}");
-        __logMessageArgs.add(Messages.PutObjectRequest.create(id, object));
-        __logMessageStringBuilder.append(")");
+        __logMessageArgs[__logMessageArgs.length - 1] = PRE_RETURN_VALUE;
+        logger.debug(ObjectCommandServiceLogMarkers.PUT_OBJECT, LogMessages.PUT_OBJECT, __logMessageArgs);
 
         try {
             delegate.putObject(id, object);
 
-            logger.info(Markers.PUT_OBJECT, __logMessageStringBuilder.toString(), __logMessageArgs.toArray());
+            __logMessageArgs[__logMessageArgs.length - 1] = VOID_RETURN_VALUE;
+            logger.info(ObjectCommandServiceLogMarkers.PUT_OBJECT, LogMessages.PUT_OBJECT, __logMessageArgs);
         } catch (final org.dressdiscover.api.services.IoException e) {
-            __logMessageStringBuilder.append(" -> {}");
-            __logMessageArgs.add(e.toString());
-            logger.error(Markers.PUT_OBJECT, __logMessageStringBuilder.toString(), __logMessageArgs.toArray());
+            __logMessageArgs[__logMessageArgs.length - 1] = e.toString();
+            logger.error(ObjectCommandServiceLogMarkers.PUT_OBJECT, LogMessages.PUT_OBJECT, __logMessageArgs);
             throw e;
         } catch (final org.dressdiscover.api.services.collection.NoSuchCollectionException e) {
-            __logMessageStringBuilder.append(" -> {}");
-            __logMessageArgs.add(e.toString());
-            logger.error(Markers.PUT_OBJECT, __logMessageStringBuilder.toString(), __logMessageArgs.toArray());
+            __logMessageArgs[__logMessageArgs.length - 1] = e.toString();
+            logger.error(ObjectCommandServiceLogMarkers.PUT_OBJECT, LogMessages.PUT_OBJECT, __logMessageArgs);
             throw e;
         } catch (final org.dressdiscover.api.services.institution.NoSuchInstitutionException e) {
-            __logMessageStringBuilder.append(" -> {}");
-            __logMessageArgs.add(e.toString());
-            logger.error(Markers.PUT_OBJECT, __logMessageStringBuilder.toString(), __logMessageArgs.toArray());
+            __logMessageArgs[__logMessageArgs.length - 1] = e.toString();
+            logger.error(ObjectCommandServiceLogMarkers.PUT_OBJECT, LogMessages.PUT_OBJECT, __logMessageArgs);
             throw e;
         } catch (final RuntimeException e) {
-            __logMessageStringBuilder.append(" -> ");
-            __logMessageArgs.add(e);
-            logger.error(Markers.PUT_OBJECT, __logMessageStringBuilder.toString(), __logMessageArgs.toArray());
+            __logMessageArgs[__logMessageArgs.length - 1] = e;
+            logger.error(ObjectCommandServiceLogMarkers.PUT_OBJECT, LogMessages.PUT_OBJECT, __logMessageArgs);
             throw e;
         }
     }
 
+    @Override
     public void putObjects(final com.google.common.collect.ImmutableList<org.dressdiscover.api.models.object.ObjectEntry> objects) throws org.dressdiscover.api.services.IoException, org.dressdiscover.api.services.collection.NoSuchCollectionException, org.dressdiscover.api.services.institution.NoSuchInstitutionException {
-        final StringBuilder __logMessageStringBuilder = new StringBuilder();
-        final java.util.List<Object> __logMessageArgs = new java.util.ArrayList<Object>();
+        final Object[] __logMessageArgs = new Object[2];
+        __logMessageArgs[0] = Messages.PutObjectsRequest.create(objects);
 
-        __logMessageStringBuilder.append("put_objects(");
-        __logMessageStringBuilder.append("{}");
-        __logMessageArgs.add(Messages.PutObjectsRequest.create(objects));
-        __logMessageStringBuilder.append(")");
+        __logMessageArgs[__logMessageArgs.length - 1] = PRE_RETURN_VALUE;
+        logger.debug(ObjectCommandServiceLogMarkers.PUT_OBJECTS, LogMessages.PUT_OBJECTS, __logMessageArgs);
 
         try {
             delegate.putObjects(objects);
 
-            logger.info(Markers.PUT_OBJECTS, __logMessageStringBuilder.toString(), __logMessageArgs.toArray());
+            __logMessageArgs[__logMessageArgs.length - 1] = VOID_RETURN_VALUE;
+            logger.info(ObjectCommandServiceLogMarkers.PUT_OBJECTS, LogMessages.PUT_OBJECTS, __logMessageArgs);
         } catch (final org.dressdiscover.api.services.IoException e) {
-            __logMessageStringBuilder.append(" -> {}");
-            __logMessageArgs.add(e.toString());
-            logger.error(Markers.PUT_OBJECTS, __logMessageStringBuilder.toString(), __logMessageArgs.toArray());
+            __logMessageArgs[__logMessageArgs.length - 1] = e.toString();
+            logger.error(ObjectCommandServiceLogMarkers.PUT_OBJECTS, LogMessages.PUT_OBJECTS, __logMessageArgs);
             throw e;
         } catch (final org.dressdiscover.api.services.collection.NoSuchCollectionException e) {
-            __logMessageStringBuilder.append(" -> {}");
-            __logMessageArgs.add(e.toString());
-            logger.error(Markers.PUT_OBJECTS, __logMessageStringBuilder.toString(), __logMessageArgs.toArray());
+            __logMessageArgs[__logMessageArgs.length - 1] = e.toString();
+            logger.error(ObjectCommandServiceLogMarkers.PUT_OBJECTS, LogMessages.PUT_OBJECTS, __logMessageArgs);
             throw e;
         } catch (final org.dressdiscover.api.services.institution.NoSuchInstitutionException e) {
-            __logMessageStringBuilder.append(" -> {}");
-            __logMessageArgs.add(e.toString());
-            logger.error(Markers.PUT_OBJECTS, __logMessageStringBuilder.toString(), __logMessageArgs.toArray());
+            __logMessageArgs[__logMessageArgs.length - 1] = e.toString();
+            logger.error(ObjectCommandServiceLogMarkers.PUT_OBJECTS, LogMessages.PUT_OBJECTS, __logMessageArgs);
             throw e;
         } catch (final RuntimeException e) {
-            __logMessageStringBuilder.append(" -> ");
-            __logMessageArgs.add(e);
-            logger.error(Markers.PUT_OBJECTS, __logMessageStringBuilder.toString(), __logMessageArgs.toArray());
+            __logMessageArgs[__logMessageArgs.length - 1] = e;
+            logger.error(ObjectCommandServiceLogMarkers.PUT_OBJECTS, LogMessages.PUT_OBJECTS, __logMessageArgs);
             throw e;
         }
     }
 
+    @Override
     public void resummarizeObjects() throws org.dressdiscover.api.services.IoException {
-        final StringBuilder __logMessageStringBuilder = new StringBuilder();
-        final java.util.List<Object> __logMessageArgs = new java.util.ArrayList<Object>();
+        final Object[] __logMessageArgs = new Object[1];
 
-        __logMessageStringBuilder.append("resummarize_objects(");
-        __logMessageStringBuilder.append(")");
+        __logMessageArgs[__logMessageArgs.length - 1] = PRE_RETURN_VALUE;
+        logger.debug(ObjectCommandServiceLogMarkers.RESUMMARIZE_OBJECTS, LogMessages.RESUMMARIZE_OBJECTS, __logMessageArgs);
 
         try {
             delegate.resummarizeObjects();
 
-            logger.info(Markers.RESUMMARIZE_OBJECTS, __logMessageStringBuilder.toString(), __logMessageArgs.toArray());
+            __logMessageArgs[__logMessageArgs.length - 1] = VOID_RETURN_VALUE;
+            logger.info(ObjectCommandServiceLogMarkers.RESUMMARIZE_OBJECTS, LogMessages.RESUMMARIZE_OBJECTS, __logMessageArgs);
         } catch (final org.dressdiscover.api.services.IoException e) {
-            __logMessageStringBuilder.append(" -> {}");
-            __logMessageArgs.add(e.toString());
-            logger.error(Markers.RESUMMARIZE_OBJECTS, __logMessageStringBuilder.toString(), __logMessageArgs.toArray());
+            __logMessageArgs[__logMessageArgs.length - 1] = e.toString();
+            logger.error(ObjectCommandServiceLogMarkers.RESUMMARIZE_OBJECTS, LogMessages.RESUMMARIZE_OBJECTS, __logMessageArgs);
             throw e;
         } catch (final RuntimeException e) {
-            __logMessageStringBuilder.append(" -> ");
-            __logMessageArgs.add(e);
-            logger.error(Markers.RESUMMARIZE_OBJECTS, __logMessageStringBuilder.toString(), __logMessageArgs.toArray());
+            __logMessageArgs[__logMessageArgs.length - 1] = e;
+            logger.error(ObjectCommandServiceLogMarkers.RESUMMARIZE_OBJECTS, LogMessages.RESUMMARIZE_OBJECTS, __logMessageArgs);
             throw e;
         }
     }
 
     private final static org.slf4j.Logger logger = org.slf4j.LoggerFactory.getLogger(LoggingObjectCommandService.class);
     private final org.dressdiscover.api.services.object.ObjectCommandService delegate;
+
+    private final static class LogMessages {
+        public final static String DELETE_OBJECTS_BY_COLLECTION_ID = "delete_objects_by_collection_id({}) -> {}";
+        public final static String PUT_OBJECT = "put_object({}) -> {}";
+        public final static String PUT_OBJECTS = "put_objects({}) -> {}";
+        public final static String RESUMMARIZE_OBJECTS = "resummarize_objects() -> {}";
+    }
+
+    public final static String PRE_RETURN_VALUE = "...";
+    public final static String VOID_RETURN_VALUE = "void";
 }

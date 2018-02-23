@@ -3,7 +3,7 @@ package org.dressdiscover.api.vocabularies.vra_core.subject;
 /**
  * VRA Core 4.0 subject term type= attribute
  */
-public enum SubjectTermType {
+public enum SubjectTermType implements org.thryft.ThryftEnum {
     CORPORATE_NAME(0),
     FAMILY_NAME(1),
     OTHER_NAME(2),
@@ -16,6 +16,25 @@ public enum SubjectTermType {
     DESCRIPTIVE_TOPIC(9),
     ICONOGRAPHIC_TOPIC(10),
     OTHER_TOPIC(11);
+
+    public final static class Factory implements org.thryft.ThryftEnum.Factory<SubjectTermType> {
+        public final static Factory getInstance() {
+            return instance;
+        }
+
+        public final SubjectTermType valueOf(final String name) {
+            return SubjectTermType.valueOf(name);
+        }
+
+        public final SubjectTermType valueOf(final int value) {
+            return SubjectTermType.valueOf(value);
+        }
+
+        private Factory() {
+        }
+
+        private final static Factory instance = new Factory();
+    }
 
     private SubjectTermType(int value) {
         this.value = value;
@@ -37,10 +56,6 @@ public enum SubjectTermType {
         case 11: return OTHER_TOPIC;
         default: throw new IllegalArgumentException();
         }
-    }
-
-    public static SubjectTermType valueOf(final Integer value) {
-        return valueOf(value.intValue());
     }
 
     public final int value() {

@@ -12,10 +12,12 @@ public final class NoSuchInstitutionException extends org.thryft.waf.api.service
         }
 
         protected NoSuchInstitutionException _build(final com.google.common.base.Optional<org.dressdiscover.api.models.institution.InstitutionId> id) {
-            return new NoSuchInstitutionException(id, DefaultConstructionValidator.getInstance());
+            return new NoSuchInstitutionException(id);
         }
 
         public NoSuchInstitutionException build() {
+            UncheckedValidator.validate(id);
+
             return _build(id);
         }
 
@@ -45,6 +47,7 @@ public final class NoSuchInstitutionException extends org.thryft.waf.api.service
                     try {
                         id = com.google.common.base.Optional.of(org.dressdiscover.api.models.institution.InstitutionId.parse(iprot.readString()));
                     } catch (final org.dressdiscover.api.models.institution.InvalidInstitutionIdException e) {
+                    } catch (final IllegalArgumentException e) {
                     }
                 }
                 iprot.readListEnd();
@@ -71,6 +74,7 @@ public final class NoSuchInstitutionException extends org.thryft.waf.api.service
                         try {
                             id = com.google.common.base.Optional.of(org.dressdiscover.api.models.institution.InstitutionId.parse(iprot.readString()));
                         } catch (final org.dressdiscover.api.models.institution.InvalidInstitutionIdException e) {
+                        } catch (final IllegalArgumentException e) {
                         }
                         break;
                     }
@@ -111,11 +115,12 @@ public final class NoSuchInstitutionException extends org.thryft.waf.api.service
         }
 
         public Builder setId(final com.google.common.base.Optional<org.dressdiscover.api.models.institution.InstitutionId> id) {
-            this.id = DefaultConstructionValidator.getInstance().validateId(id);
+            UncheckedValidator.validateId(id);
+            this.id = id;
             return this;
         }
 
-        public Builder setId(@javax.annotation.Nullable final org.dressdiscover.api.models.institution.InstitutionId id) {
+        public Builder setId(final @javax.annotation.Nullable org.dressdiscover.api.models.institution.InstitutionId id) {
             return setId(com.google.common.base.Optional.fromNullable(id));
         }
 
@@ -188,7 +193,7 @@ public final class NoSuchInstitutionException extends org.thryft.waf.api.service
     }
 
     public enum FieldMetadata implements org.thryft.CompoundType.FieldMetadata {
-        ID("id", new com.google.common.reflect.TypeToken<org.dressdiscover.api.models.institution.InstitutionId>() {}, false, 0, "id", org.thryft.protocol.Type.STRING);
+        ID("id", new com.google.common.reflect.TypeToken<org.dressdiscover.api.models.institution.InstitutionId>() {}, false, (short)0, "id", org.thryft.protocol.Type.STRING);
 
         @Override
         public String getJavaName() {
@@ -201,7 +206,7 @@ public final class NoSuchInstitutionException extends org.thryft.waf.api.service
         }
 
         @Override
-        public int getThriftId() {
+        public short getThriftId() {
             return thriftId;
         }
 
@@ -246,7 +251,7 @@ public final class NoSuchInstitutionException extends org.thryft.waf.api.service
             }
         }
 
-        private FieldMetadata(final String javaName, final com.google.common.reflect.TypeToken<?> javaType, final boolean required, final int thriftId, final String thriftName, final org.thryft.protocol.Type thriftProtocolType) {
+        private FieldMetadata(final String javaName, final com.google.common.reflect.TypeToken<?> javaType, final boolean required, final short thriftId, final String thriftName, final org.thryft.protocol.Type thriftProtocolType) {
             this.javaName = javaName;
             this.javaType = javaType;
             this.required = required;
@@ -263,96 +268,40 @@ public final class NoSuchInstitutionException extends org.thryft.waf.api.service
         private final String javaName;
         private final com.google.common.reflect.TypeToken<?> javaType;
         private final boolean required;
-        private final int thriftId;
+        private final short thriftId;
         private final String thriftName;
         private final String thriftProtocolKey;
         private final org.thryft.protocol.Type thriftProtocolType;
     }
 
-    public interface Validator<ExceptionT extends Exception> {
-        public com.google.common.base.Optional<org.dressdiscover.api.models.institution.InstitutionId> validateId(final com.google.common.base.Optional<org.dressdiscover.api.models.institution.InstitutionId> id) throws ExceptionT;
-    }
-
-    public interface ConstructionValidator extends Validator<RuntimeException> {
-    }
-
-    public static class DefaultConstructionValidator implements ConstructionValidator {
-        public static DefaultConstructionValidator getInstance() {
-            return instance;
+    public final static class ReadValidator {
+        public static void validate(final com.google.common.base.Optional<org.dressdiscover.api.models.institution.InstitutionId> id) throws org.thryft.protocol.InputProtocolException {
+            validateId(id);
         }
 
-        public DefaultConstructionValidator() {
-        }
-
-        @Override
-        public com.google.common.base.Optional<org.dressdiscover.api.models.institution.InstitutionId> validateId(final com.google.common.base.Optional<org.dressdiscover.api.models.institution.InstitutionId> id) throws RuntimeException {
-            if (id == null) {
-                throw new NullPointerException("org.dressdiscover.api.services.institution.NoSuchInstitutionException: id is null");
-            }
-            if (!id.isPresent()) {
-                return id;
-            }
-            return id;
-        }
-
-        private final static DefaultConstructionValidator instance = new DefaultConstructionValidator();
-    }
-
-    public static class NopConstructionValidator implements ConstructionValidator {
-        public static NopConstructionValidator getInstance() {
-            return instance;
-        }
-
-        public NopConstructionValidator() {
-        }
-
-        @Override
-        public com.google.common.base.Optional<org.dressdiscover.api.models.institution.InstitutionId> validateId(final com.google.common.base.Optional<org.dressdiscover.api.models.institution.InstitutionId> id) {
-            return id;
-        }
-
-        private final static NopConstructionValidator instance = new NopConstructionValidator();
-    }
-
-    public interface ReadValidator extends Validator<org.thryft.protocol.InputProtocolException> {
-    }
-
-    public static class DefaultReadValidator implements ReadValidator {
-        public static DefaultReadValidator getInstance() {
-            return instance;
-        }
-
-        public DefaultReadValidator() {
-        }
-
-        @Override
-        public com.google.common.base.Optional<org.dressdiscover.api.models.institution.InstitutionId> validateId(final com.google.common.base.Optional<org.dressdiscover.api.models.institution.InstitutionId> id) throws org.thryft.protocol.InputProtocolException {
+        public static void validateId(final com.google.common.base.Optional<org.dressdiscover.api.models.institution.InstitutionId> id) throws org.thryft.protocol.InputProtocolException {
             if (id == null) {
                 throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.ID, "org.dressdiscover.api.services.institution.NoSuchInstitutionException: id is null");
             }
             if (!id.isPresent()) {
-                return id;
+                return;
             }
-            return id;
         }
-
-        private final static DefaultReadValidator instance = new DefaultReadValidator();
     }
 
-    public static class NopReadValidator implements ReadValidator {
-        public static NopReadValidator getInstance() {
-            return instance;
+    public final static class UncheckedValidator {
+        public static void validate(final com.google.common.base.Optional<org.dressdiscover.api.models.institution.InstitutionId> id) {
+            validateId(id);
         }
 
-        public NopReadValidator() {
+        public static void validateId(final com.google.common.base.Optional<org.dressdiscover.api.models.institution.InstitutionId> id) {
+            if (id == null) {
+                throw new NullPointerException("org.dressdiscover.api.services.institution.NoSuchInstitutionException: id is null");
+            }
+            if (!id.isPresent()) {
+                return;
+            }
         }
-
-        @Override
-        public com.google.common.base.Optional<org.dressdiscover.api.models.institution.InstitutionId> validateId(final com.google.common.base.Optional<org.dressdiscover.api.models.institution.InstitutionId> id) {
-            return id;
-        }
-
-        private final static NopReadValidator instance = new NopReadValidator();
     }
 
     /**
@@ -366,11 +315,16 @@ public final class NoSuchInstitutionException extends org.thryft.waf.api.service
      * Copy constructor
      */
     public NoSuchInstitutionException(final NoSuchInstitutionException other) {
-        this(other.getId(), NopConstructionValidator.getInstance());
+        this(other.getId());
     }
 
-    protected NoSuchInstitutionException(final com.google.common.base.Optional<org.dressdiscover.api.models.institution.InstitutionId> id, ConstructionValidator validator) {
-        this.id = validator.validateId(id);
+    /**
+     * Total constructor
+     *
+     * All fields should have been validated before calling this.
+     */
+    protected NoSuchInstitutionException(final com.google.common.base.Optional<org.dressdiscover.api.models.institution.InstitutionId> id) {
+        this.id = id;
     }
 
     public static Builder builder() {
@@ -392,15 +346,18 @@ public final class NoSuchInstitutionException extends org.thryft.waf.api.service
     /**
      * Total Nullable factory method
      */
-    public static NoSuchInstitutionException create(final @javax.annotation.Nullable org.dressdiscover.api.models.institution.InstitutionId id) {
-        return new NoSuchInstitutionException(com.google.common.base.Optional.fromNullable(id), DefaultConstructionValidator.getInstance());
+    public static NoSuchInstitutionException create(@javax.annotation.Nullable final org.dressdiscover.api.models.institution.InstitutionId id) {
+        final com.google.common.base.Optional<org.dressdiscover.api.models.institution.InstitutionId> idOptional = com.google.common.base.Optional.fromNullable(id);
+        UncheckedValidator.validate(idOptional);
+        return new NoSuchInstitutionException(idOptional);
     }
 
     /**
      * Optional factory method
      */
     public static NoSuchInstitutionException create(final com.google.common.base.Optional<org.dressdiscover.api.models.institution.InstitutionId> id) {
-        return new NoSuchInstitutionException(id, DefaultConstructionValidator.getInstance());
+        UncheckedValidator.validate(id);
+        return new NoSuchInstitutionException(id);
     }
 
     @Override
@@ -489,13 +446,17 @@ public final class NoSuchInstitutionException extends org.thryft.waf.api.service
                 try {
                     id = com.google.common.base.Optional.of(org.dressdiscover.api.models.institution.InstitutionId.parse(iprot.readString()));
                 } catch (final org.dressdiscover.api.models.institution.InvalidInstitutionIdException e) {
+                } catch (final IllegalArgumentException e) {
                 }
             }
             iprot.readListEnd();
         } catch (final RuntimeException e) {
             throw new IllegalStateException(e);
         }
-        return new NoSuchInstitutionException(DefaultReadValidator.getInstance().validateId(id), NopConstructionValidator.getInstance());
+
+        ReadValidator.validate(id);
+
+        return new NoSuchInstitutionException(id);
     }
 
     public static NoSuchInstitutionException readAsStruct(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
@@ -517,6 +478,7 @@ public final class NoSuchInstitutionException extends org.thryft.waf.api.service
                     try {
                         id = com.google.common.base.Optional.of(org.dressdiscover.api.models.institution.InstitutionId.parse(iprot.readString()));
                     } catch (final org.dressdiscover.api.models.institution.InvalidInstitutionIdException e) {
+                    } catch (final IllegalArgumentException e) {
                     }
                     break;
                 }
@@ -532,14 +494,18 @@ public final class NoSuchInstitutionException extends org.thryft.waf.api.service
         } catch (final RuntimeException e) {
             throw new IllegalStateException(e);
         }
-        return new NoSuchInstitutionException(DefaultReadValidator.getInstance().validateId(id), NopConstructionValidator.getInstance());
+
+        ReadValidator.validate(id);
+
+        return new NoSuchInstitutionException(id);
     }
 
     public NoSuchInstitutionException replaceId(final com.google.common.base.Optional<org.dressdiscover.api.models.institution.InstitutionId> id) {
-        return new NoSuchInstitutionException(DefaultConstructionValidator.getInstance().validateId(id), NopConstructionValidator.getInstance());
+        UncheckedValidator.validateId(id);
+        return new NoSuchInstitutionException(id);
     }
 
-    public NoSuchInstitutionException replaceId(final org.dressdiscover.api.models.institution.InstitutionId id) {
+    public NoSuchInstitutionException replaceId(@javax.annotation.Nullable final org.dressdiscover.api.models.institution.InstitutionId id) {
         return replaceId(com.google.common.base.Optional.fromNullable(id));
     }
 
@@ -565,7 +531,7 @@ public final class NoSuchInstitutionException extends org.thryft.waf.api.service
         oprot.writeMessageBegin("org.dressdiscover.api.services.institution.NoSuchInstitutionException", org.thryft.protocol.MessageType.EXCEPTION, null);
 
         if (getId().isPresent()) {
-            oprot.writeFieldBegin("id", org.thryft.protocol.Type.STRING, (short)0);
+            oprot.writeFieldBegin(FieldMetadata.ID);
             oprot.writeString(getId().get().toString());
             oprot.writeFieldEnd();
         }
@@ -584,13 +550,17 @@ public final class NoSuchInstitutionException extends org.thryft.waf.api.service
 
     @Override
     public void writeFields(final org.thryft.protocol.OutputProtocol oprot) throws org.thryft.protocol.OutputProtocolException {
+        writeIdField(oprot);
+
+        oprot.writeFieldStop();
+    }
+
+    public void writeIdField(final org.thryft.protocol.OutputProtocol oprot) throws org.thryft.protocol.OutputProtocolException {
         if (getId().isPresent()) {
-            oprot.writeFieldBegin("id", org.thryft.protocol.Type.STRING, (short)0);
+            oprot.writeFieldBegin(FieldMetadata.ID);
             oprot.writeString(getId().get().toString());
             oprot.writeFieldEnd();
         }
-
-        oprot.writeFieldStop();
     }
 
     private final com.google.common.base.Optional<org.dressdiscover.api.models.institution.InstitutionId> id;

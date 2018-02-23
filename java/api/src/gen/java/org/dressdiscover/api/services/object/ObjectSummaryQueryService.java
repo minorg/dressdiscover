@@ -29,10 +29,12 @@ public interface ObjectSummaryQueryService {
                 }
 
                 protected GetObjectSummariesRequest _build(final com.google.common.base.Optional<org.dressdiscover.api.services.object.GetObjectSummariesOptions> options, final com.google.common.base.Optional<org.dressdiscover.api.models.object.ObjectQuery> query) {
-                    return new GetObjectSummariesRequest(options, query, DefaultConstructionValidator.getInstance());
+                    return new GetObjectSummariesRequest(options, query);
                 }
 
                 public GetObjectSummariesRequest build() {
+                    UncheckedValidator.validate(options, query);
+
                     return _build(options, query);
                 }
 
@@ -89,11 +91,11 @@ public interface ObjectSummaryQueryService {
                             }
                             switch (ifield.getName()) {
                             case "options": {
-                                options = com.google.common.base.Optional.of(org.dressdiscover.api.services.object.GetObjectSummariesOptions.readAsStruct(iprot));
+                                options = com.google.common.base.Optional.of(org.dressdiscover.api.services.object.GetObjectSummariesOptions.readAsStruct(iprot, unknownFieldCallback));
                                 break;
                             }
                             case "query": {
-                                query = com.google.common.base.Optional.of(org.dressdiscover.api.models.object.ObjectQuery.readAsStruct(iprot));
+                                query = com.google.common.base.Optional.of(org.dressdiscover.api.models.object.ObjectQuery.readAsStruct(iprot, unknownFieldCallback));
                                 break;
                             }
                             default:
@@ -147,20 +149,22 @@ public interface ObjectSummaryQueryService {
                 }
 
                 public Builder setOptions(final com.google.common.base.Optional<org.dressdiscover.api.services.object.GetObjectSummariesOptions> options) {
-                    this.options = DefaultConstructionValidator.getInstance().validateOptions(options);
+                    UncheckedValidator.validateOptions(options);
+                    this.options = options;
                     return this;
                 }
 
-                public Builder setOptions(@javax.annotation.Nullable final org.dressdiscover.api.services.object.GetObjectSummariesOptions options) {
+                public Builder setOptions(final @javax.annotation.Nullable org.dressdiscover.api.services.object.GetObjectSummariesOptions options) {
                     return setOptions(com.google.common.base.Optional.fromNullable(options));
                 }
 
                 public Builder setQuery(final com.google.common.base.Optional<org.dressdiscover.api.models.object.ObjectQuery> query) {
-                    this.query = DefaultConstructionValidator.getInstance().validateQuery(query);
+                    UncheckedValidator.validateQuery(query);
+                    this.query = query;
                     return this;
                 }
 
-                public Builder setQuery(@javax.annotation.Nullable final org.dressdiscover.api.models.object.ObjectQuery query) {
+                public Builder setQuery(final @javax.annotation.Nullable org.dressdiscover.api.models.object.ObjectQuery query) {
                     return setQuery(com.google.common.base.Optional.fromNullable(query));
                 }
 
@@ -231,8 +235,8 @@ public interface ObjectSummaryQueryService {
 
             @SuppressWarnings("serial")
             public enum FieldMetadata implements org.thryft.CompoundType.FieldMetadata {
-                OPTIONS("options", new com.google.common.reflect.TypeToken<org.dressdiscover.api.services.object.GetObjectSummariesOptions>() {}, false, 0, "options", org.thryft.protocol.Type.STRUCT),
-                QUERY("query", new com.google.common.reflect.TypeToken<org.dressdiscover.api.models.object.ObjectQuery>() {}, false, 0, "query", org.thryft.protocol.Type.STRUCT);
+                OPTIONS("options", new com.google.common.reflect.TypeToken<org.dressdiscover.api.services.object.GetObjectSummariesOptions>() {}, false, (short)0, "options", org.thryft.protocol.Type.STRUCT),
+                QUERY("query", new com.google.common.reflect.TypeToken<org.dressdiscover.api.models.object.ObjectQuery>() {}, false, (short)0, "query", org.thryft.protocol.Type.STRUCT);
 
                 @Override
                 public String getJavaName() {
@@ -245,7 +249,7 @@ public interface ObjectSummaryQueryService {
                 }
 
                 @Override
-                public int getThriftId() {
+                public short getThriftId() {
                     return thriftId;
                 }
 
@@ -292,7 +296,7 @@ public interface ObjectSummaryQueryService {
                     }
                 }
 
-                private FieldMetadata(final String javaName, final com.google.common.reflect.TypeToken<?> javaType, final boolean required, final int thriftId, final String thriftName, final org.thryft.protocol.Type thriftProtocolType) {
+                private FieldMetadata(final String javaName, final com.google.common.reflect.TypeToken<?> javaType, final boolean required, final short thriftId, final String thriftName, final org.thryft.protocol.Type thriftProtocolType) {
                     this.javaName = javaName;
                     this.javaType = javaType;
                     this.required = required;
@@ -309,135 +313,66 @@ public interface ObjectSummaryQueryService {
                 private final String javaName;
                 private final com.google.common.reflect.TypeToken<?> javaType;
                 private final boolean required;
-                private final int thriftId;
+                private final short thriftId;
                 private final String thriftName;
                 private final String thriftProtocolKey;
                 private final org.thryft.protocol.Type thriftProtocolType;
             }
 
-            public interface Validator<ExceptionT extends Exception> {
-                public com.google.common.base.Optional<org.dressdiscover.api.services.object.GetObjectSummariesOptions> validateOptions(final com.google.common.base.Optional<org.dressdiscover.api.services.object.GetObjectSummariesOptions> options) throws ExceptionT;
-
-                public com.google.common.base.Optional<org.dressdiscover.api.models.object.ObjectQuery> validateQuery(final com.google.common.base.Optional<org.dressdiscover.api.models.object.ObjectQuery> query) throws ExceptionT;
-            }
-
-            public interface ConstructionValidator extends Validator<RuntimeException> {
-            }
-
-            public static class DefaultConstructionValidator implements ConstructionValidator {
-                public static DefaultConstructionValidator getInstance() {
-                    return instance;
+            public final static class ReadValidator {
+                public static void validate(final com.google.common.base.Optional<org.dressdiscover.api.services.object.GetObjectSummariesOptions> options, final com.google.common.base.Optional<org.dressdiscover.api.models.object.ObjectQuery> query) throws org.thryft.protocol.InputProtocolException {
+                    validateOptions(options);
+                    validateQuery(query);
                 }
 
-                public DefaultConstructionValidator() {
-                }
-
-                @Override
-                public com.google.common.base.Optional<org.dressdiscover.api.services.object.GetObjectSummariesOptions> validateOptions(final com.google.common.base.Optional<org.dressdiscover.api.services.object.GetObjectSummariesOptions> options) throws RuntimeException {
-                    if (options == null) {
-                        throw new NullPointerException("org.dressdiscover.api.services.object.GetObjectSummariesRequest: options is null");
-                    }
-                    if (!options.isPresent()) {
-                        return options;
-                    }
-                    return options;
-                }
-
-                @Override
-                public com.google.common.base.Optional<org.dressdiscover.api.models.object.ObjectQuery> validateQuery(final com.google.common.base.Optional<org.dressdiscover.api.models.object.ObjectQuery> query) throws RuntimeException {
-                    if (query == null) {
-                        throw new NullPointerException("org.dressdiscover.api.services.object.GetObjectSummariesRequest: query is null");
-                    }
-                    if (!query.isPresent()) {
-                        return query;
-                    }
-                    return query;
-                }
-
-                private final static DefaultConstructionValidator instance = new DefaultConstructionValidator();
-            }
-
-            public static class NopConstructionValidator implements ConstructionValidator {
-                public static NopConstructionValidator getInstance() {
-                    return instance;
-                }
-
-                public NopConstructionValidator() {
-                }
-
-                @Override
-                public com.google.common.base.Optional<org.dressdiscover.api.services.object.GetObjectSummariesOptions> validateOptions(final com.google.common.base.Optional<org.dressdiscover.api.services.object.GetObjectSummariesOptions> options) {
-                    return options;
-                }
-
-                @Override
-                public com.google.common.base.Optional<org.dressdiscover.api.models.object.ObjectQuery> validateQuery(final com.google.common.base.Optional<org.dressdiscover.api.models.object.ObjectQuery> query) {
-                    return query;
-                }
-
-                private final static NopConstructionValidator instance = new NopConstructionValidator();
-            }
-
-            public interface ReadValidator extends Validator<org.thryft.protocol.InputProtocolException> {
-            }
-
-            public static class DefaultReadValidator implements ReadValidator {
-                public static DefaultReadValidator getInstance() {
-                    return instance;
-                }
-
-                public DefaultReadValidator() {
-                }
-
-                @Override
-                public com.google.common.base.Optional<org.dressdiscover.api.services.object.GetObjectSummariesOptions> validateOptions(final com.google.common.base.Optional<org.dressdiscover.api.services.object.GetObjectSummariesOptions> options) throws org.thryft.protocol.InputProtocolException {
+                public static void validateOptions(final com.google.common.base.Optional<org.dressdiscover.api.services.object.GetObjectSummariesOptions> options) throws org.thryft.protocol.InputProtocolException {
                     if (options == null) {
                         throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.OPTIONS, "org.dressdiscover.api.services.object.GetObjectSummariesRequest: options is null");
                     }
                     if (!options.isPresent()) {
-                        return options;
+                        return;
                     }
-                    return options;
                 }
 
-                @Override
-                public com.google.common.base.Optional<org.dressdiscover.api.models.object.ObjectQuery> validateQuery(final com.google.common.base.Optional<org.dressdiscover.api.models.object.ObjectQuery> query) throws org.thryft.protocol.InputProtocolException {
+                public static void validateQuery(final com.google.common.base.Optional<org.dressdiscover.api.models.object.ObjectQuery> query) throws org.thryft.protocol.InputProtocolException {
                     if (query == null) {
                         throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.QUERY, "org.dressdiscover.api.services.object.GetObjectSummariesRequest: query is null");
                     }
                     if (!query.isPresent()) {
-                        return query;
+                        return;
                     }
-                    return query;
                 }
-
-                private final static DefaultReadValidator instance = new DefaultReadValidator();
             }
 
-            public static class NopReadValidator implements ReadValidator {
-                public static NopReadValidator getInstance() {
-                    return instance;
+            public final static class UncheckedValidator {
+                public static void validate(final com.google.common.base.Optional<org.dressdiscover.api.services.object.GetObjectSummariesOptions> options, final com.google.common.base.Optional<org.dressdiscover.api.models.object.ObjectQuery> query) {
+                    validateOptions(options);
+                    validateQuery(query);
                 }
 
-                public NopReadValidator() {
+                public static void validateOptions(final com.google.common.base.Optional<org.dressdiscover.api.services.object.GetObjectSummariesOptions> options) {
+                    if (options == null) {
+                        throw new NullPointerException("org.dressdiscover.api.services.object.GetObjectSummariesRequest: options is null");
+                    }
+                    if (!options.isPresent()) {
+                        return;
+                    }
                 }
 
-                @Override
-                public com.google.common.base.Optional<org.dressdiscover.api.services.object.GetObjectSummariesOptions> validateOptions(final com.google.common.base.Optional<org.dressdiscover.api.services.object.GetObjectSummariesOptions> options) {
-                    return options;
+                public static void validateQuery(final com.google.common.base.Optional<org.dressdiscover.api.models.object.ObjectQuery> query) {
+                    if (query == null) {
+                        throw new NullPointerException("org.dressdiscover.api.services.object.GetObjectSummariesRequest: query is null");
+                    }
+                    if (!query.isPresent()) {
+                        return;
+                    }
                 }
-
-                @Override
-                public com.google.common.base.Optional<org.dressdiscover.api.models.object.ObjectQuery> validateQuery(final com.google.common.base.Optional<org.dressdiscover.api.models.object.ObjectQuery> query) {
-                    return query;
-                }
-
-                private final static NopReadValidator instance = new NopReadValidator();
             }
 
             /**
              * Default constructor
              */
+            @Deprecated
             public GetObjectSummariesRequest() {
                 options = com.google.common.base.Optional.<org.dressdiscover.api.services.object.GetObjectSummariesOptions> absent();
                 query = com.google.common.base.Optional.<org.dressdiscover.api.models.object.ObjectQuery> absent();
@@ -447,12 +382,17 @@ public interface ObjectSummaryQueryService {
              * Copy constructor
              */
             public GetObjectSummariesRequest(final GetObjectSummariesRequest other) {
-                this(other.getOptions(), other.getQuery(), NopConstructionValidator.getInstance());
+                this(other.getOptions(), other.getQuery());
             }
 
-            protected GetObjectSummariesRequest(final com.google.common.base.Optional<org.dressdiscover.api.services.object.GetObjectSummariesOptions> options, final com.google.common.base.Optional<org.dressdiscover.api.models.object.ObjectQuery> query, ConstructionValidator validator) {
-                this.options = validator.validateOptions(options);
-                this.query = validator.validateQuery(query);
+            /**
+             * Total constructor
+             *
+             * All fields should have been validated before calling this.
+             */
+            protected GetObjectSummariesRequest(final com.google.common.base.Optional<org.dressdiscover.api.services.object.GetObjectSummariesOptions> options, final com.google.common.base.Optional<org.dressdiscover.api.models.object.ObjectQuery> query) {
+                this.options = options;
+                this.query = query;
             }
 
             public static Builder builder() {
@@ -467,6 +407,7 @@ public interface ObjectSummaryQueryService {
                 return other.isPresent() ? new Builder(other.get()) : new Builder();
             }
 
+            @Deprecated
             public static GetObjectSummariesRequest create() {
                 return new GetObjectSummariesRequest();
             }
@@ -474,15 +415,19 @@ public interface ObjectSummaryQueryService {
             /**
              * Total Nullable factory method
              */
-            public static GetObjectSummariesRequest create(final @javax.annotation.Nullable org.dressdiscover.api.services.object.GetObjectSummariesOptions options, final @javax.annotation.Nullable org.dressdiscover.api.models.object.ObjectQuery query) {
-                return new GetObjectSummariesRequest(com.google.common.base.Optional.fromNullable(options), com.google.common.base.Optional.fromNullable(query), DefaultConstructionValidator.getInstance());
+            public static GetObjectSummariesRequest create(@javax.annotation.Nullable final org.dressdiscover.api.services.object.GetObjectSummariesOptions options, @javax.annotation.Nullable final org.dressdiscover.api.models.object.ObjectQuery query) {
+                final com.google.common.base.Optional<org.dressdiscover.api.services.object.GetObjectSummariesOptions> optionsOptional = com.google.common.base.Optional.fromNullable(options);
+                final com.google.common.base.Optional<org.dressdiscover.api.models.object.ObjectQuery> queryOptional = com.google.common.base.Optional.fromNullable(query);
+                UncheckedValidator.validate(optionsOptional, queryOptional);
+                return new GetObjectSummariesRequest(optionsOptional, queryOptional);
             }
 
             /**
              * Optional factory method
              */
             public static GetObjectSummariesRequest create(final com.google.common.base.Optional<org.dressdiscover.api.services.object.GetObjectSummariesOptions> options, final com.google.common.base.Optional<org.dressdiscover.api.models.object.ObjectQuery> query) {
-                return new GetObjectSummariesRequest(options, query, DefaultConstructionValidator.getInstance());
+                UncheckedValidator.validate(options, query);
+                return new GetObjectSummariesRequest(options, query);
             }
 
             @Override
@@ -580,7 +525,10 @@ public interface ObjectSummaryQueryService {
                 } catch (final RuntimeException e) {
                     throw new IllegalStateException(e);
                 }
-                return new GetObjectSummariesRequest(DefaultReadValidator.getInstance().validateOptions(options), DefaultReadValidator.getInstance().validateQuery(query), NopConstructionValidator.getInstance());
+
+                ReadValidator.validate(options, query);
+
+                return new GetObjectSummariesRequest(options, query);
             }
 
             public static GetObjectSummariesRequest readAsStruct(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
@@ -600,11 +548,11 @@ public interface ObjectSummaryQueryService {
                         }
                         switch (ifield.getName()) {
                         case "options": {
-                            options = com.google.common.base.Optional.of(org.dressdiscover.api.services.object.GetObjectSummariesOptions.readAsStruct(iprot));
+                            options = com.google.common.base.Optional.of(org.dressdiscover.api.services.object.GetObjectSummariesOptions.readAsStruct(iprot, unknownFieldCallback));
                             break;
                         }
                         case "query": {
-                            query = com.google.common.base.Optional.of(org.dressdiscover.api.models.object.ObjectQuery.readAsStruct(iprot));
+                            query = com.google.common.base.Optional.of(org.dressdiscover.api.models.object.ObjectQuery.readAsStruct(iprot, unknownFieldCallback));
                             break;
                         }
                         default:
@@ -619,22 +567,27 @@ public interface ObjectSummaryQueryService {
                 } catch (final RuntimeException e) {
                     throw new IllegalStateException(e);
                 }
-                return new GetObjectSummariesRequest(DefaultReadValidator.getInstance().validateOptions(options), DefaultReadValidator.getInstance().validateQuery(query), NopConstructionValidator.getInstance());
+
+                ReadValidator.validate(options, query);
+
+                return new GetObjectSummariesRequest(options, query);
             }
 
             public GetObjectSummariesRequest replaceOptions(final com.google.common.base.Optional<org.dressdiscover.api.services.object.GetObjectSummariesOptions> options) {
-                return new GetObjectSummariesRequest(DefaultConstructionValidator.getInstance().validateOptions(options), this.query, NopConstructionValidator.getInstance());
+                UncheckedValidator.validateOptions(options);
+                return new GetObjectSummariesRequest(options, this.query);
             }
 
-            public GetObjectSummariesRequest replaceOptions(final org.dressdiscover.api.services.object.GetObjectSummariesOptions options) {
+            public GetObjectSummariesRequest replaceOptions(@javax.annotation.Nullable final org.dressdiscover.api.services.object.GetObjectSummariesOptions options) {
                 return replaceOptions(com.google.common.base.Optional.fromNullable(options));
             }
 
             public GetObjectSummariesRequest replaceQuery(final com.google.common.base.Optional<org.dressdiscover.api.models.object.ObjectQuery> query) {
-                return new GetObjectSummariesRequest(this.options, DefaultConstructionValidator.getInstance().validateQuery(query), NopConstructionValidator.getInstance());
+                UncheckedValidator.validateQuery(query);
+                return new GetObjectSummariesRequest(this.options, query);
             }
 
-            public GetObjectSummariesRequest replaceQuery(final org.dressdiscover.api.models.object.ObjectQuery query) {
+            public GetObjectSummariesRequest replaceQuery(@javax.annotation.Nullable final org.dressdiscover.api.models.object.ObjectQuery query) {
                 return replaceQuery(com.google.common.base.Optional.fromNullable(query));
             }
 
@@ -671,20 +624,30 @@ public interface ObjectSummaryQueryService {
 
             @Override
             public void writeFields(final org.thryft.protocol.OutputProtocol oprot) throws org.thryft.protocol.OutputProtocolException {
-                if (getOptions().isPresent()) {
-                    oprot.writeFieldBegin("options", org.thryft.protocol.Type.STRUCT, (short)0);
-                    getOptions().get().writeAsStruct(oprot);
-                    oprot.writeFieldEnd();
-                }
+                writeOptionsField(oprot);
 
-                if (getQuery().isPresent()) {
-                    oprot.writeFieldBegin("query", org.thryft.protocol.Type.STRUCT, (short)0);
-                    getQuery().get().writeAsStruct(oprot);
-                    oprot.writeFieldEnd();
-                }
+                writeQueryField(oprot);
 
                 oprot.writeFieldStop();
             }
+
+            public void writeOptionsField(final org.thryft.protocol.OutputProtocol oprot) throws org.thryft.protocol.OutputProtocolException {
+                if (getOptions().isPresent()) {
+                    oprot.writeFieldBegin(FieldMetadata.OPTIONS);
+                    getOptions().get().writeAsStruct(oprot);
+                    oprot.writeFieldEnd();
+                }
+            }
+
+            public void writeQueryField(final org.thryft.protocol.OutputProtocol oprot) throws org.thryft.protocol.OutputProtocolException {
+                if (getQuery().isPresent()) {
+                    oprot.writeFieldBegin(FieldMetadata.QUERY);
+                    getQuery().get().writeAsStruct(oprot);
+                    oprot.writeFieldEnd();
+                }
+            }
+
+            public final static GetObjectSummariesRequest EMPTY = new GetObjectSummariesRequest();
 
             private final com.google.common.base.Optional<org.dressdiscover.api.services.object.GetObjectSummariesOptions> options;
 
@@ -702,14 +665,16 @@ public interface ObjectSummaryQueryService {
                 }
 
                 protected GetObjectSummariesResponse _build(final org.dressdiscover.api.services.object.GetObjectSummariesResult returnValue) {
-                    return new GetObjectSummariesResponse(returnValue, DefaultConstructionValidator.getInstance());
+                    return new GetObjectSummariesResponse(returnValue);
                 }
 
                 public GetObjectSummariesResponse build() {
+                    UncheckedValidator.validate(returnValue);
+
                     return _build(returnValue);
                 }
 
-                public final org.dressdiscover.api.services.object.GetObjectSummariesResult getReturnValue() {
+                public final @javax.annotation.Nullable org.dressdiscover.api.services.object.GetObjectSummariesResult getReturnValue() {
                     return returnValue;
                 }
 
@@ -753,7 +718,7 @@ public interface ObjectSummaryQueryService {
                             }
                             switch (ifield.getName()) {
                             case "return_value": {
-                                returnValue = org.dressdiscover.api.services.object.GetObjectSummariesResult.readAsStruct(iprot);
+                                returnValue = org.dressdiscover.api.services.object.GetObjectSummariesResult.readAsStruct(iprot, unknownFieldCallback);
                                 break;
                             }
                             default:
@@ -801,7 +766,8 @@ public interface ObjectSummaryQueryService {
                 }
 
                 public Builder setReturnValue(final org.dressdiscover.api.services.object.GetObjectSummariesResult returnValue) {
-                    this.returnValue = DefaultConstructionValidator.getInstance().validateReturnValue(returnValue);
+                    UncheckedValidator.validateReturnValue(returnValue);
+                    this.returnValue = returnValue;
                     return this;
                 }
 
@@ -831,7 +797,7 @@ public interface ObjectSummaryQueryService {
                     return this;
                 }
 
-                private org.dressdiscover.api.services.object.GetObjectSummariesResult returnValue;
+                private @javax.annotation.Nullable org.dressdiscover.api.services.object.GetObjectSummariesResult returnValue;
             }
 
             public final static class Factory implements org.thryft.CompoundType.Factory<GetObjectSummariesResponse> {
@@ -865,7 +831,7 @@ public interface ObjectSummaryQueryService {
 
             @SuppressWarnings("serial")
             public enum FieldMetadata implements org.thryft.CompoundType.FieldMetadata {
-                RETURN_VALUE("returnValue", new com.google.common.reflect.TypeToken<org.dressdiscover.api.services.object.GetObjectSummariesResult>() {}, true, 0, "return_value", org.thryft.protocol.Type.STRUCT);
+                RETURN_VALUE("returnValue", new com.google.common.reflect.TypeToken<org.dressdiscover.api.services.object.GetObjectSummariesResult>() {}, true, (short)0, "return_value", org.thryft.protocol.Type.STRUCT);
 
                 @Override
                 public String getJavaName() {
@@ -878,7 +844,7 @@ public interface ObjectSummaryQueryService {
                 }
 
                 @Override
-                public int getThriftId() {
+                public short getThriftId() {
                     return thriftId;
                 }
 
@@ -923,7 +889,7 @@ public interface ObjectSummaryQueryService {
                     }
                 }
 
-                private FieldMetadata(final String javaName, final com.google.common.reflect.TypeToken<?> javaType, final boolean required, final int thriftId, final String thriftName, final org.thryft.protocol.Type thriftProtocolType) {
+                private FieldMetadata(final String javaName, final com.google.common.reflect.TypeToken<?> javaType, final boolean required, final short thriftId, final String thriftName, final org.thryft.protocol.Type thriftProtocolType) {
                     this.javaName = javaName;
                     this.javaType = javaType;
                     this.required = required;
@@ -940,101 +906,50 @@ public interface ObjectSummaryQueryService {
                 private final String javaName;
                 private final com.google.common.reflect.TypeToken<?> javaType;
                 private final boolean required;
-                private final int thriftId;
+                private final short thriftId;
                 private final String thriftName;
                 private final String thriftProtocolKey;
                 private final org.thryft.protocol.Type thriftProtocolType;
             }
 
-            public interface Validator<ExceptionT extends Exception> {
-                public org.dressdiscover.api.services.object.GetObjectSummariesResult validateReturnValue(final org.dressdiscover.api.services.object.GetObjectSummariesResult returnValue) throws ExceptionT;
-            }
-
-            public interface ConstructionValidator extends Validator<RuntimeException> {
-            }
-
-            public static class DefaultConstructionValidator implements ConstructionValidator {
-                public static DefaultConstructionValidator getInstance() {
-                    return instance;
+            public final static class ReadValidator {
+                public static void validate(final org.dressdiscover.api.services.object.GetObjectSummariesResult returnValue) throws org.thryft.protocol.InputProtocolException {
+                    validateReturnValue(returnValue);
                 }
 
-                public DefaultConstructionValidator() {
-                }
-
-                @Override
-                public org.dressdiscover.api.services.object.GetObjectSummariesResult validateReturnValue(final org.dressdiscover.api.services.object.GetObjectSummariesResult returnValue) throws RuntimeException {
-                    if (returnValue == null) {
-                        throw new NullPointerException("org.dressdiscover.api.services.object.GetObjectSummariesResponse: returnValue is null");
-                    }
-                    return returnValue;
-                }
-
-                private final static DefaultConstructionValidator instance = new DefaultConstructionValidator();
-            }
-
-            public static class NopConstructionValidator implements ConstructionValidator {
-                public static NopConstructionValidator getInstance() {
-                    return instance;
-                }
-
-                public NopConstructionValidator() {
-                }
-
-                @Override
-                public org.dressdiscover.api.services.object.GetObjectSummariesResult validateReturnValue(final org.dressdiscover.api.services.object.GetObjectSummariesResult returnValue) {
-                    return returnValue;
-                }
-
-                private final static NopConstructionValidator instance = new NopConstructionValidator();
-            }
-
-            public interface ReadValidator extends Validator<org.thryft.protocol.InputProtocolException> {
-            }
-
-            public static class DefaultReadValidator implements ReadValidator {
-                public static DefaultReadValidator getInstance() {
-                    return instance;
-                }
-
-                public DefaultReadValidator() {
-                }
-
-                @Override
-                public org.dressdiscover.api.services.object.GetObjectSummariesResult validateReturnValue(final org.dressdiscover.api.services.object.GetObjectSummariesResult returnValue) throws org.thryft.protocol.InputProtocolException {
+                public static void validateReturnValue(final org.dressdiscover.api.services.object.GetObjectSummariesResult returnValue) throws org.thryft.protocol.InputProtocolException {
                     if (returnValue == null) {
                         throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.RETURN_VALUE, "org.dressdiscover.api.services.object.GetObjectSummariesResponse: returnValue is null");
                     }
-                    return returnValue;
                 }
-
-                private final static DefaultReadValidator instance = new DefaultReadValidator();
             }
 
-            public static class NopReadValidator implements ReadValidator {
-                public static NopReadValidator getInstance() {
-                    return instance;
+            public final static class UncheckedValidator {
+                public static void validate(final org.dressdiscover.api.services.object.GetObjectSummariesResult returnValue) {
+                    validateReturnValue(returnValue);
                 }
 
-                public NopReadValidator() {
+                public static void validateReturnValue(final org.dressdiscover.api.services.object.GetObjectSummariesResult returnValue) {
+                    if (returnValue == null) {
+                        throw new NullPointerException("org.dressdiscover.api.services.object.GetObjectSummariesResponse: returnValue is null");
+                    }
                 }
-
-                @Override
-                public org.dressdiscover.api.services.object.GetObjectSummariesResult validateReturnValue(final org.dressdiscover.api.services.object.GetObjectSummariesResult returnValue) {
-                    return returnValue;
-                }
-
-                private final static NopReadValidator instance = new NopReadValidator();
             }
 
             /**
              * Copy constructor
              */
             public GetObjectSummariesResponse(final GetObjectSummariesResponse other) {
-                this(other.getReturnValue(), NopConstructionValidator.getInstance());
+                this(other.getReturnValue());
             }
 
-            protected GetObjectSummariesResponse(final org.dressdiscover.api.services.object.GetObjectSummariesResult returnValue, ConstructionValidator validator) {
-                this.returnValue = validator.validateReturnValue(returnValue);
+            /**
+             * Total constructor
+             *
+             * All fields should have been validated before calling this.
+             */
+            protected GetObjectSummariesResponse(final org.dressdiscover.api.services.object.GetObjectSummariesResult returnValue) {
+                this.returnValue = returnValue;
             }
 
             public static Builder builder() {
@@ -1053,7 +968,8 @@ public interface ObjectSummaryQueryService {
              * Optional factory method
              */
             public static GetObjectSummariesResponse create(final org.dressdiscover.api.services.object.GetObjectSummariesResult returnValue) {
-                return new GetObjectSummariesResponse(returnValue, DefaultConstructionValidator.getInstance());
+                UncheckedValidator.validate(returnValue);
+                return new GetObjectSummariesResponse(returnValue);
             }
 
             @Override
@@ -1122,7 +1038,7 @@ public interface ObjectSummaryQueryService {
             }
 
             public static GetObjectSummariesResponse readAsList(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
-                org.dressdiscover.api.services.object.GetObjectSummariesResult returnValue = null;
+                org.dressdiscover.api.services.object.GetObjectSummariesResult returnValue;
 
                 try {
                     iprot.readListBegin();
@@ -1131,7 +1047,10 @@ public interface ObjectSummaryQueryService {
                 } catch (final RuntimeException e) {
                     throw new IllegalStateException(e);
                 }
-                return new GetObjectSummariesResponse(DefaultReadValidator.getInstance().validateReturnValue(returnValue), NopConstructionValidator.getInstance());
+
+                ReadValidator.validate(returnValue);
+
+                return new GetObjectSummariesResponse(returnValue);
             }
 
             public static GetObjectSummariesResponse readAsStruct(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
@@ -1139,7 +1058,7 @@ public interface ObjectSummaryQueryService {
             }
 
             public static GetObjectSummariesResponse readAsStruct(final org.thryft.protocol.InputProtocol iprot, final com.google.common.base.Optional<UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
-                org.dressdiscover.api.services.object.GetObjectSummariesResult returnValue = null;
+                @javax.annotation.Nullable org.dressdiscover.api.services.object.GetObjectSummariesResult returnValue = null;
 
                 try {
                     iprot.readStructBegin();
@@ -1150,7 +1069,7 @@ public interface ObjectSummaryQueryService {
                         }
                         switch (ifield.getName()) {
                         case "return_value": {
-                            returnValue = org.dressdiscover.api.services.object.GetObjectSummariesResult.readAsStruct(iprot);
+                            returnValue = org.dressdiscover.api.services.object.GetObjectSummariesResult.readAsStruct(iprot, unknownFieldCallback);
                             break;
                         }
                         default:
@@ -1165,11 +1084,15 @@ public interface ObjectSummaryQueryService {
                 } catch (final RuntimeException e) {
                     throw new IllegalStateException(e);
                 }
-                return new GetObjectSummariesResponse(DefaultReadValidator.getInstance().validateReturnValue(returnValue), NopConstructionValidator.getInstance());
+
+                ReadValidator.validate(returnValue);
+
+                return new GetObjectSummariesResponse(returnValue);
             }
 
             public GetObjectSummariesResponse replaceReturnValue(final org.dressdiscover.api.services.object.GetObjectSummariesResult returnValue) {
-                return new GetObjectSummariesResponse(DefaultConstructionValidator.getInstance().validateReturnValue(returnValue), NopConstructionValidator.getInstance());
+                UncheckedValidator.validateReturnValue(returnValue);
+                return new GetObjectSummariesResponse(returnValue);
             }
 
             @Override
@@ -1195,11 +1118,15 @@ public interface ObjectSummaryQueryService {
 
             @Override
             public void writeFields(final org.thryft.protocol.OutputProtocol oprot) throws org.thryft.protocol.OutputProtocolException {
-                oprot.writeFieldBegin("return_value", org.thryft.protocol.Type.STRUCT, (short)0);
-                getReturnValue().writeAsStruct(oprot);
-                oprot.writeFieldEnd();
+                writeReturnValueField(oprot);
 
                 oprot.writeFieldStop();
+            }
+
+            public void writeReturnValueField(final org.thryft.protocol.OutputProtocol oprot) throws org.thryft.protocol.OutputProtocolException {
+                oprot.writeFieldBegin(FieldMetadata.RETURN_VALUE);
+                getReturnValue().writeAsStruct(oprot);
+                oprot.writeFieldEnd();
             }
 
             private final org.dressdiscover.api.services.object.GetObjectSummariesResult returnValue;

@@ -11,23 +11,14 @@ public class ValidatingInstitutionCommandService implements org.dressdiscover.ap
 
     @Override
     public final void deleteInstitutionById(final org.dressdiscover.api.models.institution.InstitutionId id) throws org.dressdiscover.api.services.IoException, org.dressdiscover.api.services.institution.NoSuchInstitutionException {
-        _validateDeleteInstitutionByIdParameters(id);
+        org.dressdiscover.api.services.institution.InstitutionCommandService.Messages.DeleteInstitutionByIdRequest.UncheckedValidator.validate(id);
         delegate.deleteInstitutionById(id);
-    }
-
-    protected void _validateDeleteInstitutionByIdParameters(final org.dressdiscover.api.models.institution.InstitutionId id) {
-        org.dressdiscover.api.services.institution.InstitutionCommandService.Messages.DeleteInstitutionByIdRequest.DefaultConstructionValidator.getInstance().validateId(id);
     }
 
     @Override
     public final void putInstitution(final org.dressdiscover.api.models.institution.InstitutionId id, final org.dressdiscover.api.models.institution.Institution institution) throws org.dressdiscover.api.services.IoException {
-        _validatePutInstitutionParameters(id, institution);
+        org.dressdiscover.api.services.institution.InstitutionCommandService.Messages.PutInstitutionRequest.UncheckedValidator.validate(id, institution);
         delegate.putInstitution(id, institution);
-    }
-
-    protected void _validatePutInstitutionParameters(final org.dressdiscover.api.models.institution.InstitutionId id, final org.dressdiscover.api.models.institution.Institution institution) {
-        org.dressdiscover.api.services.institution.InstitutionCommandService.Messages.PutInstitutionRequest.DefaultConstructionValidator.getInstance().validateId(id);
-        org.dressdiscover.api.services.institution.InstitutionCommandService.Messages.PutInstitutionRequest.DefaultConstructionValidator.getInstance().validateInstitution(institution);
     }
 
     private final org.dressdiscover.api.services.institution.InstitutionCommandService delegate;

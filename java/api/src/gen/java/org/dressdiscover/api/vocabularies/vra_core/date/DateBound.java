@@ -20,10 +20,12 @@ public final class DateBound implements org.thryft.Struct {
         }
 
         protected DateBound _build(final String text, final com.google.common.base.Optional<Boolean> circa, final com.google.common.base.Optional<java.util.Date> parsedDateTime, final com.google.common.base.Optional<org.dressdiscover.api.vocabularies.vra_core.date.DateTimeGranularity> parsedDateTimeGranularity) {
-            return new DateBound(text, circa, parsedDateTime, parsedDateTimeGranularity, DefaultConstructionValidator.getInstance());
+            return new DateBound(text, circa, parsedDateTime, parsedDateTimeGranularity);
         }
 
         public DateBound build() {
+            UncheckedValidator.validate(text, circa, parsedDateTime, parsedDateTimeGranularity);
+
             return _build(text, circa, parsedDateTime, parsedDateTimeGranularity);
         }
 
@@ -39,7 +41,7 @@ public final class DateBound implements org.thryft.Struct {
             return parsedDateTimeGranularity;
         }
 
-        public final String getText() {
+        public final @javax.annotation.Nullable String getText() {
             return text;
         }
 
@@ -63,7 +65,7 @@ public final class DateBound implements org.thryft.Struct {
                 final org.thryft.protocol.ListBegin __list = iprot.readListBegin();
                 text = iprot.readString();
                 if (__list.getSize() > 1) {
-                    circa = com.google.common.base.Optional.of(iprot.readBool());
+                    circa = org.thryft.Optionals.of(iprot.readBool());
                 }
                 if (__list.getSize() > 2) {
                     try {
@@ -72,7 +74,7 @@ public final class DateBound implements org.thryft.Struct {
                     }
                 }
                 if (__list.getSize() > 3) {
-                    parsedDateTimeGranularity = com.google.common.base.Optional.of(iprot.readEnum(org.dressdiscover.api.vocabularies.vra_core.date.DateTimeGranularity.class));
+                    parsedDateTimeGranularity = com.google.common.base.Optional.of(iprot.readEnum(org.dressdiscover.api.vocabularies.vra_core.date.DateTimeGranularity.Factory.getInstance()));
                 }
                 iprot.readListEnd();
             } catch (final RuntimeException e) {
@@ -102,7 +104,7 @@ public final class DateBound implements org.thryft.Struct {
                     }
                     case "circa": {
                         if (!ifield.hasId() || ifield.getId() == 2) {
-                            circa = com.google.common.base.Optional.of(iprot.readBool());
+                            circa = org.thryft.Optionals.of(iprot.readBool());
                         }
                         break;
                     }
@@ -117,7 +119,7 @@ public final class DateBound implements org.thryft.Struct {
                     }
                     case "parsed_date_time_granularity": {
                         if (!ifield.hasId() || ifield.getId() == 4) {
-                            parsedDateTimeGranularity = com.google.common.base.Optional.of(iprot.readEnum(org.dressdiscover.api.vocabularies.vra_core.date.DateTimeGranularity.class));
+                            parsedDateTimeGranularity = com.google.common.base.Optional.of(iprot.readEnum(org.dressdiscover.api.vocabularies.vra_core.date.DateTimeGranularity.Factory.getInstance()));
                         }
                         break;
                     }
@@ -161,12 +163,17 @@ public final class DateBound implements org.thryft.Struct {
         }
 
         public Builder setCirca(final com.google.common.base.Optional<Boolean> circa) {
-            this.circa = DefaultConstructionValidator.getInstance().validateCirca(circa);
+            UncheckedValidator.validateCirca(circa);
+            this.circa = circa;
             return this;
         }
 
-        public Builder setCirca(@javax.annotation.Nullable final Boolean circa) {
-            return setCirca(com.google.common.base.Optional.fromNullable(circa));
+        public Builder setCirca(final @javax.annotation.Nullable Boolean circa) {
+            return setCirca(org.thryft.Optionals.fromNullable(circa));
+        }
+
+        public Builder setCirca(final boolean circa) {
+            return setCirca(org.thryft.Optionals.of(circa));
         }
 
         public Builder setIfPresent(final DateBound other) {
@@ -187,25 +194,28 @@ public final class DateBound implements org.thryft.Struct {
         }
 
         public Builder setParsedDateTime(final com.google.common.base.Optional<java.util.Date> parsedDateTime) {
-            this.parsedDateTime = DefaultConstructionValidator.getInstance().validateParsedDateTime(parsedDateTime);
+            UncheckedValidator.validateParsedDateTime(parsedDateTime);
+            this.parsedDateTime = parsedDateTime;
             return this;
         }
 
-        public Builder setParsedDateTime(@javax.annotation.Nullable final java.util.Date parsedDateTime) {
+        public Builder setParsedDateTime(final @javax.annotation.Nullable java.util.Date parsedDateTime) {
             return setParsedDateTime(com.google.common.base.Optional.fromNullable(parsedDateTime));
         }
 
         public Builder setParsedDateTimeGranularity(final com.google.common.base.Optional<org.dressdiscover.api.vocabularies.vra_core.date.DateTimeGranularity> parsedDateTimeGranularity) {
-            this.parsedDateTimeGranularity = DefaultConstructionValidator.getInstance().validateParsedDateTimeGranularity(parsedDateTimeGranularity);
+            UncheckedValidator.validateParsedDateTimeGranularity(parsedDateTimeGranularity);
+            this.parsedDateTimeGranularity = parsedDateTimeGranularity;
             return this;
         }
 
-        public Builder setParsedDateTimeGranularity(@javax.annotation.Nullable final org.dressdiscover.api.vocabularies.vra_core.date.DateTimeGranularity parsedDateTimeGranularity) {
+        public Builder setParsedDateTimeGranularity(final @javax.annotation.Nullable org.dressdiscover.api.vocabularies.vra_core.date.DateTimeGranularity parsedDateTimeGranularity) {
             return setParsedDateTimeGranularity(com.google.common.base.Optional.fromNullable(parsedDateTimeGranularity));
         }
 
         public Builder setText(final String text) {
-            this.text = DefaultConstructionValidator.getInstance().validateText(text);
+            UncheckedValidator.validateText(text);
+            this.text = text;
             return this;
         }
 
@@ -253,7 +263,7 @@ public final class DateBound implements org.thryft.Struct {
             return this;
         }
 
-        private String text;
+        private @javax.annotation.Nullable String text;
         private com.google.common.base.Optional<Boolean> circa;
         private com.google.common.base.Optional<java.util.Date> parsedDateTime;
         private com.google.common.base.Optional<org.dressdiscover.api.vocabularies.vra_core.date.DateTimeGranularity> parsedDateTimeGranularity;
@@ -290,10 +300,10 @@ public final class DateBound implements org.thryft.Struct {
 
     @SuppressWarnings("serial")
     public enum FieldMetadata implements org.thryft.CompoundType.FieldMetadata {
-        TEXT("text", new com.google.common.reflect.TypeToken<String>() {}, true, 1, "text", org.thryft.protocol.Type.STRING),
-        CIRCA("circa", new com.google.common.reflect.TypeToken<Boolean>() {}, false, 2, "circa", org.thryft.protocol.Type.BOOL),
-        PARSED_DATE_TIME("parsedDateTime", new com.google.common.reflect.TypeToken<java.util.Date>() {}, false, 3, "parsed_date_time", org.thryft.protocol.Type.I64),
-        PARSED_DATE_TIME_GRANULARITY("parsedDateTimeGranularity", new com.google.common.reflect.TypeToken<org.dressdiscover.api.vocabularies.vra_core.date.DateTimeGranularity>() {}, false, 4, "parsed_date_time_granularity", org.thryft.protocol.Type.STRING);
+        TEXT("text", new com.google.common.reflect.TypeToken<String>() {}, true, (short)1, "text", org.thryft.protocol.Type.STRING),
+        CIRCA("circa", new com.google.common.reflect.TypeToken<Boolean>() {}, false, (short)2, "circa", org.thryft.protocol.Type.BOOL),
+        PARSED_DATE_TIME("parsedDateTime", new com.google.common.reflect.TypeToken<java.util.Date>() {}, false, (short)3, "parsed_date_time", org.thryft.protocol.Type.I64),
+        PARSED_DATE_TIME_GRANULARITY("parsedDateTimeGranularity", new com.google.common.reflect.TypeToken<org.dressdiscover.api.vocabularies.vra_core.date.DateTimeGranularity>() {}, false, (short)4, "parsed_date_time_granularity", org.thryft.protocol.Type.STRING);
 
         @Override
         public String getJavaName() {
@@ -306,7 +316,7 @@ public final class DateBound implements org.thryft.Struct {
         }
 
         @Override
-        public int getThriftId() {
+        public short getThriftId() {
             return thriftId;
         }
 
@@ -357,7 +367,7 @@ public final class DateBound implements org.thryft.Struct {
             }
         }
 
-        private FieldMetadata(final String javaName, final com.google.common.reflect.TypeToken<?> javaType, final boolean required, final int thriftId, final String thriftName, final org.thryft.protocol.Type thriftProtocolType) {
+        private FieldMetadata(final String javaName, final com.google.common.reflect.TypeToken<?> javaType, final boolean required, final short thriftId, final String thriftName, final org.thryft.protocol.Type thriftProtocolType) {
             this.javaName = javaName;
             this.javaType = javaType;
             this.required = required;
@@ -374,206 +384,119 @@ public final class DateBound implements org.thryft.Struct {
         private final String javaName;
         private final com.google.common.reflect.TypeToken<?> javaType;
         private final boolean required;
-        private final int thriftId;
+        private final short thriftId;
         private final String thriftName;
         private final String thriftProtocolKey;
         private final org.thryft.protocol.Type thriftProtocolType;
     }
 
-    public interface Validator<ExceptionT extends Exception> {
-        public String validateText(final String text) throws ExceptionT;
-
-        public com.google.common.base.Optional<Boolean> validateCirca(final com.google.common.base.Optional<Boolean> circa) throws ExceptionT;
-
-        public com.google.common.base.Optional<java.util.Date> validateParsedDateTime(final com.google.common.base.Optional<java.util.Date> parsedDateTime) throws ExceptionT;
-
-        public com.google.common.base.Optional<org.dressdiscover.api.vocabularies.vra_core.date.DateTimeGranularity> validateParsedDateTimeGranularity(final com.google.common.base.Optional<org.dressdiscover.api.vocabularies.vra_core.date.DateTimeGranularity> parsedDateTimeGranularity) throws ExceptionT;
-    }
-
-    public interface ConstructionValidator extends Validator<RuntimeException> {
-    }
-
-    public static class DefaultConstructionValidator implements ConstructionValidator {
-        public static DefaultConstructionValidator getInstance() {
-            return instance;
+    public final static class ReadValidator {
+        public static void validate(final String text, final com.google.common.base.Optional<Boolean> circa, final com.google.common.base.Optional<java.util.Date> parsedDateTime, final com.google.common.base.Optional<org.dressdiscover.api.vocabularies.vra_core.date.DateTimeGranularity> parsedDateTimeGranularity) throws org.thryft.protocol.InputProtocolException {
+            validateText(text);
+            validateCirca(circa);
+            validateParsedDateTime(parsedDateTime);
+            validateParsedDateTimeGranularity(parsedDateTimeGranularity);
         }
 
-        public DefaultConstructionValidator() {
-        }
-
-        @Override
-        public String validateText(final String text) throws RuntimeException {
-            if (text == null) {
-                throw new NullPointerException("org.dressdiscover.api.vocabularies.vra_core.date.DateBound: text is null");
-            }
-            if (text.isEmpty()) {
-                throw new IllegalArgumentException("org.dressdiscover.api.vocabularies.vra_core.date.DateBound: text is less than min length 1");
-            }
-            return text;
-        }
-
-        @Override
-        public com.google.common.base.Optional<Boolean> validateCirca(final com.google.common.base.Optional<Boolean> circa) throws RuntimeException {
-            if (!circa.isPresent()) {
-                return circa;
-            }
-            return circa;
-        }
-
-        @Override
-        public com.google.common.base.Optional<java.util.Date> validateParsedDateTime(final com.google.common.base.Optional<java.util.Date> parsedDateTime) throws RuntimeException {
-            if (parsedDateTime == null) {
-                throw new NullPointerException("org.dressdiscover.api.vocabularies.vra_core.date.DateBound: parsedDateTime is null");
-            }
-            if (!parsedDateTime.isPresent()) {
-                return parsedDateTime;
-            }
-            return parsedDateTime;
-        }
-
-        @Override
-        public com.google.common.base.Optional<org.dressdiscover.api.vocabularies.vra_core.date.DateTimeGranularity> validateParsedDateTimeGranularity(final com.google.common.base.Optional<org.dressdiscover.api.vocabularies.vra_core.date.DateTimeGranularity> parsedDateTimeGranularity) throws RuntimeException {
-            if (parsedDateTimeGranularity == null) {
-                throw new NullPointerException("org.dressdiscover.api.vocabularies.vra_core.date.DateBound: parsedDateTimeGranularity is null");
-            }
-            if (!parsedDateTimeGranularity.isPresent()) {
-                return parsedDateTimeGranularity;
-            }
-            return parsedDateTimeGranularity;
-        }
-
-        private final static DefaultConstructionValidator instance = new DefaultConstructionValidator();
-    }
-
-    public static class NopConstructionValidator implements ConstructionValidator {
-        public static NopConstructionValidator getInstance() {
-            return instance;
-        }
-
-        public NopConstructionValidator() {
-        }
-
-        @Override
-        public String validateText(final String text) {
-            return text;
-        }
-
-        @Override
-        public com.google.common.base.Optional<Boolean> validateCirca(final com.google.common.base.Optional<Boolean> circa) {
-            return circa;
-        }
-
-        @Override
-        public com.google.common.base.Optional<java.util.Date> validateParsedDateTime(final com.google.common.base.Optional<java.util.Date> parsedDateTime) {
-            return parsedDateTime;
-        }
-
-        @Override
-        public com.google.common.base.Optional<org.dressdiscover.api.vocabularies.vra_core.date.DateTimeGranularity> validateParsedDateTimeGranularity(final com.google.common.base.Optional<org.dressdiscover.api.vocabularies.vra_core.date.DateTimeGranularity> parsedDateTimeGranularity) {
-            return parsedDateTimeGranularity;
-        }
-
-        private final static NopConstructionValidator instance = new NopConstructionValidator();
-    }
-
-    public interface ReadValidator extends Validator<org.thryft.protocol.InputProtocolException> {
-    }
-
-    public static class DefaultReadValidator implements ReadValidator {
-        public static DefaultReadValidator getInstance() {
-            return instance;
-        }
-
-        public DefaultReadValidator() {
-        }
-
-        @Override
-        public String validateText(final String text) throws org.thryft.protocol.InputProtocolException {
+        public static void validateText(final String text) throws org.thryft.protocol.InputProtocolException {
             if (text == null) {
                 throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.TEXT, "org.dressdiscover.api.vocabularies.vra_core.date.DateBound: text is null");
             }
             if (text.isEmpty()) {
-                throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.TEXT, "org.dressdiscover.api.vocabularies.vra_core.date.DateBound: text is less than min length 1");
+                throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.TEXT, "org.dressdiscover.api.vocabularies.vra_core.date.DateBound.text: less than min length 1");
             }
-            return text;
         }
 
-        @Override
-        public com.google.common.base.Optional<Boolean> validateCirca(final com.google.common.base.Optional<Boolean> circa) throws org.thryft.protocol.InputProtocolException {
+        public static void validateCirca(final com.google.common.base.Optional<Boolean> circa) throws org.thryft.protocol.InputProtocolException {
+            if (circa == null) {
+                throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.CIRCA, "org.dressdiscover.api.vocabularies.vra_core.date.DateBound: circa is null");
+            }
             if (!circa.isPresent()) {
-                return circa;
+                return;
             }
-            return circa;
         }
 
-        @Override
-        public com.google.common.base.Optional<java.util.Date> validateParsedDateTime(final com.google.common.base.Optional<java.util.Date> parsedDateTime) throws org.thryft.protocol.InputProtocolException {
+        public static void validateParsedDateTime(final com.google.common.base.Optional<java.util.Date> parsedDateTime) throws org.thryft.protocol.InputProtocolException {
             if (parsedDateTime == null) {
                 throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.PARSED_DATE_TIME, "org.dressdiscover.api.vocabularies.vra_core.date.DateBound: parsedDateTime is null");
             }
             if (!parsedDateTime.isPresent()) {
-                return parsedDateTime;
+                return;
             }
-            return parsedDateTime;
         }
 
-        @Override
-        public com.google.common.base.Optional<org.dressdiscover.api.vocabularies.vra_core.date.DateTimeGranularity> validateParsedDateTimeGranularity(final com.google.common.base.Optional<org.dressdiscover.api.vocabularies.vra_core.date.DateTimeGranularity> parsedDateTimeGranularity) throws org.thryft.protocol.InputProtocolException {
+        public static void validateParsedDateTimeGranularity(final com.google.common.base.Optional<org.dressdiscover.api.vocabularies.vra_core.date.DateTimeGranularity> parsedDateTimeGranularity) throws org.thryft.protocol.InputProtocolException {
             if (parsedDateTimeGranularity == null) {
                 throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.PARSED_DATE_TIME_GRANULARITY, "org.dressdiscover.api.vocabularies.vra_core.date.DateBound: parsedDateTimeGranularity is null");
             }
             if (!parsedDateTimeGranularity.isPresent()) {
-                return parsedDateTimeGranularity;
+                return;
             }
-            return parsedDateTimeGranularity;
         }
-
-        private final static DefaultReadValidator instance = new DefaultReadValidator();
     }
 
-    public static class NopReadValidator implements ReadValidator {
-        public static NopReadValidator getInstance() {
-            return instance;
+    public final static class UncheckedValidator {
+        public static void validate(final String text, final com.google.common.base.Optional<Boolean> circa, final com.google.common.base.Optional<java.util.Date> parsedDateTime, final com.google.common.base.Optional<org.dressdiscover.api.vocabularies.vra_core.date.DateTimeGranularity> parsedDateTimeGranularity) {
+            validateText(text);
+            validateCirca(circa);
+            validateParsedDateTime(parsedDateTime);
+            validateParsedDateTimeGranularity(parsedDateTimeGranularity);
         }
 
-        public NopReadValidator() {
+        public static void validateText(final String text) {
+            if (text == null) {
+                throw new NullPointerException("org.dressdiscover.api.vocabularies.vra_core.date.DateBound: text is null");
+            }
+            if (text.isEmpty()) {
+                throw new IllegalArgumentException("org.dressdiscover.api.vocabularies.vra_core.date.DateBound.text: less than min length 1");
+            }
         }
 
-        @Override
-        public String validateText(final String text) {
-            return text;
+        public static void validateCirca(final com.google.common.base.Optional<Boolean> circa) {
+            if (circa == null) {
+                throw new NullPointerException("org.dressdiscover.api.vocabularies.vra_core.date.DateBound: circa is null");
+            }
+            if (!circa.isPresent()) {
+                return;
+            }
         }
 
-        @Override
-        public com.google.common.base.Optional<Boolean> validateCirca(final com.google.common.base.Optional<Boolean> circa) {
-            return circa;
+        public static void validateParsedDateTime(final com.google.common.base.Optional<java.util.Date> parsedDateTime) {
+            if (parsedDateTime == null) {
+                throw new NullPointerException("org.dressdiscover.api.vocabularies.vra_core.date.DateBound: parsedDateTime is null");
+            }
+            if (!parsedDateTime.isPresent()) {
+                return;
+            }
         }
 
-        @Override
-        public com.google.common.base.Optional<java.util.Date> validateParsedDateTime(final com.google.common.base.Optional<java.util.Date> parsedDateTime) {
-            return parsedDateTime;
+        public static void validateParsedDateTimeGranularity(final com.google.common.base.Optional<org.dressdiscover.api.vocabularies.vra_core.date.DateTimeGranularity> parsedDateTimeGranularity) {
+            if (parsedDateTimeGranularity == null) {
+                throw new NullPointerException("org.dressdiscover.api.vocabularies.vra_core.date.DateBound: parsedDateTimeGranularity is null");
+            }
+            if (!parsedDateTimeGranularity.isPresent()) {
+                return;
+            }
         }
-
-        @Override
-        public com.google.common.base.Optional<org.dressdiscover.api.vocabularies.vra_core.date.DateTimeGranularity> validateParsedDateTimeGranularity(final com.google.common.base.Optional<org.dressdiscover.api.vocabularies.vra_core.date.DateTimeGranularity> parsedDateTimeGranularity) {
-            return parsedDateTimeGranularity;
-        }
-
-        private final static NopReadValidator instance = new NopReadValidator();
     }
 
     /**
      * Copy constructor
      */
     public DateBound(final DateBound other) {
-        this(other.getText(), other.getCirca(), other.getParsedDateTime(), other.getParsedDateTimeGranularity(), NopConstructionValidator.getInstance());
+        this(other.getText(), other.getCirca(), other.getParsedDateTime(), other.getParsedDateTimeGranularity());
     }
 
-    protected DateBound(final String text, final com.google.common.base.Optional<Boolean> circa, final com.google.common.base.Optional<java.util.Date> parsedDateTime, final com.google.common.base.Optional<org.dressdiscover.api.vocabularies.vra_core.date.DateTimeGranularity> parsedDateTimeGranularity, ConstructionValidator validator) {
-        this.text = validator.validateText(text);
-        this.circa = validator.validateCirca(circa);
-        this.parsedDateTime = validator.validateParsedDateTime(parsedDateTime);
-        this.parsedDateTimeGranularity = validator.validateParsedDateTimeGranularity(parsedDateTimeGranularity);
+    /**
+     * Total constructor
+     *
+     * All fields should have been validated before calling this.
+     */
+    protected DateBound(final String text, final com.google.common.base.Optional<Boolean> circa, final com.google.common.base.Optional<java.util.Date> parsedDateTime, final com.google.common.base.Optional<org.dressdiscover.api.vocabularies.vra_core.date.DateTimeGranularity> parsedDateTimeGranularity) {
+        this.text = text;
+        this.circa = circa;
+        this.parsedDateTime = parsedDateTime;
+        this.parsedDateTimeGranularity = parsedDateTimeGranularity;
     }
 
     public static Builder builder() {
@@ -592,21 +515,27 @@ public final class DateBound implements org.thryft.Struct {
      * Required factory method
      */
     public static DateBound create(final String text) {
-        return new DateBound(text, com.google.common.base.Optional.<Boolean> absent(), com.google.common.base.Optional.<java.util.Date> absent(), com.google.common.base.Optional.<org.dressdiscover.api.vocabularies.vra_core.date.DateTimeGranularity> absent(), DefaultConstructionValidator.getInstance());
+        UncheckedValidator.validate(text, com.google.common.base.Optional.<Boolean> absent(), com.google.common.base.Optional.<java.util.Date> absent(), com.google.common.base.Optional.<org.dressdiscover.api.vocabularies.vra_core.date.DateTimeGranularity> absent());
+        return new DateBound(text, com.google.common.base.Optional.<Boolean> absent(), com.google.common.base.Optional.<java.util.Date> absent(), com.google.common.base.Optional.<org.dressdiscover.api.vocabularies.vra_core.date.DateTimeGranularity> absent());
     }
 
     /**
      * Total Nullable factory method
      */
-    public static DateBound create(final String text, final @javax.annotation.Nullable Boolean circa, final @javax.annotation.Nullable java.util.Date parsedDateTime, final @javax.annotation.Nullable org.dressdiscover.api.vocabularies.vra_core.date.DateTimeGranularity parsedDateTimeGranularity) {
-        return new DateBound(text, com.google.common.base.Optional.fromNullable(circa), com.google.common.base.Optional.fromNullable(parsedDateTime), com.google.common.base.Optional.fromNullable(parsedDateTimeGranularity), DefaultConstructionValidator.getInstance());
+    public static DateBound create(final String text, @javax.annotation.Nullable final Boolean circa, @javax.annotation.Nullable final java.util.Date parsedDateTime, @javax.annotation.Nullable final org.dressdiscover.api.vocabularies.vra_core.date.DateTimeGranularity parsedDateTimeGranularity) {
+        final com.google.common.base.Optional<Boolean> circaOptional = org.thryft.Optionals.fromNullable(circa);
+        final com.google.common.base.Optional<java.util.Date> parsedDateTimeOptional = com.google.common.base.Optional.fromNullable(parsedDateTime);
+        final com.google.common.base.Optional<org.dressdiscover.api.vocabularies.vra_core.date.DateTimeGranularity> parsedDateTimeGranularityOptional = com.google.common.base.Optional.fromNullable(parsedDateTimeGranularity);
+        UncheckedValidator.validate(text, circaOptional, parsedDateTimeOptional, parsedDateTimeGranularityOptional);
+        return new DateBound(text, circaOptional, parsedDateTimeOptional, parsedDateTimeGranularityOptional);
     }
 
     /**
      * Optional factory method
      */
     public static DateBound create(final String text, final com.google.common.base.Optional<Boolean> circa, final com.google.common.base.Optional<java.util.Date> parsedDateTime, final com.google.common.base.Optional<org.dressdiscover.api.vocabularies.vra_core.date.DateTimeGranularity> parsedDateTimeGranularity) {
-        return new DateBound(text, circa, parsedDateTime, parsedDateTimeGranularity, DefaultConstructionValidator.getInstance());
+        UncheckedValidator.validate(text, circa, parsedDateTime, parsedDateTimeGranularity);
+        return new DateBound(text, circa, parsedDateTime, parsedDateTimeGranularity);
     }
 
     @Override
@@ -711,7 +640,7 @@ public final class DateBound implements org.thryft.Struct {
     }
 
     public static DateBound readAsList(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
-        String text = null;
+        String text;
         com.google.common.base.Optional<Boolean> circa = com.google.common.base.Optional.<Boolean> absent();
         com.google.common.base.Optional<java.util.Date> parsedDateTime = com.google.common.base.Optional.<java.util.Date> absent();
         com.google.common.base.Optional<org.dressdiscover.api.vocabularies.vra_core.date.DateTimeGranularity> parsedDateTimeGranularity = com.google.common.base.Optional.<org.dressdiscover.api.vocabularies.vra_core.date.DateTimeGranularity> absent();
@@ -720,7 +649,7 @@ public final class DateBound implements org.thryft.Struct {
             final org.thryft.protocol.ListBegin __list = iprot.readListBegin();
             text = iprot.readString();
             if (__list.getSize() > 1) {
-                circa = com.google.common.base.Optional.of(iprot.readBool());
+                circa = org.thryft.Optionals.of(iprot.readBool());
             }
             if (__list.getSize() > 2) {
                 try {
@@ -729,13 +658,16 @@ public final class DateBound implements org.thryft.Struct {
                 }
             }
             if (__list.getSize() > 3) {
-                parsedDateTimeGranularity = com.google.common.base.Optional.of(iprot.readEnum(org.dressdiscover.api.vocabularies.vra_core.date.DateTimeGranularity.class));
+                parsedDateTimeGranularity = com.google.common.base.Optional.of(iprot.readEnum(org.dressdiscover.api.vocabularies.vra_core.date.DateTimeGranularity.Factory.getInstance()));
             }
             iprot.readListEnd();
         } catch (final RuntimeException e) {
             throw new IllegalStateException(e);
         }
-        return new DateBound(DefaultReadValidator.getInstance().validateText(text), DefaultReadValidator.getInstance().validateCirca(circa), DefaultReadValidator.getInstance().validateParsedDateTime(parsedDateTime), DefaultReadValidator.getInstance().validateParsedDateTimeGranularity(parsedDateTimeGranularity), NopConstructionValidator.getInstance());
+
+        ReadValidator.validate(text, circa, parsedDateTime, parsedDateTimeGranularity);
+
+        return new DateBound(text, circa, parsedDateTime, parsedDateTimeGranularity);
     }
 
     public static DateBound readAsStruct(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
@@ -743,7 +675,7 @@ public final class DateBound implements org.thryft.Struct {
     }
 
     public static DateBound readAsStruct(final org.thryft.protocol.InputProtocol iprot, final com.google.common.base.Optional<UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
-        String text = null;
+        @javax.annotation.Nullable String text = null;
         com.google.common.base.Optional<Boolean> circa = com.google.common.base.Optional.<Boolean> absent();
         com.google.common.base.Optional<java.util.Date> parsedDateTime = com.google.common.base.Optional.<java.util.Date> absent();
         com.google.common.base.Optional<org.dressdiscover.api.vocabularies.vra_core.date.DateTimeGranularity> parsedDateTimeGranularity = com.google.common.base.Optional.<org.dressdiscover.api.vocabularies.vra_core.date.DateTimeGranularity> absent();
@@ -764,7 +696,7 @@ public final class DateBound implements org.thryft.Struct {
                 }
                 case "circa": {
                     if (!ifield.hasId() || ifield.getId() == 2) {
-                        circa = com.google.common.base.Optional.of(iprot.readBool());
+                        circa = org.thryft.Optionals.of(iprot.readBool());
                     }
                     break;
                 }
@@ -779,7 +711,7 @@ public final class DateBound implements org.thryft.Struct {
                 }
                 case "parsed_date_time_granularity": {
                     if (!ifield.hasId() || ifield.getId() == 4) {
-                        parsedDateTimeGranularity = com.google.common.base.Optional.of(iprot.readEnum(org.dressdiscover.api.vocabularies.vra_core.date.DateTimeGranularity.class));
+                        parsedDateTimeGranularity = com.google.common.base.Optional.of(iprot.readEnum(org.dressdiscover.api.vocabularies.vra_core.date.DateTimeGranularity.Factory.getInstance()));
                     }
                     break;
                 }
@@ -795,35 +727,46 @@ public final class DateBound implements org.thryft.Struct {
         } catch (final RuntimeException e) {
             throw new IllegalStateException(e);
         }
-        return new DateBound(DefaultReadValidator.getInstance().validateText(text), DefaultReadValidator.getInstance().validateCirca(circa), DefaultReadValidator.getInstance().validateParsedDateTime(parsedDateTime), DefaultReadValidator.getInstance().validateParsedDateTimeGranularity(parsedDateTimeGranularity), NopConstructionValidator.getInstance());
+
+        ReadValidator.validate(text, circa, parsedDateTime, parsedDateTimeGranularity);
+
+        return new DateBound(text, circa, parsedDateTime, parsedDateTimeGranularity);
     }
 
     public DateBound replaceCirca(final com.google.common.base.Optional<Boolean> circa) {
-        return new DateBound(this.text, DefaultConstructionValidator.getInstance().validateCirca(circa), this.parsedDateTime, this.parsedDateTimeGranularity, NopConstructionValidator.getInstance());
+        UncheckedValidator.validateCirca(circa);
+        return new DateBound(this.text, circa, this.parsedDateTime, this.parsedDateTimeGranularity);
+    }
+
+    public DateBound replaceCirca(@javax.annotation.Nullable final Boolean circa) {
+        return replaceCirca(org.thryft.Optionals.fromNullable(circa));
     }
 
     public DateBound replaceCirca(final boolean circa) {
-        return replaceCirca(com.google.common.base.Optional.fromNullable(circa));
+        return replaceCirca(org.thryft.Optionals.of(circa));
     }
 
     public DateBound replaceParsedDateTime(final com.google.common.base.Optional<java.util.Date> parsedDateTime) {
-        return new DateBound(this.text, this.circa, DefaultConstructionValidator.getInstance().validateParsedDateTime(parsedDateTime), this.parsedDateTimeGranularity, NopConstructionValidator.getInstance());
-    }
-
-    public DateBound replaceParsedDateTime(final java.util.Date parsedDateTime) {
-        return replaceParsedDateTime(com.google.common.base.Optional.fromNullable(parsedDateTime));
+        UncheckedValidator.validateParsedDateTime(parsedDateTime);
+        return new DateBound(this.text, this.circa, parsedDateTime, this.parsedDateTimeGranularity);
     }
 
     public DateBound replaceParsedDateTimeGranularity(final com.google.common.base.Optional<org.dressdiscover.api.vocabularies.vra_core.date.DateTimeGranularity> parsedDateTimeGranularity) {
-        return new DateBound(this.text, this.circa, this.parsedDateTime, DefaultConstructionValidator.getInstance().validateParsedDateTimeGranularity(parsedDateTimeGranularity), NopConstructionValidator.getInstance());
+        UncheckedValidator.validateParsedDateTimeGranularity(parsedDateTimeGranularity);
+        return new DateBound(this.text, this.circa, this.parsedDateTime, parsedDateTimeGranularity);
     }
 
-    public DateBound replaceParsedDateTimeGranularity(final org.dressdiscover.api.vocabularies.vra_core.date.DateTimeGranularity parsedDateTimeGranularity) {
+    public DateBound replaceParsedDateTimeGranularity(@javax.annotation.Nullable final org.dressdiscover.api.vocabularies.vra_core.date.DateTimeGranularity parsedDateTimeGranularity) {
         return replaceParsedDateTimeGranularity(com.google.common.base.Optional.fromNullable(parsedDateTimeGranularity));
     }
 
+    public DateBound replaceParsedDateTime(@javax.annotation.Nullable final java.util.Date parsedDateTime) {
+        return replaceParsedDateTime(com.google.common.base.Optional.fromNullable(parsedDateTime));
+    }
+
     public DateBound replaceText(final String text) {
-        return new DateBound(DefaultConstructionValidator.getInstance().validateText(text), this.circa, this.parsedDateTime, this.parsedDateTimeGranularity, NopConstructionValidator.getInstance());
+        UncheckedValidator.validateText(text);
+        return new DateBound(text, this.circa, this.parsedDateTime, this.parsedDateTimeGranularity);
     }
 
     @Override
@@ -865,31 +808,47 @@ public final class DateBound implements org.thryft.Struct {
         oprot.writeStructEnd();
     }
 
-    @Override
-    public void writeFields(final org.thryft.protocol.OutputProtocol oprot) throws org.thryft.protocol.OutputProtocolException {
-        oprot.writeFieldBegin("text", org.thryft.protocol.Type.STRING, (short)1);
-        oprot.writeString(getText());
-        oprot.writeFieldEnd();
-
+    public void writeCircaField(final org.thryft.protocol.OutputProtocol oprot) throws org.thryft.protocol.OutputProtocolException {
         if (getCirca().isPresent()) {
-            oprot.writeFieldBegin("circa", org.thryft.protocol.Type.BOOL, (short)2);
+            oprot.writeFieldBegin(FieldMetadata.CIRCA);
             oprot.writeBool(getCirca().get());
             oprot.writeFieldEnd();
         }
+    }
 
+    @Override
+    public void writeFields(final org.thryft.protocol.OutputProtocol oprot) throws org.thryft.protocol.OutputProtocolException {
+        writeTextField(oprot);
+
+        writeCircaField(oprot);
+
+        writeParsedDateTimeField(oprot);
+
+        writeParsedDateTimeGranularityField(oprot);
+
+        oprot.writeFieldStop();
+    }
+
+    public void writeParsedDateTimeField(final org.thryft.protocol.OutputProtocol oprot) throws org.thryft.protocol.OutputProtocolException {
         if (getParsedDateTime().isPresent()) {
-            oprot.writeFieldBegin("parsed_date_time", org.thryft.protocol.Type.I64, (short)3);
+            oprot.writeFieldBegin(FieldMetadata.PARSED_DATE_TIME);
             oprot.writeDateTime(getParsedDateTime().get());
             oprot.writeFieldEnd();
         }
+    }
 
+    public void writeParsedDateTimeGranularityField(final org.thryft.protocol.OutputProtocol oprot) throws org.thryft.protocol.OutputProtocolException {
         if (getParsedDateTimeGranularity().isPresent()) {
-            oprot.writeFieldBegin("parsed_date_time_granularity", org.thryft.protocol.Type.STRING, (short)4);
+            oprot.writeFieldBegin(FieldMetadata.PARSED_DATE_TIME_GRANULARITY);
             oprot.writeEnum(getParsedDateTimeGranularity().get());
             oprot.writeFieldEnd();
         }
+    }
 
-        oprot.writeFieldStop();
+    public void writeTextField(final org.thryft.protocol.OutputProtocol oprot) throws org.thryft.protocol.OutputProtocolException {
+        oprot.writeFieldBegin(FieldMetadata.TEXT);
+        oprot.writeString(getText());
+        oprot.writeFieldEnd();
     }
 
     private final String text;

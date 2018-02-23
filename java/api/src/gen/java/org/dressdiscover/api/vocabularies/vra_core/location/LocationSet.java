@@ -3,7 +3,7 @@ package org.dressdiscover.api.vocabularies.vra_core.location;
 /**
  * VRA Core 4.0 locationSet element
  */
-public final class LocationSet implements org.thryft.Struct, org.dressdiscover.api.vocabularies.vra_core.ElementSet<org.dressdiscover.api.vocabularies.vra_core.location.Location> {
+public final class LocationSet implements org.dressdiscover.api.vocabularies.vra_core.ElementSet<org.dressdiscover.api.vocabularies.vra_core.location.Location> {
     public final static class Builder {
         public Builder() {
             elements = null;
@@ -18,10 +18,12 @@ public final class LocationSet implements org.thryft.Struct, org.dressdiscover.a
         }
 
         protected LocationSet _build(final com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.location.Location> elements, final com.google.common.base.Optional<String> display, final com.google.common.base.Optional<String> notes) {
-            return new LocationSet(elements, display, notes, DefaultConstructionValidator.getInstance());
+            return new LocationSet(elements, display, notes);
         }
 
         public LocationSet build() {
+            UncheckedValidator.validate(elements, display, notes);
+
             return _build(elements, display, notes);
         }
 
@@ -29,7 +31,7 @@ public final class LocationSet implements org.thryft.Struct, org.dressdiscover.a
             return display;
         }
 
-        public final com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.location.Location> getElements() {
+        public final @javax.annotation.Nullable com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.location.Location> getElements() {
             return elements;
         }
 
@@ -111,7 +113,7 @@ public final class LocationSet implements org.thryft.Struct, org.dressdiscover.a
                                             final org.thryft.protocol.ListBegin sequenceBegin = iprot.readListBegin();
                                             final com.google.common.collect.ImmutableList.Builder<org.dressdiscover.api.vocabularies.vra_core.location.Location> sequenceBuilder = com.google.common.collect.ImmutableList.builder();
                                             for (int elementI = 0; elementI < sequenceBegin.getSize(); elementI++) {
-                                                sequenceBuilder.add(org.dressdiscover.api.vocabularies.vra_core.location.Location.readAsStruct(iprot));
+                                                sequenceBuilder.add(org.dressdiscover.api.vocabularies.vra_core.location.Location.readAsStruct(iprot, unknownFieldCallback));
                                             }
                                             iprot.readListEnd();
                                             return sequenceBuilder.build();
@@ -178,16 +180,18 @@ public final class LocationSet implements org.thryft.Struct, org.dressdiscover.a
         }
 
         public Builder setDisplay(final com.google.common.base.Optional<String> display) {
-            this.display = DefaultConstructionValidator.getInstance().validateDisplay(display);
+            UncheckedValidator.validateDisplay(display);
+            this.display = display;
             return this;
         }
 
-        public Builder setDisplay(@javax.annotation.Nullable final String display) {
+        public Builder setDisplay(final @javax.annotation.Nullable String display) {
             return setDisplay(com.google.common.base.Optional.fromNullable(display));
         }
 
         public Builder setElements(final com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.location.Location> elements) {
-            this.elements = DefaultConstructionValidator.getInstance().validateElements(elements);
+            UncheckedValidator.validateElements(elements);
+            this.elements = elements;
             return this;
         }
 
@@ -206,11 +210,12 @@ public final class LocationSet implements org.thryft.Struct, org.dressdiscover.a
         }
 
         public Builder setNotes(final com.google.common.base.Optional<String> notes) {
-            this.notes = DefaultConstructionValidator.getInstance().validateNotes(notes);
+            UncheckedValidator.validateNotes(notes);
+            this.notes = notes;
             return this;
         }
 
-        public Builder setNotes(@javax.annotation.Nullable final String notes) {
+        public Builder setNotes(final @javax.annotation.Nullable String notes) {
             return setNotes(com.google.common.base.Optional.fromNullable(notes));
         }
 
@@ -252,7 +257,7 @@ public final class LocationSet implements org.thryft.Struct, org.dressdiscover.a
             return this;
         }
 
-        private com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.location.Location> elements;
+        private @javax.annotation.Nullable com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.location.Location> elements;
         private com.google.common.base.Optional<String> display;
         private com.google.common.base.Optional<String> notes;
     }
@@ -288,9 +293,9 @@ public final class LocationSet implements org.thryft.Struct, org.dressdiscover.a
 
     @SuppressWarnings("serial")
     public enum FieldMetadata implements org.thryft.CompoundType.FieldMetadata {
-        ELEMENTS("elements", new com.google.common.reflect.TypeToken<com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.location.Location>>() {}, true, 1, "elements", org.thryft.protocol.Type.LIST),
-        DISPLAY("display", new com.google.common.reflect.TypeToken<String>() {}, false, 2, "display", org.thryft.protocol.Type.STRING),
-        NOTES("notes", new com.google.common.reflect.TypeToken<String>() {}, false, 3, "notes", org.thryft.protocol.Type.STRING);
+        ELEMENTS("elements", new com.google.common.reflect.TypeToken<com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.location.Location>>() {}, true, (short)1, "elements", org.thryft.protocol.Type.LIST),
+        DISPLAY("display", new com.google.common.reflect.TypeToken<String>() {}, false, (short)2, "display", org.thryft.protocol.Type.STRING),
+        NOTES("notes", new com.google.common.reflect.TypeToken<String>() {}, false, (short)3, "notes", org.thryft.protocol.Type.STRING);
 
         @Override
         public String getJavaName() {
@@ -303,7 +308,7 @@ public final class LocationSet implements org.thryft.Struct, org.dressdiscover.a
         }
 
         @Override
-        public int getThriftId() {
+        public short getThriftId() {
             return thriftId;
         }
 
@@ -352,7 +357,7 @@ public final class LocationSet implements org.thryft.Struct, org.dressdiscover.a
             }
         }
 
-        private FieldMetadata(final String javaName, final com.google.common.reflect.TypeToken<?> javaType, final boolean required, final int thriftId, final String thriftName, final org.thryft.protocol.Type thriftProtocolType) {
+        private FieldMetadata(final String javaName, final com.google.common.reflect.TypeToken<?> javaType, final boolean required, final short thriftId, final String thriftName, final org.thryft.protocol.Type thriftProtocolType) {
             this.javaName = javaName;
             this.javaType = javaType;
             this.required = required;
@@ -369,189 +374,110 @@ public final class LocationSet implements org.thryft.Struct, org.dressdiscover.a
         private final String javaName;
         private final com.google.common.reflect.TypeToken<?> javaType;
         private final boolean required;
-        private final int thriftId;
+        private final short thriftId;
         private final String thriftName;
         private final String thriftProtocolKey;
         private final org.thryft.protocol.Type thriftProtocolType;
     }
 
-    public interface Validator<ExceptionT extends Exception> {
-        public com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.location.Location> validateElements(final com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.location.Location> elements) throws ExceptionT;
-
-        public com.google.common.base.Optional<String> validateDisplay(final com.google.common.base.Optional<String> display) throws ExceptionT;
-
-        public com.google.common.base.Optional<String> validateNotes(final com.google.common.base.Optional<String> notes) throws ExceptionT;
-    }
-
-    public interface ConstructionValidator extends Validator<RuntimeException> {
-    }
-
-    public static class DefaultConstructionValidator implements ConstructionValidator {
-        public static DefaultConstructionValidator getInstance() {
-            return instance;
+    public final static class ReadValidator {
+        public static void validate(final com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.location.Location> elements, final com.google.common.base.Optional<String> display, final com.google.common.base.Optional<String> notes) throws org.thryft.protocol.InputProtocolException {
+            validateElements(elements);
+            validateDisplay(display);
+            validateNotes(notes);
         }
 
-        public DefaultConstructionValidator() {
-        }
-
-        @Override
-        public com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.location.Location> validateElements(final com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.location.Location> elements) throws RuntimeException {
-            if (elements == null) {
-                throw new NullPointerException("org.dressdiscover.api.vocabularies.vra_core.location.LocationSet: elements is null");
-            }
-            if (elements.isEmpty()) {
-                throw new IllegalArgumentException("org.dressdiscover.api.vocabularies.vra_core.location.LocationSet: elements is less than min length 1");
-            }
-            return elements;
-        }
-
-        @Override
-        public com.google.common.base.Optional<String> validateDisplay(final com.google.common.base.Optional<String> display) throws RuntimeException {
-            if (display == null) {
-                throw new NullPointerException("org.dressdiscover.api.vocabularies.vra_core.location.LocationSet: display is null");
-            }
-            if (!display.isPresent()) {
-                return display;
-            }
-            if (display.get().isEmpty()) {
-                throw new IllegalArgumentException("org.dressdiscover.api.vocabularies.vra_core.location.LocationSet: display is less than min length 1");
-            }
-            return display;
-        }
-
-        @Override
-        public com.google.common.base.Optional<String> validateNotes(final com.google.common.base.Optional<String> notes) throws RuntimeException {
-            if (notes == null) {
-                throw new NullPointerException("org.dressdiscover.api.vocabularies.vra_core.location.LocationSet: notes is null");
-            }
-            if (!notes.isPresent()) {
-                return notes;
-            }
-            if (notes.get().isEmpty()) {
-                throw new IllegalArgumentException("org.dressdiscover.api.vocabularies.vra_core.location.LocationSet: notes is less than min length 1");
-            }
-            return notes;
-        }
-
-        private final static DefaultConstructionValidator instance = new DefaultConstructionValidator();
-    }
-
-    public static class NopConstructionValidator implements ConstructionValidator {
-        public static NopConstructionValidator getInstance() {
-            return instance;
-        }
-
-        public NopConstructionValidator() {
-        }
-
-        @Override
-        public com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.location.Location> validateElements(final com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.location.Location> elements) {
-            return elements;
-        }
-
-        @Override
-        public com.google.common.base.Optional<String> validateDisplay(final com.google.common.base.Optional<String> display) {
-            return display;
-        }
-
-        @Override
-        public com.google.common.base.Optional<String> validateNotes(final com.google.common.base.Optional<String> notes) {
-            return notes;
-        }
-
-        private final static NopConstructionValidator instance = new NopConstructionValidator();
-    }
-
-    public interface ReadValidator extends Validator<org.thryft.protocol.InputProtocolException> {
-    }
-
-    public static class DefaultReadValidator implements ReadValidator {
-        public static DefaultReadValidator getInstance() {
-            return instance;
-        }
-
-        public DefaultReadValidator() {
-        }
-
-        @Override
-        public com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.location.Location> validateElements(final com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.location.Location> elements) throws org.thryft.protocol.InputProtocolException {
+        public static void validateElements(final com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.location.Location> elements) throws org.thryft.protocol.InputProtocolException {
             if (elements == null) {
                 throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.ELEMENTS, "org.dressdiscover.api.vocabularies.vra_core.location.LocationSet: elements is null");
             }
             if (elements.isEmpty()) {
-                throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.ELEMENTS, "org.dressdiscover.api.vocabularies.vra_core.location.LocationSet: elements is less than min length 1");
+                throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.ELEMENTS, "org.dressdiscover.api.vocabularies.vra_core.location.LocationSet.elements: less than min length 1");
             }
-            return elements;
         }
 
-        @Override
-        public com.google.common.base.Optional<String> validateDisplay(final com.google.common.base.Optional<String> display) throws org.thryft.protocol.InputProtocolException {
+        public static void validateDisplay(final com.google.common.base.Optional<String> display) throws org.thryft.protocol.InputProtocolException {
             if (display == null) {
                 throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.DISPLAY, "org.dressdiscover.api.vocabularies.vra_core.location.LocationSet: display is null");
             }
             if (!display.isPresent()) {
-                return display;
+                return;
             }
             if (display.get().isEmpty()) {
-                throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.DISPLAY, "org.dressdiscover.api.vocabularies.vra_core.location.LocationSet: display is less than min length 1");
+                throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.DISPLAY, "org.dressdiscover.api.vocabularies.vra_core.location.LocationSet.display: less than min length 1");
             }
-            return display;
         }
 
-        @Override
-        public com.google.common.base.Optional<String> validateNotes(final com.google.common.base.Optional<String> notes) throws org.thryft.protocol.InputProtocolException {
+        public static void validateNotes(final com.google.common.base.Optional<String> notes) throws org.thryft.protocol.InputProtocolException {
             if (notes == null) {
                 throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.NOTES, "org.dressdiscover.api.vocabularies.vra_core.location.LocationSet: notes is null");
             }
             if (!notes.isPresent()) {
-                return notes;
+                return;
             }
             if (notes.get().isEmpty()) {
-                throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.NOTES, "org.dressdiscover.api.vocabularies.vra_core.location.LocationSet: notes is less than min length 1");
+                throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.NOTES, "org.dressdiscover.api.vocabularies.vra_core.location.LocationSet.notes: less than min length 1");
             }
-            return notes;
         }
-
-        private final static DefaultReadValidator instance = new DefaultReadValidator();
     }
 
-    public static class NopReadValidator implements ReadValidator {
-        public static NopReadValidator getInstance() {
-            return instance;
+    public final static class UncheckedValidator {
+        public static void validate(final com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.location.Location> elements, final com.google.common.base.Optional<String> display, final com.google.common.base.Optional<String> notes) {
+            validateElements(elements);
+            validateDisplay(display);
+            validateNotes(notes);
         }
 
-        public NopReadValidator() {
+        public static void validateElements(final com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.location.Location> elements) {
+            if (elements == null) {
+                throw new NullPointerException("org.dressdiscover.api.vocabularies.vra_core.location.LocationSet: elements is null");
+            }
+            if (elements.isEmpty()) {
+                throw new IllegalArgumentException("org.dressdiscover.api.vocabularies.vra_core.location.LocationSet.elements: less than min length 1");
+            }
         }
 
-        @Override
-        public com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.location.Location> validateElements(final com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.location.Location> elements) {
-            return elements;
+        public static void validateDisplay(final com.google.common.base.Optional<String> display) {
+            if (display == null) {
+                throw new NullPointerException("org.dressdiscover.api.vocabularies.vra_core.location.LocationSet: display is null");
+            }
+            if (!display.isPresent()) {
+                return;
+            }
+            if (display.get().isEmpty()) {
+                throw new IllegalArgumentException("org.dressdiscover.api.vocabularies.vra_core.location.LocationSet.display: less than min length 1");
+            }
         }
 
-        @Override
-        public com.google.common.base.Optional<String> validateDisplay(final com.google.common.base.Optional<String> display) {
-            return display;
+        public static void validateNotes(final com.google.common.base.Optional<String> notes) {
+            if (notes == null) {
+                throw new NullPointerException("org.dressdiscover.api.vocabularies.vra_core.location.LocationSet: notes is null");
+            }
+            if (!notes.isPresent()) {
+                return;
+            }
+            if (notes.get().isEmpty()) {
+                throw new IllegalArgumentException("org.dressdiscover.api.vocabularies.vra_core.location.LocationSet.notes: less than min length 1");
+            }
         }
-
-        @Override
-        public com.google.common.base.Optional<String> validateNotes(final com.google.common.base.Optional<String> notes) {
-            return notes;
-        }
-
-        private final static NopReadValidator instance = new NopReadValidator();
     }
 
     /**
      * Copy constructor
      */
     public LocationSet(final LocationSet other) {
-        this(other.getElements(), other.getDisplay(), other.getNotes(), NopConstructionValidator.getInstance());
+        this(other.getElements(), other.getDisplay(), other.getNotes());
     }
 
-    protected LocationSet(final com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.location.Location> elements, final com.google.common.base.Optional<String> display, final com.google.common.base.Optional<String> notes, ConstructionValidator validator) {
-        this.elements = validator.validateElements(elements);
-        this.display = validator.validateDisplay(display);
-        this.notes = validator.validateNotes(notes);
+    /**
+     * Total constructor
+     *
+     * All fields should have been validated before calling this.
+     */
+    protected LocationSet(final com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.location.Location> elements, final com.google.common.base.Optional<String> display, final com.google.common.base.Optional<String> notes) {
+        this.elements = elements;
+        this.display = display;
+        this.notes = notes;
     }
 
     public static Builder builder() {
@@ -570,21 +496,26 @@ public final class LocationSet implements org.thryft.Struct, org.dressdiscover.a
      * Required factory method
      */
     public static LocationSet create(final com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.location.Location> elements) {
-        return new LocationSet(elements, com.google.common.base.Optional.<String> absent(), com.google.common.base.Optional.<String> absent(), DefaultConstructionValidator.getInstance());
+        UncheckedValidator.validate(elements, com.google.common.base.Optional.<String> absent(), com.google.common.base.Optional.<String> absent());
+        return new LocationSet(elements, com.google.common.base.Optional.<String> absent(), com.google.common.base.Optional.<String> absent());
     }
 
     /**
      * Total Nullable factory method
      */
-    public static LocationSet create(final com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.location.Location> elements, final @javax.annotation.Nullable String display, final @javax.annotation.Nullable String notes) {
-        return new LocationSet(elements, com.google.common.base.Optional.fromNullable(display), com.google.common.base.Optional.fromNullable(notes), DefaultConstructionValidator.getInstance());
+    public static LocationSet create(final com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.location.Location> elements, @javax.annotation.Nullable final String display, @javax.annotation.Nullable final String notes) {
+        final com.google.common.base.Optional<String> displayOptional = com.google.common.base.Optional.fromNullable(display);
+        final com.google.common.base.Optional<String> notesOptional = com.google.common.base.Optional.fromNullable(notes);
+        UncheckedValidator.validate(elements, displayOptional, notesOptional);
+        return new LocationSet(elements, displayOptional, notesOptional);
     }
 
     /**
      * Optional factory method
      */
     public static LocationSet create(final com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.location.Location> elements, final com.google.common.base.Optional<String> display, final com.google.common.base.Optional<String> notes) {
-        return new LocationSet(elements, display, notes, DefaultConstructionValidator.getInstance());
+        UncheckedValidator.validate(elements, display, notes);
+        return new LocationSet(elements, display, notes);
     }
 
     @Override
@@ -677,7 +608,7 @@ public final class LocationSet implements org.thryft.Struct, org.dressdiscover.a
     }
 
     public static LocationSet readAsList(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
-        com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.location.Location> elements = null;
+        com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.location.Location> elements;
         com.google.common.base.Optional<String> display = com.google.common.base.Optional.<String> absent();
         com.google.common.base.Optional<String> notes = com.google.common.base.Optional.<String> absent();
 
@@ -713,7 +644,10 @@ public final class LocationSet implements org.thryft.Struct, org.dressdiscover.a
         } catch (final RuntimeException e) {
             throw new IllegalStateException(e);
         }
-        return new LocationSet(DefaultReadValidator.getInstance().validateElements(elements), DefaultReadValidator.getInstance().validateDisplay(display), DefaultReadValidator.getInstance().validateNotes(notes), NopConstructionValidator.getInstance());
+
+        ReadValidator.validate(elements, display, notes);
+
+        return new LocationSet(elements, display, notes);
     }
 
     public static LocationSet readAsStruct(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
@@ -721,7 +655,7 @@ public final class LocationSet implements org.thryft.Struct, org.dressdiscover.a
     }
 
     public static LocationSet readAsStruct(final org.thryft.protocol.InputProtocol iprot, final com.google.common.base.Optional<UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
-        com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.location.Location> elements = null;
+        @javax.annotation.Nullable com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.location.Location> elements = null;
         com.google.common.base.Optional<String> display = com.google.common.base.Optional.<String> absent();
         com.google.common.base.Optional<String> notes = com.google.common.base.Optional.<String> absent();
 
@@ -743,7 +677,7 @@ public final class LocationSet implements org.thryft.Struct, org.dressdiscover.a
                                         final org.thryft.protocol.ListBegin sequenceBegin = iprot.readListBegin();
                                         final com.google.common.collect.ImmutableList.Builder<org.dressdiscover.api.vocabularies.vra_core.location.Location> sequenceBuilder = com.google.common.collect.ImmutableList.builder();
                                         for (int elementI = 0; elementI < sequenceBegin.getSize(); elementI++) {
-                                            sequenceBuilder.add(org.dressdiscover.api.vocabularies.vra_core.location.Location.readAsStruct(iprot));
+                                            sequenceBuilder.add(org.dressdiscover.api.vocabularies.vra_core.location.Location.readAsStruct(iprot, unknownFieldCallback));
                                         }
                                         iprot.readListEnd();
                                         return sequenceBuilder.build();
@@ -782,26 +716,32 @@ public final class LocationSet implements org.thryft.Struct, org.dressdiscover.a
         } catch (final RuntimeException e) {
             throw new IllegalStateException(e);
         }
-        return new LocationSet(DefaultReadValidator.getInstance().validateElements(elements), DefaultReadValidator.getInstance().validateDisplay(display), DefaultReadValidator.getInstance().validateNotes(notes), NopConstructionValidator.getInstance());
+
+        ReadValidator.validate(elements, display, notes);
+
+        return new LocationSet(elements, display, notes);
     }
 
     public LocationSet replaceDisplay(final com.google.common.base.Optional<String> display) {
-        return new LocationSet(this.elements, DefaultConstructionValidator.getInstance().validateDisplay(display), this.notes, NopConstructionValidator.getInstance());
+        UncheckedValidator.validateDisplay(display);
+        return new LocationSet(this.elements, display, this.notes);
     }
 
-    public LocationSet replaceDisplay(final String display) {
+    public LocationSet replaceDisplay(@javax.annotation.Nullable final String display) {
         return replaceDisplay(com.google.common.base.Optional.fromNullable(display));
     }
 
     public LocationSet replaceElements(final com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.location.Location> elements) {
-        return new LocationSet(DefaultConstructionValidator.getInstance().validateElements(elements), this.display, this.notes, NopConstructionValidator.getInstance());
+        UncheckedValidator.validateElements(elements);
+        return new LocationSet(elements, this.display, this.notes);
     }
 
     public LocationSet replaceNotes(final com.google.common.base.Optional<String> notes) {
-        return new LocationSet(this.elements, this.display, DefaultConstructionValidator.getInstance().validateNotes(notes), NopConstructionValidator.getInstance());
+        UncheckedValidator.validateNotes(notes);
+        return new LocationSet(this.elements, this.display, notes);
     }
 
-    public LocationSet replaceNotes(final String notes) {
+    public LocationSet replaceNotes(@javax.annotation.Nullable final String notes) {
         return replaceNotes(com.google.common.base.Optional.fromNullable(notes));
     }
 
@@ -842,29 +782,41 @@ public final class LocationSet implements org.thryft.Struct, org.dressdiscover.a
         oprot.writeStructEnd();
     }
 
-    @Override
-    public void writeFields(final org.thryft.protocol.OutputProtocol oprot) throws org.thryft.protocol.OutputProtocolException {
-        oprot.writeFieldBegin("elements", org.thryft.protocol.Type.LIST, (short)1);
+    public void writeDisplayField(final org.thryft.protocol.OutputProtocol oprot) throws org.thryft.protocol.OutputProtocolException {
+        if (getDisplay().isPresent()) {
+            oprot.writeFieldBegin(FieldMetadata.DISPLAY);
+            oprot.writeString(getDisplay().get());
+            oprot.writeFieldEnd();
+        }
+    }
+
+    public void writeElementsField(final org.thryft.protocol.OutputProtocol oprot) throws org.thryft.protocol.OutputProtocolException {
+        oprot.writeFieldBegin(FieldMetadata.ELEMENTS);
         oprot.writeListBegin(org.thryft.protocol.Type.STRUCT, getElements().size());
         for (final org.dressdiscover.api.vocabularies.vra_core.location.Location _iter0 : getElements()) {
             _iter0.writeAsStruct(oprot);
         }
         oprot.writeListEnd();
         oprot.writeFieldEnd();
+    }
 
-        if (getDisplay().isPresent()) {
-            oprot.writeFieldBegin("display", org.thryft.protocol.Type.STRING, (short)2);
-            oprot.writeString(getDisplay().get());
-            oprot.writeFieldEnd();
-        }
+    @Override
+    public void writeFields(final org.thryft.protocol.OutputProtocol oprot) throws org.thryft.protocol.OutputProtocolException {
+        writeElementsField(oprot);
 
+        writeDisplayField(oprot);
+
+        writeNotesField(oprot);
+
+        oprot.writeFieldStop();
+    }
+
+    public void writeNotesField(final org.thryft.protocol.OutputProtocol oprot) throws org.thryft.protocol.OutputProtocolException {
         if (getNotes().isPresent()) {
-            oprot.writeFieldBegin("notes", org.thryft.protocol.Type.STRING, (short)3);
+            oprot.writeFieldBegin(FieldMetadata.NOTES);
             oprot.writeString(getNotes().get());
             oprot.writeFieldEnd();
         }
-
-        oprot.writeFieldStop();
     }
 
     private final com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.location.Location> elements;

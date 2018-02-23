@@ -55,10 +55,12 @@ public final class ObjectFacetFilters implements org.thryft.Struct {
         }
 
         protected ObjectFacetFilters _build(final com.google.common.base.Optional<Boolean> excludeAll, final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> excludeCategories, final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.collection.CollectionId>> excludeCollections, final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> excludeColorTexts, final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> excludeCulturalContextTexts, final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<org.dressdiscover.api.vocabularies.costume_core.gender.Gender>> excludeGenders, final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.institution.InstitutionId>> excludeInstitutions, final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> excludeLocationNameTexts, final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> excludeMaterialTexts, final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> excludeSubjectTermTexts, final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> excludeTechniqueTexts, final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> excludeWorkTypeTexts, final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> includeCategories, final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.collection.CollectionId>> includeCollections, final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> includeColorTexts, final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> includeCulturalContextTexts, final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<org.dressdiscover.api.vocabularies.costume_core.gender.Gender>> includeGenders, final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.institution.InstitutionId>> includeInstitutions, final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> includeLocationNameTexts, final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> includeMaterialTexts, final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> includeSubjectTermTexts, final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> includeTechniqueTexts, final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> includeWorkTypeTexts) {
-            return new ObjectFacetFilters(excludeAll, excludeCategories, excludeCollections, excludeColorTexts, excludeCulturalContextTexts, excludeGenders, excludeInstitutions, excludeLocationNameTexts, excludeMaterialTexts, excludeSubjectTermTexts, excludeTechniqueTexts, excludeWorkTypeTexts, includeCategories, includeCollections, includeColorTexts, includeCulturalContextTexts, includeGenders, includeInstitutions, includeLocationNameTexts, includeMaterialTexts, includeSubjectTermTexts, includeTechniqueTexts, includeWorkTypeTexts, DefaultConstructionValidator.getInstance());
+            return new ObjectFacetFilters(excludeAll, excludeCategories, excludeCollections, excludeColorTexts, excludeCulturalContextTexts, excludeGenders, excludeInstitutions, excludeLocationNameTexts, excludeMaterialTexts, excludeSubjectTermTexts, excludeTechniqueTexts, excludeWorkTypeTexts, includeCategories, includeCollections, includeColorTexts, includeCulturalContextTexts, includeGenders, includeInstitutions, includeLocationNameTexts, includeMaterialTexts, includeSubjectTermTexts, includeTechniqueTexts, includeWorkTypeTexts);
         }
 
         public ObjectFacetFilters build() {
+            UncheckedValidator.validate(excludeAll, excludeCategories, excludeCollections, excludeColorTexts, excludeCulturalContextTexts, excludeGenders, excludeInstitutions, excludeLocationNameTexts, excludeMaterialTexts, excludeSubjectTermTexts, excludeTechniqueTexts, excludeWorkTypeTexts, includeCategories, includeCollections, includeColorTexts, includeCulturalContextTexts, includeGenders, includeInstitutions, includeLocationNameTexts, includeMaterialTexts, includeSubjectTermTexts, includeTechniqueTexts, includeWorkTypeTexts);
+
             return _build(excludeAll, excludeCategories, excludeCollections, excludeColorTexts, excludeCulturalContextTexts, excludeGenders, excludeInstitutions, excludeLocationNameTexts, excludeMaterialTexts, excludeSubjectTermTexts, excludeTechniqueTexts, excludeWorkTypeTexts, includeCategories, includeCollections, includeColorTexts, includeCulturalContextTexts, includeGenders, includeInstitutions, includeLocationNameTexts, includeMaterialTexts, includeSubjectTermTexts, includeTechniqueTexts, includeWorkTypeTexts);
         }
 
@@ -173,7 +175,7 @@ public final class ObjectFacetFilters implements org.thryft.Struct {
             try {
                 final org.thryft.protocol.ListBegin __list = iprot.readListBegin();
                 if (__list.getSize() > 0) {
-                    excludeAll = com.google.common.base.Optional.of(iprot.readBool());
+                    excludeAll = org.thryft.Optionals.of(iprot.readBool());
                 }
                 if (__list.getSize() > 1) {
                     try {
@@ -209,6 +211,8 @@ public final class ObjectFacetFilters implements org.thryft.Struct {
                                         try {
                                             sequenceBuilder.add(org.dressdiscover.api.models.collection.CollectionId.parse(iprot.readString()));
                                         } catch (final org.dressdiscover.api.models.collection.InvalidCollectionIdException e) {
+                                             throw new org.thryft.protocol.InputProtocolException(e);
+                                        } catch (final IllegalArgumentException e) {
                                              throw new org.thryft.protocol.InputProtocolException(e);
                                         }
                                     }
@@ -276,7 +280,7 @@ public final class ObjectFacetFilters implements org.thryft.Struct {
                                     final org.thryft.protocol.SetBegin sequenceBegin = iprot.readSetBegin();
                                     final com.google.common.collect.ImmutableSet.Builder<org.dressdiscover.api.vocabularies.costume_core.gender.Gender> sequenceBuilder = com.google.common.collect.ImmutableSet.builder();
                                     for (int elementI = 0; elementI < sequenceBegin.getSize(); elementI++) {
-                                        sequenceBuilder.add(iprot.readEnum(org.dressdiscover.api.vocabularies.costume_core.gender.Gender.class));
+                                        sequenceBuilder.add(iprot.readEnum(org.dressdiscover.api.vocabularies.costume_core.gender.Gender.Factory.getInstance()));
                                     }
                                     iprot.readSetEnd();
                                     return sequenceBuilder.build();
@@ -301,6 +305,8 @@ public final class ObjectFacetFilters implements org.thryft.Struct {
                                         try {
                                             sequenceBuilder.add(org.dressdiscover.api.models.institution.InstitutionId.parse(iprot.readString()));
                                         } catch (final org.dressdiscover.api.models.institution.InvalidInstitutionIdException e) {
+                                             throw new org.thryft.protocol.InputProtocolException(e);
+                                        } catch (final IllegalArgumentException e) {
                                              throw new org.thryft.protocol.InputProtocolException(e);
                                         }
                                     }
@@ -460,6 +466,8 @@ public final class ObjectFacetFilters implements org.thryft.Struct {
                                             sequenceBuilder.add(org.dressdiscover.api.models.collection.CollectionId.parse(iprot.readString()));
                                         } catch (final org.dressdiscover.api.models.collection.InvalidCollectionIdException e) {
                                              throw new org.thryft.protocol.InputProtocolException(e);
+                                        } catch (final IllegalArgumentException e) {
+                                             throw new org.thryft.protocol.InputProtocolException(e);
                                         }
                                     }
                                     iprot.readSetEnd();
@@ -526,7 +534,7 @@ public final class ObjectFacetFilters implements org.thryft.Struct {
                                     final org.thryft.protocol.SetBegin sequenceBegin = iprot.readSetBegin();
                                     final com.google.common.collect.ImmutableSet.Builder<org.dressdiscover.api.vocabularies.costume_core.gender.Gender> sequenceBuilder = com.google.common.collect.ImmutableSet.builder();
                                     for (int elementI = 0; elementI < sequenceBegin.getSize(); elementI++) {
-                                        sequenceBuilder.add(iprot.readEnum(org.dressdiscover.api.vocabularies.costume_core.gender.Gender.class));
+                                        sequenceBuilder.add(iprot.readEnum(org.dressdiscover.api.vocabularies.costume_core.gender.Gender.Factory.getInstance()));
                                     }
                                     iprot.readSetEnd();
                                     return sequenceBuilder.build();
@@ -551,6 +559,8 @@ public final class ObjectFacetFilters implements org.thryft.Struct {
                                         try {
                                             sequenceBuilder.add(org.dressdiscover.api.models.institution.InstitutionId.parse(iprot.readString()));
                                         } catch (final org.dressdiscover.api.models.institution.InvalidInstitutionIdException e) {
+                                             throw new org.thryft.protocol.InputProtocolException(e);
+                                        } catch (final IllegalArgumentException e) {
                                              throw new org.thryft.protocol.InputProtocolException(e);
                                         }
                                     }
@@ -696,7 +706,7 @@ public final class ObjectFacetFilters implements org.thryft.Struct {
                     }
                     switch (ifield.getName()) {
                     case "exclude_all": {
-                        excludeAll = com.google.common.base.Optional.of(iprot.readBool());
+                        excludeAll = org.thryft.Optionals.of(iprot.readBool());
                         break;
                     }
                     case "exclude_categories": {
@@ -734,6 +744,8 @@ public final class ObjectFacetFilters implements org.thryft.Struct {
                                             try {
                                                 sequenceBuilder.add(org.dressdiscover.api.models.collection.CollectionId.parse(iprot.readString()));
                                             } catch (final org.dressdiscover.api.models.collection.InvalidCollectionIdException e) {
+                                                 throw new org.thryft.protocol.InputProtocolException(e);
+                                            } catch (final IllegalArgumentException e) {
                                                  throw new org.thryft.protocol.InputProtocolException(e);
                                             }
                                         }
@@ -804,7 +816,7 @@ public final class ObjectFacetFilters implements org.thryft.Struct {
                                         final org.thryft.protocol.SetBegin sequenceBegin = iprot.readSetBegin();
                                         final com.google.common.collect.ImmutableSet.Builder<org.dressdiscover.api.vocabularies.costume_core.gender.Gender> sequenceBuilder = com.google.common.collect.ImmutableSet.builder();
                                         for (int elementI = 0; elementI < sequenceBegin.getSize(); elementI++) {
-                                            sequenceBuilder.add(iprot.readEnum(org.dressdiscover.api.vocabularies.costume_core.gender.Gender.class));
+                                            sequenceBuilder.add(iprot.readEnum(org.dressdiscover.api.vocabularies.costume_core.gender.Gender.Factory.getInstance()));
                                         }
                                         iprot.readSetEnd();
                                         return sequenceBuilder.build();
@@ -830,6 +842,8 @@ public final class ObjectFacetFilters implements org.thryft.Struct {
                                             try {
                                                 sequenceBuilder.add(org.dressdiscover.api.models.institution.InstitutionId.parse(iprot.readString()));
                                             } catch (final org.dressdiscover.api.models.institution.InvalidInstitutionIdException e) {
+                                                 throw new org.thryft.protocol.InputProtocolException(e);
+                                            } catch (final IllegalArgumentException e) {
                                                  throw new org.thryft.protocol.InputProtocolException(e);
                                             }
                                         }
@@ -996,6 +1010,8 @@ public final class ObjectFacetFilters implements org.thryft.Struct {
                                                 sequenceBuilder.add(org.dressdiscover.api.models.collection.CollectionId.parse(iprot.readString()));
                                             } catch (final org.dressdiscover.api.models.collection.InvalidCollectionIdException e) {
                                                  throw new org.thryft.protocol.InputProtocolException(e);
+                                            } catch (final IllegalArgumentException e) {
+                                                 throw new org.thryft.protocol.InputProtocolException(e);
                                             }
                                         }
                                         iprot.readSetEnd();
@@ -1065,7 +1081,7 @@ public final class ObjectFacetFilters implements org.thryft.Struct {
                                         final org.thryft.protocol.SetBegin sequenceBegin = iprot.readSetBegin();
                                         final com.google.common.collect.ImmutableSet.Builder<org.dressdiscover.api.vocabularies.costume_core.gender.Gender> sequenceBuilder = com.google.common.collect.ImmutableSet.builder();
                                         for (int elementI = 0; elementI < sequenceBegin.getSize(); elementI++) {
-                                            sequenceBuilder.add(iprot.readEnum(org.dressdiscover.api.vocabularies.costume_core.gender.Gender.class));
+                                            sequenceBuilder.add(iprot.readEnum(org.dressdiscover.api.vocabularies.costume_core.gender.Gender.Factory.getInstance()));
                                         }
                                         iprot.readSetEnd();
                                         return sequenceBuilder.build();
@@ -1091,6 +1107,8 @@ public final class ObjectFacetFilters implements org.thryft.Struct {
                                             try {
                                                 sequenceBuilder.add(org.dressdiscover.api.models.institution.InstitutionId.parse(iprot.readString()));
                                             } catch (final org.dressdiscover.api.models.institution.InvalidInstitutionIdException e) {
+                                                 throw new org.thryft.protocol.InputProtocolException(e);
+                                            } catch (final IllegalArgumentException e) {
                                                  throw new org.thryft.protocol.InputProtocolException(e);
                                             }
                                         }
@@ -1281,110 +1299,126 @@ public final class ObjectFacetFilters implements org.thryft.Struct {
         }
 
         public Builder setExcludeAll(final com.google.common.base.Optional<Boolean> excludeAll) {
-            this.excludeAll = DefaultConstructionValidator.getInstance().validateExcludeAll(excludeAll);
+            UncheckedValidator.validateExcludeAll(excludeAll);
+            this.excludeAll = excludeAll;
             return this;
         }
 
-        public Builder setExcludeAll(@javax.annotation.Nullable final Boolean excludeAll) {
-            return setExcludeAll(com.google.common.base.Optional.fromNullable(excludeAll));
+        public Builder setExcludeAll(final @javax.annotation.Nullable Boolean excludeAll) {
+            return setExcludeAll(org.thryft.Optionals.fromNullable(excludeAll));
+        }
+
+        public Builder setExcludeAll(final boolean excludeAll) {
+            return setExcludeAll(org.thryft.Optionals.of(excludeAll));
         }
 
         public Builder setExcludeCategories(final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> excludeCategories) {
-            this.excludeCategories = DefaultConstructionValidator.getInstance().validateExcludeCategories(excludeCategories);
+            UncheckedValidator.validateExcludeCategories(excludeCategories);
+            this.excludeCategories = excludeCategories;
             return this;
         }
 
-        public Builder setExcludeCategories(@javax.annotation.Nullable final com.google.common.collect.ImmutableSet<String> excludeCategories) {
+        public Builder setExcludeCategories(final @javax.annotation.Nullable com.google.common.collect.ImmutableSet<String> excludeCategories) {
             return setExcludeCategories(com.google.common.base.Optional.fromNullable(excludeCategories));
         }
 
         public Builder setExcludeCollections(final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.collection.CollectionId>> excludeCollections) {
-            this.excludeCollections = DefaultConstructionValidator.getInstance().validateExcludeCollections(excludeCollections);
+            UncheckedValidator.validateExcludeCollections(excludeCollections);
+            this.excludeCollections = excludeCollections;
             return this;
         }
 
-        public Builder setExcludeCollections(@javax.annotation.Nullable final com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.collection.CollectionId> excludeCollections) {
+        public Builder setExcludeCollections(final @javax.annotation.Nullable com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.collection.CollectionId> excludeCollections) {
             return setExcludeCollections(com.google.common.base.Optional.fromNullable(excludeCollections));
         }
 
         public Builder setExcludeColorTexts(final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> excludeColorTexts) {
-            this.excludeColorTexts = DefaultConstructionValidator.getInstance().validateExcludeColorTexts(excludeColorTexts);
+            UncheckedValidator.validateExcludeColorTexts(excludeColorTexts);
+            this.excludeColorTexts = excludeColorTexts;
             return this;
         }
 
-        public Builder setExcludeColorTexts(@javax.annotation.Nullable final com.google.common.collect.ImmutableSet<String> excludeColorTexts) {
+        public Builder setExcludeColorTexts(final @javax.annotation.Nullable com.google.common.collect.ImmutableSet<String> excludeColorTexts) {
             return setExcludeColorTexts(com.google.common.base.Optional.fromNullable(excludeColorTexts));
         }
 
         public Builder setExcludeCulturalContextTexts(final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> excludeCulturalContextTexts) {
-            this.excludeCulturalContextTexts = DefaultConstructionValidator.getInstance().validateExcludeCulturalContextTexts(excludeCulturalContextTexts);
+            UncheckedValidator.validateExcludeCulturalContextTexts(excludeCulturalContextTexts);
+            this.excludeCulturalContextTexts = excludeCulturalContextTexts;
             return this;
         }
 
-        public Builder setExcludeCulturalContextTexts(@javax.annotation.Nullable final com.google.common.collect.ImmutableSet<String> excludeCulturalContextTexts) {
+        public Builder setExcludeCulturalContextTexts(final @javax.annotation.Nullable com.google.common.collect.ImmutableSet<String> excludeCulturalContextTexts) {
             return setExcludeCulturalContextTexts(com.google.common.base.Optional.fromNullable(excludeCulturalContextTexts));
         }
 
         public Builder setExcludeGenders(final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<org.dressdiscover.api.vocabularies.costume_core.gender.Gender>> excludeGenders) {
-            this.excludeGenders = DefaultConstructionValidator.getInstance().validateExcludeGenders(excludeGenders);
+            UncheckedValidator.validateExcludeGenders(excludeGenders);
+            this.excludeGenders = excludeGenders;
             return this;
         }
 
-        public Builder setExcludeGenders(@javax.annotation.Nullable final com.google.common.collect.ImmutableSet<org.dressdiscover.api.vocabularies.costume_core.gender.Gender> excludeGenders) {
+        public Builder setExcludeGenders(final @javax.annotation.Nullable com.google.common.collect.ImmutableSet<org.dressdiscover.api.vocabularies.costume_core.gender.Gender> excludeGenders) {
             return setExcludeGenders(com.google.common.base.Optional.fromNullable(excludeGenders));
         }
 
         public Builder setExcludeInstitutions(final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.institution.InstitutionId>> excludeInstitutions) {
-            this.excludeInstitutions = DefaultConstructionValidator.getInstance().validateExcludeInstitutions(excludeInstitutions);
+            UncheckedValidator.validateExcludeInstitutions(excludeInstitutions);
+            this.excludeInstitutions = excludeInstitutions;
             return this;
         }
 
-        public Builder setExcludeInstitutions(@javax.annotation.Nullable final com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.institution.InstitutionId> excludeInstitutions) {
+        public Builder setExcludeInstitutions(final @javax.annotation.Nullable com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.institution.InstitutionId> excludeInstitutions) {
             return setExcludeInstitutions(com.google.common.base.Optional.fromNullable(excludeInstitutions));
         }
 
         public Builder setExcludeLocationNameTexts(final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> excludeLocationNameTexts) {
-            this.excludeLocationNameTexts = DefaultConstructionValidator.getInstance().validateExcludeLocationNameTexts(excludeLocationNameTexts);
+            UncheckedValidator.validateExcludeLocationNameTexts(excludeLocationNameTexts);
+            this.excludeLocationNameTexts = excludeLocationNameTexts;
             return this;
         }
 
-        public Builder setExcludeLocationNameTexts(@javax.annotation.Nullable final com.google.common.collect.ImmutableSet<String> excludeLocationNameTexts) {
+        public Builder setExcludeLocationNameTexts(final @javax.annotation.Nullable com.google.common.collect.ImmutableSet<String> excludeLocationNameTexts) {
             return setExcludeLocationNameTexts(com.google.common.base.Optional.fromNullable(excludeLocationNameTexts));
         }
 
         public Builder setExcludeMaterialTexts(final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> excludeMaterialTexts) {
-            this.excludeMaterialTexts = DefaultConstructionValidator.getInstance().validateExcludeMaterialTexts(excludeMaterialTexts);
+            UncheckedValidator.validateExcludeMaterialTexts(excludeMaterialTexts);
+            this.excludeMaterialTexts = excludeMaterialTexts;
             return this;
         }
 
-        public Builder setExcludeMaterialTexts(@javax.annotation.Nullable final com.google.common.collect.ImmutableSet<String> excludeMaterialTexts) {
+        public Builder setExcludeMaterialTexts(final @javax.annotation.Nullable com.google.common.collect.ImmutableSet<String> excludeMaterialTexts) {
             return setExcludeMaterialTexts(com.google.common.base.Optional.fromNullable(excludeMaterialTexts));
         }
 
         public Builder setExcludeSubjectTermTexts(final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> excludeSubjectTermTexts) {
-            this.excludeSubjectTermTexts = DefaultConstructionValidator.getInstance().validateExcludeSubjectTermTexts(excludeSubjectTermTexts);
+            UncheckedValidator.validateExcludeSubjectTermTexts(excludeSubjectTermTexts);
+            this.excludeSubjectTermTexts = excludeSubjectTermTexts;
             return this;
         }
 
-        public Builder setExcludeSubjectTermTexts(@javax.annotation.Nullable final com.google.common.collect.ImmutableSet<String> excludeSubjectTermTexts) {
+        public Builder setExcludeSubjectTermTexts(final @javax.annotation.Nullable com.google.common.collect.ImmutableSet<String> excludeSubjectTermTexts) {
             return setExcludeSubjectTermTexts(com.google.common.base.Optional.fromNullable(excludeSubjectTermTexts));
         }
 
         public Builder setExcludeTechniqueTexts(final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> excludeTechniqueTexts) {
-            this.excludeTechniqueTexts = DefaultConstructionValidator.getInstance().validateExcludeTechniqueTexts(excludeTechniqueTexts);
+            UncheckedValidator.validateExcludeTechniqueTexts(excludeTechniqueTexts);
+            this.excludeTechniqueTexts = excludeTechniqueTexts;
             return this;
         }
 
-        public Builder setExcludeTechniqueTexts(@javax.annotation.Nullable final com.google.common.collect.ImmutableSet<String> excludeTechniqueTexts) {
+        public Builder setExcludeTechniqueTexts(final @javax.annotation.Nullable com.google.common.collect.ImmutableSet<String> excludeTechniqueTexts) {
             return setExcludeTechniqueTexts(com.google.common.base.Optional.fromNullable(excludeTechniqueTexts));
         }
 
         public Builder setExcludeWorkTypeTexts(final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> excludeWorkTypeTexts) {
-            this.excludeWorkTypeTexts = DefaultConstructionValidator.getInstance().validateExcludeWorkTypeTexts(excludeWorkTypeTexts);
+            UncheckedValidator.validateExcludeWorkTypeTexts(excludeWorkTypeTexts);
+            this.excludeWorkTypeTexts = excludeWorkTypeTexts;
             return this;
         }
 
-        public Builder setExcludeWorkTypeTexts(@javax.annotation.Nullable final com.google.common.collect.ImmutableSet<String> excludeWorkTypeTexts) {
+        public Builder setExcludeWorkTypeTexts(final @javax.annotation.Nullable com.google.common.collect.ImmutableSet<String> excludeWorkTypeTexts) {
             return setExcludeWorkTypeTexts(com.google.common.base.Optional.fromNullable(excludeWorkTypeTexts));
         }
 
@@ -1465,101 +1499,112 @@ public final class ObjectFacetFilters implements org.thryft.Struct {
         }
 
         public Builder setIncludeCategories(final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> includeCategories) {
-            this.includeCategories = DefaultConstructionValidator.getInstance().validateIncludeCategories(includeCategories);
+            UncheckedValidator.validateIncludeCategories(includeCategories);
+            this.includeCategories = includeCategories;
             return this;
         }
 
-        public Builder setIncludeCategories(@javax.annotation.Nullable final com.google.common.collect.ImmutableSet<String> includeCategories) {
+        public Builder setIncludeCategories(final @javax.annotation.Nullable com.google.common.collect.ImmutableSet<String> includeCategories) {
             return setIncludeCategories(com.google.common.base.Optional.fromNullable(includeCategories));
         }
 
         public Builder setIncludeCollections(final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.collection.CollectionId>> includeCollections) {
-            this.includeCollections = DefaultConstructionValidator.getInstance().validateIncludeCollections(includeCollections);
+            UncheckedValidator.validateIncludeCollections(includeCollections);
+            this.includeCollections = includeCollections;
             return this;
         }
 
-        public Builder setIncludeCollections(@javax.annotation.Nullable final com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.collection.CollectionId> includeCollections) {
+        public Builder setIncludeCollections(final @javax.annotation.Nullable com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.collection.CollectionId> includeCollections) {
             return setIncludeCollections(com.google.common.base.Optional.fromNullable(includeCollections));
         }
 
         public Builder setIncludeColorTexts(final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> includeColorTexts) {
-            this.includeColorTexts = DefaultConstructionValidator.getInstance().validateIncludeColorTexts(includeColorTexts);
+            UncheckedValidator.validateIncludeColorTexts(includeColorTexts);
+            this.includeColorTexts = includeColorTexts;
             return this;
         }
 
-        public Builder setIncludeColorTexts(@javax.annotation.Nullable final com.google.common.collect.ImmutableSet<String> includeColorTexts) {
+        public Builder setIncludeColorTexts(final @javax.annotation.Nullable com.google.common.collect.ImmutableSet<String> includeColorTexts) {
             return setIncludeColorTexts(com.google.common.base.Optional.fromNullable(includeColorTexts));
         }
 
         public Builder setIncludeCulturalContextTexts(final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> includeCulturalContextTexts) {
-            this.includeCulturalContextTexts = DefaultConstructionValidator.getInstance().validateIncludeCulturalContextTexts(includeCulturalContextTexts);
+            UncheckedValidator.validateIncludeCulturalContextTexts(includeCulturalContextTexts);
+            this.includeCulturalContextTexts = includeCulturalContextTexts;
             return this;
         }
 
-        public Builder setIncludeCulturalContextTexts(@javax.annotation.Nullable final com.google.common.collect.ImmutableSet<String> includeCulturalContextTexts) {
+        public Builder setIncludeCulturalContextTexts(final @javax.annotation.Nullable com.google.common.collect.ImmutableSet<String> includeCulturalContextTexts) {
             return setIncludeCulturalContextTexts(com.google.common.base.Optional.fromNullable(includeCulturalContextTexts));
         }
 
         public Builder setIncludeGenders(final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<org.dressdiscover.api.vocabularies.costume_core.gender.Gender>> includeGenders) {
-            this.includeGenders = DefaultConstructionValidator.getInstance().validateIncludeGenders(includeGenders);
+            UncheckedValidator.validateIncludeGenders(includeGenders);
+            this.includeGenders = includeGenders;
             return this;
         }
 
-        public Builder setIncludeGenders(@javax.annotation.Nullable final com.google.common.collect.ImmutableSet<org.dressdiscover.api.vocabularies.costume_core.gender.Gender> includeGenders) {
+        public Builder setIncludeGenders(final @javax.annotation.Nullable com.google.common.collect.ImmutableSet<org.dressdiscover.api.vocabularies.costume_core.gender.Gender> includeGenders) {
             return setIncludeGenders(com.google.common.base.Optional.fromNullable(includeGenders));
         }
 
         public Builder setIncludeInstitutions(final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.institution.InstitutionId>> includeInstitutions) {
-            this.includeInstitutions = DefaultConstructionValidator.getInstance().validateIncludeInstitutions(includeInstitutions);
+            UncheckedValidator.validateIncludeInstitutions(includeInstitutions);
+            this.includeInstitutions = includeInstitutions;
             return this;
         }
 
-        public Builder setIncludeInstitutions(@javax.annotation.Nullable final com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.institution.InstitutionId> includeInstitutions) {
+        public Builder setIncludeInstitutions(final @javax.annotation.Nullable com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.institution.InstitutionId> includeInstitutions) {
             return setIncludeInstitutions(com.google.common.base.Optional.fromNullable(includeInstitutions));
         }
 
         public Builder setIncludeLocationNameTexts(final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> includeLocationNameTexts) {
-            this.includeLocationNameTexts = DefaultConstructionValidator.getInstance().validateIncludeLocationNameTexts(includeLocationNameTexts);
+            UncheckedValidator.validateIncludeLocationNameTexts(includeLocationNameTexts);
+            this.includeLocationNameTexts = includeLocationNameTexts;
             return this;
         }
 
-        public Builder setIncludeLocationNameTexts(@javax.annotation.Nullable final com.google.common.collect.ImmutableSet<String> includeLocationNameTexts) {
+        public Builder setIncludeLocationNameTexts(final @javax.annotation.Nullable com.google.common.collect.ImmutableSet<String> includeLocationNameTexts) {
             return setIncludeLocationNameTexts(com.google.common.base.Optional.fromNullable(includeLocationNameTexts));
         }
 
         public Builder setIncludeMaterialTexts(final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> includeMaterialTexts) {
-            this.includeMaterialTexts = DefaultConstructionValidator.getInstance().validateIncludeMaterialTexts(includeMaterialTexts);
+            UncheckedValidator.validateIncludeMaterialTexts(includeMaterialTexts);
+            this.includeMaterialTexts = includeMaterialTexts;
             return this;
         }
 
-        public Builder setIncludeMaterialTexts(@javax.annotation.Nullable final com.google.common.collect.ImmutableSet<String> includeMaterialTexts) {
+        public Builder setIncludeMaterialTexts(final @javax.annotation.Nullable com.google.common.collect.ImmutableSet<String> includeMaterialTexts) {
             return setIncludeMaterialTexts(com.google.common.base.Optional.fromNullable(includeMaterialTexts));
         }
 
         public Builder setIncludeSubjectTermTexts(final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> includeSubjectTermTexts) {
-            this.includeSubjectTermTexts = DefaultConstructionValidator.getInstance().validateIncludeSubjectTermTexts(includeSubjectTermTexts);
+            UncheckedValidator.validateIncludeSubjectTermTexts(includeSubjectTermTexts);
+            this.includeSubjectTermTexts = includeSubjectTermTexts;
             return this;
         }
 
-        public Builder setIncludeSubjectTermTexts(@javax.annotation.Nullable final com.google.common.collect.ImmutableSet<String> includeSubjectTermTexts) {
+        public Builder setIncludeSubjectTermTexts(final @javax.annotation.Nullable com.google.common.collect.ImmutableSet<String> includeSubjectTermTexts) {
             return setIncludeSubjectTermTexts(com.google.common.base.Optional.fromNullable(includeSubjectTermTexts));
         }
 
         public Builder setIncludeTechniqueTexts(final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> includeTechniqueTexts) {
-            this.includeTechniqueTexts = DefaultConstructionValidator.getInstance().validateIncludeTechniqueTexts(includeTechniqueTexts);
+            UncheckedValidator.validateIncludeTechniqueTexts(includeTechniqueTexts);
+            this.includeTechniqueTexts = includeTechniqueTexts;
             return this;
         }
 
-        public Builder setIncludeTechniqueTexts(@javax.annotation.Nullable final com.google.common.collect.ImmutableSet<String> includeTechniqueTexts) {
+        public Builder setIncludeTechniqueTexts(final @javax.annotation.Nullable com.google.common.collect.ImmutableSet<String> includeTechniqueTexts) {
             return setIncludeTechniqueTexts(com.google.common.base.Optional.fromNullable(includeTechniqueTexts));
         }
 
         public Builder setIncludeWorkTypeTexts(final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> includeWorkTypeTexts) {
-            this.includeWorkTypeTexts = DefaultConstructionValidator.getInstance().validateIncludeWorkTypeTexts(includeWorkTypeTexts);
+            UncheckedValidator.validateIncludeWorkTypeTexts(includeWorkTypeTexts);
+            this.includeWorkTypeTexts = includeWorkTypeTexts;
             return this;
         }
 
-        public Builder setIncludeWorkTypeTexts(@javax.annotation.Nullable final com.google.common.collect.ImmutableSet<String> includeWorkTypeTexts) {
+        public Builder setIncludeWorkTypeTexts(final @javax.annotation.Nullable com.google.common.collect.ImmutableSet<String> includeWorkTypeTexts) {
             return setIncludeWorkTypeTexts(com.google.common.base.Optional.fromNullable(includeWorkTypeTexts));
         }
 
@@ -1777,29 +1822,29 @@ public final class ObjectFacetFilters implements org.thryft.Struct {
 
     @SuppressWarnings("serial")
     public enum FieldMetadata implements org.thryft.CompoundType.FieldMetadata {
-        EXCLUDE_ALL("excludeAll", new com.google.common.reflect.TypeToken<Boolean>() {}, false, 0, "exclude_all", org.thryft.protocol.Type.BOOL),
-        EXCLUDE_CATEGORIES("excludeCategories", new com.google.common.reflect.TypeToken<com.google.common.collect.ImmutableSet<String>>() {}, false, 0, "exclude_categories", org.thryft.protocol.Type.SET),
-        EXCLUDE_COLLECTIONS("excludeCollections", new com.google.common.reflect.TypeToken<com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.collection.CollectionId>>() {}, false, 0, "exclude_collections", org.thryft.protocol.Type.SET),
-        EXCLUDE_COLOR_TEXTS("excludeColorTexts", new com.google.common.reflect.TypeToken<com.google.common.collect.ImmutableSet<String>>() {}, false, 0, "exclude_color_texts", org.thryft.protocol.Type.SET),
-        EXCLUDE_CULTURAL_CONTEXT_TEXTS("excludeCulturalContextTexts", new com.google.common.reflect.TypeToken<com.google.common.collect.ImmutableSet<String>>() {}, false, 0, "exclude_cultural_context_texts", org.thryft.protocol.Type.SET),
-        EXCLUDE_GENDERS("excludeGenders", new com.google.common.reflect.TypeToken<com.google.common.collect.ImmutableSet<org.dressdiscover.api.vocabularies.costume_core.gender.Gender>>() {}, false, 0, "exclude_genders", org.thryft.protocol.Type.SET),
-        EXCLUDE_INSTITUTIONS("excludeInstitutions", new com.google.common.reflect.TypeToken<com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.institution.InstitutionId>>() {}, false, 0, "exclude_institutions", org.thryft.protocol.Type.SET),
-        EXCLUDE_LOCATION_NAME_TEXTS("excludeLocationNameTexts", new com.google.common.reflect.TypeToken<com.google.common.collect.ImmutableSet<String>>() {}, false, 0, "exclude_location_name_texts", org.thryft.protocol.Type.SET),
-        EXCLUDE_MATERIAL_TEXTS("excludeMaterialTexts", new com.google.common.reflect.TypeToken<com.google.common.collect.ImmutableSet<String>>() {}, false, 0, "exclude_material_texts", org.thryft.protocol.Type.SET),
-        EXCLUDE_SUBJECT_TERM_TEXTS("excludeSubjectTermTexts", new com.google.common.reflect.TypeToken<com.google.common.collect.ImmutableSet<String>>() {}, false, 0, "exclude_subject_term_texts", org.thryft.protocol.Type.SET),
-        EXCLUDE_TECHNIQUE_TEXTS("excludeTechniqueTexts", new com.google.common.reflect.TypeToken<com.google.common.collect.ImmutableSet<String>>() {}, false, 0, "exclude_technique_texts", org.thryft.protocol.Type.SET),
-        EXCLUDE_WORK_TYPE_TEXTS("excludeWorkTypeTexts", new com.google.common.reflect.TypeToken<com.google.common.collect.ImmutableSet<String>>() {}, false, 0, "exclude_work_type_texts", org.thryft.protocol.Type.SET),
-        INCLUDE_CATEGORIES("includeCategories", new com.google.common.reflect.TypeToken<com.google.common.collect.ImmutableSet<String>>() {}, false, 0, "include_categories", org.thryft.protocol.Type.SET),
-        INCLUDE_COLLECTIONS("includeCollections", new com.google.common.reflect.TypeToken<com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.collection.CollectionId>>() {}, false, 0, "include_collections", org.thryft.protocol.Type.SET),
-        INCLUDE_COLOR_TEXTS("includeColorTexts", new com.google.common.reflect.TypeToken<com.google.common.collect.ImmutableSet<String>>() {}, false, 0, "include_color_texts", org.thryft.protocol.Type.SET),
-        INCLUDE_CULTURAL_CONTEXT_TEXTS("includeCulturalContextTexts", new com.google.common.reflect.TypeToken<com.google.common.collect.ImmutableSet<String>>() {}, false, 0, "include_cultural_context_texts", org.thryft.protocol.Type.SET),
-        INCLUDE_GENDERS("includeGenders", new com.google.common.reflect.TypeToken<com.google.common.collect.ImmutableSet<org.dressdiscover.api.vocabularies.costume_core.gender.Gender>>() {}, false, 0, "include_genders", org.thryft.protocol.Type.SET),
-        INCLUDE_INSTITUTIONS("includeInstitutions", new com.google.common.reflect.TypeToken<com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.institution.InstitutionId>>() {}, false, 0, "include_institutions", org.thryft.protocol.Type.SET),
-        INCLUDE_LOCATION_NAME_TEXTS("includeLocationNameTexts", new com.google.common.reflect.TypeToken<com.google.common.collect.ImmutableSet<String>>() {}, false, 0, "include_location_name_texts", org.thryft.protocol.Type.SET),
-        INCLUDE_MATERIAL_TEXTS("includeMaterialTexts", new com.google.common.reflect.TypeToken<com.google.common.collect.ImmutableSet<String>>() {}, false, 0, "include_material_texts", org.thryft.protocol.Type.SET),
-        INCLUDE_SUBJECT_TERM_TEXTS("includeSubjectTermTexts", new com.google.common.reflect.TypeToken<com.google.common.collect.ImmutableSet<String>>() {}, false, 0, "include_subject_term_texts", org.thryft.protocol.Type.SET),
-        INCLUDE_TECHNIQUE_TEXTS("includeTechniqueTexts", new com.google.common.reflect.TypeToken<com.google.common.collect.ImmutableSet<String>>() {}, false, 0, "include_technique_texts", org.thryft.protocol.Type.SET),
-        INCLUDE_WORK_TYPE_TEXTS("includeWorkTypeTexts", new com.google.common.reflect.TypeToken<com.google.common.collect.ImmutableSet<String>>() {}, false, 0, "include_work_type_texts", org.thryft.protocol.Type.SET);
+        EXCLUDE_ALL("excludeAll", new com.google.common.reflect.TypeToken<Boolean>() {}, false, (short)0, "exclude_all", org.thryft.protocol.Type.BOOL),
+        EXCLUDE_CATEGORIES("excludeCategories", new com.google.common.reflect.TypeToken<com.google.common.collect.ImmutableSet<String>>() {}, false, (short)0, "exclude_categories", org.thryft.protocol.Type.SET),
+        EXCLUDE_COLLECTIONS("excludeCollections", new com.google.common.reflect.TypeToken<com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.collection.CollectionId>>() {}, false, (short)0, "exclude_collections", org.thryft.protocol.Type.SET),
+        EXCLUDE_COLOR_TEXTS("excludeColorTexts", new com.google.common.reflect.TypeToken<com.google.common.collect.ImmutableSet<String>>() {}, false, (short)0, "exclude_color_texts", org.thryft.protocol.Type.SET),
+        EXCLUDE_CULTURAL_CONTEXT_TEXTS("excludeCulturalContextTexts", new com.google.common.reflect.TypeToken<com.google.common.collect.ImmutableSet<String>>() {}, false, (short)0, "exclude_cultural_context_texts", org.thryft.protocol.Type.SET),
+        EXCLUDE_GENDERS("excludeGenders", new com.google.common.reflect.TypeToken<com.google.common.collect.ImmutableSet<org.dressdiscover.api.vocabularies.costume_core.gender.Gender>>() {}, false, (short)0, "exclude_genders", org.thryft.protocol.Type.SET),
+        EXCLUDE_INSTITUTIONS("excludeInstitutions", new com.google.common.reflect.TypeToken<com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.institution.InstitutionId>>() {}, false, (short)0, "exclude_institutions", org.thryft.protocol.Type.SET),
+        EXCLUDE_LOCATION_NAME_TEXTS("excludeLocationNameTexts", new com.google.common.reflect.TypeToken<com.google.common.collect.ImmutableSet<String>>() {}, false, (short)0, "exclude_location_name_texts", org.thryft.protocol.Type.SET),
+        EXCLUDE_MATERIAL_TEXTS("excludeMaterialTexts", new com.google.common.reflect.TypeToken<com.google.common.collect.ImmutableSet<String>>() {}, false, (short)0, "exclude_material_texts", org.thryft.protocol.Type.SET),
+        EXCLUDE_SUBJECT_TERM_TEXTS("excludeSubjectTermTexts", new com.google.common.reflect.TypeToken<com.google.common.collect.ImmutableSet<String>>() {}, false, (short)0, "exclude_subject_term_texts", org.thryft.protocol.Type.SET),
+        EXCLUDE_TECHNIQUE_TEXTS("excludeTechniqueTexts", new com.google.common.reflect.TypeToken<com.google.common.collect.ImmutableSet<String>>() {}, false, (short)0, "exclude_technique_texts", org.thryft.protocol.Type.SET),
+        EXCLUDE_WORK_TYPE_TEXTS("excludeWorkTypeTexts", new com.google.common.reflect.TypeToken<com.google.common.collect.ImmutableSet<String>>() {}, false, (short)0, "exclude_work_type_texts", org.thryft.protocol.Type.SET),
+        INCLUDE_CATEGORIES("includeCategories", new com.google.common.reflect.TypeToken<com.google.common.collect.ImmutableSet<String>>() {}, false, (short)0, "include_categories", org.thryft.protocol.Type.SET),
+        INCLUDE_COLLECTIONS("includeCollections", new com.google.common.reflect.TypeToken<com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.collection.CollectionId>>() {}, false, (short)0, "include_collections", org.thryft.protocol.Type.SET),
+        INCLUDE_COLOR_TEXTS("includeColorTexts", new com.google.common.reflect.TypeToken<com.google.common.collect.ImmutableSet<String>>() {}, false, (short)0, "include_color_texts", org.thryft.protocol.Type.SET),
+        INCLUDE_CULTURAL_CONTEXT_TEXTS("includeCulturalContextTexts", new com.google.common.reflect.TypeToken<com.google.common.collect.ImmutableSet<String>>() {}, false, (short)0, "include_cultural_context_texts", org.thryft.protocol.Type.SET),
+        INCLUDE_GENDERS("includeGenders", new com.google.common.reflect.TypeToken<com.google.common.collect.ImmutableSet<org.dressdiscover.api.vocabularies.costume_core.gender.Gender>>() {}, false, (short)0, "include_genders", org.thryft.protocol.Type.SET),
+        INCLUDE_INSTITUTIONS("includeInstitutions", new com.google.common.reflect.TypeToken<com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.institution.InstitutionId>>() {}, false, (short)0, "include_institutions", org.thryft.protocol.Type.SET),
+        INCLUDE_LOCATION_NAME_TEXTS("includeLocationNameTexts", new com.google.common.reflect.TypeToken<com.google.common.collect.ImmutableSet<String>>() {}, false, (short)0, "include_location_name_texts", org.thryft.protocol.Type.SET),
+        INCLUDE_MATERIAL_TEXTS("includeMaterialTexts", new com.google.common.reflect.TypeToken<com.google.common.collect.ImmutableSet<String>>() {}, false, (short)0, "include_material_texts", org.thryft.protocol.Type.SET),
+        INCLUDE_SUBJECT_TERM_TEXTS("includeSubjectTermTexts", new com.google.common.reflect.TypeToken<com.google.common.collect.ImmutableSet<String>>() {}, false, (short)0, "include_subject_term_texts", org.thryft.protocol.Type.SET),
+        INCLUDE_TECHNIQUE_TEXTS("includeTechniqueTexts", new com.google.common.reflect.TypeToken<com.google.common.collect.ImmutableSet<String>>() {}, false, (short)0, "include_technique_texts", org.thryft.protocol.Type.SET),
+        INCLUDE_WORK_TYPE_TEXTS("includeWorkTypeTexts", new com.google.common.reflect.TypeToken<com.google.common.collect.ImmutableSet<String>>() {}, false, (short)0, "include_work_type_texts", org.thryft.protocol.Type.SET);
 
         @Override
         public String getJavaName() {
@@ -1812,7 +1857,7 @@ public final class ObjectFacetFilters implements org.thryft.Struct {
         }
 
         @Override
-        public int getThriftId() {
+        public short getThriftId() {
             return thriftId;
         }
 
@@ -1901,7 +1946,7 @@ public final class ObjectFacetFilters implements org.thryft.Struct {
             }
         }
 
-        private FieldMetadata(final String javaName, final com.google.common.reflect.TypeToken<?> javaType, final boolean required, final int thriftId, final String thriftName, final org.thryft.protocol.Type thriftProtocolType) {
+        private FieldMetadata(final String javaName, final com.google.common.reflect.TypeToken<?> javaType, final boolean required, final short thriftId, final String thriftName, final org.thryft.protocol.Type thriftProtocolType) {
             this.javaName = javaName;
             this.javaType = javaType;
             this.required = required;
@@ -1918,981 +1963,624 @@ public final class ObjectFacetFilters implements org.thryft.Struct {
         private final String javaName;
         private final com.google.common.reflect.TypeToken<?> javaType;
         private final boolean required;
-        private final int thriftId;
+        private final short thriftId;
         private final String thriftName;
         private final String thriftProtocolKey;
         private final org.thryft.protocol.Type thriftProtocolType;
     }
 
-    public interface Validator<ExceptionT extends Exception> {
-        public com.google.common.base.Optional<Boolean> validateExcludeAll(final com.google.common.base.Optional<Boolean> excludeAll) throws ExceptionT;
-
-        public com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> validateExcludeCategories(final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> excludeCategories) throws ExceptionT;
-
-        public com.google.common.base.Optional<com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.collection.CollectionId>> validateExcludeCollections(final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.collection.CollectionId>> excludeCollections) throws ExceptionT;
-
-        public com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> validateExcludeColorTexts(final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> excludeColorTexts) throws ExceptionT;
-
-        public com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> validateExcludeCulturalContextTexts(final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> excludeCulturalContextTexts) throws ExceptionT;
-
-        public com.google.common.base.Optional<com.google.common.collect.ImmutableSet<org.dressdiscover.api.vocabularies.costume_core.gender.Gender>> validateExcludeGenders(final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<org.dressdiscover.api.vocabularies.costume_core.gender.Gender>> excludeGenders) throws ExceptionT;
-
-        public com.google.common.base.Optional<com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.institution.InstitutionId>> validateExcludeInstitutions(final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.institution.InstitutionId>> excludeInstitutions) throws ExceptionT;
-
-        public com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> validateExcludeLocationNameTexts(final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> excludeLocationNameTexts) throws ExceptionT;
-
-        public com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> validateExcludeMaterialTexts(final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> excludeMaterialTexts) throws ExceptionT;
-
-        public com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> validateExcludeSubjectTermTexts(final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> excludeSubjectTermTexts) throws ExceptionT;
-
-        public com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> validateExcludeTechniqueTexts(final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> excludeTechniqueTexts) throws ExceptionT;
-
-        public com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> validateExcludeWorkTypeTexts(final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> excludeWorkTypeTexts) throws ExceptionT;
-
-        public com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> validateIncludeCategories(final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> includeCategories) throws ExceptionT;
-
-        public com.google.common.base.Optional<com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.collection.CollectionId>> validateIncludeCollections(final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.collection.CollectionId>> includeCollections) throws ExceptionT;
-
-        public com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> validateIncludeColorTexts(final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> includeColorTexts) throws ExceptionT;
-
-        public com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> validateIncludeCulturalContextTexts(final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> includeCulturalContextTexts) throws ExceptionT;
-
-        public com.google.common.base.Optional<com.google.common.collect.ImmutableSet<org.dressdiscover.api.vocabularies.costume_core.gender.Gender>> validateIncludeGenders(final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<org.dressdiscover.api.vocabularies.costume_core.gender.Gender>> includeGenders) throws ExceptionT;
-
-        public com.google.common.base.Optional<com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.institution.InstitutionId>> validateIncludeInstitutions(final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.institution.InstitutionId>> includeInstitutions) throws ExceptionT;
-
-        public com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> validateIncludeLocationNameTexts(final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> includeLocationNameTexts) throws ExceptionT;
-
-        public com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> validateIncludeMaterialTexts(final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> includeMaterialTexts) throws ExceptionT;
-
-        public com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> validateIncludeSubjectTermTexts(final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> includeSubjectTermTexts) throws ExceptionT;
-
-        public com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> validateIncludeTechniqueTexts(final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> includeTechniqueTexts) throws ExceptionT;
-
-        public com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> validateIncludeWorkTypeTexts(final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> includeWorkTypeTexts) throws ExceptionT;
-    }
-
-    public interface ConstructionValidator extends Validator<RuntimeException> {
-    }
-
-    public static class DefaultConstructionValidator implements ConstructionValidator {
-        public static DefaultConstructionValidator getInstance() {
-            return instance;
+    public final static class ReadValidator {
+        public static void validate(final com.google.common.base.Optional<Boolean> excludeAll, final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> excludeCategories, final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.collection.CollectionId>> excludeCollections, final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> excludeColorTexts, final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> excludeCulturalContextTexts, final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<org.dressdiscover.api.vocabularies.costume_core.gender.Gender>> excludeGenders, final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.institution.InstitutionId>> excludeInstitutions, final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> excludeLocationNameTexts, final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> excludeMaterialTexts, final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> excludeSubjectTermTexts, final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> excludeTechniqueTexts, final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> excludeWorkTypeTexts, final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> includeCategories, final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.collection.CollectionId>> includeCollections, final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> includeColorTexts, final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> includeCulturalContextTexts, final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<org.dressdiscover.api.vocabularies.costume_core.gender.Gender>> includeGenders, final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.institution.InstitutionId>> includeInstitutions, final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> includeLocationNameTexts, final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> includeMaterialTexts, final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> includeSubjectTermTexts, final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> includeTechniqueTexts, final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> includeWorkTypeTexts) throws org.thryft.protocol.InputProtocolException {
+            validateExcludeAll(excludeAll);
+            validateExcludeCategories(excludeCategories);
+            validateExcludeCollections(excludeCollections);
+            validateExcludeColorTexts(excludeColorTexts);
+            validateExcludeCulturalContextTexts(excludeCulturalContextTexts);
+            validateExcludeGenders(excludeGenders);
+            validateExcludeInstitutions(excludeInstitutions);
+            validateExcludeLocationNameTexts(excludeLocationNameTexts);
+            validateExcludeMaterialTexts(excludeMaterialTexts);
+            validateExcludeSubjectTermTexts(excludeSubjectTermTexts);
+            validateExcludeTechniqueTexts(excludeTechniqueTexts);
+            validateExcludeWorkTypeTexts(excludeWorkTypeTexts);
+            validateIncludeCategories(includeCategories);
+            validateIncludeCollections(includeCollections);
+            validateIncludeColorTexts(includeColorTexts);
+            validateIncludeCulturalContextTexts(includeCulturalContextTexts);
+            validateIncludeGenders(includeGenders);
+            validateIncludeInstitutions(includeInstitutions);
+            validateIncludeLocationNameTexts(includeLocationNameTexts);
+            validateIncludeMaterialTexts(includeMaterialTexts);
+            validateIncludeSubjectTermTexts(includeSubjectTermTexts);
+            validateIncludeTechniqueTexts(includeTechniqueTexts);
+            validateIncludeWorkTypeTexts(includeWorkTypeTexts);
         }
 
-        public DefaultConstructionValidator() {
-        }
-
-        @Override
-        public com.google.common.base.Optional<Boolean> validateExcludeAll(final com.google.common.base.Optional<Boolean> excludeAll) throws RuntimeException {
+        public static void validateExcludeAll(final com.google.common.base.Optional<Boolean> excludeAll) throws org.thryft.protocol.InputProtocolException {
+            if (excludeAll == null) {
+                throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.EXCLUDE_ALL, "org.dressdiscover.api.models.object.ObjectFacetFilters: excludeAll is null");
+            }
             if (!excludeAll.isPresent()) {
-                return excludeAll;
+                return;
             }
             if (!excludeAll.get()) {
-                throw new IllegalArgumentException("org.dressdiscover.api.models.object.ObjectFacetFilters: excludeAll is not true");
+                throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.EXCLUDE_ALL, "org.dressdiscover.api.models.object.ObjectFacetFilters.excludeAll: not true");
             }
-            return excludeAll;
         }
 
-        @Override
-        public com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> validateExcludeCategories(final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> excludeCategories) throws RuntimeException {
-            if (excludeCategories == null) {
-                throw new NullPointerException("org.dressdiscover.api.models.object.ObjectFacetFilters: excludeCategories is null");
-            }
-            if (!excludeCategories.isPresent()) {
-                return excludeCategories;
-            }
-            if (excludeCategories.get().isEmpty()) {
-                throw new IllegalArgumentException("org.dressdiscover.api.models.object.ObjectFacetFilters: excludeCategories is less than min length 1");
-            }
-            return excludeCategories;
-        }
-
-        @Override
-        public com.google.common.base.Optional<com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.collection.CollectionId>> validateExcludeCollections(final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.collection.CollectionId>> excludeCollections) throws RuntimeException {
-            if (excludeCollections == null) {
-                throw new NullPointerException("org.dressdiscover.api.models.object.ObjectFacetFilters: excludeCollections is null");
-            }
-            if (!excludeCollections.isPresent()) {
-                return excludeCollections;
-            }
-            if (excludeCollections.get().isEmpty()) {
-                throw new IllegalArgumentException("org.dressdiscover.api.models.object.ObjectFacetFilters: excludeCollections is less than min length 1");
-            }
-            return excludeCollections;
-        }
-
-        @Override
-        public com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> validateExcludeColorTexts(final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> excludeColorTexts) throws RuntimeException {
-            if (excludeColorTexts == null) {
-                throw new NullPointerException("org.dressdiscover.api.models.object.ObjectFacetFilters: excludeColorTexts is null");
-            }
-            if (!excludeColorTexts.isPresent()) {
-                return excludeColorTexts;
-            }
-            if (excludeColorTexts.get().isEmpty()) {
-                throw new IllegalArgumentException("org.dressdiscover.api.models.object.ObjectFacetFilters: excludeColorTexts is less than min length 1");
-            }
-            return excludeColorTexts;
-        }
-
-        @Override
-        public com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> validateExcludeCulturalContextTexts(final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> excludeCulturalContextTexts) throws RuntimeException {
-            if (excludeCulturalContextTexts == null) {
-                throw new NullPointerException("org.dressdiscover.api.models.object.ObjectFacetFilters: excludeCulturalContextTexts is null");
-            }
-            if (!excludeCulturalContextTexts.isPresent()) {
-                return excludeCulturalContextTexts;
-            }
-            if (excludeCulturalContextTexts.get().isEmpty()) {
-                throw new IllegalArgumentException("org.dressdiscover.api.models.object.ObjectFacetFilters: excludeCulturalContextTexts is less than min length 1");
-            }
-            return excludeCulturalContextTexts;
-        }
-
-        @Override
-        public com.google.common.base.Optional<com.google.common.collect.ImmutableSet<org.dressdiscover.api.vocabularies.costume_core.gender.Gender>> validateExcludeGenders(final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<org.dressdiscover.api.vocabularies.costume_core.gender.Gender>> excludeGenders) throws RuntimeException {
-            if (excludeGenders == null) {
-                throw new NullPointerException("org.dressdiscover.api.models.object.ObjectFacetFilters: excludeGenders is null");
-            }
-            if (!excludeGenders.isPresent()) {
-                return excludeGenders;
-            }
-            if (excludeGenders.get().isEmpty()) {
-                throw new IllegalArgumentException("org.dressdiscover.api.models.object.ObjectFacetFilters: excludeGenders is less than min length 1");
-            }
-            return excludeGenders;
-        }
-
-        @Override
-        public com.google.common.base.Optional<com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.institution.InstitutionId>> validateExcludeInstitutions(final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.institution.InstitutionId>> excludeInstitutions) throws RuntimeException {
-            if (excludeInstitutions == null) {
-                throw new NullPointerException("org.dressdiscover.api.models.object.ObjectFacetFilters: excludeInstitutions is null");
-            }
-            if (!excludeInstitutions.isPresent()) {
-                return excludeInstitutions;
-            }
-            if (excludeInstitutions.get().isEmpty()) {
-                throw new IllegalArgumentException("org.dressdiscover.api.models.object.ObjectFacetFilters: excludeInstitutions is less than min length 1");
-            }
-            return excludeInstitutions;
-        }
-
-        @Override
-        public com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> validateExcludeLocationNameTexts(final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> excludeLocationNameTexts) throws RuntimeException {
-            if (excludeLocationNameTexts == null) {
-                throw new NullPointerException("org.dressdiscover.api.models.object.ObjectFacetFilters: excludeLocationNameTexts is null");
-            }
-            if (!excludeLocationNameTexts.isPresent()) {
-                return excludeLocationNameTexts;
-            }
-            if (excludeLocationNameTexts.get().isEmpty()) {
-                throw new IllegalArgumentException("org.dressdiscover.api.models.object.ObjectFacetFilters: excludeLocationNameTexts is less than min length 1");
-            }
-            return excludeLocationNameTexts;
-        }
-
-        @Override
-        public com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> validateExcludeMaterialTexts(final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> excludeMaterialTexts) throws RuntimeException {
-            if (excludeMaterialTexts == null) {
-                throw new NullPointerException("org.dressdiscover.api.models.object.ObjectFacetFilters: excludeMaterialTexts is null");
-            }
-            if (!excludeMaterialTexts.isPresent()) {
-                return excludeMaterialTexts;
-            }
-            if (excludeMaterialTexts.get().isEmpty()) {
-                throw new IllegalArgumentException("org.dressdiscover.api.models.object.ObjectFacetFilters: excludeMaterialTexts is less than min length 1");
-            }
-            return excludeMaterialTexts;
-        }
-
-        @Override
-        public com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> validateExcludeSubjectTermTexts(final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> excludeSubjectTermTexts) throws RuntimeException {
-            if (excludeSubjectTermTexts == null) {
-                throw new NullPointerException("org.dressdiscover.api.models.object.ObjectFacetFilters: excludeSubjectTermTexts is null");
-            }
-            if (!excludeSubjectTermTexts.isPresent()) {
-                return excludeSubjectTermTexts;
-            }
-            if (excludeSubjectTermTexts.get().isEmpty()) {
-                throw new IllegalArgumentException("org.dressdiscover.api.models.object.ObjectFacetFilters: excludeSubjectTermTexts is less than min length 1");
-            }
-            return excludeSubjectTermTexts;
-        }
-
-        @Override
-        public com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> validateExcludeTechniqueTexts(final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> excludeTechniqueTexts) throws RuntimeException {
-            if (excludeTechniqueTexts == null) {
-                throw new NullPointerException("org.dressdiscover.api.models.object.ObjectFacetFilters: excludeTechniqueTexts is null");
-            }
-            if (!excludeTechniqueTexts.isPresent()) {
-                return excludeTechniqueTexts;
-            }
-            if (excludeTechniqueTexts.get().isEmpty()) {
-                throw new IllegalArgumentException("org.dressdiscover.api.models.object.ObjectFacetFilters: excludeTechniqueTexts is less than min length 1");
-            }
-            return excludeTechniqueTexts;
-        }
-
-        @Override
-        public com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> validateExcludeWorkTypeTexts(final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> excludeWorkTypeTexts) throws RuntimeException {
-            if (excludeWorkTypeTexts == null) {
-                throw new NullPointerException("org.dressdiscover.api.models.object.ObjectFacetFilters: excludeWorkTypeTexts is null");
-            }
-            if (!excludeWorkTypeTexts.isPresent()) {
-                return excludeWorkTypeTexts;
-            }
-            if (excludeWorkTypeTexts.get().isEmpty()) {
-                throw new IllegalArgumentException("org.dressdiscover.api.models.object.ObjectFacetFilters: excludeWorkTypeTexts is less than min length 1");
-            }
-            return excludeWorkTypeTexts;
-        }
-
-        @Override
-        public com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> validateIncludeCategories(final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> includeCategories) throws RuntimeException {
-            if (includeCategories == null) {
-                throw new NullPointerException("org.dressdiscover.api.models.object.ObjectFacetFilters: includeCategories is null");
-            }
-            if (!includeCategories.isPresent()) {
-                return includeCategories;
-            }
-            if (includeCategories.get().isEmpty()) {
-                throw new IllegalArgumentException("org.dressdiscover.api.models.object.ObjectFacetFilters: includeCategories is less than min length 1");
-            }
-            return includeCategories;
-        }
-
-        @Override
-        public com.google.common.base.Optional<com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.collection.CollectionId>> validateIncludeCollections(final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.collection.CollectionId>> includeCollections) throws RuntimeException {
-            if (includeCollections == null) {
-                throw new NullPointerException("org.dressdiscover.api.models.object.ObjectFacetFilters: includeCollections is null");
-            }
-            if (!includeCollections.isPresent()) {
-                return includeCollections;
-            }
-            if (includeCollections.get().isEmpty()) {
-                throw new IllegalArgumentException("org.dressdiscover.api.models.object.ObjectFacetFilters: includeCollections is less than min length 1");
-            }
-            return includeCollections;
-        }
-
-        @Override
-        public com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> validateIncludeColorTexts(final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> includeColorTexts) throws RuntimeException {
-            if (includeColorTexts == null) {
-                throw new NullPointerException("org.dressdiscover.api.models.object.ObjectFacetFilters: includeColorTexts is null");
-            }
-            if (!includeColorTexts.isPresent()) {
-                return includeColorTexts;
-            }
-            if (includeColorTexts.get().isEmpty()) {
-                throw new IllegalArgumentException("org.dressdiscover.api.models.object.ObjectFacetFilters: includeColorTexts is less than min length 1");
-            }
-            return includeColorTexts;
-        }
-
-        @Override
-        public com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> validateIncludeCulturalContextTexts(final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> includeCulturalContextTexts) throws RuntimeException {
-            if (includeCulturalContextTexts == null) {
-                throw new NullPointerException("org.dressdiscover.api.models.object.ObjectFacetFilters: includeCulturalContextTexts is null");
-            }
-            if (!includeCulturalContextTexts.isPresent()) {
-                return includeCulturalContextTexts;
-            }
-            if (includeCulturalContextTexts.get().isEmpty()) {
-                throw new IllegalArgumentException("org.dressdiscover.api.models.object.ObjectFacetFilters: includeCulturalContextTexts is less than min length 1");
-            }
-            return includeCulturalContextTexts;
-        }
-
-        @Override
-        public com.google.common.base.Optional<com.google.common.collect.ImmutableSet<org.dressdiscover.api.vocabularies.costume_core.gender.Gender>> validateIncludeGenders(final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<org.dressdiscover.api.vocabularies.costume_core.gender.Gender>> includeGenders) throws RuntimeException {
-            if (includeGenders == null) {
-                throw new NullPointerException("org.dressdiscover.api.models.object.ObjectFacetFilters: includeGenders is null");
-            }
-            if (!includeGenders.isPresent()) {
-                return includeGenders;
-            }
-            if (includeGenders.get().isEmpty()) {
-                throw new IllegalArgumentException("org.dressdiscover.api.models.object.ObjectFacetFilters: includeGenders is less than min length 1");
-            }
-            return includeGenders;
-        }
-
-        @Override
-        public com.google.common.base.Optional<com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.institution.InstitutionId>> validateIncludeInstitutions(final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.institution.InstitutionId>> includeInstitutions) throws RuntimeException {
-            if (includeInstitutions == null) {
-                throw new NullPointerException("org.dressdiscover.api.models.object.ObjectFacetFilters: includeInstitutions is null");
-            }
-            if (!includeInstitutions.isPresent()) {
-                return includeInstitutions;
-            }
-            if (includeInstitutions.get().isEmpty()) {
-                throw new IllegalArgumentException("org.dressdiscover.api.models.object.ObjectFacetFilters: includeInstitutions is less than min length 1");
-            }
-            return includeInstitutions;
-        }
-
-        @Override
-        public com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> validateIncludeLocationNameTexts(final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> includeLocationNameTexts) throws RuntimeException {
-            if (includeLocationNameTexts == null) {
-                throw new NullPointerException("org.dressdiscover.api.models.object.ObjectFacetFilters: includeLocationNameTexts is null");
-            }
-            if (!includeLocationNameTexts.isPresent()) {
-                return includeLocationNameTexts;
-            }
-            if (includeLocationNameTexts.get().isEmpty()) {
-                throw new IllegalArgumentException("org.dressdiscover.api.models.object.ObjectFacetFilters: includeLocationNameTexts is less than min length 1");
-            }
-            return includeLocationNameTexts;
-        }
-
-        @Override
-        public com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> validateIncludeMaterialTexts(final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> includeMaterialTexts) throws RuntimeException {
-            if (includeMaterialTexts == null) {
-                throw new NullPointerException("org.dressdiscover.api.models.object.ObjectFacetFilters: includeMaterialTexts is null");
-            }
-            if (!includeMaterialTexts.isPresent()) {
-                return includeMaterialTexts;
-            }
-            if (includeMaterialTexts.get().isEmpty()) {
-                throw new IllegalArgumentException("org.dressdiscover.api.models.object.ObjectFacetFilters: includeMaterialTexts is less than min length 1");
-            }
-            return includeMaterialTexts;
-        }
-
-        @Override
-        public com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> validateIncludeSubjectTermTexts(final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> includeSubjectTermTexts) throws RuntimeException {
-            if (includeSubjectTermTexts == null) {
-                throw new NullPointerException("org.dressdiscover.api.models.object.ObjectFacetFilters: includeSubjectTermTexts is null");
-            }
-            if (!includeSubjectTermTexts.isPresent()) {
-                return includeSubjectTermTexts;
-            }
-            if (includeSubjectTermTexts.get().isEmpty()) {
-                throw new IllegalArgumentException("org.dressdiscover.api.models.object.ObjectFacetFilters: includeSubjectTermTexts is less than min length 1");
-            }
-            return includeSubjectTermTexts;
-        }
-
-        @Override
-        public com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> validateIncludeTechniqueTexts(final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> includeTechniqueTexts) throws RuntimeException {
-            if (includeTechniqueTexts == null) {
-                throw new NullPointerException("org.dressdiscover.api.models.object.ObjectFacetFilters: includeTechniqueTexts is null");
-            }
-            if (!includeTechniqueTexts.isPresent()) {
-                return includeTechniqueTexts;
-            }
-            if (includeTechniqueTexts.get().isEmpty()) {
-                throw new IllegalArgumentException("org.dressdiscover.api.models.object.ObjectFacetFilters: includeTechniqueTexts is less than min length 1");
-            }
-            return includeTechniqueTexts;
-        }
-
-        @Override
-        public com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> validateIncludeWorkTypeTexts(final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> includeWorkTypeTexts) throws RuntimeException {
-            if (includeWorkTypeTexts == null) {
-                throw new NullPointerException("org.dressdiscover.api.models.object.ObjectFacetFilters: includeWorkTypeTexts is null");
-            }
-            if (!includeWorkTypeTexts.isPresent()) {
-                return includeWorkTypeTexts;
-            }
-            if (includeWorkTypeTexts.get().isEmpty()) {
-                throw new IllegalArgumentException("org.dressdiscover.api.models.object.ObjectFacetFilters: includeWorkTypeTexts is less than min length 1");
-            }
-            return includeWorkTypeTexts;
-        }
-
-        private final static DefaultConstructionValidator instance = new DefaultConstructionValidator();
-    }
-
-    public static class NopConstructionValidator implements ConstructionValidator {
-        public static NopConstructionValidator getInstance() {
-            return instance;
-        }
-
-        public NopConstructionValidator() {
-        }
-
-        @Override
-        public com.google.common.base.Optional<Boolean> validateExcludeAll(final com.google.common.base.Optional<Boolean> excludeAll) {
-            return excludeAll;
-        }
-
-        @Override
-        public com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> validateExcludeCategories(final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> excludeCategories) {
-            return excludeCategories;
-        }
-
-        @Override
-        public com.google.common.base.Optional<com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.collection.CollectionId>> validateExcludeCollections(final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.collection.CollectionId>> excludeCollections) {
-            return excludeCollections;
-        }
-
-        @Override
-        public com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> validateExcludeColorTexts(final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> excludeColorTexts) {
-            return excludeColorTexts;
-        }
-
-        @Override
-        public com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> validateExcludeCulturalContextTexts(final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> excludeCulturalContextTexts) {
-            return excludeCulturalContextTexts;
-        }
-
-        @Override
-        public com.google.common.base.Optional<com.google.common.collect.ImmutableSet<org.dressdiscover.api.vocabularies.costume_core.gender.Gender>> validateExcludeGenders(final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<org.dressdiscover.api.vocabularies.costume_core.gender.Gender>> excludeGenders) {
-            return excludeGenders;
-        }
-
-        @Override
-        public com.google.common.base.Optional<com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.institution.InstitutionId>> validateExcludeInstitutions(final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.institution.InstitutionId>> excludeInstitutions) {
-            return excludeInstitutions;
-        }
-
-        @Override
-        public com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> validateExcludeLocationNameTexts(final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> excludeLocationNameTexts) {
-            return excludeLocationNameTexts;
-        }
-
-        @Override
-        public com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> validateExcludeMaterialTexts(final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> excludeMaterialTexts) {
-            return excludeMaterialTexts;
-        }
-
-        @Override
-        public com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> validateExcludeSubjectTermTexts(final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> excludeSubjectTermTexts) {
-            return excludeSubjectTermTexts;
-        }
-
-        @Override
-        public com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> validateExcludeTechniqueTexts(final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> excludeTechniqueTexts) {
-            return excludeTechniqueTexts;
-        }
-
-        @Override
-        public com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> validateExcludeWorkTypeTexts(final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> excludeWorkTypeTexts) {
-            return excludeWorkTypeTexts;
-        }
-
-        @Override
-        public com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> validateIncludeCategories(final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> includeCategories) {
-            return includeCategories;
-        }
-
-        @Override
-        public com.google.common.base.Optional<com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.collection.CollectionId>> validateIncludeCollections(final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.collection.CollectionId>> includeCollections) {
-            return includeCollections;
-        }
-
-        @Override
-        public com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> validateIncludeColorTexts(final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> includeColorTexts) {
-            return includeColorTexts;
-        }
-
-        @Override
-        public com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> validateIncludeCulturalContextTexts(final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> includeCulturalContextTexts) {
-            return includeCulturalContextTexts;
-        }
-
-        @Override
-        public com.google.common.base.Optional<com.google.common.collect.ImmutableSet<org.dressdiscover.api.vocabularies.costume_core.gender.Gender>> validateIncludeGenders(final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<org.dressdiscover.api.vocabularies.costume_core.gender.Gender>> includeGenders) {
-            return includeGenders;
-        }
-
-        @Override
-        public com.google.common.base.Optional<com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.institution.InstitutionId>> validateIncludeInstitutions(final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.institution.InstitutionId>> includeInstitutions) {
-            return includeInstitutions;
-        }
-
-        @Override
-        public com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> validateIncludeLocationNameTexts(final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> includeLocationNameTexts) {
-            return includeLocationNameTexts;
-        }
-
-        @Override
-        public com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> validateIncludeMaterialTexts(final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> includeMaterialTexts) {
-            return includeMaterialTexts;
-        }
-
-        @Override
-        public com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> validateIncludeSubjectTermTexts(final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> includeSubjectTermTexts) {
-            return includeSubjectTermTexts;
-        }
-
-        @Override
-        public com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> validateIncludeTechniqueTexts(final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> includeTechniqueTexts) {
-            return includeTechniqueTexts;
-        }
-
-        @Override
-        public com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> validateIncludeWorkTypeTexts(final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> includeWorkTypeTexts) {
-            return includeWorkTypeTexts;
-        }
-
-        private final static NopConstructionValidator instance = new NopConstructionValidator();
-    }
-
-    public interface ReadValidator extends Validator<org.thryft.protocol.InputProtocolException> {
-    }
-
-    public static class DefaultReadValidator implements ReadValidator {
-        public static DefaultReadValidator getInstance() {
-            return instance;
-        }
-
-        public DefaultReadValidator() {
-        }
-
-        @Override
-        public com.google.common.base.Optional<Boolean> validateExcludeAll(final com.google.common.base.Optional<Boolean> excludeAll) throws org.thryft.protocol.InputProtocolException {
-            if (!excludeAll.isPresent()) {
-                return excludeAll;
-            }
-            if (!excludeAll.get()) {
-                throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.EXCLUDE_ALL, "org.dressdiscover.api.models.object.ObjectFacetFilters: excludeAll is not true");
-            }
-            return excludeAll;
-        }
-
-        @Override
-        public com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> validateExcludeCategories(final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> excludeCategories) throws org.thryft.protocol.InputProtocolException {
+        public static void validateExcludeCategories(final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> excludeCategories) throws org.thryft.protocol.InputProtocolException {
             if (excludeCategories == null) {
                 throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.EXCLUDE_CATEGORIES, "org.dressdiscover.api.models.object.ObjectFacetFilters: excludeCategories is null");
             }
             if (!excludeCategories.isPresent()) {
-                return excludeCategories;
+                return;
             }
             if (excludeCategories.get().isEmpty()) {
-                throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.EXCLUDE_CATEGORIES, "org.dressdiscover.api.models.object.ObjectFacetFilters: excludeCategories is less than min length 1");
+                throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.EXCLUDE_CATEGORIES, "org.dressdiscover.api.models.object.ObjectFacetFilters.excludeCategories: less than min length 1");
             }
-            return excludeCategories;
         }
 
-        @Override
-        public com.google.common.base.Optional<com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.collection.CollectionId>> validateExcludeCollections(final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.collection.CollectionId>> excludeCollections) throws org.thryft.protocol.InputProtocolException {
+        public static void validateExcludeCollections(final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.collection.CollectionId>> excludeCollections) throws org.thryft.protocol.InputProtocolException {
             if (excludeCollections == null) {
                 throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.EXCLUDE_COLLECTIONS, "org.dressdiscover.api.models.object.ObjectFacetFilters: excludeCollections is null");
             }
             if (!excludeCollections.isPresent()) {
-                return excludeCollections;
+                return;
             }
             if (excludeCollections.get().isEmpty()) {
-                throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.EXCLUDE_COLLECTIONS, "org.dressdiscover.api.models.object.ObjectFacetFilters: excludeCollections is less than min length 1");
+                throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.EXCLUDE_COLLECTIONS, "org.dressdiscover.api.models.object.ObjectFacetFilters.excludeCollections: less than min length 1");
             }
-            return excludeCollections;
         }
 
-        @Override
-        public com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> validateExcludeColorTexts(final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> excludeColorTexts) throws org.thryft.protocol.InputProtocolException {
+        public static void validateExcludeColorTexts(final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> excludeColorTexts) throws org.thryft.protocol.InputProtocolException {
             if (excludeColorTexts == null) {
                 throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.EXCLUDE_COLOR_TEXTS, "org.dressdiscover.api.models.object.ObjectFacetFilters: excludeColorTexts is null");
             }
             if (!excludeColorTexts.isPresent()) {
-                return excludeColorTexts;
+                return;
             }
             if (excludeColorTexts.get().isEmpty()) {
-                throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.EXCLUDE_COLOR_TEXTS, "org.dressdiscover.api.models.object.ObjectFacetFilters: excludeColorTexts is less than min length 1");
+                throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.EXCLUDE_COLOR_TEXTS, "org.dressdiscover.api.models.object.ObjectFacetFilters.excludeColorTexts: less than min length 1");
             }
-            return excludeColorTexts;
         }
 
-        @Override
-        public com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> validateExcludeCulturalContextTexts(final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> excludeCulturalContextTexts) throws org.thryft.protocol.InputProtocolException {
+        public static void validateExcludeCulturalContextTexts(final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> excludeCulturalContextTexts) throws org.thryft.protocol.InputProtocolException {
             if (excludeCulturalContextTexts == null) {
                 throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.EXCLUDE_CULTURAL_CONTEXT_TEXTS, "org.dressdiscover.api.models.object.ObjectFacetFilters: excludeCulturalContextTexts is null");
             }
             if (!excludeCulturalContextTexts.isPresent()) {
-                return excludeCulturalContextTexts;
+                return;
             }
             if (excludeCulturalContextTexts.get().isEmpty()) {
-                throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.EXCLUDE_CULTURAL_CONTEXT_TEXTS, "org.dressdiscover.api.models.object.ObjectFacetFilters: excludeCulturalContextTexts is less than min length 1");
+                throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.EXCLUDE_CULTURAL_CONTEXT_TEXTS, "org.dressdiscover.api.models.object.ObjectFacetFilters.excludeCulturalContextTexts: less than min length 1");
             }
-            return excludeCulturalContextTexts;
         }
 
-        @Override
-        public com.google.common.base.Optional<com.google.common.collect.ImmutableSet<org.dressdiscover.api.vocabularies.costume_core.gender.Gender>> validateExcludeGenders(final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<org.dressdiscover.api.vocabularies.costume_core.gender.Gender>> excludeGenders) throws org.thryft.protocol.InputProtocolException {
+        public static void validateExcludeGenders(final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<org.dressdiscover.api.vocabularies.costume_core.gender.Gender>> excludeGenders) throws org.thryft.protocol.InputProtocolException {
             if (excludeGenders == null) {
                 throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.EXCLUDE_GENDERS, "org.dressdiscover.api.models.object.ObjectFacetFilters: excludeGenders is null");
             }
             if (!excludeGenders.isPresent()) {
-                return excludeGenders;
+                return;
             }
             if (excludeGenders.get().isEmpty()) {
-                throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.EXCLUDE_GENDERS, "org.dressdiscover.api.models.object.ObjectFacetFilters: excludeGenders is less than min length 1");
+                throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.EXCLUDE_GENDERS, "org.dressdiscover.api.models.object.ObjectFacetFilters.excludeGenders: less than min length 1");
             }
-            return excludeGenders;
         }
 
-        @Override
-        public com.google.common.base.Optional<com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.institution.InstitutionId>> validateExcludeInstitutions(final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.institution.InstitutionId>> excludeInstitutions) throws org.thryft.protocol.InputProtocolException {
+        public static void validateExcludeInstitutions(final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.institution.InstitutionId>> excludeInstitutions) throws org.thryft.protocol.InputProtocolException {
             if (excludeInstitutions == null) {
                 throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.EXCLUDE_INSTITUTIONS, "org.dressdiscover.api.models.object.ObjectFacetFilters: excludeInstitutions is null");
             }
             if (!excludeInstitutions.isPresent()) {
-                return excludeInstitutions;
+                return;
             }
             if (excludeInstitutions.get().isEmpty()) {
-                throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.EXCLUDE_INSTITUTIONS, "org.dressdiscover.api.models.object.ObjectFacetFilters: excludeInstitutions is less than min length 1");
+                throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.EXCLUDE_INSTITUTIONS, "org.dressdiscover.api.models.object.ObjectFacetFilters.excludeInstitutions: less than min length 1");
             }
-            return excludeInstitutions;
         }
 
-        @Override
-        public com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> validateExcludeLocationNameTexts(final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> excludeLocationNameTexts) throws org.thryft.protocol.InputProtocolException {
+        public static void validateExcludeLocationNameTexts(final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> excludeLocationNameTexts) throws org.thryft.protocol.InputProtocolException {
             if (excludeLocationNameTexts == null) {
                 throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.EXCLUDE_LOCATION_NAME_TEXTS, "org.dressdiscover.api.models.object.ObjectFacetFilters: excludeLocationNameTexts is null");
             }
             if (!excludeLocationNameTexts.isPresent()) {
-                return excludeLocationNameTexts;
+                return;
             }
             if (excludeLocationNameTexts.get().isEmpty()) {
-                throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.EXCLUDE_LOCATION_NAME_TEXTS, "org.dressdiscover.api.models.object.ObjectFacetFilters: excludeLocationNameTexts is less than min length 1");
+                throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.EXCLUDE_LOCATION_NAME_TEXTS, "org.dressdiscover.api.models.object.ObjectFacetFilters.excludeLocationNameTexts: less than min length 1");
             }
-            return excludeLocationNameTexts;
         }
 
-        @Override
-        public com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> validateExcludeMaterialTexts(final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> excludeMaterialTexts) throws org.thryft.protocol.InputProtocolException {
+        public static void validateExcludeMaterialTexts(final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> excludeMaterialTexts) throws org.thryft.protocol.InputProtocolException {
             if (excludeMaterialTexts == null) {
                 throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.EXCLUDE_MATERIAL_TEXTS, "org.dressdiscover.api.models.object.ObjectFacetFilters: excludeMaterialTexts is null");
             }
             if (!excludeMaterialTexts.isPresent()) {
-                return excludeMaterialTexts;
+                return;
             }
             if (excludeMaterialTexts.get().isEmpty()) {
-                throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.EXCLUDE_MATERIAL_TEXTS, "org.dressdiscover.api.models.object.ObjectFacetFilters: excludeMaterialTexts is less than min length 1");
+                throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.EXCLUDE_MATERIAL_TEXTS, "org.dressdiscover.api.models.object.ObjectFacetFilters.excludeMaterialTexts: less than min length 1");
             }
-            return excludeMaterialTexts;
         }
 
-        @Override
-        public com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> validateExcludeSubjectTermTexts(final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> excludeSubjectTermTexts) throws org.thryft.protocol.InputProtocolException {
+        public static void validateExcludeSubjectTermTexts(final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> excludeSubjectTermTexts) throws org.thryft.protocol.InputProtocolException {
             if (excludeSubjectTermTexts == null) {
                 throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.EXCLUDE_SUBJECT_TERM_TEXTS, "org.dressdiscover.api.models.object.ObjectFacetFilters: excludeSubjectTermTexts is null");
             }
             if (!excludeSubjectTermTexts.isPresent()) {
-                return excludeSubjectTermTexts;
+                return;
             }
             if (excludeSubjectTermTexts.get().isEmpty()) {
-                throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.EXCLUDE_SUBJECT_TERM_TEXTS, "org.dressdiscover.api.models.object.ObjectFacetFilters: excludeSubjectTermTexts is less than min length 1");
+                throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.EXCLUDE_SUBJECT_TERM_TEXTS, "org.dressdiscover.api.models.object.ObjectFacetFilters.excludeSubjectTermTexts: less than min length 1");
             }
-            return excludeSubjectTermTexts;
         }
 
-        @Override
-        public com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> validateExcludeTechniqueTexts(final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> excludeTechniqueTexts) throws org.thryft.protocol.InputProtocolException {
+        public static void validateExcludeTechniqueTexts(final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> excludeTechniqueTexts) throws org.thryft.protocol.InputProtocolException {
             if (excludeTechniqueTexts == null) {
                 throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.EXCLUDE_TECHNIQUE_TEXTS, "org.dressdiscover.api.models.object.ObjectFacetFilters: excludeTechniqueTexts is null");
             }
             if (!excludeTechniqueTexts.isPresent()) {
-                return excludeTechniqueTexts;
+                return;
             }
             if (excludeTechniqueTexts.get().isEmpty()) {
-                throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.EXCLUDE_TECHNIQUE_TEXTS, "org.dressdiscover.api.models.object.ObjectFacetFilters: excludeTechniqueTexts is less than min length 1");
+                throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.EXCLUDE_TECHNIQUE_TEXTS, "org.dressdiscover.api.models.object.ObjectFacetFilters.excludeTechniqueTexts: less than min length 1");
             }
-            return excludeTechniqueTexts;
         }
 
-        @Override
-        public com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> validateExcludeWorkTypeTexts(final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> excludeWorkTypeTexts) throws org.thryft.protocol.InputProtocolException {
+        public static void validateExcludeWorkTypeTexts(final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> excludeWorkTypeTexts) throws org.thryft.protocol.InputProtocolException {
             if (excludeWorkTypeTexts == null) {
                 throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.EXCLUDE_WORK_TYPE_TEXTS, "org.dressdiscover.api.models.object.ObjectFacetFilters: excludeWorkTypeTexts is null");
             }
             if (!excludeWorkTypeTexts.isPresent()) {
-                return excludeWorkTypeTexts;
+                return;
             }
             if (excludeWorkTypeTexts.get().isEmpty()) {
-                throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.EXCLUDE_WORK_TYPE_TEXTS, "org.dressdiscover.api.models.object.ObjectFacetFilters: excludeWorkTypeTexts is less than min length 1");
+                throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.EXCLUDE_WORK_TYPE_TEXTS, "org.dressdiscover.api.models.object.ObjectFacetFilters.excludeWorkTypeTexts: less than min length 1");
             }
-            return excludeWorkTypeTexts;
         }
 
-        @Override
-        public com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> validateIncludeCategories(final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> includeCategories) throws org.thryft.protocol.InputProtocolException {
+        public static void validateIncludeCategories(final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> includeCategories) throws org.thryft.protocol.InputProtocolException {
             if (includeCategories == null) {
                 throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.INCLUDE_CATEGORIES, "org.dressdiscover.api.models.object.ObjectFacetFilters: includeCategories is null");
             }
             if (!includeCategories.isPresent()) {
-                return includeCategories;
+                return;
             }
             if (includeCategories.get().isEmpty()) {
-                throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.INCLUDE_CATEGORIES, "org.dressdiscover.api.models.object.ObjectFacetFilters: includeCategories is less than min length 1");
+                throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.INCLUDE_CATEGORIES, "org.dressdiscover.api.models.object.ObjectFacetFilters.includeCategories: less than min length 1");
             }
-            return includeCategories;
         }
 
-        @Override
-        public com.google.common.base.Optional<com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.collection.CollectionId>> validateIncludeCollections(final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.collection.CollectionId>> includeCollections) throws org.thryft.protocol.InputProtocolException {
+        public static void validateIncludeCollections(final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.collection.CollectionId>> includeCollections) throws org.thryft.protocol.InputProtocolException {
             if (includeCollections == null) {
                 throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.INCLUDE_COLLECTIONS, "org.dressdiscover.api.models.object.ObjectFacetFilters: includeCollections is null");
             }
             if (!includeCollections.isPresent()) {
-                return includeCollections;
+                return;
             }
             if (includeCollections.get().isEmpty()) {
-                throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.INCLUDE_COLLECTIONS, "org.dressdiscover.api.models.object.ObjectFacetFilters: includeCollections is less than min length 1");
+                throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.INCLUDE_COLLECTIONS, "org.dressdiscover.api.models.object.ObjectFacetFilters.includeCollections: less than min length 1");
             }
-            return includeCollections;
         }
 
-        @Override
-        public com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> validateIncludeColorTexts(final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> includeColorTexts) throws org.thryft.protocol.InputProtocolException {
+        public static void validateIncludeColorTexts(final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> includeColorTexts) throws org.thryft.protocol.InputProtocolException {
             if (includeColorTexts == null) {
                 throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.INCLUDE_COLOR_TEXTS, "org.dressdiscover.api.models.object.ObjectFacetFilters: includeColorTexts is null");
             }
             if (!includeColorTexts.isPresent()) {
-                return includeColorTexts;
+                return;
             }
             if (includeColorTexts.get().isEmpty()) {
-                throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.INCLUDE_COLOR_TEXTS, "org.dressdiscover.api.models.object.ObjectFacetFilters: includeColorTexts is less than min length 1");
+                throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.INCLUDE_COLOR_TEXTS, "org.dressdiscover.api.models.object.ObjectFacetFilters.includeColorTexts: less than min length 1");
             }
-            return includeColorTexts;
         }
 
-        @Override
-        public com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> validateIncludeCulturalContextTexts(final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> includeCulturalContextTexts) throws org.thryft.protocol.InputProtocolException {
+        public static void validateIncludeCulturalContextTexts(final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> includeCulturalContextTexts) throws org.thryft.protocol.InputProtocolException {
             if (includeCulturalContextTexts == null) {
                 throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.INCLUDE_CULTURAL_CONTEXT_TEXTS, "org.dressdiscover.api.models.object.ObjectFacetFilters: includeCulturalContextTexts is null");
             }
             if (!includeCulturalContextTexts.isPresent()) {
-                return includeCulturalContextTexts;
+                return;
             }
             if (includeCulturalContextTexts.get().isEmpty()) {
-                throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.INCLUDE_CULTURAL_CONTEXT_TEXTS, "org.dressdiscover.api.models.object.ObjectFacetFilters: includeCulturalContextTexts is less than min length 1");
+                throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.INCLUDE_CULTURAL_CONTEXT_TEXTS, "org.dressdiscover.api.models.object.ObjectFacetFilters.includeCulturalContextTexts: less than min length 1");
             }
-            return includeCulturalContextTexts;
         }
 
-        @Override
-        public com.google.common.base.Optional<com.google.common.collect.ImmutableSet<org.dressdiscover.api.vocabularies.costume_core.gender.Gender>> validateIncludeGenders(final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<org.dressdiscover.api.vocabularies.costume_core.gender.Gender>> includeGenders) throws org.thryft.protocol.InputProtocolException {
+        public static void validateIncludeGenders(final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<org.dressdiscover.api.vocabularies.costume_core.gender.Gender>> includeGenders) throws org.thryft.protocol.InputProtocolException {
             if (includeGenders == null) {
                 throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.INCLUDE_GENDERS, "org.dressdiscover.api.models.object.ObjectFacetFilters: includeGenders is null");
             }
             if (!includeGenders.isPresent()) {
-                return includeGenders;
+                return;
             }
             if (includeGenders.get().isEmpty()) {
-                throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.INCLUDE_GENDERS, "org.dressdiscover.api.models.object.ObjectFacetFilters: includeGenders is less than min length 1");
+                throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.INCLUDE_GENDERS, "org.dressdiscover.api.models.object.ObjectFacetFilters.includeGenders: less than min length 1");
             }
-            return includeGenders;
         }
 
-        @Override
-        public com.google.common.base.Optional<com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.institution.InstitutionId>> validateIncludeInstitutions(final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.institution.InstitutionId>> includeInstitutions) throws org.thryft.protocol.InputProtocolException {
+        public static void validateIncludeInstitutions(final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.institution.InstitutionId>> includeInstitutions) throws org.thryft.protocol.InputProtocolException {
             if (includeInstitutions == null) {
                 throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.INCLUDE_INSTITUTIONS, "org.dressdiscover.api.models.object.ObjectFacetFilters: includeInstitutions is null");
             }
             if (!includeInstitutions.isPresent()) {
-                return includeInstitutions;
+                return;
             }
             if (includeInstitutions.get().isEmpty()) {
-                throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.INCLUDE_INSTITUTIONS, "org.dressdiscover.api.models.object.ObjectFacetFilters: includeInstitutions is less than min length 1");
+                throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.INCLUDE_INSTITUTIONS, "org.dressdiscover.api.models.object.ObjectFacetFilters.includeInstitutions: less than min length 1");
             }
-            return includeInstitutions;
         }
 
-        @Override
-        public com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> validateIncludeLocationNameTexts(final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> includeLocationNameTexts) throws org.thryft.protocol.InputProtocolException {
+        public static void validateIncludeLocationNameTexts(final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> includeLocationNameTexts) throws org.thryft.protocol.InputProtocolException {
             if (includeLocationNameTexts == null) {
                 throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.INCLUDE_LOCATION_NAME_TEXTS, "org.dressdiscover.api.models.object.ObjectFacetFilters: includeLocationNameTexts is null");
             }
             if (!includeLocationNameTexts.isPresent()) {
-                return includeLocationNameTexts;
+                return;
             }
             if (includeLocationNameTexts.get().isEmpty()) {
-                throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.INCLUDE_LOCATION_NAME_TEXTS, "org.dressdiscover.api.models.object.ObjectFacetFilters: includeLocationNameTexts is less than min length 1");
+                throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.INCLUDE_LOCATION_NAME_TEXTS, "org.dressdiscover.api.models.object.ObjectFacetFilters.includeLocationNameTexts: less than min length 1");
             }
-            return includeLocationNameTexts;
         }
 
-        @Override
-        public com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> validateIncludeMaterialTexts(final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> includeMaterialTexts) throws org.thryft.protocol.InputProtocolException {
+        public static void validateIncludeMaterialTexts(final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> includeMaterialTexts) throws org.thryft.protocol.InputProtocolException {
             if (includeMaterialTexts == null) {
                 throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.INCLUDE_MATERIAL_TEXTS, "org.dressdiscover.api.models.object.ObjectFacetFilters: includeMaterialTexts is null");
             }
             if (!includeMaterialTexts.isPresent()) {
-                return includeMaterialTexts;
+                return;
             }
             if (includeMaterialTexts.get().isEmpty()) {
-                throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.INCLUDE_MATERIAL_TEXTS, "org.dressdiscover.api.models.object.ObjectFacetFilters: includeMaterialTexts is less than min length 1");
+                throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.INCLUDE_MATERIAL_TEXTS, "org.dressdiscover.api.models.object.ObjectFacetFilters.includeMaterialTexts: less than min length 1");
             }
-            return includeMaterialTexts;
         }
 
-        @Override
-        public com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> validateIncludeSubjectTermTexts(final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> includeSubjectTermTexts) throws org.thryft.protocol.InputProtocolException {
+        public static void validateIncludeSubjectTermTexts(final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> includeSubjectTermTexts) throws org.thryft.protocol.InputProtocolException {
             if (includeSubjectTermTexts == null) {
                 throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.INCLUDE_SUBJECT_TERM_TEXTS, "org.dressdiscover.api.models.object.ObjectFacetFilters: includeSubjectTermTexts is null");
             }
             if (!includeSubjectTermTexts.isPresent()) {
-                return includeSubjectTermTexts;
+                return;
             }
             if (includeSubjectTermTexts.get().isEmpty()) {
-                throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.INCLUDE_SUBJECT_TERM_TEXTS, "org.dressdiscover.api.models.object.ObjectFacetFilters: includeSubjectTermTexts is less than min length 1");
+                throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.INCLUDE_SUBJECT_TERM_TEXTS, "org.dressdiscover.api.models.object.ObjectFacetFilters.includeSubjectTermTexts: less than min length 1");
             }
-            return includeSubjectTermTexts;
         }
 
-        @Override
-        public com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> validateIncludeTechniqueTexts(final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> includeTechniqueTexts) throws org.thryft.protocol.InputProtocolException {
+        public static void validateIncludeTechniqueTexts(final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> includeTechniqueTexts) throws org.thryft.protocol.InputProtocolException {
             if (includeTechniqueTexts == null) {
                 throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.INCLUDE_TECHNIQUE_TEXTS, "org.dressdiscover.api.models.object.ObjectFacetFilters: includeTechniqueTexts is null");
             }
             if (!includeTechniqueTexts.isPresent()) {
-                return includeTechniqueTexts;
+                return;
             }
             if (includeTechniqueTexts.get().isEmpty()) {
-                throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.INCLUDE_TECHNIQUE_TEXTS, "org.dressdiscover.api.models.object.ObjectFacetFilters: includeTechniqueTexts is less than min length 1");
+                throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.INCLUDE_TECHNIQUE_TEXTS, "org.dressdiscover.api.models.object.ObjectFacetFilters.includeTechniqueTexts: less than min length 1");
             }
-            return includeTechniqueTexts;
         }
 
-        @Override
-        public com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> validateIncludeWorkTypeTexts(final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> includeWorkTypeTexts) throws org.thryft.protocol.InputProtocolException {
+        public static void validateIncludeWorkTypeTexts(final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> includeWorkTypeTexts) throws org.thryft.protocol.InputProtocolException {
             if (includeWorkTypeTexts == null) {
                 throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.INCLUDE_WORK_TYPE_TEXTS, "org.dressdiscover.api.models.object.ObjectFacetFilters: includeWorkTypeTexts is null");
             }
             if (!includeWorkTypeTexts.isPresent()) {
-                return includeWorkTypeTexts;
+                return;
             }
             if (includeWorkTypeTexts.get().isEmpty()) {
-                throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.INCLUDE_WORK_TYPE_TEXTS, "org.dressdiscover.api.models.object.ObjectFacetFilters: includeWorkTypeTexts is less than min length 1");
+                throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.INCLUDE_WORK_TYPE_TEXTS, "org.dressdiscover.api.models.object.ObjectFacetFilters.includeWorkTypeTexts: less than min length 1");
             }
-            return includeWorkTypeTexts;
         }
-
-        private final static DefaultReadValidator instance = new DefaultReadValidator();
     }
 
-    public static class NopReadValidator implements ReadValidator {
-        public static NopReadValidator getInstance() {
-            return instance;
+    public final static class UncheckedValidator {
+        public static void validate(final com.google.common.base.Optional<Boolean> excludeAll, final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> excludeCategories, final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.collection.CollectionId>> excludeCollections, final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> excludeColorTexts, final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> excludeCulturalContextTexts, final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<org.dressdiscover.api.vocabularies.costume_core.gender.Gender>> excludeGenders, final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.institution.InstitutionId>> excludeInstitutions, final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> excludeLocationNameTexts, final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> excludeMaterialTexts, final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> excludeSubjectTermTexts, final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> excludeTechniqueTexts, final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> excludeWorkTypeTexts, final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> includeCategories, final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.collection.CollectionId>> includeCollections, final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> includeColorTexts, final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> includeCulturalContextTexts, final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<org.dressdiscover.api.vocabularies.costume_core.gender.Gender>> includeGenders, final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.institution.InstitutionId>> includeInstitutions, final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> includeLocationNameTexts, final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> includeMaterialTexts, final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> includeSubjectTermTexts, final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> includeTechniqueTexts, final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> includeWorkTypeTexts) {
+            validateExcludeAll(excludeAll);
+            validateExcludeCategories(excludeCategories);
+            validateExcludeCollections(excludeCollections);
+            validateExcludeColorTexts(excludeColorTexts);
+            validateExcludeCulturalContextTexts(excludeCulturalContextTexts);
+            validateExcludeGenders(excludeGenders);
+            validateExcludeInstitutions(excludeInstitutions);
+            validateExcludeLocationNameTexts(excludeLocationNameTexts);
+            validateExcludeMaterialTexts(excludeMaterialTexts);
+            validateExcludeSubjectTermTexts(excludeSubjectTermTexts);
+            validateExcludeTechniqueTexts(excludeTechniqueTexts);
+            validateExcludeWorkTypeTexts(excludeWorkTypeTexts);
+            validateIncludeCategories(includeCategories);
+            validateIncludeCollections(includeCollections);
+            validateIncludeColorTexts(includeColorTexts);
+            validateIncludeCulturalContextTexts(includeCulturalContextTexts);
+            validateIncludeGenders(includeGenders);
+            validateIncludeInstitutions(includeInstitutions);
+            validateIncludeLocationNameTexts(includeLocationNameTexts);
+            validateIncludeMaterialTexts(includeMaterialTexts);
+            validateIncludeSubjectTermTexts(includeSubjectTermTexts);
+            validateIncludeTechniqueTexts(includeTechniqueTexts);
+            validateIncludeWorkTypeTexts(includeWorkTypeTexts);
         }
 
-        public NopReadValidator() {
+        public static void validateExcludeAll(final com.google.common.base.Optional<Boolean> excludeAll) {
+            if (excludeAll == null) {
+                throw new NullPointerException("org.dressdiscover.api.models.object.ObjectFacetFilters: excludeAll is null");
+            }
+            if (!excludeAll.isPresent()) {
+                return;
+            }
+            if (!excludeAll.get()) {
+                throw new IllegalArgumentException("org.dressdiscover.api.models.object.ObjectFacetFilters.excludeAll: not true");
+            }
         }
 
-        @Override
-        public com.google.common.base.Optional<Boolean> validateExcludeAll(final com.google.common.base.Optional<Boolean> excludeAll) {
-            return excludeAll;
+        public static void validateExcludeCategories(final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> excludeCategories) {
+            if (excludeCategories == null) {
+                throw new NullPointerException("org.dressdiscover.api.models.object.ObjectFacetFilters: excludeCategories is null");
+            }
+            if (!excludeCategories.isPresent()) {
+                return;
+            }
+            if (excludeCategories.get().isEmpty()) {
+                throw new IllegalArgumentException("org.dressdiscover.api.models.object.ObjectFacetFilters.excludeCategories: less than min length 1");
+            }
         }
 
-        @Override
-        public com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> validateExcludeCategories(final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> excludeCategories) {
-            return excludeCategories;
+        public static void validateExcludeCollections(final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.collection.CollectionId>> excludeCollections) {
+            if (excludeCollections == null) {
+                throw new NullPointerException("org.dressdiscover.api.models.object.ObjectFacetFilters: excludeCollections is null");
+            }
+            if (!excludeCollections.isPresent()) {
+                return;
+            }
+            if (excludeCollections.get().isEmpty()) {
+                throw new IllegalArgumentException("org.dressdiscover.api.models.object.ObjectFacetFilters.excludeCollections: less than min length 1");
+            }
         }
 
-        @Override
-        public com.google.common.base.Optional<com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.collection.CollectionId>> validateExcludeCollections(final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.collection.CollectionId>> excludeCollections) {
-            return excludeCollections;
+        public static void validateExcludeColorTexts(final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> excludeColorTexts) {
+            if (excludeColorTexts == null) {
+                throw new NullPointerException("org.dressdiscover.api.models.object.ObjectFacetFilters: excludeColorTexts is null");
+            }
+            if (!excludeColorTexts.isPresent()) {
+                return;
+            }
+            if (excludeColorTexts.get().isEmpty()) {
+                throw new IllegalArgumentException("org.dressdiscover.api.models.object.ObjectFacetFilters.excludeColorTexts: less than min length 1");
+            }
         }
 
-        @Override
-        public com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> validateExcludeColorTexts(final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> excludeColorTexts) {
-            return excludeColorTexts;
+        public static void validateExcludeCulturalContextTexts(final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> excludeCulturalContextTexts) {
+            if (excludeCulturalContextTexts == null) {
+                throw new NullPointerException("org.dressdiscover.api.models.object.ObjectFacetFilters: excludeCulturalContextTexts is null");
+            }
+            if (!excludeCulturalContextTexts.isPresent()) {
+                return;
+            }
+            if (excludeCulturalContextTexts.get().isEmpty()) {
+                throw new IllegalArgumentException("org.dressdiscover.api.models.object.ObjectFacetFilters.excludeCulturalContextTexts: less than min length 1");
+            }
         }
 
-        @Override
-        public com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> validateExcludeCulturalContextTexts(final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> excludeCulturalContextTexts) {
-            return excludeCulturalContextTexts;
+        public static void validateExcludeGenders(final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<org.dressdiscover.api.vocabularies.costume_core.gender.Gender>> excludeGenders) {
+            if (excludeGenders == null) {
+                throw new NullPointerException("org.dressdiscover.api.models.object.ObjectFacetFilters: excludeGenders is null");
+            }
+            if (!excludeGenders.isPresent()) {
+                return;
+            }
+            if (excludeGenders.get().isEmpty()) {
+                throw new IllegalArgumentException("org.dressdiscover.api.models.object.ObjectFacetFilters.excludeGenders: less than min length 1");
+            }
         }
 
-        @Override
-        public com.google.common.base.Optional<com.google.common.collect.ImmutableSet<org.dressdiscover.api.vocabularies.costume_core.gender.Gender>> validateExcludeGenders(final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<org.dressdiscover.api.vocabularies.costume_core.gender.Gender>> excludeGenders) {
-            return excludeGenders;
+        public static void validateExcludeInstitutions(final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.institution.InstitutionId>> excludeInstitutions) {
+            if (excludeInstitutions == null) {
+                throw new NullPointerException("org.dressdiscover.api.models.object.ObjectFacetFilters: excludeInstitutions is null");
+            }
+            if (!excludeInstitutions.isPresent()) {
+                return;
+            }
+            if (excludeInstitutions.get().isEmpty()) {
+                throw new IllegalArgumentException("org.dressdiscover.api.models.object.ObjectFacetFilters.excludeInstitutions: less than min length 1");
+            }
         }
 
-        @Override
-        public com.google.common.base.Optional<com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.institution.InstitutionId>> validateExcludeInstitutions(final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.institution.InstitutionId>> excludeInstitutions) {
-            return excludeInstitutions;
+        public static void validateExcludeLocationNameTexts(final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> excludeLocationNameTexts) {
+            if (excludeLocationNameTexts == null) {
+                throw new NullPointerException("org.dressdiscover.api.models.object.ObjectFacetFilters: excludeLocationNameTexts is null");
+            }
+            if (!excludeLocationNameTexts.isPresent()) {
+                return;
+            }
+            if (excludeLocationNameTexts.get().isEmpty()) {
+                throw new IllegalArgumentException("org.dressdiscover.api.models.object.ObjectFacetFilters.excludeLocationNameTexts: less than min length 1");
+            }
         }
 
-        @Override
-        public com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> validateExcludeLocationNameTexts(final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> excludeLocationNameTexts) {
-            return excludeLocationNameTexts;
+        public static void validateExcludeMaterialTexts(final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> excludeMaterialTexts) {
+            if (excludeMaterialTexts == null) {
+                throw new NullPointerException("org.dressdiscover.api.models.object.ObjectFacetFilters: excludeMaterialTexts is null");
+            }
+            if (!excludeMaterialTexts.isPresent()) {
+                return;
+            }
+            if (excludeMaterialTexts.get().isEmpty()) {
+                throw new IllegalArgumentException("org.dressdiscover.api.models.object.ObjectFacetFilters.excludeMaterialTexts: less than min length 1");
+            }
         }
 
-        @Override
-        public com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> validateExcludeMaterialTexts(final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> excludeMaterialTexts) {
-            return excludeMaterialTexts;
+        public static void validateExcludeSubjectTermTexts(final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> excludeSubjectTermTexts) {
+            if (excludeSubjectTermTexts == null) {
+                throw new NullPointerException("org.dressdiscover.api.models.object.ObjectFacetFilters: excludeSubjectTermTexts is null");
+            }
+            if (!excludeSubjectTermTexts.isPresent()) {
+                return;
+            }
+            if (excludeSubjectTermTexts.get().isEmpty()) {
+                throw new IllegalArgumentException("org.dressdiscover.api.models.object.ObjectFacetFilters.excludeSubjectTermTexts: less than min length 1");
+            }
         }
 
-        @Override
-        public com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> validateExcludeSubjectTermTexts(final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> excludeSubjectTermTexts) {
-            return excludeSubjectTermTexts;
+        public static void validateExcludeTechniqueTexts(final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> excludeTechniqueTexts) {
+            if (excludeTechniqueTexts == null) {
+                throw new NullPointerException("org.dressdiscover.api.models.object.ObjectFacetFilters: excludeTechniqueTexts is null");
+            }
+            if (!excludeTechniqueTexts.isPresent()) {
+                return;
+            }
+            if (excludeTechniqueTexts.get().isEmpty()) {
+                throw new IllegalArgumentException("org.dressdiscover.api.models.object.ObjectFacetFilters.excludeTechniqueTexts: less than min length 1");
+            }
         }
 
-        @Override
-        public com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> validateExcludeTechniqueTexts(final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> excludeTechniqueTexts) {
-            return excludeTechniqueTexts;
+        public static void validateExcludeWorkTypeTexts(final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> excludeWorkTypeTexts) {
+            if (excludeWorkTypeTexts == null) {
+                throw new NullPointerException("org.dressdiscover.api.models.object.ObjectFacetFilters: excludeWorkTypeTexts is null");
+            }
+            if (!excludeWorkTypeTexts.isPresent()) {
+                return;
+            }
+            if (excludeWorkTypeTexts.get().isEmpty()) {
+                throw new IllegalArgumentException("org.dressdiscover.api.models.object.ObjectFacetFilters.excludeWorkTypeTexts: less than min length 1");
+            }
         }
 
-        @Override
-        public com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> validateExcludeWorkTypeTexts(final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> excludeWorkTypeTexts) {
-            return excludeWorkTypeTexts;
+        public static void validateIncludeCategories(final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> includeCategories) {
+            if (includeCategories == null) {
+                throw new NullPointerException("org.dressdiscover.api.models.object.ObjectFacetFilters: includeCategories is null");
+            }
+            if (!includeCategories.isPresent()) {
+                return;
+            }
+            if (includeCategories.get().isEmpty()) {
+                throw new IllegalArgumentException("org.dressdiscover.api.models.object.ObjectFacetFilters.includeCategories: less than min length 1");
+            }
         }
 
-        @Override
-        public com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> validateIncludeCategories(final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> includeCategories) {
-            return includeCategories;
+        public static void validateIncludeCollections(final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.collection.CollectionId>> includeCollections) {
+            if (includeCollections == null) {
+                throw new NullPointerException("org.dressdiscover.api.models.object.ObjectFacetFilters: includeCollections is null");
+            }
+            if (!includeCollections.isPresent()) {
+                return;
+            }
+            if (includeCollections.get().isEmpty()) {
+                throw new IllegalArgumentException("org.dressdiscover.api.models.object.ObjectFacetFilters.includeCollections: less than min length 1");
+            }
         }
 
-        @Override
-        public com.google.common.base.Optional<com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.collection.CollectionId>> validateIncludeCollections(final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.collection.CollectionId>> includeCollections) {
-            return includeCollections;
+        public static void validateIncludeColorTexts(final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> includeColorTexts) {
+            if (includeColorTexts == null) {
+                throw new NullPointerException("org.dressdiscover.api.models.object.ObjectFacetFilters: includeColorTexts is null");
+            }
+            if (!includeColorTexts.isPresent()) {
+                return;
+            }
+            if (includeColorTexts.get().isEmpty()) {
+                throw new IllegalArgumentException("org.dressdiscover.api.models.object.ObjectFacetFilters.includeColorTexts: less than min length 1");
+            }
         }
 
-        @Override
-        public com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> validateIncludeColorTexts(final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> includeColorTexts) {
-            return includeColorTexts;
+        public static void validateIncludeCulturalContextTexts(final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> includeCulturalContextTexts) {
+            if (includeCulturalContextTexts == null) {
+                throw new NullPointerException("org.dressdiscover.api.models.object.ObjectFacetFilters: includeCulturalContextTexts is null");
+            }
+            if (!includeCulturalContextTexts.isPresent()) {
+                return;
+            }
+            if (includeCulturalContextTexts.get().isEmpty()) {
+                throw new IllegalArgumentException("org.dressdiscover.api.models.object.ObjectFacetFilters.includeCulturalContextTexts: less than min length 1");
+            }
         }
 
-        @Override
-        public com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> validateIncludeCulturalContextTexts(final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> includeCulturalContextTexts) {
-            return includeCulturalContextTexts;
+        public static void validateIncludeGenders(final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<org.dressdiscover.api.vocabularies.costume_core.gender.Gender>> includeGenders) {
+            if (includeGenders == null) {
+                throw new NullPointerException("org.dressdiscover.api.models.object.ObjectFacetFilters: includeGenders is null");
+            }
+            if (!includeGenders.isPresent()) {
+                return;
+            }
+            if (includeGenders.get().isEmpty()) {
+                throw new IllegalArgumentException("org.dressdiscover.api.models.object.ObjectFacetFilters.includeGenders: less than min length 1");
+            }
         }
 
-        @Override
-        public com.google.common.base.Optional<com.google.common.collect.ImmutableSet<org.dressdiscover.api.vocabularies.costume_core.gender.Gender>> validateIncludeGenders(final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<org.dressdiscover.api.vocabularies.costume_core.gender.Gender>> includeGenders) {
-            return includeGenders;
+        public static void validateIncludeInstitutions(final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.institution.InstitutionId>> includeInstitutions) {
+            if (includeInstitutions == null) {
+                throw new NullPointerException("org.dressdiscover.api.models.object.ObjectFacetFilters: includeInstitutions is null");
+            }
+            if (!includeInstitutions.isPresent()) {
+                return;
+            }
+            if (includeInstitutions.get().isEmpty()) {
+                throw new IllegalArgumentException("org.dressdiscover.api.models.object.ObjectFacetFilters.includeInstitutions: less than min length 1");
+            }
         }
 
-        @Override
-        public com.google.common.base.Optional<com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.institution.InstitutionId>> validateIncludeInstitutions(final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.institution.InstitutionId>> includeInstitutions) {
-            return includeInstitutions;
+        public static void validateIncludeLocationNameTexts(final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> includeLocationNameTexts) {
+            if (includeLocationNameTexts == null) {
+                throw new NullPointerException("org.dressdiscover.api.models.object.ObjectFacetFilters: includeLocationNameTexts is null");
+            }
+            if (!includeLocationNameTexts.isPresent()) {
+                return;
+            }
+            if (includeLocationNameTexts.get().isEmpty()) {
+                throw new IllegalArgumentException("org.dressdiscover.api.models.object.ObjectFacetFilters.includeLocationNameTexts: less than min length 1");
+            }
         }
 
-        @Override
-        public com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> validateIncludeLocationNameTexts(final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> includeLocationNameTexts) {
-            return includeLocationNameTexts;
+        public static void validateIncludeMaterialTexts(final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> includeMaterialTexts) {
+            if (includeMaterialTexts == null) {
+                throw new NullPointerException("org.dressdiscover.api.models.object.ObjectFacetFilters: includeMaterialTexts is null");
+            }
+            if (!includeMaterialTexts.isPresent()) {
+                return;
+            }
+            if (includeMaterialTexts.get().isEmpty()) {
+                throw new IllegalArgumentException("org.dressdiscover.api.models.object.ObjectFacetFilters.includeMaterialTexts: less than min length 1");
+            }
         }
 
-        @Override
-        public com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> validateIncludeMaterialTexts(final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> includeMaterialTexts) {
-            return includeMaterialTexts;
+        public static void validateIncludeSubjectTermTexts(final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> includeSubjectTermTexts) {
+            if (includeSubjectTermTexts == null) {
+                throw new NullPointerException("org.dressdiscover.api.models.object.ObjectFacetFilters: includeSubjectTermTexts is null");
+            }
+            if (!includeSubjectTermTexts.isPresent()) {
+                return;
+            }
+            if (includeSubjectTermTexts.get().isEmpty()) {
+                throw new IllegalArgumentException("org.dressdiscover.api.models.object.ObjectFacetFilters.includeSubjectTermTexts: less than min length 1");
+            }
         }
 
-        @Override
-        public com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> validateIncludeSubjectTermTexts(final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> includeSubjectTermTexts) {
-            return includeSubjectTermTexts;
+        public static void validateIncludeTechniqueTexts(final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> includeTechniqueTexts) {
+            if (includeTechniqueTexts == null) {
+                throw new NullPointerException("org.dressdiscover.api.models.object.ObjectFacetFilters: includeTechniqueTexts is null");
+            }
+            if (!includeTechniqueTexts.isPresent()) {
+                return;
+            }
+            if (includeTechniqueTexts.get().isEmpty()) {
+                throw new IllegalArgumentException("org.dressdiscover.api.models.object.ObjectFacetFilters.includeTechniqueTexts: less than min length 1");
+            }
         }
 
-        @Override
-        public com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> validateIncludeTechniqueTexts(final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> includeTechniqueTexts) {
-            return includeTechniqueTexts;
+        public static void validateIncludeWorkTypeTexts(final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> includeWorkTypeTexts) {
+            if (includeWorkTypeTexts == null) {
+                throw new NullPointerException("org.dressdiscover.api.models.object.ObjectFacetFilters: includeWorkTypeTexts is null");
+            }
+            if (!includeWorkTypeTexts.isPresent()) {
+                return;
+            }
+            if (includeWorkTypeTexts.get().isEmpty()) {
+                throw new IllegalArgumentException("org.dressdiscover.api.models.object.ObjectFacetFilters.includeWorkTypeTexts: less than min length 1");
+            }
         }
-
-        @Override
-        public com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> validateIncludeWorkTypeTexts(final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> includeWorkTypeTexts) {
-            return includeWorkTypeTexts;
-        }
-
-        private final static NopReadValidator instance = new NopReadValidator();
     }
 
     /**
      * Default constructor
      */
+    @Deprecated
     public ObjectFacetFilters() {
         excludeAll = com.google.common.base.Optional.<Boolean> absent();
         excludeCategories = com.google.common.base.Optional.<com.google.common.collect.ImmutableSet<String>> absent();
@@ -2923,33 +2611,38 @@ public final class ObjectFacetFilters implements org.thryft.Struct {
      * Copy constructor
      */
     public ObjectFacetFilters(final ObjectFacetFilters other) {
-        this(other.getExcludeAll(), other.getExcludeCategories(), other.getExcludeCollections(), other.getExcludeColorTexts(), other.getExcludeCulturalContextTexts(), other.getExcludeGenders(), other.getExcludeInstitutions(), other.getExcludeLocationNameTexts(), other.getExcludeMaterialTexts(), other.getExcludeSubjectTermTexts(), other.getExcludeTechniqueTexts(), other.getExcludeWorkTypeTexts(), other.getIncludeCategories(), other.getIncludeCollections(), other.getIncludeColorTexts(), other.getIncludeCulturalContextTexts(), other.getIncludeGenders(), other.getIncludeInstitutions(), other.getIncludeLocationNameTexts(), other.getIncludeMaterialTexts(), other.getIncludeSubjectTermTexts(), other.getIncludeTechniqueTexts(), other.getIncludeWorkTypeTexts(), NopConstructionValidator.getInstance());
+        this(other.getExcludeAll(), other.getExcludeCategories(), other.getExcludeCollections(), other.getExcludeColorTexts(), other.getExcludeCulturalContextTexts(), other.getExcludeGenders(), other.getExcludeInstitutions(), other.getExcludeLocationNameTexts(), other.getExcludeMaterialTexts(), other.getExcludeSubjectTermTexts(), other.getExcludeTechniqueTexts(), other.getExcludeWorkTypeTexts(), other.getIncludeCategories(), other.getIncludeCollections(), other.getIncludeColorTexts(), other.getIncludeCulturalContextTexts(), other.getIncludeGenders(), other.getIncludeInstitutions(), other.getIncludeLocationNameTexts(), other.getIncludeMaterialTexts(), other.getIncludeSubjectTermTexts(), other.getIncludeTechniqueTexts(), other.getIncludeWorkTypeTexts());
     }
 
-    protected ObjectFacetFilters(final com.google.common.base.Optional<Boolean> excludeAll, final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> excludeCategories, final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.collection.CollectionId>> excludeCollections, final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> excludeColorTexts, final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> excludeCulturalContextTexts, final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<org.dressdiscover.api.vocabularies.costume_core.gender.Gender>> excludeGenders, final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.institution.InstitutionId>> excludeInstitutions, final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> excludeLocationNameTexts, final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> excludeMaterialTexts, final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> excludeSubjectTermTexts, final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> excludeTechniqueTexts, final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> excludeWorkTypeTexts, final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> includeCategories, final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.collection.CollectionId>> includeCollections, final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> includeColorTexts, final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> includeCulturalContextTexts, final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<org.dressdiscover.api.vocabularies.costume_core.gender.Gender>> includeGenders, final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.institution.InstitutionId>> includeInstitutions, final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> includeLocationNameTexts, final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> includeMaterialTexts, final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> includeSubjectTermTexts, final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> includeTechniqueTexts, final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> includeWorkTypeTexts, ConstructionValidator validator) {
-        this.excludeAll = validator.validateExcludeAll(excludeAll);
-        this.excludeCategories = validator.validateExcludeCategories(excludeCategories);
-        this.excludeCollections = validator.validateExcludeCollections(excludeCollections);
-        this.excludeColorTexts = validator.validateExcludeColorTexts(excludeColorTexts);
-        this.excludeCulturalContextTexts = validator.validateExcludeCulturalContextTexts(excludeCulturalContextTexts);
-        this.excludeGenders = validator.validateExcludeGenders(excludeGenders);
-        this.excludeInstitutions = validator.validateExcludeInstitutions(excludeInstitutions);
-        this.excludeLocationNameTexts = validator.validateExcludeLocationNameTexts(excludeLocationNameTexts);
-        this.excludeMaterialTexts = validator.validateExcludeMaterialTexts(excludeMaterialTexts);
-        this.excludeSubjectTermTexts = validator.validateExcludeSubjectTermTexts(excludeSubjectTermTexts);
-        this.excludeTechniqueTexts = validator.validateExcludeTechniqueTexts(excludeTechniqueTexts);
-        this.excludeWorkTypeTexts = validator.validateExcludeWorkTypeTexts(excludeWorkTypeTexts);
-        this.includeCategories = validator.validateIncludeCategories(includeCategories);
-        this.includeCollections = validator.validateIncludeCollections(includeCollections);
-        this.includeColorTexts = validator.validateIncludeColorTexts(includeColorTexts);
-        this.includeCulturalContextTexts = validator.validateIncludeCulturalContextTexts(includeCulturalContextTexts);
-        this.includeGenders = validator.validateIncludeGenders(includeGenders);
-        this.includeInstitutions = validator.validateIncludeInstitutions(includeInstitutions);
-        this.includeLocationNameTexts = validator.validateIncludeLocationNameTexts(includeLocationNameTexts);
-        this.includeMaterialTexts = validator.validateIncludeMaterialTexts(includeMaterialTexts);
-        this.includeSubjectTermTexts = validator.validateIncludeSubjectTermTexts(includeSubjectTermTexts);
-        this.includeTechniqueTexts = validator.validateIncludeTechniqueTexts(includeTechniqueTexts);
-        this.includeWorkTypeTexts = validator.validateIncludeWorkTypeTexts(includeWorkTypeTexts);
+    /**
+     * Total constructor
+     *
+     * All fields should have been validated before calling this.
+     */
+    protected ObjectFacetFilters(final com.google.common.base.Optional<Boolean> excludeAll, final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> excludeCategories, final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.collection.CollectionId>> excludeCollections, final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> excludeColorTexts, final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> excludeCulturalContextTexts, final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<org.dressdiscover.api.vocabularies.costume_core.gender.Gender>> excludeGenders, final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.institution.InstitutionId>> excludeInstitutions, final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> excludeLocationNameTexts, final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> excludeMaterialTexts, final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> excludeSubjectTermTexts, final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> excludeTechniqueTexts, final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> excludeWorkTypeTexts, final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> includeCategories, final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.collection.CollectionId>> includeCollections, final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> includeColorTexts, final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> includeCulturalContextTexts, final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<org.dressdiscover.api.vocabularies.costume_core.gender.Gender>> includeGenders, final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.institution.InstitutionId>> includeInstitutions, final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> includeLocationNameTexts, final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> includeMaterialTexts, final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> includeSubjectTermTexts, final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> includeTechniqueTexts, final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> includeWorkTypeTexts) {
+        this.excludeAll = excludeAll;
+        this.excludeCategories = excludeCategories;
+        this.excludeCollections = excludeCollections;
+        this.excludeColorTexts = excludeColorTexts;
+        this.excludeCulturalContextTexts = excludeCulturalContextTexts;
+        this.excludeGenders = excludeGenders;
+        this.excludeInstitutions = excludeInstitutions;
+        this.excludeLocationNameTexts = excludeLocationNameTexts;
+        this.excludeMaterialTexts = excludeMaterialTexts;
+        this.excludeSubjectTermTexts = excludeSubjectTermTexts;
+        this.excludeTechniqueTexts = excludeTechniqueTexts;
+        this.excludeWorkTypeTexts = excludeWorkTypeTexts;
+        this.includeCategories = includeCategories;
+        this.includeCollections = includeCollections;
+        this.includeColorTexts = includeColorTexts;
+        this.includeCulturalContextTexts = includeCulturalContextTexts;
+        this.includeGenders = includeGenders;
+        this.includeInstitutions = includeInstitutions;
+        this.includeLocationNameTexts = includeLocationNameTexts;
+        this.includeMaterialTexts = includeMaterialTexts;
+        this.includeSubjectTermTexts = includeSubjectTermTexts;
+        this.includeTechniqueTexts = includeTechniqueTexts;
+        this.includeWorkTypeTexts = includeWorkTypeTexts;
     }
 
     public static Builder builder() {
@@ -2964,6 +2657,7 @@ public final class ObjectFacetFilters implements org.thryft.Struct {
         return other.isPresent() ? new Builder(other.get()) : new Builder();
     }
 
+    @Deprecated
     public static ObjectFacetFilters create() {
         return new ObjectFacetFilters();
     }
@@ -2971,15 +2665,40 @@ public final class ObjectFacetFilters implements org.thryft.Struct {
     /**
      * Total Nullable factory method
      */
-    public static ObjectFacetFilters create(final @javax.annotation.Nullable Boolean excludeAll, final @javax.annotation.Nullable com.google.common.collect.ImmutableSet<String> excludeCategories, final @javax.annotation.Nullable com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.collection.CollectionId> excludeCollections, final @javax.annotation.Nullable com.google.common.collect.ImmutableSet<String> excludeColorTexts, final @javax.annotation.Nullable com.google.common.collect.ImmutableSet<String> excludeCulturalContextTexts, final @javax.annotation.Nullable com.google.common.collect.ImmutableSet<org.dressdiscover.api.vocabularies.costume_core.gender.Gender> excludeGenders, final @javax.annotation.Nullable com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.institution.InstitutionId> excludeInstitutions, final @javax.annotation.Nullable com.google.common.collect.ImmutableSet<String> excludeLocationNameTexts, final @javax.annotation.Nullable com.google.common.collect.ImmutableSet<String> excludeMaterialTexts, final @javax.annotation.Nullable com.google.common.collect.ImmutableSet<String> excludeSubjectTermTexts, final @javax.annotation.Nullable com.google.common.collect.ImmutableSet<String> excludeTechniqueTexts, final @javax.annotation.Nullable com.google.common.collect.ImmutableSet<String> excludeWorkTypeTexts, final @javax.annotation.Nullable com.google.common.collect.ImmutableSet<String> includeCategories, final @javax.annotation.Nullable com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.collection.CollectionId> includeCollections, final @javax.annotation.Nullable com.google.common.collect.ImmutableSet<String> includeColorTexts, final @javax.annotation.Nullable com.google.common.collect.ImmutableSet<String> includeCulturalContextTexts, final @javax.annotation.Nullable com.google.common.collect.ImmutableSet<org.dressdiscover.api.vocabularies.costume_core.gender.Gender> includeGenders, final @javax.annotation.Nullable com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.institution.InstitutionId> includeInstitutions, final @javax.annotation.Nullable com.google.common.collect.ImmutableSet<String> includeLocationNameTexts, final @javax.annotation.Nullable com.google.common.collect.ImmutableSet<String> includeMaterialTexts, final @javax.annotation.Nullable com.google.common.collect.ImmutableSet<String> includeSubjectTermTexts, final @javax.annotation.Nullable com.google.common.collect.ImmutableSet<String> includeTechniqueTexts, final @javax.annotation.Nullable com.google.common.collect.ImmutableSet<String> includeWorkTypeTexts) {
-        return new ObjectFacetFilters(com.google.common.base.Optional.fromNullable(excludeAll), com.google.common.base.Optional.fromNullable(excludeCategories), com.google.common.base.Optional.fromNullable(excludeCollections), com.google.common.base.Optional.fromNullable(excludeColorTexts), com.google.common.base.Optional.fromNullable(excludeCulturalContextTexts), com.google.common.base.Optional.fromNullable(excludeGenders), com.google.common.base.Optional.fromNullable(excludeInstitutions), com.google.common.base.Optional.fromNullable(excludeLocationNameTexts), com.google.common.base.Optional.fromNullable(excludeMaterialTexts), com.google.common.base.Optional.fromNullable(excludeSubjectTermTexts), com.google.common.base.Optional.fromNullable(excludeTechniqueTexts), com.google.common.base.Optional.fromNullable(excludeWorkTypeTexts), com.google.common.base.Optional.fromNullable(includeCategories), com.google.common.base.Optional.fromNullable(includeCollections), com.google.common.base.Optional.fromNullable(includeColorTexts), com.google.common.base.Optional.fromNullable(includeCulturalContextTexts), com.google.common.base.Optional.fromNullable(includeGenders), com.google.common.base.Optional.fromNullable(includeInstitutions), com.google.common.base.Optional.fromNullable(includeLocationNameTexts), com.google.common.base.Optional.fromNullable(includeMaterialTexts), com.google.common.base.Optional.fromNullable(includeSubjectTermTexts), com.google.common.base.Optional.fromNullable(includeTechniqueTexts), com.google.common.base.Optional.fromNullable(includeWorkTypeTexts), DefaultConstructionValidator.getInstance());
+    public static ObjectFacetFilters create(@javax.annotation.Nullable final Boolean excludeAll, @javax.annotation.Nullable final com.google.common.collect.ImmutableSet<String> excludeCategories, @javax.annotation.Nullable final com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.collection.CollectionId> excludeCollections, @javax.annotation.Nullable final com.google.common.collect.ImmutableSet<String> excludeColorTexts, @javax.annotation.Nullable final com.google.common.collect.ImmutableSet<String> excludeCulturalContextTexts, @javax.annotation.Nullable final com.google.common.collect.ImmutableSet<org.dressdiscover.api.vocabularies.costume_core.gender.Gender> excludeGenders, @javax.annotation.Nullable final com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.institution.InstitutionId> excludeInstitutions, @javax.annotation.Nullable final com.google.common.collect.ImmutableSet<String> excludeLocationNameTexts, @javax.annotation.Nullable final com.google.common.collect.ImmutableSet<String> excludeMaterialTexts, @javax.annotation.Nullable final com.google.common.collect.ImmutableSet<String> excludeSubjectTermTexts, @javax.annotation.Nullable final com.google.common.collect.ImmutableSet<String> excludeTechniqueTexts, @javax.annotation.Nullable final com.google.common.collect.ImmutableSet<String> excludeWorkTypeTexts, @javax.annotation.Nullable final com.google.common.collect.ImmutableSet<String> includeCategories, @javax.annotation.Nullable final com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.collection.CollectionId> includeCollections, @javax.annotation.Nullable final com.google.common.collect.ImmutableSet<String> includeColorTexts, @javax.annotation.Nullable final com.google.common.collect.ImmutableSet<String> includeCulturalContextTexts, @javax.annotation.Nullable final com.google.common.collect.ImmutableSet<org.dressdiscover.api.vocabularies.costume_core.gender.Gender> includeGenders, @javax.annotation.Nullable final com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.institution.InstitutionId> includeInstitutions, @javax.annotation.Nullable final com.google.common.collect.ImmutableSet<String> includeLocationNameTexts, @javax.annotation.Nullable final com.google.common.collect.ImmutableSet<String> includeMaterialTexts, @javax.annotation.Nullable final com.google.common.collect.ImmutableSet<String> includeSubjectTermTexts, @javax.annotation.Nullable final com.google.common.collect.ImmutableSet<String> includeTechniqueTexts, @javax.annotation.Nullable final com.google.common.collect.ImmutableSet<String> includeWorkTypeTexts) {
+        final com.google.common.base.Optional<Boolean> excludeAllOptional = org.thryft.Optionals.fromNullable(excludeAll);
+        final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> excludeCategoriesOptional = com.google.common.base.Optional.fromNullable(excludeCategories);
+        final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.collection.CollectionId>> excludeCollectionsOptional = com.google.common.base.Optional.fromNullable(excludeCollections);
+        final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> excludeColorTextsOptional = com.google.common.base.Optional.fromNullable(excludeColorTexts);
+        final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> excludeCulturalContextTextsOptional = com.google.common.base.Optional.fromNullable(excludeCulturalContextTexts);
+        final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<org.dressdiscover.api.vocabularies.costume_core.gender.Gender>> excludeGendersOptional = com.google.common.base.Optional.fromNullable(excludeGenders);
+        final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.institution.InstitutionId>> excludeInstitutionsOptional = com.google.common.base.Optional.fromNullable(excludeInstitutions);
+        final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> excludeLocationNameTextsOptional = com.google.common.base.Optional.fromNullable(excludeLocationNameTexts);
+        final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> excludeMaterialTextsOptional = com.google.common.base.Optional.fromNullable(excludeMaterialTexts);
+        final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> excludeSubjectTermTextsOptional = com.google.common.base.Optional.fromNullable(excludeSubjectTermTexts);
+        final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> excludeTechniqueTextsOptional = com.google.common.base.Optional.fromNullable(excludeTechniqueTexts);
+        final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> excludeWorkTypeTextsOptional = com.google.common.base.Optional.fromNullable(excludeWorkTypeTexts);
+        final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> includeCategoriesOptional = com.google.common.base.Optional.fromNullable(includeCategories);
+        final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.collection.CollectionId>> includeCollectionsOptional = com.google.common.base.Optional.fromNullable(includeCollections);
+        final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> includeColorTextsOptional = com.google.common.base.Optional.fromNullable(includeColorTexts);
+        final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> includeCulturalContextTextsOptional = com.google.common.base.Optional.fromNullable(includeCulturalContextTexts);
+        final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<org.dressdiscover.api.vocabularies.costume_core.gender.Gender>> includeGendersOptional = com.google.common.base.Optional.fromNullable(includeGenders);
+        final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.institution.InstitutionId>> includeInstitutionsOptional = com.google.common.base.Optional.fromNullable(includeInstitutions);
+        final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> includeLocationNameTextsOptional = com.google.common.base.Optional.fromNullable(includeLocationNameTexts);
+        final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> includeMaterialTextsOptional = com.google.common.base.Optional.fromNullable(includeMaterialTexts);
+        final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> includeSubjectTermTextsOptional = com.google.common.base.Optional.fromNullable(includeSubjectTermTexts);
+        final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> includeTechniqueTextsOptional = com.google.common.base.Optional.fromNullable(includeTechniqueTexts);
+        final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> includeWorkTypeTextsOptional = com.google.common.base.Optional.fromNullable(includeWorkTypeTexts);
+        UncheckedValidator.validate(excludeAllOptional, excludeCategoriesOptional, excludeCollectionsOptional, excludeColorTextsOptional, excludeCulturalContextTextsOptional, excludeGendersOptional, excludeInstitutionsOptional, excludeLocationNameTextsOptional, excludeMaterialTextsOptional, excludeSubjectTermTextsOptional, excludeTechniqueTextsOptional, excludeWorkTypeTextsOptional, includeCategoriesOptional, includeCollectionsOptional, includeColorTextsOptional, includeCulturalContextTextsOptional, includeGendersOptional, includeInstitutionsOptional, includeLocationNameTextsOptional, includeMaterialTextsOptional, includeSubjectTermTextsOptional, includeTechniqueTextsOptional, includeWorkTypeTextsOptional);
+        return new ObjectFacetFilters(excludeAllOptional, excludeCategoriesOptional, excludeCollectionsOptional, excludeColorTextsOptional, excludeCulturalContextTextsOptional, excludeGendersOptional, excludeInstitutionsOptional, excludeLocationNameTextsOptional, excludeMaterialTextsOptional, excludeSubjectTermTextsOptional, excludeTechniqueTextsOptional, excludeWorkTypeTextsOptional, includeCategoriesOptional, includeCollectionsOptional, includeColorTextsOptional, includeCulturalContextTextsOptional, includeGendersOptional, includeInstitutionsOptional, includeLocationNameTextsOptional, includeMaterialTextsOptional, includeSubjectTermTextsOptional, includeTechniqueTextsOptional, includeWorkTypeTextsOptional);
     }
 
     /**
      * Optional factory method
      */
     public static ObjectFacetFilters create(final com.google.common.base.Optional<Boolean> excludeAll, final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> excludeCategories, final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.collection.CollectionId>> excludeCollections, final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> excludeColorTexts, final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> excludeCulturalContextTexts, final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<org.dressdiscover.api.vocabularies.costume_core.gender.Gender>> excludeGenders, final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.institution.InstitutionId>> excludeInstitutions, final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> excludeLocationNameTexts, final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> excludeMaterialTexts, final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> excludeSubjectTermTexts, final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> excludeTechniqueTexts, final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> excludeWorkTypeTexts, final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> includeCategories, final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.collection.CollectionId>> includeCollections, final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> includeColorTexts, final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> includeCulturalContextTexts, final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<org.dressdiscover.api.vocabularies.costume_core.gender.Gender>> includeGenders, final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.institution.InstitutionId>> includeInstitutions, final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> includeLocationNameTexts, final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> includeMaterialTexts, final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> includeSubjectTermTexts, final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> includeTechniqueTexts, final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> includeWorkTypeTexts) {
-        return new ObjectFacetFilters(excludeAll, excludeCategories, excludeCollections, excludeColorTexts, excludeCulturalContextTexts, excludeGenders, excludeInstitutions, excludeLocationNameTexts, excludeMaterialTexts, excludeSubjectTermTexts, excludeTechniqueTexts, excludeWorkTypeTexts, includeCategories, includeCollections, includeColorTexts, includeCulturalContextTexts, includeGenders, includeInstitutions, includeLocationNameTexts, includeMaterialTexts, includeSubjectTermTexts, includeTechniqueTexts, includeWorkTypeTexts, DefaultConstructionValidator.getInstance());
+        UncheckedValidator.validate(excludeAll, excludeCategories, excludeCollections, excludeColorTexts, excludeCulturalContextTexts, excludeGenders, excludeInstitutions, excludeLocationNameTexts, excludeMaterialTexts, excludeSubjectTermTexts, excludeTechniqueTexts, excludeWorkTypeTexts, includeCategories, includeCollections, includeColorTexts, includeCulturalContextTexts, includeGenders, includeInstitutions, includeLocationNameTexts, includeMaterialTexts, includeSubjectTermTexts, includeTechniqueTexts, includeWorkTypeTexts);
+        return new ObjectFacetFilters(excludeAll, excludeCategories, excludeCollections, excludeColorTexts, excludeCulturalContextTexts, excludeGenders, excludeInstitutions, excludeLocationNameTexts, excludeMaterialTexts, excludeSubjectTermTexts, excludeTechniqueTexts, excludeWorkTypeTexts, includeCategories, includeCollections, includeColorTexts, includeCulturalContextTexts, includeGenders, includeInstitutions, includeLocationNameTexts, includeMaterialTexts, includeSubjectTermTexts, includeTechniqueTexts, includeWorkTypeTexts);
     }
 
     @Override
@@ -3341,7 +3060,7 @@ public final class ObjectFacetFilters implements org.thryft.Struct {
         try {
             final org.thryft.protocol.ListBegin __list = iprot.readListBegin();
             if (__list.getSize() > 0) {
-                excludeAll = com.google.common.base.Optional.of(iprot.readBool());
+                excludeAll = org.thryft.Optionals.of(iprot.readBool());
             }
             if (__list.getSize() > 1) {
                 try {
@@ -3377,6 +3096,8 @@ public final class ObjectFacetFilters implements org.thryft.Struct {
                                     try {
                                         sequenceBuilder.add(org.dressdiscover.api.models.collection.CollectionId.parse(iprot.readString()));
                                     } catch (final org.dressdiscover.api.models.collection.InvalidCollectionIdException e) {
+                                         throw new org.thryft.protocol.InputProtocolException(e);
+                                    } catch (final IllegalArgumentException e) {
                                          throw new org.thryft.protocol.InputProtocolException(e);
                                     }
                                 }
@@ -3444,7 +3165,7 @@ public final class ObjectFacetFilters implements org.thryft.Struct {
                                 final org.thryft.protocol.SetBegin sequenceBegin = iprot.readSetBegin();
                                 final com.google.common.collect.ImmutableSet.Builder<org.dressdiscover.api.vocabularies.costume_core.gender.Gender> sequenceBuilder = com.google.common.collect.ImmutableSet.builder();
                                 for (int elementI = 0; elementI < sequenceBegin.getSize(); elementI++) {
-                                    sequenceBuilder.add(iprot.readEnum(org.dressdiscover.api.vocabularies.costume_core.gender.Gender.class));
+                                    sequenceBuilder.add(iprot.readEnum(org.dressdiscover.api.vocabularies.costume_core.gender.Gender.Factory.getInstance()));
                                 }
                                 iprot.readSetEnd();
                                 return sequenceBuilder.build();
@@ -3469,6 +3190,8 @@ public final class ObjectFacetFilters implements org.thryft.Struct {
                                     try {
                                         sequenceBuilder.add(org.dressdiscover.api.models.institution.InstitutionId.parse(iprot.readString()));
                                     } catch (final org.dressdiscover.api.models.institution.InvalidInstitutionIdException e) {
+                                         throw new org.thryft.protocol.InputProtocolException(e);
+                                    } catch (final IllegalArgumentException e) {
                                          throw new org.thryft.protocol.InputProtocolException(e);
                                     }
                                 }
@@ -3628,6 +3351,8 @@ public final class ObjectFacetFilters implements org.thryft.Struct {
                                         sequenceBuilder.add(org.dressdiscover.api.models.collection.CollectionId.parse(iprot.readString()));
                                     } catch (final org.dressdiscover.api.models.collection.InvalidCollectionIdException e) {
                                          throw new org.thryft.protocol.InputProtocolException(e);
+                                    } catch (final IllegalArgumentException e) {
+                                         throw new org.thryft.protocol.InputProtocolException(e);
                                     }
                                 }
                                 iprot.readSetEnd();
@@ -3694,7 +3419,7 @@ public final class ObjectFacetFilters implements org.thryft.Struct {
                                 final org.thryft.protocol.SetBegin sequenceBegin = iprot.readSetBegin();
                                 final com.google.common.collect.ImmutableSet.Builder<org.dressdiscover.api.vocabularies.costume_core.gender.Gender> sequenceBuilder = com.google.common.collect.ImmutableSet.builder();
                                 for (int elementI = 0; elementI < sequenceBegin.getSize(); elementI++) {
-                                    sequenceBuilder.add(iprot.readEnum(org.dressdiscover.api.vocabularies.costume_core.gender.Gender.class));
+                                    sequenceBuilder.add(iprot.readEnum(org.dressdiscover.api.vocabularies.costume_core.gender.Gender.Factory.getInstance()));
                                 }
                                 iprot.readSetEnd();
                                 return sequenceBuilder.build();
@@ -3719,6 +3444,8 @@ public final class ObjectFacetFilters implements org.thryft.Struct {
                                     try {
                                         sequenceBuilder.add(org.dressdiscover.api.models.institution.InstitutionId.parse(iprot.readString()));
                                     } catch (final org.dressdiscover.api.models.institution.InvalidInstitutionIdException e) {
+                                         throw new org.thryft.protocol.InputProtocolException(e);
+                                    } catch (final IllegalArgumentException e) {
                                          throw new org.thryft.protocol.InputProtocolException(e);
                                     }
                                 }
@@ -3847,7 +3574,10 @@ public final class ObjectFacetFilters implements org.thryft.Struct {
         } catch (final RuntimeException e) {
             throw new IllegalStateException(e);
         }
-        return new ObjectFacetFilters(DefaultReadValidator.getInstance().validateExcludeAll(excludeAll), DefaultReadValidator.getInstance().validateExcludeCategories(excludeCategories), DefaultReadValidator.getInstance().validateExcludeCollections(excludeCollections), DefaultReadValidator.getInstance().validateExcludeColorTexts(excludeColorTexts), DefaultReadValidator.getInstance().validateExcludeCulturalContextTexts(excludeCulturalContextTexts), DefaultReadValidator.getInstance().validateExcludeGenders(excludeGenders), DefaultReadValidator.getInstance().validateExcludeInstitutions(excludeInstitutions), DefaultReadValidator.getInstance().validateExcludeLocationNameTexts(excludeLocationNameTexts), DefaultReadValidator.getInstance().validateExcludeMaterialTexts(excludeMaterialTexts), DefaultReadValidator.getInstance().validateExcludeSubjectTermTexts(excludeSubjectTermTexts), DefaultReadValidator.getInstance().validateExcludeTechniqueTexts(excludeTechniqueTexts), DefaultReadValidator.getInstance().validateExcludeWorkTypeTexts(excludeWorkTypeTexts), DefaultReadValidator.getInstance().validateIncludeCategories(includeCategories), DefaultReadValidator.getInstance().validateIncludeCollections(includeCollections), DefaultReadValidator.getInstance().validateIncludeColorTexts(includeColorTexts), DefaultReadValidator.getInstance().validateIncludeCulturalContextTexts(includeCulturalContextTexts), DefaultReadValidator.getInstance().validateIncludeGenders(includeGenders), DefaultReadValidator.getInstance().validateIncludeInstitutions(includeInstitutions), DefaultReadValidator.getInstance().validateIncludeLocationNameTexts(includeLocationNameTexts), DefaultReadValidator.getInstance().validateIncludeMaterialTexts(includeMaterialTexts), DefaultReadValidator.getInstance().validateIncludeSubjectTermTexts(includeSubjectTermTexts), DefaultReadValidator.getInstance().validateIncludeTechniqueTexts(includeTechniqueTexts), DefaultReadValidator.getInstance().validateIncludeWorkTypeTexts(includeWorkTypeTexts), NopConstructionValidator.getInstance());
+
+        ReadValidator.validate(excludeAll, excludeCategories, excludeCollections, excludeColorTexts, excludeCulturalContextTexts, excludeGenders, excludeInstitutions, excludeLocationNameTexts, excludeMaterialTexts, excludeSubjectTermTexts, excludeTechniqueTexts, excludeWorkTypeTexts, includeCategories, includeCollections, includeColorTexts, includeCulturalContextTexts, includeGenders, includeInstitutions, includeLocationNameTexts, includeMaterialTexts, includeSubjectTermTexts, includeTechniqueTexts, includeWorkTypeTexts);
+
+        return new ObjectFacetFilters(excludeAll, excludeCategories, excludeCollections, excludeColorTexts, excludeCulturalContextTexts, excludeGenders, excludeInstitutions, excludeLocationNameTexts, excludeMaterialTexts, excludeSubjectTermTexts, excludeTechniqueTexts, excludeWorkTypeTexts, includeCategories, includeCollections, includeColorTexts, includeCulturalContextTexts, includeGenders, includeInstitutions, includeLocationNameTexts, includeMaterialTexts, includeSubjectTermTexts, includeTechniqueTexts, includeWorkTypeTexts);
     }
 
     public static ObjectFacetFilters readAsStruct(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
@@ -3888,7 +3618,7 @@ public final class ObjectFacetFilters implements org.thryft.Struct {
                 }
                 switch (ifield.getName()) {
                 case "exclude_all": {
-                    excludeAll = com.google.common.base.Optional.of(iprot.readBool());
+                    excludeAll = org.thryft.Optionals.of(iprot.readBool());
                     break;
                 }
                 case "exclude_categories": {
@@ -3926,6 +3656,8 @@ public final class ObjectFacetFilters implements org.thryft.Struct {
                                         try {
                                             sequenceBuilder.add(org.dressdiscover.api.models.collection.CollectionId.parse(iprot.readString()));
                                         } catch (final org.dressdiscover.api.models.collection.InvalidCollectionIdException e) {
+                                             throw new org.thryft.protocol.InputProtocolException(e);
+                                        } catch (final IllegalArgumentException e) {
                                              throw new org.thryft.protocol.InputProtocolException(e);
                                         }
                                     }
@@ -3996,7 +3728,7 @@ public final class ObjectFacetFilters implements org.thryft.Struct {
                                     final org.thryft.protocol.SetBegin sequenceBegin = iprot.readSetBegin();
                                     final com.google.common.collect.ImmutableSet.Builder<org.dressdiscover.api.vocabularies.costume_core.gender.Gender> sequenceBuilder = com.google.common.collect.ImmutableSet.builder();
                                     for (int elementI = 0; elementI < sequenceBegin.getSize(); elementI++) {
-                                        sequenceBuilder.add(iprot.readEnum(org.dressdiscover.api.vocabularies.costume_core.gender.Gender.class));
+                                        sequenceBuilder.add(iprot.readEnum(org.dressdiscover.api.vocabularies.costume_core.gender.Gender.Factory.getInstance()));
                                     }
                                     iprot.readSetEnd();
                                     return sequenceBuilder.build();
@@ -4022,6 +3754,8 @@ public final class ObjectFacetFilters implements org.thryft.Struct {
                                         try {
                                             sequenceBuilder.add(org.dressdiscover.api.models.institution.InstitutionId.parse(iprot.readString()));
                                         } catch (final org.dressdiscover.api.models.institution.InvalidInstitutionIdException e) {
+                                             throw new org.thryft.protocol.InputProtocolException(e);
+                                        } catch (final IllegalArgumentException e) {
                                              throw new org.thryft.protocol.InputProtocolException(e);
                                         }
                                     }
@@ -4188,6 +3922,8 @@ public final class ObjectFacetFilters implements org.thryft.Struct {
                                             sequenceBuilder.add(org.dressdiscover.api.models.collection.CollectionId.parse(iprot.readString()));
                                         } catch (final org.dressdiscover.api.models.collection.InvalidCollectionIdException e) {
                                              throw new org.thryft.protocol.InputProtocolException(e);
+                                        } catch (final IllegalArgumentException e) {
+                                             throw new org.thryft.protocol.InputProtocolException(e);
                                         }
                                     }
                                     iprot.readSetEnd();
@@ -4257,7 +3993,7 @@ public final class ObjectFacetFilters implements org.thryft.Struct {
                                     final org.thryft.protocol.SetBegin sequenceBegin = iprot.readSetBegin();
                                     final com.google.common.collect.ImmutableSet.Builder<org.dressdiscover.api.vocabularies.costume_core.gender.Gender> sequenceBuilder = com.google.common.collect.ImmutableSet.builder();
                                     for (int elementI = 0; elementI < sequenceBegin.getSize(); elementI++) {
-                                        sequenceBuilder.add(iprot.readEnum(org.dressdiscover.api.vocabularies.costume_core.gender.Gender.class));
+                                        sequenceBuilder.add(iprot.readEnum(org.dressdiscover.api.vocabularies.costume_core.gender.Gender.Factory.getInstance()));
                                     }
                                     iprot.readSetEnd();
                                     return sequenceBuilder.build();
@@ -4283,6 +4019,8 @@ public final class ObjectFacetFilters implements org.thryft.Struct {
                                         try {
                                             sequenceBuilder.add(org.dressdiscover.api.models.institution.InstitutionId.parse(iprot.readString()));
                                         } catch (final org.dressdiscover.api.models.institution.InvalidInstitutionIdException e) {
+                                             throw new org.thryft.protocol.InputProtocolException(e);
+                                        } catch (final IllegalArgumentException e) {
                                              throw new org.thryft.protocol.InputProtocolException(e);
                                         }
                                     }
@@ -4425,190 +4163,220 @@ public final class ObjectFacetFilters implements org.thryft.Struct {
         } catch (final RuntimeException e) {
             throw new IllegalStateException(e);
         }
-        return new ObjectFacetFilters(DefaultReadValidator.getInstance().validateExcludeAll(excludeAll), DefaultReadValidator.getInstance().validateExcludeCategories(excludeCategories), DefaultReadValidator.getInstance().validateExcludeCollections(excludeCollections), DefaultReadValidator.getInstance().validateExcludeColorTexts(excludeColorTexts), DefaultReadValidator.getInstance().validateExcludeCulturalContextTexts(excludeCulturalContextTexts), DefaultReadValidator.getInstance().validateExcludeGenders(excludeGenders), DefaultReadValidator.getInstance().validateExcludeInstitutions(excludeInstitutions), DefaultReadValidator.getInstance().validateExcludeLocationNameTexts(excludeLocationNameTexts), DefaultReadValidator.getInstance().validateExcludeMaterialTexts(excludeMaterialTexts), DefaultReadValidator.getInstance().validateExcludeSubjectTermTexts(excludeSubjectTermTexts), DefaultReadValidator.getInstance().validateExcludeTechniqueTexts(excludeTechniqueTexts), DefaultReadValidator.getInstance().validateExcludeWorkTypeTexts(excludeWorkTypeTexts), DefaultReadValidator.getInstance().validateIncludeCategories(includeCategories), DefaultReadValidator.getInstance().validateIncludeCollections(includeCollections), DefaultReadValidator.getInstance().validateIncludeColorTexts(includeColorTexts), DefaultReadValidator.getInstance().validateIncludeCulturalContextTexts(includeCulturalContextTexts), DefaultReadValidator.getInstance().validateIncludeGenders(includeGenders), DefaultReadValidator.getInstance().validateIncludeInstitutions(includeInstitutions), DefaultReadValidator.getInstance().validateIncludeLocationNameTexts(includeLocationNameTexts), DefaultReadValidator.getInstance().validateIncludeMaterialTexts(includeMaterialTexts), DefaultReadValidator.getInstance().validateIncludeSubjectTermTexts(includeSubjectTermTexts), DefaultReadValidator.getInstance().validateIncludeTechniqueTexts(includeTechniqueTexts), DefaultReadValidator.getInstance().validateIncludeWorkTypeTexts(includeWorkTypeTexts), NopConstructionValidator.getInstance());
+
+        ReadValidator.validate(excludeAll, excludeCategories, excludeCollections, excludeColorTexts, excludeCulturalContextTexts, excludeGenders, excludeInstitutions, excludeLocationNameTexts, excludeMaterialTexts, excludeSubjectTermTexts, excludeTechniqueTexts, excludeWorkTypeTexts, includeCategories, includeCollections, includeColorTexts, includeCulturalContextTexts, includeGenders, includeInstitutions, includeLocationNameTexts, includeMaterialTexts, includeSubjectTermTexts, includeTechniqueTexts, includeWorkTypeTexts);
+
+        return new ObjectFacetFilters(excludeAll, excludeCategories, excludeCollections, excludeColorTexts, excludeCulturalContextTexts, excludeGenders, excludeInstitutions, excludeLocationNameTexts, excludeMaterialTexts, excludeSubjectTermTexts, excludeTechniqueTexts, excludeWorkTypeTexts, includeCategories, includeCollections, includeColorTexts, includeCulturalContextTexts, includeGenders, includeInstitutions, includeLocationNameTexts, includeMaterialTexts, includeSubjectTermTexts, includeTechniqueTexts, includeWorkTypeTexts);
     }
 
     public ObjectFacetFilters replaceExcludeAll(final com.google.common.base.Optional<Boolean> excludeAll) {
-        return new ObjectFacetFilters(DefaultConstructionValidator.getInstance().validateExcludeAll(excludeAll), this.excludeCategories, this.excludeCollections, this.excludeColorTexts, this.excludeCulturalContextTexts, this.excludeGenders, this.excludeInstitutions, this.excludeLocationNameTexts, this.excludeMaterialTexts, this.excludeSubjectTermTexts, this.excludeTechniqueTexts, this.excludeWorkTypeTexts, this.includeCategories, this.includeCollections, this.includeColorTexts, this.includeCulturalContextTexts, this.includeGenders, this.includeInstitutions, this.includeLocationNameTexts, this.includeMaterialTexts, this.includeSubjectTermTexts, this.includeTechniqueTexts, this.includeWorkTypeTexts, NopConstructionValidator.getInstance());
+        UncheckedValidator.validateExcludeAll(excludeAll);
+        return new ObjectFacetFilters(excludeAll, this.excludeCategories, this.excludeCollections, this.excludeColorTexts, this.excludeCulturalContextTexts, this.excludeGenders, this.excludeInstitutions, this.excludeLocationNameTexts, this.excludeMaterialTexts, this.excludeSubjectTermTexts, this.excludeTechniqueTexts, this.excludeWorkTypeTexts, this.includeCategories, this.includeCollections, this.includeColorTexts, this.includeCulturalContextTexts, this.includeGenders, this.includeInstitutions, this.includeLocationNameTexts, this.includeMaterialTexts, this.includeSubjectTermTexts, this.includeTechniqueTexts, this.includeWorkTypeTexts);
+    }
+
+    public ObjectFacetFilters replaceExcludeAll(@javax.annotation.Nullable final Boolean excludeAll) {
+        return replaceExcludeAll(org.thryft.Optionals.fromNullable(excludeAll));
     }
 
     public ObjectFacetFilters replaceExcludeAll(final boolean excludeAll) {
-        return replaceExcludeAll(com.google.common.base.Optional.fromNullable(excludeAll));
+        return replaceExcludeAll(org.thryft.Optionals.of(excludeAll));
     }
 
     public ObjectFacetFilters replaceExcludeCategories(final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> excludeCategories) {
-        return new ObjectFacetFilters(this.excludeAll, DefaultConstructionValidator.getInstance().validateExcludeCategories(excludeCategories), this.excludeCollections, this.excludeColorTexts, this.excludeCulturalContextTexts, this.excludeGenders, this.excludeInstitutions, this.excludeLocationNameTexts, this.excludeMaterialTexts, this.excludeSubjectTermTexts, this.excludeTechniqueTexts, this.excludeWorkTypeTexts, this.includeCategories, this.includeCollections, this.includeColorTexts, this.includeCulturalContextTexts, this.includeGenders, this.includeInstitutions, this.includeLocationNameTexts, this.includeMaterialTexts, this.includeSubjectTermTexts, this.includeTechniqueTexts, this.includeWorkTypeTexts, NopConstructionValidator.getInstance());
+        UncheckedValidator.validateExcludeCategories(excludeCategories);
+        return new ObjectFacetFilters(this.excludeAll, excludeCategories, this.excludeCollections, this.excludeColorTexts, this.excludeCulturalContextTexts, this.excludeGenders, this.excludeInstitutions, this.excludeLocationNameTexts, this.excludeMaterialTexts, this.excludeSubjectTermTexts, this.excludeTechniqueTexts, this.excludeWorkTypeTexts, this.includeCategories, this.includeCollections, this.includeColorTexts, this.includeCulturalContextTexts, this.includeGenders, this.includeInstitutions, this.includeLocationNameTexts, this.includeMaterialTexts, this.includeSubjectTermTexts, this.includeTechniqueTexts, this.includeWorkTypeTexts);
     }
 
-    public ObjectFacetFilters replaceExcludeCategories(final com.google.common.collect.ImmutableSet<String> excludeCategories) {
+    public ObjectFacetFilters replaceExcludeCategories(@javax.annotation.Nullable final com.google.common.collect.ImmutableSet<String> excludeCategories) {
         return replaceExcludeCategories(com.google.common.base.Optional.fromNullable(excludeCategories));
     }
 
     public ObjectFacetFilters replaceExcludeCollections(final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.collection.CollectionId>> excludeCollections) {
-        return new ObjectFacetFilters(this.excludeAll, this.excludeCategories, DefaultConstructionValidator.getInstance().validateExcludeCollections(excludeCollections), this.excludeColorTexts, this.excludeCulturalContextTexts, this.excludeGenders, this.excludeInstitutions, this.excludeLocationNameTexts, this.excludeMaterialTexts, this.excludeSubjectTermTexts, this.excludeTechniqueTexts, this.excludeWorkTypeTexts, this.includeCategories, this.includeCollections, this.includeColorTexts, this.includeCulturalContextTexts, this.includeGenders, this.includeInstitutions, this.includeLocationNameTexts, this.includeMaterialTexts, this.includeSubjectTermTexts, this.includeTechniqueTexts, this.includeWorkTypeTexts, NopConstructionValidator.getInstance());
+        UncheckedValidator.validateExcludeCollections(excludeCollections);
+        return new ObjectFacetFilters(this.excludeAll, this.excludeCategories, excludeCollections, this.excludeColorTexts, this.excludeCulturalContextTexts, this.excludeGenders, this.excludeInstitutions, this.excludeLocationNameTexts, this.excludeMaterialTexts, this.excludeSubjectTermTexts, this.excludeTechniqueTexts, this.excludeWorkTypeTexts, this.includeCategories, this.includeCollections, this.includeColorTexts, this.includeCulturalContextTexts, this.includeGenders, this.includeInstitutions, this.includeLocationNameTexts, this.includeMaterialTexts, this.includeSubjectTermTexts, this.includeTechniqueTexts, this.includeWorkTypeTexts);
     }
 
-    public ObjectFacetFilters replaceExcludeCollections(final com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.collection.CollectionId> excludeCollections) {
+    public ObjectFacetFilters replaceExcludeCollections(@javax.annotation.Nullable final com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.collection.CollectionId> excludeCollections) {
         return replaceExcludeCollections(com.google.common.base.Optional.fromNullable(excludeCollections));
     }
 
     public ObjectFacetFilters replaceExcludeColorTexts(final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> excludeColorTexts) {
-        return new ObjectFacetFilters(this.excludeAll, this.excludeCategories, this.excludeCollections, DefaultConstructionValidator.getInstance().validateExcludeColorTexts(excludeColorTexts), this.excludeCulturalContextTexts, this.excludeGenders, this.excludeInstitutions, this.excludeLocationNameTexts, this.excludeMaterialTexts, this.excludeSubjectTermTexts, this.excludeTechniqueTexts, this.excludeWorkTypeTexts, this.includeCategories, this.includeCollections, this.includeColorTexts, this.includeCulturalContextTexts, this.includeGenders, this.includeInstitutions, this.includeLocationNameTexts, this.includeMaterialTexts, this.includeSubjectTermTexts, this.includeTechniqueTexts, this.includeWorkTypeTexts, NopConstructionValidator.getInstance());
+        UncheckedValidator.validateExcludeColorTexts(excludeColorTexts);
+        return new ObjectFacetFilters(this.excludeAll, this.excludeCategories, this.excludeCollections, excludeColorTexts, this.excludeCulturalContextTexts, this.excludeGenders, this.excludeInstitutions, this.excludeLocationNameTexts, this.excludeMaterialTexts, this.excludeSubjectTermTexts, this.excludeTechniqueTexts, this.excludeWorkTypeTexts, this.includeCategories, this.includeCollections, this.includeColorTexts, this.includeCulturalContextTexts, this.includeGenders, this.includeInstitutions, this.includeLocationNameTexts, this.includeMaterialTexts, this.includeSubjectTermTexts, this.includeTechniqueTexts, this.includeWorkTypeTexts);
     }
 
-    public ObjectFacetFilters replaceExcludeColorTexts(final com.google.common.collect.ImmutableSet<String> excludeColorTexts) {
+    public ObjectFacetFilters replaceExcludeColorTexts(@javax.annotation.Nullable final com.google.common.collect.ImmutableSet<String> excludeColorTexts) {
         return replaceExcludeColorTexts(com.google.common.base.Optional.fromNullable(excludeColorTexts));
     }
 
     public ObjectFacetFilters replaceExcludeCulturalContextTexts(final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> excludeCulturalContextTexts) {
-        return new ObjectFacetFilters(this.excludeAll, this.excludeCategories, this.excludeCollections, this.excludeColorTexts, DefaultConstructionValidator.getInstance().validateExcludeCulturalContextTexts(excludeCulturalContextTexts), this.excludeGenders, this.excludeInstitutions, this.excludeLocationNameTexts, this.excludeMaterialTexts, this.excludeSubjectTermTexts, this.excludeTechniqueTexts, this.excludeWorkTypeTexts, this.includeCategories, this.includeCollections, this.includeColorTexts, this.includeCulturalContextTexts, this.includeGenders, this.includeInstitutions, this.includeLocationNameTexts, this.includeMaterialTexts, this.includeSubjectTermTexts, this.includeTechniqueTexts, this.includeWorkTypeTexts, NopConstructionValidator.getInstance());
+        UncheckedValidator.validateExcludeCulturalContextTexts(excludeCulturalContextTexts);
+        return new ObjectFacetFilters(this.excludeAll, this.excludeCategories, this.excludeCollections, this.excludeColorTexts, excludeCulturalContextTexts, this.excludeGenders, this.excludeInstitutions, this.excludeLocationNameTexts, this.excludeMaterialTexts, this.excludeSubjectTermTexts, this.excludeTechniqueTexts, this.excludeWorkTypeTexts, this.includeCategories, this.includeCollections, this.includeColorTexts, this.includeCulturalContextTexts, this.includeGenders, this.includeInstitutions, this.includeLocationNameTexts, this.includeMaterialTexts, this.includeSubjectTermTexts, this.includeTechniqueTexts, this.includeWorkTypeTexts);
     }
 
-    public ObjectFacetFilters replaceExcludeCulturalContextTexts(final com.google.common.collect.ImmutableSet<String> excludeCulturalContextTexts) {
+    public ObjectFacetFilters replaceExcludeCulturalContextTexts(@javax.annotation.Nullable final com.google.common.collect.ImmutableSet<String> excludeCulturalContextTexts) {
         return replaceExcludeCulturalContextTexts(com.google.common.base.Optional.fromNullable(excludeCulturalContextTexts));
     }
 
     public ObjectFacetFilters replaceExcludeGenders(final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<org.dressdiscover.api.vocabularies.costume_core.gender.Gender>> excludeGenders) {
-        return new ObjectFacetFilters(this.excludeAll, this.excludeCategories, this.excludeCollections, this.excludeColorTexts, this.excludeCulturalContextTexts, DefaultConstructionValidator.getInstance().validateExcludeGenders(excludeGenders), this.excludeInstitutions, this.excludeLocationNameTexts, this.excludeMaterialTexts, this.excludeSubjectTermTexts, this.excludeTechniqueTexts, this.excludeWorkTypeTexts, this.includeCategories, this.includeCollections, this.includeColorTexts, this.includeCulturalContextTexts, this.includeGenders, this.includeInstitutions, this.includeLocationNameTexts, this.includeMaterialTexts, this.includeSubjectTermTexts, this.includeTechniqueTexts, this.includeWorkTypeTexts, NopConstructionValidator.getInstance());
+        UncheckedValidator.validateExcludeGenders(excludeGenders);
+        return new ObjectFacetFilters(this.excludeAll, this.excludeCategories, this.excludeCollections, this.excludeColorTexts, this.excludeCulturalContextTexts, excludeGenders, this.excludeInstitutions, this.excludeLocationNameTexts, this.excludeMaterialTexts, this.excludeSubjectTermTexts, this.excludeTechniqueTexts, this.excludeWorkTypeTexts, this.includeCategories, this.includeCollections, this.includeColorTexts, this.includeCulturalContextTexts, this.includeGenders, this.includeInstitutions, this.includeLocationNameTexts, this.includeMaterialTexts, this.includeSubjectTermTexts, this.includeTechniqueTexts, this.includeWorkTypeTexts);
     }
 
-    public ObjectFacetFilters replaceExcludeGenders(final com.google.common.collect.ImmutableSet<org.dressdiscover.api.vocabularies.costume_core.gender.Gender> excludeGenders) {
+    public ObjectFacetFilters replaceExcludeGenders(@javax.annotation.Nullable final com.google.common.collect.ImmutableSet<org.dressdiscover.api.vocabularies.costume_core.gender.Gender> excludeGenders) {
         return replaceExcludeGenders(com.google.common.base.Optional.fromNullable(excludeGenders));
     }
 
     public ObjectFacetFilters replaceExcludeInstitutions(final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.institution.InstitutionId>> excludeInstitutions) {
-        return new ObjectFacetFilters(this.excludeAll, this.excludeCategories, this.excludeCollections, this.excludeColorTexts, this.excludeCulturalContextTexts, this.excludeGenders, DefaultConstructionValidator.getInstance().validateExcludeInstitutions(excludeInstitutions), this.excludeLocationNameTexts, this.excludeMaterialTexts, this.excludeSubjectTermTexts, this.excludeTechniqueTexts, this.excludeWorkTypeTexts, this.includeCategories, this.includeCollections, this.includeColorTexts, this.includeCulturalContextTexts, this.includeGenders, this.includeInstitutions, this.includeLocationNameTexts, this.includeMaterialTexts, this.includeSubjectTermTexts, this.includeTechniqueTexts, this.includeWorkTypeTexts, NopConstructionValidator.getInstance());
+        UncheckedValidator.validateExcludeInstitutions(excludeInstitutions);
+        return new ObjectFacetFilters(this.excludeAll, this.excludeCategories, this.excludeCollections, this.excludeColorTexts, this.excludeCulturalContextTexts, this.excludeGenders, excludeInstitutions, this.excludeLocationNameTexts, this.excludeMaterialTexts, this.excludeSubjectTermTexts, this.excludeTechniqueTexts, this.excludeWorkTypeTexts, this.includeCategories, this.includeCollections, this.includeColorTexts, this.includeCulturalContextTexts, this.includeGenders, this.includeInstitutions, this.includeLocationNameTexts, this.includeMaterialTexts, this.includeSubjectTermTexts, this.includeTechniqueTexts, this.includeWorkTypeTexts);
     }
 
-    public ObjectFacetFilters replaceExcludeInstitutions(final com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.institution.InstitutionId> excludeInstitutions) {
+    public ObjectFacetFilters replaceExcludeInstitutions(@javax.annotation.Nullable final com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.institution.InstitutionId> excludeInstitutions) {
         return replaceExcludeInstitutions(com.google.common.base.Optional.fromNullable(excludeInstitutions));
     }
 
     public ObjectFacetFilters replaceExcludeLocationNameTexts(final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> excludeLocationNameTexts) {
-        return new ObjectFacetFilters(this.excludeAll, this.excludeCategories, this.excludeCollections, this.excludeColorTexts, this.excludeCulturalContextTexts, this.excludeGenders, this.excludeInstitutions, DefaultConstructionValidator.getInstance().validateExcludeLocationNameTexts(excludeLocationNameTexts), this.excludeMaterialTexts, this.excludeSubjectTermTexts, this.excludeTechniqueTexts, this.excludeWorkTypeTexts, this.includeCategories, this.includeCollections, this.includeColorTexts, this.includeCulturalContextTexts, this.includeGenders, this.includeInstitutions, this.includeLocationNameTexts, this.includeMaterialTexts, this.includeSubjectTermTexts, this.includeTechniqueTexts, this.includeWorkTypeTexts, NopConstructionValidator.getInstance());
+        UncheckedValidator.validateExcludeLocationNameTexts(excludeLocationNameTexts);
+        return new ObjectFacetFilters(this.excludeAll, this.excludeCategories, this.excludeCollections, this.excludeColorTexts, this.excludeCulturalContextTexts, this.excludeGenders, this.excludeInstitutions, excludeLocationNameTexts, this.excludeMaterialTexts, this.excludeSubjectTermTexts, this.excludeTechniqueTexts, this.excludeWorkTypeTexts, this.includeCategories, this.includeCollections, this.includeColorTexts, this.includeCulturalContextTexts, this.includeGenders, this.includeInstitutions, this.includeLocationNameTexts, this.includeMaterialTexts, this.includeSubjectTermTexts, this.includeTechniqueTexts, this.includeWorkTypeTexts);
     }
 
-    public ObjectFacetFilters replaceExcludeLocationNameTexts(final com.google.common.collect.ImmutableSet<String> excludeLocationNameTexts) {
+    public ObjectFacetFilters replaceExcludeLocationNameTexts(@javax.annotation.Nullable final com.google.common.collect.ImmutableSet<String> excludeLocationNameTexts) {
         return replaceExcludeLocationNameTexts(com.google.common.base.Optional.fromNullable(excludeLocationNameTexts));
     }
 
     public ObjectFacetFilters replaceExcludeMaterialTexts(final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> excludeMaterialTexts) {
-        return new ObjectFacetFilters(this.excludeAll, this.excludeCategories, this.excludeCollections, this.excludeColorTexts, this.excludeCulturalContextTexts, this.excludeGenders, this.excludeInstitutions, this.excludeLocationNameTexts, DefaultConstructionValidator.getInstance().validateExcludeMaterialTexts(excludeMaterialTexts), this.excludeSubjectTermTexts, this.excludeTechniqueTexts, this.excludeWorkTypeTexts, this.includeCategories, this.includeCollections, this.includeColorTexts, this.includeCulturalContextTexts, this.includeGenders, this.includeInstitutions, this.includeLocationNameTexts, this.includeMaterialTexts, this.includeSubjectTermTexts, this.includeTechniqueTexts, this.includeWorkTypeTexts, NopConstructionValidator.getInstance());
+        UncheckedValidator.validateExcludeMaterialTexts(excludeMaterialTexts);
+        return new ObjectFacetFilters(this.excludeAll, this.excludeCategories, this.excludeCollections, this.excludeColorTexts, this.excludeCulturalContextTexts, this.excludeGenders, this.excludeInstitutions, this.excludeLocationNameTexts, excludeMaterialTexts, this.excludeSubjectTermTexts, this.excludeTechniqueTexts, this.excludeWorkTypeTexts, this.includeCategories, this.includeCollections, this.includeColorTexts, this.includeCulturalContextTexts, this.includeGenders, this.includeInstitutions, this.includeLocationNameTexts, this.includeMaterialTexts, this.includeSubjectTermTexts, this.includeTechniqueTexts, this.includeWorkTypeTexts);
     }
 
-    public ObjectFacetFilters replaceExcludeMaterialTexts(final com.google.common.collect.ImmutableSet<String> excludeMaterialTexts) {
+    public ObjectFacetFilters replaceExcludeMaterialTexts(@javax.annotation.Nullable final com.google.common.collect.ImmutableSet<String> excludeMaterialTexts) {
         return replaceExcludeMaterialTexts(com.google.common.base.Optional.fromNullable(excludeMaterialTexts));
     }
 
     public ObjectFacetFilters replaceExcludeSubjectTermTexts(final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> excludeSubjectTermTexts) {
-        return new ObjectFacetFilters(this.excludeAll, this.excludeCategories, this.excludeCollections, this.excludeColorTexts, this.excludeCulturalContextTexts, this.excludeGenders, this.excludeInstitutions, this.excludeLocationNameTexts, this.excludeMaterialTexts, DefaultConstructionValidator.getInstance().validateExcludeSubjectTermTexts(excludeSubjectTermTexts), this.excludeTechniqueTexts, this.excludeWorkTypeTexts, this.includeCategories, this.includeCollections, this.includeColorTexts, this.includeCulturalContextTexts, this.includeGenders, this.includeInstitutions, this.includeLocationNameTexts, this.includeMaterialTexts, this.includeSubjectTermTexts, this.includeTechniqueTexts, this.includeWorkTypeTexts, NopConstructionValidator.getInstance());
+        UncheckedValidator.validateExcludeSubjectTermTexts(excludeSubjectTermTexts);
+        return new ObjectFacetFilters(this.excludeAll, this.excludeCategories, this.excludeCollections, this.excludeColorTexts, this.excludeCulturalContextTexts, this.excludeGenders, this.excludeInstitutions, this.excludeLocationNameTexts, this.excludeMaterialTexts, excludeSubjectTermTexts, this.excludeTechniqueTexts, this.excludeWorkTypeTexts, this.includeCategories, this.includeCollections, this.includeColorTexts, this.includeCulturalContextTexts, this.includeGenders, this.includeInstitutions, this.includeLocationNameTexts, this.includeMaterialTexts, this.includeSubjectTermTexts, this.includeTechniqueTexts, this.includeWorkTypeTexts);
     }
 
-    public ObjectFacetFilters replaceExcludeSubjectTermTexts(final com.google.common.collect.ImmutableSet<String> excludeSubjectTermTexts) {
+    public ObjectFacetFilters replaceExcludeSubjectTermTexts(@javax.annotation.Nullable final com.google.common.collect.ImmutableSet<String> excludeSubjectTermTexts) {
         return replaceExcludeSubjectTermTexts(com.google.common.base.Optional.fromNullable(excludeSubjectTermTexts));
     }
 
     public ObjectFacetFilters replaceExcludeTechniqueTexts(final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> excludeTechniqueTexts) {
-        return new ObjectFacetFilters(this.excludeAll, this.excludeCategories, this.excludeCollections, this.excludeColorTexts, this.excludeCulturalContextTexts, this.excludeGenders, this.excludeInstitutions, this.excludeLocationNameTexts, this.excludeMaterialTexts, this.excludeSubjectTermTexts, DefaultConstructionValidator.getInstance().validateExcludeTechniqueTexts(excludeTechniqueTexts), this.excludeWorkTypeTexts, this.includeCategories, this.includeCollections, this.includeColorTexts, this.includeCulturalContextTexts, this.includeGenders, this.includeInstitutions, this.includeLocationNameTexts, this.includeMaterialTexts, this.includeSubjectTermTexts, this.includeTechniqueTexts, this.includeWorkTypeTexts, NopConstructionValidator.getInstance());
+        UncheckedValidator.validateExcludeTechniqueTexts(excludeTechniqueTexts);
+        return new ObjectFacetFilters(this.excludeAll, this.excludeCategories, this.excludeCollections, this.excludeColorTexts, this.excludeCulturalContextTexts, this.excludeGenders, this.excludeInstitutions, this.excludeLocationNameTexts, this.excludeMaterialTexts, this.excludeSubjectTermTexts, excludeTechniqueTexts, this.excludeWorkTypeTexts, this.includeCategories, this.includeCollections, this.includeColorTexts, this.includeCulturalContextTexts, this.includeGenders, this.includeInstitutions, this.includeLocationNameTexts, this.includeMaterialTexts, this.includeSubjectTermTexts, this.includeTechniqueTexts, this.includeWorkTypeTexts);
     }
 
-    public ObjectFacetFilters replaceExcludeTechniqueTexts(final com.google.common.collect.ImmutableSet<String> excludeTechniqueTexts) {
+    public ObjectFacetFilters replaceExcludeTechniqueTexts(@javax.annotation.Nullable final com.google.common.collect.ImmutableSet<String> excludeTechniqueTexts) {
         return replaceExcludeTechniqueTexts(com.google.common.base.Optional.fromNullable(excludeTechniqueTexts));
     }
 
     public ObjectFacetFilters replaceExcludeWorkTypeTexts(final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> excludeWorkTypeTexts) {
-        return new ObjectFacetFilters(this.excludeAll, this.excludeCategories, this.excludeCollections, this.excludeColorTexts, this.excludeCulturalContextTexts, this.excludeGenders, this.excludeInstitutions, this.excludeLocationNameTexts, this.excludeMaterialTexts, this.excludeSubjectTermTexts, this.excludeTechniqueTexts, DefaultConstructionValidator.getInstance().validateExcludeWorkTypeTexts(excludeWorkTypeTexts), this.includeCategories, this.includeCollections, this.includeColorTexts, this.includeCulturalContextTexts, this.includeGenders, this.includeInstitutions, this.includeLocationNameTexts, this.includeMaterialTexts, this.includeSubjectTermTexts, this.includeTechniqueTexts, this.includeWorkTypeTexts, NopConstructionValidator.getInstance());
+        UncheckedValidator.validateExcludeWorkTypeTexts(excludeWorkTypeTexts);
+        return new ObjectFacetFilters(this.excludeAll, this.excludeCategories, this.excludeCollections, this.excludeColorTexts, this.excludeCulturalContextTexts, this.excludeGenders, this.excludeInstitutions, this.excludeLocationNameTexts, this.excludeMaterialTexts, this.excludeSubjectTermTexts, this.excludeTechniqueTexts, excludeWorkTypeTexts, this.includeCategories, this.includeCollections, this.includeColorTexts, this.includeCulturalContextTexts, this.includeGenders, this.includeInstitutions, this.includeLocationNameTexts, this.includeMaterialTexts, this.includeSubjectTermTexts, this.includeTechniqueTexts, this.includeWorkTypeTexts);
     }
 
-    public ObjectFacetFilters replaceExcludeWorkTypeTexts(final com.google.common.collect.ImmutableSet<String> excludeWorkTypeTexts) {
+    public ObjectFacetFilters replaceExcludeWorkTypeTexts(@javax.annotation.Nullable final com.google.common.collect.ImmutableSet<String> excludeWorkTypeTexts) {
         return replaceExcludeWorkTypeTexts(com.google.common.base.Optional.fromNullable(excludeWorkTypeTexts));
     }
 
     public ObjectFacetFilters replaceIncludeCategories(final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> includeCategories) {
-        return new ObjectFacetFilters(this.excludeAll, this.excludeCategories, this.excludeCollections, this.excludeColorTexts, this.excludeCulturalContextTexts, this.excludeGenders, this.excludeInstitutions, this.excludeLocationNameTexts, this.excludeMaterialTexts, this.excludeSubjectTermTexts, this.excludeTechniqueTexts, this.excludeWorkTypeTexts, DefaultConstructionValidator.getInstance().validateIncludeCategories(includeCategories), this.includeCollections, this.includeColorTexts, this.includeCulturalContextTexts, this.includeGenders, this.includeInstitutions, this.includeLocationNameTexts, this.includeMaterialTexts, this.includeSubjectTermTexts, this.includeTechniqueTexts, this.includeWorkTypeTexts, NopConstructionValidator.getInstance());
+        UncheckedValidator.validateIncludeCategories(includeCategories);
+        return new ObjectFacetFilters(this.excludeAll, this.excludeCategories, this.excludeCollections, this.excludeColorTexts, this.excludeCulturalContextTexts, this.excludeGenders, this.excludeInstitutions, this.excludeLocationNameTexts, this.excludeMaterialTexts, this.excludeSubjectTermTexts, this.excludeTechniqueTexts, this.excludeWorkTypeTexts, includeCategories, this.includeCollections, this.includeColorTexts, this.includeCulturalContextTexts, this.includeGenders, this.includeInstitutions, this.includeLocationNameTexts, this.includeMaterialTexts, this.includeSubjectTermTexts, this.includeTechniqueTexts, this.includeWorkTypeTexts);
     }
 
-    public ObjectFacetFilters replaceIncludeCategories(final com.google.common.collect.ImmutableSet<String> includeCategories) {
+    public ObjectFacetFilters replaceIncludeCategories(@javax.annotation.Nullable final com.google.common.collect.ImmutableSet<String> includeCategories) {
         return replaceIncludeCategories(com.google.common.base.Optional.fromNullable(includeCategories));
     }
 
     public ObjectFacetFilters replaceIncludeCollections(final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.collection.CollectionId>> includeCollections) {
-        return new ObjectFacetFilters(this.excludeAll, this.excludeCategories, this.excludeCollections, this.excludeColorTexts, this.excludeCulturalContextTexts, this.excludeGenders, this.excludeInstitutions, this.excludeLocationNameTexts, this.excludeMaterialTexts, this.excludeSubjectTermTexts, this.excludeTechniqueTexts, this.excludeWorkTypeTexts, this.includeCategories, DefaultConstructionValidator.getInstance().validateIncludeCollections(includeCollections), this.includeColorTexts, this.includeCulturalContextTexts, this.includeGenders, this.includeInstitutions, this.includeLocationNameTexts, this.includeMaterialTexts, this.includeSubjectTermTexts, this.includeTechniqueTexts, this.includeWorkTypeTexts, NopConstructionValidator.getInstance());
+        UncheckedValidator.validateIncludeCollections(includeCollections);
+        return new ObjectFacetFilters(this.excludeAll, this.excludeCategories, this.excludeCollections, this.excludeColorTexts, this.excludeCulturalContextTexts, this.excludeGenders, this.excludeInstitutions, this.excludeLocationNameTexts, this.excludeMaterialTexts, this.excludeSubjectTermTexts, this.excludeTechniqueTexts, this.excludeWorkTypeTexts, this.includeCategories, includeCollections, this.includeColorTexts, this.includeCulturalContextTexts, this.includeGenders, this.includeInstitutions, this.includeLocationNameTexts, this.includeMaterialTexts, this.includeSubjectTermTexts, this.includeTechniqueTexts, this.includeWorkTypeTexts);
     }
 
-    public ObjectFacetFilters replaceIncludeCollections(final com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.collection.CollectionId> includeCollections) {
+    public ObjectFacetFilters replaceIncludeCollections(@javax.annotation.Nullable final com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.collection.CollectionId> includeCollections) {
         return replaceIncludeCollections(com.google.common.base.Optional.fromNullable(includeCollections));
     }
 
     public ObjectFacetFilters replaceIncludeColorTexts(final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> includeColorTexts) {
-        return new ObjectFacetFilters(this.excludeAll, this.excludeCategories, this.excludeCollections, this.excludeColorTexts, this.excludeCulturalContextTexts, this.excludeGenders, this.excludeInstitutions, this.excludeLocationNameTexts, this.excludeMaterialTexts, this.excludeSubjectTermTexts, this.excludeTechniqueTexts, this.excludeWorkTypeTexts, this.includeCategories, this.includeCollections, DefaultConstructionValidator.getInstance().validateIncludeColorTexts(includeColorTexts), this.includeCulturalContextTexts, this.includeGenders, this.includeInstitutions, this.includeLocationNameTexts, this.includeMaterialTexts, this.includeSubjectTermTexts, this.includeTechniqueTexts, this.includeWorkTypeTexts, NopConstructionValidator.getInstance());
+        UncheckedValidator.validateIncludeColorTexts(includeColorTexts);
+        return new ObjectFacetFilters(this.excludeAll, this.excludeCategories, this.excludeCollections, this.excludeColorTexts, this.excludeCulturalContextTexts, this.excludeGenders, this.excludeInstitutions, this.excludeLocationNameTexts, this.excludeMaterialTexts, this.excludeSubjectTermTexts, this.excludeTechniqueTexts, this.excludeWorkTypeTexts, this.includeCategories, this.includeCollections, includeColorTexts, this.includeCulturalContextTexts, this.includeGenders, this.includeInstitutions, this.includeLocationNameTexts, this.includeMaterialTexts, this.includeSubjectTermTexts, this.includeTechniqueTexts, this.includeWorkTypeTexts);
     }
 
-    public ObjectFacetFilters replaceIncludeColorTexts(final com.google.common.collect.ImmutableSet<String> includeColorTexts) {
+    public ObjectFacetFilters replaceIncludeColorTexts(@javax.annotation.Nullable final com.google.common.collect.ImmutableSet<String> includeColorTexts) {
         return replaceIncludeColorTexts(com.google.common.base.Optional.fromNullable(includeColorTexts));
     }
 
     public ObjectFacetFilters replaceIncludeCulturalContextTexts(final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> includeCulturalContextTexts) {
-        return new ObjectFacetFilters(this.excludeAll, this.excludeCategories, this.excludeCollections, this.excludeColorTexts, this.excludeCulturalContextTexts, this.excludeGenders, this.excludeInstitutions, this.excludeLocationNameTexts, this.excludeMaterialTexts, this.excludeSubjectTermTexts, this.excludeTechniqueTexts, this.excludeWorkTypeTexts, this.includeCategories, this.includeCollections, this.includeColorTexts, DefaultConstructionValidator.getInstance().validateIncludeCulturalContextTexts(includeCulturalContextTexts), this.includeGenders, this.includeInstitutions, this.includeLocationNameTexts, this.includeMaterialTexts, this.includeSubjectTermTexts, this.includeTechniqueTexts, this.includeWorkTypeTexts, NopConstructionValidator.getInstance());
+        UncheckedValidator.validateIncludeCulturalContextTexts(includeCulturalContextTexts);
+        return new ObjectFacetFilters(this.excludeAll, this.excludeCategories, this.excludeCollections, this.excludeColorTexts, this.excludeCulturalContextTexts, this.excludeGenders, this.excludeInstitutions, this.excludeLocationNameTexts, this.excludeMaterialTexts, this.excludeSubjectTermTexts, this.excludeTechniqueTexts, this.excludeWorkTypeTexts, this.includeCategories, this.includeCollections, this.includeColorTexts, includeCulturalContextTexts, this.includeGenders, this.includeInstitutions, this.includeLocationNameTexts, this.includeMaterialTexts, this.includeSubjectTermTexts, this.includeTechniqueTexts, this.includeWorkTypeTexts);
     }
 
-    public ObjectFacetFilters replaceIncludeCulturalContextTexts(final com.google.common.collect.ImmutableSet<String> includeCulturalContextTexts) {
+    public ObjectFacetFilters replaceIncludeCulturalContextTexts(@javax.annotation.Nullable final com.google.common.collect.ImmutableSet<String> includeCulturalContextTexts) {
         return replaceIncludeCulturalContextTexts(com.google.common.base.Optional.fromNullable(includeCulturalContextTexts));
     }
 
     public ObjectFacetFilters replaceIncludeGenders(final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<org.dressdiscover.api.vocabularies.costume_core.gender.Gender>> includeGenders) {
-        return new ObjectFacetFilters(this.excludeAll, this.excludeCategories, this.excludeCollections, this.excludeColorTexts, this.excludeCulturalContextTexts, this.excludeGenders, this.excludeInstitutions, this.excludeLocationNameTexts, this.excludeMaterialTexts, this.excludeSubjectTermTexts, this.excludeTechniqueTexts, this.excludeWorkTypeTexts, this.includeCategories, this.includeCollections, this.includeColorTexts, this.includeCulturalContextTexts, DefaultConstructionValidator.getInstance().validateIncludeGenders(includeGenders), this.includeInstitutions, this.includeLocationNameTexts, this.includeMaterialTexts, this.includeSubjectTermTexts, this.includeTechniqueTexts, this.includeWorkTypeTexts, NopConstructionValidator.getInstance());
+        UncheckedValidator.validateIncludeGenders(includeGenders);
+        return new ObjectFacetFilters(this.excludeAll, this.excludeCategories, this.excludeCollections, this.excludeColorTexts, this.excludeCulturalContextTexts, this.excludeGenders, this.excludeInstitutions, this.excludeLocationNameTexts, this.excludeMaterialTexts, this.excludeSubjectTermTexts, this.excludeTechniqueTexts, this.excludeWorkTypeTexts, this.includeCategories, this.includeCollections, this.includeColorTexts, this.includeCulturalContextTexts, includeGenders, this.includeInstitutions, this.includeLocationNameTexts, this.includeMaterialTexts, this.includeSubjectTermTexts, this.includeTechniqueTexts, this.includeWorkTypeTexts);
     }
 
-    public ObjectFacetFilters replaceIncludeGenders(final com.google.common.collect.ImmutableSet<org.dressdiscover.api.vocabularies.costume_core.gender.Gender> includeGenders) {
+    public ObjectFacetFilters replaceIncludeGenders(@javax.annotation.Nullable final com.google.common.collect.ImmutableSet<org.dressdiscover.api.vocabularies.costume_core.gender.Gender> includeGenders) {
         return replaceIncludeGenders(com.google.common.base.Optional.fromNullable(includeGenders));
     }
 
     public ObjectFacetFilters replaceIncludeInstitutions(final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.institution.InstitutionId>> includeInstitutions) {
-        return new ObjectFacetFilters(this.excludeAll, this.excludeCategories, this.excludeCollections, this.excludeColorTexts, this.excludeCulturalContextTexts, this.excludeGenders, this.excludeInstitutions, this.excludeLocationNameTexts, this.excludeMaterialTexts, this.excludeSubjectTermTexts, this.excludeTechniqueTexts, this.excludeWorkTypeTexts, this.includeCategories, this.includeCollections, this.includeColorTexts, this.includeCulturalContextTexts, this.includeGenders, DefaultConstructionValidator.getInstance().validateIncludeInstitutions(includeInstitutions), this.includeLocationNameTexts, this.includeMaterialTexts, this.includeSubjectTermTexts, this.includeTechniqueTexts, this.includeWorkTypeTexts, NopConstructionValidator.getInstance());
+        UncheckedValidator.validateIncludeInstitutions(includeInstitutions);
+        return new ObjectFacetFilters(this.excludeAll, this.excludeCategories, this.excludeCollections, this.excludeColorTexts, this.excludeCulturalContextTexts, this.excludeGenders, this.excludeInstitutions, this.excludeLocationNameTexts, this.excludeMaterialTexts, this.excludeSubjectTermTexts, this.excludeTechniqueTexts, this.excludeWorkTypeTexts, this.includeCategories, this.includeCollections, this.includeColorTexts, this.includeCulturalContextTexts, this.includeGenders, includeInstitutions, this.includeLocationNameTexts, this.includeMaterialTexts, this.includeSubjectTermTexts, this.includeTechniqueTexts, this.includeWorkTypeTexts);
     }
 
-    public ObjectFacetFilters replaceIncludeInstitutions(final com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.institution.InstitutionId> includeInstitutions) {
+    public ObjectFacetFilters replaceIncludeInstitutions(@javax.annotation.Nullable final com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.institution.InstitutionId> includeInstitutions) {
         return replaceIncludeInstitutions(com.google.common.base.Optional.fromNullable(includeInstitutions));
     }
 
     public ObjectFacetFilters replaceIncludeLocationNameTexts(final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> includeLocationNameTexts) {
-        return new ObjectFacetFilters(this.excludeAll, this.excludeCategories, this.excludeCollections, this.excludeColorTexts, this.excludeCulturalContextTexts, this.excludeGenders, this.excludeInstitutions, this.excludeLocationNameTexts, this.excludeMaterialTexts, this.excludeSubjectTermTexts, this.excludeTechniqueTexts, this.excludeWorkTypeTexts, this.includeCategories, this.includeCollections, this.includeColorTexts, this.includeCulturalContextTexts, this.includeGenders, this.includeInstitutions, DefaultConstructionValidator.getInstance().validateIncludeLocationNameTexts(includeLocationNameTexts), this.includeMaterialTexts, this.includeSubjectTermTexts, this.includeTechniqueTexts, this.includeWorkTypeTexts, NopConstructionValidator.getInstance());
+        UncheckedValidator.validateIncludeLocationNameTexts(includeLocationNameTexts);
+        return new ObjectFacetFilters(this.excludeAll, this.excludeCategories, this.excludeCollections, this.excludeColorTexts, this.excludeCulturalContextTexts, this.excludeGenders, this.excludeInstitutions, this.excludeLocationNameTexts, this.excludeMaterialTexts, this.excludeSubjectTermTexts, this.excludeTechniqueTexts, this.excludeWorkTypeTexts, this.includeCategories, this.includeCollections, this.includeColorTexts, this.includeCulturalContextTexts, this.includeGenders, this.includeInstitutions, includeLocationNameTexts, this.includeMaterialTexts, this.includeSubjectTermTexts, this.includeTechniqueTexts, this.includeWorkTypeTexts);
     }
 
-    public ObjectFacetFilters replaceIncludeLocationNameTexts(final com.google.common.collect.ImmutableSet<String> includeLocationNameTexts) {
+    public ObjectFacetFilters replaceIncludeLocationNameTexts(@javax.annotation.Nullable final com.google.common.collect.ImmutableSet<String> includeLocationNameTexts) {
         return replaceIncludeLocationNameTexts(com.google.common.base.Optional.fromNullable(includeLocationNameTexts));
     }
 
     public ObjectFacetFilters replaceIncludeMaterialTexts(final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> includeMaterialTexts) {
-        return new ObjectFacetFilters(this.excludeAll, this.excludeCategories, this.excludeCollections, this.excludeColorTexts, this.excludeCulturalContextTexts, this.excludeGenders, this.excludeInstitutions, this.excludeLocationNameTexts, this.excludeMaterialTexts, this.excludeSubjectTermTexts, this.excludeTechniqueTexts, this.excludeWorkTypeTexts, this.includeCategories, this.includeCollections, this.includeColorTexts, this.includeCulturalContextTexts, this.includeGenders, this.includeInstitutions, this.includeLocationNameTexts, DefaultConstructionValidator.getInstance().validateIncludeMaterialTexts(includeMaterialTexts), this.includeSubjectTermTexts, this.includeTechniqueTexts, this.includeWorkTypeTexts, NopConstructionValidator.getInstance());
+        UncheckedValidator.validateIncludeMaterialTexts(includeMaterialTexts);
+        return new ObjectFacetFilters(this.excludeAll, this.excludeCategories, this.excludeCollections, this.excludeColorTexts, this.excludeCulturalContextTexts, this.excludeGenders, this.excludeInstitutions, this.excludeLocationNameTexts, this.excludeMaterialTexts, this.excludeSubjectTermTexts, this.excludeTechniqueTexts, this.excludeWorkTypeTexts, this.includeCategories, this.includeCollections, this.includeColorTexts, this.includeCulturalContextTexts, this.includeGenders, this.includeInstitutions, this.includeLocationNameTexts, includeMaterialTexts, this.includeSubjectTermTexts, this.includeTechniqueTexts, this.includeWorkTypeTexts);
     }
 
-    public ObjectFacetFilters replaceIncludeMaterialTexts(final com.google.common.collect.ImmutableSet<String> includeMaterialTexts) {
+    public ObjectFacetFilters replaceIncludeMaterialTexts(@javax.annotation.Nullable final com.google.common.collect.ImmutableSet<String> includeMaterialTexts) {
         return replaceIncludeMaterialTexts(com.google.common.base.Optional.fromNullable(includeMaterialTexts));
     }
 
     public ObjectFacetFilters replaceIncludeSubjectTermTexts(final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> includeSubjectTermTexts) {
-        return new ObjectFacetFilters(this.excludeAll, this.excludeCategories, this.excludeCollections, this.excludeColorTexts, this.excludeCulturalContextTexts, this.excludeGenders, this.excludeInstitutions, this.excludeLocationNameTexts, this.excludeMaterialTexts, this.excludeSubjectTermTexts, this.excludeTechniqueTexts, this.excludeWorkTypeTexts, this.includeCategories, this.includeCollections, this.includeColorTexts, this.includeCulturalContextTexts, this.includeGenders, this.includeInstitutions, this.includeLocationNameTexts, this.includeMaterialTexts, DefaultConstructionValidator.getInstance().validateIncludeSubjectTermTexts(includeSubjectTermTexts), this.includeTechniqueTexts, this.includeWorkTypeTexts, NopConstructionValidator.getInstance());
+        UncheckedValidator.validateIncludeSubjectTermTexts(includeSubjectTermTexts);
+        return new ObjectFacetFilters(this.excludeAll, this.excludeCategories, this.excludeCollections, this.excludeColorTexts, this.excludeCulturalContextTexts, this.excludeGenders, this.excludeInstitutions, this.excludeLocationNameTexts, this.excludeMaterialTexts, this.excludeSubjectTermTexts, this.excludeTechniqueTexts, this.excludeWorkTypeTexts, this.includeCategories, this.includeCollections, this.includeColorTexts, this.includeCulturalContextTexts, this.includeGenders, this.includeInstitutions, this.includeLocationNameTexts, this.includeMaterialTexts, includeSubjectTermTexts, this.includeTechniqueTexts, this.includeWorkTypeTexts);
     }
 
-    public ObjectFacetFilters replaceIncludeSubjectTermTexts(final com.google.common.collect.ImmutableSet<String> includeSubjectTermTexts) {
+    public ObjectFacetFilters replaceIncludeSubjectTermTexts(@javax.annotation.Nullable final com.google.common.collect.ImmutableSet<String> includeSubjectTermTexts) {
         return replaceIncludeSubjectTermTexts(com.google.common.base.Optional.fromNullable(includeSubjectTermTexts));
     }
 
     public ObjectFacetFilters replaceIncludeTechniqueTexts(final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> includeTechniqueTexts) {
-        return new ObjectFacetFilters(this.excludeAll, this.excludeCategories, this.excludeCollections, this.excludeColorTexts, this.excludeCulturalContextTexts, this.excludeGenders, this.excludeInstitutions, this.excludeLocationNameTexts, this.excludeMaterialTexts, this.excludeSubjectTermTexts, this.excludeTechniqueTexts, this.excludeWorkTypeTexts, this.includeCategories, this.includeCollections, this.includeColorTexts, this.includeCulturalContextTexts, this.includeGenders, this.includeInstitutions, this.includeLocationNameTexts, this.includeMaterialTexts, this.includeSubjectTermTexts, DefaultConstructionValidator.getInstance().validateIncludeTechniqueTexts(includeTechniqueTexts), this.includeWorkTypeTexts, NopConstructionValidator.getInstance());
+        UncheckedValidator.validateIncludeTechniqueTexts(includeTechniqueTexts);
+        return new ObjectFacetFilters(this.excludeAll, this.excludeCategories, this.excludeCollections, this.excludeColorTexts, this.excludeCulturalContextTexts, this.excludeGenders, this.excludeInstitutions, this.excludeLocationNameTexts, this.excludeMaterialTexts, this.excludeSubjectTermTexts, this.excludeTechniqueTexts, this.excludeWorkTypeTexts, this.includeCategories, this.includeCollections, this.includeColorTexts, this.includeCulturalContextTexts, this.includeGenders, this.includeInstitutions, this.includeLocationNameTexts, this.includeMaterialTexts, this.includeSubjectTermTexts, includeTechniqueTexts, this.includeWorkTypeTexts);
     }
 
-    public ObjectFacetFilters replaceIncludeTechniqueTexts(final com.google.common.collect.ImmutableSet<String> includeTechniqueTexts) {
+    public ObjectFacetFilters replaceIncludeTechniqueTexts(@javax.annotation.Nullable final com.google.common.collect.ImmutableSet<String> includeTechniqueTexts) {
         return replaceIncludeTechniqueTexts(com.google.common.base.Optional.fromNullable(includeTechniqueTexts));
     }
 
     public ObjectFacetFilters replaceIncludeWorkTypeTexts(final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<String>> includeWorkTypeTexts) {
-        return new ObjectFacetFilters(this.excludeAll, this.excludeCategories, this.excludeCollections, this.excludeColorTexts, this.excludeCulturalContextTexts, this.excludeGenders, this.excludeInstitutions, this.excludeLocationNameTexts, this.excludeMaterialTexts, this.excludeSubjectTermTexts, this.excludeTechniqueTexts, this.excludeWorkTypeTexts, this.includeCategories, this.includeCollections, this.includeColorTexts, this.includeCulturalContextTexts, this.includeGenders, this.includeInstitutions, this.includeLocationNameTexts, this.includeMaterialTexts, this.includeSubjectTermTexts, this.includeTechniqueTexts, DefaultConstructionValidator.getInstance().validateIncludeWorkTypeTexts(includeWorkTypeTexts), NopConstructionValidator.getInstance());
+        UncheckedValidator.validateIncludeWorkTypeTexts(includeWorkTypeTexts);
+        return new ObjectFacetFilters(this.excludeAll, this.excludeCategories, this.excludeCollections, this.excludeColorTexts, this.excludeCulturalContextTexts, this.excludeGenders, this.excludeInstitutions, this.excludeLocationNameTexts, this.excludeMaterialTexts, this.excludeSubjectTermTexts, this.excludeTechniqueTexts, this.excludeWorkTypeTexts, this.includeCategories, this.includeCollections, this.includeColorTexts, this.includeCulturalContextTexts, this.includeGenders, this.includeInstitutions, this.includeLocationNameTexts, this.includeMaterialTexts, this.includeSubjectTermTexts, this.includeTechniqueTexts, includeWorkTypeTexts);
     }
 
-    public ObjectFacetFilters replaceIncludeWorkTypeTexts(final com.google.common.collect.ImmutableSet<String> includeWorkTypeTexts) {
+    public ObjectFacetFilters replaceIncludeWorkTypeTexts(@javax.annotation.Nullable final com.google.common.collect.ImmutableSet<String> includeWorkTypeTexts) {
         return replaceIncludeWorkTypeTexts(com.google.common.base.Optional.fromNullable(includeWorkTypeTexts));
     }
 
@@ -4857,16 +4625,17 @@ public final class ObjectFacetFilters implements org.thryft.Struct {
         oprot.writeStructEnd();
     }
 
-    @Override
-    public void writeFields(final org.thryft.protocol.OutputProtocol oprot) throws org.thryft.protocol.OutputProtocolException {
+    public void writeExcludeAllField(final org.thryft.protocol.OutputProtocol oprot) throws org.thryft.protocol.OutputProtocolException {
         if (getExcludeAll().isPresent()) {
-            oprot.writeFieldBegin("exclude_all", org.thryft.protocol.Type.BOOL, (short)0);
+            oprot.writeFieldBegin(FieldMetadata.EXCLUDE_ALL);
             oprot.writeBool(getExcludeAll().get());
             oprot.writeFieldEnd();
         }
+    }
 
+    public void writeExcludeCategoriesField(final org.thryft.protocol.OutputProtocol oprot) throws org.thryft.protocol.OutputProtocolException {
         if (getExcludeCategories().isPresent()) {
-            oprot.writeFieldBegin("exclude_categories", org.thryft.protocol.Type.SET, (short)0);
+            oprot.writeFieldBegin(FieldMetadata.EXCLUDE_CATEGORIES);
             oprot.writeSetBegin(org.thryft.protocol.Type.STRING, getExcludeCategories().get().size());
             for (final String _iter0 : getExcludeCategories().get()) {
                 oprot.writeString(_iter0);
@@ -4874,9 +4643,11 @@ public final class ObjectFacetFilters implements org.thryft.Struct {
             oprot.writeSetEnd();
             oprot.writeFieldEnd();
         }
+    }
 
+    public void writeExcludeCollectionsField(final org.thryft.protocol.OutputProtocol oprot) throws org.thryft.protocol.OutputProtocolException {
         if (getExcludeCollections().isPresent()) {
-            oprot.writeFieldBegin("exclude_collections", org.thryft.protocol.Type.SET, (short)0);
+            oprot.writeFieldBegin(FieldMetadata.EXCLUDE_COLLECTIONS);
             oprot.writeSetBegin(org.thryft.protocol.Type.STRING, getExcludeCollections().get().size());
             for (final org.dressdiscover.api.models.collection.CollectionId _iter0 : getExcludeCollections().get()) {
                 oprot.writeString(_iter0.toString());
@@ -4884,9 +4655,11 @@ public final class ObjectFacetFilters implements org.thryft.Struct {
             oprot.writeSetEnd();
             oprot.writeFieldEnd();
         }
+    }
 
+    public void writeExcludeColorTextsField(final org.thryft.protocol.OutputProtocol oprot) throws org.thryft.protocol.OutputProtocolException {
         if (getExcludeColorTexts().isPresent()) {
-            oprot.writeFieldBegin("exclude_color_texts", org.thryft.protocol.Type.SET, (short)0);
+            oprot.writeFieldBegin(FieldMetadata.EXCLUDE_COLOR_TEXTS);
             oprot.writeSetBegin(org.thryft.protocol.Type.STRING, getExcludeColorTexts().get().size());
             for (final String _iter0 : getExcludeColorTexts().get()) {
                 oprot.writeString(_iter0);
@@ -4894,9 +4667,11 @@ public final class ObjectFacetFilters implements org.thryft.Struct {
             oprot.writeSetEnd();
             oprot.writeFieldEnd();
         }
+    }
 
+    public void writeExcludeCulturalContextTextsField(final org.thryft.protocol.OutputProtocol oprot) throws org.thryft.protocol.OutputProtocolException {
         if (getExcludeCulturalContextTexts().isPresent()) {
-            oprot.writeFieldBegin("exclude_cultural_context_texts", org.thryft.protocol.Type.SET, (short)0);
+            oprot.writeFieldBegin(FieldMetadata.EXCLUDE_CULTURAL_CONTEXT_TEXTS);
             oprot.writeSetBegin(org.thryft.protocol.Type.STRING, getExcludeCulturalContextTexts().get().size());
             for (final String _iter0 : getExcludeCulturalContextTexts().get()) {
                 oprot.writeString(_iter0);
@@ -4904,9 +4679,11 @@ public final class ObjectFacetFilters implements org.thryft.Struct {
             oprot.writeSetEnd();
             oprot.writeFieldEnd();
         }
+    }
 
+    public void writeExcludeGendersField(final org.thryft.protocol.OutputProtocol oprot) throws org.thryft.protocol.OutputProtocolException {
         if (getExcludeGenders().isPresent()) {
-            oprot.writeFieldBegin("exclude_genders", org.thryft.protocol.Type.SET, (short)0);
+            oprot.writeFieldBegin(FieldMetadata.EXCLUDE_GENDERS);
             oprot.writeSetBegin(org.thryft.protocol.Type.STRING, getExcludeGenders().get().size());
             for (final org.dressdiscover.api.vocabularies.costume_core.gender.Gender _iter0 : getExcludeGenders().get()) {
                 oprot.writeEnum(_iter0);
@@ -4914,9 +4691,11 @@ public final class ObjectFacetFilters implements org.thryft.Struct {
             oprot.writeSetEnd();
             oprot.writeFieldEnd();
         }
+    }
 
+    public void writeExcludeInstitutionsField(final org.thryft.protocol.OutputProtocol oprot) throws org.thryft.protocol.OutputProtocolException {
         if (getExcludeInstitutions().isPresent()) {
-            oprot.writeFieldBegin("exclude_institutions", org.thryft.protocol.Type.SET, (short)0);
+            oprot.writeFieldBegin(FieldMetadata.EXCLUDE_INSTITUTIONS);
             oprot.writeSetBegin(org.thryft.protocol.Type.STRING, getExcludeInstitutions().get().size());
             for (final org.dressdiscover.api.models.institution.InstitutionId _iter0 : getExcludeInstitutions().get()) {
                 oprot.writeString(_iter0.toString());
@@ -4924,9 +4703,11 @@ public final class ObjectFacetFilters implements org.thryft.Struct {
             oprot.writeSetEnd();
             oprot.writeFieldEnd();
         }
+    }
 
+    public void writeExcludeLocationNameTextsField(final org.thryft.protocol.OutputProtocol oprot) throws org.thryft.protocol.OutputProtocolException {
         if (getExcludeLocationNameTexts().isPresent()) {
-            oprot.writeFieldBegin("exclude_location_name_texts", org.thryft.protocol.Type.SET, (short)0);
+            oprot.writeFieldBegin(FieldMetadata.EXCLUDE_LOCATION_NAME_TEXTS);
             oprot.writeSetBegin(org.thryft.protocol.Type.STRING, getExcludeLocationNameTexts().get().size());
             for (final String _iter0 : getExcludeLocationNameTexts().get()) {
                 oprot.writeString(_iter0);
@@ -4934,9 +4715,11 @@ public final class ObjectFacetFilters implements org.thryft.Struct {
             oprot.writeSetEnd();
             oprot.writeFieldEnd();
         }
+    }
 
+    public void writeExcludeMaterialTextsField(final org.thryft.protocol.OutputProtocol oprot) throws org.thryft.protocol.OutputProtocolException {
         if (getExcludeMaterialTexts().isPresent()) {
-            oprot.writeFieldBegin("exclude_material_texts", org.thryft.protocol.Type.SET, (short)0);
+            oprot.writeFieldBegin(FieldMetadata.EXCLUDE_MATERIAL_TEXTS);
             oprot.writeSetBegin(org.thryft.protocol.Type.STRING, getExcludeMaterialTexts().get().size());
             for (final String _iter0 : getExcludeMaterialTexts().get()) {
                 oprot.writeString(_iter0);
@@ -4944,9 +4727,11 @@ public final class ObjectFacetFilters implements org.thryft.Struct {
             oprot.writeSetEnd();
             oprot.writeFieldEnd();
         }
+    }
 
+    public void writeExcludeSubjectTermTextsField(final org.thryft.protocol.OutputProtocol oprot) throws org.thryft.protocol.OutputProtocolException {
         if (getExcludeSubjectTermTexts().isPresent()) {
-            oprot.writeFieldBegin("exclude_subject_term_texts", org.thryft.protocol.Type.SET, (short)0);
+            oprot.writeFieldBegin(FieldMetadata.EXCLUDE_SUBJECT_TERM_TEXTS);
             oprot.writeSetBegin(org.thryft.protocol.Type.STRING, getExcludeSubjectTermTexts().get().size());
             for (final String _iter0 : getExcludeSubjectTermTexts().get()) {
                 oprot.writeString(_iter0);
@@ -4954,9 +4739,11 @@ public final class ObjectFacetFilters implements org.thryft.Struct {
             oprot.writeSetEnd();
             oprot.writeFieldEnd();
         }
+    }
 
+    public void writeExcludeTechniqueTextsField(final org.thryft.protocol.OutputProtocol oprot) throws org.thryft.protocol.OutputProtocolException {
         if (getExcludeTechniqueTexts().isPresent()) {
-            oprot.writeFieldBegin("exclude_technique_texts", org.thryft.protocol.Type.SET, (short)0);
+            oprot.writeFieldBegin(FieldMetadata.EXCLUDE_TECHNIQUE_TEXTS);
             oprot.writeSetBegin(org.thryft.protocol.Type.STRING, getExcludeTechniqueTexts().get().size());
             for (final String _iter0 : getExcludeTechniqueTexts().get()) {
                 oprot.writeString(_iter0);
@@ -4964,9 +4751,11 @@ public final class ObjectFacetFilters implements org.thryft.Struct {
             oprot.writeSetEnd();
             oprot.writeFieldEnd();
         }
+    }
 
+    public void writeExcludeWorkTypeTextsField(final org.thryft.protocol.OutputProtocol oprot) throws org.thryft.protocol.OutputProtocolException {
         if (getExcludeWorkTypeTexts().isPresent()) {
-            oprot.writeFieldBegin("exclude_work_type_texts", org.thryft.protocol.Type.SET, (short)0);
+            oprot.writeFieldBegin(FieldMetadata.EXCLUDE_WORK_TYPE_TEXTS);
             oprot.writeSetBegin(org.thryft.protocol.Type.STRING, getExcludeWorkTypeTexts().get().size());
             for (final String _iter0 : getExcludeWorkTypeTexts().get()) {
                 oprot.writeString(_iter0);
@@ -4974,9 +4763,62 @@ public final class ObjectFacetFilters implements org.thryft.Struct {
             oprot.writeSetEnd();
             oprot.writeFieldEnd();
         }
+    }
 
+    @Override
+    public void writeFields(final org.thryft.protocol.OutputProtocol oprot) throws org.thryft.protocol.OutputProtocolException {
+        writeExcludeAllField(oprot);
+
+        writeExcludeCategoriesField(oprot);
+
+        writeExcludeCollectionsField(oprot);
+
+        writeExcludeColorTextsField(oprot);
+
+        writeExcludeCulturalContextTextsField(oprot);
+
+        writeExcludeGendersField(oprot);
+
+        writeExcludeInstitutionsField(oprot);
+
+        writeExcludeLocationNameTextsField(oprot);
+
+        writeExcludeMaterialTextsField(oprot);
+
+        writeExcludeSubjectTermTextsField(oprot);
+
+        writeExcludeTechniqueTextsField(oprot);
+
+        writeExcludeWorkTypeTextsField(oprot);
+
+        writeIncludeCategoriesField(oprot);
+
+        writeIncludeCollectionsField(oprot);
+
+        writeIncludeColorTextsField(oprot);
+
+        writeIncludeCulturalContextTextsField(oprot);
+
+        writeIncludeGendersField(oprot);
+
+        writeIncludeInstitutionsField(oprot);
+
+        writeIncludeLocationNameTextsField(oprot);
+
+        writeIncludeMaterialTextsField(oprot);
+
+        writeIncludeSubjectTermTextsField(oprot);
+
+        writeIncludeTechniqueTextsField(oprot);
+
+        writeIncludeWorkTypeTextsField(oprot);
+
+        oprot.writeFieldStop();
+    }
+
+    public void writeIncludeCategoriesField(final org.thryft.protocol.OutputProtocol oprot) throws org.thryft.protocol.OutputProtocolException {
         if (getIncludeCategories().isPresent()) {
-            oprot.writeFieldBegin("include_categories", org.thryft.protocol.Type.SET, (short)0);
+            oprot.writeFieldBegin(FieldMetadata.INCLUDE_CATEGORIES);
             oprot.writeSetBegin(org.thryft.protocol.Type.STRING, getIncludeCategories().get().size());
             for (final String _iter0 : getIncludeCategories().get()) {
                 oprot.writeString(_iter0);
@@ -4984,9 +4826,11 @@ public final class ObjectFacetFilters implements org.thryft.Struct {
             oprot.writeSetEnd();
             oprot.writeFieldEnd();
         }
+    }
 
+    public void writeIncludeCollectionsField(final org.thryft.protocol.OutputProtocol oprot) throws org.thryft.protocol.OutputProtocolException {
         if (getIncludeCollections().isPresent()) {
-            oprot.writeFieldBegin("include_collections", org.thryft.protocol.Type.SET, (short)0);
+            oprot.writeFieldBegin(FieldMetadata.INCLUDE_COLLECTIONS);
             oprot.writeSetBegin(org.thryft.protocol.Type.STRING, getIncludeCollections().get().size());
             for (final org.dressdiscover.api.models.collection.CollectionId _iter0 : getIncludeCollections().get()) {
                 oprot.writeString(_iter0.toString());
@@ -4994,9 +4838,11 @@ public final class ObjectFacetFilters implements org.thryft.Struct {
             oprot.writeSetEnd();
             oprot.writeFieldEnd();
         }
+    }
 
+    public void writeIncludeColorTextsField(final org.thryft.protocol.OutputProtocol oprot) throws org.thryft.protocol.OutputProtocolException {
         if (getIncludeColorTexts().isPresent()) {
-            oprot.writeFieldBegin("include_color_texts", org.thryft.protocol.Type.SET, (short)0);
+            oprot.writeFieldBegin(FieldMetadata.INCLUDE_COLOR_TEXTS);
             oprot.writeSetBegin(org.thryft.protocol.Type.STRING, getIncludeColorTexts().get().size());
             for (final String _iter0 : getIncludeColorTexts().get()) {
                 oprot.writeString(_iter0);
@@ -5004,9 +4850,11 @@ public final class ObjectFacetFilters implements org.thryft.Struct {
             oprot.writeSetEnd();
             oprot.writeFieldEnd();
         }
+    }
 
+    public void writeIncludeCulturalContextTextsField(final org.thryft.protocol.OutputProtocol oprot) throws org.thryft.protocol.OutputProtocolException {
         if (getIncludeCulturalContextTexts().isPresent()) {
-            oprot.writeFieldBegin("include_cultural_context_texts", org.thryft.protocol.Type.SET, (short)0);
+            oprot.writeFieldBegin(FieldMetadata.INCLUDE_CULTURAL_CONTEXT_TEXTS);
             oprot.writeSetBegin(org.thryft.protocol.Type.STRING, getIncludeCulturalContextTexts().get().size());
             for (final String _iter0 : getIncludeCulturalContextTexts().get()) {
                 oprot.writeString(_iter0);
@@ -5014,9 +4862,11 @@ public final class ObjectFacetFilters implements org.thryft.Struct {
             oprot.writeSetEnd();
             oprot.writeFieldEnd();
         }
+    }
 
+    public void writeIncludeGendersField(final org.thryft.protocol.OutputProtocol oprot) throws org.thryft.protocol.OutputProtocolException {
         if (getIncludeGenders().isPresent()) {
-            oprot.writeFieldBegin("include_genders", org.thryft.protocol.Type.SET, (short)0);
+            oprot.writeFieldBegin(FieldMetadata.INCLUDE_GENDERS);
             oprot.writeSetBegin(org.thryft.protocol.Type.STRING, getIncludeGenders().get().size());
             for (final org.dressdiscover.api.vocabularies.costume_core.gender.Gender _iter0 : getIncludeGenders().get()) {
                 oprot.writeEnum(_iter0);
@@ -5024,9 +4874,11 @@ public final class ObjectFacetFilters implements org.thryft.Struct {
             oprot.writeSetEnd();
             oprot.writeFieldEnd();
         }
+    }
 
+    public void writeIncludeInstitutionsField(final org.thryft.protocol.OutputProtocol oprot) throws org.thryft.protocol.OutputProtocolException {
         if (getIncludeInstitutions().isPresent()) {
-            oprot.writeFieldBegin("include_institutions", org.thryft.protocol.Type.SET, (short)0);
+            oprot.writeFieldBegin(FieldMetadata.INCLUDE_INSTITUTIONS);
             oprot.writeSetBegin(org.thryft.protocol.Type.STRING, getIncludeInstitutions().get().size());
             for (final org.dressdiscover.api.models.institution.InstitutionId _iter0 : getIncludeInstitutions().get()) {
                 oprot.writeString(_iter0.toString());
@@ -5034,9 +4886,11 @@ public final class ObjectFacetFilters implements org.thryft.Struct {
             oprot.writeSetEnd();
             oprot.writeFieldEnd();
         }
+    }
 
+    public void writeIncludeLocationNameTextsField(final org.thryft.protocol.OutputProtocol oprot) throws org.thryft.protocol.OutputProtocolException {
         if (getIncludeLocationNameTexts().isPresent()) {
-            oprot.writeFieldBegin("include_location_name_texts", org.thryft.protocol.Type.SET, (short)0);
+            oprot.writeFieldBegin(FieldMetadata.INCLUDE_LOCATION_NAME_TEXTS);
             oprot.writeSetBegin(org.thryft.protocol.Type.STRING, getIncludeLocationNameTexts().get().size());
             for (final String _iter0 : getIncludeLocationNameTexts().get()) {
                 oprot.writeString(_iter0);
@@ -5044,9 +4898,11 @@ public final class ObjectFacetFilters implements org.thryft.Struct {
             oprot.writeSetEnd();
             oprot.writeFieldEnd();
         }
+    }
 
+    public void writeIncludeMaterialTextsField(final org.thryft.protocol.OutputProtocol oprot) throws org.thryft.protocol.OutputProtocolException {
         if (getIncludeMaterialTexts().isPresent()) {
-            oprot.writeFieldBegin("include_material_texts", org.thryft.protocol.Type.SET, (short)0);
+            oprot.writeFieldBegin(FieldMetadata.INCLUDE_MATERIAL_TEXTS);
             oprot.writeSetBegin(org.thryft.protocol.Type.STRING, getIncludeMaterialTexts().get().size());
             for (final String _iter0 : getIncludeMaterialTexts().get()) {
                 oprot.writeString(_iter0);
@@ -5054,9 +4910,11 @@ public final class ObjectFacetFilters implements org.thryft.Struct {
             oprot.writeSetEnd();
             oprot.writeFieldEnd();
         }
+    }
 
+    public void writeIncludeSubjectTermTextsField(final org.thryft.protocol.OutputProtocol oprot) throws org.thryft.protocol.OutputProtocolException {
         if (getIncludeSubjectTermTexts().isPresent()) {
-            oprot.writeFieldBegin("include_subject_term_texts", org.thryft.protocol.Type.SET, (short)0);
+            oprot.writeFieldBegin(FieldMetadata.INCLUDE_SUBJECT_TERM_TEXTS);
             oprot.writeSetBegin(org.thryft.protocol.Type.STRING, getIncludeSubjectTermTexts().get().size());
             for (final String _iter0 : getIncludeSubjectTermTexts().get()) {
                 oprot.writeString(_iter0);
@@ -5064,9 +4922,11 @@ public final class ObjectFacetFilters implements org.thryft.Struct {
             oprot.writeSetEnd();
             oprot.writeFieldEnd();
         }
+    }
 
+    public void writeIncludeTechniqueTextsField(final org.thryft.protocol.OutputProtocol oprot) throws org.thryft.protocol.OutputProtocolException {
         if (getIncludeTechniqueTexts().isPresent()) {
-            oprot.writeFieldBegin("include_technique_texts", org.thryft.protocol.Type.SET, (short)0);
+            oprot.writeFieldBegin(FieldMetadata.INCLUDE_TECHNIQUE_TEXTS);
             oprot.writeSetBegin(org.thryft.protocol.Type.STRING, getIncludeTechniqueTexts().get().size());
             for (final String _iter0 : getIncludeTechniqueTexts().get()) {
                 oprot.writeString(_iter0);
@@ -5074,9 +4934,11 @@ public final class ObjectFacetFilters implements org.thryft.Struct {
             oprot.writeSetEnd();
             oprot.writeFieldEnd();
         }
+    }
 
+    public void writeIncludeWorkTypeTextsField(final org.thryft.protocol.OutputProtocol oprot) throws org.thryft.protocol.OutputProtocolException {
         if (getIncludeWorkTypeTexts().isPresent()) {
-            oprot.writeFieldBegin("include_work_type_texts", org.thryft.protocol.Type.SET, (short)0);
+            oprot.writeFieldBegin(FieldMetadata.INCLUDE_WORK_TYPE_TEXTS);
             oprot.writeSetBegin(org.thryft.protocol.Type.STRING, getIncludeWorkTypeTexts().get().size());
             for (final String _iter0 : getIncludeWorkTypeTexts().get()) {
                 oprot.writeString(_iter0);
@@ -5084,9 +4946,9 @@ public final class ObjectFacetFilters implements org.thryft.Struct {
             oprot.writeSetEnd();
             oprot.writeFieldEnd();
         }
-
-        oprot.writeFieldStop();
     }
+
+    public final static ObjectFacetFilters EMPTY = new ObjectFacetFilters();
 
     private final com.google.common.base.Optional<Boolean> excludeAll;
 

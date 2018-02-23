@@ -1,6 +1,6 @@
 package org.dressdiscover.api.models.user;
 
-public final class UserBookmarkEntry implements org.thryft.Struct, org.thryft.waf.api.models.ModelEntry<org.dressdiscover.api.models.user.UserBookmark, org.dressdiscover.api.models.user.UserBookmarkId> {
+public final class UserBookmarkEntry implements org.thryft.waf.api.models.ModelEntry<org.dressdiscover.api.models.user.UserBookmark, org.dressdiscover.api.models.user.UserBookmarkId> {
     public final static class Builder {
         public Builder() {
             id = null;
@@ -13,18 +13,20 @@ public final class UserBookmarkEntry implements org.thryft.Struct, org.thryft.wa
         }
 
         protected UserBookmarkEntry _build(final org.dressdiscover.api.models.user.UserBookmarkId id, final org.dressdiscover.api.models.user.UserBookmark model) {
-            return new UserBookmarkEntry(id, model, DefaultConstructionValidator.getInstance());
+            return new UserBookmarkEntry(id, model);
         }
 
         public UserBookmarkEntry build() {
+            UncheckedValidator.validate(id, model);
+
             return _build(id, model);
         }
 
-        public final org.dressdiscover.api.models.user.UserBookmarkId getId() {
+        public final @javax.annotation.Nullable org.dressdiscover.api.models.user.UserBookmarkId getId() {
             return id;
         }
 
-        public final org.dressdiscover.api.models.user.UserBookmark getModel() {
+        public final @javax.annotation.Nullable org.dressdiscover.api.models.user.UserBookmark getModel() {
             return model;
         }
 
@@ -49,6 +51,8 @@ public final class UserBookmarkEntry implements org.thryft.Struct, org.thryft.wa
                 try {
                     id = org.dressdiscover.api.models.user.UserBookmarkId.parse(iprot.readString());
                 } catch (final org.dressdiscover.api.models.user.InvalidUserBookmarkIdException e) {
+                     throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.ID, e);
+                } catch (final IllegalArgumentException e) {
                      throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.ID, e);
                 }
                 model = org.dressdiscover.api.models.user.UserBookmark.readAsStruct(iprot);
@@ -77,11 +81,13 @@ public final class UserBookmarkEntry implements org.thryft.Struct, org.thryft.wa
                             id = org.dressdiscover.api.models.user.UserBookmarkId.parse(iprot.readString());
                         } catch (final org.dressdiscover.api.models.user.InvalidUserBookmarkIdException e) {
                              throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.ID, e);
+                        } catch (final IllegalArgumentException e) {
+                             throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.ID, e);
                         }
                         break;
                     }
                     case "model": {
-                        model = org.dressdiscover.api.models.user.UserBookmark.readAsStruct(iprot);
+                        model = org.dressdiscover.api.models.user.UserBookmark.readAsStruct(iprot, unknownFieldCallback);
                         break;
                     }
                     default:
@@ -122,7 +128,8 @@ public final class UserBookmarkEntry implements org.thryft.Struct, org.thryft.wa
         }
 
         public Builder setId(final org.dressdiscover.api.models.user.UserBookmarkId id) {
-            this.id = DefaultConstructionValidator.getInstance().validateId(id);
+            UncheckedValidator.validateId(id);
+            this.id = id;
             return this;
         }
 
@@ -136,7 +143,8 @@ public final class UserBookmarkEntry implements org.thryft.Struct, org.thryft.wa
         }
 
         public Builder setModel(final org.dressdiscover.api.models.user.UserBookmark model) {
-            this.model = DefaultConstructionValidator.getInstance().validateModel(model);
+            UncheckedValidator.validateModel(model);
+            this.model = model;
             return this;
         }
 
@@ -172,8 +180,8 @@ public final class UserBookmarkEntry implements org.thryft.Struct, org.thryft.wa
             return this;
         }
 
-        private org.dressdiscover.api.models.user.UserBookmarkId id;
-        private org.dressdiscover.api.models.user.UserBookmark model;
+        private @javax.annotation.Nullable org.dressdiscover.api.models.user.UserBookmarkId id;
+        private @javax.annotation.Nullable org.dressdiscover.api.models.user.UserBookmark model;
     }
 
     public final static class Factory implements org.thryft.CompoundType.Factory<UserBookmarkEntry> {
@@ -207,8 +215,8 @@ public final class UserBookmarkEntry implements org.thryft.Struct, org.thryft.wa
 
     @SuppressWarnings("serial")
     public enum FieldMetadata implements org.thryft.CompoundType.FieldMetadata {
-        ID("id", new com.google.common.reflect.TypeToken<org.dressdiscover.api.models.user.UserBookmarkId>() {}, true, 0, "id", org.thryft.protocol.Type.STRING),
-        MODEL("model", new com.google.common.reflect.TypeToken<org.dressdiscover.api.models.user.UserBookmark>() {}, true, 0, "model", org.thryft.protocol.Type.STRUCT);
+        ID("id", new com.google.common.reflect.TypeToken<org.dressdiscover.api.models.user.UserBookmarkId>() {}, true, (short)0, "id", org.thryft.protocol.Type.STRING),
+        MODEL("model", new com.google.common.reflect.TypeToken<org.dressdiscover.api.models.user.UserBookmark>() {}, true, (short)0, "model", org.thryft.protocol.Type.STRUCT);
 
         @Override
         public String getJavaName() {
@@ -221,7 +229,7 @@ public final class UserBookmarkEntry implements org.thryft.Struct, org.thryft.wa
         }
 
         @Override
-        public int getThriftId() {
+        public short getThriftId() {
             return thriftId;
         }
 
@@ -268,7 +276,7 @@ public final class UserBookmarkEntry implements org.thryft.Struct, org.thryft.wa
             }
         }
 
-        private FieldMetadata(final String javaName, final com.google.common.reflect.TypeToken<?> javaType, final boolean required, final int thriftId, final String thriftName, final org.thryft.protocol.Type thriftProtocolType) {
+        private FieldMetadata(final String javaName, final com.google.common.reflect.TypeToken<?> javaType, final boolean required, final short thriftId, final String thriftName, final org.thryft.protocol.Type thriftProtocolType) {
             this.javaName = javaName;
             this.javaType = javaType;
             this.required = required;
@@ -285,130 +293,65 @@ public final class UserBookmarkEntry implements org.thryft.Struct, org.thryft.wa
         private final String javaName;
         private final com.google.common.reflect.TypeToken<?> javaType;
         private final boolean required;
-        private final int thriftId;
+        private final short thriftId;
         private final String thriftName;
         private final String thriftProtocolKey;
         private final org.thryft.protocol.Type thriftProtocolType;
     }
 
-    public interface Validator<ExceptionT extends Exception> {
-        public org.dressdiscover.api.models.user.UserBookmarkId validateId(final org.dressdiscover.api.models.user.UserBookmarkId id) throws ExceptionT;
-
-        public org.dressdiscover.api.models.user.UserBookmark validateModel(final org.dressdiscover.api.models.user.UserBookmark model) throws ExceptionT;
-    }
-
-    public interface ConstructionValidator extends Validator<RuntimeException> {
-    }
-
-    public static class DefaultConstructionValidator implements ConstructionValidator {
-        public static DefaultConstructionValidator getInstance() {
-            return instance;
+    public final static class ReadValidator {
+        public static void validate(final org.dressdiscover.api.models.user.UserBookmarkId id, final org.dressdiscover.api.models.user.UserBookmark model) throws org.thryft.protocol.InputProtocolException {
+            validateId(id);
+            validateModel(model);
         }
 
-        public DefaultConstructionValidator() {
-        }
-
-        @Override
-        public org.dressdiscover.api.models.user.UserBookmarkId validateId(final org.dressdiscover.api.models.user.UserBookmarkId id) throws RuntimeException {
-            if (id == null) {
-                throw new NullPointerException("org.dressdiscover.api.models.user.UserBookmarkEntry: id is null");
-            }
-            return id;
-        }
-
-        @Override
-        public org.dressdiscover.api.models.user.UserBookmark validateModel(final org.dressdiscover.api.models.user.UserBookmark model) throws RuntimeException {
-            if (model == null) {
-                throw new NullPointerException("org.dressdiscover.api.models.user.UserBookmarkEntry: model is null");
-            }
-            return model;
-        }
-
-        private final static DefaultConstructionValidator instance = new DefaultConstructionValidator();
-    }
-
-    public static class NopConstructionValidator implements ConstructionValidator {
-        public static NopConstructionValidator getInstance() {
-            return instance;
-        }
-
-        public NopConstructionValidator() {
-        }
-
-        @Override
-        public org.dressdiscover.api.models.user.UserBookmarkId validateId(final org.dressdiscover.api.models.user.UserBookmarkId id) {
-            return id;
-        }
-
-        @Override
-        public org.dressdiscover.api.models.user.UserBookmark validateModel(final org.dressdiscover.api.models.user.UserBookmark model) {
-            return model;
-        }
-
-        private final static NopConstructionValidator instance = new NopConstructionValidator();
-    }
-
-    public interface ReadValidator extends Validator<org.thryft.protocol.InputProtocolException> {
-    }
-
-    public static class DefaultReadValidator implements ReadValidator {
-        public static DefaultReadValidator getInstance() {
-            return instance;
-        }
-
-        public DefaultReadValidator() {
-        }
-
-        @Override
-        public org.dressdiscover.api.models.user.UserBookmarkId validateId(final org.dressdiscover.api.models.user.UserBookmarkId id) throws org.thryft.protocol.InputProtocolException {
+        public static void validateId(final org.dressdiscover.api.models.user.UserBookmarkId id) throws org.thryft.protocol.InputProtocolException {
             if (id == null) {
                 throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.ID, "org.dressdiscover.api.models.user.UserBookmarkEntry: id is null");
             }
-            return id;
         }
 
-        @Override
-        public org.dressdiscover.api.models.user.UserBookmark validateModel(final org.dressdiscover.api.models.user.UserBookmark model) throws org.thryft.protocol.InputProtocolException {
+        public static void validateModel(final org.dressdiscover.api.models.user.UserBookmark model) throws org.thryft.protocol.InputProtocolException {
             if (model == null) {
                 throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.MODEL, "org.dressdiscover.api.models.user.UserBookmarkEntry: model is null");
             }
-            return model;
         }
-
-        private final static DefaultReadValidator instance = new DefaultReadValidator();
     }
 
-    public static class NopReadValidator implements ReadValidator {
-        public static NopReadValidator getInstance() {
-            return instance;
+    public final static class UncheckedValidator {
+        public static void validate(final org.dressdiscover.api.models.user.UserBookmarkId id, final org.dressdiscover.api.models.user.UserBookmark model) {
+            validateId(id);
+            validateModel(model);
         }
 
-        public NopReadValidator() {
+        public static void validateId(final org.dressdiscover.api.models.user.UserBookmarkId id) {
+            if (id == null) {
+                throw new NullPointerException("org.dressdiscover.api.models.user.UserBookmarkEntry: id is null");
+            }
         }
 
-        @Override
-        public org.dressdiscover.api.models.user.UserBookmarkId validateId(final org.dressdiscover.api.models.user.UserBookmarkId id) {
-            return id;
+        public static void validateModel(final org.dressdiscover.api.models.user.UserBookmark model) {
+            if (model == null) {
+                throw new NullPointerException("org.dressdiscover.api.models.user.UserBookmarkEntry: model is null");
+            }
         }
-
-        @Override
-        public org.dressdiscover.api.models.user.UserBookmark validateModel(final org.dressdiscover.api.models.user.UserBookmark model) {
-            return model;
-        }
-
-        private final static NopReadValidator instance = new NopReadValidator();
     }
 
     /**
      * Copy constructor
      */
     public UserBookmarkEntry(final UserBookmarkEntry other) {
-        this(other.getId(), other.getModel(), NopConstructionValidator.getInstance());
+        this(other.getId(), other.getModel());
     }
 
-    protected UserBookmarkEntry(final org.dressdiscover.api.models.user.UserBookmarkId id, final org.dressdiscover.api.models.user.UserBookmark model, ConstructionValidator validator) {
-        this.id = validator.validateId(id);
-        this.model = validator.validateModel(model);
+    /**
+     * Total constructor
+     *
+     * All fields should have been validated before calling this.
+     */
+    protected UserBookmarkEntry(final org.dressdiscover.api.models.user.UserBookmarkId id, final org.dressdiscover.api.models.user.UserBookmark model) {
+        this.id = id;
+        this.model = model;
     }
 
     public static Builder builder() {
@@ -427,7 +370,8 @@ public final class UserBookmarkEntry implements org.thryft.Struct, org.thryft.wa
      * Optional factory method
      */
     public static UserBookmarkEntry create(final org.dressdiscover.api.models.user.UserBookmarkId id, final org.dressdiscover.api.models.user.UserBookmark model) {
-        return new UserBookmarkEntry(id, model, DefaultConstructionValidator.getInstance());
+        UncheckedValidator.validate(id, model);
+        return new UserBookmarkEntry(id, model);
     }
 
     @Override
@@ -506,8 +450,8 @@ public final class UserBookmarkEntry implements org.thryft.Struct, org.thryft.wa
     }
 
     public static UserBookmarkEntry readAsList(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
-        org.dressdiscover.api.models.user.UserBookmarkId id = null;
-        org.dressdiscover.api.models.user.UserBookmark model = null;
+        org.dressdiscover.api.models.user.UserBookmarkId id;
+        org.dressdiscover.api.models.user.UserBookmark model;
 
         try {
             iprot.readListBegin();
@@ -515,13 +459,18 @@ public final class UserBookmarkEntry implements org.thryft.Struct, org.thryft.wa
                 id = org.dressdiscover.api.models.user.UserBookmarkId.parse(iprot.readString());
             } catch (final org.dressdiscover.api.models.user.InvalidUserBookmarkIdException e) {
                  throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.ID, e);
+            } catch (final IllegalArgumentException e) {
+                 throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.ID, e);
             }
             model = org.dressdiscover.api.models.user.UserBookmark.readAsStruct(iprot);
             iprot.readListEnd();
         } catch (final RuntimeException e) {
             throw new IllegalStateException(e);
         }
-        return new UserBookmarkEntry(DefaultReadValidator.getInstance().validateId(id), DefaultReadValidator.getInstance().validateModel(model), NopConstructionValidator.getInstance());
+
+        ReadValidator.validate(id, model);
+
+        return new UserBookmarkEntry(id, model);
     }
 
     public static UserBookmarkEntry readAsStruct(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
@@ -529,8 +478,8 @@ public final class UserBookmarkEntry implements org.thryft.Struct, org.thryft.wa
     }
 
     public static UserBookmarkEntry readAsStruct(final org.thryft.protocol.InputProtocol iprot, final com.google.common.base.Optional<UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
-        org.dressdiscover.api.models.user.UserBookmarkId id = null;
-        org.dressdiscover.api.models.user.UserBookmark model = null;
+        @javax.annotation.Nullable org.dressdiscover.api.models.user.UserBookmarkId id = null;
+        @javax.annotation.Nullable org.dressdiscover.api.models.user.UserBookmark model = null;
 
         try {
             iprot.readStructBegin();
@@ -545,11 +494,13 @@ public final class UserBookmarkEntry implements org.thryft.Struct, org.thryft.wa
                         id = org.dressdiscover.api.models.user.UserBookmarkId.parse(iprot.readString());
                     } catch (final org.dressdiscover.api.models.user.InvalidUserBookmarkIdException e) {
                          throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.ID, e);
+                    } catch (final IllegalArgumentException e) {
+                         throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.ID, e);
                     }
                     break;
                 }
                 case "model": {
-                    model = org.dressdiscover.api.models.user.UserBookmark.readAsStruct(iprot);
+                    model = org.dressdiscover.api.models.user.UserBookmark.readAsStruct(iprot, unknownFieldCallback);
                     break;
                 }
                 default:
@@ -564,15 +515,20 @@ public final class UserBookmarkEntry implements org.thryft.Struct, org.thryft.wa
         } catch (final RuntimeException e) {
             throw new IllegalStateException(e);
         }
-        return new UserBookmarkEntry(DefaultReadValidator.getInstance().validateId(id), DefaultReadValidator.getInstance().validateModel(model), NopConstructionValidator.getInstance());
+
+        ReadValidator.validate(id, model);
+
+        return new UserBookmarkEntry(id, model);
     }
 
     public UserBookmarkEntry replaceId(final org.dressdiscover.api.models.user.UserBookmarkId id) {
-        return new UserBookmarkEntry(DefaultConstructionValidator.getInstance().validateId(id), this.model, NopConstructionValidator.getInstance());
+        UncheckedValidator.validateId(id);
+        return new UserBookmarkEntry(id, this.model);
     }
 
     public UserBookmarkEntry replaceModel(final org.dressdiscover.api.models.user.UserBookmark model) {
-        return new UserBookmarkEntry(this.id, DefaultConstructionValidator.getInstance().validateModel(model), NopConstructionValidator.getInstance());
+        UncheckedValidator.validateModel(model);
+        return new UserBookmarkEntry(this.id, model);
     }
 
     @Override
@@ -600,15 +556,23 @@ public final class UserBookmarkEntry implements org.thryft.Struct, org.thryft.wa
 
     @Override
     public void writeFields(final org.thryft.protocol.OutputProtocol oprot) throws org.thryft.protocol.OutputProtocolException {
-        oprot.writeFieldBegin("id", org.thryft.protocol.Type.STRING, (short)0);
-        oprot.writeString(getId().toString());
-        oprot.writeFieldEnd();
+        writeIdField(oprot);
 
-        oprot.writeFieldBegin("model", org.thryft.protocol.Type.STRUCT, (short)0);
-        getModel().writeAsStruct(oprot);
-        oprot.writeFieldEnd();
+        writeModelField(oprot);
 
         oprot.writeFieldStop();
+    }
+
+    public void writeIdField(final org.thryft.protocol.OutputProtocol oprot) throws org.thryft.protocol.OutputProtocolException {
+        oprot.writeFieldBegin(FieldMetadata.ID);
+        oprot.writeString(getId().toString());
+        oprot.writeFieldEnd();
+    }
+
+    public void writeModelField(final org.thryft.protocol.OutputProtocol oprot) throws org.thryft.protocol.OutputProtocolException {
+        oprot.writeFieldBegin(FieldMetadata.MODEL);
+        getModel().writeAsStruct(oprot);
+        oprot.writeFieldEnd();
     }
 
     private final org.dressdiscover.api.models.user.UserBookmarkId id;

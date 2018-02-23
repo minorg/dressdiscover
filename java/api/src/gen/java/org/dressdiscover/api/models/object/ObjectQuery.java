@@ -29,10 +29,12 @@ public final class ObjectQuery implements org.thryft.Struct {
         }
 
         protected ObjectQuery _build(final com.google.common.base.Optional<org.dressdiscover.api.models.collection.CollectionId> collectionId, final com.google.common.base.Optional<org.dressdiscover.api.models.object.ObjectFacetFilters> facetFilters, final com.google.common.base.Optional<Boolean> includeHidden, final com.google.common.base.Optional<org.dressdiscover.api.models.institution.InstitutionId> institutionId, final com.google.common.base.Optional<org.dressdiscover.api.models.object.ObjectId> moreLikeObjectId, final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.object.ObjectId>> objectIds, final com.google.common.base.Optional<String> queryString, final com.google.common.base.Optional<String> relationText, final com.google.common.base.Optional<com.google.common.collect.ImmutableMap<String, com.google.common.collect.ImmutableList<String>>> structureTexts, final com.google.common.base.Optional<String> workTypeText) {
-            return new ObjectQuery(collectionId, facetFilters, includeHidden, institutionId, moreLikeObjectId, objectIds, queryString, relationText, structureTexts, workTypeText, DefaultConstructionValidator.getInstance());
+            return new ObjectQuery(collectionId, facetFilters, includeHidden, institutionId, moreLikeObjectId, objectIds, queryString, relationText, structureTexts, workTypeText);
         }
 
         public ObjectQuery build() {
+            UncheckedValidator.validate(collectionId, facetFilters, includeHidden, institutionId, moreLikeObjectId, objectIds, queryString, relationText, structureTexts, workTypeText);
+
             return _build(collectionId, facetFilters, includeHidden, institutionId, moreLikeObjectId, objectIds, queryString, relationText, structureTexts, workTypeText);
         }
 
@@ -101,24 +103,27 @@ public final class ObjectQuery implements org.thryft.Struct {
                     try {
                         collectionId = com.google.common.base.Optional.of(org.dressdiscover.api.models.collection.CollectionId.parse(iprot.readString()));
                     } catch (final org.dressdiscover.api.models.collection.InvalidCollectionIdException e) {
+                    } catch (final IllegalArgumentException e) {
                     }
                 }
                 if (__list.getSize() > 1) {
                     facetFilters = com.google.common.base.Optional.of(org.dressdiscover.api.models.object.ObjectFacetFilters.readAsStruct(iprot));
                 }
                 if (__list.getSize() > 2) {
-                    includeHidden = com.google.common.base.Optional.of(iprot.readBool());
+                    includeHidden = org.thryft.Optionals.of(iprot.readBool());
                 }
                 if (__list.getSize() > 3) {
                     try {
                         institutionId = com.google.common.base.Optional.of(org.dressdiscover.api.models.institution.InstitutionId.parse(iprot.readString()));
                     } catch (final org.dressdiscover.api.models.institution.InvalidInstitutionIdException e) {
+                    } catch (final IllegalArgumentException e) {
                     }
                 }
                 if (__list.getSize() > 4) {
                     try {
                         moreLikeObjectId = com.google.common.base.Optional.of(org.dressdiscover.api.models.object.ObjectId.parse(iprot.readString()));
                     } catch (final org.dressdiscover.api.models.object.InvalidObjectIdException e) {
+                    } catch (final IllegalArgumentException e) {
                     }
                 }
                 if (__list.getSize() > 5) {
@@ -133,6 +138,8 @@ public final class ObjectQuery implements org.thryft.Struct {
                                         try {
                                             sequenceBuilder.add(org.dressdiscover.api.models.object.ObjectId.parse(iprot.readString()));
                                         } catch (final org.dressdiscover.api.models.object.InvalidObjectIdException e) {
+                                             throw new org.thryft.protocol.InputProtocolException(e);
+                                        } catch (final IllegalArgumentException e) {
                                              throw new org.thryft.protocol.InputProtocolException(e);
                                         }
                                     }
@@ -225,21 +232,23 @@ public final class ObjectQuery implements org.thryft.Struct {
                         try {
                             collectionId = com.google.common.base.Optional.of(org.dressdiscover.api.models.collection.CollectionId.parse(iprot.readString()));
                         } catch (final org.dressdiscover.api.models.collection.InvalidCollectionIdException e) {
+                        } catch (final IllegalArgumentException e) {
                         }
                         break;
                     }
                     case "facet_filters": {
-                        facetFilters = com.google.common.base.Optional.of(org.dressdiscover.api.models.object.ObjectFacetFilters.readAsStruct(iprot));
+                        facetFilters = com.google.common.base.Optional.of(org.dressdiscover.api.models.object.ObjectFacetFilters.readAsStruct(iprot, unknownFieldCallback));
                         break;
                     }
                     case "include_hidden": {
-                        includeHidden = com.google.common.base.Optional.of(iprot.readBool());
+                        includeHidden = org.thryft.Optionals.of(iprot.readBool());
                         break;
                     }
                     case "institution_id": {
                         try {
                             institutionId = com.google.common.base.Optional.of(org.dressdiscover.api.models.institution.InstitutionId.parse(iprot.readString()));
                         } catch (final org.dressdiscover.api.models.institution.InvalidInstitutionIdException e) {
+                        } catch (final IllegalArgumentException e) {
                         }
                         break;
                     }
@@ -247,6 +256,7 @@ public final class ObjectQuery implements org.thryft.Struct {
                         try {
                             moreLikeObjectId = com.google.common.base.Optional.of(org.dressdiscover.api.models.object.ObjectId.parse(iprot.readString()));
                         } catch (final org.dressdiscover.api.models.object.InvalidObjectIdException e) {
+                        } catch (final IllegalArgumentException e) {
                         }
                         break;
                     }
@@ -262,6 +272,8 @@ public final class ObjectQuery implements org.thryft.Struct {
                                             try {
                                                 sequenceBuilder.add(org.dressdiscover.api.models.object.ObjectId.parse(iprot.readString()));
                                             } catch (final org.dressdiscover.api.models.object.InvalidObjectIdException e) {
+                                                 throw new org.thryft.protocol.InputProtocolException(e);
+                                            } catch (final IllegalArgumentException e) {
                                                  throw new org.thryft.protocol.InputProtocolException(e);
                                             }
                                         }
@@ -382,20 +394,22 @@ public final class ObjectQuery implements org.thryft.Struct {
         }
 
         public Builder setCollectionId(final com.google.common.base.Optional<org.dressdiscover.api.models.collection.CollectionId> collectionId) {
-            this.collectionId = DefaultConstructionValidator.getInstance().validateCollectionId(collectionId);
+            UncheckedValidator.validateCollectionId(collectionId);
+            this.collectionId = collectionId;
             return this;
         }
 
-        public Builder setCollectionId(@javax.annotation.Nullable final org.dressdiscover.api.models.collection.CollectionId collectionId) {
+        public Builder setCollectionId(final @javax.annotation.Nullable org.dressdiscover.api.models.collection.CollectionId collectionId) {
             return setCollectionId(com.google.common.base.Optional.fromNullable(collectionId));
         }
 
         public Builder setFacetFilters(final com.google.common.base.Optional<org.dressdiscover.api.models.object.ObjectFacetFilters> facetFilters) {
-            this.facetFilters = DefaultConstructionValidator.getInstance().validateFacetFilters(facetFilters);
+            UncheckedValidator.validateFacetFilters(facetFilters);
+            this.facetFilters = facetFilters;
             return this;
         }
 
-        public Builder setFacetFilters(@javax.annotation.Nullable final org.dressdiscover.api.models.object.ObjectFacetFilters facetFilters) {
+        public Builder setFacetFilters(final @javax.annotation.Nullable org.dressdiscover.api.models.object.ObjectFacetFilters facetFilters) {
             return setFacetFilters(com.google.common.base.Optional.fromNullable(facetFilters));
         }
 
@@ -437,74 +451,86 @@ public final class ObjectQuery implements org.thryft.Struct {
         }
 
         public Builder setIncludeHidden(final com.google.common.base.Optional<Boolean> includeHidden) {
-            this.includeHidden = DefaultConstructionValidator.getInstance().validateIncludeHidden(includeHidden);
+            UncheckedValidator.validateIncludeHidden(includeHidden);
+            this.includeHidden = includeHidden;
             return this;
         }
 
-        public Builder setIncludeHidden(@javax.annotation.Nullable final Boolean includeHidden) {
-            return setIncludeHidden(com.google.common.base.Optional.fromNullable(includeHidden));
+        public Builder setIncludeHidden(final @javax.annotation.Nullable Boolean includeHidden) {
+            return setIncludeHidden(org.thryft.Optionals.fromNullable(includeHidden));
+        }
+
+        public Builder setIncludeHidden(final boolean includeHidden) {
+            return setIncludeHidden(org.thryft.Optionals.of(includeHidden));
         }
 
         public Builder setInstitutionId(final com.google.common.base.Optional<org.dressdiscover.api.models.institution.InstitutionId> institutionId) {
-            this.institutionId = DefaultConstructionValidator.getInstance().validateInstitutionId(institutionId);
+            UncheckedValidator.validateInstitutionId(institutionId);
+            this.institutionId = institutionId;
             return this;
         }
 
-        public Builder setInstitutionId(@javax.annotation.Nullable final org.dressdiscover.api.models.institution.InstitutionId institutionId) {
+        public Builder setInstitutionId(final @javax.annotation.Nullable org.dressdiscover.api.models.institution.InstitutionId institutionId) {
             return setInstitutionId(com.google.common.base.Optional.fromNullable(institutionId));
         }
 
         public Builder setMoreLikeObjectId(final com.google.common.base.Optional<org.dressdiscover.api.models.object.ObjectId> moreLikeObjectId) {
-            this.moreLikeObjectId = DefaultConstructionValidator.getInstance().validateMoreLikeObjectId(moreLikeObjectId);
+            UncheckedValidator.validateMoreLikeObjectId(moreLikeObjectId);
+            this.moreLikeObjectId = moreLikeObjectId;
             return this;
         }
 
-        public Builder setMoreLikeObjectId(@javax.annotation.Nullable final org.dressdiscover.api.models.object.ObjectId moreLikeObjectId) {
+        public Builder setMoreLikeObjectId(final @javax.annotation.Nullable org.dressdiscover.api.models.object.ObjectId moreLikeObjectId) {
             return setMoreLikeObjectId(com.google.common.base.Optional.fromNullable(moreLikeObjectId));
         }
 
         public Builder setObjectIds(final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.object.ObjectId>> objectIds) {
-            this.objectIds = DefaultConstructionValidator.getInstance().validateObjectIds(objectIds);
+            UncheckedValidator.validateObjectIds(objectIds);
+            this.objectIds = objectIds;
             return this;
         }
 
-        public Builder setObjectIds(@javax.annotation.Nullable final com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.object.ObjectId> objectIds) {
+        public Builder setObjectIds(final @javax.annotation.Nullable com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.object.ObjectId> objectIds) {
             return setObjectIds(com.google.common.base.Optional.fromNullable(objectIds));
         }
 
         public Builder setQueryString(final com.google.common.base.Optional<String> queryString) {
-            this.queryString = DefaultConstructionValidator.getInstance().validateQueryString(queryString);
+            UncheckedValidator.validateQueryString(queryString);
+            this.queryString = queryString;
             return this;
         }
 
-        public Builder setQueryString(@javax.annotation.Nullable final String queryString) {
+        public Builder setQueryString(final @javax.annotation.Nullable String queryString) {
             return setQueryString(com.google.common.base.Optional.fromNullable(queryString));
         }
 
         public Builder setRelationText(final com.google.common.base.Optional<String> relationText) {
-            this.relationText = DefaultConstructionValidator.getInstance().validateRelationText(relationText);
+            UncheckedValidator.validateRelationText(relationText);
+            this.relationText = relationText;
             return this;
         }
 
-        public Builder setRelationText(@javax.annotation.Nullable final String relationText) {
+        public Builder setRelationText(final @javax.annotation.Nullable String relationText) {
             return setRelationText(com.google.common.base.Optional.fromNullable(relationText));
         }
 
         public Builder setStructureTexts(final com.google.common.base.Optional<com.google.common.collect.ImmutableMap<String, com.google.common.collect.ImmutableList<String>>> structureTexts) {
-            this.structureTexts = DefaultConstructionValidator.getInstance().validateStructureTexts(structureTexts);
+            UncheckedValidator.validateStructureTexts(structureTexts);
+            this.structureTexts = structureTexts;
             return this;
         }
 
-        public Builder setStructureTexts(@javax.annotation.Nullable final com.google.common.collect.ImmutableMap<String, com.google.common.collect.ImmutableList<String>> structureTexts) {
+        public Builder setStructureTexts(final @javax.annotation.Nullable com.google.common.collect.ImmutableMap<String, com.google.common.collect.ImmutableList<String>> structureTexts) {
             return setStructureTexts(com.google.common.base.Optional.fromNullable(structureTexts));
         }
 
         public Builder setWorkTypeText(final com.google.common.base.Optional<String> workTypeText) {
-            this.workTypeText = DefaultConstructionValidator.getInstance().validateWorkTypeText(workTypeText);
+            UncheckedValidator.validateWorkTypeText(workTypeText);
+            this.workTypeText = workTypeText;
             return this;
         }
 
-        public Builder setWorkTypeText(@javax.annotation.Nullable final String workTypeText) {
+        public Builder setWorkTypeText(final @javax.annotation.Nullable String workTypeText) {
             return setWorkTypeText(com.google.common.base.Optional.fromNullable(workTypeText));
         }
 
@@ -634,16 +660,16 @@ public final class ObjectQuery implements org.thryft.Struct {
 
     @SuppressWarnings("serial")
     public enum FieldMetadata implements org.thryft.CompoundType.FieldMetadata {
-        COLLECTION_ID("collectionId", new com.google.common.reflect.TypeToken<org.dressdiscover.api.models.collection.CollectionId>() {}, false, 0, "collection_id", org.thryft.protocol.Type.STRING),
-        FACET_FILTERS("facetFilters", new com.google.common.reflect.TypeToken<org.dressdiscover.api.models.object.ObjectFacetFilters>() {}, false, 0, "facet_filters", org.thryft.protocol.Type.STRUCT),
-        INCLUDE_HIDDEN("includeHidden", new com.google.common.reflect.TypeToken<Boolean>() {}, false, 0, "include_hidden", org.thryft.protocol.Type.BOOL),
-        INSTITUTION_ID("institutionId", new com.google.common.reflect.TypeToken<org.dressdiscover.api.models.institution.InstitutionId>() {}, false, 0, "institution_id", org.thryft.protocol.Type.STRING),
-        MORE_LIKE_OBJECT_ID("moreLikeObjectId", new com.google.common.reflect.TypeToken<org.dressdiscover.api.models.object.ObjectId>() {}, false, 0, "more_like_object_id", org.thryft.protocol.Type.STRING),
-        OBJECT_IDS("objectIds", new com.google.common.reflect.TypeToken<com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.object.ObjectId>>() {}, false, 0, "object_ids", org.thryft.protocol.Type.SET),
-        QUERY_STRING("queryString", new com.google.common.reflect.TypeToken<String>() {}, false, 0, "query_string", org.thryft.protocol.Type.STRING),
-        RELATION_TEXT("relationText", new com.google.common.reflect.TypeToken<String>() {}, false, 0, "relation_text", org.thryft.protocol.Type.STRING),
-        STRUCTURE_TEXTS("structureTexts", new com.google.common.reflect.TypeToken<com.google.common.collect.ImmutableMap<String, com.google.common.collect.ImmutableList<String>>>() {}, false, 0, "structure_texts", org.thryft.protocol.Type.MAP),
-        WORK_TYPE_TEXT("workTypeText", new com.google.common.reflect.TypeToken<String>() {}, false, 0, "work_type_text", org.thryft.protocol.Type.STRING);
+        COLLECTION_ID("collectionId", new com.google.common.reflect.TypeToken<org.dressdiscover.api.models.collection.CollectionId>() {}, false, (short)0, "collection_id", org.thryft.protocol.Type.STRING),
+        FACET_FILTERS("facetFilters", new com.google.common.reflect.TypeToken<org.dressdiscover.api.models.object.ObjectFacetFilters>() {}, false, (short)0, "facet_filters", org.thryft.protocol.Type.STRUCT),
+        INCLUDE_HIDDEN("includeHidden", new com.google.common.reflect.TypeToken<Boolean>() {}, false, (short)0, "include_hidden", org.thryft.protocol.Type.BOOL),
+        INSTITUTION_ID("institutionId", new com.google.common.reflect.TypeToken<org.dressdiscover.api.models.institution.InstitutionId>() {}, false, (short)0, "institution_id", org.thryft.protocol.Type.STRING),
+        MORE_LIKE_OBJECT_ID("moreLikeObjectId", new com.google.common.reflect.TypeToken<org.dressdiscover.api.models.object.ObjectId>() {}, false, (short)0, "more_like_object_id", org.thryft.protocol.Type.STRING),
+        OBJECT_IDS("objectIds", new com.google.common.reflect.TypeToken<com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.object.ObjectId>>() {}, false, (short)0, "object_ids", org.thryft.protocol.Type.SET),
+        QUERY_STRING("queryString", new com.google.common.reflect.TypeToken<String>() {}, false, (short)0, "query_string", org.thryft.protocol.Type.STRING),
+        RELATION_TEXT("relationText", new com.google.common.reflect.TypeToken<String>() {}, false, (short)0, "relation_text", org.thryft.protocol.Type.STRING),
+        STRUCTURE_TEXTS("structureTexts", new com.google.common.reflect.TypeToken<com.google.common.collect.ImmutableMap<String, com.google.common.collect.ImmutableList<String>>>() {}, false, (short)0, "structure_texts", org.thryft.protocol.Type.MAP),
+        WORK_TYPE_TEXT("workTypeText", new com.google.common.reflect.TypeToken<String>() {}, false, (short)0, "work_type_text", org.thryft.protocol.Type.STRING);
 
         @Override
         public String getJavaName() {
@@ -656,7 +682,7 @@ public final class ObjectQuery implements org.thryft.Struct {
         }
 
         @Override
-        public int getThriftId() {
+        public short getThriftId() {
             return thriftId;
         }
 
@@ -719,7 +745,7 @@ public final class ObjectQuery implements org.thryft.Struct {
             }
         }
 
-        private FieldMetadata(final String javaName, final com.google.common.reflect.TypeToken<?> javaType, final boolean required, final int thriftId, final String thriftName, final org.thryft.protocol.Type thriftProtocolType) {
+        private FieldMetadata(final String javaName, final com.google.common.reflect.TypeToken<?> javaType, final boolean required, final short thriftId, final String thriftName, final org.thryft.protocol.Type thriftProtocolType) {
             this.javaName = javaName;
             this.javaType = javaType;
             this.required = required;
@@ -736,431 +762,256 @@ public final class ObjectQuery implements org.thryft.Struct {
         private final String javaName;
         private final com.google.common.reflect.TypeToken<?> javaType;
         private final boolean required;
-        private final int thriftId;
+        private final short thriftId;
         private final String thriftName;
         private final String thriftProtocolKey;
         private final org.thryft.protocol.Type thriftProtocolType;
     }
 
-    public interface Validator<ExceptionT extends Exception> {
-        public com.google.common.base.Optional<org.dressdiscover.api.models.collection.CollectionId> validateCollectionId(final com.google.common.base.Optional<org.dressdiscover.api.models.collection.CollectionId> collectionId) throws ExceptionT;
-
-        public com.google.common.base.Optional<org.dressdiscover.api.models.object.ObjectFacetFilters> validateFacetFilters(final com.google.common.base.Optional<org.dressdiscover.api.models.object.ObjectFacetFilters> facetFilters) throws ExceptionT;
-
-        public com.google.common.base.Optional<Boolean> validateIncludeHidden(final com.google.common.base.Optional<Boolean> includeHidden) throws ExceptionT;
-
-        public com.google.common.base.Optional<org.dressdiscover.api.models.institution.InstitutionId> validateInstitutionId(final com.google.common.base.Optional<org.dressdiscover.api.models.institution.InstitutionId> institutionId) throws ExceptionT;
-
-        public com.google.common.base.Optional<org.dressdiscover.api.models.object.ObjectId> validateMoreLikeObjectId(final com.google.common.base.Optional<org.dressdiscover.api.models.object.ObjectId> moreLikeObjectId) throws ExceptionT;
-
-        public com.google.common.base.Optional<com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.object.ObjectId>> validateObjectIds(final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.object.ObjectId>> objectIds) throws ExceptionT;
-
-        public com.google.common.base.Optional<String> validateQueryString(final com.google.common.base.Optional<String> queryString) throws ExceptionT;
-
-        public com.google.common.base.Optional<String> validateRelationText(final com.google.common.base.Optional<String> relationText) throws ExceptionT;
-
-        public com.google.common.base.Optional<com.google.common.collect.ImmutableMap<String, com.google.common.collect.ImmutableList<String>>> validateStructureTexts(final com.google.common.base.Optional<com.google.common.collect.ImmutableMap<String, com.google.common.collect.ImmutableList<String>>> structureTexts) throws ExceptionT;
-
-        public com.google.common.base.Optional<String> validateWorkTypeText(final com.google.common.base.Optional<String> workTypeText) throws ExceptionT;
-    }
-
-    public interface ConstructionValidator extends Validator<RuntimeException> {
-    }
-
-    public static class DefaultConstructionValidator implements ConstructionValidator {
-        public static DefaultConstructionValidator getInstance() {
-            return instance;
+    public final static class ReadValidator {
+        public static void validate(final com.google.common.base.Optional<org.dressdiscover.api.models.collection.CollectionId> collectionId, final com.google.common.base.Optional<org.dressdiscover.api.models.object.ObjectFacetFilters> facetFilters, final com.google.common.base.Optional<Boolean> includeHidden, final com.google.common.base.Optional<org.dressdiscover.api.models.institution.InstitutionId> institutionId, final com.google.common.base.Optional<org.dressdiscover.api.models.object.ObjectId> moreLikeObjectId, final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.object.ObjectId>> objectIds, final com.google.common.base.Optional<String> queryString, final com.google.common.base.Optional<String> relationText, final com.google.common.base.Optional<com.google.common.collect.ImmutableMap<String, com.google.common.collect.ImmutableList<String>>> structureTexts, final com.google.common.base.Optional<String> workTypeText) throws org.thryft.protocol.InputProtocolException {
+            validateCollectionId(collectionId);
+            validateFacetFilters(facetFilters);
+            validateIncludeHidden(includeHidden);
+            validateInstitutionId(institutionId);
+            validateMoreLikeObjectId(moreLikeObjectId);
+            validateObjectIds(objectIds);
+            validateQueryString(queryString);
+            validateRelationText(relationText);
+            validateStructureTexts(structureTexts);
+            validateWorkTypeText(workTypeText);
         }
 
-        public DefaultConstructionValidator() {
-        }
-
-        @Override
-        public com.google.common.base.Optional<org.dressdiscover.api.models.collection.CollectionId> validateCollectionId(final com.google.common.base.Optional<org.dressdiscover.api.models.collection.CollectionId> collectionId) throws RuntimeException {
-            if (collectionId == null) {
-                throw new NullPointerException("org.dressdiscover.api.models.object.ObjectQuery: collectionId is null");
-            }
-            if (!collectionId.isPresent()) {
-                return collectionId;
-            }
-            return collectionId;
-        }
-
-        @Override
-        public com.google.common.base.Optional<org.dressdiscover.api.models.object.ObjectFacetFilters> validateFacetFilters(final com.google.common.base.Optional<org.dressdiscover.api.models.object.ObjectFacetFilters> facetFilters) throws RuntimeException {
-            if (facetFilters == null) {
-                throw new NullPointerException("org.dressdiscover.api.models.object.ObjectQuery: facetFilters is null");
-            }
-            if (!facetFilters.isPresent()) {
-                return facetFilters;
-            }
-            return facetFilters;
-        }
-
-        @Override
-        public com.google.common.base.Optional<Boolean> validateIncludeHidden(final com.google.common.base.Optional<Boolean> includeHidden) throws RuntimeException {
-            if (!includeHidden.isPresent()) {
-                return includeHidden;
-            }
-            if (!includeHidden.get()) {
-                throw new IllegalArgumentException("org.dressdiscover.api.models.object.ObjectQuery: includeHidden is not true");
-            }
-            return includeHidden;
-        }
-
-        @Override
-        public com.google.common.base.Optional<org.dressdiscover.api.models.institution.InstitutionId> validateInstitutionId(final com.google.common.base.Optional<org.dressdiscover.api.models.institution.InstitutionId> institutionId) throws RuntimeException {
-            if (institutionId == null) {
-                throw new NullPointerException("org.dressdiscover.api.models.object.ObjectQuery: institutionId is null");
-            }
-            if (!institutionId.isPresent()) {
-                return institutionId;
-            }
-            return institutionId;
-        }
-
-        @Override
-        public com.google.common.base.Optional<org.dressdiscover.api.models.object.ObjectId> validateMoreLikeObjectId(final com.google.common.base.Optional<org.dressdiscover.api.models.object.ObjectId> moreLikeObjectId) throws RuntimeException {
-            if (moreLikeObjectId == null) {
-                throw new NullPointerException("org.dressdiscover.api.models.object.ObjectQuery: moreLikeObjectId is null");
-            }
-            if (!moreLikeObjectId.isPresent()) {
-                return moreLikeObjectId;
-            }
-            return moreLikeObjectId;
-        }
-
-        @Override
-        public com.google.common.base.Optional<com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.object.ObjectId>> validateObjectIds(final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.object.ObjectId>> objectIds) throws RuntimeException {
-            if (objectIds == null) {
-                throw new NullPointerException("org.dressdiscover.api.models.object.ObjectQuery: objectIds is null");
-            }
-            if (!objectIds.isPresent()) {
-                return objectIds;
-            }
-            return objectIds;
-        }
-
-        @Override
-        public com.google.common.base.Optional<String> validateQueryString(final com.google.common.base.Optional<String> queryString) throws RuntimeException {
-            if (queryString == null) {
-                throw new NullPointerException("org.dressdiscover.api.models.object.ObjectQuery: queryString is null");
-            }
-            if (!queryString.isPresent()) {
-                return queryString;
-            }
-            if (queryString.get().isEmpty()) {
-                throw new IllegalArgumentException("org.dressdiscover.api.models.object.ObjectQuery: queryString is less than min length 1");
-            }
-            return queryString;
-        }
-
-        @Override
-        public com.google.common.base.Optional<String> validateRelationText(final com.google.common.base.Optional<String> relationText) throws RuntimeException {
-            if (relationText == null) {
-                throw new NullPointerException("org.dressdiscover.api.models.object.ObjectQuery: relationText is null");
-            }
-            if (!relationText.isPresent()) {
-                return relationText;
-            }
-            if (relationText.get().isEmpty()) {
-                throw new IllegalArgumentException("org.dressdiscover.api.models.object.ObjectQuery: relationText is less than min length 1");
-            }
-            return relationText;
-        }
-
-        @Override
-        public com.google.common.base.Optional<com.google.common.collect.ImmutableMap<String, com.google.common.collect.ImmutableList<String>>> validateStructureTexts(final com.google.common.base.Optional<com.google.common.collect.ImmutableMap<String, com.google.common.collect.ImmutableList<String>>> structureTexts) throws RuntimeException {
-            if (structureTexts == null) {
-                throw new NullPointerException("org.dressdiscover.api.models.object.ObjectQuery: structureTexts is null");
-            }
-            if (!structureTexts.isPresent()) {
-                return structureTexts;
-            }
-            if (structureTexts.get().isEmpty()) {
-                throw new IllegalArgumentException("org.dressdiscover.api.models.object.ObjectQuery: structureTexts is less than min length 1");
-            }
-            return structureTexts;
-        }
-
-        @Override
-        public com.google.common.base.Optional<String> validateWorkTypeText(final com.google.common.base.Optional<String> workTypeText) throws RuntimeException {
-            if (workTypeText == null) {
-                throw new NullPointerException("org.dressdiscover.api.models.object.ObjectQuery: workTypeText is null");
-            }
-            if (!workTypeText.isPresent()) {
-                return workTypeText;
-            }
-            if (workTypeText.get().isEmpty()) {
-                throw new IllegalArgumentException("org.dressdiscover.api.models.object.ObjectQuery: workTypeText is less than min length 1");
-            }
-            return workTypeText;
-        }
-
-        private final static DefaultConstructionValidator instance = new DefaultConstructionValidator();
-    }
-
-    public static class NopConstructionValidator implements ConstructionValidator {
-        public static NopConstructionValidator getInstance() {
-            return instance;
-        }
-
-        public NopConstructionValidator() {
-        }
-
-        @Override
-        public com.google.common.base.Optional<org.dressdiscover.api.models.collection.CollectionId> validateCollectionId(final com.google.common.base.Optional<org.dressdiscover.api.models.collection.CollectionId> collectionId) {
-            return collectionId;
-        }
-
-        @Override
-        public com.google.common.base.Optional<org.dressdiscover.api.models.object.ObjectFacetFilters> validateFacetFilters(final com.google.common.base.Optional<org.dressdiscover.api.models.object.ObjectFacetFilters> facetFilters) {
-            return facetFilters;
-        }
-
-        @Override
-        public com.google.common.base.Optional<Boolean> validateIncludeHidden(final com.google.common.base.Optional<Boolean> includeHidden) {
-            return includeHidden;
-        }
-
-        @Override
-        public com.google.common.base.Optional<org.dressdiscover.api.models.institution.InstitutionId> validateInstitutionId(final com.google.common.base.Optional<org.dressdiscover.api.models.institution.InstitutionId> institutionId) {
-            return institutionId;
-        }
-
-        @Override
-        public com.google.common.base.Optional<org.dressdiscover.api.models.object.ObjectId> validateMoreLikeObjectId(final com.google.common.base.Optional<org.dressdiscover.api.models.object.ObjectId> moreLikeObjectId) {
-            return moreLikeObjectId;
-        }
-
-        @Override
-        public com.google.common.base.Optional<com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.object.ObjectId>> validateObjectIds(final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.object.ObjectId>> objectIds) {
-            return objectIds;
-        }
-
-        @Override
-        public com.google.common.base.Optional<String> validateQueryString(final com.google.common.base.Optional<String> queryString) {
-            return queryString;
-        }
-
-        @Override
-        public com.google.common.base.Optional<String> validateRelationText(final com.google.common.base.Optional<String> relationText) {
-            return relationText;
-        }
-
-        @Override
-        public com.google.common.base.Optional<com.google.common.collect.ImmutableMap<String, com.google.common.collect.ImmutableList<String>>> validateStructureTexts(final com.google.common.base.Optional<com.google.common.collect.ImmutableMap<String, com.google.common.collect.ImmutableList<String>>> structureTexts) {
-            return structureTexts;
-        }
-
-        @Override
-        public com.google.common.base.Optional<String> validateWorkTypeText(final com.google.common.base.Optional<String> workTypeText) {
-            return workTypeText;
-        }
-
-        private final static NopConstructionValidator instance = new NopConstructionValidator();
-    }
-
-    public interface ReadValidator extends Validator<org.thryft.protocol.InputProtocolException> {
-    }
-
-    public static class DefaultReadValidator implements ReadValidator {
-        public static DefaultReadValidator getInstance() {
-            return instance;
-        }
-
-        public DefaultReadValidator() {
-        }
-
-        @Override
-        public com.google.common.base.Optional<org.dressdiscover.api.models.collection.CollectionId> validateCollectionId(final com.google.common.base.Optional<org.dressdiscover.api.models.collection.CollectionId> collectionId) throws org.thryft.protocol.InputProtocolException {
+        public static void validateCollectionId(final com.google.common.base.Optional<org.dressdiscover.api.models.collection.CollectionId> collectionId) throws org.thryft.protocol.InputProtocolException {
             if (collectionId == null) {
                 throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.COLLECTION_ID, "org.dressdiscover.api.models.object.ObjectQuery: collectionId is null");
             }
             if (!collectionId.isPresent()) {
-                return collectionId;
+                return;
             }
-            return collectionId;
         }
 
-        @Override
-        public com.google.common.base.Optional<org.dressdiscover.api.models.object.ObjectFacetFilters> validateFacetFilters(final com.google.common.base.Optional<org.dressdiscover.api.models.object.ObjectFacetFilters> facetFilters) throws org.thryft.protocol.InputProtocolException {
+        public static void validateFacetFilters(final com.google.common.base.Optional<org.dressdiscover.api.models.object.ObjectFacetFilters> facetFilters) throws org.thryft.protocol.InputProtocolException {
             if (facetFilters == null) {
                 throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.FACET_FILTERS, "org.dressdiscover.api.models.object.ObjectQuery: facetFilters is null");
             }
             if (!facetFilters.isPresent()) {
-                return facetFilters;
+                return;
             }
-            return facetFilters;
         }
 
-        @Override
-        public com.google.common.base.Optional<Boolean> validateIncludeHidden(final com.google.common.base.Optional<Boolean> includeHidden) throws org.thryft.protocol.InputProtocolException {
+        public static void validateIncludeHidden(final com.google.common.base.Optional<Boolean> includeHidden) throws org.thryft.protocol.InputProtocolException {
+            if (includeHidden == null) {
+                throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.INCLUDE_HIDDEN, "org.dressdiscover.api.models.object.ObjectQuery: includeHidden is null");
+            }
             if (!includeHidden.isPresent()) {
-                return includeHidden;
+                return;
             }
             if (!includeHidden.get()) {
-                throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.INCLUDE_HIDDEN, "org.dressdiscover.api.models.object.ObjectQuery: includeHidden is not true");
+                throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.INCLUDE_HIDDEN, "org.dressdiscover.api.models.object.ObjectQuery.includeHidden: not true");
             }
-            return includeHidden;
         }
 
-        @Override
-        public com.google.common.base.Optional<org.dressdiscover.api.models.institution.InstitutionId> validateInstitutionId(final com.google.common.base.Optional<org.dressdiscover.api.models.institution.InstitutionId> institutionId) throws org.thryft.protocol.InputProtocolException {
+        public static void validateInstitutionId(final com.google.common.base.Optional<org.dressdiscover.api.models.institution.InstitutionId> institutionId) throws org.thryft.protocol.InputProtocolException {
             if (institutionId == null) {
                 throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.INSTITUTION_ID, "org.dressdiscover.api.models.object.ObjectQuery: institutionId is null");
             }
             if (!institutionId.isPresent()) {
-                return institutionId;
+                return;
             }
-            return institutionId;
         }
 
-        @Override
-        public com.google.common.base.Optional<org.dressdiscover.api.models.object.ObjectId> validateMoreLikeObjectId(final com.google.common.base.Optional<org.dressdiscover.api.models.object.ObjectId> moreLikeObjectId) throws org.thryft.protocol.InputProtocolException {
+        public static void validateMoreLikeObjectId(final com.google.common.base.Optional<org.dressdiscover.api.models.object.ObjectId> moreLikeObjectId) throws org.thryft.protocol.InputProtocolException {
             if (moreLikeObjectId == null) {
                 throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.MORE_LIKE_OBJECT_ID, "org.dressdiscover.api.models.object.ObjectQuery: moreLikeObjectId is null");
             }
             if (!moreLikeObjectId.isPresent()) {
-                return moreLikeObjectId;
+                return;
             }
-            return moreLikeObjectId;
         }
 
-        @Override
-        public com.google.common.base.Optional<com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.object.ObjectId>> validateObjectIds(final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.object.ObjectId>> objectIds) throws org.thryft.protocol.InputProtocolException {
+        public static void validateObjectIds(final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.object.ObjectId>> objectIds) throws org.thryft.protocol.InputProtocolException {
             if (objectIds == null) {
                 throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.OBJECT_IDS, "org.dressdiscover.api.models.object.ObjectQuery: objectIds is null");
             }
             if (!objectIds.isPresent()) {
-                return objectIds;
+                return;
             }
-            return objectIds;
         }
 
-        @Override
-        public com.google.common.base.Optional<String> validateQueryString(final com.google.common.base.Optional<String> queryString) throws org.thryft.protocol.InputProtocolException {
+        public static void validateQueryString(final com.google.common.base.Optional<String> queryString) throws org.thryft.protocol.InputProtocolException {
             if (queryString == null) {
                 throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.QUERY_STRING, "org.dressdiscover.api.models.object.ObjectQuery: queryString is null");
             }
             if (!queryString.isPresent()) {
-                return queryString;
+                return;
             }
             if (queryString.get().isEmpty()) {
-                throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.QUERY_STRING, "org.dressdiscover.api.models.object.ObjectQuery: queryString is less than min length 1");
+                throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.QUERY_STRING, "org.dressdiscover.api.models.object.ObjectQuery.queryString: less than min length 1");
             }
-            return queryString;
         }
 
-        @Override
-        public com.google.common.base.Optional<String> validateRelationText(final com.google.common.base.Optional<String> relationText) throws org.thryft.protocol.InputProtocolException {
+        public static void validateRelationText(final com.google.common.base.Optional<String> relationText) throws org.thryft.protocol.InputProtocolException {
             if (relationText == null) {
                 throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.RELATION_TEXT, "org.dressdiscover.api.models.object.ObjectQuery: relationText is null");
             }
             if (!relationText.isPresent()) {
-                return relationText;
+                return;
             }
             if (relationText.get().isEmpty()) {
-                throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.RELATION_TEXT, "org.dressdiscover.api.models.object.ObjectQuery: relationText is less than min length 1");
+                throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.RELATION_TEXT, "org.dressdiscover.api.models.object.ObjectQuery.relationText: less than min length 1");
             }
-            return relationText;
         }
 
-        @Override
-        public com.google.common.base.Optional<com.google.common.collect.ImmutableMap<String, com.google.common.collect.ImmutableList<String>>> validateStructureTexts(final com.google.common.base.Optional<com.google.common.collect.ImmutableMap<String, com.google.common.collect.ImmutableList<String>>> structureTexts) throws org.thryft.protocol.InputProtocolException {
+        public static void validateStructureTexts(final com.google.common.base.Optional<com.google.common.collect.ImmutableMap<String, com.google.common.collect.ImmutableList<String>>> structureTexts) throws org.thryft.protocol.InputProtocolException {
             if (structureTexts == null) {
                 throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.STRUCTURE_TEXTS, "org.dressdiscover.api.models.object.ObjectQuery: structureTexts is null");
             }
             if (!structureTexts.isPresent()) {
-                return structureTexts;
+                return;
             }
             if (structureTexts.get().isEmpty()) {
-                throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.STRUCTURE_TEXTS, "org.dressdiscover.api.models.object.ObjectQuery: structureTexts is less than min length 1");
+                throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.STRUCTURE_TEXTS, "org.dressdiscover.api.models.object.ObjectQuery.structureTexts: less than min length 1");
             }
-            return structureTexts;
         }
 
-        @Override
-        public com.google.common.base.Optional<String> validateWorkTypeText(final com.google.common.base.Optional<String> workTypeText) throws org.thryft.protocol.InputProtocolException {
+        public static void validateWorkTypeText(final com.google.common.base.Optional<String> workTypeText) throws org.thryft.protocol.InputProtocolException {
             if (workTypeText == null) {
                 throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.WORK_TYPE_TEXT, "org.dressdiscover.api.models.object.ObjectQuery: workTypeText is null");
             }
             if (!workTypeText.isPresent()) {
-                return workTypeText;
+                return;
             }
             if (workTypeText.get().isEmpty()) {
-                throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.WORK_TYPE_TEXT, "org.dressdiscover.api.models.object.ObjectQuery: workTypeText is less than min length 1");
+                throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.WORK_TYPE_TEXT, "org.dressdiscover.api.models.object.ObjectQuery.workTypeText: less than min length 1");
             }
-            return workTypeText;
         }
-
-        private final static DefaultReadValidator instance = new DefaultReadValidator();
     }
 
-    public static class NopReadValidator implements ReadValidator {
-        public static NopReadValidator getInstance() {
-            return instance;
+    public final static class UncheckedValidator {
+        public static void validate(final com.google.common.base.Optional<org.dressdiscover.api.models.collection.CollectionId> collectionId, final com.google.common.base.Optional<org.dressdiscover.api.models.object.ObjectFacetFilters> facetFilters, final com.google.common.base.Optional<Boolean> includeHidden, final com.google.common.base.Optional<org.dressdiscover.api.models.institution.InstitutionId> institutionId, final com.google.common.base.Optional<org.dressdiscover.api.models.object.ObjectId> moreLikeObjectId, final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.object.ObjectId>> objectIds, final com.google.common.base.Optional<String> queryString, final com.google.common.base.Optional<String> relationText, final com.google.common.base.Optional<com.google.common.collect.ImmutableMap<String, com.google.common.collect.ImmutableList<String>>> structureTexts, final com.google.common.base.Optional<String> workTypeText) {
+            validateCollectionId(collectionId);
+            validateFacetFilters(facetFilters);
+            validateIncludeHidden(includeHidden);
+            validateInstitutionId(institutionId);
+            validateMoreLikeObjectId(moreLikeObjectId);
+            validateObjectIds(objectIds);
+            validateQueryString(queryString);
+            validateRelationText(relationText);
+            validateStructureTexts(structureTexts);
+            validateWorkTypeText(workTypeText);
         }
 
-        public NopReadValidator() {
+        public static void validateCollectionId(final com.google.common.base.Optional<org.dressdiscover.api.models.collection.CollectionId> collectionId) {
+            if (collectionId == null) {
+                throw new NullPointerException("org.dressdiscover.api.models.object.ObjectQuery: collectionId is null");
+            }
+            if (!collectionId.isPresent()) {
+                return;
+            }
         }
 
-        @Override
-        public com.google.common.base.Optional<org.dressdiscover.api.models.collection.CollectionId> validateCollectionId(final com.google.common.base.Optional<org.dressdiscover.api.models.collection.CollectionId> collectionId) {
-            return collectionId;
+        public static void validateFacetFilters(final com.google.common.base.Optional<org.dressdiscover.api.models.object.ObjectFacetFilters> facetFilters) {
+            if (facetFilters == null) {
+                throw new NullPointerException("org.dressdiscover.api.models.object.ObjectQuery: facetFilters is null");
+            }
+            if (!facetFilters.isPresent()) {
+                return;
+            }
         }
 
-        @Override
-        public com.google.common.base.Optional<org.dressdiscover.api.models.object.ObjectFacetFilters> validateFacetFilters(final com.google.common.base.Optional<org.dressdiscover.api.models.object.ObjectFacetFilters> facetFilters) {
-            return facetFilters;
+        public static void validateIncludeHidden(final com.google.common.base.Optional<Boolean> includeHidden) {
+            if (includeHidden == null) {
+                throw new NullPointerException("org.dressdiscover.api.models.object.ObjectQuery: includeHidden is null");
+            }
+            if (!includeHidden.isPresent()) {
+                return;
+            }
+            if (!includeHidden.get()) {
+                throw new IllegalArgumentException("org.dressdiscover.api.models.object.ObjectQuery.includeHidden: not true");
+            }
         }
 
-        @Override
-        public com.google.common.base.Optional<Boolean> validateIncludeHidden(final com.google.common.base.Optional<Boolean> includeHidden) {
-            return includeHidden;
+        public static void validateInstitutionId(final com.google.common.base.Optional<org.dressdiscover.api.models.institution.InstitutionId> institutionId) {
+            if (institutionId == null) {
+                throw new NullPointerException("org.dressdiscover.api.models.object.ObjectQuery: institutionId is null");
+            }
+            if (!institutionId.isPresent()) {
+                return;
+            }
         }
 
-        @Override
-        public com.google.common.base.Optional<org.dressdiscover.api.models.institution.InstitutionId> validateInstitutionId(final com.google.common.base.Optional<org.dressdiscover.api.models.institution.InstitutionId> institutionId) {
-            return institutionId;
+        public static void validateMoreLikeObjectId(final com.google.common.base.Optional<org.dressdiscover.api.models.object.ObjectId> moreLikeObjectId) {
+            if (moreLikeObjectId == null) {
+                throw new NullPointerException("org.dressdiscover.api.models.object.ObjectQuery: moreLikeObjectId is null");
+            }
+            if (!moreLikeObjectId.isPresent()) {
+                return;
+            }
         }
 
-        @Override
-        public com.google.common.base.Optional<org.dressdiscover.api.models.object.ObjectId> validateMoreLikeObjectId(final com.google.common.base.Optional<org.dressdiscover.api.models.object.ObjectId> moreLikeObjectId) {
-            return moreLikeObjectId;
+        public static void validateObjectIds(final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.object.ObjectId>> objectIds) {
+            if (objectIds == null) {
+                throw new NullPointerException("org.dressdiscover.api.models.object.ObjectQuery: objectIds is null");
+            }
+            if (!objectIds.isPresent()) {
+                return;
+            }
         }
 
-        @Override
-        public com.google.common.base.Optional<com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.object.ObjectId>> validateObjectIds(final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.object.ObjectId>> objectIds) {
-            return objectIds;
+        public static void validateQueryString(final com.google.common.base.Optional<String> queryString) {
+            if (queryString == null) {
+                throw new NullPointerException("org.dressdiscover.api.models.object.ObjectQuery: queryString is null");
+            }
+            if (!queryString.isPresent()) {
+                return;
+            }
+            if (queryString.get().isEmpty()) {
+                throw new IllegalArgumentException("org.dressdiscover.api.models.object.ObjectQuery.queryString: less than min length 1");
+            }
         }
 
-        @Override
-        public com.google.common.base.Optional<String> validateQueryString(final com.google.common.base.Optional<String> queryString) {
-            return queryString;
+        public static void validateRelationText(final com.google.common.base.Optional<String> relationText) {
+            if (relationText == null) {
+                throw new NullPointerException("org.dressdiscover.api.models.object.ObjectQuery: relationText is null");
+            }
+            if (!relationText.isPresent()) {
+                return;
+            }
+            if (relationText.get().isEmpty()) {
+                throw new IllegalArgumentException("org.dressdiscover.api.models.object.ObjectQuery.relationText: less than min length 1");
+            }
         }
 
-        @Override
-        public com.google.common.base.Optional<String> validateRelationText(final com.google.common.base.Optional<String> relationText) {
-            return relationText;
+        public static void validateStructureTexts(final com.google.common.base.Optional<com.google.common.collect.ImmutableMap<String, com.google.common.collect.ImmutableList<String>>> structureTexts) {
+            if (structureTexts == null) {
+                throw new NullPointerException("org.dressdiscover.api.models.object.ObjectQuery: structureTexts is null");
+            }
+            if (!structureTexts.isPresent()) {
+                return;
+            }
+            if (structureTexts.get().isEmpty()) {
+                throw new IllegalArgumentException("org.dressdiscover.api.models.object.ObjectQuery.structureTexts: less than min length 1");
+            }
         }
 
-        @Override
-        public com.google.common.base.Optional<com.google.common.collect.ImmutableMap<String, com.google.common.collect.ImmutableList<String>>> validateStructureTexts(final com.google.common.base.Optional<com.google.common.collect.ImmutableMap<String, com.google.common.collect.ImmutableList<String>>> structureTexts) {
-            return structureTexts;
+        public static void validateWorkTypeText(final com.google.common.base.Optional<String> workTypeText) {
+            if (workTypeText == null) {
+                throw new NullPointerException("org.dressdiscover.api.models.object.ObjectQuery: workTypeText is null");
+            }
+            if (!workTypeText.isPresent()) {
+                return;
+            }
+            if (workTypeText.get().isEmpty()) {
+                throw new IllegalArgumentException("org.dressdiscover.api.models.object.ObjectQuery.workTypeText: less than min length 1");
+            }
         }
-
-        @Override
-        public com.google.common.base.Optional<String> validateWorkTypeText(final com.google.common.base.Optional<String> workTypeText) {
-            return workTypeText;
-        }
-
-        private final static NopReadValidator instance = new NopReadValidator();
     }
 
     /**
      * Default constructor
      */
+    @Deprecated
     public ObjectQuery() {
         collectionId = com.google.common.base.Optional.<org.dressdiscover.api.models.collection.CollectionId> absent();
         facetFilters = com.google.common.base.Optional.<org.dressdiscover.api.models.object.ObjectFacetFilters> absent();
@@ -1178,20 +1029,25 @@ public final class ObjectQuery implements org.thryft.Struct {
      * Copy constructor
      */
     public ObjectQuery(final ObjectQuery other) {
-        this(other.getCollectionId(), other.getFacetFilters(), other.getIncludeHidden(), other.getInstitutionId(), other.getMoreLikeObjectId(), other.getObjectIds(), other.getQueryString(), other.getRelationText(), other.getStructureTexts(), other.getWorkTypeText(), NopConstructionValidator.getInstance());
+        this(other.getCollectionId(), other.getFacetFilters(), other.getIncludeHidden(), other.getInstitutionId(), other.getMoreLikeObjectId(), other.getObjectIds(), other.getQueryString(), other.getRelationText(), other.getStructureTexts(), other.getWorkTypeText());
     }
 
-    protected ObjectQuery(final com.google.common.base.Optional<org.dressdiscover.api.models.collection.CollectionId> collectionId, final com.google.common.base.Optional<org.dressdiscover.api.models.object.ObjectFacetFilters> facetFilters, final com.google.common.base.Optional<Boolean> includeHidden, final com.google.common.base.Optional<org.dressdiscover.api.models.institution.InstitutionId> institutionId, final com.google.common.base.Optional<org.dressdiscover.api.models.object.ObjectId> moreLikeObjectId, final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.object.ObjectId>> objectIds, final com.google.common.base.Optional<String> queryString, final com.google.common.base.Optional<String> relationText, final com.google.common.base.Optional<com.google.common.collect.ImmutableMap<String, com.google.common.collect.ImmutableList<String>>> structureTexts, final com.google.common.base.Optional<String> workTypeText, ConstructionValidator validator) {
-        this.collectionId = validator.validateCollectionId(collectionId);
-        this.facetFilters = validator.validateFacetFilters(facetFilters);
-        this.includeHidden = validator.validateIncludeHidden(includeHidden);
-        this.institutionId = validator.validateInstitutionId(institutionId);
-        this.moreLikeObjectId = validator.validateMoreLikeObjectId(moreLikeObjectId);
-        this.objectIds = validator.validateObjectIds(objectIds);
-        this.queryString = validator.validateQueryString(queryString);
-        this.relationText = validator.validateRelationText(relationText);
-        this.structureTexts = validator.validateStructureTexts(structureTexts);
-        this.workTypeText = validator.validateWorkTypeText(workTypeText);
+    /**
+     * Total constructor
+     *
+     * All fields should have been validated before calling this.
+     */
+    protected ObjectQuery(final com.google.common.base.Optional<org.dressdiscover.api.models.collection.CollectionId> collectionId, final com.google.common.base.Optional<org.dressdiscover.api.models.object.ObjectFacetFilters> facetFilters, final com.google.common.base.Optional<Boolean> includeHidden, final com.google.common.base.Optional<org.dressdiscover.api.models.institution.InstitutionId> institutionId, final com.google.common.base.Optional<org.dressdiscover.api.models.object.ObjectId> moreLikeObjectId, final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.object.ObjectId>> objectIds, final com.google.common.base.Optional<String> queryString, final com.google.common.base.Optional<String> relationText, final com.google.common.base.Optional<com.google.common.collect.ImmutableMap<String, com.google.common.collect.ImmutableList<String>>> structureTexts, final com.google.common.base.Optional<String> workTypeText) {
+        this.collectionId = collectionId;
+        this.facetFilters = facetFilters;
+        this.includeHidden = includeHidden;
+        this.institutionId = institutionId;
+        this.moreLikeObjectId = moreLikeObjectId;
+        this.objectIds = objectIds;
+        this.queryString = queryString;
+        this.relationText = relationText;
+        this.structureTexts = structureTexts;
+        this.workTypeText = workTypeText;
     }
 
     public static Builder builder() {
@@ -1206,6 +1062,7 @@ public final class ObjectQuery implements org.thryft.Struct {
         return other.isPresent() ? new Builder(other.get()) : new Builder();
     }
 
+    @Deprecated
     public static ObjectQuery create() {
         return new ObjectQuery();
     }
@@ -1213,15 +1070,27 @@ public final class ObjectQuery implements org.thryft.Struct {
     /**
      * Total Nullable factory method
      */
-    public static ObjectQuery create(final @javax.annotation.Nullable org.dressdiscover.api.models.collection.CollectionId collectionId, final @javax.annotation.Nullable org.dressdiscover.api.models.object.ObjectFacetFilters facetFilters, final @javax.annotation.Nullable Boolean includeHidden, final @javax.annotation.Nullable org.dressdiscover.api.models.institution.InstitutionId institutionId, final @javax.annotation.Nullable org.dressdiscover.api.models.object.ObjectId moreLikeObjectId, final @javax.annotation.Nullable com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.object.ObjectId> objectIds, final @javax.annotation.Nullable String queryString, final @javax.annotation.Nullable String relationText, final @javax.annotation.Nullable com.google.common.collect.ImmutableMap<String, com.google.common.collect.ImmutableList<String>> structureTexts, final @javax.annotation.Nullable String workTypeText) {
-        return new ObjectQuery(com.google.common.base.Optional.fromNullable(collectionId), com.google.common.base.Optional.fromNullable(facetFilters), com.google.common.base.Optional.fromNullable(includeHidden), com.google.common.base.Optional.fromNullable(institutionId), com.google.common.base.Optional.fromNullable(moreLikeObjectId), com.google.common.base.Optional.fromNullable(objectIds), com.google.common.base.Optional.fromNullable(queryString), com.google.common.base.Optional.fromNullable(relationText), com.google.common.base.Optional.fromNullable(structureTexts), com.google.common.base.Optional.fromNullable(workTypeText), DefaultConstructionValidator.getInstance());
+    public static ObjectQuery create(@javax.annotation.Nullable final org.dressdiscover.api.models.collection.CollectionId collectionId, @javax.annotation.Nullable final org.dressdiscover.api.models.object.ObjectFacetFilters facetFilters, @javax.annotation.Nullable final Boolean includeHidden, @javax.annotation.Nullable final org.dressdiscover.api.models.institution.InstitutionId institutionId, @javax.annotation.Nullable final org.dressdiscover.api.models.object.ObjectId moreLikeObjectId, @javax.annotation.Nullable final com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.object.ObjectId> objectIds, @javax.annotation.Nullable final String queryString, @javax.annotation.Nullable final String relationText, @javax.annotation.Nullable final com.google.common.collect.ImmutableMap<String, com.google.common.collect.ImmutableList<String>> structureTexts, @javax.annotation.Nullable final String workTypeText) {
+        final com.google.common.base.Optional<org.dressdiscover.api.models.collection.CollectionId> collectionIdOptional = com.google.common.base.Optional.fromNullable(collectionId);
+        final com.google.common.base.Optional<org.dressdiscover.api.models.object.ObjectFacetFilters> facetFiltersOptional = com.google.common.base.Optional.fromNullable(facetFilters);
+        final com.google.common.base.Optional<Boolean> includeHiddenOptional = org.thryft.Optionals.fromNullable(includeHidden);
+        final com.google.common.base.Optional<org.dressdiscover.api.models.institution.InstitutionId> institutionIdOptional = com.google.common.base.Optional.fromNullable(institutionId);
+        final com.google.common.base.Optional<org.dressdiscover.api.models.object.ObjectId> moreLikeObjectIdOptional = com.google.common.base.Optional.fromNullable(moreLikeObjectId);
+        final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.object.ObjectId>> objectIdsOptional = com.google.common.base.Optional.fromNullable(objectIds);
+        final com.google.common.base.Optional<String> queryStringOptional = com.google.common.base.Optional.fromNullable(queryString);
+        final com.google.common.base.Optional<String> relationTextOptional = com.google.common.base.Optional.fromNullable(relationText);
+        final com.google.common.base.Optional<com.google.common.collect.ImmutableMap<String, com.google.common.collect.ImmutableList<String>>> structureTextsOptional = com.google.common.base.Optional.fromNullable(structureTexts);
+        final com.google.common.base.Optional<String> workTypeTextOptional = com.google.common.base.Optional.fromNullable(workTypeText);
+        UncheckedValidator.validate(collectionIdOptional, facetFiltersOptional, includeHiddenOptional, institutionIdOptional, moreLikeObjectIdOptional, objectIdsOptional, queryStringOptional, relationTextOptional, structureTextsOptional, workTypeTextOptional);
+        return new ObjectQuery(collectionIdOptional, facetFiltersOptional, includeHiddenOptional, institutionIdOptional, moreLikeObjectIdOptional, objectIdsOptional, queryStringOptional, relationTextOptional, structureTextsOptional, workTypeTextOptional);
     }
 
     /**
      * Optional factory method
      */
     public static ObjectQuery create(final com.google.common.base.Optional<org.dressdiscover.api.models.collection.CollectionId> collectionId, final com.google.common.base.Optional<org.dressdiscover.api.models.object.ObjectFacetFilters> facetFilters, final com.google.common.base.Optional<Boolean> includeHidden, final com.google.common.base.Optional<org.dressdiscover.api.models.institution.InstitutionId> institutionId, final com.google.common.base.Optional<org.dressdiscover.api.models.object.ObjectId> moreLikeObjectId, final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.object.ObjectId>> objectIds, final com.google.common.base.Optional<String> queryString, final com.google.common.base.Optional<String> relationText, final com.google.common.base.Optional<com.google.common.collect.ImmutableMap<String, com.google.common.collect.ImmutableList<String>>> structureTexts, final com.google.common.base.Optional<String> workTypeText) {
-        return new ObjectQuery(collectionId, facetFilters, includeHidden, institutionId, moreLikeObjectId, objectIds, queryString, relationText, structureTexts, workTypeText, DefaultConstructionValidator.getInstance());
+        UncheckedValidator.validate(collectionId, facetFilters, includeHidden, institutionId, moreLikeObjectId, objectIds, queryString, relationText, structureTexts, workTypeText);
+        return new ObjectQuery(collectionId, facetFilters, includeHidden, institutionId, moreLikeObjectId, objectIds, queryString, relationText, structureTexts, workTypeText);
     }
 
     @Override
@@ -1420,24 +1289,27 @@ public final class ObjectQuery implements org.thryft.Struct {
                 try {
                     collectionId = com.google.common.base.Optional.of(org.dressdiscover.api.models.collection.CollectionId.parse(iprot.readString()));
                 } catch (final org.dressdiscover.api.models.collection.InvalidCollectionIdException e) {
+                } catch (final IllegalArgumentException e) {
                 }
             }
             if (__list.getSize() > 1) {
                 facetFilters = com.google.common.base.Optional.of(org.dressdiscover.api.models.object.ObjectFacetFilters.readAsStruct(iprot));
             }
             if (__list.getSize() > 2) {
-                includeHidden = com.google.common.base.Optional.of(iprot.readBool());
+                includeHidden = org.thryft.Optionals.of(iprot.readBool());
             }
             if (__list.getSize() > 3) {
                 try {
                     institutionId = com.google.common.base.Optional.of(org.dressdiscover.api.models.institution.InstitutionId.parse(iprot.readString()));
                 } catch (final org.dressdiscover.api.models.institution.InvalidInstitutionIdException e) {
+                } catch (final IllegalArgumentException e) {
                 }
             }
             if (__list.getSize() > 4) {
                 try {
                     moreLikeObjectId = com.google.common.base.Optional.of(org.dressdiscover.api.models.object.ObjectId.parse(iprot.readString()));
                 } catch (final org.dressdiscover.api.models.object.InvalidObjectIdException e) {
+                } catch (final IllegalArgumentException e) {
                 }
             }
             if (__list.getSize() > 5) {
@@ -1452,6 +1324,8 @@ public final class ObjectQuery implements org.thryft.Struct {
                                     try {
                                         sequenceBuilder.add(org.dressdiscover.api.models.object.ObjectId.parse(iprot.readString()));
                                     } catch (final org.dressdiscover.api.models.object.InvalidObjectIdException e) {
+                                         throw new org.thryft.protocol.InputProtocolException(e);
+                                    } catch (final IllegalArgumentException e) {
                                          throw new org.thryft.protocol.InputProtocolException(e);
                                     }
                                 }
@@ -1524,7 +1398,10 @@ public final class ObjectQuery implements org.thryft.Struct {
         } catch (final RuntimeException e) {
             throw new IllegalStateException(e);
         }
-        return new ObjectQuery(DefaultReadValidator.getInstance().validateCollectionId(collectionId), DefaultReadValidator.getInstance().validateFacetFilters(facetFilters), DefaultReadValidator.getInstance().validateIncludeHidden(includeHidden), DefaultReadValidator.getInstance().validateInstitutionId(institutionId), DefaultReadValidator.getInstance().validateMoreLikeObjectId(moreLikeObjectId), DefaultReadValidator.getInstance().validateObjectIds(objectIds), DefaultReadValidator.getInstance().validateQueryString(queryString), DefaultReadValidator.getInstance().validateRelationText(relationText), DefaultReadValidator.getInstance().validateStructureTexts(structureTexts), DefaultReadValidator.getInstance().validateWorkTypeText(workTypeText), NopConstructionValidator.getInstance());
+
+        ReadValidator.validate(collectionId, facetFilters, includeHidden, institutionId, moreLikeObjectId, objectIds, queryString, relationText, structureTexts, workTypeText);
+
+        return new ObjectQuery(collectionId, facetFilters, includeHidden, institutionId, moreLikeObjectId, objectIds, queryString, relationText, structureTexts, workTypeText);
     }
 
     public static ObjectQuery readAsStruct(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
@@ -1555,21 +1432,23 @@ public final class ObjectQuery implements org.thryft.Struct {
                     try {
                         collectionId = com.google.common.base.Optional.of(org.dressdiscover.api.models.collection.CollectionId.parse(iprot.readString()));
                     } catch (final org.dressdiscover.api.models.collection.InvalidCollectionIdException e) {
+                    } catch (final IllegalArgumentException e) {
                     }
                     break;
                 }
                 case "facet_filters": {
-                    facetFilters = com.google.common.base.Optional.of(org.dressdiscover.api.models.object.ObjectFacetFilters.readAsStruct(iprot));
+                    facetFilters = com.google.common.base.Optional.of(org.dressdiscover.api.models.object.ObjectFacetFilters.readAsStruct(iprot, unknownFieldCallback));
                     break;
                 }
                 case "include_hidden": {
-                    includeHidden = com.google.common.base.Optional.of(iprot.readBool());
+                    includeHidden = org.thryft.Optionals.of(iprot.readBool());
                     break;
                 }
                 case "institution_id": {
                     try {
                         institutionId = com.google.common.base.Optional.of(org.dressdiscover.api.models.institution.InstitutionId.parse(iprot.readString()));
                     } catch (final org.dressdiscover.api.models.institution.InvalidInstitutionIdException e) {
+                    } catch (final IllegalArgumentException e) {
                     }
                     break;
                 }
@@ -1577,6 +1456,7 @@ public final class ObjectQuery implements org.thryft.Struct {
                     try {
                         moreLikeObjectId = com.google.common.base.Optional.of(org.dressdiscover.api.models.object.ObjectId.parse(iprot.readString()));
                     } catch (final org.dressdiscover.api.models.object.InvalidObjectIdException e) {
+                    } catch (final IllegalArgumentException e) {
                     }
                     break;
                 }
@@ -1592,6 +1472,8 @@ public final class ObjectQuery implements org.thryft.Struct {
                                         try {
                                             sequenceBuilder.add(org.dressdiscover.api.models.object.ObjectId.parse(iprot.readString()));
                                         } catch (final org.dressdiscover.api.models.object.InvalidObjectIdException e) {
+                                             throw new org.thryft.protocol.InputProtocolException(e);
+                                        } catch (final IllegalArgumentException e) {
                                              throw new org.thryft.protocol.InputProtocolException(e);
                                         }
                                     }
@@ -1677,86 +1559,103 @@ public final class ObjectQuery implements org.thryft.Struct {
         } catch (final RuntimeException e) {
             throw new IllegalStateException(e);
         }
-        return new ObjectQuery(DefaultReadValidator.getInstance().validateCollectionId(collectionId), DefaultReadValidator.getInstance().validateFacetFilters(facetFilters), DefaultReadValidator.getInstance().validateIncludeHidden(includeHidden), DefaultReadValidator.getInstance().validateInstitutionId(institutionId), DefaultReadValidator.getInstance().validateMoreLikeObjectId(moreLikeObjectId), DefaultReadValidator.getInstance().validateObjectIds(objectIds), DefaultReadValidator.getInstance().validateQueryString(queryString), DefaultReadValidator.getInstance().validateRelationText(relationText), DefaultReadValidator.getInstance().validateStructureTexts(structureTexts), DefaultReadValidator.getInstance().validateWorkTypeText(workTypeText), NopConstructionValidator.getInstance());
+
+        ReadValidator.validate(collectionId, facetFilters, includeHidden, institutionId, moreLikeObjectId, objectIds, queryString, relationText, structureTexts, workTypeText);
+
+        return new ObjectQuery(collectionId, facetFilters, includeHidden, institutionId, moreLikeObjectId, objectIds, queryString, relationText, structureTexts, workTypeText);
     }
 
     public ObjectQuery replaceCollectionId(final com.google.common.base.Optional<org.dressdiscover.api.models.collection.CollectionId> collectionId) {
-        return new ObjectQuery(DefaultConstructionValidator.getInstance().validateCollectionId(collectionId), this.facetFilters, this.includeHidden, this.institutionId, this.moreLikeObjectId, this.objectIds, this.queryString, this.relationText, this.structureTexts, this.workTypeText, NopConstructionValidator.getInstance());
+        UncheckedValidator.validateCollectionId(collectionId);
+        return new ObjectQuery(collectionId, this.facetFilters, this.includeHidden, this.institutionId, this.moreLikeObjectId, this.objectIds, this.queryString, this.relationText, this.structureTexts, this.workTypeText);
     }
 
-    public ObjectQuery replaceCollectionId(final org.dressdiscover.api.models.collection.CollectionId collectionId) {
+    public ObjectQuery replaceCollectionId(@javax.annotation.Nullable final org.dressdiscover.api.models.collection.CollectionId collectionId) {
         return replaceCollectionId(com.google.common.base.Optional.fromNullable(collectionId));
     }
 
     public ObjectQuery replaceFacetFilters(final com.google.common.base.Optional<org.dressdiscover.api.models.object.ObjectFacetFilters> facetFilters) {
-        return new ObjectQuery(this.collectionId, DefaultConstructionValidator.getInstance().validateFacetFilters(facetFilters), this.includeHidden, this.institutionId, this.moreLikeObjectId, this.objectIds, this.queryString, this.relationText, this.structureTexts, this.workTypeText, NopConstructionValidator.getInstance());
+        UncheckedValidator.validateFacetFilters(facetFilters);
+        return new ObjectQuery(this.collectionId, facetFilters, this.includeHidden, this.institutionId, this.moreLikeObjectId, this.objectIds, this.queryString, this.relationText, this.structureTexts, this.workTypeText);
     }
 
-    public ObjectQuery replaceFacetFilters(final org.dressdiscover.api.models.object.ObjectFacetFilters facetFilters) {
+    public ObjectQuery replaceFacetFilters(@javax.annotation.Nullable final org.dressdiscover.api.models.object.ObjectFacetFilters facetFilters) {
         return replaceFacetFilters(com.google.common.base.Optional.fromNullable(facetFilters));
     }
 
     public ObjectQuery replaceIncludeHidden(final com.google.common.base.Optional<Boolean> includeHidden) {
-        return new ObjectQuery(this.collectionId, this.facetFilters, DefaultConstructionValidator.getInstance().validateIncludeHidden(includeHidden), this.institutionId, this.moreLikeObjectId, this.objectIds, this.queryString, this.relationText, this.structureTexts, this.workTypeText, NopConstructionValidator.getInstance());
+        UncheckedValidator.validateIncludeHidden(includeHidden);
+        return new ObjectQuery(this.collectionId, this.facetFilters, includeHidden, this.institutionId, this.moreLikeObjectId, this.objectIds, this.queryString, this.relationText, this.structureTexts, this.workTypeText);
+    }
+
+    public ObjectQuery replaceIncludeHidden(@javax.annotation.Nullable final Boolean includeHidden) {
+        return replaceIncludeHidden(org.thryft.Optionals.fromNullable(includeHidden));
     }
 
     public ObjectQuery replaceIncludeHidden(final boolean includeHidden) {
-        return replaceIncludeHidden(com.google.common.base.Optional.fromNullable(includeHidden));
+        return replaceIncludeHidden(org.thryft.Optionals.of(includeHidden));
     }
 
     public ObjectQuery replaceInstitutionId(final com.google.common.base.Optional<org.dressdiscover.api.models.institution.InstitutionId> institutionId) {
-        return new ObjectQuery(this.collectionId, this.facetFilters, this.includeHidden, DefaultConstructionValidator.getInstance().validateInstitutionId(institutionId), this.moreLikeObjectId, this.objectIds, this.queryString, this.relationText, this.structureTexts, this.workTypeText, NopConstructionValidator.getInstance());
+        UncheckedValidator.validateInstitutionId(institutionId);
+        return new ObjectQuery(this.collectionId, this.facetFilters, this.includeHidden, institutionId, this.moreLikeObjectId, this.objectIds, this.queryString, this.relationText, this.structureTexts, this.workTypeText);
     }
 
-    public ObjectQuery replaceInstitutionId(final org.dressdiscover.api.models.institution.InstitutionId institutionId) {
+    public ObjectQuery replaceInstitutionId(@javax.annotation.Nullable final org.dressdiscover.api.models.institution.InstitutionId institutionId) {
         return replaceInstitutionId(com.google.common.base.Optional.fromNullable(institutionId));
     }
 
     public ObjectQuery replaceMoreLikeObjectId(final com.google.common.base.Optional<org.dressdiscover.api.models.object.ObjectId> moreLikeObjectId) {
-        return new ObjectQuery(this.collectionId, this.facetFilters, this.includeHidden, this.institutionId, DefaultConstructionValidator.getInstance().validateMoreLikeObjectId(moreLikeObjectId), this.objectIds, this.queryString, this.relationText, this.structureTexts, this.workTypeText, NopConstructionValidator.getInstance());
+        UncheckedValidator.validateMoreLikeObjectId(moreLikeObjectId);
+        return new ObjectQuery(this.collectionId, this.facetFilters, this.includeHidden, this.institutionId, moreLikeObjectId, this.objectIds, this.queryString, this.relationText, this.structureTexts, this.workTypeText);
     }
 
-    public ObjectQuery replaceMoreLikeObjectId(final org.dressdiscover.api.models.object.ObjectId moreLikeObjectId) {
+    public ObjectQuery replaceMoreLikeObjectId(@javax.annotation.Nullable final org.dressdiscover.api.models.object.ObjectId moreLikeObjectId) {
         return replaceMoreLikeObjectId(com.google.common.base.Optional.fromNullable(moreLikeObjectId));
     }
 
     public ObjectQuery replaceObjectIds(final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.object.ObjectId>> objectIds) {
-        return new ObjectQuery(this.collectionId, this.facetFilters, this.includeHidden, this.institutionId, this.moreLikeObjectId, DefaultConstructionValidator.getInstance().validateObjectIds(objectIds), this.queryString, this.relationText, this.structureTexts, this.workTypeText, NopConstructionValidator.getInstance());
+        UncheckedValidator.validateObjectIds(objectIds);
+        return new ObjectQuery(this.collectionId, this.facetFilters, this.includeHidden, this.institutionId, this.moreLikeObjectId, objectIds, this.queryString, this.relationText, this.structureTexts, this.workTypeText);
     }
 
-    public ObjectQuery replaceObjectIds(final com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.object.ObjectId> objectIds) {
+    public ObjectQuery replaceObjectIds(@javax.annotation.Nullable final com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.object.ObjectId> objectIds) {
         return replaceObjectIds(com.google.common.base.Optional.fromNullable(objectIds));
     }
 
     public ObjectQuery replaceQueryString(final com.google.common.base.Optional<String> queryString) {
-        return new ObjectQuery(this.collectionId, this.facetFilters, this.includeHidden, this.institutionId, this.moreLikeObjectId, this.objectIds, DefaultConstructionValidator.getInstance().validateQueryString(queryString), this.relationText, this.structureTexts, this.workTypeText, NopConstructionValidator.getInstance());
+        UncheckedValidator.validateQueryString(queryString);
+        return new ObjectQuery(this.collectionId, this.facetFilters, this.includeHidden, this.institutionId, this.moreLikeObjectId, this.objectIds, queryString, this.relationText, this.structureTexts, this.workTypeText);
     }
 
-    public ObjectQuery replaceQueryString(final String queryString) {
+    public ObjectQuery replaceQueryString(@javax.annotation.Nullable final String queryString) {
         return replaceQueryString(com.google.common.base.Optional.fromNullable(queryString));
     }
 
     public ObjectQuery replaceRelationText(final com.google.common.base.Optional<String> relationText) {
-        return new ObjectQuery(this.collectionId, this.facetFilters, this.includeHidden, this.institutionId, this.moreLikeObjectId, this.objectIds, this.queryString, DefaultConstructionValidator.getInstance().validateRelationText(relationText), this.structureTexts, this.workTypeText, NopConstructionValidator.getInstance());
+        UncheckedValidator.validateRelationText(relationText);
+        return new ObjectQuery(this.collectionId, this.facetFilters, this.includeHidden, this.institutionId, this.moreLikeObjectId, this.objectIds, this.queryString, relationText, this.structureTexts, this.workTypeText);
     }
 
-    public ObjectQuery replaceRelationText(final String relationText) {
+    public ObjectQuery replaceRelationText(@javax.annotation.Nullable final String relationText) {
         return replaceRelationText(com.google.common.base.Optional.fromNullable(relationText));
     }
 
     public ObjectQuery replaceStructureTexts(final com.google.common.base.Optional<com.google.common.collect.ImmutableMap<String, com.google.common.collect.ImmutableList<String>>> structureTexts) {
-        return new ObjectQuery(this.collectionId, this.facetFilters, this.includeHidden, this.institutionId, this.moreLikeObjectId, this.objectIds, this.queryString, this.relationText, DefaultConstructionValidator.getInstance().validateStructureTexts(structureTexts), this.workTypeText, NopConstructionValidator.getInstance());
+        UncheckedValidator.validateStructureTexts(structureTexts);
+        return new ObjectQuery(this.collectionId, this.facetFilters, this.includeHidden, this.institutionId, this.moreLikeObjectId, this.objectIds, this.queryString, this.relationText, structureTexts, this.workTypeText);
     }
 
-    public ObjectQuery replaceStructureTexts(final com.google.common.collect.ImmutableMap<String, com.google.common.collect.ImmutableList<String>> structureTexts) {
+    public ObjectQuery replaceStructureTexts(@javax.annotation.Nullable final com.google.common.collect.ImmutableMap<String, com.google.common.collect.ImmutableList<String>> structureTexts) {
         return replaceStructureTexts(com.google.common.base.Optional.fromNullable(structureTexts));
     }
 
     public ObjectQuery replaceWorkTypeText(final com.google.common.base.Optional<String> workTypeText) {
-        return new ObjectQuery(this.collectionId, this.facetFilters, this.includeHidden, this.institutionId, this.moreLikeObjectId, this.objectIds, this.queryString, this.relationText, this.structureTexts, DefaultConstructionValidator.getInstance().validateWorkTypeText(workTypeText), NopConstructionValidator.getInstance());
+        UncheckedValidator.validateWorkTypeText(workTypeText);
+        return new ObjectQuery(this.collectionId, this.facetFilters, this.includeHidden, this.institutionId, this.moreLikeObjectId, this.objectIds, this.queryString, this.relationText, this.structureTexts, workTypeText);
     }
 
-    public ObjectQuery replaceWorkTypeText(final String workTypeText) {
+    public ObjectQuery replaceWorkTypeText(@javax.annotation.Nullable final String workTypeText) {
         return replaceWorkTypeText(com.google.common.base.Optional.fromNullable(workTypeText));
     }
 
@@ -1852,40 +1751,74 @@ public final class ObjectQuery implements org.thryft.Struct {
         oprot.writeStructEnd();
     }
 
-    @Override
-    public void writeFields(final org.thryft.protocol.OutputProtocol oprot) throws org.thryft.protocol.OutputProtocolException {
+    public void writeCollectionIdField(final org.thryft.protocol.OutputProtocol oprot) throws org.thryft.protocol.OutputProtocolException {
         if (getCollectionId().isPresent()) {
-            oprot.writeFieldBegin("collection_id", org.thryft.protocol.Type.STRING, (short)0);
+            oprot.writeFieldBegin(FieldMetadata.COLLECTION_ID);
             oprot.writeString(getCollectionId().get().toString());
             oprot.writeFieldEnd();
         }
+    }
 
+    public void writeFacetFiltersField(final org.thryft.protocol.OutputProtocol oprot) throws org.thryft.protocol.OutputProtocolException {
         if (getFacetFilters().isPresent()) {
-            oprot.writeFieldBegin("facet_filters", org.thryft.protocol.Type.STRUCT, (short)0);
+            oprot.writeFieldBegin(FieldMetadata.FACET_FILTERS);
             getFacetFilters().get().writeAsStruct(oprot);
             oprot.writeFieldEnd();
         }
+    }
 
+    @Override
+    public void writeFields(final org.thryft.protocol.OutputProtocol oprot) throws org.thryft.protocol.OutputProtocolException {
+        writeCollectionIdField(oprot);
+
+        writeFacetFiltersField(oprot);
+
+        writeIncludeHiddenField(oprot);
+
+        writeInstitutionIdField(oprot);
+
+        writeMoreLikeObjectIdField(oprot);
+
+        writeObjectIdsField(oprot);
+
+        writeQueryStringField(oprot);
+
+        writeRelationTextField(oprot);
+
+        writeStructureTextsField(oprot);
+
+        writeWorkTypeTextField(oprot);
+
+        oprot.writeFieldStop();
+    }
+
+    public void writeIncludeHiddenField(final org.thryft.protocol.OutputProtocol oprot) throws org.thryft.protocol.OutputProtocolException {
         if (getIncludeHidden().isPresent()) {
-            oprot.writeFieldBegin("include_hidden", org.thryft.protocol.Type.BOOL, (short)0);
+            oprot.writeFieldBegin(FieldMetadata.INCLUDE_HIDDEN);
             oprot.writeBool(getIncludeHidden().get());
             oprot.writeFieldEnd();
         }
+    }
 
+    public void writeInstitutionIdField(final org.thryft.protocol.OutputProtocol oprot) throws org.thryft.protocol.OutputProtocolException {
         if (getInstitutionId().isPresent()) {
-            oprot.writeFieldBegin("institution_id", org.thryft.protocol.Type.STRING, (short)0);
+            oprot.writeFieldBegin(FieldMetadata.INSTITUTION_ID);
             oprot.writeString(getInstitutionId().get().toString());
             oprot.writeFieldEnd();
         }
+    }
 
+    public void writeMoreLikeObjectIdField(final org.thryft.protocol.OutputProtocol oprot) throws org.thryft.protocol.OutputProtocolException {
         if (getMoreLikeObjectId().isPresent()) {
-            oprot.writeFieldBegin("more_like_object_id", org.thryft.protocol.Type.STRING, (short)0);
+            oprot.writeFieldBegin(FieldMetadata.MORE_LIKE_OBJECT_ID);
             oprot.writeString(getMoreLikeObjectId().get().toString());
             oprot.writeFieldEnd();
         }
+    }
 
+    public void writeObjectIdsField(final org.thryft.protocol.OutputProtocol oprot) throws org.thryft.protocol.OutputProtocolException {
         if (getObjectIds().isPresent()) {
-            oprot.writeFieldBegin("object_ids", org.thryft.protocol.Type.SET, (short)0);
+            oprot.writeFieldBegin(FieldMetadata.OBJECT_IDS);
             oprot.writeSetBegin(org.thryft.protocol.Type.STRING, getObjectIds().get().size());
             for (final org.dressdiscover.api.models.object.ObjectId _iter0 : getObjectIds().get()) {
                 oprot.writeString(_iter0.toString());
@@ -1893,21 +1826,27 @@ public final class ObjectQuery implements org.thryft.Struct {
             oprot.writeSetEnd();
             oprot.writeFieldEnd();
         }
+    }
 
+    public void writeQueryStringField(final org.thryft.protocol.OutputProtocol oprot) throws org.thryft.protocol.OutputProtocolException {
         if (getQueryString().isPresent()) {
-            oprot.writeFieldBegin("query_string", org.thryft.protocol.Type.STRING, (short)0);
+            oprot.writeFieldBegin(FieldMetadata.QUERY_STRING);
             oprot.writeString(getQueryString().get());
             oprot.writeFieldEnd();
         }
+    }
 
+    public void writeRelationTextField(final org.thryft.protocol.OutputProtocol oprot) throws org.thryft.protocol.OutputProtocolException {
         if (getRelationText().isPresent()) {
-            oprot.writeFieldBegin("relation_text", org.thryft.protocol.Type.STRING, (short)0);
+            oprot.writeFieldBegin(FieldMetadata.RELATION_TEXT);
             oprot.writeString(getRelationText().get());
             oprot.writeFieldEnd();
         }
+    }
 
+    public void writeStructureTextsField(final org.thryft.protocol.OutputProtocol oprot) throws org.thryft.protocol.OutputProtocolException {
         if (getStructureTexts().isPresent()) {
-            oprot.writeFieldBegin("structure_texts", org.thryft.protocol.Type.MAP, (short)0);
+            oprot.writeFieldBegin(FieldMetadata.STRUCTURE_TEXTS);
             oprot.writeMapBegin(org.thryft.protocol.Type.STRING, org.thryft.protocol.Type.LIST, getStructureTexts().get().size());
             for (com.google.common.collect.ImmutableMap.Entry<String, com.google.common.collect.ImmutableList<String>> _iter0 : getStructureTexts().get().entrySet()) {
                 oprot.writeString(_iter0.getKey());
@@ -1920,15 +1859,17 @@ public final class ObjectQuery implements org.thryft.Struct {
             oprot.writeMapEnd();
             oprot.writeFieldEnd();
         }
+    }
 
+    public void writeWorkTypeTextField(final org.thryft.protocol.OutputProtocol oprot) throws org.thryft.protocol.OutputProtocolException {
         if (getWorkTypeText().isPresent()) {
-            oprot.writeFieldBegin("work_type_text", org.thryft.protocol.Type.STRING, (short)0);
+            oprot.writeFieldBegin(FieldMetadata.WORK_TYPE_TEXT);
             oprot.writeString(getWorkTypeText().get());
             oprot.writeFieldEnd();
         }
-
-        oprot.writeFieldStop();
     }
+
+    public final static ObjectQuery EMPTY = new ObjectQuery();
 
     private final com.google.common.base.Optional<org.dressdiscover.api.models.collection.CollectionId> collectionId;
 

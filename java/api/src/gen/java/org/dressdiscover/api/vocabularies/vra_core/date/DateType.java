@@ -1,6 +1,6 @@
 package org.dressdiscover.api.vocabularies.vra_core.date;
 
-public enum DateType {
+public enum DateType implements org.thryft.ThryftEnum {
     ACCESSION(0),
     ALTERATION(1),
     BROADCAST(2),
@@ -18,6 +18,25 @@ public enum DateType {
     RESTORATION(14),
     VIEW(15),
     OTHER(16);
+
+    public final static class Factory implements org.thryft.ThryftEnum.Factory<DateType> {
+        public final static Factory getInstance() {
+            return instance;
+        }
+
+        public final DateType valueOf(final String name) {
+            return DateType.valueOf(name);
+        }
+
+        public final DateType valueOf(final int value) {
+            return DateType.valueOf(value);
+        }
+
+        private Factory() {
+        }
+
+        private final static Factory instance = new Factory();
+    }
 
     private DateType(int value) {
         this.value = value;
@@ -44,10 +63,6 @@ public enum DateType {
         case 16: return OTHER;
         default: throw new IllegalArgumentException();
         }
-    }
-
-    public static DateType valueOf(final Integer value) {
-        return valueOf(value.intValue());
     }
 
     public final int value() {

@@ -1,6 +1,6 @@
 package org.dressdiscover.api.models.object;
 
-public final class Object implements org.thryft.Struct, org.thryft.waf.api.models.Model {
+public final class Object implements org.thryft.waf.api.models.Model {
     public final static class Builder {
         public Builder() {
             costumeCore = com.google.common.base.Optional.<org.dressdiscover.api.vocabularies.costume_core.CostumeCoreObject> absent();
@@ -19,10 +19,12 @@ public final class Object implements org.thryft.Struct, org.thryft.waf.api.model
         }
 
         protected Object _build(final com.google.common.base.Optional<org.dressdiscover.api.vocabularies.costume_core.CostumeCoreObject> costumeCore, final com.google.common.base.Optional<org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject> dublinCore, final com.google.common.base.Optional<Boolean> hidden, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<org.dressdiscover.api.models.image.Image>> images, final com.google.common.base.Optional<org.dressdiscover.api.vocabularies.vra_core.VraCoreObject> vraCore) {
-            return new Object(costumeCore, dublinCore, hidden, images, vraCore, DefaultConstructionValidator.getInstance());
+            return new Object(costumeCore, dublinCore, hidden, images, vraCore);
         }
 
         public Object build() {
+            UncheckedValidator.validate(costumeCore, dublinCore, hidden, images, vraCore);
+
             return _build(costumeCore, dublinCore, hidden, images, vraCore);
         }
 
@@ -71,7 +73,7 @@ public final class Object implements org.thryft.Struct, org.thryft.waf.api.model
                     dublinCore = com.google.common.base.Optional.of(org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject.readAsStruct(iprot));
                 }
                 if (__list.getSize() > 2) {
-                    hidden = com.google.common.base.Optional.of(iprot.readBool());
+                    hidden = org.thryft.Optionals.of(iprot.readBool());
                 }
                 if (__list.getSize() > 3) {
                     try {
@@ -120,19 +122,19 @@ public final class Object implements org.thryft.Struct, org.thryft.waf.api.model
                     switch (ifield.getName()) {
                     case "costume_core": {
                         if (!ifield.hasId() || ifield.getId() == 1) {
-                            costumeCore = com.google.common.base.Optional.of(org.dressdiscover.api.vocabularies.costume_core.CostumeCoreObject.readAsStruct(iprot));
+                            costumeCore = com.google.common.base.Optional.of(org.dressdiscover.api.vocabularies.costume_core.CostumeCoreObject.readAsStruct(iprot, unknownFieldCallback));
                         }
                         break;
                     }
                     case "dublin_core": {
                         if (!ifield.hasId() || ifield.getId() == 2) {
-                            dublinCore = com.google.common.base.Optional.of(org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject.readAsStruct(iprot));
+                            dublinCore = com.google.common.base.Optional.of(org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject.readAsStruct(iprot, unknownFieldCallback));
                         }
                         break;
                     }
                     case "hidden": {
                         if (!ifield.hasId() || ifield.getId() == 3) {
-                            hidden = com.google.common.base.Optional.of(iprot.readBool());
+                            hidden = org.thryft.Optionals.of(iprot.readBool());
                         }
                         break;
                     }
@@ -146,7 +148,7 @@ public final class Object implements org.thryft.Struct, org.thryft.waf.api.model
                                             final org.thryft.protocol.ListBegin sequenceBegin = iprot.readListBegin();
                                             final com.google.common.collect.ImmutableList.Builder<org.dressdiscover.api.models.image.Image> sequenceBuilder = com.google.common.collect.ImmutableList.builder();
                                             for (int elementI = 0; elementI < sequenceBegin.getSize(); elementI++) {
-                                                sequenceBuilder.add(org.dressdiscover.api.models.image.Image.readAsStruct(iprot));
+                                                sequenceBuilder.add(org.dressdiscover.api.models.image.Image.readAsStruct(iprot, unknownFieldCallback));
                                             }
                                             iprot.readListEnd();
                                             return sequenceBuilder.build();
@@ -163,7 +165,7 @@ public final class Object implements org.thryft.Struct, org.thryft.waf.api.model
                     }
                     case "vra_core": {
                         if (!ifield.hasId() || ifield.getId() == 6) {
-                            vraCore = com.google.common.base.Optional.of(org.dressdiscover.api.vocabularies.vra_core.VraCoreObject.readAsStruct(iprot));
+                            vraCore = com.google.common.base.Optional.of(org.dressdiscover.api.vocabularies.vra_core.VraCoreObject.readAsStruct(iprot, unknownFieldCallback));
                         }
                         break;
                     }
@@ -209,30 +211,37 @@ public final class Object implements org.thryft.Struct, org.thryft.waf.api.model
         }
 
         public Builder setCostumeCore(final com.google.common.base.Optional<org.dressdiscover.api.vocabularies.costume_core.CostumeCoreObject> costumeCore) {
-            this.costumeCore = DefaultConstructionValidator.getInstance().validateCostumeCore(costumeCore);
+            UncheckedValidator.validateCostumeCore(costumeCore);
+            this.costumeCore = costumeCore;
             return this;
         }
 
-        public Builder setCostumeCore(@javax.annotation.Nullable final org.dressdiscover.api.vocabularies.costume_core.CostumeCoreObject costumeCore) {
+        public Builder setCostumeCore(final @javax.annotation.Nullable org.dressdiscover.api.vocabularies.costume_core.CostumeCoreObject costumeCore) {
             return setCostumeCore(com.google.common.base.Optional.fromNullable(costumeCore));
         }
 
         public Builder setDublinCore(final com.google.common.base.Optional<org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject> dublinCore) {
-            this.dublinCore = DefaultConstructionValidator.getInstance().validateDublinCore(dublinCore);
+            UncheckedValidator.validateDublinCore(dublinCore);
+            this.dublinCore = dublinCore;
             return this;
         }
 
-        public Builder setDublinCore(@javax.annotation.Nullable final org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject dublinCore) {
+        public Builder setDublinCore(final @javax.annotation.Nullable org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject dublinCore) {
             return setDublinCore(com.google.common.base.Optional.fromNullable(dublinCore));
         }
 
         public Builder setHidden(final com.google.common.base.Optional<Boolean> hidden) {
-            this.hidden = DefaultConstructionValidator.getInstance().validateHidden(hidden);
+            UncheckedValidator.validateHidden(hidden);
+            this.hidden = hidden;
             return this;
         }
 
-        public Builder setHidden(@javax.annotation.Nullable final Boolean hidden) {
-            return setHidden(com.google.common.base.Optional.fromNullable(hidden));
+        public Builder setHidden(final @javax.annotation.Nullable Boolean hidden) {
+            return setHidden(org.thryft.Optionals.fromNullable(hidden));
+        }
+
+        public Builder setHidden(final boolean hidden) {
+            return setHidden(org.thryft.Optionals.of(hidden));
         }
 
         public Builder setIfPresent(final Object other) {
@@ -258,20 +267,22 @@ public final class Object implements org.thryft.Struct, org.thryft.waf.api.model
         }
 
         public Builder setImages(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<org.dressdiscover.api.models.image.Image>> images) {
-            this.images = DefaultConstructionValidator.getInstance().validateImages(images);
+            UncheckedValidator.validateImages(images);
+            this.images = images;
             return this;
         }
 
-        public Builder setImages(@javax.annotation.Nullable final com.google.common.collect.ImmutableList<org.dressdiscover.api.models.image.Image> images) {
+        public Builder setImages(final @javax.annotation.Nullable com.google.common.collect.ImmutableList<org.dressdiscover.api.models.image.Image> images) {
             return setImages(com.google.common.base.Optional.fromNullable(images));
         }
 
         public Builder setVraCore(final com.google.common.base.Optional<org.dressdiscover.api.vocabularies.vra_core.VraCoreObject> vraCore) {
-            this.vraCore = DefaultConstructionValidator.getInstance().validateVraCore(vraCore);
+            UncheckedValidator.validateVraCore(vraCore);
+            this.vraCore = vraCore;
             return this;
         }
 
-        public Builder setVraCore(@javax.annotation.Nullable final org.dressdiscover.api.vocabularies.vra_core.VraCoreObject vraCore) {
+        public Builder setVraCore(final @javax.annotation.Nullable org.dressdiscover.api.vocabularies.vra_core.VraCoreObject vraCore) {
             return setVraCore(com.google.common.base.Optional.fromNullable(vraCore));
         }
 
@@ -363,11 +374,11 @@ public final class Object implements org.thryft.Struct, org.thryft.waf.api.model
 
     @SuppressWarnings("serial")
     public enum FieldMetadata implements org.thryft.CompoundType.FieldMetadata {
-        COSTUME_CORE("costumeCore", new com.google.common.reflect.TypeToken<org.dressdiscover.api.vocabularies.costume_core.CostumeCoreObject>() {}, false, 1, "costume_core", org.thryft.protocol.Type.STRUCT),
-        DUBLIN_CORE("dublinCore", new com.google.common.reflect.TypeToken<org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject>() {}, false, 2, "dublin_core", org.thryft.protocol.Type.STRUCT),
-        HIDDEN("hidden", new com.google.common.reflect.TypeToken<Boolean>() {}, false, 3, "hidden", org.thryft.protocol.Type.BOOL),
-        IMAGES("images", new com.google.common.reflect.TypeToken<com.google.common.collect.ImmutableList<org.dressdiscover.api.models.image.Image>>() {}, false, 4, "images", org.thryft.protocol.Type.LIST),
-        VRA_CORE("vraCore", new com.google.common.reflect.TypeToken<org.dressdiscover.api.vocabularies.vra_core.VraCoreObject>() {}, false, 6, "vra_core", org.thryft.protocol.Type.STRUCT);
+        COSTUME_CORE("costumeCore", new com.google.common.reflect.TypeToken<org.dressdiscover.api.vocabularies.costume_core.CostumeCoreObject>() {}, false, (short)1, "costume_core", org.thryft.protocol.Type.STRUCT),
+        DUBLIN_CORE("dublinCore", new com.google.common.reflect.TypeToken<org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject>() {}, false, (short)2, "dublin_core", org.thryft.protocol.Type.STRUCT),
+        HIDDEN("hidden", new com.google.common.reflect.TypeToken<Boolean>() {}, false, (short)3, "hidden", org.thryft.protocol.Type.BOOL),
+        IMAGES("images", new com.google.common.reflect.TypeToken<com.google.common.collect.ImmutableList<org.dressdiscover.api.models.image.Image>>() {}, false, (short)4, "images", org.thryft.protocol.Type.LIST),
+        VRA_CORE("vraCore", new com.google.common.reflect.TypeToken<org.dressdiscover.api.vocabularies.vra_core.VraCoreObject>() {}, false, (short)6, "vra_core", org.thryft.protocol.Type.STRUCT);
 
         @Override
         public String getJavaName() {
@@ -380,7 +391,7 @@ public final class Object implements org.thryft.Struct, org.thryft.waf.api.model
         }
 
         @Override
-        public int getThriftId() {
+        public short getThriftId() {
             return thriftId;
         }
 
@@ -433,7 +444,7 @@ public final class Object implements org.thryft.Struct, org.thryft.waf.api.model
             }
         }
 
-        private FieldMetadata(final String javaName, final com.google.common.reflect.TypeToken<?> javaType, final boolean required, final int thriftId, final String thriftName, final org.thryft.protocol.Type thriftProtocolType) {
+        private FieldMetadata(final String javaName, final com.google.common.reflect.TypeToken<?> javaType, final boolean required, final short thriftId, final String thriftName, final org.thryft.protocol.Type thriftProtocolType) {
             this.javaName = javaName;
             this.javaType = javaType;
             this.required = required;
@@ -450,243 +461,138 @@ public final class Object implements org.thryft.Struct, org.thryft.waf.api.model
         private final String javaName;
         private final com.google.common.reflect.TypeToken<?> javaType;
         private final boolean required;
-        private final int thriftId;
+        private final short thriftId;
         private final String thriftName;
         private final String thriftProtocolKey;
         private final org.thryft.protocol.Type thriftProtocolType;
     }
 
-    public interface Validator<ExceptionT extends Exception> {
-        public com.google.common.base.Optional<org.dressdiscover.api.vocabularies.costume_core.CostumeCoreObject> validateCostumeCore(final com.google.common.base.Optional<org.dressdiscover.api.vocabularies.costume_core.CostumeCoreObject> costumeCore) throws ExceptionT;
-
-        public com.google.common.base.Optional<org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject> validateDublinCore(final com.google.common.base.Optional<org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject> dublinCore) throws ExceptionT;
-
-        public com.google.common.base.Optional<Boolean> validateHidden(final com.google.common.base.Optional<Boolean> hidden) throws ExceptionT;
-
-        public com.google.common.base.Optional<com.google.common.collect.ImmutableList<org.dressdiscover.api.models.image.Image>> validateImages(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<org.dressdiscover.api.models.image.Image>> images) throws ExceptionT;
-
-        public com.google.common.base.Optional<org.dressdiscover.api.vocabularies.vra_core.VraCoreObject> validateVraCore(final com.google.common.base.Optional<org.dressdiscover.api.vocabularies.vra_core.VraCoreObject> vraCore) throws ExceptionT;
-    }
-
-    public interface ConstructionValidator extends Validator<RuntimeException> {
-    }
-
-    public static class DefaultConstructionValidator implements ConstructionValidator {
-        public static DefaultConstructionValidator getInstance() {
-            return instance;
+    public final static class ReadValidator {
+        public static void validate(final com.google.common.base.Optional<org.dressdiscover.api.vocabularies.costume_core.CostumeCoreObject> costumeCore, final com.google.common.base.Optional<org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject> dublinCore, final com.google.common.base.Optional<Boolean> hidden, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<org.dressdiscover.api.models.image.Image>> images, final com.google.common.base.Optional<org.dressdiscover.api.vocabularies.vra_core.VraCoreObject> vraCore) throws org.thryft.protocol.InputProtocolException {
+            validateCostumeCore(costumeCore);
+            validateDublinCore(dublinCore);
+            validateHidden(hidden);
+            validateImages(images);
+            validateVraCore(vraCore);
         }
 
-        public DefaultConstructionValidator() {
-        }
-
-        @Override
-        public com.google.common.base.Optional<org.dressdiscover.api.vocabularies.costume_core.CostumeCoreObject> validateCostumeCore(final com.google.common.base.Optional<org.dressdiscover.api.vocabularies.costume_core.CostumeCoreObject> costumeCore) throws RuntimeException {
-            if (costumeCore == null) {
-                throw new NullPointerException("org.dressdiscover.api.models.object.Object: costumeCore is null");
-            }
-            if (!costumeCore.isPresent()) {
-                return costumeCore;
-            }
-            return costumeCore;
-        }
-
-        @Override
-        public com.google.common.base.Optional<org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject> validateDublinCore(final com.google.common.base.Optional<org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject> dublinCore) throws RuntimeException {
-            if (dublinCore == null) {
-                throw new NullPointerException("org.dressdiscover.api.models.object.Object: dublinCore is null");
-            }
-            if (!dublinCore.isPresent()) {
-                return dublinCore;
-            }
-            return dublinCore;
-        }
-
-        @Override
-        public com.google.common.base.Optional<Boolean> validateHidden(final com.google.common.base.Optional<Boolean> hidden) throws RuntimeException {
-            if (!hidden.isPresent()) {
-                return hidden;
-            }
-            if (!hidden.get()) {
-                throw new IllegalArgumentException("org.dressdiscover.api.models.object.Object: hidden is not true");
-            }
-            return hidden;
-        }
-
-        @Override
-        public com.google.common.base.Optional<com.google.common.collect.ImmutableList<org.dressdiscover.api.models.image.Image>> validateImages(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<org.dressdiscover.api.models.image.Image>> images) throws RuntimeException {
-            if (images == null) {
-                throw new NullPointerException("org.dressdiscover.api.models.object.Object: images is null");
-            }
-            if (!images.isPresent()) {
-                return images;
-            }
-            if (images.get().isEmpty()) {
-                throw new IllegalArgumentException("org.dressdiscover.api.models.object.Object: images is less than min length 1");
-            }
-            return images;
-        }
-
-        @Override
-        public com.google.common.base.Optional<org.dressdiscover.api.vocabularies.vra_core.VraCoreObject> validateVraCore(final com.google.common.base.Optional<org.dressdiscover.api.vocabularies.vra_core.VraCoreObject> vraCore) throws RuntimeException {
-            if (vraCore == null) {
-                throw new NullPointerException("org.dressdiscover.api.models.object.Object: vraCore is null");
-            }
-            if (!vraCore.isPresent()) {
-                return vraCore;
-            }
-            return vraCore;
-        }
-
-        private final static DefaultConstructionValidator instance = new DefaultConstructionValidator();
-    }
-
-    public static class NopConstructionValidator implements ConstructionValidator {
-        public static NopConstructionValidator getInstance() {
-            return instance;
-        }
-
-        public NopConstructionValidator() {
-        }
-
-        @Override
-        public com.google.common.base.Optional<org.dressdiscover.api.vocabularies.costume_core.CostumeCoreObject> validateCostumeCore(final com.google.common.base.Optional<org.dressdiscover.api.vocabularies.costume_core.CostumeCoreObject> costumeCore) {
-            return costumeCore;
-        }
-
-        @Override
-        public com.google.common.base.Optional<org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject> validateDublinCore(final com.google.common.base.Optional<org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject> dublinCore) {
-            return dublinCore;
-        }
-
-        @Override
-        public com.google.common.base.Optional<Boolean> validateHidden(final com.google.common.base.Optional<Boolean> hidden) {
-            return hidden;
-        }
-
-        @Override
-        public com.google.common.base.Optional<com.google.common.collect.ImmutableList<org.dressdiscover.api.models.image.Image>> validateImages(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<org.dressdiscover.api.models.image.Image>> images) {
-            return images;
-        }
-
-        @Override
-        public com.google.common.base.Optional<org.dressdiscover.api.vocabularies.vra_core.VraCoreObject> validateVraCore(final com.google.common.base.Optional<org.dressdiscover.api.vocabularies.vra_core.VraCoreObject> vraCore) {
-            return vraCore;
-        }
-
-        private final static NopConstructionValidator instance = new NopConstructionValidator();
-    }
-
-    public interface ReadValidator extends Validator<org.thryft.protocol.InputProtocolException> {
-    }
-
-    public static class DefaultReadValidator implements ReadValidator {
-        public static DefaultReadValidator getInstance() {
-            return instance;
-        }
-
-        public DefaultReadValidator() {
-        }
-
-        @Override
-        public com.google.common.base.Optional<org.dressdiscover.api.vocabularies.costume_core.CostumeCoreObject> validateCostumeCore(final com.google.common.base.Optional<org.dressdiscover.api.vocabularies.costume_core.CostumeCoreObject> costumeCore) throws org.thryft.protocol.InputProtocolException {
+        public static void validateCostumeCore(final com.google.common.base.Optional<org.dressdiscover.api.vocabularies.costume_core.CostumeCoreObject> costumeCore) throws org.thryft.protocol.InputProtocolException {
             if (costumeCore == null) {
                 throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.COSTUME_CORE, "org.dressdiscover.api.models.object.Object: costumeCore is null");
             }
             if (!costumeCore.isPresent()) {
-                return costumeCore;
+                return;
             }
-            return costumeCore;
         }
 
-        @Override
-        public com.google.common.base.Optional<org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject> validateDublinCore(final com.google.common.base.Optional<org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject> dublinCore) throws org.thryft.protocol.InputProtocolException {
+        public static void validateDublinCore(final com.google.common.base.Optional<org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject> dublinCore) throws org.thryft.protocol.InputProtocolException {
             if (dublinCore == null) {
                 throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.DUBLIN_CORE, "org.dressdiscover.api.models.object.Object: dublinCore is null");
             }
             if (!dublinCore.isPresent()) {
-                return dublinCore;
+                return;
             }
-            return dublinCore;
         }
 
-        @Override
-        public com.google.common.base.Optional<Boolean> validateHidden(final com.google.common.base.Optional<Boolean> hidden) throws org.thryft.protocol.InputProtocolException {
+        public static void validateHidden(final com.google.common.base.Optional<Boolean> hidden) throws org.thryft.protocol.InputProtocolException {
+            if (hidden == null) {
+                throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.HIDDEN, "org.dressdiscover.api.models.object.Object: hidden is null");
+            }
             if (!hidden.isPresent()) {
-                return hidden;
+                return;
             }
             if (!hidden.get()) {
-                throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.HIDDEN, "org.dressdiscover.api.models.object.Object: hidden is not true");
+                throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.HIDDEN, "org.dressdiscover.api.models.object.Object.hidden: not true");
             }
-            return hidden;
         }
 
-        @Override
-        public com.google.common.base.Optional<com.google.common.collect.ImmutableList<org.dressdiscover.api.models.image.Image>> validateImages(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<org.dressdiscover.api.models.image.Image>> images) throws org.thryft.protocol.InputProtocolException {
+        public static void validateImages(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<org.dressdiscover.api.models.image.Image>> images) throws org.thryft.protocol.InputProtocolException {
             if (images == null) {
                 throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.IMAGES, "org.dressdiscover.api.models.object.Object: images is null");
             }
             if (!images.isPresent()) {
-                return images;
+                return;
             }
             if (images.get().isEmpty()) {
-                throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.IMAGES, "org.dressdiscover.api.models.object.Object: images is less than min length 1");
+                throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.IMAGES, "org.dressdiscover.api.models.object.Object.images: less than min length 1");
             }
-            return images;
         }
 
-        @Override
-        public com.google.common.base.Optional<org.dressdiscover.api.vocabularies.vra_core.VraCoreObject> validateVraCore(final com.google.common.base.Optional<org.dressdiscover.api.vocabularies.vra_core.VraCoreObject> vraCore) throws org.thryft.protocol.InputProtocolException {
+        public static void validateVraCore(final com.google.common.base.Optional<org.dressdiscover.api.vocabularies.vra_core.VraCoreObject> vraCore) throws org.thryft.protocol.InputProtocolException {
             if (vraCore == null) {
                 throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.VRA_CORE, "org.dressdiscover.api.models.object.Object: vraCore is null");
             }
             if (!vraCore.isPresent()) {
-                return vraCore;
+                return;
             }
-            return vraCore;
         }
-
-        private final static DefaultReadValidator instance = new DefaultReadValidator();
     }
 
-    public static class NopReadValidator implements ReadValidator {
-        public static NopReadValidator getInstance() {
-            return instance;
+    public final static class UncheckedValidator {
+        public static void validate(final com.google.common.base.Optional<org.dressdiscover.api.vocabularies.costume_core.CostumeCoreObject> costumeCore, final com.google.common.base.Optional<org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject> dublinCore, final com.google.common.base.Optional<Boolean> hidden, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<org.dressdiscover.api.models.image.Image>> images, final com.google.common.base.Optional<org.dressdiscover.api.vocabularies.vra_core.VraCoreObject> vraCore) {
+            validateCostumeCore(costumeCore);
+            validateDublinCore(dublinCore);
+            validateHidden(hidden);
+            validateImages(images);
+            validateVraCore(vraCore);
         }
 
-        public NopReadValidator() {
+        public static void validateCostumeCore(final com.google.common.base.Optional<org.dressdiscover.api.vocabularies.costume_core.CostumeCoreObject> costumeCore) {
+            if (costumeCore == null) {
+                throw new NullPointerException("org.dressdiscover.api.models.object.Object: costumeCore is null");
+            }
+            if (!costumeCore.isPresent()) {
+                return;
+            }
         }
 
-        @Override
-        public com.google.common.base.Optional<org.dressdiscover.api.vocabularies.costume_core.CostumeCoreObject> validateCostumeCore(final com.google.common.base.Optional<org.dressdiscover.api.vocabularies.costume_core.CostumeCoreObject> costumeCore) {
-            return costumeCore;
+        public static void validateDublinCore(final com.google.common.base.Optional<org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject> dublinCore) {
+            if (dublinCore == null) {
+                throw new NullPointerException("org.dressdiscover.api.models.object.Object: dublinCore is null");
+            }
+            if (!dublinCore.isPresent()) {
+                return;
+            }
         }
 
-        @Override
-        public com.google.common.base.Optional<org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject> validateDublinCore(final com.google.common.base.Optional<org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject> dublinCore) {
-            return dublinCore;
+        public static void validateHidden(final com.google.common.base.Optional<Boolean> hidden) {
+            if (hidden == null) {
+                throw new NullPointerException("org.dressdiscover.api.models.object.Object: hidden is null");
+            }
+            if (!hidden.isPresent()) {
+                return;
+            }
+            if (!hidden.get()) {
+                throw new IllegalArgumentException("org.dressdiscover.api.models.object.Object.hidden: not true");
+            }
         }
 
-        @Override
-        public com.google.common.base.Optional<Boolean> validateHidden(final com.google.common.base.Optional<Boolean> hidden) {
-            return hidden;
+        public static void validateImages(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<org.dressdiscover.api.models.image.Image>> images) {
+            if (images == null) {
+                throw new NullPointerException("org.dressdiscover.api.models.object.Object: images is null");
+            }
+            if (!images.isPresent()) {
+                return;
+            }
+            if (images.get().isEmpty()) {
+                throw new IllegalArgumentException("org.dressdiscover.api.models.object.Object.images: less than min length 1");
+            }
         }
 
-        @Override
-        public com.google.common.base.Optional<com.google.common.collect.ImmutableList<org.dressdiscover.api.models.image.Image>> validateImages(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<org.dressdiscover.api.models.image.Image>> images) {
-            return images;
+        public static void validateVraCore(final com.google.common.base.Optional<org.dressdiscover.api.vocabularies.vra_core.VraCoreObject> vraCore) {
+            if (vraCore == null) {
+                throw new NullPointerException("org.dressdiscover.api.models.object.Object: vraCore is null");
+            }
+            if (!vraCore.isPresent()) {
+                return;
+            }
         }
-
-        @Override
-        public com.google.common.base.Optional<org.dressdiscover.api.vocabularies.vra_core.VraCoreObject> validateVraCore(final com.google.common.base.Optional<org.dressdiscover.api.vocabularies.vra_core.VraCoreObject> vraCore) {
-            return vraCore;
-        }
-
-        private final static NopReadValidator instance = new NopReadValidator();
     }
 
     /**
      * Default constructor
      */
+    @Deprecated
     public Object() {
         costumeCore = com.google.common.base.Optional.<org.dressdiscover.api.vocabularies.costume_core.CostumeCoreObject> absent();
         dublinCore = com.google.common.base.Optional.<org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject> absent();
@@ -699,15 +605,20 @@ public final class Object implements org.thryft.Struct, org.thryft.waf.api.model
      * Copy constructor
      */
     public Object(final Object other) {
-        this(other.getCostumeCore(), other.getDublinCore(), other.getHidden(), other.getImages(), other.getVraCore(), NopConstructionValidator.getInstance());
+        this(other.getCostumeCore(), other.getDublinCore(), other.getHidden(), other.getImages(), other.getVraCore());
     }
 
-    protected Object(final com.google.common.base.Optional<org.dressdiscover.api.vocabularies.costume_core.CostumeCoreObject> costumeCore, final com.google.common.base.Optional<org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject> dublinCore, final com.google.common.base.Optional<Boolean> hidden, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<org.dressdiscover.api.models.image.Image>> images, final com.google.common.base.Optional<org.dressdiscover.api.vocabularies.vra_core.VraCoreObject> vraCore, ConstructionValidator validator) {
-        this.costumeCore = validator.validateCostumeCore(costumeCore);
-        this.dublinCore = validator.validateDublinCore(dublinCore);
-        this.hidden = validator.validateHidden(hidden);
-        this.images = validator.validateImages(images);
-        this.vraCore = validator.validateVraCore(vraCore);
+    /**
+     * Total constructor
+     *
+     * All fields should have been validated before calling this.
+     */
+    protected Object(final com.google.common.base.Optional<org.dressdiscover.api.vocabularies.costume_core.CostumeCoreObject> costumeCore, final com.google.common.base.Optional<org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject> dublinCore, final com.google.common.base.Optional<Boolean> hidden, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<org.dressdiscover.api.models.image.Image>> images, final com.google.common.base.Optional<org.dressdiscover.api.vocabularies.vra_core.VraCoreObject> vraCore) {
+        this.costumeCore = costumeCore;
+        this.dublinCore = dublinCore;
+        this.hidden = hidden;
+        this.images = images;
+        this.vraCore = vraCore;
     }
 
     public static Builder builder() {
@@ -722,6 +633,7 @@ public final class Object implements org.thryft.Struct, org.thryft.waf.api.model
         return other.isPresent() ? new Builder(other.get()) : new Builder();
     }
 
+    @Deprecated
     public static Object create() {
         return new Object();
     }
@@ -729,15 +641,22 @@ public final class Object implements org.thryft.Struct, org.thryft.waf.api.model
     /**
      * Total Nullable factory method
      */
-    public static Object create(final @javax.annotation.Nullable org.dressdiscover.api.vocabularies.costume_core.CostumeCoreObject costumeCore, final @javax.annotation.Nullable org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject dublinCore, final @javax.annotation.Nullable Boolean hidden, final @javax.annotation.Nullable com.google.common.collect.ImmutableList<org.dressdiscover.api.models.image.Image> images, final @javax.annotation.Nullable org.dressdiscover.api.vocabularies.vra_core.VraCoreObject vraCore) {
-        return new Object(com.google.common.base.Optional.fromNullable(costumeCore), com.google.common.base.Optional.fromNullable(dublinCore), com.google.common.base.Optional.fromNullable(hidden), com.google.common.base.Optional.fromNullable(images), com.google.common.base.Optional.fromNullable(vraCore), DefaultConstructionValidator.getInstance());
+    public static Object create(@javax.annotation.Nullable final org.dressdiscover.api.vocabularies.costume_core.CostumeCoreObject costumeCore, @javax.annotation.Nullable final org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject dublinCore, @javax.annotation.Nullable final Boolean hidden, @javax.annotation.Nullable final com.google.common.collect.ImmutableList<org.dressdiscover.api.models.image.Image> images, @javax.annotation.Nullable final org.dressdiscover.api.vocabularies.vra_core.VraCoreObject vraCore) {
+        final com.google.common.base.Optional<org.dressdiscover.api.vocabularies.costume_core.CostumeCoreObject> costumeCoreOptional = com.google.common.base.Optional.fromNullable(costumeCore);
+        final com.google.common.base.Optional<org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject> dublinCoreOptional = com.google.common.base.Optional.fromNullable(dublinCore);
+        final com.google.common.base.Optional<Boolean> hiddenOptional = org.thryft.Optionals.fromNullable(hidden);
+        final com.google.common.base.Optional<com.google.common.collect.ImmutableList<org.dressdiscover.api.models.image.Image>> imagesOptional = com.google.common.base.Optional.fromNullable(images);
+        final com.google.common.base.Optional<org.dressdiscover.api.vocabularies.vra_core.VraCoreObject> vraCoreOptional = com.google.common.base.Optional.fromNullable(vraCore);
+        UncheckedValidator.validate(costumeCoreOptional, dublinCoreOptional, hiddenOptional, imagesOptional, vraCoreOptional);
+        return new Object(costumeCoreOptional, dublinCoreOptional, hiddenOptional, imagesOptional, vraCoreOptional);
     }
 
     /**
      * Optional factory method
      */
     public static Object create(final com.google.common.base.Optional<org.dressdiscover.api.vocabularies.costume_core.CostumeCoreObject> costumeCore, final com.google.common.base.Optional<org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject> dublinCore, final com.google.common.base.Optional<Boolean> hidden, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<org.dressdiscover.api.models.image.Image>> images, final com.google.common.base.Optional<org.dressdiscover.api.vocabularies.vra_core.VraCoreObject> vraCore) {
-        return new Object(costumeCore, dublinCore, hidden, images, vraCore, DefaultConstructionValidator.getInstance());
+        UncheckedValidator.validate(costumeCore, dublinCore, hidden, images, vraCore);
+        return new Object(costumeCore, dublinCore, hidden, images, vraCore);
     }
 
     @Override
@@ -871,7 +790,7 @@ public final class Object implements org.thryft.Struct, org.thryft.waf.api.model
                 dublinCore = com.google.common.base.Optional.of(org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject.readAsStruct(iprot));
             }
             if (__list.getSize() > 2) {
-                hidden = com.google.common.base.Optional.of(iprot.readBool());
+                hidden = org.thryft.Optionals.of(iprot.readBool());
             }
             if (__list.getSize() > 3) {
                 try {
@@ -902,7 +821,10 @@ public final class Object implements org.thryft.Struct, org.thryft.waf.api.model
         } catch (final RuntimeException e) {
             throw new IllegalStateException(e);
         }
-        return new Object(DefaultReadValidator.getInstance().validateCostumeCore(costumeCore), DefaultReadValidator.getInstance().validateDublinCore(dublinCore), DefaultReadValidator.getInstance().validateHidden(hidden), DefaultReadValidator.getInstance().validateImages(images), DefaultReadValidator.getInstance().validateVraCore(vraCore), NopConstructionValidator.getInstance());
+
+        ReadValidator.validate(costumeCore, dublinCore, hidden, images, vraCore);
+
+        return new Object(costumeCore, dublinCore, hidden, images, vraCore);
     }
 
     public static Object readAsStruct(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
@@ -926,19 +848,19 @@ public final class Object implements org.thryft.Struct, org.thryft.waf.api.model
                 switch (ifield.getName()) {
                 case "costume_core": {
                     if (!ifield.hasId() || ifield.getId() == 1) {
-                        costumeCore = com.google.common.base.Optional.of(org.dressdiscover.api.vocabularies.costume_core.CostumeCoreObject.readAsStruct(iprot));
+                        costumeCore = com.google.common.base.Optional.of(org.dressdiscover.api.vocabularies.costume_core.CostumeCoreObject.readAsStruct(iprot, unknownFieldCallback));
                     }
                     break;
                 }
                 case "dublin_core": {
                     if (!ifield.hasId() || ifield.getId() == 2) {
-                        dublinCore = com.google.common.base.Optional.of(org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject.readAsStruct(iprot));
+                        dublinCore = com.google.common.base.Optional.of(org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject.readAsStruct(iprot, unknownFieldCallback));
                     }
                     break;
                 }
                 case "hidden": {
                     if (!ifield.hasId() || ifield.getId() == 3) {
-                        hidden = com.google.common.base.Optional.of(iprot.readBool());
+                        hidden = org.thryft.Optionals.of(iprot.readBool());
                     }
                     break;
                 }
@@ -952,7 +874,7 @@ public final class Object implements org.thryft.Struct, org.thryft.waf.api.model
                                         final org.thryft.protocol.ListBegin sequenceBegin = iprot.readListBegin();
                                         final com.google.common.collect.ImmutableList.Builder<org.dressdiscover.api.models.image.Image> sequenceBuilder = com.google.common.collect.ImmutableList.builder();
                                         for (int elementI = 0; elementI < sequenceBegin.getSize(); elementI++) {
-                                            sequenceBuilder.add(org.dressdiscover.api.models.image.Image.readAsStruct(iprot));
+                                            sequenceBuilder.add(org.dressdiscover.api.models.image.Image.readAsStruct(iprot, unknownFieldCallback));
                                         }
                                         iprot.readListEnd();
                                         return sequenceBuilder.build();
@@ -969,7 +891,7 @@ public final class Object implements org.thryft.Struct, org.thryft.waf.api.model
                 }
                 case "vra_core": {
                     if (!ifield.hasId() || ifield.getId() == 6) {
-                        vraCore = com.google.common.base.Optional.of(org.dressdiscover.api.vocabularies.vra_core.VraCoreObject.readAsStruct(iprot));
+                        vraCore = com.google.common.base.Optional.of(org.dressdiscover.api.vocabularies.vra_core.VraCoreObject.readAsStruct(iprot, unknownFieldCallback));
                     }
                     break;
                 }
@@ -985,46 +907,58 @@ public final class Object implements org.thryft.Struct, org.thryft.waf.api.model
         } catch (final RuntimeException e) {
             throw new IllegalStateException(e);
         }
-        return new Object(DefaultReadValidator.getInstance().validateCostumeCore(costumeCore), DefaultReadValidator.getInstance().validateDublinCore(dublinCore), DefaultReadValidator.getInstance().validateHidden(hidden), DefaultReadValidator.getInstance().validateImages(images), DefaultReadValidator.getInstance().validateVraCore(vraCore), NopConstructionValidator.getInstance());
+
+        ReadValidator.validate(costumeCore, dublinCore, hidden, images, vraCore);
+
+        return new Object(costumeCore, dublinCore, hidden, images, vraCore);
     }
 
     public Object replaceCostumeCore(final com.google.common.base.Optional<org.dressdiscover.api.vocabularies.costume_core.CostumeCoreObject> costumeCore) {
-        return new Object(DefaultConstructionValidator.getInstance().validateCostumeCore(costumeCore), this.dublinCore, this.hidden, this.images, this.vraCore, NopConstructionValidator.getInstance());
+        UncheckedValidator.validateCostumeCore(costumeCore);
+        return new Object(costumeCore, this.dublinCore, this.hidden, this.images, this.vraCore);
     }
 
-    public Object replaceCostumeCore(final org.dressdiscover.api.vocabularies.costume_core.CostumeCoreObject costumeCore) {
+    public Object replaceCostumeCore(@javax.annotation.Nullable final org.dressdiscover.api.vocabularies.costume_core.CostumeCoreObject costumeCore) {
         return replaceCostumeCore(com.google.common.base.Optional.fromNullable(costumeCore));
     }
 
     public Object replaceDublinCore(final com.google.common.base.Optional<org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject> dublinCore) {
-        return new Object(this.costumeCore, DefaultConstructionValidator.getInstance().validateDublinCore(dublinCore), this.hidden, this.images, this.vraCore, NopConstructionValidator.getInstance());
+        UncheckedValidator.validateDublinCore(dublinCore);
+        return new Object(this.costumeCore, dublinCore, this.hidden, this.images, this.vraCore);
     }
 
-    public Object replaceDublinCore(final org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject dublinCore) {
+    public Object replaceDublinCore(@javax.annotation.Nullable final org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject dublinCore) {
         return replaceDublinCore(com.google.common.base.Optional.fromNullable(dublinCore));
     }
 
     public Object replaceHidden(final com.google.common.base.Optional<Boolean> hidden) {
-        return new Object(this.costumeCore, this.dublinCore, DefaultConstructionValidator.getInstance().validateHidden(hidden), this.images, this.vraCore, NopConstructionValidator.getInstance());
+        UncheckedValidator.validateHidden(hidden);
+        return new Object(this.costumeCore, this.dublinCore, hidden, this.images, this.vraCore);
+    }
+
+    public Object replaceHidden(@javax.annotation.Nullable final Boolean hidden) {
+        return replaceHidden(org.thryft.Optionals.fromNullable(hidden));
     }
 
     public Object replaceHidden(final boolean hidden) {
-        return replaceHidden(com.google.common.base.Optional.fromNullable(hidden));
+        return replaceHidden(org.thryft.Optionals.of(hidden));
     }
 
     public Object replaceImages(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<org.dressdiscover.api.models.image.Image>> images) {
-        return new Object(this.costumeCore, this.dublinCore, this.hidden, DefaultConstructionValidator.getInstance().validateImages(images), this.vraCore, NopConstructionValidator.getInstance());
+        UncheckedValidator.validateImages(images);
+        return new Object(this.costumeCore, this.dublinCore, this.hidden, images, this.vraCore);
     }
 
-    public Object replaceImages(final com.google.common.collect.ImmutableList<org.dressdiscover.api.models.image.Image> images) {
+    public Object replaceImages(@javax.annotation.Nullable final com.google.common.collect.ImmutableList<org.dressdiscover.api.models.image.Image> images) {
         return replaceImages(com.google.common.base.Optional.fromNullable(images));
     }
 
     public Object replaceVraCore(final com.google.common.base.Optional<org.dressdiscover.api.vocabularies.vra_core.VraCoreObject> vraCore) {
-        return new Object(this.costumeCore, this.dublinCore, this.hidden, this.images, DefaultConstructionValidator.getInstance().validateVraCore(vraCore), NopConstructionValidator.getInstance());
+        UncheckedValidator.validateVraCore(vraCore);
+        return new Object(this.costumeCore, this.dublinCore, this.hidden, this.images, vraCore);
     }
 
-    public Object replaceVraCore(final org.dressdiscover.api.vocabularies.vra_core.VraCoreObject vraCore) {
+    public Object replaceVraCore(@javax.annotation.Nullable final org.dressdiscover.api.vocabularies.vra_core.VraCoreObject vraCore) {
         return replaceVraCore(com.google.common.base.Optional.fromNullable(vraCore));
     }
 
@@ -1081,28 +1015,48 @@ public final class Object implements org.thryft.Struct, org.thryft.waf.api.model
         oprot.writeStructEnd();
     }
 
-    @Override
-    public void writeFields(final org.thryft.protocol.OutputProtocol oprot) throws org.thryft.protocol.OutputProtocolException {
+    public void writeCostumeCoreField(final org.thryft.protocol.OutputProtocol oprot) throws org.thryft.protocol.OutputProtocolException {
         if (getCostumeCore().isPresent()) {
-            oprot.writeFieldBegin("costume_core", org.thryft.protocol.Type.STRUCT, (short)1);
+            oprot.writeFieldBegin(FieldMetadata.COSTUME_CORE);
             getCostumeCore().get().writeAsStruct(oprot);
             oprot.writeFieldEnd();
         }
+    }
 
+    public void writeDublinCoreField(final org.thryft.protocol.OutputProtocol oprot) throws org.thryft.protocol.OutputProtocolException {
         if (getDublinCore().isPresent()) {
-            oprot.writeFieldBegin("dublin_core", org.thryft.protocol.Type.STRUCT, (short)2);
+            oprot.writeFieldBegin(FieldMetadata.DUBLIN_CORE);
             getDublinCore().get().writeAsStruct(oprot);
             oprot.writeFieldEnd();
         }
+    }
 
+    @Override
+    public void writeFields(final org.thryft.protocol.OutputProtocol oprot) throws org.thryft.protocol.OutputProtocolException {
+        writeCostumeCoreField(oprot);
+
+        writeDublinCoreField(oprot);
+
+        writeHiddenField(oprot);
+
+        writeImagesField(oprot);
+
+        writeVraCoreField(oprot);
+
+        oprot.writeFieldStop();
+    }
+
+    public void writeHiddenField(final org.thryft.protocol.OutputProtocol oprot) throws org.thryft.protocol.OutputProtocolException {
         if (getHidden().isPresent()) {
-            oprot.writeFieldBegin("hidden", org.thryft.protocol.Type.BOOL, (short)3);
+            oprot.writeFieldBegin(FieldMetadata.HIDDEN);
             oprot.writeBool(getHidden().get());
             oprot.writeFieldEnd();
         }
+    }
 
+    public void writeImagesField(final org.thryft.protocol.OutputProtocol oprot) throws org.thryft.protocol.OutputProtocolException {
         if (getImages().isPresent()) {
-            oprot.writeFieldBegin("images", org.thryft.protocol.Type.LIST, (short)4);
+            oprot.writeFieldBegin(FieldMetadata.IMAGES);
             oprot.writeListBegin(org.thryft.protocol.Type.STRUCT, getImages().get().size());
             for (final org.dressdiscover.api.models.image.Image _iter0 : getImages().get()) {
                 _iter0.writeAsStruct(oprot);
@@ -1110,15 +1064,17 @@ public final class Object implements org.thryft.Struct, org.thryft.waf.api.model
             oprot.writeListEnd();
             oprot.writeFieldEnd();
         }
+    }
 
+    public void writeVraCoreField(final org.thryft.protocol.OutputProtocol oprot) throws org.thryft.protocol.OutputProtocolException {
         if (getVraCore().isPresent()) {
-            oprot.writeFieldBegin("vra_core", org.thryft.protocol.Type.STRUCT, (short)6);
+            oprot.writeFieldBegin(FieldMetadata.VRA_CORE);
             getVraCore().get().writeAsStruct(oprot);
             oprot.writeFieldEnd();
         }
-
-        oprot.writeFieldStop();
     }
+
+    public final static Object EMPTY = new Object();
 
     private final com.google.common.base.Optional<org.dressdiscover.api.vocabularies.costume_core.CostumeCoreObject> costumeCore;
 

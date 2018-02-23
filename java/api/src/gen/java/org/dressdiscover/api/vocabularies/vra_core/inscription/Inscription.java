@@ -3,7 +3,7 @@ package org.dressdiscover.api.vocabularies.vra_core.inscription;
 /**
  * VRA Core 4.0 inscription element
  */
-public final class Inscription implements org.thryft.Struct, org.dressdiscover.api.vocabularies.vra_core.Element {
+public final class Inscription implements org.dressdiscover.api.vocabularies.vra_core.Element {
     public final static class Builder {
         public Builder() {
             texts = null;
@@ -18,10 +18,12 @@ public final class Inscription implements org.thryft.Struct, org.dressdiscover.a
         }
 
         protected Inscription _build(final com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.inscription.InscriptionText> texts, final com.google.common.base.Optional<org.dressdiscover.api.vocabularies.vra_core.inscription.InscriptionAuthor> author, final com.google.common.base.Optional<String> position) {
-            return new Inscription(texts, author, position, DefaultConstructionValidator.getInstance());
+            return new Inscription(texts, author, position);
         }
 
         public Inscription build() {
+            UncheckedValidator.validate(texts, author, position);
+
             return _build(texts, author, position);
         }
 
@@ -33,7 +35,7 @@ public final class Inscription implements org.thryft.Struct, org.dressdiscover.a
             return position;
         }
 
-        public final com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.inscription.InscriptionText> getTexts() {
+        public final @javax.annotation.Nullable com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.inscription.InscriptionText> getTexts() {
             return texts;
         }
 
@@ -111,7 +113,7 @@ public final class Inscription implements org.thryft.Struct, org.dressdiscover.a
                                             final org.thryft.protocol.ListBegin sequenceBegin = iprot.readListBegin();
                                             final com.google.common.collect.ImmutableList.Builder<org.dressdiscover.api.vocabularies.vra_core.inscription.InscriptionText> sequenceBuilder = com.google.common.collect.ImmutableList.builder();
                                             for (int elementI = 0; elementI < sequenceBegin.getSize(); elementI++) {
-                                                sequenceBuilder.add(org.dressdiscover.api.vocabularies.vra_core.inscription.InscriptionText.readAsStruct(iprot));
+                                                sequenceBuilder.add(org.dressdiscover.api.vocabularies.vra_core.inscription.InscriptionText.readAsStruct(iprot, unknownFieldCallback));
                                             }
                                             iprot.readListEnd();
                                             return sequenceBuilder.build();
@@ -128,7 +130,7 @@ public final class Inscription implements org.thryft.Struct, org.dressdiscover.a
                     }
                     case "author": {
                         if (!ifield.hasId() || ifield.getId() == 2) {
-                            author = com.google.common.base.Optional.of(org.dressdiscover.api.vocabularies.vra_core.inscription.InscriptionAuthor.readAsStruct(iprot));
+                            author = com.google.common.base.Optional.of(org.dressdiscover.api.vocabularies.vra_core.inscription.InscriptionAuthor.readAsStruct(iprot, unknownFieldCallback));
                         }
                         break;
                     }
@@ -178,11 +180,12 @@ public final class Inscription implements org.thryft.Struct, org.dressdiscover.a
         }
 
         public Builder setAuthor(final com.google.common.base.Optional<org.dressdiscover.api.vocabularies.vra_core.inscription.InscriptionAuthor> author) {
-            this.author = DefaultConstructionValidator.getInstance().validateAuthor(author);
+            UncheckedValidator.validateAuthor(author);
+            this.author = author;
             return this;
         }
 
-        public Builder setAuthor(@javax.annotation.Nullable final org.dressdiscover.api.vocabularies.vra_core.inscription.InscriptionAuthor author) {
+        public Builder setAuthor(final @javax.annotation.Nullable org.dressdiscover.api.vocabularies.vra_core.inscription.InscriptionAuthor author) {
             return setAuthor(com.google.common.base.Optional.fromNullable(author));
         }
 
@@ -201,16 +204,18 @@ public final class Inscription implements org.thryft.Struct, org.dressdiscover.a
         }
 
         public Builder setPosition(final com.google.common.base.Optional<String> position) {
-            this.position = DefaultConstructionValidator.getInstance().validatePosition(position);
+            UncheckedValidator.validatePosition(position);
+            this.position = position;
             return this;
         }
 
-        public Builder setPosition(@javax.annotation.Nullable final String position) {
+        public Builder setPosition(final @javax.annotation.Nullable String position) {
             return setPosition(com.google.common.base.Optional.fromNullable(position));
         }
 
         public Builder setTexts(final com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.inscription.InscriptionText> texts) {
-            this.texts = DefaultConstructionValidator.getInstance().validateTexts(texts);
+            UncheckedValidator.validateTexts(texts);
+            this.texts = texts;
             return this;
         }
 
@@ -252,7 +257,7 @@ public final class Inscription implements org.thryft.Struct, org.dressdiscover.a
             return this;
         }
 
-        private com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.inscription.InscriptionText> texts;
+        private @javax.annotation.Nullable com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.inscription.InscriptionText> texts;
         private com.google.common.base.Optional<org.dressdiscover.api.vocabularies.vra_core.inscription.InscriptionAuthor> author;
         private com.google.common.base.Optional<String> position;
     }
@@ -288,9 +293,9 @@ public final class Inscription implements org.thryft.Struct, org.dressdiscover.a
 
     @SuppressWarnings("serial")
     public enum FieldMetadata implements org.thryft.CompoundType.FieldMetadata {
-        TEXTS("texts", new com.google.common.reflect.TypeToken<com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.inscription.InscriptionText>>() {}, true, 1, "texts", org.thryft.protocol.Type.LIST),
-        AUTHOR("author", new com.google.common.reflect.TypeToken<org.dressdiscover.api.vocabularies.vra_core.inscription.InscriptionAuthor>() {}, false, 2, "author", org.thryft.protocol.Type.STRUCT),
-        POSITION("position", new com.google.common.reflect.TypeToken<String>() {}, false, 3, "position", org.thryft.protocol.Type.STRING);
+        TEXTS("texts", new com.google.common.reflect.TypeToken<com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.inscription.InscriptionText>>() {}, true, (short)1, "texts", org.thryft.protocol.Type.LIST),
+        AUTHOR("author", new com.google.common.reflect.TypeToken<org.dressdiscover.api.vocabularies.vra_core.inscription.InscriptionAuthor>() {}, false, (short)2, "author", org.thryft.protocol.Type.STRUCT),
+        POSITION("position", new com.google.common.reflect.TypeToken<String>() {}, false, (short)3, "position", org.thryft.protocol.Type.STRING);
 
         @Override
         public String getJavaName() {
@@ -303,7 +308,7 @@ public final class Inscription implements org.thryft.Struct, org.dressdiscover.a
         }
 
         @Override
-        public int getThriftId() {
+        public short getThriftId() {
             return thriftId;
         }
 
@@ -352,7 +357,7 @@ public final class Inscription implements org.thryft.Struct, org.dressdiscover.a
             }
         }
 
-        private FieldMetadata(final String javaName, final com.google.common.reflect.TypeToken<?> javaType, final boolean required, final int thriftId, final String thriftName, final org.thryft.protocol.Type thriftProtocolType) {
+        private FieldMetadata(final String javaName, final com.google.common.reflect.TypeToken<?> javaType, final boolean required, final short thriftId, final String thriftName, final org.thryft.protocol.Type thriftProtocolType) {
             this.javaName = javaName;
             this.javaType = javaType;
             this.required = required;
@@ -369,183 +374,104 @@ public final class Inscription implements org.thryft.Struct, org.dressdiscover.a
         private final String javaName;
         private final com.google.common.reflect.TypeToken<?> javaType;
         private final boolean required;
-        private final int thriftId;
+        private final short thriftId;
         private final String thriftName;
         private final String thriftProtocolKey;
         private final org.thryft.protocol.Type thriftProtocolType;
     }
 
-    public interface Validator<ExceptionT extends Exception> {
-        public com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.inscription.InscriptionText> validateTexts(final com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.inscription.InscriptionText> texts) throws ExceptionT;
-
-        public com.google.common.base.Optional<org.dressdiscover.api.vocabularies.vra_core.inscription.InscriptionAuthor> validateAuthor(final com.google.common.base.Optional<org.dressdiscover.api.vocabularies.vra_core.inscription.InscriptionAuthor> author) throws ExceptionT;
-
-        public com.google.common.base.Optional<String> validatePosition(final com.google.common.base.Optional<String> position) throws ExceptionT;
-    }
-
-    public interface ConstructionValidator extends Validator<RuntimeException> {
-    }
-
-    public static class DefaultConstructionValidator implements ConstructionValidator {
-        public static DefaultConstructionValidator getInstance() {
-            return instance;
+    public final static class ReadValidator {
+        public static void validate(final com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.inscription.InscriptionText> texts, final com.google.common.base.Optional<org.dressdiscover.api.vocabularies.vra_core.inscription.InscriptionAuthor> author, final com.google.common.base.Optional<String> position) throws org.thryft.protocol.InputProtocolException {
+            validateTexts(texts);
+            validateAuthor(author);
+            validatePosition(position);
         }
 
-        public DefaultConstructionValidator() {
-        }
-
-        @Override
-        public com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.inscription.InscriptionText> validateTexts(final com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.inscription.InscriptionText> texts) throws RuntimeException {
-            if (texts == null) {
-                throw new NullPointerException("org.dressdiscover.api.vocabularies.vra_core.inscription.Inscription: texts is null");
-            }
-            if (texts.isEmpty()) {
-                throw new IllegalArgumentException("org.dressdiscover.api.vocabularies.vra_core.inscription.Inscription: texts is less than min length 1");
-            }
-            return texts;
-        }
-
-        @Override
-        public com.google.common.base.Optional<org.dressdiscover.api.vocabularies.vra_core.inscription.InscriptionAuthor> validateAuthor(final com.google.common.base.Optional<org.dressdiscover.api.vocabularies.vra_core.inscription.InscriptionAuthor> author) throws RuntimeException {
-            if (author == null) {
-                throw new NullPointerException("org.dressdiscover.api.vocabularies.vra_core.inscription.Inscription: author is null");
-            }
-            if (!author.isPresent()) {
-                return author;
-            }
-            return author;
-        }
-
-        @Override
-        public com.google.common.base.Optional<String> validatePosition(final com.google.common.base.Optional<String> position) throws RuntimeException {
-            if (position == null) {
-                throw new NullPointerException("org.dressdiscover.api.vocabularies.vra_core.inscription.Inscription: position is null");
-            }
-            if (!position.isPresent()) {
-                return position;
-            }
-            if (position.get().isEmpty()) {
-                throw new IllegalArgumentException("org.dressdiscover.api.vocabularies.vra_core.inscription.Inscription: position is less than min length 1");
-            }
-            return position;
-        }
-
-        private final static DefaultConstructionValidator instance = new DefaultConstructionValidator();
-    }
-
-    public static class NopConstructionValidator implements ConstructionValidator {
-        public static NopConstructionValidator getInstance() {
-            return instance;
-        }
-
-        public NopConstructionValidator() {
-        }
-
-        @Override
-        public com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.inscription.InscriptionText> validateTexts(final com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.inscription.InscriptionText> texts) {
-            return texts;
-        }
-
-        @Override
-        public com.google.common.base.Optional<org.dressdiscover.api.vocabularies.vra_core.inscription.InscriptionAuthor> validateAuthor(final com.google.common.base.Optional<org.dressdiscover.api.vocabularies.vra_core.inscription.InscriptionAuthor> author) {
-            return author;
-        }
-
-        @Override
-        public com.google.common.base.Optional<String> validatePosition(final com.google.common.base.Optional<String> position) {
-            return position;
-        }
-
-        private final static NopConstructionValidator instance = new NopConstructionValidator();
-    }
-
-    public interface ReadValidator extends Validator<org.thryft.protocol.InputProtocolException> {
-    }
-
-    public static class DefaultReadValidator implements ReadValidator {
-        public static DefaultReadValidator getInstance() {
-            return instance;
-        }
-
-        public DefaultReadValidator() {
-        }
-
-        @Override
-        public com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.inscription.InscriptionText> validateTexts(final com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.inscription.InscriptionText> texts) throws org.thryft.protocol.InputProtocolException {
+        public static void validateTexts(final com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.inscription.InscriptionText> texts) throws org.thryft.protocol.InputProtocolException {
             if (texts == null) {
                 throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.TEXTS, "org.dressdiscover.api.vocabularies.vra_core.inscription.Inscription: texts is null");
             }
             if (texts.isEmpty()) {
-                throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.TEXTS, "org.dressdiscover.api.vocabularies.vra_core.inscription.Inscription: texts is less than min length 1");
+                throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.TEXTS, "org.dressdiscover.api.vocabularies.vra_core.inscription.Inscription.texts: less than min length 1");
             }
-            return texts;
         }
 
-        @Override
-        public com.google.common.base.Optional<org.dressdiscover.api.vocabularies.vra_core.inscription.InscriptionAuthor> validateAuthor(final com.google.common.base.Optional<org.dressdiscover.api.vocabularies.vra_core.inscription.InscriptionAuthor> author) throws org.thryft.protocol.InputProtocolException {
+        public static void validateAuthor(final com.google.common.base.Optional<org.dressdiscover.api.vocabularies.vra_core.inscription.InscriptionAuthor> author) throws org.thryft.protocol.InputProtocolException {
             if (author == null) {
                 throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.AUTHOR, "org.dressdiscover.api.vocabularies.vra_core.inscription.Inscription: author is null");
             }
             if (!author.isPresent()) {
-                return author;
+                return;
             }
-            return author;
         }
 
-        @Override
-        public com.google.common.base.Optional<String> validatePosition(final com.google.common.base.Optional<String> position) throws org.thryft.protocol.InputProtocolException {
+        public static void validatePosition(final com.google.common.base.Optional<String> position) throws org.thryft.protocol.InputProtocolException {
             if (position == null) {
                 throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.POSITION, "org.dressdiscover.api.vocabularies.vra_core.inscription.Inscription: position is null");
             }
             if (!position.isPresent()) {
-                return position;
+                return;
             }
             if (position.get().isEmpty()) {
-                throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.POSITION, "org.dressdiscover.api.vocabularies.vra_core.inscription.Inscription: position is less than min length 1");
+                throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.POSITION, "org.dressdiscover.api.vocabularies.vra_core.inscription.Inscription.position: less than min length 1");
             }
-            return position;
         }
-
-        private final static DefaultReadValidator instance = new DefaultReadValidator();
     }
 
-    public static class NopReadValidator implements ReadValidator {
-        public static NopReadValidator getInstance() {
-            return instance;
+    public final static class UncheckedValidator {
+        public static void validate(final com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.inscription.InscriptionText> texts, final com.google.common.base.Optional<org.dressdiscover.api.vocabularies.vra_core.inscription.InscriptionAuthor> author, final com.google.common.base.Optional<String> position) {
+            validateTexts(texts);
+            validateAuthor(author);
+            validatePosition(position);
         }
 
-        public NopReadValidator() {
+        public static void validateTexts(final com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.inscription.InscriptionText> texts) {
+            if (texts == null) {
+                throw new NullPointerException("org.dressdiscover.api.vocabularies.vra_core.inscription.Inscription: texts is null");
+            }
+            if (texts.isEmpty()) {
+                throw new IllegalArgumentException("org.dressdiscover.api.vocabularies.vra_core.inscription.Inscription.texts: less than min length 1");
+            }
         }
 
-        @Override
-        public com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.inscription.InscriptionText> validateTexts(final com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.inscription.InscriptionText> texts) {
-            return texts;
+        public static void validateAuthor(final com.google.common.base.Optional<org.dressdiscover.api.vocabularies.vra_core.inscription.InscriptionAuthor> author) {
+            if (author == null) {
+                throw new NullPointerException("org.dressdiscover.api.vocabularies.vra_core.inscription.Inscription: author is null");
+            }
+            if (!author.isPresent()) {
+                return;
+            }
         }
 
-        @Override
-        public com.google.common.base.Optional<org.dressdiscover.api.vocabularies.vra_core.inscription.InscriptionAuthor> validateAuthor(final com.google.common.base.Optional<org.dressdiscover.api.vocabularies.vra_core.inscription.InscriptionAuthor> author) {
-            return author;
+        public static void validatePosition(final com.google.common.base.Optional<String> position) {
+            if (position == null) {
+                throw new NullPointerException("org.dressdiscover.api.vocabularies.vra_core.inscription.Inscription: position is null");
+            }
+            if (!position.isPresent()) {
+                return;
+            }
+            if (position.get().isEmpty()) {
+                throw new IllegalArgumentException("org.dressdiscover.api.vocabularies.vra_core.inscription.Inscription.position: less than min length 1");
+            }
         }
-
-        @Override
-        public com.google.common.base.Optional<String> validatePosition(final com.google.common.base.Optional<String> position) {
-            return position;
-        }
-
-        private final static NopReadValidator instance = new NopReadValidator();
     }
 
     /**
      * Copy constructor
      */
     public Inscription(final Inscription other) {
-        this(other.getTexts(), other.getAuthor(), other.getPosition(), NopConstructionValidator.getInstance());
+        this(other.getTexts(), other.getAuthor(), other.getPosition());
     }
 
-    protected Inscription(final com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.inscription.InscriptionText> texts, final com.google.common.base.Optional<org.dressdiscover.api.vocabularies.vra_core.inscription.InscriptionAuthor> author, final com.google.common.base.Optional<String> position, ConstructionValidator validator) {
-        this.texts = validator.validateTexts(texts);
-        this.author = validator.validateAuthor(author);
-        this.position = validator.validatePosition(position);
+    /**
+     * Total constructor
+     *
+     * All fields should have been validated before calling this.
+     */
+    protected Inscription(final com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.inscription.InscriptionText> texts, final com.google.common.base.Optional<org.dressdiscover.api.vocabularies.vra_core.inscription.InscriptionAuthor> author, final com.google.common.base.Optional<String> position) {
+        this.texts = texts;
+        this.author = author;
+        this.position = position;
     }
 
     public static Builder builder() {
@@ -564,21 +490,26 @@ public final class Inscription implements org.thryft.Struct, org.dressdiscover.a
      * Required factory method
      */
     public static Inscription create(final com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.inscription.InscriptionText> texts) {
-        return new Inscription(texts, com.google.common.base.Optional.<org.dressdiscover.api.vocabularies.vra_core.inscription.InscriptionAuthor> absent(), com.google.common.base.Optional.<String> absent(), DefaultConstructionValidator.getInstance());
+        UncheckedValidator.validate(texts, com.google.common.base.Optional.<org.dressdiscover.api.vocabularies.vra_core.inscription.InscriptionAuthor> absent(), com.google.common.base.Optional.<String> absent());
+        return new Inscription(texts, com.google.common.base.Optional.<org.dressdiscover.api.vocabularies.vra_core.inscription.InscriptionAuthor> absent(), com.google.common.base.Optional.<String> absent());
     }
 
     /**
      * Total Nullable factory method
      */
-    public static Inscription create(final com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.inscription.InscriptionText> texts, final @javax.annotation.Nullable org.dressdiscover.api.vocabularies.vra_core.inscription.InscriptionAuthor author, final @javax.annotation.Nullable String position) {
-        return new Inscription(texts, com.google.common.base.Optional.fromNullable(author), com.google.common.base.Optional.fromNullable(position), DefaultConstructionValidator.getInstance());
+    public static Inscription create(final com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.inscription.InscriptionText> texts, @javax.annotation.Nullable final org.dressdiscover.api.vocabularies.vra_core.inscription.InscriptionAuthor author, @javax.annotation.Nullable final String position) {
+        final com.google.common.base.Optional<org.dressdiscover.api.vocabularies.vra_core.inscription.InscriptionAuthor> authorOptional = com.google.common.base.Optional.fromNullable(author);
+        final com.google.common.base.Optional<String> positionOptional = com.google.common.base.Optional.fromNullable(position);
+        UncheckedValidator.validate(texts, authorOptional, positionOptional);
+        return new Inscription(texts, authorOptional, positionOptional);
     }
 
     /**
      * Optional factory method
      */
     public static Inscription create(final com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.inscription.InscriptionText> texts, final com.google.common.base.Optional<org.dressdiscover.api.vocabularies.vra_core.inscription.InscriptionAuthor> author, final com.google.common.base.Optional<String> position) {
-        return new Inscription(texts, author, position, DefaultConstructionValidator.getInstance());
+        UncheckedValidator.validate(texts, author, position);
+        return new Inscription(texts, author, position);
     }
 
     @Override
@@ -671,7 +602,7 @@ public final class Inscription implements org.thryft.Struct, org.dressdiscover.a
     }
 
     public static Inscription readAsList(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
-        com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.inscription.InscriptionText> texts = null;
+        com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.inscription.InscriptionText> texts;
         com.google.common.base.Optional<org.dressdiscover.api.vocabularies.vra_core.inscription.InscriptionAuthor> author = com.google.common.base.Optional.<org.dressdiscover.api.vocabularies.vra_core.inscription.InscriptionAuthor> absent();
         com.google.common.base.Optional<String> position = com.google.common.base.Optional.<String> absent();
 
@@ -707,7 +638,10 @@ public final class Inscription implements org.thryft.Struct, org.dressdiscover.a
         } catch (final RuntimeException e) {
             throw new IllegalStateException(e);
         }
-        return new Inscription(DefaultReadValidator.getInstance().validateTexts(texts), DefaultReadValidator.getInstance().validateAuthor(author), DefaultReadValidator.getInstance().validatePosition(position), NopConstructionValidator.getInstance());
+
+        ReadValidator.validate(texts, author, position);
+
+        return new Inscription(texts, author, position);
     }
 
     public static Inscription readAsStruct(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
@@ -715,7 +649,7 @@ public final class Inscription implements org.thryft.Struct, org.dressdiscover.a
     }
 
     public static Inscription readAsStruct(final org.thryft.protocol.InputProtocol iprot, final com.google.common.base.Optional<UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
-        com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.inscription.InscriptionText> texts = null;
+        @javax.annotation.Nullable com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.inscription.InscriptionText> texts = null;
         com.google.common.base.Optional<org.dressdiscover.api.vocabularies.vra_core.inscription.InscriptionAuthor> author = com.google.common.base.Optional.<org.dressdiscover.api.vocabularies.vra_core.inscription.InscriptionAuthor> absent();
         com.google.common.base.Optional<String> position = com.google.common.base.Optional.<String> absent();
 
@@ -737,7 +671,7 @@ public final class Inscription implements org.thryft.Struct, org.dressdiscover.a
                                         final org.thryft.protocol.ListBegin sequenceBegin = iprot.readListBegin();
                                         final com.google.common.collect.ImmutableList.Builder<org.dressdiscover.api.vocabularies.vra_core.inscription.InscriptionText> sequenceBuilder = com.google.common.collect.ImmutableList.builder();
                                         for (int elementI = 0; elementI < sequenceBegin.getSize(); elementI++) {
-                                            sequenceBuilder.add(org.dressdiscover.api.vocabularies.vra_core.inscription.InscriptionText.readAsStruct(iprot));
+                                            sequenceBuilder.add(org.dressdiscover.api.vocabularies.vra_core.inscription.InscriptionText.readAsStruct(iprot, unknownFieldCallback));
                                         }
                                         iprot.readListEnd();
                                         return sequenceBuilder.build();
@@ -754,7 +688,7 @@ public final class Inscription implements org.thryft.Struct, org.dressdiscover.a
                 }
                 case "author": {
                     if (!ifield.hasId() || ifield.getId() == 2) {
-                        author = com.google.common.base.Optional.of(org.dressdiscover.api.vocabularies.vra_core.inscription.InscriptionAuthor.readAsStruct(iprot));
+                        author = com.google.common.base.Optional.of(org.dressdiscover.api.vocabularies.vra_core.inscription.InscriptionAuthor.readAsStruct(iprot, unknownFieldCallback));
                     }
                     break;
                 }
@@ -776,27 +710,33 @@ public final class Inscription implements org.thryft.Struct, org.dressdiscover.a
         } catch (final RuntimeException e) {
             throw new IllegalStateException(e);
         }
-        return new Inscription(DefaultReadValidator.getInstance().validateTexts(texts), DefaultReadValidator.getInstance().validateAuthor(author), DefaultReadValidator.getInstance().validatePosition(position), NopConstructionValidator.getInstance());
+
+        ReadValidator.validate(texts, author, position);
+
+        return new Inscription(texts, author, position);
     }
 
     public Inscription replaceAuthor(final com.google.common.base.Optional<org.dressdiscover.api.vocabularies.vra_core.inscription.InscriptionAuthor> author) {
-        return new Inscription(this.texts, DefaultConstructionValidator.getInstance().validateAuthor(author), this.position, NopConstructionValidator.getInstance());
+        UncheckedValidator.validateAuthor(author);
+        return new Inscription(this.texts, author, this.position);
     }
 
-    public Inscription replaceAuthor(final org.dressdiscover.api.vocabularies.vra_core.inscription.InscriptionAuthor author) {
+    public Inscription replaceAuthor(@javax.annotation.Nullable final org.dressdiscover.api.vocabularies.vra_core.inscription.InscriptionAuthor author) {
         return replaceAuthor(com.google.common.base.Optional.fromNullable(author));
     }
 
     public Inscription replacePosition(final com.google.common.base.Optional<String> position) {
-        return new Inscription(this.texts, this.author, DefaultConstructionValidator.getInstance().validatePosition(position), NopConstructionValidator.getInstance());
+        UncheckedValidator.validatePosition(position);
+        return new Inscription(this.texts, this.author, position);
     }
 
-    public Inscription replacePosition(final String position) {
+    public Inscription replacePosition(@javax.annotation.Nullable final String position) {
         return replacePosition(com.google.common.base.Optional.fromNullable(position));
     }
 
     public Inscription replaceTexts(final com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.inscription.InscriptionText> texts) {
-        return new Inscription(DefaultConstructionValidator.getInstance().validateTexts(texts), this.author, this.position, NopConstructionValidator.getInstance());
+        UncheckedValidator.validateTexts(texts);
+        return new Inscription(texts, this.author, this.position);
     }
 
     @Override
@@ -836,29 +776,41 @@ public final class Inscription implements org.thryft.Struct, org.dressdiscover.a
         oprot.writeStructEnd();
     }
 
+    public void writeAuthorField(final org.thryft.protocol.OutputProtocol oprot) throws org.thryft.protocol.OutputProtocolException {
+        if (getAuthor().isPresent()) {
+            oprot.writeFieldBegin(FieldMetadata.AUTHOR);
+            getAuthor().get().writeAsStruct(oprot);
+            oprot.writeFieldEnd();
+        }
+    }
+
     @Override
     public void writeFields(final org.thryft.protocol.OutputProtocol oprot) throws org.thryft.protocol.OutputProtocolException {
-        oprot.writeFieldBegin("texts", org.thryft.protocol.Type.LIST, (short)1);
+        writeTextsField(oprot);
+
+        writeAuthorField(oprot);
+
+        writePositionField(oprot);
+
+        oprot.writeFieldStop();
+    }
+
+    public void writePositionField(final org.thryft.protocol.OutputProtocol oprot) throws org.thryft.protocol.OutputProtocolException {
+        if (getPosition().isPresent()) {
+            oprot.writeFieldBegin(FieldMetadata.POSITION);
+            oprot.writeString(getPosition().get());
+            oprot.writeFieldEnd();
+        }
+    }
+
+    public void writeTextsField(final org.thryft.protocol.OutputProtocol oprot) throws org.thryft.protocol.OutputProtocolException {
+        oprot.writeFieldBegin(FieldMetadata.TEXTS);
         oprot.writeListBegin(org.thryft.protocol.Type.STRUCT, getTexts().size());
         for (final org.dressdiscover.api.vocabularies.vra_core.inscription.InscriptionText _iter0 : getTexts()) {
             _iter0.writeAsStruct(oprot);
         }
         oprot.writeListEnd();
         oprot.writeFieldEnd();
-
-        if (getAuthor().isPresent()) {
-            oprot.writeFieldBegin("author", org.thryft.protocol.Type.STRUCT, (short)2);
-            getAuthor().get().writeAsStruct(oprot);
-            oprot.writeFieldEnd();
-        }
-
-        if (getPosition().isPresent()) {
-            oprot.writeFieldBegin("position", org.thryft.protocol.Type.STRING, (short)3);
-            oprot.writeString(getPosition().get());
-            oprot.writeFieldEnd();
-        }
-
-        oprot.writeFieldStop();
     }
 
     private final com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.inscription.InscriptionText> texts;

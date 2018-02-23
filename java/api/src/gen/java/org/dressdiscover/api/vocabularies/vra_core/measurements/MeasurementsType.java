@@ -3,7 +3,7 @@ package org.dressdiscover.api.vocabularies.vra_core.measurements;
 /**
  * VRA Core 4.0 measurements type= attribute
  */
-public enum MeasurementsType {
+public enum MeasurementsType implements org.thryft.ThryftEnum {
     AREA(0),
     BASE(1),
     BIT_DEPTH(2),
@@ -24,6 +24,25 @@ public enum MeasurementsType {
     WEIGHT(17),
     WIDTH(18),
     OTHER(19);
+
+    public final static class Factory implements org.thryft.ThryftEnum.Factory<MeasurementsType> {
+        public final static Factory getInstance() {
+            return instance;
+        }
+
+        public final MeasurementsType valueOf(final String name) {
+            return MeasurementsType.valueOf(name);
+        }
+
+        public final MeasurementsType valueOf(final int value) {
+            return MeasurementsType.valueOf(value);
+        }
+
+        private Factory() {
+        }
+
+        private final static Factory instance = new Factory();
+    }
 
     private MeasurementsType(int value) {
         this.value = value;
@@ -53,10 +72,6 @@ public enum MeasurementsType {
         case 19: return OTHER;
         default: throw new IllegalArgumentException();
         }
-    }
-
-    public static MeasurementsType valueOf(final Integer value) {
-        return valueOf(value.intValue());
     }
 
     public final int value() {

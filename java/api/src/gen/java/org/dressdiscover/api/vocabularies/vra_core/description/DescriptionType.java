@@ -1,6 +1,6 @@
 package org.dressdiscover.api.vocabularies.vra_core.description;
 
-public enum DescriptionType {
+public enum DescriptionType implements org.thryft.ThryftEnum {
     BIBLIOGRAPHY(0),
     BIOGRAPHY(1),
     CONDITION(2),
@@ -11,6 +11,25 @@ public enum DescriptionType {
     PRIVATE(7),
     PUBLIC(8),
     SUMMARY(9);
+
+    public final static class Factory implements org.thryft.ThryftEnum.Factory<DescriptionType> {
+        public final static Factory getInstance() {
+            return instance;
+        }
+
+        public final DescriptionType valueOf(final String name) {
+            return DescriptionType.valueOf(name);
+        }
+
+        public final DescriptionType valueOf(final int value) {
+            return DescriptionType.valueOf(value);
+        }
+
+        private Factory() {
+        }
+
+        private final static Factory instance = new Factory();
+    }
 
     private DescriptionType(int value) {
         this.value = value;
@@ -30,10 +49,6 @@ public enum DescriptionType {
         case 9: return SUMMARY;
         default: throw new IllegalArgumentException();
         }
-    }
-
-    public static DescriptionType valueOf(final Integer value) {
-        return valueOf(value.intValue());
     }
 
     public final int value() {

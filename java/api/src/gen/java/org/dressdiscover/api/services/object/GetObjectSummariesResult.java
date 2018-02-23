@@ -15,10 +15,12 @@ public final class GetObjectSummariesResult implements org.thryft.Struct {
         }
 
         protected GetObjectSummariesResult _build(final com.google.common.collect.ImmutableList<org.dressdiscover.api.models.object.ObjectSummaryEntry> hits, final int totalHits, final com.google.common.base.Optional<org.dressdiscover.api.models.object.ObjectFacets> facets) {
-            return new GetObjectSummariesResult(hits, totalHits, facets, DefaultConstructionValidator.getInstance());
+            return new GetObjectSummariesResult(hits, totalHits, facets);
         }
 
         public GetObjectSummariesResult build() {
+            UncheckedValidator.validate(hits, totalHits, facets);
+
             return _build(hits, totalHits, facets);
         }
 
@@ -26,7 +28,7 @@ public final class GetObjectSummariesResult implements org.thryft.Struct {
             return facets;
         }
 
-        public final com.google.common.collect.ImmutableList<org.dressdiscover.api.models.object.ObjectSummaryEntry> getHits() {
+        public final @javax.annotation.Nullable com.google.common.collect.ImmutableList<org.dressdiscover.api.models.object.ObjectSummaryEntry> getHits() {
             return hits;
         }
 
@@ -109,7 +111,7 @@ public final class GetObjectSummariesResult implements org.thryft.Struct {
                                         final org.thryft.protocol.ListBegin sequenceBegin = iprot.readListBegin();
                                         final com.google.common.collect.ImmutableList.Builder<org.dressdiscover.api.models.object.ObjectSummaryEntry> sequenceBuilder = com.google.common.collect.ImmutableList.builder();
                                         for (int elementI = 0; elementI < sequenceBegin.getSize(); elementI++) {
-                                            sequenceBuilder.add(org.dressdiscover.api.models.object.ObjectSummaryEntry.readAsStruct(iprot));
+                                            sequenceBuilder.add(org.dressdiscover.api.models.object.ObjectSummaryEntry.readAsStruct(iprot, unknownFieldCallback));
                                         }
                                         iprot.readListEnd();
                                         return sequenceBuilder.build();
@@ -132,7 +134,7 @@ public final class GetObjectSummariesResult implements org.thryft.Struct {
                         break;
                     }
                     case "facets": {
-                        facets = com.google.common.base.Optional.of(org.dressdiscover.api.models.object.ObjectFacets.readAsStruct(iprot));
+                        facets = com.google.common.base.Optional.of(org.dressdiscover.api.models.object.ObjectFacets.readAsStruct(iprot, unknownFieldCallback));
                         break;
                     }
                     default:
@@ -175,16 +177,18 @@ public final class GetObjectSummariesResult implements org.thryft.Struct {
         }
 
         public Builder setFacets(final com.google.common.base.Optional<org.dressdiscover.api.models.object.ObjectFacets> facets) {
-            this.facets = DefaultConstructionValidator.getInstance().validateFacets(facets);
+            UncheckedValidator.validateFacets(facets);
+            this.facets = facets;
             return this;
         }
 
-        public Builder setFacets(@javax.annotation.Nullable final org.dressdiscover.api.models.object.ObjectFacets facets) {
+        public Builder setFacets(final @javax.annotation.Nullable org.dressdiscover.api.models.object.ObjectFacets facets) {
             return setFacets(com.google.common.base.Optional.fromNullable(facets));
         }
 
         public Builder setHits(final com.google.common.collect.ImmutableList<org.dressdiscover.api.models.object.ObjectSummaryEntry> hits) {
-            this.hits = DefaultConstructionValidator.getInstance().validateHits(hits);
+            UncheckedValidator.validateHits(hits);
+            this.hits = hits;
             return this;
         }
 
@@ -201,7 +205,8 @@ public final class GetObjectSummariesResult implements org.thryft.Struct {
         }
 
         public Builder setTotalHits(final int totalHits) {
-            this.totalHits = DefaultConstructionValidator.getInstance().validateTotalHits(totalHits);
+            UncheckedValidator.validateTotalHits(totalHits);
+            this.totalHits = totalHits;
             return this;
         }
 
@@ -243,8 +248,8 @@ public final class GetObjectSummariesResult implements org.thryft.Struct {
             return this;
         }
 
-        private com.google.common.collect.ImmutableList<org.dressdiscover.api.models.object.ObjectSummaryEntry> hits;
-        private Integer totalHits;
+        private @javax.annotation.Nullable com.google.common.collect.ImmutableList<org.dressdiscover.api.models.object.ObjectSummaryEntry> hits;
+        private int totalHits;
         private com.google.common.base.Optional<org.dressdiscover.api.models.object.ObjectFacets> facets;
     }
 
@@ -279,9 +284,9 @@ public final class GetObjectSummariesResult implements org.thryft.Struct {
 
     @SuppressWarnings("serial")
     public enum FieldMetadata implements org.thryft.CompoundType.FieldMetadata {
-        HITS("hits", new com.google.common.reflect.TypeToken<com.google.common.collect.ImmutableList<org.dressdiscover.api.models.object.ObjectSummaryEntry>>() {}, true, 0, "hits", org.thryft.protocol.Type.LIST),
-        TOTAL_HITS("totalHits", new com.google.common.reflect.TypeToken<Integer>() {}, true, 0, "total_hits", org.thryft.protocol.Type.I32),
-        FACETS("facets", new com.google.common.reflect.TypeToken<org.dressdiscover.api.models.object.ObjectFacets>() {}, false, 0, "facets", org.thryft.protocol.Type.STRUCT);
+        HITS("hits", new com.google.common.reflect.TypeToken<com.google.common.collect.ImmutableList<org.dressdiscover.api.models.object.ObjectSummaryEntry>>() {}, true, (short)0, "hits", org.thryft.protocol.Type.LIST),
+        TOTAL_HITS("totalHits", new com.google.common.reflect.TypeToken<Integer>() {}, true, (short)0, "total_hits", org.thryft.protocol.Type.I32),
+        FACETS("facets", new com.google.common.reflect.TypeToken<org.dressdiscover.api.models.object.ObjectFacets>() {}, false, (short)0, "facets", org.thryft.protocol.Type.STRUCT);
 
         @Override
         public String getJavaName() {
@@ -294,7 +299,7 @@ public final class GetObjectSummariesResult implements org.thryft.Struct {
         }
 
         @Override
-        public int getThriftId() {
+        public short getThriftId() {
             return thriftId;
         }
 
@@ -343,7 +348,7 @@ public final class GetObjectSummariesResult implements org.thryft.Struct {
             }
         }
 
-        private FieldMetadata(final String javaName, final com.google.common.reflect.TypeToken<?> javaType, final boolean required, final int thriftId, final String thriftName, final org.thryft.protocol.Type thriftProtocolType) {
+        private FieldMetadata(final String javaName, final com.google.common.reflect.TypeToken<?> javaType, final boolean required, final short thriftId, final String thriftName, final org.thryft.protocol.Type thriftProtocolType) {
             this.javaName = javaName;
             this.javaType = javaType;
             this.required = required;
@@ -360,159 +365,80 @@ public final class GetObjectSummariesResult implements org.thryft.Struct {
         private final String javaName;
         private final com.google.common.reflect.TypeToken<?> javaType;
         private final boolean required;
-        private final int thriftId;
+        private final short thriftId;
         private final String thriftName;
         private final String thriftProtocolKey;
         private final org.thryft.protocol.Type thriftProtocolType;
     }
 
-    public interface Validator<ExceptionT extends Exception> {
-        public com.google.common.collect.ImmutableList<org.dressdiscover.api.models.object.ObjectSummaryEntry> validateHits(final com.google.common.collect.ImmutableList<org.dressdiscover.api.models.object.ObjectSummaryEntry> hits) throws ExceptionT;
-
-        public int validateTotalHits(final int totalHits) throws ExceptionT;
-
-        public com.google.common.base.Optional<org.dressdiscover.api.models.object.ObjectFacets> validateFacets(final com.google.common.base.Optional<org.dressdiscover.api.models.object.ObjectFacets> facets) throws ExceptionT;
-    }
-
-    public interface ConstructionValidator extends Validator<RuntimeException> {
-    }
-
-    public static class DefaultConstructionValidator implements ConstructionValidator {
-        public static DefaultConstructionValidator getInstance() {
-            return instance;
+    public final static class ReadValidator {
+        public static void validate(final com.google.common.collect.ImmutableList<org.dressdiscover.api.models.object.ObjectSummaryEntry> hits, final int totalHits, final com.google.common.base.Optional<org.dressdiscover.api.models.object.ObjectFacets> facets) throws org.thryft.protocol.InputProtocolException {
+            validateHits(hits);
+            validateTotalHits(totalHits);
+            validateFacets(facets);
         }
 
-        public DefaultConstructionValidator() {
-        }
-
-        @Override
-        public com.google.common.collect.ImmutableList<org.dressdiscover.api.models.object.ObjectSummaryEntry> validateHits(final com.google.common.collect.ImmutableList<org.dressdiscover.api.models.object.ObjectSummaryEntry> hits) throws RuntimeException {
-            if (hits == null) {
-                throw new NullPointerException("org.dressdiscover.api.services.object.GetObjectSummariesResult: hits is null");
-            }
-            return hits;
-        }
-
-        @Override
-        public int validateTotalHits(final int totalHits) throws RuntimeException {
-            return totalHits;
-        }
-
-        @Override
-        public com.google.common.base.Optional<org.dressdiscover.api.models.object.ObjectFacets> validateFacets(final com.google.common.base.Optional<org.dressdiscover.api.models.object.ObjectFacets> facets) throws RuntimeException {
-            if (facets == null) {
-                throw new NullPointerException("org.dressdiscover.api.services.object.GetObjectSummariesResult: facets is null");
-            }
-            if (!facets.isPresent()) {
-                return facets;
-            }
-            return facets;
-        }
-
-        private final static DefaultConstructionValidator instance = new DefaultConstructionValidator();
-    }
-
-    public static class NopConstructionValidator implements ConstructionValidator {
-        public static NopConstructionValidator getInstance() {
-            return instance;
-        }
-
-        public NopConstructionValidator() {
-        }
-
-        @Override
-        public com.google.common.collect.ImmutableList<org.dressdiscover.api.models.object.ObjectSummaryEntry> validateHits(final com.google.common.collect.ImmutableList<org.dressdiscover.api.models.object.ObjectSummaryEntry> hits) {
-            return hits;
-        }
-
-        @Override
-        public int validateTotalHits(final int totalHits) {
-            return totalHits;
-        }
-
-        @Override
-        public com.google.common.base.Optional<org.dressdiscover.api.models.object.ObjectFacets> validateFacets(final com.google.common.base.Optional<org.dressdiscover.api.models.object.ObjectFacets> facets) {
-            return facets;
-        }
-
-        private final static NopConstructionValidator instance = new NopConstructionValidator();
-    }
-
-    public interface ReadValidator extends Validator<org.thryft.protocol.InputProtocolException> {
-    }
-
-    public static class DefaultReadValidator implements ReadValidator {
-        public static DefaultReadValidator getInstance() {
-            return instance;
-        }
-
-        public DefaultReadValidator() {
-        }
-
-        @Override
-        public com.google.common.collect.ImmutableList<org.dressdiscover.api.models.object.ObjectSummaryEntry> validateHits(final com.google.common.collect.ImmutableList<org.dressdiscover.api.models.object.ObjectSummaryEntry> hits) throws org.thryft.protocol.InputProtocolException {
+        public static void validateHits(final com.google.common.collect.ImmutableList<org.dressdiscover.api.models.object.ObjectSummaryEntry> hits) throws org.thryft.protocol.InputProtocolException {
             if (hits == null) {
                 throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.HITS, "org.dressdiscover.api.services.object.GetObjectSummariesResult: hits is null");
             }
-            return hits;
         }
 
-        @Override
-        public int validateTotalHits(final int totalHits) throws org.thryft.protocol.InputProtocolException {
-            return totalHits;
+        public static void validateTotalHits(final int totalHits) {
         }
 
-        @Override
-        public com.google.common.base.Optional<org.dressdiscover.api.models.object.ObjectFacets> validateFacets(final com.google.common.base.Optional<org.dressdiscover.api.models.object.ObjectFacets> facets) throws org.thryft.protocol.InputProtocolException {
+        public static void validateFacets(final com.google.common.base.Optional<org.dressdiscover.api.models.object.ObjectFacets> facets) throws org.thryft.protocol.InputProtocolException {
             if (facets == null) {
                 throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.FACETS, "org.dressdiscover.api.services.object.GetObjectSummariesResult: facets is null");
             }
             if (!facets.isPresent()) {
-                return facets;
+                return;
             }
-            return facets;
         }
-
-        private final static DefaultReadValidator instance = new DefaultReadValidator();
     }
 
-    public static class NopReadValidator implements ReadValidator {
-        public static NopReadValidator getInstance() {
-            return instance;
+    public final static class UncheckedValidator {
+        public static void validate(final com.google.common.collect.ImmutableList<org.dressdiscover.api.models.object.ObjectSummaryEntry> hits, final int totalHits, final com.google.common.base.Optional<org.dressdiscover.api.models.object.ObjectFacets> facets) {
+            validateHits(hits);
+            validateTotalHits(totalHits);
+            validateFacets(facets);
         }
 
-        public NopReadValidator() {
+        public static void validateHits(final com.google.common.collect.ImmutableList<org.dressdiscover.api.models.object.ObjectSummaryEntry> hits) {
+            if (hits == null) {
+                throw new NullPointerException("org.dressdiscover.api.services.object.GetObjectSummariesResult: hits is null");
+            }
         }
 
-        @Override
-        public com.google.common.collect.ImmutableList<org.dressdiscover.api.models.object.ObjectSummaryEntry> validateHits(final com.google.common.collect.ImmutableList<org.dressdiscover.api.models.object.ObjectSummaryEntry> hits) {
-            return hits;
+        public static void validateTotalHits(final int totalHits) {
         }
 
-        @Override
-        public int validateTotalHits(final int totalHits) {
-            return totalHits;
+        public static void validateFacets(final com.google.common.base.Optional<org.dressdiscover.api.models.object.ObjectFacets> facets) {
+            if (facets == null) {
+                throw new NullPointerException("org.dressdiscover.api.services.object.GetObjectSummariesResult: facets is null");
+            }
+            if (!facets.isPresent()) {
+                return;
+            }
         }
-
-        @Override
-        public com.google.common.base.Optional<org.dressdiscover.api.models.object.ObjectFacets> validateFacets(final com.google.common.base.Optional<org.dressdiscover.api.models.object.ObjectFacets> facets) {
-            return facets;
-        }
-
-        private final static NopReadValidator instance = new NopReadValidator();
     }
 
     /**
      * Copy constructor
      */
     public GetObjectSummariesResult(final GetObjectSummariesResult other) {
-        this(other.getHits(), other.getTotalHits(), other.getFacets(), NopConstructionValidator.getInstance());
+        this(other.getHits(), other.getTotalHits(), other.getFacets());
     }
 
-    protected GetObjectSummariesResult(final com.google.common.collect.ImmutableList<org.dressdiscover.api.models.object.ObjectSummaryEntry> hits, final int totalHits, final com.google.common.base.Optional<org.dressdiscover.api.models.object.ObjectFacets> facets, ConstructionValidator validator) {
-        this.hits = validator.validateHits(hits);
-        this.totalHits = validator.validateTotalHits(totalHits);
-        this.facets = validator.validateFacets(facets);
+    /**
+     * Total constructor
+     *
+     * All fields should have been validated before calling this.
+     */
+    protected GetObjectSummariesResult(final com.google.common.collect.ImmutableList<org.dressdiscover.api.models.object.ObjectSummaryEntry> hits, final int totalHits, final com.google.common.base.Optional<org.dressdiscover.api.models.object.ObjectFacets> facets) {
+        this.hits = hits;
+        this.totalHits = totalHits;
+        this.facets = facets;
     }
 
     public static Builder builder() {
@@ -531,28 +457,33 @@ public final class GetObjectSummariesResult implements org.thryft.Struct {
      * Required factory method
      */
     public static GetObjectSummariesResult create(final com.google.common.collect.ImmutableList<org.dressdiscover.api.models.object.ObjectSummaryEntry> hits, final int totalHits) {
-        return new GetObjectSummariesResult(hits, totalHits, com.google.common.base.Optional.<org.dressdiscover.api.models.object.ObjectFacets> absent(), DefaultConstructionValidator.getInstance());
+        UncheckedValidator.validate(hits, totalHits, com.google.common.base.Optional.<org.dressdiscover.api.models.object.ObjectFacets> absent());
+        return new GetObjectSummariesResult(hits, totalHits, com.google.common.base.Optional.<org.dressdiscover.api.models.object.ObjectFacets> absent());
     }
 
     /**
      * Total boxed factory method
      */
     public static GetObjectSummariesResult create(com.google.common.collect.ImmutableList<org.dressdiscover.api.models.object.ObjectSummaryEntry> hits, Integer totalHits, com.google.common.base.Optional<org.dressdiscover.api.models.object.ObjectFacets> facets) {
-        return new GetObjectSummariesResult(hits, totalHits, facets, DefaultConstructionValidator.getInstance());
+        UncheckedValidator.validate(hits, totalHits, facets);
+        return new GetObjectSummariesResult(hits, totalHits, facets);
     }
 
     /**
      * Total Nullable factory method
      */
-    public static GetObjectSummariesResult create(final com.google.common.collect.ImmutableList<org.dressdiscover.api.models.object.ObjectSummaryEntry> hits, final int totalHits, final @javax.annotation.Nullable org.dressdiscover.api.models.object.ObjectFacets facets) {
-        return new GetObjectSummariesResult(hits, totalHits, com.google.common.base.Optional.fromNullable(facets), DefaultConstructionValidator.getInstance());
+    public static GetObjectSummariesResult create(final com.google.common.collect.ImmutableList<org.dressdiscover.api.models.object.ObjectSummaryEntry> hits, final int totalHits, @javax.annotation.Nullable final org.dressdiscover.api.models.object.ObjectFacets facets) {
+        final com.google.common.base.Optional<org.dressdiscover.api.models.object.ObjectFacets> facetsOptional = com.google.common.base.Optional.fromNullable(facets);
+        UncheckedValidator.validate(hits, totalHits, facetsOptional);
+        return new GetObjectSummariesResult(hits, totalHits, facetsOptional);
     }
 
     /**
      * Optional factory method
      */
     public static GetObjectSummariesResult create(final com.google.common.collect.ImmutableList<org.dressdiscover.api.models.object.ObjectSummaryEntry> hits, final int totalHits, final com.google.common.base.Optional<org.dressdiscover.api.models.object.ObjectFacets> facets) {
-        return new GetObjectSummariesResult(hits, totalHits, facets, DefaultConstructionValidator.getInstance());
+        UncheckedValidator.validate(hits, totalHits, facets);
+        return new GetObjectSummariesResult(hits, totalHits, facets);
     }
 
     @Override
@@ -643,8 +574,8 @@ public final class GetObjectSummariesResult implements org.thryft.Struct {
     }
 
     public static GetObjectSummariesResult readAsList(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
-        com.google.common.collect.ImmutableList<org.dressdiscover.api.models.object.ObjectSummaryEntry> hits = null;
-        int totalHits = 0;
+        com.google.common.collect.ImmutableList<org.dressdiscover.api.models.object.ObjectSummaryEntry> hits;
+        int totalHits;
         com.google.common.base.Optional<org.dressdiscover.api.models.object.ObjectFacets> facets = com.google.common.base.Optional.<org.dressdiscover.api.models.object.ObjectFacets> absent();
 
         try {
@@ -681,7 +612,10 @@ public final class GetObjectSummariesResult implements org.thryft.Struct {
         } catch (final RuntimeException e) {
             throw new IllegalStateException(e);
         }
-        return new GetObjectSummariesResult(DefaultReadValidator.getInstance().validateHits(hits), DefaultReadValidator.getInstance().validateTotalHits(totalHits), DefaultReadValidator.getInstance().validateFacets(facets), NopConstructionValidator.getInstance());
+
+        ReadValidator.validate(hits, totalHits, facets);
+
+        return new GetObjectSummariesResult(hits, totalHits, facets);
     }
 
     public static GetObjectSummariesResult readAsStruct(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
@@ -689,7 +623,7 @@ public final class GetObjectSummariesResult implements org.thryft.Struct {
     }
 
     public static GetObjectSummariesResult readAsStruct(final org.thryft.protocol.InputProtocol iprot, final com.google.common.base.Optional<UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
-        com.google.common.collect.ImmutableList<org.dressdiscover.api.models.object.ObjectSummaryEntry> hits = null;
+        @javax.annotation.Nullable com.google.common.collect.ImmutableList<org.dressdiscover.api.models.object.ObjectSummaryEntry> hits = null;
         int totalHits = 0;
         com.google.common.base.Optional<org.dressdiscover.api.models.object.ObjectFacets> facets = com.google.common.base.Optional.<org.dressdiscover.api.models.object.ObjectFacets> absent();
 
@@ -710,7 +644,7 @@ public final class GetObjectSummariesResult implements org.thryft.Struct {
                                     final org.thryft.protocol.ListBegin sequenceBegin = iprot.readListBegin();
                                     final com.google.common.collect.ImmutableList.Builder<org.dressdiscover.api.models.object.ObjectSummaryEntry> sequenceBuilder = com.google.common.collect.ImmutableList.builder();
                                     for (int elementI = 0; elementI < sequenceBegin.getSize(); elementI++) {
-                                        sequenceBuilder.add(org.dressdiscover.api.models.object.ObjectSummaryEntry.readAsStruct(iprot));
+                                        sequenceBuilder.add(org.dressdiscover.api.models.object.ObjectSummaryEntry.readAsStruct(iprot, unknownFieldCallback));
                                     }
                                     iprot.readListEnd();
                                     return sequenceBuilder.build();
@@ -733,7 +667,7 @@ public final class GetObjectSummariesResult implements org.thryft.Struct {
                     break;
                 }
                 case "facets": {
-                    facets = com.google.common.base.Optional.of(org.dressdiscover.api.models.object.ObjectFacets.readAsStruct(iprot));
+                    facets = com.google.common.base.Optional.of(org.dressdiscover.api.models.object.ObjectFacets.readAsStruct(iprot, unknownFieldCallback));
                     break;
                 }
                 default:
@@ -748,23 +682,29 @@ public final class GetObjectSummariesResult implements org.thryft.Struct {
         } catch (final RuntimeException e) {
             throw new IllegalStateException(e);
         }
-        return new GetObjectSummariesResult(DefaultReadValidator.getInstance().validateHits(hits), DefaultReadValidator.getInstance().validateTotalHits(totalHits), DefaultReadValidator.getInstance().validateFacets(facets), NopConstructionValidator.getInstance());
+
+        ReadValidator.validate(hits, totalHits, facets);
+
+        return new GetObjectSummariesResult(hits, totalHits, facets);
     }
 
     public GetObjectSummariesResult replaceFacets(final com.google.common.base.Optional<org.dressdiscover.api.models.object.ObjectFacets> facets) {
-        return new GetObjectSummariesResult(this.hits, this.totalHits, DefaultConstructionValidator.getInstance().validateFacets(facets), NopConstructionValidator.getInstance());
+        UncheckedValidator.validateFacets(facets);
+        return new GetObjectSummariesResult(this.hits, this.totalHits, facets);
     }
 
-    public GetObjectSummariesResult replaceFacets(final org.dressdiscover.api.models.object.ObjectFacets facets) {
+    public GetObjectSummariesResult replaceFacets(@javax.annotation.Nullable final org.dressdiscover.api.models.object.ObjectFacets facets) {
         return replaceFacets(com.google.common.base.Optional.fromNullable(facets));
     }
 
     public GetObjectSummariesResult replaceHits(final com.google.common.collect.ImmutableList<org.dressdiscover.api.models.object.ObjectSummaryEntry> hits) {
-        return new GetObjectSummariesResult(DefaultConstructionValidator.getInstance().validateHits(hits), this.totalHits, this.facets, NopConstructionValidator.getInstance());
+        UncheckedValidator.validateHits(hits);
+        return new GetObjectSummariesResult(hits, this.totalHits, this.facets);
     }
 
     public GetObjectSummariesResult replaceTotalHits(final int totalHits) {
-        return new GetObjectSummariesResult(this.hits, DefaultConstructionValidator.getInstance().validateTotalHits(totalHits), this.facets, NopConstructionValidator.getInstance());
+        UncheckedValidator.validateTotalHits(totalHits);
+        return new GetObjectSummariesResult(this.hits, totalHits, this.facets);
     }
 
     @Override
@@ -800,27 +740,39 @@ public final class GetObjectSummariesResult implements org.thryft.Struct {
         oprot.writeStructEnd();
     }
 
+    public void writeFacetsField(final org.thryft.protocol.OutputProtocol oprot) throws org.thryft.protocol.OutputProtocolException {
+        if (getFacets().isPresent()) {
+            oprot.writeFieldBegin(FieldMetadata.FACETS);
+            getFacets().get().writeAsStruct(oprot);
+            oprot.writeFieldEnd();
+        }
+    }
+
     @Override
     public void writeFields(final org.thryft.protocol.OutputProtocol oprot) throws org.thryft.protocol.OutputProtocolException {
-        oprot.writeFieldBegin("hits", org.thryft.protocol.Type.LIST, (short)0);
+        writeHitsField(oprot);
+
+        writeTotalHitsField(oprot);
+
+        writeFacetsField(oprot);
+
+        oprot.writeFieldStop();
+    }
+
+    public void writeHitsField(final org.thryft.protocol.OutputProtocol oprot) throws org.thryft.protocol.OutputProtocolException {
+        oprot.writeFieldBegin(FieldMetadata.HITS);
         oprot.writeListBegin(org.thryft.protocol.Type.STRUCT, getHits().size());
         for (final org.dressdiscover.api.models.object.ObjectSummaryEntry _iter0 : getHits()) {
             _iter0.writeAsStruct(oprot);
         }
         oprot.writeListEnd();
         oprot.writeFieldEnd();
+    }
 
-        oprot.writeFieldBegin("total_hits", org.thryft.protocol.Type.I32, (short)0);
+    public void writeTotalHitsField(final org.thryft.protocol.OutputProtocol oprot) throws org.thryft.protocol.OutputProtocolException {
+        oprot.writeFieldBegin(FieldMetadata.TOTAL_HITS);
         oprot.writeI32(getTotalHits());
         oprot.writeFieldEnd();
-
-        if (getFacets().isPresent()) {
-            oprot.writeFieldBegin("facets", org.thryft.protocol.Type.STRUCT, (short)0);
-            getFacets().get().writeAsStruct(oprot);
-            oprot.writeFieldEnd();
-        }
-
-        oprot.writeFieldStop();
     }
 
     private final com.google.common.collect.ImmutableList<org.dressdiscover.api.models.object.ObjectSummaryEntry> hits;

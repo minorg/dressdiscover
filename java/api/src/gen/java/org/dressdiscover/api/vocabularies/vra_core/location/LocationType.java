@@ -3,7 +3,7 @@ package org.dressdiscover.api.vocabularies.vra_core.location;
 /**
  * VRA Core 4.0 location type= attribute
  */
-public enum LocationType {
+public enum LocationType implements org.thryft.ThryftEnum {
     CREATION(0),
     DISCOVERY(1),
     EXHIBITION(2),
@@ -18,6 +18,25 @@ public enum LocationType {
     PUBLICATION(11),
     REPOSITORY(12),
     SITE(13);
+
+    public final static class Factory implements org.thryft.ThryftEnum.Factory<LocationType> {
+        public final static Factory getInstance() {
+            return instance;
+        }
+
+        public final LocationType valueOf(final String name) {
+            return LocationType.valueOf(name);
+        }
+
+        public final LocationType valueOf(final int value) {
+            return LocationType.valueOf(value);
+        }
+
+        private Factory() {
+        }
+
+        private final static Factory instance = new Factory();
+    }
 
     private LocationType(int value) {
         this.value = value;
@@ -41,10 +60,6 @@ public enum LocationType {
         case 13: return SITE;
         default: throw new IllegalArgumentException();
         }
-    }
-
-    public static LocationType valueOf(final Integer value) {
-        return valueOf(value.intValue());
     }
 
     public final int value() {

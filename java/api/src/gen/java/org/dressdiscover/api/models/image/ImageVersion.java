@@ -15,10 +15,12 @@ public final class ImageVersion implements org.thryft.Struct {
         }
 
         protected ImageVersion _build(final org.thryft.native_.Url url, final com.google.common.base.Optional<Integer> heightPx, final com.google.common.base.Optional<Integer> widthPx) {
-            return new ImageVersion(url, heightPx, widthPx, DefaultConstructionValidator.getInstance());
+            return new ImageVersion(url, heightPx, widthPx);
         }
 
         public ImageVersion build() {
+            UncheckedValidator.validate(url, heightPx, widthPx);
+
             return _build(url, heightPx, widthPx);
         }
 
@@ -26,7 +28,7 @@ public final class ImageVersion implements org.thryft.Struct {
             return heightPx;
         }
 
-        public final org.thryft.native_.Url getUrl() {
+        public final @javax.annotation.Nullable org.thryft.native_.Url getUrl() {
             return url;
         }
 
@@ -59,13 +61,13 @@ public final class ImageVersion implements org.thryft.Struct {
                 }
                 if (__list.getSize() > 1) {
                     try {
-                        heightPx = com.google.common.base.Optional.of(iprot.readI32());
+                        heightPx = org.thryft.Optionals.of(iprot.readI32());
                     } catch (final NumberFormatException e) {
                     }
                 }
                 if (__list.getSize() > 2) {
                     try {
-                        widthPx = com.google.common.base.Optional.of(iprot.readI32());
+                        widthPx = org.thryft.Optionals.of(iprot.readI32());
                     } catch (final NumberFormatException e) {
                     }
                 }
@@ -102,7 +104,7 @@ public final class ImageVersion implements org.thryft.Struct {
                     case "height_px": {
                         if (!ifield.hasId() || ifield.getId() == 2) {
                             try {
-                                heightPx = com.google.common.base.Optional.of(iprot.readI32());
+                                heightPx = org.thryft.Optionals.of(iprot.readI32());
                             } catch (final NumberFormatException e) {
                             }
                         }
@@ -111,7 +113,7 @@ public final class ImageVersion implements org.thryft.Struct {
                     case "width_px": {
                         if (!ifield.hasId() || ifield.getId() == 3) {
                             try {
-                                widthPx = com.google.common.base.Optional.of(iprot.readI32());
+                                widthPx = org.thryft.Optionals.of(iprot.readI32());
                             } catch (final NumberFormatException e) {
                             }
                         }
@@ -156,12 +158,17 @@ public final class ImageVersion implements org.thryft.Struct {
         }
 
         public Builder setHeightPx(final com.google.common.base.Optional<Integer> heightPx) {
-            this.heightPx = DefaultConstructionValidator.getInstance().validateHeightPx(heightPx);
+            UncheckedValidator.validateHeightPx(heightPx);
+            this.heightPx = heightPx;
             return this;
         }
 
-        public Builder setHeightPx(@javax.annotation.Nullable final Integer heightPx) {
-            return setHeightPx(com.google.common.base.Optional.fromNullable(heightPx));
+        public Builder setHeightPx(final @javax.annotation.Nullable Integer heightPx) {
+            return setHeightPx(org.thryft.Optionals.fromNullable(heightPx));
+        }
+
+        public Builder setHeightPx(final int heightPx) {
+            return setHeightPx(org.thryft.Optionals.of(heightPx));
         }
 
         public Builder setIfPresent(final ImageVersion other) {
@@ -179,17 +186,23 @@ public final class ImageVersion implements org.thryft.Struct {
         }
 
         public Builder setUrl(final org.thryft.native_.Url url) {
-            this.url = DefaultConstructionValidator.getInstance().validateUrl(url);
+            UncheckedValidator.validateUrl(url);
+            this.url = url;
             return this;
         }
 
         public Builder setWidthPx(final com.google.common.base.Optional<Integer> widthPx) {
-            this.widthPx = DefaultConstructionValidator.getInstance().validateWidthPx(widthPx);
+            UncheckedValidator.validateWidthPx(widthPx);
+            this.widthPx = widthPx;
             return this;
         }
 
-        public Builder setWidthPx(@javax.annotation.Nullable final Integer widthPx) {
-            return setWidthPx(com.google.common.base.Optional.fromNullable(widthPx));
+        public Builder setWidthPx(final @javax.annotation.Nullable Integer widthPx) {
+            return setWidthPx(org.thryft.Optionals.fromNullable(widthPx));
+        }
+
+        public Builder setWidthPx(final int widthPx) {
+            return setWidthPx(org.thryft.Optionals.of(widthPx));
         }
 
         public Builder unset(final String fieldThriftName) {
@@ -230,7 +243,7 @@ public final class ImageVersion implements org.thryft.Struct {
             return this;
         }
 
-        private org.thryft.native_.Url url;
+        private @javax.annotation.Nullable org.thryft.native_.Url url;
         private com.google.common.base.Optional<Integer> heightPx;
         private com.google.common.base.Optional<Integer> widthPx;
     }
@@ -266,9 +279,9 @@ public final class ImageVersion implements org.thryft.Struct {
 
     @SuppressWarnings("serial")
     public enum FieldMetadata implements org.thryft.CompoundType.FieldMetadata {
-        URL("url", new com.google.common.reflect.TypeToken<org.thryft.native_.Url>() {}, true, 1, "url", org.thryft.protocol.Type.STRING),
-        HEIGHT_PX("heightPx", new com.google.common.reflect.TypeToken<Integer>() {}, false, 2, "height_px", org.thryft.protocol.Type.I32),
-        WIDTH_PX("widthPx", new com.google.common.reflect.TypeToken<Integer>() {}, false, 3, "width_px", org.thryft.protocol.Type.I32);
+        URL("url", new com.google.common.reflect.TypeToken<org.thryft.native_.Url>() {}, true, (short)1, "url", org.thryft.protocol.Type.STRING),
+        HEIGHT_PX("heightPx", new com.google.common.reflect.TypeToken<Integer>() {}, false, (short)2, "height_px", org.thryft.protocol.Type.I32),
+        WIDTH_PX("widthPx", new com.google.common.reflect.TypeToken<Integer>() {}, false, (short)3, "width_px", org.thryft.protocol.Type.I32);
 
         @Override
         public String getJavaName() {
@@ -281,7 +294,7 @@ public final class ImageVersion implements org.thryft.Struct {
         }
 
         @Override
-        public int getThriftId() {
+        public short getThriftId() {
             return thriftId;
         }
 
@@ -330,7 +343,7 @@ public final class ImageVersion implements org.thryft.Struct {
             }
         }
 
-        private FieldMetadata(final String javaName, final com.google.common.reflect.TypeToken<?> javaType, final boolean required, final int thriftId, final String thriftName, final org.thryft.protocol.Type thriftProtocolType) {
+        private FieldMetadata(final String javaName, final com.google.common.reflect.TypeToken<?> javaType, final boolean required, final short thriftId, final String thriftName, final org.thryft.protocol.Type thriftProtocolType) {
             this.javaName = javaName;
             this.javaType = javaType;
             this.required = required;
@@ -347,159 +360,92 @@ public final class ImageVersion implements org.thryft.Struct {
         private final String javaName;
         private final com.google.common.reflect.TypeToken<?> javaType;
         private final boolean required;
-        private final int thriftId;
+        private final short thriftId;
         private final String thriftName;
         private final String thriftProtocolKey;
         private final org.thryft.protocol.Type thriftProtocolType;
     }
 
-    public interface Validator<ExceptionT extends Exception> {
-        public org.thryft.native_.Url validateUrl(final org.thryft.native_.Url url) throws ExceptionT;
-
-        public com.google.common.base.Optional<Integer> validateHeightPx(final com.google.common.base.Optional<Integer> heightPx) throws ExceptionT;
-
-        public com.google.common.base.Optional<Integer> validateWidthPx(final com.google.common.base.Optional<Integer> widthPx) throws ExceptionT;
-    }
-
-    public interface ConstructionValidator extends Validator<RuntimeException> {
-    }
-
-    public static class DefaultConstructionValidator implements ConstructionValidator {
-        public static DefaultConstructionValidator getInstance() {
-            return instance;
+    public final static class ReadValidator {
+        public static void validate(final org.thryft.native_.Url url, final com.google.common.base.Optional<Integer> heightPx, final com.google.common.base.Optional<Integer> widthPx) throws org.thryft.protocol.InputProtocolException {
+            validateUrl(url);
+            validateHeightPx(heightPx);
+            validateWidthPx(widthPx);
         }
 
-        public DefaultConstructionValidator() {
-        }
-
-        @Override
-        public org.thryft.native_.Url validateUrl(final org.thryft.native_.Url url) throws RuntimeException {
-            if (url == null) {
-                throw new NullPointerException("org.dressdiscover.api.models.image.ImageVersion: url is null");
-            }
-            return url;
-        }
-
-        @Override
-        public com.google.common.base.Optional<Integer> validateHeightPx(final com.google.common.base.Optional<Integer> heightPx) throws RuntimeException {
-            if (!heightPx.isPresent()) {
-                return heightPx;
-            }
-            return heightPx;
-        }
-
-        @Override
-        public com.google.common.base.Optional<Integer> validateWidthPx(final com.google.common.base.Optional<Integer> widthPx) throws RuntimeException {
-            if (!widthPx.isPresent()) {
-                return widthPx;
-            }
-            return widthPx;
-        }
-
-        private final static DefaultConstructionValidator instance = new DefaultConstructionValidator();
-    }
-
-    public static class NopConstructionValidator implements ConstructionValidator {
-        public static NopConstructionValidator getInstance() {
-            return instance;
-        }
-
-        public NopConstructionValidator() {
-        }
-
-        @Override
-        public org.thryft.native_.Url validateUrl(final org.thryft.native_.Url url) {
-            return url;
-        }
-
-        @Override
-        public com.google.common.base.Optional<Integer> validateHeightPx(final com.google.common.base.Optional<Integer> heightPx) {
-            return heightPx;
-        }
-
-        @Override
-        public com.google.common.base.Optional<Integer> validateWidthPx(final com.google.common.base.Optional<Integer> widthPx) {
-            return widthPx;
-        }
-
-        private final static NopConstructionValidator instance = new NopConstructionValidator();
-    }
-
-    public interface ReadValidator extends Validator<org.thryft.protocol.InputProtocolException> {
-    }
-
-    public static class DefaultReadValidator implements ReadValidator {
-        public static DefaultReadValidator getInstance() {
-            return instance;
-        }
-
-        public DefaultReadValidator() {
-        }
-
-        @Override
-        public org.thryft.native_.Url validateUrl(final org.thryft.native_.Url url) throws org.thryft.protocol.InputProtocolException {
+        public static void validateUrl(final org.thryft.native_.Url url) throws org.thryft.protocol.InputProtocolException {
             if (url == null) {
                 throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.URL, "org.dressdiscover.api.models.image.ImageVersion: url is null");
             }
-            return url;
         }
 
-        @Override
-        public com.google.common.base.Optional<Integer> validateHeightPx(final com.google.common.base.Optional<Integer> heightPx) throws org.thryft.protocol.InputProtocolException {
+        public static void validateHeightPx(final com.google.common.base.Optional<Integer> heightPx) throws org.thryft.protocol.InputProtocolException {
+            if (heightPx == null) {
+                throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.HEIGHT_PX, "org.dressdiscover.api.models.image.ImageVersion: heightPx is null");
+            }
             if (!heightPx.isPresent()) {
-                return heightPx;
+                return;
             }
-            return heightPx;
         }
 
-        @Override
-        public com.google.common.base.Optional<Integer> validateWidthPx(final com.google.common.base.Optional<Integer> widthPx) throws org.thryft.protocol.InputProtocolException {
+        public static void validateWidthPx(final com.google.common.base.Optional<Integer> widthPx) throws org.thryft.protocol.InputProtocolException {
+            if (widthPx == null) {
+                throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.WIDTH_PX, "org.dressdiscover.api.models.image.ImageVersion: widthPx is null");
+            }
             if (!widthPx.isPresent()) {
-                return widthPx;
+                return;
             }
-            return widthPx;
         }
-
-        private final static DefaultReadValidator instance = new DefaultReadValidator();
     }
 
-    public static class NopReadValidator implements ReadValidator {
-        public static NopReadValidator getInstance() {
-            return instance;
+    public final static class UncheckedValidator {
+        public static void validate(final org.thryft.native_.Url url, final com.google.common.base.Optional<Integer> heightPx, final com.google.common.base.Optional<Integer> widthPx) {
+            validateUrl(url);
+            validateHeightPx(heightPx);
+            validateWidthPx(widthPx);
         }
 
-        public NopReadValidator() {
+        public static void validateUrl(final org.thryft.native_.Url url) {
+            if (url == null) {
+                throw new NullPointerException("org.dressdiscover.api.models.image.ImageVersion: url is null");
+            }
         }
 
-        @Override
-        public org.thryft.native_.Url validateUrl(final org.thryft.native_.Url url) {
-            return url;
+        public static void validateHeightPx(final com.google.common.base.Optional<Integer> heightPx) {
+            if (heightPx == null) {
+                throw new NullPointerException("org.dressdiscover.api.models.image.ImageVersion: heightPx is null");
+            }
+            if (!heightPx.isPresent()) {
+                return;
+            }
         }
 
-        @Override
-        public com.google.common.base.Optional<Integer> validateHeightPx(final com.google.common.base.Optional<Integer> heightPx) {
-            return heightPx;
+        public static void validateWidthPx(final com.google.common.base.Optional<Integer> widthPx) {
+            if (widthPx == null) {
+                throw new NullPointerException("org.dressdiscover.api.models.image.ImageVersion: widthPx is null");
+            }
+            if (!widthPx.isPresent()) {
+                return;
+            }
         }
-
-        @Override
-        public com.google.common.base.Optional<Integer> validateWidthPx(final com.google.common.base.Optional<Integer> widthPx) {
-            return widthPx;
-        }
-
-        private final static NopReadValidator instance = new NopReadValidator();
     }
 
     /**
      * Copy constructor
      */
     public ImageVersion(final ImageVersion other) {
-        this(other.getUrl(), other.getHeightPx(), other.getWidthPx(), NopConstructionValidator.getInstance());
+        this(other.getUrl(), other.getHeightPx(), other.getWidthPx());
     }
 
-    protected ImageVersion(final org.thryft.native_.Url url, final com.google.common.base.Optional<Integer> heightPx, final com.google.common.base.Optional<Integer> widthPx, ConstructionValidator validator) {
-        this.url = validator.validateUrl(url);
-        this.heightPx = validator.validateHeightPx(heightPx);
-        this.widthPx = validator.validateWidthPx(widthPx);
+    /**
+     * Total constructor
+     *
+     * All fields should have been validated before calling this.
+     */
+    protected ImageVersion(final org.thryft.native_.Url url, final com.google.common.base.Optional<Integer> heightPx, final com.google.common.base.Optional<Integer> widthPx) {
+        this.url = url;
+        this.heightPx = heightPx;
+        this.widthPx = widthPx;
     }
 
     public static Builder builder() {
@@ -518,21 +464,26 @@ public final class ImageVersion implements org.thryft.Struct {
      * Required factory method
      */
     public static ImageVersion create(final org.thryft.native_.Url url) {
-        return new ImageVersion(url, com.google.common.base.Optional.<Integer> absent(), com.google.common.base.Optional.<Integer> absent(), DefaultConstructionValidator.getInstance());
+        UncheckedValidator.validate(url, com.google.common.base.Optional.<Integer> absent(), com.google.common.base.Optional.<Integer> absent());
+        return new ImageVersion(url, com.google.common.base.Optional.<Integer> absent(), com.google.common.base.Optional.<Integer> absent());
     }
 
     /**
      * Total Nullable factory method
      */
-    public static ImageVersion create(final org.thryft.native_.Url url, final @javax.annotation.Nullable Integer heightPx, final @javax.annotation.Nullable Integer widthPx) {
-        return new ImageVersion(url, com.google.common.base.Optional.fromNullable(heightPx), com.google.common.base.Optional.fromNullable(widthPx), DefaultConstructionValidator.getInstance());
+    public static ImageVersion create(final org.thryft.native_.Url url, @javax.annotation.Nullable final Integer heightPx, @javax.annotation.Nullable final Integer widthPx) {
+        final com.google.common.base.Optional<Integer> heightPxOptional = org.thryft.Optionals.fromNullable(heightPx);
+        final com.google.common.base.Optional<Integer> widthPxOptional = org.thryft.Optionals.fromNullable(widthPx);
+        UncheckedValidator.validate(url, heightPxOptional, widthPxOptional);
+        return new ImageVersion(url, heightPxOptional, widthPxOptional);
     }
 
     /**
      * Optional factory method
      */
     public static ImageVersion create(final org.thryft.native_.Url url, final com.google.common.base.Optional<Integer> heightPx, final com.google.common.base.Optional<Integer> widthPx) {
-        return new ImageVersion(url, heightPx, widthPx, DefaultConstructionValidator.getInstance());
+        UncheckedValidator.validate(url, heightPx, widthPx);
+        return new ImageVersion(url, heightPx, widthPx);
     }
 
     @Override
@@ -625,7 +576,7 @@ public final class ImageVersion implements org.thryft.Struct {
     }
 
     public static ImageVersion readAsList(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
-        org.thryft.native_.Url url = null;
+        org.thryft.native_.Url url;
         com.google.common.base.Optional<Integer> heightPx = com.google.common.base.Optional.<Integer> absent();
         com.google.common.base.Optional<Integer> widthPx = com.google.common.base.Optional.<Integer> absent();
 
@@ -638,13 +589,13 @@ public final class ImageVersion implements org.thryft.Struct {
             }
             if (__list.getSize() > 1) {
                 try {
-                    heightPx = com.google.common.base.Optional.of(iprot.readI32());
+                    heightPx = org.thryft.Optionals.of(iprot.readI32());
                 } catch (final NumberFormatException e) {
                 }
             }
             if (__list.getSize() > 2) {
                 try {
-                    widthPx = com.google.common.base.Optional.of(iprot.readI32());
+                    widthPx = org.thryft.Optionals.of(iprot.readI32());
                 } catch (final NumberFormatException e) {
                 }
             }
@@ -652,7 +603,10 @@ public final class ImageVersion implements org.thryft.Struct {
         } catch (final RuntimeException e) {
             throw new IllegalStateException(e);
         }
-        return new ImageVersion(DefaultReadValidator.getInstance().validateUrl(url), DefaultReadValidator.getInstance().validateHeightPx(heightPx), DefaultReadValidator.getInstance().validateWidthPx(widthPx), NopConstructionValidator.getInstance());
+
+        ReadValidator.validate(url, heightPx, widthPx);
+
+        return new ImageVersion(url, heightPx, widthPx);
     }
 
     public static ImageVersion readAsStruct(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
@@ -660,7 +614,7 @@ public final class ImageVersion implements org.thryft.Struct {
     }
 
     public static ImageVersion readAsStruct(final org.thryft.protocol.InputProtocol iprot, final com.google.common.base.Optional<UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
-        org.thryft.native_.Url url = null;
+        @javax.annotation.Nullable org.thryft.native_.Url url = null;
         com.google.common.base.Optional<Integer> heightPx = com.google.common.base.Optional.<Integer> absent();
         com.google.common.base.Optional<Integer> widthPx = com.google.common.base.Optional.<Integer> absent();
 
@@ -685,7 +639,7 @@ public final class ImageVersion implements org.thryft.Struct {
                 case "height_px": {
                     if (!ifield.hasId() || ifield.getId() == 2) {
                         try {
-                            heightPx = com.google.common.base.Optional.of(iprot.readI32());
+                            heightPx = org.thryft.Optionals.of(iprot.readI32());
                         } catch (final NumberFormatException e) {
                         }
                     }
@@ -694,7 +648,7 @@ public final class ImageVersion implements org.thryft.Struct {
                 case "width_px": {
                     if (!ifield.hasId() || ifield.getId() == 3) {
                         try {
-                            widthPx = com.google.common.base.Optional.of(iprot.readI32());
+                            widthPx = org.thryft.Optionals.of(iprot.readI32());
                         } catch (final NumberFormatException e) {
                         }
                     }
@@ -712,27 +666,41 @@ public final class ImageVersion implements org.thryft.Struct {
         } catch (final RuntimeException e) {
             throw new IllegalStateException(e);
         }
-        return new ImageVersion(DefaultReadValidator.getInstance().validateUrl(url), DefaultReadValidator.getInstance().validateHeightPx(heightPx), DefaultReadValidator.getInstance().validateWidthPx(widthPx), NopConstructionValidator.getInstance());
+
+        ReadValidator.validate(url, heightPx, widthPx);
+
+        return new ImageVersion(url, heightPx, widthPx);
     }
 
     public ImageVersion replaceHeightPx(final com.google.common.base.Optional<Integer> heightPx) {
-        return new ImageVersion(this.url, DefaultConstructionValidator.getInstance().validateHeightPx(heightPx), this.widthPx, NopConstructionValidator.getInstance());
+        UncheckedValidator.validateHeightPx(heightPx);
+        return new ImageVersion(this.url, heightPx, this.widthPx);
+    }
+
+    public ImageVersion replaceHeightPx(@javax.annotation.Nullable final Integer heightPx) {
+        return replaceHeightPx(org.thryft.Optionals.fromNullable(heightPx));
     }
 
     public ImageVersion replaceHeightPx(final int heightPx) {
-        return replaceHeightPx(com.google.common.base.Optional.fromNullable(heightPx));
+        return replaceHeightPx(org.thryft.Optionals.of(heightPx));
     }
 
     public ImageVersion replaceUrl(final org.thryft.native_.Url url) {
-        return new ImageVersion(DefaultConstructionValidator.getInstance().validateUrl(url), this.heightPx, this.widthPx, NopConstructionValidator.getInstance());
+        UncheckedValidator.validateUrl(url);
+        return new ImageVersion(url, this.heightPx, this.widthPx);
     }
 
     public ImageVersion replaceWidthPx(final com.google.common.base.Optional<Integer> widthPx) {
-        return new ImageVersion(this.url, this.heightPx, DefaultConstructionValidator.getInstance().validateWidthPx(widthPx), NopConstructionValidator.getInstance());
+        UncheckedValidator.validateWidthPx(widthPx);
+        return new ImageVersion(this.url, this.heightPx, widthPx);
+    }
+
+    public ImageVersion replaceWidthPx(@javax.annotation.Nullable final Integer widthPx) {
+        return replaceWidthPx(org.thryft.Optionals.fromNullable(widthPx));
     }
 
     public ImageVersion replaceWidthPx(final int widthPx) {
-        return replaceWidthPx(com.google.common.base.Optional.fromNullable(widthPx));
+        return replaceWidthPx(org.thryft.Optionals.of(widthPx));
     }
 
     @Override
@@ -770,23 +738,35 @@ public final class ImageVersion implements org.thryft.Struct {
 
     @Override
     public void writeFields(final org.thryft.protocol.OutputProtocol oprot) throws org.thryft.protocol.OutputProtocolException {
-        oprot.writeFieldBegin("url", org.thryft.protocol.Type.STRING, (short)1);
-        oprot.writeString(getUrl().toString());
-        oprot.writeFieldEnd();
+        writeUrlField(oprot);
 
+        writeHeightPxField(oprot);
+
+        writeWidthPxField(oprot);
+
+        oprot.writeFieldStop();
+    }
+
+    public void writeHeightPxField(final org.thryft.protocol.OutputProtocol oprot) throws org.thryft.protocol.OutputProtocolException {
         if (getHeightPx().isPresent()) {
-            oprot.writeFieldBegin("height_px", org.thryft.protocol.Type.I32, (short)2);
+            oprot.writeFieldBegin(FieldMetadata.HEIGHT_PX);
             oprot.writeI32(getHeightPx().get());
             oprot.writeFieldEnd();
         }
+    }
 
+    public void writeUrlField(final org.thryft.protocol.OutputProtocol oprot) throws org.thryft.protocol.OutputProtocolException {
+        oprot.writeFieldBegin(FieldMetadata.URL);
+        oprot.writeString(getUrl().toString());
+        oprot.writeFieldEnd();
+    }
+
+    public void writeWidthPxField(final org.thryft.protocol.OutputProtocol oprot) throws org.thryft.protocol.OutputProtocolException {
         if (getWidthPx().isPresent()) {
-            oprot.writeFieldBegin("width_px", org.thryft.protocol.Type.I32, (short)3);
+            oprot.writeFieldBegin(FieldMetadata.WIDTH_PX);
             oprot.writeI32(getWidthPx().get());
             oprot.writeFieldEnd();
         }
-
-        oprot.writeFieldStop();
     }
 
     private final org.thryft.native_.Url url;

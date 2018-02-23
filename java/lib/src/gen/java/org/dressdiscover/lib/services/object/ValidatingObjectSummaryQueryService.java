@@ -11,13 +11,10 @@ public class ValidatingObjectSummaryQueryService implements org.dressdiscover.ap
 
     @Override
     public final org.dressdiscover.api.services.object.GetObjectSummariesResult getObjectSummaries(final com.google.common.base.Optional<org.dressdiscover.api.services.object.GetObjectSummariesOptions> options, final com.google.common.base.Optional<org.dressdiscover.api.models.object.ObjectQuery> query) throws org.dressdiscover.api.services.IoException {
-        _validateGetObjectSummariesParameters(options, query);
-        return org.dressdiscover.api.services.object.ObjectSummaryQueryService.Messages.GetObjectSummariesResponse.DefaultConstructionValidator.getInstance().validateReturnValue(delegate.getObjectSummaries(options, query));
-    }
-
-    protected void _validateGetObjectSummariesParameters(final com.google.common.base.Optional<org.dressdiscover.api.services.object.GetObjectSummariesOptions> options, final com.google.common.base.Optional<org.dressdiscover.api.models.object.ObjectQuery> query) {
-        org.dressdiscover.api.services.object.ObjectSummaryQueryService.Messages.GetObjectSummariesRequest.DefaultConstructionValidator.getInstance().validateOptions(options);
-        org.dressdiscover.api.services.object.ObjectSummaryQueryService.Messages.GetObjectSummariesRequest.DefaultConstructionValidator.getInstance().validateQuery(query);
+        org.dressdiscover.api.services.object.ObjectSummaryQueryService.Messages.GetObjectSummariesRequest.UncheckedValidator.validate(options, query);
+        final org.dressdiscover.api.services.object.GetObjectSummariesResult __returnValue = delegate.getObjectSummaries(options, query);
+        org.dressdiscover.api.services.object.ObjectSummaryQueryService.Messages.GetObjectSummariesResponse.UncheckedValidator.validateReturnValue(__returnValue);
+        return __returnValue;
     }
 
     private final org.dressdiscover.api.services.object.ObjectSummaryQueryService delegate;

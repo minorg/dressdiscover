@@ -1,6 +1,6 @@
 package org.dressdiscover.api.vocabularies.costume_core.view_type;
 
-public enum ViewType {
+public enum ViewType implements org.thryft.ThryftEnum {
     ACTION(0),
     BACK(1),
     CONDITION(2),
@@ -20,6 +20,25 @@ public enum ViewType {
     SIDE(16),
     SUPPORTING_DOCUMENT(17),
     VIDEO(18);
+
+    public final static class Factory implements org.thryft.ThryftEnum.Factory<ViewType> {
+        public final static Factory getInstance() {
+            return instance;
+        }
+
+        public final ViewType valueOf(final String name) {
+            return ViewType.valueOf(name);
+        }
+
+        public final ViewType valueOf(final int value) {
+            return ViewType.valueOf(value);
+        }
+
+        private Factory() {
+        }
+
+        private final static Factory instance = new Factory();
+    }
 
     private ViewType(int value) {
         this.value = value;
@@ -48,10 +67,6 @@ public enum ViewType {
         case 18: return VIDEO;
         default: throw new IllegalArgumentException();
         }
-    }
-
-    public static ViewType valueOf(final Integer value) {
-        return valueOf(value.intValue());
     }
 
     public final int value() {

@@ -3,7 +3,7 @@ package org.dressdiscover.api.vocabularies.vra_core.date;
 /**
  * VRA Core 4.0 date element
  */
-public final class Date implements org.thryft.Struct, org.dressdiscover.api.vocabularies.vra_core.Element {
+public final class Date implements org.dressdiscover.api.vocabularies.vra_core.Element {
     public final static class Builder {
         public Builder() {
             earliestDate = null;
@@ -22,14 +22,16 @@ public final class Date implements org.thryft.Struct, org.dressdiscover.api.voca
         }
 
         protected Date _build(final org.dressdiscover.api.vocabularies.vra_core.date.DateBound earliestDate, final org.dressdiscover.api.vocabularies.vra_core.date.DateBound latestDate, final org.dressdiscover.api.vocabularies.vra_core.date.DateType type, final com.google.common.base.Optional<org.thryft.native_.Url> href, final com.google.common.base.Optional<String> source) {
-            return new Date(earliestDate, latestDate, type, href, source, DefaultConstructionValidator.getInstance());
+            return new Date(earliestDate, latestDate, type, href, source);
         }
 
         public Date build() {
+            UncheckedValidator.validate(earliestDate, latestDate, type, href, source);
+
             return _build(earliestDate, latestDate, type, href, source);
         }
 
-        public final org.dressdiscover.api.vocabularies.vra_core.date.DateBound getEarliestDate() {
+        public final @javax.annotation.Nullable org.dressdiscover.api.vocabularies.vra_core.date.DateBound getEarliestDate() {
             return earliestDate;
         }
 
@@ -37,7 +39,7 @@ public final class Date implements org.thryft.Struct, org.dressdiscover.api.voca
             return href;
         }
 
-        public final org.dressdiscover.api.vocabularies.vra_core.date.DateBound getLatestDate() {
+        public final @javax.annotation.Nullable org.dressdiscover.api.vocabularies.vra_core.date.DateBound getLatestDate() {
             return latestDate;
         }
 
@@ -45,7 +47,7 @@ public final class Date implements org.thryft.Struct, org.dressdiscover.api.voca
             return source;
         }
 
-        public final org.dressdiscover.api.vocabularies.vra_core.date.DateType getType() {
+        public final @javax.annotation.Nullable org.dressdiscover.api.vocabularies.vra_core.date.DateType getType() {
             return type;
         }
 
@@ -69,7 +71,7 @@ public final class Date implements org.thryft.Struct, org.dressdiscover.api.voca
                 final org.thryft.protocol.ListBegin __list = iprot.readListBegin();
                 earliestDate = org.dressdiscover.api.vocabularies.vra_core.date.DateBound.readAsStruct(iprot);
                 latestDate = org.dressdiscover.api.vocabularies.vra_core.date.DateBound.readAsStruct(iprot);
-                type = iprot.readEnum(org.dressdiscover.api.vocabularies.vra_core.date.DateType.class);
+                type = iprot.readEnum(org.dressdiscover.api.vocabularies.vra_core.date.DateType.Factory.getInstance());
                 if (__list.getSize() > 3) {
                     try {
                         href = com.google.common.base.Optional.of(org.thryft.native_.Url.parse(iprot.readString()));
@@ -101,19 +103,19 @@ public final class Date implements org.thryft.Struct, org.dressdiscover.api.voca
                     switch (ifield.getName()) {
                     case "earliest_date": {
                         if (!ifield.hasId() || ifield.getId() == 1) {
-                            earliestDate = org.dressdiscover.api.vocabularies.vra_core.date.DateBound.readAsStruct(iprot);
+                            earliestDate = org.dressdiscover.api.vocabularies.vra_core.date.DateBound.readAsStruct(iprot, unknownFieldCallback);
                         }
                         break;
                     }
                     case "latest_date": {
                         if (!ifield.hasId() || ifield.getId() == 2) {
-                            latestDate = org.dressdiscover.api.vocabularies.vra_core.date.DateBound.readAsStruct(iprot);
+                            latestDate = org.dressdiscover.api.vocabularies.vra_core.date.DateBound.readAsStruct(iprot, unknownFieldCallback);
                         }
                         break;
                     }
                     case "type": {
                         if (!ifield.hasId() || ifield.getId() == 3) {
-                            type = iprot.readEnum(org.dressdiscover.api.vocabularies.vra_core.date.DateType.class);
+                            type = iprot.readEnum(org.dressdiscover.api.vocabularies.vra_core.date.DateType.Factory.getInstance());
                         }
                         break;
                     }
@@ -173,16 +175,18 @@ public final class Date implements org.thryft.Struct, org.dressdiscover.api.voca
         }
 
         public Builder setEarliestDate(final org.dressdiscover.api.vocabularies.vra_core.date.DateBound earliestDate) {
-            this.earliestDate = DefaultConstructionValidator.getInstance().validateEarliestDate(earliestDate);
+            UncheckedValidator.validateEarliestDate(earliestDate);
+            this.earliestDate = earliestDate;
             return this;
         }
 
         public Builder setHref(final com.google.common.base.Optional<org.thryft.native_.Url> href) {
-            this.href = DefaultConstructionValidator.getInstance().validateHref(href);
+            UncheckedValidator.validateHref(href);
+            this.href = href;
             return this;
         }
 
-        public Builder setHref(@javax.annotation.Nullable final org.thryft.native_.Url href) {
+        public Builder setHref(final @javax.annotation.Nullable org.thryft.native_.Url href) {
             return setHref(com.google.common.base.Optional.fromNullable(href));
         }
 
@@ -203,21 +207,24 @@ public final class Date implements org.thryft.Struct, org.dressdiscover.api.voca
         }
 
         public Builder setLatestDate(final org.dressdiscover.api.vocabularies.vra_core.date.DateBound latestDate) {
-            this.latestDate = DefaultConstructionValidator.getInstance().validateLatestDate(latestDate);
+            UncheckedValidator.validateLatestDate(latestDate);
+            this.latestDate = latestDate;
             return this;
         }
 
         public Builder setSource(final com.google.common.base.Optional<String> source) {
-            this.source = DefaultConstructionValidator.getInstance().validateSource(source);
+            UncheckedValidator.validateSource(source);
+            this.source = source;
             return this;
         }
 
-        public Builder setSource(@javax.annotation.Nullable final String source) {
+        public Builder setSource(final @javax.annotation.Nullable String source) {
             return setSource(com.google.common.base.Optional.fromNullable(source));
         }
 
         public Builder setType(final org.dressdiscover.api.vocabularies.vra_core.date.DateType type) {
-            this.type = DefaultConstructionValidator.getInstance().validateType(type);
+            UncheckedValidator.validateType(type);
+            this.type = type;
             return this;
         }
 
@@ -271,9 +278,9 @@ public final class Date implements org.thryft.Struct, org.dressdiscover.api.voca
             return this;
         }
 
-        private org.dressdiscover.api.vocabularies.vra_core.date.DateBound earliestDate;
-        private org.dressdiscover.api.vocabularies.vra_core.date.DateBound latestDate;
-        private org.dressdiscover.api.vocabularies.vra_core.date.DateType type;
+        private @javax.annotation.Nullable org.dressdiscover.api.vocabularies.vra_core.date.DateBound earliestDate;
+        private @javax.annotation.Nullable org.dressdiscover.api.vocabularies.vra_core.date.DateBound latestDate;
+        private @javax.annotation.Nullable org.dressdiscover.api.vocabularies.vra_core.date.DateType type;
         private com.google.common.base.Optional<org.thryft.native_.Url> href;
         private com.google.common.base.Optional<String> source;
     }
@@ -309,11 +316,11 @@ public final class Date implements org.thryft.Struct, org.dressdiscover.api.voca
 
     @SuppressWarnings("serial")
     public enum FieldMetadata implements org.thryft.CompoundType.FieldMetadata {
-        EARLIEST_DATE("earliestDate", new com.google.common.reflect.TypeToken<org.dressdiscover.api.vocabularies.vra_core.date.DateBound>() {}, true, 1, "earliest_date", org.thryft.protocol.Type.STRUCT),
-        LATEST_DATE("latestDate", new com.google.common.reflect.TypeToken<org.dressdiscover.api.vocabularies.vra_core.date.DateBound>() {}, true, 2, "latest_date", org.thryft.protocol.Type.STRUCT),
-        TYPE("type", new com.google.common.reflect.TypeToken<org.dressdiscover.api.vocabularies.vra_core.date.DateType>() {}, true, 3, "type", org.thryft.protocol.Type.STRING),
-        HREF("href", new com.google.common.reflect.TypeToken<org.thryft.native_.Url>() {}, false, 4, "href", org.thryft.protocol.Type.STRING),
-        SOURCE("source", new com.google.common.reflect.TypeToken<String>() {}, false, 5, "source", org.thryft.protocol.Type.STRING);
+        EARLIEST_DATE("earliestDate", new com.google.common.reflect.TypeToken<org.dressdiscover.api.vocabularies.vra_core.date.DateBound>() {}, true, (short)1, "earliest_date", org.thryft.protocol.Type.STRUCT),
+        LATEST_DATE("latestDate", new com.google.common.reflect.TypeToken<org.dressdiscover.api.vocabularies.vra_core.date.DateBound>() {}, true, (short)2, "latest_date", org.thryft.protocol.Type.STRUCT),
+        TYPE("type", new com.google.common.reflect.TypeToken<org.dressdiscover.api.vocabularies.vra_core.date.DateType>() {}, true, (short)3, "type", org.thryft.protocol.Type.STRING),
+        HREF("href", new com.google.common.reflect.TypeToken<org.thryft.native_.Url>() {}, false, (short)4, "href", org.thryft.protocol.Type.STRING),
+        SOURCE("source", new com.google.common.reflect.TypeToken<String>() {}, false, (short)5, "source", org.thryft.protocol.Type.STRING);
 
         @Override
         public String getJavaName() {
@@ -326,7 +333,7 @@ public final class Date implements org.thryft.Struct, org.dressdiscover.api.voca
         }
 
         @Override
-        public int getThriftId() {
+        public short getThriftId() {
             return thriftId;
         }
 
@@ -379,7 +386,7 @@ public final class Date implements org.thryft.Struct, org.dressdiscover.api.voca
             }
         }
 
-        private FieldMetadata(final String javaName, final com.google.common.reflect.TypeToken<?> javaType, final boolean required, final int thriftId, final String thriftName, final org.thryft.protocol.Type thriftProtocolType) {
+        private FieldMetadata(final String javaName, final com.google.common.reflect.TypeToken<?> javaType, final boolean required, final short thriftId, final String thriftName, final org.thryft.protocol.Type thriftProtocolType) {
             this.javaName = javaName;
             this.javaType = javaType;
             this.required = required;
@@ -396,235 +403,128 @@ public final class Date implements org.thryft.Struct, org.dressdiscover.api.voca
         private final String javaName;
         private final com.google.common.reflect.TypeToken<?> javaType;
         private final boolean required;
-        private final int thriftId;
+        private final short thriftId;
         private final String thriftName;
         private final String thriftProtocolKey;
         private final org.thryft.protocol.Type thriftProtocolType;
     }
 
-    public interface Validator<ExceptionT extends Exception> {
-        public org.dressdiscover.api.vocabularies.vra_core.date.DateBound validateEarliestDate(final org.dressdiscover.api.vocabularies.vra_core.date.DateBound earliestDate) throws ExceptionT;
-
-        public org.dressdiscover.api.vocabularies.vra_core.date.DateBound validateLatestDate(final org.dressdiscover.api.vocabularies.vra_core.date.DateBound latestDate) throws ExceptionT;
-
-        public org.dressdiscover.api.vocabularies.vra_core.date.DateType validateType(final org.dressdiscover.api.vocabularies.vra_core.date.DateType type) throws ExceptionT;
-
-        public com.google.common.base.Optional<org.thryft.native_.Url> validateHref(final com.google.common.base.Optional<org.thryft.native_.Url> href) throws ExceptionT;
-
-        public com.google.common.base.Optional<String> validateSource(final com.google.common.base.Optional<String> source) throws ExceptionT;
-    }
-
-    public interface ConstructionValidator extends Validator<RuntimeException> {
-    }
-
-    public static class DefaultConstructionValidator implements ConstructionValidator {
-        public static DefaultConstructionValidator getInstance() {
-            return instance;
+    public final static class ReadValidator {
+        public static void validate(final org.dressdiscover.api.vocabularies.vra_core.date.DateBound earliestDate, final org.dressdiscover.api.vocabularies.vra_core.date.DateBound latestDate, final org.dressdiscover.api.vocabularies.vra_core.date.DateType type, final com.google.common.base.Optional<org.thryft.native_.Url> href, final com.google.common.base.Optional<String> source) throws org.thryft.protocol.InputProtocolException {
+            validateEarliestDate(earliestDate);
+            validateLatestDate(latestDate);
+            validateType(type);
+            validateHref(href);
+            validateSource(source);
         }
 
-        public DefaultConstructionValidator() {
-        }
-
-        @Override
-        public org.dressdiscover.api.vocabularies.vra_core.date.DateBound validateEarliestDate(final org.dressdiscover.api.vocabularies.vra_core.date.DateBound earliestDate) throws RuntimeException {
-            if (earliestDate == null) {
-                throw new NullPointerException("org.dressdiscover.api.vocabularies.vra_core.date.Date: earliestDate is null");
-            }
-            return earliestDate;
-        }
-
-        @Override
-        public org.dressdiscover.api.vocabularies.vra_core.date.DateBound validateLatestDate(final org.dressdiscover.api.vocabularies.vra_core.date.DateBound latestDate) throws RuntimeException {
-            if (latestDate == null) {
-                throw new NullPointerException("org.dressdiscover.api.vocabularies.vra_core.date.Date: latestDate is null");
-            }
-            return latestDate;
-        }
-
-        @Override
-        public org.dressdiscover.api.vocabularies.vra_core.date.DateType validateType(final org.dressdiscover.api.vocabularies.vra_core.date.DateType type) throws RuntimeException {
-            if (type == null) {
-                throw new NullPointerException("org.dressdiscover.api.vocabularies.vra_core.date.Date: type is null");
-            }
-            return type;
-        }
-
-        @Override
-        public com.google.common.base.Optional<org.thryft.native_.Url> validateHref(final com.google.common.base.Optional<org.thryft.native_.Url> href) throws RuntimeException {
-            if (href == null) {
-                throw new NullPointerException("org.dressdiscover.api.vocabularies.vra_core.date.Date: href is null");
-            }
-            if (!href.isPresent()) {
-                return href;
-            }
-            return href;
-        }
-
-        @Override
-        public com.google.common.base.Optional<String> validateSource(final com.google.common.base.Optional<String> source) throws RuntimeException {
-            if (source == null) {
-                throw new NullPointerException("org.dressdiscover.api.vocabularies.vra_core.date.Date: source is null");
-            }
-            if (!source.isPresent()) {
-                return source;
-            }
-            if (source.get().isEmpty()) {
-                throw new IllegalArgumentException("org.dressdiscover.api.vocabularies.vra_core.date.Date: source is less than min length 1");
-            }
-            return source;
-        }
-
-        private final static DefaultConstructionValidator instance = new DefaultConstructionValidator();
-    }
-
-    public static class NopConstructionValidator implements ConstructionValidator {
-        public static NopConstructionValidator getInstance() {
-            return instance;
-        }
-
-        public NopConstructionValidator() {
-        }
-
-        @Override
-        public org.dressdiscover.api.vocabularies.vra_core.date.DateBound validateEarliestDate(final org.dressdiscover.api.vocabularies.vra_core.date.DateBound earliestDate) {
-            return earliestDate;
-        }
-
-        @Override
-        public org.dressdiscover.api.vocabularies.vra_core.date.DateBound validateLatestDate(final org.dressdiscover.api.vocabularies.vra_core.date.DateBound latestDate) {
-            return latestDate;
-        }
-
-        @Override
-        public org.dressdiscover.api.vocabularies.vra_core.date.DateType validateType(final org.dressdiscover.api.vocabularies.vra_core.date.DateType type) {
-            return type;
-        }
-
-        @Override
-        public com.google.common.base.Optional<org.thryft.native_.Url> validateHref(final com.google.common.base.Optional<org.thryft.native_.Url> href) {
-            return href;
-        }
-
-        @Override
-        public com.google.common.base.Optional<String> validateSource(final com.google.common.base.Optional<String> source) {
-            return source;
-        }
-
-        private final static NopConstructionValidator instance = new NopConstructionValidator();
-    }
-
-    public interface ReadValidator extends Validator<org.thryft.protocol.InputProtocolException> {
-    }
-
-    public static class DefaultReadValidator implements ReadValidator {
-        public static DefaultReadValidator getInstance() {
-            return instance;
-        }
-
-        public DefaultReadValidator() {
-        }
-
-        @Override
-        public org.dressdiscover.api.vocabularies.vra_core.date.DateBound validateEarliestDate(final org.dressdiscover.api.vocabularies.vra_core.date.DateBound earliestDate) throws org.thryft.protocol.InputProtocolException {
+        public static void validateEarliestDate(final org.dressdiscover.api.vocabularies.vra_core.date.DateBound earliestDate) throws org.thryft.protocol.InputProtocolException {
             if (earliestDate == null) {
                 throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.EARLIEST_DATE, "org.dressdiscover.api.vocabularies.vra_core.date.Date: earliestDate is null");
             }
-            return earliestDate;
         }
 
-        @Override
-        public org.dressdiscover.api.vocabularies.vra_core.date.DateBound validateLatestDate(final org.dressdiscover.api.vocabularies.vra_core.date.DateBound latestDate) throws org.thryft.protocol.InputProtocolException {
+        public static void validateLatestDate(final org.dressdiscover.api.vocabularies.vra_core.date.DateBound latestDate) throws org.thryft.protocol.InputProtocolException {
             if (latestDate == null) {
                 throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.LATEST_DATE, "org.dressdiscover.api.vocabularies.vra_core.date.Date: latestDate is null");
             }
-            return latestDate;
         }
 
-        @Override
-        public org.dressdiscover.api.vocabularies.vra_core.date.DateType validateType(final org.dressdiscover.api.vocabularies.vra_core.date.DateType type) throws org.thryft.protocol.InputProtocolException {
+        public static void validateType(final org.dressdiscover.api.vocabularies.vra_core.date.DateType type) throws org.thryft.protocol.InputProtocolException {
             if (type == null) {
                 throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.TYPE, "org.dressdiscover.api.vocabularies.vra_core.date.Date: type is null");
             }
-            return type;
         }
 
-        @Override
-        public com.google.common.base.Optional<org.thryft.native_.Url> validateHref(final com.google.common.base.Optional<org.thryft.native_.Url> href) throws org.thryft.protocol.InputProtocolException {
+        public static void validateHref(final com.google.common.base.Optional<org.thryft.native_.Url> href) throws org.thryft.protocol.InputProtocolException {
             if (href == null) {
                 throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.HREF, "org.dressdiscover.api.vocabularies.vra_core.date.Date: href is null");
             }
             if (!href.isPresent()) {
-                return href;
+                return;
             }
-            return href;
         }
 
-        @Override
-        public com.google.common.base.Optional<String> validateSource(final com.google.common.base.Optional<String> source) throws org.thryft.protocol.InputProtocolException {
+        public static void validateSource(final com.google.common.base.Optional<String> source) throws org.thryft.protocol.InputProtocolException {
             if (source == null) {
                 throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.SOURCE, "org.dressdiscover.api.vocabularies.vra_core.date.Date: source is null");
             }
             if (!source.isPresent()) {
-                return source;
+                return;
             }
             if (source.get().isEmpty()) {
-                throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.SOURCE, "org.dressdiscover.api.vocabularies.vra_core.date.Date: source is less than min length 1");
+                throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.SOURCE, "org.dressdiscover.api.vocabularies.vra_core.date.Date.source: less than min length 1");
             }
-            return source;
         }
-
-        private final static DefaultReadValidator instance = new DefaultReadValidator();
     }
 
-    public static class NopReadValidator implements ReadValidator {
-        public static NopReadValidator getInstance() {
-            return instance;
+    public final static class UncheckedValidator {
+        public static void validate(final org.dressdiscover.api.vocabularies.vra_core.date.DateBound earliestDate, final org.dressdiscover.api.vocabularies.vra_core.date.DateBound latestDate, final org.dressdiscover.api.vocabularies.vra_core.date.DateType type, final com.google.common.base.Optional<org.thryft.native_.Url> href, final com.google.common.base.Optional<String> source) {
+            validateEarliestDate(earliestDate);
+            validateLatestDate(latestDate);
+            validateType(type);
+            validateHref(href);
+            validateSource(source);
         }
 
-        public NopReadValidator() {
+        public static void validateEarliestDate(final org.dressdiscover.api.vocabularies.vra_core.date.DateBound earliestDate) {
+            if (earliestDate == null) {
+                throw new NullPointerException("org.dressdiscover.api.vocabularies.vra_core.date.Date: earliestDate is null");
+            }
         }
 
-        @Override
-        public org.dressdiscover.api.vocabularies.vra_core.date.DateBound validateEarliestDate(final org.dressdiscover.api.vocabularies.vra_core.date.DateBound earliestDate) {
-            return earliestDate;
+        public static void validateLatestDate(final org.dressdiscover.api.vocabularies.vra_core.date.DateBound latestDate) {
+            if (latestDate == null) {
+                throw new NullPointerException("org.dressdiscover.api.vocabularies.vra_core.date.Date: latestDate is null");
+            }
         }
 
-        @Override
-        public org.dressdiscover.api.vocabularies.vra_core.date.DateBound validateLatestDate(final org.dressdiscover.api.vocabularies.vra_core.date.DateBound latestDate) {
-            return latestDate;
+        public static void validateType(final org.dressdiscover.api.vocabularies.vra_core.date.DateType type) {
+            if (type == null) {
+                throw new NullPointerException("org.dressdiscover.api.vocabularies.vra_core.date.Date: type is null");
+            }
         }
 
-        @Override
-        public org.dressdiscover.api.vocabularies.vra_core.date.DateType validateType(final org.dressdiscover.api.vocabularies.vra_core.date.DateType type) {
-            return type;
+        public static void validateHref(final com.google.common.base.Optional<org.thryft.native_.Url> href) {
+            if (href == null) {
+                throw new NullPointerException("org.dressdiscover.api.vocabularies.vra_core.date.Date: href is null");
+            }
+            if (!href.isPresent()) {
+                return;
+            }
         }
 
-        @Override
-        public com.google.common.base.Optional<org.thryft.native_.Url> validateHref(final com.google.common.base.Optional<org.thryft.native_.Url> href) {
-            return href;
+        public static void validateSource(final com.google.common.base.Optional<String> source) {
+            if (source == null) {
+                throw new NullPointerException("org.dressdiscover.api.vocabularies.vra_core.date.Date: source is null");
+            }
+            if (!source.isPresent()) {
+                return;
+            }
+            if (source.get().isEmpty()) {
+                throw new IllegalArgumentException("org.dressdiscover.api.vocabularies.vra_core.date.Date.source: less than min length 1");
+            }
         }
-
-        @Override
-        public com.google.common.base.Optional<String> validateSource(final com.google.common.base.Optional<String> source) {
-            return source;
-        }
-
-        private final static NopReadValidator instance = new NopReadValidator();
     }
 
     /**
      * Copy constructor
      */
     public Date(final Date other) {
-        this(other.getEarliestDate(), other.getLatestDate(), other.getType(), other.getHref(), other.getSource(), NopConstructionValidator.getInstance());
+        this(other.getEarliestDate(), other.getLatestDate(), other.getType(), other.getHref(), other.getSource());
     }
 
-    protected Date(final org.dressdiscover.api.vocabularies.vra_core.date.DateBound earliestDate, final org.dressdiscover.api.vocabularies.vra_core.date.DateBound latestDate, final org.dressdiscover.api.vocabularies.vra_core.date.DateType type, final com.google.common.base.Optional<org.thryft.native_.Url> href, final com.google.common.base.Optional<String> source, ConstructionValidator validator) {
-        this.earliestDate = validator.validateEarliestDate(earliestDate);
-        this.latestDate = validator.validateLatestDate(latestDate);
-        this.type = validator.validateType(type);
-        this.href = validator.validateHref(href);
-        this.source = validator.validateSource(source);
+    /**
+     * Total constructor
+     *
+     * All fields should have been validated before calling this.
+     */
+    protected Date(final org.dressdiscover.api.vocabularies.vra_core.date.DateBound earliestDate, final org.dressdiscover.api.vocabularies.vra_core.date.DateBound latestDate, final org.dressdiscover.api.vocabularies.vra_core.date.DateType type, final com.google.common.base.Optional<org.thryft.native_.Url> href, final com.google.common.base.Optional<String> source) {
+        this.earliestDate = earliestDate;
+        this.latestDate = latestDate;
+        this.type = type;
+        this.href = href;
+        this.source = source;
     }
 
     public static Builder builder() {
@@ -643,21 +543,26 @@ public final class Date implements org.thryft.Struct, org.dressdiscover.api.voca
      * Required factory method
      */
     public static Date create(final org.dressdiscover.api.vocabularies.vra_core.date.DateBound earliestDate, final org.dressdiscover.api.vocabularies.vra_core.date.DateBound latestDate, final org.dressdiscover.api.vocabularies.vra_core.date.DateType type) {
-        return new Date(earliestDate, latestDate, type, com.google.common.base.Optional.<org.thryft.native_.Url> absent(), com.google.common.base.Optional.<String> absent(), DefaultConstructionValidator.getInstance());
+        UncheckedValidator.validate(earliestDate, latestDate, type, com.google.common.base.Optional.<org.thryft.native_.Url> absent(), com.google.common.base.Optional.<String> absent());
+        return new Date(earliestDate, latestDate, type, com.google.common.base.Optional.<org.thryft.native_.Url> absent(), com.google.common.base.Optional.<String> absent());
     }
 
     /**
      * Total Nullable factory method
      */
-    public static Date create(final org.dressdiscover.api.vocabularies.vra_core.date.DateBound earliestDate, final org.dressdiscover.api.vocabularies.vra_core.date.DateBound latestDate, final org.dressdiscover.api.vocabularies.vra_core.date.DateType type, final @javax.annotation.Nullable org.thryft.native_.Url href, final @javax.annotation.Nullable String source) {
-        return new Date(earliestDate, latestDate, type, com.google.common.base.Optional.fromNullable(href), com.google.common.base.Optional.fromNullable(source), DefaultConstructionValidator.getInstance());
+    public static Date create(final org.dressdiscover.api.vocabularies.vra_core.date.DateBound earliestDate, final org.dressdiscover.api.vocabularies.vra_core.date.DateBound latestDate, final org.dressdiscover.api.vocabularies.vra_core.date.DateType type, @javax.annotation.Nullable final org.thryft.native_.Url href, @javax.annotation.Nullable final String source) {
+        final com.google.common.base.Optional<org.thryft.native_.Url> hrefOptional = com.google.common.base.Optional.fromNullable(href);
+        final com.google.common.base.Optional<String> sourceOptional = com.google.common.base.Optional.fromNullable(source);
+        UncheckedValidator.validate(earliestDate, latestDate, type, hrefOptional, sourceOptional);
+        return new Date(earliestDate, latestDate, type, hrefOptional, sourceOptional);
     }
 
     /**
      * Optional factory method
      */
     public static Date create(final org.dressdiscover.api.vocabularies.vra_core.date.DateBound earliestDate, final org.dressdiscover.api.vocabularies.vra_core.date.DateBound latestDate, final org.dressdiscover.api.vocabularies.vra_core.date.DateType type, final com.google.common.base.Optional<org.thryft.native_.Url> href, final com.google.common.base.Optional<String> source) {
-        return new Date(earliestDate, latestDate, type, href, source, DefaultConstructionValidator.getInstance());
+        UncheckedValidator.validate(earliestDate, latestDate, type, href, source);
+        return new Date(earliestDate, latestDate, type, href, source);
     }
 
     @Override
@@ -770,9 +675,9 @@ public final class Date implements org.thryft.Struct, org.dressdiscover.api.voca
     }
 
     public static Date readAsList(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
-        org.dressdiscover.api.vocabularies.vra_core.date.DateBound earliestDate = null;
-        org.dressdiscover.api.vocabularies.vra_core.date.DateBound latestDate = null;
-        org.dressdiscover.api.vocabularies.vra_core.date.DateType type = null;
+        org.dressdiscover.api.vocabularies.vra_core.date.DateBound earliestDate;
+        org.dressdiscover.api.vocabularies.vra_core.date.DateBound latestDate;
+        org.dressdiscover.api.vocabularies.vra_core.date.DateType type;
         com.google.common.base.Optional<org.thryft.native_.Url> href = com.google.common.base.Optional.<org.thryft.native_.Url> absent();
         com.google.common.base.Optional<String> source = com.google.common.base.Optional.<String> absent();
 
@@ -780,7 +685,7 @@ public final class Date implements org.thryft.Struct, org.dressdiscover.api.voca
             final org.thryft.protocol.ListBegin __list = iprot.readListBegin();
             earliestDate = org.dressdiscover.api.vocabularies.vra_core.date.DateBound.readAsStruct(iprot);
             latestDate = org.dressdiscover.api.vocabularies.vra_core.date.DateBound.readAsStruct(iprot);
-            type = iprot.readEnum(org.dressdiscover.api.vocabularies.vra_core.date.DateType.class);
+            type = iprot.readEnum(org.dressdiscover.api.vocabularies.vra_core.date.DateType.Factory.getInstance());
             if (__list.getSize() > 3) {
                 try {
                     href = com.google.common.base.Optional.of(org.thryft.native_.Url.parse(iprot.readString()));
@@ -794,7 +699,10 @@ public final class Date implements org.thryft.Struct, org.dressdiscover.api.voca
         } catch (final RuntimeException e) {
             throw new IllegalStateException(e);
         }
-        return new Date(DefaultReadValidator.getInstance().validateEarliestDate(earliestDate), DefaultReadValidator.getInstance().validateLatestDate(latestDate), DefaultReadValidator.getInstance().validateType(type), DefaultReadValidator.getInstance().validateHref(href), DefaultReadValidator.getInstance().validateSource(source), NopConstructionValidator.getInstance());
+
+        ReadValidator.validate(earliestDate, latestDate, type, href, source);
+
+        return new Date(earliestDate, latestDate, type, href, source);
     }
 
     public static Date readAsStruct(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
@@ -802,9 +710,9 @@ public final class Date implements org.thryft.Struct, org.dressdiscover.api.voca
     }
 
     public static Date readAsStruct(final org.thryft.protocol.InputProtocol iprot, final com.google.common.base.Optional<UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
-        org.dressdiscover.api.vocabularies.vra_core.date.DateBound earliestDate = null;
-        org.dressdiscover.api.vocabularies.vra_core.date.DateBound latestDate = null;
-        org.dressdiscover.api.vocabularies.vra_core.date.DateType type = null;
+        @javax.annotation.Nullable org.dressdiscover.api.vocabularies.vra_core.date.DateBound earliestDate = null;
+        @javax.annotation.Nullable org.dressdiscover.api.vocabularies.vra_core.date.DateBound latestDate = null;
+        @javax.annotation.Nullable org.dressdiscover.api.vocabularies.vra_core.date.DateType type = null;
         com.google.common.base.Optional<org.thryft.native_.Url> href = com.google.common.base.Optional.<org.thryft.native_.Url> absent();
         com.google.common.base.Optional<String> source = com.google.common.base.Optional.<String> absent();
 
@@ -818,19 +726,19 @@ public final class Date implements org.thryft.Struct, org.dressdiscover.api.voca
                 switch (ifield.getName()) {
                 case "earliest_date": {
                     if (!ifield.hasId() || ifield.getId() == 1) {
-                        earliestDate = org.dressdiscover.api.vocabularies.vra_core.date.DateBound.readAsStruct(iprot);
+                        earliestDate = org.dressdiscover.api.vocabularies.vra_core.date.DateBound.readAsStruct(iprot, unknownFieldCallback);
                     }
                     break;
                 }
                 case "latest_date": {
                     if (!ifield.hasId() || ifield.getId() == 2) {
-                        latestDate = org.dressdiscover.api.vocabularies.vra_core.date.DateBound.readAsStruct(iprot);
+                        latestDate = org.dressdiscover.api.vocabularies.vra_core.date.DateBound.readAsStruct(iprot, unknownFieldCallback);
                     }
                     break;
                 }
                 case "type": {
                     if (!ifield.hasId() || ifield.getId() == 3) {
-                        type = iprot.readEnum(org.dressdiscover.api.vocabularies.vra_core.date.DateType.class);
+                        type = iprot.readEnum(org.dressdiscover.api.vocabularies.vra_core.date.DateType.Factory.getInstance());
                     }
                     break;
                 }
@@ -861,35 +769,43 @@ public final class Date implements org.thryft.Struct, org.dressdiscover.api.voca
         } catch (final RuntimeException e) {
             throw new IllegalStateException(e);
         }
-        return new Date(DefaultReadValidator.getInstance().validateEarliestDate(earliestDate), DefaultReadValidator.getInstance().validateLatestDate(latestDate), DefaultReadValidator.getInstance().validateType(type), DefaultReadValidator.getInstance().validateHref(href), DefaultReadValidator.getInstance().validateSource(source), NopConstructionValidator.getInstance());
+
+        ReadValidator.validate(earliestDate, latestDate, type, href, source);
+
+        return new Date(earliestDate, latestDate, type, href, source);
     }
 
     public Date replaceEarliestDate(final org.dressdiscover.api.vocabularies.vra_core.date.DateBound earliestDate) {
-        return new Date(DefaultConstructionValidator.getInstance().validateEarliestDate(earliestDate), this.latestDate, this.type, this.href, this.source, NopConstructionValidator.getInstance());
+        UncheckedValidator.validateEarliestDate(earliestDate);
+        return new Date(earliestDate, this.latestDate, this.type, this.href, this.source);
     }
 
     public Date replaceHref(final com.google.common.base.Optional<org.thryft.native_.Url> href) {
-        return new Date(this.earliestDate, this.latestDate, this.type, DefaultConstructionValidator.getInstance().validateHref(href), this.source, NopConstructionValidator.getInstance());
+        UncheckedValidator.validateHref(href);
+        return new Date(this.earliestDate, this.latestDate, this.type, href, this.source);
     }
 
-    public Date replaceHref(final org.thryft.native_.Url href) {
+    public Date replaceHref(@javax.annotation.Nullable final org.thryft.native_.Url href) {
         return replaceHref(com.google.common.base.Optional.fromNullable(href));
     }
 
     public Date replaceLatestDate(final org.dressdiscover.api.vocabularies.vra_core.date.DateBound latestDate) {
-        return new Date(this.earliestDate, DefaultConstructionValidator.getInstance().validateLatestDate(latestDate), this.type, this.href, this.source, NopConstructionValidator.getInstance());
+        UncheckedValidator.validateLatestDate(latestDate);
+        return new Date(this.earliestDate, latestDate, this.type, this.href, this.source);
     }
 
     public Date replaceSource(final com.google.common.base.Optional<String> source) {
-        return new Date(this.earliestDate, this.latestDate, this.type, this.href, DefaultConstructionValidator.getInstance().validateSource(source), NopConstructionValidator.getInstance());
+        UncheckedValidator.validateSource(source);
+        return new Date(this.earliestDate, this.latestDate, this.type, this.href, source);
     }
 
-    public Date replaceSource(final String source) {
+    public Date replaceSource(@javax.annotation.Nullable final String source) {
         return replaceSource(com.google.common.base.Optional.fromNullable(source));
     }
 
     public Date replaceType(final org.dressdiscover.api.vocabularies.vra_core.date.DateType type) {
-        return new Date(this.earliestDate, this.latestDate, DefaultConstructionValidator.getInstance().validateType(type), this.href, this.source, NopConstructionValidator.getInstance());
+        UncheckedValidator.validateType(type);
+        return new Date(this.earliestDate, this.latestDate, type, this.href, this.source);
     }
 
     @Override
@@ -929,33 +845,53 @@ public final class Date implements org.thryft.Struct, org.dressdiscover.api.voca
         oprot.writeStructEnd();
     }
 
-    @Override
-    public void writeFields(final org.thryft.protocol.OutputProtocol oprot) throws org.thryft.protocol.OutputProtocolException {
-        oprot.writeFieldBegin("earliest_date", org.thryft.protocol.Type.STRUCT, (short)1);
+    public void writeEarliestDateField(final org.thryft.protocol.OutputProtocol oprot) throws org.thryft.protocol.OutputProtocolException {
+        oprot.writeFieldBegin(FieldMetadata.EARLIEST_DATE);
         getEarliestDate().writeAsStruct(oprot);
         oprot.writeFieldEnd();
+    }
 
-        oprot.writeFieldBegin("latest_date", org.thryft.protocol.Type.STRUCT, (short)2);
-        getLatestDate().writeAsStruct(oprot);
-        oprot.writeFieldEnd();
+    @Override
+    public void writeFields(final org.thryft.protocol.OutputProtocol oprot) throws org.thryft.protocol.OutputProtocolException {
+        writeEarliestDateField(oprot);
 
-        oprot.writeFieldBegin("type", org.thryft.protocol.Type.STRING, (short)3);
-        oprot.writeEnum(getType());
-        oprot.writeFieldEnd();
+        writeLatestDateField(oprot);
 
+        writeTypeField(oprot);
+
+        writeHrefField(oprot);
+
+        writeSourceField(oprot);
+
+        oprot.writeFieldStop();
+    }
+
+    public void writeHrefField(final org.thryft.protocol.OutputProtocol oprot) throws org.thryft.protocol.OutputProtocolException {
         if (getHref().isPresent()) {
-            oprot.writeFieldBegin("href", org.thryft.protocol.Type.STRING, (short)4);
+            oprot.writeFieldBegin(FieldMetadata.HREF);
             oprot.writeString(getHref().get().toString());
             oprot.writeFieldEnd();
         }
+    }
 
+    public void writeLatestDateField(final org.thryft.protocol.OutputProtocol oprot) throws org.thryft.protocol.OutputProtocolException {
+        oprot.writeFieldBegin(FieldMetadata.LATEST_DATE);
+        getLatestDate().writeAsStruct(oprot);
+        oprot.writeFieldEnd();
+    }
+
+    public void writeSourceField(final org.thryft.protocol.OutputProtocol oprot) throws org.thryft.protocol.OutputProtocolException {
         if (getSource().isPresent()) {
-            oprot.writeFieldBegin("source", org.thryft.protocol.Type.STRING, (short)5);
+            oprot.writeFieldBegin(FieldMetadata.SOURCE);
             oprot.writeString(getSource().get());
             oprot.writeFieldEnd();
         }
+    }
 
-        oprot.writeFieldStop();
+    public void writeTypeField(final org.thryft.protocol.OutputProtocol oprot) throws org.thryft.protocol.OutputProtocolException {
+        oprot.writeFieldBegin(FieldMetadata.TYPE);
+        oprot.writeEnum(getType());
+        oprot.writeFieldEnd();
     }
 
     private final org.dressdiscover.api.vocabularies.vra_core.date.DateBound earliestDate;

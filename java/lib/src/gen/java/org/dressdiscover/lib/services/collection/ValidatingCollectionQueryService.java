@@ -11,32 +11,26 @@ public class ValidatingCollectionQueryService implements org.dressdiscover.api.s
 
     @Override
     public final org.dressdiscover.api.models.collection.Collection getCollectionById(final org.dressdiscover.api.models.collection.CollectionId id) throws org.dressdiscover.api.services.IoException, org.dressdiscover.api.services.collection.NoSuchCollectionException, org.dressdiscover.api.services.institution.NoSuchInstitutionException {
-        _validateGetCollectionByIdParameters(id);
-        return org.dressdiscover.api.services.collection.CollectionQueryService.Messages.GetCollectionByIdResponse.DefaultConstructionValidator.getInstance().validateReturnValue(delegate.getCollectionById(id));
-    }
-
-    protected void _validateGetCollectionByIdParameters(final org.dressdiscover.api.models.collection.CollectionId id) {
-        org.dressdiscover.api.services.collection.CollectionQueryService.Messages.GetCollectionByIdRequest.DefaultConstructionValidator.getInstance().validateId(id);
+        org.dressdiscover.api.services.collection.CollectionQueryService.Messages.GetCollectionByIdRequest.UncheckedValidator.validate(id);
+        final org.dressdiscover.api.models.collection.Collection __returnValue = delegate.getCollectionById(id);
+        org.dressdiscover.api.services.collection.CollectionQueryService.Messages.GetCollectionByIdResponse.UncheckedValidator.validateReturnValue(__returnValue);
+        return __returnValue;
     }
 
     @Override
     public final com.google.common.collect.ImmutableList<org.dressdiscover.api.models.collection.Collection> getCollectionsByIds(final com.google.common.collect.ImmutableList<org.dressdiscover.api.models.collection.CollectionId> ids) throws org.dressdiscover.api.services.IoException, org.dressdiscover.api.services.collection.NoSuchCollectionException, org.dressdiscover.api.services.institution.NoSuchInstitutionException {
-        _validateGetCollectionsByIdsParameters(ids);
-        return org.dressdiscover.api.services.collection.CollectionQueryService.Messages.GetCollectionsByIdsResponse.DefaultConstructionValidator.getInstance().validateReturnValue(delegate.getCollectionsByIds(ids));
-    }
-
-    protected void _validateGetCollectionsByIdsParameters(final com.google.common.collect.ImmutableList<org.dressdiscover.api.models.collection.CollectionId> ids) {
-        org.dressdiscover.api.services.collection.CollectionQueryService.Messages.GetCollectionsByIdsRequest.DefaultConstructionValidator.getInstance().validateIds(ids);
+        org.dressdiscover.api.services.collection.CollectionQueryService.Messages.GetCollectionsByIdsRequest.UncheckedValidator.validate(ids);
+        final com.google.common.collect.ImmutableList<org.dressdiscover.api.models.collection.Collection> __returnValue = delegate.getCollectionsByIds(ids);
+        org.dressdiscover.api.services.collection.CollectionQueryService.Messages.GetCollectionsByIdsResponse.UncheckedValidator.validateReturnValue(__returnValue);
+        return __returnValue;
     }
 
     @Override
     public final com.google.common.collect.ImmutableList<org.dressdiscover.api.models.collection.CollectionEntry> getCollectionsByInstitutionId(final org.dressdiscover.api.models.institution.InstitutionId institutionId) throws org.dressdiscover.api.services.IoException, org.dressdiscover.api.services.institution.NoSuchInstitutionException {
-        _validateGetCollectionsByInstitutionIdParameters(institutionId);
-        return org.dressdiscover.api.services.collection.CollectionQueryService.Messages.GetCollectionsByInstitutionIdResponse.DefaultConstructionValidator.getInstance().validateReturnValue(delegate.getCollectionsByInstitutionId(institutionId));
-    }
-
-    protected void _validateGetCollectionsByInstitutionIdParameters(final org.dressdiscover.api.models.institution.InstitutionId institutionId) {
-        org.dressdiscover.api.services.collection.CollectionQueryService.Messages.GetCollectionsByInstitutionIdRequest.DefaultConstructionValidator.getInstance().validateInstitutionId(institutionId);
+        org.dressdiscover.api.services.collection.CollectionQueryService.Messages.GetCollectionsByInstitutionIdRequest.UncheckedValidator.validate(institutionId);
+        final com.google.common.collect.ImmutableList<org.dressdiscover.api.models.collection.CollectionEntry> __returnValue = delegate.getCollectionsByInstitutionId(institutionId);
+        org.dressdiscover.api.services.collection.CollectionQueryService.Messages.GetCollectionsByInstitutionIdResponse.UncheckedValidator.validateReturnValue(__returnValue);
+        return __returnValue;
     }
 
     private final org.dressdiscover.api.services.collection.CollectionQueryService delegate;

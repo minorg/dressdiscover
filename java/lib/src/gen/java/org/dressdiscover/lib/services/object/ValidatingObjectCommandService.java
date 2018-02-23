@@ -11,33 +11,22 @@ public class ValidatingObjectCommandService implements org.dressdiscover.api.ser
 
     @Override
     public final int deleteObjectsByCollectionId(final org.dressdiscover.api.models.collection.CollectionId collectionId) throws org.dressdiscover.api.services.IoException, org.dressdiscover.api.services.collection.NoSuchCollectionException, org.dressdiscover.api.services.institution.NoSuchInstitutionException {
-        _validateDeleteObjectsByCollectionIdParameters(collectionId);
-        return org.dressdiscover.api.services.object.ObjectCommandService.Messages.DeleteObjectsByCollectionIdResponse.DefaultConstructionValidator.getInstance().validateReturnValue(delegate.deleteObjectsByCollectionId(collectionId));
-    }
-
-    protected void _validateDeleteObjectsByCollectionIdParameters(final org.dressdiscover.api.models.collection.CollectionId collectionId) {
-        org.dressdiscover.api.services.object.ObjectCommandService.Messages.DeleteObjectsByCollectionIdRequest.DefaultConstructionValidator.getInstance().validateCollectionId(collectionId);
+        org.dressdiscover.api.services.object.ObjectCommandService.Messages.DeleteObjectsByCollectionIdRequest.UncheckedValidator.validate(collectionId);
+        final int __returnValue = delegate.deleteObjectsByCollectionId(collectionId);
+        org.dressdiscover.api.services.object.ObjectCommandService.Messages.DeleteObjectsByCollectionIdResponse.UncheckedValidator.validateReturnValue(__returnValue);
+        return __returnValue;
     }
 
     @Override
     public final void putObject(final org.dressdiscover.api.models.object.ObjectId id, final org.dressdiscover.api.models.object.Object object) throws org.dressdiscover.api.services.IoException, org.dressdiscover.api.services.collection.NoSuchCollectionException, org.dressdiscover.api.services.institution.NoSuchInstitutionException {
-        _validatePutObjectParameters(id, object);
+        org.dressdiscover.api.services.object.ObjectCommandService.Messages.PutObjectRequest.UncheckedValidator.validate(id, object);
         delegate.putObject(id, object);
-    }
-
-    protected void _validatePutObjectParameters(final org.dressdiscover.api.models.object.ObjectId id, final org.dressdiscover.api.models.object.Object object) {
-        org.dressdiscover.api.services.object.ObjectCommandService.Messages.PutObjectRequest.DefaultConstructionValidator.getInstance().validateId(id);
-        org.dressdiscover.api.services.object.ObjectCommandService.Messages.PutObjectRequest.DefaultConstructionValidator.getInstance().validateObject(object);
     }
 
     @Override
     public final void putObjects(final com.google.common.collect.ImmutableList<org.dressdiscover.api.models.object.ObjectEntry> objects) throws org.dressdiscover.api.services.IoException, org.dressdiscover.api.services.collection.NoSuchCollectionException, org.dressdiscover.api.services.institution.NoSuchInstitutionException {
-        _validatePutObjectsParameters(objects);
+        org.dressdiscover.api.services.object.ObjectCommandService.Messages.PutObjectsRequest.UncheckedValidator.validate(objects);
         delegate.putObjects(objects);
-    }
-
-    protected void _validatePutObjectsParameters(final com.google.common.collect.ImmutableList<org.dressdiscover.api.models.object.ObjectEntry> objects) {
-        org.dressdiscover.api.services.object.ObjectCommandService.Messages.PutObjectsRequest.DefaultConstructionValidator.getInstance().validateObjects(objects);
     }
 
     @Override

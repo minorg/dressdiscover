@@ -57,10 +57,12 @@ public final class DublinCoreObject implements org.thryft.Struct {
         }
 
         protected DublinCoreObject _build(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> abstracts, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> audiences, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> contributors, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> coverages, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> createds, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> creators, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> dates, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> descriptions, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> extents, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> formats, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> identifiers, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> languages, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> mediums, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> provenances, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> publishers, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> relations, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> rights, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> rightsHolders, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> sources, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> spatials, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> subjects, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> temporals, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> titles, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> types) {
-            return new DublinCoreObject(abstracts, audiences, contributors, coverages, createds, creators, dates, descriptions, extents, formats, identifiers, languages, mediums, provenances, publishers, relations, rights, rightsHolders, sources, spatials, subjects, temporals, titles, types, DefaultConstructionValidator.getInstance());
+            return new DublinCoreObject(abstracts, audiences, contributors, coverages, createds, creators, dates, descriptions, extents, formats, identifiers, languages, mediums, provenances, publishers, relations, rights, rightsHolders, sources, spatials, subjects, temporals, titles, types);
         }
 
         public DublinCoreObject build() {
+            UncheckedValidator.validate(abstracts, audiences, contributors, coverages, createds, creators, dates, descriptions, extents, formats, identifiers, languages, mediums, provenances, publishers, relations, rights, rightsHolders, sources, spatials, subjects, temporals, titles, types);
+
             return _build(abstracts, audiences, contributors, coverages, createds, creators, dates, descriptions, extents, formats, identifiers, languages, mediums, provenances, publishers, relations, rights, rightsHolders, sources, spatials, subjects, temporals, titles, types);
         }
 
@@ -1387,101 +1389,112 @@ public final class DublinCoreObject implements org.thryft.Struct {
         }
 
         public Builder setAbstracts(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> abstracts) {
-            this.abstracts = DefaultConstructionValidator.getInstance().validateAbstracts(abstracts);
+            UncheckedValidator.validateAbstracts(abstracts);
+            this.abstracts = abstracts;
             return this;
         }
 
-        public Builder setAbstracts(@javax.annotation.Nullable final com.google.common.collect.ImmutableList<String> abstracts) {
+        public Builder setAbstracts(final @javax.annotation.Nullable com.google.common.collect.ImmutableList<String> abstracts) {
             return setAbstracts(com.google.common.base.Optional.fromNullable(abstracts));
         }
 
         public Builder setAudiences(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> audiences) {
-            this.audiences = DefaultConstructionValidator.getInstance().validateAudiences(audiences);
+            UncheckedValidator.validateAudiences(audiences);
+            this.audiences = audiences;
             return this;
         }
 
-        public Builder setAudiences(@javax.annotation.Nullable final com.google.common.collect.ImmutableList<String> audiences) {
+        public Builder setAudiences(final @javax.annotation.Nullable com.google.common.collect.ImmutableList<String> audiences) {
             return setAudiences(com.google.common.base.Optional.fromNullable(audiences));
         }
 
         public Builder setContributors(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> contributors) {
-            this.contributors = DefaultConstructionValidator.getInstance().validateContributors(contributors);
+            UncheckedValidator.validateContributors(contributors);
+            this.contributors = contributors;
             return this;
         }
 
-        public Builder setContributors(@javax.annotation.Nullable final com.google.common.collect.ImmutableList<String> contributors) {
+        public Builder setContributors(final @javax.annotation.Nullable com.google.common.collect.ImmutableList<String> contributors) {
             return setContributors(com.google.common.base.Optional.fromNullable(contributors));
         }
 
         public Builder setCoverages(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> coverages) {
-            this.coverages = DefaultConstructionValidator.getInstance().validateCoverages(coverages);
+            UncheckedValidator.validateCoverages(coverages);
+            this.coverages = coverages;
             return this;
         }
 
-        public Builder setCoverages(@javax.annotation.Nullable final com.google.common.collect.ImmutableList<String> coverages) {
+        public Builder setCoverages(final @javax.annotation.Nullable com.google.common.collect.ImmutableList<String> coverages) {
             return setCoverages(com.google.common.base.Optional.fromNullable(coverages));
         }
 
         public Builder setCreateds(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> createds) {
-            this.createds = DefaultConstructionValidator.getInstance().validateCreateds(createds);
+            UncheckedValidator.validateCreateds(createds);
+            this.createds = createds;
             return this;
         }
 
-        public Builder setCreateds(@javax.annotation.Nullable final com.google.common.collect.ImmutableList<String> createds) {
+        public Builder setCreateds(final @javax.annotation.Nullable com.google.common.collect.ImmutableList<String> createds) {
             return setCreateds(com.google.common.base.Optional.fromNullable(createds));
         }
 
         public Builder setCreators(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> creators) {
-            this.creators = DefaultConstructionValidator.getInstance().validateCreators(creators);
+            UncheckedValidator.validateCreators(creators);
+            this.creators = creators;
             return this;
         }
 
-        public Builder setCreators(@javax.annotation.Nullable final com.google.common.collect.ImmutableList<String> creators) {
+        public Builder setCreators(final @javax.annotation.Nullable com.google.common.collect.ImmutableList<String> creators) {
             return setCreators(com.google.common.base.Optional.fromNullable(creators));
         }
 
         public Builder setDates(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> dates) {
-            this.dates = DefaultConstructionValidator.getInstance().validateDates(dates);
+            UncheckedValidator.validateDates(dates);
+            this.dates = dates;
             return this;
         }
 
-        public Builder setDates(@javax.annotation.Nullable final com.google.common.collect.ImmutableList<String> dates) {
+        public Builder setDates(final @javax.annotation.Nullable com.google.common.collect.ImmutableList<String> dates) {
             return setDates(com.google.common.base.Optional.fromNullable(dates));
         }
 
         public Builder setDescriptions(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> descriptions) {
-            this.descriptions = DefaultConstructionValidator.getInstance().validateDescriptions(descriptions);
+            UncheckedValidator.validateDescriptions(descriptions);
+            this.descriptions = descriptions;
             return this;
         }
 
-        public Builder setDescriptions(@javax.annotation.Nullable final com.google.common.collect.ImmutableList<String> descriptions) {
+        public Builder setDescriptions(final @javax.annotation.Nullable com.google.common.collect.ImmutableList<String> descriptions) {
             return setDescriptions(com.google.common.base.Optional.fromNullable(descriptions));
         }
 
         public Builder setExtents(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> extents) {
-            this.extents = DefaultConstructionValidator.getInstance().validateExtents(extents);
+            UncheckedValidator.validateExtents(extents);
+            this.extents = extents;
             return this;
         }
 
-        public Builder setExtents(@javax.annotation.Nullable final com.google.common.collect.ImmutableList<String> extents) {
+        public Builder setExtents(final @javax.annotation.Nullable com.google.common.collect.ImmutableList<String> extents) {
             return setExtents(com.google.common.base.Optional.fromNullable(extents));
         }
 
         public Builder setFormats(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> formats) {
-            this.formats = DefaultConstructionValidator.getInstance().validateFormats(formats);
+            UncheckedValidator.validateFormats(formats);
+            this.formats = formats;
             return this;
         }
 
-        public Builder setFormats(@javax.annotation.Nullable final com.google.common.collect.ImmutableList<String> formats) {
+        public Builder setFormats(final @javax.annotation.Nullable com.google.common.collect.ImmutableList<String> formats) {
             return setFormats(com.google.common.base.Optional.fromNullable(formats));
         }
 
         public Builder setIdentifiers(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> identifiers) {
-            this.identifiers = DefaultConstructionValidator.getInstance().validateIdentifiers(identifiers);
+            UncheckedValidator.validateIdentifiers(identifiers);
+            this.identifiers = identifiers;
             return this;
         }
 
-        public Builder setIdentifiers(@javax.annotation.Nullable final com.google.common.collect.ImmutableList<String> identifiers) {
+        public Builder setIdentifiers(final @javax.annotation.Nullable com.google.common.collect.ImmutableList<String> identifiers) {
             return setIdentifiers(com.google.common.base.Optional.fromNullable(identifiers));
         }
 
@@ -1565,119 +1578,132 @@ public final class DublinCoreObject implements org.thryft.Struct {
         }
 
         public Builder setLanguages(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> languages) {
-            this.languages = DefaultConstructionValidator.getInstance().validateLanguages(languages);
+            UncheckedValidator.validateLanguages(languages);
+            this.languages = languages;
             return this;
         }
 
-        public Builder setLanguages(@javax.annotation.Nullable final com.google.common.collect.ImmutableList<String> languages) {
+        public Builder setLanguages(final @javax.annotation.Nullable com.google.common.collect.ImmutableList<String> languages) {
             return setLanguages(com.google.common.base.Optional.fromNullable(languages));
         }
 
         public Builder setMediums(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> mediums) {
-            this.mediums = DefaultConstructionValidator.getInstance().validateMediums(mediums);
+            UncheckedValidator.validateMediums(mediums);
+            this.mediums = mediums;
             return this;
         }
 
-        public Builder setMediums(@javax.annotation.Nullable final com.google.common.collect.ImmutableList<String> mediums) {
+        public Builder setMediums(final @javax.annotation.Nullable com.google.common.collect.ImmutableList<String> mediums) {
             return setMediums(com.google.common.base.Optional.fromNullable(mediums));
         }
 
         public Builder setProvenances(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> provenances) {
-            this.provenances = DefaultConstructionValidator.getInstance().validateProvenances(provenances);
+            UncheckedValidator.validateProvenances(provenances);
+            this.provenances = provenances;
             return this;
         }
 
-        public Builder setProvenances(@javax.annotation.Nullable final com.google.common.collect.ImmutableList<String> provenances) {
+        public Builder setProvenances(final @javax.annotation.Nullable com.google.common.collect.ImmutableList<String> provenances) {
             return setProvenances(com.google.common.base.Optional.fromNullable(provenances));
         }
 
         public Builder setPublishers(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> publishers) {
-            this.publishers = DefaultConstructionValidator.getInstance().validatePublishers(publishers);
+            UncheckedValidator.validatePublishers(publishers);
+            this.publishers = publishers;
             return this;
         }
 
-        public Builder setPublishers(@javax.annotation.Nullable final com.google.common.collect.ImmutableList<String> publishers) {
+        public Builder setPublishers(final @javax.annotation.Nullable com.google.common.collect.ImmutableList<String> publishers) {
             return setPublishers(com.google.common.base.Optional.fromNullable(publishers));
         }
 
         public Builder setRelations(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> relations) {
-            this.relations = DefaultConstructionValidator.getInstance().validateRelations(relations);
+            UncheckedValidator.validateRelations(relations);
+            this.relations = relations;
             return this;
         }
 
-        public Builder setRelations(@javax.annotation.Nullable final com.google.common.collect.ImmutableList<String> relations) {
+        public Builder setRelations(final @javax.annotation.Nullable com.google.common.collect.ImmutableList<String> relations) {
             return setRelations(com.google.common.base.Optional.fromNullable(relations));
         }
 
         public Builder setRights(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> rights) {
-            this.rights = DefaultConstructionValidator.getInstance().validateRights(rights);
+            UncheckedValidator.validateRights(rights);
+            this.rights = rights;
             return this;
         }
 
-        public Builder setRights(@javax.annotation.Nullable final com.google.common.collect.ImmutableList<String> rights) {
+        public Builder setRights(final @javax.annotation.Nullable com.google.common.collect.ImmutableList<String> rights) {
             return setRights(com.google.common.base.Optional.fromNullable(rights));
         }
 
         public Builder setRightsHolders(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> rightsHolders) {
-            this.rightsHolders = DefaultConstructionValidator.getInstance().validateRightsHolders(rightsHolders);
+            UncheckedValidator.validateRightsHolders(rightsHolders);
+            this.rightsHolders = rightsHolders;
             return this;
         }
 
-        public Builder setRightsHolders(@javax.annotation.Nullable final com.google.common.collect.ImmutableList<String> rightsHolders) {
+        public Builder setRightsHolders(final @javax.annotation.Nullable com.google.common.collect.ImmutableList<String> rightsHolders) {
             return setRightsHolders(com.google.common.base.Optional.fromNullable(rightsHolders));
         }
 
         public Builder setSources(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> sources) {
-            this.sources = DefaultConstructionValidator.getInstance().validateSources(sources);
+            UncheckedValidator.validateSources(sources);
+            this.sources = sources;
             return this;
         }
 
-        public Builder setSources(@javax.annotation.Nullable final com.google.common.collect.ImmutableList<String> sources) {
+        public Builder setSources(final @javax.annotation.Nullable com.google.common.collect.ImmutableList<String> sources) {
             return setSources(com.google.common.base.Optional.fromNullable(sources));
         }
 
         public Builder setSpatials(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> spatials) {
-            this.spatials = DefaultConstructionValidator.getInstance().validateSpatials(spatials);
+            UncheckedValidator.validateSpatials(spatials);
+            this.spatials = spatials;
             return this;
         }
 
-        public Builder setSpatials(@javax.annotation.Nullable final com.google.common.collect.ImmutableList<String> spatials) {
+        public Builder setSpatials(final @javax.annotation.Nullable com.google.common.collect.ImmutableList<String> spatials) {
             return setSpatials(com.google.common.base.Optional.fromNullable(spatials));
         }
 
         public Builder setSubjects(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> subjects) {
-            this.subjects = DefaultConstructionValidator.getInstance().validateSubjects(subjects);
+            UncheckedValidator.validateSubjects(subjects);
+            this.subjects = subjects;
             return this;
         }
 
-        public Builder setSubjects(@javax.annotation.Nullable final com.google.common.collect.ImmutableList<String> subjects) {
+        public Builder setSubjects(final @javax.annotation.Nullable com.google.common.collect.ImmutableList<String> subjects) {
             return setSubjects(com.google.common.base.Optional.fromNullable(subjects));
         }
 
         public Builder setTemporals(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> temporals) {
-            this.temporals = DefaultConstructionValidator.getInstance().validateTemporals(temporals);
+            UncheckedValidator.validateTemporals(temporals);
+            this.temporals = temporals;
             return this;
         }
 
-        public Builder setTemporals(@javax.annotation.Nullable final com.google.common.collect.ImmutableList<String> temporals) {
+        public Builder setTemporals(final @javax.annotation.Nullable com.google.common.collect.ImmutableList<String> temporals) {
             return setTemporals(com.google.common.base.Optional.fromNullable(temporals));
         }
 
         public Builder setTitles(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> titles) {
-            this.titles = DefaultConstructionValidator.getInstance().validateTitles(titles);
+            UncheckedValidator.validateTitles(titles);
+            this.titles = titles;
             return this;
         }
 
-        public Builder setTitles(@javax.annotation.Nullable final com.google.common.collect.ImmutableList<String> titles) {
+        public Builder setTitles(final @javax.annotation.Nullable com.google.common.collect.ImmutableList<String> titles) {
             return setTitles(com.google.common.base.Optional.fromNullable(titles));
         }
 
         public Builder setTypes(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> types) {
-            this.types = DefaultConstructionValidator.getInstance().validateTypes(types);
+            UncheckedValidator.validateTypes(types);
+            this.types = types;
             return this;
         }
 
-        public Builder setTypes(@javax.annotation.Nullable final com.google.common.collect.ImmutableList<String> types) {
+        public Builder setTypes(final @javax.annotation.Nullable com.google.common.collect.ImmutableList<String> types) {
             return setTypes(com.google.common.base.Optional.fromNullable(types));
         }
 
@@ -1902,30 +1928,30 @@ public final class DublinCoreObject implements org.thryft.Struct {
 
     @SuppressWarnings("serial")
     public enum FieldMetadata implements org.thryft.CompoundType.FieldMetadata {
-        ABSTRACTS("abstracts", new com.google.common.reflect.TypeToken<com.google.common.collect.ImmutableList<String>>() {}, false, 24, "abstracts", org.thryft.protocol.Type.LIST),
-        AUDIENCES("audiences", new com.google.common.reflect.TypeToken<com.google.common.collect.ImmutableList<String>>() {}, false, 1, "audiences", org.thryft.protocol.Type.LIST),
-        CONTRIBUTORS("contributors", new com.google.common.reflect.TypeToken<com.google.common.collect.ImmutableList<String>>() {}, false, 2, "contributors", org.thryft.protocol.Type.LIST),
-        COVERAGES("coverages", new com.google.common.reflect.TypeToken<com.google.common.collect.ImmutableList<String>>() {}, false, 3, "coverages", org.thryft.protocol.Type.LIST),
-        CREATEDS("createds", new com.google.common.reflect.TypeToken<com.google.common.collect.ImmutableList<String>>() {}, false, 20, "createds", org.thryft.protocol.Type.LIST),
-        CREATORS("creators", new com.google.common.reflect.TypeToken<com.google.common.collect.ImmutableList<String>>() {}, false, 4, "creators", org.thryft.protocol.Type.LIST),
-        DATES("dates", new com.google.common.reflect.TypeToken<com.google.common.collect.ImmutableList<String>>() {}, false, 5, "dates", org.thryft.protocol.Type.LIST),
-        DESCRIPTIONS("descriptions", new com.google.common.reflect.TypeToken<com.google.common.collect.ImmutableList<String>>() {}, false, 6, "descriptions", org.thryft.protocol.Type.LIST),
-        EXTENTS("extents", new com.google.common.reflect.TypeToken<com.google.common.collect.ImmutableList<String>>() {}, false, 19, "extents", org.thryft.protocol.Type.LIST),
-        FORMATS("formats", new com.google.common.reflect.TypeToken<com.google.common.collect.ImmutableList<String>>() {}, false, 8, "formats", org.thryft.protocol.Type.LIST),
-        IDENTIFIERS("identifiers", new com.google.common.reflect.TypeToken<com.google.common.collect.ImmutableList<String>>() {}, false, 7, "identifiers", org.thryft.protocol.Type.LIST),
-        LANGUAGES("languages", new com.google.common.reflect.TypeToken<com.google.common.collect.ImmutableList<String>>() {}, false, 9, "languages", org.thryft.protocol.Type.LIST),
-        MEDIUMS("mediums", new com.google.common.reflect.TypeToken<com.google.common.collect.ImmutableList<String>>() {}, false, 23, "mediums", org.thryft.protocol.Type.LIST),
-        PROVENANCES("provenances", new com.google.common.reflect.TypeToken<com.google.common.collect.ImmutableList<String>>() {}, false, 10, "provenances", org.thryft.protocol.Type.LIST),
-        PUBLISHERS("publishers", new com.google.common.reflect.TypeToken<com.google.common.collect.ImmutableList<String>>() {}, false, 11, "publishers", org.thryft.protocol.Type.LIST),
-        RELATIONS("relations", new com.google.common.reflect.TypeToken<com.google.common.collect.ImmutableList<String>>() {}, false, 12, "relations", org.thryft.protocol.Type.LIST),
-        RIGHTS("rights", new com.google.common.reflect.TypeToken<com.google.common.collect.ImmutableList<String>>() {}, false, 13, "rights", org.thryft.protocol.Type.LIST),
-        RIGHTS_HOLDERS("rightsHolders", new com.google.common.reflect.TypeToken<com.google.common.collect.ImmutableList<String>>() {}, false, 14, "rights_holders", org.thryft.protocol.Type.LIST),
-        SOURCES("sources", new com.google.common.reflect.TypeToken<com.google.common.collect.ImmutableList<String>>() {}, false, 15, "sources", org.thryft.protocol.Type.LIST),
-        SPATIALS("spatials", new com.google.common.reflect.TypeToken<com.google.common.collect.ImmutableList<String>>() {}, false, 21, "spatials", org.thryft.protocol.Type.LIST),
-        SUBJECTS("subjects", new com.google.common.reflect.TypeToken<com.google.common.collect.ImmutableList<String>>() {}, false, 16, "subjects", org.thryft.protocol.Type.LIST),
-        TEMPORALS("temporals", new com.google.common.reflect.TypeToken<com.google.common.collect.ImmutableList<String>>() {}, false, 22, "temporals", org.thryft.protocol.Type.LIST),
-        TITLES("titles", new com.google.common.reflect.TypeToken<com.google.common.collect.ImmutableList<String>>() {}, false, 17, "titles", org.thryft.protocol.Type.LIST),
-        TYPES("types", new com.google.common.reflect.TypeToken<com.google.common.collect.ImmutableList<String>>() {}, false, 18, "types", org.thryft.protocol.Type.LIST);
+        ABSTRACTS("abstracts", new com.google.common.reflect.TypeToken<com.google.common.collect.ImmutableList<String>>() {}, false, (short)24, "abstracts", org.thryft.protocol.Type.LIST),
+        AUDIENCES("audiences", new com.google.common.reflect.TypeToken<com.google.common.collect.ImmutableList<String>>() {}, false, (short)1, "audiences", org.thryft.protocol.Type.LIST),
+        CONTRIBUTORS("contributors", new com.google.common.reflect.TypeToken<com.google.common.collect.ImmutableList<String>>() {}, false, (short)2, "contributors", org.thryft.protocol.Type.LIST),
+        COVERAGES("coverages", new com.google.common.reflect.TypeToken<com.google.common.collect.ImmutableList<String>>() {}, false, (short)3, "coverages", org.thryft.protocol.Type.LIST),
+        CREATEDS("createds", new com.google.common.reflect.TypeToken<com.google.common.collect.ImmutableList<String>>() {}, false, (short)20, "createds", org.thryft.protocol.Type.LIST),
+        CREATORS("creators", new com.google.common.reflect.TypeToken<com.google.common.collect.ImmutableList<String>>() {}, false, (short)4, "creators", org.thryft.protocol.Type.LIST),
+        DATES("dates", new com.google.common.reflect.TypeToken<com.google.common.collect.ImmutableList<String>>() {}, false, (short)5, "dates", org.thryft.protocol.Type.LIST),
+        DESCRIPTIONS("descriptions", new com.google.common.reflect.TypeToken<com.google.common.collect.ImmutableList<String>>() {}, false, (short)6, "descriptions", org.thryft.protocol.Type.LIST),
+        EXTENTS("extents", new com.google.common.reflect.TypeToken<com.google.common.collect.ImmutableList<String>>() {}, false, (short)19, "extents", org.thryft.protocol.Type.LIST),
+        FORMATS("formats", new com.google.common.reflect.TypeToken<com.google.common.collect.ImmutableList<String>>() {}, false, (short)8, "formats", org.thryft.protocol.Type.LIST),
+        IDENTIFIERS("identifiers", new com.google.common.reflect.TypeToken<com.google.common.collect.ImmutableList<String>>() {}, false, (short)7, "identifiers", org.thryft.protocol.Type.LIST),
+        LANGUAGES("languages", new com.google.common.reflect.TypeToken<com.google.common.collect.ImmutableList<String>>() {}, false, (short)9, "languages", org.thryft.protocol.Type.LIST),
+        MEDIUMS("mediums", new com.google.common.reflect.TypeToken<com.google.common.collect.ImmutableList<String>>() {}, false, (short)23, "mediums", org.thryft.protocol.Type.LIST),
+        PROVENANCES("provenances", new com.google.common.reflect.TypeToken<com.google.common.collect.ImmutableList<String>>() {}, false, (short)10, "provenances", org.thryft.protocol.Type.LIST),
+        PUBLISHERS("publishers", new com.google.common.reflect.TypeToken<com.google.common.collect.ImmutableList<String>>() {}, false, (short)11, "publishers", org.thryft.protocol.Type.LIST),
+        RELATIONS("relations", new com.google.common.reflect.TypeToken<com.google.common.collect.ImmutableList<String>>() {}, false, (short)12, "relations", org.thryft.protocol.Type.LIST),
+        RIGHTS("rights", new com.google.common.reflect.TypeToken<com.google.common.collect.ImmutableList<String>>() {}, false, (short)13, "rights", org.thryft.protocol.Type.LIST),
+        RIGHTS_HOLDERS("rightsHolders", new com.google.common.reflect.TypeToken<com.google.common.collect.ImmutableList<String>>() {}, false, (short)14, "rights_holders", org.thryft.protocol.Type.LIST),
+        SOURCES("sources", new com.google.common.reflect.TypeToken<com.google.common.collect.ImmutableList<String>>() {}, false, (short)15, "sources", org.thryft.protocol.Type.LIST),
+        SPATIALS("spatials", new com.google.common.reflect.TypeToken<com.google.common.collect.ImmutableList<String>>() {}, false, (short)21, "spatials", org.thryft.protocol.Type.LIST),
+        SUBJECTS("subjects", new com.google.common.reflect.TypeToken<com.google.common.collect.ImmutableList<String>>() {}, false, (short)16, "subjects", org.thryft.protocol.Type.LIST),
+        TEMPORALS("temporals", new com.google.common.reflect.TypeToken<com.google.common.collect.ImmutableList<String>>() {}, false, (short)22, "temporals", org.thryft.protocol.Type.LIST),
+        TITLES("titles", new com.google.common.reflect.TypeToken<com.google.common.collect.ImmutableList<String>>() {}, false, (short)17, "titles", org.thryft.protocol.Type.LIST),
+        TYPES("types", new com.google.common.reflect.TypeToken<com.google.common.collect.ImmutableList<String>>() {}, false, (short)18, "types", org.thryft.protocol.Type.LIST);
 
         @Override
         public String getJavaName() {
@@ -1938,7 +1964,7 @@ public final class DublinCoreObject implements org.thryft.Struct {
         }
 
         @Override
-        public int getThriftId() {
+        public short getThriftId() {
             return thriftId;
         }
 
@@ -2029,7 +2055,7 @@ public final class DublinCoreObject implements org.thryft.Struct {
             }
         }
 
-        private FieldMetadata(final String javaName, final com.google.common.reflect.TypeToken<?> javaType, final boolean required, final int thriftId, final String thriftName, final org.thryft.protocol.Type thriftProtocolType) {
+        private FieldMetadata(final String javaName, final com.google.common.reflect.TypeToken<?> javaType, final boolean required, final short thriftId, final String thriftName, final org.thryft.protocol.Type thriftProtocolType) {
             this.javaName = javaName;
             this.javaType = javaType;
             this.required = required;
@@ -2046,1027 +2072,650 @@ public final class DublinCoreObject implements org.thryft.Struct {
         private final String javaName;
         private final com.google.common.reflect.TypeToken<?> javaType;
         private final boolean required;
-        private final int thriftId;
+        private final short thriftId;
         private final String thriftName;
         private final String thriftProtocolKey;
         private final org.thryft.protocol.Type thriftProtocolType;
     }
 
-    public interface Validator<ExceptionT extends Exception> {
-        public com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> validateAbstracts(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> abstracts) throws ExceptionT;
-
-        public com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> validateAudiences(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> audiences) throws ExceptionT;
-
-        public com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> validateContributors(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> contributors) throws ExceptionT;
-
-        public com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> validateCoverages(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> coverages) throws ExceptionT;
-
-        public com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> validateCreateds(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> createds) throws ExceptionT;
-
-        public com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> validateCreators(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> creators) throws ExceptionT;
-
-        public com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> validateDates(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> dates) throws ExceptionT;
-
-        public com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> validateDescriptions(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> descriptions) throws ExceptionT;
-
-        public com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> validateExtents(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> extents) throws ExceptionT;
-
-        public com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> validateFormats(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> formats) throws ExceptionT;
-
-        public com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> validateIdentifiers(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> identifiers) throws ExceptionT;
-
-        public com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> validateLanguages(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> languages) throws ExceptionT;
-
-        public com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> validateMediums(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> mediums) throws ExceptionT;
-
-        public com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> validateProvenances(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> provenances) throws ExceptionT;
-
-        public com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> validatePublishers(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> publishers) throws ExceptionT;
-
-        public com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> validateRelations(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> relations) throws ExceptionT;
-
-        public com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> validateRights(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> rights) throws ExceptionT;
-
-        public com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> validateRightsHolders(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> rightsHolders) throws ExceptionT;
-
-        public com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> validateSources(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> sources) throws ExceptionT;
-
-        public com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> validateSpatials(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> spatials) throws ExceptionT;
-
-        public com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> validateSubjects(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> subjects) throws ExceptionT;
-
-        public com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> validateTemporals(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> temporals) throws ExceptionT;
-
-        public com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> validateTitles(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> titles) throws ExceptionT;
-
-        public com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> validateTypes(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> types) throws ExceptionT;
-    }
-
-    public interface ConstructionValidator extends Validator<RuntimeException> {
-    }
-
-    public static class DefaultConstructionValidator implements ConstructionValidator {
-        public static DefaultConstructionValidator getInstance() {
-            return instance;
+    public final static class ReadValidator {
+        public static void validate(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> abstracts, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> audiences, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> contributors, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> coverages, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> createds, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> creators, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> dates, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> descriptions, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> extents, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> formats, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> identifiers, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> languages, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> mediums, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> provenances, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> publishers, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> relations, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> rights, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> rightsHolders, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> sources, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> spatials, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> subjects, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> temporals, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> titles, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> types) throws org.thryft.protocol.InputProtocolException {
+            validateAbstracts(abstracts);
+            validateAudiences(audiences);
+            validateContributors(contributors);
+            validateCoverages(coverages);
+            validateCreateds(createds);
+            validateCreators(creators);
+            validateDates(dates);
+            validateDescriptions(descriptions);
+            validateExtents(extents);
+            validateFormats(formats);
+            validateIdentifiers(identifiers);
+            validateLanguages(languages);
+            validateMediums(mediums);
+            validateProvenances(provenances);
+            validatePublishers(publishers);
+            validateRelations(relations);
+            validateRights(rights);
+            validateRightsHolders(rightsHolders);
+            validateSources(sources);
+            validateSpatials(spatials);
+            validateSubjects(subjects);
+            validateTemporals(temporals);
+            validateTitles(titles);
+            validateTypes(types);
         }
 
-        public DefaultConstructionValidator() {
-        }
-
-        @Override
-        public com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> validateAbstracts(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> abstracts) throws RuntimeException {
-            if (abstracts == null) {
-                throw new NullPointerException("org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject: abstracts is null");
-            }
-            if (!abstracts.isPresent()) {
-                return abstracts;
-            }
-            if (abstracts.get().isEmpty()) {
-                throw new IllegalArgumentException("org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject: abstracts is less than min length 1");
-            }
-            return abstracts;
-        }
-
-        @Override
-        public com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> validateAudiences(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> audiences) throws RuntimeException {
-            if (audiences == null) {
-                throw new NullPointerException("org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject: audiences is null");
-            }
-            if (!audiences.isPresent()) {
-                return audiences;
-            }
-            if (audiences.get().isEmpty()) {
-                throw new IllegalArgumentException("org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject: audiences is less than min length 1");
-            }
-            return audiences;
-        }
-
-        @Override
-        public com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> validateContributors(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> contributors) throws RuntimeException {
-            if (contributors == null) {
-                throw new NullPointerException("org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject: contributors is null");
-            }
-            if (!contributors.isPresent()) {
-                return contributors;
-            }
-            if (contributors.get().isEmpty()) {
-                throw new IllegalArgumentException("org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject: contributors is less than min length 1");
-            }
-            return contributors;
-        }
-
-        @Override
-        public com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> validateCoverages(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> coverages) throws RuntimeException {
-            if (coverages == null) {
-                throw new NullPointerException("org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject: coverages is null");
-            }
-            if (!coverages.isPresent()) {
-                return coverages;
-            }
-            if (coverages.get().isEmpty()) {
-                throw new IllegalArgumentException("org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject: coverages is less than min length 1");
-            }
-            return coverages;
-        }
-
-        @Override
-        public com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> validateCreateds(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> createds) throws RuntimeException {
-            if (createds == null) {
-                throw new NullPointerException("org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject: createds is null");
-            }
-            if (!createds.isPresent()) {
-                return createds;
-            }
-            if (createds.get().isEmpty()) {
-                throw new IllegalArgumentException("org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject: createds is less than min length 1");
-            }
-            return createds;
-        }
-
-        @Override
-        public com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> validateCreators(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> creators) throws RuntimeException {
-            if (creators == null) {
-                throw new NullPointerException("org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject: creators is null");
-            }
-            if (!creators.isPresent()) {
-                return creators;
-            }
-            if (creators.get().isEmpty()) {
-                throw new IllegalArgumentException("org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject: creators is less than min length 1");
-            }
-            return creators;
-        }
-
-        @Override
-        public com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> validateDates(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> dates) throws RuntimeException {
-            if (dates == null) {
-                throw new NullPointerException("org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject: dates is null");
-            }
-            if (!dates.isPresent()) {
-                return dates;
-            }
-            if (dates.get().isEmpty()) {
-                throw new IllegalArgumentException("org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject: dates is less than min length 1");
-            }
-            return dates;
-        }
-
-        @Override
-        public com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> validateDescriptions(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> descriptions) throws RuntimeException {
-            if (descriptions == null) {
-                throw new NullPointerException("org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject: descriptions is null");
-            }
-            if (!descriptions.isPresent()) {
-                return descriptions;
-            }
-            if (descriptions.get().isEmpty()) {
-                throw new IllegalArgumentException("org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject: descriptions is less than min length 1");
-            }
-            return descriptions;
-        }
-
-        @Override
-        public com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> validateExtents(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> extents) throws RuntimeException {
-            if (extents == null) {
-                throw new NullPointerException("org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject: extents is null");
-            }
-            if (!extents.isPresent()) {
-                return extents;
-            }
-            if (extents.get().isEmpty()) {
-                throw new IllegalArgumentException("org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject: extents is less than min length 1");
-            }
-            return extents;
-        }
-
-        @Override
-        public com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> validateFormats(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> formats) throws RuntimeException {
-            if (formats == null) {
-                throw new NullPointerException("org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject: formats is null");
-            }
-            if (!formats.isPresent()) {
-                return formats;
-            }
-            if (formats.get().isEmpty()) {
-                throw new IllegalArgumentException("org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject: formats is less than min length 1");
-            }
-            return formats;
-        }
-
-        @Override
-        public com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> validateIdentifiers(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> identifiers) throws RuntimeException {
-            if (identifiers == null) {
-                throw new NullPointerException("org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject: identifiers is null");
-            }
-            if (!identifiers.isPresent()) {
-                return identifiers;
-            }
-            if (identifiers.get().isEmpty()) {
-                throw new IllegalArgumentException("org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject: identifiers is less than min length 1");
-            }
-            return identifiers;
-        }
-
-        @Override
-        public com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> validateLanguages(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> languages) throws RuntimeException {
-            if (languages == null) {
-                throw new NullPointerException("org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject: languages is null");
-            }
-            if (!languages.isPresent()) {
-                return languages;
-            }
-            if (languages.get().isEmpty()) {
-                throw new IllegalArgumentException("org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject: languages is less than min length 1");
-            }
-            return languages;
-        }
-
-        @Override
-        public com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> validateMediums(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> mediums) throws RuntimeException {
-            if (mediums == null) {
-                throw new NullPointerException("org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject: mediums is null");
-            }
-            if (!mediums.isPresent()) {
-                return mediums;
-            }
-            if (mediums.get().isEmpty()) {
-                throw new IllegalArgumentException("org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject: mediums is less than min length 1");
-            }
-            return mediums;
-        }
-
-        @Override
-        public com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> validateProvenances(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> provenances) throws RuntimeException {
-            if (provenances == null) {
-                throw new NullPointerException("org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject: provenances is null");
-            }
-            if (!provenances.isPresent()) {
-                return provenances;
-            }
-            if (provenances.get().isEmpty()) {
-                throw new IllegalArgumentException("org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject: provenances is less than min length 1");
-            }
-            return provenances;
-        }
-
-        @Override
-        public com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> validatePublishers(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> publishers) throws RuntimeException {
-            if (publishers == null) {
-                throw new NullPointerException("org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject: publishers is null");
-            }
-            if (!publishers.isPresent()) {
-                return publishers;
-            }
-            if (publishers.get().isEmpty()) {
-                throw new IllegalArgumentException("org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject: publishers is less than min length 1");
-            }
-            return publishers;
-        }
-
-        @Override
-        public com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> validateRelations(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> relations) throws RuntimeException {
-            if (relations == null) {
-                throw new NullPointerException("org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject: relations is null");
-            }
-            if (!relations.isPresent()) {
-                return relations;
-            }
-            if (relations.get().isEmpty()) {
-                throw new IllegalArgumentException("org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject: relations is less than min length 1");
-            }
-            return relations;
-        }
-
-        @Override
-        public com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> validateRights(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> rights) throws RuntimeException {
-            if (rights == null) {
-                throw new NullPointerException("org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject: rights is null");
-            }
-            if (!rights.isPresent()) {
-                return rights;
-            }
-            if (rights.get().isEmpty()) {
-                throw new IllegalArgumentException("org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject: rights is less than min length 1");
-            }
-            return rights;
-        }
-
-        @Override
-        public com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> validateRightsHolders(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> rightsHolders) throws RuntimeException {
-            if (rightsHolders == null) {
-                throw new NullPointerException("org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject: rightsHolders is null");
-            }
-            if (!rightsHolders.isPresent()) {
-                return rightsHolders;
-            }
-            if (rightsHolders.get().isEmpty()) {
-                throw new IllegalArgumentException("org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject: rightsHolders is less than min length 1");
-            }
-            return rightsHolders;
-        }
-
-        @Override
-        public com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> validateSources(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> sources) throws RuntimeException {
-            if (sources == null) {
-                throw new NullPointerException("org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject: sources is null");
-            }
-            if (!sources.isPresent()) {
-                return sources;
-            }
-            if (sources.get().isEmpty()) {
-                throw new IllegalArgumentException("org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject: sources is less than min length 1");
-            }
-            return sources;
-        }
-
-        @Override
-        public com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> validateSpatials(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> spatials) throws RuntimeException {
-            if (spatials == null) {
-                throw new NullPointerException("org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject: spatials is null");
-            }
-            if (!spatials.isPresent()) {
-                return spatials;
-            }
-            if (spatials.get().isEmpty()) {
-                throw new IllegalArgumentException("org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject: spatials is less than min length 1");
-            }
-            return spatials;
-        }
-
-        @Override
-        public com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> validateSubjects(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> subjects) throws RuntimeException {
-            if (subjects == null) {
-                throw new NullPointerException("org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject: subjects is null");
-            }
-            if (!subjects.isPresent()) {
-                return subjects;
-            }
-            if (subjects.get().isEmpty()) {
-                throw new IllegalArgumentException("org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject: subjects is less than min length 1");
-            }
-            return subjects;
-        }
-
-        @Override
-        public com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> validateTemporals(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> temporals) throws RuntimeException {
-            if (temporals == null) {
-                throw new NullPointerException("org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject: temporals is null");
-            }
-            if (!temporals.isPresent()) {
-                return temporals;
-            }
-            if (temporals.get().isEmpty()) {
-                throw new IllegalArgumentException("org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject: temporals is less than min length 1");
-            }
-            return temporals;
-        }
-
-        @Override
-        public com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> validateTitles(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> titles) throws RuntimeException {
-            if (titles == null) {
-                throw new NullPointerException("org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject: titles is null");
-            }
-            if (!titles.isPresent()) {
-                return titles;
-            }
-            if (titles.get().isEmpty()) {
-                throw new IllegalArgumentException("org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject: titles is less than min length 1");
-            }
-            return titles;
-        }
-
-        @Override
-        public com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> validateTypes(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> types) throws RuntimeException {
-            if (types == null) {
-                throw new NullPointerException("org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject: types is null");
-            }
-            if (!types.isPresent()) {
-                return types;
-            }
-            if (types.get().isEmpty()) {
-                throw new IllegalArgumentException("org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject: types is less than min length 1");
-            }
-            return types;
-        }
-
-        private final static DefaultConstructionValidator instance = new DefaultConstructionValidator();
-    }
-
-    public static class NopConstructionValidator implements ConstructionValidator {
-        public static NopConstructionValidator getInstance() {
-            return instance;
-        }
-
-        public NopConstructionValidator() {
-        }
-
-        @Override
-        public com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> validateAbstracts(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> abstracts) {
-            return abstracts;
-        }
-
-        @Override
-        public com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> validateAudiences(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> audiences) {
-            return audiences;
-        }
-
-        @Override
-        public com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> validateContributors(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> contributors) {
-            return contributors;
-        }
-
-        @Override
-        public com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> validateCoverages(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> coverages) {
-            return coverages;
-        }
-
-        @Override
-        public com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> validateCreateds(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> createds) {
-            return createds;
-        }
-
-        @Override
-        public com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> validateCreators(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> creators) {
-            return creators;
-        }
-
-        @Override
-        public com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> validateDates(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> dates) {
-            return dates;
-        }
-
-        @Override
-        public com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> validateDescriptions(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> descriptions) {
-            return descriptions;
-        }
-
-        @Override
-        public com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> validateExtents(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> extents) {
-            return extents;
-        }
-
-        @Override
-        public com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> validateFormats(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> formats) {
-            return formats;
-        }
-
-        @Override
-        public com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> validateIdentifiers(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> identifiers) {
-            return identifiers;
-        }
-
-        @Override
-        public com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> validateLanguages(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> languages) {
-            return languages;
-        }
-
-        @Override
-        public com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> validateMediums(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> mediums) {
-            return mediums;
-        }
-
-        @Override
-        public com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> validateProvenances(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> provenances) {
-            return provenances;
-        }
-
-        @Override
-        public com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> validatePublishers(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> publishers) {
-            return publishers;
-        }
-
-        @Override
-        public com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> validateRelations(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> relations) {
-            return relations;
-        }
-
-        @Override
-        public com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> validateRights(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> rights) {
-            return rights;
-        }
-
-        @Override
-        public com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> validateRightsHolders(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> rightsHolders) {
-            return rightsHolders;
-        }
-
-        @Override
-        public com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> validateSources(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> sources) {
-            return sources;
-        }
-
-        @Override
-        public com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> validateSpatials(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> spatials) {
-            return spatials;
-        }
-
-        @Override
-        public com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> validateSubjects(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> subjects) {
-            return subjects;
-        }
-
-        @Override
-        public com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> validateTemporals(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> temporals) {
-            return temporals;
-        }
-
-        @Override
-        public com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> validateTitles(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> titles) {
-            return titles;
-        }
-
-        @Override
-        public com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> validateTypes(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> types) {
-            return types;
-        }
-
-        private final static NopConstructionValidator instance = new NopConstructionValidator();
-    }
-
-    public interface ReadValidator extends Validator<org.thryft.protocol.InputProtocolException> {
-    }
-
-    public static class DefaultReadValidator implements ReadValidator {
-        public static DefaultReadValidator getInstance() {
-            return instance;
-        }
-
-        public DefaultReadValidator() {
-        }
-
-        @Override
-        public com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> validateAbstracts(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> abstracts) throws org.thryft.protocol.InputProtocolException {
+        public static void validateAbstracts(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> abstracts) throws org.thryft.protocol.InputProtocolException {
             if (abstracts == null) {
                 throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.ABSTRACTS, "org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject: abstracts is null");
             }
             if (!abstracts.isPresent()) {
-                return abstracts;
+                return;
             }
             if (abstracts.get().isEmpty()) {
-                throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.ABSTRACTS, "org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject: abstracts is less than min length 1");
+                throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.ABSTRACTS, "org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject.abstracts: less than min length 1");
             }
-            return abstracts;
         }
 
-        @Override
-        public com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> validateAudiences(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> audiences) throws org.thryft.protocol.InputProtocolException {
+        public static void validateAudiences(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> audiences) throws org.thryft.protocol.InputProtocolException {
             if (audiences == null) {
                 throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.AUDIENCES, "org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject: audiences is null");
             }
             if (!audiences.isPresent()) {
-                return audiences;
+                return;
             }
             if (audiences.get().isEmpty()) {
-                throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.AUDIENCES, "org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject: audiences is less than min length 1");
+                throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.AUDIENCES, "org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject.audiences: less than min length 1");
             }
-            return audiences;
         }
 
-        @Override
-        public com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> validateContributors(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> contributors) throws org.thryft.protocol.InputProtocolException {
+        public static void validateContributors(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> contributors) throws org.thryft.protocol.InputProtocolException {
             if (contributors == null) {
                 throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.CONTRIBUTORS, "org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject: contributors is null");
             }
             if (!contributors.isPresent()) {
-                return contributors;
+                return;
             }
             if (contributors.get().isEmpty()) {
-                throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.CONTRIBUTORS, "org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject: contributors is less than min length 1");
+                throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.CONTRIBUTORS, "org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject.contributors: less than min length 1");
             }
-            return contributors;
         }
 
-        @Override
-        public com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> validateCoverages(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> coverages) throws org.thryft.protocol.InputProtocolException {
+        public static void validateCoverages(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> coverages) throws org.thryft.protocol.InputProtocolException {
             if (coverages == null) {
                 throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.COVERAGES, "org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject: coverages is null");
             }
             if (!coverages.isPresent()) {
-                return coverages;
+                return;
             }
             if (coverages.get().isEmpty()) {
-                throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.COVERAGES, "org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject: coverages is less than min length 1");
+                throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.COVERAGES, "org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject.coverages: less than min length 1");
             }
-            return coverages;
         }
 
-        @Override
-        public com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> validateCreateds(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> createds) throws org.thryft.protocol.InputProtocolException {
+        public static void validateCreateds(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> createds) throws org.thryft.protocol.InputProtocolException {
             if (createds == null) {
                 throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.CREATEDS, "org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject: createds is null");
             }
             if (!createds.isPresent()) {
-                return createds;
+                return;
             }
             if (createds.get().isEmpty()) {
-                throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.CREATEDS, "org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject: createds is less than min length 1");
+                throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.CREATEDS, "org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject.createds: less than min length 1");
             }
-            return createds;
         }
 
-        @Override
-        public com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> validateCreators(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> creators) throws org.thryft.protocol.InputProtocolException {
+        public static void validateCreators(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> creators) throws org.thryft.protocol.InputProtocolException {
             if (creators == null) {
                 throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.CREATORS, "org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject: creators is null");
             }
             if (!creators.isPresent()) {
-                return creators;
+                return;
             }
             if (creators.get().isEmpty()) {
-                throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.CREATORS, "org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject: creators is less than min length 1");
+                throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.CREATORS, "org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject.creators: less than min length 1");
             }
-            return creators;
         }
 
-        @Override
-        public com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> validateDates(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> dates) throws org.thryft.protocol.InputProtocolException {
+        public static void validateDates(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> dates) throws org.thryft.protocol.InputProtocolException {
             if (dates == null) {
                 throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.DATES, "org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject: dates is null");
             }
             if (!dates.isPresent()) {
-                return dates;
+                return;
             }
             if (dates.get().isEmpty()) {
-                throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.DATES, "org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject: dates is less than min length 1");
+                throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.DATES, "org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject.dates: less than min length 1");
             }
-            return dates;
         }
 
-        @Override
-        public com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> validateDescriptions(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> descriptions) throws org.thryft.protocol.InputProtocolException {
+        public static void validateDescriptions(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> descriptions) throws org.thryft.protocol.InputProtocolException {
             if (descriptions == null) {
                 throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.DESCRIPTIONS, "org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject: descriptions is null");
             }
             if (!descriptions.isPresent()) {
-                return descriptions;
+                return;
             }
             if (descriptions.get().isEmpty()) {
-                throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.DESCRIPTIONS, "org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject: descriptions is less than min length 1");
+                throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.DESCRIPTIONS, "org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject.descriptions: less than min length 1");
             }
-            return descriptions;
         }
 
-        @Override
-        public com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> validateExtents(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> extents) throws org.thryft.protocol.InputProtocolException {
+        public static void validateExtents(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> extents) throws org.thryft.protocol.InputProtocolException {
             if (extents == null) {
                 throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.EXTENTS, "org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject: extents is null");
             }
             if (!extents.isPresent()) {
-                return extents;
+                return;
             }
             if (extents.get().isEmpty()) {
-                throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.EXTENTS, "org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject: extents is less than min length 1");
+                throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.EXTENTS, "org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject.extents: less than min length 1");
             }
-            return extents;
         }
 
-        @Override
-        public com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> validateFormats(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> formats) throws org.thryft.protocol.InputProtocolException {
+        public static void validateFormats(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> formats) throws org.thryft.protocol.InputProtocolException {
             if (formats == null) {
                 throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.FORMATS, "org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject: formats is null");
             }
             if (!formats.isPresent()) {
-                return formats;
+                return;
             }
             if (formats.get().isEmpty()) {
-                throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.FORMATS, "org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject: formats is less than min length 1");
+                throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.FORMATS, "org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject.formats: less than min length 1");
             }
-            return formats;
         }
 
-        @Override
-        public com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> validateIdentifiers(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> identifiers) throws org.thryft.protocol.InputProtocolException {
+        public static void validateIdentifiers(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> identifiers) throws org.thryft.protocol.InputProtocolException {
             if (identifiers == null) {
                 throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.IDENTIFIERS, "org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject: identifiers is null");
             }
             if (!identifiers.isPresent()) {
-                return identifiers;
+                return;
             }
             if (identifiers.get().isEmpty()) {
-                throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.IDENTIFIERS, "org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject: identifiers is less than min length 1");
+                throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.IDENTIFIERS, "org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject.identifiers: less than min length 1");
             }
-            return identifiers;
         }
 
-        @Override
-        public com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> validateLanguages(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> languages) throws org.thryft.protocol.InputProtocolException {
+        public static void validateLanguages(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> languages) throws org.thryft.protocol.InputProtocolException {
             if (languages == null) {
                 throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.LANGUAGES, "org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject: languages is null");
             }
             if (!languages.isPresent()) {
-                return languages;
+                return;
             }
             if (languages.get().isEmpty()) {
-                throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.LANGUAGES, "org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject: languages is less than min length 1");
+                throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.LANGUAGES, "org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject.languages: less than min length 1");
             }
-            return languages;
         }
 
-        @Override
-        public com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> validateMediums(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> mediums) throws org.thryft.protocol.InputProtocolException {
+        public static void validateMediums(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> mediums) throws org.thryft.protocol.InputProtocolException {
             if (mediums == null) {
                 throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.MEDIUMS, "org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject: mediums is null");
             }
             if (!mediums.isPresent()) {
-                return mediums;
+                return;
             }
             if (mediums.get().isEmpty()) {
-                throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.MEDIUMS, "org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject: mediums is less than min length 1");
+                throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.MEDIUMS, "org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject.mediums: less than min length 1");
             }
-            return mediums;
         }
 
-        @Override
-        public com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> validateProvenances(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> provenances) throws org.thryft.protocol.InputProtocolException {
+        public static void validateProvenances(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> provenances) throws org.thryft.protocol.InputProtocolException {
             if (provenances == null) {
                 throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.PROVENANCES, "org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject: provenances is null");
             }
             if (!provenances.isPresent()) {
-                return provenances;
+                return;
             }
             if (provenances.get().isEmpty()) {
-                throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.PROVENANCES, "org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject: provenances is less than min length 1");
+                throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.PROVENANCES, "org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject.provenances: less than min length 1");
             }
-            return provenances;
         }
 
-        @Override
-        public com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> validatePublishers(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> publishers) throws org.thryft.protocol.InputProtocolException {
+        public static void validatePublishers(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> publishers) throws org.thryft.protocol.InputProtocolException {
             if (publishers == null) {
                 throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.PUBLISHERS, "org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject: publishers is null");
             }
             if (!publishers.isPresent()) {
-                return publishers;
+                return;
             }
             if (publishers.get().isEmpty()) {
-                throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.PUBLISHERS, "org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject: publishers is less than min length 1");
+                throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.PUBLISHERS, "org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject.publishers: less than min length 1");
             }
-            return publishers;
         }
 
-        @Override
-        public com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> validateRelations(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> relations) throws org.thryft.protocol.InputProtocolException {
+        public static void validateRelations(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> relations) throws org.thryft.protocol.InputProtocolException {
             if (relations == null) {
                 throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.RELATIONS, "org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject: relations is null");
             }
             if (!relations.isPresent()) {
-                return relations;
+                return;
             }
             if (relations.get().isEmpty()) {
-                throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.RELATIONS, "org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject: relations is less than min length 1");
+                throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.RELATIONS, "org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject.relations: less than min length 1");
             }
-            return relations;
         }
 
-        @Override
-        public com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> validateRights(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> rights) throws org.thryft.protocol.InputProtocolException {
+        public static void validateRights(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> rights) throws org.thryft.protocol.InputProtocolException {
             if (rights == null) {
                 throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.RIGHTS, "org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject: rights is null");
             }
             if (!rights.isPresent()) {
-                return rights;
+                return;
             }
             if (rights.get().isEmpty()) {
-                throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.RIGHTS, "org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject: rights is less than min length 1");
+                throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.RIGHTS, "org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject.rights: less than min length 1");
             }
-            return rights;
         }
 
-        @Override
-        public com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> validateRightsHolders(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> rightsHolders) throws org.thryft.protocol.InputProtocolException {
+        public static void validateRightsHolders(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> rightsHolders) throws org.thryft.protocol.InputProtocolException {
             if (rightsHolders == null) {
                 throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.RIGHTS_HOLDERS, "org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject: rightsHolders is null");
             }
             if (!rightsHolders.isPresent()) {
-                return rightsHolders;
+                return;
             }
             if (rightsHolders.get().isEmpty()) {
-                throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.RIGHTS_HOLDERS, "org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject: rightsHolders is less than min length 1");
+                throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.RIGHTS_HOLDERS, "org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject.rightsHolders: less than min length 1");
             }
-            return rightsHolders;
         }
 
-        @Override
-        public com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> validateSources(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> sources) throws org.thryft.protocol.InputProtocolException {
+        public static void validateSources(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> sources) throws org.thryft.protocol.InputProtocolException {
             if (sources == null) {
                 throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.SOURCES, "org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject: sources is null");
             }
             if (!sources.isPresent()) {
-                return sources;
+                return;
             }
             if (sources.get().isEmpty()) {
-                throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.SOURCES, "org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject: sources is less than min length 1");
+                throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.SOURCES, "org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject.sources: less than min length 1");
             }
-            return sources;
         }
 
-        @Override
-        public com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> validateSpatials(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> spatials) throws org.thryft.protocol.InputProtocolException {
+        public static void validateSpatials(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> spatials) throws org.thryft.protocol.InputProtocolException {
             if (spatials == null) {
                 throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.SPATIALS, "org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject: spatials is null");
             }
             if (!spatials.isPresent()) {
-                return spatials;
+                return;
             }
             if (spatials.get().isEmpty()) {
-                throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.SPATIALS, "org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject: spatials is less than min length 1");
+                throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.SPATIALS, "org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject.spatials: less than min length 1");
             }
-            return spatials;
         }
 
-        @Override
-        public com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> validateSubjects(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> subjects) throws org.thryft.protocol.InputProtocolException {
+        public static void validateSubjects(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> subjects) throws org.thryft.protocol.InputProtocolException {
             if (subjects == null) {
                 throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.SUBJECTS, "org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject: subjects is null");
             }
             if (!subjects.isPresent()) {
-                return subjects;
+                return;
             }
             if (subjects.get().isEmpty()) {
-                throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.SUBJECTS, "org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject: subjects is less than min length 1");
+                throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.SUBJECTS, "org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject.subjects: less than min length 1");
             }
-            return subjects;
         }
 
-        @Override
-        public com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> validateTemporals(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> temporals) throws org.thryft.protocol.InputProtocolException {
+        public static void validateTemporals(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> temporals) throws org.thryft.protocol.InputProtocolException {
             if (temporals == null) {
                 throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.TEMPORALS, "org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject: temporals is null");
             }
             if (!temporals.isPresent()) {
-                return temporals;
+                return;
             }
             if (temporals.get().isEmpty()) {
-                throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.TEMPORALS, "org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject: temporals is less than min length 1");
+                throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.TEMPORALS, "org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject.temporals: less than min length 1");
             }
-            return temporals;
         }
 
-        @Override
-        public com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> validateTitles(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> titles) throws org.thryft.protocol.InputProtocolException {
+        public static void validateTitles(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> titles) throws org.thryft.protocol.InputProtocolException {
             if (titles == null) {
                 throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.TITLES, "org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject: titles is null");
             }
             if (!titles.isPresent()) {
-                return titles;
+                return;
             }
             if (titles.get().isEmpty()) {
-                throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.TITLES, "org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject: titles is less than min length 1");
+                throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.TITLES, "org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject.titles: less than min length 1");
             }
-            return titles;
         }
 
-        @Override
-        public com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> validateTypes(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> types) throws org.thryft.protocol.InputProtocolException {
+        public static void validateTypes(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> types) throws org.thryft.protocol.InputProtocolException {
             if (types == null) {
                 throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.TYPES, "org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject: types is null");
             }
             if (!types.isPresent()) {
-                return types;
+                return;
             }
             if (types.get().isEmpty()) {
-                throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.TYPES, "org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject: types is less than min length 1");
+                throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.TYPES, "org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject.types: less than min length 1");
             }
-            return types;
         }
-
-        private final static DefaultReadValidator instance = new DefaultReadValidator();
     }
 
-    public static class NopReadValidator implements ReadValidator {
-        public static NopReadValidator getInstance() {
-            return instance;
+    public final static class UncheckedValidator {
+        public static void validate(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> abstracts, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> audiences, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> contributors, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> coverages, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> createds, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> creators, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> dates, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> descriptions, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> extents, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> formats, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> identifiers, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> languages, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> mediums, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> provenances, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> publishers, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> relations, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> rights, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> rightsHolders, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> sources, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> spatials, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> subjects, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> temporals, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> titles, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> types) {
+            validateAbstracts(abstracts);
+            validateAudiences(audiences);
+            validateContributors(contributors);
+            validateCoverages(coverages);
+            validateCreateds(createds);
+            validateCreators(creators);
+            validateDates(dates);
+            validateDescriptions(descriptions);
+            validateExtents(extents);
+            validateFormats(formats);
+            validateIdentifiers(identifiers);
+            validateLanguages(languages);
+            validateMediums(mediums);
+            validateProvenances(provenances);
+            validatePublishers(publishers);
+            validateRelations(relations);
+            validateRights(rights);
+            validateRightsHolders(rightsHolders);
+            validateSources(sources);
+            validateSpatials(spatials);
+            validateSubjects(subjects);
+            validateTemporals(temporals);
+            validateTitles(titles);
+            validateTypes(types);
         }
 
-        public NopReadValidator() {
+        public static void validateAbstracts(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> abstracts) {
+            if (abstracts == null) {
+                throw new NullPointerException("org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject: abstracts is null");
+            }
+            if (!abstracts.isPresent()) {
+                return;
+            }
+            if (abstracts.get().isEmpty()) {
+                throw new IllegalArgumentException("org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject.abstracts: less than min length 1");
+            }
         }
 
-        @Override
-        public com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> validateAbstracts(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> abstracts) {
-            return abstracts;
+        public static void validateAudiences(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> audiences) {
+            if (audiences == null) {
+                throw new NullPointerException("org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject: audiences is null");
+            }
+            if (!audiences.isPresent()) {
+                return;
+            }
+            if (audiences.get().isEmpty()) {
+                throw new IllegalArgumentException("org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject.audiences: less than min length 1");
+            }
         }
 
-        @Override
-        public com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> validateAudiences(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> audiences) {
-            return audiences;
+        public static void validateContributors(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> contributors) {
+            if (contributors == null) {
+                throw new NullPointerException("org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject: contributors is null");
+            }
+            if (!contributors.isPresent()) {
+                return;
+            }
+            if (contributors.get().isEmpty()) {
+                throw new IllegalArgumentException("org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject.contributors: less than min length 1");
+            }
         }
 
-        @Override
-        public com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> validateContributors(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> contributors) {
-            return contributors;
+        public static void validateCoverages(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> coverages) {
+            if (coverages == null) {
+                throw new NullPointerException("org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject: coverages is null");
+            }
+            if (!coverages.isPresent()) {
+                return;
+            }
+            if (coverages.get().isEmpty()) {
+                throw new IllegalArgumentException("org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject.coverages: less than min length 1");
+            }
         }
 
-        @Override
-        public com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> validateCoverages(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> coverages) {
-            return coverages;
+        public static void validateCreateds(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> createds) {
+            if (createds == null) {
+                throw new NullPointerException("org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject: createds is null");
+            }
+            if (!createds.isPresent()) {
+                return;
+            }
+            if (createds.get().isEmpty()) {
+                throw new IllegalArgumentException("org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject.createds: less than min length 1");
+            }
         }
 
-        @Override
-        public com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> validateCreateds(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> createds) {
-            return createds;
+        public static void validateCreators(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> creators) {
+            if (creators == null) {
+                throw new NullPointerException("org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject: creators is null");
+            }
+            if (!creators.isPresent()) {
+                return;
+            }
+            if (creators.get().isEmpty()) {
+                throw new IllegalArgumentException("org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject.creators: less than min length 1");
+            }
         }
 
-        @Override
-        public com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> validateCreators(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> creators) {
-            return creators;
+        public static void validateDates(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> dates) {
+            if (dates == null) {
+                throw new NullPointerException("org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject: dates is null");
+            }
+            if (!dates.isPresent()) {
+                return;
+            }
+            if (dates.get().isEmpty()) {
+                throw new IllegalArgumentException("org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject.dates: less than min length 1");
+            }
         }
 
-        @Override
-        public com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> validateDates(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> dates) {
-            return dates;
+        public static void validateDescriptions(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> descriptions) {
+            if (descriptions == null) {
+                throw new NullPointerException("org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject: descriptions is null");
+            }
+            if (!descriptions.isPresent()) {
+                return;
+            }
+            if (descriptions.get().isEmpty()) {
+                throw new IllegalArgumentException("org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject.descriptions: less than min length 1");
+            }
         }
 
-        @Override
-        public com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> validateDescriptions(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> descriptions) {
-            return descriptions;
+        public static void validateExtents(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> extents) {
+            if (extents == null) {
+                throw new NullPointerException("org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject: extents is null");
+            }
+            if (!extents.isPresent()) {
+                return;
+            }
+            if (extents.get().isEmpty()) {
+                throw new IllegalArgumentException("org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject.extents: less than min length 1");
+            }
         }
 
-        @Override
-        public com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> validateExtents(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> extents) {
-            return extents;
+        public static void validateFormats(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> formats) {
+            if (formats == null) {
+                throw new NullPointerException("org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject: formats is null");
+            }
+            if (!formats.isPresent()) {
+                return;
+            }
+            if (formats.get().isEmpty()) {
+                throw new IllegalArgumentException("org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject.formats: less than min length 1");
+            }
         }
 
-        @Override
-        public com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> validateFormats(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> formats) {
-            return formats;
+        public static void validateIdentifiers(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> identifiers) {
+            if (identifiers == null) {
+                throw new NullPointerException("org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject: identifiers is null");
+            }
+            if (!identifiers.isPresent()) {
+                return;
+            }
+            if (identifiers.get().isEmpty()) {
+                throw new IllegalArgumentException("org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject.identifiers: less than min length 1");
+            }
         }
 
-        @Override
-        public com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> validateIdentifiers(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> identifiers) {
-            return identifiers;
+        public static void validateLanguages(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> languages) {
+            if (languages == null) {
+                throw new NullPointerException("org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject: languages is null");
+            }
+            if (!languages.isPresent()) {
+                return;
+            }
+            if (languages.get().isEmpty()) {
+                throw new IllegalArgumentException("org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject.languages: less than min length 1");
+            }
         }
 
-        @Override
-        public com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> validateLanguages(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> languages) {
-            return languages;
+        public static void validateMediums(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> mediums) {
+            if (mediums == null) {
+                throw new NullPointerException("org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject: mediums is null");
+            }
+            if (!mediums.isPresent()) {
+                return;
+            }
+            if (mediums.get().isEmpty()) {
+                throw new IllegalArgumentException("org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject.mediums: less than min length 1");
+            }
         }
 
-        @Override
-        public com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> validateMediums(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> mediums) {
-            return mediums;
+        public static void validateProvenances(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> provenances) {
+            if (provenances == null) {
+                throw new NullPointerException("org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject: provenances is null");
+            }
+            if (!provenances.isPresent()) {
+                return;
+            }
+            if (provenances.get().isEmpty()) {
+                throw new IllegalArgumentException("org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject.provenances: less than min length 1");
+            }
         }
 
-        @Override
-        public com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> validateProvenances(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> provenances) {
-            return provenances;
+        public static void validatePublishers(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> publishers) {
+            if (publishers == null) {
+                throw new NullPointerException("org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject: publishers is null");
+            }
+            if (!publishers.isPresent()) {
+                return;
+            }
+            if (publishers.get().isEmpty()) {
+                throw new IllegalArgumentException("org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject.publishers: less than min length 1");
+            }
         }
 
-        @Override
-        public com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> validatePublishers(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> publishers) {
-            return publishers;
+        public static void validateRelations(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> relations) {
+            if (relations == null) {
+                throw new NullPointerException("org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject: relations is null");
+            }
+            if (!relations.isPresent()) {
+                return;
+            }
+            if (relations.get().isEmpty()) {
+                throw new IllegalArgumentException("org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject.relations: less than min length 1");
+            }
         }
 
-        @Override
-        public com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> validateRelations(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> relations) {
-            return relations;
+        public static void validateRights(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> rights) {
+            if (rights == null) {
+                throw new NullPointerException("org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject: rights is null");
+            }
+            if (!rights.isPresent()) {
+                return;
+            }
+            if (rights.get().isEmpty()) {
+                throw new IllegalArgumentException("org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject.rights: less than min length 1");
+            }
         }
 
-        @Override
-        public com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> validateRights(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> rights) {
-            return rights;
+        public static void validateRightsHolders(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> rightsHolders) {
+            if (rightsHolders == null) {
+                throw new NullPointerException("org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject: rightsHolders is null");
+            }
+            if (!rightsHolders.isPresent()) {
+                return;
+            }
+            if (rightsHolders.get().isEmpty()) {
+                throw new IllegalArgumentException("org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject.rightsHolders: less than min length 1");
+            }
         }
 
-        @Override
-        public com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> validateRightsHolders(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> rightsHolders) {
-            return rightsHolders;
+        public static void validateSources(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> sources) {
+            if (sources == null) {
+                throw new NullPointerException("org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject: sources is null");
+            }
+            if (!sources.isPresent()) {
+                return;
+            }
+            if (sources.get().isEmpty()) {
+                throw new IllegalArgumentException("org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject.sources: less than min length 1");
+            }
         }
 
-        @Override
-        public com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> validateSources(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> sources) {
-            return sources;
+        public static void validateSpatials(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> spatials) {
+            if (spatials == null) {
+                throw new NullPointerException("org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject: spatials is null");
+            }
+            if (!spatials.isPresent()) {
+                return;
+            }
+            if (spatials.get().isEmpty()) {
+                throw new IllegalArgumentException("org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject.spatials: less than min length 1");
+            }
         }
 
-        @Override
-        public com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> validateSpatials(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> spatials) {
-            return spatials;
+        public static void validateSubjects(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> subjects) {
+            if (subjects == null) {
+                throw new NullPointerException("org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject: subjects is null");
+            }
+            if (!subjects.isPresent()) {
+                return;
+            }
+            if (subjects.get().isEmpty()) {
+                throw new IllegalArgumentException("org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject.subjects: less than min length 1");
+            }
         }
 
-        @Override
-        public com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> validateSubjects(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> subjects) {
-            return subjects;
+        public static void validateTemporals(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> temporals) {
+            if (temporals == null) {
+                throw new NullPointerException("org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject: temporals is null");
+            }
+            if (!temporals.isPresent()) {
+                return;
+            }
+            if (temporals.get().isEmpty()) {
+                throw new IllegalArgumentException("org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject.temporals: less than min length 1");
+            }
         }
 
-        @Override
-        public com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> validateTemporals(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> temporals) {
-            return temporals;
+        public static void validateTitles(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> titles) {
+            if (titles == null) {
+                throw new NullPointerException("org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject: titles is null");
+            }
+            if (!titles.isPresent()) {
+                return;
+            }
+            if (titles.get().isEmpty()) {
+                throw new IllegalArgumentException("org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject.titles: less than min length 1");
+            }
         }
 
-        @Override
-        public com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> validateTitles(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> titles) {
-            return titles;
+        public static void validateTypes(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> types) {
+            if (types == null) {
+                throw new NullPointerException("org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject: types is null");
+            }
+            if (!types.isPresent()) {
+                return;
+            }
+            if (types.get().isEmpty()) {
+                throw new IllegalArgumentException("org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject.types: less than min length 1");
+            }
         }
-
-        @Override
-        public com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> validateTypes(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> types) {
-            return types;
-        }
-
-        private final static NopReadValidator instance = new NopReadValidator();
     }
 
     /**
      * Default constructor
      */
+    @Deprecated
     public DublinCoreObject() {
         abstracts = com.google.common.base.Optional.<com.google.common.collect.ImmutableList<String>> absent();
         audiences = com.google.common.base.Optional.<com.google.common.collect.ImmutableList<String>> absent();
@@ -3098,34 +2747,39 @@ public final class DublinCoreObject implements org.thryft.Struct {
      * Copy constructor
      */
     public DublinCoreObject(final DublinCoreObject other) {
-        this(other.getAbstracts(), other.getAudiences(), other.getContributors(), other.getCoverages(), other.getCreateds(), other.getCreators(), other.getDates(), other.getDescriptions(), other.getExtents(), other.getFormats(), other.getIdentifiers(), other.getLanguages(), other.getMediums(), other.getProvenances(), other.getPublishers(), other.getRelations(), other.getRights(), other.getRightsHolders(), other.getSources(), other.getSpatials(), other.getSubjects(), other.getTemporals(), other.getTitles(), other.getTypes(), NopConstructionValidator.getInstance());
+        this(other.getAbstracts(), other.getAudiences(), other.getContributors(), other.getCoverages(), other.getCreateds(), other.getCreators(), other.getDates(), other.getDescriptions(), other.getExtents(), other.getFormats(), other.getIdentifiers(), other.getLanguages(), other.getMediums(), other.getProvenances(), other.getPublishers(), other.getRelations(), other.getRights(), other.getRightsHolders(), other.getSources(), other.getSpatials(), other.getSubjects(), other.getTemporals(), other.getTitles(), other.getTypes());
     }
 
-    protected DublinCoreObject(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> abstracts, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> audiences, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> contributors, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> coverages, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> createds, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> creators, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> dates, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> descriptions, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> extents, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> formats, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> identifiers, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> languages, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> mediums, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> provenances, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> publishers, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> relations, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> rights, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> rightsHolders, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> sources, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> spatials, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> subjects, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> temporals, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> titles, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> types, ConstructionValidator validator) {
-        this.abstracts = validator.validateAbstracts(abstracts);
-        this.audiences = validator.validateAudiences(audiences);
-        this.contributors = validator.validateContributors(contributors);
-        this.coverages = validator.validateCoverages(coverages);
-        this.createds = validator.validateCreateds(createds);
-        this.creators = validator.validateCreators(creators);
-        this.dates = validator.validateDates(dates);
-        this.descriptions = validator.validateDescriptions(descriptions);
-        this.extents = validator.validateExtents(extents);
-        this.formats = validator.validateFormats(formats);
-        this.identifiers = validator.validateIdentifiers(identifiers);
-        this.languages = validator.validateLanguages(languages);
-        this.mediums = validator.validateMediums(mediums);
-        this.provenances = validator.validateProvenances(provenances);
-        this.publishers = validator.validatePublishers(publishers);
-        this.relations = validator.validateRelations(relations);
-        this.rights = validator.validateRights(rights);
-        this.rightsHolders = validator.validateRightsHolders(rightsHolders);
-        this.sources = validator.validateSources(sources);
-        this.spatials = validator.validateSpatials(spatials);
-        this.subjects = validator.validateSubjects(subjects);
-        this.temporals = validator.validateTemporals(temporals);
-        this.titles = validator.validateTitles(titles);
-        this.types = validator.validateTypes(types);
+    /**
+     * Total constructor
+     *
+     * All fields should have been validated before calling this.
+     */
+    protected DublinCoreObject(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> abstracts, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> audiences, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> contributors, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> coverages, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> createds, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> creators, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> dates, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> descriptions, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> extents, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> formats, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> identifiers, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> languages, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> mediums, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> provenances, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> publishers, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> relations, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> rights, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> rightsHolders, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> sources, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> spatials, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> subjects, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> temporals, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> titles, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> types) {
+        this.abstracts = abstracts;
+        this.audiences = audiences;
+        this.contributors = contributors;
+        this.coverages = coverages;
+        this.createds = createds;
+        this.creators = creators;
+        this.dates = dates;
+        this.descriptions = descriptions;
+        this.extents = extents;
+        this.formats = formats;
+        this.identifiers = identifiers;
+        this.languages = languages;
+        this.mediums = mediums;
+        this.provenances = provenances;
+        this.publishers = publishers;
+        this.relations = relations;
+        this.rights = rights;
+        this.rightsHolders = rightsHolders;
+        this.sources = sources;
+        this.spatials = spatials;
+        this.subjects = subjects;
+        this.temporals = temporals;
+        this.titles = titles;
+        this.types = types;
     }
 
     public static Builder builder() {
@@ -3140,6 +2794,7 @@ public final class DublinCoreObject implements org.thryft.Struct {
         return other.isPresent() ? new Builder(other.get()) : new Builder();
     }
 
+    @Deprecated
     public static DublinCoreObject create() {
         return new DublinCoreObject();
     }
@@ -3147,15 +2802,41 @@ public final class DublinCoreObject implements org.thryft.Struct {
     /**
      * Total Nullable factory method
      */
-    public static DublinCoreObject create(final @javax.annotation.Nullable com.google.common.collect.ImmutableList<String> abstracts, final @javax.annotation.Nullable com.google.common.collect.ImmutableList<String> audiences, final @javax.annotation.Nullable com.google.common.collect.ImmutableList<String> contributors, final @javax.annotation.Nullable com.google.common.collect.ImmutableList<String> coverages, final @javax.annotation.Nullable com.google.common.collect.ImmutableList<String> createds, final @javax.annotation.Nullable com.google.common.collect.ImmutableList<String> creators, final @javax.annotation.Nullable com.google.common.collect.ImmutableList<String> dates, final @javax.annotation.Nullable com.google.common.collect.ImmutableList<String> descriptions, final @javax.annotation.Nullable com.google.common.collect.ImmutableList<String> extents, final @javax.annotation.Nullable com.google.common.collect.ImmutableList<String> formats, final @javax.annotation.Nullable com.google.common.collect.ImmutableList<String> identifiers, final @javax.annotation.Nullable com.google.common.collect.ImmutableList<String> languages, final @javax.annotation.Nullable com.google.common.collect.ImmutableList<String> mediums, final @javax.annotation.Nullable com.google.common.collect.ImmutableList<String> provenances, final @javax.annotation.Nullable com.google.common.collect.ImmutableList<String> publishers, final @javax.annotation.Nullable com.google.common.collect.ImmutableList<String> relations, final @javax.annotation.Nullable com.google.common.collect.ImmutableList<String> rights, final @javax.annotation.Nullable com.google.common.collect.ImmutableList<String> rightsHolders, final @javax.annotation.Nullable com.google.common.collect.ImmutableList<String> sources, final @javax.annotation.Nullable com.google.common.collect.ImmutableList<String> spatials, final @javax.annotation.Nullable com.google.common.collect.ImmutableList<String> subjects, final @javax.annotation.Nullable com.google.common.collect.ImmutableList<String> temporals, final @javax.annotation.Nullable com.google.common.collect.ImmutableList<String> titles, final @javax.annotation.Nullable com.google.common.collect.ImmutableList<String> types) {
-        return new DublinCoreObject(com.google.common.base.Optional.fromNullable(abstracts), com.google.common.base.Optional.fromNullable(audiences), com.google.common.base.Optional.fromNullable(contributors), com.google.common.base.Optional.fromNullable(coverages), com.google.common.base.Optional.fromNullable(createds), com.google.common.base.Optional.fromNullable(creators), com.google.common.base.Optional.fromNullable(dates), com.google.common.base.Optional.fromNullable(descriptions), com.google.common.base.Optional.fromNullable(extents), com.google.common.base.Optional.fromNullable(formats), com.google.common.base.Optional.fromNullable(identifiers), com.google.common.base.Optional.fromNullable(languages), com.google.common.base.Optional.fromNullable(mediums), com.google.common.base.Optional.fromNullable(provenances), com.google.common.base.Optional.fromNullable(publishers), com.google.common.base.Optional.fromNullable(relations), com.google.common.base.Optional.fromNullable(rights), com.google.common.base.Optional.fromNullable(rightsHolders), com.google.common.base.Optional.fromNullable(sources), com.google.common.base.Optional.fromNullable(spatials), com.google.common.base.Optional.fromNullable(subjects), com.google.common.base.Optional.fromNullable(temporals), com.google.common.base.Optional.fromNullable(titles), com.google.common.base.Optional.fromNullable(types), DefaultConstructionValidator.getInstance());
+    public static DublinCoreObject create(@javax.annotation.Nullable final com.google.common.collect.ImmutableList<String> abstracts, @javax.annotation.Nullable final com.google.common.collect.ImmutableList<String> audiences, @javax.annotation.Nullable final com.google.common.collect.ImmutableList<String> contributors, @javax.annotation.Nullable final com.google.common.collect.ImmutableList<String> coverages, @javax.annotation.Nullable final com.google.common.collect.ImmutableList<String> createds, @javax.annotation.Nullable final com.google.common.collect.ImmutableList<String> creators, @javax.annotation.Nullable final com.google.common.collect.ImmutableList<String> dates, @javax.annotation.Nullable final com.google.common.collect.ImmutableList<String> descriptions, @javax.annotation.Nullable final com.google.common.collect.ImmutableList<String> extents, @javax.annotation.Nullable final com.google.common.collect.ImmutableList<String> formats, @javax.annotation.Nullable final com.google.common.collect.ImmutableList<String> identifiers, @javax.annotation.Nullable final com.google.common.collect.ImmutableList<String> languages, @javax.annotation.Nullable final com.google.common.collect.ImmutableList<String> mediums, @javax.annotation.Nullable final com.google.common.collect.ImmutableList<String> provenances, @javax.annotation.Nullable final com.google.common.collect.ImmutableList<String> publishers, @javax.annotation.Nullable final com.google.common.collect.ImmutableList<String> relations, @javax.annotation.Nullable final com.google.common.collect.ImmutableList<String> rights, @javax.annotation.Nullable final com.google.common.collect.ImmutableList<String> rightsHolders, @javax.annotation.Nullable final com.google.common.collect.ImmutableList<String> sources, @javax.annotation.Nullable final com.google.common.collect.ImmutableList<String> spatials, @javax.annotation.Nullable final com.google.common.collect.ImmutableList<String> subjects, @javax.annotation.Nullable final com.google.common.collect.ImmutableList<String> temporals, @javax.annotation.Nullable final com.google.common.collect.ImmutableList<String> titles, @javax.annotation.Nullable final com.google.common.collect.ImmutableList<String> types) {
+        final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> abstractsOptional = com.google.common.base.Optional.fromNullable(abstracts);
+        final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> audiencesOptional = com.google.common.base.Optional.fromNullable(audiences);
+        final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> contributorsOptional = com.google.common.base.Optional.fromNullable(contributors);
+        final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> coveragesOptional = com.google.common.base.Optional.fromNullable(coverages);
+        final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> createdsOptional = com.google.common.base.Optional.fromNullable(createds);
+        final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> creatorsOptional = com.google.common.base.Optional.fromNullable(creators);
+        final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> datesOptional = com.google.common.base.Optional.fromNullable(dates);
+        final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> descriptionsOptional = com.google.common.base.Optional.fromNullable(descriptions);
+        final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> extentsOptional = com.google.common.base.Optional.fromNullable(extents);
+        final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> formatsOptional = com.google.common.base.Optional.fromNullable(formats);
+        final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> identifiersOptional = com.google.common.base.Optional.fromNullable(identifiers);
+        final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> languagesOptional = com.google.common.base.Optional.fromNullable(languages);
+        final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> mediumsOptional = com.google.common.base.Optional.fromNullable(mediums);
+        final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> provenancesOptional = com.google.common.base.Optional.fromNullable(provenances);
+        final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> publishersOptional = com.google.common.base.Optional.fromNullable(publishers);
+        final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> relationsOptional = com.google.common.base.Optional.fromNullable(relations);
+        final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> rightsOptional = com.google.common.base.Optional.fromNullable(rights);
+        final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> rightsHoldersOptional = com.google.common.base.Optional.fromNullable(rightsHolders);
+        final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> sourcesOptional = com.google.common.base.Optional.fromNullable(sources);
+        final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> spatialsOptional = com.google.common.base.Optional.fromNullable(spatials);
+        final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> subjectsOptional = com.google.common.base.Optional.fromNullable(subjects);
+        final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> temporalsOptional = com.google.common.base.Optional.fromNullable(temporals);
+        final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> titlesOptional = com.google.common.base.Optional.fromNullable(titles);
+        final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> typesOptional = com.google.common.base.Optional.fromNullable(types);
+        UncheckedValidator.validate(abstractsOptional, audiencesOptional, contributorsOptional, coveragesOptional, createdsOptional, creatorsOptional, datesOptional, descriptionsOptional, extentsOptional, formatsOptional, identifiersOptional, languagesOptional, mediumsOptional, provenancesOptional, publishersOptional, relationsOptional, rightsOptional, rightsHoldersOptional, sourcesOptional, spatialsOptional, subjectsOptional, temporalsOptional, titlesOptional, typesOptional);
+        return new DublinCoreObject(abstractsOptional, audiencesOptional, contributorsOptional, coveragesOptional, createdsOptional, creatorsOptional, datesOptional, descriptionsOptional, extentsOptional, formatsOptional, identifiersOptional, languagesOptional, mediumsOptional, provenancesOptional, publishersOptional, relationsOptional, rightsOptional, rightsHoldersOptional, sourcesOptional, spatialsOptional, subjectsOptional, temporalsOptional, titlesOptional, typesOptional);
     }
 
     /**
      * Optional factory method
      */
     public static DublinCoreObject create(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> abstracts, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> audiences, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> contributors, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> coverages, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> createds, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> creators, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> dates, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> descriptions, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> extents, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> formats, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> identifiers, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> languages, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> mediums, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> provenances, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> publishers, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> relations, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> rights, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> rightsHolders, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> sources, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> spatials, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> subjects, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> temporals, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> titles, final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> types) {
-        return new DublinCoreObject(abstracts, audiences, contributors, coverages, createds, creators, dates, descriptions, extents, formats, identifiers, languages, mediums, provenances, publishers, relations, rights, rightsHolders, sources, spatials, subjects, temporals, titles, types, DefaultConstructionValidator.getInstance());
+        UncheckedValidator.validate(abstracts, audiences, contributors, coverages, createds, creators, dates, descriptions, extents, formats, identifiers, languages, mediums, provenances, publishers, relations, rights, rightsHolders, sources, spatials, subjects, temporals, titles, types);
+        return new DublinCoreObject(abstracts, audiences, contributors, coverages, createds, creators, dates, descriptions, extents, formats, identifiers, languages, mediums, provenances, publishers, relations, rights, rightsHolders, sources, spatials, subjects, temporals, titles, types);
     }
 
     @Override
@@ -4061,7 +3742,10 @@ public final class DublinCoreObject implements org.thryft.Struct {
         } catch (final RuntimeException e) {
             throw new IllegalStateException(e);
         }
-        return new DublinCoreObject(DefaultReadValidator.getInstance().validateAbstracts(abstracts), DefaultReadValidator.getInstance().validateAudiences(audiences), DefaultReadValidator.getInstance().validateContributors(contributors), DefaultReadValidator.getInstance().validateCoverages(coverages), DefaultReadValidator.getInstance().validateCreateds(createds), DefaultReadValidator.getInstance().validateCreators(creators), DefaultReadValidator.getInstance().validateDates(dates), DefaultReadValidator.getInstance().validateDescriptions(descriptions), DefaultReadValidator.getInstance().validateExtents(extents), DefaultReadValidator.getInstance().validateFormats(formats), DefaultReadValidator.getInstance().validateIdentifiers(identifiers), DefaultReadValidator.getInstance().validateLanguages(languages), DefaultReadValidator.getInstance().validateMediums(mediums), DefaultReadValidator.getInstance().validateProvenances(provenances), DefaultReadValidator.getInstance().validatePublishers(publishers), DefaultReadValidator.getInstance().validateRelations(relations), DefaultReadValidator.getInstance().validateRights(rights), DefaultReadValidator.getInstance().validateRightsHolders(rightsHolders), DefaultReadValidator.getInstance().validateSources(sources), DefaultReadValidator.getInstance().validateSpatials(spatials), DefaultReadValidator.getInstance().validateSubjects(subjects), DefaultReadValidator.getInstance().validateTemporals(temporals), DefaultReadValidator.getInstance().validateTitles(titles), DefaultReadValidator.getInstance().validateTypes(types), NopConstructionValidator.getInstance());
+
+        ReadValidator.validate(abstracts, audiences, contributors, coverages, createds, creators, dates, descriptions, extents, formats, identifiers, languages, mediums, provenances, publishers, relations, rights, rightsHolders, sources, spatials, subjects, temporals, titles, types);
+
+        return new DublinCoreObject(abstracts, audiences, contributors, coverages, createds, creators, dates, descriptions, extents, formats, identifiers, languages, mediums, provenances, publishers, relations, rights, rightsHolders, sources, spatials, subjects, temporals, titles, types);
     }
 
     public static DublinCoreObject readAsStruct(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
@@ -4714,204 +4398,243 @@ public final class DublinCoreObject implements org.thryft.Struct {
         } catch (final RuntimeException e) {
             throw new IllegalStateException(e);
         }
-        return new DublinCoreObject(DefaultReadValidator.getInstance().validateAbstracts(abstracts), DefaultReadValidator.getInstance().validateAudiences(audiences), DefaultReadValidator.getInstance().validateContributors(contributors), DefaultReadValidator.getInstance().validateCoverages(coverages), DefaultReadValidator.getInstance().validateCreateds(createds), DefaultReadValidator.getInstance().validateCreators(creators), DefaultReadValidator.getInstance().validateDates(dates), DefaultReadValidator.getInstance().validateDescriptions(descriptions), DefaultReadValidator.getInstance().validateExtents(extents), DefaultReadValidator.getInstance().validateFormats(formats), DefaultReadValidator.getInstance().validateIdentifiers(identifiers), DefaultReadValidator.getInstance().validateLanguages(languages), DefaultReadValidator.getInstance().validateMediums(mediums), DefaultReadValidator.getInstance().validateProvenances(provenances), DefaultReadValidator.getInstance().validatePublishers(publishers), DefaultReadValidator.getInstance().validateRelations(relations), DefaultReadValidator.getInstance().validateRights(rights), DefaultReadValidator.getInstance().validateRightsHolders(rightsHolders), DefaultReadValidator.getInstance().validateSources(sources), DefaultReadValidator.getInstance().validateSpatials(spatials), DefaultReadValidator.getInstance().validateSubjects(subjects), DefaultReadValidator.getInstance().validateTemporals(temporals), DefaultReadValidator.getInstance().validateTitles(titles), DefaultReadValidator.getInstance().validateTypes(types), NopConstructionValidator.getInstance());
+
+        ReadValidator.validate(abstracts, audiences, contributors, coverages, createds, creators, dates, descriptions, extents, formats, identifiers, languages, mediums, provenances, publishers, relations, rights, rightsHolders, sources, spatials, subjects, temporals, titles, types);
+
+        return new DublinCoreObject(abstracts, audiences, contributors, coverages, createds, creators, dates, descriptions, extents, formats, identifiers, languages, mediums, provenances, publishers, relations, rights, rightsHolders, sources, spatials, subjects, temporals, titles, types);
     }
 
     public DublinCoreObject replaceAbstracts(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> abstracts) {
-        return new DublinCoreObject(DefaultConstructionValidator.getInstance().validateAbstracts(abstracts), this.audiences, this.contributors, this.coverages, this.createds, this.creators, this.dates, this.descriptions, this.extents, this.formats, this.identifiers, this.languages, this.mediums, this.provenances, this.publishers, this.relations, this.rights, this.rightsHolders, this.sources, this.spatials, this.subjects, this.temporals, this.titles, this.types, NopConstructionValidator.getInstance());
+        UncheckedValidator.validateAbstracts(abstracts);
+        return new DublinCoreObject(abstracts, this.audiences, this.contributors, this.coverages, this.createds, this.creators, this.dates, this.descriptions, this.extents, this.formats, this.identifiers, this.languages, this.mediums, this.provenances, this.publishers, this.relations, this.rights, this.rightsHolders, this.sources, this.spatials, this.subjects, this.temporals, this.titles, this.types);
     }
 
-    public DublinCoreObject replaceAbstracts(final com.google.common.collect.ImmutableList<String> abstracts) {
+    public DublinCoreObject replaceAbstracts(@javax.annotation.Nullable final com.google.common.collect.ImmutableList<String> abstracts) {
         return replaceAbstracts(com.google.common.base.Optional.fromNullable(abstracts));
     }
 
     public DublinCoreObject replaceAudiences(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> audiences) {
-        return new DublinCoreObject(this.abstracts, DefaultConstructionValidator.getInstance().validateAudiences(audiences), this.contributors, this.coverages, this.createds, this.creators, this.dates, this.descriptions, this.extents, this.formats, this.identifiers, this.languages, this.mediums, this.provenances, this.publishers, this.relations, this.rights, this.rightsHolders, this.sources, this.spatials, this.subjects, this.temporals, this.titles, this.types, NopConstructionValidator.getInstance());
+        UncheckedValidator.validateAudiences(audiences);
+        return new DublinCoreObject(this.abstracts, audiences, this.contributors, this.coverages, this.createds, this.creators, this.dates, this.descriptions, this.extents, this.formats, this.identifiers, this.languages, this.mediums, this.provenances, this.publishers, this.relations, this.rights, this.rightsHolders, this.sources, this.spatials, this.subjects, this.temporals, this.titles, this.types);
     }
 
-    public DublinCoreObject replaceAudiences(final com.google.common.collect.ImmutableList<String> audiences) {
+    public DublinCoreObject replaceAudiences(@javax.annotation.Nullable final com.google.common.collect.ImmutableList<String> audiences) {
         return replaceAudiences(com.google.common.base.Optional.fromNullable(audiences));
     }
 
     public DublinCoreObject replaceContributors(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> contributors) {
-        return new DublinCoreObject(this.abstracts, this.audiences, DefaultConstructionValidator.getInstance().validateContributors(contributors), this.coverages, this.createds, this.creators, this.dates, this.descriptions, this.extents, this.formats, this.identifiers, this.languages, this.mediums, this.provenances, this.publishers, this.relations, this.rights, this.rightsHolders, this.sources, this.spatials, this.subjects, this.temporals, this.titles, this.types, NopConstructionValidator.getInstance());
+        UncheckedValidator.validateContributors(contributors);
+        return new DublinCoreObject(this.abstracts, this.audiences, contributors, this.coverages, this.createds, this.creators, this.dates, this.descriptions, this.extents, this.formats, this.identifiers, this.languages, this.mediums, this.provenances, this.publishers, this.relations, this.rights, this.rightsHolders, this.sources, this.spatials, this.subjects, this.temporals, this.titles, this.types);
     }
 
-    public DublinCoreObject replaceContributors(final com.google.common.collect.ImmutableList<String> contributors) {
+    public DublinCoreObject replaceContributors(@javax.annotation.Nullable final com.google.common.collect.ImmutableList<String> contributors) {
         return replaceContributors(com.google.common.base.Optional.fromNullable(contributors));
     }
 
     public DublinCoreObject replaceCoverages(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> coverages) {
-        return new DublinCoreObject(this.abstracts, this.audiences, this.contributors, DefaultConstructionValidator.getInstance().validateCoverages(coverages), this.createds, this.creators, this.dates, this.descriptions, this.extents, this.formats, this.identifiers, this.languages, this.mediums, this.provenances, this.publishers, this.relations, this.rights, this.rightsHolders, this.sources, this.spatials, this.subjects, this.temporals, this.titles, this.types, NopConstructionValidator.getInstance());
+        UncheckedValidator.validateCoverages(coverages);
+        return new DublinCoreObject(this.abstracts, this.audiences, this.contributors, coverages, this.createds, this.creators, this.dates, this.descriptions, this.extents, this.formats, this.identifiers, this.languages, this.mediums, this.provenances, this.publishers, this.relations, this.rights, this.rightsHolders, this.sources, this.spatials, this.subjects, this.temporals, this.titles, this.types);
     }
 
-    public DublinCoreObject replaceCoverages(final com.google.common.collect.ImmutableList<String> coverages) {
+    public DublinCoreObject replaceCoverages(@javax.annotation.Nullable final com.google.common.collect.ImmutableList<String> coverages) {
         return replaceCoverages(com.google.common.base.Optional.fromNullable(coverages));
     }
 
     public DublinCoreObject replaceCreateds(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> createds) {
-        return new DublinCoreObject(this.abstracts, this.audiences, this.contributors, this.coverages, DefaultConstructionValidator.getInstance().validateCreateds(createds), this.creators, this.dates, this.descriptions, this.extents, this.formats, this.identifiers, this.languages, this.mediums, this.provenances, this.publishers, this.relations, this.rights, this.rightsHolders, this.sources, this.spatials, this.subjects, this.temporals, this.titles, this.types, NopConstructionValidator.getInstance());
+        UncheckedValidator.validateCreateds(createds);
+        return new DublinCoreObject(this.abstracts, this.audiences, this.contributors, this.coverages, createds, this.creators, this.dates, this.descriptions, this.extents, this.formats, this.identifiers, this.languages, this.mediums, this.provenances, this.publishers, this.relations, this.rights, this.rightsHolders, this.sources, this.spatials, this.subjects, this.temporals, this.titles, this.types);
     }
 
-    public DublinCoreObject replaceCreateds(final com.google.common.collect.ImmutableList<String> createds) {
+    public DublinCoreObject replaceCreateds(@javax.annotation.Nullable final com.google.common.collect.ImmutableList<String> createds) {
         return replaceCreateds(com.google.common.base.Optional.fromNullable(createds));
     }
 
     public DublinCoreObject replaceCreators(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> creators) {
-        return new DublinCoreObject(this.abstracts, this.audiences, this.contributors, this.coverages, this.createds, DefaultConstructionValidator.getInstance().validateCreators(creators), this.dates, this.descriptions, this.extents, this.formats, this.identifiers, this.languages, this.mediums, this.provenances, this.publishers, this.relations, this.rights, this.rightsHolders, this.sources, this.spatials, this.subjects, this.temporals, this.titles, this.types, NopConstructionValidator.getInstance());
+        UncheckedValidator.validateCreators(creators);
+        return new DublinCoreObject(this.abstracts, this.audiences, this.contributors, this.coverages, this.createds, creators, this.dates, this.descriptions, this.extents, this.formats, this.identifiers, this.languages, this.mediums, this.provenances, this.publishers, this.relations, this.rights, this.rightsHolders, this.sources, this.spatials, this.subjects, this.temporals, this.titles, this.types);
     }
 
-    public DublinCoreObject replaceCreators(final com.google.common.collect.ImmutableList<String> creators) {
+    public DublinCoreObject replaceCreators(@javax.annotation.Nullable final com.google.common.collect.ImmutableList<String> creators) {
         return replaceCreators(com.google.common.base.Optional.fromNullable(creators));
     }
 
     public DublinCoreObject replaceDates(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> dates) {
-        return new DublinCoreObject(this.abstracts, this.audiences, this.contributors, this.coverages, this.createds, this.creators, DefaultConstructionValidator.getInstance().validateDates(dates), this.descriptions, this.extents, this.formats, this.identifiers, this.languages, this.mediums, this.provenances, this.publishers, this.relations, this.rights, this.rightsHolders, this.sources, this.spatials, this.subjects, this.temporals, this.titles, this.types, NopConstructionValidator.getInstance());
+        UncheckedValidator.validateDates(dates);
+        return new DublinCoreObject(this.abstracts, this.audiences, this.contributors, this.coverages, this.createds, this.creators, dates, this.descriptions, this.extents, this.formats, this.identifiers, this.languages, this.mediums, this.provenances, this.publishers, this.relations, this.rights, this.rightsHolders, this.sources, this.spatials, this.subjects, this.temporals, this.titles, this.types);
     }
 
-    public DublinCoreObject replaceDates(final com.google.common.collect.ImmutableList<String> dates) {
+    public DublinCoreObject replaceDates(@javax.annotation.Nullable final com.google.common.collect.ImmutableList<String> dates) {
         return replaceDates(com.google.common.base.Optional.fromNullable(dates));
     }
 
     public DublinCoreObject replaceDescriptions(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> descriptions) {
-        return new DublinCoreObject(this.abstracts, this.audiences, this.contributors, this.coverages, this.createds, this.creators, this.dates, DefaultConstructionValidator.getInstance().validateDescriptions(descriptions), this.extents, this.formats, this.identifiers, this.languages, this.mediums, this.provenances, this.publishers, this.relations, this.rights, this.rightsHolders, this.sources, this.spatials, this.subjects, this.temporals, this.titles, this.types, NopConstructionValidator.getInstance());
+        UncheckedValidator.validateDescriptions(descriptions);
+        return new DublinCoreObject(this.abstracts, this.audiences, this.contributors, this.coverages, this.createds, this.creators, this.dates, descriptions, this.extents, this.formats, this.identifiers, this.languages, this.mediums, this.provenances, this.publishers, this.relations, this.rights, this.rightsHolders, this.sources, this.spatials, this.subjects, this.temporals, this.titles, this.types);
     }
 
-    public DublinCoreObject replaceDescriptions(final com.google.common.collect.ImmutableList<String> descriptions) {
+    public DublinCoreObject replaceDescriptions(@javax.annotation.Nullable final com.google.common.collect.ImmutableList<String> descriptions) {
         return replaceDescriptions(com.google.common.base.Optional.fromNullable(descriptions));
     }
 
     public DublinCoreObject replaceExtents(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> extents) {
-        return new DublinCoreObject(this.abstracts, this.audiences, this.contributors, this.coverages, this.createds, this.creators, this.dates, this.descriptions, DefaultConstructionValidator.getInstance().validateExtents(extents), this.formats, this.identifiers, this.languages, this.mediums, this.provenances, this.publishers, this.relations, this.rights, this.rightsHolders, this.sources, this.spatials, this.subjects, this.temporals, this.titles, this.types, NopConstructionValidator.getInstance());
+        UncheckedValidator.validateExtents(extents);
+        return new DublinCoreObject(this.abstracts, this.audiences, this.contributors, this.coverages, this.createds, this.creators, this.dates, this.descriptions, extents, this.formats, this.identifiers, this.languages, this.mediums, this.provenances, this.publishers, this.relations, this.rights, this.rightsHolders, this.sources, this.spatials, this.subjects, this.temporals, this.titles, this.types);
     }
 
-    public DublinCoreObject replaceExtents(final com.google.common.collect.ImmutableList<String> extents) {
+    public DublinCoreObject replaceExtents(@javax.annotation.Nullable final com.google.common.collect.ImmutableList<String> extents) {
         return replaceExtents(com.google.common.base.Optional.fromNullable(extents));
     }
 
     public DublinCoreObject replaceFormats(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> formats) {
-        return new DublinCoreObject(this.abstracts, this.audiences, this.contributors, this.coverages, this.createds, this.creators, this.dates, this.descriptions, this.extents, DefaultConstructionValidator.getInstance().validateFormats(formats), this.identifiers, this.languages, this.mediums, this.provenances, this.publishers, this.relations, this.rights, this.rightsHolders, this.sources, this.spatials, this.subjects, this.temporals, this.titles, this.types, NopConstructionValidator.getInstance());
+        UncheckedValidator.validateFormats(formats);
+        return new DublinCoreObject(this.abstracts, this.audiences, this.contributors, this.coverages, this.createds, this.creators, this.dates, this.descriptions, this.extents, formats, this.identifiers, this.languages, this.mediums, this.provenances, this.publishers, this.relations, this.rights, this.rightsHolders, this.sources, this.spatials, this.subjects, this.temporals, this.titles, this.types);
     }
 
-    public DublinCoreObject replaceFormats(final com.google.common.collect.ImmutableList<String> formats) {
+    public DublinCoreObject replaceFormats(@javax.annotation.Nullable final com.google.common.collect.ImmutableList<String> formats) {
         return replaceFormats(com.google.common.base.Optional.fromNullable(formats));
     }
 
     public DublinCoreObject replaceIdentifiers(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> identifiers) {
-        return new DublinCoreObject(this.abstracts, this.audiences, this.contributors, this.coverages, this.createds, this.creators, this.dates, this.descriptions, this.extents, this.formats, DefaultConstructionValidator.getInstance().validateIdentifiers(identifiers), this.languages, this.mediums, this.provenances, this.publishers, this.relations, this.rights, this.rightsHolders, this.sources, this.spatials, this.subjects, this.temporals, this.titles, this.types, NopConstructionValidator.getInstance());
+        UncheckedValidator.validateIdentifiers(identifiers);
+        return new DublinCoreObject(this.abstracts, this.audiences, this.contributors, this.coverages, this.createds, this.creators, this.dates, this.descriptions, this.extents, this.formats, identifiers, this.languages, this.mediums, this.provenances, this.publishers, this.relations, this.rights, this.rightsHolders, this.sources, this.spatials, this.subjects, this.temporals, this.titles, this.types);
     }
 
-    public DublinCoreObject replaceIdentifiers(final com.google.common.collect.ImmutableList<String> identifiers) {
+    public DublinCoreObject replaceIdentifiers(@javax.annotation.Nullable final com.google.common.collect.ImmutableList<String> identifiers) {
         return replaceIdentifiers(com.google.common.base.Optional.fromNullable(identifiers));
     }
 
     public DublinCoreObject replaceLanguages(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> languages) {
-        return new DublinCoreObject(this.abstracts, this.audiences, this.contributors, this.coverages, this.createds, this.creators, this.dates, this.descriptions, this.extents, this.formats, this.identifiers, DefaultConstructionValidator.getInstance().validateLanguages(languages), this.mediums, this.provenances, this.publishers, this.relations, this.rights, this.rightsHolders, this.sources, this.spatials, this.subjects, this.temporals, this.titles, this.types, NopConstructionValidator.getInstance());
+        UncheckedValidator.validateLanguages(languages);
+        return new DublinCoreObject(this.abstracts, this.audiences, this.contributors, this.coverages, this.createds, this.creators, this.dates, this.descriptions, this.extents, this.formats, this.identifiers, languages, this.mediums, this.provenances, this.publishers, this.relations, this.rights, this.rightsHolders, this.sources, this.spatials, this.subjects, this.temporals, this.titles, this.types);
     }
 
-    public DublinCoreObject replaceLanguages(final com.google.common.collect.ImmutableList<String> languages) {
+    public DublinCoreObject replaceLanguages(@javax.annotation.Nullable final com.google.common.collect.ImmutableList<String> languages) {
         return replaceLanguages(com.google.common.base.Optional.fromNullable(languages));
     }
 
     public DublinCoreObject replaceMediums(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> mediums) {
-        return new DublinCoreObject(this.abstracts, this.audiences, this.contributors, this.coverages, this.createds, this.creators, this.dates, this.descriptions, this.extents, this.formats, this.identifiers, this.languages, DefaultConstructionValidator.getInstance().validateMediums(mediums), this.provenances, this.publishers, this.relations, this.rights, this.rightsHolders, this.sources, this.spatials, this.subjects, this.temporals, this.titles, this.types, NopConstructionValidator.getInstance());
+        UncheckedValidator.validateMediums(mediums);
+        return new DublinCoreObject(this.abstracts, this.audiences, this.contributors, this.coverages, this.createds, this.creators, this.dates, this.descriptions, this.extents, this.formats, this.identifiers, this.languages, mediums, this.provenances, this.publishers, this.relations, this.rights, this.rightsHolders, this.sources, this.spatials, this.subjects, this.temporals, this.titles, this.types);
     }
 
-    public DublinCoreObject replaceMediums(final com.google.common.collect.ImmutableList<String> mediums) {
+    public DublinCoreObject replaceMediums(@javax.annotation.Nullable final com.google.common.collect.ImmutableList<String> mediums) {
         return replaceMediums(com.google.common.base.Optional.fromNullable(mediums));
     }
 
     public DublinCoreObject replaceProvenances(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> provenances) {
-        return new DublinCoreObject(this.abstracts, this.audiences, this.contributors, this.coverages, this.createds, this.creators, this.dates, this.descriptions, this.extents, this.formats, this.identifiers, this.languages, this.mediums, DefaultConstructionValidator.getInstance().validateProvenances(provenances), this.publishers, this.relations, this.rights, this.rightsHolders, this.sources, this.spatials, this.subjects, this.temporals, this.titles, this.types, NopConstructionValidator.getInstance());
+        UncheckedValidator.validateProvenances(provenances);
+        return new DublinCoreObject(this.abstracts, this.audiences, this.contributors, this.coverages, this.createds, this.creators, this.dates, this.descriptions, this.extents, this.formats, this.identifiers, this.languages, this.mediums, provenances, this.publishers, this.relations, this.rights, this.rightsHolders, this.sources, this.spatials, this.subjects, this.temporals, this.titles, this.types);
     }
 
-    public DublinCoreObject replaceProvenances(final com.google.common.collect.ImmutableList<String> provenances) {
+    public DublinCoreObject replaceProvenances(@javax.annotation.Nullable final com.google.common.collect.ImmutableList<String> provenances) {
         return replaceProvenances(com.google.common.base.Optional.fromNullable(provenances));
     }
 
     public DublinCoreObject replacePublishers(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> publishers) {
-        return new DublinCoreObject(this.abstracts, this.audiences, this.contributors, this.coverages, this.createds, this.creators, this.dates, this.descriptions, this.extents, this.formats, this.identifiers, this.languages, this.mediums, this.provenances, DefaultConstructionValidator.getInstance().validatePublishers(publishers), this.relations, this.rights, this.rightsHolders, this.sources, this.spatials, this.subjects, this.temporals, this.titles, this.types, NopConstructionValidator.getInstance());
+        UncheckedValidator.validatePublishers(publishers);
+        return new DublinCoreObject(this.abstracts, this.audiences, this.contributors, this.coverages, this.createds, this.creators, this.dates, this.descriptions, this.extents, this.formats, this.identifiers, this.languages, this.mediums, this.provenances, publishers, this.relations, this.rights, this.rightsHolders, this.sources, this.spatials, this.subjects, this.temporals, this.titles, this.types);
     }
 
-    public DublinCoreObject replacePublishers(final com.google.common.collect.ImmutableList<String> publishers) {
+    public DublinCoreObject replacePublishers(@javax.annotation.Nullable final com.google.common.collect.ImmutableList<String> publishers) {
         return replacePublishers(com.google.common.base.Optional.fromNullable(publishers));
     }
 
     public DublinCoreObject replaceRelations(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> relations) {
-        return new DublinCoreObject(this.abstracts, this.audiences, this.contributors, this.coverages, this.createds, this.creators, this.dates, this.descriptions, this.extents, this.formats, this.identifiers, this.languages, this.mediums, this.provenances, this.publishers, DefaultConstructionValidator.getInstance().validateRelations(relations), this.rights, this.rightsHolders, this.sources, this.spatials, this.subjects, this.temporals, this.titles, this.types, NopConstructionValidator.getInstance());
+        UncheckedValidator.validateRelations(relations);
+        return new DublinCoreObject(this.abstracts, this.audiences, this.contributors, this.coverages, this.createds, this.creators, this.dates, this.descriptions, this.extents, this.formats, this.identifiers, this.languages, this.mediums, this.provenances, this.publishers, relations, this.rights, this.rightsHolders, this.sources, this.spatials, this.subjects, this.temporals, this.titles, this.types);
     }
 
-    public DublinCoreObject replaceRelations(final com.google.common.collect.ImmutableList<String> relations) {
+    public DublinCoreObject replaceRelations(@javax.annotation.Nullable final com.google.common.collect.ImmutableList<String> relations) {
         return replaceRelations(com.google.common.base.Optional.fromNullable(relations));
     }
 
     public DublinCoreObject replaceRights(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> rights) {
-        return new DublinCoreObject(this.abstracts, this.audiences, this.contributors, this.coverages, this.createds, this.creators, this.dates, this.descriptions, this.extents, this.formats, this.identifiers, this.languages, this.mediums, this.provenances, this.publishers, this.relations, DefaultConstructionValidator.getInstance().validateRights(rights), this.rightsHolders, this.sources, this.spatials, this.subjects, this.temporals, this.titles, this.types, NopConstructionValidator.getInstance());
-    }
-
-    public DublinCoreObject replaceRights(final com.google.common.collect.ImmutableList<String> rights) {
-        return replaceRights(com.google.common.base.Optional.fromNullable(rights));
+        UncheckedValidator.validateRights(rights);
+        return new DublinCoreObject(this.abstracts, this.audiences, this.contributors, this.coverages, this.createds, this.creators, this.dates, this.descriptions, this.extents, this.formats, this.identifiers, this.languages, this.mediums, this.provenances, this.publishers, this.relations, rights, this.rightsHolders, this.sources, this.spatials, this.subjects, this.temporals, this.titles, this.types);
     }
 
     public DublinCoreObject replaceRightsHolders(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> rightsHolders) {
-        return new DublinCoreObject(this.abstracts, this.audiences, this.contributors, this.coverages, this.createds, this.creators, this.dates, this.descriptions, this.extents, this.formats, this.identifiers, this.languages, this.mediums, this.provenances, this.publishers, this.relations, this.rights, DefaultConstructionValidator.getInstance().validateRightsHolders(rightsHolders), this.sources, this.spatials, this.subjects, this.temporals, this.titles, this.types, NopConstructionValidator.getInstance());
+        UncheckedValidator.validateRightsHolders(rightsHolders);
+        return new DublinCoreObject(this.abstracts, this.audiences, this.contributors, this.coverages, this.createds, this.creators, this.dates, this.descriptions, this.extents, this.formats, this.identifiers, this.languages, this.mediums, this.provenances, this.publishers, this.relations, this.rights, rightsHolders, this.sources, this.spatials, this.subjects, this.temporals, this.titles, this.types);
     }
 
-    public DublinCoreObject replaceRightsHolders(final com.google.common.collect.ImmutableList<String> rightsHolders) {
+    public DublinCoreObject replaceRightsHolders(@javax.annotation.Nullable final com.google.common.collect.ImmutableList<String> rightsHolders) {
         return replaceRightsHolders(com.google.common.base.Optional.fromNullable(rightsHolders));
     }
 
-    public DublinCoreObject replaceSources(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> sources) {
-        return new DublinCoreObject(this.abstracts, this.audiences, this.contributors, this.coverages, this.createds, this.creators, this.dates, this.descriptions, this.extents, this.formats, this.identifiers, this.languages, this.mediums, this.provenances, this.publishers, this.relations, this.rights, this.rightsHolders, DefaultConstructionValidator.getInstance().validateSources(sources), this.spatials, this.subjects, this.temporals, this.titles, this.types, NopConstructionValidator.getInstance());
+    public DublinCoreObject replaceRights(@javax.annotation.Nullable final com.google.common.collect.ImmutableList<String> rights) {
+        return replaceRights(com.google.common.base.Optional.fromNullable(rights));
     }
 
-    public DublinCoreObject replaceSources(final com.google.common.collect.ImmutableList<String> sources) {
+    public DublinCoreObject replaceSources(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> sources) {
+        UncheckedValidator.validateSources(sources);
+        return new DublinCoreObject(this.abstracts, this.audiences, this.contributors, this.coverages, this.createds, this.creators, this.dates, this.descriptions, this.extents, this.formats, this.identifiers, this.languages, this.mediums, this.provenances, this.publishers, this.relations, this.rights, this.rightsHolders, sources, this.spatials, this.subjects, this.temporals, this.titles, this.types);
+    }
+
+    public DublinCoreObject replaceSources(@javax.annotation.Nullable final com.google.common.collect.ImmutableList<String> sources) {
         return replaceSources(com.google.common.base.Optional.fromNullable(sources));
     }
 
     public DublinCoreObject replaceSpatials(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> spatials) {
-        return new DublinCoreObject(this.abstracts, this.audiences, this.contributors, this.coverages, this.createds, this.creators, this.dates, this.descriptions, this.extents, this.formats, this.identifiers, this.languages, this.mediums, this.provenances, this.publishers, this.relations, this.rights, this.rightsHolders, this.sources, DefaultConstructionValidator.getInstance().validateSpatials(spatials), this.subjects, this.temporals, this.titles, this.types, NopConstructionValidator.getInstance());
+        UncheckedValidator.validateSpatials(spatials);
+        return new DublinCoreObject(this.abstracts, this.audiences, this.contributors, this.coverages, this.createds, this.creators, this.dates, this.descriptions, this.extents, this.formats, this.identifiers, this.languages, this.mediums, this.provenances, this.publishers, this.relations, this.rights, this.rightsHolders, this.sources, spatials, this.subjects, this.temporals, this.titles, this.types);
     }
 
-    public DublinCoreObject replaceSpatials(final com.google.common.collect.ImmutableList<String> spatials) {
+    public DublinCoreObject replaceSpatials(@javax.annotation.Nullable final com.google.common.collect.ImmutableList<String> spatials) {
         return replaceSpatials(com.google.common.base.Optional.fromNullable(spatials));
     }
 
     public DublinCoreObject replaceSubjects(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> subjects) {
-        return new DublinCoreObject(this.abstracts, this.audiences, this.contributors, this.coverages, this.createds, this.creators, this.dates, this.descriptions, this.extents, this.formats, this.identifiers, this.languages, this.mediums, this.provenances, this.publishers, this.relations, this.rights, this.rightsHolders, this.sources, this.spatials, DefaultConstructionValidator.getInstance().validateSubjects(subjects), this.temporals, this.titles, this.types, NopConstructionValidator.getInstance());
+        UncheckedValidator.validateSubjects(subjects);
+        return new DublinCoreObject(this.abstracts, this.audiences, this.contributors, this.coverages, this.createds, this.creators, this.dates, this.descriptions, this.extents, this.formats, this.identifiers, this.languages, this.mediums, this.provenances, this.publishers, this.relations, this.rights, this.rightsHolders, this.sources, this.spatials, subjects, this.temporals, this.titles, this.types);
     }
 
-    public DublinCoreObject replaceSubjects(final com.google.common.collect.ImmutableList<String> subjects) {
+    public DublinCoreObject replaceSubjects(@javax.annotation.Nullable final com.google.common.collect.ImmutableList<String> subjects) {
         return replaceSubjects(com.google.common.base.Optional.fromNullable(subjects));
     }
 
     public DublinCoreObject replaceTemporals(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> temporals) {
-        return new DublinCoreObject(this.abstracts, this.audiences, this.contributors, this.coverages, this.createds, this.creators, this.dates, this.descriptions, this.extents, this.formats, this.identifiers, this.languages, this.mediums, this.provenances, this.publishers, this.relations, this.rights, this.rightsHolders, this.sources, this.spatials, this.subjects, DefaultConstructionValidator.getInstance().validateTemporals(temporals), this.titles, this.types, NopConstructionValidator.getInstance());
+        UncheckedValidator.validateTemporals(temporals);
+        return new DublinCoreObject(this.abstracts, this.audiences, this.contributors, this.coverages, this.createds, this.creators, this.dates, this.descriptions, this.extents, this.formats, this.identifiers, this.languages, this.mediums, this.provenances, this.publishers, this.relations, this.rights, this.rightsHolders, this.sources, this.spatials, this.subjects, temporals, this.titles, this.types);
     }
 
-    public DublinCoreObject replaceTemporals(final com.google.common.collect.ImmutableList<String> temporals) {
+    public DublinCoreObject replaceTemporals(@javax.annotation.Nullable final com.google.common.collect.ImmutableList<String> temporals) {
         return replaceTemporals(com.google.common.base.Optional.fromNullable(temporals));
     }
 
     public DublinCoreObject replaceTitles(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> titles) {
-        return new DublinCoreObject(this.abstracts, this.audiences, this.contributors, this.coverages, this.createds, this.creators, this.dates, this.descriptions, this.extents, this.formats, this.identifiers, this.languages, this.mediums, this.provenances, this.publishers, this.relations, this.rights, this.rightsHolders, this.sources, this.spatials, this.subjects, this.temporals, DefaultConstructionValidator.getInstance().validateTitles(titles), this.types, NopConstructionValidator.getInstance());
+        UncheckedValidator.validateTitles(titles);
+        return new DublinCoreObject(this.abstracts, this.audiences, this.contributors, this.coverages, this.createds, this.creators, this.dates, this.descriptions, this.extents, this.formats, this.identifiers, this.languages, this.mediums, this.provenances, this.publishers, this.relations, this.rights, this.rightsHolders, this.sources, this.spatials, this.subjects, this.temporals, titles, this.types);
     }
 
-    public DublinCoreObject replaceTitles(final com.google.common.collect.ImmutableList<String> titles) {
+    public DublinCoreObject replaceTitles(@javax.annotation.Nullable final com.google.common.collect.ImmutableList<String> titles) {
         return replaceTitles(com.google.common.base.Optional.fromNullable(titles));
     }
 
     public DublinCoreObject replaceTypes(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> types) {
-        return new DublinCoreObject(this.abstracts, this.audiences, this.contributors, this.coverages, this.createds, this.creators, this.dates, this.descriptions, this.extents, this.formats, this.identifiers, this.languages, this.mediums, this.provenances, this.publishers, this.relations, this.rights, this.rightsHolders, this.sources, this.spatials, this.subjects, this.temporals, this.titles, DefaultConstructionValidator.getInstance().validateTypes(types), NopConstructionValidator.getInstance());
+        UncheckedValidator.validateTypes(types);
+        return new DublinCoreObject(this.abstracts, this.audiences, this.contributors, this.coverages, this.createds, this.creators, this.dates, this.descriptions, this.extents, this.formats, this.identifiers, this.languages, this.mediums, this.provenances, this.publishers, this.relations, this.rights, this.rightsHolders, this.sources, this.spatials, this.subjects, this.temporals, this.titles, types);
     }
 
-    public DublinCoreObject replaceTypes(final com.google.common.collect.ImmutableList<String> types) {
+    public DublinCoreObject replaceTypes(@javax.annotation.Nullable final com.google.common.collect.ImmutableList<String> types) {
         return replaceTypes(com.google.common.base.Optional.fromNullable(types));
     }
 
     @Override
     public String toString() {
         return com.google.common.base.MoreObjects.toStringHelper(this).omitNullValues().add("abstracts", getAbstracts().orNull()).add("audiences", getAudiences().orNull()).add("contributors", getContributors().orNull()).add("coverages", getCoverages().orNull()).add("createds", getCreateds().orNull()).add("creators", getCreators().orNull()).add("dates", getDates().orNull()).add("descriptions", getDescriptions().orNull()).add("extents", getExtents().orNull()).add("formats", getFormats().orNull()).add("identifiers", getIdentifiers().orNull()).add("languages", getLanguages().orNull()).add("mediums", getMediums().orNull()).add("provenances", getProvenances().orNull()).add("publishers", getPublishers().orNull()).add("relations", getRelations().orNull()).add("rights", getRights().orNull()).add("rights_holders", getRightsHolders().orNull()).add("sources", getSources().orNull()).add("spatials", getSpatials().orNull()).add("subjects", getSubjects().orNull()).add("temporals", getTemporals().orNull()).add("titles", getTitles().orNull()).add("types", getTypes().orNull()).toString();
+    }
+
+    public void writeAbstractsField(final org.thryft.protocol.OutputProtocol oprot) throws org.thryft.protocol.OutputProtocolException {
+        if (getAbstracts().isPresent()) {
+            oprot.writeFieldBegin(FieldMetadata.ABSTRACTS);
+            oprot.writeListBegin(org.thryft.protocol.Type.STRING, getAbstracts().get().size());
+            for (final String _iter0 : getAbstracts().get()) {
+                oprot.writeString(_iter0);
+            }
+            oprot.writeListEnd();
+            oprot.writeFieldEnd();
+        }
     }
 
     @Override
@@ -5168,20 +4891,9 @@ public final class DublinCoreObject implements org.thryft.Struct {
         oprot.writeStructEnd();
     }
 
-    @Override
-    public void writeFields(final org.thryft.protocol.OutputProtocol oprot) throws org.thryft.protocol.OutputProtocolException {
-        if (getAbstracts().isPresent()) {
-            oprot.writeFieldBegin("abstracts", org.thryft.protocol.Type.LIST, (short)24);
-            oprot.writeListBegin(org.thryft.protocol.Type.STRING, getAbstracts().get().size());
-            for (final String _iter0 : getAbstracts().get()) {
-                oprot.writeString(_iter0);
-            }
-            oprot.writeListEnd();
-            oprot.writeFieldEnd();
-        }
-
+    public void writeAudiencesField(final org.thryft.protocol.OutputProtocol oprot) throws org.thryft.protocol.OutputProtocolException {
         if (getAudiences().isPresent()) {
-            oprot.writeFieldBegin("audiences", org.thryft.protocol.Type.LIST, (short)1);
+            oprot.writeFieldBegin(FieldMetadata.AUDIENCES);
             oprot.writeListBegin(org.thryft.protocol.Type.STRING, getAudiences().get().size());
             for (final String _iter0 : getAudiences().get()) {
                 oprot.writeString(_iter0);
@@ -5189,9 +4901,11 @@ public final class DublinCoreObject implements org.thryft.Struct {
             oprot.writeListEnd();
             oprot.writeFieldEnd();
         }
+    }
 
+    public void writeContributorsField(final org.thryft.protocol.OutputProtocol oprot) throws org.thryft.protocol.OutputProtocolException {
         if (getContributors().isPresent()) {
-            oprot.writeFieldBegin("contributors", org.thryft.protocol.Type.LIST, (short)2);
+            oprot.writeFieldBegin(FieldMetadata.CONTRIBUTORS);
             oprot.writeListBegin(org.thryft.protocol.Type.STRING, getContributors().get().size());
             for (final String _iter0 : getContributors().get()) {
                 oprot.writeString(_iter0);
@@ -5199,9 +4913,11 @@ public final class DublinCoreObject implements org.thryft.Struct {
             oprot.writeListEnd();
             oprot.writeFieldEnd();
         }
+    }
 
+    public void writeCoveragesField(final org.thryft.protocol.OutputProtocol oprot) throws org.thryft.protocol.OutputProtocolException {
         if (getCoverages().isPresent()) {
-            oprot.writeFieldBegin("coverages", org.thryft.protocol.Type.LIST, (short)3);
+            oprot.writeFieldBegin(FieldMetadata.COVERAGES);
             oprot.writeListBegin(org.thryft.protocol.Type.STRING, getCoverages().get().size());
             for (final String _iter0 : getCoverages().get()) {
                 oprot.writeString(_iter0);
@@ -5209,9 +4925,11 @@ public final class DublinCoreObject implements org.thryft.Struct {
             oprot.writeListEnd();
             oprot.writeFieldEnd();
         }
+    }
 
+    public void writeCreatedsField(final org.thryft.protocol.OutputProtocol oprot) throws org.thryft.protocol.OutputProtocolException {
         if (getCreateds().isPresent()) {
-            oprot.writeFieldBegin("createds", org.thryft.protocol.Type.LIST, (short)20);
+            oprot.writeFieldBegin(FieldMetadata.CREATEDS);
             oprot.writeListBegin(org.thryft.protocol.Type.STRING, getCreateds().get().size());
             for (final String _iter0 : getCreateds().get()) {
                 oprot.writeString(_iter0);
@@ -5219,9 +4937,11 @@ public final class DublinCoreObject implements org.thryft.Struct {
             oprot.writeListEnd();
             oprot.writeFieldEnd();
         }
+    }
 
+    public void writeCreatorsField(final org.thryft.protocol.OutputProtocol oprot) throws org.thryft.protocol.OutputProtocolException {
         if (getCreators().isPresent()) {
-            oprot.writeFieldBegin("creators", org.thryft.protocol.Type.LIST, (short)4);
+            oprot.writeFieldBegin(FieldMetadata.CREATORS);
             oprot.writeListBegin(org.thryft.protocol.Type.STRING, getCreators().get().size());
             for (final String _iter0 : getCreators().get()) {
                 oprot.writeString(_iter0);
@@ -5229,9 +4949,11 @@ public final class DublinCoreObject implements org.thryft.Struct {
             oprot.writeListEnd();
             oprot.writeFieldEnd();
         }
+    }
 
+    public void writeDatesField(final org.thryft.protocol.OutputProtocol oprot) throws org.thryft.protocol.OutputProtocolException {
         if (getDates().isPresent()) {
-            oprot.writeFieldBegin("dates", org.thryft.protocol.Type.LIST, (short)5);
+            oprot.writeFieldBegin(FieldMetadata.DATES);
             oprot.writeListBegin(org.thryft.protocol.Type.STRING, getDates().get().size());
             for (final String _iter0 : getDates().get()) {
                 oprot.writeString(_iter0);
@@ -5239,9 +4961,11 @@ public final class DublinCoreObject implements org.thryft.Struct {
             oprot.writeListEnd();
             oprot.writeFieldEnd();
         }
+    }
 
+    public void writeDescriptionsField(final org.thryft.protocol.OutputProtocol oprot) throws org.thryft.protocol.OutputProtocolException {
         if (getDescriptions().isPresent()) {
-            oprot.writeFieldBegin("descriptions", org.thryft.protocol.Type.LIST, (short)6);
+            oprot.writeFieldBegin(FieldMetadata.DESCRIPTIONS);
             oprot.writeListBegin(org.thryft.protocol.Type.STRING, getDescriptions().get().size());
             for (final String _iter0 : getDescriptions().get()) {
                 oprot.writeString(_iter0);
@@ -5249,9 +4973,11 @@ public final class DublinCoreObject implements org.thryft.Struct {
             oprot.writeListEnd();
             oprot.writeFieldEnd();
         }
+    }
 
+    public void writeExtentsField(final org.thryft.protocol.OutputProtocol oprot) throws org.thryft.protocol.OutputProtocolException {
         if (getExtents().isPresent()) {
-            oprot.writeFieldBegin("extents", org.thryft.protocol.Type.LIST, (short)19);
+            oprot.writeFieldBegin(FieldMetadata.EXTENTS);
             oprot.writeListBegin(org.thryft.protocol.Type.STRING, getExtents().get().size());
             for (final String _iter0 : getExtents().get()) {
                 oprot.writeString(_iter0);
@@ -5259,9 +4985,64 @@ public final class DublinCoreObject implements org.thryft.Struct {
             oprot.writeListEnd();
             oprot.writeFieldEnd();
         }
+    }
 
+    @Override
+    public void writeFields(final org.thryft.protocol.OutputProtocol oprot) throws org.thryft.protocol.OutputProtocolException {
+        writeAbstractsField(oprot);
+
+        writeAudiencesField(oprot);
+
+        writeContributorsField(oprot);
+
+        writeCoveragesField(oprot);
+
+        writeCreatedsField(oprot);
+
+        writeCreatorsField(oprot);
+
+        writeDatesField(oprot);
+
+        writeDescriptionsField(oprot);
+
+        writeExtentsField(oprot);
+
+        writeFormatsField(oprot);
+
+        writeIdentifiersField(oprot);
+
+        writeLanguagesField(oprot);
+
+        writeMediumsField(oprot);
+
+        writeProvenancesField(oprot);
+
+        writePublishersField(oprot);
+
+        writeRelationsField(oprot);
+
+        writeRightsField(oprot);
+
+        writeRightsHoldersField(oprot);
+
+        writeSourcesField(oprot);
+
+        writeSpatialsField(oprot);
+
+        writeSubjectsField(oprot);
+
+        writeTemporalsField(oprot);
+
+        writeTitlesField(oprot);
+
+        writeTypesField(oprot);
+
+        oprot.writeFieldStop();
+    }
+
+    public void writeFormatsField(final org.thryft.protocol.OutputProtocol oprot) throws org.thryft.protocol.OutputProtocolException {
         if (getFormats().isPresent()) {
-            oprot.writeFieldBegin("formats", org.thryft.protocol.Type.LIST, (short)8);
+            oprot.writeFieldBegin(FieldMetadata.FORMATS);
             oprot.writeListBegin(org.thryft.protocol.Type.STRING, getFormats().get().size());
             for (final String _iter0 : getFormats().get()) {
                 oprot.writeString(_iter0);
@@ -5269,9 +5050,11 @@ public final class DublinCoreObject implements org.thryft.Struct {
             oprot.writeListEnd();
             oprot.writeFieldEnd();
         }
+    }
 
+    public void writeIdentifiersField(final org.thryft.protocol.OutputProtocol oprot) throws org.thryft.protocol.OutputProtocolException {
         if (getIdentifiers().isPresent()) {
-            oprot.writeFieldBegin("identifiers", org.thryft.protocol.Type.LIST, (short)7);
+            oprot.writeFieldBegin(FieldMetadata.IDENTIFIERS);
             oprot.writeListBegin(org.thryft.protocol.Type.STRING, getIdentifiers().get().size());
             for (final String _iter0 : getIdentifiers().get()) {
                 oprot.writeString(_iter0);
@@ -5279,9 +5062,11 @@ public final class DublinCoreObject implements org.thryft.Struct {
             oprot.writeListEnd();
             oprot.writeFieldEnd();
         }
+    }
 
+    public void writeLanguagesField(final org.thryft.protocol.OutputProtocol oprot) throws org.thryft.protocol.OutputProtocolException {
         if (getLanguages().isPresent()) {
-            oprot.writeFieldBegin("languages", org.thryft.protocol.Type.LIST, (short)9);
+            oprot.writeFieldBegin(FieldMetadata.LANGUAGES);
             oprot.writeListBegin(org.thryft.protocol.Type.STRING, getLanguages().get().size());
             for (final String _iter0 : getLanguages().get()) {
                 oprot.writeString(_iter0);
@@ -5289,9 +5074,11 @@ public final class DublinCoreObject implements org.thryft.Struct {
             oprot.writeListEnd();
             oprot.writeFieldEnd();
         }
+    }
 
+    public void writeMediumsField(final org.thryft.protocol.OutputProtocol oprot) throws org.thryft.protocol.OutputProtocolException {
         if (getMediums().isPresent()) {
-            oprot.writeFieldBegin("mediums", org.thryft.protocol.Type.LIST, (short)23);
+            oprot.writeFieldBegin(FieldMetadata.MEDIUMS);
             oprot.writeListBegin(org.thryft.protocol.Type.STRING, getMediums().get().size());
             for (final String _iter0 : getMediums().get()) {
                 oprot.writeString(_iter0);
@@ -5299,9 +5086,11 @@ public final class DublinCoreObject implements org.thryft.Struct {
             oprot.writeListEnd();
             oprot.writeFieldEnd();
         }
+    }
 
+    public void writeProvenancesField(final org.thryft.protocol.OutputProtocol oprot) throws org.thryft.protocol.OutputProtocolException {
         if (getProvenances().isPresent()) {
-            oprot.writeFieldBegin("provenances", org.thryft.protocol.Type.LIST, (short)10);
+            oprot.writeFieldBegin(FieldMetadata.PROVENANCES);
             oprot.writeListBegin(org.thryft.protocol.Type.STRING, getProvenances().get().size());
             for (final String _iter0 : getProvenances().get()) {
                 oprot.writeString(_iter0);
@@ -5309,9 +5098,11 @@ public final class DublinCoreObject implements org.thryft.Struct {
             oprot.writeListEnd();
             oprot.writeFieldEnd();
         }
+    }
 
+    public void writePublishersField(final org.thryft.protocol.OutputProtocol oprot) throws org.thryft.protocol.OutputProtocolException {
         if (getPublishers().isPresent()) {
-            oprot.writeFieldBegin("publishers", org.thryft.protocol.Type.LIST, (short)11);
+            oprot.writeFieldBegin(FieldMetadata.PUBLISHERS);
             oprot.writeListBegin(org.thryft.protocol.Type.STRING, getPublishers().get().size());
             for (final String _iter0 : getPublishers().get()) {
                 oprot.writeString(_iter0);
@@ -5319,9 +5110,11 @@ public final class DublinCoreObject implements org.thryft.Struct {
             oprot.writeListEnd();
             oprot.writeFieldEnd();
         }
+    }
 
+    public void writeRelationsField(final org.thryft.protocol.OutputProtocol oprot) throws org.thryft.protocol.OutputProtocolException {
         if (getRelations().isPresent()) {
-            oprot.writeFieldBegin("relations", org.thryft.protocol.Type.LIST, (short)12);
+            oprot.writeFieldBegin(FieldMetadata.RELATIONS);
             oprot.writeListBegin(org.thryft.protocol.Type.STRING, getRelations().get().size());
             for (final String _iter0 : getRelations().get()) {
                 oprot.writeString(_iter0);
@@ -5329,9 +5122,11 @@ public final class DublinCoreObject implements org.thryft.Struct {
             oprot.writeListEnd();
             oprot.writeFieldEnd();
         }
+    }
 
+    public void writeRightsField(final org.thryft.protocol.OutputProtocol oprot) throws org.thryft.protocol.OutputProtocolException {
         if (getRights().isPresent()) {
-            oprot.writeFieldBegin("rights", org.thryft.protocol.Type.LIST, (short)13);
+            oprot.writeFieldBegin(FieldMetadata.RIGHTS);
             oprot.writeListBegin(org.thryft.protocol.Type.STRING, getRights().get().size());
             for (final String _iter0 : getRights().get()) {
                 oprot.writeString(_iter0);
@@ -5339,9 +5134,11 @@ public final class DublinCoreObject implements org.thryft.Struct {
             oprot.writeListEnd();
             oprot.writeFieldEnd();
         }
+    }
 
+    public void writeRightsHoldersField(final org.thryft.protocol.OutputProtocol oprot) throws org.thryft.protocol.OutputProtocolException {
         if (getRightsHolders().isPresent()) {
-            oprot.writeFieldBegin("rights_holders", org.thryft.protocol.Type.LIST, (short)14);
+            oprot.writeFieldBegin(FieldMetadata.RIGHTS_HOLDERS);
             oprot.writeListBegin(org.thryft.protocol.Type.STRING, getRightsHolders().get().size());
             for (final String _iter0 : getRightsHolders().get()) {
                 oprot.writeString(_iter0);
@@ -5349,9 +5146,11 @@ public final class DublinCoreObject implements org.thryft.Struct {
             oprot.writeListEnd();
             oprot.writeFieldEnd();
         }
+    }
 
+    public void writeSourcesField(final org.thryft.protocol.OutputProtocol oprot) throws org.thryft.protocol.OutputProtocolException {
         if (getSources().isPresent()) {
-            oprot.writeFieldBegin("sources", org.thryft.protocol.Type.LIST, (short)15);
+            oprot.writeFieldBegin(FieldMetadata.SOURCES);
             oprot.writeListBegin(org.thryft.protocol.Type.STRING, getSources().get().size());
             for (final String _iter0 : getSources().get()) {
                 oprot.writeString(_iter0);
@@ -5359,9 +5158,11 @@ public final class DublinCoreObject implements org.thryft.Struct {
             oprot.writeListEnd();
             oprot.writeFieldEnd();
         }
+    }
 
+    public void writeSpatialsField(final org.thryft.protocol.OutputProtocol oprot) throws org.thryft.protocol.OutputProtocolException {
         if (getSpatials().isPresent()) {
-            oprot.writeFieldBegin("spatials", org.thryft.protocol.Type.LIST, (short)21);
+            oprot.writeFieldBegin(FieldMetadata.SPATIALS);
             oprot.writeListBegin(org.thryft.protocol.Type.STRING, getSpatials().get().size());
             for (final String _iter0 : getSpatials().get()) {
                 oprot.writeString(_iter0);
@@ -5369,9 +5170,11 @@ public final class DublinCoreObject implements org.thryft.Struct {
             oprot.writeListEnd();
             oprot.writeFieldEnd();
         }
+    }
 
+    public void writeSubjectsField(final org.thryft.protocol.OutputProtocol oprot) throws org.thryft.protocol.OutputProtocolException {
         if (getSubjects().isPresent()) {
-            oprot.writeFieldBegin("subjects", org.thryft.protocol.Type.LIST, (short)16);
+            oprot.writeFieldBegin(FieldMetadata.SUBJECTS);
             oprot.writeListBegin(org.thryft.protocol.Type.STRING, getSubjects().get().size());
             for (final String _iter0 : getSubjects().get()) {
                 oprot.writeString(_iter0);
@@ -5379,9 +5182,11 @@ public final class DublinCoreObject implements org.thryft.Struct {
             oprot.writeListEnd();
             oprot.writeFieldEnd();
         }
+    }
 
+    public void writeTemporalsField(final org.thryft.protocol.OutputProtocol oprot) throws org.thryft.protocol.OutputProtocolException {
         if (getTemporals().isPresent()) {
-            oprot.writeFieldBegin("temporals", org.thryft.protocol.Type.LIST, (short)22);
+            oprot.writeFieldBegin(FieldMetadata.TEMPORALS);
             oprot.writeListBegin(org.thryft.protocol.Type.STRING, getTemporals().get().size());
             for (final String _iter0 : getTemporals().get()) {
                 oprot.writeString(_iter0);
@@ -5389,9 +5194,11 @@ public final class DublinCoreObject implements org.thryft.Struct {
             oprot.writeListEnd();
             oprot.writeFieldEnd();
         }
+    }
 
+    public void writeTitlesField(final org.thryft.protocol.OutputProtocol oprot) throws org.thryft.protocol.OutputProtocolException {
         if (getTitles().isPresent()) {
-            oprot.writeFieldBegin("titles", org.thryft.protocol.Type.LIST, (short)17);
+            oprot.writeFieldBegin(FieldMetadata.TITLES);
             oprot.writeListBegin(org.thryft.protocol.Type.STRING, getTitles().get().size());
             for (final String _iter0 : getTitles().get()) {
                 oprot.writeString(_iter0);
@@ -5399,9 +5206,11 @@ public final class DublinCoreObject implements org.thryft.Struct {
             oprot.writeListEnd();
             oprot.writeFieldEnd();
         }
+    }
 
+    public void writeTypesField(final org.thryft.protocol.OutputProtocol oprot) throws org.thryft.protocol.OutputProtocolException {
         if (getTypes().isPresent()) {
-            oprot.writeFieldBegin("types", org.thryft.protocol.Type.LIST, (short)18);
+            oprot.writeFieldBegin(FieldMetadata.TYPES);
             oprot.writeListBegin(org.thryft.protocol.Type.STRING, getTypes().get().size());
             for (final String _iter0 : getTypes().get()) {
                 oprot.writeString(_iter0);
@@ -5409,9 +5218,9 @@ public final class DublinCoreObject implements org.thryft.Struct {
             oprot.writeListEnd();
             oprot.writeFieldEnd();
         }
-
-        oprot.writeFieldStop();
     }
+
+    public final static DublinCoreObject EMPTY = new DublinCoreObject();
 
     private final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> abstracts;
 

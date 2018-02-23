@@ -3,13 +3,32 @@ package org.dressdiscover.api.vocabularies.vra_core.textref;
 /**
  * VRA Core 4.0 textref.name.type attribute values
  */
-public enum TextrefNameType {
+public enum TextrefNameType implements org.thryft.ThryftEnum {
     BOOK(0),
     CATALOG(1),
     CORPUS(2),
     ELECTRONIC(3),
     OTHER(4),
     SERIAL(5);
+
+    public final static class Factory implements org.thryft.ThryftEnum.Factory<TextrefNameType> {
+        public final static Factory getInstance() {
+            return instance;
+        }
+
+        public final TextrefNameType valueOf(final String name) {
+            return TextrefNameType.valueOf(name);
+        }
+
+        public final TextrefNameType valueOf(final int value) {
+            return TextrefNameType.valueOf(value);
+        }
+
+        private Factory() {
+        }
+
+        private final static Factory instance = new Factory();
+    }
 
     private TextrefNameType(int value) {
         this.value = value;
@@ -25,10 +44,6 @@ public enum TextrefNameType {
         case 5: return SERIAL;
         default: throw new IllegalArgumentException();
         }
-    }
-
-    public static TextrefNameType valueOf(final Integer value) {
-        return valueOf(value.intValue());
     }
 
     public final int value() {

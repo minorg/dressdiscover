@@ -3,7 +3,7 @@ package org.dressdiscover.api.vocabularies.vra_core.subject;
 /**
  * VRA Core 4.0 subject element
  */
-public final class Subject implements org.thryft.Struct, org.dressdiscover.api.vocabularies.vra_core.Element {
+public final class Subject implements org.dressdiscover.api.vocabularies.vra_core.Element {
     public final static class Builder {
         public Builder() {
             terms = null;
@@ -14,14 +14,16 @@ public final class Subject implements org.thryft.Struct, org.dressdiscover.api.v
         }
 
         protected Subject _build(final com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.subject.SubjectTerm> terms) {
-            return new Subject(terms, DefaultConstructionValidator.getInstance());
+            return new Subject(terms);
         }
 
         public Subject build() {
+            UncheckedValidator.validate(terms);
+
             return _build(terms);
         }
 
-        public final com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.subject.SubjectTerm> getTerms() {
+        public final @javax.annotation.Nullable com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.subject.SubjectTerm> getTerms() {
             return terms;
         }
 
@@ -93,7 +95,7 @@ public final class Subject implements org.thryft.Struct, org.dressdiscover.api.v
                                             final org.thryft.protocol.ListBegin sequenceBegin = iprot.readListBegin();
                                             final com.google.common.collect.ImmutableList.Builder<org.dressdiscover.api.vocabularies.vra_core.subject.SubjectTerm> sequenceBuilder = com.google.common.collect.ImmutableList.builder();
                                             for (int elementI = 0; elementI < sequenceBegin.getSize(); elementI++) {
-                                                sequenceBuilder.add(org.dressdiscover.api.vocabularies.vra_core.subject.SubjectTerm.readAsStruct(iprot));
+                                                sequenceBuilder.add(org.dressdiscover.api.vocabularies.vra_core.subject.SubjectTerm.readAsStruct(iprot, unknownFieldCallback));
                                             }
                                             iprot.readListEnd();
                                             return sequenceBuilder.build();
@@ -154,7 +156,8 @@ public final class Subject implements org.thryft.Struct, org.dressdiscover.api.v
         }
 
         public Builder setTerms(final com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.subject.SubjectTerm> terms) {
-            this.terms = DefaultConstructionValidator.getInstance().validateTerms(terms);
+            UncheckedValidator.validateTerms(terms);
+            this.terms = terms;
             return this;
         }
 
@@ -184,7 +187,7 @@ public final class Subject implements org.thryft.Struct, org.dressdiscover.api.v
             return this;
         }
 
-        private com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.subject.SubjectTerm> terms;
+        private @javax.annotation.Nullable com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.subject.SubjectTerm> terms;
     }
 
     public final static class Factory implements org.thryft.CompoundType.Factory<Subject> {
@@ -218,7 +221,7 @@ public final class Subject implements org.thryft.Struct, org.dressdiscover.api.v
 
     @SuppressWarnings("serial")
     public enum FieldMetadata implements org.thryft.CompoundType.FieldMetadata {
-        TERMS("terms", new com.google.common.reflect.TypeToken<com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.subject.SubjectTerm>>() {}, true, 1, "terms", org.thryft.protocol.Type.LIST);
+        TERMS("terms", new com.google.common.reflect.TypeToken<com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.subject.SubjectTerm>>() {}, true, (short)1, "terms", org.thryft.protocol.Type.LIST);
 
         @Override
         public String getJavaName() {
@@ -231,7 +234,7 @@ public final class Subject implements org.thryft.Struct, org.dressdiscover.api.v
         }
 
         @Override
-        public int getThriftId() {
+        public short getThriftId() {
             return thriftId;
         }
 
@@ -276,7 +279,7 @@ public final class Subject implements org.thryft.Struct, org.dressdiscover.api.v
             }
         }
 
-        private FieldMetadata(final String javaName, final com.google.common.reflect.TypeToken<?> javaType, final boolean required, final int thriftId, final String thriftName, final org.thryft.protocol.Type thriftProtocolType) {
+        private FieldMetadata(final String javaName, final com.google.common.reflect.TypeToken<?> javaType, final boolean required, final short thriftId, final String thriftName, final org.thryft.protocol.Type thriftProtocolType) {
             this.javaName = javaName;
             this.javaType = javaType;
             this.required = required;
@@ -293,107 +296,56 @@ public final class Subject implements org.thryft.Struct, org.dressdiscover.api.v
         private final String javaName;
         private final com.google.common.reflect.TypeToken<?> javaType;
         private final boolean required;
-        private final int thriftId;
+        private final short thriftId;
         private final String thriftName;
         private final String thriftProtocolKey;
         private final org.thryft.protocol.Type thriftProtocolType;
     }
 
-    public interface Validator<ExceptionT extends Exception> {
-        public com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.subject.SubjectTerm> validateTerms(final com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.subject.SubjectTerm> terms) throws ExceptionT;
-    }
-
-    public interface ConstructionValidator extends Validator<RuntimeException> {
-    }
-
-    public static class DefaultConstructionValidator implements ConstructionValidator {
-        public static DefaultConstructionValidator getInstance() {
-            return instance;
+    public final static class ReadValidator {
+        public static void validate(final com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.subject.SubjectTerm> terms) throws org.thryft.protocol.InputProtocolException {
+            validateTerms(terms);
         }
 
-        public DefaultConstructionValidator() {
-        }
-
-        @Override
-        public com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.subject.SubjectTerm> validateTerms(final com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.subject.SubjectTerm> terms) throws RuntimeException {
-            if (terms == null) {
-                throw new NullPointerException("org.dressdiscover.api.vocabularies.vra_core.subject.Subject: terms is null");
-            }
-            if (terms.isEmpty()) {
-                throw new IllegalArgumentException("org.dressdiscover.api.vocabularies.vra_core.subject.Subject: terms is less than min length 1");
-            }
-            return terms;
-        }
-
-        private final static DefaultConstructionValidator instance = new DefaultConstructionValidator();
-    }
-
-    public static class NopConstructionValidator implements ConstructionValidator {
-        public static NopConstructionValidator getInstance() {
-            return instance;
-        }
-
-        public NopConstructionValidator() {
-        }
-
-        @Override
-        public com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.subject.SubjectTerm> validateTerms(final com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.subject.SubjectTerm> terms) {
-            return terms;
-        }
-
-        private final static NopConstructionValidator instance = new NopConstructionValidator();
-    }
-
-    public interface ReadValidator extends Validator<org.thryft.protocol.InputProtocolException> {
-    }
-
-    public static class DefaultReadValidator implements ReadValidator {
-        public static DefaultReadValidator getInstance() {
-            return instance;
-        }
-
-        public DefaultReadValidator() {
-        }
-
-        @Override
-        public com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.subject.SubjectTerm> validateTerms(final com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.subject.SubjectTerm> terms) throws org.thryft.protocol.InputProtocolException {
+        public static void validateTerms(final com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.subject.SubjectTerm> terms) throws org.thryft.protocol.InputProtocolException {
             if (terms == null) {
                 throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.TERMS, "org.dressdiscover.api.vocabularies.vra_core.subject.Subject: terms is null");
             }
             if (terms.isEmpty()) {
-                throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.TERMS, "org.dressdiscover.api.vocabularies.vra_core.subject.Subject: terms is less than min length 1");
+                throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.TERMS, "org.dressdiscover.api.vocabularies.vra_core.subject.Subject.terms: less than min length 1");
             }
-            return terms;
         }
-
-        private final static DefaultReadValidator instance = new DefaultReadValidator();
     }
 
-    public static class NopReadValidator implements ReadValidator {
-        public static NopReadValidator getInstance() {
-            return instance;
+    public final static class UncheckedValidator {
+        public static void validate(final com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.subject.SubjectTerm> terms) {
+            validateTerms(terms);
         }
 
-        public NopReadValidator() {
+        public static void validateTerms(final com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.subject.SubjectTerm> terms) {
+            if (terms == null) {
+                throw new NullPointerException("org.dressdiscover.api.vocabularies.vra_core.subject.Subject: terms is null");
+            }
+            if (terms.isEmpty()) {
+                throw new IllegalArgumentException("org.dressdiscover.api.vocabularies.vra_core.subject.Subject.terms: less than min length 1");
+            }
         }
-
-        @Override
-        public com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.subject.SubjectTerm> validateTerms(final com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.subject.SubjectTerm> terms) {
-            return terms;
-        }
-
-        private final static NopReadValidator instance = new NopReadValidator();
     }
 
     /**
      * Copy constructor
      */
     public Subject(final Subject other) {
-        this(other.getTerms(), NopConstructionValidator.getInstance());
+        this(other.getTerms());
     }
 
-    protected Subject(final com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.subject.SubjectTerm> terms, ConstructionValidator validator) {
-        this.terms = validator.validateTerms(terms);
+    /**
+     * Total constructor
+     *
+     * All fields should have been validated before calling this.
+     */
+    protected Subject(final com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.subject.SubjectTerm> terms) {
+        this.terms = terms;
     }
 
     public static Builder builder() {
@@ -412,7 +364,8 @@ public final class Subject implements org.thryft.Struct, org.dressdiscover.api.v
      * Optional factory method
      */
     public static Subject create(final com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.subject.SubjectTerm> terms) {
-        return new Subject(terms, DefaultConstructionValidator.getInstance());
+        UncheckedValidator.validate(terms);
+        return new Subject(terms);
     }
 
     @Override
@@ -481,7 +434,7 @@ public final class Subject implements org.thryft.Struct, org.dressdiscover.api.v
     }
 
     public static Subject readAsList(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
-        com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.subject.SubjectTerm> terms = null;
+        com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.subject.SubjectTerm> terms;
 
         try {
             iprot.readListBegin();
@@ -509,7 +462,10 @@ public final class Subject implements org.thryft.Struct, org.dressdiscover.api.v
         } catch (final RuntimeException e) {
             throw new IllegalStateException(e);
         }
-        return new Subject(DefaultReadValidator.getInstance().validateTerms(terms), NopConstructionValidator.getInstance());
+
+        ReadValidator.validate(terms);
+
+        return new Subject(terms);
     }
 
     public static Subject readAsStruct(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
@@ -517,7 +473,7 @@ public final class Subject implements org.thryft.Struct, org.dressdiscover.api.v
     }
 
     public static Subject readAsStruct(final org.thryft.protocol.InputProtocol iprot, final com.google.common.base.Optional<UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
-        com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.subject.SubjectTerm> terms = null;
+        @javax.annotation.Nullable com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.subject.SubjectTerm> terms = null;
 
         try {
             iprot.readStructBegin();
@@ -537,7 +493,7 @@ public final class Subject implements org.thryft.Struct, org.dressdiscover.api.v
                                         final org.thryft.protocol.ListBegin sequenceBegin = iprot.readListBegin();
                                         final com.google.common.collect.ImmutableList.Builder<org.dressdiscover.api.vocabularies.vra_core.subject.SubjectTerm> sequenceBuilder = com.google.common.collect.ImmutableList.builder();
                                         for (int elementI = 0; elementI < sequenceBegin.getSize(); elementI++) {
-                                            sequenceBuilder.add(org.dressdiscover.api.vocabularies.vra_core.subject.SubjectTerm.readAsStruct(iprot));
+                                            sequenceBuilder.add(org.dressdiscover.api.vocabularies.vra_core.subject.SubjectTerm.readAsStruct(iprot, unknownFieldCallback));
                                         }
                                         iprot.readListEnd();
                                         return sequenceBuilder.build();
@@ -564,11 +520,15 @@ public final class Subject implements org.thryft.Struct, org.dressdiscover.api.v
         } catch (final RuntimeException e) {
             throw new IllegalStateException(e);
         }
-        return new Subject(DefaultReadValidator.getInstance().validateTerms(terms), NopConstructionValidator.getInstance());
+
+        ReadValidator.validate(terms);
+
+        return new Subject(terms);
     }
 
     public Subject replaceTerms(final com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.subject.SubjectTerm> terms) {
-        return new Subject(DefaultConstructionValidator.getInstance().validateTerms(terms), NopConstructionValidator.getInstance());
+        UncheckedValidator.validateTerms(terms);
+        return new Subject(terms);
     }
 
     @Override
@@ -598,15 +558,19 @@ public final class Subject implements org.thryft.Struct, org.dressdiscover.api.v
 
     @Override
     public void writeFields(final org.thryft.protocol.OutputProtocol oprot) throws org.thryft.protocol.OutputProtocolException {
-        oprot.writeFieldBegin("terms", org.thryft.protocol.Type.LIST, (short)1);
+        writeTermsField(oprot);
+
+        oprot.writeFieldStop();
+    }
+
+    public void writeTermsField(final org.thryft.protocol.OutputProtocol oprot) throws org.thryft.protocol.OutputProtocolException {
+        oprot.writeFieldBegin(FieldMetadata.TERMS);
         oprot.writeListBegin(org.thryft.protocol.Type.STRUCT, getTerms().size());
         for (final org.dressdiscover.api.vocabularies.vra_core.subject.SubjectTerm _iter0 : getTerms()) {
             _iter0.writeAsStruct(oprot);
         }
         oprot.writeListEnd();
         oprot.writeFieldEnd();
-
-        oprot.writeFieldStop();
     }
 
     private final com.google.common.collect.ImmutableList<org.dressdiscover.api.vocabularies.vra_core.subject.SubjectTerm> terms;

@@ -3,10 +3,29 @@ package org.dressdiscover.api.vocabularies.vra_core.agent;
 /**
  * VRA Core 4.0 agent.dates.type values
  */
-public enum AgentDatesType {
+public enum AgentDatesType implements org.thryft.ThryftEnum {
     LIFE(0),
     ACTIVITY(1),
     OTHER(2);
+
+    public final static class Factory implements org.thryft.ThryftEnum.Factory<AgentDatesType> {
+        public final static Factory getInstance() {
+            return instance;
+        }
+
+        public final AgentDatesType valueOf(final String name) {
+            return AgentDatesType.valueOf(name);
+        }
+
+        public final AgentDatesType valueOf(final int value) {
+            return AgentDatesType.valueOf(value);
+        }
+
+        private Factory() {
+        }
+
+        private final static Factory instance = new Factory();
+    }
 
     private AgentDatesType(int value) {
         this.value = value;
@@ -19,10 +38,6 @@ public enum AgentDatesType {
         case 2: return OTHER;
         default: throw new IllegalArgumentException();
         }
-    }
-
-    public static AgentDatesType valueOf(final Integer value) {
-        return valueOf(value.intValue());
     }
 
     public final int value() {

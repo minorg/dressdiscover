@@ -18,10 +18,12 @@ public final class AgentDates implements org.thryft.Struct {
         }
 
         protected AgentDates _build(final org.dressdiscover.api.vocabularies.vra_core.agent.AgentDatesType type, final com.google.common.base.Optional<java.util.Date> earliestDate, final com.google.common.base.Optional<java.util.Date> latestDate) {
-            return new AgentDates(type, earliestDate, latestDate, DefaultConstructionValidator.getInstance());
+            return new AgentDates(type, earliestDate, latestDate);
         }
 
         public AgentDates build() {
+            UncheckedValidator.validate(type, earliestDate, latestDate);
+
             return _build(type, earliestDate, latestDate);
         }
 
@@ -33,7 +35,7 @@ public final class AgentDates implements org.thryft.Struct {
             return latestDate;
         }
 
-        public final org.dressdiscover.api.vocabularies.vra_core.agent.AgentDatesType getType() {
+        public final @javax.annotation.Nullable org.dressdiscover.api.vocabularies.vra_core.agent.AgentDatesType getType() {
             return type;
         }
 
@@ -55,7 +57,7 @@ public final class AgentDates implements org.thryft.Struct {
         public Builder readAsList(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
             try {
                 final org.thryft.protocol.ListBegin __list = iprot.readListBegin();
-                type = iprot.readEnum(org.dressdiscover.api.vocabularies.vra_core.agent.AgentDatesType.class);
+                type = iprot.readEnum(org.dressdiscover.api.vocabularies.vra_core.agent.AgentDatesType.Factory.getInstance());
                 if (__list.getSize() > 1) {
                     try {
                         earliestDate = com.google.common.base.Optional.of(iprot.readDateTime());
@@ -90,7 +92,7 @@ public final class AgentDates implements org.thryft.Struct {
                     switch (ifield.getName()) {
                     case "type": {
                         if (!ifield.hasId() || ifield.getId() == 1) {
-                            type = iprot.readEnum(org.dressdiscover.api.vocabularies.vra_core.agent.AgentDatesType.class);
+                            type = iprot.readEnum(org.dressdiscover.api.vocabularies.vra_core.agent.AgentDatesType.Factory.getInstance());
                         }
                         break;
                     }
@@ -151,11 +153,12 @@ public final class AgentDates implements org.thryft.Struct {
         }
 
         public Builder setEarliestDate(final com.google.common.base.Optional<java.util.Date> earliestDate) {
-            this.earliestDate = DefaultConstructionValidator.getInstance().validateEarliestDate(earliestDate);
+            UncheckedValidator.validateEarliestDate(earliestDate);
+            this.earliestDate = earliestDate;
             return this;
         }
 
-        public Builder setEarliestDate(@javax.annotation.Nullable final java.util.Date earliestDate) {
+        public Builder setEarliestDate(final @javax.annotation.Nullable java.util.Date earliestDate) {
             return setEarliestDate(com.google.common.base.Optional.fromNullable(earliestDate));
         }
 
@@ -174,16 +177,18 @@ public final class AgentDates implements org.thryft.Struct {
         }
 
         public Builder setLatestDate(final com.google.common.base.Optional<java.util.Date> latestDate) {
-            this.latestDate = DefaultConstructionValidator.getInstance().validateLatestDate(latestDate);
+            UncheckedValidator.validateLatestDate(latestDate);
+            this.latestDate = latestDate;
             return this;
         }
 
-        public Builder setLatestDate(@javax.annotation.Nullable final java.util.Date latestDate) {
+        public Builder setLatestDate(final @javax.annotation.Nullable java.util.Date latestDate) {
             return setLatestDate(com.google.common.base.Optional.fromNullable(latestDate));
         }
 
         public Builder setType(final org.dressdiscover.api.vocabularies.vra_core.agent.AgentDatesType type) {
-            this.type = DefaultConstructionValidator.getInstance().validateType(type);
+            UncheckedValidator.validateType(type);
+            this.type = type;
             return this;
         }
 
@@ -225,7 +230,7 @@ public final class AgentDates implements org.thryft.Struct {
             return this;
         }
 
-        private org.dressdiscover.api.vocabularies.vra_core.agent.AgentDatesType type;
+        private @javax.annotation.Nullable org.dressdiscover.api.vocabularies.vra_core.agent.AgentDatesType type;
         private com.google.common.base.Optional<java.util.Date> earliestDate;
         private com.google.common.base.Optional<java.util.Date> latestDate;
     }
@@ -261,9 +266,9 @@ public final class AgentDates implements org.thryft.Struct {
 
     @SuppressWarnings("serial")
     public enum FieldMetadata implements org.thryft.CompoundType.FieldMetadata {
-        TYPE("type", new com.google.common.reflect.TypeToken<org.dressdiscover.api.vocabularies.vra_core.agent.AgentDatesType>() {}, true, 1, "type", org.thryft.protocol.Type.STRING),
-        EARLIEST_DATE("earliestDate", new com.google.common.reflect.TypeToken<java.util.Date>() {}, false, 2, "earliest_date", org.thryft.protocol.Type.I64),
-        LATEST_DATE("latestDate", new com.google.common.reflect.TypeToken<java.util.Date>() {}, false, 3, "latest_date", org.thryft.protocol.Type.I64);
+        TYPE("type", new com.google.common.reflect.TypeToken<org.dressdiscover.api.vocabularies.vra_core.agent.AgentDatesType>() {}, true, (short)1, "type", org.thryft.protocol.Type.STRING),
+        EARLIEST_DATE("earliestDate", new com.google.common.reflect.TypeToken<java.util.Date>() {}, false, (short)2, "earliest_date", org.thryft.protocol.Type.I64),
+        LATEST_DATE("latestDate", new com.google.common.reflect.TypeToken<java.util.Date>() {}, false, (short)3, "latest_date", org.thryft.protocol.Type.I64);
 
         @Override
         public String getJavaName() {
@@ -276,7 +281,7 @@ public final class AgentDates implements org.thryft.Struct {
         }
 
         @Override
-        public int getThriftId() {
+        public short getThriftId() {
             return thriftId;
         }
 
@@ -325,7 +330,7 @@ public final class AgentDates implements org.thryft.Struct {
             }
         }
 
-        private FieldMetadata(final String javaName, final com.google.common.reflect.TypeToken<?> javaType, final boolean required, final int thriftId, final String thriftName, final org.thryft.protocol.Type thriftProtocolType) {
+        private FieldMetadata(final String javaName, final com.google.common.reflect.TypeToken<?> javaType, final boolean required, final short thriftId, final String thriftName, final org.thryft.protocol.Type thriftProtocolType) {
             this.javaName = javaName;
             this.javaType = javaType;
             this.required = required;
@@ -342,171 +347,92 @@ public final class AgentDates implements org.thryft.Struct {
         private final String javaName;
         private final com.google.common.reflect.TypeToken<?> javaType;
         private final boolean required;
-        private final int thriftId;
+        private final short thriftId;
         private final String thriftName;
         private final String thriftProtocolKey;
         private final org.thryft.protocol.Type thriftProtocolType;
     }
 
-    public interface Validator<ExceptionT extends Exception> {
-        public org.dressdiscover.api.vocabularies.vra_core.agent.AgentDatesType validateType(final org.dressdiscover.api.vocabularies.vra_core.agent.AgentDatesType type) throws ExceptionT;
-
-        public com.google.common.base.Optional<java.util.Date> validateEarliestDate(final com.google.common.base.Optional<java.util.Date> earliestDate) throws ExceptionT;
-
-        public com.google.common.base.Optional<java.util.Date> validateLatestDate(final com.google.common.base.Optional<java.util.Date> latestDate) throws ExceptionT;
-    }
-
-    public interface ConstructionValidator extends Validator<RuntimeException> {
-    }
-
-    public static class DefaultConstructionValidator implements ConstructionValidator {
-        public static DefaultConstructionValidator getInstance() {
-            return instance;
+    public final static class ReadValidator {
+        public static void validate(final org.dressdiscover.api.vocabularies.vra_core.agent.AgentDatesType type, final com.google.common.base.Optional<java.util.Date> earliestDate, final com.google.common.base.Optional<java.util.Date> latestDate) throws org.thryft.protocol.InputProtocolException {
+            validateType(type);
+            validateEarliestDate(earliestDate);
+            validateLatestDate(latestDate);
         }
 
-        public DefaultConstructionValidator() {
-        }
-
-        @Override
-        public org.dressdiscover.api.vocabularies.vra_core.agent.AgentDatesType validateType(final org.dressdiscover.api.vocabularies.vra_core.agent.AgentDatesType type) throws RuntimeException {
-            if (type == null) {
-                throw new NullPointerException("org.dressdiscover.api.vocabularies.vra_core.agent.AgentDates: type is null");
-            }
-            return type;
-        }
-
-        @Override
-        public com.google.common.base.Optional<java.util.Date> validateEarliestDate(final com.google.common.base.Optional<java.util.Date> earliestDate) throws RuntimeException {
-            if (earliestDate == null) {
-                throw new NullPointerException("org.dressdiscover.api.vocabularies.vra_core.agent.AgentDates: earliestDate is null");
-            }
-            if (!earliestDate.isPresent()) {
-                return earliestDate;
-            }
-            return earliestDate;
-        }
-
-        @Override
-        public com.google.common.base.Optional<java.util.Date> validateLatestDate(final com.google.common.base.Optional<java.util.Date> latestDate) throws RuntimeException {
-            if (latestDate == null) {
-                throw new NullPointerException("org.dressdiscover.api.vocabularies.vra_core.agent.AgentDates: latestDate is null");
-            }
-            if (!latestDate.isPresent()) {
-                return latestDate;
-            }
-            return latestDate;
-        }
-
-        private final static DefaultConstructionValidator instance = new DefaultConstructionValidator();
-    }
-
-    public static class NopConstructionValidator implements ConstructionValidator {
-        public static NopConstructionValidator getInstance() {
-            return instance;
-        }
-
-        public NopConstructionValidator() {
-        }
-
-        @Override
-        public org.dressdiscover.api.vocabularies.vra_core.agent.AgentDatesType validateType(final org.dressdiscover.api.vocabularies.vra_core.agent.AgentDatesType type) {
-            return type;
-        }
-
-        @Override
-        public com.google.common.base.Optional<java.util.Date> validateEarliestDate(final com.google.common.base.Optional<java.util.Date> earliestDate) {
-            return earliestDate;
-        }
-
-        @Override
-        public com.google.common.base.Optional<java.util.Date> validateLatestDate(final com.google.common.base.Optional<java.util.Date> latestDate) {
-            return latestDate;
-        }
-
-        private final static NopConstructionValidator instance = new NopConstructionValidator();
-    }
-
-    public interface ReadValidator extends Validator<org.thryft.protocol.InputProtocolException> {
-    }
-
-    public static class DefaultReadValidator implements ReadValidator {
-        public static DefaultReadValidator getInstance() {
-            return instance;
-        }
-
-        public DefaultReadValidator() {
-        }
-
-        @Override
-        public org.dressdiscover.api.vocabularies.vra_core.agent.AgentDatesType validateType(final org.dressdiscover.api.vocabularies.vra_core.agent.AgentDatesType type) throws org.thryft.protocol.InputProtocolException {
+        public static void validateType(final org.dressdiscover.api.vocabularies.vra_core.agent.AgentDatesType type) throws org.thryft.protocol.InputProtocolException {
             if (type == null) {
                 throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.TYPE, "org.dressdiscover.api.vocabularies.vra_core.agent.AgentDates: type is null");
             }
-            return type;
         }
 
-        @Override
-        public com.google.common.base.Optional<java.util.Date> validateEarliestDate(final com.google.common.base.Optional<java.util.Date> earliestDate) throws org.thryft.protocol.InputProtocolException {
+        public static void validateEarliestDate(final com.google.common.base.Optional<java.util.Date> earliestDate) throws org.thryft.protocol.InputProtocolException {
             if (earliestDate == null) {
                 throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.EARLIEST_DATE, "org.dressdiscover.api.vocabularies.vra_core.agent.AgentDates: earliestDate is null");
             }
             if (!earliestDate.isPresent()) {
-                return earliestDate;
+                return;
             }
-            return earliestDate;
         }
 
-        @Override
-        public com.google.common.base.Optional<java.util.Date> validateLatestDate(final com.google.common.base.Optional<java.util.Date> latestDate) throws org.thryft.protocol.InputProtocolException {
+        public static void validateLatestDate(final com.google.common.base.Optional<java.util.Date> latestDate) throws org.thryft.protocol.InputProtocolException {
             if (latestDate == null) {
                 throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.LATEST_DATE, "org.dressdiscover.api.vocabularies.vra_core.agent.AgentDates: latestDate is null");
             }
             if (!latestDate.isPresent()) {
-                return latestDate;
+                return;
             }
-            return latestDate;
         }
-
-        private final static DefaultReadValidator instance = new DefaultReadValidator();
     }
 
-    public static class NopReadValidator implements ReadValidator {
-        public static NopReadValidator getInstance() {
-            return instance;
+    public final static class UncheckedValidator {
+        public static void validate(final org.dressdiscover.api.vocabularies.vra_core.agent.AgentDatesType type, final com.google.common.base.Optional<java.util.Date> earliestDate, final com.google.common.base.Optional<java.util.Date> latestDate) {
+            validateType(type);
+            validateEarliestDate(earliestDate);
+            validateLatestDate(latestDate);
         }
 
-        public NopReadValidator() {
+        public static void validateType(final org.dressdiscover.api.vocabularies.vra_core.agent.AgentDatesType type) {
+            if (type == null) {
+                throw new NullPointerException("org.dressdiscover.api.vocabularies.vra_core.agent.AgentDates: type is null");
+            }
         }
 
-        @Override
-        public org.dressdiscover.api.vocabularies.vra_core.agent.AgentDatesType validateType(final org.dressdiscover.api.vocabularies.vra_core.agent.AgentDatesType type) {
-            return type;
+        public static void validateEarliestDate(final com.google.common.base.Optional<java.util.Date> earliestDate) {
+            if (earliestDate == null) {
+                throw new NullPointerException("org.dressdiscover.api.vocabularies.vra_core.agent.AgentDates: earliestDate is null");
+            }
+            if (!earliestDate.isPresent()) {
+                return;
+            }
         }
 
-        @Override
-        public com.google.common.base.Optional<java.util.Date> validateEarliestDate(final com.google.common.base.Optional<java.util.Date> earliestDate) {
-            return earliestDate;
+        public static void validateLatestDate(final com.google.common.base.Optional<java.util.Date> latestDate) {
+            if (latestDate == null) {
+                throw new NullPointerException("org.dressdiscover.api.vocabularies.vra_core.agent.AgentDates: latestDate is null");
+            }
+            if (!latestDate.isPresent()) {
+                return;
+            }
         }
-
-        @Override
-        public com.google.common.base.Optional<java.util.Date> validateLatestDate(final com.google.common.base.Optional<java.util.Date> latestDate) {
-            return latestDate;
-        }
-
-        private final static NopReadValidator instance = new NopReadValidator();
     }
 
     /**
      * Copy constructor
      */
     public AgentDates(final AgentDates other) {
-        this(other.getType(), other.getEarliestDate(), other.getLatestDate(), NopConstructionValidator.getInstance());
+        this(other.getType(), other.getEarliestDate(), other.getLatestDate());
     }
 
-    protected AgentDates(final org.dressdiscover.api.vocabularies.vra_core.agent.AgentDatesType type, final com.google.common.base.Optional<java.util.Date> earliestDate, final com.google.common.base.Optional<java.util.Date> latestDate, ConstructionValidator validator) {
-        this.type = validator.validateType(type);
-        this.earliestDate = validator.validateEarliestDate(earliestDate);
-        this.latestDate = validator.validateLatestDate(latestDate);
+    /**
+     * Total constructor
+     *
+     * All fields should have been validated before calling this.
+     */
+    protected AgentDates(final org.dressdiscover.api.vocabularies.vra_core.agent.AgentDatesType type, final com.google.common.base.Optional<java.util.Date> earliestDate, final com.google.common.base.Optional<java.util.Date> latestDate) {
+        this.type = type;
+        this.earliestDate = earliestDate;
+        this.latestDate = latestDate;
     }
 
     public static Builder builder() {
@@ -525,21 +451,26 @@ public final class AgentDates implements org.thryft.Struct {
      * Required factory method
      */
     public static AgentDates create(final org.dressdiscover.api.vocabularies.vra_core.agent.AgentDatesType type) {
-        return new AgentDates(type, com.google.common.base.Optional.<java.util.Date> absent(), com.google.common.base.Optional.<java.util.Date> absent(), DefaultConstructionValidator.getInstance());
+        UncheckedValidator.validate(type, com.google.common.base.Optional.<java.util.Date> absent(), com.google.common.base.Optional.<java.util.Date> absent());
+        return new AgentDates(type, com.google.common.base.Optional.<java.util.Date> absent(), com.google.common.base.Optional.<java.util.Date> absent());
     }
 
     /**
      * Total Nullable factory method
      */
-    public static AgentDates create(final org.dressdiscover.api.vocabularies.vra_core.agent.AgentDatesType type, final @javax.annotation.Nullable java.util.Date earliestDate, final @javax.annotation.Nullable java.util.Date latestDate) {
-        return new AgentDates(type, com.google.common.base.Optional.fromNullable(earliestDate), com.google.common.base.Optional.fromNullable(latestDate), DefaultConstructionValidator.getInstance());
+    public static AgentDates create(final org.dressdiscover.api.vocabularies.vra_core.agent.AgentDatesType type, @javax.annotation.Nullable final java.util.Date earliestDate, @javax.annotation.Nullable final java.util.Date latestDate) {
+        final com.google.common.base.Optional<java.util.Date> earliestDateOptional = com.google.common.base.Optional.fromNullable(earliestDate);
+        final com.google.common.base.Optional<java.util.Date> latestDateOptional = com.google.common.base.Optional.fromNullable(latestDate);
+        UncheckedValidator.validate(type, earliestDateOptional, latestDateOptional);
+        return new AgentDates(type, earliestDateOptional, latestDateOptional);
     }
 
     /**
      * Optional factory method
      */
     public static AgentDates create(final org.dressdiscover.api.vocabularies.vra_core.agent.AgentDatesType type, final com.google.common.base.Optional<java.util.Date> earliestDate, final com.google.common.base.Optional<java.util.Date> latestDate) {
-        return new AgentDates(type, earliestDate, latestDate, DefaultConstructionValidator.getInstance());
+        UncheckedValidator.validate(type, earliestDate, latestDate);
+        return new AgentDates(type, earliestDate, latestDate);
     }
 
     @Override
@@ -632,13 +563,13 @@ public final class AgentDates implements org.thryft.Struct {
     }
 
     public static AgentDates readAsList(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
-        org.dressdiscover.api.vocabularies.vra_core.agent.AgentDatesType type = null;
+        org.dressdiscover.api.vocabularies.vra_core.agent.AgentDatesType type;
         com.google.common.base.Optional<java.util.Date> earliestDate = com.google.common.base.Optional.<java.util.Date> absent();
         com.google.common.base.Optional<java.util.Date> latestDate = com.google.common.base.Optional.<java.util.Date> absent();
 
         try {
             final org.thryft.protocol.ListBegin __list = iprot.readListBegin();
-            type = iprot.readEnum(org.dressdiscover.api.vocabularies.vra_core.agent.AgentDatesType.class);
+            type = iprot.readEnum(org.dressdiscover.api.vocabularies.vra_core.agent.AgentDatesType.Factory.getInstance());
             if (__list.getSize() > 1) {
                 try {
                     earliestDate = com.google.common.base.Optional.of(iprot.readDateTime());
@@ -655,7 +586,10 @@ public final class AgentDates implements org.thryft.Struct {
         } catch (final RuntimeException e) {
             throw new IllegalStateException(e);
         }
-        return new AgentDates(DefaultReadValidator.getInstance().validateType(type), DefaultReadValidator.getInstance().validateEarliestDate(earliestDate), DefaultReadValidator.getInstance().validateLatestDate(latestDate), NopConstructionValidator.getInstance());
+
+        ReadValidator.validate(type, earliestDate, latestDate);
+
+        return new AgentDates(type, earliestDate, latestDate);
     }
 
     public static AgentDates readAsStruct(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
@@ -663,7 +597,7 @@ public final class AgentDates implements org.thryft.Struct {
     }
 
     public static AgentDates readAsStruct(final org.thryft.protocol.InputProtocol iprot, final com.google.common.base.Optional<UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
-        org.dressdiscover.api.vocabularies.vra_core.agent.AgentDatesType type = null;
+        @javax.annotation.Nullable org.dressdiscover.api.vocabularies.vra_core.agent.AgentDatesType type = null;
         com.google.common.base.Optional<java.util.Date> earliestDate = com.google.common.base.Optional.<java.util.Date> absent();
         com.google.common.base.Optional<java.util.Date> latestDate = com.google.common.base.Optional.<java.util.Date> absent();
 
@@ -677,7 +611,7 @@ public final class AgentDates implements org.thryft.Struct {
                 switch (ifield.getName()) {
                 case "type": {
                     if (!ifield.hasId() || ifield.getId() == 1) {
-                        type = iprot.readEnum(org.dressdiscover.api.vocabularies.vra_core.agent.AgentDatesType.class);
+                        type = iprot.readEnum(org.dressdiscover.api.vocabularies.vra_core.agent.AgentDatesType.Factory.getInstance());
                     }
                     break;
                 }
@@ -711,27 +645,33 @@ public final class AgentDates implements org.thryft.Struct {
         } catch (final RuntimeException e) {
             throw new IllegalStateException(e);
         }
-        return new AgentDates(DefaultReadValidator.getInstance().validateType(type), DefaultReadValidator.getInstance().validateEarliestDate(earliestDate), DefaultReadValidator.getInstance().validateLatestDate(latestDate), NopConstructionValidator.getInstance());
+
+        ReadValidator.validate(type, earliestDate, latestDate);
+
+        return new AgentDates(type, earliestDate, latestDate);
     }
 
     public AgentDates replaceEarliestDate(final com.google.common.base.Optional<java.util.Date> earliestDate) {
-        return new AgentDates(this.type, DefaultConstructionValidator.getInstance().validateEarliestDate(earliestDate), this.latestDate, NopConstructionValidator.getInstance());
+        UncheckedValidator.validateEarliestDate(earliestDate);
+        return new AgentDates(this.type, earliestDate, this.latestDate);
     }
 
-    public AgentDates replaceEarliestDate(final java.util.Date earliestDate) {
+    public AgentDates replaceEarliestDate(@javax.annotation.Nullable final java.util.Date earliestDate) {
         return replaceEarliestDate(com.google.common.base.Optional.fromNullable(earliestDate));
     }
 
     public AgentDates replaceLatestDate(final com.google.common.base.Optional<java.util.Date> latestDate) {
-        return new AgentDates(this.type, this.earliestDate, DefaultConstructionValidator.getInstance().validateLatestDate(latestDate), NopConstructionValidator.getInstance());
+        UncheckedValidator.validateLatestDate(latestDate);
+        return new AgentDates(this.type, this.earliestDate, latestDate);
     }
 
-    public AgentDates replaceLatestDate(final java.util.Date latestDate) {
+    public AgentDates replaceLatestDate(@javax.annotation.Nullable final java.util.Date latestDate) {
         return replaceLatestDate(com.google.common.base.Optional.fromNullable(latestDate));
     }
 
     public AgentDates replaceType(final org.dressdiscover.api.vocabularies.vra_core.agent.AgentDatesType type) {
-        return new AgentDates(DefaultConstructionValidator.getInstance().validateType(type), this.earliestDate, this.latestDate, NopConstructionValidator.getInstance());
+        UncheckedValidator.validateType(type);
+        return new AgentDates(type, this.earliestDate, this.latestDate);
     }
 
     @Override
@@ -767,25 +707,37 @@ public final class AgentDates implements org.thryft.Struct {
         oprot.writeStructEnd();
     }
 
-    @Override
-    public void writeFields(final org.thryft.protocol.OutputProtocol oprot) throws org.thryft.protocol.OutputProtocolException {
-        oprot.writeFieldBegin("type", org.thryft.protocol.Type.STRING, (short)1);
-        oprot.writeEnum(getType());
-        oprot.writeFieldEnd();
-
+    public void writeEarliestDateField(final org.thryft.protocol.OutputProtocol oprot) throws org.thryft.protocol.OutputProtocolException {
         if (getEarliestDate().isPresent()) {
-            oprot.writeFieldBegin("earliest_date", org.thryft.protocol.Type.I64, (short)2);
+            oprot.writeFieldBegin(FieldMetadata.EARLIEST_DATE);
             oprot.writeDateTime(getEarliestDate().get());
             oprot.writeFieldEnd();
         }
+    }
 
+    @Override
+    public void writeFields(final org.thryft.protocol.OutputProtocol oprot) throws org.thryft.protocol.OutputProtocolException {
+        writeTypeField(oprot);
+
+        writeEarliestDateField(oprot);
+
+        writeLatestDateField(oprot);
+
+        oprot.writeFieldStop();
+    }
+
+    public void writeLatestDateField(final org.thryft.protocol.OutputProtocol oprot) throws org.thryft.protocol.OutputProtocolException {
         if (getLatestDate().isPresent()) {
-            oprot.writeFieldBegin("latest_date", org.thryft.protocol.Type.I64, (short)3);
+            oprot.writeFieldBegin(FieldMetadata.LATEST_DATE);
             oprot.writeDateTime(getLatestDate().get());
             oprot.writeFieldEnd();
         }
+    }
 
-        oprot.writeFieldStop();
+    public void writeTypeField(final org.thryft.protocol.OutputProtocol oprot) throws org.thryft.protocol.OutputProtocolException {
+        oprot.writeFieldBegin(FieldMetadata.TYPE);
+        oprot.writeEnum(getType());
+        oprot.writeFieldEnd();
     }
 
     private final org.dressdiscover.api.vocabularies.vra_core.agent.AgentDatesType type;

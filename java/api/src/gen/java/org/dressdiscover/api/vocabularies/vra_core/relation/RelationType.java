@@ -3,7 +3,7 @@ package org.dressdiscover.api.vocabularies.vra_core.relation;
 /**
  * VRA Core 4.0 relation type= attribute
  */
-public enum RelationType {
+public enum RelationType implements org.thryft.ThryftEnum {
     BASED_ON(0),
     CARTOON_FOR(1),
     CARTOON_IS(2),
@@ -48,6 +48,25 @@ public enum RelationType {
     VENUE_FOR(41),
     VERSION_IS(42),
     VERSION_OF(43);
+
+    public final static class Factory implements org.thryft.ThryftEnum.Factory<RelationType> {
+        public final static Factory getInstance() {
+            return instance;
+        }
+
+        public final RelationType valueOf(final String name) {
+            return RelationType.valueOf(name);
+        }
+
+        public final RelationType valueOf(final int value) {
+            return RelationType.valueOf(value);
+        }
+
+        private Factory() {
+        }
+
+        private final static Factory instance = new Factory();
+    }
 
     private RelationType(int value) {
         this.value = value;
@@ -101,10 +120,6 @@ public enum RelationType {
         case 43: return VERSION_OF;
         default: throw new IllegalArgumentException();
         }
-    }
-
-    public static RelationType valueOf(final Integer value) {
-        return valueOf(value.intValue());
     }
 
     public final int value() {
