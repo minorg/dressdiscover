@@ -2,7 +2,7 @@
     "version": "2.0.0",
     "tasks": [{
         "label": "worksheet webpack dev server",
-        "command": "node_modules/.bin/webpack-dev-server.cmd",
+        "command": "${workspaceFolder}/worksheet/node_modules/.bin/webpack-dev-server.cmd",
         "options": {
             "cwd": "${workspaceFolder}/worksheet"
         },
