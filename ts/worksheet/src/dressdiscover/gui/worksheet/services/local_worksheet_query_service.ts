@@ -4,12 +4,9 @@ import {
     AsyncToSyncWorksheetQueryService,
 } from 'dressdiscover/api/services/worksheet/async_to_sync_worksheet_query_service';
 
-declare var WORKSHEET_DEFINITION: any;
-
 export class LocalWorksheetQueryService extends AsyncToSyncWorksheetQueryService {
     constructor() {
         super();
-        this._worksheetDefinition = WorksheetDefinition.fromThryftJsonObject(WORKSHEET_DEFINITION);
     }
 
     getWorksheetAccessionNumbersSync(): string[] {
