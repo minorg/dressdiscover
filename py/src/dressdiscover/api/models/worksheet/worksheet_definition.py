@@ -1,4 +1,5 @@
-import __builtin__
+from collections import OrderedDict
+import builtins
 import dressdiscover.api.models.worksheet.worksheet_feature_set_definition
 
 
@@ -17,6 +18,17 @@ class WorksheetDefinition(object):
         def build(self):
             return WorksheetDefinition(root_feature_set=self.__root_feature_set)
 
+        @classmethod
+        def from_template(cls, template):
+            '''
+            :type template: dressdiscover.api.models.worksheet.worksheet_definition.WorksheetDefinition
+            :rtype: dressdiscover.api.models.worksheet.worksheet_definition.WorksheetDefinition
+            '''
+
+            builder = cls()
+            builder.root_feature_set = root_feature_set
+            return builder
+
         @property
         def root_feature_set(self):
             '''
@@ -33,7 +45,7 @@ class WorksheetDefinition(object):
             if root_feature_set is None:
                 raise ValueError('root_feature_set is required')
             if not isinstance(root_feature_set, dressdiscover.api.models.worksheet.worksheet_feature_set_definition.WorksheetFeatureSetDefinition):
-                raise TypeError("expected root_feature_set to be a dressdiscover.api.models.worksheet.worksheet_feature_set_definition.WorksheetFeatureSetDefinition but it is a %s" % getattr(__builtin__, 'type')(root_feature_set))
+                raise TypeError("expected root_feature_set to be a dressdiscover.api.models.worksheet.worksheet_feature_set_definition.WorksheetFeatureSetDefinition but it is a %s" % builtins.type(root_feature_set))
             self.__root_feature_set = root_feature_set
             return self
 
@@ -45,7 +57,7 @@ class WorksheetDefinition(object):
             if isinstance(worksheet_definition, WorksheetDefinition):
                 self.set_root_feature_set(worksheet_definition.root_feature_set)
             elif isinstance(worksheet_definition, dict):
-                for key, value in worksheet_definition.iteritems():
+                for key, value in worksheet_definition.items():
                     getattr(self, 'set_' + key)(value)
             else:
                 raise TypeError(worksheet_definition)
@@ -103,7 +115,7 @@ class WorksheetDefinition(object):
         if root_feature_set is None:
             raise ValueError('root_feature_set is required')
         if not isinstance(root_feature_set, dressdiscover.api.models.worksheet.worksheet_feature_set_definition.WorksheetFeatureSetDefinition):
-            raise TypeError("expected root_feature_set to be a dressdiscover.api.models.worksheet.worksheet_feature_set_definition.WorksheetFeatureSetDefinition but it is a %s" % getattr(__builtin__, 'type')(root_feature_set))
+            raise TypeError("expected root_feature_set to be a dressdiscover.api.models.worksheet.worksheet_feature_set_definition.WorksheetFeatureSetDefinition but it is a %s" % builtins.type(root_feature_set))
         self.__root_feature_set = root_feature_set
 
     def __eq__(self, other):
@@ -131,6 +143,10 @@ class WorksheetDefinition(object):
         return 'WorksheetDefinition(' + ', '.join(field_reprs) + ')'
 
     @classmethod
+    def builder(cls):
+        return cls.Builder()
+
+    @classmethod
     def read(cls, iprot):
         '''
         Read a new object from the given input protocol and return the object.
@@ -153,20 +169,8 @@ class WorksheetDefinition(object):
 
         return cls(**init_kwds)
 
-    def replace(
-        self,
-        root_feature_set=None,
-    ):
-        '''
-        Copy this object, replace one or more fields, and return the copy.
-
-        :type root_feature_set: dressdiscover.api.models.worksheet.worksheet_feature_set_definition.WorksheetFeatureSetDefinition or None
-        :rtype: dressdiscover.api.models.worksheet.worksheet_definition.WorksheetDefinition
-        '''
-
-        if root_feature_set is None:
-            root_feature_set = self.root_feature_set
-        return self.__class__(root_feature_set=root_feature_set)
+    def replacer(self):
+        return cls.Builder.from_template(template=self)
 
     @property
     def root_feature_set(self):

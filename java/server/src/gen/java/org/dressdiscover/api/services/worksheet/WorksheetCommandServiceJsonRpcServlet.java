@@ -65,14 +65,6 @@ public class WorksheetCommandServiceJsonRpcServlet extends javax.servlet.http.Ht
     }
 
     private static void __doPostResponse(final javax.servlet.http.HttpServletRequest httpServletRequest, final javax.servlet.http.HttpServletResponse httpServletResponse, final String httpServletResponseBody) throws java.io.IOException {
-        {
-            httpServletResponse.setHeader("Access-Control-Allow-Credentials", "true");
-            @javax.annotation.Nullable String origin = httpServletRequest.getHeader("Origin");
-            if (origin == null) {
-                origin = "*";
-            }
-            httpServletResponse.setHeader("Access-Control-Allow-Origin", origin);
-        }
         httpServletResponse.setContentType("application/json; charset=utf-8");
 
         try (final java.io.OutputStream httpServletResponseOutputStream = httpServletResponse.getOutputStream()) {

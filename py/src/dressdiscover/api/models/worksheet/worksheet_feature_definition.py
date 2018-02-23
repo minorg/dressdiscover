@@ -1,5 +1,6 @@
-from itertools import ifilterfalse
-import __builtin__
+from collections import OrderedDict
+from itertools import filterfalse
+import builtins
 import dressdiscover.api.models.worksheet.worksheet_feature_id
 import dressdiscover.api.models.worksheet.worksheet_feature_value_definition
 
@@ -33,6 +34,19 @@ class WorksheetFeatureDefinition(object):
 
             return self.__display_name
 
+        @classmethod
+        def from_template(cls, template):
+            '''
+            :type template: dressdiscover.api.models.worksheet.worksheet_feature_definition.WorksheetFeatureDefinition
+            :rtype: dressdiscover.api.models.worksheet.worksheet_feature_definition.WorksheetFeatureDefinition
+            '''
+
+            builder = cls()
+            builder.id = id
+            builder.display_name = display_name
+            builder.values_ = values_
+            return builder
+
         @property
         def id(self):  # @ReservedAssignment
             '''
@@ -47,8 +61,8 @@ class WorksheetFeatureDefinition(object):
             '''
 
             if display_name is not None:
-                if not isinstance(display_name, basestring):
-                    raise TypeError("expected display_name to be a str but it is a %s" % getattr(__builtin__, 'type')(display_name))
+                if not isinstance(display_name, str):
+                    raise TypeError("expected display_name to be a str but it is a %s" % builtins.type(display_name))
                 if display_name.isspace():
                     raise ValueError("expected display_name not to be blank")
                 if len(display_name) < 1:
@@ -63,8 +77,8 @@ class WorksheetFeatureDefinition(object):
 
             if id is None:
                 raise ValueError('id is required')
-            if not isinstance(id, basestring):
-                raise TypeError("expected id to be a str but it is a %s" % getattr(__builtin__, 'type')(id))
+            if not isinstance(id, str):
+                raise TypeError("expected id to be a str but it is a %s" % builtins.type(id))
             self.__id = id
             return self
 
@@ -74,8 +88,8 @@ class WorksheetFeatureDefinition(object):
             '''
 
             if values_ is not None:
-                if not (isinstance(values_, tuple) and len(list(ifilterfalse(lambda _: isinstance(_, dressdiscover.api.models.worksheet.worksheet_feature_value_definition.WorksheetFeatureValueDefinition), values_))) == 0):
-                    raise TypeError("expected values_ to be a tuple(dressdiscover.api.models.worksheet.worksheet_feature_value_definition.WorksheetFeatureValueDefinition) but it is a %s" % getattr(__builtin__, 'type')(values_))
+                if not (isinstance(values_, tuple) and len(list(filterfalse(lambda _: isinstance(_, dressdiscover.api.models.worksheet.worksheet_feature_value_definition.WorksheetFeatureValueDefinition), values_))) == 0):
+                    raise TypeError("expected values_ to be a tuple(dressdiscover.api.models.worksheet.worksheet_feature_value_definition.WorksheetFeatureValueDefinition) but it is a %s" % builtins.type(values_))
                 if len(values_) < 1:
                     raise ValueError("expected len(values_) to be >= 1, was %d" % len(values_))
             self.__values_ = values_
@@ -93,7 +107,7 @@ class WorksheetFeatureDefinition(object):
                 self.set_display_name(worksheet_feature_definition.display_name)
                 self.set_values_(worksheet_feature_definition.values_)
             elif isinstance(worksheet_feature_definition, dict):
-                for key, value in worksheet_feature_definition.iteritems():
+                for key, value in worksheet_feature_definition.items():
                     getattr(self, 'set_' + key)(value)
             else:
                 raise TypeError(worksheet_feature_definition)
@@ -165,8 +179,8 @@ class WorksheetFeatureDefinition(object):
             return (cls.ID, cls.DISPLAY_NAME, cls.VALUES_,)
 
     FieldMetadata.ID = FieldMetadata('id', dressdiscover.api.models.worksheet.worksheet_feature_id.WorksheetFeatureId, None)
-    FieldMetadata.DISPLAY_NAME = FieldMetadata('display_name', str, {u'blank': False, u'minLength': 1})
-    FieldMetadata.VALUES_ = FieldMetadata('values_', tuple, {u'minLength': 1})
+    FieldMetadata.DISPLAY_NAME = FieldMetadata('display_name', str, OrderedDict([('blank', False), ('minLength', 1)]))
+    FieldMetadata.VALUES_ = FieldMetadata('values_', tuple, OrderedDict([('minLength', 1)]))
 
     def __init__(
         self,
@@ -182,13 +196,13 @@ class WorksheetFeatureDefinition(object):
 
         if id is None:
             raise ValueError('id is required')
-        if not isinstance(id, basestring):
-            raise TypeError("expected id to be a str but it is a %s" % getattr(__builtin__, 'type')(id))
+        if not isinstance(id, str):
+            raise TypeError("expected id to be a str but it is a %s" % builtins.type(id))
         self.__id = id
 
         if display_name is not None:
-            if not isinstance(display_name, basestring):
-                raise TypeError("expected display_name to be a str but it is a %s" % getattr(__builtin__, 'type')(display_name))
+            if not isinstance(display_name, str):
+                raise TypeError("expected display_name to be a str but it is a %s" % builtins.type(display_name))
             if display_name.isspace():
                 raise ValueError("expected display_name not to be blank")
             if len(display_name) < 1:
@@ -196,8 +210,8 @@ class WorksheetFeatureDefinition(object):
         self.__display_name = display_name
 
         if values_ is not None:
-            if not (isinstance(values_, tuple) and len(list(ifilterfalse(lambda _: isinstance(_, dressdiscover.api.models.worksheet.worksheet_feature_value_definition.WorksheetFeatureValueDefinition), values_))) == 0):
-                raise TypeError("expected values_ to be a tuple(dressdiscover.api.models.worksheet.worksheet_feature_value_definition.WorksheetFeatureValueDefinition) but it is a %s" % getattr(__builtin__, 'type')(values_))
+            if not (isinstance(values_, tuple) and len(list(filterfalse(lambda _: isinstance(_, dressdiscover.api.models.worksheet.worksheet_feature_value_definition.WorksheetFeatureValueDefinition), values_))) == 0):
+                raise TypeError("expected values_ to be a tuple(dressdiscover.api.models.worksheet.worksheet_feature_value_definition.WorksheetFeatureValueDefinition) but it is a %s" % builtins.type(values_))
             if len(values_) < 1:
                 raise ValueError("expected len(values_) to be >= 1, was %d" % len(values_))
         self.__values_ = values_
@@ -212,7 +226,7 @@ class WorksheetFeatureDefinition(object):
         return True
 
     def __hash__(self):
-        return hash((self.id,self.display_name,self.values_,))
+        return hash((self.id, self.display_name, self.values_,))
 
     def __iter__(self):
         return iter((self.id, self.display_name, self.values_,))
@@ -222,21 +236,25 @@ class WorksheetFeatureDefinition(object):
 
     def __repr__(self):
         field_reprs = []
-        field_reprs.append('id=' + "'" + self.id.encode('ascii', 'replace') + "'")
+        field_reprs.append('id=' + "'" + self.id.encode('ascii', 'replace').decode('ascii') + "'")
         if self.display_name is not None:
-            field_reprs.append('display_name=' + "'" + self.display_name.encode('ascii', 'replace') + "'")
+            field_reprs.append('display_name=' + "'" + self.display_name.encode('ascii', 'replace').decode('ascii') + "'")
         if self.values_ is not None:
             field_reprs.append('values_=' + repr(self.values_))
         return 'WorksheetFeatureDefinition(' + ', '.join(field_reprs) + ')'
 
     def __str__(self):
         field_reprs = []
-        field_reprs.append('id=' + "'" + self.id.encode('ascii', 'replace') + "'")
+        field_reprs.append('id=' + "'" + self.id.encode('ascii', 'replace').decode('ascii') + "'")
         if self.display_name is not None:
-            field_reprs.append('display_name=' + "'" + self.display_name.encode('ascii', 'replace') + "'")
+            field_reprs.append('display_name=' + "'" + self.display_name.encode('ascii', 'replace').decode('ascii') + "'")
         if self.values_ is not None:
             field_reprs.append('values_=' + repr(self.values_))
         return 'WorksheetFeatureDefinition(' + ', '.join(field_reprs) + ')'
+
+    @classmethod
+    def builder(cls):
+        return cls.Builder()
 
     @property
     def display_name(self):
@@ -284,28 +302,8 @@ class WorksheetFeatureDefinition(object):
 
         return cls(**init_kwds)
 
-    def replace(
-        self,
-        id=None,  # @ReservedAssignment
-        display_name=None,
-        values_=None,
-    ):
-        '''
-        Copy this object, replace one or more fields, and return the copy.
-
-        :type id: str or None
-        :type display_name: str or None
-        :type values_: tuple(dressdiscover.api.models.worksheet.worksheet_feature_value_definition.WorksheetFeatureValueDefinition) or None
-        :rtype: dressdiscover.api.models.worksheet.worksheet_feature_definition.WorksheetFeatureDefinition
-        '''
-
-        if id is None:
-            id = self.id  # @ReservedAssignment
-        if display_name is None:
-            display_name = self.display_name
-        if values_ is None:
-            values_ = self.values_
-        return self.__class__(id=id, display_name=display_name, values_=values_)
+    def replacer(self):
+        return cls.Builder.from_template(template=self)
 
     @property
     def values_(self):

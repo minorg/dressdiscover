@@ -5,7 +5,8 @@
         "clean": [
             "java/api/src/gen/java/org/dressdiscover",
             "java/lib/src/gen/java/org/dressdiscover",
-            "py/src/dressdiscover/apy",
+            "java/server/src/gen/java/org/dressdiscover",
+            "py/src/dressdiscover/api",
             "ts/worksheet/src/dressdiscover/api"
         ],
         "generate": [{

@@ -1,4 +1,5 @@
-import __builtin__
+from collections import OrderedDict
+import builtins
 import dressdiscover.api.models.worksheet.worksheet_feature_value_image_rights
 
 
@@ -23,6 +24,19 @@ class WorksheetFeatureValueImage(object):
         def build(self):
             return WorksheetFeatureValueImage(rights=self.__rights, thumbnail_url=self.__thumbnail_url, full_size_url=self.__full_size_url)
 
+        @classmethod
+        def from_template(cls, template):
+            '''
+            :type template: dressdiscover.api.models.worksheet.worksheet_feature_value_image.WorksheetFeatureValueImage
+            :rtype: dressdiscover.api.models.worksheet.worksheet_feature_value_image.WorksheetFeatureValueImage
+            '''
+
+            builder = cls()
+            builder.rights = rights
+            builder.thumbnail_url = thumbnail_url
+            builder.full_size_url = full_size_url
+            return builder
+
         @property
         def full_size_url(self):
             '''
@@ -45,8 +59,8 @@ class WorksheetFeatureValueImage(object):
             '''
 
             if full_size_url is not None:
-                if not isinstance(full_size_url, basestring):
-                    raise TypeError("expected full_size_url to be a str but it is a %s" % getattr(__builtin__, 'type')(full_size_url))
+                if not isinstance(full_size_url, str):
+                    raise TypeError("expected full_size_url to be a str but it is a %s" % builtins.type(full_size_url))
                 if full_size_url.isspace():
                     raise ValueError("expected full_size_url not to be blank")
                 if len(full_size_url) < 1:
@@ -62,7 +76,7 @@ class WorksheetFeatureValueImage(object):
             if rights is None:
                 raise ValueError('rights is required')
             if not isinstance(rights, dressdiscover.api.models.worksheet.worksheet_feature_value_image_rights.WorksheetFeatureValueImageRights):
-                raise TypeError("expected rights to be a dressdiscover.api.models.worksheet.worksheet_feature_value_image_rights.WorksheetFeatureValueImageRights but it is a %s" % getattr(__builtin__, 'type')(rights))
+                raise TypeError("expected rights to be a dressdiscover.api.models.worksheet.worksheet_feature_value_image_rights.WorksheetFeatureValueImageRights but it is a %s" % builtins.type(rights))
             self.__rights = rights
             return self
 
@@ -73,8 +87,8 @@ class WorksheetFeatureValueImage(object):
 
             if thumbnail_url is None:
                 raise ValueError('thumbnail_url is required')
-            if not isinstance(thumbnail_url, basestring):
-                raise TypeError("expected thumbnail_url to be a str but it is a %s" % getattr(__builtin__, 'type')(thumbnail_url))
+            if not isinstance(thumbnail_url, str):
+                raise TypeError("expected thumbnail_url to be a str but it is a %s" % builtins.type(thumbnail_url))
             if thumbnail_url.isspace():
                 raise ValueError("expected thumbnail_url not to be blank")
             if len(thumbnail_url) < 1:
@@ -102,7 +116,7 @@ class WorksheetFeatureValueImage(object):
                 self.set_thumbnail_url(worksheet_feature_value_image.thumbnail_url)
                 self.set_full_size_url(worksheet_feature_value_image.full_size_url)
             elif isinstance(worksheet_feature_value_image, dict):
-                for key, value in worksheet_feature_value_image.iteritems():
+                for key, value in worksheet_feature_value_image.items():
                     getattr(self, 'set_' + key)(value)
             else:
                 raise TypeError(worksheet_feature_value_image)
@@ -166,8 +180,8 @@ class WorksheetFeatureValueImage(object):
             return (cls.RIGHTS, cls.THUMBNAIL_URL, cls.FULL_SIZE_URL,)
 
     FieldMetadata.RIGHTS = FieldMetadata('rights', dressdiscover.api.models.worksheet.worksheet_feature_value_image_rights.WorksheetFeatureValueImageRights, None)
-    FieldMetadata.THUMBNAIL_URL = FieldMetadata('thumbnail_url', str, {u'blank': False, u'minLength': 1})
-    FieldMetadata.FULL_SIZE_URL = FieldMetadata('full_size_url', str, {u'blank': False, u'minLength': 1})
+    FieldMetadata.THUMBNAIL_URL = FieldMetadata('thumbnail_url', str, OrderedDict([('blank', False), ('minLength', 1)]))
+    FieldMetadata.FULL_SIZE_URL = FieldMetadata('full_size_url', str, OrderedDict([('blank', False), ('minLength', 1)]))
 
     def __init__(
         self,
@@ -184,13 +198,13 @@ class WorksheetFeatureValueImage(object):
         if rights is None:
             raise ValueError('rights is required')
         if not isinstance(rights, dressdiscover.api.models.worksheet.worksheet_feature_value_image_rights.WorksheetFeatureValueImageRights):
-            raise TypeError("expected rights to be a dressdiscover.api.models.worksheet.worksheet_feature_value_image_rights.WorksheetFeatureValueImageRights but it is a %s" % getattr(__builtin__, 'type')(rights))
+            raise TypeError("expected rights to be a dressdiscover.api.models.worksheet.worksheet_feature_value_image_rights.WorksheetFeatureValueImageRights but it is a %s" % builtins.type(rights))
         self.__rights = rights
 
         if thumbnail_url is None:
             raise ValueError('thumbnail_url is required')
-        if not isinstance(thumbnail_url, basestring):
-            raise TypeError("expected thumbnail_url to be a str but it is a %s" % getattr(__builtin__, 'type')(thumbnail_url))
+        if not isinstance(thumbnail_url, str):
+            raise TypeError("expected thumbnail_url to be a str but it is a %s" % builtins.type(thumbnail_url))
         if thumbnail_url.isspace():
             raise ValueError("expected thumbnail_url not to be blank")
         if len(thumbnail_url) < 1:
@@ -198,8 +212,8 @@ class WorksheetFeatureValueImage(object):
         self.__thumbnail_url = thumbnail_url
 
         if full_size_url is not None:
-            if not isinstance(full_size_url, basestring):
-                raise TypeError("expected full_size_url to be a str but it is a %s" % getattr(__builtin__, 'type')(full_size_url))
+            if not isinstance(full_size_url, str):
+                raise TypeError("expected full_size_url to be a str but it is a %s" % builtins.type(full_size_url))
             if full_size_url.isspace():
                 raise ValueError("expected full_size_url not to be blank")
             if len(full_size_url) < 1:
@@ -216,7 +230,7 @@ class WorksheetFeatureValueImage(object):
         return True
 
     def __hash__(self):
-        return hash((self.rights,self.thumbnail_url,self.full_size_url,))
+        return hash((self.rights, self.thumbnail_url, self.full_size_url,))
 
     def __iter__(self):
         return iter((self.rights, self.thumbnail_url, self.full_size_url,))
@@ -227,18 +241,22 @@ class WorksheetFeatureValueImage(object):
     def __repr__(self):
         field_reprs = []
         field_reprs.append('rights=' + repr(self.rights))
-        field_reprs.append('thumbnail_url=' + "'" + self.thumbnail_url.encode('ascii', 'replace') + "'")
+        field_reprs.append('thumbnail_url=' + "'" + self.thumbnail_url.encode('ascii', 'replace').decode('ascii') + "'")
         if self.full_size_url is not None:
-            field_reprs.append('full_size_url=' + "'" + self.full_size_url.encode('ascii', 'replace') + "'")
+            field_reprs.append('full_size_url=' + "'" + self.full_size_url.encode('ascii', 'replace').decode('ascii') + "'")
         return 'WorksheetFeatureValueImage(' + ', '.join(field_reprs) + ')'
 
     def __str__(self):
         field_reprs = []
         field_reprs.append('rights=' + repr(self.rights))
-        field_reprs.append('thumbnail_url=' + "'" + self.thumbnail_url.encode('ascii', 'replace') + "'")
+        field_reprs.append('thumbnail_url=' + "'" + self.thumbnail_url.encode('ascii', 'replace').decode('ascii') + "'")
         if self.full_size_url is not None:
-            field_reprs.append('full_size_url=' + "'" + self.full_size_url.encode('ascii', 'replace') + "'")
+            field_reprs.append('full_size_url=' + "'" + self.full_size_url.encode('ascii', 'replace').decode('ascii') + "'")
         return 'WorksheetFeatureValueImage(' + ', '.join(field_reprs) + ')'
+
+    @classmethod
+    def builder(cls):
+        return cls.Builder()
 
     @property
     def full_size_url(self):
@@ -278,28 +296,8 @@ class WorksheetFeatureValueImage(object):
 
         return cls(**init_kwds)
 
-    def replace(
-        self,
-        rights=None,
-        thumbnail_url=None,
-        full_size_url=None,
-    ):
-        '''
-        Copy this object, replace one or more fields, and return the copy.
-
-        :type rights: dressdiscover.api.models.worksheet.worksheet_feature_value_image_rights.WorksheetFeatureValueImageRights or None
-        :type thumbnail_url: str or None
-        :type full_size_url: str or None
-        :rtype: dressdiscover.api.models.worksheet.worksheet_feature_value_image.WorksheetFeatureValueImage
-        '''
-
-        if rights is None:
-            rights = self.rights
-        if thumbnail_url is None:
-            thumbnail_url = self.thumbnail_url
-        if full_size_url is None:
-            full_size_url = self.full_size_url
-        return self.__class__(rights=rights, thumbnail_url=thumbnail_url, full_size_url=full_size_url)
+    def replacer(self):
+        return cls.Builder.from_template(template=self)
 
     @property
     def rights(self):

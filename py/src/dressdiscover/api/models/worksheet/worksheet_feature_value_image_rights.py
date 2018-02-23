@@ -1,4 +1,5 @@
-import __builtin__
+from collections import OrderedDict
+import builtins
 
 
 class WorksheetFeatureValueImageRights(object):
@@ -33,6 +34,20 @@ class WorksheetFeatureValueImageRights(object):
 
             return self.__author
 
+        @classmethod
+        def from_template(cls, template):
+            '''
+            :type template: dressdiscover.api.models.worksheet.worksheet_feature_value_image_rights.WorksheetFeatureValueImageRights
+            :rtype: dressdiscover.api.models.worksheet.worksheet_feature_value_image_rights.WorksheetFeatureValueImageRights
+            '''
+
+            builder = cls()
+            builder.author = author
+            builder.license = license
+            builder.source_name = source_name
+            builder.source_url = source_url
+            return builder
+
         @property
         def license(self):  # @ReservedAssignment
             '''
@@ -48,8 +63,8 @@ class WorksheetFeatureValueImageRights(object):
 
             if author is None:
                 raise ValueError('author is required')
-            if not isinstance(author, basestring):
-                raise TypeError("expected author to be a str but it is a %s" % getattr(__builtin__, 'type')(author))
+            if not isinstance(author, str):
+                raise TypeError("expected author to be a str but it is a %s" % builtins.type(author))
             if author.isspace():
                 raise ValueError("expected author not to be blank")
             if len(author) < 1:
@@ -64,8 +79,8 @@ class WorksheetFeatureValueImageRights(object):
 
             if license is None:
                 raise ValueError('license is required')
-            if not isinstance(license, basestring):
-                raise TypeError("expected license to be a str but it is a %s" % getattr(__builtin__, 'type')(license))
+            if not isinstance(license, str):
+                raise TypeError("expected license to be a str but it is a %s" % builtins.type(license))
             if license.isspace():
                 raise ValueError("expected license not to be blank")
             if len(license) < 1:
@@ -80,8 +95,8 @@ class WorksheetFeatureValueImageRights(object):
 
             if source_name is None:
                 raise ValueError('source_name is required')
-            if not isinstance(source_name, basestring):
-                raise TypeError("expected source_name to be a str but it is a %s" % getattr(__builtin__, 'type')(source_name))
+            if not isinstance(source_name, str):
+                raise TypeError("expected source_name to be a str but it is a %s" % builtins.type(source_name))
             if source_name.isspace():
                 raise ValueError("expected source_name not to be blank")
             if len(source_name) < 1:
@@ -96,8 +111,8 @@ class WorksheetFeatureValueImageRights(object):
 
             if source_url is None:
                 raise ValueError('source_url is required')
-            if not isinstance(source_url, basestring):
-                raise TypeError("expected source_url to be a str but it is a %s" % getattr(__builtin__, 'type')(source_url))
+            if not isinstance(source_url, str):
+                raise TypeError("expected source_url to be a str but it is a %s" % builtins.type(source_url))
             self.__source_url = source_url
             return self
 
@@ -131,7 +146,7 @@ class WorksheetFeatureValueImageRights(object):
                 self.set_source_name(worksheet_feature_value_image_rights.source_name)
                 self.set_source_url(worksheet_feature_value_image_rights.source_url)
             elif isinstance(worksheet_feature_value_image_rights, dict):
-                for key, value in worksheet_feature_value_image_rights.iteritems():
+                for key, value in worksheet_feature_value_image_rights.items():
                     getattr(self, 'set_' + key)(value)
             else:
                 raise TypeError(worksheet_feature_value_image_rights)
@@ -203,9 +218,9 @@ class WorksheetFeatureValueImageRights(object):
         def values(cls):
             return (cls.AUTHOR, cls.LICENSE, cls.SOURCE_NAME, cls.SOURCE_URL,)
 
-    FieldMetadata.AUTHOR = FieldMetadata('author', str, {u'blank': False, u'minLength': 1})
-    FieldMetadata.LICENSE = FieldMetadata('license', str, {u'blank': False, u'minLength': 1})
-    FieldMetadata.SOURCE_NAME = FieldMetadata('source_name', str, {u'blank': False, u'minLength': 1})
+    FieldMetadata.AUTHOR = FieldMetadata('author', str, OrderedDict([('blank', False), ('minLength', 1)]))
+    FieldMetadata.LICENSE = FieldMetadata('license', str, OrderedDict([('blank', False), ('minLength', 1)]))
+    FieldMetadata.SOURCE_NAME = FieldMetadata('source_name', str, OrderedDict([('blank', False), ('minLength', 1)]))
     FieldMetadata.SOURCE_URL = FieldMetadata('source_url', str, None)
 
     def __init__(
@@ -224,8 +239,8 @@ class WorksheetFeatureValueImageRights(object):
 
         if author is None:
             raise ValueError('author is required')
-        if not isinstance(author, basestring):
-            raise TypeError("expected author to be a str but it is a %s" % getattr(__builtin__, 'type')(author))
+        if not isinstance(author, str):
+            raise TypeError("expected author to be a str but it is a %s" % builtins.type(author))
         if author.isspace():
             raise ValueError("expected author not to be blank")
         if len(author) < 1:
@@ -234,8 +249,8 @@ class WorksheetFeatureValueImageRights(object):
 
         if license is None:
             raise ValueError('license is required')
-        if not isinstance(license, basestring):
-            raise TypeError("expected license to be a str but it is a %s" % getattr(__builtin__, 'type')(license))
+        if not isinstance(license, str):
+            raise TypeError("expected license to be a str but it is a %s" % builtins.type(license))
         if license.isspace():
             raise ValueError("expected license not to be blank")
         if len(license) < 1:
@@ -244,8 +259,8 @@ class WorksheetFeatureValueImageRights(object):
 
         if source_name is None:
             raise ValueError('source_name is required')
-        if not isinstance(source_name, basestring):
-            raise TypeError("expected source_name to be a str but it is a %s" % getattr(__builtin__, 'type')(source_name))
+        if not isinstance(source_name, str):
+            raise TypeError("expected source_name to be a str but it is a %s" % builtins.type(source_name))
         if source_name.isspace():
             raise ValueError("expected source_name not to be blank")
         if len(source_name) < 1:
@@ -254,8 +269,8 @@ class WorksheetFeatureValueImageRights(object):
 
         if source_url is None:
             raise ValueError('source_url is required')
-        if not isinstance(source_url, basestring):
-            raise TypeError("expected source_url to be a str but it is a %s" % getattr(__builtin__, 'type')(source_url))
+        if not isinstance(source_url, str):
+            raise TypeError("expected source_url to be a str but it is a %s" % builtins.type(source_url))
         self.__source_url = source_url
 
     def __eq__(self, other):
@@ -270,7 +285,7 @@ class WorksheetFeatureValueImageRights(object):
         return True
 
     def __hash__(self):
-        return hash((self.author,self.license,self.source_name,self.source_url,))
+        return hash((self.author, self.license, self.source_name, self.source_url,))
 
     def __iter__(self):
         return iter((self.author, self.license, self.source_name, self.source_url,))
@@ -280,18 +295,18 @@ class WorksheetFeatureValueImageRights(object):
 
     def __repr__(self):
         field_reprs = []
-        field_reprs.append('author=' + "'" + self.author.encode('ascii', 'replace') + "'")
-        field_reprs.append('license=' + "'" + self.license.encode('ascii', 'replace') + "'")
-        field_reprs.append('source_name=' + "'" + self.source_name.encode('ascii', 'replace') + "'")
-        field_reprs.append('source_url=' + "'" + self.source_url.encode('ascii', 'replace') + "'")
+        field_reprs.append('author=' + "'" + self.author.encode('ascii', 'replace').decode('ascii') + "'")
+        field_reprs.append('license=' + "'" + self.license.encode('ascii', 'replace').decode('ascii') + "'")
+        field_reprs.append('source_name=' + "'" + self.source_name.encode('ascii', 'replace').decode('ascii') + "'")
+        field_reprs.append('source_url=' + "'" + self.source_url.encode('ascii', 'replace').decode('ascii') + "'")
         return 'WorksheetFeatureValueImageRights(' + ', '.join(field_reprs) + ')'
 
     def __str__(self):
         field_reprs = []
-        field_reprs.append('author=' + "'" + self.author.encode('ascii', 'replace') + "'")
-        field_reprs.append('license=' + "'" + self.license.encode('ascii', 'replace') + "'")
-        field_reprs.append('source_name=' + "'" + self.source_name.encode('ascii', 'replace') + "'")
-        field_reprs.append('source_url=' + "'" + self.source_url.encode('ascii', 'replace') + "'")
+        field_reprs.append('author=' + "'" + self.author.encode('ascii', 'replace').decode('ascii') + "'")
+        field_reprs.append('license=' + "'" + self.license.encode('ascii', 'replace').decode('ascii') + "'")
+        field_reprs.append('source_name=' + "'" + self.source_name.encode('ascii', 'replace').decode('ascii') + "'")
+        field_reprs.append('source_url=' + "'" + self.source_url.encode('ascii', 'replace').decode('ascii') + "'")
         return 'WorksheetFeatureValueImageRights(' + ', '.join(field_reprs) + ')'
 
     @property
@@ -301,6 +316,10 @@ class WorksheetFeatureValueImageRights(object):
         '''
 
         return self.__author
+
+    @classmethod
+    def builder(cls):
+        return cls.Builder()
 
     @property
     def license(self):  # @ReservedAssignment
@@ -339,32 +358,8 @@ class WorksheetFeatureValueImageRights(object):
 
         return cls(**init_kwds)
 
-    def replace(
-        self,
-        author=None,
-        license=None,  # @ReservedAssignment
-        source_name=None,
-        source_url=None,
-    ):
-        '''
-        Copy this object, replace one or more fields, and return the copy.
-
-        :type author: str or None
-        :type license: str or None
-        :type source_name: str or None
-        :type source_url: str or None
-        :rtype: dressdiscover.api.models.worksheet.worksheet_feature_value_image_rights.WorksheetFeatureValueImageRights
-        '''
-
-        if author is None:
-            author = self.author
-        if license is None:
-            license = self.license  # @ReservedAssignment
-        if source_name is None:
-            source_name = self.source_name
-        if source_url is None:
-            source_url = self.source_url
-        return self.__class__(author=author, license=license, source_name=source_name, source_url=source_url)
+    def replacer(self):
+        return cls.Builder.from_template(template=self)
 
     @property
     def source_name(self):

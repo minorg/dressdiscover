@@ -1,291 +1,269 @@
 {
-  "template": "object_summary_*", 
-  "settings": {
-    "analysis": {
-      "analyzer": {
-        "email_and_url": {
-          "filter": [
-            "standard", 
-            "lowercase"
-          ], 
-          "tokenizer": "uax_url_email"
-        }
-      }
-    }
-  }, 
+  "index_patterns": "object_summary_*",
   "mappings": {
     "object_summary": {
-      "_all": {
-        "enabled": false
-      }, 
-      "dynamic": "strict", 
+      "dynamic": "strict",
       "properties": {
         "collection_id": {
-          "index": "not_analyzed", 
-          "type": "string"
-        }, 
+          "type": "keyword"
+        },
         "institution_id": {
-          "index": "not_analyzed", 
-          "type": "string"
-        }, 
+          "type": "keyword"
+        },
         "title": {
-          "type": "string"
-        }, 
+          "type": "text"
+        },
         "agent_name_texts": {
+          "type": "multi_field",
           "fields": {
             "text": {
               "type": "string"
-            }, 
+            },
             "not_analyzed": {
-              "index": "not_analyzed", 
-              "type": "string"
+              "type": "string",
+              "index": "not_analyzed"
             }
-          }, 
-          "type": "multi_field"
-        }, 
+          }
+        },
         "categories": {
+          "type": "multi_field",
           "fields": {
             "text": {
               "type": "string"
-            }, 
+            },
             "not_analyzed": {
-              "index": "not_analyzed", 
-              "type": "string"
+              "type": "string",
+              "index": "not_analyzed"
             }
-          }, 
-          "type": "multi_field"
-        }, 
+          }
+        },
         "color_texts": {
+          "type": "multi_field",
           "fields": {
             "text": {
               "type": "string"
-            }, 
+            },
             "not_analyzed": {
-              "index": "not_analyzed", 
-              "type": "string"
+              "type": "string",
+              "index": "not_analyzed"
             }
-          }, 
-          "type": "multi_field"
-        }, 
+          }
+        },
         "cultural_context_texts": {
+          "type": "multi_field",
           "fields": {
             "text": {
               "type": "string"
-            }, 
+            },
             "not_analyzed": {
-              "index": "not_analyzed", 
-              "type": "string"
+              "type": "string",
+              "index": "not_analyzed"
             }
-          }, 
-          "type": "multi_field"
-        }, 
+          }
+        },
         "date": {
-          "type": "string"
-        }, 
+          "type": "text"
+        },
         "description": {
-          "type": "string"
-        }, 
+          "type": "text"
+        },
         "gender": {
-          "index": "not_analyzed", 
-          "type": "string"
-        }, 
+          "type": "keyword"
+        },
         "hidden": {
           "type": "boolean"
-        }, 
+        },
         "image": {
-          "type": "nested", 
+          "type": "nested",
           "properties": {
             "2:full_size": {
-              "type": "nested", 
+              "type": "nested",
               "properties": {
                 "1:url": {
-                  "index": "not_analyzed", 
-                  "type": "string"
-                }, 
+                  "type": "keyword",
+                  "index": "not_analyzed"
+                },
                 "2:height_px": {
                   "type": "integer"
-                }, 
+                },
                 "3:width_px": {
                   "type": "integer"
                 }
               }
-            }, 
+            },
             "3:original": {
-              "type": "nested", 
+              "type": "nested",
               "properties": {
                 "1:url": {
-                  "index": "not_analyzed", 
-                  "type": "string"
-                }, 
+                  "type": "keyword",
+                  "index": "not_analyzed"
+                },
                 "2:height_px": {
                   "type": "integer"
-                }, 
+                },
                 "3:width_px": {
                   "type": "integer"
                 }
               }
-            }, 
+            },
             "6:rights": {
-              "type": "nested", 
+              "type": "nested",
               "properties": {
                 "1:elements": {
-                  "type": "nested", 
+                  "type": "nested",
                   "properties": {
                     "2:text": {
-                      "index": "not_analyzed", 
-                      "type": "string"
-                    }, 
+                      "type": "text",
+                      "index": "not_analyzed"
+                    },
                     "3:type": {
-                      "index": "not_analyzed", 
-                      "type": "string"
-                    }, 
+                      "type": "keyword"
+                    },
                     "5:license_vocab_ref": {
-                      "type": "nested", 
+                      "type": "nested",
                       "properties": {
                         "2:vocab": {
-                          "index": "not_analyzed", 
-                          "type": "string"
-                        }, 
+                          "type": "keyword"
+                        },
                         "1:refid": {
-                          "index": "not_analyzed", 
-                          "type": "string"
-                        }, 
+                          "type": "text",
+                          "index": "not_analyzed"
+                        },
                         "3:uri": {
-                          "type": "string"
+                          "type": "text"
                         }
                       }
-                    }, 
+                    },
                     "4:notes": {
-                      "index": "not_analyzed", 
-                      "type": "string"
-                    }, 
+                      "type": "text",
+                      "index": "not_analyzed"
+                    },
                     "1:rights_holder": {
-                      "index": "not_analyzed", 
-                      "type": "string"
+                      "type": "text",
+                      "index": "not_analyzed"
                     }
                   }
-                }, 
+                },
                 "2:display": {
-                  "index": "not_analyzed", 
-                  "type": "string"
-                }, 
+                  "type": "text",
+                  "index": "not_analyzed"
+                },
                 "3:notes": {
-                  "index": "not_analyzed", 
-                  "type": "string"
+                  "type": "text",
+                  "index": "not_analyzed"
                 }
               }
-            }, 
+            },
             "4:square_thumbnail": {
-              "type": "nested", 
+              "type": "nested",
               "properties": {
                 "1:url": {
-                  "index": "not_analyzed", 
-                  "type": "string"
-                }, 
+                  "type": "keyword",
+                  "index": "not_analyzed"
+                },
                 "2:height_px": {
                   "type": "integer"
-                }, 
+                },
                 "3:width_px": {
                   "type": "integer"
                 }
               }
-            }, 
+            },
             "5:thumbnail": {
-              "type": "nested", 
+              "type": "nested",
               "properties": {
                 "1:url": {
-                  "index": "not_analyzed", 
-                  "type": "string"
-                }, 
+                  "type": "keyword",
+                  "index": "not_analyzed"
+                },
                 "2:height_px": {
                   "type": "integer"
-                }, 
+                },
                 "3:width_px": {
                   "type": "integer"
                 }
               }
             }
           }
-        }, 
+        },
         "location_name_texts": {
+          "type": "multi_field",
           "fields": {
             "text": {
               "type": "string"
-            }, 
+            },
             "not_analyzed": {
-              "index": "not_analyzed", 
-              "type": "string"
+              "type": "string",
+              "index": "not_analyzed"
             }
-          }, 
-          "type": "multi_field"
-        }, 
+          }
+        },
         "material_texts": {
+          "type": "multi_field",
           "fields": {
             "text": {
               "type": "string"
-            }, 
+            },
             "not_analyzed": {
-              "index": "not_analyzed", 
-              "type": "string"
+              "type": "string",
+              "index": "not_analyzed"
             }
-          }, 
-          "type": "multi_field"
-        }, 
+          }
+        },
         "relation_texts": {
+          "type": "multi_field",
           "fields": {
             "text": {
               "type": "string"
-            }, 
+            },
             "not_analyzed": {
-              "index": "not_analyzed", 
-              "type": "string"
+              "type": "string",
+              "index": "not_analyzed"
             }
-          }, 
-          "type": "multi_field"
-        }, 
+          }
+        },
         "structure_texts": {
-          "type": "nested", 
+          "type": "nested",
           "dynamic": true
-        }, 
+        },
         "subject_term_texts": {
+          "type": "multi_field",
           "fields": {
             "text": {
               "type": "string"
-            }, 
+            },
             "not_analyzed": {
-              "index": "not_analyzed", 
-              "type": "string"
+              "type": "string",
+              "index": "not_analyzed"
             }
-          }, 
-          "type": "multi_field"
-        }, 
+          }
+        },
         "technique_texts": {
+          "type": "multi_field",
           "fields": {
             "text": {
               "type": "string"
-            }, 
+            },
             "not_analyzed": {
-              "index": "not_analyzed", 
-              "type": "string"
+              "type": "string",
+              "index": "not_analyzed"
             }
-          }, 
-          "type": "multi_field"
-        }, 
+          }
+        },
         "url": {
-          "type": "string", 
-          "analyzer": "email_and_url"
-        }, 
+          "type": "keyword"
+        },
         "work_type_texts": {
+          "type": "multi_field",
           "fields": {
             "text": {
               "type": "string"
-            }, 
+            },
             "not_analyzed": {
-              "index": "not_analyzed", 
-              "type": "string"
+              "type": "string",
+              "index": "not_analyzed"
             }
-          }, 
-          "type": "multi_field"
+          }
         }
       }
     }

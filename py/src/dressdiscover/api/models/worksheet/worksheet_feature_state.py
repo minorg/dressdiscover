@@ -1,5 +1,6 @@
-from itertools import ifilterfalse
-import __builtin__
+from collections import OrderedDict
+from itertools import filterfalse
+import builtins
 
 
 class WorksheetFeatureState(object):
@@ -20,6 +21,18 @@ class WorksheetFeatureState(object):
         def build(self):
             return WorksheetFeatureState(selected_values=self.__selected_values, text=self.__text)
 
+        @classmethod
+        def from_template(cls, template):
+            '''
+            :type template: dressdiscover.api.models.worksheet.worksheet_feature_state.WorksheetFeatureState
+            :rtype: dressdiscover.api.models.worksheet.worksheet_feature_state.WorksheetFeatureState
+            '''
+
+            builder = cls()
+            builder.selected_values = selected_values
+            builder.text = text
+            return builder
+
         @property
         def selected_values(self):
             '''
@@ -34,8 +47,8 @@ class WorksheetFeatureState(object):
             '''
 
             if selected_values is not None:
-                if not (isinstance(selected_values, tuple) and len(list(ifilterfalse(lambda _: isinstance(_, basestring), selected_values))) == 0):
-                    raise TypeError("expected selected_values to be a tuple(str) but it is a %s" % getattr(__builtin__, 'type')(selected_values))
+                if not (isinstance(selected_values, tuple) and len(list(filterfalse(lambda _: isinstance(_, str), selected_values))) == 0):
+                    raise TypeError("expected selected_values to be a tuple(str) but it is a %s" % builtins.type(selected_values))
                 if len(selected_values) < 1:
                     raise ValueError("expected len(selected_values) to be >= 1, was %d" % len(selected_values))
             self.__selected_values = selected_values
@@ -47,8 +60,8 @@ class WorksheetFeatureState(object):
             '''
 
             if text is not None:
-                if not isinstance(text, basestring):
-                    raise TypeError("expected text to be a str but it is a %s" % getattr(__builtin__, 'type')(text))
+                if not isinstance(text, str):
+                    raise TypeError("expected text to be a str but it is a %s" % builtins.type(text))
                 if text.isspace():
                     raise ValueError("expected text not to be blank")
                 if len(text) < 1:
@@ -74,7 +87,7 @@ class WorksheetFeatureState(object):
                 self.set_selected_values(worksheet_feature_state.selected_values)
                 self.set_text(worksheet_feature_state.text)
             elif isinstance(worksheet_feature_state, dict):
-                for key, value in worksheet_feature_state.iteritems():
+                for key, value in worksheet_feature_state.items():
                     getattr(self, 'set_' + key)(value)
             else:
                 raise TypeError(worksheet_feature_state)
@@ -128,8 +141,8 @@ class WorksheetFeatureState(object):
         def values(cls):
             return (cls.SELECTED_VALUES, cls.TEXT,)
 
-    FieldMetadata.SELECTED_VALUES = FieldMetadata('selected_values', tuple, {u'minLength': 1})
-    FieldMetadata.TEXT = FieldMetadata('text', str, {u'blank': False, u'minLength': 1})
+    FieldMetadata.SELECTED_VALUES = FieldMetadata('selected_values', tuple, OrderedDict([('minLength', 1)]))
+    FieldMetadata.TEXT = FieldMetadata('text', str, OrderedDict([('blank', False), ('minLength', 1)]))
 
     def __init__(
         self,
@@ -142,15 +155,15 @@ class WorksheetFeatureState(object):
         '''
 
         if selected_values is not None:
-            if not (isinstance(selected_values, tuple) and len(list(ifilterfalse(lambda _: isinstance(_, basestring), selected_values))) == 0):
-                raise TypeError("expected selected_values to be a tuple(str) but it is a %s" % getattr(__builtin__, 'type')(selected_values))
+            if not (isinstance(selected_values, tuple) and len(list(filterfalse(lambda _: isinstance(_, str), selected_values))) == 0):
+                raise TypeError("expected selected_values to be a tuple(str) but it is a %s" % builtins.type(selected_values))
             if len(selected_values) < 1:
                 raise ValueError("expected len(selected_values) to be >= 1, was %d" % len(selected_values))
         self.__selected_values = selected_values
 
         if text is not None:
-            if not isinstance(text, basestring):
-                raise TypeError("expected text to be a str but it is a %s" % getattr(__builtin__, 'type')(text))
+            if not isinstance(text, str):
+                raise TypeError("expected text to be a str but it is a %s" % builtins.type(text))
             if text.isspace():
                 raise ValueError("expected text not to be blank")
             if len(text) < 1:
@@ -165,7 +178,7 @@ class WorksheetFeatureState(object):
         return True
 
     def __hash__(self):
-        return hash((self.selected_values,self.text,))
+        return hash((self.selected_values, self.text,))
 
     def __iter__(self):
         return iter((self.selected_values, self.text,))
@@ -178,7 +191,7 @@ class WorksheetFeatureState(object):
         if self.selected_values is not None:
             field_reprs.append('selected_values=' + repr(self.selected_values))
         if self.text is not None:
-            field_reprs.append('text=' + "'" + self.text.encode('ascii', 'replace') + "'")
+            field_reprs.append('text=' + "'" + self.text.encode('ascii', 'replace').decode('ascii') + "'")
         return 'WorksheetFeatureState(' + ', '.join(field_reprs) + ')'
 
     def __str__(self):
@@ -186,8 +199,12 @@ class WorksheetFeatureState(object):
         if self.selected_values is not None:
             field_reprs.append('selected_values=' + repr(self.selected_values))
         if self.text is not None:
-            field_reprs.append('text=' + "'" + self.text.encode('ascii', 'replace') + "'")
+            field_reprs.append('text=' + "'" + self.text.encode('ascii', 'replace').decode('ascii') + "'")
         return 'WorksheetFeatureState(' + ', '.join(field_reprs) + ')'
+
+    @classmethod
+    def builder(cls):
+        return cls.Builder()
 
     @classmethod
     def read(cls, iprot):
@@ -217,24 +234,8 @@ class WorksheetFeatureState(object):
 
         return cls(**init_kwds)
 
-    def replace(
-        self,
-        selected_values=None,
-        text=None,
-    ):
-        '''
-        Copy this object, replace one or more fields, and return the copy.
-
-        :type selected_values: tuple(str) or None
-        :type text: str or None
-        :rtype: dressdiscover.api.models.worksheet.worksheet_feature_state.WorksheetFeatureState
-        '''
-
-        if selected_values is None:
-            selected_values = self.selected_values
-        if text is None:
-            text = self.text
-        return self.__class__(selected_values=selected_values, text=text)
+    def replacer(self):
+        return cls.Builder.from_template(template=self)
 
     @property
     def selected_values(self):

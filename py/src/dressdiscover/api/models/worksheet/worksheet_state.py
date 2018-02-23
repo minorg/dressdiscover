@@ -1,4 +1,5 @@
-import __builtin__
+from collections import OrderedDict
+import builtins
 import dressdiscover.api.models.worksheet.worksheet_accession_number
 import dressdiscover.api.models.worksheet.worksheet_feature_set_state
 
@@ -29,6 +30,18 @@ class WorksheetState(object):
 
             return self.__accession_number
 
+        @classmethod
+        def from_template(cls, template):
+            '''
+            :type template: dressdiscover.api.models.worksheet.worksheet_state.WorksheetState
+            :rtype: dressdiscover.api.models.worksheet.worksheet_state.WorksheetState
+            '''
+
+            builder = cls()
+            builder.accession_number = accession_number
+            builder.root_feature_set = root_feature_set
+            return builder
+
         @property
         def root_feature_set(self):
             '''
@@ -44,8 +57,8 @@ class WorksheetState(object):
 
             if accession_number is None:
                 raise ValueError('accession_number is required')
-            if not isinstance(accession_number, basestring):
-                raise TypeError("expected accession_number to be a str but it is a %s" % getattr(__builtin__, 'type')(accession_number))
+            if not isinstance(accession_number, str):
+                raise TypeError("expected accession_number to be a str but it is a %s" % builtins.type(accession_number))
             self.__accession_number = accession_number
             return self
 
@@ -56,7 +69,7 @@ class WorksheetState(object):
 
             if root_feature_set is not None:
                 if not isinstance(root_feature_set, dressdiscover.api.models.worksheet.worksheet_feature_set_state.WorksheetFeatureSetState):
-                    raise TypeError("expected root_feature_set to be a dressdiscover.api.models.worksheet.worksheet_feature_set_state.WorksheetFeatureSetState but it is a %s" % getattr(__builtin__, 'type')(root_feature_set))
+                    raise TypeError("expected root_feature_set to be a dressdiscover.api.models.worksheet.worksheet_feature_set_state.WorksheetFeatureSetState but it is a %s" % builtins.type(root_feature_set))
             self.__root_feature_set = root_feature_set
             return self
 
@@ -70,7 +83,7 @@ class WorksheetState(object):
                 self.set_accession_number(worksheet_state.accession_number)
                 self.set_root_feature_set(worksheet_state.root_feature_set)
             elif isinstance(worksheet_state, dict):
-                for key, value in worksheet_state.iteritems():
+                for key, value in worksheet_state.items():
                     getattr(self, 'set_' + key)(value)
             else:
                 raise TypeError(worksheet_state)
@@ -139,13 +152,13 @@ class WorksheetState(object):
 
         if accession_number is None:
             raise ValueError('accession_number is required')
-        if not isinstance(accession_number, basestring):
-            raise TypeError("expected accession_number to be a str but it is a %s" % getattr(__builtin__, 'type')(accession_number))
+        if not isinstance(accession_number, str):
+            raise TypeError("expected accession_number to be a str but it is a %s" % builtins.type(accession_number))
         self.__accession_number = accession_number
 
         if root_feature_set is not None:
             if not isinstance(root_feature_set, dressdiscover.api.models.worksheet.worksheet_feature_set_state.WorksheetFeatureSetState):
-                raise TypeError("expected root_feature_set to be a dressdiscover.api.models.worksheet.worksheet_feature_set_state.WorksheetFeatureSetState but it is a %s" % getattr(__builtin__, 'type')(root_feature_set))
+                raise TypeError("expected root_feature_set to be a dressdiscover.api.models.worksheet.worksheet_feature_set_state.WorksheetFeatureSetState but it is a %s" % builtins.type(root_feature_set))
         self.__root_feature_set = root_feature_set
 
     def __eq__(self, other):
@@ -156,7 +169,7 @@ class WorksheetState(object):
         return True
 
     def __hash__(self):
-        return hash((self.accession_number,self.root_feature_set,))
+        return hash((self.accession_number, self.root_feature_set,))
 
     def __iter__(self):
         return iter((self.accession_number, self.root_feature_set,))
@@ -166,14 +179,14 @@ class WorksheetState(object):
 
     def __repr__(self):
         field_reprs = []
-        field_reprs.append('accession_number=' + "'" + self.accession_number.encode('ascii', 'replace') + "'")
+        field_reprs.append('accession_number=' + "'" + self.accession_number.encode('ascii', 'replace').decode('ascii') + "'")
         if self.root_feature_set is not None:
             field_reprs.append('root_feature_set=' + repr(self.root_feature_set))
         return 'WorksheetState(' + ', '.join(field_reprs) + ')'
 
     def __str__(self):
         field_reprs = []
-        field_reprs.append('accession_number=' + "'" + self.accession_number.encode('ascii', 'replace') + "'")
+        field_reprs.append('accession_number=' + "'" + self.accession_number.encode('ascii', 'replace').decode('ascii') + "'")
         if self.root_feature_set is not None:
             field_reprs.append('root_feature_set=' + repr(self.root_feature_set))
         return 'WorksheetState(' + ', '.join(field_reprs) + ')'
@@ -185,6 +198,10 @@ class WorksheetState(object):
         '''
 
         return self.__accession_number
+
+    @classmethod
+    def builder(cls):
+        return cls.Builder()
 
     @classmethod
     def read(cls, iprot):
@@ -211,24 +228,8 @@ class WorksheetState(object):
 
         return cls(**init_kwds)
 
-    def replace(
-        self,
-        accession_number=None,
-        root_feature_set=None,
-    ):
-        '''
-        Copy this object, replace one or more fields, and return the copy.
-
-        :type accession_number: str or None
-        :type root_feature_set: dressdiscover.api.models.worksheet.worksheet_feature_set_state.WorksheetFeatureSetState or None
-        :rtype: dressdiscover.api.models.worksheet.worksheet_state.WorksheetState
-        '''
-
-        if accession_number is None:
-            accession_number = self.accession_number
-        if root_feature_set is None:
-            root_feature_set = self.root_feature_set
-        return self.__class__(accession_number=accession_number, root_feature_set=root_feature_set)
+    def replacer(self):
+        return cls.Builder.from_template(template=self)
 
     @property
     def root_feature_set(self):

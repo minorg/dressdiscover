@@ -10,26 +10,15 @@ public class ConfigurationQueryServiceJsonRpcServlet extends javax.servlet.http.
 
     @Override
     protected void doPost(final javax.servlet.http.HttpServletRequest httpServletRequest, final javax.servlet.http.HttpServletResponse httpServletResponse) throws java.io.IOException, javax.servlet.ServletException {
-        final String httpServletRequestContentEncoding = httpServletRequest.getHeader("Content-Encoding");
-        java.io.InputStream httpServletRequestInputStream = httpServletRequest.getInputStream();
-        if (httpServletRequestContentEncoding != null) {
-            if (httpServletRequestContentEncoding.equals("deflate")) {
-                httpServletRequestInputStream = new java.util.zip.InflaterInputStream(httpServletRequestInputStream);
-            } else if (httpServletRequestContentEncoding.equals("gzip")) {
-                httpServletRequestInputStream = new java.util.zip.GZIPInputStream(httpServletRequestInputStream);
-            }
-        }
-
         final String httpServletRequestBody;
-        {
-            final java.io.InputStreamReader httpServletRequestBodyReader = new java.io.InputStreamReader(httpServletRequestInputStream);
-            final java.io.StringWriter httpServletRequestBodyWriter = new java.io.StringWriter();
+        try (final java.io.Reader httpServletRequestBodyReader = httpServletRequest.getReader()) {
+            final StringBuilder httpServletRequestBodyBuilder = new StringBuilder();
             final char[] httpServletRequestBodyBuffer = new char[4096];
-            int httpServletRequestBodyBufferReadRet = 0;
+            int httpServletRequestBodyBufferReadRet;
             while ((httpServletRequestBodyBufferReadRet = httpServletRequestBodyReader.read(httpServletRequestBodyBuffer)) != -1) {
-                httpServletRequestBodyWriter.write(httpServletRequestBodyBuffer, 0, httpServletRequestBodyBufferReadRet);
+                httpServletRequestBodyBuilder.append(httpServletRequestBodyBuffer, 0, httpServletRequestBodyBufferReadRet);
             }
-            httpServletRequestBody = httpServletRequestBodyWriter.toString();
+            httpServletRequestBody = httpServletRequestBodyBuilder.toString();
         }
 
         org.thryft.protocol.MessageBegin messageBegin = null;
@@ -75,76 +64,12 @@ public class ConfigurationQueryServiceJsonRpcServlet extends javax.servlet.http.
         __doPostResponse(httpServletRequest, httpServletResponse, httpServletResponseBodyWriter.toString());
     }
 
-    private void __doPostResponse(final javax.servlet.http.HttpServletRequest httpServletRequest, final javax.servlet.http.HttpServletResponse httpServletResponse, final String httpServletResponseBody) throws java.io.IOException {
-        httpServletResponse.setHeader("Access-Control-Allow-Origin", "*");
+    private static void __doPostResponse(final javax.servlet.http.HttpServletRequest httpServletRequest, final javax.servlet.http.HttpServletResponse httpServletResponse, final String httpServletResponseBody) throws java.io.IOException {
         httpServletResponse.setContentType("application/json; charset=utf-8");
 
-        if (httpServletResponseBody.length() >= 128) {
-            final String httpServletRequestAcceptEncoding = httpServletRequest.getHeader("Accept-Encoding");
-            if (httpServletRequestAcceptEncoding != null && !httpServletRequestAcceptEncoding.isEmpty()) {
-                final String[] contentCodings = httpServletRequestAcceptEncoding.split(",");
-                final java.util.TreeMap<java.math.BigDecimal, String> contentCodingsMap = new java.util.TreeMap<java.math.BigDecimal, String>();
-                java.math.BigDecimal nextQvalue = new java.math.BigDecimal(Long.MAX_VALUE);
-                for (final String contentCoding : contentCodings) {
-                    final String[] contentCodingSplit = contentCoding.split(";", 2);
-                    final String name = contentCodingSplit[0].trim();
-                    final java.math.BigDecimal qvalue;
-                    if (contentCodingSplit.length == 2) {
-                        final String[] qvalueSplit = contentCodingSplit[1].split("=", 2);
-                        if (qvalueSplit.length == 2) {
-                            try {
-                                qvalue = new java.math.BigDecimal(qvalueSplit[1].trim());
-                                if (qvalue == java.math.BigDecimal.ZERO) {
-                                    continue;
-                                }
-                            } catch (final NumberFormatException e) {
-                                continue;
-                            }
-                        } else {
-                            continue;
-                        }
-                    } else {
-                        qvalue = nextQvalue;
-                        nextQvalue = nextQvalue.subtract(java.math.BigDecimal.ONE);
-                    }
-                    contentCodingsMap.put(qvalue, name);
-                }
-
-                if (!contentCodingsMap.isEmpty()) {
-                    final String contentCoding = contentCodingsMap.lastEntry().getValue();
-                    if (contentCoding.equals("deflate") || contentCoding.equals("gzip")) {
-                        final java.io.ByteArrayOutputStream byteArrayOutputStream = new java.io.ByteArrayOutputStream();
-
-                        final java.util.zip.DeflaterOutputStream compressingOutputStream;
-                        if (contentCoding.equals("deflate")) {
-                            compressingOutputStream = new java.util.zip.DeflaterOutputStream(byteArrayOutputStream);
-                        } else {
-                            compressingOutputStream = new java.util.zip.GZIPOutputStream(byteArrayOutputStream);
-                        }
-
-                        byte[] compressedHttpServletResponseBody = null;
-                        try {
-                            try {
-                                compressingOutputStream.write(httpServletResponseBody.getBytes("UTF-8"));
-                                compressingOutputStream.finish();
-                                compressedHttpServletResponseBody = byteArrayOutputStream.toByteArray();
-                            } finally {
-                                compressingOutputStream.close();
-                            }
-                        } catch (java.io.IOException e) {
-                        }
-
-                        if (compressedHttpServletResponseBody != null) {
-                            httpServletResponse.setHeader("Content-Encoding", contentCoding);
-                            httpServletResponse.getOutputStream().write(compressedHttpServletResponseBody);
-                            return;
-                        }
-                    }
-                }
-            }
+        try (final java.io.OutputStream httpServletResponseOutputStream = httpServletResponse.getOutputStream()) {
+            httpServletResponseOutputStream.write(httpServletResponseBody.getBytes("UTF-8"));
         }
-
-        httpServletResponse.getOutputStream().write(httpServletResponseBody.getBytes("UTF-8"));
     }
 
     public void doPostGetCollectionConfiguration(final javax.servlet.http.HttpServletRequest httpServletRequest, final javax.servlet.http.HttpServletResponse httpServletResponse, final org.thryft.waf.lib.protocols.json.JsonRpcInputProtocol iprot, final Object jsonRpcRequestId) throws java.io.IOException {
@@ -153,7 +78,7 @@ public class ConfigurationQueryServiceJsonRpcServlet extends javax.servlet.http.
             serviceRequest = org.dressdiscover.api.services.configuration.ConfigurationQueryService.Messages.GetCollectionConfigurationRequest.readAs(iprot, iprot.getCurrentFieldType(), unknownFieldCallback);
         } catch (final IllegalArgumentException | org.thryft.protocol.InputProtocolException | NullPointerException e) {
             logger.debug("error deserializing service request: ", e);
-            __doPostError(httpServletRequest, httpServletResponse, new org.thryft.waf.lib.protocols.json.JsonRpcErrorResponse(e, -32602, "invalid JSON-RPC request method parameters: " + String.valueOf(e.getMessage())), jsonRpcRequestId);
+            __doPostError(httpServletRequest, httpServletResponse, new org.thryft.waf.lib.protocols.json.JsonRpcErrorResponse(e, -32602, e.getMessage() != null ? e.getMessage() : "invalid JSON-RPC request method parameters"), jsonRpcRequestId);
             return;
         }
 
@@ -189,7 +114,7 @@ public class ConfigurationQueryServiceJsonRpcServlet extends javax.servlet.http.
             serviceRequest = org.dressdiscover.api.services.configuration.ConfigurationQueryService.Messages.GetInstitutionConfigurationRequest.readAs(iprot, iprot.getCurrentFieldType(), unknownFieldCallback);
         } catch (final IllegalArgumentException | org.thryft.protocol.InputProtocolException | NullPointerException e) {
             logger.debug("error deserializing service request: ", e);
-            __doPostError(httpServletRequest, httpServletResponse, new org.thryft.waf.lib.protocols.json.JsonRpcErrorResponse(e, -32602, "invalid JSON-RPC request method parameters: " + String.valueOf(e.getMessage())), jsonRpcRequestId);
+            __doPostError(httpServletRequest, httpServletResponse, new org.thryft.waf.lib.protocols.json.JsonRpcErrorResponse(e, -32602, e.getMessage() != null ? e.getMessage() : "invalid JSON-RPC request method parameters"), jsonRpcRequestId);
             return;
         }
 
@@ -220,6 +145,6 @@ public class ConfigurationQueryServiceJsonRpcServlet extends javax.servlet.http.
     }
 
     private final static org.slf4j.Logger logger = org.slf4j.LoggerFactory.getLogger(ConfigurationQueryServiceJsonRpcServlet.class);
-    private final static com.google.common.base.Optional<org.thryft.CompoundType.UnknownFieldCallback> unknownFieldCallback = com.google.common.base.Optional.of(new org.thryft.CompoundType.UnknownFieldCallback() { public void apply(final org.thryft.protocol.FieldBegin field) throws org.thryft.protocol.InputProtocolException { throw new org.thryft.protocol.InputProtocolException("unknown field " + field); } });
+    private final static com.google.common.base.Optional<org.thryft.CompoundType.UnknownFieldCallback> unknownFieldCallback = com.google.common.base.Optional.of(new org.thryft.CompoundType.UnknownFieldCallback() { @Override public void apply(final org.thryft.protocol.FieldBegin field) throws org.thryft.protocol.InputProtocolException { throw new org.thryft.protocol.InputProtocolException("unknown field " + field); } });
     private final org.dressdiscover.api.services.configuration.ConfigurationQueryService service;
 }
