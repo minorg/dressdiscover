@@ -1,4 +1,4 @@
-namespace * dressdiscover.api.models
+namespace * dressdiscover.api.vocabularies.vra_core
 
 enum Vocab {
 	AAT,

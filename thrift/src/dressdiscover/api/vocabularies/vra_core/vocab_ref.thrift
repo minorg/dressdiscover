@@ -1,4 +1,4 @@
-namespace * dressdiscover.api.models
+namespace * dressdiscover.api.vocabularies.vra_core
 
 include "dressdiscover/api/vocabularies/vra_core/vocab.thrift"
 include "thryft/native/uri.thrift"

@@ -7,6 +7,5 @@ include "thryft/native/email_address.thrift"
 struct User {
 	date_time.DateTime ctime;
 
-	// @sql_unique
 	email_address.EmailAddress email_address;
 }
