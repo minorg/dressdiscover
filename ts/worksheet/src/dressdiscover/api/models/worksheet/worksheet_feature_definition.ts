@@ -1,4 +1,4 @@
-import { WorksheetFeatureValueDefinition } from "./dressdiscover/api/models/worksheet/worksheet_feature_value_definition";
+import { WorksheetFeatureValueDefinition } from "./worksheet_feature_value_definition";
 
 export class WorksheetFeatureDefinition {
     private _displayName?: string;

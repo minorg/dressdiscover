@@ -1,4 +1,4 @@
-import { WorksheetFeatureValueImageRights } from "./dressdiscover/api/models/worksheet/worksheet_feature_value_image_rights";
+import { WorksheetFeatureValueImageRights } from "./worksheet_feature_value_image_rights";
 
 export class WorksheetFeatureValueImage {
     private _fullSizeUrl?: string;

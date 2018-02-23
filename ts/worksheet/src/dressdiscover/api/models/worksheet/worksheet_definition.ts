@@ -1,4 +1,4 @@
-import { WorksheetFeatureSetDefinition } from "./dressdiscover/api/models/worksheet/worksheet_feature_set_definition";
+import { WorksheetFeatureSetDefinition } from "./worksheet_feature_set_definition";
 
 export class WorksheetDefinition {
     private _rootFeatureSet: WorksheetFeatureSetDefinition;

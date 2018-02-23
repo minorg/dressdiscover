@@ -1,13 +1,15 @@
-﻿import { AsyncToSyncWorksheetQueryService } from "dressdiscover/api/services/worksheet/async_to_sync_worksheet_query_service";
-import { WorksheetDefinition } from "dressdiscover/api/models/worksheet/worksheet_definition";
-import { WorksheetState } from "dressdiscover/api/models/worksheet/worksheet_state";
+﻿import { WorksheetDefinition } from 'dressdiscover/api/models/worksheet/worksheet_definition';
+import { WorksheetState } from 'dressdiscover/api/models/worksheet/worksheet_state';
+import {
+    AsyncToSyncWorksheetQueryService,
+} from 'dressdiscover/api/services/worksheet/async_to_sync_worksheet_query_service';
 
 declare var WORKSHEET_DEFINITION: any;
 
 export class LocalWorksheetQueryService extends AsyncToSyncWorksheetQueryService {
     constructor() {
         super();
-        this._worksheetDefinition = WorksheetDefinition.fromThryftJSON(WORKSHEET_DEFINITION);
+        this._worksheetDefinition = WorksheetDefinition.fromThryftJsonObject(WORKSHEET_DEFINITION);
     }
 
     getWorksheetAccessionNumbersSync(): string[] {
@@ -36,12 +38,13 @@ export class LocalWorksheetQueryService extends AsyncToSyncWorksheetQueryService
     }
 
     getWorksheetStateSync(kwds: { accessionNumber: string }): WorksheetState {
-        const jsonString = localStorage.getItem(LocalWorksheetQueryService.getWorksheetStateItemKey(kwds.accessionNumber));
-        console.info("state from service: " + jsonString);
-        if (jsonString == null) {
-            return new WorksheetState();
-        }
-        return WorksheetState.fromThryftJSON(JSON.parse(jsonString));
+        // const jsonString = localStorage.getItem(LocalWorksheetQueryService.getWorksheetStateItemKey(kwds.accessionNumber));
+        // console.info("state from service: " + jsonString);
+        // if (jsonString == null) {
+        //     return new WorksheetState();
+        // }
+        // return WorksheetState.fromThryftJSON(JSON.parse(jsonString));
+        return new WorksheetState({accessionNumber: "whatever"});
     }
 
     private static readonly _WORKSHEET_ITEM_KEY_PREFIX = "worksheet/state/";

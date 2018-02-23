@@ -1,6 +1,6 @@
-import { WorksheetDefinition } from "./dressdiscover/api/models/worksheet/worksheet_definition";
-import { WorksheetQueryService } from "./async_to_sync_worksheet_query_service";
-import { WorksheetState } from "./dressdiscover/api/models/worksheet/worksheet_state";
+import { WorksheetDefinition } from "../../models/worksheet/worksheet_definition";
+import { WorksheetQueryService } from "./worksheet_query_service";
+import { WorksheetState } from "../../models/worksheet/worksheet_state";
 
 export abstract class AsyncToSyncWorksheetQueryService implements WorksheetQueryService {
     getWorksheetAccessionNumbersAsync(kwds: {error: (errorKwds: {textStatus: string, errorThrown: any, [index: string]: any}) => any, success: (returnValue: string[]) => void}): void {

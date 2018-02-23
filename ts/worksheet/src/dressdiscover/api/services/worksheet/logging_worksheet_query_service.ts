@@ -1,6 +1,6 @@
-import { WorksheetDefinition } from "./dressdiscover/api/models/worksheet/worksheet_definition";
-import { WorksheetQueryService } from "./logging_worksheet_query_service";
-import { WorksheetState } from "./dressdiscover/api/models/worksheet/worksheet_state";
+import { WorksheetDefinition } from "../../models/worksheet/worksheet_definition";
+import { WorksheetQueryService } from "./worksheet_query_service";
+import { WorksheetState } from "../../models/worksheet/worksheet_state";
 
 export class LoggingWorksheetQueryService implements WorksheetQueryService {
     constructor(private delegate: WorksheetQueryService) {

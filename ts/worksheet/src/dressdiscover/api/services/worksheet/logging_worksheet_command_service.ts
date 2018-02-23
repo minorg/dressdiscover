@@ -1,5 +1,5 @@
-import { WorksheetCommandService } from "./logging_worksheet_command_service";
-import { WorksheetState } from "./dressdiscover/api/models/worksheet/worksheet_state";
+import { WorksheetCommandService } from "./worksheet_command_service";
+import { WorksheetState } from "../../models/worksheet/worksheet_state";
 
 export class LoggingWorksheetCommandService implements WorksheetCommandService {
     constructor(private delegate: WorksheetCommandService) {

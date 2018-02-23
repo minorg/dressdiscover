@@ -1,4 +1,4 @@
-import { WorksheetFeatureState } from "./dressdiscover/api/models/worksheet/worksheet_feature_state";
+import { WorksheetFeatureState } from "./worksheet_feature_state";
 
 export class WorksheetFeatureSetState {
     private _childFeatureSets?: {[index: string]: WorksheetFeatureSetState};
