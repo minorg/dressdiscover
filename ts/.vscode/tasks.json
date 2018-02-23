@@ -1,0 +1,9 @@
+{
+    "version": "2.0.0",
+    "tasks": [{
+        "label": "webpack dev server",
+        "command": "${workspaceRoot}/node_modules/.bin/webpack-dev-server.cmd",
+        "args": ["--config", "${workspaceRoot}/webpack.dev.js"],
+        "problemMatcher": ["$awesometsc", "$awesomets-lint"]
+    }]
+}
