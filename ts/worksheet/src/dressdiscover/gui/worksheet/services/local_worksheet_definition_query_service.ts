@@ -12,6 +12,7 @@ export class LocalWorksheetDefinitionQueryService extends AsyncToSyncWorksheetDe
         super();
 
         this._worksheetDefinition = new WorksheetDefinitionValidator().validateWorksheetDefinition(new WorksheetDefinitionCsvParser().parseWorksheetDefinitionCsv({
+            extentsCsv: require("raw-loader!../../../../../definitions/extents.csv"),
             featuresCsv: require("raw-loader!../../../../../definitions/features.csv"),
             featureSetsCsv: require("raw-loader!../../../../../definitions/feature_sets.csv"),
             featureValuesCsv: require("raw-loader!../../../../../definitions/feature_values.csv")

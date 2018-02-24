@@ -1,4 +1,5 @@
 import { WorksheetDefinition } from 'dressdiscover/api/models/worksheet/worksheet_definition';
+import { WorksheetExtentDefinition } from 'dressdiscover/api/models/worksheet/worksheet_extent_definition';
 import { WorksheetFeatureDefinition } from 'dressdiscover/api/models/worksheet/worksheet_feature_definition';
 import { WorksheetFeatureSetDefinition } from 'dressdiscover/api/models/worksheet/worksheet_feature_set_definition';
 import { WorksheetFeatureValueDefinition } from 'dressdiscover/api/models/worksheet/worksheet_feature_value_definition';
@@ -10,11 +11,13 @@ import * as _ from 'underscore';
 
 export class WorksheetDefinitionCsvParser {
     parseWorksheetDefinitionCsv(kwds: {
+        extentsCsv: string,
         featuresCsv: string,
         featureSetsCsv: string,
         featureValuesCsv: string
     }): WorksheetDefinition {
         return new WorksheetDefinition({
+            extents: this._parseExtentsCsv(kwds.extentsCsv),
             features: this._parseFeaturesCsv(kwds.featuresCsv),
             featureSets: this._parseFeatureSetsCsv(kwds.featureSetsCsv),
             featureValues: this._parseFeatureValuesCsv(kwds.featureValuesCsv)
@@ -73,10 +76,37 @@ export class WorksheetDefinitionCsvParser {
         return outRows;
     }
 
+    private _parseExtentsCsv(csv: string): WorksheetExtentDefinition[] {
+        const extents: WorksheetExtentDefinition[] = [];
+        const parsedCsv = WorksheetDefinitionCsvParser._parseCsv(csv, "extents", { header: true });
+        const rows = WorksheetDefinitionCsvParser._parseUniqueColumnRows(parsedCsv.data);
+        for (var rowI = 0; rowI < rows.length; rowI++) {
+            const row = rows[rowI];
+            if (_.isEmpty(row)) {
+                continue;
+            }
+            try {
+                extents.push(
+                    new WorksheetExtentDefinition({
+                        displayName: row["display_name"],
+                        id: row["id"],
+                    })
+                );
+            } catch (e) {
+                if (e instanceof RangeError) {
+                    throw new RangeError("extent row " + (rowI + 2) + " error: " + e.message);
+                } else {
+                    throw e;
+                }
+            }
+        }
+        return extents;
+    }
+
     private _parseFeaturesCsv(csv: string): WorksheetFeatureDefinition[] {
         const features: WorksheetFeatureDefinition[] = [];
         const parsedCsv = WorksheetDefinitionCsvParser._parseCsv(csv, "features");
-        let rows = WorksheetDefinitionCsvParser._parseDuplicateColumnRows(["value"], parsedCsv.data);
+        const rows = WorksheetDefinitionCsvParser._parseDuplicateColumnRows(["value"], parsedCsv.data);
         for (var rowI = 0; rowI < rows.length; rowI++) {
             const row = rows[rowI];
             if (_.isEmpty(row)) {
@@ -102,7 +132,7 @@ export class WorksheetDefinitionCsvParser {
     private _parseFeatureSetsCsv(csv: any): WorksheetFeatureSetDefinition[] {
         const featureSets: WorksheetFeatureSetDefinition[] = [];
         const parsedCsv = WorksheetDefinitionCsvParser._parseCsv(csv, "feature sets");
-        let rows = WorksheetDefinitionCsvParser._parseDuplicateColumnRows(["feature"], parsedCsv.data);
+        const rows = WorksheetDefinitionCsvParser._parseDuplicateColumnRows(["feature"], parsedCsv.data);
         for (var rowI = 0; rowI < rows.length; rowI++) {
             const row = rows[rowI];
             if (_.isEmpty(row)) {
@@ -128,7 +158,7 @@ export class WorksheetDefinitionCsvParser {
     private _parseFeatureValuesCsv(csv: string): WorksheetFeatureValueDefinition[] {
         const values: WorksheetFeatureValueDefinition[] = [];
         const parsedCsv = WorksheetDefinitionCsvParser._parseCsv(csv, "features", { header: true });;
-        let rows = WorksheetDefinitionCsvParser._parseUniqueColumnRows(parsedCsv.data);
+        const rows = WorksheetDefinitionCsvParser._parseUniqueColumnRows(parsedCsv.data);
         for (var rowI = 0; rowI < rows.length; rowI++) {
             const row = rows[rowI];
             if (_.isEmpty(row)) {
@@ -186,8 +216,9 @@ export class WorksheetDefinitionCsvParser {
         } catch (e) {
             if (e instanceof RangeError) {
                 throw new RangeError("feature value row " + rowI + " " + columnNamePrefix + " rights error: " + e.message);
+            } else {
+                throw e;
             }
-            throw e;
         }
     }
 
