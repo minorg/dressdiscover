@@ -1,8 +1,8 @@
 import '../../../../node_modules/cookieconsent/build/cookieconsent.min.css';
 import '../../../../node_modules/cookieconsent/build/cookieconsent.min.js';
 
-import { TopLevelViewModel } from 'dressdiscover/gui/view_models/top_level_view_model';
-import { View } from 'dressdiscover/gui/views/view';
+import { TopLevelViewModel } from 'dressdiscover/gui/worksheet/view_models/top_level_view_model';
+import { View } from 'dressdiscover/gui/worksheet/views/view';
 import * as ko from 'knockout';
 
 

@@ -1,6 +1,6 @@
 package org.dressdiscover.api.services.worksheet;
 
-public interface WorksheetQueryService {
+public interface WorksheetStateQueryService {
     public enum FunctionMetadata {
         GET_WORKSHEET_ACCESSION_NUMBERS("get_worksheet_accession_numbers"),
         GET_WORKSHEET_STATE("get_worksheet_state");

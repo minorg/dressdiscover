@@ -1,6 +1,6 @@
 import { WorksheetState } from "../../models/worksheet/worksheet_state";
 
-export interface WorksheetQueryService {
+export interface WorksheetStateQueryService {
     getWorksheetAccessionNumbersAsync(kwds: {error: (errorKwds: {textStatus: string, errorThrown: any, [index: string]: any}) => any, success: (returnValue: string[]) => void}): void;
     getWorksheetAccessionNumbersSync(): string[];
 

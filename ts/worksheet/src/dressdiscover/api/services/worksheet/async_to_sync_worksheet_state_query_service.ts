@@ -1,7 +1,7 @@
-import { WorksheetQueryService } from "./worksheet_query_service";
 import { WorksheetState } from "../../models/worksheet/worksheet_state";
+import { WorksheetStateQueryService } from "./worksheet_state_query_service";
 
-export abstract class AsyncToSyncWorksheetQueryService implements WorksheetQueryService {
+export abstract class AsyncToSyncWorksheetStateQueryService implements WorksheetStateQueryService {
     getWorksheetAccessionNumbersAsync(kwds: {error: (errorKwds: {textStatus: string, errorThrown: any, [index: string]: any}) => any, success: (returnValue: string[]) => void}): void {
         try {
             if (kwds.success) {

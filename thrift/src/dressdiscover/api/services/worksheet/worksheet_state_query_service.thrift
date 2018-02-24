@@ -4,7 +4,7 @@ include "dressdiscover/api/models/worksheet/worksheet_accession_number.thrift"
 include "dressdiscover/api/models/worksheet/worksheet_state.thrift"
 include "dressdiscover/api/services/io_exception.thrift"
 
-service WorksheetQueryService {
+service WorksheetStateQueryService {
     list<worksheet_accession_number.WorksheetAccessionNumber>
     get_worksheet_accession_numbers(
     ) throws (

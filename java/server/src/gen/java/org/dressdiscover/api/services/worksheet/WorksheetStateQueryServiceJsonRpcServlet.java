@@ -2,9 +2,9 @@ package org.dressdiscover.api.services.worksheet;
 
 @com.google.inject.Singleton
 @SuppressWarnings("serial")
-public class WorksheetQueryServiceJsonRpcServlet extends javax.servlet.http.HttpServlet {
+public class WorksheetStateQueryServiceJsonRpcServlet extends javax.servlet.http.HttpServlet {
     @com.google.inject.Inject
-    public WorksheetQueryServiceJsonRpcServlet(final org.dressdiscover.api.services.worksheet.WorksheetQueryService service) {
+    public WorksheetStateQueryServiceJsonRpcServlet(final org.dressdiscover.api.services.worksheet.WorksheetStateQueryService service) {
         this.service = service;
     }
 
@@ -104,9 +104,9 @@ public class WorksheetQueryServiceJsonRpcServlet extends javax.servlet.http.Http
     }
 
     public void doPostGetWorksheetState(final javax.servlet.http.HttpServletRequest httpServletRequest, final javax.servlet.http.HttpServletResponse httpServletResponse, final org.thryft.waf.lib.protocols.json.JsonRpcInputProtocol iprot, final Object jsonRpcRequestId) throws java.io.IOException {
-        final org.dressdiscover.api.services.worksheet.WorksheetQueryService.Messages.GetWorksheetStateRequest serviceRequest;
+        final org.dressdiscover.api.services.worksheet.WorksheetStateQueryService.Messages.GetWorksheetStateRequest serviceRequest;
         try {
-            serviceRequest = org.dressdiscover.api.services.worksheet.WorksheetQueryService.Messages.GetWorksheetStateRequest.readAs(iprot, iprot.getCurrentFieldType(), unknownFieldCallback);
+            serviceRequest = org.dressdiscover.api.services.worksheet.WorksheetStateQueryService.Messages.GetWorksheetStateRequest.readAs(iprot, iprot.getCurrentFieldType(), unknownFieldCallback);
         } catch (final IllegalArgumentException | org.thryft.protocol.InputProtocolException | NullPointerException e) {
             logger.debug("error deserializing service request: ", e);
             __doPostError(httpServletRequest, httpServletResponse, new org.thryft.waf.lib.protocols.json.JsonRpcErrorResponse(e, -32602, e.getMessage() != null ? e.getMessage() : "invalid JSON-RPC request method parameters"), jsonRpcRequestId);
@@ -139,7 +139,7 @@ public class WorksheetQueryServiceJsonRpcServlet extends javax.servlet.http.Http
         __doPostResponse(httpServletRequest, httpServletResponse, httpServletResponseBody);
     }
 
-    private final static org.slf4j.Logger logger = org.slf4j.LoggerFactory.getLogger(WorksheetQueryServiceJsonRpcServlet.class);
+    private final static org.slf4j.Logger logger = org.slf4j.LoggerFactory.getLogger(WorksheetStateQueryServiceJsonRpcServlet.class);
     private final static com.google.common.base.Optional<org.thryft.CompoundType.UnknownFieldCallback> unknownFieldCallback = com.google.common.base.Optional.of(new org.thryft.CompoundType.UnknownFieldCallback() { @Override public void apply(final org.thryft.protocol.FieldBegin field) throws org.thryft.protocol.InputProtocolException { throw new org.thryft.protocol.InputProtocolException("unknown field " + field); } });
-    private final org.dressdiscover.api.services.worksheet.WorksheetQueryService service;
+    private final org.dressdiscover.api.services.worksheet.WorksheetStateQueryService service;
 }

@@ -1,4 +1,4 @@
-import { ViewModel } from 'dressdiscover/gui/view_models/view_model';
+import { ViewModel } from 'dressdiscover/gui/worksheet/view_models/view_model';
 
 declare function require(moduleName: string): any;
 

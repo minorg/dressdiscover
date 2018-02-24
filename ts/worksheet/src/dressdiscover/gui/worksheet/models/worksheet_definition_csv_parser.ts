@@ -19,9 +19,11 @@ export class WorksheetDefinitionCsvParser {
     }
 
     private _parseFeaturesCsv(csv: string): WorksheetFeatureDefinition[] {
+        return [];
     }
 
     private _parseFeatureSetsCsv(csv: any): WorksheetFeatureSetDefinition[] {
+        return [];
     }
 
     private _parseFeatureValuesCsv(csv: string): WorksheetFeatureValueDefinition[] {
