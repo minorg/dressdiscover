@@ -23,10 +23,16 @@ export class WorksheetFeatureValueDescription {
     }
 
     private static _validateRights(rights: WorksheetRights): WorksheetRights {
+        if (rights == null) {
+            throw new RangeError('rights is null or undefined');
+        }
         return rights;
     }
 
     private static _validateText(text: string): string {
+        if (text == null) {
+            throw new RangeError('text is null or undefined');
+        }
         if (text.trim().length == 0) {
             throw new RangeError('text is blank');
         }

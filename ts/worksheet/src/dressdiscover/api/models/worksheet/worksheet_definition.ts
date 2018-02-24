@@ -44,18 +44,30 @@ export class WorksheetDefinition {
     }
 
     private static _validateExtents(extents: WorksheetExtentDefinition[]): WorksheetExtentDefinition[] {
+        if (extents == null) {
+            throw new RangeError('extents is null or undefined');
+        }
         return extents;
     }
 
     private static _validateFeatureSets(featureSets: WorksheetFeatureSetDefinition[]): WorksheetFeatureSetDefinition[] {
+        if (featureSets == null) {
+            throw new RangeError('featureSets is null or undefined');
+        }
         return featureSets;
     }
 
     private static _validateFeatureValues(featureValues: WorksheetFeatureValueDefinition[]): WorksheetFeatureValueDefinition[] {
+        if (featureValues == null) {
+            throw new RangeError('featureValues is null or undefined');
+        }
         return featureValues;
     }
 
     private static _validateFeatures(features: WorksheetFeatureDefinition[]): WorksheetFeatureDefinition[] {
+        if (features == null) {
+            throw new RangeError('features is null or undefined');
+        }
         return features;
     }
 

@@ -39,6 +39,9 @@ export class WorksheetRights {
     }
 
     private static _validateAuthor(author: string): string {
+        if (author == null) {
+            throw new RangeError('author is null or undefined');
+        }
         if (author.trim().length == 0) {
             throw new RangeError('author is blank');
         }
@@ -49,6 +52,9 @@ export class WorksheetRights {
     }
 
     private static _validateLicense(license: string): string {
+        if (license == null) {
+            throw new RangeError('license is null or undefined');
+        }
         if (license.trim().length == 0) {
             throw new RangeError('license is blank');
         }
@@ -59,6 +65,9 @@ export class WorksheetRights {
     }
 
     private static _validateSourceName(sourceName: string): string {
+        if (sourceName == null) {
+            throw new RangeError('sourceName is null or undefined');
+        }
         if (sourceName.trim().length == 0) {
             throw new RangeError('sourceName is blank');
         }
@@ -69,6 +78,9 @@ export class WorksheetRights {
     }
 
     private static _validateSourceUrl(sourceUrl: string): string {
+        if (sourceUrl == null) {
+            throw new RangeError('sourceUrl is null or undefined');
+        }
         return sourceUrl;
     }
 

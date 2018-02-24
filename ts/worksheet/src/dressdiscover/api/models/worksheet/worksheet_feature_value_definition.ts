@@ -73,6 +73,9 @@ export class WorksheetFeatureValueDefinition {
     }
 
     private static _validateId(id: string): string {
+        if (id == null) {
+            throw new RangeError('id is null or undefined');
+        }
         if (id.trim().length == 0) {
             throw new RangeError('id is blank');
         }

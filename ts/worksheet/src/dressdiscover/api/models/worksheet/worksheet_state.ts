@@ -27,6 +27,9 @@ export class WorksheetState {
     }
 
     private static _validateAccessionNumber(accessionNumber: string): string {
+        if (accessionNumber == null) {
+            throw new RangeError('accessionNumber is null or undefined');
+        }
         if (accessionNumber.trim().length == 0) {
             throw new RangeError('accessionNumber is blank');
         }

@@ -12,6 +12,9 @@ export class IoException {
     }
 
     private static _validateCauseMessage(causeMessage: string): string {
+        if (causeMessage == null) {
+            throw new RangeError('causeMessage is null or undefined');
+        }
         return causeMessage;
     }
 

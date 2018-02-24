@@ -48,10 +48,16 @@ export class WorksheetFeatureValueImage {
     }
 
     private static _validateRights(rights: WorksheetRights): WorksheetRights {
+        if (rights == null) {
+            throw new RangeError('rights is null or undefined');
+        }
         return rights;
     }
 
     private static _validateThumbnailUrl(thumbnailUrl: string): string {
+        if (thumbnailUrl == null) {
+            throw new RangeError('thumbnailUrl is null or undefined');
+        }
         if (thumbnailUrl.trim().length == 0) {
             throw new RangeError('thumbnailUrl is blank');
         }
