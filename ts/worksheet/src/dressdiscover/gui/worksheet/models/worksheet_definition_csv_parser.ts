@@ -90,7 +90,7 @@ export class WorksheetDefinitionCsvParser {
                 }));
             } catch (e) {
                 if (e instanceof RangeError) {
-                    throw new RangeError("feature row " + rowI + " error: " + e.message);
+                    throw new RangeError("feature row " + (rowI + 2) + " error: " + e.message);
                 } else {
                     throw e;
                 }
@@ -116,7 +116,7 @@ export class WorksheetDefinitionCsvParser {
                 }));
             } catch (e) {
                 if (e instanceof RangeError) {
-                    console.error("feature set row " + rowI + " error: " + e.message);
+                    console.error("feature set row " + (rowI + 2) + " error: " + e.message);
                 } else {
                     throw e;
                 }
@@ -150,11 +150,11 @@ export class WorksheetDefinitionCsvParser {
                 if (!_.isEmpty(imageThumbnailUrl)) {
                     image = new WorksheetFeatureValueImage({
                         fullSizeUrl: row["image_full_size_url"],
-                        rights: WorksheetDefinitionCsvParser._parseRights("image_", row, rowI),
+                        rights: WorksheetDefinitionCsvParser._parseRights("image_", row, rowI + 2),
                         thumbnailUrl: imageThumbnailUrl
                     });
                 } else {
-                    console.warn("feature value row " + rowI + " has no image");
+                    console.warn("feature value row " + (rowI + 2) + " has no image");
                 }
 
                 const value = new WorksheetFeatureValueDefinition({
@@ -166,7 +166,7 @@ export class WorksheetDefinitionCsvParser {
                 values.push(value);
             } catch (e) {
                 if (e instanceof RangeError) {
-                    throw new RangeError("feature value row " + rowI + " error: " + e.message);
+                    throw new RangeError("feature value row " + (rowI + 2) + " error: " + e.message);
                 } else {
                     throw e;
                 }
