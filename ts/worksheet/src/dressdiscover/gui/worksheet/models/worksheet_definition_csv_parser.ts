@@ -2,6 +2,9 @@ import { WorksheetDefinition } from 'dressdiscover/api/models/worksheet/workshee
 import { WorksheetFeatureDefinition } from 'dressdiscover/api/models/worksheet/worksheet_feature_definition';
 import { WorksheetFeatureSetDefinition } from 'dressdiscover/api/models/worksheet/worksheet_feature_set_definition';
 import { WorksheetFeatureValueDefinition } from 'dressdiscover/api/models/worksheet/worksheet_feature_value_definition';
+import { WorksheetFeatureValueDescription } from 'dressdiscover/api/models/worksheet/worksheet_feature_value_description';
+import { WorksheetFeatureValueImage } from 'dressdiscover/api/models/worksheet/worksheet_feature_value_image';
+import { WorksheetRights } from 'dressdiscover/api/models/worksheet/worksheet_rights';
 import Papa = require('papaparse');
 import * as _ from 'underscore';
 
@@ -26,15 +29,25 @@ export class WorksheetDefinitionCsvParser {
         for (let row of rows) {
             if (rowI++ == 0) {
                 header = row;
+                outRows.push([]);
                 continue;
             }
             let outRow: any = {};
             for (let columnI in row) {
-                const columnName = header[columnI];
-                const columnValue = row[columnI];
+                let columnName = header[columnI];
+                if (!_.isUndefined(columnName)) {
+                    columnName = columnName.trim();
+                }
+
+                let columnValue = row[columnI];
+                if (!_.isUndefined(columnValue)) {
+                    columnValue = columnValue.trim();
+                }
+
                 if (_.isEmpty(columnName) || _.isEmpty(columnValue)) {
                     continue;
                 }
+
                 if (_.contains(duplicateColumnNames, columnName)) {
                     if (_.isUndefined(outRow[columnName])) {
                         outRow[columnName] = [columnValue];
@@ -45,9 +58,7 @@ export class WorksheetDefinitionCsvParser {
                     outRow[columnName] = columnValue;
                 }
             }
-            if (!_.isEmpty(outRow)) {
-                outRows.push(outRow);
-            }
+            outRows.push(outRow);
         }
         return outRows;
     }
@@ -56,12 +67,24 @@ export class WorksheetDefinitionCsvParser {
         const features: WorksheetFeatureDefinition[] = [];
         const parsedCsv = Papa.parse(csv);
         let rows = WorksheetDefinitionCsvParser._parseDuplicateColumnRows(["value"], parsedCsv.data);
-        for (let row of rows) {
-            features.push(new WorksheetFeatureDefinition({
-                displayName: row["display_name"],
-                id: row["id"],
-                valueIds: row["value"]
-            }));
+        for (var rowI = 0; rowI < rows.length; rowI++) {
+            const row = rows[rowI];
+            if (_.isEmpty(row)) {
+                continue;
+            }
+            try {
+                features.push(new WorksheetFeatureDefinition({
+                    displayName: row["display_name"],
+                    id: row["id"],
+                    valueIds: row["value"]
+                }));
+            } catch (e) {
+                if (e instanceof RangeError) {
+                    console.error("feature row " + rowI + " error: " + e.message);
+                } else {
+                    throw e;
+                }
+            }
         }
         return features;
     }
@@ -70,12 +93,24 @@ export class WorksheetDefinitionCsvParser {
         const featureSets: WorksheetFeatureSetDefinition[] = [];
         const parsedCsv = Papa.parse(csv);
         let rows = WorksheetDefinitionCsvParser._parseDuplicateColumnRows(["feature"], parsedCsv.data);
-        for (let row of rows) {
-            featureSets.push(new WorksheetFeatureSetDefinition({
-                displayName: row["display_name"],
-                featureIds: row["feature"],
-                id: row["id"]
-            }));
+        for (var rowI = 0; rowI < rows.length; rowI++) {
+            const row = rows[rowI];
+            if (_.isEmpty(row)) {
+                continue;
+            }
+            try {
+                featureSets.push(new WorksheetFeatureSetDefinition({
+                    displayName: row["display_name"],
+                    featureIds: row["feature"],
+                    id: row["id"]
+                }));
+            } catch (e) {
+                if (e instanceof RangeError) {
+                    console.error("feature set row " + rowI + " error: " + e.message);
+                } else {
+                    throw e;
+                }
+            }
         }
         return featureSets;
     }
@@ -83,14 +118,86 @@ export class WorksheetDefinitionCsvParser {
     private _parseFeatureValuesCsv(csv: string): WorksheetFeatureValueDefinition[] {
         const values: WorksheetFeatureValueDefinition[] = [];
         const parsedCsv = Papa.parse(csv, { header: true });
-        for (let row of parsedCsv.data) {
-            const id = row["id"];
-            if (_.isEmpty(id)) {
+        let rows = WorksheetDefinitionCsvParser._parseUniqueColumnRows(parsedCsv.data);
+        for (var rowI = 0; rowI < rows.length; rowI++) {
+            const row = rows[rowI];
+            if (_.isEmpty(row)) {
                 continue;
             }
-            const value = new WorksheetFeatureValueDefinition({ id: id });
-            values.push(value);
+
+            try {
+                let description: WorksheetFeatureValueDescription | undefined = undefined;
+                const descriptionText = row["description_text"];
+                if (!_.isEmpty(descriptionText)) {
+                    description = new WorksheetFeatureValueDescription({
+                        rights: WorksheetDefinitionCsvParser._parseRights("description_", row, rowI),
+                        text: descriptionText
+                    })
+                }
+
+                let image: WorksheetFeatureValueImage | undefined = undefined;
+                const imageThumbnailUrl = row["image_thumbnail_url"];
+                if (!_.isEmpty(imageThumbnailUrl)) {
+                    image = new WorksheetFeatureValueImage({
+                        fullSizeUrl: row["image_full_size_url"],
+                        rights: WorksheetDefinitionCsvParser._parseRights("image_", row, rowI),
+                        thumbnailUrl: imageThumbnailUrl
+                    });
+                } else {
+                    console.warn("feature value row " + rowI + " has no image");
+                }
+
+                const value = new WorksheetFeatureValueDefinition({
+                    description: description,
+                    displayName: row["display_name"],
+                    image: image,
+                    id: row["id"]
+                });
+                values.push(value);
+            } catch (e) {
+                if (e instanceof RangeError) {
+                    console.error("feature value row " + rowI + " error: " + e.message);
+                } else {
+                    throw e;
+                }
+            }
         }
         return values;
+    }
+
+    private static _parseRights(columnNamePrefix: string, row: any, rowI: number): WorksheetRights {
+        try {
+            return new WorksheetRights({
+                author: row[columnNamePrefix + "rights_author"],
+                license: row[columnNamePrefix + "rights_license"],
+                sourceName: row[columnNamePrefix + "rights_source_name"],
+                sourceUrl: row[columnNamePrefix + "rights_source_url"]
+            });
+        } catch (e) {
+            if (e instanceof RangeError) {
+                console.error("feature value row " + rowI + " " + columnNamePrefix + " rights error: " + e.message);
+            }
+            throw e;
+        }
+    }
+
+    private static _parseUniqueColumnRows(rows: any[]): any[] {
+        let outRows: any[] = [];
+        for (let row of rows) {
+            let outRow: any = {};
+            for (let columnName in row) {
+                columnName = columnName.trim();
+                let columnValue = row[columnName];
+                if (!_.isUndefined(columnValue)) {
+                    columnValue = columnValue.trim();
+                }
+                if (_.isEmpty(columnName) || _.isEmpty(columnValue)) {
+                    continue;
+                }
+                outRow[columnName] = columnValue;
+            }
+            outRows.push(outRow);
+        }
+        return outRows;
     }
 }

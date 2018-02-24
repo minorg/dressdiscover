@@ -10,5 +10,7 @@
 			"path": "py"
 		}
 	],
-	"settings": {}
+	"settings": {
+		"restructuredtext.workspaceRoot": "c:\\Users\\minor\\projects\\personal\\dressdiscover\\ts"
+	}
 }
