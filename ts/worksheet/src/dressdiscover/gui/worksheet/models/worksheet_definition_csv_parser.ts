@@ -19,30 +19,63 @@ export class WorksheetDefinitionCsvParser {
         });
     }
 
+    private static _parseDuplicateColumnRows(duplicateColumnNames: string[], rows: any[]): any[] {
+        let rowI = 0;
+        let header: string[] = [];
+        let outRows: any[] = [];
+        for (let row of rows) {
+            if (rowI++ == 0) {
+                header = row;
+                continue;
+            }
+            let outRow: any = {};
+            for (let columnI in row) {
+                const columnName = header[columnI];
+                const columnValue = row[columnI];
+                if (_.isEmpty(columnName) || _.isEmpty(columnValue)) {
+                    continue;
+                }
+                if (_.contains(duplicateColumnNames, columnName)) {
+                    if (_.isUndefined(outRow[columnName])) {
+                        outRow[columnName] = [columnValue];
+                    } else {
+                        outRow[columnName].push(columnValue);
+                    }
+                } else {
+                    outRow[columnName] = columnValue;
+                }
+            }
+            if (!_.isEmpty(outRow)) {
+                outRows.push(outRow);
+            }
+        }
+        return outRows;
+    }
+
     private _parseFeaturesCsv(csv: string): WorksheetFeatureDefinition[] {
         const features: WorksheetFeatureDefinition[] = [];
-        // const parsedCsv = Papa.parse(csv);
+        const parsedCsv = Papa.parse(csv);
+        let rows = WorksheetDefinitionCsvParser._parseDuplicateColumnRows(["value"], parsedCsv.data);
+        for (let row of rows) {
+            features.push(new WorksheetFeatureDefinition({
+                displayName: row["display_name"],
+                id: row["id"],
+                valueIds: row["value"]
+            }));
+        }
         return features;
     }
 
     private _parseFeatureSetsCsv(csv: any): WorksheetFeatureSetDefinition[] {
         const featureSets: WorksheetFeatureSetDefinition[] = [];
         const parsedCsv = Papa.parse(csv);
-        let rowI = 0;
-        let header: string[] = [];
-        for (let row of parsedCsv.data) {
-            if (rowI++ == 0) {
-                header = row;
-                continue;
-            }
-            for (let colI in row) {
-                const colHeader = header[colI];
-                const colValue = row[colI];
-                if (_.isEmpty(colHeader) || _.isEmpty(colValue)) {
-                    continue;
-                }
-                console.info(colHeader + " = " + colValue);
-            }
+        let rows = WorksheetDefinitionCsvParser._parseDuplicateColumnRows(["feature"], parsedCsv.data);
+        for (let row of rows) {
+            featureSets.push(new WorksheetFeatureSetDefinition({
+                displayName: row["display_name"],
+                featureIds: row["feature"],
+                id: row["id"]
+            }));
         }
         return featureSets;
     }
@@ -55,7 +88,7 @@ export class WorksheetDefinitionCsvParser {
             if (_.isEmpty(id)) {
                 continue;
             }
-            const value = new WorksheetFeatureValueDefinition({id: id});
+            const value = new WorksheetFeatureValueDefinition({ id: id });
             values.push(value);
         }
         return values;
