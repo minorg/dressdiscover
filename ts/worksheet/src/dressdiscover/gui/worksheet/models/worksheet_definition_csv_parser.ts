@@ -21,6 +21,17 @@ export class WorksheetDefinitionCsvParser {
         });
     }
 
+    private static _parseCsv(csv: string, csvName: string, config?: Papa.ParseConfig) {
+        const parsedCsv = Papa.parse(csv, config);
+        for (let error of parsedCsv.errors) {
+            if (error.code === "TooFewFields") {
+                continue;
+            }
+            throw new RangeError("error parsing " + csvName + " CSV: " + error.message);
+        }
+        return parsedCsv;
+    }
+
     private static _parseDuplicateColumnRows(duplicateColumnNames: string[], rows: any[]): any[] {
         let rowI = 0;
         let header: string[] = [];
@@ -64,7 +75,7 @@ export class WorksheetDefinitionCsvParser {
 
     private _parseFeaturesCsv(csv: string): WorksheetFeatureDefinition[] {
         const features: WorksheetFeatureDefinition[] = [];
-        const parsedCsv = Papa.parse(csv);
+        const parsedCsv = WorksheetDefinitionCsvParser._parseCsv(csv, "features");
         let rows = WorksheetDefinitionCsvParser._parseDuplicateColumnRows(["value"], parsedCsv.data);
         for (var rowI = 0; rowI < rows.length; rowI++) {
             const row = rows[rowI];
@@ -79,7 +90,7 @@ export class WorksheetDefinitionCsvParser {
                 }));
             } catch (e) {
                 if (e instanceof RangeError) {
-                    console.error("feature row " + rowI + " error: " + e.message);
+                    throw new RangeError("feature row " + rowI + " error: " + e.message);
                 } else {
                     throw e;
                 }
@@ -90,7 +101,7 @@ export class WorksheetDefinitionCsvParser {
 
     private _parseFeatureSetsCsv(csv: any): WorksheetFeatureSetDefinition[] {
         const featureSets: WorksheetFeatureSetDefinition[] = [];
-        const parsedCsv = Papa.parse(csv);
+        const parsedCsv = WorksheetDefinitionCsvParser._parseCsv(csv, "feature sets");
         let rows = WorksheetDefinitionCsvParser._parseDuplicateColumnRows(["feature"], parsedCsv.data);
         for (var rowI = 0; rowI < rows.length; rowI++) {
             const row = rows[rowI];
@@ -116,7 +127,7 @@ export class WorksheetDefinitionCsvParser {
 
     private _parseFeatureValuesCsv(csv: string): WorksheetFeatureValueDefinition[] {
         const values: WorksheetFeatureValueDefinition[] = [];
-        const parsedCsv = Papa.parse(csv, { header: true });
+        const parsedCsv = WorksheetDefinitionCsvParser._parseCsv(csv, "features", { header: true });;
         let rows = WorksheetDefinitionCsvParser._parseUniqueColumnRows(parsedCsv.data);
         for (var rowI = 0; rowI < rows.length; rowI++) {
             const row = rows[rowI];
@@ -155,7 +166,7 @@ export class WorksheetDefinitionCsvParser {
                 values.push(value);
             } catch (e) {
                 if (e instanceof RangeError) {
-                    console.error("feature value row " + rowI + " error: " + e.message);
+                    throw new RangeError("feature value row " + rowI + " error: " + e.message);
                 } else {
                     throw e;
                 }
@@ -174,7 +185,7 @@ export class WorksheetDefinitionCsvParser {
             });
         } catch (e) {
             if (e instanceof RangeError) {
-                console.error("feature value row " + rowI + " " + columnNamePrefix + " rights error: " + e.message);
+                throw new RangeError("feature value row " + rowI + " " + columnNamePrefix + " rights error: " + e.message);
             }
             throw e;
         }
