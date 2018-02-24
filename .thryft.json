@@ -25,7 +25,10 @@
                 "description": "api Java",
                 "thrift_root_dir": "thrift/src",
                 "thrift_include_dirs": ["../thryft-waf/thrift/src"],
-                "thrift_files": "thrift/src/dressdiscover/api/**/*.thrift",
+                "thrift_files": {
+                    "include": "thrift/src/dressdiscover/api/**/*.thrift",
+                    "exclude": "thrift/src/dressdiscover/api/**/worksheet/*.thrift"
+                },
                 "gen": {
                     "java": {
                         "default_methods": true,
@@ -39,7 +42,10 @@
                 "description": "api services Java",
                 "thrift_root_dir": "thrift/src",
                 "thrift_include_dirs": ["../thryft-waf/thrift/src"],
-                "thrift_files": ["thrift/src/dressdiscover/api/services/**/*_service.thrift"],
+                "thrift_files": {
+                    "include": "thrift/src/dressdiscover/api/services/**/*_service.thrift",
+                    "exclude": "thrift/src/dressdiscover/api/services/worksheet/**/*_service.thrift"
+                },
                 "gen": {
                     "json_rpc_servlet_java": {
                         "namespace_prefix": "org.",
@@ -111,7 +117,10 @@
                 "description": "lib logging and validating services Java",
                 "thrift_root_dir": "thrift/src",
                 "thrift_include_dirs": ["../thryft-waf/thrift/src"],
-                "thrift_files": ["thrift/src/**/*_service.thrift"],
+                "thrift_files": {
+                    "include": "thrift/src/**/*_service.thrift",
+                    "exclude": "thrift/src/dressdiscover/api/services/worksheet/**/*.thrift"
+                },
                 "gen": {
                     "logging_service_java": {
                         "exception_log_level_default": "error",
