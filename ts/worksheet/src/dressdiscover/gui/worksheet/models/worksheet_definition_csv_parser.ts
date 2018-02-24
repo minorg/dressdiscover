@@ -15,7 +15,6 @@ export class WorksheetDefinitionCsvParser {
         featureValuesCsv: string
     }): WorksheetDefinition {
         return new WorksheetDefinition({
-            extents: [],
             features: this._parseFeaturesCsv(kwds.featuresCsv),
             featureSets: this._parseFeatureSetsCsv(kwds.featureSetsCsv),
             featureValues: this._parseFeatureValuesCsv(kwds.featureValuesCsv)

@@ -1,5 +1,6 @@
 from collections import OrderedDict
 import builtins
+import thryft.waf.api.models.non_blank_string
 
 
 class WorksheetRights(object):
@@ -65,10 +66,6 @@ class WorksheetRights(object):
                 raise ValueError('author is required')
             if not isinstance(author, str):
                 raise TypeError("expected author to be a str but it is a %s" % builtins.type(author))
-            if author.isspace():
-                raise ValueError("expected author not to be blank")
-            if len(author) < 1:
-                raise ValueError("expected len(author) to be >= 1, was %d" % len(author))
             self.__author = author
             return self
 
@@ -81,10 +78,6 @@ class WorksheetRights(object):
                 raise ValueError('license is required')
             if not isinstance(license, str):
                 raise TypeError("expected license to be a str but it is a %s" % builtins.type(license))
-            if license.isspace():
-                raise ValueError("expected license not to be blank")
-            if len(license) < 1:
-                raise ValueError("expected len(license) to be >= 1, was %d" % len(license))
             self.__license = license
             return self
 
@@ -97,10 +90,6 @@ class WorksheetRights(object):
                 raise ValueError('source_name is required')
             if not isinstance(source_name, str):
                 raise TypeError("expected source_name to be a str but it is a %s" % builtins.type(source_name))
-            if source_name.isspace():
-                raise ValueError("expected source_name not to be blank")
-            if len(source_name) < 1:
-                raise ValueError("expected len(source_name) to be >= 1, was %d" % len(source_name))
             self.__source_name = source_name
             return self
 
@@ -218,9 +207,9 @@ class WorksheetRights(object):
         def values(cls):
             return (cls.AUTHOR, cls.LICENSE, cls.SOURCE_NAME, cls.SOURCE_URL,)
 
-    FieldMetadata.AUTHOR = FieldMetadata('author', str, OrderedDict([('blank', False), ('minLength', 1)]))
-    FieldMetadata.LICENSE = FieldMetadata('license', str, OrderedDict([('blank', False), ('minLength', 1)]))
-    FieldMetadata.SOURCE_NAME = FieldMetadata('source_name', str, OrderedDict([('blank', False), ('minLength', 1)]))
+    FieldMetadata.AUTHOR = FieldMetadata('author', thryft.waf.api.models.non_blank_string.NonBlankString, None)
+    FieldMetadata.LICENSE = FieldMetadata('license', thryft.waf.api.models.non_blank_string.NonBlankString, None)
+    FieldMetadata.SOURCE_NAME = FieldMetadata('source_name', thryft.waf.api.models.non_blank_string.NonBlankString, None)
     FieldMetadata.SOURCE_URL = FieldMetadata('source_url', str, None)
 
     def __init__(
@@ -241,30 +230,18 @@ class WorksheetRights(object):
             raise ValueError('author is required')
         if not isinstance(author, str):
             raise TypeError("expected author to be a str but it is a %s" % builtins.type(author))
-        if author.isspace():
-            raise ValueError("expected author not to be blank")
-        if len(author) < 1:
-            raise ValueError("expected len(author) to be >= 1, was %d" % len(author))
         self.__author = author
 
         if license is None:
             raise ValueError('license is required')
         if not isinstance(license, str):
             raise TypeError("expected license to be a str but it is a %s" % builtins.type(license))
-        if license.isspace():
-            raise ValueError("expected license not to be blank")
-        if len(license) < 1:
-            raise ValueError("expected len(license) to be >= 1, was %d" % len(license))
         self.__license = license
 
         if source_name is None:
             raise ValueError('source_name is required')
         if not isinstance(source_name, str):
             raise TypeError("expected source_name to be a str but it is a %s" % builtins.type(source_name))
-        if source_name.isspace():
-            raise ValueError("expected source_name not to be blank")
-        if len(source_name) < 1:
-            raise ValueError("expected len(source_name) to be >= 1, was %d" % len(source_name))
         self.__source_name = source_name
 
         if source_url is None:

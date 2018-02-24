@@ -6,11 +6,15 @@ include "dressdiscover/api/models/worksheet/worksheet_feature_set_definition.thr
 include "dressdiscover/api/models/worksheet/worksheet_feature_value_definition.thrift"
 
 struct WorksheetDefinition {
-    list<worksheet_extent_definition.WorksheetExtentDefinition> extents;
-
+    // @validation {"minLength": 1}
     list<worksheet_feature_set_definition.WorksheetFeatureSetDefinition> feature_sets;
 
+    // @validation {"minLength": 1}
     list<worksheet_feature_value_definition.WorksheetFeatureValueDefinition> feature_values;
 
+    // @validation {"minLength": 1}
     list<worksheet_feature_definition.WorksheetFeatureDefinition> features;
+
+    // @validation {"minLength": 1}
+    optional list<worksheet_extent_definition.WorksheetExtentDefinition> extents;
 }
