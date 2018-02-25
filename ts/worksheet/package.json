@@ -15,6 +15,7 @@
     "@types/query-string": "5.1.0",
     "@types/sammy": "0.0.20",
     "bootstrap": "4.0.0",
+    "cookieconsent": "3.0.6",
     "knockout": "3.4.2",
     "jquery": "3.3.0",
     "papaparse": "4.1.3",

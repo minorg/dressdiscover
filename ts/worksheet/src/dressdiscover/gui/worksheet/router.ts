@@ -1,3 +1,5 @@
+import { CreditsView } from 'dressdiscover/gui/worksheet/views/credits/credits_view';
+import { PrivacyView } from 'dressdiscover/gui/worksheet/views/privacy/privacy_view';
 import * as Sammy from 'sammy';
 
 export class Router {
@@ -6,6 +8,20 @@ export class Router {
         this._sammy.get('^/$', (context: any) => {
             self._onGetRoot();
         });
+        this._sammy.get("^/#/credits$", (context: any) => {
+            self._onGetCredits();
+        });
+        this._sammy.get("^/#/privacy", (context: any) => {
+            self._onGetPrivacy();
+        });
+    }
+
+    private _onGetCredits() {
+        new CreditsView().show();
+    }
+
+    private _onGetPrivacy() {
+        new PrivacyView().show();
     }
 
     private _onGetRoot() {

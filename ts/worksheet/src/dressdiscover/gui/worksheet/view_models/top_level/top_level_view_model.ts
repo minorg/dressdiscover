@@ -1,5 +1,5 @@
-import { AlertViewModel } from 'dressdiscover/gui/worksheet/view_models/alert_view_model';
-import { NavbarViewModel } from 'dressdiscover/gui/worksheet/view_models/navbar_view_model';
+import { AlertViewModel } from 'dressdiscover/gui/worksheet/view_models/top_level/alert_view_model';
+import { NavbarViewModel } from 'dressdiscover/gui/worksheet/view_models/top_level/navbar_view_model';
 import { ViewModel } from 'dressdiscover/gui/worksheet/view_models/view_model';
 
 export class TopLevelViewModel extends ViewModel {

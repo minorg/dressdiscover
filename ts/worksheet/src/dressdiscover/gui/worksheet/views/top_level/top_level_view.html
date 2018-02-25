@@ -1,0 +1,24 @@
+<div id="top-level-view">
+  <div class="loader"></div>
+  <div data-bind="template: { name: 'navbar-template', data: navbar }"></div>
+  <br />
+  <div data-bind="template: { name: 'alert-template', data: alerts }"></div>
+  <div id="content"></div>
+  <br />
+  <hr />
+  <footer>
+    <div class="container-fluid text-center">
+      <div class="row">
+      <a data-bind="attr: { href: hrefs.contact }">Contact</a>| 
+      <a data-bind="attr: { href: hrefs.credits }">Credits</a>| 
+      <a data-bind="attr: { href: hrefs.privacy }">Privacy</a>
+      <!-- |
+                <a href="#">Terms of Service</a> --></div>
+      <div class="row">&nbsp;</div>
+      <div class="row">
+        <p class="muted">&copy; Copyright 2017, 
+        <a href="http://minorgordon.net">Minor Gordon</a>. All rights reserved</p>
+      </div>
+    </div>
+  </footer>
+</div>

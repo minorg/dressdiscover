@@ -1,6 +1,6 @@
 import { AsyncError } from 'dressdiscover/gui/worksheet/services/async_error';
-import { ModalViewModel } from 'dressdiscover/gui/worksheet/view_models/modal_view_model';
-import { ModalView } from 'dressdiscover/gui/worksheet/views/modal_view';
+import { ModalViewModel } from 'dressdiscover/gui/worksheet/view_models/modal/modal_view_model';
+import { ModalView } from 'dressdiscover/gui/worksheet/views/modal/modal_view';
 
 export class ErrorModalView extends ModalView<ModalViewModel> {
     public constructor(kwds: { message: string, title: string}) {

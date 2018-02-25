@@ -1,4 +1,4 @@
-import { ModalViewModel } from 'dressdiscover/gui/worksheet/view_models/modal_view_model';
+import { ModalViewModel } from 'dressdiscover/gui/worksheet/view_models/modal/modal_view_model';
 import { View } from 'dressdiscover/gui/worksheet/views/view';
 import * as ko from 'knockout';
 

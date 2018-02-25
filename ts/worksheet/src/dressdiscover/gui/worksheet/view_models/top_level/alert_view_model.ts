@@ -1,7 +1,7 @@
-import { ViewModel } from 'dressdiscover/gui/worksheet/view_models/view_model';
+import { PartialViewModel } from 'dressdiscover/gui/worksheet/view_models/partial_view_model';
 import * as ko from 'knockout';
 
-export class AlertViewModel extends ViewModel {
+export class AlertViewModel extends PartialViewModel {
     clear() {
         this.successAlertText(null);
         this.warningAlertText(null);
