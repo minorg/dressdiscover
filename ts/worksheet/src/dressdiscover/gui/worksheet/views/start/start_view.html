@@ -1,1 +1,48 @@
-Start view
+<div class="container-fluid top-level-view-content" id="privacy-view">
+    <div class="row">
+        <div class="col-8 offset-2">
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title mb-0 text-center">Start a new worksheet</h3>
+                </div>
+                <div class="container-fluid card-body">
+                    <div class="row">
+                        <div class="col-6 offset-2">
+                            <input autofocus class="form-control" data-bind="event: {keypress: onKeypressNewAccessionNumber}" placeholder="Object id or accession number (optional)"
+                                type="text" />
+                        </div>
+                        <div>
+                            <button class="btn btn-primary" data-bind="click: onClickStartButton" type="submit">Start</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- ko if: existingAccessionNumbers.length > 1 -->
+    <div class="row mb-5">
+    </div>
+    <div class="row">
+        <div class="col-8 offset-2">
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title mb-0 text-center">Open an existing worksheet</h3>
+                </div>
+                <div class="card-body">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-6 offset-2">
+                                <select class="form-control" data-bind="options: existingAccessionNumbers, value: selectedExistingAccessionNumber"></select>
+                            </div>
+                            <div>
+                                <button class="btn btn-primary" data-bind="click: onClickOpenButton, visible: openButtonVisible" type="submit">Open</button>
+                            </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /ko -->
+</div>
