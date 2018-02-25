@@ -1,8 +1,9 @@
+import { AsyncError } from 'dressdiscover/gui/worksheet/services/async_error';
 import { ModalViewModel } from 'dressdiscover/gui/worksheet/view_models/modal_view_model';
 import { ModalView } from 'dressdiscover/gui/worksheet/views/modal_view';
 
 export class ErrorModalView extends ModalView<ModalViewModel> {
-    private constructor(kwds: { message: string, title: string}) {
+    public constructor(kwds: { message: string, title: string}) {
         super({
             contentHtmlFileName: "error_modal_view.html",
             viewModel: new ModalViewModel()
@@ -11,7 +12,7 @@ export class ErrorModalView extends ModalView<ModalViewModel> {
         this.title = kwds.title;
     }
 
-    static fromAsyncError(errorKwds: { textStatus: string, errorThrown: any, [index: string]: any }) {
+    static fromAsyncError(errorKwds: AsyncError) {
         var message: string;
         if (typeof errorKwds.errorThrown === "string") {
             message = errorKwds.errorThrown as string;
