@@ -22,6 +22,8 @@ export class Application {
         }
 
         Application._instance = new Application();
+
+        Application.instance.router.run();
     }
 
     public readonly router = new Router();

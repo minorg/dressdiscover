@@ -1,5 +1,6 @@
 import { CreditsView } from 'dressdiscover/gui/worksheet/views/credits/credits_view';
 import { PrivacyView } from 'dressdiscover/gui/worksheet/views/privacy/privacy_view';
+import { StartView } from 'dressdiscover/gui/worksheet/views/start/start_view';
 import * as Sammy from 'sammy';
 
 export class Router {
@@ -25,7 +26,7 @@ export class Router {
     }
 
     private _onGetRoot() {
-        console.info("Getting root");
+        new StartView().show();
     }
 
     run() {

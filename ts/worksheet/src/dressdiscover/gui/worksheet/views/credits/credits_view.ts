@@ -4,7 +4,7 @@ import { TopLevelView } from 'dressdiscover/gui/worksheet/views/top_level/top_le
 export class CreditsView extends TopLevelView<TopLevelViewModel> {
     constructor() {
         super({
-            contentHtmlFileName: "credits_view.html",
+            contentHtmlFileName: "credits/credits_view.html",
             title: "Credits",
             viewModel: new TopLevelViewModel()
         });

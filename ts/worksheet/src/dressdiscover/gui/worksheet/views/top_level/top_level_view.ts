@@ -20,8 +20,8 @@ export class TopLevelView<ViewModelT extends TopLevelViewModel> extends View<Vie
                 this._contentHtml = View._requireHtml(templateHtmlFileName) + this._contentHtml;
             }
         }
-        this._frameHtml = View._requireHtml("top_level_view.html");
-        for (let templateHtmlFileName of ["alert_template.html", "navbar_template.html"]) {
+        this._frameHtml = View._requireHtml("top_level/top_level_view.html");
+        for (let templateHtmlFileName of ["top_level/alert_template.html", "top_level/navbar_template.html"]) {
             this._frameHtml = View._requireHtml(templateHtmlFileName) + this._frameHtml;
         }
         this._title = kwds.title;
@@ -31,7 +31,7 @@ export class TopLevelView<ViewModelT extends TopLevelViewModel> extends View<Vie
         const self = this;
         const frameEl = $("#app");
         frameEl.html(this._frameHtml).ready(() => {
-            document.title = "ThingsWorth" + (self._title.length > 0 ? (": " + self._title) : "");
+            document.title = "DressDiscover Worksheet" + (self._title.length > 0 ? (": " + self._title) : "");
             ko.cleanNode(frameEl[0]);
             const contentEl = $("#content");
             contentEl.html(self._contentHtml);
@@ -49,14 +49,6 @@ export class TopLevelView<ViewModelT extends TopLevelViewModel> extends View<Vie
                         regionalLaw: false,
                     },
                     revokable: true
-                });
-
-                $(document).ajaxStart(function () {
-                    $(".loader").show();
-                });
-
-                $(document).ajaxStop(function () {
-                    $(".loader").hide();
                 });
 
                 if (ready) {

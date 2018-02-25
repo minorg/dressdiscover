@@ -4,7 +4,7 @@ import { TopLevelView } from 'dressdiscover/gui/worksheet/views/top_level/top_le
 export class PrivacyView extends TopLevelView<TopLevelViewModel> {
     constructor() {
         super({
-            contentHtmlFileName: "privacy_view.html",
+            contentHtmlFileName: "privacy/privacy_view.html",
             title: "Privacy Policy",
             viewModel: new TopLevelViewModel()
         });

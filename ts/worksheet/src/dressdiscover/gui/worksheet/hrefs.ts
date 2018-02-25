@@ -1,6 +1,6 @@
 export class Hrefs {
     get contact() {
-        return "mailto:info@thingsworth.org";
+        return "mailto:info@dressdiscover.org";
     }
 
     get credits() {
