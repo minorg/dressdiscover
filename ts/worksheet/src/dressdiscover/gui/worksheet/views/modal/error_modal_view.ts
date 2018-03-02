@@ -31,6 +31,13 @@ export class ErrorModalView extends ModalView<ModalViewModel> {
         });
     }
 
+    static fromSyncError(errorThrown: object) {
+        return new ErrorModalView({
+            message: errorThrown.toString(),
+            title: "Error"
+        });
+    }
+
     readonly message: string;
     readonly title: string;
 }
