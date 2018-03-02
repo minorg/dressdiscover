@@ -1,8 +1,8 @@
-import { WorksheetFeatureValueDescription } from "./worksheet_feature_value_description";
+import { WorksheetDescription } from "./worksheet_description";
 import { WorksheetFeatureValueImage } from "./worksheet_feature_value_image";
 
 export class WorksheetFeatureValueDefinition {
-    constructor(kwds: {id: string, description?: WorksheetFeatureValueDescription, displayName?: string, image?: WorksheetFeatureValueImage}) {
+    constructor(kwds: {id: string, description?: WorksheetDescription, displayName?: string, image?: WorksheetFeatureValueImage}) {
         this._id = WorksheetFeatureValueDefinition._validateId(kwds.id);
         if (kwds.description != null) {
             this._description = WorksheetFeatureValueDefinition._validateDescription(kwds.description);
@@ -29,11 +29,11 @@ export class WorksheetFeatureValueDefinition {
         this._id = WorksheetFeatureValueDefinition._validateId(id);
     }
 
-    get description(): WorksheetFeatureValueDescription | undefined {
+    get description(): WorksheetDescription | undefined {
         return this._description;
     }
 
-    set description(description: WorksheetFeatureValueDescription | undefined) {
+    set description(description: WorksheetDescription | undefined) {
         this._description = WorksheetFeatureValueDefinition._validateDescription(description);
     }
 
@@ -53,7 +53,7 @@ export class WorksheetFeatureValueDefinition {
         this._image = WorksheetFeatureValueDefinition._validateImage(image);
     }
 
-    private static _validateDescription(description: WorksheetFeatureValueDescription | undefined): WorksheetFeatureValueDescription | undefined {
+    private static _validateDescription(description: WorksheetDescription | undefined): WorksheetDescription | undefined {
         if (description != null) {
 
         }
@@ -101,7 +101,7 @@ export class WorksheetFeatureValueDefinition {
             return false;
         }
 
-        if (!((!((typeof (this.description)) === "undefined") && !((typeof (other.description)) === "undefined")) ? ((this.description as WorksheetFeatureValueDescription).equals((other.description as WorksheetFeatureValueDescription))) : (((typeof (this.description)) === "undefined") && ((typeof (other.description)) === "undefined")))) {
+        if (!((!((typeof (this.description)) === "undefined") && !((typeof (other.description)) === "undefined")) ? ((this.description as WorksheetDescription).equals((other.description as WorksheetDescription))) : (((typeof (this.description)) === "undefined") && ((typeof (other.description)) === "undefined")))) {
             return false;
         }
 
@@ -118,14 +118,14 @@ export class WorksheetFeatureValueDefinition {
 
     static fromThryftJsonObject(json: any): WorksheetFeatureValueDefinition {
         var id: string | undefined;
-        var description: WorksheetFeatureValueDescription | undefined;
+        var description: WorksheetDescription | undefined;
         var displayName: string | undefined;
         var image: WorksheetFeatureValueImage | undefined;
         for (var fieldName in json) {
             if (fieldName == "id") {
                 id = json[fieldName];
             } else if (fieldName == "description") {
-                description = WorksheetFeatureValueDescription.fromThryftJsonObject(json[fieldName]);
+                description = WorksheetDescription.fromThryftJsonObject(json[fieldName]);
             } else if (fieldName == "display_name") {
                 displayName = json[fieldName];
             } else if (fieldName == "image") {
@@ -172,7 +172,7 @@ export class WorksheetFeatureValueDefinition {
         return json;
     }
 
-    private _description?: WorksheetFeatureValueDescription;
+    private _description?: WorksheetDescription;
 
     private _displayName?: string;
 

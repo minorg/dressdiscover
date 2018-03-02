@@ -5,22 +5,6 @@ export class LoggingWorksheetStateQueryService implements WorksheetStateQuerySer
     constructor(private delegate: WorksheetStateQueryService) {
     }
 
-    getWorksheetStateIdsAsync(kwds: {error: (errorKwds: {textStatus: string, errorThrown: any, [index: string]: any}) => any, success: (returnValue: string[]) => void}): void {
-        this.delegate.getWorksheetStateIdsAsync({error: (errorKwds: {textStatus: string, errorThrown: any, [index: string]: any}) => { console.warn("getWorksheetStateIdsAsync() -> ", errorKwds.textStatus); console.warn(errorKwds.errorThrown); if (kwds.error) { kwds.error(errorKwds); } }, success: (returnValue: string[]) => { console.debug("getWorksheetStateIdsAsync() -> ", returnValue); if (kwds.success) { kwds.success(returnValue); } }});
-    }
-
-    getWorksheetStateIdsSync(): string[] {
-        try {
-            const __returnValue = this.delegate.getWorksheetStateIdsSync();
-            console.debug("getWorksheetStateIdsSync() -> ", __returnValue);
-            return __returnValue;
-        } catch (e) {
-            console.warn("getWorksheetStateIdsSync() -> exception");
-            console.warn(e);
-            throw e;
-        }
-    }
-
     getWorksheetStateAsync(kwds: {id: string, error: (errorKwds: {textStatus: string, errorThrown: any, [index: string]: any}) => any, success: (returnValue: WorksheetState) => void}): void {
         this.delegate.getWorksheetStateAsync({id: kwds.id, error: (errorKwds: {textStatus: string, errorThrown: any, [index: string]: any}) => { console.warn("getWorksheetStateAsync({", "id: ", kwds.id, "}) -> ", errorKwds.textStatus); console.warn(errorKwds.errorThrown); if (kwds.error) { kwds.error(errorKwds); } }, success: (returnValue: WorksheetState) => { console.debug("getWorksheetStateAsync({", "id: ", kwds.id, "}) -> ", returnValue); if (kwds.success) { kwds.success(returnValue); } }});
     }
@@ -32,6 +16,22 @@ export class LoggingWorksheetStateQueryService implements WorksheetStateQuerySer
             return __returnValue;
         } catch (e) {
             console.warn("getWorksheetStateSync({", "id: ", kwds.id, "}) -> exception");
+            console.warn(e);
+            throw e;
+        }
+    }
+
+    getWorksheetStateIdsAsync(kwds: {error: (errorKwds: {textStatus: string, errorThrown: any, [index: string]: any}) => any, success: (returnValue: string[]) => void}): void {
+        this.delegate.getWorksheetStateIdsAsync({error: (errorKwds: {textStatus: string, errorThrown: any, [index: string]: any}) => { console.warn("getWorksheetStateIdsAsync() -> ", errorKwds.textStatus); console.warn(errorKwds.errorThrown); if (kwds.error) { kwds.error(errorKwds); } }, success: (returnValue: string[]) => { console.debug("getWorksheetStateIdsAsync() -> ", returnValue); if (kwds.success) { kwds.success(returnValue); } }});
+    }
+
+    getWorksheetStateIdsSync(): string[] {
+        try {
+            const __returnValue = this.delegate.getWorksheetStateIdsSync();
+            console.debug("getWorksheetStateIdsSync() -> ", __returnValue);
+            return __returnValue;
+        } catch (e) {
+            console.warn("getWorksheetStateIdsSync() -> exception");
             console.warn(e);
             throw e;
         }

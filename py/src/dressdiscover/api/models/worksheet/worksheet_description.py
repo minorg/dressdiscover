@@ -4,7 +4,7 @@ import dressdiscover.api.models.worksheet.worksheet_rights
 import thryft.waf.api.models.non_blank_string
 
 
-class WorksheetFeatureValueDescription(object):
+class WorksheetDescription(object):
     class Builder(object):
         def __init__(
             self,
@@ -20,13 +20,13 @@ class WorksheetFeatureValueDescription(object):
             self.__text = text
 
         def build(self):
-            return WorksheetFeatureValueDescription(rights=self.__rights, text=self.__text)
+            return WorksheetDescription(rights=self.__rights, text=self.__text)
 
         @classmethod
         def from_template(cls, template):
             '''
-            :type template: dressdiscover.api.models.worksheet.worksheet_feature_value_description.WorksheetFeatureValueDescription
-            :rtype: dressdiscover.api.models.worksheet.worksheet_feature_value_description.WorksheetFeatureValueDescription
+            :type template: dressdiscover.api.models.worksheet.worksheet_description.WorksheetDescription
+            :rtype: dressdiscover.api.models.worksheet.worksheet_description.WorksheetDescription
             '''
 
             builder = cls()
@@ -74,20 +74,20 @@ class WorksheetFeatureValueDescription(object):
 
             return self.__text
 
-        def update(self, worksheet_feature_value_description):
+        def update(self, worksheet_description):
             '''
             :type rights: dressdiscover.api.models.worksheet.worksheet_rights.WorksheetRights
             :type text: str
             '''
 
-            if isinstance(worksheet_feature_value_description, WorksheetFeatureValueDescription):
-                self.set_rights(worksheet_feature_value_description.rights)
-                self.set_text(worksheet_feature_value_description.text)
-            elif isinstance(worksheet_feature_value_description, dict):
-                for key, value in worksheet_feature_value_description.items():
+            if isinstance(worksheet_description, WorksheetDescription):
+                self.set_rights(worksheet_description.rights)
+                self.set_text(worksheet_description.text)
+            elif isinstance(worksheet_description, dict):
+                for key, value in worksheet_description.items():
                     getattr(self, 'set_' + key)(value)
             else:
-                raise TypeError(worksheet_feature_value_description)
+                raise TypeError(worksheet_description)
             return self
 
         @rights.setter
@@ -183,13 +183,13 @@ class WorksheetFeatureValueDescription(object):
         field_reprs = []
         field_reprs.append('rights=' + repr(self.rights))
         field_reprs.append('text=' + "'" + self.text.encode('ascii', 'replace').decode('ascii') + "'")
-        return 'WorksheetFeatureValueDescription(' + ', '.join(field_reprs) + ')'
+        return 'WorksheetDescription(' + ', '.join(field_reprs) + ')'
 
     def __str__(self):
         field_reprs = []
         field_reprs.append('rights=' + repr(self.rights))
         field_reprs.append('text=' + "'" + self.text.encode('ascii', 'replace').decode('ascii') + "'")
-        return 'WorksheetFeatureValueDescription(' + ', '.join(field_reprs) + ')'
+        return 'WorksheetDescription(' + ', '.join(field_reprs) + ')'
 
     @classmethod
     def builder(cls):
@@ -201,7 +201,7 @@ class WorksheetFeatureValueDescription(object):
         Read a new object from the given input protocol and return the object.
 
         :type iprot: thryft.protocol._input_protocol._InputProtocol
-        :rtype: dressdiscover.api.models.worksheet.worksheet_feature_value_description.WorksheetFeatureValueDescription
+        :rtype: dressdiscover.api.models.worksheet.worksheet_description.WorksheetDescription
         '''
 
         init_kwds = {}
@@ -244,10 +244,10 @@ class WorksheetFeatureValueDescription(object):
         Write this object to the given output protocol and return self.
 
         :type oprot: thryft.protocol._output_protocol._OutputProtocol
-        :rtype: dressdiscover.api.models.worksheet.worksheet_feature_value_description.WorksheetFeatureValueDescription
+        :rtype: dressdiscover.api.models.worksheet.worksheet_description.WorksheetDescription
         '''
 
-        oprot.write_struct_begin('WorksheetFeatureValueDescription')
+        oprot.write_struct_begin('WorksheetDescription')
 
         oprot.write_field_begin(name='rights', type=12, id=None)
         self.rights.write(oprot)
