@@ -66,7 +66,10 @@
                 "description": "api worksheet services ts 1",
                 "thrift_root_dir": "thrift/src",
                 "thrift_include_dirs": ["../thryft-waf/thrift/src"],
-                "thrift_files": "thrift/src/dressdiscover/api/services/io_exception.thrift",
+                "thrift_files": [
+                    "thrift/src/dressdiscover/api/services/io_exception.thrift",
+                    "thrift/src/dressdiscover/api/services/worksheet/*_exception.thrift"
+                ],
                 "gen": {
                     "ts": "ts/worksheet/src"
                 }

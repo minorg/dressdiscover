@@ -2,6 +2,7 @@
 import {
     AsyncToSyncWorksheetStateQueryService,
 } from 'dressdiscover/api/services/worksheet/async_to_sync_worksheet_state_query_service';
+import { NoSuchWorksheetStateException } from 'dressdiscover/api/services/worksheet/no_such_worksheet_state_exception';
 
 export class LocalWorksheetStateQueryService extends AsyncToSyncWorksheetStateQueryService {
     getWorksheetStateIdsSync(): string[] {
@@ -28,7 +29,7 @@ export class LocalWorksheetStateQueryService extends AsyncToSyncWorksheetStateQu
     getWorksheetStateSync(kwds: { id: string }): WorksheetState {
         const jsonString = localStorage.getItem(LocalWorksheetStateQueryService.getWorksheetStateItemKey(kwds.id));
         if (jsonString == null) {
-            return new WorksheetState({ id: kwds.id });
+            throw new NoSuchWorksheetStateException({ id: kwds.id });
         }
         return WorksheetState.fromThryftJsonObject(JSON.parse(jsonString));
     }

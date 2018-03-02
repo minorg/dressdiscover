@@ -5,7 +5,7 @@ export class FeatureStateView extends TopLevelView<FeatureStateViewModel> {
     constructor(viewModel: FeatureStateViewModel) {
         super({
             contentHtmlFileName: "feature_state/feature_state_view.html",
-            title: "Worksheet '" + viewModel.state.id + "', Feature set '" + viewModel.featureSetId + "', Feature '" + viewModel.featureId + "'",
+            title: "Worksheet '" + viewModel.worksheetState.id + "', Feature set '" + viewModel.featureSetDefinition.id + "', Feature '" + viewModel.featureDefinition + "'",
             viewModel: viewModel
         });
     }

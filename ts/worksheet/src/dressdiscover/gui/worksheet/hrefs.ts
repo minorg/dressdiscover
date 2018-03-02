@@ -1,3 +1,6 @@
+import { StateMark } from 'dressdiscover/gui/worksheet/models/state_mark';
+import * as queryString from 'query-string';
+
 export class Hrefs {
     get contact() {
         return "mailto:info@dressdiscover.org";
@@ -5,10 +8,6 @@ export class Hrefs {
 
     get credits() {
         return "/#/credits";
-    }
-
-    featureState(kwds: { featureId: string, stateId: string }) {
-        return "/#/state/" + encodeURIComponent(kwds.stateId) + "/" + encodeURIComponent(kwds.featureId);
     }
 
     get privacy() {
@@ -19,7 +18,17 @@ export class Hrefs {
         return '/';
     }
 
-    state(kwds: { stateId: string }) {
-        return "/#/state/" + encodeURIComponent(kwds.stateId) + "/";
+    state(mark: StateMark) {
+        let href = "/#/state/" + encodeURIComponent(mark.worksheetStateId) + "/";
+        if (mark.featureSetId) {
+            href += encodeURIComponent(mark.featureSetId) + "/";
+            if (mark.featureId) {
+                href += encodeURIComponent(mark.featureId);
+            }
+        }
+        if (mark.review) {
+            href += "?" + queryString.stringify({ "review": true });
+        }
+        return href;
     }
 }

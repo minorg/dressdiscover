@@ -1,20 +1,19 @@
+import { WorksheetFeatureSetDefinition } from 'dressdiscover/api/models/worksheet/worksheet_feature_set_definition';
 import { WorksheetFeatureSetState } from 'dressdiscover/api/models/worksheet/worksheet_feature_set_state';
-import { WorksheetState } from 'dressdiscover/api/models/worksheet/worksheet_state';
-import { TopLevelViewModel } from 'dressdiscover/gui/worksheet/view_models/top_level/top_level_view_model';
+import { StateMark } from 'dressdiscover/gui/worksheet/models/state_mark';
+import { AbstractStateViewModel } from 'dressdiscover/gui/worksheet/view_models/state/abstract_state_view_model';
 
-export class FeatureSetStateViewModel extends TopLevelViewModel {
+export class FeatureSetStateViewModel extends AbstractStateViewModel {
     constructor(kwds: {
-        featureSetId: string,
-        featureSetState: WorksheetFeatureSetState,
-        state: WorksheetState
+        currentStateMark: StateMark,
+        featureSetDefinition: WorksheetFeatureSetDefinition,
+        featureSetState: WorksheetFeatureSetState
     }) {
-        super();
-        this.featureSetId = kwds.featureSetId;
+        super({ currentStateMark: kwds.currentStateMark });
+        this.featureSetDefinition = kwds.featureSetDefinition;
         this.featureSetState = kwds.featureSetState;
-        this.state = kwds.state;
     }
 
-    readonly featureSetId: string;
-    readonly featureSetState: any;
-    readonly state: WorksheetState;
+    readonly featureSetDefinition: WorksheetFeatureSetDefinition;
+    readonly featureSetState: WorksheetFeatureSetState;
 }

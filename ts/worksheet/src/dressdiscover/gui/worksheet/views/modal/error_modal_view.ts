@@ -3,13 +3,13 @@ import { ModalViewModel } from 'dressdiscover/gui/worksheet/view_models/modal/mo
 import { ModalView } from 'dressdiscover/gui/worksheet/views/modal/modal_view';
 
 export class ErrorModalView extends ModalView<ModalViewModel> {
-    public constructor(kwds: { message: string, title: string}) {
+    public constructor(kwds: { message: string }) {
         super({
             contentHtmlFileName: "error_modal_view.html",
             viewModel: new ModalViewModel()
         });
         this.message = kwds.message;
-        this.title = kwds.title;
+        this.title = "Error";
     }
 
     static fromAsyncError(errorKwds: AsyncError) {
@@ -26,18 +26,16 @@ export class ErrorModalView extends ModalView<ModalViewModel> {
         }
 
         return new ErrorModalView({
-            message: message,
-            title: "Error"
+            message: message
         });
     }
 
     static fromSyncError(errorThrown: object) {
         return new ErrorModalView({
-            message: errorThrown.toString(),
-            title: "Error"
+            message: errorThrown.toString()
         });
     }
 
     readonly message: string;
-    readonly title: string;
+    readonly title: string = "Error";
 }

@@ -1,29 +1,27 @@
-import { WorksheetDefinition } from 'dressdiscover/api/models/worksheet/worksheet_definition';
 import { WorksheetFeatureDefinition } from 'dressdiscover/api/models/worksheet/worksheet_feature_definition';
 import { WorksheetFeatureSetDefinition } from 'dressdiscover/api/models/worksheet/worksheet_feature_set_definition';
 import { WorksheetFeatureState } from 'dressdiscover/api/models/worksheet/worksheet_feature_state';
-import { WorksheetState } from 'dressdiscover/api/models/worksheet/worksheet_state';
-import { TopLevelViewModel } from 'dressdiscover/gui/worksheet/view_models/top_level/top_level_view_model';
+import { StateMark } from 'dressdiscover/gui/worksheet/models/state_mark';
+import { AbstractStateViewModel } from 'dressdiscover/gui/worksheet/view_models/state/abstract_state_view_model';
 
-export class FeatureStateViewModel extends TopLevelViewModel {
+export class FeatureStateViewModel extends AbstractStateViewModel {
     constructor(kwds: {
-        definition: WorksheetDefinition
+        currentStateMark: StateMark,
         featureDefinition: WorksheetFeatureDefinition,
-        featureState: WorksheetFeatureState,
         featureSetDefinition: WorksheetFeatureSetDefinition,
-        state: WorksheetState
+        featureState: WorksheetFeatureState
     }) {
-        super();
-        this.definition = kwds.definition;
+        super({ currentStateMark: kwds.currentStateMark });
         this.featureDefinition = kwds.featureDefinition;
-        this.featureState = kwds.featureState;
         this.featureSetDefinition = kwds.featureSetDefinition;
-        this.state = kwds.state;
+        this.featureState = kwds.featureState;
     }
 
-    definition: WorksheetDefinition;
+    // onClickNextButton() {
+    //     Application.instance.router.goToNextState(this._currentStateMark);
+    // }
+
     readonly featureDefinition: WorksheetFeatureDefinition;
     readonly featureSetDefinition: WorksheetFeatureSetDefinition;
     readonly featureState: WorksheetFeatureState;
-    readonly state: WorksheetState;
 }
