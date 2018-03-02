@@ -57,6 +57,7 @@ export class Router {
     }
 
     goToNextState(currentStateMark: StateMark) {
+        console.info("Current state mark: " + currentStateMark.toString());
         try {
             const worksheetDefinition = Application.instance.worksheetDefinition;
             const worksheetState = Application.instance.session.worksheetState();
@@ -145,6 +146,7 @@ export class Router {
     }
 
     goToState(stateMark: StateMark) {
+        console.info("New state mark: " + stateMark.toString());
         this.setLocation(this._hrefs.state(stateMark));
     }
 
