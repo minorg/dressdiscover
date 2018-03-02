@@ -1,9 +1,9 @@
 import { WorksheetRights } from "./worksheet_rights";
 
-export class WorksheetFeatureValueDescription {
+export class WorksheetDescription {
     constructor(kwds: {rights: WorksheetRights, text: string}) {
-        this._rights = WorksheetFeatureValueDescription._validateRights(kwds.rights);
-        this._text = WorksheetFeatureValueDescription._validateText(kwds.text);
+        this._rights = WorksheetDescription._validateRights(kwds.rights);
+        this._text = WorksheetDescription._validateText(kwds.text);
     }
 
     get rights(): WorksheetRights {
@@ -11,7 +11,7 @@ export class WorksheetFeatureValueDescription {
     }
 
     set rights(rights: WorksheetRights) {
-        this._rights = WorksheetFeatureValueDescription._validateRights(rights);
+        this._rights = WorksheetDescription._validateRights(rights);
     }
 
     get text(): string {
@@ -19,7 +19,7 @@ export class WorksheetFeatureValueDescription {
     }
 
     set text(text: string) {
-        this._text = WorksheetFeatureValueDescription._validateText(text);
+        this._text = WorksheetDescription._validateText(text);
     }
 
     private static _validateRights(rights: WorksheetRights): WorksheetRights {
@@ -42,11 +42,11 @@ export class WorksheetFeatureValueDescription {
         return text;
     }
 
-    deepCopy(): WorksheetFeatureValueDescription {
-        return new WorksheetFeatureValueDescription({ rights: this.rights.deepCopy(), text: this.text });
+    deepCopy(): WorksheetDescription {
+        return new WorksheetDescription({ rights: this.rights.deepCopy(), text: this.text });
     }
 
-    equals(other: WorksheetFeatureValueDescription): boolean {
+    equals(other: WorksheetDescription): boolean {
         if (!(this.rights.equals(other.rights))) {
             return false;
         }
@@ -58,7 +58,7 @@ export class WorksheetFeatureValueDescription {
         return true;
     }
 
-    static fromThryftJsonObject(json: any): WorksheetFeatureValueDescription {
+    static fromThryftJsonObject(json: any): WorksheetDescription {
         var rights: WorksheetRights | undefined;
         var text: string | undefined;
         for (var fieldName in json) {
@@ -74,7 +74,7 @@ export class WorksheetFeatureValueDescription {
         if (text == null) {
             throw new TypeError('text is required');
         }
-        return new WorksheetFeatureValueDescription({rights: rights, text: text});
+        return new WorksheetDescription({rights: rights, text: text});
     }
 
     toJsonObject(): any {
@@ -85,7 +85,7 @@ export class WorksheetFeatureValueDescription {
     }
 
     toString(): string {
-        return "WorksheetFeatureValueDescription(" + JSON.stringify(this.toThryftJsonObject()) + ")";
+        return "WorksheetDescription(" + JSON.stringify(this.toThryftJsonObject()) + ")";
     }
 
     toThryftJsonObject(): any {
