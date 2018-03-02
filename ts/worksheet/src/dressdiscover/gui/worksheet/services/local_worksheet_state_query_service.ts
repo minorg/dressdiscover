@@ -4,7 +4,7 @@ import {
 } from 'dressdiscover/api/services/worksheet/async_to_sync_worksheet_state_query_service';
 
 export class LocalWorksheetStateQueryService extends AsyncToSyncWorksheetStateQueryService {
-    getWorksheetAccessionNumbersSync(): string[] {
+    getWorksheetStateIdsSync(): string[] {
         let result: string[] = [];
         for (var keyI = 0; ; keyI++) {
             const key = localStorage.key(keyI);
@@ -21,14 +21,14 @@ export class LocalWorksheetStateQueryService extends AsyncToSyncWorksheetStateQu
         return result;
     }
 
-    static getWorksheetStateItemKey(accessionNumber: string): string {
-        return LocalWorksheetStateQueryService._WORKSHEET_ITEM_KEY_PREFIX + accessionNumber;
+    static getWorksheetStateItemKey(id: string): string {
+        return LocalWorksheetStateQueryService._WORKSHEET_ITEM_KEY_PREFIX + id;
     }
 
-    getWorksheetStateSync(kwds: { accessionNumber: string }): WorksheetState {
-        const jsonString = localStorage.getItem(LocalWorksheetStateQueryService.getWorksheetStateItemKey(kwds.accessionNumber));
+    getWorksheetStateSync(kwds: { id: string }): WorksheetState {
+        const jsonString = localStorage.getItem(LocalWorksheetStateQueryService.getWorksheetStateItemKey(kwds.id));
         if (jsonString == null) {
-            return new WorksheetState({ accessionNumber: kwds.accessionNumber });
+            return new WorksheetState({ id: kwds.id });
         }
         return WorksheetState.fromThryftJsonObject(JSON.parse(jsonString));
     }

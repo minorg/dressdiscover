@@ -7,14 +7,14 @@ export class StartViewModel extends TopLevelViewModel {
     constructor() {
         super();
 
-        this.existingAccessionNumbers = [""].concat(Application.instance.services.worksheetStateQueryService.getWorksheetAccessionNumbersSync());
+        this.existingStateIds = Application.instance.services.worksheetStateQueryService.getWorksheetStateIdsSync();
 
-        _.bindAll(this, "onClickOpenButton", "onClickStartButton", "onKeypressNewAccessionNumber");
+        _.bindAll(this, "onClickOpenButton", "onClickStartButton", "onKeypressNewStateId");
 
         this.openButtonVisible = ko.pureComputed<boolean>({
             owner: this,
             read: () => {
-                return this.selectedExistingAccessionNumber().length > 0;
+                return !!this.selectedExistingStateId() && this.selectedExistingStateId().length > 0;
             }
         });
     }
@@ -27,7 +27,7 @@ export class StartViewModel extends TopLevelViewModel {
         console.info("Start button");
     }
 
-    onKeypressNewAccessionNumber(d, e) {
+    onKeypressNewStateId(d, e) {
         if (e.keyCode != 13) {
             return true;
         }
@@ -35,8 +35,8 @@ export class StartViewModel extends TopLevelViewModel {
         return false;
     }
 
-    readonly existingAccessionNumbers: string[];
-    readonly newAccessionNumber = ko.observable<string>();
+    readonly existingStateIds: string[];
+    readonly newStateId = ko.observable<string>();
     readonly openButtonVisible: KnockoutComputed<boolean>;
-    readonly selectedExistingAccessionNumber = ko.observable<string>("");
+    readonly selectedExistingStateId = ko.observable<string>();
 }

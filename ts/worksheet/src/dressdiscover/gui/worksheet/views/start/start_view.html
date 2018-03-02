@@ -8,7 +8,7 @@
                 <div class="container-fluid card-body">
                     <div class="row">
                         <div class="col-6 offset-2">
-                            <input autofocus class="form-control" data-bind="event: {keypress: onKeypressNewAccessionNumber}" placeholder="Object id or accession number (optional)"
+                            <input autofocus class="form-control" data-bind="event: {keypress: onKeypressNewStateId}" placeholder="Object id or accession number (optional)"
                                 type="text" />
                         </div>
                         <div>
@@ -19,7 +19,7 @@
             </div>
         </div>
     </div>
-    <!-- ko if: existingAccessionNumbers.length > 1 -->
+    <!-- ko if: existingStateIds.length > 1 -->
     <div class="row mb-5">
     </div>
     <div class="row">
@@ -32,7 +32,7 @@
                     <div class="container-fluid">
                         <div class="row">
                             <div class="col-6 offset-2">
-                                <select class="form-control" data-bind="options: existingAccessionNumbers, value: selectedExistingAccessionNumber"></select>
+                                <select class="form-control" data-bind="options: existingStateIds, optionsCaption: 'Choose an existing object', value: selectedExistingStateId"></select>
                             </div>
                             <div>
                                 <button class="btn btn-primary" data-bind="click: onClickOpenButton, visible: openButtonVisible" type="submit">Open</button>
