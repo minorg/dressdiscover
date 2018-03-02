@@ -5,16 +5,16 @@ export class LoggingWorksheetStateCommandService implements WorksheetStateComman
     constructor(private delegate: WorksheetStateCommandService) {
     }
 
-    deleteWorksheetStateAsync(kwds: {accessionNumber: string, error: (errorKwds: {textStatus: string, errorThrown: any, [index: string]: any}) => any, success: () => void}): void {
-        this.delegate.deleteWorksheetStateAsync({accessionNumber: kwds.accessionNumber, error: (errorKwds: {textStatus: string, errorThrown: any, [index: string]: any}) => { console.warn("deleteWorksheetStateAsync({", "accessionNumber: ", kwds.accessionNumber, "}) -> ", errorKwds.textStatus); console.warn(errorKwds.errorThrown); if (kwds.error) { kwds.error(errorKwds); } }, success: () => { console.debug("deleteWorksheetStateAsync({", "accessionNumber: ", kwds.accessionNumber, "}) -> success"); if (kwds.success) { kwds.success(); } }});
+    deleteWorksheetStateAsync(kwds: {id: string, error: (errorKwds: {textStatus: string, errorThrown: any, [index: string]: any}) => any, success: () => void}): void {
+        this.delegate.deleteWorksheetStateAsync({id: kwds.id, error: (errorKwds: {textStatus: string, errorThrown: any, [index: string]: any}) => { console.warn("deleteWorksheetStateAsync({", "id: ", kwds.id, "}) -> ", errorKwds.textStatus); console.warn(errorKwds.errorThrown); if (kwds.error) { kwds.error(errorKwds); } }, success: () => { console.debug("deleteWorksheetStateAsync({", "id: ", kwds.id, "}) -> success"); if (kwds.success) { kwds.success(); } }});
     }
 
-    deleteWorksheetStateSync(kwds: {accessionNumber: string}): void {
+    deleteWorksheetStateSync(kwds: {id: string}): void {
         try {
-            this.delegate.deleteWorksheetStateSync({accessionNumber: kwds.accessionNumber});
-            console.debug("deleteWorksheetStateSync({", "accessionNumber: ", kwds.accessionNumber, "}) -> success");
+            this.delegate.deleteWorksheetStateSync({id: kwds.id});
+            console.debug("deleteWorksheetStateSync({", "id: ", kwds.id, "}) -> success");
         } catch (e) {
-            console.warn("deleteWorksheetStateSync({", "accessionNumber: ", kwds.accessionNumber, "}) -> exception");
+            console.warn("deleteWorksheetStateSync({", "id: ", kwds.id, "}) -> exception");
             console.warn(e);
             throw e;
         }
