@@ -1,6 +1,8 @@
 import { WorksheetDefinition } from 'dressdiscover/api/models/worksheet/worksheet_definition';
 import { WorksheetFeatureDefinition } from 'dressdiscover/api/models/worksheet/worksheet_feature_definition';
+import { WorksheetFeatureId } from 'dressdiscover/api/models/worksheet/worksheet_feature_id';
 import { WorksheetFeatureSetDefinition } from 'dressdiscover/api/models/worksheet/worksheet_feature_set_definition';
+import { WorksheetFeatureSetId } from 'dressdiscover/api/models/worksheet/worksheet_feature_set_id';
 import {
     NoSuchWorksheetFeatureDefinitionException,
 } from 'dressdiscover/api/services/worksheet/no_such_worksheet_feature_definition_exception';
@@ -17,10 +19,10 @@ export class WorksheetDefinitionWrapper {
         return this._delegate.featureSets;
     }
 
-    getNextFeatureId(kwds: { currentFeatureSetDefinition: WorksheetFeatureSetDefinition, currentFeatureId: string }): string | undefined {
+    getNextFeatureId(kwds: { currentFeatureId: WorksheetFeatureId, currentFeatureSetDefinition: WorksheetFeatureSetDefinition }): WorksheetFeatureId | undefined {
         let currentFeatureIndex: number = 0;
         for (; currentFeatureIndex < kwds.currentFeatureSetDefinition.featureIds.length; currentFeatureIndex++) {
-            if (kwds.currentFeatureSetDefinition.featureIds[currentFeatureIndex] == kwds.currentFeatureId) {
+            if (kwds.currentFeatureSetDefinition.featureIds[currentFeatureIndex].equals(kwds.currentFeatureId)) {
                 break;
             }
         }
@@ -35,44 +37,40 @@ export class WorksheetDefinitionWrapper {
         }
     }
 
-    getNextFeatureSetId(kwds: { currentFeatureSetId: string, featureSetDefinitions: [] }) {
+    getNextFeatureSetId(kwds: { currentFeatureSetId: WorksheetFeatureSetId, featureSetIds: WorksheetFeatureSetId[] }) {
         let currentFeatureSetIndex: number = 0;
-        for (; currentFeatureSetIndex < this._delegate.featureIds.length; currentFeatureSetIndex++) {
-            if (kwds.currentFeatureSetDefinition.featureIds[currentFeatureSetIndex] == kwds.currentFeatureId) {
+        for (; currentFeatureSetIndex < kwds.featureSetIds.length; currentFeatureSetIndex++) {
+            if (kwds.featureSetIds[currentFeatureSetIndex].equals(kwds.currentFeatureSetId)) {
                 break;
             }
         }
-        if (currentFeatureSetIndex == kwds.currentFeatureSetDefinition.featureIds.length) {
-            throw new NoSuchWorksheetFeatureDefinitionException({ id: kwds.currentFeatureId });
+        if (currentFeatureSetIndex == kwds.featureSetIds.length) {
+            throw new NoSuchWorksheetFeatureSetDefinitionException({ id: kwds.currentFeatureSetId });
         }
 
-        if (currentFeatureSetIndex + 1 < kwds.currentFeatureSetDefinition.featureIds.length) {
-            return kwds.currentFeatureSetDefinition.featureIds[currentFeatureSetIndex + 1];
+        if (currentFeatureSetIndex + 1 < kwds.featureSetIds.length) {
+            return kwds.featureSetIds[currentFeatureSetIndex + 1];
         } else {
             return undefined;
         }
     }
 
-    getNextFeatureSet({ currentFeatureSetId: string }) {
-
+    getFeatureSetDefinition(featureSetId: WorksheetFeatureSetId): WorksheetFeatureSetDefinition {
+        for (let featureSetDefinition of this._delegate.featureSets) {
+            if (featureSetDefinition.id.equals(featureSetId)) {
+                return featureSetDefinition;
+            }
+        }
+        throw new NoSuchWorksheetFeatureSetDefinitionException({ id: featureSetId });
     }
 
-    getFeatureSetDefinition(featureSetId: string): WorksheetFeatureSetDefinition {
-        const featureSet = this._delegate.featureSets[featureSetId];
-        if (featureSet) {
-            return featureSet;
-        } else {
-            throw new NoSuchWorksheetFeatureSetDefinitionException({ id: featureSetId });
+    getFeatureDefinition(featureId: WorksheetFeatureId): WorksheetFeatureDefinition {
+        for (let featureDefinition of this._delegate.features) {
+            if (featureDefinition.id.equals(featureId)) {
+                return featureDefinition;
+            }
         }
-    }
-
-    getFeatureDefinition(featureSetId: string): WorksheetFeatureDefinition {
-        const featureSet = this._delegate.featureSets[featureSetId];
-        if (featureSet) {
-            return featureSet;
-        } else {
-            throw new NoSuchWorksheetFeatureSetDefinitionException({ id: featureSetId });
-        }
+        throw new NoSuchWorksheetFeatureDefinitionException({ id: featureId });
     }
 
     private _delegate: WorksheetDefinition;

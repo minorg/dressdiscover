@@ -32,7 +32,7 @@
                     <div class="container-fluid">
                         <div class="row">
                             <div class="col-6 offset-2">
-                                <select class="form-control" data-bind="options: existingStateIds, optionsCaption: 'Choose an existing object', value: selectedExistingStateId"></select>
+                                <select class="form-control" data-bind="options: existingStateIds, optionsCaption: 'Choose an existing object', optionsText: function(option) { return option.toString(); }, value: selectedExistingStateId"></select>
                             </div>
                             <div>
                                 <button class="btn btn-primary" data-bind="click: onClickOpenButton, visible: openButtonVisible" type="submit">Open</button>

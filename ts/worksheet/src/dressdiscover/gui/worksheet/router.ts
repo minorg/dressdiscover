@@ -1,14 +1,10 @@
-import {
-    NoSuchWorksheetFeatureDefinitionException,
-} from 'dressdiscover/api/services/worksheet/no_such_worksheet_feature_definition_exception';
+import { WorksheetFeatureSetId } from 'dressdiscover/api/models/worksheet/worksheet_feature_set_id';
 import { Application } from 'dressdiscover/gui/worksheet/application';
 import { Hrefs } from 'dressdiscover/gui/worksheet/hrefs';
 import { StateMark } from 'dressdiscover/gui/worksheet/models/state_mark';
-import { WorksheetStateViewModel } from 'dressdiscover/gui/worksheet/view_models/state/worksheet_state_view_model';
 import { CreditsView } from 'dressdiscover/gui/worksheet/views/credits/credits_view';
 import { PrivacyView } from 'dressdiscover/gui/worksheet/views/privacy/privacy_view';
 import { StartView } from 'dressdiscover/gui/worksheet/views/start/start_view';
-import { WorksheetStateView } from 'dressdiscover/gui/worksheet/views/state/worksheet_state_view';
 import * as Sammy from 'sammy';
 
 export class Router {
@@ -66,66 +62,90 @@ export class Router {
             const worksheetState = Application.instance.session.worksheetState();
             if (!worksheetState) {
                 throw new EvalError();
+            } else if (!worksheetState.id.equals(currentStateMark.worksheetStateId)) {
+                throw new EvalError();
+            }
+
+            const featureSetIds: WorksheetFeatureSetId[] = [];
+            for (let featureSetState of worksheetState.featureSets) {
+                featureSetIds.push(featureSetState.id);
+            }
+            if (featureSetIds.length == 0) {
+                // Should have already selected featurce sets on the worksheet start.
+                throw new EvalError();
             }
 
             if (!currentStateMark.featureSetId) {
-                new WorksheetStateView(new WorksheetStateViewModel({ currentStateMark: currentStateMark })).show();
+                // Currently on a worksheet start or review.
+                if (currentStateMark.review) {
+                    // Currently reviewing worksheet
+                    throw new EvalError();
+                }
+                // Currently starting worksheet
+                // Go to first feature set
+                this.goToState(new StateMark({ featureSetId: featureSetIds[0], worksheetStateId: worksheetState.id }))
                 return;
             }
 
             const currentFeatureSetDefinition = worksheetDefinition.getFeatureSetDefinition(currentStateMark.featureSetId);
 
             if (!currentStateMark.featureId) {
-                let nextStateMark: StateMark;
+                // Currently on a feature set start or review.
                 if (currentStateMark.review) {
-                    // Reviewing current feature set
+                    // Currently reviewing feature set
+                    const nextFeatureSetId = worksheetDefinition.getNextFeatureSetId({ currentFeatureSetId: currentStateMark.featureSetId, featureSetIds: featureSetIds });
+                    if (nextFeatureSetId) {
+                        // Go to next feature set
+                        this.goToState(new StateMark({
+                            featureSetId: nextFeatureSetId,
+                            worksheetStateId: worksheetState.id
+                        }));
+                        return;
+                    } else {
+                        // Go to worksheet review
+                        this.goToState(new StateMark({
+                            review: true,
+                            worksheetStateId: worksheetState.id
+                        }));
+                        return;
+                    }
                 } else {
-                    // Starting feature set
+                    // Currently starting feature set
                     // Go to first feature of feature set
-                    nextStateMark = new StateMark({
+                    this.goToState(new StateMark({
                         featureId: currentFeatureSetDefinition.featureIds[0],
                         featureSetId: currentStateMark.featureSetId,
                         worksheetStateId: worksheetState.id
-                    });
-                }
-                this.setLocation(this._hrefs.state(nextStateMark));
-                return;
-            }
-
-            let currentFeatureIndex: number = 0;
-            for (; currentFeatureIndex < currentFeatureSetDefinition.featureIds.length; currentFeatureIndex++) {
-                if (currentFeatureSetDefinition.featureIds[currentFeatureIndex] == currentStateMark.currentFeatureId) {
-                    break;
+                    }));
+                    return;
                 }
             }
-            if (currentFeatureIndex == currentFeatureSetDefinition.featureIds.length) {
-                throw new NoSuchWorksheetFeatureDefinitionException({ id: currentStateMark.featureId });
-            }
 
-            if (currentFeatureIndex + 1 < currentFeatureSetDefinition.featureIds.length) {
-                // Go to next feature in set
-                const nextStateMark = new StateMark({
-                    featureId: currentFeatureSetDefinition.featureIds[currentFeatureIndex + 1],
+            // Currently on a feature
+            const nextFeatureId = worksheetDefinition.getNextFeatureId({ currentFeatureId: currentStateMark.featureId, currentFeatureSetDefinition: currentFeatureSetDefinition });
+            if (nextFeatureId) {
+                // Go to next feature
+                this.goToState(new StateMark({
+                    featureId: nextFeatureId,
                     featureSetId: currentStateMark.featureSetId,
                     worksheetStateId: worksheetState.id
-                });
-                this.setLocation(this._hrefs.state(nextStateMark));
+                }));
                 return;
+            } else {
+                // Go to feature set review
+                this.goToState(new StateMark({
+                    featureSetId: currentStateMark.featureSetId,
+                    review: true,
+                    worksheetStateId: worksheetState.id
+                }));
             }
-
-            let currentFeatureSetIndex: number = 0;
-            for (; currentFeatureIndex < currentFeatureSetDefinition.featureIds.length; currentFeatureIndex++) {
-                if (currentFeatureSetDefinition.featureIds[currentFeatureIndex] == currentStateMark.currentFeatureId) {
-                    break;
-                }
-            }
-            if (currentFeatureIndex == currentFeatureSetDefinition.featureIds.length) {
-                throw new NoSuchWorksheetFeatureDefinitionException({ id: currentStateMark.featureId });
-            }
-
         } catch (e) {
             Application.instance.errorHandler.handleSyncError(e);
         }
+    }
+
+    goToState(stateMark: StateMark) {
+        this.setLocation(this._hrefs.state(stateMark));
     }
 
     run() {

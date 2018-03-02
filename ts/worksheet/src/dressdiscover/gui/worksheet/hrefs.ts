@@ -19,11 +19,11 @@ export class Hrefs {
     }
 
     state(mark: StateMark) {
-        let href = "/#/state/" + encodeURIComponent(mark.worksheetStateId) + "/";
+        let href = "/#/state/" + encodeURIComponent(mark.worksheetStateId.toString()) + "/";
         if (mark.featureSetId) {
-            href += encodeURIComponent(mark.featureSetId) + "/";
+            href += encodeURIComponent(mark.featureSetId.toString()) + "/";
             if (mark.featureId) {
-                href += encodeURIComponent(mark.featureId);
+                href += encodeURIComponent(mark.featureId.toString());
             }
         }
         if (mark.review) {
