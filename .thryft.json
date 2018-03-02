@@ -54,12 +54,11 @@
                 }
             },
             {
-                "description": "api worksheet models py and ts",
+                "description": "api worksheet models ts",
                 "thrift_root_dir": "thrift/src",
                 "thrift_include_dirs": ["../thryft-waf/thrift/src"],
                 "thrift_files": "thrift/src/dressdiscover/api/models/worksheet/**/*.thrift",
                 "gen": {
-                    "py": "py/src",
                     "ts": "ts/worksheet/src"
                 }
             },
