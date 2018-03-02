@@ -1,15 +1,13 @@
 import { AsyncError } from 'dressdiscover/gui/worksheet/services/async_error';
-import { ModalViewModel } from 'dressdiscover/gui/worksheet/view_models/modal/modal_view_model';
+import { ErrorModalViewModel } from 'dressdiscover/gui/worksheet/view_models/modal/error_modal_view_model';
 import { ModalView } from 'dressdiscover/gui/worksheet/views/modal/modal_view';
 
-export class ErrorModalView extends ModalView<ModalViewModel> {
-    public constructor(kwds: { message: string }) {
+export class ErrorModalView extends ModalView<ErrorModalViewModel> {
+    public constructor(viewModel: ErrorModalViewModel) {
         super({
             contentHtmlFileName: "modal/error_modal_view.html",
-            viewModel: new ModalViewModel()
+            viewModel: viewModel
         });
-        this.message = kwds.message;
-        this.title = "Error";
     }
 
     static fromAsyncError(errorKwds: AsyncError) {
@@ -25,17 +23,16 @@ export class ErrorModalView extends ModalView<ModalViewModel> {
             message = "Server communication error";
         }
 
-        return new ErrorModalView({
-            message: message
-        });
+        return new ErrorModalView(new ErrorModalViewModel({
+            message: message,
+            title: "Error"
+        }));
     }
 
     static fromSyncError(errorThrown: object) {
-        return new ErrorModalView({
-            message: errorThrown.toString()
-        });
+        return new ErrorModalView(new ErrorModalViewModel({
+            message: errorThrown.toString(),
+            title: "Error"
+        }));
     }
-
-    readonly message: string;
-    readonly title: string = "Error";
 }

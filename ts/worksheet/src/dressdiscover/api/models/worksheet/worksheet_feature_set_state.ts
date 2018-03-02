@@ -2,16 +2,16 @@ import { WorksheetFeatureSetId } from "./worksheet_feature_set_id";
 import { WorksheetFeatureState } from "./worksheet_feature_state";
 
 export class WorksheetFeatureSetState {
-    constructor(kwds: {features: WorksheetFeatureState, id: WorksheetFeatureSetId}) {
+    constructor(kwds: {features: WorksheetFeatureState[], id: WorksheetFeatureSetId}) {
         this._features = WorksheetFeatureSetState._validateFeatures(kwds.features);
         this._id = WorksheetFeatureSetState._validateId(kwds.id);
     }
 
-    get features(): WorksheetFeatureState {
+    get features(): WorksheetFeatureState[] {
         return this._features;
     }
 
-    set features(features: WorksheetFeatureState) {
+    set features(features: WorksheetFeatureState[]) {
         this._features = WorksheetFeatureSetState._validateFeatures(features);
     }
 
@@ -23,7 +23,7 @@ export class WorksheetFeatureSetState {
         this._id = WorksheetFeatureSetState._validateId(id);
     }
 
-    private static _validateFeatures(features: WorksheetFeatureState): WorksheetFeatureState {
+    private static _validateFeatures(features: WorksheetFeatureState[]): WorksheetFeatureState[] {
         if (features == null) {
             throw new RangeError('features is null or undefined');
         }
@@ -38,11 +38,11 @@ export class WorksheetFeatureSetState {
     }
 
     deepCopy(): WorksheetFeatureSetState {
-        return new WorksheetFeatureSetState({ features: this.features.deepCopy(), id: this.id });
+        return new WorksheetFeatureSetState({ features: function(__value0: WorksheetFeatureState[]) { let __copy0: WorksheetFeatureState[] = []; for (var __i0 = 0; __i0 < __value0.length; __i0++) { __copy0.push(__value0[__i0].deepCopy()); } return __copy0; }(this.features), id: this.id });
     }
 
     equals(other: WorksheetFeatureSetState): boolean {
-        if (!(this.features.equals(other.features))) {
+        if (!(function(left: WorksheetFeatureState[], right: WorksheetFeatureState[]): boolean { if (left.length != right.length) { return false; } for (var elementI = 0; elementI < left.length; elementI++) { if (!(left[elementI].equals(right[elementI]))) { return false; } } return true; }(this.features, other.features))) {
             return false;
         }
 
@@ -54,11 +54,11 @@ export class WorksheetFeatureSetState {
     }
 
     static fromThryftJsonObject(json: any): WorksheetFeatureSetState {
-        var features: WorksheetFeatureState | undefined;
+        var features: WorksheetFeatureState[] | undefined;
         var id: WorksheetFeatureSetId | undefined;
         for (var fieldName in json) {
             if (fieldName == "features") {
-                features = WorksheetFeatureState.fromThryftJsonObject(json[fieldName]);
+                features = function(json: any[]): WorksheetFeatureState[] { var sequence: WorksheetFeatureState[] = []; for (var i = 0; i < json.length; i++) { sequence.push(WorksheetFeatureState.fromThryftJsonObject(json[i])); } return sequence; }(json[fieldName]);
             } else if (fieldName == "id") {
                 id = WorksheetFeatureSetId.parse(json[fieldName]);
             }
@@ -74,7 +74,7 @@ export class WorksheetFeatureSetState {
 
     toJsonObject(): any {
         var json: {[index: string]: any} = {};
-        json["features"] = this.features.toJsonObject();
+        json["features"] = function (__inArray: WorksheetFeatureState[]): any[] { var __outArray: any[] = []; for (var __i = 0; __i < __inArray.length; __i++) { __outArray.push(__inArray[__i].toJsonObject()); } return __outArray; }(this.features);
         json["id"] = this.id.toString();
         return json;
     }
@@ -85,12 +85,12 @@ export class WorksheetFeatureSetState {
 
     toThryftJsonObject(): any {
         var json: {[index: string]: any} = {};
-        json["features"] = this.features.toThryftJsonObject();
+        json["features"] = function (__inArray: WorksheetFeatureState[]): any[] { var __outArray: any[] = []; for (var __i = 0; __i < __inArray.length; __i++) { __outArray.push(__inArray[__i].toThryftJsonObject()); } return __outArray; }(this.features);
         json["id"] = this.id.toString();
         return json;
     }
 
-    private _features: WorksheetFeatureState;
+    private _features: WorksheetFeatureState[];
 
     private _id: WorksheetFeatureSetId;
 }

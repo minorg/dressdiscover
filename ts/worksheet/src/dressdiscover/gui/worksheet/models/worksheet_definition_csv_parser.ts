@@ -1,9 +1,13 @@
 import { WorksheetDefinition } from 'dressdiscover/api/models/worksheet/worksheet_definition';
 import { WorksheetDescription } from 'dressdiscover/api/models/worksheet/worksheet_description';
 import { WorksheetExtentDefinition } from 'dressdiscover/api/models/worksheet/worksheet_extent_definition';
+import { WorksheetExtentId } from 'dressdiscover/api/models/worksheet/worksheet_extent_id';
 import { WorksheetFeatureDefinition } from 'dressdiscover/api/models/worksheet/worksheet_feature_definition';
+import { WorksheetFeatureId } from 'dressdiscover/api/models/worksheet/worksheet_feature_id';
 import { WorksheetFeatureSetDefinition } from 'dressdiscover/api/models/worksheet/worksheet_feature_set_definition';
+import { WorksheetFeatureSetId } from 'dressdiscover/api/models/worksheet/worksheet_feature_set_id';
 import { WorksheetFeatureValueDefinition } from 'dressdiscover/api/models/worksheet/worksheet_feature_value_definition';
+import { WorksheetFeatureValueId } from 'dressdiscover/api/models/worksheet/worksheet_feature_value_id';
 import { WorksheetFeatureValueImage } from 'dressdiscover/api/models/worksheet/worksheet_feature_value_image';
 import { WorksheetRights } from 'dressdiscover/api/models/worksheet/worksheet_rights';
 import Papa = require('papaparse');
@@ -101,7 +105,7 @@ export class WorksheetDefinitionCsvParser {
                 extents.push(
                     new WorksheetExtentDefinition({
                         displayName: row["display_name"],
-                        id: row["id"],
+                        id: WorksheetExtentId.parse(row["id"]),
                     })
                 );
             } catch (e) {
@@ -128,8 +132,8 @@ export class WorksheetDefinitionCsvParser {
                 features.push(new WorksheetFeatureDefinition({
                     description: this._parseDescription(row, rowI),
                     displayName: row["display_name"],
-                    id: row["id"],
-                    valueIds: row["value"]
+                    id: WorksheetFeatureId.parse(row["id"]),
+                    valueIds: _.map(row["value"], (id) => WorksheetFeatureValueId.parse(id))
                 }));
             } catch (e) {
                 if (e instanceof RangeError) {
@@ -154,8 +158,8 @@ export class WorksheetDefinitionCsvParser {
             try {
                 featureSets.push(new WorksheetFeatureSetDefinition({
                     displayName: row["display_name"],
-                    featureIds: row["feature"],
-                    id: row["id"]
+                    featureIds: _.map(row["feature"], (id) => WorksheetFeatureId.parse(id)),
+                    id: WorksheetFeatureSetId.parse(row["id"])
                 }));
             } catch (e) {
                 if (e instanceof RangeError) {
@@ -195,7 +199,7 @@ export class WorksheetDefinitionCsvParser {
                     description: this._parseDescription(row, rowI),
                     displayName: row["display_name"],
                     image: image,
-                    id: row["id"]
+                    id: WorksheetFeatureValueId.parse(row["id"])
                 });
                 values.push(value);
             } catch (e) {
