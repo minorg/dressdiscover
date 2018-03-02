@@ -2,12 +2,12 @@ import { WorksheetState } from "../../models/worksheet/worksheet_state";
 import { WorksheetStateQueryService } from "./worksheet_state_query_service";
 
 export abstract class AsyncToSyncWorksheetStateQueryService implements WorksheetStateQueryService {
-    getWorksheetAccessionNumbersAsync(kwds: {error: (errorKwds: {textStatus: string, errorThrown: any, [index: string]: any}) => any, success: (returnValue: string[]) => void}): void {
+    getWorksheetStateIdsAsync(kwds: {error: (errorKwds: {textStatus: string, errorThrown: any, [index: string]: any}) => any, success: (returnValue: string[]) => void}): void {
         try {
             if (kwds.success) {
-                kwds.success(this.getWorksheetAccessionNumbersSync());
+                kwds.success(this.getWorksheetStateIdsSync());
             } else {
-                this.getWorksheetAccessionNumbersSync();
+                this.getWorksheetStateIdsSync();
             }
         } catch (e) {
             if (kwds.error) {
@@ -16,14 +16,14 @@ export abstract class AsyncToSyncWorksheetStateQueryService implements Worksheet
         }
     }
 
-    abstract getWorksheetAccessionNumbersSync(): string[];
+    abstract getWorksheetStateIdsSync(): string[];
 
-    getWorksheetStateAsync(kwds: {accessionNumber: string, error: (errorKwds: {textStatus: string, errorThrown: any, [index: string]: any}) => any, success: (returnValue: WorksheetState) => void}): void {
+    getWorksheetStateAsync(kwds: {id: string, error: (errorKwds: {textStatus: string, errorThrown: any, [index: string]: any}) => any, success: (returnValue: WorksheetState) => void}): void {
         try {
             if (kwds.success) {
-                kwds.success(this.getWorksheetStateSync({accessionNumber: kwds.accessionNumber}));
+                kwds.success(this.getWorksheetStateSync({id: kwds.id}));
             } else {
-                this.getWorksheetStateSync({accessionNumber: kwds.accessionNumber});
+                this.getWorksheetStateSync({id: kwds.id});
             }
         } catch (e) {
             if (kwds.error) {
@@ -32,5 +32,5 @@ export abstract class AsyncToSyncWorksheetStateQueryService implements Worksheet
         }
     }
 
-    abstract getWorksheetStateSync(kwds: {accessionNumber: string}): WorksheetState;
+    abstract getWorksheetStateSync(kwds: {id: string}): WorksheetState;
 }

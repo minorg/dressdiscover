@@ -5,33 +5,33 @@ export class LoggingWorksheetStateQueryService implements WorksheetStateQuerySer
     constructor(private delegate: WorksheetStateQueryService) {
     }
 
-    getWorksheetAccessionNumbersAsync(kwds: {error: (errorKwds: {textStatus: string, errorThrown: any, [index: string]: any}) => any, success: (returnValue: string[]) => void}): void {
-        this.delegate.getWorksheetAccessionNumbersAsync({error: (errorKwds: {textStatus: string, errorThrown: any, [index: string]: any}) => { console.warn("getWorksheetAccessionNumbersAsync() -> ", errorKwds.textStatus); console.warn(errorKwds.errorThrown); if (kwds.error) { kwds.error(errorKwds); } }, success: (returnValue: string[]) => { console.debug("getWorksheetAccessionNumbersAsync() -> ", returnValue); if (kwds.success) { kwds.success(returnValue); } }});
+    getWorksheetStateIdsAsync(kwds: {error: (errorKwds: {textStatus: string, errorThrown: any, [index: string]: any}) => any, success: (returnValue: string[]) => void}): void {
+        this.delegate.getWorksheetStateIdsAsync({error: (errorKwds: {textStatus: string, errorThrown: any, [index: string]: any}) => { console.warn("getWorksheetStateIdsAsync() -> ", errorKwds.textStatus); console.warn(errorKwds.errorThrown); if (kwds.error) { kwds.error(errorKwds); } }, success: (returnValue: string[]) => { console.debug("getWorksheetStateIdsAsync() -> ", returnValue); if (kwds.success) { kwds.success(returnValue); } }});
     }
 
-    getWorksheetAccessionNumbersSync(): string[] {
+    getWorksheetStateIdsSync(): string[] {
         try {
-            const __returnValue = this.delegate.getWorksheetAccessionNumbersSync();
-            console.debug("getWorksheetAccessionNumbersSync() -> ", __returnValue);
+            const __returnValue = this.delegate.getWorksheetStateIdsSync();
+            console.debug("getWorksheetStateIdsSync() -> ", __returnValue);
             return __returnValue;
         } catch (e) {
-            console.warn("getWorksheetAccessionNumbersSync() -> exception");
+            console.warn("getWorksheetStateIdsSync() -> exception");
             console.warn(e);
             throw e;
         }
     }
 
-    getWorksheetStateAsync(kwds: {accessionNumber: string, error: (errorKwds: {textStatus: string, errorThrown: any, [index: string]: any}) => any, success: (returnValue: WorksheetState) => void}): void {
-        this.delegate.getWorksheetStateAsync({accessionNumber: kwds.accessionNumber, error: (errorKwds: {textStatus: string, errorThrown: any, [index: string]: any}) => { console.warn("getWorksheetStateAsync({", "accessionNumber: ", kwds.accessionNumber, "}) -> ", errorKwds.textStatus); console.warn(errorKwds.errorThrown); if (kwds.error) { kwds.error(errorKwds); } }, success: (returnValue: WorksheetState) => { console.debug("getWorksheetStateAsync({", "accessionNumber: ", kwds.accessionNumber, "}) -> ", returnValue); if (kwds.success) { kwds.success(returnValue); } }});
+    getWorksheetStateAsync(kwds: {id: string, error: (errorKwds: {textStatus: string, errorThrown: any, [index: string]: any}) => any, success: (returnValue: WorksheetState) => void}): void {
+        this.delegate.getWorksheetStateAsync({id: kwds.id, error: (errorKwds: {textStatus: string, errorThrown: any, [index: string]: any}) => { console.warn("getWorksheetStateAsync({", "id: ", kwds.id, "}) -> ", errorKwds.textStatus); console.warn(errorKwds.errorThrown); if (kwds.error) { kwds.error(errorKwds); } }, success: (returnValue: WorksheetState) => { console.debug("getWorksheetStateAsync({", "id: ", kwds.id, "}) -> ", returnValue); if (kwds.success) { kwds.success(returnValue); } }});
     }
 
-    getWorksheetStateSync(kwds: {accessionNumber: string}): WorksheetState {
+    getWorksheetStateSync(kwds: {id: string}): WorksheetState {
         try {
-            const __returnValue = this.delegate.getWorksheetStateSync({accessionNumber: kwds.accessionNumber});
-            console.debug("getWorksheetStateSync({", "accessionNumber: ", kwds.accessionNumber, "}) -> ", __returnValue);
+            const __returnValue = this.delegate.getWorksheetStateSync({id: kwds.id});
+            console.debug("getWorksheetStateSync({", "id: ", kwds.id, "}) -> ", __returnValue);
             return __returnValue;
         } catch (e) {
-            console.warn("getWorksheetStateSync({", "accessionNumber: ", kwds.accessionNumber, "}) -> exception");
+            console.warn("getWorksheetStateSync({", "id: ", kwds.id, "}) -> exception");
             console.warn(e);
             throw e;
         }

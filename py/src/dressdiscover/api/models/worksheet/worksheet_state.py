@@ -1,35 +1,27 @@
 from collections import OrderedDict
 from itertools import filterfalse
 import builtins
-import dressdiscover.api.models.worksheet.worksheet_accession_number
 import dressdiscover.api.models.worksheet.worksheet_feature_set_state
+import dressdiscover.api.models.worksheet.worksheet_state_id
 
 
 class WorksheetState(object):
     class Builder(object):
         def __init__(
             self,
-            accession_number=None,
+            id=None,  # @ReservedAssignment
             feature_sets=None,
         ):
             '''
-            :type accession_number: str
+            :type id: str
             :type feature_sets: dict(str: dressdiscover.api.models.worksheet.worksheet_feature_set_state.WorksheetFeatureSetState) or None
             '''
 
-            self.__accession_number = accession_number
+            self.__id = id
             self.__feature_sets = feature_sets
 
         def build(self):
-            return WorksheetState(accession_number=self.__accession_number, feature_sets=self.__feature_sets)
-
-        @property
-        def accession_number(self):
-            '''
-            :rtype: str
-            '''
-
-            return self.__accession_number
+            return WorksheetState(id=self.__id, feature_sets=self.__feature_sets)
 
         @property
         def feature_sets(self):
@@ -47,21 +39,17 @@ class WorksheetState(object):
             '''
 
             builder = cls()
-            builder.accession_number = accession_number
+            builder.id = id
             builder.feature_sets = feature_sets
             return builder
 
-        def set_accession_number(self, accession_number):
+        @property
+        def id(self):  # @ReservedAssignment
             '''
-            :type accession_number: str
+            :rtype: str
             '''
 
-            if accession_number is None:
-                raise ValueError('accession_number is required')
-            if not isinstance(accession_number, str):
-                raise TypeError("expected accession_number to be a str but it is a %s" % builtins.type(accession_number))
-            self.__accession_number = accession_number
-            return self
+            return self.__id
 
         def set_feature_sets(self, feature_sets):
             '''
@@ -74,14 +62,26 @@ class WorksheetState(object):
             self.__feature_sets = feature_sets
             return self
 
+        def set_id(self, id):  # @ReservedAssignment
+            '''
+            :type id: str
+            '''
+
+            if id is None:
+                raise ValueError('id is required')
+            if not isinstance(id, str):
+                raise TypeError("expected id to be a str but it is a %s" % builtins.type(id))
+            self.__id = id
+            return self
+
         def update(self, worksheet_state):
             '''
-            :type accession_number: str
+            :type id: str
             :type feature_sets: dict(str: dressdiscover.api.models.worksheet.worksheet_feature_set_state.WorksheetFeatureSetState) or None
             '''
 
             if isinstance(worksheet_state, WorksheetState):
-                self.set_accession_number(worksheet_state.accession_number)
+                self.set_id(worksheet_state.id)
                 self.set_feature_sets(worksheet_state.feature_sets)
             elif isinstance(worksheet_state, dict):
                 for key, value in worksheet_state.items():
@@ -89,14 +89,6 @@ class WorksheetState(object):
             else:
                 raise TypeError(worksheet_state)
             return self
-
-        @accession_number.setter
-        def accession_number(self, accession_number):
-            '''
-            :type accession_number: str
-            '''
-
-            self.set_accession_number(accession_number)
 
         @feature_sets.setter
         def feature_sets(self, feature_sets):
@@ -106,8 +98,16 @@ class WorksheetState(object):
 
             self.set_feature_sets(feature_sets)
 
+        @id.setter
+        def id(self, id):  # @ReservedAssignment
+            '''
+            :type id: str
+            '''
+
+            self.set_id(id)
+
     class FieldMetadata(object):
-        ACCESSION_NUMBER = None
+        ID = None
         FEATURE_SETS = None
 
         def __init__(self, name, type_, validation):
@@ -136,26 +136,26 @@ class WorksheetState(object):
 
         @classmethod
         def values(cls):
-            return (cls.ACCESSION_NUMBER, cls.FEATURE_SETS,)
+            return (cls.ID, cls.FEATURE_SETS,)
 
-    FieldMetadata.ACCESSION_NUMBER = FieldMetadata('accession_number', dressdiscover.api.models.worksheet.worksheet_accession_number.WorksheetAccessionNumber, None)
+    FieldMetadata.ID = FieldMetadata('id', dressdiscover.api.models.worksheet.worksheet_state_id.WorksheetStateId, None)
     FieldMetadata.FEATURE_SETS = FieldMetadata('feature_sets', dict, None)
 
     def __init__(
         self,
-        accession_number,
+        id,  # @ReservedAssignment
         feature_sets=None,
     ):
         '''
-        :type accession_number: str
+        :type id: str
         :type feature_sets: dict(str: dressdiscover.api.models.worksheet.worksheet_feature_set_state.WorksheetFeatureSetState) or None
         '''
 
-        if accession_number is None:
-            raise ValueError('accession_number is required')
-        if not isinstance(accession_number, str):
-            raise TypeError("expected accession_number to be a str but it is a %s" % builtins.type(accession_number))
-        self.__accession_number = accession_number
+        if id is None:
+            raise ValueError('id is required')
+        if not isinstance(id, str):
+            raise TypeError("expected id to be a str but it is a %s" % builtins.type(id))
+        self.__id = id
 
         if feature_sets is not None:
             if not (isinstance(feature_sets, dict) and len(list(filterfalse(lambda __item: isinstance(__item[0], str) and isinstance(__item[1], dressdiscover.api.models.worksheet.worksheet_feature_set_state.WorksheetFeatureSetState), feature_sets.items()))) == 0):
@@ -163,42 +163,34 @@ class WorksheetState(object):
         self.__feature_sets = feature_sets.copy() if feature_sets is not None else None
 
     def __eq__(self, other):
-        if self.accession_number != other.accession_number:
+        if self.id != other.id:
             return False
         if self.feature_sets != other.feature_sets:
             return False
         return True
 
     def __hash__(self):
-        return hash((self.accession_number, self.feature_sets,))
+        return hash((self.id, self.feature_sets,))
 
     def __iter__(self):
-        return iter((self.accession_number, self.feature_sets,))
+        return iter((self.id, self.feature_sets,))
 
     def __ne__(self, other):
         return not self.__eq__(other)
 
     def __repr__(self):
         field_reprs = []
-        field_reprs.append('accession_number=' + "'" + self.accession_number.encode('ascii', 'replace').decode('ascii') + "'")
+        field_reprs.append('id=' + "'" + self.id.encode('ascii', 'replace').decode('ascii') + "'")
         if self.feature_sets is not None:
             field_reprs.append('feature_sets=' + repr(self.feature_sets))
         return 'WorksheetState(' + ', '.join(field_reprs) + ')'
 
     def __str__(self):
         field_reprs = []
-        field_reprs.append('accession_number=' + "'" + self.accession_number.encode('ascii', 'replace').decode('ascii') + "'")
+        field_reprs.append('id=' + "'" + self.id.encode('ascii', 'replace').decode('ascii') + "'")
         if self.feature_sets is not None:
             field_reprs.append('feature_sets=' + repr(self.feature_sets))
         return 'WorksheetState(' + ', '.join(field_reprs) + ')'
-
-    @property
-    def accession_number(self):
-        '''
-        :rtype: str
-        '''
-
-        return self.__accession_number
 
     @classmethod
     def builder(cls):
@@ -211,6 +203,14 @@ class WorksheetState(object):
         '''
 
         return self.__feature_sets.copy() if self.__feature_sets is not None else None
+
+    @property
+    def id(self):  # @ReservedAssignment
+        '''
+        :rtype: str
+        '''
+
+        return self.__id
 
     @classmethod
     def read(cls, iprot):
@@ -228,8 +228,8 @@ class WorksheetState(object):
             ifield_name, ifield_type, _ifield_id = iprot.read_field_begin()
             if ifield_type == 0: # STOP
                 break
-            elif ifield_name == 'accession_number':
-                init_kwds['accession_number'] = iprot.read_string()
+            elif ifield_name == 'id':
+                init_kwds['id'] = iprot.read_string()
             elif ifield_name == 'feature_sets':
                 init_kwds['feature_sets'] = dict([(iprot.read_string(), dressdiscover.api.models.worksheet.worksheet_feature_set_state.WorksheetFeatureSetState.read(iprot)) for _ in xrange(iprot.read_map_begin()[2])] + (iprot.read_map_end() is None and []))
             iprot.read_field_end()
@@ -250,8 +250,8 @@ class WorksheetState(object):
 
         oprot.write_struct_begin('WorksheetState')
 
-        oprot.write_field_begin(name='accession_number', type=11, id=None)
-        oprot.write_string(self.accession_number)
+        oprot.write_field_begin(name='id', type=11, id=None)
+        oprot.write_string(self.id)
         oprot.write_field_end()
 
         if self.feature_sets is not None:
