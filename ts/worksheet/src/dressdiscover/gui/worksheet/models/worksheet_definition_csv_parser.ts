@@ -10,8 +10,8 @@ import { WorksheetFeatureValueDefinition } from 'dressdiscover/api/models/worksh
 import { WorksheetFeatureValueId } from 'dressdiscover/api/models/worksheet/worksheet_feature_value_id';
 import { WorksheetFeatureValueImage } from 'dressdiscover/api/models/worksheet/worksheet_feature_value_image';
 import { WorksheetRights } from 'dressdiscover/api/models/worksheet/worksheet_rights';
+import * as _ from 'lodash';
 import Papa = require('papaparse');
-import * as _ from 'underscore';
 
 export class WorksheetDefinitionCsvParser {
     parseWorksheetDefinitionCsv(kwds: {
@@ -77,7 +77,7 @@ export class WorksheetDefinitionCsvParser {
                     continue;
                 }
 
-                if (_.contains(duplicateColumnNames, columnName)) {
+                if (_.indexOf(duplicateColumnNames, columnName) != -1) {
                     if (_.isUndefined(outRow[columnName])) {
                         outRow[columnName] = [columnValue];
                     } else {

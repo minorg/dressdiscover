@@ -2,7 +2,7 @@ import { WorksheetDefinition } from 'dressdiscover/api/models/worksheet/workshee
 import { WorksheetExtentDefinition } from 'dressdiscover/api/models/worksheet/worksheet_extent_definition';
 import { WorksheetFeatureDefinition } from 'dressdiscover/api/models/worksheet/worksheet_feature_definition';
 import { WorksheetFeatureValueDefinition } from 'dressdiscover/api/models/worksheet/worksheet_feature_value_definition';
-import * as _ from 'underscore';
+import * as _ from 'lodash';
 
 export class WorksheetDefinitionValidator {
     validateWorksheetDefinition(definition: WorksheetDefinition): WorksheetDefinition {

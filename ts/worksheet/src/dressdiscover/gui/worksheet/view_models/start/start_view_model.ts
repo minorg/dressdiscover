@@ -4,7 +4,7 @@ import { WorksheetStateMark } from 'dressdiscover/api/models/worksheet/worksheet
 import { Application } from 'dressdiscover/gui/worksheet/application';
 import { TopLevelViewModel } from 'dressdiscover/gui/worksheet/view_models/top_level/top_level_view_model';
 import * as ko from 'knockout';
-import * as _ from 'underscore';
+import * as _ from 'lodash';
 
 export class StartViewModel extends TopLevelViewModel {
     constructor() {

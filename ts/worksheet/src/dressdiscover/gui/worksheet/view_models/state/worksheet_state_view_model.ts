@@ -2,7 +2,7 @@ import { WorksheetFeatureSetState } from 'dressdiscover/api/models/worksheet/wor
 import { WorksheetStateMark } from 'dressdiscover/api/models/worksheet/worksheet_state_mark';
 import { Application } from 'dressdiscover/gui/worksheet/application';
 import { AbstractStateViewModel } from 'dressdiscover/gui/worksheet/view_models/state/abstract_state_view_model';
-import * as _ from 'underscore';
+import * as _ from 'lodash';
 
 export class WorksheetStateViewModel extends AbstractStateViewModel {
     constructor(kwds: { currentStateMark: WorksheetStateMark }) {
