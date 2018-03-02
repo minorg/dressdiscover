@@ -49,7 +49,7 @@ module.exports = {
     })
   ],
   resolve: {
-    extensions: ['.js', '.ts'],
+    extensions: ['.ts', '.js'],
     modules: [path.join(__dirname, 'src'), path.join(__dirname, 'node_modules')]
   },
   resolveLoader: {
