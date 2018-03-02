@@ -1,3 +1,3 @@
-id,display_name,value,value,value,value,value,value,value
-Closure,,Buckle,Button,Frog closure,Hook-and-eye,Lacing,,
-Fabric,,Corduroy,Net tulle,,,,,
+id,display_name,description_text,description_rights_author,description_rights_license,description_rights_source_name,description_rights_source_url,value,value,value,value,value,value,value
+Closure,,,,,,,Buckle,Button,Frog closure,Hook-and-eye,Lacing,,
+Fabric,,"A fabric is a material made through weaving, knitting, spreading, crocheting, or bonding that may be used in production of further goods (garments, etc.).  ",Wikipedia,Creative Commons Attribution-Share Alike ,Wikipedia,https://en.wikipedia.org/wiki/Textile,Corduroy,Net tulle,,,,,
