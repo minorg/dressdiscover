@@ -1,25 +1,21 @@
+import { WorksheetStateId } from "../../models/worksheet/worksheet_state_id";
+
 export class NoSuchWorksheetStateException {
-    constructor(kwds: {id: string}) {
+    constructor(kwds: {id: WorksheetStateId}) {
         this._id = NoSuchWorksheetStateException._validateId(kwds.id);
     }
 
-    get id(): string {
+    get id(): WorksheetStateId {
         return this._id;
     }
 
-    set id(id: string) {
+    set id(id: WorksheetStateId) {
         this._id = NoSuchWorksheetStateException._validateId(id);
     }
 
-    private static _validateId(id: string): string {
+    private static _validateId(id: WorksheetStateId): WorksheetStateId {
         if (id == null) {
             throw new RangeError('id is null or undefined');
-        }
-        if (id.trim().length == 0) {
-            throw new RangeError('id is blank');
-        }
-        if (id.length < 1) {
-            throw new RangeError("expected len(id) to be >= 1, was " + id.length);
         }
         return id;
     }
@@ -37,10 +33,10 @@ export class NoSuchWorksheetStateException {
     }
 
     static fromThryftJsonObject(json: any): NoSuchWorksheetStateException {
-        var id: string | undefined;
+        var id: WorksheetStateId | undefined;
         for (var fieldName in json) {
             if (fieldName == "id") {
-                id = json[fieldName];
+                id = WorksheetStateId.parse(json[fieldName]);
             }
         }
         if (id == null) {
@@ -51,7 +47,7 @@ export class NoSuchWorksheetStateException {
 
     toJsonObject(): any {
         var json: {[index: string]: any} = {};
-        json["id"] = this.id;
+        json["id"] = this.id.toString();
         return json;
     }
 
@@ -61,9 +57,9 @@ export class NoSuchWorksheetStateException {
 
     toThryftJsonObject(): any {
         var json: {[index: string]: any} = {};
-        json["id"] = this.id;
+        json["id"] = this.id.toString();
         return json;
     }
 
-    private _id: string;
+    private _id: WorksheetStateId;
 }

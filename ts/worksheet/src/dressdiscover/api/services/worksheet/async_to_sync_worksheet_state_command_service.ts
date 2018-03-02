@@ -1,8 +1,9 @@
 import { WorksheetState } from "../../models/worksheet/worksheet_state";
 import { WorksheetStateCommandService } from "./worksheet_state_command_service";
+import { WorksheetStateId } from "../../models/worksheet/worksheet_state_id";
 
 export abstract class AsyncToSyncWorksheetStateCommandService implements WorksheetStateCommandService {
-    deleteWorksheetStateAsync(kwds: {id: string, error: (errorKwds: {textStatus: string, errorThrown: any, [index: string]: any}) => any, success: () => void}): void {
+    deleteWorksheetStateAsync(kwds: {id: WorksheetStateId, error: (errorKwds: {textStatus: string, errorThrown: any, [index: string]: any}) => any, success: () => void}): void {
         try {
             this.deleteWorksheetStateSync({id: kwds.id})
             if (kwds.success) {
@@ -15,7 +16,7 @@ export abstract class AsyncToSyncWorksheetStateCommandService implements Workshe
         }
     }
 
-    abstract deleteWorksheetStateSync(kwds: {id: string}): void;
+    abstract deleteWorksheetStateSync(kwds: {id: WorksheetStateId}): void;
 
     putWorksheetStateAsync(kwds: {state: WorksheetState, error: (errorKwds: {textStatus: string, errorThrown: any, [index: string]: any}) => any, success: () => void}): void {
         try {

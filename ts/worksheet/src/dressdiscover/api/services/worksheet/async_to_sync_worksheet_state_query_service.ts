@@ -1,8 +1,9 @@
 import { WorksheetState } from "../../models/worksheet/worksheet_state";
+import { WorksheetStateId } from "../../models/worksheet/worksheet_state_id";
 import { WorksheetStateQueryService } from "./worksheet_state_query_service";
 
 export abstract class AsyncToSyncWorksheetStateQueryService implements WorksheetStateQueryService {
-    getWorksheetStateAsync(kwds: {id: string, error: (errorKwds: {textStatus: string, errorThrown: any, [index: string]: any}) => any, success: (returnValue: WorksheetState) => void}): void {
+    getWorksheetStateAsync(kwds: {id: WorksheetStateId, error: (errorKwds: {textStatus: string, errorThrown: any, [index: string]: any}) => any, success: (returnValue: WorksheetState) => void}): void {
         try {
             if (kwds.success) {
                 kwds.success(this.getWorksheetStateSync({id: kwds.id}));
@@ -16,9 +17,9 @@ export abstract class AsyncToSyncWorksheetStateQueryService implements Worksheet
         }
     }
 
-    abstract getWorksheetStateSync(kwds: {id: string}): WorksheetState;
+    abstract getWorksheetStateSync(kwds: {id: WorksheetStateId}): WorksheetState;
 
-    getWorksheetStateIdsAsync(kwds: {error: (errorKwds: {textStatus: string, errorThrown: any, [index: string]: any}) => any, success: (returnValue: string[]) => void}): void {
+    getWorksheetStateIdsAsync(kwds: {error: (errorKwds: {textStatus: string, errorThrown: any, [index: string]: any}) => any, success: (returnValue: WorksheetStateId[]) => void}): void {
         try {
             if (kwds.success) {
                 kwds.success(this.getWorksheetStateIdsSync());
@@ -32,5 +33,5 @@ export abstract class AsyncToSyncWorksheetStateQueryService implements Worksheet
         }
     }
 
-    abstract getWorksheetStateIdsSync(): string[];
+    abstract getWorksheetStateIdsSync(): WorksheetStateId[];
 }

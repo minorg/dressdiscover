@@ -1,15 +1,16 @@
 import { WorksheetState } from "../../models/worksheet/worksheet_state";
 import { WorksheetStateCommandService } from "./worksheet_state_command_service";
+import { WorksheetStateId } from "../../models/worksheet/worksheet_state_id";
 
 export class LoggingWorksheetStateCommandService implements WorksheetStateCommandService {
     constructor(private delegate: WorksheetStateCommandService) {
     }
 
-    deleteWorksheetStateAsync(kwds: {id: string, error: (errorKwds: {textStatus: string, errorThrown: any, [index: string]: any}) => any, success: () => void}): void {
+    deleteWorksheetStateAsync(kwds: {id: WorksheetStateId, error: (errorKwds: {textStatus: string, errorThrown: any, [index: string]: any}) => any, success: () => void}): void {
         this.delegate.deleteWorksheetStateAsync({id: kwds.id, error: (errorKwds: {textStatus: string, errorThrown: any, [index: string]: any}) => { console.warn("deleteWorksheetStateAsync({", "id: ", kwds.id, "}) -> ", errorKwds.textStatus); console.warn(errorKwds.errorThrown); if (kwds.error) { kwds.error(errorKwds); } }, success: () => { console.debug("deleteWorksheetStateAsync({", "id: ", kwds.id, "}) -> success"); if (kwds.success) { kwds.success(); } }});
     }
 
-    deleteWorksheetStateSync(kwds: {id: string}): void {
+    deleteWorksheetStateSync(kwds: {id: WorksheetStateId}): void {
         try {
             this.delegate.deleteWorksheetStateSync({id: kwds.id});
             console.debug("deleteWorksheetStateSync({", "id: ", kwds.id, "}) -> success");

@@ -1,5 +1,7 @@
+import { WorksheetExtentId } from "./worksheet_extent_id";
+
 export class WorksheetExtentDefinition {
-    constructor(kwds: {id: string, displayName?: string}) {
+    constructor(kwds: {id: WorksheetExtentId, displayName?: string}) {
         this._id = WorksheetExtentDefinition._validateId(kwds.id);
         if (kwds.displayName != null) {
             this._displayName = WorksheetExtentDefinition._validateDisplayName(kwds.displayName);
@@ -8,11 +10,11 @@ export class WorksheetExtentDefinition {
         }
     }
 
-    get id(): string {
+    get id(): WorksheetExtentId {
         return this._id;
     }
 
-    set id(id: string) {
+    set id(id: WorksheetExtentId) {
         this._id = WorksheetExtentDefinition._validateId(id);
     }
 
@@ -36,15 +38,9 @@ export class WorksheetExtentDefinition {
         return displayName;
     }
 
-    private static _validateId(id: string): string {
+    private static _validateId(id: WorksheetExtentId): WorksheetExtentId {
         if (id == null) {
             throw new RangeError('id is null or undefined');
-        }
-        if (id.trim().length == 0) {
-            throw new RangeError('id is blank');
-        }
-        if (id.length < 1) {
-            throw new RangeError("expected len(id) to be >= 1, was " + id.length);
         }
         return id;
     }
@@ -66,11 +62,11 @@ export class WorksheetExtentDefinition {
     }
 
     static fromThryftJsonObject(json: any): WorksheetExtentDefinition {
-        var id: string | undefined;
+        var id: WorksheetExtentId | undefined;
         var displayName: string | undefined;
         for (var fieldName in json) {
             if (fieldName == "id") {
-                id = json[fieldName];
+                id = WorksheetExtentId.parse(json[fieldName]);
             } else if (fieldName == "display_name") {
                 displayName = json[fieldName];
             }
@@ -83,7 +79,7 @@ export class WorksheetExtentDefinition {
 
     toJsonObject(): any {
         var json: {[index: string]: any} = {};
-        json["id"] = this.id;
+        json["id"] = this.id.toString();
         if (this.displayName != null) {
             json["display_name"] = this.displayName;
         }
@@ -96,7 +92,7 @@ export class WorksheetExtentDefinition {
 
     toThryftJsonObject(): any {
         var json: {[index: string]: any} = {};
-        json["id"] = this.id;
+        json["id"] = this.id.toString();
         if (this.displayName != null) {
             json["display_name"] = this.displayName;
         }
@@ -105,5 +101,5 @@ export class WorksheetExtentDefinition {
 
     private _displayName?: string;
 
-    private _id: string;
+    private _id: WorksheetExtentId;
 }

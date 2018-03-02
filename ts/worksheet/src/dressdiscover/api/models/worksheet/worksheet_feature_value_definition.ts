@@ -1,8 +1,9 @@
 import { WorksheetDescription } from "./worksheet_description";
+import { WorksheetFeatureValueId } from "./worksheet_feature_value_id";
 import { WorksheetFeatureValueImage } from "./worksheet_feature_value_image";
 
 export class WorksheetFeatureValueDefinition {
-    constructor(kwds: {id: string, description?: WorksheetDescription, displayName?: string, image?: WorksheetFeatureValueImage}) {
+    constructor(kwds: {id: WorksheetFeatureValueId, description?: WorksheetDescription, displayName?: string, image?: WorksheetFeatureValueImage}) {
         this._id = WorksheetFeatureValueDefinition._validateId(kwds.id);
         if (kwds.description != null) {
             this._description = WorksheetFeatureValueDefinition._validateDescription(kwds.description);
@@ -21,11 +22,11 @@ export class WorksheetFeatureValueDefinition {
         }
     }
 
-    get id(): string {
+    get id(): WorksheetFeatureValueId {
         return this._id;
     }
 
-    set id(id: string) {
+    set id(id: WorksheetFeatureValueId) {
         this._id = WorksheetFeatureValueDefinition._validateId(id);
     }
 
@@ -72,15 +73,9 @@ export class WorksheetFeatureValueDefinition {
         return displayName;
     }
 
-    private static _validateId(id: string): string {
+    private static _validateId(id: WorksheetFeatureValueId): WorksheetFeatureValueId {
         if (id == null) {
             throw new RangeError('id is null or undefined');
-        }
-        if (id.trim().length == 0) {
-            throw new RangeError('id is blank');
-        }
-        if (id.length < 1) {
-            throw new RangeError("expected len(id) to be >= 1, was " + id.length);
         }
         return id;
     }
@@ -117,13 +112,13 @@ export class WorksheetFeatureValueDefinition {
     }
 
     static fromThryftJsonObject(json: any): WorksheetFeatureValueDefinition {
-        var id: string | undefined;
+        var id: WorksheetFeatureValueId | undefined;
         var description: WorksheetDescription | undefined;
         var displayName: string | undefined;
         var image: WorksheetFeatureValueImage | undefined;
         for (var fieldName in json) {
             if (fieldName == "id") {
-                id = json[fieldName];
+                id = WorksheetFeatureValueId.parse(json[fieldName]);
             } else if (fieldName == "description") {
                 description = WorksheetDescription.fromThryftJsonObject(json[fieldName]);
             } else if (fieldName == "display_name") {
@@ -140,7 +135,7 @@ export class WorksheetFeatureValueDefinition {
 
     toJsonObject(): any {
         var json: {[index: string]: any} = {};
-        json["id"] = this.id;
+        json["id"] = this.id.toString();
         if (this.description != null) {
             json["description"] = this.description.toJsonObject();
         }
@@ -159,7 +154,7 @@ export class WorksheetFeatureValueDefinition {
 
     toThryftJsonObject(): any {
         var json: {[index: string]: any} = {};
-        json["id"] = this.id;
+        json["id"] = this.id.toString();
         if (this.description != null) {
             json["description"] = this.description.toThryftJsonObject();
         }
@@ -176,7 +171,7 @@ export class WorksheetFeatureValueDefinition {
 
     private _displayName?: string;
 
-    private _id: string;
+    private _id: WorksheetFeatureValueId;
 
     private _image?: WorksheetFeatureValueImage;
 }

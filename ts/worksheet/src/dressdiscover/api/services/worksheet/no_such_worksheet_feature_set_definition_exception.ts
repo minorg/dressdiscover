@@ -1,25 +1,21 @@
+import { WorksheetFeatureSetId } from "../../models/worksheet/worksheet_feature_set_id";
+
 export class NoSuchWorksheetFeatureSetDefinitionException {
-    constructor(kwds: {id: string}) {
+    constructor(kwds: {id: WorksheetFeatureSetId}) {
         this._id = NoSuchWorksheetFeatureSetDefinitionException._validateId(kwds.id);
     }
 
-    get id(): string {
+    get id(): WorksheetFeatureSetId {
         return this._id;
     }
 
-    set id(id: string) {
+    set id(id: WorksheetFeatureSetId) {
         this._id = NoSuchWorksheetFeatureSetDefinitionException._validateId(id);
     }
 
-    private static _validateId(id: string): string {
+    private static _validateId(id: WorksheetFeatureSetId): WorksheetFeatureSetId {
         if (id == null) {
             throw new RangeError('id is null or undefined');
-        }
-        if (id.trim().length == 0) {
-            throw new RangeError('id is blank');
-        }
-        if (id.length < 1) {
-            throw new RangeError("expected len(id) to be >= 1, was " + id.length);
         }
         return id;
     }
@@ -37,10 +33,10 @@ export class NoSuchWorksheetFeatureSetDefinitionException {
     }
 
     static fromThryftJsonObject(json: any): NoSuchWorksheetFeatureSetDefinitionException {
-        var id: string | undefined;
+        var id: WorksheetFeatureSetId | undefined;
         for (var fieldName in json) {
             if (fieldName == "id") {
-                id = json[fieldName];
+                id = WorksheetFeatureSetId.parse(json[fieldName]);
             }
         }
         if (id == null) {
@@ -51,7 +47,7 @@ export class NoSuchWorksheetFeatureSetDefinitionException {
 
     toJsonObject(): any {
         var json: {[index: string]: any} = {};
-        json["id"] = this.id;
+        json["id"] = this.id.toString();
         return json;
     }
 
@@ -61,9 +57,9 @@ export class NoSuchWorksheetFeatureSetDefinitionException {
 
     toThryftJsonObject(): any {
         var json: {[index: string]: any} = {};
-        json["id"] = this.id;
+        json["id"] = this.id.toString();
         return json;
     }
 
-    private _id: string;
+    private _id: WorksheetFeatureSetId;
 }

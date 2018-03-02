@@ -1,25 +1,21 @@
+import { WorksheetFeatureId } from "../../models/worksheet/worksheet_feature_id";
+
 export class NoSuchWorksheetFeatureDefinitionException {
-    constructor(kwds: {id: string}) {
+    constructor(kwds: {id: WorksheetFeatureId}) {
         this._id = NoSuchWorksheetFeatureDefinitionException._validateId(kwds.id);
     }
 
-    get id(): string {
+    get id(): WorksheetFeatureId {
         return this._id;
     }
 
-    set id(id: string) {
+    set id(id: WorksheetFeatureId) {
         this._id = NoSuchWorksheetFeatureDefinitionException._validateId(id);
     }
 
-    private static _validateId(id: string): string {
+    private static _validateId(id: WorksheetFeatureId): WorksheetFeatureId {
         if (id == null) {
             throw new RangeError('id is null or undefined');
-        }
-        if (id.trim().length == 0) {
-            throw new RangeError('id is blank');
-        }
-        if (id.length < 1) {
-            throw new RangeError("expected len(id) to be >= 1, was " + id.length);
         }
         return id;
     }
@@ -37,10 +33,10 @@ export class NoSuchWorksheetFeatureDefinitionException {
     }
 
     static fromThryftJsonObject(json: any): NoSuchWorksheetFeatureDefinitionException {
-        var id: string | undefined;
+        var id: WorksheetFeatureId | undefined;
         for (var fieldName in json) {
             if (fieldName == "id") {
-                id = json[fieldName];
+                id = WorksheetFeatureId.parse(json[fieldName]);
             }
         }
         if (id == null) {
@@ -51,7 +47,7 @@ export class NoSuchWorksheetFeatureDefinitionException {
 
     toJsonObject(): any {
         var json: {[index: string]: any} = {};
-        json["id"] = this.id;
+        json["id"] = this.id.toString();
         return json;
     }
 
@@ -61,9 +57,9 @@ export class NoSuchWorksheetFeatureDefinitionException {
 
     toThryftJsonObject(): any {
         var json: {[index: string]: any} = {};
-        json["id"] = this.id;
+        json["id"] = this.id.toString();
         return json;
     }
 
-    private _id: string;
+    private _id: WorksheetFeatureId;
 }

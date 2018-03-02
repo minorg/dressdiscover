@@ -1,4 +1,4 @@
 namespace * dressdiscover.api.models.worksheet
 
-// @validation {"blank": false, "minLength": 1}
+// @native waf.api.models._string_model_id._StringModelId
 typedef string WorksheetFeatureSetId

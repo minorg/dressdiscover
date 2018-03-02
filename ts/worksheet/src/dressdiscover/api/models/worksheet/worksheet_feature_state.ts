@@ -1,8 +1,9 @@
+import { WorksheetFeatureId } from "./worksheet_feature_id";
+import { WorksheetFeatureValueId } from "./worksheet_feature_value_id";
+
 export class WorksheetFeatureState {
-    constructor(kwds?: {selectedValueIds?: string[], text?: string}) {
-        if (!kwds) {
-            return;
-        }
+    constructor(kwds: {id: WorksheetFeatureId, selectedValueIds?: WorksheetFeatureValueId[], text?: string}) {
+        this._id = WorksheetFeatureState._validateId(kwds.id);
         if (kwds.selectedValueIds != null) {
             this._selectedValueIds = WorksheetFeatureState._validateSelectedValueIds(kwds.selectedValueIds);
         } else {
@@ -15,11 +16,19 @@ export class WorksheetFeatureState {
         }
     }
 
-    get selectedValueIds(): string[] | undefined {
+    get id(): WorksheetFeatureId {
+        return this._id;
+    }
+
+    set id(id: WorksheetFeatureId) {
+        this._id = WorksheetFeatureState._validateId(id);
+    }
+
+    get selectedValueIds(): WorksheetFeatureValueId[] | undefined {
         return this._selectedValueIds;
     }
 
-    set selectedValueIds(selectedValueIds: string[] | undefined) {
+    set selectedValueIds(selectedValueIds: WorksheetFeatureValueId[] | undefined) {
         this._selectedValueIds = WorksheetFeatureState._validateSelectedValueIds(selectedValueIds);
     }
 
@@ -31,7 +40,14 @@ export class WorksheetFeatureState {
         this._text = WorksheetFeatureState._validateText(text);
     }
 
-    private static _validateSelectedValueIds(selectedValueIds: string[] | undefined): string[] | undefined {
+    private static _validateId(id: WorksheetFeatureId): WorksheetFeatureId {
+        if (id == null) {
+            throw new RangeError('id is null or undefined');
+        }
+        return id;
+    }
+
+    private static _validateSelectedValueIds(selectedValueIds: WorksheetFeatureValueId[] | undefined): WorksheetFeatureValueId[] | undefined {
         if (selectedValueIds != null) {
             if (selectedValueIds.length < 1) {
                 throw new RangeError("expected len(selectedValueIds) to be >= 1, was " + selectedValueIds.length);
@@ -53,11 +69,15 @@ export class WorksheetFeatureState {
     }
 
     deepCopy(): WorksheetFeatureState {
-        return new WorksheetFeatureState({ selectedValueIds: (this.selectedValueIds ? (function(__value0: string[]) { let __copy0: string[] = []; for (var __i0 = 0; __i0 < __value0.length; __i0++) { __copy0.push(__value0[__i0]); } return __copy0; }(this.selectedValueIds)) : undefined), text: this.text });
+        return new WorksheetFeatureState({ id: this.id, selectedValueIds: (this.selectedValueIds ? (function(__value0: WorksheetFeatureValueId[]) { let __copy0: WorksheetFeatureValueId[] = []; for (var __i0 = 0; __i0 < __value0.length; __i0++) { __copy0.push(__value0[__i0]); } return __copy0; }(this.selectedValueIds)) : undefined), text: this.text });
     }
 
     equals(other: WorksheetFeatureState): boolean {
-        if (!((!((typeof (this.selectedValueIds)) === "undefined") && !((typeof (other.selectedValueIds)) === "undefined")) ? (function(left: string[], right: string[]): boolean { if (left.length != right.length) { return false; } for (var elementI = 0; elementI < left.length; elementI++) { if (!(left[elementI] === right[elementI])) { return false; } } return true; }((this.selectedValueIds as string[]), (other.selectedValueIds as string[]))) : (((typeof (this.selectedValueIds)) === "undefined") && ((typeof (other.selectedValueIds)) === "undefined")))) {
+        if (!(this.id === other.id)) {
+            return false;
+        }
+
+        if (!((!((typeof (this.selectedValueIds)) === "undefined") && !((typeof (other.selectedValueIds)) === "undefined")) ? (function(left: WorksheetFeatureValueId[], right: WorksheetFeatureValueId[]): boolean { if (left.length != right.length) { return false; } for (var elementI = 0; elementI < left.length; elementI++) { if (!(left[elementI] === right[elementI])) { return false; } } return true; }((this.selectedValueIds as WorksheetFeatureValueId[]), (other.selectedValueIds as WorksheetFeatureValueId[]))) : (((typeof (this.selectedValueIds)) === "undefined") && ((typeof (other.selectedValueIds)) === "undefined")))) {
             return false;
         }
 
@@ -69,23 +89,29 @@ export class WorksheetFeatureState {
     }
 
     static fromThryftJsonObject(json: any): WorksheetFeatureState {
-        var selectedValueIds: string[] | undefined;
+        var id: WorksheetFeatureId | undefined;
+        var selectedValueIds: WorksheetFeatureValueId[] | undefined;
         var text: string | undefined;
         for (var fieldName in json) {
-            if (fieldName == "selected_value_ids") {
-                selectedValueIds = function(json: any[]): string[] { var sequence: string[] = []; for (var i = 0; i < json.length; i++) { sequence.push(json[i]); } return sequence; }(json[fieldName]);
+            if (fieldName == "id") {
+                id = WorksheetFeatureId.parse(json[fieldName]);
+            } else if (fieldName == "selected_value_ids") {
+                selectedValueIds = function(json: any[]): WorksheetFeatureValueId[] { var sequence: WorksheetFeatureValueId[] = []; for (var i = 0; i < json.length; i++) { sequence.push(WorksheetFeatureValueId.parse(json[i])); } return sequence; }(json[fieldName]);
             } else if (fieldName == "text") {
                 text = json[fieldName];
             }
         }
-
-        return new WorksheetFeatureState({selectedValueIds: selectedValueIds, text: text});
+        if (id == null) {
+            throw new TypeError('id is required');
+        }
+        return new WorksheetFeatureState({id: id, selectedValueIds: selectedValueIds, text: text});
     }
 
     toJsonObject(): any {
         var json: {[index: string]: any} = {};
+        json["id"] = this.id.toString();
         if (this.selectedValueIds != null) {
-            json["selected_value_ids"] = function (__inArray: string[]): any[] { var __outArray: any[] = []; for (var __i = 0; __i < __inArray.length; __i++) { __outArray.push(__inArray[__i]); } return __outArray; }(this.selectedValueIds);
+            json["selected_value_ids"] = function (__inArray: WorksheetFeatureValueId[]): any[] { var __outArray: any[] = []; for (var __i = 0; __i < __inArray.length; __i++) { __outArray.push(__inArray[__i].toString()); } return __outArray; }(this.selectedValueIds);
         }
         if (this.text != null) {
             json["text"] = this.text;
@@ -99,8 +125,9 @@ export class WorksheetFeatureState {
 
     toThryftJsonObject(): any {
         var json: {[index: string]: any} = {};
+        json["id"] = this.id.toString();
         if (this.selectedValueIds != null) {
-            json["selected_value_ids"] = function (__inArray: string[]): any[] { var __outArray: any[] = []; for (var __i = 0; __i < __inArray.length; __i++) { __outArray.push(__inArray[__i]); } return __outArray; }(this.selectedValueIds);
+            json["selected_value_ids"] = function (__inArray: WorksheetFeatureValueId[]): any[] { var __outArray: any[] = []; for (var __i = 0; __i < __inArray.length; __i++) { __outArray.push(__inArray[__i].toString()); } return __outArray; }(this.selectedValueIds);
         }
         if (this.text != null) {
             json["text"] = this.text;
@@ -108,7 +135,9 @@ export class WorksheetFeatureState {
         return json;
     }
 
-    private _selectedValueIds?: string[];
+    private _id: WorksheetFeatureId;
+
+    private _selectedValueIds?: WorksheetFeatureValueId[];
 
     private _text?: string;
 }

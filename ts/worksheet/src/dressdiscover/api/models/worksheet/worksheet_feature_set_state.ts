@@ -1,38 +1,52 @@
+import { WorksheetFeatureSetId } from "./worksheet_feature_set_id";
 import { WorksheetFeatureState } from "./worksheet_feature_state";
 
 export class WorksheetFeatureSetState {
-    constructor(kwds?: {features?: {[index: string]: WorksheetFeatureState}}) {
-        if (!kwds) {
-            return;
-        }
-        if (kwds.features != null) {
-            this._features = WorksheetFeatureSetState._validateFeatures(kwds.features);
-        } else {
-            this._features = undefined;
-        }
+    constructor(kwds: {features: WorksheetFeatureState, id: WorksheetFeatureSetId}) {
+        this._features = WorksheetFeatureSetState._validateFeatures(kwds.features);
+        this._id = WorksheetFeatureSetState._validateId(kwds.id);
     }
 
-    get features(): {[index: string]: WorksheetFeatureState} | undefined {
+    get features(): WorksheetFeatureState {
         return this._features;
     }
 
-    set features(features: {[index: string]: WorksheetFeatureState} | undefined) {
+    set features(features: WorksheetFeatureState) {
         this._features = WorksheetFeatureSetState._validateFeatures(features);
     }
 
-    private static _validateFeatures(features: {[index: string]: WorksheetFeatureState} | undefined): {[index: string]: WorksheetFeatureState} | undefined {
-        if (features != null) {
+    get id(): WorksheetFeatureSetId {
+        return this._id;
+    }
 
+    set id(id: WorksheetFeatureSetId) {
+        this._id = WorksheetFeatureSetState._validateId(id);
+    }
+
+    private static _validateFeatures(features: WorksheetFeatureState): WorksheetFeatureState {
+        if (features == null) {
+            throw new RangeError('features is null or undefined');
         }
         return features;
     }
 
+    private static _validateId(id: WorksheetFeatureSetId): WorksheetFeatureSetId {
+        if (id == null) {
+            throw new RangeError('id is null or undefined');
+        }
+        return id;
+    }
+
     deepCopy(): WorksheetFeatureSetState {
-        return new WorksheetFeatureSetState({ features: (this.features ? (function(__value0: {[index: string]: WorksheetFeatureState}) { let __copy0: {[index: string]: WorksheetFeatureState} = {}; for (var __key0 in __value0) { __copy0[__key0] = __value0[__key0].deepCopy(); } return __copy0; }(this.features)) : undefined) });
+        return new WorksheetFeatureSetState({ features: this.features.deepCopy(), id: this.id });
     }
 
     equals(other: WorksheetFeatureSetState): boolean {
-        if (!((!((typeof (this.features)) === "undefined") && !((typeof (other.features)) === "undefined")) ? (function(left: {[index: string]: WorksheetFeatureState}, right: {[index: string]: WorksheetFeatureState}): boolean { for (var leftKey in left) { var keyFound = false; for (var rightKey in right) { if (leftKey === rightKey) { if (!(left[leftKey].equals(right[rightKey]))) { return false; } keyFound = true; break; } } if (!keyFound) { return false; } } return true; }((this.features as {[index: string]: WorksheetFeatureState}), (other.features as {[index: string]: WorksheetFeatureState}))) : (((typeof (this.features)) === "undefined") && ((typeof (other.features)) === "undefined")))) {
+        if (!(this.features.equals(other.features))) {
+            return false;
+        }
+
+        if (!(this.id === other.id)) {
             return false;
         }
 
@@ -40,21 +54,28 @@ export class WorksheetFeatureSetState {
     }
 
     static fromThryftJsonObject(json: any): WorksheetFeatureSetState {
-        var features: {[index: string]: WorksheetFeatureState} | undefined;
+        var features: WorksheetFeatureState | undefined;
+        var id: WorksheetFeatureSetId | undefined;
         for (var fieldName in json) {
             if (fieldName == "features") {
-                features = function (json: any): {[index: string]: WorksheetFeatureState} { var map: any = {}; for (var key in json) { map[key] = WorksheetFeatureState.fromThryftJsonObject(json[key]); } return map; }(json[fieldName]);
+                features = WorksheetFeatureState.fromThryftJsonObject(json[fieldName]);
+            } else if (fieldName == "id") {
+                id = WorksheetFeatureSetId.parse(json[fieldName]);
             }
         }
-
-        return new WorksheetFeatureSetState({features: features});
+        if (features == null) {
+            throw new TypeError('features is required');
+        }
+        if (id == null) {
+            throw new TypeError('id is required');
+        }
+        return new WorksheetFeatureSetState({features: features, id: id});
     }
 
     toJsonObject(): any {
         var json: {[index: string]: any} = {};
-        if (this.features != null) {
-            json["features"] = function (value: {[index: string]: WorksheetFeatureState}): {[index: string]: WorksheetFeatureState} { var outObject: {[index: string]: WorksheetFeatureState} = {}; for (var key in value) { outObject[key] = value[key].toJsonObject(); } return outObject; }(this.features);
-        }
+        json["features"] = this.features.toJsonObject();
+        json["id"] = this.id.toString();
         return json;
     }
 
@@ -64,11 +85,12 @@ export class WorksheetFeatureSetState {
 
     toThryftJsonObject(): any {
         var json: {[index: string]: any} = {};
-        if (this.features != null) {
-            json["features"] = function (value: {[index: string]: WorksheetFeatureState}): {[index: string]: WorksheetFeatureState} { var outObject: {[index: string]: WorksheetFeatureState} = {}; for (var key in value) { outObject[key] = value[key].toThryftJsonObject(); } return outObject; }(this.features);
-        }
+        json["features"] = this.features.toThryftJsonObject();
+        json["id"] = this.id.toString();
         return json;
     }
 
-    private _features?: {[index: string]: WorksheetFeatureState};
+    private _features: WorksheetFeatureState;
+
+    private _id: WorksheetFeatureSetId;
 }
