@@ -1,11 +1,11 @@
 import { WorksheetFeatureSetDefinition } from 'dressdiscover/api/models/worksheet/worksheet_feature_set_definition';
 import { WorksheetFeatureSetState } from 'dressdiscover/api/models/worksheet/worksheet_feature_set_state';
-import { StateMark } from 'dressdiscover/gui/worksheet/models/state_mark';
+import { WorksheetStateMark } from 'dressdiscover/api/models/worksheet/worksheet_state_mark';
 import { AbstractStateViewModel } from 'dressdiscover/gui/worksheet/view_models/state/abstract_state_view_model';
 
 export class FeatureSetStateViewModel extends AbstractStateViewModel {
     constructor(kwds: {
-        currentStateMark: StateMark,
+        currentStateMark: WorksheetStateMark,
         featureSetDefinition: WorksheetFeatureSetDefinition,
         featureSetState: WorksheetFeatureSetState
     }) {

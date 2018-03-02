@@ -5,7 +5,7 @@ import { ModalView } from 'dressdiscover/gui/worksheet/views/modal/modal_view';
 export class ErrorModalView extends ModalView<ModalViewModel> {
     public constructor(kwds: { message: string }) {
         super({
-            contentHtmlFileName: "error_modal_view.html",
+            contentHtmlFileName: "modal/error_modal_view.html",
             viewModel: new ModalViewModel()
         });
         this.message = kwds.message;

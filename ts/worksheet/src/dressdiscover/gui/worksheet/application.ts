@@ -8,7 +8,11 @@ import { Services } from 'dressdiscover/gui/worksheet/services/services';
 import { Session } from 'dressdiscover/gui/worksheet/session';
 
 export class Application {
-    private constructor(public readonly worksheetDefinition: WorksheetDefinitionWrapper) {
+    private constructor(
+        public readonly errorHandler: ErrorHandler,
+        public readonly services: Services,
+        public readonly worksheetDefinition: WorksheetDefinitionWrapper
+    ) {
     }
 
     static get instance() {
@@ -23,18 +27,18 @@ export class Application {
             throw new Error("instance already initialized");
         }
 
-        Application.instance.services.worksheetDefinitionQueryService.getWorksheetDefinitionAsync({
-            error: Application.instance.errorHandler.handleAsyncError,
+        const errorHandler = new ErrorHandler();
+        const services = new Services();
+        services.worksheetDefinitionQueryService.getWorksheetDefinitionAsync({
+            error: errorHandler.handleAsyncError,
             success: (definition) => {
-                Application._instance = new Application(new WorksheetDefinitionWrapper(definition));
+                Application._instance = new Application(errorHandler, services, new WorksheetDefinitionWrapper(definition));
                 Application.instance.router.run();
             }
         });
     }
 
-    readonly errorHandler = new ErrorHandler();
     readonly router = new Router();
-    readonly services = new Services();
     readonly session = new Session();
     private static _instance?: Application;
 }

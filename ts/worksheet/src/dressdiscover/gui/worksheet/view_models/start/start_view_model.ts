@@ -1,7 +1,7 @@
 import { WorksheetState } from 'dressdiscover/api/models/worksheet/worksheet_state';
 import { WorksheetStateId } from 'dressdiscover/api/models/worksheet/worksheet_state_id';
+import { WorksheetStateMark } from 'dressdiscover/api/models/worksheet/worksheet_state_mark';
 import { Application } from 'dressdiscover/gui/worksheet/application';
-import { StateMark } from 'dressdiscover/gui/worksheet/models/state_mark';
 import { TopLevelViewModel } from 'dressdiscover/gui/worksheet/view_models/top_level/top_level_view_model';
 import * as ko from 'knockout';
 import * as _ from 'underscore';
@@ -48,7 +48,7 @@ export class StartViewModel extends TopLevelViewModel {
 
     private _goToFirstState(worksheetState: WorksheetState): void {
         Application.instance.session.worksheetState(worksheetState);
-        Application.instance.router.goToState(new StateMark({
+        Application.instance.router.goToState(new WorksheetStateMark({
             worksheetStateId: worksheetState.id
         }));
     }

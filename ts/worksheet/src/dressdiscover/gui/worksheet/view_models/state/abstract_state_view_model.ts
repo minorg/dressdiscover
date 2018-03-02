@@ -1,11 +1,11 @@
 import { WorksheetState } from 'dressdiscover/api/models/worksheet/worksheet_state';
+import { WorksheetStateMark } from 'dressdiscover/api/models/worksheet/worksheet_state_mark';
 import { Application } from 'dressdiscover/gui/worksheet/application';
-import { StateMark } from 'dressdiscover/gui/worksheet/models/state_mark';
 import { WorksheetDefinitionWrapper } from 'dressdiscover/gui/worksheet/models/worksheet_definition_wrapper';
 import { TopLevelViewModel } from 'dressdiscover/gui/worksheet/view_models/top_level/top_level_view_model';
 
 export abstract class AbstractStateViewModel extends TopLevelViewModel {
-    constructor(kwds: { currentStateMark: StateMark }) {
+    constructor(kwds: { currentStateMark: WorksheetStateMark }) {
         super();
         this._currentStateMark = kwds.currentStateMark;
     }
@@ -26,5 +26,5 @@ export abstract class AbstractStateViewModel extends TopLevelViewModel {
         return result
     }
 
-    protected readonly _currentStateMark: StateMark;
+    protected readonly _currentStateMark: WorksheetStateMark;
 }

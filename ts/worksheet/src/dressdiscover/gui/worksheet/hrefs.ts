@@ -1,4 +1,4 @@
-import { StateMark } from 'dressdiscover/gui/worksheet/models/state_mark';
+import { WorksheetStateMark } from 'dressdiscover/api/models/worksheet/worksheet_state_mark';
 import * as queryString from 'query-string';
 
 export class Hrefs {
@@ -18,7 +18,7 @@ export class Hrefs {
         return '/';
     }
 
-    state(mark: StateMark) {
+    state(mark: WorksheetStateMark) {
         let href = "/#/state/" + encodeURIComponent(mark.worksheetStateId.toString()) + "/";
         if (mark.featureSetId) {
             href += encodeURIComponent(mark.featureSetId.toString()) + "/";

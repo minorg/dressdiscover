@@ -1,7 +1,7 @@
 import { WorksheetFeatureSetId } from 'dressdiscover/api/models/worksheet/worksheet_feature_set_id';
+import { WorksheetStateMark } from 'dressdiscover/api/models/worksheet/worksheet_state_mark';
 import { Application } from 'dressdiscover/gui/worksheet/application';
 import { Hrefs } from 'dressdiscover/gui/worksheet/hrefs';
-import { StateMark } from 'dressdiscover/gui/worksheet/models/state_mark';
 import { CreditsView } from 'dressdiscover/gui/worksheet/views/credits/credits_view';
 import { PrivacyView } from 'dressdiscover/gui/worksheet/views/privacy/privacy_view';
 import { StartView } from 'dressdiscover/gui/worksheet/views/start/start_view';
@@ -56,7 +56,7 @@ export class Router {
         });
     }
 
-    goToNextState(currentStateMark: StateMark) {
+    goToNextState(currentStateMark: WorksheetStateMark) {
         console.info("Current state mark: " + currentStateMark.toString());
         try {
             const worksheetDefinition = Application.instance.worksheetDefinition;
@@ -84,7 +84,7 @@ export class Router {
                 }
                 // Currently starting worksheet
                 // Go to first feature set
-                this.goToState(new StateMark({ featureSetId: featureSetIds[0], worksheetStateId: worksheetState.id }))
+                this.goToState(new WorksheetStateMark({ featureSetId: featureSetIds[0], worksheetStateId: worksheetState.id }))
                 return;
             }
 
@@ -97,14 +97,14 @@ export class Router {
                     const nextFeatureSetId = worksheetDefinition.getNextFeatureSetId({ currentFeatureSetId: currentStateMark.featureSetId, featureSetIds: featureSetIds });
                     if (nextFeatureSetId) {
                         // Go to next feature set
-                        this.goToState(new StateMark({
+                        this.goToState(new WorksheetStateMark({
                             featureSetId: nextFeatureSetId,
                             worksheetStateId: worksheetState.id
                         }));
                         return;
                     } else {
                         // Go to worksheet review
-                        this.goToState(new StateMark({
+                        this.goToState(new WorksheetStateMark({
                             review: true,
                             worksheetStateId: worksheetState.id
                         }));
@@ -113,7 +113,7 @@ export class Router {
                 } else {
                     // Currently starting feature set
                     // Go to first feature of feature set
-                    this.goToState(new StateMark({
+                    this.goToState(new WorksheetStateMark({
                         featureId: currentFeatureSetDefinition.featureIds[0],
                         featureSetId: currentStateMark.featureSetId,
                         worksheetStateId: worksheetState.id
@@ -126,7 +126,7 @@ export class Router {
             const nextFeatureId = worksheetDefinition.getNextFeatureId({ currentFeatureId: currentStateMark.featureId, currentFeatureSetDefinition: currentFeatureSetDefinition });
             if (nextFeatureId) {
                 // Go to next feature
-                this.goToState(new StateMark({
+                this.goToState(new WorksheetStateMark({
                     featureId: nextFeatureId,
                     featureSetId: currentStateMark.featureSetId,
                     worksheetStateId: worksheetState.id
@@ -134,7 +134,7 @@ export class Router {
                 return;
             } else {
                 // Go to feature set review
-                this.goToState(new StateMark({
+                this.goToState(new WorksheetStateMark({
                     featureSetId: currentStateMark.featureSetId,
                     review: true,
                     worksheetStateId: worksheetState.id
@@ -145,7 +145,7 @@ export class Router {
         }
     }
 
-    goToState(stateMark: StateMark) {
+    goToState(stateMark: WorksheetStateMark) {
         console.info("New state mark: " + stateMark.toString());
         this.setLocation(this._hrefs.state(stateMark));
     }
