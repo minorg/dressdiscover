@@ -47,7 +47,7 @@ export class StartViewModel extends TopLevelViewModel {
 
     private _goToFirstState(worksheetState: WorksheetState): void {
         Application.instance.session.worksheetState(worksheetState);
-        Application.instance.router.goToState(Application.instance.worksheetStateMachine.getFirstStateMark(worksheetState.id));
+        Application.instance.router.goToState(Application.instance.session.worksheetStateMachine.firstStateMark);
     }
 
     onKeypressNewStateId(d, e) {

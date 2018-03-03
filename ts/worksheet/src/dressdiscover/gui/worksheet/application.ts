@@ -3,7 +3,6 @@ import 'bootstrap';
 
 import { ErrorHandler } from 'dressdiscover/gui/worksheet/error_handler';
 import { WorksheetDefinitionWrapper } from 'dressdiscover/gui/worksheet/models/worksheet_definition_wrapper';
-import { WorksheetStateMachine } from 'dressdiscover/gui/worksheet/models/worksheet_state_machine';
 import { Router } from 'dressdiscover/gui/worksheet/router';
 import { Services } from 'dressdiscover/gui/worksheet/services/services';
 import { Session } from 'dressdiscover/gui/worksheet/session';
@@ -41,7 +40,6 @@ export class Application {
 
     readonly router = new Router();
     readonly session = new Session();
-    readonly worksheetStateMachine = new WorksheetStateMachine;
     private static _instance?: Application;
 }
 

@@ -88,7 +88,7 @@ export class Router {
     goToNextState(currentStateMark: WorksheetStateMark) {
         try {
             console.info("Current state mark: " + currentStateMark.toString());
-            const nextStateMark = Application.instance.worksheetStateMachine.getNextStateMark(currentStateMark);
+            const nextStateMark = Application.instance.session.worksheetStateMachine.nextStateMark(currentStateMark);
             this.goToState(nextStateMark);
         } catch (e) {
             if (e instanceof NoSuchWorksheetFeatureDefinitionException ||

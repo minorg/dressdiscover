@@ -1,91 +1,99 @@
-import { WorksheetFeatureSetId } from 'dressdiscover/api/models/worksheet/worksheet_feature_set_id';
-import { WorksheetStateId } from 'dressdiscover/api/models/worksheet/worksheet_state_id';
+import { WorksheetState } from 'dressdiscover/api/models/worksheet/worksheet_state';
 import { WorksheetStateMark } from 'dressdiscover/api/models/worksheet/worksheet_state_mark';
 import { Application } from 'dressdiscover/gui/worksheet/application';
 
 export class WorksheetStateMachine {
-    getFirstStateMark(worksheetStateId: WorksheetStateId): WorksheetStateMark {
-        return new WorksheetStateMark({
-            worksheetStateId: worksheetStateId
+    constructor(worksheetState: KnockoutObservable<WorksheetState>) {
+        if (worksheetState()) {
+            this._calculateStateMarks(worksheetState());
+        }
+
+        const self = this;
+        worksheetState.subscribe((newWorksheetState) => {
+            if (newWorksheetState) {
+                self._calculateStateMarks(newWorksheetState);
+            } else {
+                self._stateMarks = [];
+            }
         });
     }
 
-    getNextStateMark(currentStateMark: WorksheetStateMark): WorksheetStateMark {
+    private _calculateStateMarks(worksheetState: WorksheetState) {
+        this._stateMarks = [];
+
+        // First state, always the worksheet start
+        const worksheetStateId = worksheetState.id;
+        this._stateMarks.push(new WorksheetStateMark({ worksheetStateId: worksheetStateId }));
+        if (worksheetState.featureSets.length == 0) {
+            return;
+        }
+
         const worksheetDefinition = Application.instance.worksheetDefinition;
-        const worksheetState = Application.instance.session.worksheetState();
-        if (!worksheetState) {
-            throw new EvalError();
-        } else if (!worksheetState.id.equals(currentStateMark.worksheetStateId)) {
-            throw new EvalError();
-        }
-
-        const featureSetIds: WorksheetFeatureSetId[] = [];
         for (let featureSetState of worksheetState.featureSets) {
-            featureSetIds.push(featureSetState.id);
+            const featureSetId = featureSetState.id;
+            const featureSetDefinition = worksheetDefinition.getFeatureSetDefinition(featureSetId);
+
+            // Feature set start
+            this._stateMarks.push(new WorksheetStateMark({
+                featureSetId: featureSetId,
+                worksheetStateId: worksheetStateId
+            }));
+
+            for (let featureId of featureSetDefinition.featureIds) {
+                // Feature start is the same as review
+                this._stateMarks.push(new WorksheetStateMark({
+                    featureId: featureId,
+                    featureSetId: featureSetId,
+                    worksheetStateId: worksheetStateId
+                }));
+            }
+
+            // Feature set review
+            this._stateMarks.push(new WorksheetStateMark({
+                featureSetId: featureSetId,
+                review: true,
+                worksheetStateId: worksheetStateId
+            }));
         }
-        if (featureSetIds.length == 0) {
-            // Should have already selected featurce sets on the worksheet start.
+
+        // Worksheet review
+        this._stateMarks.push(new WorksheetStateMark({
+            review: true,
+            worksheetStateId: worksheetStateId
+        }));
+    }
+
+    get firstStateMark(): WorksheetStateMark {
+        if (this._stateMarks.length == 0) {
             throw new EvalError();
         }
-
-        if (!currentStateMark.featureSetId) {
-            // Currently on a worksheet start or review.
-            if (currentStateMark.review) {
-                // Currently reviewing worksheet
-                throw new EvalError();
-            }
-            // Currently starting worksheet
-            // Go to first feature set
-            return new WorksheetStateMark({ featureSetId: featureSetIds[0], worksheetStateId: worksheetState.id });
-        }
-
-        const currentFeatureSetDefinition = worksheetDefinition.getFeatureSetDefinition(currentStateMark.featureSetId);
-
-        if (!currentStateMark.featureId) {
-            // Currently on a feature set start or review.
-            if (currentStateMark.review) {
-                // Currently reviewing feature set
-                const nextFeatureSetId = worksheetDefinition.getNextFeatureSetId({ currentFeatureSetId: currentStateMark.featureSetId, featureSetIds: featureSetIds });
-                if (nextFeatureSetId) {
-                    // Go to next feature set
-                    return new WorksheetStateMark({
-                        featureSetId: nextFeatureSetId,
-                        worksheetStateId: worksheetState.id
-                    });
-                } else {
-                    // Go to worksheet review
-                    return new WorksheetStateMark({
-                        review: true,
-                        worksheetStateId: worksheetState.id
-                    });
-                }
-            } else {
-                // Currently starting feature set
-                // Go to first feature of feature set
-                return new WorksheetStateMark({
-                    featureId: currentFeatureSetDefinition.featureIds[0],
-                    featureSetId: currentStateMark.featureSetId,
-                    worksheetStateId: worksheetState.id
-                });
-            }
-        }
-
-        // Currently on a feature
-        const nextFeatureId = worksheetDefinition.getNextFeatureId({ currentFeatureId: currentStateMark.featureId, currentFeatureSetDefinition: currentFeatureSetDefinition });
-        if (nextFeatureId) {
-            // Go to next feature
-            return new WorksheetStateMark({
-                featureId: nextFeatureId,
-                featureSetId: currentStateMark.featureSetId,
-                worksheetStateId: worksheetState.id
-            });
-        } else {
-            // Go to feature set review
-            return new WorksheetStateMark({
-                featureSetId: currentStateMark.featureSetId,
-                review: true,
-                worksheetStateId: worksheetState.id
-            });
-        }
+        return this._stateMarks[0];
     }
+
+    indexOfStateMark(stateMark: WorksheetStateMark): number {
+        if (this._stateMarks.length == 0) {
+            throw new EvalError();
+        }
+        for (let stateMarkI = 0; stateMarkI < this._stateMarks.length; stateMarkI++) {
+            const stateMark = this._stateMarks[stateMarkI];
+            if (stateMark.equals(stateMark)) {
+                return stateMarkI;
+            }
+        }
+        throw new EvalError("state not found in state machine");
+    }
+
+    get length() {
+        return this._stateMarks.length;
+    }
+
+    nextStateMark(currentStateMark: WorksheetStateMark): WorksheetStateMark {
+        const stateMarkI = this.indexOfStateMark(currentStateMark);
+        if (stateMarkI + 1 >= this._stateMarks.length) {
+            throw new EvalError();
+        }
+        return this._stateMarks[stateMarkI + 1];
+    }
+
+    private _stateMarks: WorksheetStateMark[] = [];
 }

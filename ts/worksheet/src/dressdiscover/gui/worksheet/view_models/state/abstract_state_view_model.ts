@@ -7,21 +7,25 @@ import { TopLevelViewModel } from 'dressdiscover/gui/worksheet/view_models/top_l
 export abstract class AbstractStateViewModel extends TopLevelViewModel {
     constructor(kwds: { currentStateMark: WorksheetStateMark }) {
         super();
-        this._currentStateMark = kwds.currentStateMark;
+        this.currentStateMark = kwds.currentStateMark;
+    }
+
+    get nextButtonHref() {
+        return this.hrefs.state(Application.instance.session.worksheetStateMachine.nextStateMark(this.currentStateMark));
     }
 
     get review() {
-        return this._currentStateMark.review;
+        return this.currentStateMark.review;
     }
 
     get titleTagText(): string {
         let result = "Worksheet '" + this.worksheetState.id + "'";
-        if (this._currentStateMark.featureSetId) {
-            const featureSetDefinition = this.worksheetDefinition.getFeatureSetDefinition(this._currentStateMark.featureSetId);
+        if (this.currentStateMark.featureSetId) {
+            const featureSetDefinition = this.worksheetDefinition.getFeatureSetDefinition(this.currentStateMark.featureSetId);
             result += ", Feature set '" + (featureSetDefinition.displayName ? featureSetDefinition.displayName : featureSetDefinition.id) + "'";
 
-            if (this._currentStateMark.featureId) {
-                const featureDefinition = this.worksheetDefinition.getFeatureDefinition(this._currentStateMark.featureId);
+            if (this.currentStateMark.featureId) {
+                const featureDefinition = this.worksheetDefinition.getFeatureDefinition(this.currentStateMark.featureId);
                 result += ", Feature '" + (featureDefinition.displayName ? featureDefinition.displayName : featureDefinition.id) + "'";
             }
         }
@@ -40,5 +44,5 @@ export abstract class AbstractStateViewModel extends TopLevelViewModel {
         return result
     }
 
-    protected readonly _currentStateMark: WorksheetStateMark;
+    readonly currentStateMark: WorksheetStateMark;
 }
