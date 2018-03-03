@@ -8,6 +8,4 @@ export class FeatureStateView extends AbstractStateView<FeatureStateViewModel> {
             viewModel: viewModel
         });
     }
-
-    nextButtonVisible = ko.observable<boolean>(true);
 }

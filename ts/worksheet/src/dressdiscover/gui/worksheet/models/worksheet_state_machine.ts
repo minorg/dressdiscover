@@ -89,10 +89,18 @@ export class WorksheetStateMachine {
 
     nextStateMark(currentStateMark: WorksheetStateMark): WorksheetStateMark {
         const stateMarkI = this.indexOfStateMark(currentStateMark);
-        if (stateMarkI + 1 >= this._stateMarks.length) {
+        if (stateMarkI + 1 == this._stateMarks.length) {
             throw new EvalError();
         }
         return this._stateMarks[stateMarkI + 1];
+    }
+
+    previousStateMark(currentStateMark: WorksheetStateMark): WorksheetStateMark {
+        const stateMarkI = this.indexOfStateMark(currentStateMark);
+        if (stateMarkI == 0) {
+            throw new EvalError();
+        }
+        return this._stateMarks[stateMarkI - 1];
     }
 
     private _stateMarks: WorksheetStateMark[] = [];

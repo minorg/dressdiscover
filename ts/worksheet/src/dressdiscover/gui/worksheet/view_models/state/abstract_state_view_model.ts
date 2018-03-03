@@ -10,9 +10,11 @@ export abstract class AbstractStateViewModel extends TopLevelViewModel {
         this.currentStateMark = kwds.currentStateMark;
     }
 
-    get nextButtonHref() {
-        return this.hrefs.state(Application.instance.session.worksheetStateMachine.nextStateMark(this.currentStateMark));
+    onClickNextButton() {
+        Application.instance.router.goToNextState(this.currentStateMark);
     }
+
+    abstract nextButtonVisible: KnockoutObservable<boolean>;
 
     get review() {
         return this.currentStateMark.review;

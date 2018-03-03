@@ -1,7 +1,5 @@
-import { Application } from 'dressdiscover/gui/worksheet/application';
 import { AbstractStateViewModel } from 'dressdiscover/gui/worksheet/view_models/state/abstract_state_view_model';
 import { TopLevelView } from 'dressdiscover/gui/worksheet/views/top_level/top_level_view';
-import _ = require('lodash');
 
 export abstract class AbstractStateView<ViewModelT extends AbstractStateViewModel> extends TopLevelView<ViewModelT> {
     constructor(kwds: {
@@ -15,13 +13,5 @@ export abstract class AbstractStateView<ViewModelT extends AbstractStateViewMode
             title: kwds.viewModel.titleTagText,
             viewModel: kwds.viewModel
         });
-
-        _.bindAll(this, "onClickNextButton");
     }
-
-    onClickNextButton() {
-        Application.instance.router.goToNextState(this.viewModel.currentStateMark);
-    }
-
-    abstract nextButtonVisible: KnockoutObservable<boolean>;
 }

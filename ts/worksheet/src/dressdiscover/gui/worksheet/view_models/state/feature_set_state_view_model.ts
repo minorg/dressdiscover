@@ -2,6 +2,7 @@ import { WorksheetFeatureSetDefinition } from 'dressdiscover/api/models/workshee
 import { WorksheetFeatureSetState } from 'dressdiscover/api/models/worksheet/worksheet_feature_set_state';
 import { WorksheetStateMark } from 'dressdiscover/api/models/worksheet/worksheet_state_mark';
 import { AbstractStateViewModel } from 'dressdiscover/gui/worksheet/view_models/state/abstract_state_view_model';
+import * as ko from 'knockout';
 
 export class FeatureSetStateViewModel extends AbstractStateViewModel {
     constructor(kwds: {
@@ -16,4 +17,5 @@ export class FeatureSetStateViewModel extends AbstractStateViewModel {
 
     readonly featureSetDefinition: WorksheetFeatureSetDefinition;
     readonly featureSetState: WorksheetFeatureSetState;
+    nextButtonVisible = ko.observable<boolean>(true);
 }
