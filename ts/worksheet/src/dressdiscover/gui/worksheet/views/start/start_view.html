@@ -1,48 +1,57 @@
 <div class="container-fluid top-level-view-content" id="privacy-view">
     <div class="row">
-        <div class="col-8 offset-2">
-            <div class="card">
-                <div class="card-header">
-                    <h3 class="card-title mb-0 text-center">Start a new worksheet</h3>
-                </div>
-                <div class="container-fluid card-body">
-                    <div class="row">
-                        <div class="col-6 offset-2">
-                            <input autofocus class="form-control" data-bind="event: {keypress: onKeypressNewStateId}" placeholder="Object id or accession number (optional)"
-                                type="text" />
-                        </div>
-                        <div>
-                            <button class="btn btn-primary" data-bind="click: onClickStartButton" type="submit">Start</button>
+        <div class="col-4 text-center offset-1">
+            <img class="img-fluid" src="img/start.jpg" />
+        </div>
+        <div class="col-6 text-left">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-8 offset-2">
+                        <div class="card">
+                            <div class="card-header">
+                                <h3 class="card-title mb-0 text-center">Start a new worksheet</h3>
+                            </div>
+                            <div class="container-fluid card-body">
+                                <div class="row">
+                                    <div class="col-10">
+                                        <input autofocus class="form-control" data-bind="event: {keypress: onKeypressNewStateId}" placeholder="Object id or accession number (optional)"
+                                            type="text" />
+                                    </div>
+                                    <div>
+                                        <button class="btn btn-primary" data-bind="click: onClickStartButton" type="submit">Start</button>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-        </div>
-    </div>
-    <!-- ko if: existingStateIds.length > 1 -->
-    <div class="row mb-5">
-    </div>
-    <div class="row">
-        <div class="col-8 offset-2">
-            <div class="card">
-                <div class="card-header">
-                    <h3 class="card-title mb-0 text-center">Open an existing worksheet</h3>
+                <!-- ko if: existingStateIds.length > 1 -->
+                <div class="row mb-5">
                 </div>
-                <div class="card-body">
-                    <div class="container-fluid">
-                        <div class="row">
-                            <div class="col-6 offset-2">
-                                <select class="form-control" data-bind="options: existingStateIds, optionsCaption: 'Choose an existing object', optionsText: function(option) { return option.toString(); }, value: selectedExistingStateId"></select>
+                <div class="row">
+                    <div class="col-8 offset-2">
+                        <div class="card">
+                            <div class="card-header">
+                                <h3 class="card-title mb-0 text-center">Open an existing worksheet</h3>
                             </div>
-                            <div>
-                                <button class="btn btn-primary" data-bind="click: onClickOpenButton, visible: openButtonVisible" type="submit">Open</button>
+                            <div class="card-body">
+                                <div class="container-fluid">
+                                    <div class="row">
+                                        <div class="col-10">
+                                            <select class="form-control" data-bind="options: existingStateIds, optionsCaption: 'Choose an existing object', optionsText: function(option) { return option.toString(); }, value: selectedExistingStateId"></select>
+                                        </div>
+                                        <div>
+                                            <button class="btn btn-primary" data-bind="click: onClickOpenButton, visible: openButtonVisible" type="submit">Open</button>
+                                        </div>
+                                        </form>
+                                    </div>
+                                </div>
                             </div>
-                            </form>
                         </div>
                     </div>
                 </div>
+                <!-- /ko -->
             </div>
         </div>
     </div>
-    <!-- /ko -->
 </div>

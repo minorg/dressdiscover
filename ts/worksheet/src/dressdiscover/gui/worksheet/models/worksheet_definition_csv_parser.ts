@@ -133,7 +133,7 @@ export class WorksheetDefinitionCsvParser {
                     description: this._parseDescription(row, rowI),
                     displayName: row["display_name"],
                     id: WorksheetFeatureId.parse(row["id"]),
-                    valueIds: _.map(row["value"], (id) => WorksheetFeatureValueId.parse(id))
+                    valueIds: _.map(row["value"], (id: string) => WorksheetFeatureValueId.parse(id))
                 }));
             } catch (e) {
                 if (e instanceof RangeError) {
@@ -158,7 +158,7 @@ export class WorksheetDefinitionCsvParser {
             try {
                 featureSets.push(new WorksheetFeatureSetDefinition({
                     displayName: row["display_name"],
-                    featureIds: _.map(row["feature"], (id) => WorksheetFeatureId.parse(id)),
+                    featureIds: _.map(row["feature"], (id: string) => WorksheetFeatureId.parse(id)),
                     id: WorksheetFeatureSetId.parse(row["id"])
                 }));
             } catch (e) {

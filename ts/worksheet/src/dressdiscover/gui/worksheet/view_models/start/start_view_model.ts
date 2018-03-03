@@ -17,7 +17,7 @@ export class StartViewModel extends TopLevelViewModel {
         this.openButtonVisible = ko.pureComputed<boolean>({
             owner: this,
             read: () => {
-                return !!this.selectedExistingStateId() && this.selectedExistingStateId().length > 0;
+                return !!this.selectedExistingStateId();
             }
         });
     }
@@ -25,7 +25,7 @@ export class StartViewModel extends TopLevelViewModel {
     onClickOpenButton() {
         Application.instance.services.worksheetStateQueryService.getWorksheetStateAsync({
             error: Application.instance.errorHandler.handleAsyncError,
-            id: WorksheetStateId.parse(this.selectedExistingStateId()),
+            id: this.selectedExistingStateId(),
             success: this._goToFirstState
         });
     }
@@ -64,5 +64,5 @@ export class StartViewModel extends TopLevelViewModel {
     readonly existingStateIds: WorksheetStateId[];
     readonly newStateId = ko.observable<string>();
     readonly openButtonVisible: KnockoutComputed<boolean>;
-    readonly selectedExistingStateId = ko.observable<string>();
+    readonly selectedExistingStateId = ko.observable<WorksheetStateId>();
 }
