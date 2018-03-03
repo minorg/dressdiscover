@@ -18,4 +18,5 @@ export class FeatureSetStateViewModel extends AbstractStateViewModel {
     readonly featureSetDefinition: WorksheetFeatureSetDefinition;
     readonly featureSetState: WorksheetFeatureSetState;
     nextButtonVisible = ko.observable<boolean>(true);
+    previousButtonVisible = ko.observable<boolean>(true);
 }

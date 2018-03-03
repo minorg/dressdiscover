@@ -7,12 +7,19 @@ export class WorksheetStateViewModel extends AbstractStateViewModel {
     constructor(kwds: { currentStateMark: WorksheetStateMark }) {
         super(kwds);
 
-        this.nextButtonVisible = ko.computed<boolean>({
-            owner: this,
-            read: () => !!this.featureSetIdSelected()
-        });
+        if (this.currentStateMark.review) {
+            this.nextButtonVisible = ko.observable<boolean>(false);
+            this.previousButtonVisible = ko.observable<boolean>(true);
+        } else {
+            this.nextButtonVisible = ko.computed<boolean>({
+                owner: this,
+                read: () => !!this.featureSetIdSelected()
+            });
+            this.previousButtonVisible = ko.observable<boolean>(false);
+        }
     }
 
     readonly featureSetIdSelected = ko.observable<WorksheetFeatureSetId>();
-    readonly nextButtonVisible: KnockoutComputed<boolean>;
+    readonly nextButtonVisible: KnockoutObservable<boolean>;
+    readonly previousButtonVisible: KnockoutObservable<boolean>;
 }

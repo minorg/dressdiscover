@@ -11,10 +11,16 @@ export abstract class AbstractStateViewModel extends TopLevelViewModel {
     }
 
     onClickNextButton() {
-        Application.instance.router.goToNextState(this.currentStateMark);
+        Application.instance.router.goToState(Application.instance.session.worksheetStateMachine.nextStateMark(this.currentStateMark));
+    }
+
+    onClickPreviousButton() {
+        Application.instance.router.goToState(Application.instance.session.worksheetStateMachine.previousStateMark(this.currentStateMark));
     }
 
     abstract nextButtonVisible: KnockoutObservable<boolean>;
+
+    abstract previousButtonVisible: KnockoutObservable<boolean>;
 
     get review() {
         return this.currentStateMark.review;

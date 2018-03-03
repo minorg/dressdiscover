@@ -2,12 +2,6 @@ import { WorksheetFeatureId } from 'dressdiscover/api/models/worksheet/worksheet
 import { WorksheetFeatureSetId } from 'dressdiscover/api/models/worksheet/worksheet_feature_set_id';
 import { WorksheetStateId } from 'dressdiscover/api/models/worksheet/worksheet_state_id';
 import { WorksheetStateMark } from 'dressdiscover/api/models/worksheet/worksheet_state_mark';
-import {
-    NoSuchWorksheetFeatureDefinitionException,
-} from 'dressdiscover/api/services/worksheet/no_such_worksheet_feature_definition_exception';
-import {
-    NoSuchWorksheetFeatureSetDefinitionException,
-} from 'dressdiscover/api/services/worksheet/no_such_worksheet_feature_set_definition_exception';
 import { Application } from 'dressdiscover/gui/worksheet/application';
 import { Hrefs } from 'dressdiscover/gui/worksheet/hrefs';
 import { WorksheetStateViewModel } from 'dressdiscover/gui/worksheet/view_models/state/worksheet_state_view_model';
@@ -83,21 +77,6 @@ export class Router {
                 new WorksheetStateView(new WorksheetStateViewModel({ currentStateMark: stateMark })).show();
             }
         });
-    }
-
-    goToNextState(currentStateMark: WorksheetStateMark) {
-        try {
-            console.info("Current state mark: " + currentStateMark.toString());
-            const nextStateMark = Application.instance.session.worksheetStateMachine.nextStateMark(currentStateMark);
-            this.goToState(nextStateMark);
-        } catch (e) {
-            if (e instanceof NoSuchWorksheetFeatureDefinitionException ||
-                e instanceof NoSuchWorksheetFeatureSetDefinitionException) {
-                Application.instance.errorHandler.handleSyncError(e);
-            } else {
-                throw e;
-            }
-        }
     }
 
     goToState(stateMark: WorksheetStateMark) {
