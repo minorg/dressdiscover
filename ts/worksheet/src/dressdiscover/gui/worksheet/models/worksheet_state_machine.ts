@@ -1,8 +1,15 @@
 import { WorksheetFeatureSetId } from 'dressdiscover/api/models/worksheet/worksheet_feature_set_id';
+import { WorksheetStateId } from 'dressdiscover/api/models/worksheet/worksheet_state_id';
 import { WorksheetStateMark } from 'dressdiscover/api/models/worksheet/worksheet_state_mark';
 import { Application } from 'dressdiscover/gui/worksheet/application';
 
 export class WorksheetStateMachine {
+    getFirstStateMark(worksheetStateId: WorksheetStateId): WorksheetStateMark {
+        return new WorksheetStateMark({
+            worksheetStateId: worksheetStateId
+        });
+    }
+
     getNextStateMark(currentStateMark: WorksheetStateMark): WorksheetStateMark {
         const worksheetDefinition = Application.instance.worksheetDefinition;
         const worksheetState = Application.instance.session.worksheetState();
