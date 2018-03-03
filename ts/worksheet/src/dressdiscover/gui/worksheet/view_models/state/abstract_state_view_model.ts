@@ -14,6 +14,20 @@ export abstract class AbstractStateViewModel extends TopLevelViewModel {
         return this._currentStateMark.review;
     }
 
+    get titleTagText(): string {
+        let result = "Worksheet '" + this.worksheetState.id + "'";
+        if (this._currentStateMark.featureSetId) {
+            const featureSetDefinition = this.worksheetDefinition.getFeatureSetDefinition(this._currentStateMark.featureSetId);
+            result += ", Feature set '" + (featureSetDefinition.displayName ? featureSetDefinition.displayName : featureSetDefinition.id) + "'";
+
+            if (this._currentStateMark.featureId) {
+                const featureDefinition = this.worksheetDefinition.getFeatureDefinition(this._currentStateMark.featureId);
+                result += ", Feature '" + (featureDefinition.displayName ? featureDefinition.displayName : featureDefinition.id) + "'";
+            }
+        }
+        return result;
+    }
+
     get worksheetDefinition(): WorksheetDefinitionWrapper {
         return Application.instance.worksheetDefinition;
     }
