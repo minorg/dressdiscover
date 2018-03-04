@@ -20,16 +20,16 @@ export class Router {
         this._sammy.get("^/#/credits$", (context: any) => {
             self._onGetCredits();
         });
-        this._sammy.get("^/#/privacy", (context: any) => {
+        this._sammy.get("^/#/privacy$", (context: any) => {
             self._onGetPrivacy();
         });
-        this._sammy.get("^/#/state/:worksheetStateId/", (context: any) => {
+        this._sammy.get("^/#/state/:worksheetStateId/:featureSetId/:featureId$", (context: any) => {
             self._onGetState(context);
         });
-        this._sammy.get("^/#/state/:worksheetStateId/:featureSetId/", (context: any) => {
+        this._sammy.get("^/#/state/:worksheetStateId/:featureSetId/$", (context: any) => {
             self._onGetState(context);
         });
-        this._sammy.get("^/#/state/:worksheetStateId/:featureSetId/:featureId", (context: any) => {
+        this._sammy.get("^/#/state/:worksheetStateId/$", (context: any) => {
             self._onGetState(context);
         });
     }
@@ -64,6 +64,7 @@ export class Router {
             }
             return;
         }
+        console.info("Get state mark: " + stateMark.toString());
 
         Application.instance.services.worksheetStateQueryService.getWorksheetStateAsync({
             error: (errorKwds) => {
