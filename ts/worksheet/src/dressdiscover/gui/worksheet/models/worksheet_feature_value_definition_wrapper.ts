@@ -3,4 +3,7 @@ import { WorksheetFeatureValueId } from 'dressdiscover/api/models/worksheet/work
 import { AbstractDefinitionWrapper } from 'dressdiscover/gui/worksheet/models/abstract_definition_wrapper';
 
 export class WorksheetFeatureValueDefinitionWrapper extends AbstractDefinitionWrapper<WorksheetFeatureValueDefinition, WorksheetFeatureValueId> {
+    get image() {
+        return this.definition.image;
+    }
 }

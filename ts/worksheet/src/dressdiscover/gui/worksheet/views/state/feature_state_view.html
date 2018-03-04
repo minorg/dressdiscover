@@ -6,11 +6,37 @@
     <div class="row">
         <!-- ko foreach: selectableValues -->
         <a data-bind="click: onToggle">
-            <div class="card mb-4 mr-4" data-bind="css: { 'border-info': selected }">
+            <div class="card mb-5 mr-5" data-bind="css: { 'border-info': selected }" style="border-width: 8px">
                 <div class="card-header" data-bind="text: definition.displayName"></div>
-                <div class="card-body">
-                    <img data-bind="attr: { src: definition.image ? definition.image.thumbnailUrl : 'http://via.placeholder.com/200x200?text=Missing%20image' }"
-                    />
+                <div class="card-body" style="width: 200px">
+                    <figure class="figure">
+                        <img class="figure-img img-fluid rounded" data-bind="attr: { src: definition.image ? definition.image.thumbnailUrl : 'http://via.placeholder.com/200x200?text=Missing%20image' }"
+                            style="height: 200px" />
+                        <!-- ko if: definition.image -->
+                        <!-- ko with: definition.image.rights -->
+                        <figcaption class="figure-caption" style="font-size: xx-small">
+                            Image&nbsp;&copy;&nbsp;
+                            <span data-bind="text: author"></span>
+                            <br/>License:&nbsp;
+                            <span data-bind="text: license"></span>
+                        </figcaption>
+                        <!-- /ko -->
+                        <!-- /ko -->
+                    </figure>
+                    <!-- ko if: definition.description -->
+                    <p class="card-text">
+                        <div data-bind="text: definition.description.text" style="font-size: small"></div>
+                        <br/>
+                        <!-- ko with: definition.description.rights -->
+                        <div style="font-size: xx-small">
+                            Description&nbsp;&copy;&nbsp;
+                            <span data-bind="text: author"></span>
+                            <br/> License:&nbsp;
+                            <span data-bind="text: license"></span>
+                        </div>
+                        <!-- /ko -->
+                    </p>
+                    <!-- /ko -->
                 </div>
             </div>
         </a>
