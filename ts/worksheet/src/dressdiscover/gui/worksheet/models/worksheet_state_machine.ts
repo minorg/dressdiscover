@@ -33,13 +33,11 @@ export class WorksheetStateMachine {
             const featureSetId = featureSetState.id;
             const featureSetDefinition = worksheetDefinition.getFeatureSetById(featureSetId);
 
-            if (worksheetState.featureSets.length > 1) {
-                // Feature set start
-                this._stateMarks.push(new WorksheetStateMark({
-                    featureSetId: featureSetId,
-                    worksheetStateId: worksheetStateId
-                }));
-            }
+            // Feature set start
+            this._stateMarks.push(new WorksheetStateMark({
+                featureSetId: featureSetId,
+                worksheetStateId: worksheetStateId
+            }));
 
             for (let featureId of featureSetDefinition.featureIds) {
                 // Feature start is the same as review
