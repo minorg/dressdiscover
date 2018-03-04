@@ -39,11 +39,11 @@ export class WorksheetDefinitionCsvParser {
         return parsedCsv;
     }
 
-    private _parseDescription(row: any, rowI: number) {
+    private _parseDescription(row: any) {
         const descriptionText = row["description_text"];
         if (!_.isEmpty(descriptionText)) {
             return new WorksheetDescription({
-                rights: this._parseRights("description_", row, rowI),
+                rights: this._parseRights("description_", row),
                 text: descriptionText
             })
         } else {
@@ -104,14 +104,14 @@ export class WorksheetDefinitionCsvParser {
             try {
                 extents.push(
                     new WorksheetExtentDefinition({
-                        description: this._parseDescription(row, rowI),
+                        description: this._parseDescription(row),
                         displayName: row["display_name"],
                         id: WorksheetExtentId.parse(row["id"]),
                     })
                 );
             } catch (e) {
                 if (e instanceof RangeError) {
-                    throw new RangeError("extent row " + (rowI + 2) + " error: " + e.message);
+                    console.error("extent row " + (rowI + 2) + " error: " + e.message);
                 } else {
                     throw e;
                 }
@@ -131,14 +131,14 @@ export class WorksheetDefinitionCsvParser {
             }
             try {
                 features.push(new WorksheetFeatureDefinition({
-                    description: this._parseDescription(row, rowI),
+                    description: this._parseDescription(row),
                     displayName: row["display_name"],
                     id: WorksheetFeatureId.parse(row["id"]),
                     valueIds: _.map(row["value"], (id: string) => WorksheetFeatureValueId.parse(id))
                 }));
             } catch (e) {
                 if (e instanceof RangeError) {
-                    throw new RangeError("feature row " + (rowI + 2) + " error: " + e.message);
+                    console.error("feature row " + (rowI + 2) + " error: " + e.message);
                 } else {
                     throw e;
                 }
@@ -158,7 +158,7 @@ export class WorksheetDefinitionCsvParser {
             }
             try {
                 featureSets.push(new WorksheetFeatureSetDefinition({
-                    description: this._parseDescription(row, rowI),
+                    description: this._parseDescription(row),
                     displayName: row["display_name"],
                     featureIds: _.map(row["feature"], (id: string) => WorksheetFeatureId.parse(id)),
                     id: WorksheetFeatureSetId.parse(row["id"])
@@ -190,7 +190,7 @@ export class WorksheetDefinitionCsvParser {
                 if (!_.isEmpty(imageThumbnailUrl)) {
                     image = new WorksheetFeatureValueImage({
                         fullSizeUrl: row["image_full_size_url"],
-                        rights: this._parseRights("image_", row, rowI + 2),
+                        rights: this._parseRights("image_", row),
                         thumbnailUrl: imageThumbnailUrl
                     });
                 } else {
@@ -198,7 +198,7 @@ export class WorksheetDefinitionCsvParser {
                 }
 
                 const value = new WorksheetFeatureValueDefinition({
-                    description: this._parseDescription(row, rowI),
+                    description: this._parseDescription(row),
                     displayName: row["display_name"],
                     image: image,
                     id: WorksheetFeatureValueId.parse(row["id"])
@@ -206,7 +206,7 @@ export class WorksheetDefinitionCsvParser {
                 values.push(value);
             } catch (e) {
                 if (e instanceof RangeError) {
-                    throw new RangeError("feature value row " + (rowI + 2) + " error: " + e.message);
+                    console.error("feature value row " + (rowI + 2) + " error: " + e.message);
                 } else {
                     throw e;
                 }
@@ -215,7 +215,7 @@ export class WorksheetDefinitionCsvParser {
         return values;
     }
 
-    private _parseRights(columnNamePrefix: string, row: any, rowI: number): WorksheetRights {
+    private _parseRights(columnNamePrefix: string, row: any): WorksheetRights {
         try {
             return new WorksheetRights({
                 author: row[columnNamePrefix + "rights_author"],
@@ -225,7 +225,7 @@ export class WorksheetDefinitionCsvParser {
             });
         } catch (e) {
             if (e instanceof RangeError) {
-                throw new RangeError("feature value row " + rowI + " " + columnNamePrefix + " rights error: " + e.message);
+                throw new RangeError(columnNamePrefix + " rights error: " + e.message);
             } else {
                 throw e;
             }
