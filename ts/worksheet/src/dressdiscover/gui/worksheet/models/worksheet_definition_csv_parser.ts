@@ -104,6 +104,7 @@ export class WorksheetDefinitionCsvParser {
             try {
                 extents.push(
                     new WorksheetExtentDefinition({
+                        description: this._parseDescription(row, rowI),
                         displayName: row["display_name"],
                         id: WorksheetExtentId.parse(row["id"]),
                     })
@@ -157,6 +158,7 @@ export class WorksheetDefinitionCsvParser {
             }
             try {
                 featureSets.push(new WorksheetFeatureSetDefinition({
+                    description: this._parseDescription(row, rowI),
                     displayName: row["display_name"],
                     featureIds: _.map(row["feature"], (id: string) => WorksheetFeatureId.parse(id)),
                     id: WorksheetFeatureSetId.parse(row["id"])
