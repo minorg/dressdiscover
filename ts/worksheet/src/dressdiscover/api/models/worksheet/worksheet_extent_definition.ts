@@ -1,8 +1,14 @@
+import { WorksheetDescription } from "./worksheet_description";
 import { WorksheetExtentId } from "./worksheet_extent_id";
 
 export class WorksheetExtentDefinition {
-    constructor(kwds: {id: WorksheetExtentId, displayName?: string}) {
+    constructor(kwds: {id: WorksheetExtentId, description?: WorksheetDescription, displayName?: string}) {
         this._id = WorksheetExtentDefinition._validateId(kwds.id);
+        if (kwds.description != null) {
+            this._description = WorksheetExtentDefinition._validateDescription(kwds.description);
+        } else {
+            this._description = undefined;
+        }
         if (kwds.displayName != null) {
             this._displayName = WorksheetExtentDefinition._validateDisplayName(kwds.displayName);
         } else {
@@ -18,12 +24,27 @@ export class WorksheetExtentDefinition {
         this._id = WorksheetExtentDefinition._validateId(id);
     }
 
+    get description(): WorksheetDescription | undefined {
+        return this._description;
+    }
+
+    set description(description: WorksheetDescription | undefined) {
+        this._description = WorksheetExtentDefinition._validateDescription(description);
+    }
+
     get displayName(): string | undefined {
         return this._displayName;
     }
 
     set displayName(displayName: string | undefined) {
         this._displayName = WorksheetExtentDefinition._validateDisplayName(displayName);
+    }
+
+    private static _validateDescription(description: WorksheetDescription | undefined): WorksheetDescription | undefined {
+        if (description != null) {
+
+        }
+        return description;
     }
 
     private static _validateDisplayName(displayName: string | undefined): string | undefined {
@@ -46,11 +67,15 @@ export class WorksheetExtentDefinition {
     }
 
     deepCopy(): WorksheetExtentDefinition {
-        return new WorksheetExtentDefinition({ id: this.id, displayName: this.displayName });
+        return new WorksheetExtentDefinition({ id: this.id, description: (this.description ? (this.description.deepCopy()) : undefined), displayName: this.displayName });
     }
 
     equals(other: WorksheetExtentDefinition): boolean {
         if (!(this.id.equals(other.id))) {
+            return false;
+        }
+
+        if (!((!((typeof (this.description)) === "undefined") && !((typeof (other.description)) === "undefined")) ? ((this.description as WorksheetDescription).equals((other.description as WorksheetDescription))) : (((typeof (this.description)) === "undefined") && ((typeof (other.description)) === "undefined")))) {
             return false;
         }
 
@@ -63,10 +88,13 @@ export class WorksheetExtentDefinition {
 
     static fromThryftJsonObject(json: any): WorksheetExtentDefinition {
         var id: WorksheetExtentId | undefined;
+        var description: WorksheetDescription | undefined;
         var displayName: string | undefined;
         for (var fieldName in json) {
             if (fieldName == "id") {
                 id = WorksheetExtentId.parse(json[fieldName]);
+            } else if (fieldName == "description") {
+                description = WorksheetDescription.fromThryftJsonObject(json[fieldName]);
             } else if (fieldName == "display_name") {
                 displayName = json[fieldName];
             }
@@ -74,12 +102,15 @@ export class WorksheetExtentDefinition {
         if (id == null) {
             throw new TypeError('id is required');
         }
-        return new WorksheetExtentDefinition({id: id, displayName: displayName});
+        return new WorksheetExtentDefinition({id: id, description: description, displayName: displayName});
     }
 
     toJsonObject(): any {
         var json: {[index: string]: any} = {};
         json["id"] = this.id.toString();
+        if (this.description != null) {
+            json["description"] = this.description.toJsonObject();
+        }
         if (this.displayName != null) {
             json["display_name"] = this.displayName;
         }
@@ -93,11 +124,16 @@ export class WorksheetExtentDefinition {
     toThryftJsonObject(): any {
         var json: {[index: string]: any} = {};
         json["id"] = this.id.toString();
+        if (this.description != null) {
+            json["description"] = this.description.toThryftJsonObject();
+        }
         if (this.displayName != null) {
             json["display_name"] = this.displayName;
         }
         return json;
     }
+
+    private _description?: WorksheetDescription;
 
     private _displayName?: string;
 

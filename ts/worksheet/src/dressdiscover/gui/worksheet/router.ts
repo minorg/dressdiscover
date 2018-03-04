@@ -102,7 +102,7 @@ export class Router {
 
                             new FeatureStateView(new FeatureStateViewModel({
                                 currentStateMark: stateMark,
-                                featureDefinition: Application.instance.worksheetDefinition.getFeatureDefinition(stateMark.featureId),
+                                featureDefinition: Application.instance.worksheetDefinition.getFeatureById(stateMark.featureId),
                                 featureState: featureState
                             })).show();
                         } else {
@@ -111,7 +111,7 @@ export class Router {
 
                             new FeatureSetStateView(new FeatureSetStateViewModel({
                                 currentStateMark: stateMark,
-                                featureSetDefinition: Application.instance.worksheetDefinition.getFeatureSetDefinition(stateMark.featureSetId),
+                                featureSetDefinition: Application.instance.worksheetDefinition.getFeatureSetById(stateMark.featureSetId),
                                 featureSetState: featureSetState
                             })).show();
                         }

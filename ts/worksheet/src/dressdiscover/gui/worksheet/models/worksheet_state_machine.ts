@@ -31,7 +31,7 @@ export class WorksheetStateMachine {
         const worksheetDefinition = Application.instance.worksheetDefinition;
         for (let featureSetState of worksheetState.featureSets) {
             const featureSetId = featureSetState.id;
-            const featureSetDefinition = worksheetDefinition.getFeatureSetDefinition(featureSetId);
+            const featureSetDefinition = worksheetDefinition.getFeatureSetById(featureSetId);
 
             // Feature set start
             this._stateMarks.push(new WorksheetStateMark({

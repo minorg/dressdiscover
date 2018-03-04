@@ -1,22 +1,70 @@
 import { WorksheetDefinition } from 'dressdiscover/api/models/worksheet/worksheet_definition';
-import { WorksheetFeatureDefinition } from 'dressdiscover/api/models/worksheet/worksheet_feature_definition';
 import { WorksheetFeatureId } from 'dressdiscover/api/models/worksheet/worksheet_feature_id';
 import { WorksheetFeatureSetDefinition } from 'dressdiscover/api/models/worksheet/worksheet_feature_set_definition';
 import { WorksheetFeatureSetId } from 'dressdiscover/api/models/worksheet/worksheet_feature_set_id';
+import { WorksheetFeatureValueId } from 'dressdiscover/api/models/worksheet/worksheet_feature_value_id';
 import {
     NoSuchWorksheetFeatureDefinitionException,
 } from 'dressdiscover/api/services/worksheet/no_such_worksheet_feature_definition_exception';
 import {
     NoSuchWorksheetFeatureSetDefinitionException,
 } from 'dressdiscover/api/services/worksheet/no_such_worksheet_feature_set_definition_exception';
+import {
+    NoSuchWorksheetFeatureValueDefinitionException,
+} from 'dressdiscover/api/services/worksheet/no_such_worksheet_feature_value_definition_exception';
+import { WorksheetExtentDefinitionWrapper } from 'dressdiscover/gui/worksheet/models/worksheet_extent_definition_wrapper';
+import { WorksheetFeatureDefinitionWrapper } from 'dressdiscover/gui/worksheet/models/worksheet_feature_definition_wrapper';
+import {
+    WorksheetFeatureSetDefinitionWrapper,
+} from 'dressdiscover/gui/worksheet/models/worksheet_feature_set_definition_wrapper';
+import {
+    WorksheetFeatureValueDefinitionWrapper,
+} from 'dressdiscover/gui/worksheet/models/worksheet_feature_value_definition_wrapper';
 
 export class WorksheetDefinitionWrapper {
-    constructor(worksheetDefinition: WorksheetDefinition) {
-        this._delegate = worksheetDefinition;
+    constructor(readonly definition: WorksheetDefinition) {
+        // Order is important
+        if (definition.extents) {
+            for (let extent of definition.extents) {
+                this.extents.push(new WorksheetExtentDefinitionWrapper(extent));
+            }
+        }
+        for (let featureValue of definition.featureValues) {
+            this.featureValues.push(new WorksheetFeatureValueDefinitionWrapper(featureValue));
+        }
+        for (let feature of definition.features) {
+            this.features.push(new WorksheetFeatureDefinitionWrapper(feature, this));
+        }
+        for (let featureSet of definition.featureSets) {
+            this.featureSets.push(new WorksheetFeatureSetDefinitionWrapper(featureSet, this));
+        }
     }
 
-    get featureSets() {
-        return this._delegate.featureSets;
+    getFeatureSetById(featureSetId: WorksheetFeatureSetId): WorksheetFeatureSetDefinitionWrapper {
+        for (let featureSetDefinition of this.featureSets) {
+            if (featureSetDefinition.id.equals(featureSetId)) {
+                return featureSetDefinition;
+            }
+        }
+        throw new NoSuchWorksheetFeatureSetDefinitionException({ id: featureSetId });
+    }
+
+    getFeatureById(featureId: WorksheetFeatureId): WorksheetFeatureDefinitionWrapper {
+        for (let featureDefinition of this.features) {
+            if (featureDefinition.id.equals(featureId)) {
+                return featureDefinition;
+            }
+        }
+        throw new NoSuchWorksheetFeatureDefinitionException({ id: featureId });
+    }
+
+    getFeatureValueById(featureValueId: WorksheetFeatureValueId): WorksheetFeatureValueDefinitionWrapper {
+        for (let featureValueDefinition of this.featureValues) {
+            if (featureValueDefinition.id.equals(featureValueId)) {
+                return featureValueDefinition;
+            }
+        }
+        throw new NoSuchWorksheetFeatureValueDefinitionException({ id: featureValueId });
     }
 
     getNextFeatureId(kwds: { currentFeatureId: WorksheetFeatureId, currentFeatureSetDefinition: WorksheetFeatureSetDefinition }): WorksheetFeatureId | undefined {
@@ -55,23 +103,8 @@ export class WorksheetDefinitionWrapper {
         }
     }
 
-    getFeatureSetDefinition(featureSetId: WorksheetFeatureSetId): WorksheetFeatureSetDefinition {
-        for (let featureSetDefinition of this._delegate.featureSets) {
-            if (featureSetDefinition.id.equals(featureSetId)) {
-                return featureSetDefinition;
-            }
-        }
-        throw new NoSuchWorksheetFeatureSetDefinitionException({ id: featureSetId });
-    }
-
-    getFeatureDefinition(featureId: WorksheetFeatureId): WorksheetFeatureDefinition {
-        for (let featureDefinition of this._delegate.features) {
-            if (featureDefinition.id.equals(featureId)) {
-                return featureDefinition;
-            }
-        }
-        throw new NoSuchWorksheetFeatureDefinitionException({ id: featureId });
-    }
-
-    private _delegate: WorksheetDefinition;
+    readonly extents: WorksheetExtentDefinitionWrapper[] = [];
+    readonly featureSets: WorksheetFeatureSetDefinitionWrapper[] = [];
+    readonly featureValues: WorksheetFeatureValueDefinitionWrapper[] = [];
+    readonly features: WorksheetFeatureDefinitionWrapper[] = [];
 }

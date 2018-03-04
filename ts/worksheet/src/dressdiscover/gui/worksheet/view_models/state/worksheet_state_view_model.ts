@@ -1,16 +1,12 @@
 import { WorksheetFeatureSetDefinition } from 'dressdiscover/api/models/worksheet/worksheet_feature_set_definition';
 import { WorksheetFeatureSetState } from 'dressdiscover/api/models/worksheet/worksheet_feature_set_state';
 import { WorksheetStateMark } from 'dressdiscover/api/models/worksheet/worksheet_state_mark';
-import {
-    WorksheetFeatureSetDefinitionWrapper,
-} from 'dressdiscover/gui/worksheet/models/worksheet_feature_set_definition_wrapper';
 import { AbstractStateViewModel } from 'dressdiscover/gui/worksheet/view_models/state/abstract_state_view_model';
 import * as ko from 'knockout';
 import _ = require('lodash');
 
-class SelectableFeatureSet extends WorksheetFeatureSetDefinitionWrapper {
-    constructor(definition: WorksheetFeatureSetDefinition, selected: boolean) {
-        super(definition);
+class SelectableFeatureSet  {
+    constructor(readonly definition: WorksheetFeatureSetDefinition, selected: boolean) {
         this.selected(selected);
     }
 
@@ -40,7 +36,7 @@ export class WorksheetStateViewModel extends AbstractStateViewModel {
             this.selectableFeatureSets = _.map(this.worksheetDefinition.featureSets,
                 (featureSetDefinition) =>
                     new SelectableFeatureSet(
-                        featureSetDefinition,
+                        featureSetDefinition.definition,
                         _.some(worksheetState.featureSets, (featureSetState) => featureSetState.id.equals(featureSetDefinition.id)
                     ))
             );

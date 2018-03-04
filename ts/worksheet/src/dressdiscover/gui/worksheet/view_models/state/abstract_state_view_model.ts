@@ -28,11 +28,11 @@ export abstract class AbstractStateViewModel extends TopLevelViewModel {
     get titleTagText(): string {
         let result = "Worksheet '" + this.worksheetState.id + "'";
         if (this.currentStateMark.featureSetId) {
-            const featureSetDefinition = this.worksheetDefinition.getFeatureSetDefinition(this.currentStateMark.featureSetId);
+            const featureSetDefinition = this.worksheetDefinition.getFeatureSetById(this.currentStateMark.featureSetId);
             result += ", Feature set '" + (featureSetDefinition.displayName ? featureSetDefinition.displayName : featureSetDefinition.id) + "'";
 
             if (this.currentStateMark.featureId) {
-                const featureDefinition = this.worksheetDefinition.getFeatureDefinition(this.currentStateMark.featureId);
+                const featureDefinition = this.worksheetDefinition.getFeatureById(this.currentStateMark.featureId);
                 result += ", Feature '" + (featureDefinition.displayName ? featureDefinition.displayName : featureDefinition.id) + "'";
             }
         }
