@@ -6,7 +6,7 @@ A Knockout.js+TypeScript serverless web application for describing historic appa
 
 ### Prerequisites
 
-* Node.js
+* [Node.js](https://nodejs.org)
 
 ### Install packages
 
