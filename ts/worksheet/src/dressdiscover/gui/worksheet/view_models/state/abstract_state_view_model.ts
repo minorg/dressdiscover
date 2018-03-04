@@ -7,6 +7,7 @@ export abstract class AbstractStateViewModel extends TopLevelViewModel {
     constructor(kwds: { currentStateMark: WorksheetStateMark }) {
         super();
         this.currentStateMark = kwds.currentStateMark;
+        this.currentStateMarkIndex = Application.instance.session.worksheetStateMachine.indexOfStateMark(kwds.currentStateMark);
     }
 
     onClickFinishButton() {
@@ -21,9 +22,17 @@ export abstract class AbstractStateViewModel extends TopLevelViewModel {
         Application.instance.router.goToState(Application.instance.session.worksheetStateMachine.previousStateMark(this.currentStateMark));
     }
 
+    get lastStateMarkIndex() {
+        return Application.instance.session.worksheetStateMachine.length - 1;
+    }
+
     abstract nextButtonEnabled: KnockoutObservable<boolean>;
 
     abstract previousButtonEnabled: KnockoutObservable<boolean>;
+
+    get progressPercentage(): string {
+        return Math.round(this.currentStateMarkIndex / this.lastStateMarkIndex * 100.0) + '%';
+    }
 
     get review() {
         return this.currentStateMark.review;
@@ -55,4 +64,5 @@ export abstract class AbstractStateViewModel extends TopLevelViewModel {
     }
 
     readonly currentStateMark: WorksheetStateMark;
+    readonly currentStateMarkIndex: number;
 }

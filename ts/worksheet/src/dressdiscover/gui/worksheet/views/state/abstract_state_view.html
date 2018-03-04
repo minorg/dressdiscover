@@ -1,4 +1,16 @@
 <div class="container-fluid top-level-view-content">
+    <div class="row">
+        <div class="col-12">
+            <div class="progress" style="height: 32px">
+                <div class="progress-bar progress-bar-striped" role="progressbar" data-bind="attr: { 'aria-valuemax': lastStateMarkIndex, 'aria-valuenow': currentStateMarkIndex }, style: { width: progressPercentage }, text: progressPercentage" aria-valuemin="0"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        &nbsp;
+    </div>
+
     <!-- ko template: 'next-previous-buttons-template' -->
     <!-- /ko -->
 
