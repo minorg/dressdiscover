@@ -1,4 +1,3 @@
-import { WorksheetState } from 'dressdiscover/api/models/worksheet/worksheet_state';
 import { WorksheetStateMark } from 'dressdiscover/api/models/worksheet/worksheet_state_mark';
 import { Application } from 'dressdiscover/gui/worksheet/application';
 import { WorksheetDefinitionWrapper } from 'dressdiscover/gui/worksheet/models/worksheet_definition_wrapper';
@@ -44,12 +43,11 @@ export abstract class AbstractStateViewModel extends TopLevelViewModel {
         return Application.instance.worksheetDefinition;
     }
 
-    get worksheetState(): WorksheetState {
-        const result = Application.instance.session.worksheetState();
-        if (!result) {
+    get worksheetState() {
+        if (!Application.instance.session.worksheetState()) {
             throw new EvalError();
         }
-        return result
+        return Application.instance.session.worksheetState;
     }
 
     readonly currentStateMark: WorksheetStateMark;
