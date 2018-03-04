@@ -4,7 +4,7 @@ import { AbstractStateView } from 'dressdiscover/gui/worksheet/views/state/abstr
 export class FeatureStateView extends AbstractStateView<FeatureStateViewModel> {
     constructor(viewModel: FeatureStateViewModel) {
         super({
-            contentHtmlFileName: "feature_state/feature_state_view.html",
+            contentHtmlFileName: "state/feature_state_view.html",
             viewModel: viewModel
         });
     }

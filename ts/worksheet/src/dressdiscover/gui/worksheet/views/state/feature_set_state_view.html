@@ -1,0 +1,47 @@
+<div class="container-fluid top-level-view-content">
+        <!-- ko template: 'next-previous-buttons-template' -->
+        <!-- /ko -->
+
+        <div class="row">
+            <div class="col-8 offset-2">
+                <div class="card">
+                    <div class="card-header">
+                        <h2 class="text-center" data-bind="text: worksheetState().id"></h2>
+                    </div>
+                    <div class="container-fluid card-body">
+                        <h3 class="card-title">Feature set: <span data-bind="text: featureSetDefinition.displayName"></span></h3>
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>Feature</th>
+                                    <th>Description</th>
+                                    <th>Value(s)</th>
+                                </tr>
+                            </thead>
+                            <tbody data-bind="foreach: features">
+                                <tr>
+                                    <td class="text-center">
+                                        <a class="btn btn-lg btn-secondary" data-bind="attr: { href: $root.hrefs.state(stateMark) }, text: definition.displayName"></a>
+                                    </td>
+                                    <td>
+                                        <!-- ko if: definition.description -->
+                                        <!-- ko template: { name: 'description-template', data: definition.description } -->
+                                        <!-- /ko -->
+                                        <!-- /ko -->
+                                    </td>
+                                    <td>
+                                        <!-- ko if: state -->
+                                        <!-- /ko -->
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <!-- /ko -->
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ko template: 'next-previous-buttons-template' -->
+        <!-- /ko -->
+    </div>

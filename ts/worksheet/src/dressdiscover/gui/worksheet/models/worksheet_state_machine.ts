@@ -75,8 +75,7 @@ export class WorksheetStateMachine {
             throw new EvalError();
         }
         for (let stateMarkI = 0; stateMarkI < this._stateMarks.length; stateMarkI++) {
-            const stateMark = this._stateMarks[stateMarkI];
-            if (stateMark.equals(stateMark)) {
+            if (this._stateMarks[stateMarkI].equals(stateMark)) {
                 return stateMarkI;
             }
         }
