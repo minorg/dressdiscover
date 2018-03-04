@@ -19,12 +19,13 @@ export abstract class AbstractStateView<ViewModelT extends AbstractStateViewMode
             viewModel: kwds.viewModel
         });
 
-        this._stateContentHtml = View._requireHtml("state/abstract_state_view.html");
+        this._stateContentHtml = View._requireHtml(kwds.contentHtmlFileName);
     }
 
     show(ready?: () => void) {
         super.show(() => {
             const contentEl = $("#state-content");
+            ko.cleanNode(contentEl[0]);
             contentEl.html(this._stateContentHtml);
             ko.applyBindings(this.viewModel, contentEl[0]);
 
