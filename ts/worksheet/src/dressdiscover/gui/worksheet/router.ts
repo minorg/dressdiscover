@@ -1,14 +1,21 @@
 import { WorksheetFeatureId } from 'dressdiscover/api/models/worksheet/worksheet_feature_id';
 import { WorksheetFeatureSetId } from 'dressdiscover/api/models/worksheet/worksheet_feature_set_id';
+import { WorksheetFeatureSetState } from 'dressdiscover/api/models/worksheet/worksheet_feature_set_state';
+import { WorksheetFeatureState } from 'dressdiscover/api/models/worksheet/worksheet_feature_state';
 import { WorksheetStateId } from 'dressdiscover/api/models/worksheet/worksheet_state_id';
 import { WorksheetStateMark } from 'dressdiscover/api/models/worksheet/worksheet_state_mark';
 import { Application } from 'dressdiscover/gui/worksheet/application';
 import { Hrefs } from 'dressdiscover/gui/worksheet/hrefs';
+import { FeatureSetStateViewModel } from 'dressdiscover/gui/worksheet/view_models/state/feature_set_state_view_model';
+import { FeatureStateViewModel } from 'dressdiscover/gui/worksheet/view_models/state/feature_state_view_model';
 import { WorksheetStateViewModel } from 'dressdiscover/gui/worksheet/view_models/state/worksheet_state_view_model';
 import { CreditsView } from 'dressdiscover/gui/worksheet/views/credits/credits_view';
 import { PrivacyView } from 'dressdiscover/gui/worksheet/views/privacy/privacy_view';
 import { StartView } from 'dressdiscover/gui/worksheet/views/start/start_view';
+import { FeatureSetStateView } from 'dressdiscover/gui/worksheet/views/state/feature_set_state_view';
+import { FeatureStateView } from 'dressdiscover/gui/worksheet/views/state/feature_state_view';
 import { WorksheetStateView } from 'dressdiscover/gui/worksheet/views/state/worksheet_state_view';
+import _ = require('lodash');
 import * as Sammy from 'sammy';
 
 export class Router {
@@ -73,9 +80,48 @@ export class Router {
             },
             id: stateMark.worksheetStateId,
             success: (state) => {
-                Application.instance.session.worksheetState(state);
-                // TODO: differentiate the views depending on which parts of the mark are set.
-                new WorksheetStateView(new WorksheetStateViewModel({ currentStateMark: stateMark })).show();
+                // Wait to change session worksheetState until we've created any state placeholders.
+
+                try {
+                    if (stateMark.featureSetId) {
+                        let featureSetState = _.find(state.featureSets, (featureSetState) => featureSetState.id.equals(stateMark.featureSetId));
+                        if (!featureSetState) {
+                            featureSetState = new WorksheetFeatureSetState({ features: [], id: stateMark.featureSetId });
+                            state.featureSets.push(featureSetState);
+                        }
+
+                        if (stateMark.featureId) {
+                            let featureState = _.find(featureSetState.features, (featureState) => featureState.id.equals(stateMark.featureId));
+                            if (!featureState) {
+                                featureState = new WorksheetFeatureState({ id: stateMark.featureId });
+                                featureSetState.features.push(featureState);
+                            }
+
+                            // Save the worksheet state now that we've added any placeholders
+                            Application.instance.session.worksheetState(state);
+
+                            new FeatureStateView(new FeatureStateViewModel({
+                                currentStateMark: stateMark,
+                                featureDefinition: Application.instance.worksheetDefinition.getFeatureDefinition(stateMark.featureId),
+                                featureState: featureState
+                            })).show();
+                        } else {
+                            // Save the worksheet state now that we've added any placeholders
+                            Application.instance.session.worksheetState(state);
+
+                            new FeatureSetStateView(new FeatureSetStateViewModel({
+                                currentStateMark: stateMark,
+                                featureSetDefinition: Application.instance.worksheetDefinition.getFeatureSetDefinition(stateMark.featureSetId),
+                                featureSetState: featureSetState
+                            })).show();
+                        }
+                    } else {
+                        Application.instance.session.worksheetState(state);
+                        new WorksheetStateView(new WorksheetStateViewModel({ currentStateMark: stateMark })).show();
+                    }
+                } catch (e) {
+                    Application.instance.errorHandler.handleSyncError(e);
+                }
             }
         });
     }

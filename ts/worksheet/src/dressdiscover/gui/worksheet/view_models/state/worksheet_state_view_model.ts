@@ -1,17 +1,17 @@
 import { WorksheetFeatureSetDefinition } from 'dressdiscover/api/models/worksheet/worksheet_feature_set_definition';
 import { WorksheetFeatureSetState } from 'dressdiscover/api/models/worksheet/worksheet_feature_set_state';
 import { WorksheetStateMark } from 'dressdiscover/api/models/worksheet/worksheet_state_mark';
+import {
+    WorksheetFeatureSetDefinitionWrapper,
+} from 'dressdiscover/gui/worksheet/models/worksheet_feature_set_definition_wrapper';
 import { AbstractStateViewModel } from 'dressdiscover/gui/worksheet/view_models/state/abstract_state_view_model';
 import * as ko from 'knockout';
 import _ = require('lodash');
 
-class SelectableFeatureSet {
-    constructor(public readonly definition: WorksheetFeatureSetDefinition, selected: boolean) {
+class SelectableFeatureSet extends WorksheetFeatureSetDefinitionWrapper {
+    constructor(definition: WorksheetFeatureSetDefinition, selected: boolean) {
+        super(definition);
         this.selected(selected);
-    }
-
-    get displayName() {
-        return this.definition.displayName ? this.definition.displayName : this.definition.id;
     }
 
     onToggle() {

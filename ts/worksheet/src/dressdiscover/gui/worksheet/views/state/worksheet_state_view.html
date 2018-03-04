@@ -6,28 +6,50 @@
         <div class="col-8 offset-2">
             <div class="card">
                 <div class="card-header">
-                    <h3 class="card-title mb-0 text-center" data-bind="text: review ? 'Review' : 'Select feature sets'"></h3>
+                    <h2 class="text-center" data-bind="text: worksheetState().id"></h2>
                 </div>
-                <div class="container-fluid card-body text-center">
+                <div class="container-fluid card-body">
                     <!-- ko if: review -->
+                    <h3 class="card-title">Review</h3>
                     TODO: review contents
                     <!-- /ko -->
                     <!-- ko if: !review -->
-                    <div class="row" data-bind="foreach: selectableFeatureSets">
-                        <div class="col-12">
-                            <a class="btn btn-lg btn-secondary" data-bind="click: onToggle, css: { active: selected }, text: displayName"></a>
-                            <input data-bind="iCheck: selected" type="checkbox" />
-                            <!-- ko if: definition.description -->
-                            <span data-bind="text: definition.description"></span>
-                            <!-- /ko -->
-                        </div>
-                    </div>
+                    <h3 class="card-title">Select feature sets</h3>
+                    <p class="card-text">Select one or more feature sets to describe the object.</p>
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th></th>
+                                <th>Description</th>
+                                <th>Features</th>
+                            </tr>
+                        </thead>
+                        <tbody data-bind="foreach: selectableFeatureSets">
+                            <tr>
+                                <td class="text-center">
+                                    <a class="btn btn-lg btn-secondary" data-bind="click: onToggle, css: { active: selected }, text: displayName"></a>
+                                    <input data-bind="iCheck: selected" type="checkbox" />
+                                </td>
+                                <td>
+                                    <!-- ko if: definition.description -->
+                                    <span data-bind="text: definition.description"></span>
+                                    <!-- /ko -->
+                                </td>
+                                <td>
+                                    <!-- ko foreach: featureDefinitions -->
+                                    <span data-bind="text: displayName ? displayName : id"></span>&nbsp;&nbsp;
+                                    <!-- /ko -->
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
                     <!-- /ko -->
                 </div>
             </div>
         </div>
     </div>
+</div>
 
-    <!-- ko template: 'next-previous-buttons-template' -->
-    <!-- /ko -->
+<!-- ko template: 'next-previous-buttons-template' -->
+<!-- /ko -->
 </div>
