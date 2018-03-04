@@ -20,6 +20,8 @@ From the current directory:
 
 	npm start
 
+This will start a webpack-dev-server on port 9000 and open a web browser to http://localhost:9000. The app is automatically recompiled and reloaded in the browser if its files change.
+
 ## Production build
 
 From the current directory:
