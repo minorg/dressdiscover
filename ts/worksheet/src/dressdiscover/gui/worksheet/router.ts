@@ -9,12 +9,11 @@ import { Hrefs } from 'dressdiscover/gui/worksheet/hrefs';
 import { FeatureSetStateViewModel } from 'dressdiscover/gui/worksheet/view_models/state/feature_set_state_view_model';
 import { FeatureStateViewModel } from 'dressdiscover/gui/worksheet/view_models/state/feature_state_view_model';
 import { WorksheetStateViewModel } from 'dressdiscover/gui/worksheet/view_models/state/worksheet_state_view_model';
-import { CreditsView } from 'dressdiscover/gui/worksheet/views/credits/credits_view';
-import { PrivacyView } from 'dressdiscover/gui/worksheet/views/privacy/privacy_view';
 import { StartView } from 'dressdiscover/gui/worksheet/views/start/start_view';
 import { FeatureSetStateView } from 'dressdiscover/gui/worksheet/views/state/feature_set_state_view';
 import { FeatureStateView } from 'dressdiscover/gui/worksheet/views/state/feature_state_view';
 import { WorksheetStateView } from 'dressdiscover/gui/worksheet/views/state/worksheet_state_view';
+import { StaticView } from 'dressdiscover/gui/worksheet/views/static/static_view';
 import _ = require('lodash');
 import * as Sammy from 'sammy';
 
@@ -42,11 +41,11 @@ export class Router {
     }
 
     private _onGetCredits() {
-        new CreditsView().show();
+        new StaticView({ contentHtmlFileName: "static/credits_view.html", title: "Credits" }).show();
     }
 
     private _onGetPrivacy() {
-        new PrivacyView().show();
+        new StaticView({ contentHtmlFileName: "static/privacy_view.html", title: "Privacy Policy" }).show();
     }
 
     private _onGetRoot() {
