@@ -73,11 +73,11 @@ export class WorksheetFeatureState {
     }
 
     equals(other: WorksheetFeatureState): boolean {
-        if (!(this.id === other.id)) {
+        if (!(this.id.equals(other.id))) {
             return false;
         }
 
-        if (!((!((typeof (this.selectedValueIds)) === "undefined") && !((typeof (other.selectedValueIds)) === "undefined")) ? (function(left: WorksheetFeatureValueId[], right: WorksheetFeatureValueId[]): boolean { if (left.length != right.length) { return false; } for (var elementI = 0; elementI < left.length; elementI++) { if (!(left[elementI] === right[elementI])) { return false; } } return true; }((this.selectedValueIds as WorksheetFeatureValueId[]), (other.selectedValueIds as WorksheetFeatureValueId[]))) : (((typeof (this.selectedValueIds)) === "undefined") && ((typeof (other.selectedValueIds)) === "undefined")))) {
+        if (!((!((typeof (this.selectedValueIds)) === "undefined") && !((typeof (other.selectedValueIds)) === "undefined")) ? (function(left: WorksheetFeatureValueId[], right: WorksheetFeatureValueId[]): boolean { if (left.length != right.length) { return false; } for (var elementI = 0; elementI < left.length; elementI++) { if (!(left[elementI].equals(right[elementI]))) { return false; } } return true; }((this.selectedValueIds as WorksheetFeatureValueId[]), (other.selectedValueIds as WorksheetFeatureValueId[]))) : (((typeof (this.selectedValueIds)) === "undefined") && ((typeof (other.selectedValueIds)) === "undefined")))) {
             return false;
         }
 

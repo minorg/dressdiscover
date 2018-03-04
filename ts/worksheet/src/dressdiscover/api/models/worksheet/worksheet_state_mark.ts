@@ -89,15 +89,15 @@ export class WorksheetStateMark {
     }
 
     equals(other: WorksheetStateMark): boolean {
-        if (!(this.worksheetStateId === other.worksheetStateId)) {
+        if (!(this.worksheetStateId.equals(other.worksheetStateId))) {
             return false;
         }
 
-        if (!((!((typeof (this.featureId)) === "undefined") && !((typeof (other.featureId)) === "undefined")) ? ((this.featureId as WorksheetFeatureId) === (other.featureId as WorksheetFeatureId)) : (((typeof (this.featureId)) === "undefined") && ((typeof (other.featureId)) === "undefined")))) {
+        if (!((!((typeof (this.featureId)) === "undefined") && !((typeof (other.featureId)) === "undefined")) ? ((this.featureId as WorksheetFeatureId).equals((other.featureId as WorksheetFeatureId))) : (((typeof (this.featureId)) === "undefined") && ((typeof (other.featureId)) === "undefined")))) {
             return false;
         }
 
-        if (!((!((typeof (this.featureSetId)) === "undefined") && !((typeof (other.featureSetId)) === "undefined")) ? ((this.featureSetId as WorksheetFeatureSetId) === (other.featureSetId as WorksheetFeatureSetId)) : (((typeof (this.featureSetId)) === "undefined") && ((typeof (other.featureSetId)) === "undefined")))) {
+        if (!((!((typeof (this.featureSetId)) === "undefined") && !((typeof (other.featureSetId)) === "undefined")) ? ((this.featureSetId as WorksheetFeatureSetId).equals((other.featureSetId as WorksheetFeatureSetId))) : (((typeof (this.featureSetId)) === "undefined") && ((typeof (other.featureSetId)) === "undefined")))) {
             return false;
         }
 

@@ -93,11 +93,11 @@ export class WorksheetFeatureSetDefinition {
     }
 
     equals(other: WorksheetFeatureSetDefinition): boolean {
-        if (!(function(left: WorksheetFeatureId[], right: WorksheetFeatureId[]): boolean { if (left.length != right.length) { return false; } for (var elementI = 0; elementI < left.length; elementI++) { if (!(left[elementI] === right[elementI])) { return false; } } return true; }(this.featureIds, other.featureIds))) {
+        if (!(function(left: WorksheetFeatureId[], right: WorksheetFeatureId[]): boolean { if (left.length != right.length) { return false; } for (var elementI = 0; elementI < left.length; elementI++) { if (!(left[elementI].equals(right[elementI]))) { return false; } } return true; }(this.featureIds, other.featureIds))) {
             return false;
         }
 
-        if (!(this.id === other.id)) {
+        if (!(this.id.equals(other.id))) {
             return false;
         }
 
@@ -105,7 +105,7 @@ export class WorksheetFeatureSetDefinition {
             return false;
         }
 
-        if (!((!((typeof (this.extentIds)) === "undefined") && !((typeof (other.extentIds)) === "undefined")) ? (function(left: WorksheetExtentId[], right: WorksheetExtentId[]): boolean { if (left.length != right.length) { return false; } for (var elementI = 0; elementI < left.length; elementI++) { if (!(left[elementI] === right[elementI])) { return false; } } return true; }((this.extentIds as WorksheetExtentId[]), (other.extentIds as WorksheetExtentId[]))) : (((typeof (this.extentIds)) === "undefined") && ((typeof (other.extentIds)) === "undefined")))) {
+        if (!((!((typeof (this.extentIds)) === "undefined") && !((typeof (other.extentIds)) === "undefined")) ? (function(left: WorksheetExtentId[], right: WorksheetExtentId[]): boolean { if (left.length != right.length) { return false; } for (var elementI = 0; elementI < left.length; elementI++) { if (!(left[elementI].equals(right[elementI]))) { return false; } } return true; }((this.extentIds as WorksheetExtentId[]), (other.extentIds as WorksheetExtentId[]))) : (((typeof (this.extentIds)) === "undefined") && ((typeof (other.extentIds)) === "undefined")))) {
             return false;
         }
 

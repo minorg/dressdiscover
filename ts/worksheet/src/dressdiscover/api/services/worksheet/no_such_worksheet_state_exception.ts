@@ -25,7 +25,7 @@ export class NoSuchWorksheetStateException {
     }
 
     equals(other: NoSuchWorksheetStateException): boolean {
-        if (!(this.id === other.id)) {
+        if (!(this.id.equals(other.id))) {
             return false;
         }
 

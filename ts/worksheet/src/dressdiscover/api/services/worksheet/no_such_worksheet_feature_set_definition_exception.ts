@@ -25,7 +25,7 @@ export class NoSuchWorksheetFeatureSetDefinitionException {
     }
 
     equals(other: NoSuchWorksheetFeatureSetDefinitionException): boolean {
-        if (!(this.id === other.id)) {
+        if (!(this.id.equals(other.id))) {
             return false;
         }
 

@@ -46,7 +46,7 @@ export class WorksheetState {
             return false;
         }
 
-        if (!(this.id === other.id)) {
+        if (!(this.id.equals(other.id))) {
             return false;
         }
 
