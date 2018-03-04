@@ -14,6 +14,7 @@ export class FeatureSetStateViewModel extends AbstractStateViewModel {
         featureSetState: WorksheetFeatureSetState
     }) {
         super({ currentStateMark: kwds.currentStateMark });
+        this.featureSetDefinition = kwds.featureSetDefinition;
         this.table = new WorksheetFeatureSetStateTable({
             featureSetDefinition: kwds.featureSetDefinition,
             featureSetState: kwds.featureSetState,
@@ -21,6 +22,7 @@ export class FeatureSetStateViewModel extends AbstractStateViewModel {
         });
     }
 
+    readonly featureSetDefinition: WorksheetFeatureSetDefinitionWrapper;
     readonly nextButtonEnabled = ko.observable<boolean>(true);
     readonly previousButtonEnabled = ko.observable<boolean>(true);
     readonly table: WorksheetFeatureSetStateTable;

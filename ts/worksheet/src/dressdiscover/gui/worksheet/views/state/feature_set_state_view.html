@@ -1,22 +1,5 @@
-<div class="container-fluid top-level-view-content">
-        <!-- ko template: 'next-previous-buttons-template' -->
-        <!-- /ko -->
-
-        <div class="row">
-            <div class="col-8 offset-2">
-                <div class="card">
-                    <div class="card-header">
-                        <h2 class="text-center" data-bind="text: worksheetState().id"></h2>
-                    </div>
-                    <div class="container-fluid card-body">
-                        <h3 class="card-title">Feature set: <span data-bind="text: featureSetDefinition.displayName"></span></h3>
-                        <!-- ko template: { name: 'feature-set-state-table-template', data: table } -->
-                        <!-- /ko -->
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- ko template: 'next-previous-buttons-template' -->
-        <!-- /ko -->
-    </div>
+<h3 class="card-title">Feature set:
+    <span data-bind="text: featureSetDefinition.displayName"></span>
+</h3>
+<!-- ko template: { name: 'feature-set-state-table-template', data: table } -->
+<!-- /ko -->

@@ -5,6 +5,7 @@ export class WorksheetStateView extends AbstractStateView<WorksheetStateViewMode
     constructor(viewModel: WorksheetStateViewModel) {
         super({
             contentHtmlFileName: "state/worksheet_state_view.html",
+            templateHtmlFileNames: ["state/feature_set_state_table_template.html"],
             viewModel: viewModel
         });
     }

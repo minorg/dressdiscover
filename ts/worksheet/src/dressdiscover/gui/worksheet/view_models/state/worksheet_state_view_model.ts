@@ -3,6 +3,7 @@ import { WorksheetStateMark } from 'dressdiscover/api/models/worksheet/worksheet
 import {
     WorksheetFeatureSetDefinitionWrapper,
 } from 'dressdiscover/gui/worksheet/models/worksheet_feature_set_definition_wrapper';
+import { WorksheetFeatureSetStateTable } from 'dressdiscover/gui/worksheet/models/worksheet_feature_set_state_table';
 import { AbstractStateViewModel } from 'dressdiscover/gui/worksheet/view_models/state/abstract_state_view_model';
 import * as ko from 'knockout';
 import _ = require('lodash');
@@ -27,6 +28,15 @@ export class WorksheetStateViewModel extends AbstractStateViewModel {
         if (this.currentStateMark.review) {
             this.nextButtonEnabled = ko.observable<boolean>(false);
             this.previousButtonEnabled = ko.observable<boolean>(true);
+
+            const worksheetState = this.worksheetState();
+            for (let featureSetState of worksheetState.featureSets) {
+                this.featureSetStateTables.push(new WorksheetFeatureSetStateTable({
+                    featureSetDefinition: this.worksheetDefinition.getFeatureSetById(featureSetState.id),
+                    featureSetState: featureSetState,
+                    worksheetStateId: worksheetState.id
+                }));
+            }
         } else {
             this.nextButtonEnabled = ko.pureComputed<boolean>({
                 owner: this,
@@ -71,5 +81,6 @@ export class WorksheetStateViewModel extends AbstractStateViewModel {
 
     readonly nextButtonEnabled: KnockoutObservable<boolean>;
     readonly previousButtonEnabled: KnockoutObservable<boolean>;
+    readonly featureSetStateTables: WorksheetFeatureSetStateTable[] = [];
     readonly selectableFeatureSets: SelectableFeatureSet[] = [];
 }
