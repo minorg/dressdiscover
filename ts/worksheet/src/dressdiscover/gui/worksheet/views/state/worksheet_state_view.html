@@ -16,6 +16,7 @@
                     <div class="row" data-bind="foreach: selectableFeatureSets">
                         <div class="col-12">
                             <a class="btn btn-lg btn-secondary" data-bind="click: onToggle, css: { active: selected }, text: displayName"></a>
+                            <input data-bind="iCheck: selected" type="checkbox" />
                             <!-- ko if: definition.description -->
                             <span data-bind="text: definition.description"></span>
                             <!-- /ko -->
