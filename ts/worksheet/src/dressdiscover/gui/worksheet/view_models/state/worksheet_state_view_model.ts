@@ -15,7 +15,6 @@ class SelectableFeatureSet {
     }
 
     onToggle() {
-        console.info("Toggle");
         this.selected(!this.selected());
         return false;
     }
@@ -63,6 +62,9 @@ export class WorksheetStateViewModel extends AbstractStateViewModel {
                 }
                 this.worksheetState().featureSets.push(featureSetState);
             }
+        }
+        if (this.worksheetState().featureSets.length == 0) {
+            throw new EvalError();
         }
         this.worksheetState.notifySubscribers(this.worksheetState());
 
