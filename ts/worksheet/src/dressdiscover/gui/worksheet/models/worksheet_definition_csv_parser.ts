@@ -184,6 +184,8 @@ export class WorksheetDefinitionCsvParser {
                 continue;
             }
 
+            const valueId = row["id"];
+
             try {
                 let image: WorksheetFeatureValueImage | undefined = undefined;
                 const imageThumbnailUrl = row["image_thumbnail_url"];
@@ -194,14 +196,14 @@ export class WorksheetDefinitionCsvParser {
                         thumbnailUrl: imageThumbnailUrl
                     });
                 } else {
-                    console.warn("feature value row " + (rowI + 2) + " has no image");
+                    console.warn("feature value row " + (rowI + 2) + " (" + valueId + ") has no image");
                 }
 
                 const value = new WorksheetFeatureValueDefinition({
                     description: this._parseDescription(row),
                     displayName: row["display_name"],
                     image: image,
-                    id: WorksheetFeatureValueId.parse(row["id"])
+                    id: WorksheetFeatureValueId.parse(valueId)
                 });
                 values.push(value);
             } catch (e) {
