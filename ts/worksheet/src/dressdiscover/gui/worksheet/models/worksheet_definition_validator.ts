@@ -9,27 +9,30 @@ export class WorksheetDefinitionValidator {
         const extentsById: { [index: string]: WorksheetExtentDefinition } = {};
         if (definition.extents) {
             for (let extent of definition.extents) {
-                if (!_.isUndefined(extentsById[extent.id.toString()])) {
-                    throw new RangeError("duplicate extent id " + extent.id);
+                if (_.isUndefined(extentsById[extent.id.toString()])) {
+                    extentsById[extent.id.toString()] = extent;
+                } else {
+                    console.error("duplicate extent id " + extent.id);
                 }
-                extentsById[extent.id.toString()] = extent;
             }
         }
 
         const featuresById: { [index: string]: WorksheetFeatureDefinition } = {};
         for (let feature of definition.features) {
-            if (!_.isUndefined(featuresById[feature.id.toString()])) {
-                throw new RangeError("duplicate feature id " + feature.id);
+            if (_.isUndefined(featuresById[feature.id.toString()])) {
+                featuresById[feature.id.toString()] = feature;
+            } else {
+                console.error("duplicate feature id " + feature.id);
             }
-            featuresById[feature.id.toString()] = feature;
         }
 
         const featureValuesById: { [index: string]: WorksheetFeatureValueDefinition } = {};
         for (let featureValue of definition.featureValues) {
-            if (!_.isUndefined(featureValuesById[featureValue.id.toString()])) {
-                throw new RangeError("duplicate feature value id " + featureValue.id);
+            if (_.isUndefined(featureValuesById[featureValue.id.toString()])) {
+                featureValuesById[featureValue.id.toString()] = featureValue;
+            } else {
+                console.error("duplicate feature value id " + featureValue.id);
             }
-            featureValuesById[featureValue.id.toString()] = featureValue;
         }
 
         for (let featureSet of definition.featureSets) {
