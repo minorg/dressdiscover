@@ -27,17 +27,18 @@
                         <tbody data-bind="foreach: selectableFeatureSets">
                             <tr>
                                 <td class="text-center">
-                                    <a class="btn btn-lg btn-secondary" data-bind="click: onToggle, css: { active: selected }, text: displayName"></a>
+                                    <a class="btn btn-lg btn-secondary" data-bind="click: onToggle, css: { active: selected }, text: definition.displayName"></a>
                                     <input data-bind="iCheck: selected" type="checkbox" />
                                 </td>
                                 <td>
                                     <!-- ko if: definition.description -->
-                                    <span data-bind="text: definition.description"></span>
+                                    <!-- ko template: { name: 'description-template', data: definition.description } -->
+                                    <!-- /ko -->
                                     <!-- /ko -->
                                 </td>
                                 <td>
-                                    <!-- ko foreach: featureDefinitions -->
-                                    <span data-bind="text: displayName ? displayName : id"></span>&nbsp;&nbsp;
+                                    <!-- ko foreach: definition.features -->
+                                    <span data-bind="text: displayName"></span>&nbsp;&nbsp;
                                     <!-- /ko -->
                                 </td>
                             </tr>
@@ -48,8 +49,7 @@
             </div>
         </div>
     </div>
-</div>
 
-<!-- ko template: 'next-previous-buttons-template' -->
-<!-- /ko -->
+    <!-- ko template: 'next-previous-buttons-template' -->
+    <!-- /ko -->
 </div>

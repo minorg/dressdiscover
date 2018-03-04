@@ -9,7 +9,10 @@ export abstract class AbstractStateView<ViewModelT extends AbstractStateViewMode
     }) {
         super({
             contentHtmlFileName: kwds.contentHtmlFileName,
-            templateHtmlFileNames: (kwds.templateHtmlFileNames ? kwds.templateHtmlFileNames : []).concat(["state/next_previous_buttons_template.html"]),
+            templateHtmlFileNames: (kwds.templateHtmlFileNames ? kwds.templateHtmlFileNames : []).concat([
+                "state/description_template.html",
+                "state/next_previous_buttons_template.html"
+            ]),
             title: kwds.viewModel.titleTagText,
             viewModel: kwds.viewModel
         });
