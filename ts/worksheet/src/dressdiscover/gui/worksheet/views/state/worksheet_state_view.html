@@ -9,10 +9,19 @@
                     <h3 class="card-title mb-0 text-center" data-bind="text: review ? 'Review' : 'Select feature sets'"></h3>
                 </div>
                 <div class="container-fluid card-body text-center">
-                    <div class="row">
+                    <!-- ko if: review -->
+                    TODO: review contents
+                    <!-- /ko -->
+                    <!-- ko if: !review -->
+                    <div class="row" data-bind="foreach: selectableFeatureSets">
                         <div class="col-12">
+                            <a class="btn btn-lg btn-secondary" data-bind="click: onToggle, css: { active: selected }, text: displayName"></a>
+                            <!-- ko if: definition.description -->
+                            <span data-bind="text: definition.description"></span>
+                            <!-- /ko -->
                         </div>
                     </div>
+                    <!-- /ko -->
                 </div>
             </div>
         </div>

@@ -13,7 +13,7 @@ export class StartViewModel extends TopLevelViewModel {
 
         _.bindAll(this, "onClickOpenButton", "onClickStartButton", "onKeypressNewStateId");
 
-        this.openButtonVisible = ko.pureComputed<boolean>({
+        this.openButtonEnabled = ko.pureComputed<boolean>({
             owner: this,
             read: () => {
                 return !!this.selectedExistingStateId();
@@ -60,6 +60,6 @@ export class StartViewModel extends TopLevelViewModel {
 
     readonly existingStateIds: WorksheetStateId[];
     readonly newStateId = ko.observable<string>();
-    readonly openButtonVisible: KnockoutComputed<boolean>;
+    readonly openButtonEnabled: KnockoutComputed<boolean>;
     readonly selectedExistingStateId = ko.observable<WorksheetStateId>();
 }

@@ -1,16 +1,12 @@
 <script id="next-previous-buttons-template" type="text/html">
     <div class="row">
         <div class="col-12">
-            <!-- ko if: $root.previousButtonVisible() -->
             <div class="pull-left">
-                <a class="btn btn-lg btn-primary" data-bind="click: $root.onClickPreviousButton">Previous</a>
+                <input type="button" class="btn btn-lg btn-primary" data-bind="click: $root.onClickPreviousButton, enable: $root.previousButtonEnabled()" value="Previous"></input>
             </div>
-            <!-- /ko -->
-            <!-- ko if: $root.nextButtonVisible() -->
             <div class="pull-right">
-                <a class="btn btn-lg btn-primary" data-bind="click: $root.onClickNextButton">Next</a>
+                <input type="button" class="btn btn-lg btn-primary" data-bind="click: $root.onClickNextButton, enable: $root.nextButtonEnabled()" value="Next"></input>
             </div>
-            <!-- /ko -->
         </div>
     </div>
 </script>

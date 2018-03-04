@@ -1,25 +1,42 @@
-import { WorksheetFeatureSetId } from 'dressdiscover/api/models/worksheet/worksheet_feature_set_id';
 import { WorksheetStateMark } from 'dressdiscover/api/models/worksheet/worksheet_state_mark';
 import { AbstractStateViewModel } from 'dressdiscover/gui/worksheet/view_models/state/abstract_state_view_model';
 import * as ko from 'knockout';
+import { WorksheetFeatureSetDefinition } from 'dressdiscover/api/models/worksheet/worksheet_feature_set_definition';
+import _ = require('lodash');
+
+class SelectableFeatureSet {
+    constructor(public readonly definition: WorksheetFeatureSetDefinition) {
+    }
+
+    get displayName() {
+        return this.definition.displayName ? this.definition.displayName : this.definition.id;
+    }
+
+    onToggle() {
+        this.selected(!this.selected());
+    }    
+
+    readonly selected = ko.observable<boolean>();
+}
 
 export class WorksheetStateViewModel extends AbstractStateViewModel {
     constructor(kwds: { currentStateMark: WorksheetStateMark }) {
         super(kwds);
 
         if (this.currentStateMark.review) {
-            this.nextButtonVisible = ko.observable<boolean>(false);
-            this.previousButtonVisible = ko.observable<boolean>(true);
+            this.nextButtonEnabled = ko.observable<boolean>(false);
+            this.previousButtonEnabled = ko.observable<boolean>(true);
         } else {
-            this.nextButtonVisible = ko.computed<boolean>({
+            this.nextButtonEnabled = ko.pureComputed<boolean>({
                 owner: this,
-                read: () => !!this.featureSetIdSelected()
+                read: () => _.some(this.selectableFeatureSets, (featureSet) => featureSet.selected())
             });
-            this.previousButtonVisible = ko.observable<boolean>(false);
+            this.previousButtonEnabled = ko.observable<boolean>(false);
+            this.selectableFeatureSets = _.map(this.worksheetDefinition.featureSets, (featureSetDefinition) => new SelectableFeatureSet(featureSetDefinition));
         }
     }
 
-    readonly featureSetIdSelected = ko.observable<WorksheetFeatureSetId>();
-    readonly nextButtonVisible: KnockoutObservable<boolean>;
-    readonly previousButtonVisible: KnockoutObservable<boolean>;
+    readonly nextButtonEnabled: KnockoutObservable<boolean>;
+    readonly previousButtonEnabled: KnockoutObservable<boolean>;
+    readonly selectableFeatureSets: SelectableFeatureSet[] = [];
 }
