@@ -2,23 +2,37 @@ import { WorksheetFeatureSetState } from 'dressdiscover/api/models/worksheet/wor
 import { WorksheetFeatureState } from 'dressdiscover/api/models/worksheet/worksheet_feature_state';
 import { WorksheetStateId } from 'dressdiscover/api/models/worksheet/worksheet_state_id';
 import { WorksheetStateMark } from 'dressdiscover/api/models/worksheet/worksheet_state_mark';
+import { Application } from 'dressdiscover/gui/worksheet/application';
 import { WorksheetFeatureDefinitionWrapper } from 'dressdiscover/gui/worksheet/models/worksheet_feature_definition_wrapper';
 import {
     WorksheetFeatureSetDefinitionWrapper,
 } from 'dressdiscover/gui/worksheet/models/worksheet_feature_set_definition_wrapper';
+import {
+    WorksheetFeatureValueDefinitionWrapper,
+} from 'dressdiscover/gui/worksheet/models/worksheet_feature_value_definition_wrapper';
 
 class WorksheetFeatureSetStateTableRow {
-    constructor(readonly featureDefinition: WorksheetFeatureDefinitionWrapper, readonly featureStateMark: WorksheetStateMark, readonly featureState?: WorksheetFeatureState) {
+    constructor(readonly featureDefinition: WorksheetFeatureDefinitionWrapper, readonly featureStateMark: WorksheetStateMark, featureState?: WorksheetFeatureState) {
+        if (featureState && featureState.selectedValueIds) {
+            for (let valueId of featureState.selectedValueIds) {
+                this.values.push(Application.instance.worksheetDefinition.getFeatureValueById(valueId));
+            }
+        }
     }
+
+    readonly values: WorksheetFeatureValueDefinitionWrapper[] = [];
 }
 
 export class WorksheetFeatureSetStateTable {
     constructor(kwds: {
         featureSetDefinition: WorksheetFeatureSetDefinitionWrapper,
         featureSetState: WorksheetFeatureSetState,
+        includeFeatureDescriptions: boolean,
         worksheetStateId: WorksheetStateId
     }) {
         this.featureSetDefinition = kwds.featureSetDefinition;
+        this.includeFeatureDescriptions = kwds.includeFeatureDescriptions;
+
         for (let featureDefinition of kwds.featureSetDefinition.features) {
             let featureState: WorksheetFeatureState | undefined = undefined;
             for (let checkFeatureState of kwds.featureSetState.features) {
@@ -39,5 +53,6 @@ export class WorksheetFeatureSetStateTable {
     }
 
     readonly featureSetDefinition: WorksheetFeatureSetDefinitionWrapper;
+    readonly includeFeatureDescriptions: boolean;
     readonly rows: WorksheetFeatureSetStateTableRow[] = [];
 }

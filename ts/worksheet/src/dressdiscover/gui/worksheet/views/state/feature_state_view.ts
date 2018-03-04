@@ -5,6 +5,9 @@ export class FeatureStateView extends AbstractStateView<FeatureStateViewModel> {
     constructor(viewModel: FeatureStateViewModel) {
         super({
             contentHtmlFileName: "state/feature_state_view.html",
+            templateHtmlFileNames: [
+                "state/breadcrumbs_template.html"
+            ],
             viewModel: viewModel
         });
     }

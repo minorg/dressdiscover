@@ -9,6 +9,10 @@ export abstract class AbstractStateViewModel extends TopLevelViewModel {
         this.currentStateMark = kwds.currentStateMark;
     }
 
+    onClickFinishButton() {
+        Application.instance.router.goToState(Application.instance.session.worksheetStateMachine.lastStateMark);
+    }
+
     onClickNextButton() {
         Application.instance.router.goToState(Application.instance.session.worksheetStateMachine.nextStateMark(this.currentStateMark));
     }

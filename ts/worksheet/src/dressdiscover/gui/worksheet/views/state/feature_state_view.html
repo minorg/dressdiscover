@@ -1,0 +1,19 @@
+<div class="container-fluid">
+    <div class="row">
+        <!-- ko template: { name: 'breadcrumbs-template', data: { featureDefinition: featureDefinition, featureSetDefinition: featureSetDefinition } } -->
+        <!-- /ko -->
+    </div>
+    <div class="row">
+        <!-- ko foreach: selectableValues -->
+        <a data-bind="click: onToggle">
+            <div class="card mb-4 mr-4" data-bind="css: { 'border-info': selected }">
+                <div class="card-header" data-bind="text: definition.displayName"></div>
+                <div class="card-body">
+                    <img data-bind="attr: { src: definition.image ? definition.image.thumbnailUrl : 'http://via.placeholder.com/200x200?text=Missing%20image' }"
+                    />
+                </div>
+            </div>
+        </a>
+        <!-- /ko -->
+    </div>
+</div>

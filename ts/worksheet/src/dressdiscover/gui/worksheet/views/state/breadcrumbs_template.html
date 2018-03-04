@@ -1,0 +1,8 @@
+<script id="breadcrumbs-template" type="text/html">
+    <ol class="breadcrumb w-100">
+        <li class="breadcrumb-item" aria-current="page" data-bind="css: { active: !featureDefinition }"><a data-bind="attr: { href: $root.hrefs.state($root.featureSetStateMark) }, text: featureSetDefinition.displayName"></a></li>
+        <!-- ko if: featureDefinition -->
+        <li class="breadcrumb-item active" aria-current="page" data-bind="text: featureDefinition.displayName"></li>
+        <!-- /ko -->
+    </ol>
+</script>

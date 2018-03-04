@@ -1,13 +1,16 @@
 <!-- ko if: review -->
 <h3 class="card-title">Review</h3>
+<br/>
 <!-- ko foreach: featureSetStateTables -->
-<h5 class="card-subtitle" data-bind="text: featureSetDefinition.displayName"></h5>
+<h5 class="card-subtitle text-center" data-bind="text: featureSetDefinition.displayName"></h5>
+<br/>
 <!-- ko template: { name: 'feature-set-state-table-template', data: $data } -->
 <!-- /ko -->
 <!-- /ko -->
 JSON:
+<br>
 <br/>
-<pre data-bind="text: JSON.stringify(worksheetState().toThryftJsonObject(), undefined, 4)"></pre>
+<pre><code data-bind="text: JSON.stringify(worksheetState().toThryftJsonObject(), undefined, 4)"></code></pre>
 <!-- /ko -->
 
 <!-- ko if: !review -->

@@ -5,7 +5,10 @@ export class FeatureSetStateView extends AbstractStateView<FeatureSetStateViewMo
     constructor(viewModel: FeatureSetStateViewModel) {
         super({
             contentHtmlFileName: "state/feature_set_state_view.html",
-            templateHtmlFileNames: ["state/feature_set_state_table_template.html"],
+            templateHtmlFileNames: [
+                "state/breadcrumbs_template.html",
+                "state/feature_set_state_table_template.html"
+            ],
             viewModel: viewModel
         });
     }

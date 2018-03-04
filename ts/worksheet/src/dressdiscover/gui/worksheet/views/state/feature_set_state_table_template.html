@@ -3,7 +3,9 @@
         <thead>
             <tr>
                 <th class="text-center">Feature</th>
+                <!-- ko if: includeFeatureDescriptions -->
                 <th class="text-center">Description</th>
+                <!-- /ko -->
                 <th class="text-center">Value(s)</th>
             </tr>
         </thead>
@@ -12,15 +14,16 @@
                 <td class="text-center w-25">
                     <a class="btn btn-lg btn-secondary w-100" data-bind="attr: { href: $root.hrefs.state(featureStateMark) }, text: featureDefinition.displayName"></a>
                 </td>
+                <!-- ko if: $parent.includeFeatureDescriptions -->
                 <td>
                     <!-- ko if: featureDefinition.description -->
                     <!-- ko template: { name: 'description-template', data: featureDefinition.description } -->
                     <!-- /ko -->
                     <!-- /ko -->
                 </td>
-                <td>
-                    <!-- ko if: featureState -->
-                    <!-- /ko -->
+                <!-- /ko -->
+                <td class="align-middle" data-bind="foreach: values">
+                    <span class="border border-info h4 m-2 p-2" data-bind="text: displayName">&nbsp;&nbsp;
                 </td>
             </tr>
         </tbody>

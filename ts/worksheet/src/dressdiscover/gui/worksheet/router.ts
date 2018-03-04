@@ -84,6 +84,8 @@ export class Router {
 
                 try {
                     if (stateMark.featureSetId) {
+                        const featureSetDefinition = Application.instance.worksheetDefinition.getFeatureSetById(stateMark.featureSetId);
+
                         let featureSetState = _.find(state.featureSets, (featureSetState) => featureSetState.id.equals(stateMark.featureSetId));
                         if (!featureSetState) {
                             featureSetState = new WorksheetFeatureSetState({ features: [], id: stateMark.featureSetId });
@@ -103,6 +105,7 @@ export class Router {
                             new FeatureStateView(new FeatureStateViewModel({
                                 currentStateMark: stateMark,
                                 featureDefinition: Application.instance.worksheetDefinition.getFeatureById(stateMark.featureId),
+                                featureSetDefinition: featureSetDefinition,
                                 featureState: featureState
                             })).show();
                         } else {
@@ -111,7 +114,7 @@ export class Router {
 
                             new FeatureSetStateView(new FeatureSetStateViewModel({
                                 currentStateMark: stateMark,
-                                featureSetDefinition: Application.instance.worksheetDefinition.getFeatureSetById(stateMark.featureSetId),
+                                featureSetDefinition: featureSetDefinition,
                                 featureSetState: featureSetState
                             })).show();
                         }

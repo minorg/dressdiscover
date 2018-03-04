@@ -33,11 +33,13 @@ export class WorksheetStateMachine {
             const featureSetId = featureSetState.id;
             const featureSetDefinition = worksheetDefinition.getFeatureSetById(featureSetId);
 
-            // Feature set start
-            this._stateMarks.push(new WorksheetStateMark({
-                featureSetId: featureSetId,
-                worksheetStateId: worksheetStateId
-            }));
+            if (worksheetState.featureSets.length > 1) {
+                // Feature set start
+                this._stateMarks.push(new WorksheetStateMark({
+                    featureSetId: featureSetId,
+                    worksheetStateId: worksheetStateId
+                }));
+            }
 
             for (let featureId of featureSetDefinition.featureIds) {
                 // Feature start is the same as review
@@ -48,12 +50,14 @@ export class WorksheetStateMachine {
                 }));
             }
 
-            // Feature set review
-            this._stateMarks.push(new WorksheetStateMark({
-                featureSetId: featureSetId,
-                review: true,
-                worksheetStateId: worksheetStateId
-            }));
+            if (worksheetState.featureSets.length > 1) {
+                // Feature set review
+                this._stateMarks.push(new WorksheetStateMark({
+                    featureSetId: featureSetId,
+                    review: true,
+                    worksheetStateId: worksheetStateId
+                }));
+            }
         }
 
         // Worksheet review
@@ -80,6 +84,13 @@ export class WorksheetStateMachine {
             }
         }
         throw new EvalError("state not found in state machine");
+    }
+
+    get lastStateMark(): WorksheetStateMark {
+        if (this._stateMarks.length == 0) {
+            throw new EvalError();
+        }
+        return this._stateMarks[this._stateMarks.length - 1];
     }
 
     get length() {

@@ -34,6 +34,7 @@ export class WorksheetStateViewModel extends AbstractStateViewModel {
                 this.featureSetStateTables.push(new WorksheetFeatureSetStateTable({
                     featureSetDefinition: this.worksheetDefinition.getFeatureSetById(featureSetState.id),
                     featureSetState: featureSetState,
+                    includeFeatureDescriptions: false,
                     worksheetStateId: worksheetState.id
                 }));
             }
