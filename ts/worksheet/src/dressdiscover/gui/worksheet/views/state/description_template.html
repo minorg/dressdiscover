@@ -1,3 +1,14 @@
 <script id="description-template" type="text/html">
-    <span data-bind="text: definition.description.text"></span>
+    <div class="container-fluid">
+        <div data-bind="text: text" style="font-size: small"></div>
+        <br/>
+        <!-- ko with: rights -->
+        <div style="font-size: xx-small">
+            Description&nbsp;&copy;&nbsp;
+            <span data-bind="text: author"></span>
+            <br/> License:&nbsp;
+            <span data-bind="text: license"></span>
+        </div>
+        <!-- /ko -->
+    </div>
 </script>
