@@ -1,10 +1,10 @@
 <script id="next-previous-buttons-template" type="text/html">
     <div class="row">
         <div class="col-12">
-            <div class="pull-left">
+            <div class="float-left">
                 <input type="button" class="btn btn-lg btn-primary" data-bind="click: $root.onClickPreviousButton, css: { visible: $root.previousButtonEnabled(), invisible: !$root.previousButtonEnabled() }" value="Previous"></input>
             </div>
-            <div class="pull-right">
+            <div class="float-right">
                 <input type="button" class="btn btn-lg btn-primary" data-bind="click: $root.onClickNextButton, css: { visible: $root.nextButtonEnabled(), invisible: !$root.nextButtonEnabled() }" value="Next"></input>
                 <input type="button" class="btn btn-lg btn-primary" data-bind="click: $root.onClickFinishButton, css: { visible: $root.nextButtonEnabled(), invisible: !$root.nextButtonEnabled() }" value="Finish"></input>
             </div>

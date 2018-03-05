@@ -5,31 +5,40 @@
     </div>
     <div class="row">
         <!-- ko foreach: selectableValues -->
-        <a data-bind="click: onToggle">
-            <div class="card mb-4 mr-4" data-bind="css: { 'border-info': selected }" style="border-width: 8px">
-                <div class="card-header" data-bind="text: definition.displayName"></div>
-                <div class="card-body" style="width: 240px">
-                    <figure class="figure">
+        <div class="card mb-4 mr-4" data-bind="css: { 'border-info': selected }" style="border-width: 8px">
+            <div class="card-header">
+                <a data-bind="click: onToggleSelected, text: definition.displayName"></a>
+            </div>
+            <div class="card-body" style="width: 240px">
+                <figure class="figure">
+                    <a data-bind="click: onToggleSelected">
                         <img class="figure-img rounded" data-bind="attr: { src: definition.image ? definition.image.thumbnailUrl : 'http://via.placeholder.com/200x200?text=Missing%20image' }"
                             style="height: 200px; width: 200px" />
-                        <!-- ko if: definition.image -->
-                        <!-- ko with: definition.image.rights -->
-                        <figcaption class="figure-caption" style="font-size: xx-small">
-                            Image&nbsp;&copy;
-                            <span data-bind="text: author"></span>
-                            <br/>License:&nbsp;
-                            <span data-bind="text: license"></span>
-                        </figcaption>
-                        <!-- /ko -->
-                        <!-- /ko -->
-                    </figure>
-                    <!-- ko if: definition.description -->
-                    <p class="card-text" data-bind="template: { name: 'description-template', data: definition.description }">
-                    </p>
+                    </a>
+                    <!-- ko if: definition.image -->
+                    <!-- ko with: definition.image.rights -->
+                    <figcaption class="figure-caption" style="font-size: xx-small">
+                        Image&nbsp;&copy;
+                        <span data-bind="text: author"></span>
+                        <br/>License:&nbsp;
+                        <span data-bind="text: license"></span>
+                    </figcaption>
                     <!-- /ko -->
+                    <!-- /ko -->
+                </figure>
+                <!-- ko if: definition.description -->
+                <div class="card-text">
+                    <a class="description-toggle" data-bind="attr: { 'aria-controls': 'description-' + $index(), href: '#description-' + $index() }"
+                        data-toggle="collapse" role="button" aria-expanded="false">
+                        Description
+                    </a>
+                    <br/>
+                    <div class="collapse" data-bind="attr: { id: 'description-' + $index() }, template: { name: 'description-template', data: definition.description }">
+                    </div>
                 </div>
+                <!-- /ko -->
             </div>
-        </a>
+        </div>
         <!-- /ko -->
     </div>
 </div>

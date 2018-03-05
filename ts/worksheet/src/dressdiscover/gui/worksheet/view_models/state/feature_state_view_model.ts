@@ -17,7 +17,7 @@ class SelectableFeatureValue {
         this.selected(selected);
     }
 
-    onToggle() {
+    onToggleSelected() {
         this.selected(!this.selected());
         return false;
     }

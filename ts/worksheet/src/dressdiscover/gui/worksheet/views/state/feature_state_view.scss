@@ -1,0 +1,22 @@
+a.description-toggle {
+    color: black !important;
+    text-decoration: underline;
+}
+
+.description-toggle:after {
+    /* symbol for "opening" panels */
+    font-family: "Font Awesome 5 Free";
+    /* essential for enabling glyphicon */
+    content: "\f054";
+    /* adjust as needed, taken from bootstrap.css */
+    float: right;
+    /* adjust as needed */
+    color: grey;
+    /* adjust as needed */
+}
+
+.description-toggle.collapsed:after {
+    /* symbol for "collapsed" panels */
+    content: "\f077";
+    /* adjust as needed, taken from bootstrap.css */
+}
