@@ -28,12 +28,21 @@
                 </figure>
                 <!-- ko if: definition.description -->
                 <div class="card-text">
-                    <a class="description-toggle" data-bind="attr: { 'aria-controls': 'description-' + $index(), href: '#description-' + $index() }"
-                        data-toggle="collapse" role="button" aria-expanded="false">
+                    <a class="description-toggle" data-bind="click: onToggleDescription">
                         Description
                     </a>
+                    <div class="float-right">
+                        <a data-bind="click: onToggleDescription" style="text-decoration: none">
+                            <!-- ko if: descriptionShown() -->
+                            <i class="fas fa-chevron-down"></i>
+                            <!-- /ko -->
+                            <!-- ko if: !descriptionShown() -->
+                            <i class="fas fa-chevron-right"></i>
+                            <!-- /ko -->
+                        </a>
+                    </div>
                     <br/>
-                    <div class="collapse" data-bind="attr: { id: 'description-' + $index() }, template: { name: 'description-template', data: definition.description }">
+                    <div class="collapse" data-bind="css: { show: descriptionShown() }, template: { name: 'description-template', data: definition.description }">
                     </div>
                 </div>
                 <!-- /ko -->

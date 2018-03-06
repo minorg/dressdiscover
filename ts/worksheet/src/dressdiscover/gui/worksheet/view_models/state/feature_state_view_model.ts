@@ -17,12 +17,16 @@ class SelectableFeatureValue {
         this.selected(selected);
     }
 
-    onToggleSelected() {
-        this.selected(!this.selected());
-        return false;
+    onToggleDescription() {
+        this.descriptionShown(!this.descriptionShown());
     }
 
-    selected = ko.observable<boolean>();
+    onToggleSelected() {
+        this.selected(!this.selected());
+    }
+
+    readonly descriptionShown = ko.observable<boolean>(false);
+    readonly selected = ko.observable<boolean>();
 }
 
 export class FeatureStateViewModel extends AbstractStateViewModel {
