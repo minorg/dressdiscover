@@ -5,8 +5,7 @@ export class StaticView extends TopLevelView<TopLevelViewModel> {
     constructor(kwds: { contentHtmlFileName: string, title: string }) {
         super({
             contentHtmlFileName: kwds.contentHtmlFileName,
-            title: kwds.title,
-            viewModel: new TopLevelViewModel()
+            viewModel: new TopLevelViewModel({ title: kwds.title })
         });
     }
 }

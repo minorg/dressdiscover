@@ -5,9 +5,22 @@ import { TopLevelViewModel } from 'dressdiscover/gui/worksheet/view_models/top_l
 
 export abstract class AbstractStateViewModel extends TopLevelViewModel {
     constructor(kwds: { currentStateMark: WorksheetStateMark }) {
-        super();
+        super({ title: "" });
         this.currentStateMark = kwds.currentStateMark;
         this.currentStateMarkIndex = Application.instance.session.worksheetStateMachine.indexOfStateMark(kwds.currentStateMark);
+
+        {
+            this.title = "Worksheet '" + this.worksheetState.id + "'";
+            if (this.currentStateMark.featureSetId) {
+                const featureSetDefinition = this.worksheetDefinition.getFeatureSetById(this.currentStateMark.featureSetId);
+                this.title += ", Feature set '" + (featureSetDefinition.displayName ? featureSetDefinition.displayName : featureSetDefinition.id) + "'";
+
+                if (this.currentStateMark.featureId) {
+                    const featureDefinition = this.worksheetDefinition.getFeatureById(this.currentStateMark.featureId);
+                    this.title += ", Feature '" + (featureDefinition.displayName ? featureDefinition.displayName : featureDefinition.id) + "'";
+                }
+            }
+        }
     }
 
     onClickFinishButton() {
@@ -36,20 +49,6 @@ export abstract class AbstractStateViewModel extends TopLevelViewModel {
 
     get review() {
         return this.currentStateMark.review;
-    }
-
-    get titleTagText(): string {
-        let result = "Worksheet '" + this.worksheetState.id + "'";
-        if (this.currentStateMark.featureSetId) {
-            const featureSetDefinition = this.worksheetDefinition.getFeatureSetById(this.currentStateMark.featureSetId);
-            result += ", Feature set '" + (featureSetDefinition.displayName ? featureSetDefinition.displayName : featureSetDefinition.id) + "'";
-
-            if (this.currentStateMark.featureId) {
-                const featureDefinition = this.worksheetDefinition.getFeatureById(this.currentStateMark.featureId);
-                result += ", Feature '" + (featureDefinition.displayName ? featureDefinition.displayName : featureDefinition.id) + "'";
-            }
-        }
-        return result;
     }
 
     get worksheetDefinition(): WorksheetDefinitionWrapper {

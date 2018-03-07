@@ -7,7 +7,7 @@ import * as _ from 'lodash';
 
 export class StartViewModel extends TopLevelViewModel {
     constructor() {
-        super();
+        super({ title: "Start" });
 
         this.existingStateIds = Application.instance.services.worksheetStateQueryService.getWorksheetStateIdsSync();
 
@@ -39,7 +39,7 @@ export class StartViewModel extends TopLevelViewModel {
         Application.instance.services.worksheetStateCommandService.putWorksheetStateAsync({
             error: Application.instance.errorHandler.handleAsyncError,
             state: newState,
-            success:() => {
+            success: () => {
                 self._goToFirstState(newState);
             }
         });

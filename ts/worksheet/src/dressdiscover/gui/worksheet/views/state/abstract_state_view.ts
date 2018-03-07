@@ -16,7 +16,6 @@ export abstract class AbstractStateView<ViewModelT extends AbstractStateViewMode
                 "state/description_template.html",
                 "state/next_previous_buttons_template.html"
             ]),
-            title: kwds.viewModel.titleTagText,
             viewModel: kwds.viewModel
         });
 

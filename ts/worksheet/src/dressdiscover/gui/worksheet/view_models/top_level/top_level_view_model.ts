@@ -1,16 +1,18 @@
 import { AlertViewModel } from 'dressdiscover/gui/worksheet/view_models/top_level/alert_view_model';
-import { NavbarViewModel } from 'dressdiscover/gui/worksheet/view_models/top_level/navbar_view_model';
 import { ViewModel } from 'dressdiscover/gui/worksheet/view_models/view_model';
 
 export class TopLevelViewModel extends ViewModel {
+    constructor(kwds: {
+        title: string
+    }) {
+        super();
+        this.title = kwds.title;
+    }
+
     get alerts() {
         return this._alertViewModel;
     }
 
-    get navbar() {
-        return this._navbarViewModel;
-    }
-
     private _alertViewModel = new AlertViewModel();
-    private _navbarViewModel = new NavbarViewModel();
+    title: string;
 }

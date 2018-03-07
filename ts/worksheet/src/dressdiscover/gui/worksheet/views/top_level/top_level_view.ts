@@ -11,7 +11,6 @@ export class TopLevelView<ViewModelT extends TopLevelViewModel> extends View<Vie
     constructor(kwds: {
         contentHtmlFileName: string,
         templateHtmlFileNames?: string[],
-        title: string,
         viewModel: ViewModelT
     }) {
         super({ viewModel: kwds.viewModel });
@@ -22,21 +21,22 @@ export class TopLevelView<ViewModelT extends TopLevelViewModel> extends View<Vie
             }
         }
         this._frameHtml = View._requireHtml("top_level/top_level_view.html");
-        for (let templateHtmlFileName of ["top_level/alert_template.html", "top_level/navbar_template.html"]) {
+        for (let templateHtmlFileName of ["top_level/alert_template.html"]) {
             this._frameHtml = View._requireHtml(templateHtmlFileName) + this._frameHtml;
         }
-        this._title = kwds.title;
     }
 
     show(ready?: () => void) {
+        document.title = "DressDiscover Worksheet" + (this.viewModel.title.length >
+            0 ? (": " + this.viewModel.title) : "");
+
         const self = this;
         const frameEl = $("#app");
         frameEl.html(this._frameHtml).ready(() => {
-            document.title = "DressDiscover Worksheet" + (self._title.length > 0 ? (": " + self._title) : "");
-            ko.cleanNode(frameEl[0]);
             const contentEl = $("#content");
             contentEl.html(self._contentHtml);
             contentEl.ready(() => {
+                ko.cleanNode(frameEl[0]);
                 ko.applyBindings(self.viewModel, frameEl[0]);
 
                 (window as any).cookieconsent.initialise({
@@ -61,5 +61,4 @@ export class TopLevelView<ViewModelT extends TopLevelViewModel> extends View<Vie
 
     private _contentHtml: string;
     private _frameHtml: string;
-    private _title: string;
 }

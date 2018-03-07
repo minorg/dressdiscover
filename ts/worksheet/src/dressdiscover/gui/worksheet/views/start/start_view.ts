@@ -5,7 +5,6 @@ export class StartView extends TopLevelView<StartViewModel> {
     constructor() {
         super({
             contentHtmlFileName: "start/start_view.html",
-            title: "Start",
             viewModel: new StartViewModel()
         });
     }
