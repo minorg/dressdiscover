@@ -10,7 +10,7 @@ export abstract class AbstractStateViewModel extends TopLevelViewModel {
         this.currentStateMarkIndex = Application.instance.session.worksheetStateMachine.indexOfStateMark(kwds.currentStateMark);
 
         {
-            this.title = "Worksheet '" + this.worksheetState.id + "'";
+            this.title = "Worksheet '" + this.worksheetState().id + "'";
             if (this.currentStateMark.featureSetId) {
                 const featureSetDefinition = this.worksheetDefinition.getFeatureSetById(this.currentStateMark.featureSetId);
                 this.title += ", Feature set '" + (featureSetDefinition.displayName ? featureSetDefinition.displayName : featureSetDefinition.id) + "'";

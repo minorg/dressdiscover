@@ -4,6 +4,7 @@ import { Application } from 'dressdiscover/gui/worksheet/application';
 import { TopLevelViewModel } from 'dressdiscover/gui/worksheet/view_models/top_level/top_level_view_model';
 import * as ko from 'knockout';
 import * as _ from 'lodash';
+import * as moment from 'moment';
 
 export class StartViewModel extends TopLevelViewModel {
     constructor() {
@@ -30,9 +31,14 @@ export class StartViewModel extends TopLevelViewModel {
     }
 
     onClickStartButton() {
-        let newStateId = this.newStateId();
-        if (!newStateId) {
-            newStateId = "New object " + new Date().toISOString();
+        let newStateIdStem = this.newStateId();
+        if (!newStateIdStem) {
+            newStateIdStem = "New object " + moment().format("YYYY-MM-DD");
+        }
+        let newStateIdSuffix = 0;
+        let newStateId = newStateIdStem;
+        while (_.some(this.existingStateIds, (stateId) => stateId.toString() == newStateId)) {
+            newStateId = newStateIdStem + " (" + (++newStateIdSuffix) + ")";
         }
         const newState = new WorksheetState({ featureSets: [], id: WorksheetStateId.parse(newStateId) });
         const self = this;

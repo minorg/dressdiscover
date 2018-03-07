@@ -1,7 +1,11 @@
 <div id="top-level-view">
-  <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <i class="fas fa-clipboard-check fa-3x" /> &nbsp;
-    <a class="navbar-brand" data-bind="attr: { href: $root.hrefs.root }">DressDiscover Worksheet</a>
+  <nav class="navbar navbar-light bg-light">
+    <a class="navbar-brand" data-bind="attr: { href: $root.hrefs.root }" style="vertical-align: middle">
+      <i class="fas fa-clipboard-check" />&nbsp;DressDiscover</a>
+    <ul class="nav navbar-nav mx-auto">
+      <li class="nav-item" data-bind="text: title" style="font-size: 1.25rem">
+      </li>
+    </ul>
   </nav>
   <br />
   <div data-bind="template: { name: 'alert-template', data: alerts }"></div>
