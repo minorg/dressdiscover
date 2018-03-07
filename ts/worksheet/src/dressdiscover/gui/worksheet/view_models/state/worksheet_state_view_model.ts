@@ -1,5 +1,6 @@
 import { WorksheetFeatureSetState } from 'dressdiscover/api/models/worksheet/worksheet_feature_set_state';
 import { WorksheetStateMark } from 'dressdiscover/api/models/worksheet/worksheet_state_mark';
+import { Application } from 'dressdiscover/gui/worksheet/application';
 import {
     WorksheetFeatureSetDefinitionWrapper,
 } from 'dressdiscover/gui/worksheet/models/worksheet_feature_set_definition_wrapper';
@@ -43,7 +44,7 @@ export class WorksheetStateViewModel extends AbstractStateViewModel {
                 owner: this,
                 read: () => _.some(this.selectableFeatureSets, (featureSet) => featureSet.selected())
             });
-            this.previousButtonEnabled = ko.observable<boolean>(false);
+            this.previousButtonEnabled = ko.observable<boolean>(true);
 
             const worksheetState = this.worksheetState();
             this.selectableFeatureSets = _.map(this.worksheetDefinition.featureSets,
@@ -78,6 +79,10 @@ export class WorksheetStateViewModel extends AbstractStateViewModel {
         this.worksheetState.notifySubscribers(this.worksheetState());
 
         super.onClickNextButton();
+    }
+
+    onClickPreviousButton() {
+        Application.instance.router.setLocation(this.hrefs.root);
     }
 
     readonly nextButtonEnabled: KnockoutObservable<boolean>;
