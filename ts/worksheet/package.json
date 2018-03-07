@@ -9,6 +9,7 @@
   },
   "version": "2.0.0",
   "dependencies": {
+    "@types/hammerjs": "2.0.35",
     "@types/jquery": "3.3.0",
     "@types/knockout": "3.4.51",
     "@types/papaparse": "4.1.33",
@@ -17,6 +18,7 @@
     "@types/lodash": "4.14.104",
     "bootstrap": "4.0.0",
     "cookieconsent": "3.0.6",
+    "hammerjs": "2.0.8",
     "knockout": "3.4.2",
     "icheck": "1.0.2",
     "lodash": "4.17.5",

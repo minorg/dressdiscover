@@ -7,7 +7,6 @@ import { View } from 'dressdiscover/gui/worksheet/views/view';
 import * as ko from 'knockout';
 
 
-
 export class TopLevelView<ViewModelT extends TopLevelViewModel> extends View<ViewModelT> {
     constructor(kwds: {
         contentHtmlFileName: string,
