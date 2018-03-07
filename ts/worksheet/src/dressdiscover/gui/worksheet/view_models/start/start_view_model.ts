@@ -3,7 +3,6 @@ import { WorksheetStateId } from 'dressdiscover/api/models/worksheet/worksheet_s
 import { Application } from 'dressdiscover/gui/worksheet/application';
 import { TopLevelViewModel } from 'dressdiscover/gui/worksheet/view_models/top_level/top_level_view_model';
 import * as ko from 'knockout';
-import * as _ from 'lodash';
 import * as moment from 'moment';
 
 export class StartViewModel extends TopLevelViewModel {
@@ -11,8 +10,6 @@ export class StartViewModel extends TopLevelViewModel {
         super({ title: "Start" });
 
         this.existingStateIds = Application.instance.services.worksheetStateQueryService.getWorksheetStateIdsSync();
-
-        _.bindAll(this, "onClickOpenButton", "onClickStartButton", "onKeypressNewStateId");
 
         this.openButtonEnabled = ko.pureComputed<boolean>({
             owner: this,
