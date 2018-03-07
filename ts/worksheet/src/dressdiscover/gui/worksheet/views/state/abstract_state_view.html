@@ -1,10 +1,12 @@
-<div class="container-fluid top-level-view-content">
+<div class="abstract-state-view container-fluid top-level-view-content">
+    <!-- ko if: lastStateMarkIndex > 0 -->
     <div class="row">
-        <div class="progress" style="height: 32px">
+        <div class="progress">
             <div class="progress-bar progress-bar-striped" role="progressbar" data-bind="attr: { 'aria-valuemax': lastStateMarkIndex, 'aria-valuenow': currentStateMarkIndex }, style: { width: progressPercentage }, text: progressPercentage"
                 aria-valuemin="0"></div>
         </div>
     </div>
+    <!-- /ko -->
 
     <div class="row">
         &nbsp;
