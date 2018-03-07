@@ -82,7 +82,11 @@ export class WorksheetStateViewModel extends AbstractStateViewModel {
     }
 
     onClickPreviousButton() {
-        Application.instance.router.setLocation(this.hrefs.root);
+        if (this.currentStateMark.review) {
+            super.onClickPreviousButton();
+        } else {
+            Application.instance.router.setLocation(this.hrefs.root);
+        }
     }
 
     readonly nextButtonEnabled: KnockoutObservable<boolean>;
