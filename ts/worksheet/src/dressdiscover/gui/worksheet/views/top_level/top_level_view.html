@@ -3,7 +3,18 @@
     <a class="navbar-brand" data-bind="attr: { href: $root.hrefs.root }" style="vertical-align: middle">
       <i class="fas fa-clipboard-check" />&nbsp;DressDiscover</a>
     <ul class="nav navbar-nav mx-auto">
-      <li class="nav-item" data-bind="text: title" style="font-size: 1.25rem">
+      <li class="nav-item" style="font-size: 1.25rem">
+        <ol class="breadcrumb breadcrumbs w-100" data-bind="foreach: breadcrumbs">
+          <li class="breadcrumb-item" aria-current="page" data-bind="css: { active: active }">
+            <!-- ko if: href -->
+            <a data-bind="attr: { href: href }, text: text"></a>
+            <!-- /ko -->
+            <!-- ko if: !href -->
+            <span data-bind="text: text"></span>
+            <!-- /ko -->
+          </li>
+          <!-- /ko -->
+        </ol>
       </li>
     </ul>
   </nav>

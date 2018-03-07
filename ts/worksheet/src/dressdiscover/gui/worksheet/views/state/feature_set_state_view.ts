@@ -6,7 +6,6 @@ export class FeatureSetStateView extends AbstractStateView<FeatureSetStateViewMo
         super({
             contentHtmlFileName: "state/feature_set_state_view.html",
             templateHtmlFileNames: [
-                "state/breadcrumbs_template.html",
                 "state/feature_set_state_table_template.html"
             ],
             viewModel: viewModel

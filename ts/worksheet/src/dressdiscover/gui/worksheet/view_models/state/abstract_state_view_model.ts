@@ -11,16 +11,16 @@ export abstract class AbstractStateViewModel extends TopLevelViewModel {
         this.currentStateMarkIndex = Application.instance.session.worksheetStateMachine.indexOfStateMark(kwds.currentStateMark);
 
         {
-            this.breadcrumbs.push(new Breadcrumb(this.worksheetState().id.toString(), this.hrefs.state(new WorksheetStateMark({ worksheetStateId: this.currentStateMark.worksheetStateId }))));
+            this.breadcrumbs.push(new Breadcrumb(this.worksheetState().id.toString(), { href: this.hrefs.state(new WorksheetStateMark({ worksheetStateId: this.currentStateMark.worksheetStateId })) }));
             this.title = "Worksheet '" + this.worksheetState().id + "'";
             if (this.currentStateMark.featureSetId) {
                 const featureSetDefinition = this.worksheetDefinition.getFeatureSetById(this.currentStateMark.featureSetId);
-                this.breadcrumbs.push(new Breadcrumb(featureSetDefinition.displayName, this.hrefs.state(new WorksheetStateMark({ featureSetId: this.currentStateMark.featureSetId, worksheetStateId: this.currentStateMark.worksheetStateId }))));
+                this.breadcrumbs.push(new Breadcrumb(featureSetDefinition.displayName, { href: this.hrefs.state(new WorksheetStateMark({ featureSetId: this.currentStateMark.featureSetId, worksheetStateId: this.currentStateMark.worksheetStateId })) }));
                 this.title += ", Feature set '" + featureSetDefinition.displayName + "'";
 
                 if (this.currentStateMark.featureId) {
                     const featureDefinition = this.worksheetDefinition.getFeatureById(this.currentStateMark.featureId);
-                    this.breadcrumbs.push(new Breadcrumb(featureDefinition.displayName, this.hrefs.state(this.currentStateMark)));
+                    this.breadcrumbs.push(new Breadcrumb(featureDefinition.displayName, { active: true, href: this.hrefs.state(this.currentStateMark) }));
                     this.title += ", Feature '" + featureDefinition.displayName + "'";
                 }
             }
