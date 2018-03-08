@@ -1,7 +1,6 @@
 import { WorksheetState } from 'dressdiscover/api/models/worksheet/worksheet_state';
 import { WorksheetStateId } from 'dressdiscover/api/models/worksheet/worksheet_state_id';
 import { Application } from 'dressdiscover/gui/worksheet/application';
-import { Breadcrumb } from 'dressdiscover/gui/worksheet/models/breadcrumb';
 import { TopLevelViewModel } from 'dressdiscover/gui/worksheet/view_models/top_level/top_level_view_model';
 import * as ko from 'knockout';
 import _ = require('lodash');
@@ -9,7 +8,7 @@ import * as moment from 'moment';
 
 export class StartViewModel extends TopLevelViewModel {
     constructor() {
-        super({ breadcrumbs: [new Breadcrumb("Start")], title: "Start" });
+        super({ breadcrumbs: [], title: "Start" });
 
         this.existingStateIds = Application.instance.services.worksheetStateQueryService.getWorksheetStateIdsSync();
 

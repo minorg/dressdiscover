@@ -2,6 +2,7 @@
   <nav class="navbar navbar-light bg-light">
     <a class="navbar-brand" data-bind="attr: { href: $root.hrefs.root }" style="vertical-align: middle">
       <i class="fas fa-clipboard-check" />&nbsp;DressDiscover</a>
+    <!-- ko if: breadcrumbs.length > 0 -->
     <ul class="nav navbar-nav mx-auto">
       <li class="nav-item" style="font-size: 1.25rem">
         <ol class="breadcrumb breadcrumbs w-100" data-bind="foreach: breadcrumbs">
@@ -17,6 +18,7 @@
         </ol>
       </li>
     </ul>
+    <!-- /ko -->
   </nav>
   <div data-bind="template: { name: 'alert-template', data: alerts }"></div>
   <div id="content"></div>
