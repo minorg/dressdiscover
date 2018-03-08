@@ -61,16 +61,7 @@ export class FeatureStateViewModel extends AbstractStateViewModel {
 
     save() {
         let featureState = this._featureState;
-        if (!featureState) {
-            let featureSetState = this._featureSetState;
-            if (!featureSetState) {
-                featureSetState = new WorksheetFeatureSetState({ features: [], id: this.currentStateMark.featureSetId as WorksheetFeatureSetId });
-                this.worksheetState().featureSets.push(featureSetState);
-            }
-
-            featureState = new WorksheetFeatureState({ id: this.currentStateMark.featureId as WorksheetFeatureId });
-            featureSetState.features.push(featureState);
-        }
+        let featureSetState = this._featureSetState;
 
         const selectedValueIds: WorksheetFeatureValueId[] = [];
         for (let checkSelectableFeatureValue of this.selectableValues) {
@@ -79,9 +70,23 @@ export class FeatureStateViewModel extends AbstractStateViewModel {
             }
         }
         if (selectedValueIds.length > 0) {
+            if (!featureState) {
+                if (!featureSetState) {
+                    console.debug("creating new feature set " + this.currentStateMark.featureSetId);
+                    featureSetState = new WorksheetFeatureSetState({ features: [], id: this.currentStateMark.featureSetId as WorksheetFeatureSetId });
+                    this.worksheetState().featureSets.push(featureSetState);
+                }
+
+                console.debug("creating new feature " + this.currentStateMark.featureId);
+                featureState = new WorksheetFeatureState({ id: this.currentStateMark.featureId as WorksheetFeatureId });
+                featureSetState.features.push(featureState);
+            }
+
             featureState.selectedValueIds = selectedValueIds;
-        } else {
-            featureState.selectedValueIds = undefined;
+        } else if (featureState && featureSetState) {
+            // No selected values, remove the feature
+            console.debug("removing empty feature " + this.currentStateMark.featureId);
+            _.remove(featureSetState.features, (feature) => feature.id.equals(this.currentStateMark.featureId));
         }
 
         this.worksheetState.notifySubscribers(this.worksheetState());

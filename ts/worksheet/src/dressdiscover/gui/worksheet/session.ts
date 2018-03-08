@@ -10,15 +10,15 @@ export class Session {
         const self = this;
         this.worksheetState.subscribe((newWorksheetState) => {
             if (!newWorksheetState) {
-                console.info("New worksheet state is null");
+                console.debug("new worksheet state is null");
                 self._lastWorksheetState = newWorksheetState;
                 return;
             }
             if (self._lastWorksheetState && !self._lastWorksheetState.equals(newWorksheetState)) {
-                console.info("Putting state, last = " + self._lastWorksheetState.toString() + ", new = " + newWorksheetState.toString());
+                console.debug("putting state, last = " + self._lastWorksheetState.toString() + ", new = " + newWorksheetState.toString());
                 Application.instance.services.worksheetStateCommandService.putWorksheetStateSync({ state: newWorksheetState });
             } else {
-                console.info("State has not changed, last = " + (self._lastWorksheetState ? self._lastWorksheetState.toString() : null) + ", new = " + newWorksheetState.toString());
+                console.debug("state has not changed, last = " + (self._lastWorksheetState ? self._lastWorksheetState.toString() : null) + ", new = " + newWorksheetState.toString());
             }
             self._lastWorksheetState = newWorksheetState.deepCopy();
         });

@@ -17,7 +17,7 @@ export class LocalWorksheetDefinitionQueryService extends AsyncToSyncWorksheetDe
             featureSetsCsv: require("raw-loader!../../../../../definitions/feature_sets.csv"),
             featureValuesCsv: require("raw-loader!../../../../../definitions/feature_values.csv")
         }));
-        // console.info("Worksheet definition:\n" + JSON.stringify(this._worksheetDefinition.toThryftJsonObject(), undefined, 4));
+        // console.debug("Worksheet definition:\n" + JSON.stringify(this._worksheetDefinition.toThryftJsonObject(), undefined, 4));
     }
 
     getWorksheetDefinitionSync(): WorksheetDefinition {

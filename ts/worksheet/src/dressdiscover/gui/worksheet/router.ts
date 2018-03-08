@@ -67,7 +67,7 @@ export class Router {
             }
             return;
         }
-        console.info("Get state mark: " + stateMark.toString());
+        console.debug("get state mark: " + stateMark.toString());
 
         Application.instance.services.worksheetStateQueryService.getWorksheetStateAsync({
             error: (errorKwds) => {
@@ -106,7 +106,7 @@ export class Router {
     }
 
     goToState(stateMark: WorksheetStateMark) {
-        console.info("New state mark: " + stateMark.toString());
+        console.debug("go to state mark: " + stateMark.toString());
         this.setLocation(this._hrefs.state(stateMark));
     }
 
