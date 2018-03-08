@@ -58,6 +58,20 @@ export class WorksheetStateViewModel extends AbstractStateViewModel {
     }
 
     onClickNextButton() {
+        this.save();
+        super.onClickNextButton();
+    }
+
+    onClickPreviousButton() {
+        if (this.currentStateMark.review) {
+            super.onClickPreviousButton();
+        } else {
+            this.save();
+            Application.instance.router.setLocation(this.hrefs.root);
+        }
+    }
+
+    save() {
         const existingFeatureSetStatesById: { [index: string]: WorksheetFeatureSetState } = {};
         for (let featureSetState of this.worksheetState().featureSets) {
             existingFeatureSetStatesById[featureSetState.id.toString()] = featureSetState;
@@ -73,20 +87,8 @@ export class WorksheetStateViewModel extends AbstractStateViewModel {
                 this.worksheetState().featureSets.push(featureSetState);
             }
         }
-        if (this.worksheetState().featureSets.length == 0) {
-            throw new EvalError();
-        }
+
         this.worksheetState.notifySubscribers(this.worksheetState());
-
-        super.onClickNextButton();
-    }
-
-    onClickPreviousButton() {
-        if (this.currentStateMark.review) {
-            super.onClickPreviousButton();
-        } else {
-            Application.instance.router.setLocation(this.hrefs.root);
-        }
     }
 
     readonly nextButtonEnabled: KnockoutObservable<boolean>;

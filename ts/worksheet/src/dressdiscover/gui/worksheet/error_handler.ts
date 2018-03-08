@@ -7,6 +7,10 @@ export class ErrorHandler {
     }
 
     handleSyncError(errorThrown: object) {
-        ErrorModalView.fromSyncError(errorThrown).show();
+        if (errorThrown instanceof EvalError) {
+            throw errorThrown;
+        } else {
+            ErrorModalView.fromSyncError(errorThrown).show();
+        }
     }
 }

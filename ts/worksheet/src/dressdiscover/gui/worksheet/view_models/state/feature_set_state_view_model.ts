@@ -1,4 +1,3 @@
-import { WorksheetFeatureSetState } from 'dressdiscover/api/models/worksheet/worksheet_feature_set_state';
 import { WorksheetStateMark } from 'dressdiscover/api/models/worksheet/worksheet_state_mark';
 import {
     WorksheetFeatureSetDefinitionWrapper,
@@ -10,18 +9,21 @@ import * as ko from 'knockout';
 export class FeatureSetStateViewModel extends AbstractStateViewModel {
     constructor(kwds: {
         currentStateMark: WorksheetStateMark,
-        featureSetDefinition: WorksheetFeatureSetDefinitionWrapper,
-        featureSetState: WorksheetFeatureSetState
+        featureSetDefinition: WorksheetFeatureSetDefinitionWrapper
     }) {
         super({ currentStateMark: kwds.currentStateMark });
         this.featureSetDefinition = kwds.featureSetDefinition;
         this.featureSetStateMark = kwds.currentStateMark;
         this.table = new WorksheetFeatureSetStateTable({
             featureSetDefinition: kwds.featureSetDefinition,
-            featureSetState: kwds.featureSetState,
+            featureSetState: this._featureSetState,
             includeFeatureDescriptions: !kwds.currentStateMark.review,
             worksheetStateId: kwds.currentStateMark.worksheetStateId
         });
+    }
+
+    save() {
+        throw new EvalError();
     }
 
     readonly featureSetStateMark: WorksheetStateMark;

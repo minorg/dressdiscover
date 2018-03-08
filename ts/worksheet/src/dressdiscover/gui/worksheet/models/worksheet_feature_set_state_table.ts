@@ -26,7 +26,7 @@ class WorksheetFeatureSetStateTableRow {
 export class WorksheetFeatureSetStateTable {
     constructor(kwds: {
         featureSetDefinition: WorksheetFeatureSetDefinitionWrapper,
-        featureSetState: WorksheetFeatureSetState,
+        featureSetState?: WorksheetFeatureSetState,
         includeFeatureDescriptions: boolean,
         worksheetStateId: WorksheetStateId
     }) {
@@ -35,10 +35,12 @@ export class WorksheetFeatureSetStateTable {
 
         for (let featureDefinition of kwds.featureSetDefinition.features) {
             let featureState: WorksheetFeatureState | undefined = undefined;
-            for (let checkFeatureState of kwds.featureSetState.features) {
-                if (checkFeatureState.id.equals(featureDefinition.id)) {
-                    featureState = checkFeatureState;
-                    break;
+            if (kwds.featureSetState) {
+                for (let checkFeatureState of kwds.featureSetState.features) {
+                    if (checkFeatureState.id.equals(featureDefinition.id)) {
+                        featureState = checkFeatureState;
+                        break;
+                    }
                 }
             }
 

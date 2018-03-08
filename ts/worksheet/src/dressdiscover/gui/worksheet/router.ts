@@ -1,7 +1,5 @@
 import { WorksheetFeatureId } from 'dressdiscover/api/models/worksheet/worksheet_feature_id';
 import { WorksheetFeatureSetId } from 'dressdiscover/api/models/worksheet/worksheet_feature_set_id';
-import { WorksheetFeatureSetState } from 'dressdiscover/api/models/worksheet/worksheet_feature_set_state';
-import { WorksheetFeatureState } from 'dressdiscover/api/models/worksheet/worksheet_feature_state';
 import { WorksheetStateId } from 'dressdiscover/api/models/worksheet/worksheet_state_id';
 import { WorksheetStateMark } from 'dressdiscover/api/models/worksheet/worksheet_state_mark';
 import { Application } from 'dressdiscover/gui/worksheet/application';
@@ -14,7 +12,6 @@ import { FeatureSetStateView } from 'dressdiscover/gui/worksheet/views/state/fea
 import { FeatureStateView } from 'dressdiscover/gui/worksheet/views/state/feature_state_view';
 import { WorksheetStateView } from 'dressdiscover/gui/worksheet/views/state/worksheet_state_view';
 import { StaticView } from 'dressdiscover/gui/worksheet/views/static/static_view';
-import _ = require('lodash');
 import * as Sammy from 'sammy';
 
 export class Router {
@@ -79,42 +76,22 @@ export class Router {
             },
             id: stateMark.worksheetStateId,
             success: (state) => {
-                // Wait to change session worksheetState until we've created any state placeholders.
+                Application.instance.session.worksheetState(state);
 
                 try {
                     if (stateMark.featureSetId) {
                         const featureSetDefinition = Application.instance.worksheetDefinition.getFeatureSetById(stateMark.featureSetId);
 
-                        let featureSetState = _.find(state.featureSets, (featureSetState) => featureSetState.id.equals(stateMark.featureSetId));
-                        if (!featureSetState) {
-                            featureSetState = new WorksheetFeatureSetState({ features: [], id: stateMark.featureSetId });
-                            state.featureSets.push(featureSetState);
-                        }
-
                         if (stateMark.featureId) {
-                            let featureState = _.find(featureSetState.features, (featureState) => featureState.id.equals(stateMark.featureId));
-                            if (!featureState) {
-                                featureState = new WorksheetFeatureState({ id: stateMark.featureId });
-                                featureSetState.features.push(featureState);
-                            }
-
-                            // Save the worksheet state now that we've added any placeholders
-                            Application.instance.session.worksheetState(state);
-
                             new FeatureStateView(new FeatureStateViewModel({
                                 currentStateMark: stateMark,
                                 featureDefinition: Application.instance.worksheetDefinition.getFeatureById(stateMark.featureId),
-                                featureSetDefinition: featureSetDefinition,
-                                featureState: featureState
+                                featureSetDefinition: featureSetDefinition
                             })).show();
                         } else {
-                            // Save the worksheet state now that we've added any placeholders
-                            Application.instance.session.worksheetState(state);
-
                             new FeatureSetStateView(new FeatureSetStateViewModel({
                                 currentStateMark: stateMark,
-                                featureSetDefinition: featureSetDefinition,
-                                featureSetState: featureSetState
+                                featureSetDefinition: featureSetDefinition
                             })).show();
                         }
                     } else {

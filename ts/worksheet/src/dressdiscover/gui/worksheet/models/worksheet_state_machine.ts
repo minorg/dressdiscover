@@ -24,41 +24,40 @@ export class WorksheetStateMachine {
         // First state, always the worksheet start
         const worksheetStateId = worksheetState.id;
         this._stateMarks.push(new WorksheetStateMark({ worksheetStateId: worksheetStateId }));
-        if (worksheetState.featureSets.length == 0) {
-            return;
-        }
 
-        const worksheetDefinition = Application.instance.worksheetDefinition;
-        for (let featureSetState of worksheetState.featureSets) {
-            const featureSetId = featureSetState.id;
-            const featureSetDefinition = worksheetDefinition.getFeatureSetById(featureSetId);
+        if (worksheetState.featureSets.length > 0) {
+            const worksheetDefinition = Application.instance.worksheetDefinition;
+            for (let featureSetState of worksheetState.featureSets) {
+                const featureSetId = featureSetState.id;
+                const featureSetDefinition = worksheetDefinition.getFeatureSetById(featureSetId);
 
-            // Feature set start
-            this._stateMarks.push(new WorksheetStateMark({
-                featureSetId: featureSetId,
-                worksheetStateId: worksheetStateId
-            }));
-
-            for (let featureId of featureSetDefinition.featureIds) {
-                // Feature start is the same as review
+                // Feature set start
                 this._stateMarks.push(new WorksheetStateMark({
-                    featureId: featureId,
                     featureSetId: featureSetId,
                     worksheetStateId: worksheetStateId
                 }));
-            }
 
-            if (worksheetState.featureSets.length > 1) {
-                // Feature set review
-                this._stateMarks.push(new WorksheetStateMark({
-                    featureSetId: featureSetId,
-                    review: true,
-                    worksheetStateId: worksheetStateId
-                }));
+                for (let featureId of featureSetDefinition.featureIds) {
+                    // Feature start is the same as review
+                    this._stateMarks.push(new WorksheetStateMark({
+                        featureId: featureId,
+                        featureSetId: featureSetId,
+                        worksheetStateId: worksheetStateId
+                    }));
+                }
+
+                if (worksheetState.featureSets.length > 1) {
+                    // Feature set review
+                    this._stateMarks.push(new WorksheetStateMark({
+                        featureSetId: featureSetId,
+                        review: true,
+                        worksheetStateId: worksheetStateId
+                    }));
+                }
             }
         }
 
-        // Worksheet review
+        // Worksheet review, always the last state
         this._stateMarks.push(new WorksheetStateMark({
             review: true,
             worksheetStateId: worksheetStateId

@@ -1,3 +1,6 @@
+import { WorksheetFeatureId } from 'dressdiscover/api/models/worksheet/worksheet_feature_id';
+import { WorksheetFeatureSetId } from 'dressdiscover/api/models/worksheet/worksheet_feature_set_id';
+import { WorksheetFeatureSetState } from 'dressdiscover/api/models/worksheet/worksheet_feature_set_state';
 import { WorksheetFeatureState } from 'dressdiscover/api/models/worksheet/worksheet_feature_state';
 import { WorksheetFeatureValueId } from 'dressdiscover/api/models/worksheet/worksheet_feature_value_id';
 import { WorksheetStateMark } from 'dressdiscover/api/models/worksheet/worksheet_state_mark';
@@ -33,8 +36,7 @@ export class FeatureStateViewModel extends AbstractStateViewModel {
     constructor(kwds: {
         currentStateMark: WorksheetStateMark,
         featureDefinition: WorksheetFeatureDefinitionWrapper,
-        featureSetDefinition: WorksheetFeatureSetDefinitionWrapper,
-        featureState: WorksheetFeatureState
+        featureSetDefinition: WorksheetFeatureSetDefinitionWrapper
     }) {
         super({ currentStateMark: kwds.currentStateMark });
 
@@ -42,22 +44,34 @@ export class FeatureStateViewModel extends AbstractStateViewModel {
         this.featureSetDefinition = kwds.featureSetDefinition;
         this.featureSetStateMark = new WorksheetStateMark({ featureSetId: kwds.currentStateMark.featureSetId, worksheetStateId: this.currentStateMark.worksheetStateId });
 
-        this._featureState = kwds.featureState;
+        const featureState = this._featureState;
         for (let featureValueDefinition of kwds.featureDefinition.values) {
             const selectableValue = new SelectableFeatureValue(
                 featureValueDefinition,
-                kwds.featureState.selectedValueIds ? _.some(kwds.featureState.selectedValueIds, (featureValueId) => featureValueId.equals(featureValueDefinition.id)) : false
+                featureState && featureState.selectedValueIds ? _.some(featureState.selectedValueIds, (featureValueId) => featureValueId.equals(featureValueDefinition.id)) : false
             );
             this.selectableValues.push(selectableValue);
 
             const self = this;
             selectableValue.selected.subscribe((newSelected) => {
-                self._saveState();
+                self.save();
             });
         }
     }
 
-    private _saveState() {
+    save() {
+        let featureState = this._featureState;
+        if (!featureState) {
+            let featureSetState = this._featureSetState;
+            if (!featureSetState) {
+                featureSetState = new WorksheetFeatureSetState({ features: [], id: this.currentStateMark.featureSetId as WorksheetFeatureSetId });
+                this.worksheetState().featureSets.push(featureSetState);
+            }
+
+            featureState = new WorksheetFeatureState({ id: this.currentStateMark.featureId as WorksheetFeatureId });
+            featureSetState.features.push(featureState);
+        }
+
         const selectedValueIds: WorksheetFeatureValueId[] = [];
         for (let checkSelectableFeatureValue of this.selectableValues) {
             if (checkSelectableFeatureValue.selected()) {
@@ -65,17 +79,17 @@ export class FeatureStateViewModel extends AbstractStateViewModel {
             }
         }
         if (selectedValueIds.length > 0) {
-            this._featureState.selectedValueIds = selectedValueIds;
+            featureState.selectedValueIds = selectedValueIds;
         } else {
-            this._featureState.selectedValueIds = undefined;
+            featureState.selectedValueIds = undefined;
         }
+
         this.worksheetState.notifySubscribers(this.worksheetState());
     }
 
     readonly featureDefinition: WorksheetFeatureDefinitionWrapper;
     readonly featureSetDefinition: WorksheetFeatureSetDefinitionWrapper;
     readonly featureSetStateMark: WorksheetStateMark;
-    private _featureState: WorksheetFeatureState;
     nextButtonEnabled = ko.observable<boolean>(true);
     previousButtonEnabled = ko.observable<boolean>(true);
     readonly selectableValues: SelectableFeatureValue[] = [];
