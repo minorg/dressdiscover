@@ -87,6 +87,7 @@ export class FeatureStateViewModel extends AbstractStateViewModel {
             // No selected values, remove the feature
             console.debug("removing empty feature " + this.currentStateMark.featureId);
             _.remove(featureSetState.features, (feature) => feature.id.equals(this.currentStateMark.featureId));
+            // Don't remove empty feature sets, they're used to indicate which were selected.
         }
 
         this.worksheetState.notifySubscribers(this.worksheetState());
