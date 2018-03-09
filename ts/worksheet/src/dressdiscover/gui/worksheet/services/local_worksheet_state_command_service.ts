@@ -26,11 +26,16 @@ export class LocalWorksheetStateCommandService extends AsyncToSyncWorksheetState
             throw new DuplicateSuchWorksheetStateException({ id: kwds.newId });
         }
 
-        const oldValue = localStorage.getItem(oldKey);
-        if (!oldValue) {
+        const oldJsonString = localStorage.getItem(oldKey);
+        if (!oldJsonString) {
             throw new NoSuchWorksheetStateException({ id: kwds.oldId });
         }
+
+        // Change the id in the value, too
+        const value = WorksheetState.fromThryftJsonObject(JSON.parse(oldJsonString));
+        value.id = kwds.newId;
+
         localStorage.removeItem(oldKey);
-        localStorage.setItem(newKey, oldValue);
+        localStorage.setItem(newKey, JSON.stringify(value.toThryftJsonObject()));
     }
 }
