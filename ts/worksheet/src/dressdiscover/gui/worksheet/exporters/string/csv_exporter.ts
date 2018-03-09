@@ -6,7 +6,7 @@ import Papa = require('papaparse');
 export class CsvExporter implements StringExporter {
     export(worksheetDefinition: WorksheetDefinition, worksheetState: WorksheetState): string {
         const rows: string[][] = [];
-        let header = ["id", "feature_set_id", "feature_id", "feature_value_id"];
+        let header = ["id", "feature_set_id", "feature_id", "feature_value_id", "text"];
         rows.push(header);
 
         for (let featureSetState of worksheetState.featureSets) {
@@ -21,6 +21,15 @@ export class CsvExporter implements StringExporter {
                     }
                 }
             }
+        }
+
+        if (worksheetState.text) {
+            const row: string[] = [worksheetState.id.toString()];
+            while (row.length < header.length - 1) {
+                row.push('');
+            }
+            row.push(worksheetState.text);
+            rows.push(row);
         }
 
         return Papa.unparse(rows);

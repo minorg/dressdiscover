@@ -1,8 +1,8 @@
 namespace * dressdiscover.api.vocabularies.vra_core.location
 
-include "thryft/native/decimal.thrift"
+include "thryft/native/big_decimal.thrift"
 
 struct LocationCoordinates {
-	1: decimal.Decimal latitude;
-	2: decimal.Decimal longitude;
+	1: big_decimal.BigDecimal latitude;
+	2: big_decimal.BigDecimal longitude;
 }

@@ -68,6 +68,14 @@ export class WorksheetStateViewModel extends AbstractStateViewModel {
         });
 
         this.selectedStringExporter =  ko.observable<StringExporter>(this.stringExporters[0]);
+
+        const text = this.worksheetState().text;
+        if (text) {
+            this.text(text);
+        }
+        this.text.subscribe((newText) => {
+            self.save();
+        });
     }
 
     onClickDownloadButton() {
@@ -133,6 +141,15 @@ export class WorksheetStateViewModel extends AbstractStateViewModel {
             }
         }
 
+        this.worksheetState().text = undefined;
+        let text = this.text();
+        if (text) {
+            text = text.trim();
+            if (text.length > 0) {
+                this.worksheetState().text = text;
+            }
+        }
+
         this.worksheetState.notifySubscribers(this.worksheetState());
     }
 
@@ -142,4 +159,5 @@ export class WorksheetStateViewModel extends AbstractStateViewModel {
     readonly previousButtonEnabled: KnockoutObservable<boolean>;
     readonly featureSetStateTables: WorksheetFeatureSetStateTable[] = [];
     readonly selectableFeatureSets: SelectableFeatureSet[] = [];
+    readonly text = ko.observable<string>();
 }

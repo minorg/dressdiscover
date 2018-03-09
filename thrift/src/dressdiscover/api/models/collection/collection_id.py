@@ -4,8 +4,8 @@ from _id import _Id
 
 
 class CollectionId(_Id):
+    def java_qname(self, **kwds):
+        return 'org.dressdiscover.api.models.collection.CollectionId'
+
     def java_read_protocol_throws_checked(self):
         return ['org.dressdiscover.api.models.collection.InvalidCollectionIdException']
-
-    def java_qname(self):
-        return 'org.dressdiscover.api.models.collection.CollectionId'
