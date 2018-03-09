@@ -7,4 +7,7 @@ export interface WorksheetStateCommandService {
 
     putWorksheetStateAsync(kwds: {state: WorksheetState, error: (errorKwds: {textStatus: string, errorThrown: any, [index: string]: any}) => any, success: () => void}): void;
     putWorksheetStateSync(kwds: {state: WorksheetState}): void;
+
+    renameWorksheetStateAsync(kwds: {newId: WorksheetStateId, oldId: WorksheetStateId, error: (errorKwds: {textStatus: string, errorThrown: any, [index: string]: any}) => any, success: () => void}): void;
+    renameWorksheetStateSync(kwds: {newId: WorksheetStateId, oldId: WorksheetStateId}): void;
 }

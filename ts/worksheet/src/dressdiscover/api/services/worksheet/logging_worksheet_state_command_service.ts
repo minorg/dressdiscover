@@ -35,4 +35,19 @@ export class LoggingWorksheetStateCommandService implements WorksheetStateComman
             throw e;
         }
     }
+
+    renameWorksheetStateAsync(kwds: {newId: WorksheetStateId, oldId: WorksheetStateId, error: (errorKwds: {textStatus: string, errorThrown: any, [index: string]: any}) => any, success: () => void}): void {
+        this.delegate.renameWorksheetStateAsync({newId: kwds.newId, oldId: kwds.oldId, error: (errorKwds: {textStatus: string, errorThrown: any, [index: string]: any}) => { console.warn("renameWorksheetStateAsync({", "newId: ", kwds.newId, "oldId: ", kwds.oldId, "}) -> ", errorKwds.textStatus); console.warn(errorKwds.errorThrown); if (kwds.error) { kwds.error(errorKwds); } }, success: () => { console.debug("renameWorksheetStateAsync({", "newId: ", kwds.newId, "oldId: ", kwds.oldId, "}) -> success"); if (kwds.success) { kwds.success(); } }});
+    }
+
+    renameWorksheetStateSync(kwds: {newId: WorksheetStateId, oldId: WorksheetStateId}): void {
+        try {
+            this.delegate.renameWorksheetStateSync({newId: kwds.newId, oldId: kwds.oldId});
+            console.debug("renameWorksheetStateSync({", "newId: ", kwds.newId, "oldId: ", kwds.oldId, "}) -> success");
+        } catch (e) {
+            console.warn("renameWorksheetStateSync({", "newId: ", kwds.newId, "oldId: ", kwds.oldId, "}) -> exception");
+            console.warn(e);
+            throw e;
+        }
+    }
 }

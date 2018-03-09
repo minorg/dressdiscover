@@ -32,4 +32,19 @@ export abstract class AsyncToSyncWorksheetStateCommandService implements Workshe
     }
 
     abstract putWorksheetStateSync(kwds: {state: WorksheetState}): void;
+
+    renameWorksheetStateAsync(kwds: {newId: WorksheetStateId, oldId: WorksheetStateId, error: (errorKwds: {textStatus: string, errorThrown: any, [index: string]: any}) => any, success: () => void}): void {
+        try {
+            this.renameWorksheetStateSync({newId: kwds.newId, oldId: kwds.oldId})
+            if (kwds.success) {
+                kwds.success();
+            }
+        } catch (e) {
+            if (kwds.error) {
+                kwds.error({textStatus: e.message, errorThrown: e});
+            }
+        }
+    }
+
+    abstract renameWorksheetStateSync(kwds: {newId: WorksheetStateId, oldId: WorksheetStateId}): void;
 }
