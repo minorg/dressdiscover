@@ -15,7 +15,7 @@
 </div>
 <div class="clearfix"></div>
 <!-- ko foreach: featureSetStateTables -->
-<h5 class="card-subtitle text-center" data-bind="text: featureSetDefinition.displayName"></h5>
+<h4 class="text-center" data-bind="text: featureSetDefinition.displayName"></h4>
 <br/>
 <!-- ko template: { name: 'feature-set-state-table-template', data: $data } -->
 <!-- /ko -->
@@ -23,7 +23,7 @@
 <!-- /ko -->
 
 <!-- ko if: !review -->
-<h3 class="card-title">Select feature sets</h3>
+<h4>Select feature sets</h4>
 <p class="card-text">Select one or more feature sets to describe the object.</p>
 <table class="table table-bordered">
     <thead>
@@ -53,4 +53,13 @@
         </tr>
     </tbody>
 </table>
+<!-- /ko -->
+
+<!-- ko if: !review || text() -->
+<br/>
+<hr/>
+<br/>
+
+<h4>Freetext description</h4>
+<textarea data-bind="attr: { placeholder: !review ? 'Freetext description (optional)' : '' }, enable: !review, textInput: text" rows="8"></textarea>
 <!-- /ko -->
