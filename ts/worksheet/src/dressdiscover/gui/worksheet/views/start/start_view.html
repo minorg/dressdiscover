@@ -40,11 +40,16 @@
                                     <tbody data-bind="foreach: existingStateIds">
                                         <tr>
                                             <td class="w-90">
-                                                <a data-bind="attr: { href: $root.hrefs.worksheetState($data) }, text: $data.toString()"></a>
+                                                <a data-bind="attr: { href: $root.hrefs.worksheetState($data) }, text: $data.toString()" title="Open this worksheet"></a>
                                             </td>
                                             <td class="text-center">
-                                                <a data-bind="click: function(data, event) { $root.onClickDeleteButton($data) }">
+                                                <a data-bind="click: function(data, event) { $root.onClickDeleteButton($data) }" title="Delete this worksheet">
                                                     <i class="fas fa-trash-alt"></i>
+                                                </a>
+                                            </td>
+                                            <td class="text-center">
+                                                <a data-bind="click: function(data, event) { $root.onClickRenameButton)" title="Rename this worksheet">
+                                                    <i class="fas fa-pencil-alt"></i>
                                                 </a>
                                             </td>
                                         </tr>

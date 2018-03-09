@@ -3,6 +3,10 @@ import { WorksheetStateId } from 'dressdiscover/api/models/worksheet/worksheet_s
 import {
     AsyncToSyncWorksheetStateCommandService,
 } from 'dressdiscover/api/services/worksheet/async_to_sync_worksheet_state_command_service';
+import {
+    DuplicateSuchWorksheetStateException,
+} from 'dressdiscover/api/services/worksheet/duplicate_such_worksheet_state_exception';
+import { NoSuchWorksheetStateException } from 'dressdiscover/api/services/worksheet/no_such_worksheet_state_exception';
 import { LocalWorksheetStateQueryService } from 'dressdiscover/gui/worksheet/services/local_worksheet_state_query_service';
 
 export class LocalWorksheetStateCommandService extends AsyncToSyncWorksheetStateCommandService {
@@ -12,5 +16,21 @@ export class LocalWorksheetStateCommandService extends AsyncToSyncWorksheetState
 
     putWorksheetStateSync(kwds: { state: WorksheetState }): void {
         localStorage.setItem(LocalWorksheetStateQueryService.getWorksheetStateItemKey(kwds.state.id), JSON.stringify(kwds.state.toThryftJsonObject()));
+    }
+
+    renameWorksheetStateSync(kwds: { newId: WorksheetStateId, oldId: WorksheetStateId }): void {
+        const newKey = LocalWorksheetStateQueryService.getWorksheetStateItemKey(kwds.newId);
+        const oldKey = LocalWorksheetStateQueryService.getWorksheetStateItemKey(kwds.oldId);
+
+        if (localStorage.getItem(newKey)) {
+            throw new DuplicateSuchWorksheetStateException({ id: kwds.newId });
+        }
+
+        const oldValue = localStorage.getItem(oldKey);
+        if (!oldValue) {
+            throw new NoSuchWorksheetStateException({ id: kwds.oldId });
+        }
+        localStorage.removeItem(oldKey);
+        localStorage.setItem(newKey, oldValue);
     }
 }
