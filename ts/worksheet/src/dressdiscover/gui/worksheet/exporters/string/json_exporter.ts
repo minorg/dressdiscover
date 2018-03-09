@@ -4,7 +4,7 @@ import { StringExporter } from 'dressdiscover/gui/worksheet/exporters/string/str
 
 export class JsonExporter implements StringExporter {
     export(worksheetDefinition: WorksheetDefinition, worksheetState: WorksheetState): string {
-        return JSON.stringify(worksheetState.toJsonObject());
+        return JSON.stringify(worksheetState.toJsonObject(), undefined, 4);
     }
 
     get fileExtension() {

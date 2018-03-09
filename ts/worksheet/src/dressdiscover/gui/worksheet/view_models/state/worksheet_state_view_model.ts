@@ -1,6 +1,10 @@
+import * as ClipboardJS from 'clipboard';
 import { WorksheetFeatureSetState } from 'dressdiscover/api/models/worksheet/worksheet_feature_set_state';
 import { WorksheetStateMark } from 'dressdiscover/api/models/worksheet/worksheet_state_mark';
 import { Application } from 'dressdiscover/gui/worksheet/application';
+import { CsvExporter } from 'dressdiscover/gui/worksheet/exporters/string/csv_exporter';
+import { JsonExporter } from 'dressdiscover/gui/worksheet/exporters/string/json_exporter';
+import { StringExporter } from 'dressdiscover/gui/worksheet/exporters/string/string_exporter';
 import {
     WorksheetFeatureSetDefinitionWrapper,
 } from 'dressdiscover/gui/worksheet/models/worksheet_feature_set_definition_wrapper';
@@ -55,6 +59,47 @@ export class WorksheetStateViewModel extends AbstractStateViewModel {
                     ))
             );
         }
+
+        const self = this;
+        new ClipboardJS("#copy-button", {
+            text: (elem) => {
+                return self.selectedStringExporter().export(self.worksheetDefinition.definition, self.worksheetState());
+            }
+        });
+
+        this.selectedStringExporter =  ko.observable<StringExporter>(this.stringExporters[0]);
+    }
+
+    onClickDownloadButton() {
+        const content = this.selectedStringExporter().export(this.worksheetDefinition.definition, this.worksheetState());
+
+        var a = document.createElement('a')
+        const fileName = this.worksheetState().id + '.' + this.selectedStringExporter().fileExtension;
+        const mimeType = this.selectedStringExporter().mimeType;
+
+        if (navigator.msSaveBlob) { // IE10
+            return navigator.msSaveBlob(new Blob([content], { type: mimeType }), fileName);
+        } else if ('download' in a) { //html5 A[download]
+            a.href = 'data:' + mimeType + ',' + encodeURIComponent(content);
+            a.setAttribute('download', fileName);
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            return true;
+        } else { //do iframe dataURL download (old ch+FF):
+            var f = document.createElement('iframe');
+            document.body.appendChild(f);
+            f.src = 'data:' + mimeType + ',' + encodeURIComponent(content);
+            setTimeout(function () {
+                document.body.removeChild(f);
+            }, 333);
+            return true;
+        }
+    }
+
+    onClickEmailButton() {
+        const content = this.selectedStringExporter().export(this.worksheetDefinition.definition, this.worksheetState());
+        window.open("mailto:?to=&subject=" + encodeURIComponent(this.worksheetState().id.toString()) + "&body=" + encodeURIComponent(content));
     }
 
     onClickNextButton() {
@@ -91,6 +136,8 @@ export class WorksheetStateViewModel extends AbstractStateViewModel {
         this.worksheetState.notifySubscribers(this.worksheetState());
     }
 
+    readonly stringExporters: StringExporter[] = [new CsvExporter(), new JsonExporter()];
+    readonly selectedStringExporter: KnockoutObservable<StringExporter>;
     readonly nextButtonEnabled: KnockoutObservable<boolean>;
     readonly previousButtonEnabled: KnockoutObservable<boolean>;
     readonly featureSetStateTables: WorksheetFeatureSetStateTable[] = [];
