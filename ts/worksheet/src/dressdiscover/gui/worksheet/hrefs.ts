@@ -10,6 +10,10 @@ export class Hrefs {
         return "/#/credits";
     }
 
+    get gitHub() {
+        return "https://github.com/minorg/dressdiscover";
+    }
+
     get privacy() {
         return "/#/privacy";
     }
