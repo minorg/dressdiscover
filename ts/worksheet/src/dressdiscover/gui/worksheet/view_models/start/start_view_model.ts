@@ -1,7 +1,13 @@
 import { WorksheetState } from 'dressdiscover/api/models/worksheet/worksheet_state';
 import { WorksheetStateId } from 'dressdiscover/api/models/worksheet/worksheet_state_id';
 import { Application } from 'dressdiscover/gui/worksheet/application';
+import {
+    DeleteWorksheetStateConfirmationModalViewModel,
+} from 'dressdiscover/gui/worksheet/view_models/start/delete_worksheet_state_confirmation_modal_view_model';
 import { TopLevelViewModel } from 'dressdiscover/gui/worksheet/view_models/top_level/top_level_view_model';
+import {
+    DeleteWorksheetStateConfirmationModalView,
+} from 'dressdiscover/gui/worksheet/views/start/delete_worksheet_state_confirmation_modal_view';
 import * as ko from 'knockout';
 import _ = require('lodash');
 import * as moment from 'moment';
@@ -10,21 +16,24 @@ export class StartViewModel extends TopLevelViewModel {
     constructor() {
         super({ breadcrumbs: [], title: "Start" });
 
-        this.existingStateIds = Application.instance.services.worksheetStateQueryService.getWorksheetStateIdsSync();
-
-        this.openButtonEnabled = ko.pureComputed<boolean>({
-            owner: this,
-            read: () => {
-                return !!this.selectedExistingStateId();
-            }
-        });
+        this.existingStateIds(Application.instance.services.worksheetStateQueryService.getWorksheetStateIdsSync());
     }
 
-    onClickOpenButton() {
-        Application.instance.services.worksheetStateQueryService.getWorksheetStateAsync({
-            error: Application.instance.errorHandler.handleAsyncError,
-            id: this.selectedExistingStateId(),
-            success: this._goToFirstState
+    onClickDeleteButton(worksheetStateId: WorksheetStateId) {
+        const modalViewModel = new DeleteWorksheetStateConfirmationModalViewModel(worksheetStateId);
+        const self = this;
+        new DeleteWorksheetStateConfirmationModalView(modalViewModel).show({
+            onHidden: () => {
+                if (modalViewModel.delete) {
+                    Application.instance.services.worksheetStateCommandService.deleteWorksheetStateAsync({
+                        error: Application.instance.errorHandler.handleAsyncError,
+                        id: worksheetStateId,
+                        success: () => {
+                            self.existingStateIds(Application.instance.services.worksheetStateQueryService.getWorksheetStateIdsSync());
+                        }
+                    })
+                }
+            }
         });
     }
 
@@ -62,8 +71,6 @@ export class StartViewModel extends TopLevelViewModel {
         return false;
     }
 
-    readonly existingStateIds: WorksheetStateId[];
+    readonly existingStateIds = ko.observableArray<WorksheetStateId>([]);
     readonly newStateId = ko.observable<string>();
-    readonly openButtonEnabled: KnockoutComputed<boolean>;
-    readonly selectedExistingStateId = ko.observable<WorksheetStateId>();
 }

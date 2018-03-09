@@ -1,3 +1,4 @@
+import { WorksheetStateId } from 'dressdiscover/api/models/worksheet/worksheet_state_id';
 import { WorksheetStateMark } from 'dressdiscover/api/models/worksheet/worksheet_state_mark';
 import * as queryString from 'query-string';
 
@@ -34,5 +35,9 @@ export class Hrefs {
             href += "?" + queryString.stringify({ "review": true });
         }
         return href;
+    }
+
+    worksheetState(worksheetStateId: WorksheetStateId) {
+        return this.state(new WorksheetStateMark({ worksheetStateId: worksheetStateId }));
     }
 }

@@ -26,27 +26,30 @@
                         </div>
                     </div>
                 </div>
-                <!-- ko if: existingStateIds.length > 1 -->
+                <!-- ko if: existingStateIds().length > 1 -->
                 <div class="row mb-5">
                 </div>
                 <div class="row">
                     <div class="col-10 offset-1">
                         <div class="card">
                             <div class="card-header">
-                                <h3 class="card-title mb-0 text-center">Open an existing worksheet</h3>
+                                <h3 class="card-title mb-0 text-center">Existing worksheets</h3>
                             </div>
                             <div class="card-body">
-                                <div class="container-fluid">
-                                    <div class="row">
-                                        <div class="col-10">
-                                            <select class="form-control" data-bind="options: existingStateIds, optionsCaption: 'Choose an existing object', optionsText: function(option) { return option.toString(); }, value: selectedExistingStateId"></select>
-                                        </div>
-                                        <div>
-                                            <button class="btn btn-primary" data-bind="click: onClickOpenButton, visible: openButtonEnabled" type="submit">Open</button>
-                                        </div>
-                                        </form>
-                                    </div>
-                                </div>
+                                <table class="table table-bordered table-striped w-100" style="width: 100%">
+                                    <tbody data-bind="foreach: existingStateIds">
+                                        <tr>
+                                            <td class="w-90">
+                                                <a data-bind="attr: { href: $root.hrefs.worksheetState($data) }, text: $data.toString()"></a>
+                                            </td>
+                                            <td class="text-center">
+                                                <a data-bind="click: function(data, event) { $root.onClickDeleteButton($data) }">
+                                                    <i class="fas fa-trash-alt"></i>
+                                                </a>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
                             </div>
                         </div>
                     </div>
