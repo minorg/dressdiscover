@@ -1,16 +1,25 @@
 <!-- ko if: review -->
-<h3 class="card-title">Review</h3>
-<br/>
+<div class="w-100">
+    <div class="float-left">
+        <h3 class="card-title">Review</h3>
+    </div>
+    <div class="float-right">
+        <div class="form-inline">
+            <a class="action btn btn-secondary" id="copy-button">Copy</a>&nbsp;
+            <a class="action btn btn-secondary" data-bind="click: onClickEmailButton">Email</a>&nbsp;
+            <a class="action btn btn-secondary" data-bind="click: onClickDownloadButton">Download</a>&nbsp;
+            <select class="form-control" data-bind="options: stringExporters, optionsText: function(x) { return x.fileExtension.toUpperCase() }, value: selectedStringExporter">
+            </select>
+        </div>
+    </div>
+</div>
+<div class="clearfix"></div>
 <!-- ko foreach: featureSetStateTables -->
 <h5 class="card-subtitle text-center" data-bind="text: featureSetDefinition.displayName"></h5>
 <br/>
 <!-- ko template: { name: 'feature-set-state-table-template', data: $data } -->
 <!-- /ko -->
 <!-- /ko -->
-JSON:
-<br>
-<br/>
-<pre><code data-bind="text: JSON.stringify(worksheetState().toThryftJsonObject(), undefined, 4)"></code></pre>
 <!-- /ko -->
 
 <!-- ko if: !review -->
