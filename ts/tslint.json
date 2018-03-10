@@ -1,5 +1,6 @@
 {
     "rules": {
-        "call-signature": false
+        "call-signature": false,
+        "jsdoc-format": true
     }
 }
