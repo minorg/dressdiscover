@@ -10,6 +10,7 @@ export interface WorksheetStateQueryService {
      * @throws {NoSuchWorksheetStateException}
      */
     getWorksheetStateAsync(kwds: {id: WorksheetStateId, error: (errorKwds: {textStatus: string, errorThrown: any, [index: string]: any}) => any, success: (returnValue: WorksheetState) => void}): void;
+
     /**
      * getWorksheetState
      * @param {WorksheetStateId} id
@@ -25,6 +26,7 @@ export interface WorksheetStateQueryService {
      * @throws {IoException}
      */
     getWorksheetStateIdsAsync(kwds: {error: (errorKwds: {textStatus: string, errorThrown: any, [index: string]: any}) => any, success: (returnValue: WorksheetStateId[]) => void}): void;
+
     /**
      * getWorksheetStateIds
      * @return {WorksheetStateId[]}

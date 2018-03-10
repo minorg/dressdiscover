@@ -8,6 +8,7 @@ export interface WorksheetStateCommandService {
      * @throws {IoException}
      */
     deleteWorksheetStateAsync(kwds: {id: WorksheetStateId, error: (errorKwds: {textStatus: string, errorThrown: any, [index: string]: any}) => any, success: () => void}): void;
+
     /**
      * deleteWorksheetState
      * @param {WorksheetStateId} id
@@ -21,6 +22,7 @@ export interface WorksheetStateCommandService {
      * @throws {IoException}
      */
     putWorksheetStateAsync(kwds: {state: WorksheetState, error: (errorKwds: {textStatus: string, errorThrown: any, [index: string]: any}) => any, success: () => void}): void;
+
     /**
      * putWorksheetState
      * @param {WorksheetState} state
@@ -37,6 +39,7 @@ export interface WorksheetStateCommandService {
      * @throws {NoSuchWorksheetStateException}
      */
     renameWorksheetStateAsync(kwds: {newId: WorksheetStateId, oldId: WorksheetStateId, error: (errorKwds: {textStatus: string, errorThrown: any, [index: string]: any}) => any, success: () => void}): void;
+
     /**
      * renameWorksheetState
      * @param {WorksheetStateId} new_id

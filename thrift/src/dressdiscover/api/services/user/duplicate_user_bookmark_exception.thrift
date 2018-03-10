@@ -1,6 +1,7 @@
 namespace * dressdiscover.api.services.user
 
+include "thryft/waf/api/models/non_blank_string.thrift"
+
 exception DuplicateUserBookmarkException {
-	// validation {"minLength": 1}
-	string cause_message;
+	non_blank_string.NonBlankString cause_message;
 }

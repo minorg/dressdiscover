@@ -1,7 +1,8 @@
 namespace * dressdiscover.api.services
 
+include "thryft/waf/api/models/non_blank_string.thrift"
+
 // @java_extends org.thryft.waf.api.services.IoException
 exception IoException {
-	// validation {"minLength": 1}
-    string cause_message;
+    non_blank_string.NonBlankString cause_message;
 }

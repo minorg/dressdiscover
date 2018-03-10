@@ -21,9 +21,6 @@ public final class IoException extends org.thryft.waf.api.services.IoException {
             return _build(causeMessage);
         }
 
-        /**
-         * validation {"minLength": 1}
-         */
         public final @javax.annotation.Nullable String getCauseMessage() {
             return causeMessage;
         }
@@ -147,9 +144,6 @@ public final class IoException extends org.thryft.waf.api.services.IoException {
             return this;
         }
 
-        /**
-         * validation {"minLength": 1}
-         */
         private @javax.annotation.Nullable String causeMessage;
     }
 
@@ -273,6 +267,22 @@ public final class IoException extends org.thryft.waf.api.services.IoException {
             if (causeMessage == null) {
                 throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.CAUSE_MESSAGE, "org.dressdiscover.api.services.IoException: causeMessage is null");
             }
+            if (causeMessage.isEmpty()) {
+                throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.CAUSE_MESSAGE, "org.dressdiscover.api.services.IoException: causeMessage: less than min length 1");
+            }
+            {
+                final int __strLen = causeMessage.length();
+                boolean __blank = true;
+                for (int i = 0; i < __strLen; i++) {
+                    if (!Character.isWhitespace(causeMessage.charAt(i))) {
+                        __blank = false;
+                        break;
+                    }
+                }
+                if (__blank) {
+                    throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.CAUSE_MESSAGE, String.format("org.dressdiscover.api.services.IoException: causeMessage: blank '%s' (length=%d)", causeMessage, __strLen));
+                }
+            }
         }
     }
 
@@ -284,6 +294,22 @@ public final class IoException extends org.thryft.waf.api.services.IoException {
         public static void validateCauseMessage(final String causeMessage) {
             if (causeMessage == null) {
                 throw new NullPointerException("org.dressdiscover.api.services.IoException: causeMessage is null");
+            }
+            if (causeMessage.isEmpty()) {
+                throw new IllegalArgumentException("org.dressdiscover.api.services.IoException: causeMessage: less than min length 1");
+            }
+            {
+                final int __strLen = causeMessage.length();
+                boolean __blank = true;
+                for (int i = 0; i < __strLen; i++) {
+                    if (!Character.isWhitespace(causeMessage.charAt(i))) {
+                        __blank = false;
+                        break;
+                    }
+                }
+                if (__blank) {
+                    throw new IllegalArgumentException(String.format("org.dressdiscover.api.services.IoException: causeMessage: blank '%s' (length=%d)", causeMessage, __strLen));
+                }
             }
         }
     }
@@ -363,9 +389,6 @@ public final class IoException extends org.thryft.waf.api.services.IoException {
         }
     }
 
-    /**
-     * validation {"minLength": 1}
-     */
     public final String getCauseMessage() {
         return causeMessage;
     }
@@ -506,8 +529,5 @@ public final class IoException extends org.thryft.waf.api.services.IoException {
         oprot.writeFieldStop();
     }
 
-    /**
-     * validation {"minLength": 1}
-     */
     private final String causeMessage;
 }

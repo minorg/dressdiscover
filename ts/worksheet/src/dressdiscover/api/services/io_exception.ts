@@ -15,6 +15,12 @@ export class IoException {
         if (causeMessage == null) {
             throw new RangeError('causeMessage is null or undefined');
         }
+        if (causeMessage.trim().length == 0) {
+            throw new RangeError('causeMessage is blank');
+        }
+        if (causeMessage.length < 1) {
+            throw new RangeError("expected len(causeMessage) to be >= 1, was " + causeMessage.length);
+        }
         return causeMessage;
     }
 

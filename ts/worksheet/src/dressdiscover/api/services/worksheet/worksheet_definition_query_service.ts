@@ -7,6 +7,7 @@ export interface WorksheetDefinitionQueryService {
      * @throws {IoException}
      */
     getWorksheetDefinitionAsync(kwds: {error: (errorKwds: {textStatus: string, errorThrown: any, [index: string]: any}) => any, success: (returnValue: WorksheetDefinition) => void}): void;
+
     /**
      * getWorksheetDefinition
      * @return {WorksheetDefinition}

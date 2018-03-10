@@ -19,10 +19,16 @@ export class WorksheetFeatureValueImage {
         this._rights = WorksheetFeatureValueImage._validateRights(rights);
     }
 
+    /**
+     * Thumbnail and full size URLs can be relative
+     */
     get thumbnailUrl(): string {
         return this._thumbnailUrl;
     }
 
+    /**
+     * Thumbnail and full size URLs can be relative
+     */
     set thumbnailUrl(thumbnailUrl: string) {
         this._thumbnailUrl = WorksheetFeatureValueImage._validateThumbnailUrl(thumbnailUrl);
     }
@@ -137,5 +143,8 @@ export class WorksheetFeatureValueImage {
 
     private _rights: WorksheetRights;
 
+    /**
+     * Thumbnail and full size URLs can be relative
+     */
     private _thumbnailUrl: string;
 }
