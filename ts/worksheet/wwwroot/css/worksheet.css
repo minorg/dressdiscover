@@ -1,3 +1,5 @@
+#start-view .rename-input {
+  display: inline-block; }
 .abstract-state-view .progress {
   height: 32px;
   width: 100%; }
