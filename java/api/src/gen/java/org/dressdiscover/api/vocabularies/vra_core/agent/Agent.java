@@ -477,11 +477,10 @@ public final class Agent implements org.dressdiscover.api.vocabularies.vra_core.
             if (attribution == null) {
                 throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.ATTRIBUTION, "org.dressdiscover.api.vocabularies.vra_core.agent.Agent: attribution is null");
             }
-            if (!attribution.isPresent()) {
-                return;
-            }
-            if (attribution.get().isEmpty()) {
-                throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.ATTRIBUTION, "org.dressdiscover.api.vocabularies.vra_core.agent.Agent.attribution: less than min length 1");
+            if (attribution.isPresent()) {
+                if (attribution.get().isEmpty()) {
+                    throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.ATTRIBUTION, "org.dressdiscover.api.vocabularies.vra_core.agent.Agent: attribution: less than min length 1");
+                }
             }
         }
 
@@ -489,11 +488,10 @@ public final class Agent implements org.dressdiscover.api.vocabularies.vra_core.
             if (culture == null) {
                 throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.CULTURE, "org.dressdiscover.api.vocabularies.vra_core.agent.Agent: culture is null");
             }
-            if (!culture.isPresent()) {
-                return;
-            }
-            if (culture.get().isEmpty()) {
-                throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.CULTURE, "org.dressdiscover.api.vocabularies.vra_core.agent.Agent.culture: less than min length 1");
+            if (culture.isPresent()) {
+                if (culture.get().isEmpty()) {
+                    throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.CULTURE, "org.dressdiscover.api.vocabularies.vra_core.agent.Agent: culture: less than min length 1");
+                }
             }
         }
 
@@ -501,20 +499,16 @@ public final class Agent implements org.dressdiscover.api.vocabularies.vra_core.
             if (dates == null) {
                 throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.DATES, "org.dressdiscover.api.vocabularies.vra_core.agent.Agent: dates is null");
             }
-            if (!dates.isPresent()) {
-                return;
-            }
-            if (dates.get().isEmpty()) {
-                throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.DATES, "org.dressdiscover.api.vocabularies.vra_core.agent.Agent.dates: less than min length 1");
+            if (dates.isPresent()) {
+                if (dates.get().isEmpty()) {
+                    throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.DATES, "org.dressdiscover.api.vocabularies.vra_core.agent.Agent: dates: less than min length 1");
+                }
             }
         }
 
         public static void validateRole(final com.google.common.base.Optional<org.dressdiscover.api.vocabularies.vra_core.agent.AgentRole> role) throws org.thryft.protocol.InputProtocolException {
             if (role == null) {
                 throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.ROLE, "org.dressdiscover.api.vocabularies.vra_core.agent.Agent: role is null");
-            }
-            if (!role.isPresent()) {
-                return;
             }
         }
     }
@@ -538,11 +532,10 @@ public final class Agent implements org.dressdiscover.api.vocabularies.vra_core.
             if (attribution == null) {
                 throw new NullPointerException("org.dressdiscover.api.vocabularies.vra_core.agent.Agent: attribution is null");
             }
-            if (!attribution.isPresent()) {
-                return;
-            }
-            if (attribution.get().isEmpty()) {
-                throw new IllegalArgumentException("org.dressdiscover.api.vocabularies.vra_core.agent.Agent.attribution: less than min length 1");
+            if (attribution.isPresent()) {
+                if (attribution.get().isEmpty()) {
+                    throw new IllegalArgumentException("org.dressdiscover.api.vocabularies.vra_core.agent.Agent: attribution: less than min length 1");
+                }
             }
         }
 
@@ -550,11 +543,10 @@ public final class Agent implements org.dressdiscover.api.vocabularies.vra_core.
             if (culture == null) {
                 throw new NullPointerException("org.dressdiscover.api.vocabularies.vra_core.agent.Agent: culture is null");
             }
-            if (!culture.isPresent()) {
-                return;
-            }
-            if (culture.get().isEmpty()) {
-                throw new IllegalArgumentException("org.dressdiscover.api.vocabularies.vra_core.agent.Agent.culture: less than min length 1");
+            if (culture.isPresent()) {
+                if (culture.get().isEmpty()) {
+                    throw new IllegalArgumentException("org.dressdiscover.api.vocabularies.vra_core.agent.Agent: culture: less than min length 1");
+                }
             }
         }
 
@@ -562,20 +554,16 @@ public final class Agent implements org.dressdiscover.api.vocabularies.vra_core.
             if (dates == null) {
                 throw new NullPointerException("org.dressdiscover.api.vocabularies.vra_core.agent.Agent: dates is null");
             }
-            if (!dates.isPresent()) {
-                return;
-            }
-            if (dates.get().isEmpty()) {
-                throw new IllegalArgumentException("org.dressdiscover.api.vocabularies.vra_core.agent.Agent.dates: less than min length 1");
+            if (dates.isPresent()) {
+                if (dates.get().isEmpty()) {
+                    throw new IllegalArgumentException("org.dressdiscover.api.vocabularies.vra_core.agent.Agent: dates: less than min length 1");
+                }
             }
         }
 
         public static void validateRole(final com.google.common.base.Optional<org.dressdiscover.api.vocabularies.vra_core.agent.AgentRole> role) {
             if (role == null) {
                 throw new NullPointerException("org.dressdiscover.api.vocabularies.vra_core.agent.Agent: role is null");
-            }
-            if (!role.isPresent()) {
-                return;
             }
         }
     }

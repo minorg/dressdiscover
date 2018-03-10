@@ -403,7 +403,7 @@ public final class DateBound implements org.thryft.Struct {
                 throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.TEXT, "org.dressdiscover.api.vocabularies.vra_core.date.DateBound: text is null");
             }
             if (text.isEmpty()) {
-                throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.TEXT, "org.dressdiscover.api.vocabularies.vra_core.date.DateBound.text: less than min length 1");
+                throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.TEXT, "org.dressdiscover.api.vocabularies.vra_core.date.DateBound: text: less than min length 1");
             }
         }
 
@@ -411,26 +411,17 @@ public final class DateBound implements org.thryft.Struct {
             if (circa == null) {
                 throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.CIRCA, "org.dressdiscover.api.vocabularies.vra_core.date.DateBound: circa is null");
             }
-            if (!circa.isPresent()) {
-                return;
-            }
         }
 
         public static void validateParsedDateTime(final com.google.common.base.Optional<java.util.Date> parsedDateTime) throws org.thryft.protocol.InputProtocolException {
             if (parsedDateTime == null) {
                 throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.PARSED_DATE_TIME, "org.dressdiscover.api.vocabularies.vra_core.date.DateBound: parsedDateTime is null");
             }
-            if (!parsedDateTime.isPresent()) {
-                return;
-            }
         }
 
         public static void validateParsedDateTimeGranularity(final com.google.common.base.Optional<org.dressdiscover.api.vocabularies.vra_core.date.DateTimeGranularity> parsedDateTimeGranularity) throws org.thryft.protocol.InputProtocolException {
             if (parsedDateTimeGranularity == null) {
                 throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.PARSED_DATE_TIME_GRANULARITY, "org.dressdiscover.api.vocabularies.vra_core.date.DateBound: parsedDateTimeGranularity is null");
-            }
-            if (!parsedDateTimeGranularity.isPresent()) {
-                return;
             }
         }
     }
@@ -448,7 +439,7 @@ public final class DateBound implements org.thryft.Struct {
                 throw new NullPointerException("org.dressdiscover.api.vocabularies.vra_core.date.DateBound: text is null");
             }
             if (text.isEmpty()) {
-                throw new IllegalArgumentException("org.dressdiscover.api.vocabularies.vra_core.date.DateBound.text: less than min length 1");
+                throw new IllegalArgumentException("org.dressdiscover.api.vocabularies.vra_core.date.DateBound: text: less than min length 1");
             }
         }
 
@@ -456,26 +447,17 @@ public final class DateBound implements org.thryft.Struct {
             if (circa == null) {
                 throw new NullPointerException("org.dressdiscover.api.vocabularies.vra_core.date.DateBound: circa is null");
             }
-            if (!circa.isPresent()) {
-                return;
-            }
         }
 
         public static void validateParsedDateTime(final com.google.common.base.Optional<java.util.Date> parsedDateTime) {
             if (parsedDateTime == null) {
                 throw new NullPointerException("org.dressdiscover.api.vocabularies.vra_core.date.DateBound: parsedDateTime is null");
             }
-            if (!parsedDateTime.isPresent()) {
-                return;
-            }
         }
 
         public static void validateParsedDateTimeGranularity(final com.google.common.base.Optional<org.dressdiscover.api.vocabularies.vra_core.date.DateTimeGranularity> parsedDateTimeGranularity) {
             if (parsedDateTimeGranularity == null) {
                 throw new NullPointerException("org.dressdiscover.api.vocabularies.vra_core.date.DateBound: parsedDateTimeGranularity is null");
-            }
-            if (!parsedDateTimeGranularity.isPresent()) {
-                return;
             }
         }
     }

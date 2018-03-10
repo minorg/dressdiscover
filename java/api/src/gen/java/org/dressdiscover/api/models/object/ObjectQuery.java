@@ -786,17 +786,11 @@ public final class ObjectQuery implements org.thryft.Struct {
             if (collectionId == null) {
                 throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.COLLECTION_ID, "org.dressdiscover.api.models.object.ObjectQuery: collectionId is null");
             }
-            if (!collectionId.isPresent()) {
-                return;
-            }
         }
 
         public static void validateFacetFilters(final com.google.common.base.Optional<org.dressdiscover.api.models.object.ObjectFacetFilters> facetFilters) throws org.thryft.protocol.InputProtocolException {
             if (facetFilters == null) {
                 throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.FACET_FILTERS, "org.dressdiscover.api.models.object.ObjectQuery: facetFilters is null");
-            }
-            if (!facetFilters.isPresent()) {
-                return;
             }
         }
 
@@ -804,11 +798,10 @@ public final class ObjectQuery implements org.thryft.Struct {
             if (includeHidden == null) {
                 throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.INCLUDE_HIDDEN, "org.dressdiscover.api.models.object.ObjectQuery: includeHidden is null");
             }
-            if (!includeHidden.isPresent()) {
-                return;
-            }
-            if (!includeHidden.get()) {
-                throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.INCLUDE_HIDDEN, "org.dressdiscover.api.models.object.ObjectQuery.includeHidden: not true");
+            if (includeHidden.isPresent()) {
+                if (!includeHidden.get()) {
+                    throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.INCLUDE_HIDDEN, "org.dressdiscover.api.models.object.ObjectQuery: includeHidden: not true");
+                }
             }
         }
 
@@ -816,17 +809,11 @@ public final class ObjectQuery implements org.thryft.Struct {
             if (institutionId == null) {
                 throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.INSTITUTION_ID, "org.dressdiscover.api.models.object.ObjectQuery: institutionId is null");
             }
-            if (!institutionId.isPresent()) {
-                return;
-            }
         }
 
         public static void validateMoreLikeObjectId(final com.google.common.base.Optional<org.dressdiscover.api.models.object.ObjectId> moreLikeObjectId) throws org.thryft.protocol.InputProtocolException {
             if (moreLikeObjectId == null) {
                 throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.MORE_LIKE_OBJECT_ID, "org.dressdiscover.api.models.object.ObjectQuery: moreLikeObjectId is null");
-            }
-            if (!moreLikeObjectId.isPresent()) {
-                return;
             }
         }
 
@@ -834,20 +821,16 @@ public final class ObjectQuery implements org.thryft.Struct {
             if (objectIds == null) {
                 throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.OBJECT_IDS, "org.dressdiscover.api.models.object.ObjectQuery: objectIds is null");
             }
-            if (!objectIds.isPresent()) {
-                return;
-            }
         }
 
         public static void validateQueryString(final com.google.common.base.Optional<String> queryString) throws org.thryft.protocol.InputProtocolException {
             if (queryString == null) {
                 throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.QUERY_STRING, "org.dressdiscover.api.models.object.ObjectQuery: queryString is null");
             }
-            if (!queryString.isPresent()) {
-                return;
-            }
-            if (queryString.get().isEmpty()) {
-                throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.QUERY_STRING, "org.dressdiscover.api.models.object.ObjectQuery.queryString: less than min length 1");
+            if (queryString.isPresent()) {
+                if (queryString.get().isEmpty()) {
+                    throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.QUERY_STRING, "org.dressdiscover.api.models.object.ObjectQuery: queryString: less than min length 1");
+                }
             }
         }
 
@@ -855,11 +838,10 @@ public final class ObjectQuery implements org.thryft.Struct {
             if (relationText == null) {
                 throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.RELATION_TEXT, "org.dressdiscover.api.models.object.ObjectQuery: relationText is null");
             }
-            if (!relationText.isPresent()) {
-                return;
-            }
-            if (relationText.get().isEmpty()) {
-                throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.RELATION_TEXT, "org.dressdiscover.api.models.object.ObjectQuery.relationText: less than min length 1");
+            if (relationText.isPresent()) {
+                if (relationText.get().isEmpty()) {
+                    throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.RELATION_TEXT, "org.dressdiscover.api.models.object.ObjectQuery: relationText: less than min length 1");
+                }
             }
         }
 
@@ -867,11 +849,10 @@ public final class ObjectQuery implements org.thryft.Struct {
             if (structureTexts == null) {
                 throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.STRUCTURE_TEXTS, "org.dressdiscover.api.models.object.ObjectQuery: structureTexts is null");
             }
-            if (!structureTexts.isPresent()) {
-                return;
-            }
-            if (structureTexts.get().isEmpty()) {
-                throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.STRUCTURE_TEXTS, "org.dressdiscover.api.models.object.ObjectQuery.structureTexts: less than min length 1");
+            if (structureTexts.isPresent()) {
+                if (structureTexts.get().isEmpty()) {
+                    throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.STRUCTURE_TEXTS, "org.dressdiscover.api.models.object.ObjectQuery: structureTexts: less than min length 1");
+                }
             }
         }
 
@@ -879,11 +860,10 @@ public final class ObjectQuery implements org.thryft.Struct {
             if (workTypeText == null) {
                 throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.WORK_TYPE_TEXT, "org.dressdiscover.api.models.object.ObjectQuery: workTypeText is null");
             }
-            if (!workTypeText.isPresent()) {
-                return;
-            }
-            if (workTypeText.get().isEmpty()) {
-                throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.WORK_TYPE_TEXT, "org.dressdiscover.api.models.object.ObjectQuery.workTypeText: less than min length 1");
+            if (workTypeText.isPresent()) {
+                if (workTypeText.get().isEmpty()) {
+                    throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.WORK_TYPE_TEXT, "org.dressdiscover.api.models.object.ObjectQuery: workTypeText: less than min length 1");
+                }
             }
         }
     }
@@ -906,17 +886,11 @@ public final class ObjectQuery implements org.thryft.Struct {
             if (collectionId == null) {
                 throw new NullPointerException("org.dressdiscover.api.models.object.ObjectQuery: collectionId is null");
             }
-            if (!collectionId.isPresent()) {
-                return;
-            }
         }
 
         public static void validateFacetFilters(final com.google.common.base.Optional<org.dressdiscover.api.models.object.ObjectFacetFilters> facetFilters) {
             if (facetFilters == null) {
                 throw new NullPointerException("org.dressdiscover.api.models.object.ObjectQuery: facetFilters is null");
-            }
-            if (!facetFilters.isPresent()) {
-                return;
             }
         }
 
@@ -924,11 +898,10 @@ public final class ObjectQuery implements org.thryft.Struct {
             if (includeHidden == null) {
                 throw new NullPointerException("org.dressdiscover.api.models.object.ObjectQuery: includeHidden is null");
             }
-            if (!includeHidden.isPresent()) {
-                return;
-            }
-            if (!includeHidden.get()) {
-                throw new IllegalArgumentException("org.dressdiscover.api.models.object.ObjectQuery.includeHidden: not true");
+            if (includeHidden.isPresent()) {
+                if (!includeHidden.get()) {
+                    throw new IllegalArgumentException("org.dressdiscover.api.models.object.ObjectQuery: includeHidden: not true");
+                }
             }
         }
 
@@ -936,17 +909,11 @@ public final class ObjectQuery implements org.thryft.Struct {
             if (institutionId == null) {
                 throw new NullPointerException("org.dressdiscover.api.models.object.ObjectQuery: institutionId is null");
             }
-            if (!institutionId.isPresent()) {
-                return;
-            }
         }
 
         public static void validateMoreLikeObjectId(final com.google.common.base.Optional<org.dressdiscover.api.models.object.ObjectId> moreLikeObjectId) {
             if (moreLikeObjectId == null) {
                 throw new NullPointerException("org.dressdiscover.api.models.object.ObjectQuery: moreLikeObjectId is null");
-            }
-            if (!moreLikeObjectId.isPresent()) {
-                return;
             }
         }
 
@@ -954,20 +921,16 @@ public final class ObjectQuery implements org.thryft.Struct {
             if (objectIds == null) {
                 throw new NullPointerException("org.dressdiscover.api.models.object.ObjectQuery: objectIds is null");
             }
-            if (!objectIds.isPresent()) {
-                return;
-            }
         }
 
         public static void validateQueryString(final com.google.common.base.Optional<String> queryString) {
             if (queryString == null) {
                 throw new NullPointerException("org.dressdiscover.api.models.object.ObjectQuery: queryString is null");
             }
-            if (!queryString.isPresent()) {
-                return;
-            }
-            if (queryString.get().isEmpty()) {
-                throw new IllegalArgumentException("org.dressdiscover.api.models.object.ObjectQuery.queryString: less than min length 1");
+            if (queryString.isPresent()) {
+                if (queryString.get().isEmpty()) {
+                    throw new IllegalArgumentException("org.dressdiscover.api.models.object.ObjectQuery: queryString: less than min length 1");
+                }
             }
         }
 
@@ -975,11 +938,10 @@ public final class ObjectQuery implements org.thryft.Struct {
             if (relationText == null) {
                 throw new NullPointerException("org.dressdiscover.api.models.object.ObjectQuery: relationText is null");
             }
-            if (!relationText.isPresent()) {
-                return;
-            }
-            if (relationText.get().isEmpty()) {
-                throw new IllegalArgumentException("org.dressdiscover.api.models.object.ObjectQuery.relationText: less than min length 1");
+            if (relationText.isPresent()) {
+                if (relationText.get().isEmpty()) {
+                    throw new IllegalArgumentException("org.dressdiscover.api.models.object.ObjectQuery: relationText: less than min length 1");
+                }
             }
         }
 
@@ -987,11 +949,10 @@ public final class ObjectQuery implements org.thryft.Struct {
             if (structureTexts == null) {
                 throw new NullPointerException("org.dressdiscover.api.models.object.ObjectQuery: structureTexts is null");
             }
-            if (!structureTexts.isPresent()) {
-                return;
-            }
-            if (structureTexts.get().isEmpty()) {
-                throw new IllegalArgumentException("org.dressdiscover.api.models.object.ObjectQuery.structureTexts: less than min length 1");
+            if (structureTexts.isPresent()) {
+                if (structureTexts.get().isEmpty()) {
+                    throw new IllegalArgumentException("org.dressdiscover.api.models.object.ObjectQuery: structureTexts: less than min length 1");
+                }
             }
         }
 
@@ -999,11 +960,10 @@ public final class ObjectQuery implements org.thryft.Struct {
             if (workTypeText == null) {
                 throw new NullPointerException("org.dressdiscover.api.models.object.ObjectQuery: workTypeText is null");
             }
-            if (!workTypeText.isPresent()) {
-                return;
-            }
-            if (workTypeText.get().isEmpty()) {
-                throw new IllegalArgumentException("org.dressdiscover.api.models.object.ObjectQuery.workTypeText: less than min length 1");
+            if (workTypeText.isPresent()) {
+                if (workTypeText.get().isEmpty()) {
+                    throw new IllegalArgumentException("org.dressdiscover.api.models.object.ObjectQuery: workTypeText: less than min length 1");
+                }
             }
         }
     }

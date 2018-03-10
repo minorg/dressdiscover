@@ -524,7 +524,7 @@ public final class Collection implements org.thryft.waf.api.models.Model {
                 throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.TITLE, "org.dressdiscover.api.models.collection.Collection: title is null");
             }
             if (title.isEmpty()) {
-                throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.TITLE, "org.dressdiscover.api.models.collection.Collection.title: less than min length 1");
+                throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.TITLE, "org.dressdiscover.api.models.collection.Collection: title: less than min length 1");
             }
         }
 
@@ -532,11 +532,10 @@ public final class Collection implements org.thryft.waf.api.models.Model {
             if (description == null) {
                 throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.DESCRIPTION, "org.dressdiscover.api.models.collection.Collection: description is null");
             }
-            if (!description.isPresent()) {
-                return;
-            }
-            if (description.get().isEmpty()) {
-                throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.DESCRIPTION, "org.dressdiscover.api.models.collection.Collection.description: less than min length 1");
+            if (description.isPresent()) {
+                if (description.get().isEmpty()) {
+                    throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.DESCRIPTION, "org.dressdiscover.api.models.collection.Collection: description: less than min length 1");
+                }
             }
         }
 
@@ -544,11 +543,10 @@ public final class Collection implements org.thryft.waf.api.models.Model {
             if (external == null) {
                 throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.EXTERNAL, "org.dressdiscover.api.models.collection.Collection: external is null");
             }
-            if (!external.isPresent()) {
-                return;
-            }
-            if (!external.get()) {
-                throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.EXTERNAL, "org.dressdiscover.api.models.collection.Collection.external: not true");
+            if (external.isPresent()) {
+                if (!external.get()) {
+                    throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.EXTERNAL, "org.dressdiscover.api.models.collection.Collection: external: not true");
+                }
             }
         }
 
@@ -556,11 +554,10 @@ public final class Collection implements org.thryft.waf.api.models.Model {
             if (hidden == null) {
                 throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.HIDDEN, "org.dressdiscover.api.models.collection.Collection: hidden is null");
             }
-            if (!hidden.isPresent()) {
-                return;
-            }
-            if (!hidden.get()) {
-                throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.HIDDEN, "org.dressdiscover.api.models.collection.Collection.hidden: not true");
+            if (hidden.isPresent()) {
+                if (!hidden.get()) {
+                    throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.HIDDEN, "org.dressdiscover.api.models.collection.Collection: hidden: not true");
+                }
             }
         }
 
@@ -568,26 +565,17 @@ public final class Collection implements org.thryft.waf.api.models.Model {
             if (locations == null) {
                 throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.LOCATIONS, "org.dressdiscover.api.models.collection.Collection: locations is null");
             }
-            if (!locations.isPresent()) {
-                return;
-            }
         }
 
         public static void validateUrl(final com.google.common.base.Optional<org.thryft.native_.Url> url) throws org.thryft.protocol.InputProtocolException {
             if (url == null) {
                 throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.URL, "org.dressdiscover.api.models.collection.Collection: url is null");
             }
-            if (!url.isPresent()) {
-                return;
-            }
         }
 
         public static void validateWorkTypes(final com.google.common.base.Optional<org.dressdiscover.api.vocabularies.vra_core.work_type.WorkTypeSet> workTypes) throws org.thryft.protocol.InputProtocolException {
             if (workTypes == null) {
                 throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.WORK_TYPES, "org.dressdiscover.api.models.collection.Collection: workTypes is null");
-            }
-            if (!workTypes.isPresent()) {
-                return;
             }
         }
     }
@@ -608,7 +596,7 @@ public final class Collection implements org.thryft.waf.api.models.Model {
                 throw new NullPointerException("org.dressdiscover.api.models.collection.Collection: title is null");
             }
             if (title.isEmpty()) {
-                throw new IllegalArgumentException("org.dressdiscover.api.models.collection.Collection.title: less than min length 1");
+                throw new IllegalArgumentException("org.dressdiscover.api.models.collection.Collection: title: less than min length 1");
             }
         }
 
@@ -616,11 +604,10 @@ public final class Collection implements org.thryft.waf.api.models.Model {
             if (description == null) {
                 throw new NullPointerException("org.dressdiscover.api.models.collection.Collection: description is null");
             }
-            if (!description.isPresent()) {
-                return;
-            }
-            if (description.get().isEmpty()) {
-                throw new IllegalArgumentException("org.dressdiscover.api.models.collection.Collection.description: less than min length 1");
+            if (description.isPresent()) {
+                if (description.get().isEmpty()) {
+                    throw new IllegalArgumentException("org.dressdiscover.api.models.collection.Collection: description: less than min length 1");
+                }
             }
         }
 
@@ -628,11 +615,10 @@ public final class Collection implements org.thryft.waf.api.models.Model {
             if (external == null) {
                 throw new NullPointerException("org.dressdiscover.api.models.collection.Collection: external is null");
             }
-            if (!external.isPresent()) {
-                return;
-            }
-            if (!external.get()) {
-                throw new IllegalArgumentException("org.dressdiscover.api.models.collection.Collection.external: not true");
+            if (external.isPresent()) {
+                if (!external.get()) {
+                    throw new IllegalArgumentException("org.dressdiscover.api.models.collection.Collection: external: not true");
+                }
             }
         }
 
@@ -640,11 +626,10 @@ public final class Collection implements org.thryft.waf.api.models.Model {
             if (hidden == null) {
                 throw new NullPointerException("org.dressdiscover.api.models.collection.Collection: hidden is null");
             }
-            if (!hidden.isPresent()) {
-                return;
-            }
-            if (!hidden.get()) {
-                throw new IllegalArgumentException("org.dressdiscover.api.models.collection.Collection.hidden: not true");
+            if (hidden.isPresent()) {
+                if (!hidden.get()) {
+                    throw new IllegalArgumentException("org.dressdiscover.api.models.collection.Collection: hidden: not true");
+                }
             }
         }
 
@@ -652,26 +637,17 @@ public final class Collection implements org.thryft.waf.api.models.Model {
             if (locations == null) {
                 throw new NullPointerException("org.dressdiscover.api.models.collection.Collection: locations is null");
             }
-            if (!locations.isPresent()) {
-                return;
-            }
         }
 
         public static void validateUrl(final com.google.common.base.Optional<org.thryft.native_.Url> url) {
             if (url == null) {
                 throw new NullPointerException("org.dressdiscover.api.models.collection.Collection: url is null");
             }
-            if (!url.isPresent()) {
-                return;
-            }
         }
 
         public static void validateWorkTypes(final com.google.common.base.Optional<org.dressdiscover.api.vocabularies.vra_core.work_type.WorkTypeSet> workTypes) {
             if (workTypes == null) {
                 throw new NullPointerException("org.dressdiscover.api.models.collection.Collection: workTypes is null");
-            }
-            if (!workTypes.isPresent()) {
-                return;
             }
         }
     }

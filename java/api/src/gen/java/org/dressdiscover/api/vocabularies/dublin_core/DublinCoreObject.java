@@ -2110,11 +2110,10 @@ public final class DublinCoreObject implements org.thryft.Struct {
             if (abstracts == null) {
                 throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.ABSTRACTS, "org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject: abstracts is null");
             }
-            if (!abstracts.isPresent()) {
-                return;
-            }
-            if (abstracts.get().isEmpty()) {
-                throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.ABSTRACTS, "org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject.abstracts: less than min length 1");
+            if (abstracts.isPresent()) {
+                if (abstracts.get().isEmpty()) {
+                    throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.ABSTRACTS, "org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject: abstracts: less than min length 1");
+                }
             }
         }
 
@@ -2122,11 +2121,10 @@ public final class DublinCoreObject implements org.thryft.Struct {
             if (audiences == null) {
                 throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.AUDIENCES, "org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject: audiences is null");
             }
-            if (!audiences.isPresent()) {
-                return;
-            }
-            if (audiences.get().isEmpty()) {
-                throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.AUDIENCES, "org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject.audiences: less than min length 1");
+            if (audiences.isPresent()) {
+                if (audiences.get().isEmpty()) {
+                    throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.AUDIENCES, "org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject: audiences: less than min length 1");
+                }
             }
         }
 
@@ -2134,11 +2132,10 @@ public final class DublinCoreObject implements org.thryft.Struct {
             if (contributors == null) {
                 throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.CONTRIBUTORS, "org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject: contributors is null");
             }
-            if (!contributors.isPresent()) {
-                return;
-            }
-            if (contributors.get().isEmpty()) {
-                throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.CONTRIBUTORS, "org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject.contributors: less than min length 1");
+            if (contributors.isPresent()) {
+                if (contributors.get().isEmpty()) {
+                    throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.CONTRIBUTORS, "org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject: contributors: less than min length 1");
+                }
             }
         }
 
@@ -2146,11 +2143,10 @@ public final class DublinCoreObject implements org.thryft.Struct {
             if (coverages == null) {
                 throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.COVERAGES, "org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject: coverages is null");
             }
-            if (!coverages.isPresent()) {
-                return;
-            }
-            if (coverages.get().isEmpty()) {
-                throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.COVERAGES, "org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject.coverages: less than min length 1");
+            if (coverages.isPresent()) {
+                if (coverages.get().isEmpty()) {
+                    throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.COVERAGES, "org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject: coverages: less than min length 1");
+                }
             }
         }
 
@@ -2158,11 +2154,10 @@ public final class DublinCoreObject implements org.thryft.Struct {
             if (createds == null) {
                 throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.CREATEDS, "org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject: createds is null");
             }
-            if (!createds.isPresent()) {
-                return;
-            }
-            if (createds.get().isEmpty()) {
-                throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.CREATEDS, "org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject.createds: less than min length 1");
+            if (createds.isPresent()) {
+                if (createds.get().isEmpty()) {
+                    throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.CREATEDS, "org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject: createds: less than min length 1");
+                }
             }
         }
 
@@ -2170,11 +2165,10 @@ public final class DublinCoreObject implements org.thryft.Struct {
             if (creators == null) {
                 throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.CREATORS, "org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject: creators is null");
             }
-            if (!creators.isPresent()) {
-                return;
-            }
-            if (creators.get().isEmpty()) {
-                throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.CREATORS, "org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject.creators: less than min length 1");
+            if (creators.isPresent()) {
+                if (creators.get().isEmpty()) {
+                    throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.CREATORS, "org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject: creators: less than min length 1");
+                }
             }
         }
 
@@ -2182,11 +2176,10 @@ public final class DublinCoreObject implements org.thryft.Struct {
             if (dates == null) {
                 throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.DATES, "org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject: dates is null");
             }
-            if (!dates.isPresent()) {
-                return;
-            }
-            if (dates.get().isEmpty()) {
-                throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.DATES, "org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject.dates: less than min length 1");
+            if (dates.isPresent()) {
+                if (dates.get().isEmpty()) {
+                    throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.DATES, "org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject: dates: less than min length 1");
+                }
             }
         }
 
@@ -2194,11 +2187,10 @@ public final class DublinCoreObject implements org.thryft.Struct {
             if (descriptions == null) {
                 throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.DESCRIPTIONS, "org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject: descriptions is null");
             }
-            if (!descriptions.isPresent()) {
-                return;
-            }
-            if (descriptions.get().isEmpty()) {
-                throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.DESCRIPTIONS, "org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject.descriptions: less than min length 1");
+            if (descriptions.isPresent()) {
+                if (descriptions.get().isEmpty()) {
+                    throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.DESCRIPTIONS, "org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject: descriptions: less than min length 1");
+                }
             }
         }
 
@@ -2206,11 +2198,10 @@ public final class DublinCoreObject implements org.thryft.Struct {
             if (extents == null) {
                 throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.EXTENTS, "org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject: extents is null");
             }
-            if (!extents.isPresent()) {
-                return;
-            }
-            if (extents.get().isEmpty()) {
-                throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.EXTENTS, "org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject.extents: less than min length 1");
+            if (extents.isPresent()) {
+                if (extents.get().isEmpty()) {
+                    throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.EXTENTS, "org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject: extents: less than min length 1");
+                }
             }
         }
 
@@ -2218,11 +2209,10 @@ public final class DublinCoreObject implements org.thryft.Struct {
             if (formats == null) {
                 throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.FORMATS, "org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject: formats is null");
             }
-            if (!formats.isPresent()) {
-                return;
-            }
-            if (formats.get().isEmpty()) {
-                throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.FORMATS, "org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject.formats: less than min length 1");
+            if (formats.isPresent()) {
+                if (formats.get().isEmpty()) {
+                    throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.FORMATS, "org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject: formats: less than min length 1");
+                }
             }
         }
 
@@ -2230,11 +2220,10 @@ public final class DublinCoreObject implements org.thryft.Struct {
             if (identifiers == null) {
                 throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.IDENTIFIERS, "org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject: identifiers is null");
             }
-            if (!identifiers.isPresent()) {
-                return;
-            }
-            if (identifiers.get().isEmpty()) {
-                throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.IDENTIFIERS, "org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject.identifiers: less than min length 1");
+            if (identifiers.isPresent()) {
+                if (identifiers.get().isEmpty()) {
+                    throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.IDENTIFIERS, "org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject: identifiers: less than min length 1");
+                }
             }
         }
 
@@ -2242,11 +2231,10 @@ public final class DublinCoreObject implements org.thryft.Struct {
             if (languages == null) {
                 throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.LANGUAGES, "org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject: languages is null");
             }
-            if (!languages.isPresent()) {
-                return;
-            }
-            if (languages.get().isEmpty()) {
-                throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.LANGUAGES, "org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject.languages: less than min length 1");
+            if (languages.isPresent()) {
+                if (languages.get().isEmpty()) {
+                    throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.LANGUAGES, "org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject: languages: less than min length 1");
+                }
             }
         }
 
@@ -2254,11 +2242,10 @@ public final class DublinCoreObject implements org.thryft.Struct {
             if (mediums == null) {
                 throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.MEDIUMS, "org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject: mediums is null");
             }
-            if (!mediums.isPresent()) {
-                return;
-            }
-            if (mediums.get().isEmpty()) {
-                throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.MEDIUMS, "org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject.mediums: less than min length 1");
+            if (mediums.isPresent()) {
+                if (mediums.get().isEmpty()) {
+                    throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.MEDIUMS, "org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject: mediums: less than min length 1");
+                }
             }
         }
 
@@ -2266,11 +2253,10 @@ public final class DublinCoreObject implements org.thryft.Struct {
             if (provenances == null) {
                 throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.PROVENANCES, "org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject: provenances is null");
             }
-            if (!provenances.isPresent()) {
-                return;
-            }
-            if (provenances.get().isEmpty()) {
-                throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.PROVENANCES, "org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject.provenances: less than min length 1");
+            if (provenances.isPresent()) {
+                if (provenances.get().isEmpty()) {
+                    throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.PROVENANCES, "org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject: provenances: less than min length 1");
+                }
             }
         }
 
@@ -2278,11 +2264,10 @@ public final class DublinCoreObject implements org.thryft.Struct {
             if (publishers == null) {
                 throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.PUBLISHERS, "org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject: publishers is null");
             }
-            if (!publishers.isPresent()) {
-                return;
-            }
-            if (publishers.get().isEmpty()) {
-                throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.PUBLISHERS, "org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject.publishers: less than min length 1");
+            if (publishers.isPresent()) {
+                if (publishers.get().isEmpty()) {
+                    throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.PUBLISHERS, "org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject: publishers: less than min length 1");
+                }
             }
         }
 
@@ -2290,11 +2275,10 @@ public final class DublinCoreObject implements org.thryft.Struct {
             if (relations == null) {
                 throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.RELATIONS, "org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject: relations is null");
             }
-            if (!relations.isPresent()) {
-                return;
-            }
-            if (relations.get().isEmpty()) {
-                throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.RELATIONS, "org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject.relations: less than min length 1");
+            if (relations.isPresent()) {
+                if (relations.get().isEmpty()) {
+                    throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.RELATIONS, "org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject: relations: less than min length 1");
+                }
             }
         }
 
@@ -2302,11 +2286,10 @@ public final class DublinCoreObject implements org.thryft.Struct {
             if (rights == null) {
                 throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.RIGHTS, "org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject: rights is null");
             }
-            if (!rights.isPresent()) {
-                return;
-            }
-            if (rights.get().isEmpty()) {
-                throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.RIGHTS, "org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject.rights: less than min length 1");
+            if (rights.isPresent()) {
+                if (rights.get().isEmpty()) {
+                    throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.RIGHTS, "org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject: rights: less than min length 1");
+                }
             }
         }
 
@@ -2314,11 +2297,10 @@ public final class DublinCoreObject implements org.thryft.Struct {
             if (rightsHolders == null) {
                 throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.RIGHTS_HOLDERS, "org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject: rightsHolders is null");
             }
-            if (!rightsHolders.isPresent()) {
-                return;
-            }
-            if (rightsHolders.get().isEmpty()) {
-                throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.RIGHTS_HOLDERS, "org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject.rightsHolders: less than min length 1");
+            if (rightsHolders.isPresent()) {
+                if (rightsHolders.get().isEmpty()) {
+                    throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.RIGHTS_HOLDERS, "org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject: rightsHolders: less than min length 1");
+                }
             }
         }
 
@@ -2326,11 +2308,10 @@ public final class DublinCoreObject implements org.thryft.Struct {
             if (sources == null) {
                 throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.SOURCES, "org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject: sources is null");
             }
-            if (!sources.isPresent()) {
-                return;
-            }
-            if (sources.get().isEmpty()) {
-                throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.SOURCES, "org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject.sources: less than min length 1");
+            if (sources.isPresent()) {
+                if (sources.get().isEmpty()) {
+                    throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.SOURCES, "org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject: sources: less than min length 1");
+                }
             }
         }
 
@@ -2338,11 +2319,10 @@ public final class DublinCoreObject implements org.thryft.Struct {
             if (spatials == null) {
                 throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.SPATIALS, "org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject: spatials is null");
             }
-            if (!spatials.isPresent()) {
-                return;
-            }
-            if (spatials.get().isEmpty()) {
-                throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.SPATIALS, "org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject.spatials: less than min length 1");
+            if (spatials.isPresent()) {
+                if (spatials.get().isEmpty()) {
+                    throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.SPATIALS, "org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject: spatials: less than min length 1");
+                }
             }
         }
 
@@ -2350,11 +2330,10 @@ public final class DublinCoreObject implements org.thryft.Struct {
             if (subjects == null) {
                 throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.SUBJECTS, "org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject: subjects is null");
             }
-            if (!subjects.isPresent()) {
-                return;
-            }
-            if (subjects.get().isEmpty()) {
-                throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.SUBJECTS, "org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject.subjects: less than min length 1");
+            if (subjects.isPresent()) {
+                if (subjects.get().isEmpty()) {
+                    throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.SUBJECTS, "org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject: subjects: less than min length 1");
+                }
             }
         }
 
@@ -2362,11 +2341,10 @@ public final class DublinCoreObject implements org.thryft.Struct {
             if (temporals == null) {
                 throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.TEMPORALS, "org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject: temporals is null");
             }
-            if (!temporals.isPresent()) {
-                return;
-            }
-            if (temporals.get().isEmpty()) {
-                throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.TEMPORALS, "org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject.temporals: less than min length 1");
+            if (temporals.isPresent()) {
+                if (temporals.get().isEmpty()) {
+                    throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.TEMPORALS, "org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject: temporals: less than min length 1");
+                }
             }
         }
 
@@ -2374,11 +2352,10 @@ public final class DublinCoreObject implements org.thryft.Struct {
             if (titles == null) {
                 throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.TITLES, "org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject: titles is null");
             }
-            if (!titles.isPresent()) {
-                return;
-            }
-            if (titles.get().isEmpty()) {
-                throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.TITLES, "org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject.titles: less than min length 1");
+            if (titles.isPresent()) {
+                if (titles.get().isEmpty()) {
+                    throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.TITLES, "org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject: titles: less than min length 1");
+                }
             }
         }
 
@@ -2386,11 +2363,10 @@ public final class DublinCoreObject implements org.thryft.Struct {
             if (types == null) {
                 throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.TYPES, "org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject: types is null");
             }
-            if (!types.isPresent()) {
-                return;
-            }
-            if (types.get().isEmpty()) {
-                throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.TYPES, "org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject.types: less than min length 1");
+            if (types.isPresent()) {
+                if (types.get().isEmpty()) {
+                    throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.TYPES, "org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject: types: less than min length 1");
+                }
             }
         }
     }
@@ -2427,11 +2403,10 @@ public final class DublinCoreObject implements org.thryft.Struct {
             if (abstracts == null) {
                 throw new NullPointerException("org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject: abstracts is null");
             }
-            if (!abstracts.isPresent()) {
-                return;
-            }
-            if (abstracts.get().isEmpty()) {
-                throw new IllegalArgumentException("org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject.abstracts: less than min length 1");
+            if (abstracts.isPresent()) {
+                if (abstracts.get().isEmpty()) {
+                    throw new IllegalArgumentException("org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject: abstracts: less than min length 1");
+                }
             }
         }
 
@@ -2439,11 +2414,10 @@ public final class DublinCoreObject implements org.thryft.Struct {
             if (audiences == null) {
                 throw new NullPointerException("org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject: audiences is null");
             }
-            if (!audiences.isPresent()) {
-                return;
-            }
-            if (audiences.get().isEmpty()) {
-                throw new IllegalArgumentException("org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject.audiences: less than min length 1");
+            if (audiences.isPresent()) {
+                if (audiences.get().isEmpty()) {
+                    throw new IllegalArgumentException("org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject: audiences: less than min length 1");
+                }
             }
         }
 
@@ -2451,11 +2425,10 @@ public final class DublinCoreObject implements org.thryft.Struct {
             if (contributors == null) {
                 throw new NullPointerException("org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject: contributors is null");
             }
-            if (!contributors.isPresent()) {
-                return;
-            }
-            if (contributors.get().isEmpty()) {
-                throw new IllegalArgumentException("org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject.contributors: less than min length 1");
+            if (contributors.isPresent()) {
+                if (contributors.get().isEmpty()) {
+                    throw new IllegalArgumentException("org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject: contributors: less than min length 1");
+                }
             }
         }
 
@@ -2463,11 +2436,10 @@ public final class DublinCoreObject implements org.thryft.Struct {
             if (coverages == null) {
                 throw new NullPointerException("org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject: coverages is null");
             }
-            if (!coverages.isPresent()) {
-                return;
-            }
-            if (coverages.get().isEmpty()) {
-                throw new IllegalArgumentException("org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject.coverages: less than min length 1");
+            if (coverages.isPresent()) {
+                if (coverages.get().isEmpty()) {
+                    throw new IllegalArgumentException("org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject: coverages: less than min length 1");
+                }
             }
         }
 
@@ -2475,11 +2447,10 @@ public final class DublinCoreObject implements org.thryft.Struct {
             if (createds == null) {
                 throw new NullPointerException("org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject: createds is null");
             }
-            if (!createds.isPresent()) {
-                return;
-            }
-            if (createds.get().isEmpty()) {
-                throw new IllegalArgumentException("org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject.createds: less than min length 1");
+            if (createds.isPresent()) {
+                if (createds.get().isEmpty()) {
+                    throw new IllegalArgumentException("org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject: createds: less than min length 1");
+                }
             }
         }
 
@@ -2487,11 +2458,10 @@ public final class DublinCoreObject implements org.thryft.Struct {
             if (creators == null) {
                 throw new NullPointerException("org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject: creators is null");
             }
-            if (!creators.isPresent()) {
-                return;
-            }
-            if (creators.get().isEmpty()) {
-                throw new IllegalArgumentException("org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject.creators: less than min length 1");
+            if (creators.isPresent()) {
+                if (creators.get().isEmpty()) {
+                    throw new IllegalArgumentException("org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject: creators: less than min length 1");
+                }
             }
         }
 
@@ -2499,11 +2469,10 @@ public final class DublinCoreObject implements org.thryft.Struct {
             if (dates == null) {
                 throw new NullPointerException("org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject: dates is null");
             }
-            if (!dates.isPresent()) {
-                return;
-            }
-            if (dates.get().isEmpty()) {
-                throw new IllegalArgumentException("org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject.dates: less than min length 1");
+            if (dates.isPresent()) {
+                if (dates.get().isEmpty()) {
+                    throw new IllegalArgumentException("org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject: dates: less than min length 1");
+                }
             }
         }
 
@@ -2511,11 +2480,10 @@ public final class DublinCoreObject implements org.thryft.Struct {
             if (descriptions == null) {
                 throw new NullPointerException("org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject: descriptions is null");
             }
-            if (!descriptions.isPresent()) {
-                return;
-            }
-            if (descriptions.get().isEmpty()) {
-                throw new IllegalArgumentException("org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject.descriptions: less than min length 1");
+            if (descriptions.isPresent()) {
+                if (descriptions.get().isEmpty()) {
+                    throw new IllegalArgumentException("org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject: descriptions: less than min length 1");
+                }
             }
         }
 
@@ -2523,11 +2491,10 @@ public final class DublinCoreObject implements org.thryft.Struct {
             if (extents == null) {
                 throw new NullPointerException("org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject: extents is null");
             }
-            if (!extents.isPresent()) {
-                return;
-            }
-            if (extents.get().isEmpty()) {
-                throw new IllegalArgumentException("org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject.extents: less than min length 1");
+            if (extents.isPresent()) {
+                if (extents.get().isEmpty()) {
+                    throw new IllegalArgumentException("org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject: extents: less than min length 1");
+                }
             }
         }
 
@@ -2535,11 +2502,10 @@ public final class DublinCoreObject implements org.thryft.Struct {
             if (formats == null) {
                 throw new NullPointerException("org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject: formats is null");
             }
-            if (!formats.isPresent()) {
-                return;
-            }
-            if (formats.get().isEmpty()) {
-                throw new IllegalArgumentException("org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject.formats: less than min length 1");
+            if (formats.isPresent()) {
+                if (formats.get().isEmpty()) {
+                    throw new IllegalArgumentException("org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject: formats: less than min length 1");
+                }
             }
         }
 
@@ -2547,11 +2513,10 @@ public final class DublinCoreObject implements org.thryft.Struct {
             if (identifiers == null) {
                 throw new NullPointerException("org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject: identifiers is null");
             }
-            if (!identifiers.isPresent()) {
-                return;
-            }
-            if (identifiers.get().isEmpty()) {
-                throw new IllegalArgumentException("org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject.identifiers: less than min length 1");
+            if (identifiers.isPresent()) {
+                if (identifiers.get().isEmpty()) {
+                    throw new IllegalArgumentException("org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject: identifiers: less than min length 1");
+                }
             }
         }
 
@@ -2559,11 +2524,10 @@ public final class DublinCoreObject implements org.thryft.Struct {
             if (languages == null) {
                 throw new NullPointerException("org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject: languages is null");
             }
-            if (!languages.isPresent()) {
-                return;
-            }
-            if (languages.get().isEmpty()) {
-                throw new IllegalArgumentException("org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject.languages: less than min length 1");
+            if (languages.isPresent()) {
+                if (languages.get().isEmpty()) {
+                    throw new IllegalArgumentException("org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject: languages: less than min length 1");
+                }
             }
         }
 
@@ -2571,11 +2535,10 @@ public final class DublinCoreObject implements org.thryft.Struct {
             if (mediums == null) {
                 throw new NullPointerException("org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject: mediums is null");
             }
-            if (!mediums.isPresent()) {
-                return;
-            }
-            if (mediums.get().isEmpty()) {
-                throw new IllegalArgumentException("org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject.mediums: less than min length 1");
+            if (mediums.isPresent()) {
+                if (mediums.get().isEmpty()) {
+                    throw new IllegalArgumentException("org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject: mediums: less than min length 1");
+                }
             }
         }
 
@@ -2583,11 +2546,10 @@ public final class DublinCoreObject implements org.thryft.Struct {
             if (provenances == null) {
                 throw new NullPointerException("org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject: provenances is null");
             }
-            if (!provenances.isPresent()) {
-                return;
-            }
-            if (provenances.get().isEmpty()) {
-                throw new IllegalArgumentException("org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject.provenances: less than min length 1");
+            if (provenances.isPresent()) {
+                if (provenances.get().isEmpty()) {
+                    throw new IllegalArgumentException("org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject: provenances: less than min length 1");
+                }
             }
         }
 
@@ -2595,11 +2557,10 @@ public final class DublinCoreObject implements org.thryft.Struct {
             if (publishers == null) {
                 throw new NullPointerException("org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject: publishers is null");
             }
-            if (!publishers.isPresent()) {
-                return;
-            }
-            if (publishers.get().isEmpty()) {
-                throw new IllegalArgumentException("org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject.publishers: less than min length 1");
+            if (publishers.isPresent()) {
+                if (publishers.get().isEmpty()) {
+                    throw new IllegalArgumentException("org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject: publishers: less than min length 1");
+                }
             }
         }
 
@@ -2607,11 +2568,10 @@ public final class DublinCoreObject implements org.thryft.Struct {
             if (relations == null) {
                 throw new NullPointerException("org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject: relations is null");
             }
-            if (!relations.isPresent()) {
-                return;
-            }
-            if (relations.get().isEmpty()) {
-                throw new IllegalArgumentException("org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject.relations: less than min length 1");
+            if (relations.isPresent()) {
+                if (relations.get().isEmpty()) {
+                    throw new IllegalArgumentException("org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject: relations: less than min length 1");
+                }
             }
         }
 
@@ -2619,11 +2579,10 @@ public final class DublinCoreObject implements org.thryft.Struct {
             if (rights == null) {
                 throw new NullPointerException("org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject: rights is null");
             }
-            if (!rights.isPresent()) {
-                return;
-            }
-            if (rights.get().isEmpty()) {
-                throw new IllegalArgumentException("org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject.rights: less than min length 1");
+            if (rights.isPresent()) {
+                if (rights.get().isEmpty()) {
+                    throw new IllegalArgumentException("org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject: rights: less than min length 1");
+                }
             }
         }
 
@@ -2631,11 +2590,10 @@ public final class DublinCoreObject implements org.thryft.Struct {
             if (rightsHolders == null) {
                 throw new NullPointerException("org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject: rightsHolders is null");
             }
-            if (!rightsHolders.isPresent()) {
-                return;
-            }
-            if (rightsHolders.get().isEmpty()) {
-                throw new IllegalArgumentException("org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject.rightsHolders: less than min length 1");
+            if (rightsHolders.isPresent()) {
+                if (rightsHolders.get().isEmpty()) {
+                    throw new IllegalArgumentException("org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject: rightsHolders: less than min length 1");
+                }
             }
         }
 
@@ -2643,11 +2601,10 @@ public final class DublinCoreObject implements org.thryft.Struct {
             if (sources == null) {
                 throw new NullPointerException("org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject: sources is null");
             }
-            if (!sources.isPresent()) {
-                return;
-            }
-            if (sources.get().isEmpty()) {
-                throw new IllegalArgumentException("org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject.sources: less than min length 1");
+            if (sources.isPresent()) {
+                if (sources.get().isEmpty()) {
+                    throw new IllegalArgumentException("org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject: sources: less than min length 1");
+                }
             }
         }
 
@@ -2655,11 +2612,10 @@ public final class DublinCoreObject implements org.thryft.Struct {
             if (spatials == null) {
                 throw new NullPointerException("org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject: spatials is null");
             }
-            if (!spatials.isPresent()) {
-                return;
-            }
-            if (spatials.get().isEmpty()) {
-                throw new IllegalArgumentException("org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject.spatials: less than min length 1");
+            if (spatials.isPresent()) {
+                if (spatials.get().isEmpty()) {
+                    throw new IllegalArgumentException("org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject: spatials: less than min length 1");
+                }
             }
         }
 
@@ -2667,11 +2623,10 @@ public final class DublinCoreObject implements org.thryft.Struct {
             if (subjects == null) {
                 throw new NullPointerException("org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject: subjects is null");
             }
-            if (!subjects.isPresent()) {
-                return;
-            }
-            if (subjects.get().isEmpty()) {
-                throw new IllegalArgumentException("org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject.subjects: less than min length 1");
+            if (subjects.isPresent()) {
+                if (subjects.get().isEmpty()) {
+                    throw new IllegalArgumentException("org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject: subjects: less than min length 1");
+                }
             }
         }
 
@@ -2679,11 +2634,10 @@ public final class DublinCoreObject implements org.thryft.Struct {
             if (temporals == null) {
                 throw new NullPointerException("org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject: temporals is null");
             }
-            if (!temporals.isPresent()) {
-                return;
-            }
-            if (temporals.get().isEmpty()) {
-                throw new IllegalArgumentException("org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject.temporals: less than min length 1");
+            if (temporals.isPresent()) {
+                if (temporals.get().isEmpty()) {
+                    throw new IllegalArgumentException("org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject: temporals: less than min length 1");
+                }
             }
         }
 
@@ -2691,11 +2645,10 @@ public final class DublinCoreObject implements org.thryft.Struct {
             if (titles == null) {
                 throw new NullPointerException("org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject: titles is null");
             }
-            if (!titles.isPresent()) {
-                return;
-            }
-            if (titles.get().isEmpty()) {
-                throw new IllegalArgumentException("org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject.titles: less than min length 1");
+            if (titles.isPresent()) {
+                if (titles.get().isEmpty()) {
+                    throw new IllegalArgumentException("org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject: titles: less than min length 1");
+                }
             }
         }
 
@@ -2703,11 +2656,10 @@ public final class DublinCoreObject implements org.thryft.Struct {
             if (types == null) {
                 throw new NullPointerException("org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject: types is null");
             }
-            if (!types.isPresent()) {
-                return;
-            }
-            if (types.get().isEmpty()) {
-                throw new IllegalArgumentException("org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject.types: less than min length 1");
+            if (types.isPresent()) {
+                if (types.get().isEmpty()) {
+                    throw new IllegalArgumentException("org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject: types: less than min length 1");
+                }
             }
         }
     }

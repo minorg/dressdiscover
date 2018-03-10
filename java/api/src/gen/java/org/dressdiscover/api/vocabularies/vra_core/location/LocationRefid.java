@@ -305,7 +305,7 @@ public final class LocationRefid implements org.thryft.Struct {
                 throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.TEXT, "org.dressdiscover.api.vocabularies.vra_core.location.LocationRefid: text is null");
             }
             if (text.isEmpty()) {
-                throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.TEXT, "org.dressdiscover.api.vocabularies.vra_core.location.LocationRefid.text: less than min length 1");
+                throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.TEXT, "org.dressdiscover.api.vocabularies.vra_core.location.LocationRefid: text: less than min length 1");
             }
         }
 
@@ -327,7 +327,7 @@ public final class LocationRefid implements org.thryft.Struct {
                 throw new NullPointerException("org.dressdiscover.api.vocabularies.vra_core.location.LocationRefid: text is null");
             }
             if (text.isEmpty()) {
-                throw new IllegalArgumentException("org.dressdiscover.api.vocabularies.vra_core.location.LocationRefid.text: less than min length 1");
+                throw new IllegalArgumentException("org.dressdiscover.api.vocabularies.vra_core.location.LocationRefid: text: less than min length 1");
             }
         }
 

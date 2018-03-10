@@ -25,7 +25,7 @@ public class LoggingCollectionCommandService implements org.dressdiscover.api.se
     @Override
     public void deleteCollectionById(final org.dressdiscover.api.models.collection.CollectionId id) throws org.dressdiscover.api.services.IoException, org.dressdiscover.api.services.collection.NoSuchCollectionException, org.dressdiscover.api.services.institution.NoSuchInstitutionException {
         final Object[] __logMessageArgs = new Object[2];
-        __logMessageArgs[0] = Messages.DeleteCollectionByIdRequest.create(id);
+        __logMessageArgs[0] = id;
 
         __logMessageArgs[__logMessageArgs.length - 1] = PRE_RETURN_VALUE;
         logger.debug(CollectionCommandServiceLogMarkers.DELETE_COLLECTION_BY_ID, LogMessages.DELETE_COLLECTION_BY_ID, __logMessageArgs);
@@ -57,7 +57,7 @@ public class LoggingCollectionCommandService implements org.dressdiscover.api.se
     @Override
     public void deleteCollectionsByInstitutionId(final org.dressdiscover.api.models.institution.InstitutionId institutionId) throws org.dressdiscover.api.services.IoException, org.dressdiscover.api.services.institution.NoSuchInstitutionException {
         final Object[] __logMessageArgs = new Object[2];
-        __logMessageArgs[0] = Messages.DeleteCollectionsByInstitutionIdRequest.create(institutionId);
+        __logMessageArgs[0] = institutionId;
 
         __logMessageArgs[__logMessageArgs.length - 1] = PRE_RETURN_VALUE;
         logger.debug(CollectionCommandServiceLogMarkers.DELETE_COLLECTIONS_BY_INSTITUTION_ID, LogMessages.DELETE_COLLECTIONS_BY_INSTITUTION_ID, __logMessageArgs);
@@ -84,8 +84,9 @@ public class LoggingCollectionCommandService implements org.dressdiscover.api.se
 
     @Override
     public void putCollection(final org.dressdiscover.api.models.collection.Collection collection, final org.dressdiscover.api.models.collection.CollectionId id) throws org.dressdiscover.api.services.IoException, org.dressdiscover.api.services.institution.NoSuchInstitutionException {
-        final Object[] __logMessageArgs = new Object[2];
-        __logMessageArgs[0] = Messages.PutCollectionRequest.create(collection, id);
+        final Object[] __logMessageArgs = new Object[3];
+        __logMessageArgs[0] = collection;
+        __logMessageArgs[1] = id;
 
         __logMessageArgs[__logMessageArgs.length - 1] = PRE_RETURN_VALUE;
         logger.debug(CollectionCommandServiceLogMarkers.PUT_COLLECTION, LogMessages.PUT_COLLECTION, __logMessageArgs);
@@ -114,9 +115,9 @@ public class LoggingCollectionCommandService implements org.dressdiscover.api.se
     private final org.dressdiscover.api.services.collection.CollectionCommandService delegate;
 
     private final static class LogMessages {
-        public final static String DELETE_COLLECTION_BY_ID = "delete_collection_by_id({}) -> {}";
-        public final static String DELETE_COLLECTIONS_BY_INSTITUTION_ID = "delete_collections_by_institution_id({}) -> {}";
-        public final static String PUT_COLLECTION = "put_collection({}) -> {}";
+        public final static String DELETE_COLLECTION_BY_ID = "delete_collection_by_id(id={}) -> {}";
+        public final static String DELETE_COLLECTIONS_BY_INSTITUTION_ID = "delete_collections_by_institution_id(institutionId={}) -> {}";
+        public final static String PUT_COLLECTION = "put_collection(collection={}, id={}) -> {}";
     }
 
     public final static String PRE_RETURN_VALUE = "...";

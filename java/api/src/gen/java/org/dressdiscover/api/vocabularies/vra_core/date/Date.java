@@ -440,20 +440,16 @@ public final class Date implements org.dressdiscover.api.vocabularies.vra_core.E
             if (href == null) {
                 throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.HREF, "org.dressdiscover.api.vocabularies.vra_core.date.Date: href is null");
             }
-            if (!href.isPresent()) {
-                return;
-            }
         }
 
         public static void validateSource(final com.google.common.base.Optional<String> source) throws org.thryft.protocol.InputProtocolException {
             if (source == null) {
                 throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.SOURCE, "org.dressdiscover.api.vocabularies.vra_core.date.Date: source is null");
             }
-            if (!source.isPresent()) {
-                return;
-            }
-            if (source.get().isEmpty()) {
-                throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.SOURCE, "org.dressdiscover.api.vocabularies.vra_core.date.Date.source: less than min length 1");
+            if (source.isPresent()) {
+                if (source.get().isEmpty()) {
+                    throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.SOURCE, "org.dressdiscover.api.vocabularies.vra_core.date.Date: source: less than min length 1");
+                }
             }
         }
     }
@@ -489,20 +485,16 @@ public final class Date implements org.dressdiscover.api.vocabularies.vra_core.E
             if (href == null) {
                 throw new NullPointerException("org.dressdiscover.api.vocabularies.vra_core.date.Date: href is null");
             }
-            if (!href.isPresent()) {
-                return;
-            }
         }
 
         public static void validateSource(final com.google.common.base.Optional<String> source) {
             if (source == null) {
                 throw new NullPointerException("org.dressdiscover.api.vocabularies.vra_core.date.Date: source is null");
             }
-            if (!source.isPresent()) {
-                return;
-            }
-            if (source.get().isEmpty()) {
-                throw new IllegalArgumentException("org.dressdiscover.api.vocabularies.vra_core.date.Date.source: less than min length 1");
+            if (source.isPresent()) {
+                if (source.get().isEmpty()) {
+                    throw new IllegalArgumentException("org.dressdiscover.api.vocabularies.vra_core.date.Date: source: less than min length 1");
+                }
             }
         }
     }

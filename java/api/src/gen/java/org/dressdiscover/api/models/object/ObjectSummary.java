@@ -1465,7 +1465,7 @@ public final class ObjectSummary implements org.thryft.waf.api.models.Model {
                 throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.TITLE, "org.dressdiscover.api.models.object.ObjectSummary: title is null");
             }
             if (title.isEmpty()) {
-                throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.TITLE, "org.dressdiscover.api.models.object.ObjectSummary.title: less than min length 1");
+                throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.TITLE, "org.dressdiscover.api.models.object.ObjectSummary: title: less than min length 1");
             }
         }
 
@@ -1473,11 +1473,10 @@ public final class ObjectSummary implements org.thryft.waf.api.models.Model {
             if (agentNameTexts == null) {
                 throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.AGENT_NAME_TEXTS, "org.dressdiscover.api.models.object.ObjectSummary: agentNameTexts is null");
             }
-            if (!agentNameTexts.isPresent()) {
-                return;
-            }
-            if (agentNameTexts.get().isEmpty()) {
-                throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.AGENT_NAME_TEXTS, "org.dressdiscover.api.models.object.ObjectSummary.agentNameTexts: less than min length 1");
+            if (agentNameTexts.isPresent()) {
+                if (agentNameTexts.get().isEmpty()) {
+                    throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.AGENT_NAME_TEXTS, "org.dressdiscover.api.models.object.ObjectSummary: agentNameTexts: less than min length 1");
+                }
             }
         }
 
@@ -1485,11 +1484,10 @@ public final class ObjectSummary implements org.thryft.waf.api.models.Model {
             if (categories == null) {
                 throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.CATEGORIES, "org.dressdiscover.api.models.object.ObjectSummary: categories is null");
             }
-            if (!categories.isPresent()) {
-                return;
-            }
-            if (categories.get().isEmpty()) {
-                throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.CATEGORIES, "org.dressdiscover.api.models.object.ObjectSummary.categories: less than min length 1");
+            if (categories.isPresent()) {
+                if (categories.get().isEmpty()) {
+                    throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.CATEGORIES, "org.dressdiscover.api.models.object.ObjectSummary: categories: less than min length 1");
+                }
             }
         }
 
@@ -1497,11 +1495,10 @@ public final class ObjectSummary implements org.thryft.waf.api.models.Model {
             if (colorTexts == null) {
                 throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.COLOR_TEXTS, "org.dressdiscover.api.models.object.ObjectSummary: colorTexts is null");
             }
-            if (!colorTexts.isPresent()) {
-                return;
-            }
-            if (colorTexts.get().isEmpty()) {
-                throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.COLOR_TEXTS, "org.dressdiscover.api.models.object.ObjectSummary.colorTexts: less than min length 1");
+            if (colorTexts.isPresent()) {
+                if (colorTexts.get().isEmpty()) {
+                    throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.COLOR_TEXTS, "org.dressdiscover.api.models.object.ObjectSummary: colorTexts: less than min length 1");
+                }
             }
         }
 
@@ -1509,11 +1506,10 @@ public final class ObjectSummary implements org.thryft.waf.api.models.Model {
             if (culturalContextTexts == null) {
                 throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.CULTURAL_CONTEXT_TEXTS, "org.dressdiscover.api.models.object.ObjectSummary: culturalContextTexts is null");
             }
-            if (!culturalContextTexts.isPresent()) {
-                return;
-            }
-            if (culturalContextTexts.get().isEmpty()) {
-                throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.CULTURAL_CONTEXT_TEXTS, "org.dressdiscover.api.models.object.ObjectSummary.culturalContextTexts: less than min length 1");
+            if (culturalContextTexts.isPresent()) {
+                if (culturalContextTexts.get().isEmpty()) {
+                    throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.CULTURAL_CONTEXT_TEXTS, "org.dressdiscover.api.models.object.ObjectSummary: culturalContextTexts: less than min length 1");
+                }
             }
         }
 
@@ -1521,11 +1517,10 @@ public final class ObjectSummary implements org.thryft.waf.api.models.Model {
             if (date == null) {
                 throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.DATE, "org.dressdiscover.api.models.object.ObjectSummary: date is null");
             }
-            if (!date.isPresent()) {
-                return;
-            }
-            if (date.get().isEmpty()) {
-                throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.DATE, "org.dressdiscover.api.models.object.ObjectSummary.date: less than min length 1");
+            if (date.isPresent()) {
+                if (date.get().isEmpty()) {
+                    throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.DATE, "org.dressdiscover.api.models.object.ObjectSummary: date: less than min length 1");
+                }
             }
         }
 
@@ -1533,11 +1528,10 @@ public final class ObjectSummary implements org.thryft.waf.api.models.Model {
             if (description == null) {
                 throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.DESCRIPTION, "org.dressdiscover.api.models.object.ObjectSummary: description is null");
             }
-            if (!description.isPresent()) {
-                return;
-            }
-            if (description.get().isEmpty()) {
-                throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.DESCRIPTION, "org.dressdiscover.api.models.object.ObjectSummary.description: less than min length 1");
+            if (description.isPresent()) {
+                if (description.get().isEmpty()) {
+                    throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.DESCRIPTION, "org.dressdiscover.api.models.object.ObjectSummary: description: less than min length 1");
+                }
             }
         }
 
@@ -1545,20 +1539,16 @@ public final class ObjectSummary implements org.thryft.waf.api.models.Model {
             if (gender == null) {
                 throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.GENDER, "org.dressdiscover.api.models.object.ObjectSummary: gender is null");
             }
-            if (!gender.isPresent()) {
-                return;
-            }
         }
 
         public static void validateHidden(final com.google.common.base.Optional<Boolean> hidden) throws org.thryft.protocol.InputProtocolException {
             if (hidden == null) {
                 throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.HIDDEN, "org.dressdiscover.api.models.object.ObjectSummary: hidden is null");
             }
-            if (!hidden.isPresent()) {
-                return;
-            }
-            if (!hidden.get()) {
-                throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.HIDDEN, "org.dressdiscover.api.models.object.ObjectSummary.hidden: not true");
+            if (hidden.isPresent()) {
+                if (!hidden.get()) {
+                    throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.HIDDEN, "org.dressdiscover.api.models.object.ObjectSummary: hidden: not true");
+                }
             }
         }
 
@@ -1566,20 +1556,16 @@ public final class ObjectSummary implements org.thryft.waf.api.models.Model {
             if (image == null) {
                 throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.IMAGE, "org.dressdiscover.api.models.object.ObjectSummary: image is null");
             }
-            if (!image.isPresent()) {
-                return;
-            }
         }
 
         public static void validateLocationNameTexts(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> locationNameTexts) throws org.thryft.protocol.InputProtocolException {
             if (locationNameTexts == null) {
                 throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.LOCATION_NAME_TEXTS, "org.dressdiscover.api.models.object.ObjectSummary: locationNameTexts is null");
             }
-            if (!locationNameTexts.isPresent()) {
-                return;
-            }
-            if (locationNameTexts.get().isEmpty()) {
-                throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.LOCATION_NAME_TEXTS, "org.dressdiscover.api.models.object.ObjectSummary.locationNameTexts: less than min length 1");
+            if (locationNameTexts.isPresent()) {
+                if (locationNameTexts.get().isEmpty()) {
+                    throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.LOCATION_NAME_TEXTS, "org.dressdiscover.api.models.object.ObjectSummary: locationNameTexts: less than min length 1");
+                }
             }
         }
 
@@ -1587,11 +1573,10 @@ public final class ObjectSummary implements org.thryft.waf.api.models.Model {
             if (materialTexts == null) {
                 throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.MATERIAL_TEXTS, "org.dressdiscover.api.models.object.ObjectSummary: materialTexts is null");
             }
-            if (!materialTexts.isPresent()) {
-                return;
-            }
-            if (materialTexts.get().isEmpty()) {
-                throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.MATERIAL_TEXTS, "org.dressdiscover.api.models.object.ObjectSummary.materialTexts: less than min length 1");
+            if (materialTexts.isPresent()) {
+                if (materialTexts.get().isEmpty()) {
+                    throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.MATERIAL_TEXTS, "org.dressdiscover.api.models.object.ObjectSummary: materialTexts: less than min length 1");
+                }
             }
         }
 
@@ -1599,11 +1584,10 @@ public final class ObjectSummary implements org.thryft.waf.api.models.Model {
             if (relationTexts == null) {
                 throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.RELATION_TEXTS, "org.dressdiscover.api.models.object.ObjectSummary: relationTexts is null");
             }
-            if (!relationTexts.isPresent()) {
-                return;
-            }
-            if (relationTexts.get().isEmpty()) {
-                throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.RELATION_TEXTS, "org.dressdiscover.api.models.object.ObjectSummary.relationTexts: less than min length 1");
+            if (relationTexts.isPresent()) {
+                if (relationTexts.get().isEmpty()) {
+                    throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.RELATION_TEXTS, "org.dressdiscover.api.models.object.ObjectSummary: relationTexts: less than min length 1");
+                }
             }
         }
 
@@ -1611,11 +1595,10 @@ public final class ObjectSummary implements org.thryft.waf.api.models.Model {
             if (structureTexts == null) {
                 throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.STRUCTURE_TEXTS, "org.dressdiscover.api.models.object.ObjectSummary: structureTexts is null");
             }
-            if (!structureTexts.isPresent()) {
-                return;
-            }
-            if (structureTexts.get().isEmpty()) {
-                throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.STRUCTURE_TEXTS, "org.dressdiscover.api.models.object.ObjectSummary.structureTexts: less than min length 1");
+            if (structureTexts.isPresent()) {
+                if (structureTexts.get().isEmpty()) {
+                    throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.STRUCTURE_TEXTS, "org.dressdiscover.api.models.object.ObjectSummary: structureTexts: less than min length 1");
+                }
             }
         }
 
@@ -1623,11 +1606,10 @@ public final class ObjectSummary implements org.thryft.waf.api.models.Model {
             if (subjectTermTexts == null) {
                 throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.SUBJECT_TERM_TEXTS, "org.dressdiscover.api.models.object.ObjectSummary: subjectTermTexts is null");
             }
-            if (!subjectTermTexts.isPresent()) {
-                return;
-            }
-            if (subjectTermTexts.get().isEmpty()) {
-                throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.SUBJECT_TERM_TEXTS, "org.dressdiscover.api.models.object.ObjectSummary.subjectTermTexts: less than min length 1");
+            if (subjectTermTexts.isPresent()) {
+                if (subjectTermTexts.get().isEmpty()) {
+                    throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.SUBJECT_TERM_TEXTS, "org.dressdiscover.api.models.object.ObjectSummary: subjectTermTexts: less than min length 1");
+                }
             }
         }
 
@@ -1635,11 +1617,10 @@ public final class ObjectSummary implements org.thryft.waf.api.models.Model {
             if (techniqueTexts == null) {
                 throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.TECHNIQUE_TEXTS, "org.dressdiscover.api.models.object.ObjectSummary: techniqueTexts is null");
             }
-            if (!techniqueTexts.isPresent()) {
-                return;
-            }
-            if (techniqueTexts.get().isEmpty()) {
-                throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.TECHNIQUE_TEXTS, "org.dressdiscover.api.models.object.ObjectSummary.techniqueTexts: less than min length 1");
+            if (techniqueTexts.isPresent()) {
+                if (techniqueTexts.get().isEmpty()) {
+                    throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.TECHNIQUE_TEXTS, "org.dressdiscover.api.models.object.ObjectSummary: techniqueTexts: less than min length 1");
+                }
             }
         }
 
@@ -1647,20 +1628,16 @@ public final class ObjectSummary implements org.thryft.waf.api.models.Model {
             if (url == null) {
                 throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.URL, "org.dressdiscover.api.models.object.ObjectSummary: url is null");
             }
-            if (!url.isPresent()) {
-                return;
-            }
         }
 
         public static void validateWorkTypeTexts(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> workTypeTexts) throws org.thryft.protocol.InputProtocolException {
             if (workTypeTexts == null) {
                 throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.WORK_TYPE_TEXTS, "org.dressdiscover.api.models.object.ObjectSummary: workTypeTexts is null");
             }
-            if (!workTypeTexts.isPresent()) {
-                return;
-            }
-            if (workTypeTexts.get().isEmpty()) {
-                throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.WORK_TYPE_TEXTS, "org.dressdiscover.api.models.object.ObjectSummary.workTypeTexts: less than min length 1");
+            if (workTypeTexts.isPresent()) {
+                if (workTypeTexts.get().isEmpty()) {
+                    throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.WORK_TYPE_TEXTS, "org.dressdiscover.api.models.object.ObjectSummary: workTypeTexts: less than min length 1");
+                }
             }
         }
     }
@@ -1706,7 +1683,7 @@ public final class ObjectSummary implements org.thryft.waf.api.models.Model {
                 throw new NullPointerException("org.dressdiscover.api.models.object.ObjectSummary: title is null");
             }
             if (title.isEmpty()) {
-                throw new IllegalArgumentException("org.dressdiscover.api.models.object.ObjectSummary.title: less than min length 1");
+                throw new IllegalArgumentException("org.dressdiscover.api.models.object.ObjectSummary: title: less than min length 1");
             }
         }
 
@@ -1714,11 +1691,10 @@ public final class ObjectSummary implements org.thryft.waf.api.models.Model {
             if (agentNameTexts == null) {
                 throw new NullPointerException("org.dressdiscover.api.models.object.ObjectSummary: agentNameTexts is null");
             }
-            if (!agentNameTexts.isPresent()) {
-                return;
-            }
-            if (agentNameTexts.get().isEmpty()) {
-                throw new IllegalArgumentException("org.dressdiscover.api.models.object.ObjectSummary.agentNameTexts: less than min length 1");
+            if (agentNameTexts.isPresent()) {
+                if (agentNameTexts.get().isEmpty()) {
+                    throw new IllegalArgumentException("org.dressdiscover.api.models.object.ObjectSummary: agentNameTexts: less than min length 1");
+                }
             }
         }
 
@@ -1726,11 +1702,10 @@ public final class ObjectSummary implements org.thryft.waf.api.models.Model {
             if (categories == null) {
                 throw new NullPointerException("org.dressdiscover.api.models.object.ObjectSummary: categories is null");
             }
-            if (!categories.isPresent()) {
-                return;
-            }
-            if (categories.get().isEmpty()) {
-                throw new IllegalArgumentException("org.dressdiscover.api.models.object.ObjectSummary.categories: less than min length 1");
+            if (categories.isPresent()) {
+                if (categories.get().isEmpty()) {
+                    throw new IllegalArgumentException("org.dressdiscover.api.models.object.ObjectSummary: categories: less than min length 1");
+                }
             }
         }
 
@@ -1738,11 +1713,10 @@ public final class ObjectSummary implements org.thryft.waf.api.models.Model {
             if (colorTexts == null) {
                 throw new NullPointerException("org.dressdiscover.api.models.object.ObjectSummary: colorTexts is null");
             }
-            if (!colorTexts.isPresent()) {
-                return;
-            }
-            if (colorTexts.get().isEmpty()) {
-                throw new IllegalArgumentException("org.dressdiscover.api.models.object.ObjectSummary.colorTexts: less than min length 1");
+            if (colorTexts.isPresent()) {
+                if (colorTexts.get().isEmpty()) {
+                    throw new IllegalArgumentException("org.dressdiscover.api.models.object.ObjectSummary: colorTexts: less than min length 1");
+                }
             }
         }
 
@@ -1750,11 +1724,10 @@ public final class ObjectSummary implements org.thryft.waf.api.models.Model {
             if (culturalContextTexts == null) {
                 throw new NullPointerException("org.dressdiscover.api.models.object.ObjectSummary: culturalContextTexts is null");
             }
-            if (!culturalContextTexts.isPresent()) {
-                return;
-            }
-            if (culturalContextTexts.get().isEmpty()) {
-                throw new IllegalArgumentException("org.dressdiscover.api.models.object.ObjectSummary.culturalContextTexts: less than min length 1");
+            if (culturalContextTexts.isPresent()) {
+                if (culturalContextTexts.get().isEmpty()) {
+                    throw new IllegalArgumentException("org.dressdiscover.api.models.object.ObjectSummary: culturalContextTexts: less than min length 1");
+                }
             }
         }
 
@@ -1762,11 +1735,10 @@ public final class ObjectSummary implements org.thryft.waf.api.models.Model {
             if (date == null) {
                 throw new NullPointerException("org.dressdiscover.api.models.object.ObjectSummary: date is null");
             }
-            if (!date.isPresent()) {
-                return;
-            }
-            if (date.get().isEmpty()) {
-                throw new IllegalArgumentException("org.dressdiscover.api.models.object.ObjectSummary.date: less than min length 1");
+            if (date.isPresent()) {
+                if (date.get().isEmpty()) {
+                    throw new IllegalArgumentException("org.dressdiscover.api.models.object.ObjectSummary: date: less than min length 1");
+                }
             }
         }
 
@@ -1774,11 +1746,10 @@ public final class ObjectSummary implements org.thryft.waf.api.models.Model {
             if (description == null) {
                 throw new NullPointerException("org.dressdiscover.api.models.object.ObjectSummary: description is null");
             }
-            if (!description.isPresent()) {
-                return;
-            }
-            if (description.get().isEmpty()) {
-                throw new IllegalArgumentException("org.dressdiscover.api.models.object.ObjectSummary.description: less than min length 1");
+            if (description.isPresent()) {
+                if (description.get().isEmpty()) {
+                    throw new IllegalArgumentException("org.dressdiscover.api.models.object.ObjectSummary: description: less than min length 1");
+                }
             }
         }
 
@@ -1786,20 +1757,16 @@ public final class ObjectSummary implements org.thryft.waf.api.models.Model {
             if (gender == null) {
                 throw new NullPointerException("org.dressdiscover.api.models.object.ObjectSummary: gender is null");
             }
-            if (!gender.isPresent()) {
-                return;
-            }
         }
 
         public static void validateHidden(final com.google.common.base.Optional<Boolean> hidden) {
             if (hidden == null) {
                 throw new NullPointerException("org.dressdiscover.api.models.object.ObjectSummary: hidden is null");
             }
-            if (!hidden.isPresent()) {
-                return;
-            }
-            if (!hidden.get()) {
-                throw new IllegalArgumentException("org.dressdiscover.api.models.object.ObjectSummary.hidden: not true");
+            if (hidden.isPresent()) {
+                if (!hidden.get()) {
+                    throw new IllegalArgumentException("org.dressdiscover.api.models.object.ObjectSummary: hidden: not true");
+                }
             }
         }
 
@@ -1807,20 +1774,16 @@ public final class ObjectSummary implements org.thryft.waf.api.models.Model {
             if (image == null) {
                 throw new NullPointerException("org.dressdiscover.api.models.object.ObjectSummary: image is null");
             }
-            if (!image.isPresent()) {
-                return;
-            }
         }
 
         public static void validateLocationNameTexts(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> locationNameTexts) {
             if (locationNameTexts == null) {
                 throw new NullPointerException("org.dressdiscover.api.models.object.ObjectSummary: locationNameTexts is null");
             }
-            if (!locationNameTexts.isPresent()) {
-                return;
-            }
-            if (locationNameTexts.get().isEmpty()) {
-                throw new IllegalArgumentException("org.dressdiscover.api.models.object.ObjectSummary.locationNameTexts: less than min length 1");
+            if (locationNameTexts.isPresent()) {
+                if (locationNameTexts.get().isEmpty()) {
+                    throw new IllegalArgumentException("org.dressdiscover.api.models.object.ObjectSummary: locationNameTexts: less than min length 1");
+                }
             }
         }
 
@@ -1828,11 +1791,10 @@ public final class ObjectSummary implements org.thryft.waf.api.models.Model {
             if (materialTexts == null) {
                 throw new NullPointerException("org.dressdiscover.api.models.object.ObjectSummary: materialTexts is null");
             }
-            if (!materialTexts.isPresent()) {
-                return;
-            }
-            if (materialTexts.get().isEmpty()) {
-                throw new IllegalArgumentException("org.dressdiscover.api.models.object.ObjectSummary.materialTexts: less than min length 1");
+            if (materialTexts.isPresent()) {
+                if (materialTexts.get().isEmpty()) {
+                    throw new IllegalArgumentException("org.dressdiscover.api.models.object.ObjectSummary: materialTexts: less than min length 1");
+                }
             }
         }
 
@@ -1840,11 +1802,10 @@ public final class ObjectSummary implements org.thryft.waf.api.models.Model {
             if (relationTexts == null) {
                 throw new NullPointerException("org.dressdiscover.api.models.object.ObjectSummary: relationTexts is null");
             }
-            if (!relationTexts.isPresent()) {
-                return;
-            }
-            if (relationTexts.get().isEmpty()) {
-                throw new IllegalArgumentException("org.dressdiscover.api.models.object.ObjectSummary.relationTexts: less than min length 1");
+            if (relationTexts.isPresent()) {
+                if (relationTexts.get().isEmpty()) {
+                    throw new IllegalArgumentException("org.dressdiscover.api.models.object.ObjectSummary: relationTexts: less than min length 1");
+                }
             }
         }
 
@@ -1852,11 +1813,10 @@ public final class ObjectSummary implements org.thryft.waf.api.models.Model {
             if (structureTexts == null) {
                 throw new NullPointerException("org.dressdiscover.api.models.object.ObjectSummary: structureTexts is null");
             }
-            if (!structureTexts.isPresent()) {
-                return;
-            }
-            if (structureTexts.get().isEmpty()) {
-                throw new IllegalArgumentException("org.dressdiscover.api.models.object.ObjectSummary.structureTexts: less than min length 1");
+            if (structureTexts.isPresent()) {
+                if (structureTexts.get().isEmpty()) {
+                    throw new IllegalArgumentException("org.dressdiscover.api.models.object.ObjectSummary: structureTexts: less than min length 1");
+                }
             }
         }
 
@@ -1864,11 +1824,10 @@ public final class ObjectSummary implements org.thryft.waf.api.models.Model {
             if (subjectTermTexts == null) {
                 throw new NullPointerException("org.dressdiscover.api.models.object.ObjectSummary: subjectTermTexts is null");
             }
-            if (!subjectTermTexts.isPresent()) {
-                return;
-            }
-            if (subjectTermTexts.get().isEmpty()) {
-                throw new IllegalArgumentException("org.dressdiscover.api.models.object.ObjectSummary.subjectTermTexts: less than min length 1");
+            if (subjectTermTexts.isPresent()) {
+                if (subjectTermTexts.get().isEmpty()) {
+                    throw new IllegalArgumentException("org.dressdiscover.api.models.object.ObjectSummary: subjectTermTexts: less than min length 1");
+                }
             }
         }
 
@@ -1876,11 +1835,10 @@ public final class ObjectSummary implements org.thryft.waf.api.models.Model {
             if (techniqueTexts == null) {
                 throw new NullPointerException("org.dressdiscover.api.models.object.ObjectSummary: techniqueTexts is null");
             }
-            if (!techniqueTexts.isPresent()) {
-                return;
-            }
-            if (techniqueTexts.get().isEmpty()) {
-                throw new IllegalArgumentException("org.dressdiscover.api.models.object.ObjectSummary.techniqueTexts: less than min length 1");
+            if (techniqueTexts.isPresent()) {
+                if (techniqueTexts.get().isEmpty()) {
+                    throw new IllegalArgumentException("org.dressdiscover.api.models.object.ObjectSummary: techniqueTexts: less than min length 1");
+                }
             }
         }
 
@@ -1888,20 +1846,16 @@ public final class ObjectSummary implements org.thryft.waf.api.models.Model {
             if (url == null) {
                 throw new NullPointerException("org.dressdiscover.api.models.object.ObjectSummary: url is null");
             }
-            if (!url.isPresent()) {
-                return;
-            }
         }
 
         public static void validateWorkTypeTexts(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> workTypeTexts) {
             if (workTypeTexts == null) {
                 throw new NullPointerException("org.dressdiscover.api.models.object.ObjectSummary: workTypeTexts is null");
             }
-            if (!workTypeTexts.isPresent()) {
-                return;
-            }
-            if (workTypeTexts.get().isEmpty()) {
-                throw new IllegalArgumentException("org.dressdiscover.api.models.object.ObjectSummary.workTypeTexts: less than min length 1");
+            if (workTypeTexts.isPresent()) {
+                if (workTypeTexts.get().isEmpty()) {
+                    throw new IllegalArgumentException("org.dressdiscover.api.models.object.ObjectSummary: workTypeTexts: less than min length 1");
+                }
             }
         }
     }

@@ -383,17 +383,11 @@ public final class ImageVersion implements org.thryft.Struct {
             if (heightPx == null) {
                 throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.HEIGHT_PX, "org.dressdiscover.api.models.image.ImageVersion: heightPx is null");
             }
-            if (!heightPx.isPresent()) {
-                return;
-            }
         }
 
         public static void validateWidthPx(final com.google.common.base.Optional<Integer> widthPx) throws org.thryft.protocol.InputProtocolException {
             if (widthPx == null) {
                 throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.WIDTH_PX, "org.dressdiscover.api.models.image.ImageVersion: widthPx is null");
-            }
-            if (!widthPx.isPresent()) {
-                return;
             }
         }
     }
@@ -415,17 +409,11 @@ public final class ImageVersion implements org.thryft.Struct {
             if (heightPx == null) {
                 throw new NullPointerException("org.dressdiscover.api.models.image.ImageVersion: heightPx is null");
             }
-            if (!heightPx.isPresent()) {
-                return;
-            }
         }
 
         public static void validateWidthPx(final com.google.common.base.Optional<Integer> widthPx) {
             if (widthPx == null) {
                 throw new NullPointerException("org.dressdiscover.api.models.image.ImageVersion: widthPx is null");
-            }
-            if (!widthPx.isPresent()) {
-                return;
             }
         }
     }

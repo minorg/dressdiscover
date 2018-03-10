@@ -283,9 +283,6 @@ public final class NoSuchUserException extends org.thryft.waf.api.services.NoSuc
             if (id == null) {
                 throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.ID, "org.dressdiscover.api.services.user.NoSuchUserException: id is null");
             }
-            if (!id.isPresent()) {
-                return;
-            }
         }
     }
 
@@ -297,9 +294,6 @@ public final class NoSuchUserException extends org.thryft.waf.api.services.NoSuc
         public static void validateId(final com.google.common.base.Optional<org.dressdiscover.api.models.user.UserId> id) {
             if (id == null) {
                 throw new NullPointerException("org.dressdiscover.api.services.user.NoSuchUserException: id is null");
-            }
-            if (!id.isPresent()) {
-                return;
             }
         }
     }

@@ -310,16 +310,13 @@ public final class ClosurePlacement implements org.thryft.Struct {
                 throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.TEXT, "org.dressdiscover.api.vocabularies.costume_core.closure.ClosurePlacement: text is null");
             }
             if (text.isEmpty()) {
-                throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.TEXT, "org.dressdiscover.api.vocabularies.costume_core.closure.ClosurePlacement.text: less than min length 1");
+                throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.TEXT, "org.dressdiscover.api.vocabularies.costume_core.closure.ClosurePlacement: text: less than min length 1");
             }
         }
 
         public static void validateVocabRef(final com.google.common.base.Optional<org.dressdiscover.api.vocabularies.vra_core.VocabRef> vocabRef) throws org.thryft.protocol.InputProtocolException {
             if (vocabRef == null) {
                 throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.VOCAB_REF, "org.dressdiscover.api.vocabularies.costume_core.closure.ClosurePlacement: vocabRef is null");
-            }
-            if (!vocabRef.isPresent()) {
-                return;
             }
         }
     }
@@ -335,16 +332,13 @@ public final class ClosurePlacement implements org.thryft.Struct {
                 throw new NullPointerException("org.dressdiscover.api.vocabularies.costume_core.closure.ClosurePlacement: text is null");
             }
             if (text.isEmpty()) {
-                throw new IllegalArgumentException("org.dressdiscover.api.vocabularies.costume_core.closure.ClosurePlacement.text: less than min length 1");
+                throw new IllegalArgumentException("org.dressdiscover.api.vocabularies.costume_core.closure.ClosurePlacement: text: less than min length 1");
             }
         }
 
         public static void validateVocabRef(final com.google.common.base.Optional<org.dressdiscover.api.vocabularies.vra_core.VocabRef> vocabRef) {
             if (vocabRef == null) {
                 throw new NullPointerException("org.dressdiscover.api.vocabularies.costume_core.closure.ClosurePlacement: vocabRef is null");
-            }
-            if (!vocabRef.isPresent()) {
-                return;
             }
         }
     }

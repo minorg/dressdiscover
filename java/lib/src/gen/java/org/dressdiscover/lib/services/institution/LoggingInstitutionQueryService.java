@@ -25,7 +25,7 @@ public class LoggingInstitutionQueryService implements org.dressdiscover.api.ser
     @Override
     public org.dressdiscover.api.models.institution.Institution getInstitutionById(final org.dressdiscover.api.models.institution.InstitutionId id) throws org.dressdiscover.api.services.IoException, org.dressdiscover.api.services.institution.NoSuchInstitutionException {
         final Object[] __logMessageArgs = new Object[2];
-        __logMessageArgs[0] = Messages.GetInstitutionByIdRequest.create(id);
+        __logMessageArgs[0] = id;
 
         __logMessageArgs[__logMessageArgs.length - 1] = PRE_RETURN_VALUE;
         logger.debug(InstitutionQueryServiceLogMarkers.GET_INSTITUTION_BY_ID, LogMessages.GET_INSTITUTION_BY_ID, __logMessageArgs);
@@ -54,24 +54,24 @@ public class LoggingInstitutionQueryService implements org.dressdiscover.api.ser
 
     @Override
     public com.google.common.collect.ImmutableList<org.dressdiscover.api.models.institution.InstitutionEntry> getInstitutions() throws org.dressdiscover.api.services.IoException {
-        final Object[] __logMessageArgs = new Object[1];
+        Object __logMessageArgs = null;
 
-        __logMessageArgs[__logMessageArgs.length - 1] = PRE_RETURN_VALUE;
+        __logMessageArgs = PRE_RETURN_VALUE;
         logger.debug(InstitutionQueryServiceLogMarkers.GET_INSTITUTIONS, LogMessages.GET_INSTITUTIONS, __logMessageArgs);
 
         try {
             final com.google.common.collect.ImmutableList<org.dressdiscover.api.models.institution.InstitutionEntry> __returnValue = delegate.getInstitutions();
 
-            __logMessageArgs[__logMessageArgs.length - 1] = __returnValue;
+            __logMessageArgs = __returnValue;
             logger.info(InstitutionQueryServiceLogMarkers.GET_INSTITUTIONS, LogMessages.GET_INSTITUTIONS, __logMessageArgs);
 
             return __returnValue;
         } catch (final org.dressdiscover.api.services.IoException e) {
-            __logMessageArgs[__logMessageArgs.length - 1] = e.toString();
+            __logMessageArgs = e.toString();
             logger.error(InstitutionQueryServiceLogMarkers.GET_INSTITUTIONS, LogMessages.GET_INSTITUTIONS, __logMessageArgs);
             throw e;
         } catch (final RuntimeException e) {
-            __logMessageArgs[__logMessageArgs.length - 1] = e;
+            __logMessageArgs = e;
             logger.error(InstitutionQueryServiceLogMarkers.GET_INSTITUTIONS, LogMessages.GET_INSTITUTIONS, __logMessageArgs);
             throw e;
         }
@@ -80,7 +80,7 @@ public class LoggingInstitutionQueryService implements org.dressdiscover.api.ser
     @Override
     public com.google.common.collect.ImmutableList<org.dressdiscover.api.models.institution.Institution> getInstitutionsByIds(final com.google.common.collect.ImmutableList<org.dressdiscover.api.models.institution.InstitutionId> ids) throws org.dressdiscover.api.services.IoException, org.dressdiscover.api.services.institution.NoSuchInstitutionException {
         final Object[] __logMessageArgs = new Object[2];
-        __logMessageArgs[0] = Messages.GetInstitutionsByIdsRequest.create(ids);
+        __logMessageArgs[0] = ids;
 
         __logMessageArgs[__logMessageArgs.length - 1] = PRE_RETURN_VALUE;
         logger.debug(InstitutionQueryServiceLogMarkers.GET_INSTITUTIONS_BY_IDS, LogMessages.GET_INSTITUTIONS_BY_IDS, __logMessageArgs);
@@ -111,9 +111,9 @@ public class LoggingInstitutionQueryService implements org.dressdiscover.api.ser
     private final org.dressdiscover.api.services.institution.InstitutionQueryService delegate;
 
     private final static class LogMessages {
-        public final static String GET_INSTITUTION_BY_ID = "get_institution_by_id({}) -> {}";
+        public final static String GET_INSTITUTION_BY_ID = "get_institution_by_id(id={}) -> {}";
         public final static String GET_INSTITUTIONS = "get_institutions() -> {}";
-        public final static String GET_INSTITUTIONS_BY_IDS = "get_institutions_by_ids({}) -> {}";
+        public final static String GET_INSTITUTIONS_BY_IDS = "get_institutions_by_ids(ids={}) -> {}";
     }
 
     public final static String PRE_RETURN_VALUE = "...";

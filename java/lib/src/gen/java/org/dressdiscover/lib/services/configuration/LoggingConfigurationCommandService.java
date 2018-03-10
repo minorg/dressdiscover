@@ -22,8 +22,9 @@ public class LoggingConfigurationCommandService implements org.dressdiscover.api
 
     @Override
     public void putCollectionConfiguration(final org.dressdiscover.api.models.configuration.CollectionConfiguration collectionConfiguration, final org.dressdiscover.api.models.collection.CollectionId collectionId) throws org.dressdiscover.api.services.IoException {
-        final Object[] __logMessageArgs = new Object[2];
-        __logMessageArgs[0] = Messages.PutCollectionConfigurationRequest.create(collectionConfiguration, collectionId);
+        final Object[] __logMessageArgs = new Object[3];
+        __logMessageArgs[0] = collectionConfiguration;
+        __logMessageArgs[1] = collectionId;
 
         __logMessageArgs[__logMessageArgs.length - 1] = PRE_RETURN_VALUE;
         logger.debug(ConfigurationCommandServiceLogMarkers.PUT_COLLECTION_CONFIGURATION, LogMessages.PUT_COLLECTION_CONFIGURATION, __logMessageArgs);
@@ -46,8 +47,9 @@ public class LoggingConfigurationCommandService implements org.dressdiscover.api
 
     @Override
     public void putInstitutionConfiguration(final org.dressdiscover.api.models.configuration.InstitutionConfiguration institutionConfiguration, final org.dressdiscover.api.models.institution.InstitutionId institutionId) throws org.dressdiscover.api.services.IoException {
-        final Object[] __logMessageArgs = new Object[2];
-        __logMessageArgs[0] = Messages.PutInstitutionConfigurationRequest.create(institutionConfiguration, institutionId);
+        final Object[] __logMessageArgs = new Object[3];
+        __logMessageArgs[0] = institutionConfiguration;
+        __logMessageArgs[1] = institutionId;
 
         __logMessageArgs[__logMessageArgs.length - 1] = PRE_RETURN_VALUE;
         logger.debug(ConfigurationCommandServiceLogMarkers.PUT_INSTITUTION_CONFIGURATION, LogMessages.PUT_INSTITUTION_CONFIGURATION, __logMessageArgs);
@@ -72,8 +74,8 @@ public class LoggingConfigurationCommandService implements org.dressdiscover.api
     private final org.dressdiscover.api.services.configuration.ConfigurationCommandService delegate;
 
     private final static class LogMessages {
-        public final static String PUT_COLLECTION_CONFIGURATION = "put_collection_configuration({}) -> {}";
-        public final static String PUT_INSTITUTION_CONFIGURATION = "put_institution_configuration({}) -> {}";
+        public final static String PUT_COLLECTION_CONFIGURATION = "put_collection_configuration(collectionConfiguration={}, collectionId={}) -> {}";
+        public final static String PUT_INSTITUTION_CONFIGURATION = "put_institution_configuration(institutionConfiguration={}, institutionId={}) -> {}";
     }
 
     public final static String PRE_RETURN_VALUE = "...";

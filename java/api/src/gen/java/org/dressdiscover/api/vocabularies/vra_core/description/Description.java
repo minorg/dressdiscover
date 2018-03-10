@@ -353,7 +353,7 @@ public final class Description implements org.dressdiscover.api.vocabularies.vra
                 throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.TEXT, "org.dressdiscover.api.vocabularies.vra_core.description.Description: text is null");
             }
             if (text.isEmpty()) {
-                throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.TEXT, "org.dressdiscover.api.vocabularies.vra_core.description.Description.text: less than min length 1");
+                throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.TEXT, "org.dressdiscover.api.vocabularies.vra_core.description.Description: text: less than min length 1");
             }
         }
 
@@ -361,20 +361,16 @@ public final class Description implements org.dressdiscover.api.vocabularies.vra
             if (source == null) {
                 throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.SOURCE, "org.dressdiscover.api.vocabularies.vra_core.description.Description: source is null");
             }
-            if (!source.isPresent()) {
-                return;
-            }
-            if (source.get().isEmpty()) {
-                throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.SOURCE, "org.dressdiscover.api.vocabularies.vra_core.description.Description.source: less than min length 1");
+            if (source.isPresent()) {
+                if (source.get().isEmpty()) {
+                    throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.SOURCE, "org.dressdiscover.api.vocabularies.vra_core.description.Description: source: less than min length 1");
+                }
             }
         }
 
         public static void validateType(final com.google.common.base.Optional<org.dressdiscover.api.vocabularies.vra_core.description.DescriptionType> type) throws org.thryft.protocol.InputProtocolException {
             if (type == null) {
                 throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.TYPE, "org.dressdiscover.api.vocabularies.vra_core.description.Description: type is null");
-            }
-            if (!type.isPresent()) {
-                return;
             }
         }
     }
@@ -391,7 +387,7 @@ public final class Description implements org.dressdiscover.api.vocabularies.vra
                 throw new NullPointerException("org.dressdiscover.api.vocabularies.vra_core.description.Description: text is null");
             }
             if (text.isEmpty()) {
-                throw new IllegalArgumentException("org.dressdiscover.api.vocabularies.vra_core.description.Description.text: less than min length 1");
+                throw new IllegalArgumentException("org.dressdiscover.api.vocabularies.vra_core.description.Description: text: less than min length 1");
             }
         }
 
@@ -399,20 +395,16 @@ public final class Description implements org.dressdiscover.api.vocabularies.vra
             if (source == null) {
                 throw new NullPointerException("org.dressdiscover.api.vocabularies.vra_core.description.Description: source is null");
             }
-            if (!source.isPresent()) {
-                return;
-            }
-            if (source.get().isEmpty()) {
-                throw new IllegalArgumentException("org.dressdiscover.api.vocabularies.vra_core.description.Description.source: less than min length 1");
+            if (source.isPresent()) {
+                if (source.get().isEmpty()) {
+                    throw new IllegalArgumentException("org.dressdiscover.api.vocabularies.vra_core.description.Description: source: less than min length 1");
+                }
             }
         }
 
         public static void validateType(final com.google.common.base.Optional<org.dressdiscover.api.vocabularies.vra_core.description.DescriptionType> type) {
             if (type == null) {
                 throw new NullPointerException("org.dressdiscover.api.vocabularies.vra_core.description.Description: type is null");
-            }
-            if (!type.isPresent()) {
-                return;
             }
         }
     }

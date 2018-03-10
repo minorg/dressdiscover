@@ -11,40 +11,74 @@ public class ValidatingUserCommandService implements org.dressdiscover.api.servi
 
     @Override
     public final void deleteUserBookmarkById(final org.dressdiscover.api.models.user.UserBookmarkId id) throws org.dressdiscover.api.services.IoException, org.dressdiscover.api.services.user.NoSuchUserBookmarkException {
-        org.dressdiscover.api.services.user.UserCommandService.Messages.DeleteUserBookmarkByIdRequest.UncheckedValidator.validate(id);
+        {
+            if (id == null) {
+                throw new NullPointerException("org.dressdiscover.api.services.user.ValidatingUserCommandService.deleteUserBookmarkById: id is null");
+            }
+        }
         delegate.deleteUserBookmarkById(id);
     }
 
     @Override
     public final void deleteUserById(final org.dressdiscover.api.models.user.UserId id) throws org.dressdiscover.api.services.IoException, org.dressdiscover.api.services.user.NoSuchUserException {
-        org.dressdiscover.api.services.user.UserCommandService.Messages.DeleteUserByIdRequest.UncheckedValidator.validate(id);
+        {
+            if (id == null) {
+                throw new NullPointerException("org.dressdiscover.api.services.user.ValidatingUserCommandService.deleteUserById: id is null");
+            }
+        }
         delegate.deleteUserById(id);
     }
 
     @Override
     public final void deleteUsers() throws org.dressdiscover.api.services.IoException {
+
         delegate.deleteUsers();
     }
 
     @Override
     public final org.dressdiscover.api.models.user.UserId postUser(final org.dressdiscover.api.models.user.User user) throws org.dressdiscover.api.services.user.DuplicateUserException, org.dressdiscover.api.services.IoException {
-        org.dressdiscover.api.services.user.UserCommandService.Messages.PostUserRequest.UncheckedValidator.validate(user);
+        {
+            if (user == null) {
+                throw new NullPointerException("org.dressdiscover.api.services.user.ValidatingUserCommandService.postUser: user is null");
+            }
+        }
         final org.dressdiscover.api.models.user.UserId __returnValue = delegate.postUser(user);
-        org.dressdiscover.api.services.user.UserCommandService.Messages.PostUserResponse.UncheckedValidator.validateReturnValue(__returnValue);
+        {
+            if (__returnValue == null) {
+                throw new NullPointerException("org.dressdiscover.api.services.user.ValidatingUserCommandService.postUser: __returnValue is null");
+            }
+        }
         return __returnValue;
     }
 
     @Override
     public final org.dressdiscover.api.models.user.UserBookmarkId postUserBookmark(final org.dressdiscover.api.models.user.UserBookmark userBookmark) throws org.dressdiscover.api.services.user.DuplicateUserBookmarkException, org.dressdiscover.api.services.IoException {
-        org.dressdiscover.api.services.user.UserCommandService.Messages.PostUserBookmarkRequest.UncheckedValidator.validate(userBookmark);
+        {
+            if (userBookmark == null) {
+                throw new NullPointerException("org.dressdiscover.api.services.user.ValidatingUserCommandService.postUserBookmark: userBookmark is null");
+            }
+        }
         final org.dressdiscover.api.models.user.UserBookmarkId __returnValue = delegate.postUserBookmark(userBookmark);
-        org.dressdiscover.api.services.user.UserCommandService.Messages.PostUserBookmarkResponse.UncheckedValidator.validateReturnValue(__returnValue);
+        {
+            if (__returnValue == null) {
+                throw new NullPointerException("org.dressdiscover.api.services.user.ValidatingUserCommandService.postUserBookmark: __returnValue is null");
+            }
+        }
         return __returnValue;
     }
 
     @Override
     public final void putUser(final org.dressdiscover.api.models.user.UserId id, final org.dressdiscover.api.models.user.User user) throws org.dressdiscover.api.services.IoException, org.dressdiscover.api.services.user.NoSuchUserException {
-        org.dressdiscover.api.services.user.UserCommandService.Messages.PutUserRequest.UncheckedValidator.validate(id, user);
+        {
+            if (id == null) {
+                throw new NullPointerException("org.dressdiscover.api.services.user.ValidatingUserCommandService.putUser: id is null");
+            }
+        }
+        {
+            if (user == null) {
+                throw new NullPointerException("org.dressdiscover.api.services.user.ValidatingUserCommandService.putUser: user is null");
+            }
+        }
         delegate.putUser(id, user);
     }
 

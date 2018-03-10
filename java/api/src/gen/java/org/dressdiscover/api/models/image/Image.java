@@ -437,17 +437,11 @@ public final class Image implements org.thryft.Struct {
             if (fullSize == null) {
                 throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.FULL_SIZE, "org.dressdiscover.api.models.image.Image: fullSize is null");
             }
-            if (!fullSize.isPresent()) {
-                return;
-            }
         }
 
         public static void validateOriginal(final com.google.common.base.Optional<org.dressdiscover.api.models.image.ImageVersion> original) throws org.thryft.protocol.InputProtocolException {
             if (original == null) {
                 throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.ORIGINAL, "org.dressdiscover.api.models.image.Image: original is null");
-            }
-            if (!original.isPresent()) {
-                return;
             }
         }
 
@@ -455,26 +449,17 @@ public final class Image implements org.thryft.Struct {
             if (rights == null) {
                 throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.RIGHTS, "org.dressdiscover.api.models.image.Image: rights is null");
             }
-            if (!rights.isPresent()) {
-                return;
-            }
         }
 
         public static void validateSquareThumbnail(final com.google.common.base.Optional<org.dressdiscover.api.models.image.ImageVersion> squareThumbnail) throws org.thryft.protocol.InputProtocolException {
             if (squareThumbnail == null) {
                 throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.SQUARE_THUMBNAIL, "org.dressdiscover.api.models.image.Image: squareThumbnail is null");
             }
-            if (!squareThumbnail.isPresent()) {
-                return;
-            }
         }
 
         public static void validateThumbnail(final com.google.common.base.Optional<org.dressdiscover.api.models.image.ImageVersion> thumbnail) throws org.thryft.protocol.InputProtocolException {
             if (thumbnail == null) {
                 throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.THUMBNAIL, "org.dressdiscover.api.models.image.Image: thumbnail is null");
-            }
-            if (!thumbnail.isPresent()) {
-                return;
             }
         }
     }
@@ -492,17 +477,11 @@ public final class Image implements org.thryft.Struct {
             if (fullSize == null) {
                 throw new NullPointerException("org.dressdiscover.api.models.image.Image: fullSize is null");
             }
-            if (!fullSize.isPresent()) {
-                return;
-            }
         }
 
         public static void validateOriginal(final com.google.common.base.Optional<org.dressdiscover.api.models.image.ImageVersion> original) {
             if (original == null) {
                 throw new NullPointerException("org.dressdiscover.api.models.image.Image: original is null");
-            }
-            if (!original.isPresent()) {
-                return;
             }
         }
 
@@ -510,26 +489,17 @@ public final class Image implements org.thryft.Struct {
             if (rights == null) {
                 throw new NullPointerException("org.dressdiscover.api.models.image.Image: rights is null");
             }
-            if (!rights.isPresent()) {
-                return;
-            }
         }
 
         public static void validateSquareThumbnail(final com.google.common.base.Optional<org.dressdiscover.api.models.image.ImageVersion> squareThumbnail) {
             if (squareThumbnail == null) {
                 throw new NullPointerException("org.dressdiscover.api.models.image.Image: squareThumbnail is null");
             }
-            if (!squareThumbnail.isPresent()) {
-                return;
-            }
         }
 
         public static void validateThumbnail(final com.google.common.base.Optional<org.dressdiscover.api.models.image.ImageVersion> thumbnail) {
             if (thumbnail == null) {
                 throw new NullPointerException("org.dressdiscover.api.models.image.Image: thumbnail is null");
-            }
-            if (!thumbnail.isPresent()) {
-                return;
             }
         }
     }

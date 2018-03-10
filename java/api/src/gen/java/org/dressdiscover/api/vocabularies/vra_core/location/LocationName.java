@@ -385,7 +385,7 @@ public final class LocationName implements org.thryft.Struct {
                 throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.TEXT, "org.dressdiscover.api.vocabularies.vra_core.location.LocationName: text is null");
             }
             if (text.isEmpty()) {
-                throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.TEXT, "org.dressdiscover.api.vocabularies.vra_core.location.LocationName.text: less than min length 1");
+                throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.TEXT, "org.dressdiscover.api.vocabularies.vra_core.location.LocationName: text: less than min length 1");
             }
         }
 
@@ -399,20 +399,16 @@ public final class LocationName implements org.thryft.Struct {
             if (extent == null) {
                 throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.EXTENT, "org.dressdiscover.api.vocabularies.vra_core.location.LocationName: extent is null");
             }
-            if (!extent.isPresent()) {
-                return;
-            }
-            if (extent.get().isEmpty()) {
-                throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.EXTENT, "org.dressdiscover.api.vocabularies.vra_core.location.LocationName.extent: less than min length 1");
+            if (extent.isPresent()) {
+                if (extent.get().isEmpty()) {
+                    throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.EXTENT, "org.dressdiscover.api.vocabularies.vra_core.location.LocationName: extent: less than min length 1");
+                }
             }
         }
 
         public static void validateVocabRef(final com.google.common.base.Optional<org.dressdiscover.api.vocabularies.vra_core.VocabRef> vocabRef) throws org.thryft.protocol.InputProtocolException {
             if (vocabRef == null) {
                 throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.VOCAB_REF, "org.dressdiscover.api.vocabularies.vra_core.location.LocationName: vocabRef is null");
-            }
-            if (!vocabRef.isPresent()) {
-                return;
             }
         }
     }
@@ -430,7 +426,7 @@ public final class LocationName implements org.thryft.Struct {
                 throw new NullPointerException("org.dressdiscover.api.vocabularies.vra_core.location.LocationName: text is null");
             }
             if (text.isEmpty()) {
-                throw new IllegalArgumentException("org.dressdiscover.api.vocabularies.vra_core.location.LocationName.text: less than min length 1");
+                throw new IllegalArgumentException("org.dressdiscover.api.vocabularies.vra_core.location.LocationName: text: less than min length 1");
             }
         }
 
@@ -444,20 +440,16 @@ public final class LocationName implements org.thryft.Struct {
             if (extent == null) {
                 throw new NullPointerException("org.dressdiscover.api.vocabularies.vra_core.location.LocationName: extent is null");
             }
-            if (!extent.isPresent()) {
-                return;
-            }
-            if (extent.get().isEmpty()) {
-                throw new IllegalArgumentException("org.dressdiscover.api.vocabularies.vra_core.location.LocationName.extent: less than min length 1");
+            if (extent.isPresent()) {
+                if (extent.get().isEmpty()) {
+                    throw new IllegalArgumentException("org.dressdiscover.api.vocabularies.vra_core.location.LocationName: extent: less than min length 1");
+                }
             }
         }
 
         public static void validateVocabRef(final com.google.common.base.Optional<org.dressdiscover.api.vocabularies.vra_core.VocabRef> vocabRef) {
             if (vocabRef == null) {
                 throw new NullPointerException("org.dressdiscover.api.vocabularies.vra_core.location.LocationName: vocabRef is null");
-            }
-            if (!vocabRef.isPresent()) {
-                return;
             }
         }
     }

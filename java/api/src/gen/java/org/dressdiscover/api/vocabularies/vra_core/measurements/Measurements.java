@@ -385,7 +385,7 @@ public final class Measurements implements org.dressdiscover.api.vocabularies.vr
                 throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.TEXT, "org.dressdiscover.api.vocabularies.vra_core.measurements.Measurements: text is null");
             }
             if (text.isEmpty()) {
-                throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.TEXT, "org.dressdiscover.api.vocabularies.vra_core.measurements.Measurements.text: less than min length 1");
+                throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.TEXT, "org.dressdiscover.api.vocabularies.vra_core.measurements.Measurements: text: less than min length 1");
             }
         }
 
@@ -399,20 +399,16 @@ public final class Measurements implements org.dressdiscover.api.vocabularies.vr
             if (extent == null) {
                 throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.EXTENT, "org.dressdiscover.api.vocabularies.vra_core.measurements.Measurements: extent is null");
             }
-            if (!extent.isPresent()) {
-                return;
-            }
-            if (extent.get().isEmpty()) {
-                throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.EXTENT, "org.dressdiscover.api.vocabularies.vra_core.measurements.Measurements.extent: less than min length 1");
+            if (extent.isPresent()) {
+                if (extent.get().isEmpty()) {
+                    throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.EXTENT, "org.dressdiscover.api.vocabularies.vra_core.measurements.Measurements: extent: less than min length 1");
+                }
             }
         }
 
         public static void validateUnit(final com.google.common.base.Optional<org.dressdiscover.api.vocabularies.vra_core.measurements.MeasurementsUnit> unit) throws org.thryft.protocol.InputProtocolException {
             if (unit == null) {
                 throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.UNIT, "org.dressdiscover.api.vocabularies.vra_core.measurements.Measurements: unit is null");
-            }
-            if (!unit.isPresent()) {
-                return;
             }
         }
     }
@@ -430,7 +426,7 @@ public final class Measurements implements org.dressdiscover.api.vocabularies.vr
                 throw new NullPointerException("org.dressdiscover.api.vocabularies.vra_core.measurements.Measurements: text is null");
             }
             if (text.isEmpty()) {
-                throw new IllegalArgumentException("org.dressdiscover.api.vocabularies.vra_core.measurements.Measurements.text: less than min length 1");
+                throw new IllegalArgumentException("org.dressdiscover.api.vocabularies.vra_core.measurements.Measurements: text: less than min length 1");
             }
         }
 
@@ -444,20 +440,16 @@ public final class Measurements implements org.dressdiscover.api.vocabularies.vr
             if (extent == null) {
                 throw new NullPointerException("org.dressdiscover.api.vocabularies.vra_core.measurements.Measurements: extent is null");
             }
-            if (!extent.isPresent()) {
-                return;
-            }
-            if (extent.get().isEmpty()) {
-                throw new IllegalArgumentException("org.dressdiscover.api.vocabularies.vra_core.measurements.Measurements.extent: less than min length 1");
+            if (extent.isPresent()) {
+                if (extent.get().isEmpty()) {
+                    throw new IllegalArgumentException("org.dressdiscover.api.vocabularies.vra_core.measurements.Measurements: extent: less than min length 1");
+                }
             }
         }
 
         public static void validateUnit(final com.google.common.base.Optional<org.dressdiscover.api.vocabularies.vra_core.measurements.MeasurementsUnit> unit) {
             if (unit == null) {
                 throw new NullPointerException("org.dressdiscover.api.vocabularies.vra_core.measurements.Measurements: unit is null");
-            }
-            if (!unit.isPresent()) {
-                return;
             }
         }
     }

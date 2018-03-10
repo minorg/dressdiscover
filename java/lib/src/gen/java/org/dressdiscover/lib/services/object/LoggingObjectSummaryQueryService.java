@@ -20,8 +20,9 @@ public class LoggingObjectSummaryQueryService implements org.dressdiscover.api.s
 
     @Override
     public org.dressdiscover.api.services.object.GetObjectSummariesResult getObjectSummaries(final com.google.common.base.Optional<org.dressdiscover.api.services.object.GetObjectSummariesOptions> options, final com.google.common.base.Optional<org.dressdiscover.api.models.object.ObjectQuery> query) throws org.dressdiscover.api.services.IoException {
-        final Object[] __logMessageArgs = new Object[2];
-        __logMessageArgs[0] = Messages.GetObjectSummariesRequest.create(options, query);
+        final Object[] __logMessageArgs = new Object[3];
+        __logMessageArgs[0] = options.orNull();
+        __logMessageArgs[1] = query.orNull();
 
         __logMessageArgs[__logMessageArgs.length - 1] = PRE_RETURN_VALUE;
         logger.debug(ObjectSummaryQueryServiceLogMarkers.GET_OBJECT_SUMMARIES, LogMessages.GET_OBJECT_SUMMARIES, __logMessageArgs);
@@ -48,7 +49,7 @@ public class LoggingObjectSummaryQueryService implements org.dressdiscover.api.s
     private final org.dressdiscover.api.services.object.ObjectSummaryQueryService delegate;
 
     private final static class LogMessages {
-        public final static String GET_OBJECT_SUMMARIES = "get_object_summaries({}) -> {}";
+        public final static String GET_OBJECT_SUMMARIES = "get_object_summaries(options={}, query={}) -> {}";
     }
 
     public final static String PRE_RETURN_VALUE = "...";

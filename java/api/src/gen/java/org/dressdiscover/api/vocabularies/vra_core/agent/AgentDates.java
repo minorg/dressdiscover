@@ -370,17 +370,11 @@ public final class AgentDates implements org.thryft.Struct {
             if (earliestDate == null) {
                 throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.EARLIEST_DATE, "org.dressdiscover.api.vocabularies.vra_core.agent.AgentDates: earliestDate is null");
             }
-            if (!earliestDate.isPresent()) {
-                return;
-            }
         }
 
         public static void validateLatestDate(final com.google.common.base.Optional<java.util.Date> latestDate) throws org.thryft.protocol.InputProtocolException {
             if (latestDate == null) {
                 throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.LATEST_DATE, "org.dressdiscover.api.vocabularies.vra_core.agent.AgentDates: latestDate is null");
-            }
-            if (!latestDate.isPresent()) {
-                return;
             }
         }
     }
@@ -402,17 +396,11 @@ public final class AgentDates implements org.thryft.Struct {
             if (earliestDate == null) {
                 throw new NullPointerException("org.dressdiscover.api.vocabularies.vra_core.agent.AgentDates: earliestDate is null");
             }
-            if (!earliestDate.isPresent()) {
-                return;
-            }
         }
 
         public static void validateLatestDate(final com.google.common.base.Optional<java.util.Date> latestDate) {
             if (latestDate == null) {
                 throw new NullPointerException("org.dressdiscover.api.vocabularies.vra_core.agent.AgentDates: latestDate is null");
-            }
-            if (!latestDate.isPresent()) {
-                return;
             }
         }
     }

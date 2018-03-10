@@ -1408,11 +1408,10 @@ public final class VraCoreObject implements org.thryft.Struct {
             if (agentSets == null) {
                 throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.AGENT_SETS, "org.dressdiscover.api.vocabularies.vra_core.VraCoreObject: agentSets is null");
             }
-            if (!agentSets.isPresent()) {
-                return;
-            }
-            if (agentSets.get().isEmpty()) {
-                throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.AGENT_SETS, "org.dressdiscover.api.vocabularies.vra_core.VraCoreObject.agentSets: less than min length 1");
+            if (agentSets.isPresent()) {
+                if (agentSets.get().isEmpty()) {
+                    throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.AGENT_SETS, "org.dressdiscover.api.vocabularies.vra_core.VraCoreObject: agentSets: less than min length 1");
+                }
             }
         }
 
@@ -1420,11 +1419,10 @@ public final class VraCoreObject implements org.thryft.Struct {
             if (culturalContextSets == null) {
                 throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.CULTURAL_CONTEXT_SETS, "org.dressdiscover.api.vocabularies.vra_core.VraCoreObject: culturalContextSets is null");
             }
-            if (!culturalContextSets.isPresent()) {
-                return;
-            }
-            if (culturalContextSets.get().isEmpty()) {
-                throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.CULTURAL_CONTEXT_SETS, "org.dressdiscover.api.vocabularies.vra_core.VraCoreObject.culturalContextSets: less than min length 1");
+            if (culturalContextSets.isPresent()) {
+                if (culturalContextSets.get().isEmpty()) {
+                    throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.CULTURAL_CONTEXT_SETS, "org.dressdiscover.api.vocabularies.vra_core.VraCoreObject: culturalContextSets: less than min length 1");
+                }
             }
         }
 
@@ -1432,11 +1430,10 @@ public final class VraCoreObject implements org.thryft.Struct {
             if (dateSets == null) {
                 throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.DATE_SETS, "org.dressdiscover.api.vocabularies.vra_core.VraCoreObject: dateSets is null");
             }
-            if (!dateSets.isPresent()) {
-                return;
-            }
-            if (dateSets.get().isEmpty()) {
-                throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.DATE_SETS, "org.dressdiscover.api.vocabularies.vra_core.VraCoreObject.dateSets: less than min length 1");
+            if (dateSets.isPresent()) {
+                if (dateSets.get().isEmpty()) {
+                    throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.DATE_SETS, "org.dressdiscover.api.vocabularies.vra_core.VraCoreObject: dateSets: less than min length 1");
+                }
             }
         }
 
@@ -1444,11 +1441,10 @@ public final class VraCoreObject implements org.thryft.Struct {
             if (descriptionSets == null) {
                 throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.DESCRIPTION_SETS, "org.dressdiscover.api.vocabularies.vra_core.VraCoreObject: descriptionSets is null");
             }
-            if (!descriptionSets.isPresent()) {
-                return;
-            }
-            if (descriptionSets.get().isEmpty()) {
-                throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.DESCRIPTION_SETS, "org.dressdiscover.api.vocabularies.vra_core.VraCoreObject.descriptionSets: less than min length 1");
+            if (descriptionSets.isPresent()) {
+                if (descriptionSets.get().isEmpty()) {
+                    throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.DESCRIPTION_SETS, "org.dressdiscover.api.vocabularies.vra_core.VraCoreObject: descriptionSets: less than min length 1");
+                }
             }
         }
 
@@ -1456,11 +1452,10 @@ public final class VraCoreObject implements org.thryft.Struct {
             if (inscriptionSets == null) {
                 throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.INSCRIPTION_SETS, "org.dressdiscover.api.vocabularies.vra_core.VraCoreObject: inscriptionSets is null");
             }
-            if (!inscriptionSets.isPresent()) {
-                return;
-            }
-            if (inscriptionSets.get().isEmpty()) {
-                throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.INSCRIPTION_SETS, "org.dressdiscover.api.vocabularies.vra_core.VraCoreObject.inscriptionSets: less than min length 1");
+            if (inscriptionSets.isPresent()) {
+                if (inscriptionSets.get().isEmpty()) {
+                    throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.INSCRIPTION_SETS, "org.dressdiscover.api.vocabularies.vra_core.VraCoreObject: inscriptionSets: less than min length 1");
+                }
             }
         }
 
@@ -1468,11 +1463,10 @@ public final class VraCoreObject implements org.thryft.Struct {
             if (locationSets == null) {
                 throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.LOCATION_SETS, "org.dressdiscover.api.vocabularies.vra_core.VraCoreObject: locationSets is null");
             }
-            if (!locationSets.isPresent()) {
-                return;
-            }
-            if (locationSets.get().isEmpty()) {
-                throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.LOCATION_SETS, "org.dressdiscover.api.vocabularies.vra_core.VraCoreObject.locationSets: less than min length 1");
+            if (locationSets.isPresent()) {
+                if (locationSets.get().isEmpty()) {
+                    throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.LOCATION_SETS, "org.dressdiscover.api.vocabularies.vra_core.VraCoreObject: locationSets: less than min length 1");
+                }
             }
         }
 
@@ -1480,11 +1474,10 @@ public final class VraCoreObject implements org.thryft.Struct {
             if (materialSets == null) {
                 throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.MATERIAL_SETS, "org.dressdiscover.api.vocabularies.vra_core.VraCoreObject: materialSets is null");
             }
-            if (!materialSets.isPresent()) {
-                return;
-            }
-            if (materialSets.get().isEmpty()) {
-                throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.MATERIAL_SETS, "org.dressdiscover.api.vocabularies.vra_core.VraCoreObject.materialSets: less than min length 1");
+            if (materialSets.isPresent()) {
+                if (materialSets.get().isEmpty()) {
+                    throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.MATERIAL_SETS, "org.dressdiscover.api.vocabularies.vra_core.VraCoreObject: materialSets: less than min length 1");
+                }
             }
         }
 
@@ -1492,11 +1485,10 @@ public final class VraCoreObject implements org.thryft.Struct {
             if (measurementsSets == null) {
                 throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.MEASUREMENTS_SETS, "org.dressdiscover.api.vocabularies.vra_core.VraCoreObject: measurementsSets is null");
             }
-            if (!measurementsSets.isPresent()) {
-                return;
-            }
-            if (measurementsSets.get().isEmpty()) {
-                throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.MEASUREMENTS_SETS, "org.dressdiscover.api.vocabularies.vra_core.VraCoreObject.measurementsSets: less than min length 1");
+            if (measurementsSets.isPresent()) {
+                if (measurementsSets.get().isEmpty()) {
+                    throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.MEASUREMENTS_SETS, "org.dressdiscover.api.vocabularies.vra_core.VraCoreObject: measurementsSets: less than min length 1");
+                }
             }
         }
 
@@ -1504,11 +1496,10 @@ public final class VraCoreObject implements org.thryft.Struct {
             if (relationSets == null) {
                 throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.RELATION_SETS, "org.dressdiscover.api.vocabularies.vra_core.VraCoreObject: relationSets is null");
             }
-            if (!relationSets.isPresent()) {
-                return;
-            }
-            if (relationSets.get().isEmpty()) {
-                throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.RELATION_SETS, "org.dressdiscover.api.vocabularies.vra_core.VraCoreObject.relationSets: less than min length 1");
+            if (relationSets.isPresent()) {
+                if (relationSets.get().isEmpty()) {
+                    throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.RELATION_SETS, "org.dressdiscover.api.vocabularies.vra_core.VraCoreObject: relationSets: less than min length 1");
+                }
             }
         }
 
@@ -1516,11 +1507,10 @@ public final class VraCoreObject implements org.thryft.Struct {
             if (rightsSets == null) {
                 throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.RIGHTS_SETS, "org.dressdiscover.api.vocabularies.vra_core.VraCoreObject: rightsSets is null");
             }
-            if (!rightsSets.isPresent()) {
-                return;
-            }
-            if (rightsSets.get().isEmpty()) {
-                throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.RIGHTS_SETS, "org.dressdiscover.api.vocabularies.vra_core.VraCoreObject.rightsSets: less than min length 1");
+            if (rightsSets.isPresent()) {
+                if (rightsSets.get().isEmpty()) {
+                    throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.RIGHTS_SETS, "org.dressdiscover.api.vocabularies.vra_core.VraCoreObject: rightsSets: less than min length 1");
+                }
             }
         }
 
@@ -1528,11 +1518,10 @@ public final class VraCoreObject implements org.thryft.Struct {
             if (subjectSets == null) {
                 throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.SUBJECT_SETS, "org.dressdiscover.api.vocabularies.vra_core.VraCoreObject: subjectSets is null");
             }
-            if (!subjectSets.isPresent()) {
-                return;
-            }
-            if (subjectSets.get().isEmpty()) {
-                throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.SUBJECT_SETS, "org.dressdiscover.api.vocabularies.vra_core.VraCoreObject.subjectSets: less than min length 1");
+            if (subjectSets.isPresent()) {
+                if (subjectSets.get().isEmpty()) {
+                    throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.SUBJECT_SETS, "org.dressdiscover.api.vocabularies.vra_core.VraCoreObject: subjectSets: less than min length 1");
+                }
             }
         }
 
@@ -1540,11 +1529,10 @@ public final class VraCoreObject implements org.thryft.Struct {
             if (techniqueSets == null) {
                 throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.TECHNIQUE_SETS, "org.dressdiscover.api.vocabularies.vra_core.VraCoreObject: techniqueSets is null");
             }
-            if (!techniqueSets.isPresent()) {
-                return;
-            }
-            if (techniqueSets.get().isEmpty()) {
-                throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.TECHNIQUE_SETS, "org.dressdiscover.api.vocabularies.vra_core.VraCoreObject.techniqueSets: less than min length 1");
+            if (techniqueSets.isPresent()) {
+                if (techniqueSets.get().isEmpty()) {
+                    throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.TECHNIQUE_SETS, "org.dressdiscover.api.vocabularies.vra_core.VraCoreObject: techniqueSets: less than min length 1");
+                }
             }
         }
 
@@ -1552,11 +1540,10 @@ public final class VraCoreObject implements org.thryft.Struct {
             if (textrefSets == null) {
                 throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.TEXTREF_SETS, "org.dressdiscover.api.vocabularies.vra_core.VraCoreObject: textrefSets is null");
             }
-            if (!textrefSets.isPresent()) {
-                return;
-            }
-            if (textrefSets.get().isEmpty()) {
-                throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.TEXTREF_SETS, "org.dressdiscover.api.vocabularies.vra_core.VraCoreObject.textrefSets: less than min length 1");
+            if (textrefSets.isPresent()) {
+                if (textrefSets.get().isEmpty()) {
+                    throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.TEXTREF_SETS, "org.dressdiscover.api.vocabularies.vra_core.VraCoreObject: textrefSets: less than min length 1");
+                }
             }
         }
 
@@ -1564,11 +1551,10 @@ public final class VraCoreObject implements org.thryft.Struct {
             if (titleSets == null) {
                 throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.TITLE_SETS, "org.dressdiscover.api.vocabularies.vra_core.VraCoreObject: titleSets is null");
             }
-            if (!titleSets.isPresent()) {
-                return;
-            }
-            if (titleSets.get().isEmpty()) {
-                throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.TITLE_SETS, "org.dressdiscover.api.vocabularies.vra_core.VraCoreObject.titleSets: less than min length 1");
+            if (titleSets.isPresent()) {
+                if (titleSets.get().isEmpty()) {
+                    throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.TITLE_SETS, "org.dressdiscover.api.vocabularies.vra_core.VraCoreObject: titleSets: less than min length 1");
+                }
             }
         }
 
@@ -1576,11 +1562,10 @@ public final class VraCoreObject implements org.thryft.Struct {
             if (workTypeSets == null) {
                 throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.WORK_TYPE_SETS, "org.dressdiscover.api.vocabularies.vra_core.VraCoreObject: workTypeSets is null");
             }
-            if (!workTypeSets.isPresent()) {
-                return;
-            }
-            if (workTypeSets.get().isEmpty()) {
-                throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.WORK_TYPE_SETS, "org.dressdiscover.api.vocabularies.vra_core.VraCoreObject.workTypeSets: less than min length 1");
+            if (workTypeSets.isPresent()) {
+                if (workTypeSets.get().isEmpty()) {
+                    throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.WORK_TYPE_SETS, "org.dressdiscover.api.vocabularies.vra_core.VraCoreObject: workTypeSets: less than min length 1");
+                }
             }
         }
     }
@@ -1608,11 +1593,10 @@ public final class VraCoreObject implements org.thryft.Struct {
             if (agentSets == null) {
                 throw new NullPointerException("org.dressdiscover.api.vocabularies.vra_core.VraCoreObject: agentSets is null");
             }
-            if (!agentSets.isPresent()) {
-                return;
-            }
-            if (agentSets.get().isEmpty()) {
-                throw new IllegalArgumentException("org.dressdiscover.api.vocabularies.vra_core.VraCoreObject.agentSets: less than min length 1");
+            if (agentSets.isPresent()) {
+                if (agentSets.get().isEmpty()) {
+                    throw new IllegalArgumentException("org.dressdiscover.api.vocabularies.vra_core.VraCoreObject: agentSets: less than min length 1");
+                }
             }
         }
 
@@ -1620,11 +1604,10 @@ public final class VraCoreObject implements org.thryft.Struct {
             if (culturalContextSets == null) {
                 throw new NullPointerException("org.dressdiscover.api.vocabularies.vra_core.VraCoreObject: culturalContextSets is null");
             }
-            if (!culturalContextSets.isPresent()) {
-                return;
-            }
-            if (culturalContextSets.get().isEmpty()) {
-                throw new IllegalArgumentException("org.dressdiscover.api.vocabularies.vra_core.VraCoreObject.culturalContextSets: less than min length 1");
+            if (culturalContextSets.isPresent()) {
+                if (culturalContextSets.get().isEmpty()) {
+                    throw new IllegalArgumentException("org.dressdiscover.api.vocabularies.vra_core.VraCoreObject: culturalContextSets: less than min length 1");
+                }
             }
         }
 
@@ -1632,11 +1615,10 @@ public final class VraCoreObject implements org.thryft.Struct {
             if (dateSets == null) {
                 throw new NullPointerException("org.dressdiscover.api.vocabularies.vra_core.VraCoreObject: dateSets is null");
             }
-            if (!dateSets.isPresent()) {
-                return;
-            }
-            if (dateSets.get().isEmpty()) {
-                throw new IllegalArgumentException("org.dressdiscover.api.vocabularies.vra_core.VraCoreObject.dateSets: less than min length 1");
+            if (dateSets.isPresent()) {
+                if (dateSets.get().isEmpty()) {
+                    throw new IllegalArgumentException("org.dressdiscover.api.vocabularies.vra_core.VraCoreObject: dateSets: less than min length 1");
+                }
             }
         }
 
@@ -1644,11 +1626,10 @@ public final class VraCoreObject implements org.thryft.Struct {
             if (descriptionSets == null) {
                 throw new NullPointerException("org.dressdiscover.api.vocabularies.vra_core.VraCoreObject: descriptionSets is null");
             }
-            if (!descriptionSets.isPresent()) {
-                return;
-            }
-            if (descriptionSets.get().isEmpty()) {
-                throw new IllegalArgumentException("org.dressdiscover.api.vocabularies.vra_core.VraCoreObject.descriptionSets: less than min length 1");
+            if (descriptionSets.isPresent()) {
+                if (descriptionSets.get().isEmpty()) {
+                    throw new IllegalArgumentException("org.dressdiscover.api.vocabularies.vra_core.VraCoreObject: descriptionSets: less than min length 1");
+                }
             }
         }
 
@@ -1656,11 +1637,10 @@ public final class VraCoreObject implements org.thryft.Struct {
             if (inscriptionSets == null) {
                 throw new NullPointerException("org.dressdiscover.api.vocabularies.vra_core.VraCoreObject: inscriptionSets is null");
             }
-            if (!inscriptionSets.isPresent()) {
-                return;
-            }
-            if (inscriptionSets.get().isEmpty()) {
-                throw new IllegalArgumentException("org.dressdiscover.api.vocabularies.vra_core.VraCoreObject.inscriptionSets: less than min length 1");
+            if (inscriptionSets.isPresent()) {
+                if (inscriptionSets.get().isEmpty()) {
+                    throw new IllegalArgumentException("org.dressdiscover.api.vocabularies.vra_core.VraCoreObject: inscriptionSets: less than min length 1");
+                }
             }
         }
 
@@ -1668,11 +1648,10 @@ public final class VraCoreObject implements org.thryft.Struct {
             if (locationSets == null) {
                 throw new NullPointerException("org.dressdiscover.api.vocabularies.vra_core.VraCoreObject: locationSets is null");
             }
-            if (!locationSets.isPresent()) {
-                return;
-            }
-            if (locationSets.get().isEmpty()) {
-                throw new IllegalArgumentException("org.dressdiscover.api.vocabularies.vra_core.VraCoreObject.locationSets: less than min length 1");
+            if (locationSets.isPresent()) {
+                if (locationSets.get().isEmpty()) {
+                    throw new IllegalArgumentException("org.dressdiscover.api.vocabularies.vra_core.VraCoreObject: locationSets: less than min length 1");
+                }
             }
         }
 
@@ -1680,11 +1659,10 @@ public final class VraCoreObject implements org.thryft.Struct {
             if (materialSets == null) {
                 throw new NullPointerException("org.dressdiscover.api.vocabularies.vra_core.VraCoreObject: materialSets is null");
             }
-            if (!materialSets.isPresent()) {
-                return;
-            }
-            if (materialSets.get().isEmpty()) {
-                throw new IllegalArgumentException("org.dressdiscover.api.vocabularies.vra_core.VraCoreObject.materialSets: less than min length 1");
+            if (materialSets.isPresent()) {
+                if (materialSets.get().isEmpty()) {
+                    throw new IllegalArgumentException("org.dressdiscover.api.vocabularies.vra_core.VraCoreObject: materialSets: less than min length 1");
+                }
             }
         }
 
@@ -1692,11 +1670,10 @@ public final class VraCoreObject implements org.thryft.Struct {
             if (measurementsSets == null) {
                 throw new NullPointerException("org.dressdiscover.api.vocabularies.vra_core.VraCoreObject: measurementsSets is null");
             }
-            if (!measurementsSets.isPresent()) {
-                return;
-            }
-            if (measurementsSets.get().isEmpty()) {
-                throw new IllegalArgumentException("org.dressdiscover.api.vocabularies.vra_core.VraCoreObject.measurementsSets: less than min length 1");
+            if (measurementsSets.isPresent()) {
+                if (measurementsSets.get().isEmpty()) {
+                    throw new IllegalArgumentException("org.dressdiscover.api.vocabularies.vra_core.VraCoreObject: measurementsSets: less than min length 1");
+                }
             }
         }
 
@@ -1704,11 +1681,10 @@ public final class VraCoreObject implements org.thryft.Struct {
             if (relationSets == null) {
                 throw new NullPointerException("org.dressdiscover.api.vocabularies.vra_core.VraCoreObject: relationSets is null");
             }
-            if (!relationSets.isPresent()) {
-                return;
-            }
-            if (relationSets.get().isEmpty()) {
-                throw new IllegalArgumentException("org.dressdiscover.api.vocabularies.vra_core.VraCoreObject.relationSets: less than min length 1");
+            if (relationSets.isPresent()) {
+                if (relationSets.get().isEmpty()) {
+                    throw new IllegalArgumentException("org.dressdiscover.api.vocabularies.vra_core.VraCoreObject: relationSets: less than min length 1");
+                }
             }
         }
 
@@ -1716,11 +1692,10 @@ public final class VraCoreObject implements org.thryft.Struct {
             if (rightsSets == null) {
                 throw new NullPointerException("org.dressdiscover.api.vocabularies.vra_core.VraCoreObject: rightsSets is null");
             }
-            if (!rightsSets.isPresent()) {
-                return;
-            }
-            if (rightsSets.get().isEmpty()) {
-                throw new IllegalArgumentException("org.dressdiscover.api.vocabularies.vra_core.VraCoreObject.rightsSets: less than min length 1");
+            if (rightsSets.isPresent()) {
+                if (rightsSets.get().isEmpty()) {
+                    throw new IllegalArgumentException("org.dressdiscover.api.vocabularies.vra_core.VraCoreObject: rightsSets: less than min length 1");
+                }
             }
         }
 
@@ -1728,11 +1703,10 @@ public final class VraCoreObject implements org.thryft.Struct {
             if (subjectSets == null) {
                 throw new NullPointerException("org.dressdiscover.api.vocabularies.vra_core.VraCoreObject: subjectSets is null");
             }
-            if (!subjectSets.isPresent()) {
-                return;
-            }
-            if (subjectSets.get().isEmpty()) {
-                throw new IllegalArgumentException("org.dressdiscover.api.vocabularies.vra_core.VraCoreObject.subjectSets: less than min length 1");
+            if (subjectSets.isPresent()) {
+                if (subjectSets.get().isEmpty()) {
+                    throw new IllegalArgumentException("org.dressdiscover.api.vocabularies.vra_core.VraCoreObject: subjectSets: less than min length 1");
+                }
             }
         }
 
@@ -1740,11 +1714,10 @@ public final class VraCoreObject implements org.thryft.Struct {
             if (techniqueSets == null) {
                 throw new NullPointerException("org.dressdiscover.api.vocabularies.vra_core.VraCoreObject: techniqueSets is null");
             }
-            if (!techniqueSets.isPresent()) {
-                return;
-            }
-            if (techniqueSets.get().isEmpty()) {
-                throw new IllegalArgumentException("org.dressdiscover.api.vocabularies.vra_core.VraCoreObject.techniqueSets: less than min length 1");
+            if (techniqueSets.isPresent()) {
+                if (techniqueSets.get().isEmpty()) {
+                    throw new IllegalArgumentException("org.dressdiscover.api.vocabularies.vra_core.VraCoreObject: techniqueSets: less than min length 1");
+                }
             }
         }
 
@@ -1752,11 +1725,10 @@ public final class VraCoreObject implements org.thryft.Struct {
             if (textrefSets == null) {
                 throw new NullPointerException("org.dressdiscover.api.vocabularies.vra_core.VraCoreObject: textrefSets is null");
             }
-            if (!textrefSets.isPresent()) {
-                return;
-            }
-            if (textrefSets.get().isEmpty()) {
-                throw new IllegalArgumentException("org.dressdiscover.api.vocabularies.vra_core.VraCoreObject.textrefSets: less than min length 1");
+            if (textrefSets.isPresent()) {
+                if (textrefSets.get().isEmpty()) {
+                    throw new IllegalArgumentException("org.dressdiscover.api.vocabularies.vra_core.VraCoreObject: textrefSets: less than min length 1");
+                }
             }
         }
 
@@ -1764,11 +1736,10 @@ public final class VraCoreObject implements org.thryft.Struct {
             if (titleSets == null) {
                 throw new NullPointerException("org.dressdiscover.api.vocabularies.vra_core.VraCoreObject: titleSets is null");
             }
-            if (!titleSets.isPresent()) {
-                return;
-            }
-            if (titleSets.get().isEmpty()) {
-                throw new IllegalArgumentException("org.dressdiscover.api.vocabularies.vra_core.VraCoreObject.titleSets: less than min length 1");
+            if (titleSets.isPresent()) {
+                if (titleSets.get().isEmpty()) {
+                    throw new IllegalArgumentException("org.dressdiscover.api.vocabularies.vra_core.VraCoreObject: titleSets: less than min length 1");
+                }
             }
         }
 
@@ -1776,11 +1747,10 @@ public final class VraCoreObject implements org.thryft.Struct {
             if (workTypeSets == null) {
                 throw new NullPointerException("org.dressdiscover.api.vocabularies.vra_core.VraCoreObject: workTypeSets is null");
             }
-            if (!workTypeSets.isPresent()) {
-                return;
-            }
-            if (workTypeSets.get().isEmpty()) {
-                throw new IllegalArgumentException("org.dressdiscover.api.vocabularies.vra_core.VraCoreObject.workTypeSets: less than min length 1");
+            if (workTypeSets.isPresent()) {
+                if (workTypeSets.get().isEmpty()) {
+                    throw new IllegalArgumentException("org.dressdiscover.api.vocabularies.vra_core.VraCoreObject: workTypeSets: less than min length 1");
+                }
             }
         }
     }

@@ -392,7 +392,7 @@ public final class Inscription implements org.dressdiscover.api.vocabularies.vra
                 throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.TEXTS, "org.dressdiscover.api.vocabularies.vra_core.inscription.Inscription: texts is null");
             }
             if (texts.isEmpty()) {
-                throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.TEXTS, "org.dressdiscover.api.vocabularies.vra_core.inscription.Inscription.texts: less than min length 1");
+                throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.TEXTS, "org.dressdiscover.api.vocabularies.vra_core.inscription.Inscription: texts: less than min length 1");
             }
         }
 
@@ -400,20 +400,16 @@ public final class Inscription implements org.dressdiscover.api.vocabularies.vra
             if (author == null) {
                 throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.AUTHOR, "org.dressdiscover.api.vocabularies.vra_core.inscription.Inscription: author is null");
             }
-            if (!author.isPresent()) {
-                return;
-            }
         }
 
         public static void validatePosition(final com.google.common.base.Optional<String> position) throws org.thryft.protocol.InputProtocolException {
             if (position == null) {
                 throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.POSITION, "org.dressdiscover.api.vocabularies.vra_core.inscription.Inscription: position is null");
             }
-            if (!position.isPresent()) {
-                return;
-            }
-            if (position.get().isEmpty()) {
-                throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.POSITION, "org.dressdiscover.api.vocabularies.vra_core.inscription.Inscription.position: less than min length 1");
+            if (position.isPresent()) {
+                if (position.get().isEmpty()) {
+                    throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.POSITION, "org.dressdiscover.api.vocabularies.vra_core.inscription.Inscription: position: less than min length 1");
+                }
             }
         }
     }
@@ -430,7 +426,7 @@ public final class Inscription implements org.dressdiscover.api.vocabularies.vra
                 throw new NullPointerException("org.dressdiscover.api.vocabularies.vra_core.inscription.Inscription: texts is null");
             }
             if (texts.isEmpty()) {
-                throw new IllegalArgumentException("org.dressdiscover.api.vocabularies.vra_core.inscription.Inscription.texts: less than min length 1");
+                throw new IllegalArgumentException("org.dressdiscover.api.vocabularies.vra_core.inscription.Inscription: texts: less than min length 1");
             }
         }
 
@@ -438,20 +434,16 @@ public final class Inscription implements org.dressdiscover.api.vocabularies.vra
             if (author == null) {
                 throw new NullPointerException("org.dressdiscover.api.vocabularies.vra_core.inscription.Inscription: author is null");
             }
-            if (!author.isPresent()) {
-                return;
-            }
         }
 
         public static void validatePosition(final com.google.common.base.Optional<String> position) {
             if (position == null) {
                 throw new NullPointerException("org.dressdiscover.api.vocabularies.vra_core.inscription.Inscription: position is null");
             }
-            if (!position.isPresent()) {
-                return;
-            }
-            if (position.get().isEmpty()) {
-                throw new IllegalArgumentException("org.dressdiscover.api.vocabularies.vra_core.inscription.Inscription.position: less than min length 1");
+            if (position.isPresent()) {
+                if (position.get().isEmpty()) {
+                    throw new IllegalArgumentException("org.dressdiscover.api.vocabularies.vra_core.inscription.Inscription: position: less than min length 1");
+                }
             }
         }
     }

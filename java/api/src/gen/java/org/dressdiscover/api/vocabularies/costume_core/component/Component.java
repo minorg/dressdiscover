@@ -318,9 +318,6 @@ public final class Component implements org.dressdiscover.api.vocabularies.vra_c
             if (structures == null) {
                 throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.STRUCTURES, "org.dressdiscover.api.vocabularies.costume_core.component.Component: structures is null");
             }
-            if (!structures.isPresent()) {
-                return;
-            }
         }
     }
 
@@ -339,9 +336,6 @@ public final class Component implements org.dressdiscover.api.vocabularies.vra_c
         public static void validateStructures(final com.google.common.base.Optional<org.dressdiscover.api.vocabularies.costume_core.structure.StructureSet> structures) {
             if (structures == null) {
                 throw new NullPointerException("org.dressdiscover.api.vocabularies.costume_core.component.Component: structures is null");
-            }
-            if (!structures.isPresent()) {
-                return;
             }
         }
     }

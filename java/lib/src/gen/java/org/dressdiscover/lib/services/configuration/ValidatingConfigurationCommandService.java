@@ -11,13 +11,31 @@ public class ValidatingConfigurationCommandService implements org.dressdiscover.
 
     @Override
     public final void putCollectionConfiguration(final org.dressdiscover.api.models.configuration.CollectionConfiguration collectionConfiguration, final org.dressdiscover.api.models.collection.CollectionId collectionId) throws org.dressdiscover.api.services.IoException {
-        org.dressdiscover.api.services.configuration.ConfigurationCommandService.Messages.PutCollectionConfigurationRequest.UncheckedValidator.validate(collectionConfiguration, collectionId);
+        {
+            if (collectionConfiguration == null) {
+                throw new NullPointerException("org.dressdiscover.api.services.configuration.ValidatingConfigurationCommandService.putCollectionConfiguration: collectionConfiguration is null");
+            }
+        }
+        {
+            if (collectionId == null) {
+                throw new NullPointerException("org.dressdiscover.api.services.configuration.ValidatingConfigurationCommandService.putCollectionConfiguration: collectionId is null");
+            }
+        }
         delegate.putCollectionConfiguration(collectionConfiguration, collectionId);
     }
 
     @Override
     public final void putInstitutionConfiguration(final org.dressdiscover.api.models.configuration.InstitutionConfiguration institutionConfiguration, final org.dressdiscover.api.models.institution.InstitutionId institutionId) throws org.dressdiscover.api.services.IoException {
-        org.dressdiscover.api.services.configuration.ConfigurationCommandService.Messages.PutInstitutionConfigurationRequest.UncheckedValidator.validate(institutionConfiguration, institutionId);
+        {
+            if (institutionConfiguration == null) {
+                throw new NullPointerException("org.dressdiscover.api.services.configuration.ValidatingConfigurationCommandService.putInstitutionConfiguration: institutionConfiguration is null");
+            }
+        }
+        {
+            if (institutionId == null) {
+                throw new NullPointerException("org.dressdiscover.api.services.configuration.ValidatingConfigurationCommandService.putInstitutionConfiguration: institutionId is null");
+            }
+        }
         delegate.putInstitutionConfiguration(institutionConfiguration, institutionId);
     }
 

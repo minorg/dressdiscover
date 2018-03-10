@@ -432,7 +432,7 @@ public final class UserBookmark implements org.thryft.waf.api.models.Model {
                 throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.NAME, "org.dressdiscover.api.models.user.UserBookmark: name is null");
             }
             if (name.isEmpty()) {
-                throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.NAME, "org.dressdiscover.api.models.user.UserBookmark.name: less than min length 1");
+                throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.NAME, "org.dressdiscover.api.models.user.UserBookmark: name: less than min length 1");
             }
         }
 
@@ -446,11 +446,10 @@ public final class UserBookmark implements org.thryft.waf.api.models.Model {
             if (folder == null) {
                 throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.FOLDER, "org.dressdiscover.api.models.user.UserBookmark: folder is null");
             }
-            if (!folder.isPresent()) {
-                return;
-            }
-            if (folder.get().isEmpty()) {
-                throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.FOLDER, "org.dressdiscover.api.models.user.UserBookmark.folder: less than min length 1");
+            if (folder.isPresent()) {
+                if (folder.get().isEmpty()) {
+                    throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.FOLDER, "org.dressdiscover.api.models.user.UserBookmark: folder: less than min length 1");
+                }
             }
         }
 
@@ -458,17 +457,11 @@ public final class UserBookmark implements org.thryft.waf.api.models.Model {
             if (objectId == null) {
                 throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.OBJECT_ID, "org.dressdiscover.api.models.user.UserBookmark: objectId is null");
             }
-            if (!objectId.isPresent()) {
-                return;
-            }
         }
 
         public static void validateObjectQuery(final com.google.common.base.Optional<org.dressdiscover.api.models.object.ObjectQuery> objectQuery) throws org.thryft.protocol.InputProtocolException {
             if (objectQuery == null) {
                 throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.OBJECT_QUERY, "org.dressdiscover.api.models.user.UserBookmark: objectQuery is null");
-            }
-            if (!objectQuery.isPresent()) {
-                return;
             }
         }
     }
@@ -487,7 +480,7 @@ public final class UserBookmark implements org.thryft.waf.api.models.Model {
                 throw new NullPointerException("org.dressdiscover.api.models.user.UserBookmark: name is null");
             }
             if (name.isEmpty()) {
-                throw new IllegalArgumentException("org.dressdiscover.api.models.user.UserBookmark.name: less than min length 1");
+                throw new IllegalArgumentException("org.dressdiscover.api.models.user.UserBookmark: name: less than min length 1");
             }
         }
 
@@ -501,11 +494,10 @@ public final class UserBookmark implements org.thryft.waf.api.models.Model {
             if (folder == null) {
                 throw new NullPointerException("org.dressdiscover.api.models.user.UserBookmark: folder is null");
             }
-            if (!folder.isPresent()) {
-                return;
-            }
-            if (folder.get().isEmpty()) {
-                throw new IllegalArgumentException("org.dressdiscover.api.models.user.UserBookmark.folder: less than min length 1");
+            if (folder.isPresent()) {
+                if (folder.get().isEmpty()) {
+                    throw new IllegalArgumentException("org.dressdiscover.api.models.user.UserBookmark: folder: less than min length 1");
+                }
             }
         }
 
@@ -513,17 +505,11 @@ public final class UserBookmark implements org.thryft.waf.api.models.Model {
             if (objectId == null) {
                 throw new NullPointerException("org.dressdiscover.api.models.user.UserBookmark: objectId is null");
             }
-            if (!objectId.isPresent()) {
-                return;
-            }
         }
 
         public static void validateObjectQuery(final com.google.common.base.Optional<org.dressdiscover.api.models.object.ObjectQuery> objectQuery) {
             if (objectQuery == null) {
                 throw new NullPointerException("org.dressdiscover.api.models.user.UserBookmark: objectQuery is null");
-            }
-            if (!objectQuery.isPresent()) {
-                return;
             }
         }
     }

@@ -11,26 +11,42 @@ public class ValidatingObjectCommandService implements org.dressdiscover.api.ser
 
     @Override
     public final int deleteObjectsByCollectionId(final org.dressdiscover.api.models.collection.CollectionId collectionId) throws org.dressdiscover.api.services.IoException, org.dressdiscover.api.services.collection.NoSuchCollectionException, org.dressdiscover.api.services.institution.NoSuchInstitutionException {
-        org.dressdiscover.api.services.object.ObjectCommandService.Messages.DeleteObjectsByCollectionIdRequest.UncheckedValidator.validate(collectionId);
-        final int __returnValue = delegate.deleteObjectsByCollectionId(collectionId);
-        org.dressdiscover.api.services.object.ObjectCommandService.Messages.DeleteObjectsByCollectionIdResponse.UncheckedValidator.validateReturnValue(__returnValue);
-        return __returnValue;
+        {
+            if (collectionId == null) {
+                throw new NullPointerException("org.dressdiscover.api.services.object.ValidatingObjectCommandService.deleteObjectsByCollectionId: collectionId is null");
+            }
+        }
+        return delegate.deleteObjectsByCollectionId(collectionId);
     }
 
     @Override
     public final void putObject(final org.dressdiscover.api.models.object.ObjectId id, final org.dressdiscover.api.models.object.Object object) throws org.dressdiscover.api.services.IoException, org.dressdiscover.api.services.collection.NoSuchCollectionException, org.dressdiscover.api.services.institution.NoSuchInstitutionException {
-        org.dressdiscover.api.services.object.ObjectCommandService.Messages.PutObjectRequest.UncheckedValidator.validate(id, object);
+        {
+            if (id == null) {
+                throw new NullPointerException("org.dressdiscover.api.services.object.ValidatingObjectCommandService.putObject: id is null");
+            }
+        }
+        {
+            if (object == null) {
+                throw new NullPointerException("org.dressdiscover.api.services.object.ValidatingObjectCommandService.putObject: object is null");
+            }
+        }
         delegate.putObject(id, object);
     }
 
     @Override
     public final void putObjects(final com.google.common.collect.ImmutableList<org.dressdiscover.api.models.object.ObjectEntry> objects) throws org.dressdiscover.api.services.IoException, org.dressdiscover.api.services.collection.NoSuchCollectionException, org.dressdiscover.api.services.institution.NoSuchInstitutionException {
-        org.dressdiscover.api.services.object.ObjectCommandService.Messages.PutObjectsRequest.UncheckedValidator.validate(objects);
+        {
+            if (objects == null) {
+                throw new NullPointerException("org.dressdiscover.api.services.object.ValidatingObjectCommandService.putObjects: objects is null");
+            }
+        }
         delegate.putObjects(objects);
     }
 
     @Override
     public final void resummarizeObjects() throws org.dressdiscover.api.services.IoException {
+
         delegate.resummarizeObjects();
     }
 

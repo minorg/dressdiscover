@@ -480,17 +480,11 @@ public final class Object implements org.thryft.waf.api.models.Model {
             if (costumeCore == null) {
                 throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.COSTUME_CORE, "org.dressdiscover.api.models.object.Object: costumeCore is null");
             }
-            if (!costumeCore.isPresent()) {
-                return;
-            }
         }
 
         public static void validateDublinCore(final com.google.common.base.Optional<org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject> dublinCore) throws org.thryft.protocol.InputProtocolException {
             if (dublinCore == null) {
                 throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.DUBLIN_CORE, "org.dressdiscover.api.models.object.Object: dublinCore is null");
-            }
-            if (!dublinCore.isPresent()) {
-                return;
             }
         }
 
@@ -498,11 +492,10 @@ public final class Object implements org.thryft.waf.api.models.Model {
             if (hidden == null) {
                 throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.HIDDEN, "org.dressdiscover.api.models.object.Object: hidden is null");
             }
-            if (!hidden.isPresent()) {
-                return;
-            }
-            if (!hidden.get()) {
-                throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.HIDDEN, "org.dressdiscover.api.models.object.Object.hidden: not true");
+            if (hidden.isPresent()) {
+                if (!hidden.get()) {
+                    throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.HIDDEN, "org.dressdiscover.api.models.object.Object: hidden: not true");
+                }
             }
         }
 
@@ -510,20 +503,16 @@ public final class Object implements org.thryft.waf.api.models.Model {
             if (images == null) {
                 throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.IMAGES, "org.dressdiscover.api.models.object.Object: images is null");
             }
-            if (!images.isPresent()) {
-                return;
-            }
-            if (images.get().isEmpty()) {
-                throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.IMAGES, "org.dressdiscover.api.models.object.Object.images: less than min length 1");
+            if (images.isPresent()) {
+                if (images.get().isEmpty()) {
+                    throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.IMAGES, "org.dressdiscover.api.models.object.Object: images: less than min length 1");
+                }
             }
         }
 
         public static void validateVraCore(final com.google.common.base.Optional<org.dressdiscover.api.vocabularies.vra_core.VraCoreObject> vraCore) throws org.thryft.protocol.InputProtocolException {
             if (vraCore == null) {
                 throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.VRA_CORE, "org.dressdiscover.api.models.object.Object: vraCore is null");
-            }
-            if (!vraCore.isPresent()) {
-                return;
             }
         }
     }
@@ -541,17 +530,11 @@ public final class Object implements org.thryft.waf.api.models.Model {
             if (costumeCore == null) {
                 throw new NullPointerException("org.dressdiscover.api.models.object.Object: costumeCore is null");
             }
-            if (!costumeCore.isPresent()) {
-                return;
-            }
         }
 
         public static void validateDublinCore(final com.google.common.base.Optional<org.dressdiscover.api.vocabularies.dublin_core.DublinCoreObject> dublinCore) {
             if (dublinCore == null) {
                 throw new NullPointerException("org.dressdiscover.api.models.object.Object: dublinCore is null");
-            }
-            if (!dublinCore.isPresent()) {
-                return;
             }
         }
 
@@ -559,11 +542,10 @@ public final class Object implements org.thryft.waf.api.models.Model {
             if (hidden == null) {
                 throw new NullPointerException("org.dressdiscover.api.models.object.Object: hidden is null");
             }
-            if (!hidden.isPresent()) {
-                return;
-            }
-            if (!hidden.get()) {
-                throw new IllegalArgumentException("org.dressdiscover.api.models.object.Object.hidden: not true");
+            if (hidden.isPresent()) {
+                if (!hidden.get()) {
+                    throw new IllegalArgumentException("org.dressdiscover.api.models.object.Object: hidden: not true");
+                }
             }
         }
 
@@ -571,20 +553,16 @@ public final class Object implements org.thryft.waf.api.models.Model {
             if (images == null) {
                 throw new NullPointerException("org.dressdiscover.api.models.object.Object: images is null");
             }
-            if (!images.isPresent()) {
-                return;
-            }
-            if (images.get().isEmpty()) {
-                throw new IllegalArgumentException("org.dressdiscover.api.models.object.Object.images: less than min length 1");
+            if (images.isPresent()) {
+                if (images.get().isEmpty()) {
+                    throw new IllegalArgumentException("org.dressdiscover.api.models.object.Object: images: less than min length 1");
+                }
             }
         }
 
         public static void validateVraCore(final com.google.common.base.Optional<org.dressdiscover.api.vocabularies.vra_core.VraCoreObject> vraCore) {
             if (vraCore == null) {
                 throw new NullPointerException("org.dressdiscover.api.models.object.Object: vraCore is null");
-            }
-            if (!vraCore.isPresent()) {
-                return;
             }
         }
     }

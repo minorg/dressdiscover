@@ -11,17 +11,33 @@ public class ValidatingConfigurationQueryService implements org.dressdiscover.ap
 
     @Override
     public final org.dressdiscover.api.models.configuration.CollectionConfiguration getCollectionConfiguration(final org.dressdiscover.api.models.collection.CollectionId collectionId) throws org.dressdiscover.api.services.IoException {
-        org.dressdiscover.api.services.configuration.ConfigurationQueryService.Messages.GetCollectionConfigurationRequest.UncheckedValidator.validate(collectionId);
+        {
+            if (collectionId == null) {
+                throw new NullPointerException("org.dressdiscover.api.services.configuration.ValidatingConfigurationQueryService.getCollectionConfiguration: collectionId is null");
+            }
+        }
         final org.dressdiscover.api.models.configuration.CollectionConfiguration __returnValue = delegate.getCollectionConfiguration(collectionId);
-        org.dressdiscover.api.services.configuration.ConfigurationQueryService.Messages.GetCollectionConfigurationResponse.UncheckedValidator.validateReturnValue(__returnValue);
+        {
+            if (__returnValue == null) {
+                throw new NullPointerException("org.dressdiscover.api.services.configuration.ValidatingConfigurationQueryService.getCollectionConfiguration: __returnValue is null");
+            }
+        }
         return __returnValue;
     }
 
     @Override
     public final org.dressdiscover.api.models.configuration.InstitutionConfiguration getInstitutionConfiguration(final org.dressdiscover.api.models.institution.InstitutionId institutionId) throws org.dressdiscover.api.services.IoException {
-        org.dressdiscover.api.services.configuration.ConfigurationQueryService.Messages.GetInstitutionConfigurationRequest.UncheckedValidator.validate(institutionId);
+        {
+            if (institutionId == null) {
+                throw new NullPointerException("org.dressdiscover.api.services.configuration.ValidatingConfigurationQueryService.getInstitutionConfiguration: institutionId is null");
+            }
+        }
         final org.dressdiscover.api.models.configuration.InstitutionConfiguration __returnValue = delegate.getInstitutionConfiguration(institutionId);
-        org.dressdiscover.api.services.configuration.ConfigurationQueryService.Messages.GetInstitutionConfigurationResponse.UncheckedValidator.validateReturnValue(__returnValue);
+        {
+            if (__returnValue == null) {
+                throw new NullPointerException("org.dressdiscover.api.services.configuration.ValidatingConfigurationQueryService.getInstitutionConfiguration: __returnValue is null");
+            }
+        }
         return __returnValue;
     }
 

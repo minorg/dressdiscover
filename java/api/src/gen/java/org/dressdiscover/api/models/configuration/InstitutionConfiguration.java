@@ -315,9 +315,6 @@ public final class InstitutionConfiguration implements org.thryft.Struct {
             if (defaultCollectionConfiguration == null) {
                 throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.DEFAULT_COLLECTION_CONFIGURATION, "org.dressdiscover.api.models.configuration.InstitutionConfiguration: defaultCollectionConfiguration is null");
             }
-            if (!defaultCollectionConfiguration.isPresent()) {
-                return;
-            }
         }
     }
 
@@ -336,9 +333,6 @@ public final class InstitutionConfiguration implements org.thryft.Struct {
         public static void validateDefaultCollectionConfiguration(final com.google.common.base.Optional<org.dressdiscover.api.models.configuration.CollectionConfiguration> defaultCollectionConfiguration) {
             if (defaultCollectionConfiguration == null) {
                 throw new NullPointerException("org.dressdiscover.api.models.configuration.InstitutionConfiguration: defaultCollectionConfiguration is null");
-            }
-            if (!defaultCollectionConfiguration.isPresent()) {
-                return;
             }
         }
     }

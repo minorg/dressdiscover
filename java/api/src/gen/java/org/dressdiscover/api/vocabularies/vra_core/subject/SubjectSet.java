@@ -392,7 +392,7 @@ public final class SubjectSet implements org.dressdiscover.api.vocabularies.vra_
                 throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.ELEMENTS, "org.dressdiscover.api.vocabularies.vra_core.subject.SubjectSet: elements is null");
             }
             if (elements.isEmpty()) {
-                throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.ELEMENTS, "org.dressdiscover.api.vocabularies.vra_core.subject.SubjectSet.elements: less than min length 1");
+                throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.ELEMENTS, "org.dressdiscover.api.vocabularies.vra_core.subject.SubjectSet: elements: less than min length 1");
             }
         }
 
@@ -400,11 +400,10 @@ public final class SubjectSet implements org.dressdiscover.api.vocabularies.vra_
             if (display == null) {
                 throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.DISPLAY, "org.dressdiscover.api.vocabularies.vra_core.subject.SubjectSet: display is null");
             }
-            if (!display.isPresent()) {
-                return;
-            }
-            if (display.get().isEmpty()) {
-                throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.DISPLAY, "org.dressdiscover.api.vocabularies.vra_core.subject.SubjectSet.display: less than min length 1");
+            if (display.isPresent()) {
+                if (display.get().isEmpty()) {
+                    throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.DISPLAY, "org.dressdiscover.api.vocabularies.vra_core.subject.SubjectSet: display: less than min length 1");
+                }
             }
         }
 
@@ -412,11 +411,10 @@ public final class SubjectSet implements org.dressdiscover.api.vocabularies.vra_
             if (notes == null) {
                 throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.NOTES, "org.dressdiscover.api.vocabularies.vra_core.subject.SubjectSet: notes is null");
             }
-            if (!notes.isPresent()) {
-                return;
-            }
-            if (notes.get().isEmpty()) {
-                throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.NOTES, "org.dressdiscover.api.vocabularies.vra_core.subject.SubjectSet.notes: less than min length 1");
+            if (notes.isPresent()) {
+                if (notes.get().isEmpty()) {
+                    throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.NOTES, "org.dressdiscover.api.vocabularies.vra_core.subject.SubjectSet: notes: less than min length 1");
+                }
             }
         }
     }
@@ -433,7 +431,7 @@ public final class SubjectSet implements org.dressdiscover.api.vocabularies.vra_
                 throw new NullPointerException("org.dressdiscover.api.vocabularies.vra_core.subject.SubjectSet: elements is null");
             }
             if (elements.isEmpty()) {
-                throw new IllegalArgumentException("org.dressdiscover.api.vocabularies.vra_core.subject.SubjectSet.elements: less than min length 1");
+                throw new IllegalArgumentException("org.dressdiscover.api.vocabularies.vra_core.subject.SubjectSet: elements: less than min length 1");
             }
         }
 
@@ -441,11 +439,10 @@ public final class SubjectSet implements org.dressdiscover.api.vocabularies.vra_
             if (display == null) {
                 throw new NullPointerException("org.dressdiscover.api.vocabularies.vra_core.subject.SubjectSet: display is null");
             }
-            if (!display.isPresent()) {
-                return;
-            }
-            if (display.get().isEmpty()) {
-                throw new IllegalArgumentException("org.dressdiscover.api.vocabularies.vra_core.subject.SubjectSet.display: less than min length 1");
+            if (display.isPresent()) {
+                if (display.get().isEmpty()) {
+                    throw new IllegalArgumentException("org.dressdiscover.api.vocabularies.vra_core.subject.SubjectSet: display: less than min length 1");
+                }
             }
         }
 
@@ -453,11 +450,10 @@ public final class SubjectSet implements org.dressdiscover.api.vocabularies.vra_
             if (notes == null) {
                 throw new NullPointerException("org.dressdiscover.api.vocabularies.vra_core.subject.SubjectSet: notes is null");
             }
-            if (!notes.isPresent()) {
-                return;
-            }
-            if (notes.get().isEmpty()) {
-                throw new IllegalArgumentException("org.dressdiscover.api.vocabularies.vra_core.subject.SubjectSet.notes: less than min length 1");
+            if (notes.isPresent()) {
+                if (notes.get().isEmpty()) {
+                    throw new IllegalArgumentException("org.dressdiscover.api.vocabularies.vra_core.subject.SubjectSet: notes: less than min length 1");
+                }
             }
         }
     }

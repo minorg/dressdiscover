@@ -350,9 +350,6 @@ public final class GlobalProperties implements org.thryft.waf.lib.Properties {
             if (pythonPath == null) {
                 throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.PYTHON_PATH, "org.dressdiscover.lib.properties.GlobalProperties: pythonPath is null");
             }
-            if (!pythonPath.isPresent()) {
-                return;
-            }
         }
     }
 
@@ -371,9 +368,6 @@ public final class GlobalProperties implements org.thryft.waf.lib.Properties {
         public static void validatePythonPath(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<String>> pythonPath) {
             if (pythonPath == null) {
                 throw new NullPointerException("org.dressdiscover.lib.properties.GlobalProperties: pythonPath is null");
-            }
-            if (!pythonPath.isPresent()) {
-                return;
             }
         }
     }

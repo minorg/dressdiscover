@@ -31,7 +31,7 @@ public class LoggingUserCommandService implements org.dressdiscover.api.services
     @Override
     public void deleteUserBookmarkById(final org.dressdiscover.api.models.user.UserBookmarkId id) throws org.dressdiscover.api.services.IoException, org.dressdiscover.api.services.user.NoSuchUserBookmarkException {
         final Object[] __logMessageArgs = new Object[2];
-        __logMessageArgs[0] = Messages.DeleteUserBookmarkByIdRequest.create(id);
+        __logMessageArgs[0] = id;
 
         __logMessageArgs[__logMessageArgs.length - 1] = PRE_RETURN_VALUE;
         logger.debug(UserCommandServiceLogMarkers.DELETE_USER_BOOKMARK_BY_ID, LogMessages.DELETE_USER_BOOKMARK_BY_ID, __logMessageArgs);
@@ -59,7 +59,7 @@ public class LoggingUserCommandService implements org.dressdiscover.api.services
     @Override
     public void deleteUserById(final org.dressdiscover.api.models.user.UserId id) throws org.dressdiscover.api.services.IoException, org.dressdiscover.api.services.user.NoSuchUserException {
         final Object[] __logMessageArgs = new Object[2];
-        __logMessageArgs[0] = Messages.DeleteUserByIdRequest.create(id);
+        __logMessageArgs[0] = id;
 
         __logMessageArgs[__logMessageArgs.length - 1] = PRE_RETURN_VALUE;
         logger.debug(UserCommandServiceLogMarkers.DELETE_USER_BY_ID, LogMessages.DELETE_USER_BY_ID, __logMessageArgs);
@@ -86,22 +86,22 @@ public class LoggingUserCommandService implements org.dressdiscover.api.services
 
     @Override
     public void deleteUsers() throws org.dressdiscover.api.services.IoException {
-        final Object[] __logMessageArgs = new Object[1];
+        Object __logMessageArgs = null;
 
-        __logMessageArgs[__logMessageArgs.length - 1] = PRE_RETURN_VALUE;
+        __logMessageArgs = PRE_RETURN_VALUE;
         logger.debug(UserCommandServiceLogMarkers.DELETE_USERS, LogMessages.DELETE_USERS, __logMessageArgs);
 
         try {
             delegate.deleteUsers();
 
-            __logMessageArgs[__logMessageArgs.length - 1] = VOID_RETURN_VALUE;
+            __logMessageArgs = VOID_RETURN_VALUE;
             logger.info(UserCommandServiceLogMarkers.DELETE_USERS, LogMessages.DELETE_USERS, __logMessageArgs);
         } catch (final org.dressdiscover.api.services.IoException e) {
-            __logMessageArgs[__logMessageArgs.length - 1] = e.toString();
+            __logMessageArgs = e.toString();
             logger.error(UserCommandServiceLogMarkers.DELETE_USERS, LogMessages.DELETE_USERS, __logMessageArgs);
             throw e;
         } catch (final RuntimeException e) {
-            __logMessageArgs[__logMessageArgs.length - 1] = e;
+            __logMessageArgs = e;
             logger.error(UserCommandServiceLogMarkers.DELETE_USERS, LogMessages.DELETE_USERS, __logMessageArgs);
             throw e;
         }
@@ -110,7 +110,7 @@ public class LoggingUserCommandService implements org.dressdiscover.api.services
     @Override
     public org.dressdiscover.api.models.user.UserId postUser(final org.dressdiscover.api.models.user.User user) throws org.dressdiscover.api.services.user.DuplicateUserException, org.dressdiscover.api.services.IoException {
         final Object[] __logMessageArgs = new Object[2];
-        __logMessageArgs[0] = Messages.PostUserRequest.create(user);
+        __logMessageArgs[0] = user;
 
         __logMessageArgs[__logMessageArgs.length - 1] = PRE_RETURN_VALUE;
         logger.debug(UserCommandServiceLogMarkers.POST_USER, LogMessages.POST_USER, __logMessageArgs);
@@ -140,7 +140,7 @@ public class LoggingUserCommandService implements org.dressdiscover.api.services
     @Override
     public org.dressdiscover.api.models.user.UserBookmarkId postUserBookmark(final org.dressdiscover.api.models.user.UserBookmark userBookmark) throws org.dressdiscover.api.services.user.DuplicateUserBookmarkException, org.dressdiscover.api.services.IoException {
         final Object[] __logMessageArgs = new Object[2];
-        __logMessageArgs[0] = Messages.PostUserBookmarkRequest.create(userBookmark);
+        __logMessageArgs[0] = userBookmark;
 
         __logMessageArgs[__logMessageArgs.length - 1] = PRE_RETURN_VALUE;
         logger.debug(UserCommandServiceLogMarkers.POST_USER_BOOKMARK, LogMessages.POST_USER_BOOKMARK, __logMessageArgs);
@@ -169,8 +169,9 @@ public class LoggingUserCommandService implements org.dressdiscover.api.services
 
     @Override
     public void putUser(final org.dressdiscover.api.models.user.UserId id, final org.dressdiscover.api.models.user.User user) throws org.dressdiscover.api.services.IoException, org.dressdiscover.api.services.user.NoSuchUserException {
-        final Object[] __logMessageArgs = new Object[2];
-        __logMessageArgs[0] = Messages.PutUserRequest.create(id, user);
+        final Object[] __logMessageArgs = new Object[3];
+        __logMessageArgs[0] = id;
+        __logMessageArgs[1] = user;
 
         __logMessageArgs[__logMessageArgs.length - 1] = PRE_RETURN_VALUE;
         logger.debug(UserCommandServiceLogMarkers.PUT_USER, LogMessages.PUT_USER, __logMessageArgs);
@@ -199,12 +200,12 @@ public class LoggingUserCommandService implements org.dressdiscover.api.services
     private final org.dressdiscover.api.services.user.UserCommandService delegate;
 
     private final static class LogMessages {
-        public final static String DELETE_USER_BOOKMARK_BY_ID = "delete_user_bookmark_by_id({}) -> {}";
-        public final static String DELETE_USER_BY_ID = "delete_user_by_id({}) -> {}";
+        public final static String DELETE_USER_BOOKMARK_BY_ID = "delete_user_bookmark_by_id(id={}) -> {}";
+        public final static String DELETE_USER_BY_ID = "delete_user_by_id(id={}) -> {}";
         public final static String DELETE_USERS = "delete_users() -> {}";
-        public final static String POST_USER = "post_user({}) -> {}";
-        public final static String POST_USER_BOOKMARK = "post_user_bookmark({}) -> {}";
-        public final static String PUT_USER = "put_user({}) -> {}";
+        public final static String POST_USER = "post_user(user={}) -> {}";
+        public final static String POST_USER_BOOKMARK = "post_user_bookmark(userBookmark={}) -> {}";
+        public final static String PUT_USER = "put_user(id={}, user={}) -> {}";
     }
 
     public final static String PRE_RETURN_VALUE = "...";

@@ -11,9 +11,22 @@ public class ValidatingObjectSummaryQueryService implements org.dressdiscover.ap
 
     @Override
     public final org.dressdiscover.api.services.object.GetObjectSummariesResult getObjectSummaries(final com.google.common.base.Optional<org.dressdiscover.api.services.object.GetObjectSummariesOptions> options, final com.google.common.base.Optional<org.dressdiscover.api.models.object.ObjectQuery> query) throws org.dressdiscover.api.services.IoException {
-        org.dressdiscover.api.services.object.ObjectSummaryQueryService.Messages.GetObjectSummariesRequest.UncheckedValidator.validate(options, query);
+        {
+            if (options == null) {
+                throw new NullPointerException("org.dressdiscover.api.services.object.ValidatingObjectSummaryQueryService.getObjectSummaries: options is null");
+            }
+        }
+        {
+            if (query == null) {
+                throw new NullPointerException("org.dressdiscover.api.services.object.ValidatingObjectSummaryQueryService.getObjectSummaries: query is null");
+            }
+        }
         final org.dressdiscover.api.services.object.GetObjectSummariesResult __returnValue = delegate.getObjectSummaries(options, query);
-        org.dressdiscover.api.services.object.ObjectSummaryQueryService.Messages.GetObjectSummariesResponse.UncheckedValidator.validateReturnValue(__returnValue);
+        {
+            if (__returnValue == null) {
+                throw new NullPointerException("org.dressdiscover.api.services.object.ValidatingObjectSummaryQueryService.getObjectSummaries: __returnValue is null");
+            }
+        }
         return __returnValue;
     }
 

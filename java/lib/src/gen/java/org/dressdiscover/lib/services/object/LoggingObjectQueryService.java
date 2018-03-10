@@ -21,7 +21,7 @@ public class LoggingObjectQueryService implements org.dressdiscover.api.services
     @Override
     public org.dressdiscover.api.models.object.Object getObjectById(final org.dressdiscover.api.models.object.ObjectId id) throws org.dressdiscover.api.services.IoException, org.dressdiscover.api.services.collection.NoSuchCollectionException, org.dressdiscover.api.services.institution.NoSuchInstitutionException, org.dressdiscover.api.services.object.NoSuchObjectException {
         final Object[] __logMessageArgs = new Object[2];
-        __logMessageArgs[0] = Messages.GetObjectByIdRequest.create(id);
+        __logMessageArgs[0] = id;
 
         __logMessageArgs[__logMessageArgs.length - 1] = PRE_RETURN_VALUE;
         logger.debug(ObjectQueryServiceLogMarkers.GET_OBJECT_BY_ID, LogMessages.GET_OBJECT_BY_ID, __logMessageArgs);
@@ -60,7 +60,7 @@ public class LoggingObjectQueryService implements org.dressdiscover.api.services
     private final org.dressdiscover.api.services.object.ObjectQueryService delegate;
 
     private final static class LogMessages {
-        public final static String GET_OBJECT_BY_ID = "get_object_by_id({}) -> {}";
+        public final static String GET_OBJECT_BY_ID = "get_object_by_id(id={}) -> {}";
     }
 
     public final static String PRE_RETURN_VALUE = "...";

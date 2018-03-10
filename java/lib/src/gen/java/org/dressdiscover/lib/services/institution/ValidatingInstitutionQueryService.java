@@ -11,24 +11,45 @@ public class ValidatingInstitutionQueryService implements org.dressdiscover.api.
 
     @Override
     public final org.dressdiscover.api.models.institution.Institution getInstitutionById(final org.dressdiscover.api.models.institution.InstitutionId id) throws org.dressdiscover.api.services.IoException, org.dressdiscover.api.services.institution.NoSuchInstitutionException {
-        org.dressdiscover.api.services.institution.InstitutionQueryService.Messages.GetInstitutionByIdRequest.UncheckedValidator.validate(id);
+        {
+            if (id == null) {
+                throw new NullPointerException("org.dressdiscover.api.services.institution.ValidatingInstitutionQueryService.getInstitutionById: id is null");
+            }
+        }
         final org.dressdiscover.api.models.institution.Institution __returnValue = delegate.getInstitutionById(id);
-        org.dressdiscover.api.services.institution.InstitutionQueryService.Messages.GetInstitutionByIdResponse.UncheckedValidator.validateReturnValue(__returnValue);
+        {
+            if (__returnValue == null) {
+                throw new NullPointerException("org.dressdiscover.api.services.institution.ValidatingInstitutionQueryService.getInstitutionById: __returnValue is null");
+            }
+        }
         return __returnValue;
     }
 
     @Override
     public final com.google.common.collect.ImmutableList<org.dressdiscover.api.models.institution.InstitutionEntry> getInstitutions() throws org.dressdiscover.api.services.IoException {
+
         final com.google.common.collect.ImmutableList<org.dressdiscover.api.models.institution.InstitutionEntry> __returnValue = delegate.getInstitutions();
-        org.dressdiscover.api.services.institution.InstitutionQueryService.Messages.GetInstitutionsResponse.UncheckedValidator.validateReturnValue(__returnValue);
+        {
+            if (__returnValue == null) {
+                throw new NullPointerException("org.dressdiscover.api.services.institution.ValidatingInstitutionQueryService.getInstitutions: __returnValue is null");
+            }
+        }
         return __returnValue;
     }
 
     @Override
     public final com.google.common.collect.ImmutableList<org.dressdiscover.api.models.institution.Institution> getInstitutionsByIds(final com.google.common.collect.ImmutableList<org.dressdiscover.api.models.institution.InstitutionId> ids) throws org.dressdiscover.api.services.IoException, org.dressdiscover.api.services.institution.NoSuchInstitutionException {
-        org.dressdiscover.api.services.institution.InstitutionQueryService.Messages.GetInstitutionsByIdsRequest.UncheckedValidator.validate(ids);
+        {
+            if (ids == null) {
+                throw new NullPointerException("org.dressdiscover.api.services.institution.ValidatingInstitutionQueryService.getInstitutionsByIds: ids is null");
+            }
+        }
         final com.google.common.collect.ImmutableList<org.dressdiscover.api.models.institution.Institution> __returnValue = delegate.getInstitutionsByIds(ids);
-        org.dressdiscover.api.services.institution.InstitutionQueryService.Messages.GetInstitutionsByIdsResponse.UncheckedValidator.validateReturnValue(__returnValue);
+        {
+            if (__returnValue == null) {
+                throw new NullPointerException("org.dressdiscover.api.services.institution.ValidatingInstitutionQueryService.getInstitutionsByIds: __returnValue is null");
+            }
+        }
         return __returnValue;
     }
 

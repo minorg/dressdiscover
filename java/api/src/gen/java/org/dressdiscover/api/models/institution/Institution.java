@@ -489,20 +489,16 @@ public final class Institution implements org.thryft.waf.api.models.Model {
             if (dataRights == null) {
                 throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.DATA_RIGHTS, "org.dressdiscover.api.models.institution.Institution: dataRights is null");
             }
-            if (!dataRights.isPresent()) {
-                return;
-            }
         }
 
         public static void validateExternal(final com.google.common.base.Optional<Boolean> external) throws org.thryft.protocol.InputProtocolException {
             if (external == null) {
                 throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.EXTERNAL, "org.dressdiscover.api.models.institution.Institution: external is null");
             }
-            if (!external.isPresent()) {
-                return;
-            }
-            if (!external.get()) {
-                throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.EXTERNAL, "org.dressdiscover.api.models.institution.Institution.external: not true");
+            if (external.isPresent()) {
+                if (!external.get()) {
+                    throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.EXTERNAL, "org.dressdiscover.api.models.institution.Institution: external: not true");
+                }
             }
         }
 
@@ -510,11 +506,10 @@ public final class Institution implements org.thryft.waf.api.models.Model {
             if (hidden == null) {
                 throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.HIDDEN, "org.dressdiscover.api.models.institution.Institution: hidden is null");
             }
-            if (!hidden.isPresent()) {
-                return;
-            }
-            if (!hidden.get()) {
-                throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.HIDDEN, "org.dressdiscover.api.models.institution.Institution.hidden: not true");
+            if (hidden.isPresent()) {
+                if (!hidden.get()) {
+                    throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.HIDDEN, "org.dressdiscover.api.models.institution.Institution: hidden: not true");
+                }
             }
         }
 
@@ -522,17 +517,11 @@ public final class Institution implements org.thryft.waf.api.models.Model {
             if (locations == null) {
                 throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.LOCATIONS, "org.dressdiscover.api.models.institution.Institution: locations is null");
             }
-            if (!locations.isPresent()) {
-                return;
-            }
         }
 
         public static void validateUrl(final com.google.common.base.Optional<org.thryft.native_.Url> url) throws org.thryft.protocol.InputProtocolException {
             if (url == null) {
                 throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.URL, "org.dressdiscover.api.models.institution.Institution: url is null");
-            }
-            if (!url.isPresent()) {
-                return;
             }
         }
     }
@@ -557,20 +546,16 @@ public final class Institution implements org.thryft.waf.api.models.Model {
             if (dataRights == null) {
                 throw new NullPointerException("org.dressdiscover.api.models.institution.Institution: dataRights is null");
             }
-            if (!dataRights.isPresent()) {
-                return;
-            }
         }
 
         public static void validateExternal(final com.google.common.base.Optional<Boolean> external) {
             if (external == null) {
                 throw new NullPointerException("org.dressdiscover.api.models.institution.Institution: external is null");
             }
-            if (!external.isPresent()) {
-                return;
-            }
-            if (!external.get()) {
-                throw new IllegalArgumentException("org.dressdiscover.api.models.institution.Institution.external: not true");
+            if (external.isPresent()) {
+                if (!external.get()) {
+                    throw new IllegalArgumentException("org.dressdiscover.api.models.institution.Institution: external: not true");
+                }
             }
         }
 
@@ -578,11 +563,10 @@ public final class Institution implements org.thryft.waf.api.models.Model {
             if (hidden == null) {
                 throw new NullPointerException("org.dressdiscover.api.models.institution.Institution: hidden is null");
             }
-            if (!hidden.isPresent()) {
-                return;
-            }
-            if (!hidden.get()) {
-                throw new IllegalArgumentException("org.dressdiscover.api.models.institution.Institution.hidden: not true");
+            if (hidden.isPresent()) {
+                if (!hidden.get()) {
+                    throw new IllegalArgumentException("org.dressdiscover.api.models.institution.Institution: hidden: not true");
+                }
             }
         }
 
@@ -590,17 +574,11 @@ public final class Institution implements org.thryft.waf.api.models.Model {
             if (locations == null) {
                 throw new NullPointerException("org.dressdiscover.api.models.institution.Institution: locations is null");
             }
-            if (!locations.isPresent()) {
-                return;
-            }
         }
 
         public static void validateUrl(final com.google.common.base.Optional<org.thryft.native_.Url> url) {
             if (url == null) {
                 throw new NullPointerException("org.dressdiscover.api.models.institution.Institution: url is null");
-            }
-            if (!url.isPresent()) {
-                return;
             }
         }
     }

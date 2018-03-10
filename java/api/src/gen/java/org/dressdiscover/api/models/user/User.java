@@ -312,10 +312,10 @@ public final class User implements org.thryft.waf.api.models.Model {
                 throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.EMAIL_ADDRESS, "org.dressdiscover.api.models.user.User: emailAddress is null");
             }
             if (!emailAddress.matches("[a-zA-Z0-9\\+\\.\\_\\%\\-\\+]{1,256}\\@[a-zA-Z0-9][a-zA-Z0-9\\-]{0,64}(\\.[a-zA-Z0-9][a-zA-Z0-9\\-]{0,25})+")) {
-                throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.EMAIL_ADDRESS, "org.dressdiscover.api.models.user.User.emailAddress: not a valid email address");
+                throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.EMAIL_ADDRESS, "org.dressdiscover.api.models.user.User: emailAddress: not a valid email address");
             }
             if (emailAddress.isEmpty()) {
-                throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.EMAIL_ADDRESS, "org.dressdiscover.api.models.user.User.emailAddress: less than min length 1");
+                throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.EMAIL_ADDRESS, "org.dressdiscover.api.models.user.User: emailAddress: less than min length 1");
             }
             {
                 final int __strLen = emailAddress.length();
@@ -327,7 +327,7 @@ public final class User implements org.thryft.waf.api.models.Model {
                     }
                 }
                 if (__blank) {
-                    throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.EMAIL_ADDRESS, String.format("org.dressdiscover.api.models.user.User.emailAddress: blank '%s' (length=%d)", emailAddress, __strLen));
+                    throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.EMAIL_ADDRESS, String.format("org.dressdiscover.api.models.user.User: emailAddress: blank '%s' (length=%d)", emailAddress, __strLen));
                 }
             }
         }
@@ -350,10 +350,10 @@ public final class User implements org.thryft.waf.api.models.Model {
                 throw new NullPointerException("org.dressdiscover.api.models.user.User: emailAddress is null");
             }
             if (!emailAddress.matches("[a-zA-Z0-9\\+\\.\\_\\%\\-\\+]{1,256}\\@[a-zA-Z0-9][a-zA-Z0-9\\-]{0,64}(\\.[a-zA-Z0-9][a-zA-Z0-9\\-]{0,25})+")) {
-                throw new IllegalArgumentException("org.dressdiscover.api.models.user.User.emailAddress: not a valid email address");
+                throw new IllegalArgumentException("org.dressdiscover.api.models.user.User: emailAddress: not a valid email address");
             }
             if (emailAddress.isEmpty()) {
-                throw new IllegalArgumentException("org.dressdiscover.api.models.user.User.emailAddress: less than min length 1");
+                throw new IllegalArgumentException("org.dressdiscover.api.models.user.User: emailAddress: less than min length 1");
             }
             {
                 final int __strLen = emailAddress.length();
@@ -365,7 +365,7 @@ public final class User implements org.thryft.waf.api.models.Model {
                     }
                 }
                 if (__blank) {
-                    throw new IllegalArgumentException(String.format("org.dressdiscover.api.models.user.User.emailAddress: blank '%s' (length=%d)", emailAddress, __strLen));
+                    throw new IllegalArgumentException(String.format("org.dressdiscover.api.models.user.User: emailAddress: blank '%s' (length=%d)", emailAddress, __strLen));
                 }
             }
         }

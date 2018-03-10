@@ -349,7 +349,7 @@ public final class Title implements org.dressdiscover.api.vocabularies.vra_core.
                 throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.TEXT, "org.dressdiscover.api.vocabularies.vra_core.title.Title: text is null");
             }
             if (text.isEmpty()) {
-                throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.TEXT, "org.dressdiscover.api.vocabularies.vra_core.title.Title.text: less than min length 1");
+                throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.TEXT, "org.dressdiscover.api.vocabularies.vra_core.title.Title: text: less than min length 1");
             }
         }
 
@@ -363,11 +363,10 @@ public final class Title implements org.dressdiscover.api.vocabularies.vra_core.
             if (pref == null) {
                 throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.PREF, "org.dressdiscover.api.vocabularies.vra_core.title.Title: pref is null");
             }
-            if (!pref.isPresent()) {
-                return;
-            }
-            if (!pref.get()) {
-                throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.PREF, "org.dressdiscover.api.vocabularies.vra_core.title.Title.pref: not true");
+            if (pref.isPresent()) {
+                if (!pref.get()) {
+                    throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.PREF, "org.dressdiscover.api.vocabularies.vra_core.title.Title: pref: not true");
+                }
             }
         }
     }
@@ -384,7 +383,7 @@ public final class Title implements org.dressdiscover.api.vocabularies.vra_core.
                 throw new NullPointerException("org.dressdiscover.api.vocabularies.vra_core.title.Title: text is null");
             }
             if (text.isEmpty()) {
-                throw new IllegalArgumentException("org.dressdiscover.api.vocabularies.vra_core.title.Title.text: less than min length 1");
+                throw new IllegalArgumentException("org.dressdiscover.api.vocabularies.vra_core.title.Title: text: less than min length 1");
             }
         }
 
@@ -398,11 +397,10 @@ public final class Title implements org.dressdiscover.api.vocabularies.vra_core.
             if (pref == null) {
                 throw new NullPointerException("org.dressdiscover.api.vocabularies.vra_core.title.Title: pref is null");
             }
-            if (!pref.isPresent()) {
-                return;
-            }
-            if (!pref.get()) {
-                throw new IllegalArgumentException("org.dressdiscover.api.vocabularies.vra_core.title.Title.pref: not true");
+            if (pref.isPresent()) {
+                if (!pref.get()) {
+                    throw new IllegalArgumentException("org.dressdiscover.api.vocabularies.vra_core.title.Title: pref: not true");
+                }
             }
         }
     }

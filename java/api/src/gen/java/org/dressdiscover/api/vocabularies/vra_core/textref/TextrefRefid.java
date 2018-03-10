@@ -351,7 +351,7 @@ public final class TextrefRefid implements org.thryft.Struct {
                 throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.TEXT, "org.dressdiscover.api.vocabularies.vra_core.textref.TextrefRefid: text is null");
             }
             if (text.isEmpty()) {
-                throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.TEXT, "org.dressdiscover.api.vocabularies.vra_core.textref.TextrefRefid.text: less than min length 1");
+                throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.TEXT, "org.dressdiscover.api.vocabularies.vra_core.textref.TextrefRefid: text: less than min length 1");
             }
         }
 
@@ -364,9 +364,6 @@ public final class TextrefRefid implements org.thryft.Struct {
         public static void validateHref(final com.google.common.base.Optional<org.thryft.native_.Url> href) throws org.thryft.protocol.InputProtocolException {
             if (href == null) {
                 throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.HREF, "org.dressdiscover.api.vocabularies.vra_core.textref.TextrefRefid: href is null");
-            }
-            if (!href.isPresent()) {
-                return;
             }
         }
     }
@@ -383,7 +380,7 @@ public final class TextrefRefid implements org.thryft.Struct {
                 throw new NullPointerException("org.dressdiscover.api.vocabularies.vra_core.textref.TextrefRefid: text is null");
             }
             if (text.isEmpty()) {
-                throw new IllegalArgumentException("org.dressdiscover.api.vocabularies.vra_core.textref.TextrefRefid.text: less than min length 1");
+                throw new IllegalArgumentException("org.dressdiscover.api.vocabularies.vra_core.textref.TextrefRefid: text: less than min length 1");
             }
         }
 
@@ -396,9 +393,6 @@ public final class TextrefRefid implements org.thryft.Struct {
         public static void validateHref(final com.google.common.base.Optional<org.thryft.native_.Url> href) {
             if (href == null) {
                 throw new NullPointerException("org.dressdiscover.api.vocabularies.vra_core.textref.TextrefRefid: href is null");
-            }
-            if (!href.isPresent()) {
-                return;
             }
         }
     }

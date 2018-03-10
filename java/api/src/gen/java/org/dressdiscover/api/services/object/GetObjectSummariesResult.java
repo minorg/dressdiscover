@@ -391,9 +391,6 @@ public final class GetObjectSummariesResult implements org.thryft.Struct {
             if (facets == null) {
                 throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.FACETS, "org.dressdiscover.api.services.object.GetObjectSummariesResult: facets is null");
             }
-            if (!facets.isPresent()) {
-                return;
-            }
         }
     }
 
@@ -416,9 +413,6 @@ public final class GetObjectSummariesResult implements org.thryft.Struct {
         public static void validateFacets(final com.google.common.base.Optional<org.dressdiscover.api.models.object.ObjectFacets> facets) {
             if (facets == null) {
                 throw new NullPointerException("org.dressdiscover.api.services.object.GetObjectSummariesResult: facets is null");
-            }
-            if (!facets.isPresent()) {
-                return;
             }
         }
     }

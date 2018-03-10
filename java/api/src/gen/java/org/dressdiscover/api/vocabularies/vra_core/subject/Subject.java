@@ -312,7 +312,7 @@ public final class Subject implements org.dressdiscover.api.vocabularies.vra_cor
                 throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.TERMS, "org.dressdiscover.api.vocabularies.vra_core.subject.Subject: terms is null");
             }
             if (terms.isEmpty()) {
-                throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.TERMS, "org.dressdiscover.api.vocabularies.vra_core.subject.Subject.terms: less than min length 1");
+                throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.TERMS, "org.dressdiscover.api.vocabularies.vra_core.subject.Subject: terms: less than min length 1");
             }
         }
     }
@@ -327,7 +327,7 @@ public final class Subject implements org.dressdiscover.api.vocabularies.vra_cor
                 throw new NullPointerException("org.dressdiscover.api.vocabularies.vra_core.subject.Subject: terms is null");
             }
             if (terms.isEmpty()) {
-                throw new IllegalArgumentException("org.dressdiscover.api.vocabularies.vra_core.subject.Subject.terms: less than min length 1");
+                throw new IllegalArgumentException("org.dressdiscover.api.vocabularies.vra_core.subject.Subject: terms: less than min length 1");
             }
         }
     }

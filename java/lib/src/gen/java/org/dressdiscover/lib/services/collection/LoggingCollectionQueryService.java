@@ -25,7 +25,7 @@ public class LoggingCollectionQueryService implements org.dressdiscover.api.serv
     @Override
     public org.dressdiscover.api.models.collection.Collection getCollectionById(final org.dressdiscover.api.models.collection.CollectionId id) throws org.dressdiscover.api.services.IoException, org.dressdiscover.api.services.collection.NoSuchCollectionException, org.dressdiscover.api.services.institution.NoSuchInstitutionException {
         final Object[] __logMessageArgs = new Object[2];
-        __logMessageArgs[0] = Messages.GetCollectionByIdRequest.create(id);
+        __logMessageArgs[0] = id;
 
         __logMessageArgs[__logMessageArgs.length - 1] = PRE_RETURN_VALUE;
         logger.debug(CollectionQueryServiceLogMarkers.GET_COLLECTION_BY_ID, LogMessages.GET_COLLECTION_BY_ID, __logMessageArgs);
@@ -59,7 +59,7 @@ public class LoggingCollectionQueryService implements org.dressdiscover.api.serv
     @Override
     public com.google.common.collect.ImmutableList<org.dressdiscover.api.models.collection.Collection> getCollectionsByIds(final com.google.common.collect.ImmutableList<org.dressdiscover.api.models.collection.CollectionId> ids) throws org.dressdiscover.api.services.IoException, org.dressdiscover.api.services.collection.NoSuchCollectionException, org.dressdiscover.api.services.institution.NoSuchInstitutionException {
         final Object[] __logMessageArgs = new Object[2];
-        __logMessageArgs[0] = Messages.GetCollectionsByIdsRequest.create(ids);
+        __logMessageArgs[0] = ids;
 
         __logMessageArgs[__logMessageArgs.length - 1] = PRE_RETURN_VALUE;
         logger.debug(CollectionQueryServiceLogMarkers.GET_COLLECTIONS_BY_IDS, LogMessages.GET_COLLECTIONS_BY_IDS, __logMessageArgs);
@@ -93,7 +93,7 @@ public class LoggingCollectionQueryService implements org.dressdiscover.api.serv
     @Override
     public com.google.common.collect.ImmutableList<org.dressdiscover.api.models.collection.CollectionEntry> getCollectionsByInstitutionId(final org.dressdiscover.api.models.institution.InstitutionId institutionId) throws org.dressdiscover.api.services.IoException, org.dressdiscover.api.services.institution.NoSuchInstitutionException {
         final Object[] __logMessageArgs = new Object[2];
-        __logMessageArgs[0] = Messages.GetCollectionsByInstitutionIdRequest.create(institutionId);
+        __logMessageArgs[0] = institutionId;
 
         __logMessageArgs[__logMessageArgs.length - 1] = PRE_RETURN_VALUE;
         logger.debug(CollectionQueryServiceLogMarkers.GET_COLLECTIONS_BY_INSTITUTION_ID, LogMessages.GET_COLLECTIONS_BY_INSTITUTION_ID, __logMessageArgs);
@@ -124,9 +124,9 @@ public class LoggingCollectionQueryService implements org.dressdiscover.api.serv
     private final org.dressdiscover.api.services.collection.CollectionQueryService delegate;
 
     private final static class LogMessages {
-        public final static String GET_COLLECTION_BY_ID = "get_collection_by_id({}) -> {}";
-        public final static String GET_COLLECTIONS_BY_IDS = "get_collections_by_ids({}) -> {}";
-        public final static String GET_COLLECTIONS_BY_INSTITUTION_ID = "get_collections_by_institution_id({}) -> {}";
+        public final static String GET_COLLECTION_BY_ID = "get_collection_by_id(id={}) -> {}";
+        public final static String GET_COLLECTIONS_BY_IDS = "get_collections_by_ids(ids={}) -> {}";
+        public final static String GET_COLLECTIONS_BY_INSTITUTION_ID = "get_collections_by_institution_id(institutionId={}) -> {}";
     }
 
     public final static String PRE_RETURN_VALUE = "...";

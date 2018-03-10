@@ -452,20 +452,16 @@ public final class GetObjectSummariesOptions implements org.thryft.Struct {
             if (from_ == null) {
                 throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.FROM_, "org.dressdiscover.api.services.object.GetObjectSummariesOptions: from_ is null");
             }
-            if (!from_.isPresent()) {
-                return;
-            }
         }
 
         public static void validateIncludeFacets(final com.google.common.base.Optional<Boolean> includeFacets) throws org.thryft.protocol.InputProtocolException {
             if (includeFacets == null) {
                 throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.INCLUDE_FACETS, "org.dressdiscover.api.services.object.GetObjectSummariesOptions: includeFacets is null");
             }
-            if (!includeFacets.isPresent()) {
-                return;
-            }
-            if (!includeFacets.get()) {
-                throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.INCLUDE_FACETS, "org.dressdiscover.api.services.object.GetObjectSummariesOptions.includeFacets: not true");
+            if (includeFacets.isPresent()) {
+                if (!includeFacets.get()) {
+                    throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.INCLUDE_FACETS, "org.dressdiscover.api.services.object.GetObjectSummariesOptions: includeFacets: not true");
+                }
             }
         }
 
@@ -473,20 +469,16 @@ public final class GetObjectSummariesOptions implements org.thryft.Struct {
             if (size == null) {
                 throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.SIZE, "org.dressdiscover.api.services.object.GetObjectSummariesOptions: size is null");
             }
-            if (!size.isPresent()) {
-                return;
-            }
         }
 
         public static void validateSorts(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<org.dressdiscover.api.services.object.ObjectSummarySort>> sorts) throws org.thryft.protocol.InputProtocolException {
             if (sorts == null) {
                 throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.SORTS, "org.dressdiscover.api.services.object.GetObjectSummariesOptions: sorts is null");
             }
-            if (!sorts.isPresent()) {
-                return;
-            }
-            if (sorts.get().isEmpty()) {
-                throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.SORTS, "org.dressdiscover.api.services.object.GetObjectSummariesOptions.sorts: less than min length 1");
+            if (sorts.isPresent()) {
+                if (sorts.get().isEmpty()) {
+                    throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.SORTS, "org.dressdiscover.api.services.object.GetObjectSummariesOptions: sorts: less than min length 1");
+                }
             }
         }
     }
@@ -503,20 +495,16 @@ public final class GetObjectSummariesOptions implements org.thryft.Struct {
             if (from_ == null) {
                 throw new NullPointerException("org.dressdiscover.api.services.object.GetObjectSummariesOptions: from_ is null");
             }
-            if (!from_.isPresent()) {
-                return;
-            }
         }
 
         public static void validateIncludeFacets(final com.google.common.base.Optional<Boolean> includeFacets) {
             if (includeFacets == null) {
                 throw new NullPointerException("org.dressdiscover.api.services.object.GetObjectSummariesOptions: includeFacets is null");
             }
-            if (!includeFacets.isPresent()) {
-                return;
-            }
-            if (!includeFacets.get()) {
-                throw new IllegalArgumentException("org.dressdiscover.api.services.object.GetObjectSummariesOptions.includeFacets: not true");
+            if (includeFacets.isPresent()) {
+                if (!includeFacets.get()) {
+                    throw new IllegalArgumentException("org.dressdiscover.api.services.object.GetObjectSummariesOptions: includeFacets: not true");
+                }
             }
         }
 
@@ -524,20 +512,16 @@ public final class GetObjectSummariesOptions implements org.thryft.Struct {
             if (size == null) {
                 throw new NullPointerException("org.dressdiscover.api.services.object.GetObjectSummariesOptions: size is null");
             }
-            if (!size.isPresent()) {
-                return;
-            }
         }
 
         public static void validateSorts(final com.google.common.base.Optional<com.google.common.collect.ImmutableList<org.dressdiscover.api.services.object.ObjectSummarySort>> sorts) {
             if (sorts == null) {
                 throw new NullPointerException("org.dressdiscover.api.services.object.GetObjectSummariesOptions: sorts is null");
             }
-            if (!sorts.isPresent()) {
-                return;
-            }
-            if (sorts.get().isEmpty()) {
-                throw new IllegalArgumentException("org.dressdiscover.api.services.object.GetObjectSummariesOptions.sorts: less than min length 1");
+            if (sorts.isPresent()) {
+                if (sorts.get().isEmpty()) {
+                    throw new IllegalArgumentException("org.dressdiscover.api.services.object.GetObjectSummariesOptions: sorts: less than min length 1");
+                }
             }
         }
     }

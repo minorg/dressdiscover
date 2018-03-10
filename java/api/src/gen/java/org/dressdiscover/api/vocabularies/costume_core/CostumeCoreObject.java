@@ -720,11 +720,10 @@ public final class CostumeCoreObject implements org.thryft.Struct {
             if (closureSets == null) {
                 throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.CLOSURE_SETS, "org.dressdiscover.api.vocabularies.costume_core.CostumeCoreObject: closureSets is null");
             }
-            if (!closureSets.isPresent()) {
-                return;
-            }
-            if (closureSets.get().isEmpty()) {
-                throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.CLOSURE_SETS, "org.dressdiscover.api.vocabularies.costume_core.CostumeCoreObject.closureSets: less than min length 1");
+            if (closureSets.isPresent()) {
+                if (closureSets.get().isEmpty()) {
+                    throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.CLOSURE_SETS, "org.dressdiscover.api.vocabularies.costume_core.CostumeCoreObject: closureSets: less than min length 1");
+                }
             }
         }
 
@@ -732,11 +731,10 @@ public final class CostumeCoreObject implements org.thryft.Struct {
             if (colorSets == null) {
                 throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.COLOR_SETS, "org.dressdiscover.api.vocabularies.costume_core.CostumeCoreObject: colorSets is null");
             }
-            if (!colorSets.isPresent()) {
-                return;
-            }
-            if (colorSets.get().isEmpty()) {
-                throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.COLOR_SETS, "org.dressdiscover.api.vocabularies.costume_core.CostumeCoreObject.colorSets: less than min length 1");
+            if (colorSets.isPresent()) {
+                if (colorSets.get().isEmpty()) {
+                    throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.COLOR_SETS, "org.dressdiscover.api.vocabularies.costume_core.CostumeCoreObject: colorSets: less than min length 1");
+                }
             }
         }
 
@@ -744,11 +742,10 @@ public final class CostumeCoreObject implements org.thryft.Struct {
             if (componentSets == null) {
                 throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.COMPONENT_SETS, "org.dressdiscover.api.vocabularies.costume_core.CostumeCoreObject: componentSets is null");
             }
-            if (!componentSets.isPresent()) {
-                return;
-            }
-            if (componentSets.get().isEmpty()) {
-                throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.COMPONENT_SETS, "org.dressdiscover.api.vocabularies.costume_core.CostumeCoreObject.componentSets: less than min length 1");
+            if (componentSets.isPresent()) {
+                if (componentSets.get().isEmpty()) {
+                    throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.COMPONENT_SETS, "org.dressdiscover.api.vocabularies.costume_core.CostumeCoreObject: componentSets: less than min length 1");
+                }
             }
         }
 
@@ -756,17 +753,11 @@ public final class CostumeCoreObject implements org.thryft.Struct {
             if (condition == null) {
                 throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.CONDITION, "org.dressdiscover.api.vocabularies.costume_core.CostumeCoreObject: condition is null");
             }
-            if (!condition.isPresent()) {
-                return;
-            }
         }
 
         public static void validateGender(final com.google.common.base.Optional<org.dressdiscover.api.vocabularies.costume_core.gender.Gender> gender) throws org.thryft.protocol.InputProtocolException {
             if (gender == null) {
                 throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.GENDER, "org.dressdiscover.api.vocabularies.costume_core.CostumeCoreObject: gender is null");
-            }
-            if (!gender.isPresent()) {
-                return;
             }
         }
 
@@ -774,11 +765,10 @@ public final class CostumeCoreObject implements org.thryft.Struct {
             if (quantity == null) {
                 throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.QUANTITY, "org.dressdiscover.api.vocabularies.costume_core.CostumeCoreObject: quantity is null");
             }
-            if (!quantity.isPresent()) {
-                return;
-            }
-            if (quantity.get().intValue() < 1) {
-                throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.QUANTITY, "org.dressdiscover.api.vocabularies.costume_core.CostumeCoreObject.quantity: less than min 1");
+            if (quantity.isPresent()) {
+                if (quantity.get().intValue() < 1) {
+                    throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.QUANTITY, "org.dressdiscover.api.vocabularies.costume_core.CostumeCoreObject: quantity: less than min 1");
+                }
             }
         }
 
@@ -786,20 +776,16 @@ public final class CostumeCoreObject implements org.thryft.Struct {
             if (structureSets == null) {
                 throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.STRUCTURE_SETS, "org.dressdiscover.api.vocabularies.costume_core.CostumeCoreObject: structureSets is null");
             }
-            if (!structureSets.isPresent()) {
-                return;
-            }
-            if (structureSets.get().isEmpty()) {
-                throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.STRUCTURE_SETS, "org.dressdiscover.api.vocabularies.costume_core.CostumeCoreObject.structureSets: less than min length 1");
+            if (structureSets.isPresent()) {
+                if (structureSets.get().isEmpty()) {
+                    throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.STRUCTURE_SETS, "org.dressdiscover.api.vocabularies.costume_core.CostumeCoreObject: structureSets: less than min length 1");
+                }
             }
         }
 
         public static void validateViewType(final com.google.common.base.Optional<org.dressdiscover.api.vocabularies.costume_core.view_type.ViewType> viewType) throws org.thryft.protocol.InputProtocolException {
             if (viewType == null) {
                 throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.VIEW_TYPE, "org.dressdiscover.api.vocabularies.costume_core.CostumeCoreObject: viewType is null");
-            }
-            if (!viewType.isPresent()) {
-                return;
             }
         }
     }
@@ -820,11 +806,10 @@ public final class CostumeCoreObject implements org.thryft.Struct {
             if (closureSets == null) {
                 throw new NullPointerException("org.dressdiscover.api.vocabularies.costume_core.CostumeCoreObject: closureSets is null");
             }
-            if (!closureSets.isPresent()) {
-                return;
-            }
-            if (closureSets.get().isEmpty()) {
-                throw new IllegalArgumentException("org.dressdiscover.api.vocabularies.costume_core.CostumeCoreObject.closureSets: less than min length 1");
+            if (closureSets.isPresent()) {
+                if (closureSets.get().isEmpty()) {
+                    throw new IllegalArgumentException("org.dressdiscover.api.vocabularies.costume_core.CostumeCoreObject: closureSets: less than min length 1");
+                }
             }
         }
 
@@ -832,11 +817,10 @@ public final class CostumeCoreObject implements org.thryft.Struct {
             if (colorSets == null) {
                 throw new NullPointerException("org.dressdiscover.api.vocabularies.costume_core.CostumeCoreObject: colorSets is null");
             }
-            if (!colorSets.isPresent()) {
-                return;
-            }
-            if (colorSets.get().isEmpty()) {
-                throw new IllegalArgumentException("org.dressdiscover.api.vocabularies.costume_core.CostumeCoreObject.colorSets: less than min length 1");
+            if (colorSets.isPresent()) {
+                if (colorSets.get().isEmpty()) {
+                    throw new IllegalArgumentException("org.dressdiscover.api.vocabularies.costume_core.CostumeCoreObject: colorSets: less than min length 1");
+                }
             }
         }
 
@@ -844,11 +828,10 @@ public final class CostumeCoreObject implements org.thryft.Struct {
             if (componentSets == null) {
                 throw new NullPointerException("org.dressdiscover.api.vocabularies.costume_core.CostumeCoreObject: componentSets is null");
             }
-            if (!componentSets.isPresent()) {
-                return;
-            }
-            if (componentSets.get().isEmpty()) {
-                throw new IllegalArgumentException("org.dressdiscover.api.vocabularies.costume_core.CostumeCoreObject.componentSets: less than min length 1");
+            if (componentSets.isPresent()) {
+                if (componentSets.get().isEmpty()) {
+                    throw new IllegalArgumentException("org.dressdiscover.api.vocabularies.costume_core.CostumeCoreObject: componentSets: less than min length 1");
+                }
             }
         }
 
@@ -856,17 +839,11 @@ public final class CostumeCoreObject implements org.thryft.Struct {
             if (condition == null) {
                 throw new NullPointerException("org.dressdiscover.api.vocabularies.costume_core.CostumeCoreObject: condition is null");
             }
-            if (!condition.isPresent()) {
-                return;
-            }
         }
 
         public static void validateGender(final com.google.common.base.Optional<org.dressdiscover.api.vocabularies.costume_core.gender.Gender> gender) {
             if (gender == null) {
                 throw new NullPointerException("org.dressdiscover.api.vocabularies.costume_core.CostumeCoreObject: gender is null");
-            }
-            if (!gender.isPresent()) {
-                return;
             }
         }
 
@@ -874,11 +851,10 @@ public final class CostumeCoreObject implements org.thryft.Struct {
             if (quantity == null) {
                 throw new NullPointerException("org.dressdiscover.api.vocabularies.costume_core.CostumeCoreObject: quantity is null");
             }
-            if (!quantity.isPresent()) {
-                return;
-            }
-            if (quantity.get().intValue() < 1) {
-                throw new IllegalArgumentException("org.dressdiscover.api.vocabularies.costume_core.CostumeCoreObject.quantity: less than min 1");
+            if (quantity.isPresent()) {
+                if (quantity.get().intValue() < 1) {
+                    throw new IllegalArgumentException("org.dressdiscover.api.vocabularies.costume_core.CostumeCoreObject: quantity: less than min 1");
+                }
             }
         }
 
@@ -886,20 +862,16 @@ public final class CostumeCoreObject implements org.thryft.Struct {
             if (structureSets == null) {
                 throw new NullPointerException("org.dressdiscover.api.vocabularies.costume_core.CostumeCoreObject: structureSets is null");
             }
-            if (!structureSets.isPresent()) {
-                return;
-            }
-            if (structureSets.get().isEmpty()) {
-                throw new IllegalArgumentException("org.dressdiscover.api.vocabularies.costume_core.CostumeCoreObject.structureSets: less than min length 1");
+            if (structureSets.isPresent()) {
+                if (structureSets.get().isEmpty()) {
+                    throw new IllegalArgumentException("org.dressdiscover.api.vocabularies.costume_core.CostumeCoreObject: structureSets: less than min length 1");
+                }
             }
         }
 
         public static void validateViewType(final com.google.common.base.Optional<org.dressdiscover.api.vocabularies.costume_core.view_type.ViewType> viewType) {
             if (viewType == null) {
                 throw new NullPointerException("org.dressdiscover.api.vocabularies.costume_core.CostumeCoreObject: viewType is null");
-            }
-            if (!viewType.isPresent()) {
-                return;
             }
         }
     }

@@ -11,13 +11,26 @@ public class ValidatingInstitutionCommandService implements org.dressdiscover.ap
 
     @Override
     public final void deleteInstitutionById(final org.dressdiscover.api.models.institution.InstitutionId id) throws org.dressdiscover.api.services.IoException, org.dressdiscover.api.services.institution.NoSuchInstitutionException {
-        org.dressdiscover.api.services.institution.InstitutionCommandService.Messages.DeleteInstitutionByIdRequest.UncheckedValidator.validate(id);
+        {
+            if (id == null) {
+                throw new NullPointerException("org.dressdiscover.api.services.institution.ValidatingInstitutionCommandService.deleteInstitutionById: id is null");
+            }
+        }
         delegate.deleteInstitutionById(id);
     }
 
     @Override
     public final void putInstitution(final org.dressdiscover.api.models.institution.InstitutionId id, final org.dressdiscover.api.models.institution.Institution institution) throws org.dressdiscover.api.services.IoException {
-        org.dressdiscover.api.services.institution.InstitutionCommandService.Messages.PutInstitutionRequest.UncheckedValidator.validate(id, institution);
+        {
+            if (id == null) {
+                throw new NullPointerException("org.dressdiscover.api.services.institution.ValidatingInstitutionCommandService.putInstitution: id is null");
+            }
+        }
+        {
+            if (institution == null) {
+                throw new NullPointerException("org.dressdiscover.api.services.institution.ValidatingInstitutionCommandService.putInstitution: institution is null");
+            }
+        }
         delegate.putInstitution(id, institution);
     }
 

@@ -342,7 +342,7 @@ public final class InscriptionText implements org.thryft.Struct {
                 throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.TEXT, "org.dressdiscover.api.vocabularies.vra_core.inscription.InscriptionText: text is null");
             }
             if (text.isEmpty()) {
-                throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.TEXT, "org.dressdiscover.api.vocabularies.vra_core.inscription.InscriptionText.text: less than min length 1");
+                throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.TEXT, "org.dressdiscover.api.vocabularies.vra_core.inscription.InscriptionText: text: less than min length 1");
             }
         }
 
@@ -356,14 +356,13 @@ public final class InscriptionText implements org.thryft.Struct {
             if (lang == null) {
                 throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.LANG, "org.dressdiscover.api.vocabularies.vra_core.inscription.InscriptionText: lang is null");
             }
-            if (!lang.isPresent()) {
-                return;
-            }
-            if (lang.get().length() < 2) {
-                throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.LANG, "org.dressdiscover.api.vocabularies.vra_core.inscription.InscriptionText.lang: less than min length 2");
-            }
-            if (lang.get().length() > 3) {
-                throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.LANG, "org.dressdiscover.api.vocabularies.vra_core.inscription.InscriptionText.lang: greater than max length 3");
+            if (lang.isPresent()) {
+                if (lang.get().length() < 2) {
+                    throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.LANG, "org.dressdiscover.api.vocabularies.vra_core.inscription.InscriptionText: lang: less than min length 2");
+                }
+                if (lang.get().length() > 3) {
+                    throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.LANG, "org.dressdiscover.api.vocabularies.vra_core.inscription.InscriptionText: lang: greater than max length 3");
+                }
             }
         }
     }
@@ -380,7 +379,7 @@ public final class InscriptionText implements org.thryft.Struct {
                 throw new NullPointerException("org.dressdiscover.api.vocabularies.vra_core.inscription.InscriptionText: text is null");
             }
             if (text.isEmpty()) {
-                throw new IllegalArgumentException("org.dressdiscover.api.vocabularies.vra_core.inscription.InscriptionText.text: less than min length 1");
+                throw new IllegalArgumentException("org.dressdiscover.api.vocabularies.vra_core.inscription.InscriptionText: text: less than min length 1");
             }
         }
 
@@ -394,14 +393,13 @@ public final class InscriptionText implements org.thryft.Struct {
             if (lang == null) {
                 throw new NullPointerException("org.dressdiscover.api.vocabularies.vra_core.inscription.InscriptionText: lang is null");
             }
-            if (!lang.isPresent()) {
-                return;
-            }
-            if (lang.get().length() < 2) {
-                throw new IllegalArgumentException("org.dressdiscover.api.vocabularies.vra_core.inscription.InscriptionText.lang: less than min length 2");
-            }
-            if (lang.get().length() > 3) {
-                throw new IllegalArgumentException("org.dressdiscover.api.vocabularies.vra_core.inscription.InscriptionText.lang: greater than max length 3");
+            if (lang.isPresent()) {
+                if (lang.get().length() < 2) {
+                    throw new IllegalArgumentException("org.dressdiscover.api.vocabularies.vra_core.inscription.InscriptionText: lang: less than min length 2");
+                }
+                if (lang.get().length() > 3) {
+                    throw new IllegalArgumentException("org.dressdiscover.api.vocabularies.vra_core.inscription.InscriptionText: lang: greater than max length 3");
+                }
             }
         }
     }

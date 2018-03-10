@@ -283,9 +283,6 @@ public final class NoSuchInstitutionException extends org.thryft.waf.api.service
             if (id == null) {
                 throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.ID, "org.dressdiscover.api.services.institution.NoSuchInstitutionException: id is null");
             }
-            if (!id.isPresent()) {
-                return;
-            }
         }
     }
 
@@ -297,9 +294,6 @@ public final class NoSuchInstitutionException extends org.thryft.waf.api.service
         public static void validateId(final com.google.common.base.Optional<org.dressdiscover.api.models.institution.InstitutionId> id) {
             if (id == null) {
                 throw new NullPointerException("org.dressdiscover.api.services.institution.NoSuchInstitutionException: id is null");
-            }
-            if (!id.isPresent()) {
-                return;
             }
         }
     }

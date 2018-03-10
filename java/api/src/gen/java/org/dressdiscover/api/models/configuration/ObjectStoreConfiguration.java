@@ -362,11 +362,10 @@ public final class ObjectStoreConfiguration implements org.thryft.Struct {
             if (parameters == null) {
                 throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.PARAMETERS, "org.dressdiscover.api.models.configuration.ObjectStoreConfiguration: parameters is null");
             }
-            if (!parameters.isPresent()) {
-                return;
-            }
-            if (parameters.get().isEmpty()) {
-                throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.PARAMETERS, "org.dressdiscover.api.models.configuration.ObjectStoreConfiguration.parameters: less than min length 1");
+            if (parameters.isPresent()) {
+                if (parameters.get().isEmpty()) {
+                    throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.PARAMETERS, "org.dressdiscover.api.models.configuration.ObjectStoreConfiguration: parameters: less than min length 1");
+                }
             }
         }
     }
@@ -387,11 +386,10 @@ public final class ObjectStoreConfiguration implements org.thryft.Struct {
             if (parameters == null) {
                 throw new NullPointerException("org.dressdiscover.api.models.configuration.ObjectStoreConfiguration: parameters is null");
             }
-            if (!parameters.isPresent()) {
-                return;
-            }
-            if (parameters.get().isEmpty()) {
-                throw new IllegalArgumentException("org.dressdiscover.api.models.configuration.ObjectStoreConfiguration.parameters: less than min length 1");
+            if (parameters.isPresent()) {
+                if (parameters.get().isEmpty()) {
+                    throw new IllegalArgumentException("org.dressdiscover.api.models.configuration.ObjectStoreConfiguration: parameters: less than min length 1");
+                }
             }
         }
     }

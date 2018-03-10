@@ -2000,11 +2000,10 @@ public final class ObjectFacetFilters implements org.thryft.Struct {
             if (excludeAll == null) {
                 throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.EXCLUDE_ALL, "org.dressdiscover.api.models.object.ObjectFacetFilters: excludeAll is null");
             }
-            if (!excludeAll.isPresent()) {
-                return;
-            }
-            if (!excludeAll.get()) {
-                throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.EXCLUDE_ALL, "org.dressdiscover.api.models.object.ObjectFacetFilters.excludeAll: not true");
+            if (excludeAll.isPresent()) {
+                if (!excludeAll.get()) {
+                    throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.EXCLUDE_ALL, "org.dressdiscover.api.models.object.ObjectFacetFilters: excludeAll: not true");
+                }
             }
         }
 
@@ -2012,11 +2011,10 @@ public final class ObjectFacetFilters implements org.thryft.Struct {
             if (excludeCategories == null) {
                 throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.EXCLUDE_CATEGORIES, "org.dressdiscover.api.models.object.ObjectFacetFilters: excludeCategories is null");
             }
-            if (!excludeCategories.isPresent()) {
-                return;
-            }
-            if (excludeCategories.get().isEmpty()) {
-                throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.EXCLUDE_CATEGORIES, "org.dressdiscover.api.models.object.ObjectFacetFilters.excludeCategories: less than min length 1");
+            if (excludeCategories.isPresent()) {
+                if (excludeCategories.get().isEmpty()) {
+                    throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.EXCLUDE_CATEGORIES, "org.dressdiscover.api.models.object.ObjectFacetFilters: excludeCategories: less than min length 1");
+                }
             }
         }
 
@@ -2024,11 +2022,10 @@ public final class ObjectFacetFilters implements org.thryft.Struct {
             if (excludeCollections == null) {
                 throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.EXCLUDE_COLLECTIONS, "org.dressdiscover.api.models.object.ObjectFacetFilters: excludeCollections is null");
             }
-            if (!excludeCollections.isPresent()) {
-                return;
-            }
-            if (excludeCollections.get().isEmpty()) {
-                throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.EXCLUDE_COLLECTIONS, "org.dressdiscover.api.models.object.ObjectFacetFilters.excludeCollections: less than min length 1");
+            if (excludeCollections.isPresent()) {
+                if (excludeCollections.get().isEmpty()) {
+                    throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.EXCLUDE_COLLECTIONS, "org.dressdiscover.api.models.object.ObjectFacetFilters: excludeCollections: less than min length 1");
+                }
             }
         }
 
@@ -2036,11 +2033,10 @@ public final class ObjectFacetFilters implements org.thryft.Struct {
             if (excludeColorTexts == null) {
                 throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.EXCLUDE_COLOR_TEXTS, "org.dressdiscover.api.models.object.ObjectFacetFilters: excludeColorTexts is null");
             }
-            if (!excludeColorTexts.isPresent()) {
-                return;
-            }
-            if (excludeColorTexts.get().isEmpty()) {
-                throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.EXCLUDE_COLOR_TEXTS, "org.dressdiscover.api.models.object.ObjectFacetFilters.excludeColorTexts: less than min length 1");
+            if (excludeColorTexts.isPresent()) {
+                if (excludeColorTexts.get().isEmpty()) {
+                    throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.EXCLUDE_COLOR_TEXTS, "org.dressdiscover.api.models.object.ObjectFacetFilters: excludeColorTexts: less than min length 1");
+                }
             }
         }
 
@@ -2048,11 +2044,10 @@ public final class ObjectFacetFilters implements org.thryft.Struct {
             if (excludeCulturalContextTexts == null) {
                 throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.EXCLUDE_CULTURAL_CONTEXT_TEXTS, "org.dressdiscover.api.models.object.ObjectFacetFilters: excludeCulturalContextTexts is null");
             }
-            if (!excludeCulturalContextTexts.isPresent()) {
-                return;
-            }
-            if (excludeCulturalContextTexts.get().isEmpty()) {
-                throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.EXCLUDE_CULTURAL_CONTEXT_TEXTS, "org.dressdiscover.api.models.object.ObjectFacetFilters.excludeCulturalContextTexts: less than min length 1");
+            if (excludeCulturalContextTexts.isPresent()) {
+                if (excludeCulturalContextTexts.get().isEmpty()) {
+                    throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.EXCLUDE_CULTURAL_CONTEXT_TEXTS, "org.dressdiscover.api.models.object.ObjectFacetFilters: excludeCulturalContextTexts: less than min length 1");
+                }
             }
         }
 
@@ -2060,11 +2055,10 @@ public final class ObjectFacetFilters implements org.thryft.Struct {
             if (excludeGenders == null) {
                 throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.EXCLUDE_GENDERS, "org.dressdiscover.api.models.object.ObjectFacetFilters: excludeGenders is null");
             }
-            if (!excludeGenders.isPresent()) {
-                return;
-            }
-            if (excludeGenders.get().isEmpty()) {
-                throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.EXCLUDE_GENDERS, "org.dressdiscover.api.models.object.ObjectFacetFilters.excludeGenders: less than min length 1");
+            if (excludeGenders.isPresent()) {
+                if (excludeGenders.get().isEmpty()) {
+                    throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.EXCLUDE_GENDERS, "org.dressdiscover.api.models.object.ObjectFacetFilters: excludeGenders: less than min length 1");
+                }
             }
         }
 
@@ -2072,11 +2066,10 @@ public final class ObjectFacetFilters implements org.thryft.Struct {
             if (excludeInstitutions == null) {
                 throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.EXCLUDE_INSTITUTIONS, "org.dressdiscover.api.models.object.ObjectFacetFilters: excludeInstitutions is null");
             }
-            if (!excludeInstitutions.isPresent()) {
-                return;
-            }
-            if (excludeInstitutions.get().isEmpty()) {
-                throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.EXCLUDE_INSTITUTIONS, "org.dressdiscover.api.models.object.ObjectFacetFilters.excludeInstitutions: less than min length 1");
+            if (excludeInstitutions.isPresent()) {
+                if (excludeInstitutions.get().isEmpty()) {
+                    throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.EXCLUDE_INSTITUTIONS, "org.dressdiscover.api.models.object.ObjectFacetFilters: excludeInstitutions: less than min length 1");
+                }
             }
         }
 
@@ -2084,11 +2077,10 @@ public final class ObjectFacetFilters implements org.thryft.Struct {
             if (excludeLocationNameTexts == null) {
                 throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.EXCLUDE_LOCATION_NAME_TEXTS, "org.dressdiscover.api.models.object.ObjectFacetFilters: excludeLocationNameTexts is null");
             }
-            if (!excludeLocationNameTexts.isPresent()) {
-                return;
-            }
-            if (excludeLocationNameTexts.get().isEmpty()) {
-                throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.EXCLUDE_LOCATION_NAME_TEXTS, "org.dressdiscover.api.models.object.ObjectFacetFilters.excludeLocationNameTexts: less than min length 1");
+            if (excludeLocationNameTexts.isPresent()) {
+                if (excludeLocationNameTexts.get().isEmpty()) {
+                    throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.EXCLUDE_LOCATION_NAME_TEXTS, "org.dressdiscover.api.models.object.ObjectFacetFilters: excludeLocationNameTexts: less than min length 1");
+                }
             }
         }
 
@@ -2096,11 +2088,10 @@ public final class ObjectFacetFilters implements org.thryft.Struct {
             if (excludeMaterialTexts == null) {
                 throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.EXCLUDE_MATERIAL_TEXTS, "org.dressdiscover.api.models.object.ObjectFacetFilters: excludeMaterialTexts is null");
             }
-            if (!excludeMaterialTexts.isPresent()) {
-                return;
-            }
-            if (excludeMaterialTexts.get().isEmpty()) {
-                throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.EXCLUDE_MATERIAL_TEXTS, "org.dressdiscover.api.models.object.ObjectFacetFilters.excludeMaterialTexts: less than min length 1");
+            if (excludeMaterialTexts.isPresent()) {
+                if (excludeMaterialTexts.get().isEmpty()) {
+                    throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.EXCLUDE_MATERIAL_TEXTS, "org.dressdiscover.api.models.object.ObjectFacetFilters: excludeMaterialTexts: less than min length 1");
+                }
             }
         }
 
@@ -2108,11 +2099,10 @@ public final class ObjectFacetFilters implements org.thryft.Struct {
             if (excludeSubjectTermTexts == null) {
                 throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.EXCLUDE_SUBJECT_TERM_TEXTS, "org.dressdiscover.api.models.object.ObjectFacetFilters: excludeSubjectTermTexts is null");
             }
-            if (!excludeSubjectTermTexts.isPresent()) {
-                return;
-            }
-            if (excludeSubjectTermTexts.get().isEmpty()) {
-                throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.EXCLUDE_SUBJECT_TERM_TEXTS, "org.dressdiscover.api.models.object.ObjectFacetFilters.excludeSubjectTermTexts: less than min length 1");
+            if (excludeSubjectTermTexts.isPresent()) {
+                if (excludeSubjectTermTexts.get().isEmpty()) {
+                    throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.EXCLUDE_SUBJECT_TERM_TEXTS, "org.dressdiscover.api.models.object.ObjectFacetFilters: excludeSubjectTermTexts: less than min length 1");
+                }
             }
         }
 
@@ -2120,11 +2110,10 @@ public final class ObjectFacetFilters implements org.thryft.Struct {
             if (excludeTechniqueTexts == null) {
                 throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.EXCLUDE_TECHNIQUE_TEXTS, "org.dressdiscover.api.models.object.ObjectFacetFilters: excludeTechniqueTexts is null");
             }
-            if (!excludeTechniqueTexts.isPresent()) {
-                return;
-            }
-            if (excludeTechniqueTexts.get().isEmpty()) {
-                throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.EXCLUDE_TECHNIQUE_TEXTS, "org.dressdiscover.api.models.object.ObjectFacetFilters.excludeTechniqueTexts: less than min length 1");
+            if (excludeTechniqueTexts.isPresent()) {
+                if (excludeTechniqueTexts.get().isEmpty()) {
+                    throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.EXCLUDE_TECHNIQUE_TEXTS, "org.dressdiscover.api.models.object.ObjectFacetFilters: excludeTechniqueTexts: less than min length 1");
+                }
             }
         }
 
@@ -2132,11 +2121,10 @@ public final class ObjectFacetFilters implements org.thryft.Struct {
             if (excludeWorkTypeTexts == null) {
                 throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.EXCLUDE_WORK_TYPE_TEXTS, "org.dressdiscover.api.models.object.ObjectFacetFilters: excludeWorkTypeTexts is null");
             }
-            if (!excludeWorkTypeTexts.isPresent()) {
-                return;
-            }
-            if (excludeWorkTypeTexts.get().isEmpty()) {
-                throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.EXCLUDE_WORK_TYPE_TEXTS, "org.dressdiscover.api.models.object.ObjectFacetFilters.excludeWorkTypeTexts: less than min length 1");
+            if (excludeWorkTypeTexts.isPresent()) {
+                if (excludeWorkTypeTexts.get().isEmpty()) {
+                    throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.EXCLUDE_WORK_TYPE_TEXTS, "org.dressdiscover.api.models.object.ObjectFacetFilters: excludeWorkTypeTexts: less than min length 1");
+                }
             }
         }
 
@@ -2144,11 +2132,10 @@ public final class ObjectFacetFilters implements org.thryft.Struct {
             if (includeCategories == null) {
                 throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.INCLUDE_CATEGORIES, "org.dressdiscover.api.models.object.ObjectFacetFilters: includeCategories is null");
             }
-            if (!includeCategories.isPresent()) {
-                return;
-            }
-            if (includeCategories.get().isEmpty()) {
-                throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.INCLUDE_CATEGORIES, "org.dressdiscover.api.models.object.ObjectFacetFilters.includeCategories: less than min length 1");
+            if (includeCategories.isPresent()) {
+                if (includeCategories.get().isEmpty()) {
+                    throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.INCLUDE_CATEGORIES, "org.dressdiscover.api.models.object.ObjectFacetFilters: includeCategories: less than min length 1");
+                }
             }
         }
 
@@ -2156,11 +2143,10 @@ public final class ObjectFacetFilters implements org.thryft.Struct {
             if (includeCollections == null) {
                 throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.INCLUDE_COLLECTIONS, "org.dressdiscover.api.models.object.ObjectFacetFilters: includeCollections is null");
             }
-            if (!includeCollections.isPresent()) {
-                return;
-            }
-            if (includeCollections.get().isEmpty()) {
-                throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.INCLUDE_COLLECTIONS, "org.dressdiscover.api.models.object.ObjectFacetFilters.includeCollections: less than min length 1");
+            if (includeCollections.isPresent()) {
+                if (includeCollections.get().isEmpty()) {
+                    throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.INCLUDE_COLLECTIONS, "org.dressdiscover.api.models.object.ObjectFacetFilters: includeCollections: less than min length 1");
+                }
             }
         }
 
@@ -2168,11 +2154,10 @@ public final class ObjectFacetFilters implements org.thryft.Struct {
             if (includeColorTexts == null) {
                 throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.INCLUDE_COLOR_TEXTS, "org.dressdiscover.api.models.object.ObjectFacetFilters: includeColorTexts is null");
             }
-            if (!includeColorTexts.isPresent()) {
-                return;
-            }
-            if (includeColorTexts.get().isEmpty()) {
-                throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.INCLUDE_COLOR_TEXTS, "org.dressdiscover.api.models.object.ObjectFacetFilters.includeColorTexts: less than min length 1");
+            if (includeColorTexts.isPresent()) {
+                if (includeColorTexts.get().isEmpty()) {
+                    throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.INCLUDE_COLOR_TEXTS, "org.dressdiscover.api.models.object.ObjectFacetFilters: includeColorTexts: less than min length 1");
+                }
             }
         }
 
@@ -2180,11 +2165,10 @@ public final class ObjectFacetFilters implements org.thryft.Struct {
             if (includeCulturalContextTexts == null) {
                 throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.INCLUDE_CULTURAL_CONTEXT_TEXTS, "org.dressdiscover.api.models.object.ObjectFacetFilters: includeCulturalContextTexts is null");
             }
-            if (!includeCulturalContextTexts.isPresent()) {
-                return;
-            }
-            if (includeCulturalContextTexts.get().isEmpty()) {
-                throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.INCLUDE_CULTURAL_CONTEXT_TEXTS, "org.dressdiscover.api.models.object.ObjectFacetFilters.includeCulturalContextTexts: less than min length 1");
+            if (includeCulturalContextTexts.isPresent()) {
+                if (includeCulturalContextTexts.get().isEmpty()) {
+                    throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.INCLUDE_CULTURAL_CONTEXT_TEXTS, "org.dressdiscover.api.models.object.ObjectFacetFilters: includeCulturalContextTexts: less than min length 1");
+                }
             }
         }
 
@@ -2192,11 +2176,10 @@ public final class ObjectFacetFilters implements org.thryft.Struct {
             if (includeGenders == null) {
                 throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.INCLUDE_GENDERS, "org.dressdiscover.api.models.object.ObjectFacetFilters: includeGenders is null");
             }
-            if (!includeGenders.isPresent()) {
-                return;
-            }
-            if (includeGenders.get().isEmpty()) {
-                throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.INCLUDE_GENDERS, "org.dressdiscover.api.models.object.ObjectFacetFilters.includeGenders: less than min length 1");
+            if (includeGenders.isPresent()) {
+                if (includeGenders.get().isEmpty()) {
+                    throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.INCLUDE_GENDERS, "org.dressdiscover.api.models.object.ObjectFacetFilters: includeGenders: less than min length 1");
+                }
             }
         }
 
@@ -2204,11 +2187,10 @@ public final class ObjectFacetFilters implements org.thryft.Struct {
             if (includeInstitutions == null) {
                 throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.INCLUDE_INSTITUTIONS, "org.dressdiscover.api.models.object.ObjectFacetFilters: includeInstitutions is null");
             }
-            if (!includeInstitutions.isPresent()) {
-                return;
-            }
-            if (includeInstitutions.get().isEmpty()) {
-                throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.INCLUDE_INSTITUTIONS, "org.dressdiscover.api.models.object.ObjectFacetFilters.includeInstitutions: less than min length 1");
+            if (includeInstitutions.isPresent()) {
+                if (includeInstitutions.get().isEmpty()) {
+                    throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.INCLUDE_INSTITUTIONS, "org.dressdiscover.api.models.object.ObjectFacetFilters: includeInstitutions: less than min length 1");
+                }
             }
         }
 
@@ -2216,11 +2198,10 @@ public final class ObjectFacetFilters implements org.thryft.Struct {
             if (includeLocationNameTexts == null) {
                 throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.INCLUDE_LOCATION_NAME_TEXTS, "org.dressdiscover.api.models.object.ObjectFacetFilters: includeLocationNameTexts is null");
             }
-            if (!includeLocationNameTexts.isPresent()) {
-                return;
-            }
-            if (includeLocationNameTexts.get().isEmpty()) {
-                throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.INCLUDE_LOCATION_NAME_TEXTS, "org.dressdiscover.api.models.object.ObjectFacetFilters.includeLocationNameTexts: less than min length 1");
+            if (includeLocationNameTexts.isPresent()) {
+                if (includeLocationNameTexts.get().isEmpty()) {
+                    throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.INCLUDE_LOCATION_NAME_TEXTS, "org.dressdiscover.api.models.object.ObjectFacetFilters: includeLocationNameTexts: less than min length 1");
+                }
             }
         }
 
@@ -2228,11 +2209,10 @@ public final class ObjectFacetFilters implements org.thryft.Struct {
             if (includeMaterialTexts == null) {
                 throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.INCLUDE_MATERIAL_TEXTS, "org.dressdiscover.api.models.object.ObjectFacetFilters: includeMaterialTexts is null");
             }
-            if (!includeMaterialTexts.isPresent()) {
-                return;
-            }
-            if (includeMaterialTexts.get().isEmpty()) {
-                throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.INCLUDE_MATERIAL_TEXTS, "org.dressdiscover.api.models.object.ObjectFacetFilters.includeMaterialTexts: less than min length 1");
+            if (includeMaterialTexts.isPresent()) {
+                if (includeMaterialTexts.get().isEmpty()) {
+                    throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.INCLUDE_MATERIAL_TEXTS, "org.dressdiscover.api.models.object.ObjectFacetFilters: includeMaterialTexts: less than min length 1");
+                }
             }
         }
 
@@ -2240,11 +2220,10 @@ public final class ObjectFacetFilters implements org.thryft.Struct {
             if (includeSubjectTermTexts == null) {
                 throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.INCLUDE_SUBJECT_TERM_TEXTS, "org.dressdiscover.api.models.object.ObjectFacetFilters: includeSubjectTermTexts is null");
             }
-            if (!includeSubjectTermTexts.isPresent()) {
-                return;
-            }
-            if (includeSubjectTermTexts.get().isEmpty()) {
-                throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.INCLUDE_SUBJECT_TERM_TEXTS, "org.dressdiscover.api.models.object.ObjectFacetFilters.includeSubjectTermTexts: less than min length 1");
+            if (includeSubjectTermTexts.isPresent()) {
+                if (includeSubjectTermTexts.get().isEmpty()) {
+                    throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.INCLUDE_SUBJECT_TERM_TEXTS, "org.dressdiscover.api.models.object.ObjectFacetFilters: includeSubjectTermTexts: less than min length 1");
+                }
             }
         }
 
@@ -2252,11 +2231,10 @@ public final class ObjectFacetFilters implements org.thryft.Struct {
             if (includeTechniqueTexts == null) {
                 throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.INCLUDE_TECHNIQUE_TEXTS, "org.dressdiscover.api.models.object.ObjectFacetFilters: includeTechniqueTexts is null");
             }
-            if (!includeTechniqueTexts.isPresent()) {
-                return;
-            }
-            if (includeTechniqueTexts.get().isEmpty()) {
-                throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.INCLUDE_TECHNIQUE_TEXTS, "org.dressdiscover.api.models.object.ObjectFacetFilters.includeTechniqueTexts: less than min length 1");
+            if (includeTechniqueTexts.isPresent()) {
+                if (includeTechniqueTexts.get().isEmpty()) {
+                    throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.INCLUDE_TECHNIQUE_TEXTS, "org.dressdiscover.api.models.object.ObjectFacetFilters: includeTechniqueTexts: less than min length 1");
+                }
             }
         }
 
@@ -2264,11 +2242,10 @@ public final class ObjectFacetFilters implements org.thryft.Struct {
             if (includeWorkTypeTexts == null) {
                 throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.INCLUDE_WORK_TYPE_TEXTS, "org.dressdiscover.api.models.object.ObjectFacetFilters: includeWorkTypeTexts is null");
             }
-            if (!includeWorkTypeTexts.isPresent()) {
-                return;
-            }
-            if (includeWorkTypeTexts.get().isEmpty()) {
-                throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.INCLUDE_WORK_TYPE_TEXTS, "org.dressdiscover.api.models.object.ObjectFacetFilters.includeWorkTypeTexts: less than min length 1");
+            if (includeWorkTypeTexts.isPresent()) {
+                if (includeWorkTypeTexts.get().isEmpty()) {
+                    throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.INCLUDE_WORK_TYPE_TEXTS, "org.dressdiscover.api.models.object.ObjectFacetFilters: includeWorkTypeTexts: less than min length 1");
+                }
             }
         }
     }
@@ -2304,11 +2281,10 @@ public final class ObjectFacetFilters implements org.thryft.Struct {
             if (excludeAll == null) {
                 throw new NullPointerException("org.dressdiscover.api.models.object.ObjectFacetFilters: excludeAll is null");
             }
-            if (!excludeAll.isPresent()) {
-                return;
-            }
-            if (!excludeAll.get()) {
-                throw new IllegalArgumentException("org.dressdiscover.api.models.object.ObjectFacetFilters.excludeAll: not true");
+            if (excludeAll.isPresent()) {
+                if (!excludeAll.get()) {
+                    throw new IllegalArgumentException("org.dressdiscover.api.models.object.ObjectFacetFilters: excludeAll: not true");
+                }
             }
         }
 
@@ -2316,11 +2292,10 @@ public final class ObjectFacetFilters implements org.thryft.Struct {
             if (excludeCategories == null) {
                 throw new NullPointerException("org.dressdiscover.api.models.object.ObjectFacetFilters: excludeCategories is null");
             }
-            if (!excludeCategories.isPresent()) {
-                return;
-            }
-            if (excludeCategories.get().isEmpty()) {
-                throw new IllegalArgumentException("org.dressdiscover.api.models.object.ObjectFacetFilters.excludeCategories: less than min length 1");
+            if (excludeCategories.isPresent()) {
+                if (excludeCategories.get().isEmpty()) {
+                    throw new IllegalArgumentException("org.dressdiscover.api.models.object.ObjectFacetFilters: excludeCategories: less than min length 1");
+                }
             }
         }
 
@@ -2328,11 +2303,10 @@ public final class ObjectFacetFilters implements org.thryft.Struct {
             if (excludeCollections == null) {
                 throw new NullPointerException("org.dressdiscover.api.models.object.ObjectFacetFilters: excludeCollections is null");
             }
-            if (!excludeCollections.isPresent()) {
-                return;
-            }
-            if (excludeCollections.get().isEmpty()) {
-                throw new IllegalArgumentException("org.dressdiscover.api.models.object.ObjectFacetFilters.excludeCollections: less than min length 1");
+            if (excludeCollections.isPresent()) {
+                if (excludeCollections.get().isEmpty()) {
+                    throw new IllegalArgumentException("org.dressdiscover.api.models.object.ObjectFacetFilters: excludeCollections: less than min length 1");
+                }
             }
         }
 
@@ -2340,11 +2314,10 @@ public final class ObjectFacetFilters implements org.thryft.Struct {
             if (excludeColorTexts == null) {
                 throw new NullPointerException("org.dressdiscover.api.models.object.ObjectFacetFilters: excludeColorTexts is null");
             }
-            if (!excludeColorTexts.isPresent()) {
-                return;
-            }
-            if (excludeColorTexts.get().isEmpty()) {
-                throw new IllegalArgumentException("org.dressdiscover.api.models.object.ObjectFacetFilters.excludeColorTexts: less than min length 1");
+            if (excludeColorTexts.isPresent()) {
+                if (excludeColorTexts.get().isEmpty()) {
+                    throw new IllegalArgumentException("org.dressdiscover.api.models.object.ObjectFacetFilters: excludeColorTexts: less than min length 1");
+                }
             }
         }
 
@@ -2352,11 +2325,10 @@ public final class ObjectFacetFilters implements org.thryft.Struct {
             if (excludeCulturalContextTexts == null) {
                 throw new NullPointerException("org.dressdiscover.api.models.object.ObjectFacetFilters: excludeCulturalContextTexts is null");
             }
-            if (!excludeCulturalContextTexts.isPresent()) {
-                return;
-            }
-            if (excludeCulturalContextTexts.get().isEmpty()) {
-                throw new IllegalArgumentException("org.dressdiscover.api.models.object.ObjectFacetFilters.excludeCulturalContextTexts: less than min length 1");
+            if (excludeCulturalContextTexts.isPresent()) {
+                if (excludeCulturalContextTexts.get().isEmpty()) {
+                    throw new IllegalArgumentException("org.dressdiscover.api.models.object.ObjectFacetFilters: excludeCulturalContextTexts: less than min length 1");
+                }
             }
         }
 
@@ -2364,11 +2336,10 @@ public final class ObjectFacetFilters implements org.thryft.Struct {
             if (excludeGenders == null) {
                 throw new NullPointerException("org.dressdiscover.api.models.object.ObjectFacetFilters: excludeGenders is null");
             }
-            if (!excludeGenders.isPresent()) {
-                return;
-            }
-            if (excludeGenders.get().isEmpty()) {
-                throw new IllegalArgumentException("org.dressdiscover.api.models.object.ObjectFacetFilters.excludeGenders: less than min length 1");
+            if (excludeGenders.isPresent()) {
+                if (excludeGenders.get().isEmpty()) {
+                    throw new IllegalArgumentException("org.dressdiscover.api.models.object.ObjectFacetFilters: excludeGenders: less than min length 1");
+                }
             }
         }
 
@@ -2376,11 +2347,10 @@ public final class ObjectFacetFilters implements org.thryft.Struct {
             if (excludeInstitutions == null) {
                 throw new NullPointerException("org.dressdiscover.api.models.object.ObjectFacetFilters: excludeInstitutions is null");
             }
-            if (!excludeInstitutions.isPresent()) {
-                return;
-            }
-            if (excludeInstitutions.get().isEmpty()) {
-                throw new IllegalArgumentException("org.dressdiscover.api.models.object.ObjectFacetFilters.excludeInstitutions: less than min length 1");
+            if (excludeInstitutions.isPresent()) {
+                if (excludeInstitutions.get().isEmpty()) {
+                    throw new IllegalArgumentException("org.dressdiscover.api.models.object.ObjectFacetFilters: excludeInstitutions: less than min length 1");
+                }
             }
         }
 
@@ -2388,11 +2358,10 @@ public final class ObjectFacetFilters implements org.thryft.Struct {
             if (excludeLocationNameTexts == null) {
                 throw new NullPointerException("org.dressdiscover.api.models.object.ObjectFacetFilters: excludeLocationNameTexts is null");
             }
-            if (!excludeLocationNameTexts.isPresent()) {
-                return;
-            }
-            if (excludeLocationNameTexts.get().isEmpty()) {
-                throw new IllegalArgumentException("org.dressdiscover.api.models.object.ObjectFacetFilters.excludeLocationNameTexts: less than min length 1");
+            if (excludeLocationNameTexts.isPresent()) {
+                if (excludeLocationNameTexts.get().isEmpty()) {
+                    throw new IllegalArgumentException("org.dressdiscover.api.models.object.ObjectFacetFilters: excludeLocationNameTexts: less than min length 1");
+                }
             }
         }
 
@@ -2400,11 +2369,10 @@ public final class ObjectFacetFilters implements org.thryft.Struct {
             if (excludeMaterialTexts == null) {
                 throw new NullPointerException("org.dressdiscover.api.models.object.ObjectFacetFilters: excludeMaterialTexts is null");
             }
-            if (!excludeMaterialTexts.isPresent()) {
-                return;
-            }
-            if (excludeMaterialTexts.get().isEmpty()) {
-                throw new IllegalArgumentException("org.dressdiscover.api.models.object.ObjectFacetFilters.excludeMaterialTexts: less than min length 1");
+            if (excludeMaterialTexts.isPresent()) {
+                if (excludeMaterialTexts.get().isEmpty()) {
+                    throw new IllegalArgumentException("org.dressdiscover.api.models.object.ObjectFacetFilters: excludeMaterialTexts: less than min length 1");
+                }
             }
         }
 
@@ -2412,11 +2380,10 @@ public final class ObjectFacetFilters implements org.thryft.Struct {
             if (excludeSubjectTermTexts == null) {
                 throw new NullPointerException("org.dressdiscover.api.models.object.ObjectFacetFilters: excludeSubjectTermTexts is null");
             }
-            if (!excludeSubjectTermTexts.isPresent()) {
-                return;
-            }
-            if (excludeSubjectTermTexts.get().isEmpty()) {
-                throw new IllegalArgumentException("org.dressdiscover.api.models.object.ObjectFacetFilters.excludeSubjectTermTexts: less than min length 1");
+            if (excludeSubjectTermTexts.isPresent()) {
+                if (excludeSubjectTermTexts.get().isEmpty()) {
+                    throw new IllegalArgumentException("org.dressdiscover.api.models.object.ObjectFacetFilters: excludeSubjectTermTexts: less than min length 1");
+                }
             }
         }
 
@@ -2424,11 +2391,10 @@ public final class ObjectFacetFilters implements org.thryft.Struct {
             if (excludeTechniqueTexts == null) {
                 throw new NullPointerException("org.dressdiscover.api.models.object.ObjectFacetFilters: excludeTechniqueTexts is null");
             }
-            if (!excludeTechniqueTexts.isPresent()) {
-                return;
-            }
-            if (excludeTechniqueTexts.get().isEmpty()) {
-                throw new IllegalArgumentException("org.dressdiscover.api.models.object.ObjectFacetFilters.excludeTechniqueTexts: less than min length 1");
+            if (excludeTechniqueTexts.isPresent()) {
+                if (excludeTechniqueTexts.get().isEmpty()) {
+                    throw new IllegalArgumentException("org.dressdiscover.api.models.object.ObjectFacetFilters: excludeTechniqueTexts: less than min length 1");
+                }
             }
         }
 
@@ -2436,11 +2402,10 @@ public final class ObjectFacetFilters implements org.thryft.Struct {
             if (excludeWorkTypeTexts == null) {
                 throw new NullPointerException("org.dressdiscover.api.models.object.ObjectFacetFilters: excludeWorkTypeTexts is null");
             }
-            if (!excludeWorkTypeTexts.isPresent()) {
-                return;
-            }
-            if (excludeWorkTypeTexts.get().isEmpty()) {
-                throw new IllegalArgumentException("org.dressdiscover.api.models.object.ObjectFacetFilters.excludeWorkTypeTexts: less than min length 1");
+            if (excludeWorkTypeTexts.isPresent()) {
+                if (excludeWorkTypeTexts.get().isEmpty()) {
+                    throw new IllegalArgumentException("org.dressdiscover.api.models.object.ObjectFacetFilters: excludeWorkTypeTexts: less than min length 1");
+                }
             }
         }
 
@@ -2448,11 +2413,10 @@ public final class ObjectFacetFilters implements org.thryft.Struct {
             if (includeCategories == null) {
                 throw new NullPointerException("org.dressdiscover.api.models.object.ObjectFacetFilters: includeCategories is null");
             }
-            if (!includeCategories.isPresent()) {
-                return;
-            }
-            if (includeCategories.get().isEmpty()) {
-                throw new IllegalArgumentException("org.dressdiscover.api.models.object.ObjectFacetFilters.includeCategories: less than min length 1");
+            if (includeCategories.isPresent()) {
+                if (includeCategories.get().isEmpty()) {
+                    throw new IllegalArgumentException("org.dressdiscover.api.models.object.ObjectFacetFilters: includeCategories: less than min length 1");
+                }
             }
         }
 
@@ -2460,11 +2424,10 @@ public final class ObjectFacetFilters implements org.thryft.Struct {
             if (includeCollections == null) {
                 throw new NullPointerException("org.dressdiscover.api.models.object.ObjectFacetFilters: includeCollections is null");
             }
-            if (!includeCollections.isPresent()) {
-                return;
-            }
-            if (includeCollections.get().isEmpty()) {
-                throw new IllegalArgumentException("org.dressdiscover.api.models.object.ObjectFacetFilters.includeCollections: less than min length 1");
+            if (includeCollections.isPresent()) {
+                if (includeCollections.get().isEmpty()) {
+                    throw new IllegalArgumentException("org.dressdiscover.api.models.object.ObjectFacetFilters: includeCollections: less than min length 1");
+                }
             }
         }
 
@@ -2472,11 +2435,10 @@ public final class ObjectFacetFilters implements org.thryft.Struct {
             if (includeColorTexts == null) {
                 throw new NullPointerException("org.dressdiscover.api.models.object.ObjectFacetFilters: includeColorTexts is null");
             }
-            if (!includeColorTexts.isPresent()) {
-                return;
-            }
-            if (includeColorTexts.get().isEmpty()) {
-                throw new IllegalArgumentException("org.dressdiscover.api.models.object.ObjectFacetFilters.includeColorTexts: less than min length 1");
+            if (includeColorTexts.isPresent()) {
+                if (includeColorTexts.get().isEmpty()) {
+                    throw new IllegalArgumentException("org.dressdiscover.api.models.object.ObjectFacetFilters: includeColorTexts: less than min length 1");
+                }
             }
         }
 
@@ -2484,11 +2446,10 @@ public final class ObjectFacetFilters implements org.thryft.Struct {
             if (includeCulturalContextTexts == null) {
                 throw new NullPointerException("org.dressdiscover.api.models.object.ObjectFacetFilters: includeCulturalContextTexts is null");
             }
-            if (!includeCulturalContextTexts.isPresent()) {
-                return;
-            }
-            if (includeCulturalContextTexts.get().isEmpty()) {
-                throw new IllegalArgumentException("org.dressdiscover.api.models.object.ObjectFacetFilters.includeCulturalContextTexts: less than min length 1");
+            if (includeCulturalContextTexts.isPresent()) {
+                if (includeCulturalContextTexts.get().isEmpty()) {
+                    throw new IllegalArgumentException("org.dressdiscover.api.models.object.ObjectFacetFilters: includeCulturalContextTexts: less than min length 1");
+                }
             }
         }
 
@@ -2496,11 +2457,10 @@ public final class ObjectFacetFilters implements org.thryft.Struct {
             if (includeGenders == null) {
                 throw new NullPointerException("org.dressdiscover.api.models.object.ObjectFacetFilters: includeGenders is null");
             }
-            if (!includeGenders.isPresent()) {
-                return;
-            }
-            if (includeGenders.get().isEmpty()) {
-                throw new IllegalArgumentException("org.dressdiscover.api.models.object.ObjectFacetFilters.includeGenders: less than min length 1");
+            if (includeGenders.isPresent()) {
+                if (includeGenders.get().isEmpty()) {
+                    throw new IllegalArgumentException("org.dressdiscover.api.models.object.ObjectFacetFilters: includeGenders: less than min length 1");
+                }
             }
         }
 
@@ -2508,11 +2468,10 @@ public final class ObjectFacetFilters implements org.thryft.Struct {
             if (includeInstitutions == null) {
                 throw new NullPointerException("org.dressdiscover.api.models.object.ObjectFacetFilters: includeInstitutions is null");
             }
-            if (!includeInstitutions.isPresent()) {
-                return;
-            }
-            if (includeInstitutions.get().isEmpty()) {
-                throw new IllegalArgumentException("org.dressdiscover.api.models.object.ObjectFacetFilters.includeInstitutions: less than min length 1");
+            if (includeInstitutions.isPresent()) {
+                if (includeInstitutions.get().isEmpty()) {
+                    throw new IllegalArgumentException("org.dressdiscover.api.models.object.ObjectFacetFilters: includeInstitutions: less than min length 1");
+                }
             }
         }
 
@@ -2520,11 +2479,10 @@ public final class ObjectFacetFilters implements org.thryft.Struct {
             if (includeLocationNameTexts == null) {
                 throw new NullPointerException("org.dressdiscover.api.models.object.ObjectFacetFilters: includeLocationNameTexts is null");
             }
-            if (!includeLocationNameTexts.isPresent()) {
-                return;
-            }
-            if (includeLocationNameTexts.get().isEmpty()) {
-                throw new IllegalArgumentException("org.dressdiscover.api.models.object.ObjectFacetFilters.includeLocationNameTexts: less than min length 1");
+            if (includeLocationNameTexts.isPresent()) {
+                if (includeLocationNameTexts.get().isEmpty()) {
+                    throw new IllegalArgumentException("org.dressdiscover.api.models.object.ObjectFacetFilters: includeLocationNameTexts: less than min length 1");
+                }
             }
         }
 
@@ -2532,11 +2490,10 @@ public final class ObjectFacetFilters implements org.thryft.Struct {
             if (includeMaterialTexts == null) {
                 throw new NullPointerException("org.dressdiscover.api.models.object.ObjectFacetFilters: includeMaterialTexts is null");
             }
-            if (!includeMaterialTexts.isPresent()) {
-                return;
-            }
-            if (includeMaterialTexts.get().isEmpty()) {
-                throw new IllegalArgumentException("org.dressdiscover.api.models.object.ObjectFacetFilters.includeMaterialTexts: less than min length 1");
+            if (includeMaterialTexts.isPresent()) {
+                if (includeMaterialTexts.get().isEmpty()) {
+                    throw new IllegalArgumentException("org.dressdiscover.api.models.object.ObjectFacetFilters: includeMaterialTexts: less than min length 1");
+                }
             }
         }
 
@@ -2544,11 +2501,10 @@ public final class ObjectFacetFilters implements org.thryft.Struct {
             if (includeSubjectTermTexts == null) {
                 throw new NullPointerException("org.dressdiscover.api.models.object.ObjectFacetFilters: includeSubjectTermTexts is null");
             }
-            if (!includeSubjectTermTexts.isPresent()) {
-                return;
-            }
-            if (includeSubjectTermTexts.get().isEmpty()) {
-                throw new IllegalArgumentException("org.dressdiscover.api.models.object.ObjectFacetFilters.includeSubjectTermTexts: less than min length 1");
+            if (includeSubjectTermTexts.isPresent()) {
+                if (includeSubjectTermTexts.get().isEmpty()) {
+                    throw new IllegalArgumentException("org.dressdiscover.api.models.object.ObjectFacetFilters: includeSubjectTermTexts: less than min length 1");
+                }
             }
         }
 
@@ -2556,11 +2512,10 @@ public final class ObjectFacetFilters implements org.thryft.Struct {
             if (includeTechniqueTexts == null) {
                 throw new NullPointerException("org.dressdiscover.api.models.object.ObjectFacetFilters: includeTechniqueTexts is null");
             }
-            if (!includeTechniqueTexts.isPresent()) {
-                return;
-            }
-            if (includeTechniqueTexts.get().isEmpty()) {
-                throw new IllegalArgumentException("org.dressdiscover.api.models.object.ObjectFacetFilters.includeTechniqueTexts: less than min length 1");
+            if (includeTechniqueTexts.isPresent()) {
+                if (includeTechniqueTexts.get().isEmpty()) {
+                    throw new IllegalArgumentException("org.dressdiscover.api.models.object.ObjectFacetFilters: includeTechniqueTexts: less than min length 1");
+                }
             }
         }
 
@@ -2568,11 +2523,10 @@ public final class ObjectFacetFilters implements org.thryft.Struct {
             if (includeWorkTypeTexts == null) {
                 throw new NullPointerException("org.dressdiscover.api.models.object.ObjectFacetFilters: includeWorkTypeTexts is null");
             }
-            if (!includeWorkTypeTexts.isPresent()) {
-                return;
-            }
-            if (includeWorkTypeTexts.get().isEmpty()) {
-                throw new IllegalArgumentException("org.dressdiscover.api.models.object.ObjectFacetFilters.includeWorkTypeTexts: less than min length 1");
+            if (includeWorkTypeTexts.isPresent()) {
+                if (includeWorkTypeTexts.get().isEmpty()) {
+                    throw new IllegalArgumentException("org.dressdiscover.api.models.object.ObjectFacetFilters: includeWorkTypeTexts: less than min length 1");
+                }
             }
         }
     }

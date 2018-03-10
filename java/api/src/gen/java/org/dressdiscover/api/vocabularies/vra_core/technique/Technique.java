@@ -313,16 +313,13 @@ public final class Technique implements org.dressdiscover.api.vocabularies.vra_c
                 throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.TEXT, "org.dressdiscover.api.vocabularies.vra_core.technique.Technique: text is null");
             }
             if (text.isEmpty()) {
-                throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.TEXT, "org.dressdiscover.api.vocabularies.vra_core.technique.Technique.text: less than min length 1");
+                throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.TEXT, "org.dressdiscover.api.vocabularies.vra_core.technique.Technique: text: less than min length 1");
             }
         }
 
         public static void validateVocabRef(final com.google.common.base.Optional<org.dressdiscover.api.vocabularies.vra_core.VocabRef> vocabRef) throws org.thryft.protocol.InputProtocolException {
             if (vocabRef == null) {
                 throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.VOCAB_REF, "org.dressdiscover.api.vocabularies.vra_core.technique.Technique: vocabRef is null");
-            }
-            if (!vocabRef.isPresent()) {
-                return;
             }
         }
     }
@@ -338,16 +335,13 @@ public final class Technique implements org.dressdiscover.api.vocabularies.vra_c
                 throw new NullPointerException("org.dressdiscover.api.vocabularies.vra_core.technique.Technique: text is null");
             }
             if (text.isEmpty()) {
-                throw new IllegalArgumentException("org.dressdiscover.api.vocabularies.vra_core.technique.Technique.text: less than min length 1");
+                throw new IllegalArgumentException("org.dressdiscover.api.vocabularies.vra_core.technique.Technique: text: less than min length 1");
             }
         }
 
         public static void validateVocabRef(final com.google.common.base.Optional<org.dressdiscover.api.vocabularies.vra_core.VocabRef> vocabRef) {
             if (vocabRef == null) {
                 throw new NullPointerException("org.dressdiscover.api.vocabularies.vra_core.technique.Technique: vocabRef is null");
-            }
-            if (!vocabRef.isPresent()) {
-                return;
             }
         }
     }

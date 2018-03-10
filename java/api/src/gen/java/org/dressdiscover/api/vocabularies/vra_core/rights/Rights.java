@@ -425,7 +425,7 @@ public final class Rights implements org.dressdiscover.api.vocabularies.vra_core
                 throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.TEXT, "org.dressdiscover.api.vocabularies.vra_core.rights.Rights: text is null");
             }
             if (text.isEmpty()) {
-                throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.TEXT, "org.dressdiscover.api.vocabularies.vra_core.rights.Rights.text: less than min length 1");
+                throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.TEXT, "org.dressdiscover.api.vocabularies.vra_core.rights.Rights: text: less than min length 1");
             }
         }
 
@@ -439,20 +439,16 @@ public final class Rights implements org.dressdiscover.api.vocabularies.vra_core
             if (licenseVocabRef == null) {
                 throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.LICENSE_VOCAB_REF, "org.dressdiscover.api.vocabularies.vra_core.rights.Rights: licenseVocabRef is null");
             }
-            if (!licenseVocabRef.isPresent()) {
-                return;
-            }
         }
 
         public static void validateNotes(final com.google.common.base.Optional<String> notes) throws org.thryft.protocol.InputProtocolException {
             if (notes == null) {
                 throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.NOTES, "org.dressdiscover.api.vocabularies.vra_core.rights.Rights: notes is null");
             }
-            if (!notes.isPresent()) {
-                return;
-            }
-            if (notes.get().isEmpty()) {
-                throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.NOTES, "org.dressdiscover.api.vocabularies.vra_core.rights.Rights.notes: less than min length 1");
+            if (notes.isPresent()) {
+                if (notes.get().isEmpty()) {
+                    throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.NOTES, "org.dressdiscover.api.vocabularies.vra_core.rights.Rights: notes: less than min length 1");
+                }
             }
         }
 
@@ -460,11 +456,10 @@ public final class Rights implements org.dressdiscover.api.vocabularies.vra_core
             if (rightsHolder == null) {
                 throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.RIGHTS_HOLDER, "org.dressdiscover.api.vocabularies.vra_core.rights.Rights: rightsHolder is null");
             }
-            if (!rightsHolder.isPresent()) {
-                return;
-            }
-            if (rightsHolder.get().isEmpty()) {
-                throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.RIGHTS_HOLDER, "org.dressdiscover.api.vocabularies.vra_core.rights.Rights.rightsHolder: less than min length 1");
+            if (rightsHolder.isPresent()) {
+                if (rightsHolder.get().isEmpty()) {
+                    throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.RIGHTS_HOLDER, "org.dressdiscover.api.vocabularies.vra_core.rights.Rights: rightsHolder: less than min length 1");
+                }
             }
         }
     }
@@ -483,7 +478,7 @@ public final class Rights implements org.dressdiscover.api.vocabularies.vra_core
                 throw new NullPointerException("org.dressdiscover.api.vocabularies.vra_core.rights.Rights: text is null");
             }
             if (text.isEmpty()) {
-                throw new IllegalArgumentException("org.dressdiscover.api.vocabularies.vra_core.rights.Rights.text: less than min length 1");
+                throw new IllegalArgumentException("org.dressdiscover.api.vocabularies.vra_core.rights.Rights: text: less than min length 1");
             }
         }
 
@@ -497,20 +492,16 @@ public final class Rights implements org.dressdiscover.api.vocabularies.vra_core
             if (licenseVocabRef == null) {
                 throw new NullPointerException("org.dressdiscover.api.vocabularies.vra_core.rights.Rights: licenseVocabRef is null");
             }
-            if (!licenseVocabRef.isPresent()) {
-                return;
-            }
         }
 
         public static void validateNotes(final com.google.common.base.Optional<String> notes) {
             if (notes == null) {
                 throw new NullPointerException("org.dressdiscover.api.vocabularies.vra_core.rights.Rights: notes is null");
             }
-            if (!notes.isPresent()) {
-                return;
-            }
-            if (notes.get().isEmpty()) {
-                throw new IllegalArgumentException("org.dressdiscover.api.vocabularies.vra_core.rights.Rights.notes: less than min length 1");
+            if (notes.isPresent()) {
+                if (notes.get().isEmpty()) {
+                    throw new IllegalArgumentException("org.dressdiscover.api.vocabularies.vra_core.rights.Rights: notes: less than min length 1");
+                }
             }
         }
 
@@ -518,11 +509,10 @@ public final class Rights implements org.dressdiscover.api.vocabularies.vra_core
             if (rightsHolder == null) {
                 throw new NullPointerException("org.dressdiscover.api.vocabularies.vra_core.rights.Rights: rightsHolder is null");
             }
-            if (!rightsHolder.isPresent()) {
-                return;
-            }
-            if (rightsHolder.get().isEmpty()) {
-                throw new IllegalArgumentException("org.dressdiscover.api.vocabularies.vra_core.rights.Rights.rightsHolder: less than min length 1");
+            if (rightsHolder.isPresent()) {
+                if (rightsHolder.get().isEmpty()) {
+                    throw new IllegalArgumentException("org.dressdiscover.api.vocabularies.vra_core.rights.Rights: rightsHolder: less than min length 1");
+                }
             }
         }
     }

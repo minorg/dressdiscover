@@ -24,8 +24,9 @@ public class LoggingUserQueryService implements org.dressdiscover.api.services.u
 
     @Override
     public com.google.common.collect.ImmutableList<org.dressdiscover.api.models.user.UserBookmarkEntry> getUserBookmarksByUserId(final org.dressdiscover.api.models.user.UserId userId, final com.google.common.base.Optional<Boolean> objectIdsOnly) throws org.dressdiscover.api.services.IoException, org.dressdiscover.api.services.user.NoSuchUserException {
-        final Object[] __logMessageArgs = new Object[2];
-        __logMessageArgs[0] = Messages.GetUserBookmarksByUserIdRequest.create(userId, objectIdsOnly);
+        final Object[] __logMessageArgs = new Object[3];
+        __logMessageArgs[0] = userId;
+        __logMessageArgs[1] = objectIdsOnly.orNull();
 
         __logMessageArgs[__logMessageArgs.length - 1] = PRE_RETURN_VALUE;
         logger.debug(UserQueryServiceLogMarkers.GET_USER_BOOKMARKS_BY_USER_ID, LogMessages.GET_USER_BOOKMARKS_BY_USER_ID, __logMessageArgs);
@@ -55,7 +56,7 @@ public class LoggingUserQueryService implements org.dressdiscover.api.services.u
     @Override
     public org.dressdiscover.api.models.user.UserEntry getUserByEmailAddress(final String emailAddress) throws org.dressdiscover.api.services.IoException, org.dressdiscover.api.services.user.NoSuchUserException {
         final Object[] __logMessageArgs = new Object[2];
-        __logMessageArgs[0] = Messages.GetUserByEmailAddressRequest.create(emailAddress);
+        __logMessageArgs[0] = emailAddress;
 
         __logMessageArgs[__logMessageArgs.length - 1] = PRE_RETURN_VALUE;
         logger.debug(UserQueryServiceLogMarkers.GET_USER_BY_EMAIL_ADDRESS, LogMessages.GET_USER_BY_EMAIL_ADDRESS, __logMessageArgs);
@@ -85,7 +86,7 @@ public class LoggingUserQueryService implements org.dressdiscover.api.services.u
     @Override
     public org.dressdiscover.api.models.user.User getUserById(final org.dressdiscover.api.models.user.UserId id) throws org.dressdiscover.api.services.IoException, org.dressdiscover.api.services.user.NoSuchUserException {
         final Object[] __logMessageArgs = new Object[2];
-        __logMessageArgs[0] = Messages.GetUserByIdRequest.create(id);
+        __logMessageArgs[0] = id;
 
         __logMessageArgs[__logMessageArgs.length - 1] = PRE_RETURN_VALUE;
         logger.debug(UserQueryServiceLogMarkers.GET_USER_BY_ID, LogMessages.GET_USER_BY_ID, __logMessageArgs);
@@ -116,9 +117,9 @@ public class LoggingUserQueryService implements org.dressdiscover.api.services.u
     private final org.dressdiscover.api.services.user.UserQueryService delegate;
 
     private final static class LogMessages {
-        public final static String GET_USER_BOOKMARKS_BY_USER_ID = "get_user_bookmarks_by_user_id({}) -> {}";
-        public final static String GET_USER_BY_EMAIL_ADDRESS = "get_user_by_email_address({}) -> {}";
-        public final static String GET_USER_BY_ID = "get_user_by_id({}) -> {}";
+        public final static String GET_USER_BOOKMARKS_BY_USER_ID = "get_user_bookmarks_by_user_id(userId={}, objectIdsOnly={}) -> {}";
+        public final static String GET_USER_BY_EMAIL_ADDRESS = "get_user_by_email_address(emailAddress={}) -> {}";
+        public final static String GET_USER_BY_ID = "get_user_by_id(id={}) -> {}";
     }
 
     public final static String PRE_RETURN_VALUE = "...";

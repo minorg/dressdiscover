@@ -455,20 +455,16 @@ public final class Relation implements org.dressdiscover.api.vocabularies.vra_co
             if (href == null) {
                 throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.HREF, "org.dressdiscover.api.vocabularies.vra_core.relation.Relation: href is null");
             }
-            if (!href.isPresent()) {
-                return;
-            }
         }
 
         public static void validateRelids(final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.object.ObjectId>> relids) throws org.thryft.protocol.InputProtocolException {
             if (relids == null) {
                 throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.RELIDS, "org.dressdiscover.api.vocabularies.vra_core.relation.Relation: relids is null");
             }
-            if (!relids.isPresent()) {
-                return;
-            }
-            if (relids.get().isEmpty()) {
-                throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.RELIDS, "org.dressdiscover.api.vocabularies.vra_core.relation.Relation.relids: less than min length 1");
+            if (relids.isPresent()) {
+                if (relids.get().isEmpty()) {
+                    throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.RELIDS, "org.dressdiscover.api.vocabularies.vra_core.relation.Relation: relids: less than min length 1");
+                }
             }
         }
 
@@ -476,11 +472,10 @@ public final class Relation implements org.dressdiscover.api.vocabularies.vra_co
             if (text == null) {
                 throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.TEXT, "org.dressdiscover.api.vocabularies.vra_core.relation.Relation: text is null");
             }
-            if (!text.isPresent()) {
-                return;
-            }
-            if (text.get().isEmpty()) {
-                throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.TEXT, "org.dressdiscover.api.vocabularies.vra_core.relation.Relation.text: less than min length 1");
+            if (text.isPresent()) {
+                if (text.get().isEmpty()) {
+                    throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.TEXT, "org.dressdiscover.api.vocabularies.vra_core.relation.Relation: text: less than min length 1");
+                }
             }
         }
     }
@@ -503,20 +498,16 @@ public final class Relation implements org.dressdiscover.api.vocabularies.vra_co
             if (href == null) {
                 throw new NullPointerException("org.dressdiscover.api.vocabularies.vra_core.relation.Relation: href is null");
             }
-            if (!href.isPresent()) {
-                return;
-            }
         }
 
         public static void validateRelids(final com.google.common.base.Optional<com.google.common.collect.ImmutableSet<org.dressdiscover.api.models.object.ObjectId>> relids) {
             if (relids == null) {
                 throw new NullPointerException("org.dressdiscover.api.vocabularies.vra_core.relation.Relation: relids is null");
             }
-            if (!relids.isPresent()) {
-                return;
-            }
-            if (relids.get().isEmpty()) {
-                throw new IllegalArgumentException("org.dressdiscover.api.vocabularies.vra_core.relation.Relation.relids: less than min length 1");
+            if (relids.isPresent()) {
+                if (relids.get().isEmpty()) {
+                    throw new IllegalArgumentException("org.dressdiscover.api.vocabularies.vra_core.relation.Relation: relids: less than min length 1");
+                }
             }
         }
 
@@ -524,11 +515,10 @@ public final class Relation implements org.dressdiscover.api.vocabularies.vra_co
             if (text == null) {
                 throw new NullPointerException("org.dressdiscover.api.vocabularies.vra_core.relation.Relation: text is null");
             }
-            if (!text.isPresent()) {
-                return;
-            }
-            if (text.get().isEmpty()) {
-                throw new IllegalArgumentException("org.dressdiscover.api.vocabularies.vra_core.relation.Relation.text: less than min length 1");
+            if (text.isPresent()) {
+                if (text.get().isEmpty()) {
+                    throw new IllegalArgumentException("org.dressdiscover.api.vocabularies.vra_core.relation.Relation: text: less than min length 1");
+                }
             }
         }
     }

@@ -361,20 +361,16 @@ public final class VocabRef implements org.thryft.Struct {
             if (refid == null) {
                 throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.REFID, "org.dressdiscover.api.vocabularies.vra_core.VocabRef: refid is null");
             }
-            if (!refid.isPresent()) {
-                return;
-            }
-            if (refid.get().isEmpty()) {
-                throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.REFID, "org.dressdiscover.api.vocabularies.vra_core.VocabRef.refid: less than min length 1");
+            if (refid.isPresent()) {
+                if (refid.get().isEmpty()) {
+                    throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.REFID, "org.dressdiscover.api.vocabularies.vra_core.VocabRef: refid: less than min length 1");
+                }
             }
         }
 
         public static void validateUri(final com.google.common.base.Optional<org.thryft.native_.Uri> uri) throws org.thryft.protocol.InputProtocolException {
             if (uri == null) {
                 throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.URI, "org.dressdiscover.api.vocabularies.vra_core.VocabRef: uri is null");
-            }
-            if (!uri.isPresent()) {
-                return;
             }
         }
     }
@@ -396,20 +392,16 @@ public final class VocabRef implements org.thryft.Struct {
             if (refid == null) {
                 throw new NullPointerException("org.dressdiscover.api.vocabularies.vra_core.VocabRef: refid is null");
             }
-            if (!refid.isPresent()) {
-                return;
-            }
-            if (refid.get().isEmpty()) {
-                throw new IllegalArgumentException("org.dressdiscover.api.vocabularies.vra_core.VocabRef.refid: less than min length 1");
+            if (refid.isPresent()) {
+                if (refid.get().isEmpty()) {
+                    throw new IllegalArgumentException("org.dressdiscover.api.vocabularies.vra_core.VocabRef: refid: less than min length 1");
+                }
             }
         }
 
         public static void validateUri(final com.google.common.base.Optional<org.thryft.native_.Uri> uri) {
             if (uri == null) {
                 throw new NullPointerException("org.dressdiscover.api.vocabularies.vra_core.VocabRef: uri is null");
-            }
-            if (!uri.isPresent()) {
-                return;
             }
         }
     }

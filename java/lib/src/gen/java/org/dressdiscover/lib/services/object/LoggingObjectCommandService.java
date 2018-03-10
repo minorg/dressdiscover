@@ -27,7 +27,7 @@ public class LoggingObjectCommandService implements org.dressdiscover.api.servic
     @Override
     public int deleteObjectsByCollectionId(final org.dressdiscover.api.models.collection.CollectionId collectionId) throws org.dressdiscover.api.services.IoException, org.dressdiscover.api.services.collection.NoSuchCollectionException, org.dressdiscover.api.services.institution.NoSuchInstitutionException {
         final Object[] __logMessageArgs = new Object[2];
-        __logMessageArgs[0] = Messages.DeleteObjectsByCollectionIdRequest.create(collectionId);
+        __logMessageArgs[0] = collectionId;
 
         __logMessageArgs[__logMessageArgs.length - 1] = PRE_RETURN_VALUE;
         logger.debug(ObjectCommandServiceLogMarkers.DELETE_OBJECTS_BY_COLLECTION_ID, LogMessages.DELETE_OBJECTS_BY_COLLECTION_ID, __logMessageArgs);
@@ -60,8 +60,9 @@ public class LoggingObjectCommandService implements org.dressdiscover.api.servic
 
     @Override
     public void putObject(final org.dressdiscover.api.models.object.ObjectId id, final org.dressdiscover.api.models.object.Object object) throws org.dressdiscover.api.services.IoException, org.dressdiscover.api.services.collection.NoSuchCollectionException, org.dressdiscover.api.services.institution.NoSuchInstitutionException {
-        final Object[] __logMessageArgs = new Object[2];
-        __logMessageArgs[0] = Messages.PutObjectRequest.create(id, object);
+        final Object[] __logMessageArgs = new Object[3];
+        __logMessageArgs[0] = id;
+        __logMessageArgs[1] = object;
 
         __logMessageArgs[__logMessageArgs.length - 1] = PRE_RETURN_VALUE;
         logger.debug(ObjectCommandServiceLogMarkers.PUT_OBJECT, LogMessages.PUT_OBJECT, __logMessageArgs);
@@ -93,7 +94,7 @@ public class LoggingObjectCommandService implements org.dressdiscover.api.servic
     @Override
     public void putObjects(final com.google.common.collect.ImmutableList<org.dressdiscover.api.models.object.ObjectEntry> objects) throws org.dressdiscover.api.services.IoException, org.dressdiscover.api.services.collection.NoSuchCollectionException, org.dressdiscover.api.services.institution.NoSuchInstitutionException {
         final Object[] __logMessageArgs = new Object[2];
-        __logMessageArgs[0] = Messages.PutObjectsRequest.create(objects);
+        __logMessageArgs[0] = objects;
 
         __logMessageArgs[__logMessageArgs.length - 1] = PRE_RETURN_VALUE;
         logger.debug(ObjectCommandServiceLogMarkers.PUT_OBJECTS, LogMessages.PUT_OBJECTS, __logMessageArgs);
@@ -124,22 +125,22 @@ public class LoggingObjectCommandService implements org.dressdiscover.api.servic
 
     @Override
     public void resummarizeObjects() throws org.dressdiscover.api.services.IoException {
-        final Object[] __logMessageArgs = new Object[1];
+        Object __logMessageArgs = null;
 
-        __logMessageArgs[__logMessageArgs.length - 1] = PRE_RETURN_VALUE;
+        __logMessageArgs = PRE_RETURN_VALUE;
         logger.debug(ObjectCommandServiceLogMarkers.RESUMMARIZE_OBJECTS, LogMessages.RESUMMARIZE_OBJECTS, __logMessageArgs);
 
         try {
             delegate.resummarizeObjects();
 
-            __logMessageArgs[__logMessageArgs.length - 1] = VOID_RETURN_VALUE;
+            __logMessageArgs = VOID_RETURN_VALUE;
             logger.info(ObjectCommandServiceLogMarkers.RESUMMARIZE_OBJECTS, LogMessages.RESUMMARIZE_OBJECTS, __logMessageArgs);
         } catch (final org.dressdiscover.api.services.IoException e) {
-            __logMessageArgs[__logMessageArgs.length - 1] = e.toString();
+            __logMessageArgs = e.toString();
             logger.error(ObjectCommandServiceLogMarkers.RESUMMARIZE_OBJECTS, LogMessages.RESUMMARIZE_OBJECTS, __logMessageArgs);
             throw e;
         } catch (final RuntimeException e) {
-            __logMessageArgs[__logMessageArgs.length - 1] = e;
+            __logMessageArgs = e;
             logger.error(ObjectCommandServiceLogMarkers.RESUMMARIZE_OBJECTS, LogMessages.RESUMMARIZE_OBJECTS, __logMessageArgs);
             throw e;
         }
@@ -149,9 +150,9 @@ public class LoggingObjectCommandService implements org.dressdiscover.api.servic
     private final org.dressdiscover.api.services.object.ObjectCommandService delegate;
 
     private final static class LogMessages {
-        public final static String DELETE_OBJECTS_BY_COLLECTION_ID = "delete_objects_by_collection_id({}) -> {}";
-        public final static String PUT_OBJECT = "put_object({}) -> {}";
-        public final static String PUT_OBJECTS = "put_objects({}) -> {}";
+        public final static String DELETE_OBJECTS_BY_COLLECTION_ID = "delete_objects_by_collection_id(collectionId={}) -> {}";
+        public final static String PUT_OBJECT = "put_object(id={}, object={}) -> {}";
+        public final static String PUT_OBJECTS = "put_objects(objects={}) -> {}";
         public final static String RESUMMARIZE_OBJECTS = "resummarize_objects() -> {}";
     }
 

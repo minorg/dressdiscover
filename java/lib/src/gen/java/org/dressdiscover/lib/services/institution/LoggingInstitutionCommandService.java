@@ -23,7 +23,7 @@ public class LoggingInstitutionCommandService implements org.dressdiscover.api.s
     @Override
     public void deleteInstitutionById(final org.dressdiscover.api.models.institution.InstitutionId id) throws org.dressdiscover.api.services.IoException, org.dressdiscover.api.services.institution.NoSuchInstitutionException {
         final Object[] __logMessageArgs = new Object[2];
-        __logMessageArgs[0] = Messages.DeleteInstitutionByIdRequest.create(id);
+        __logMessageArgs[0] = id;
 
         __logMessageArgs[__logMessageArgs.length - 1] = PRE_RETURN_VALUE;
         logger.debug(InstitutionCommandServiceLogMarkers.DELETE_INSTITUTION_BY_ID, LogMessages.DELETE_INSTITUTION_BY_ID, __logMessageArgs);
@@ -50,8 +50,9 @@ public class LoggingInstitutionCommandService implements org.dressdiscover.api.s
 
     @Override
     public void putInstitution(final org.dressdiscover.api.models.institution.InstitutionId id, final org.dressdiscover.api.models.institution.Institution institution) throws org.dressdiscover.api.services.IoException {
-        final Object[] __logMessageArgs = new Object[2];
-        __logMessageArgs[0] = Messages.PutInstitutionRequest.create(id, institution);
+        final Object[] __logMessageArgs = new Object[3];
+        __logMessageArgs[0] = id;
+        __logMessageArgs[1] = institution;
 
         __logMessageArgs[__logMessageArgs.length - 1] = PRE_RETURN_VALUE;
         logger.debug(InstitutionCommandServiceLogMarkers.PUT_INSTITUTION, LogMessages.PUT_INSTITUTION, __logMessageArgs);
@@ -76,8 +77,8 @@ public class LoggingInstitutionCommandService implements org.dressdiscover.api.s
     private final org.dressdiscover.api.services.institution.InstitutionCommandService delegate;
 
     private final static class LogMessages {
-        public final static String DELETE_INSTITUTION_BY_ID = "delete_institution_by_id({}) -> {}";
-        public final static String PUT_INSTITUTION = "put_institution({}) -> {}";
+        public final static String DELETE_INSTITUTION_BY_ID = "delete_institution_by_id(id={}) -> {}";
+        public final static String PUT_INSTITUTION = "put_institution(id={}, institution={}) -> {}";
     }
 
     public final static String PRE_RETURN_VALUE = "...";
