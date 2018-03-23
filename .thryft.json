@@ -4,6 +4,7 @@
     "tasks": {
         "clean": [
             "cs/DressDiscover/DressDiscover.Api/src",
+            "cs/DressDiscover/DressDiscover.Server/src/DressDiscover/Server/Controllers/Worksheet",
             "java/api/src/gen/java/org/dressdiscover",
             "java/lib/src/gen/java/org/dressdiscover",
             "java/server/src/gen/java/org/dressdiscover",
@@ -84,6 +85,7 @@
                 "thrift_files": "thrift/src/dressdiscover/api/services/worksheet/*_service.thrift",
                 "gen": {
                     "cs": "cs/DressDiscover/DressDiscover.Api/src",
+                    "json_rpc_controller_cs": "cs/DressDiscover/DressDiscover.Server/src",
                     "async_to_sync_service_ts": "ts/worksheet/src",
                     "logging_service_ts": "ts/worksheet/src",
                     "ts": "ts/worksheet/src"
