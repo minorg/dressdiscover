@@ -4,6 +4,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 VisualStudioVersion = 15.0.27428.2015
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DressDiscover.Server", "DressDiscover.Server\DressDiscover.Server.csproj", "{B0B73E2F-23F7-4BFF-9676-EB7188B50136}"
+	ProjectSection(ProjectDependencies) = postProject
+		{719EAC17-320E-49A8-8A7D-8DEA8C4F8F8F} = {719EAC17-320E-49A8-8A7D-8DEA8C4F8F8F}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DressDiscover.Api", "DressDiscover.Api\DressDiscover.Api.csproj", "{719EAC17-320E-49A8-8A7D-8DEA8C4F8F8F}"
 EndProject
