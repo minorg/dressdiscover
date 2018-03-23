@@ -3,6 +3,7 @@
 
     "tasks": {
         "clean": [
+            "cs/DressDiscover/DressDiscover.Api/src",
             "java/api/src/gen/java/org/dressdiscover",
             "java/lib/src/gen/java/org/dressdiscover",
             "java/server/src/gen/java/org/dressdiscover",
@@ -54,16 +55,17 @@
                 }
             },
             {
-                "description": "api worksheet models ts",
+                "description": "api worksheet models",
                 "thrift_root_dir": "thrift/src",
                 "thrift_include_dirs": ["../thryft-waf/thrift/src"],
                 "thrift_files": "thrift/src/dressdiscover/api/models/worksheet/**/*.thrift",
                 "gen": {
+                    "cs": "cs/DressDiscover/DressDiscover.Api/src",
                     "ts": "ts/worksheet/src"
                 }
             },
             {
-                "description": "api worksheet services ts 1",
+                "description": "api worksheet service exceptions",
                 "thrift_root_dir": "thrift/src",
                 "thrift_include_dirs": ["../thryft-waf/thrift/src"],
                 "thrift_files": [
@@ -75,7 +77,7 @@
                 }
             },
             {
-                "description": "api worksheet services ts 2",
+                "description": "api worksheet services",
                 "thrift_root_dir": "thrift/src",
                 "thrift_include_dirs": ["../thryft-waf/thrift/src"],
                 "thrift_files": "thrift/src/dressdiscover/api/services/worksheet/*_service.thrift",
