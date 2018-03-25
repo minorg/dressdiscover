@@ -1,7 +1,49 @@
 namespace DressDiscover.Server.Controllers.Worksheet
 {
-    public sealed class WorksheetPingQueryServiceJsonRpcController : Microsoft.AspNetCore.Mvc.Controller {
-        public sealed class Messages {
+    public sealed class WorksheetPingQueryServiceJsonRpcController : Microsoft.AspNetCore.Mvc.Controller
+    {
+        public sealed class Messages
+        {
+            public sealed class JsonRpcError
+            {
+                public JsonRpcError(int code, string message)
+                {
+                    this.Code = code;
+                    this.Message = message;
+                }
+
+                [Newtonsoft.Json.JsonProperty(PropertyName = "@class")]
+                public string Class { get; set; }
+
+                [Newtonsoft.Json.JsonProperty(PropertyName = "code")]
+                public int Code { get; }
+
+                [Newtonsoft.Json.JsonProperty(PropertyName = "data")]
+                public System.Exception Data { get; set; }
+
+                [Newtonsoft.Json.JsonProperty(PropertyName = "message")]
+                public string Message { get; }
+            }
+
+            public sealed class JsonRpcErrorResponse
+            {
+                public JsonRpcErrorResponse(JsonRpcError error, string id)
+                {
+                    this.Error = error;
+                    this.Jsonrpc = "2.0";
+                    this.Id = id;
+                }
+
+                [Newtonsoft.Json.JsonProperty(PropertyName = "error")]
+                public JsonRpcError Error { get; }
+
+                [Newtonsoft.Json.JsonProperty(PropertyName = "id")]
+                public string Id { get; }
+
+                [Newtonsoft.Json.JsonProperty(PropertyName = "jsonrpc")]
+                public string Jsonrpc { get; }
+            }
+
             public sealed class PingRequestParams
             {
                 public PingRequestParams(string message)
@@ -160,14 +202,23 @@ namespace DressDiscover.Server.Controllers.Worksheet
             }
         }
 
-        public WorksheetPingQueryServiceJsonRpcController(DressDiscover.Api.Services.Worksheet.IWorksheetPingQueryService service) {
+        public WorksheetPingQueryServiceJsonRpcController(DressDiscover.Api.Services.Worksheet.IWorksheetPingQueryService service)
+        {
             this.service = service;
         }
 
         [Microsoft.AspNetCore.Mvc.HttpPost]
         [Microsoft.AspNetCore.Mvc.Route("ping")]
-        public Messages.PingResponse Ping([Microsoft.AspNetCore.Mvc.FromBody] Messages.PingRequest request) {
-            return new Messages.PingResponse(id: request.Id, result: service.Ping(request.message));
+        public Microsoft.AspNetCore.Mvc.JsonResult Ping([Microsoft.AspNetCore.Mvc.FromBody] Messages.PingRequest request)
+        {
+            try
+            {
+                    return new Microsoft.AspNetCore.Mvc.JsonResult(new Messages.PingResponse(id: request.Id, result: service.Ping(request.Params_.Message)));
+            }
+            catch (DressDiscover.Api.Services.IoException e)
+            {
+                return new Microsoft.AspNetCore.Mvc.JsonResult(new Messages.JsonRpcErrorResponse(error: new Messages.JsonRpcError(code: 1, message: e.ToString()) { Class = "dressdiscover.api.services.io_exception.IoException", Data = e }, id: request.Id));
+            }
         }
 
         private DressDiscover.Api.Services.Worksheet.IWorksheetPingQueryService service;

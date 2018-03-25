@@ -1,7 +1,49 @@
 namespace DressDiscover.Server.Controllers.Worksheet
 {
-    public sealed class WorksheetStateQueryServiceJsonRpcController : Microsoft.AspNetCore.Mvc.Controller {
-        public sealed class Messages {
+    public sealed class WorksheetStateQueryServiceJsonRpcController : Microsoft.AspNetCore.Mvc.Controller
+    {
+        public sealed class Messages
+        {
+            public sealed class JsonRpcError
+            {
+                public JsonRpcError(int code, string message)
+                {
+                    this.Code = code;
+                    this.Message = message;
+                }
+
+                [Newtonsoft.Json.JsonProperty(PropertyName = "@class")]
+                public string Class { get; set; }
+
+                [Newtonsoft.Json.JsonProperty(PropertyName = "code")]
+                public int Code { get; }
+
+                [Newtonsoft.Json.JsonProperty(PropertyName = "data")]
+                public System.Exception Data { get; set; }
+
+                [Newtonsoft.Json.JsonProperty(PropertyName = "message")]
+                public string Message { get; }
+            }
+
+            public sealed class JsonRpcErrorResponse
+            {
+                public JsonRpcErrorResponse(JsonRpcError error, string id)
+                {
+                    this.Error = error;
+                    this.Jsonrpc = "2.0";
+                    this.Id = id;
+                }
+
+                [Newtonsoft.Json.JsonProperty(PropertyName = "error")]
+                public JsonRpcError Error { get; }
+
+                [Newtonsoft.Json.JsonProperty(PropertyName = "id")]
+                public string Id { get; }
+
+                [Newtonsoft.Json.JsonProperty(PropertyName = "jsonrpc")]
+                public string Jsonrpc { get; }
+            }
+
             public sealed class GetWorksheetStateRequestParams
             {
                 public GetWorksheetStateRequestParams(string id)
@@ -297,19 +339,41 @@ namespace DressDiscover.Server.Controllers.Worksheet
             }
         }
 
-        public WorksheetStateQueryServiceJsonRpcController(DressDiscover.Api.Services.Worksheet.IWorksheetStateQueryService service) {
+        public WorksheetStateQueryServiceJsonRpcController(DressDiscover.Api.Services.Worksheet.IWorksheetStateQueryService service)
+        {
             this.service = service;
         }
 
         [Microsoft.AspNetCore.Mvc.HttpPost]
         [Microsoft.AspNetCore.Mvc.Route("get_worksheet_state")]
-        public Messages.GetWorksheetStateResponse GetWorksheetState([Microsoft.AspNetCore.Mvc.FromBody] Messages.GetWorksheetStateRequest request) {
-            return new Messages.GetWorksheetStateResponse(id: request.Id, result: service.GetWorksheetState(request.id));
+        public Microsoft.AspNetCore.Mvc.JsonResult GetWorksheetState([Microsoft.AspNetCore.Mvc.FromBody] Messages.GetWorksheetStateRequest request)
+        {
+            try
+            {
+                    return new Microsoft.AspNetCore.Mvc.JsonResult(new Messages.GetWorksheetStateResponse(id: request.Id, result: service.GetWorksheetState(request.Params_.Id)));
+            }
+            catch (DressDiscover.Api.Services.IoException e)
+            {
+                return new Microsoft.AspNetCore.Mvc.JsonResult(new Messages.JsonRpcErrorResponse(error: new Messages.JsonRpcError(code: 1, message: e.ToString()) { Class = "dressdiscover.api.services.io_exception.IoException", Data = e }, id: request.Id));
+            }
+
+            catch (DressDiscover.Api.Services.Worksheet.NoSuchWorksheetStateException e)
+            {
+                return new Microsoft.AspNetCore.Mvc.JsonResult(new Messages.JsonRpcErrorResponse(error: new Messages.JsonRpcError(code: 1, message: e.ToString()) { Class = "dressdiscover.api.services.worksheet.no_such_worksheet_state_exception.NoSuchWorksheetStateException", Data = e }, id: request.Id));
+            }
         }
         [Microsoft.AspNetCore.Mvc.HttpPost]
         [Microsoft.AspNetCore.Mvc.Route("get_worksheet_state_ids")]
-        public Messages.GetWorksheetStateIdsResponse GetWorksheetStateIds([Microsoft.AspNetCore.Mvc.FromBody] Messages.GetWorksheetStateIdsRequest request) {
-            return new Messages.GetWorksheetStateIdsResponse(id: request.Id, result: service.GetWorksheetStateIds());
+        public Microsoft.AspNetCore.Mvc.JsonResult GetWorksheetStateIds([Microsoft.AspNetCore.Mvc.FromBody] Messages.GetWorksheetStateIdsRequest request)
+        {
+            try
+            {
+                    return new Microsoft.AspNetCore.Mvc.JsonResult(new Messages.GetWorksheetStateIdsResponse(id: request.Id, result: service.GetWorksheetStateIds()));
+            }
+            catch (DressDiscover.Api.Services.IoException e)
+            {
+                return new Microsoft.AspNetCore.Mvc.JsonResult(new Messages.JsonRpcErrorResponse(error: new Messages.JsonRpcError(code: 1, message: e.ToString()) { Class = "dressdiscover.api.services.io_exception.IoException", Data = e }, id: request.Id));
+            }
         }
 
         private DressDiscover.Api.Services.Worksheet.IWorksheetStateQueryService service;

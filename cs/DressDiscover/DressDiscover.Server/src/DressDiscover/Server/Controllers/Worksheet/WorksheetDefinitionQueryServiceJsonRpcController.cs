@@ -1,7 +1,49 @@
 namespace DressDiscover.Server.Controllers.Worksheet
 {
-    public sealed class WorksheetDefinitionQueryServiceJsonRpcController : Microsoft.AspNetCore.Mvc.Controller {
-        public sealed class Messages {
+    public sealed class WorksheetDefinitionQueryServiceJsonRpcController : Microsoft.AspNetCore.Mvc.Controller
+    {
+        public sealed class Messages
+        {
+            public sealed class JsonRpcError
+            {
+                public JsonRpcError(int code, string message)
+                {
+                    this.Code = code;
+                    this.Message = message;
+                }
+
+                [Newtonsoft.Json.JsonProperty(PropertyName = "@class")]
+                public string Class { get; set; }
+
+                [Newtonsoft.Json.JsonProperty(PropertyName = "code")]
+                public int Code { get; }
+
+                [Newtonsoft.Json.JsonProperty(PropertyName = "data")]
+                public System.Exception Data { get; set; }
+
+                [Newtonsoft.Json.JsonProperty(PropertyName = "message")]
+                public string Message { get; }
+            }
+
+            public sealed class JsonRpcErrorResponse
+            {
+                public JsonRpcErrorResponse(JsonRpcError error, string id)
+                {
+                    this.Error = error;
+                    this.Jsonrpc = "2.0";
+                    this.Id = id;
+                }
+
+                [Newtonsoft.Json.JsonProperty(PropertyName = "error")]
+                public JsonRpcError Error { get; }
+
+                [Newtonsoft.Json.JsonProperty(PropertyName = "id")]
+                public string Id { get; }
+
+                [Newtonsoft.Json.JsonProperty(PropertyName = "jsonrpc")]
+                public string Jsonrpc { get; }
+            }
+
             public sealed class GetWorksheetDefinitionRequestParams
             {
             }
@@ -140,14 +182,23 @@ namespace DressDiscover.Server.Controllers.Worksheet
             }
         }
 
-        public WorksheetDefinitionQueryServiceJsonRpcController(DressDiscover.Api.Services.Worksheet.IWorksheetDefinitionQueryService service) {
+        public WorksheetDefinitionQueryServiceJsonRpcController(DressDiscover.Api.Services.Worksheet.IWorksheetDefinitionQueryService service)
+        {
             this.service = service;
         }
 
         [Microsoft.AspNetCore.Mvc.HttpPost]
         [Microsoft.AspNetCore.Mvc.Route("get_worksheet_definition")]
-        public Messages.GetWorksheetDefinitionResponse GetWorksheetDefinition([Microsoft.AspNetCore.Mvc.FromBody] Messages.GetWorksheetDefinitionRequest request) {
-            return new Messages.GetWorksheetDefinitionResponse(id: request.Id, result: service.GetWorksheetDefinition());
+        public Microsoft.AspNetCore.Mvc.JsonResult GetWorksheetDefinition([Microsoft.AspNetCore.Mvc.FromBody] Messages.GetWorksheetDefinitionRequest request)
+        {
+            try
+            {
+                    return new Microsoft.AspNetCore.Mvc.JsonResult(new Messages.GetWorksheetDefinitionResponse(id: request.Id, result: service.GetWorksheetDefinition()));
+            }
+            catch (DressDiscover.Api.Services.IoException e)
+            {
+                return new Microsoft.AspNetCore.Mvc.JsonResult(new Messages.JsonRpcErrorResponse(error: new Messages.JsonRpcError(code: 1, message: e.ToString()) { Class = "dressdiscover.api.services.io_exception.IoException", Data = e }, id: request.Id));
+            }
         }
 
         private DressDiscover.Api.Services.Worksheet.IWorksheetDefinitionQueryService service;
