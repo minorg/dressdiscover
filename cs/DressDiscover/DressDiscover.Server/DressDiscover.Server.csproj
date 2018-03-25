@@ -5,6 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Folder Include="src\DressDiscover\Server\Controllers\Worksheet\" />
     <Folder Include="wwwroot\" />
   </ItemGroup>
 
@@ -14,6 +15,10 @@
 
   <ItemGroup>
     <DotNetCliToolReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Tools" Version="2.0.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\DressDiscover.Api\DressDiscover.Api.csproj" />
   </ItemGroup>
 
 </Project>
