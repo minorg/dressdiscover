@@ -1,4 +1,5 @@
 import * as $ from "jquery"
+import { IoException } from "../io_exception";
 import { WorksheetPingQueryService } from "./worksheet_ping_query_service";
 
 export class JsonRpcWorksheetPingQueryService implements WorksheetPingQueryService {
@@ -37,7 +38,16 @@ export class JsonRpcWorksheetPingQueryService implements WorksheetPingQueryServi
                 }
 
                 var __error;
-                __error = new Error(data.error.message);
+                if (data.error["@class"] && data.error.data) {
+                    var __error_class = data.error["@class"];
+                    if (__error_class == 'dressdiscover.api.services.io_exception.IoException') {
+                        __error = IoException.fromThryftJsonObject(data.error.data);
+                    } else {
+                        __error = new Error(data.error.message);
+                    }
+                } else {
+                    __error = new Error(data.error.message);
+                }
                 kwds.error({jqXHR: jqXHR, textStatus: __error.toString(), errorThrown: __error});
             },
             url: this._endpointUrl + (this._methodEndpoints ? "/ping" : "")
@@ -69,7 +79,16 @@ export class JsonRpcWorksheetPingQueryService implements WorksheetPingQueryServi
                 if (typeof data.result !== "undefined") {
                     __returnValue = data.result;
                 } else {
-                    __error = new Error(data.error.message);
+                    if (data.error["@class"] && data.error.data) {
+                        var __error_class = data.error["@class"];
+                        if (__error_class == 'dressdiscover.api.services.io_exception.IoException') {
+                            __error = IoException.fromThryftJsonObject(data.error.data);
+                        } else {
+                            __error = new Error(data.error.message);
+                        }
+                    } else {
+                        __error = new Error(data.error.message);
+                    }
                 }
             },
             url: this._endpointUrl + (this._methodEndpoints ? "/ping" : ""),

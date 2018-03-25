@@ -9,8 +9,14 @@ export class LoggingWorksheetPingQueryService implements WorksheetPingQueryServi
     }
 
     pingSync(kwds: {message: string}): string {
-        const __returnValue = this.delegate.pingSync({message: kwds.message});
-        console.debug("pingSync({", "message: ", kwds.message, "}) -> ", __returnValue);
-        return __returnValue;
+        try {
+            const __returnValue = this.delegate.pingSync({message: kwds.message});
+            console.debug("pingSync({", "message: ", kwds.message, "}) -> ", __returnValue);
+            return __returnValue;
+        } catch (e) {
+            console.warn("pingSync({", "message: ", kwds.message, "}) -> exception");
+            console.warn(e);
+            throw e;
+        }
     }
 }

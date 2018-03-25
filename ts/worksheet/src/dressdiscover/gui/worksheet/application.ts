@@ -83,6 +83,9 @@ export class Application {
 
         const errorHandler = new ErrorHandler();
         const services = new Services();
+
+        console.info("Ping response: ", services.worksheetPingQueryService.pingSync({ message: "ping server" }));
+
         services.worksheetDefinitionQueryService.getWorksheetDefinitionAsync({
             error: errorHandler.handleAsyncError,
             success: (definition) => {
