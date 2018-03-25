@@ -1,14 +1,34 @@
 namespace DressDiscover.Server.Controllers.Worksheet
 {
-    public sealed class WorksheetDefinitionQueryServiceJsonRpcController : Microsoft.AspNetCore.Mvc.Controller {
+    public sealed class WorksheetPingQueryServiceJsonRpcController : Microsoft.AspNetCore.Mvc.Controller {
         public sealed class Messages {
-            public sealed class GetWorksheetDefinitionRequestParams
+            public sealed class PingRequestParams
             {
+                public PingRequestParams(string message)
+                {
+                    this.Message = message;
+                }
+
+                [Newtonsoft.Json.JsonProperty(PropertyName = "message")]
+                public string Message
+                {
+                    get { return message; }
+                    set
+                    {
+                        if (value == null)
+                        {
+                            throw new System.NullReferenceException("PingRequestParams.Message");
+                        }
+                        this.message = value;
+                    }
+                }
+
+                private string message;
             }
 
-            public sealed class GetWorksheetDefinitionRequest
+            public sealed class PingRequest
             {
-                public GetWorksheetDefinitionRequest(string jsonrpc, string method, string id, GetWorksheetDefinitionRequestParams params_)
+                public PingRequest(string jsonrpc, string method, string id, PingRequestParams params_)
                 {
                     this.Jsonrpc = jsonrpc;
                     this.Method = method;
@@ -24,7 +44,7 @@ namespace DressDiscover.Server.Controllers.Worksheet
                     {
                         if (value == null)
                         {
-                            throw new System.NullReferenceException("GetWorksheetDefinitionRequest.Id");
+                            throw new System.NullReferenceException("PingRequest.Id");
                         }
                         this.id = value;
                     }
@@ -38,7 +58,7 @@ namespace DressDiscover.Server.Controllers.Worksheet
                     {
                         if (value == null)
                         {
-                            throw new System.NullReferenceException("GetWorksheetDefinitionRequest.Jsonrpc");
+                            throw new System.NullReferenceException("PingRequest.Jsonrpc");
                         }
                         this.jsonrpc = value;
                     }
@@ -52,21 +72,21 @@ namespace DressDiscover.Server.Controllers.Worksheet
                     {
                         if (value == null)
                         {
-                            throw new System.NullReferenceException("GetWorksheetDefinitionRequest.Method");
+                            throw new System.NullReferenceException("PingRequest.Method");
                         }
                         this.method = value;
                     }
                 }
 
                 [Newtonsoft.Json.JsonProperty(PropertyName = "params_")]
-                public GetWorksheetDefinitionRequestParams Params_
+                public PingRequestParams Params_
                 {
                     get { return params_; }
                     set
                     {
                         if (value == null)
                         {
-                            throw new System.NullReferenceException("GetWorksheetDefinitionRequest.Params_");
+                            throw new System.NullReferenceException("PingRequest.Params_");
                         }
                         this.params_ = value;
                     }
@@ -75,18 +95,18 @@ namespace DressDiscover.Server.Controllers.Worksheet
                 private string id;
                 private string jsonrpc;
                 private string method;
-                private GetWorksheetDefinitionRequestParams params_;
+                private PingRequestParams params_;
             }
 
-            public sealed class GetWorksheetDefinitionResponse
+            public sealed class PingResponse
             {
-                public GetWorksheetDefinitionResponse(string id, DressDiscover.Api.Models.Worksheet.WorksheetDefinition result)
+                public PingResponse(string id, string result)
                 {
                     this.Id = id;
                     this.Result = result;
                 }
 
-                public GetWorksheetDefinitionResponse(string id, DressDiscover.Api.Models.Worksheet.WorksheetDefinition result, string jsonrpc = "2.0") {
+                public PingResponse(string id, string result, string jsonrpc = "2.0") {
                     this.Id = id;
                     this.Result = result;
                     this.Jsonrpc = jsonrpc;
@@ -100,7 +120,7 @@ namespace DressDiscover.Server.Controllers.Worksheet
                     {
                         if (value == null)
                         {
-                            throw new System.NullReferenceException("GetWorksheetDefinitionResponse.Id");
+                            throw new System.NullReferenceException("PingResponse.Id");
                         }
                         this.id = value;
                     }
@@ -114,21 +134,21 @@ namespace DressDiscover.Server.Controllers.Worksheet
                     {
                         if (value == null)
                         {
-                            throw new System.NullReferenceException("GetWorksheetDefinitionResponse.Jsonrpc");
+                            throw new System.NullReferenceException("PingResponse.Jsonrpc");
                         }
                         this.jsonrpc = value;
                     }
                 }
 
                 [Newtonsoft.Json.JsonProperty(PropertyName = "result")]
-                public DressDiscover.Api.Models.Worksheet.WorksheetDefinition Result
+                public string Result
                 {
                     get { return result; }
                     set
                     {
                         if (value == null)
                         {
-                            throw new System.NullReferenceException("GetWorksheetDefinitionResponse.Result");
+                            throw new System.NullReferenceException("PingResponse.Result");
                         }
                         this.result = value;
                     }
@@ -136,20 +156,20 @@ namespace DressDiscover.Server.Controllers.Worksheet
 
                 private string id;
                 private string jsonrpc = "2.0";
-                private DressDiscover.Api.Models.Worksheet.WorksheetDefinition result;
+                private string result;
             }
         }
 
-        public WorksheetDefinitionQueryServiceJsonRpcController(DressDiscover.Api.Services.Worksheet.IWorksheetDefinitionQueryService service) {
+        public WorksheetPingQueryServiceJsonRpcController(DressDiscover.Api.Services.Worksheet.IWorksheetPingQueryService service) {
             this.service = service;
         }
 
         [Microsoft.AspNetCore.Mvc.HttpPost]
-        [Microsoft.AspNetCore.Mvc.Route("get_worksheet_definition")]
-        public Messages.GetWorksheetDefinitionResponse GetWorksheetDefinition([Microsoft.AspNetCore.Mvc.FromBody] Messages.GetWorksheetDefinitionRequest request) {
-            return new Messages.GetWorksheetDefinitionResponse(id: request.Id, result: service.GetWorksheetDefinition());
+        [Microsoft.AspNetCore.Mvc.Route("ping")]
+        public Messages.PingResponse Ping([Microsoft.AspNetCore.Mvc.FromBody] Messages.PingRequest request) {
+            return new Messages.PingResponse(id: request.Id, result: service.Ping(request.message));
         }
 
-        private DressDiscover.Api.Services.Worksheet.IWorksheetDefinitionQueryService service;
+        private DressDiscover.Api.Services.Worksheet.IWorksheetPingQueryService service;
     }
 }

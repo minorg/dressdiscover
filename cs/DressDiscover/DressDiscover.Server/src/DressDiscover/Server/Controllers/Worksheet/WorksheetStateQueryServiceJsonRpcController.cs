@@ -304,12 +304,12 @@ namespace DressDiscover.Server.Controllers.Worksheet
         [Microsoft.AspNetCore.Mvc.HttpPost]
         [Microsoft.AspNetCore.Mvc.Route("get_worksheet_state")]
         public Messages.GetWorksheetStateResponse GetWorksheetState([Microsoft.AspNetCore.Mvc.FromBody] Messages.GetWorksheetStateRequest request) {
-            return new Messages.%(name)sResponse(id = request.Id, result = %(delegate)s);service.GetWorksheetState(request.id)
+            return new Messages.GetWorksheetStateResponse(id: request.Id, result: service.GetWorksheetState(request.id));
         }
         [Microsoft.AspNetCore.Mvc.HttpPost]
         [Microsoft.AspNetCore.Mvc.Route("get_worksheet_state_ids")]
         public Messages.GetWorksheetStateIdsResponse GetWorksheetStateIds([Microsoft.AspNetCore.Mvc.FromBody] Messages.GetWorksheetStateIdsRequest request) {
-            return new Messages.%(name)sResponse(id = request.Id, result = %(delegate)s);service.GetWorksheetStateIds()
+            return new Messages.GetWorksheetStateIdsResponse(id: request.Id, result: service.GetWorksheetStateIds());
         }
 
         private DressDiscover.Api.Services.Worksheet.IWorksheetStateQueryService service;
