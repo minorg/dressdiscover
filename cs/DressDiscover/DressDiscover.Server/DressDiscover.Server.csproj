@@ -19,6 +19,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\DressDiscover.Api\DressDiscover.Api.csproj" />
+    <ProjectReference Include="..\DressDiscover.Lib\DressDiscover.Lib.csproj" />
   </ItemGroup>
 
 </Project>
