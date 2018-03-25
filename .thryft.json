@@ -85,8 +85,9 @@
                 "thrift_files": "thrift/src/dressdiscover/api/services/worksheet/*_service.thrift",
                 "gen": {
                     "cs": "cs/DressDiscover/DressDiscover.Api/src",
-                    "json_rpc_controller_cs": "cs/DressDiscover/DressDiscover.Server/src",
                     "async_to_sync_service_ts": "ts/worksheet/src",
+                    "json_rpc_client_ts": "ts/worksheet/src",
+                    "json_rpc_controller_cs": "cs/DressDiscover/DressDiscover.Server/src",
                     "logging_service_ts": "ts/worksheet/src",
                     "ts": "ts/worksheet/src"
                 }
