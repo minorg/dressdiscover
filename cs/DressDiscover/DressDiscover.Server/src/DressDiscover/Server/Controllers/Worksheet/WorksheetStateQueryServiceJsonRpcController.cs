@@ -120,7 +120,7 @@ namespace DressDiscover.Server.Controllers.Worksheet
                     }
                 }
 
-                [Newtonsoft.Json.JsonProperty(PropertyName = "params_")]
+                [Newtonsoft.Json.JsonProperty(PropertyName = "params")]
                 public GetWorksheetStateRequestParams Params_
                 {
                     get { return params_; }
@@ -257,7 +257,7 @@ namespace DressDiscover.Server.Controllers.Worksheet
                     }
                 }
 
-                [Newtonsoft.Json.JsonProperty(PropertyName = "params_")]
+                [Newtonsoft.Json.JsonProperty(PropertyName = "params")]
                 public GetWorksheetStateIdsRequestParams Params_
                 {
                     get { return params_; }

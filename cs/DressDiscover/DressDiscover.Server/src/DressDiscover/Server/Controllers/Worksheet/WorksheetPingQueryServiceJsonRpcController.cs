@@ -121,7 +121,7 @@ namespace DressDiscover.Server.Controllers.Worksheet
                     }
                 }
 
-                [Newtonsoft.Json.JsonProperty(PropertyName = "params_")]
+                [Newtonsoft.Json.JsonProperty(PropertyName = "params")]
                 public PingRequestParams Params_
                 {
                     get { return params_; }

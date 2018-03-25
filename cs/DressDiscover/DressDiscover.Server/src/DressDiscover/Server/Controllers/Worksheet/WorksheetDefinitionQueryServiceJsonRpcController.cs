@@ -100,7 +100,7 @@ namespace DressDiscover.Server.Controllers.Worksheet
                     }
                 }
 
-                [Newtonsoft.Json.JsonProperty(PropertyName = "params_")]
+                [Newtonsoft.Json.JsonProperty(PropertyName = "params")]
                 public GetWorksheetDefinitionRequestParams Params_
                 {
                     get { return params_; }
