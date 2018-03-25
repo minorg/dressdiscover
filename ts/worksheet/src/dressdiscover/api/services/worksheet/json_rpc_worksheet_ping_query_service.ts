@@ -14,6 +14,7 @@ export class JsonRpcWorksheetPingQueryService implements WorksheetPingQueryServi
 
         $.ajax({
             async: true,
+            contentType: "application/json",
             data: JSON.stringify({
                 jsonrpc: '2.0',
                 method: 'ping',
@@ -63,6 +64,7 @@ export class JsonRpcWorksheetPingQueryService implements WorksheetPingQueryServi
 
         $.ajax({
             async: false,
+            contentType: "application/json",
             data: JSON.stringify({
                 jsonrpc: '2.0',
                 method: 'ping',

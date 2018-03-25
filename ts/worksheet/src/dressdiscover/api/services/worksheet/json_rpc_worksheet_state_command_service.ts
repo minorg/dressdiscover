@@ -18,6 +18,7 @@ export class JsonRpcWorksheetStateCommandService implements WorksheetStateComman
 
         $.ajax({
             async: true,
+            contentType: "application/json",
             data: JSON.stringify({
                 jsonrpc: '2.0',
                 method: 'delete_worksheet_state',
@@ -66,6 +67,7 @@ export class JsonRpcWorksheetStateCommandService implements WorksheetStateComman
 
         $.ajax({
             async: false,
+            contentType: "application/json",
             data: JSON.stringify({
                 jsonrpc: '2.0',
                 method: 'delete_worksheet_state',
@@ -106,6 +108,7 @@ export class JsonRpcWorksheetStateCommandService implements WorksheetStateComman
 
         $.ajax({
             async: true,
+            contentType: "application/json",
             data: JSON.stringify({
                 jsonrpc: '2.0',
                 method: 'put_worksheet_state',
@@ -154,6 +157,7 @@ export class JsonRpcWorksheetStateCommandService implements WorksheetStateComman
 
         $.ajax({
             async: false,
+            contentType: "application/json",
             data: JSON.stringify({
                 jsonrpc: '2.0',
                 method: 'put_worksheet_state',
@@ -195,6 +199,7 @@ export class JsonRpcWorksheetStateCommandService implements WorksheetStateComman
 
         $.ajax({
             async: true,
+            contentType: "application/json",
             data: JSON.stringify({
                 jsonrpc: '2.0',
                 method: 'rename_worksheet_state',
@@ -248,6 +253,7 @@ export class JsonRpcWorksheetStateCommandService implements WorksheetStateComman
 
         $.ajax({
             async: false,
+            contentType: "application/json",
             data: JSON.stringify({
                 jsonrpc: '2.0',
                 method: 'rename_worksheet_state',

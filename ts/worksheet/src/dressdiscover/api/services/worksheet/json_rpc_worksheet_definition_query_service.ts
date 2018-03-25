@@ -12,6 +12,7 @@ export class JsonRpcWorksheetDefinitionQueryService implements WorksheetDefiniti
     getWorksheetDefinitionAsync(kwds: {error: (errorKwds: {textStatus: string, errorThrown: any, [index: string]: any}) => any, success: (returnValue: WorksheetDefinition) => void}): void {
         $.ajax({
             async: true,
+            contentType: "application/json",
             data: JSON.stringify({
                 jsonrpc: '2.0',
                 method: 'get_worksheet_definition',
@@ -58,6 +59,7 @@ export class JsonRpcWorksheetDefinitionQueryService implements WorksheetDefiniti
 
         $.ajax({
             async: false,
+            contentType: "application/json",
             data: JSON.stringify({
                 jsonrpc: '2.0',
                 method: 'get_worksheet_definition',

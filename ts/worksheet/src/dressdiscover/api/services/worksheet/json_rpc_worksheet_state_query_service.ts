@@ -17,6 +17,7 @@ export class JsonRpcWorksheetStateQueryService implements WorksheetStateQuerySer
 
         $.ajax({
             async: true,
+            contentType: "application/json",
             data: JSON.stringify({
                 jsonrpc: '2.0',
                 method: 'get_worksheet_state',
@@ -68,6 +69,7 @@ export class JsonRpcWorksheetStateQueryService implements WorksheetStateQuerySer
 
         $.ajax({
             async: false,
+            contentType: "application/json",
             data: JSON.stringify({
                 jsonrpc: '2.0',
                 method: 'get_worksheet_state',
@@ -111,6 +113,7 @@ export class JsonRpcWorksheetStateQueryService implements WorksheetStateQuerySer
     getWorksheetStateIdsAsync(kwds: {error: (errorKwds: {textStatus: string, errorThrown: any, [index: string]: any}) => any, success: (returnValue: WorksheetStateId[]) => void}): void {
         $.ajax({
             async: true,
+            contentType: "application/json",
             data: JSON.stringify({
                 jsonrpc: '2.0',
                 method: 'get_worksheet_state_ids',
@@ -157,6 +160,7 @@ export class JsonRpcWorksheetStateQueryService implements WorksheetStateQuerySer
 
         $.ajax({
             async: false,
+            contentType: "application/json",
             data: JSON.stringify({
                 jsonrpc: '2.0',
                 method: 'get_worksheet_state_ids',
