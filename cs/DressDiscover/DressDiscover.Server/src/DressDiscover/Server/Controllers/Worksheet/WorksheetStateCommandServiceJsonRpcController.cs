@@ -519,8 +519,8 @@ namespace DressDiscover.Server.Controllers.Worksheet
         {
             try
             {
-                    service.DeleteWorksheetState(request.Params_.Id);
-                    return new Microsoft.AspNetCore.Mvc.JsonResult(new Messages.DeleteWorksheetStateResponse(id: request.Id, result: null));
+                service.DeleteWorksheetState(request.Params_.Id);
+                return new Microsoft.AspNetCore.Mvc.JsonResult(new Messages.DeleteWorksheetStateResponse(id: request.Id, result: null));
             }
             catch (DressDiscover.Api.Services.IoException e)
             {
@@ -533,8 +533,8 @@ namespace DressDiscover.Server.Controllers.Worksheet
         {
             try
             {
-                    service.PutWorksheetState(request.Params_.State);
-                    return new Microsoft.AspNetCore.Mvc.JsonResult(new Messages.PutWorksheetStateResponse(id: request.Id, result: null));
+                service.PutWorksheetState(request.Params_.State);
+                return new Microsoft.AspNetCore.Mvc.JsonResult(new Messages.PutWorksheetStateResponse(id: request.Id, result: null));
             }
             catch (DressDiscover.Api.Services.IoException e)
             {
@@ -547,8 +547,8 @@ namespace DressDiscover.Server.Controllers.Worksheet
         {
             try
             {
-                    service.RenameWorksheetState(request.Params_.NewId, request.Params_.OldId);
-                    return new Microsoft.AspNetCore.Mvc.JsonResult(new Messages.RenameWorksheetStateResponse(id: request.Id, result: null));
+                service.RenameWorksheetState(request.Params_.NewId, request.Params_.OldId);
+                return new Microsoft.AspNetCore.Mvc.JsonResult(new Messages.RenameWorksheetStateResponse(id: request.Id, result: null));
             }
             catch (DressDiscover.Api.Services.Worksheet.DuplicateWorksheetStateException e)
             {

@@ -1,5 +1,6 @@
 namespace DressDiscover.Server.Controllers.Worksheet
 {
+    [Microsoft.AspNetCore.Mvc.Route("api/jsonrpc/worksheet_ping")]
     public sealed class WorksheetPingQueryServiceJsonRpcController : Microsoft.AspNetCore.Mvc.Controller
     {
         public sealed class Messages
@@ -213,7 +214,7 @@ namespace DressDiscover.Server.Controllers.Worksheet
         {
             try
             {
-                    return new Microsoft.AspNetCore.Mvc.JsonResult(new Messages.PingResponse(id: request.Id, result: service.Ping(request.Params_.Message)));
+                return new Microsoft.AspNetCore.Mvc.JsonResult(new Messages.PingResponse(id: request.Id, result: service.Ping(request.Params_.Message)));
             }
             catch (DressDiscover.Api.Services.IoException e)
             {

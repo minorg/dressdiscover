@@ -193,7 +193,7 @@ namespace DressDiscover.Server.Controllers.Worksheet
         {
             try
             {
-                    return new Microsoft.AspNetCore.Mvc.JsonResult(new Messages.GetWorksheetDefinitionResponse(id: request.Id, result: service.GetWorksheetDefinition()));
+                return new Microsoft.AspNetCore.Mvc.JsonResult(new Messages.GetWorksheetDefinitionResponse(id: request.Id, result: service.GetWorksheetDefinition()));
             }
             catch (DressDiscover.Api.Services.IoException e)
             {

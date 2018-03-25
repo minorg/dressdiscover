@@ -350,7 +350,7 @@ namespace DressDiscover.Server.Controllers.Worksheet
         {
             try
             {
-                    return new Microsoft.AspNetCore.Mvc.JsonResult(new Messages.GetWorksheetStateResponse(id: request.Id, result: service.GetWorksheetState(request.Params_.Id)));
+                return new Microsoft.AspNetCore.Mvc.JsonResult(new Messages.GetWorksheetStateResponse(id: request.Id, result: service.GetWorksheetState(request.Params_.Id)));
             }
             catch (DressDiscover.Api.Services.IoException e)
             {
@@ -368,7 +368,7 @@ namespace DressDiscover.Server.Controllers.Worksheet
         {
             try
             {
-                    return new Microsoft.AspNetCore.Mvc.JsonResult(new Messages.GetWorksheetStateIdsResponse(id: request.Id, result: service.GetWorksheetStateIds()));
+                return new Microsoft.AspNetCore.Mvc.JsonResult(new Messages.GetWorksheetStateIdsResponse(id: request.Id, result: service.GetWorksheetStateIds()));
             }
             catch (DressDiscover.Api.Services.IoException e)
             {
