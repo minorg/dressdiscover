@@ -9,28 +9,12 @@ export interface WorksheetStateQueryService {
      * @throws {IoException}
      * @throws {NoSuchWorksheetStateException}
      */
-    getWorksheetStateAsync(kwds: {id: WorksheetStateId, error: (errorKwds: {textStatus: string, errorThrown: any, [index: string]: any}) => any, success: (returnValue: WorksheetState) => void}): void;
-
-    /**
-     * getWorksheetState
-     * @param {WorksheetStateId} id
-     * @return {WorksheetState}
-     * @throws {IoException}
-     * @throws {NoSuchWorksheetStateException}
-     */
-    getWorksheetStateSync(kwds: {id: WorksheetStateId}): WorksheetState;
+    getWorksheetState(kwds: {id: WorksheetStateId}): Promise<WorksheetState>;
 
     /**
      * getWorksheetStateIds
      * @return {WorksheetStateId[]}
      * @throws {IoException}
      */
-    getWorksheetStateIdsAsync(kwds: {error: (errorKwds: {textStatus: string, errorThrown: any, [index: string]: any}) => any, success: (returnValue: WorksheetStateId[]) => void}): void;
-
-    /**
-     * getWorksheetStateIds
-     * @return {WorksheetStateId[]}
-     * @throws {IoException}
-     */
-    getWorksheetStateIdsSync(): WorksheetStateId[];
+    getWorksheetStateIds(): Promise<WorksheetStateId[]>;
 }

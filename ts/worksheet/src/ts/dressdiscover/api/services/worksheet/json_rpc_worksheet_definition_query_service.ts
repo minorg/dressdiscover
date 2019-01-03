@@ -9,8 +9,8 @@ export class JsonRpcWorksheetDefinitionQueryService implements WorksheetDefiniti
         this._methodEndpoints = !!kwds.methodEndpoints;
     }
 
-    getWorksheetDefinitionAsync(kwds: {error: (errorKwds: {textStatus: string, errorThrown: any, [index: string]: any}) => any, success: (returnValue: WorksheetDefinition) => void}): void {
-        $.ajax({
+    getWorksheetDefinition(): Promise<WorksheetDefinition> {
+        return $.ajax({
             async: true,
             contentType: "application/json",
             data: JSON.stringify({
@@ -20,82 +20,31 @@ export class JsonRpcWorksheetDefinitionQueryService implements WorksheetDefiniti
                 id: '1234'
             }),
             dataType: 'json',
-            error: (jqXHR, textStatus, errorThrown) => {
-                kwds.error({jqXHR: jqXHR, textStatus, errorThrown: errorThrown});
-            },
             mimeType: 'application/json',
             type: 'POST',
-            success: (data, textStatus, jqXHR) => {
-                // data is a JSON-RPC 2.0 response, either
-                // {"jsonrpc": "2.0", "result": -19, "id": 2} on success
-                // or
-                // {"jsonrpc": "2.0", "error": {"code": -32601, "message": "Method not found"}, "id": "1"} on error
-
+            url: this._endpointUrl + (this._methodEndpoints ? "/get_worksheet_definition" : "")
+        })
+        .then(
+            (data) => {
                 if (typeof data.result !== "undefined") {
-                    kwds.success(WorksheetDefinition.fromThryftJsonObject(data.result));
-                    return;
+                    return WorksheetDefinition.fromThryftJsonObject(data.result);
                 }
 
-                let __error: Error | undefined | IoException = undefined;
                 if (data.error["@class"] && data.error.data) {
                     const __error_class = data.error["@class"];
                     if (__error_class == 'dressdiscover.api.services.io_exception.IoException') {
-                        __error = IoException.fromThryftJsonObject(data.error.data);
+                        throw  IoException.fromThryftJsonObject(data.error.data);
                     } else {
-                        __error = new Error(data.error.message);
+                        throw  new Error(data.error.message);
                     }
                 } else {
-                    __error = new Error(data.error.message);
-                }
-                kwds.error({jqXHR: jqXHR, textStatus: __error.toString(), errorThrown: __error});
-            },
-            url: this._endpointUrl + (this._methodEndpoints ? "/get_worksheet_definition" : "")
-        });
-    }
-
-    getWorksheetDefinitionSync(): WorksheetDefinition {
-        let __error: Error | undefined | IoException = undefined;
-        let __returnValue: WorksheetDefinition | undefined = undefined;
-
-        $.ajax({
-            async: false,
-            contentType: "application/json",
-            data: JSON.stringify({
-                jsonrpc: '2.0',
-                method: 'get_worksheet_definition',
-                params: {},
-                id: '1234'
-            }),
-            dataType: 'json',
-            error: (jqXHR, textStatus, errorThrown) => {
-                __error = new Error(errorThrown);
-            },
-            mimeType: 'application/json',
-            type: 'POST',
-            success: (data) => {
-                if (typeof data.result !== "undefined") {
-                    __returnValue = WorksheetDefinition.fromThryftJsonObject(data.result);
-                } else {
-                    if (data.error["@class"] && data.error.data) {
-                        const __error_class = data.error["@class"];
-                        if (__error_class == 'dressdiscover.api.services.io_exception.IoException') {
-                            __error = IoException.fromThryftJsonObject(data.error.data);
-                        } else {
-                            __error = new Error(data.error.message);
-                        }
-                    } else {
-                        __error = new Error(data.error.message);
-                    }
+                    throw  new Error(data.error.message);
                 }
             },
-            url: this._endpointUrl + (this._methodEndpoints ? "/get_worksheet_definition" : "")
-        });
-
-        if (typeof __returnValue !== "undefined") {
-            return __returnValue;
-        } else {
-            throw __error;
-        }
+            (__jqXHR, __textStatus, errorThrown) => {
+                throw new Error(errorThrown);
+            }
+        );
     }
 
     private readonly _endpointUrl: string;

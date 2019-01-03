@@ -12,11 +12,11 @@ export class JsonRpcWorksheetStateCommandService implements WorksheetStateComman
         this._methodEndpoints = !!kwds.methodEndpoints;
     }
 
-    deleteWorksheetStateAsync(kwds: {id: WorksheetStateId, error: (errorKwds: {textStatus: string, errorThrown: any, [index: string]: any}) => any, success: () => void}): void {
+    deleteWorksheetState(kwds: {id: WorksheetStateId}): Promise<void> {
         const __jsonrpc_params: {[index: string]: any} = {};
         __jsonrpc_params["id"] = kwds.id.toString();
 
-        $.ajax({
+        return $.ajax({
             async: true,
             contentType: "application/json",
             data: JSON.stringify({
@@ -26,87 +26,38 @@ export class JsonRpcWorksheetStateCommandService implements WorksheetStateComman
                 id: '1234'
             }),
             dataType: 'json',
-            error: (jqXHR, textStatus, errorThrown) => {
-                kwds.error({jqXHR: jqXHR, textStatus, errorThrown: errorThrown});
-            },
             mimeType: 'application/json',
             type: 'POST',
-            success: (data, textStatus, jqXHR) => {
-                // data is a JSON-RPC 2.0 response, either
-                // {"jsonrpc": "2.0", "result": -19, "id": 2} on success
-                // or
-                // {"jsonrpc": "2.0", "error": {"code": -32601, "message": "Method not found"}, "id": "1"} on error
-
+            url: this._endpointUrl + (this._methodEndpoints ? "/delete_worksheet_state" : "")
+        })
+        .then(
+            (data) => {
                 if (typeof data.result !== "undefined") {
-                    kwds.success();
                     return;
                 }
 
-                let __error: Error | undefined | IoException = undefined;
                 if (data.error["@class"] && data.error.data) {
                     const __error_class = data.error["@class"];
                     if (__error_class == 'dressdiscover.api.services.io_exception.IoException') {
-                        __error = IoException.fromThryftJsonObject(data.error.data);
+                        throw  IoException.fromThryftJsonObject(data.error.data);
                     } else {
-                        __error = new Error(data.error.message);
+                        throw  new Error(data.error.message);
                     }
                 } else {
-                    __error = new Error(data.error.message);
-                }
-                kwds.error({jqXHR: jqXHR, textStatus: __error.toString(), errorThrown: __error});
-            },
-            url: this._endpointUrl + (this._methodEndpoints ? "/delete_worksheet_state" : "")
-        });
-    }
-
-    deleteWorksheetStateSync(kwds: {id: WorksheetStateId}): void {
-        const __jsonrpc_params: {[index: string]: any} = {};
-        __jsonrpc_params["id"] = kwds.id.toString();
-
-        let __error: Error | undefined | IoException = undefined;
-
-        $.ajax({
-            async: false,
-            contentType: "application/json",
-            data: JSON.stringify({
-                jsonrpc: '2.0',
-                method: 'delete_worksheet_state',
-                params: __jsonrpc_params,
-                id: '1234'
-            }),
-            dataType: 'json',
-            error: (jqXHR, textStatus, errorThrown) => {
-                __error = new Error(errorThrown);
-            },
-            mimeType: 'application/json',
-            type: 'POST',
-            success: (data) => {
-                if (typeof data.result === "undefined") {
-                    if (data.error["@class"] && data.error.data) {
-                        const __error_class = data.error["@class"];
-                        if (__error_class == 'dressdiscover.api.services.io_exception.IoException') {
-                            __error = IoException.fromThryftJsonObject(data.error.data);
-                        } else {
-                            __error = new Error(data.error.message);
-                        }
-                    } else {
-                        __error = new Error(data.error.message);
-                    }
+                    throw  new Error(data.error.message);
                 }
             },
-            url: this._endpointUrl + (this._methodEndpoints ? "/delete_worksheet_state" : "")
-        });
-
-        if (__error) {
-            throw __error;
-        }
+            (__jqXHR, __textStatus, errorThrown) => {
+                throw new Error(errorThrown);
+            }
+        );
     }
 
-    putWorksheetStateAsync(kwds: {state: WorksheetState, error: (errorKwds: {textStatus: string, errorThrown: any, [index: string]: any}) => any, success: () => void}): void {
+    putWorksheetState(kwds: {state: WorksheetState}): Promise<void> {
         const __jsonrpc_params: {[index: string]: any} = {};
         __jsonrpc_params["state"] = kwds.state.toThryftJsonObject();
 
-        $.ajax({
+        return $.ajax({
             async: true,
             contentType: "application/json",
             data: JSON.stringify({
@@ -116,88 +67,39 @@ export class JsonRpcWorksheetStateCommandService implements WorksheetStateComman
                 id: '1234'
             }),
             dataType: 'json',
-            error: (jqXHR, textStatus, errorThrown) => {
-                kwds.error({jqXHR: jqXHR, textStatus, errorThrown: errorThrown});
-            },
             mimeType: 'application/json',
             type: 'POST',
-            success: (data, textStatus, jqXHR) => {
-                // data is a JSON-RPC 2.0 response, either
-                // {"jsonrpc": "2.0", "result": -19, "id": 2} on success
-                // or
-                // {"jsonrpc": "2.0", "error": {"code": -32601, "message": "Method not found"}, "id": "1"} on error
-
+            url: this._endpointUrl + (this._methodEndpoints ? "/put_worksheet_state" : "")
+        })
+        .then(
+            (data) => {
                 if (typeof data.result !== "undefined") {
-                    kwds.success();
                     return;
                 }
 
-                let __error: Error | undefined | IoException = undefined;
                 if (data.error["@class"] && data.error.data) {
                     const __error_class = data.error["@class"];
                     if (__error_class == 'dressdiscover.api.services.io_exception.IoException') {
-                        __error = IoException.fromThryftJsonObject(data.error.data);
+                        throw  IoException.fromThryftJsonObject(data.error.data);
                     } else {
-                        __error = new Error(data.error.message);
+                        throw  new Error(data.error.message);
                     }
                 } else {
-                    __error = new Error(data.error.message);
-                }
-                kwds.error({jqXHR: jqXHR, textStatus: __error.toString(), errorThrown: __error});
-            },
-            url: this._endpointUrl + (this._methodEndpoints ? "/put_worksheet_state" : "")
-        });
-    }
-
-    putWorksheetStateSync(kwds: {state: WorksheetState}): void {
-        const __jsonrpc_params: {[index: string]: any} = {};
-        __jsonrpc_params["state"] = kwds.state.toThryftJsonObject();
-
-        let __error: Error | undefined | IoException = undefined;
-
-        $.ajax({
-            async: false,
-            contentType: "application/json",
-            data: JSON.stringify({
-                jsonrpc: '2.0',
-                method: 'put_worksheet_state',
-                params: __jsonrpc_params,
-                id: '1234'
-            }),
-            dataType: 'json',
-            error: (jqXHR, textStatus, errorThrown) => {
-                __error = new Error(errorThrown);
-            },
-            mimeType: 'application/json',
-            type: 'POST',
-            success: (data) => {
-                if (typeof data.result === "undefined") {
-                    if (data.error["@class"] && data.error.data) {
-                        const __error_class = data.error["@class"];
-                        if (__error_class == 'dressdiscover.api.services.io_exception.IoException') {
-                            __error = IoException.fromThryftJsonObject(data.error.data);
-                        } else {
-                            __error = new Error(data.error.message);
-                        }
-                    } else {
-                        __error = new Error(data.error.message);
-                    }
+                    throw  new Error(data.error.message);
                 }
             },
-            url: this._endpointUrl + (this._methodEndpoints ? "/put_worksheet_state" : "")
-        });
-
-        if (__error) {
-            throw __error;
-        }
+            (__jqXHR, __textStatus, errorThrown) => {
+                throw new Error(errorThrown);
+            }
+        );
     }
 
-    renameWorksheetStateAsync(kwds: {newId: WorksheetStateId, oldId: WorksheetStateId, error: (errorKwds: {textStatus: string, errorThrown: any, [index: string]: any}) => any, success: () => void}): void {
+    renameWorksheetState(kwds: {newId: WorksheetStateId, oldId: WorksheetStateId}): Promise<void> {
         const __jsonrpc_params: {[index: string]: any} = {};
         __jsonrpc_params["new_id"] = kwds.newId.toString();
         __jsonrpc_params["old_id"] = kwds.oldId.toString();
 
-        $.ajax({
+        return $.ajax({
             async: true,
             contentType: "application/json",
             data: JSON.stringify({
@@ -207,89 +109,35 @@ export class JsonRpcWorksheetStateCommandService implements WorksheetStateComman
                 id: '1234'
             }),
             dataType: 'json',
-            error: (jqXHR, textStatus, errorThrown) => {
-                kwds.error({jqXHR: jqXHR, textStatus, errorThrown: errorThrown});
-            },
             mimeType: 'application/json',
             type: 'POST',
-            success: (data, textStatus, jqXHR) => {
-                // data is a JSON-RPC 2.0 response, either
-                // {"jsonrpc": "2.0", "result": -19, "id": 2} on success
-                // or
-                // {"jsonrpc": "2.0", "error": {"code": -32601, "message": "Method not found"}, "id": "1"} on error
-
+            url: this._endpointUrl + (this._methodEndpoints ? "/rename_worksheet_state" : "")
+        })
+        .then(
+            (data) => {
                 if (typeof data.result !== "undefined") {
-                    kwds.success();
                     return;
                 }
 
-                let __error: Error | undefined | DuplicateWorksheetStateException | IoException | NoSuchWorksheetStateException = undefined;
                 if (data.error["@class"] && data.error.data) {
                     const __error_class = data.error["@class"];
                     if (__error_class == 'dressdiscover.api.services.worksheet.duplicate_worksheet_state_exception.DuplicateWorksheetStateException') {
-                        __error = DuplicateWorksheetStateException.fromThryftJsonObject(data.error.data);
+                        throw  DuplicateWorksheetStateException.fromThryftJsonObject(data.error.data);
                     } else if (__error_class == 'dressdiscover.api.services.io_exception.IoException') {
-                        __error = IoException.fromThryftJsonObject(data.error.data);
+                        throw  IoException.fromThryftJsonObject(data.error.data);
                     } else if (__error_class == 'dressdiscover.api.services.worksheet.no_such_worksheet_state_exception.NoSuchWorksheetStateException') {
-                        __error = NoSuchWorksheetStateException.fromThryftJsonObject(data.error.data);
+                        throw  NoSuchWorksheetStateException.fromThryftJsonObject(data.error.data);
                     } else {
-                        __error = new Error(data.error.message);
+                        throw  new Error(data.error.message);
                     }
                 } else {
-                    __error = new Error(data.error.message);
-                }
-                kwds.error({jqXHR: jqXHR, textStatus: __error.toString(), errorThrown: __error});
-            },
-            url: this._endpointUrl + (this._methodEndpoints ? "/rename_worksheet_state" : "")
-        });
-    }
-
-    renameWorksheetStateSync(kwds: {newId: WorksheetStateId, oldId: WorksheetStateId}): void {
-        const __jsonrpc_params: {[index: string]: any} = {};
-        __jsonrpc_params["new_id"] = kwds.newId.toString();
-        __jsonrpc_params["old_id"] = kwds.oldId.toString();
-
-        let __error: Error | undefined | DuplicateWorksheetStateException | IoException | NoSuchWorksheetStateException = undefined;
-
-        $.ajax({
-            async: false,
-            contentType: "application/json",
-            data: JSON.stringify({
-                jsonrpc: '2.0',
-                method: 'rename_worksheet_state',
-                params: __jsonrpc_params,
-                id: '1234'
-            }),
-            dataType: 'json',
-            error: (jqXHR, textStatus, errorThrown) => {
-                __error = new Error(errorThrown);
-            },
-            mimeType: 'application/json',
-            type: 'POST',
-            success: (data) => {
-                if (typeof data.result === "undefined") {
-                    if (data.error["@class"] && data.error.data) {
-                        const __error_class = data.error["@class"];
-                        if (__error_class == 'dressdiscover.api.services.worksheet.duplicate_worksheet_state_exception.DuplicateWorksheetStateException') {
-                            __error = DuplicateWorksheetStateException.fromThryftJsonObject(data.error.data);
-                        } else if (__error_class == 'dressdiscover.api.services.io_exception.IoException') {
-                            __error = IoException.fromThryftJsonObject(data.error.data);
-                        } else if (__error_class == 'dressdiscover.api.services.worksheet.no_such_worksheet_state_exception.NoSuchWorksheetStateException') {
-                            __error = NoSuchWorksheetStateException.fromThryftJsonObject(data.error.data);
-                        } else {
-                            __error = new Error(data.error.message);
-                        }
-                    } else {
-                        __error = new Error(data.error.message);
-                    }
+                    throw  new Error(data.error.message);
                 }
             },
-            url: this._endpointUrl + (this._methodEndpoints ? "/rename_worksheet_state" : "")
-        });
-
-        if (__error) {
-            throw __error;
-        }
+            (__jqXHR, __textStatus, errorThrown) => {
+                throw new Error(errorThrown);
+            }
+        );
     }
 
     private readonly _endpointUrl: string;
