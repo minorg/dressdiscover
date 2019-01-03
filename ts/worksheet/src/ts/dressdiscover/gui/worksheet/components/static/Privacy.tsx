@@ -2,6 +2,7 @@ import { Frame } from 'dressdiscover/gui/worksheet/components/frame/Frame';
 import { ActiveNavbarItem } from 'dressdiscover/gui/worksheet/components/navbar/ActiveNavbarItem';
 import { Hrefs } from 'dressdiscover/gui/worksheet/Hrefs';
 import * as React from 'react';
+import { Link } from 'react-router-dom';
 import { Col, Container, Row } from 'reactstrap';
 import Card from 'reactstrap/lib/Card';
 import CardBody from 'reactstrap/lib/CardBody';
@@ -82,7 +83,7 @@ export class Privacy extends React.Component {
                         </p>
 
                                         <p>If you feel that we are not abiding by this privacy policy, you should
-                            <a href={Hrefs.contact}>contact us immediately</a>.</p>
+                            <Link to={Hrefs.contact}>contact us immediately</Link>.</p>
                                     </Container>    </CardBody>
                             </Card>
                         </Col>
