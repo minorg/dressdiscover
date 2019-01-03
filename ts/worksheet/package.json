@@ -3,12 +3,6 @@
   "version": "3.0.0",
   "private": true,
   "description": "DressDiscover Worksheet web application",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "webpack-dev-server --mode development --color --hot --inline",
-    "build": "webpack -p --progress --colors"
-  },
-  "license": "GPLv3",
   "devDependencies": {
     "@types/classnames": "2.2.6",
     "@types/history": "4.6.2",
@@ -71,5 +65,11 @@
     "react-router": "^4.3.1",
     "react-router-dom": "^4.3.1",
     "reactstrap": "^6.3.1"
+  },
+  "license": "GPLv3",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "webpack-dev-server --mode development --color --hot --info-verbosity verbose --inline",
+    "build": "webpack -p --progress --colors"
   }
 }
