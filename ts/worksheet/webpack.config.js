@@ -6,7 +6,6 @@ var isProduction = process.argv.indexOf('-p') >= 0 || process.env.NODE_ENV === '
 var srcPath = path.join(__dirname, './src');
 
 // plugins
-var CopyWebpackPlugin = require('copy-webpack-plugin')
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 var MiniCssExtractPlugin = require('mini-css-extract-plugin');
 var WebpackCleanupPlugin = require('webpack-cleanup-plugin');
@@ -98,7 +97,6 @@ module.exports = {
       NODE_ENV: 'development', // use 'development' unless process.env.NODE_ENV is defined
       DEBUG: false
     }),
-    new CopyWebpackPlugin(["img"]),
     new WebpackCleanupPlugin(),
     new MiniCssExtractPlugin({
       disable: !isProduction,
