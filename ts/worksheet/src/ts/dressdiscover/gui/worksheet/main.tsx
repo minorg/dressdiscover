@@ -1,5 +1,5 @@
 import { Application } from 'dressdiscover/gui/worksheet/Application';
-import { CurrentUserStore } from 'dressdiscover/gui/worksheet/store';
+import { CurrentUserStore } from 'dressdiscover/gui/worksheet/stores/current_user/CurrentUserStore';
 import { ConsoleLogger } from 'dressdiscover/gui/worksheet/util/logging/ConsoleLogger';
 import { LoggerContext } from 'dressdiscover/gui/worksheet/util/logging/LoggerContext';
 import { createBrowserHistory } from 'history';

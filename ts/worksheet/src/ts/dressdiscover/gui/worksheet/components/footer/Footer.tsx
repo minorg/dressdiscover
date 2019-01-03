@@ -1,8 +1,7 @@
+import { Hrefs } from 'dressdiscover/gui/worksheet/Hrefs';
 import * as React from 'react';
 import { Link } from 'react-router-dom';
 import { Col, Container, Row } from 'reactstrap';
-
-import { Hrefs } from '../../Hrefs';
 
 export class Footer extends React.Component {
     render() {

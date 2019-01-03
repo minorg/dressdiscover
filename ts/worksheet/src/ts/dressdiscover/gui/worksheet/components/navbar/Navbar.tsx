@@ -15,17 +15,17 @@ interface Props extends RouteComponentProps {
 @inject('currentUserStore')
 @observer
 class Navbar extends React.Component<Props> {
-  componentDidMount() {
-    this.props.currentUserStore!.fetchCurrentUser();
-  }
+  // componentDidMount() {
+  //   this.props.currentUserStore!.fetchCurrentUser();
+  // }
 
   async onClickLogout() {
-    await this.props.currentUserStore!.logoutCurrentUser();
+    // await this.props.currentUserStore!.logoutCurrentUser();
     this.props.history.push(Hrefs.logoutSuccess);
   }
 
   render() {
-    const currentUser = this.props.currentUserStore!.currentUser;
+    // const currentUser = this.props.currentUserStore!.currentUser;
     let authenticatedNavItems: React.ReactNode;
     let currentUserJsx: React.ReactNode;
     // if (currentUser) {
