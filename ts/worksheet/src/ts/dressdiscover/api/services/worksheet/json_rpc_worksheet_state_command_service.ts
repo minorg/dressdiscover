@@ -1,4 +1,4 @@
-import * as $ from "jquery"
+import axios from "axios";
 import { DuplicateWorksheetStateException } from "./duplicate_worksheet_state_exception";
 import { IoException } from "../io_exception";
 import { NoSuchWorksheetStateException } from "./no_such_worksheet_state_exception";
@@ -16,39 +16,43 @@ export class JsonRpcWorksheetStateCommandService implements WorksheetStateComman
         const __jsonrpc_params: {[index: string]: any} = {};
         __jsonrpc_params["id"] = kwds.id.toString();
 
-        return $.ajax({
-            async: true,
-            contentType: "application/json",
-            data: JSON.stringify({
+        return axios.post(
+            this._endpointUrl + (this._methodEndpoints ? "/delete_worksheet_state" : ""),
+            {
                 jsonrpc: '2.0',
                 method: 'delete_worksheet_state',
                 params: __jsonrpc_params,
                 id: '1234'
-            }),
-            dataType: 'json',
-            mimeType: 'application/json',
-            type: 'POST',
-            url: this._endpointUrl + (this._methodEndpoints ? "/delete_worksheet_state" : "")
-        })
+            },
+            {
+                withCredentials: false
+            }
+        )
         .then(
-            (data) => {
-                if (typeof data.result !== "undefined") {
+            (response) => {
+                if (typeof response.data.result !== "undefined") {
                     return;
                 }
 
-                if (data.error["@class"] && data.error.data) {
-                    const __error_class = data.error["@class"];
+                if (response.data.error["@class"] && response.data.error.data) {
+                    const __error_class = response.data.error["@class"];
                     if (__error_class == 'dressdiscover.api.services.io_exception.IoException') {
-                        throw  IoException.fromThryftJsonObject(data.error.data);
+                        throw IoException.fromThryftJsonObject(response.data.error.data);
                     } else {
-                        throw  new Error(data.error.message);
+                        throw new Error(response.data.error.message);
                     }
                 } else {
-                    throw  new Error(data.error.message);
+                    throw new Error(response.data.error.message);
                 }
             },
-            (__jqXHR, __textStatus, errorThrown) => {
-                throw new Error(errorThrown);
+            (error) => {
+                if (error.response) {
+                    throw new Error("HTTP error status response from the server");
+                } else if (error.request) {
+                    throw new Error("no response received from the server");
+                } else {
+                    throw error;
+                }
             }
         );
     }
@@ -57,39 +61,43 @@ export class JsonRpcWorksheetStateCommandService implements WorksheetStateComman
         const __jsonrpc_params: {[index: string]: any} = {};
         __jsonrpc_params["state"] = kwds.state.toThryftJsonObject();
 
-        return $.ajax({
-            async: true,
-            contentType: "application/json",
-            data: JSON.stringify({
+        return axios.post(
+            this._endpointUrl + (this._methodEndpoints ? "/put_worksheet_state" : ""),
+            {
                 jsonrpc: '2.0',
                 method: 'put_worksheet_state',
                 params: __jsonrpc_params,
                 id: '1234'
-            }),
-            dataType: 'json',
-            mimeType: 'application/json',
-            type: 'POST',
-            url: this._endpointUrl + (this._methodEndpoints ? "/put_worksheet_state" : "")
-        })
+            },
+            {
+                withCredentials: false
+            }
+        )
         .then(
-            (data) => {
-                if (typeof data.result !== "undefined") {
+            (response) => {
+                if (typeof response.data.result !== "undefined") {
                     return;
                 }
 
-                if (data.error["@class"] && data.error.data) {
-                    const __error_class = data.error["@class"];
+                if (response.data.error["@class"] && response.data.error.data) {
+                    const __error_class = response.data.error["@class"];
                     if (__error_class == 'dressdiscover.api.services.io_exception.IoException') {
-                        throw  IoException.fromThryftJsonObject(data.error.data);
+                        throw IoException.fromThryftJsonObject(response.data.error.data);
                     } else {
-                        throw  new Error(data.error.message);
+                        throw new Error(response.data.error.message);
                     }
                 } else {
-                    throw  new Error(data.error.message);
+                    throw new Error(response.data.error.message);
                 }
             },
-            (__jqXHR, __textStatus, errorThrown) => {
-                throw new Error(errorThrown);
+            (error) => {
+                if (error.response) {
+                    throw new Error("HTTP error status response from the server");
+                } else if (error.request) {
+                    throw new Error("no response received from the server");
+                } else {
+                    throw error;
+                }
             }
         );
     }
@@ -99,43 +107,47 @@ export class JsonRpcWorksheetStateCommandService implements WorksheetStateComman
         __jsonrpc_params["new_id"] = kwds.newId.toString();
         __jsonrpc_params["old_id"] = kwds.oldId.toString();
 
-        return $.ajax({
-            async: true,
-            contentType: "application/json",
-            data: JSON.stringify({
+        return axios.post(
+            this._endpointUrl + (this._methodEndpoints ? "/rename_worksheet_state" : ""),
+            {
                 jsonrpc: '2.0',
                 method: 'rename_worksheet_state',
                 params: __jsonrpc_params,
                 id: '1234'
-            }),
-            dataType: 'json',
-            mimeType: 'application/json',
-            type: 'POST',
-            url: this._endpointUrl + (this._methodEndpoints ? "/rename_worksheet_state" : "")
-        })
+            },
+            {
+                withCredentials: false
+            }
+        )
         .then(
-            (data) => {
-                if (typeof data.result !== "undefined") {
+            (response) => {
+                if (typeof response.data.result !== "undefined") {
                     return;
                 }
 
-                if (data.error["@class"] && data.error.data) {
-                    const __error_class = data.error["@class"];
+                if (response.data.error["@class"] && response.data.error.data) {
+                    const __error_class = response.data.error["@class"];
                     if (__error_class == 'dressdiscover.api.services.worksheet.duplicate_worksheet_state_exception.DuplicateWorksheetStateException') {
-                        throw  DuplicateWorksheetStateException.fromThryftJsonObject(data.error.data);
+                        throw DuplicateWorksheetStateException.fromThryftJsonObject(response.data.error.data);
                     } else if (__error_class == 'dressdiscover.api.services.io_exception.IoException') {
-                        throw  IoException.fromThryftJsonObject(data.error.data);
+                        throw IoException.fromThryftJsonObject(response.data.error.data);
                     } else if (__error_class == 'dressdiscover.api.services.worksheet.no_such_worksheet_state_exception.NoSuchWorksheetStateException') {
-                        throw  NoSuchWorksheetStateException.fromThryftJsonObject(data.error.data);
+                        throw NoSuchWorksheetStateException.fromThryftJsonObject(response.data.error.data);
                     } else {
-                        throw  new Error(data.error.message);
+                        throw new Error(response.data.error.message);
                     }
                 } else {
-                    throw  new Error(data.error.message);
+                    throw new Error(response.data.error.message);
                 }
             },
-            (__jqXHR, __textStatus, errorThrown) => {
-                throw new Error(errorThrown);
+            (error) => {
+                if (error.response) {
+                    throw new Error("HTTP error status response from the server");
+                } else if (error.request) {
+                    throw new Error("no response received from the server");
+                } else {
+                    throw error;
+                }
             }
         );
     }
