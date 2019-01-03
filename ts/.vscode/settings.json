@@ -10,15 +10,18 @@
     "**/src/**/*.css.map": true,
     "**/src/**/*.js": true,
     "**/src/**/*.js.map": true,
-    "worksheet/wwwroot/css/worksheet.css*": true,
-    "worksheet/wwwroot/js/worksheet.js*": true
+    "worksheet/dist/css/dressdiscover-worksheet.css": true,
+    "worksheet/dist/js/dressdiscover-worksheet.js": true,
+    "worksheet-knockout/wwwroot/css/worksheet.css*": true,
+    "worksheet-knockout/wwwroot/js/worksheet.js*": true
   },
   "search.exclude": {
     "**/node_modules": true,
     "**/src/**/*.js": true,
     "**/src/**/*.js.map": true,
-    "worksheet/wwwroot/css/worksheet.css*": true,
-    "worksheet/wwwroot/js/worksheet.js*": true
+    "worksheet/dist": true,
+    "worksheet-knockout/wwwroot/css/worksheet.css*": true,
+    "worksheet-knockout/wwwroot/js/worksheet.js*": true
   },
   "tslint.configFile": "tslint.json"
 }
