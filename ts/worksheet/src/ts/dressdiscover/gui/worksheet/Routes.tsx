@@ -1,4 +1,4 @@
-import { Home } from 'dressdiscover/gui/worksheet/component';
+import { Home } from 'dressdiscover/gui/worksheet/components/home/Home';
 import * as React from 'react';
 import { Route, Switch } from 'react-router';
 

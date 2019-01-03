@@ -1,14 +1,14 @@
 import './Frame.scss';
 
-import Navbar from 'dressdiscover/gui/worksheet/component/navbar/Navbar';
+import { Footer } from 'dressdiscover/gui/worksheet/components/footer/Footer';
+import { ActiveNavbarItem } from 'dressdiscover/gui/worksheet/components/navbar/ActiveNavbarItem';
+import Navbar from 'dressdiscover/gui/worksheet/components/navbar/Navbar';
 import { Hrefs } from 'dressdiscover/gui/worksheet/Hrefs';
 import * as React from 'react';
 import { ReactNode } from 'react';
 import { Link } from 'react-router-dom';
 import { Breadcrumb } from 'reactstrap';
 import BreadcrumbItem from 'reactstrap/lib/BreadcrumbItem';
-
-import { ActiveNavbarItem } from '../navbar/ActiveNavbarItem';
 
 interface Props {
   activeNavItem?: ActiveNavbarItem;
@@ -31,6 +31,7 @@ export class Frame extends React.Component<Props> {
           {this.props.breadcrumbItems}
         </Breadcrumb>
         {this.props.children}
+        <Footer/>
       </div>
     );
   }

@@ -1,7 +1,6 @@
-import { Frame } from 'dressdiscover/gui/worksheet/component/frame/Frame';
+import { Frame } from 'dressdiscover/gui/worksheet/components/frame/Frame';
+import { ActiveNavbarItem } from 'dressdiscover/gui/worksheet/components/navbar/ActiveNavbarItem';
 import * as React from 'react';
-
-import { ActiveNavbarItem } from '../navbar/ActiveNavbarItem';
 
 export class Home extends React.Component {
   render() {
@@ -11,7 +10,7 @@ export class Home extends React.Component {
         headline="Home"
         id="home"
       >
-        Welcome to CAMP!
+        Welcome to DressDiscover Worksheet!
       </Frame>
     );
   }
