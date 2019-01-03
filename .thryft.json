@@ -3,13 +3,11 @@
 
     "tasks": {
         "clean": [
-            "cs/DressDiscover/DressDiscover.Api/src",
-            "cs/DressDiscover/DressDiscover.Server/src/DressDiscover/Server/Controllers/Worksheet",
             "java/api/src/gen/java/org/dressdiscover",
             "java/lib/src/gen/java/org/dressdiscover",
             "java/server/src/gen/java/org/dressdiscover",
             "py/src/dressdiscover/api",
-            "ts/worksheet/src/dressdiscover/api"
+            "ts/worksheet/src/ts/dressdiscover/api"
         ],
         "generate": [{
                 "description": "ElasticSearch mappings",
@@ -61,8 +59,7 @@
                 "thrift_include_dirs": ["../thryft-waf/thrift/src"],
                 "thrift_files": "thrift/src/dressdiscover/api/models/worksheet/**/*.thrift",
                 "gen": {
-                    "cs": "cs/DressDiscover/DressDiscover.Api/src",
-                    "ts": "ts/worksheet/src"
+                    "ts": "ts/worksheet/src/ts"
                 }
             },
             {
@@ -74,8 +71,7 @@
                     "thrift/src/dressdiscover/api/services/worksheet/*_exception.thrift"
                 ],
                 "gen": {
-                    "cs": "cs/DressDiscover/DressDiscover.Api/src",
-                    "ts": "ts/worksheet/src"
+                    "ts": "ts/worksheet/src/ts"
                 }
             },
             {
@@ -84,12 +80,10 @@
                 "thrift_include_dirs": ["../thryft-waf/thrift/src"],
                 "thrift_files": "thrift/src/dressdiscover/api/services/worksheet/*_service.thrift",
                 "gen": {
-                    "cs": "cs/DressDiscover/DressDiscover.Api/src",
-                    "async_to_sync_service_ts": "ts/worksheet/src",
-                    "json_rpc_client_ts": "ts/worksheet/src",
-                    "json_rpc_controller_cs": "cs/DressDiscover/DressDiscover.Server/src",
-                    "logging_service_ts": "ts/worksheet/src",
-                    "ts": "ts/worksheet/src"
+                    "async_to_sync_service_ts": "ts/worksheet/src/ts",
+                    "json_rpc_client_ts": "ts/worksheet/src/ts",
+                    "logging_service_ts": "ts/worksheet/src/ts",
+                    "ts": "ts/worksheet/src/ts"
                 }
             },
             {
