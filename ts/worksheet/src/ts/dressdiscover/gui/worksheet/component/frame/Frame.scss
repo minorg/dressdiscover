@@ -1,0 +1,10 @@
+@import "dressdiscover/gui/worksheet/custom_bootstrap.scss";
+
+.frame {
+    margin: 40px;
+
+    .headline {
+        background-color: theme-color("primary");
+        color: white;
+    }
+}
