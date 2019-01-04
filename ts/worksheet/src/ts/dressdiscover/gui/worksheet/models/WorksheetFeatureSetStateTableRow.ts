@@ -2,13 +2,15 @@ import { WorksheetFeatureSetState } from 'dressdiscover/api/models/worksheet/wor
 import { WorksheetFeatureState } from 'dressdiscover/api/models/worksheet/worksheet_feature_state';
 import { WorksheetStateId } from 'dressdiscover/api/models/worksheet/worksheet_state_id';
 import { WorksheetStateMark } from 'dressdiscover/api/models/worksheet/worksheet_state_mark';
-import { WorksheetFeatureDefinitionWrapper } from 'dressdiscover/gui/worksheet/models/WorksheetFeatureDefinitionWrapper';
+import {
+    WorksheetFeatureDefinitionWrapper,
+} from 'dressdiscover/gui/worksheet/models/worksheet/WorksheetFeatureDefinitionWrapper';
 import {
     WorksheetFeatureSetDefinitionWrapper,
-} from 'dressdiscover/gui/worksheet/models/WorksheetFeatureSetDefinitionWrapper';
+} from 'dressdiscover/gui/worksheet/models/worksheet/WorksheetFeatureSetDefinitionWrapper';
 import {
     WorksheetFeatureValueDefinitionWrapper,
-} from 'dressdiscover/gui/worksheet/models/WorksheetFeatureValueDefinitionWrapper';
+} from 'dressdiscover/gui/worksheet/models/worksheet/WorksheetFeatureValueDefinitionWrapper';
 
 import { WorksheetDefinitionWrapper } from './worksheet/WorksheetDefinitionWrapper';
 

@@ -42,8 +42,7 @@ export class Hrefs {
     return '/';
   }
 
-  static worksheetState(kwds: { mark: WorksheetStateMark }) {
-    const mark = kwds.mark;
+  static worksheetState(mark: WorksheetStateMark) {
     let href = "/worksheet/state/" + encodeURIComponent(mark.worksheetStateId.toString()) + "/";
     if (mark.featureSetId) {
       href += encodeURIComponent(mark.featureSetId.toString()) + "/";

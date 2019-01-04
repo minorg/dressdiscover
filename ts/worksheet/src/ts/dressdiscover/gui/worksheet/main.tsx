@@ -11,12 +11,14 @@ import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import { Router } from 'react-router';
 
-import { ServicesContext } from './services/ServicesContext';
+import { WorksheetStateStore } from './stores/worksheet/WorksheetStateStore';
 
 
 // Logger
 const logger = new ConsoleLogger();
 
+// Services
+const services = new Services();
 
 // mobx global configuration
 mobx.configure({ enforceActions: "always" });
@@ -27,21 +29,17 @@ const routerStore = new RouterStore();
 const syncedHistory = syncHistoryWithStore(browserHistory, routerStore);
 const stores = {
   currentUserStore: new CurrentUserStore(logger),
-  routerStore
+  routerStore,
+  worksheetStateStore: new WorksheetStateStore(logger, services)
 };
-
-// Services
-const services = new Services();
 
 ReactDOM.render(
   <LoggerContext.Provider value={logger}>
-    <ServicesContext.Provider value={services}>
-      <StoresProvider {...stores}>
-        <Router history={syncedHistory}>
-          <Application />
-        </Router>
-      </StoresProvider>
-    </ServicesContext.Provider>
+    <StoresProvider {...stores}>
+      <Router history={syncedHistory}>
+        <Application />
+      </Router>
+    </StoresProvider>
   </LoggerContext.Provider>,
   document.getElementById('root')
 );

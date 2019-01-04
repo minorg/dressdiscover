@@ -3,12 +3,14 @@ import { WorksheetFeatureState } from 'dressdiscover/api/models/worksheet/worksh
 import { WorksheetStateId } from 'dressdiscover/api/models/worksheet/worksheet_state_id';
 import { WorksheetStateMark } from 'dressdiscover/api/models/worksheet/worksheet_state_mark';
 import {
-    WorksheetFeatureValueDefinitionWrapper,
-} from 'dressdiscover/gui/worksheet/models/worksheet/WorksheetFeatureValueDefinitionWrapper';
-import { WorksheetFeatureDefinitionWrapper } from 'dressdiscover/gui/worksheet/models/WorksheetFeatureDefinitionWrapper';
+    WorksheetFeatureDefinitionWrapper,
+} from 'dressdiscover/gui/worksheet/models/worksheet/WorksheetFeatureDefinitionWrapper';
 import {
     WorksheetFeatureSetDefinitionWrapper,
-} from 'dressdiscover/gui/worksheet/models/WorksheetFeatureSetDefinitionWrapper';
+} from 'dressdiscover/gui/worksheet/models/worksheet/WorksheetFeatureSetDefinitionWrapper';
+import {
+    WorksheetFeatureValueDefinitionWrapper,
+} from 'dressdiscover/gui/worksheet/models/worksheet/WorksheetFeatureValueDefinitionWrapper';
 
 import { WorksheetDefinitionWrapper } from './WorksheetDefinitionWrapper';
 
