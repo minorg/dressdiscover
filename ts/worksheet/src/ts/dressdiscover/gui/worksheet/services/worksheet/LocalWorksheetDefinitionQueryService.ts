@@ -13,7 +13,7 @@ export class LocalWorksheetDefinitionQueryService implements WorksheetDefinition
     }
 
     constructor() {
-        const csvModulePrefix = "raw-loader!../../../../../../../definitions/";
+        const csvModulePrefix = "raw-loader!definitions/";
         this._worksheetDefinition = new WorksheetDefinitionValidator().validateWorksheetDefinition(new WorksheetDefinitionCsvParser().parseWorksheetDefinitionCsv({
             extentsCsv: require(csvModulePrefix + "extents.csv"),
             featuresCsv: require(csvModulePrefix + "features.csv"),

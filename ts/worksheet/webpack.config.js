@@ -122,6 +122,7 @@ module.exports = {
     // (jsnext:main directs not usually distributable es6 format, but es6 sources)
     mainFields: ['module', 'browser', 'main'],
     alias: {
+      definitions: path.resolve(__dirname, 'definitions'),
       dressdiscover: path.resolve(__dirname, 'src/ts/dressdiscover')
     }
   },
