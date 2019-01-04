@@ -1,24 +1,13 @@
 import { WorksheetState } from 'dressdiscover/api/models/worksheet/worksheet_state';
 import { WorksheetStateMark } from 'dressdiscover/api/models/worksheet/worksheet_state_mark';
-import { Application } from 'dressdiscover/gui/worksheet/application';
+
+import { WorksheetDefinitionWrapper } from './worksheet_definition_wrapper';
 
 export class WorksheetStateMachine {
-    constructor(worksheetState: KnockoutObservable<WorksheetState>) {
-        if (worksheetState()) {
-            this._calculateStateMarks(worksheetState());
-        }
-
-        const self = this;
-        worksheetState.subscribe((newWorksheetState) => {
-            if (newWorksheetState) {
-                self._calculateStateMarks(newWorksheetState);
-            } else {
-                self._stateMarks = [];
-            }
-        });
+    constructor(private readonly worksheetDefinition: WorksheetDefinitionWrapper) {
     }
 
-    private _calculateStateMarks(worksheetState: WorksheetState) {
+    calculateStateMarks(worksheetState: WorksheetState) {
         this._stateMarks = [];
 
         // First state, always the worksheet start
@@ -26,10 +15,9 @@ export class WorksheetStateMachine {
         this._stateMarks.push(new WorksheetStateMark({ worksheetStateId: worksheetStateId }));
 
         if (worksheetState.featureSets.length > 0) {
-            const worksheetDefinition = Application.instance.worksheetDefinition;
             for (let featureSetState of worksheetState.featureSets) {
                 const featureSetId = featureSetState.id;
-                const featureSetDefinition = worksheetDefinition.getFeatureSetById(featureSetId);
+                const featureSetDefinition = this.worksheetDefinition.getFeatureSetById(featureSetId);
 
                 // Feature set start
                 this._stateMarks.push(new WorksheetStateMark({

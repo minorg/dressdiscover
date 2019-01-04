@@ -11,7 +11,7 @@ import { WorksheetFeatureValueId } from 'dressdiscover/api/models/worksheet/work
 import { WorksheetFeatureValueImage } from 'dressdiscover/api/models/worksheet/worksheet_feature_value_image';
 import { WorksheetRights } from 'dressdiscover/api/models/worksheet/worksheet_rights';
 import * as _ from 'lodash';
-import Papa = require('papaparse');
+import * as Papa from 'papaparse';
 
 export class WorksheetDefinitionCsvParser {
     parseWorksheetDefinitionCsv(kwds: {
@@ -52,17 +52,16 @@ export class WorksheetDefinitionCsvParser {
     }
 
     private _parseDuplicateColumnRows(duplicateColumnNames: string[], rows: any[]): any[] {
-        let rowI = 0;
         let header: string[] = [];
         let outRows: any[] = [];
-        for (let row of rows) {
-            if (rowI++ == 0) {
+        rows.forEach((row: any[], rowI) => {
+            if (rowI == 0) {
                 header = row;
                 outRows.push([]);
-                continue;
+                return;
             }
             let outRow: any = {};
-            for (let columnI in row) {
+            row.forEach((column, columnI) => {
                 let columnName = header[columnI];
                 if (!_.isUndefined(columnName)) {
                     columnName = columnName.trim();
@@ -74,7 +73,7 @@ export class WorksheetDefinitionCsvParser {
                 }
 
                 if (_.isEmpty(columnName) || _.isEmpty(columnValue)) {
-                    continue;
+                    return;
                 }
 
                 if (_.indexOf(duplicateColumnNames, columnName) != -1) {
@@ -86,9 +85,9 @@ export class WorksheetDefinitionCsvParser {
                 } else {
                     outRow[columnName] = columnValue;
                 }
-            }
+            });
             outRows.push(outRow);
-        }
+        });
         return outRows;
     }
 
@@ -96,10 +95,9 @@ export class WorksheetDefinitionCsvParser {
         const extents: WorksheetExtentDefinition[] = [];
         const parsedCsv = this._parseCsv(csv, "extents", { header: true });
         const rows = this._parseUniqueColumnRows(parsedCsv.data);
-        for (var rowI = 0; rowI < rows.length; rowI++) {
-            const row = rows[rowI];
+        rows.forEach((row, rowI) => {
             if (_.isEmpty(row)) {
-                continue;
+                return;
             }
             try {
                 extents.push(
@@ -116,7 +114,7 @@ export class WorksheetDefinitionCsvParser {
                     throw e;
                 }
             }
-        }
+        });
         return extents;
     }
 
@@ -124,10 +122,9 @@ export class WorksheetDefinitionCsvParser {
         const features: WorksheetFeatureDefinition[] = [];
         const parsedCsv = this._parseCsv(csv, "features");
         const rows = this._parseDuplicateColumnRows(["value"], parsedCsv.data);
-        for (var rowI = 0; rowI < rows.length; rowI++) {
-            const row = rows[rowI];
+        rows.forEach((row, rowI) => {
             if (_.isEmpty(row)) {
-                continue;
+                return;
             }
             try {
                 features.push(new WorksheetFeatureDefinition({
@@ -143,7 +140,7 @@ export class WorksheetDefinitionCsvParser {
                     throw e;
                 }
             }
-        }
+        });
         return features;
     }
 
@@ -151,10 +148,9 @@ export class WorksheetDefinitionCsvParser {
         const featureSets: WorksheetFeatureSetDefinition[] = [];
         const parsedCsv = this._parseCsv(csv, "feature sets");
         const rows = this._parseDuplicateColumnRows(["feature"], parsedCsv.data);
-        for (var rowI = 0; rowI < rows.length; rowI++) {
-            const row = rows[rowI];
+        rows.forEach((row, rowI) => {
             if (_.isEmpty(row)) {
-                continue;
+                return;
             }
             try {
                 featureSets.push(new WorksheetFeatureSetDefinition({
@@ -170,7 +166,7 @@ export class WorksheetDefinitionCsvParser {
                     throw e;
                 }
             }
-        }
+        });
         return featureSets;
     }
 
@@ -178,10 +174,9 @@ export class WorksheetDefinitionCsvParser {
         const values: WorksheetFeatureValueDefinition[] = [];
         const parsedCsv = this._parseCsv(csv, "features", { header: true });;
         const rows = this._parseUniqueColumnRows(parsedCsv.data);
-        for (var rowI = 0; rowI < rows.length; rowI++) {
-            const row = rows[rowI];
+        rows.forEach((row, rowI) => {
             if (_.isEmpty(row)) {
-                continue;
+                return;
             }
 
             const valueId = row["id"];
@@ -213,7 +208,7 @@ export class WorksheetDefinitionCsvParser {
                     throw e;
                 }
             }
-        }
+        });
         return values;
     }
 

@@ -2,7 +2,6 @@ import { WorksheetFeatureSetState } from 'dressdiscover/api/models/worksheet/wor
 import { WorksheetFeatureState } from 'dressdiscover/api/models/worksheet/worksheet_feature_state';
 import { WorksheetStateId } from 'dressdiscover/api/models/worksheet/worksheet_state_id';
 import { WorksheetStateMark } from 'dressdiscover/api/models/worksheet/worksheet_state_mark';
-import { Application } from 'dressdiscover/gui/worksheet/application';
 import { WorksheetFeatureDefinitionWrapper } from 'dressdiscover/gui/worksheet/models/worksheet_feature_definition_wrapper';
 import {
     WorksheetFeatureSetDefinitionWrapper,
@@ -11,11 +10,13 @@ import {
     WorksheetFeatureValueDefinitionWrapper,
 } from 'dressdiscover/gui/worksheet/models/worksheet_feature_value_definition_wrapper';
 
+import { WorksheetDefinitionWrapper } from './worksheet_definition_wrapper';
+
 class WorksheetFeatureSetStateTableRow {
-    constructor(readonly featureDefinition: WorksheetFeatureDefinitionWrapper, readonly featureStateMark: WorksheetStateMark, featureState?: WorksheetFeatureState) {
+    constructor(readonly featureDefinition: WorksheetFeatureDefinitionWrapper, readonly featureStateMark: WorksheetStateMark, worksheetDefinition: WorksheetDefinitionWrapper, featureState?: WorksheetFeatureState,) {
         if (featureState && featureState.selectedValueIds) {
             for (let valueId of featureState.selectedValueIds) {
-                this.values.push(Application.instance.worksheetDefinition.getFeatureValueById(valueId));
+                this.values.push(worksheetDefinition.getFeatureValueById(valueId));
             }
         }
     }
@@ -28,7 +29,8 @@ export class WorksheetFeatureSetStateTable {
         featureSetDefinition: WorksheetFeatureSetDefinitionWrapper,
         featureSetState?: WorksheetFeatureSetState,
         includeFeatureDescriptions: boolean,
-        worksheetStateId: WorksheetStateId
+        worksheetDefinition: WorksheetDefinitionWrapper,
+        worksheetStateId: WorksheetStateId,
     }) {
         this.featureSetDefinition = kwds.featureSetDefinition;
         this.includeFeatureDescriptions = kwds.includeFeatureDescriptions;
@@ -50,7 +52,7 @@ export class WorksheetFeatureSetStateTable {
                 worksheetStateId: kwds.worksheetStateId
             });
 
-            this.rows.push(new WorksheetFeatureSetStateTableRow(featureDefinition, featureStateMark, featureState));
+            this.rows.push(new WorksheetFeatureSetStateTableRow(featureDefinition, featureStateMark, kwds.worksheetDefinition, featureState));
         }
     }
 
