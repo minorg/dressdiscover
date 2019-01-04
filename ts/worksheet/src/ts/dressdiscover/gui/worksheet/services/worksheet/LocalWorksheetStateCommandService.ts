@@ -3,7 +3,9 @@ import { WorksheetStateId } from 'dressdiscover/api/models/worksheet/worksheet_s
 import { DuplicateWorksheetStateException } from 'dressdiscover/api/services/worksheet/duplicate_worksheet_state_exception';
 import { NoSuchWorksheetStateException } from 'dressdiscover/api/services/worksheet/no_such_worksheet_state_exception';
 import { WorksheetStateCommandService } from 'dressdiscover/api/services/worksheet/worksheet_state_command_service';
-import { LocalWorksheetStateQueryService } from 'dressdiscover/gui/worksheet/services/LocalWorksheetStateQueryService';
+import {
+    LocalWorksheetStateQueryService,
+} from 'dressdiscover/gui/worksheet/services/worksheet/LocalWorksheetStateQueryService';
 
 export class LocalWorksheetStateCommandService implements WorksheetStateCommandService {
     deleteWorksheetState(kwds: { id: WorksheetStateId; }): Promise<void> {

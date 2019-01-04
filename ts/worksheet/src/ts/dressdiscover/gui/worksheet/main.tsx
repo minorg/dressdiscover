@@ -1,4 +1,5 @@
 import { Application } from 'dressdiscover/gui/worksheet/Application';
+import { Services } from 'dressdiscover/gui/worksheet/services/Services';
 import { CurrentUserStore } from 'dressdiscover/gui/worksheet/stores/current_user/CurrentUserStore';
 import { ConsoleLogger } from 'dressdiscover/gui/worksheet/util/logging/ConsoleLogger';
 import { LoggerContext } from 'dressdiscover/gui/worksheet/util/logging/LoggerContext';
@@ -9,6 +10,8 @@ import { RouterStore, syncHistoryWithStore } from 'mobx-react-router';
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import { Router } from 'react-router';
+
+import { ServicesContext } from './services/ServicesContext';
 
 
 // Logger
@@ -27,15 +30,18 @@ const stores = {
   routerStore
 };
 
+// Services
+const services = new Services();
+
 ReactDOM.render(
   <LoggerContext.Provider value={logger}>
-    <ServicesProvider value={services}>
+    <ServicesContext.Provider value={services}>
       <StoresProvider {...stores}>
         <Router history={syncedHistory}>
           <Application />
         </Router>
       </StoresProvider>
-    </ServicesProvider>
+    </ServicesContext.Provider>
   </LoggerContext.Provider>,
   document.getElementById('root')
 );

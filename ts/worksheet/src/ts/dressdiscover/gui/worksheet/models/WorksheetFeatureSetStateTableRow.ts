@@ -2,15 +2,15 @@ import { WorksheetFeatureSetState } from 'dressdiscover/api/models/worksheet/wor
 import { WorksheetFeatureState } from 'dressdiscover/api/models/worksheet/worksheet_feature_state';
 import { WorksheetStateId } from 'dressdiscover/api/models/worksheet/worksheet_state_id';
 import { WorksheetStateMark } from 'dressdiscover/api/models/worksheet/worksheet_state_mark';
-import {
-    WorksheetFeatureValueDefinitionWrapper,
-} from 'dressdiscover/gui/worksheet/models/worksheet/WorksheetFeatureValueDefinitionWrapper';
 import { WorksheetFeatureDefinitionWrapper } from 'dressdiscover/gui/worksheet/models/WorksheetFeatureDefinitionWrapper';
 import {
     WorksheetFeatureSetDefinitionWrapper,
 } from 'dressdiscover/gui/worksheet/models/WorksheetFeatureSetDefinitionWrapper';
+import {
+    WorksheetFeatureValueDefinitionWrapper,
+} from 'dressdiscover/gui/worksheet/models/WorksheetFeatureValueDefinitionWrapper';
 
-import { WorksheetDefinitionWrapper } from './WorksheetDefinitionWrapper';
+import { WorksheetDefinitionWrapper } from './worksheet/WorksheetDefinitionWrapper';
 
 class WorksheetFeatureSetStateTableRow {
     constructor(readonly featureDefinition: WorksheetFeatureDefinitionWrapper, readonly featureStateMark: WorksheetStateMark, worksheetDefinition: WorksheetDefinitionWrapper, featureState?: WorksheetFeatureState,) {

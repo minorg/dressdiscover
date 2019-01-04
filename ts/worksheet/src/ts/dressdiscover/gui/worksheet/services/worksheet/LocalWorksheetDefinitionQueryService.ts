@@ -1,7 +1,7 @@
 ﻿import { WorksheetDefinition } from 'dressdiscover/api/models/worksheet/worksheet_definition';
 import { WorksheetDefinitionQueryService } from 'dressdiscover/api/services/worksheet/worksheet_definition_query_service';
-import { WorksheetDefinitionCsvParser } from 'dressdiscover/gui/worksheet/models/worksheet_definition_csv_parser';
-import { WorksheetDefinitionValidator } from 'dressdiscover/gui/worksheet/models/worksheet_definition_validator';
+import { WorksheetDefinitionCsvParser } from 'dressdiscover/gui/worksheet/models/worksheet/WorksheetDefinitionCsvParser';
+import { WorksheetDefinitionValidator } from 'dressdiscover/gui/worksheet/models/worksheet/WorksheetDefinitionValidator';
 
 declare function require(moduleName: string): any;
 

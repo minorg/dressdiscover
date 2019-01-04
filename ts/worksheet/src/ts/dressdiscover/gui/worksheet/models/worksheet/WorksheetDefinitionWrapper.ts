@@ -12,14 +12,18 @@ import {
 import {
     NoSuchWorksheetFeatureValueDefinitionException,
 } from 'dressdiscover/api/services/worksheet/no_such_worksheet_feature_value_definition_exception';
-import { WorksheetExtentDefinitionWrapper } from 'dressdiscover/gui/worksheet/models/worksheet_extent_definition_wrapper';
-import { WorksheetFeatureDefinitionWrapper } from 'dressdiscover/gui/worksheet/models/worksheet_feature_definition_wrapper';
+import {
+    WorksheetExtentDefinitionWrapper,
+} from 'dressdiscover/gui/worksheet/models/worksheet/WorksheetExtentDefinitionWrapper';
+import {
+    WorksheetFeatureDefinitionWrapper,
+} from 'dressdiscover/gui/worksheet/models/worksheet/WorksheetFeatureDefinitionWrapper';
 import {
     WorksheetFeatureSetDefinitionWrapper,
-} from 'dressdiscover/gui/worksheet/models/worksheet_feature_set_definition_wrapper';
+} from 'dressdiscover/gui/worksheet/models/worksheet/WorksheetFeatureSetDefinitionWrapper';
 import {
     WorksheetFeatureValueDefinitionWrapper,
-} from 'dressdiscover/gui/worksheet/models/worksheet_feature_value_definition_wrapper';
+} from 'dressdiscover/gui/worksheet/models/worksheet/WorksheetFeatureValueDefinitionWrapper';
 
 export class WorksheetDefinitionWrapper {
     constructor(readonly definition: WorksheetDefinition) {
