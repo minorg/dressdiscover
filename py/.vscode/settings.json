@@ -2,5 +2,8 @@
     "files.exclude": {
         "**/*.pyc": true
     },
-    "python.autoComplete.extraPaths": ["${workspaceFolder}/src"]
+    "python.autoComplete.extraPaths": [
+        "${workspaceFolder}/src"
+    ],
+    "python.pythonPath": "C:\\Users\\minor\\.virtualenvs\\py-5fURJCYW\\Scripts\\python.exe"
 }

@@ -3,12 +3,13 @@ import base64
 import csv
 import os.path
 import pathvalidate
+import sys
 from urllib.parse import urlparse
 from urllib.request import unquote, urlopen
 
 
 argument_parser = argparse.ArgumentParser()
-argument_parser.add_argument("csv_file", help="CSV file with URLs in the first column")
+argument_parser.add_argument("in_csv_file", help="CSV file with URLs in the first column")
 args = argument_parser.parse_args()
 
 
@@ -19,8 +20,10 @@ if not os.path.isdir(UNSORTED_IMAGES_DIR_PATH):
     os.mkdir(UNSORTED_IMAGES_DIR_PATH)
 
 
-with open(args.csv_file) as csv_file:
-    csv_reader = csv.reader(csv_file)
+csv_writer = csv.writer(sys.stdout)
+csv_writer.writerow(("URL", "FilePath"))
+with open(args.in_csv_file) as in_csv_file:
+    csv_reader = csv.reader(in_csv_file)
     for row_i, row in enumerate(csv_reader):
         if row_i == 0:
             continue
@@ -37,7 +40,7 @@ with open(args.csv_file) as csv_file:
         image_file_name = pathvalidate.replace_symbol(image_file_stem, '_') + image_file_ext
         image_file_path = os.path.join(UNSORTED_IMAGES_DIR_PATH, image_file_name)
         if os.path.isfile(image_file_path):
-            # print(image_file_path, "already exists, skipping")
+            csv_writer.writerow((url, image_file_path))
             continue
 
         url_obj = urlopen(url)
@@ -48,5 +51,4 @@ with open(args.csv_file) as csv_file:
 
         with open(image_file_path, "w+b") as image_file:
             image_file.write(url_contents)
-        # print("downloaded", url, "to", image_file_path)
-        print(image_file_name)
+        csv_writer.writerow((url, image_file_path))
