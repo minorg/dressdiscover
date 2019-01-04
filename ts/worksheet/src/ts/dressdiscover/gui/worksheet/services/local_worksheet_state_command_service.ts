@@ -1,41 +1,44 @@
 ﻿import { WorksheetState } from 'dressdiscover/api/models/worksheet/worksheet_state';
 import { WorksheetStateId } from 'dressdiscover/api/models/worksheet/worksheet_state_id';
-import {
-    AsyncToSyncWorksheetStateCommandService,
-} from 'dressdiscover/api/services/worksheet/async_to_sync_worksheet_state_command_service';
-import {
-    DuplicateSuchWorksheetStateException,
-} from 'dressdiscover/api/services/worksheet/duplicate_such_worksheet_state_exception';
+import { DuplicateWorksheetStateException } from 'dressdiscover/api/services/worksheet/duplicate_worksheet_state_exception';
 import { NoSuchWorksheetStateException } from 'dressdiscover/api/services/worksheet/no_such_worksheet_state_exception';
+import { WorksheetStateCommandService } from 'dressdiscover/api/services/worksheet/worksheet_state_command_service';
 import { LocalWorksheetStateQueryService } from 'dressdiscover/gui/worksheet/services/local_worksheet_state_query_service';
 
-export class LocalWorksheetStateCommandService extends AsyncToSyncWorksheetStateCommandService {
-    deleteWorksheetStateSync(kwds: { id: WorksheetStateId }): void {
+export class LocalWorksheetStateCommandService implements WorksheetStateCommandService {
+    deleteWorksheetState(kwds: { id: WorksheetStateId; }): Promise<void> {
         localStorage.removeItem(LocalWorksheetStateQueryService.getWorksheetStateItemKey(kwds.id));
+        return new Promise((resolve, reject) => resolve());
     }
 
-    putWorksheetStateSync(kwds: { state: WorksheetState }): void {
+    putWorksheetState(kwds: { state: WorksheetState; }): Promise<void> {
         localStorage.setItem(LocalWorksheetStateQueryService.getWorksheetStateItemKey(kwds.state.id), JSON.stringify(kwds.state.toThryftJsonObject()));
+        return new Promise((resolve, reject) => resolve());
     }
 
-    renameWorksheetStateSync(kwds: { newId: WorksheetStateId, oldId: WorksheetStateId }): void {
-        const newKey = LocalWorksheetStateQueryService.getWorksheetStateItemKey(kwds.newId);
-        const oldKey = LocalWorksheetStateQueryService.getWorksheetStateItemKey(kwds.oldId);
+    renameWorksheetState(kwds: { newId: WorksheetStateId; oldId: WorksheetStateId; }): Promise<void> {
+        return new Promise((resolve, reject) => {
+            const newKey = LocalWorksheetStateQueryService.getWorksheetStateItemKey(kwds.newId);
+            const oldKey = LocalWorksheetStateQueryService.getWorksheetStateItemKey(kwds.oldId);
 
-        if (localStorage.getItem(newKey)) {
-            throw new DuplicateSuchWorksheetStateException({ id: kwds.newId });
-        }
+            if (localStorage.getItem(newKey)) {
+                reject(new DuplicateWorksheetStateException({ id: kwds.newId }));
+                return;
+            }
 
-        const oldJsonString = localStorage.getItem(oldKey);
-        if (!oldJsonString) {
-            throw new NoSuchWorksheetStateException({ id: kwds.oldId });
-        }
+            const oldJsonString = localStorage.getItem(oldKey);
+            if (!oldJsonString) {
+                reject(new NoSuchWorksheetStateException({ id: kwds.oldId }));
+                return;
+            }
 
-        // Change the id in the value, too
-        const value = WorksheetState.fromThryftJsonObject(JSON.parse(oldJsonString));
-        value.id = kwds.newId;
+            // Change the id in the value, too
+            const value = WorksheetState.fromThryftJsonObject(JSON.parse(oldJsonString));
+            value.id = kwds.newId;
 
-        localStorage.removeItem(oldKey);
-        localStorage.setItem(newKey, JSON.stringify(value.toThryftJsonObject()));
+            localStorage.removeItem(oldKey);
+            localStorage.setItem(newKey, JSON.stringify(value.toThryftJsonObject()));
+            resolve();
+        });
     }
 }
