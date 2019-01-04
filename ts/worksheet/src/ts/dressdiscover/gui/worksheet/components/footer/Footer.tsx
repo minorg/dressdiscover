@@ -8,6 +8,7 @@ export class Footer extends React.Component {
         return (
             <footer>
                 <Container fluid>
+                    <Row>&nbsp;</Row>
                     <Row>
                         <Col className="text-center" md="12">
                             <Link to={Hrefs.contact}>Contact</Link>&nbsp;|&nbsp;
