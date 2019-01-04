@@ -1,7 +1,7 @@
 import { WorksheetDefinition } from 'dressdiscover/api/models/worksheet/worksheet_definition';
 import { WorksheetState } from 'dressdiscover/api/models/worksheet/worksheet_state';
 import { StringExporter } from 'dressdiscover/gui/worksheet/exporters/string/string_exporter';
-import Papa = require('papaparse');
+import * as Papa from 'papaparse';
 
 export class CsvExporter implements StringExporter {
     export(worksheetDefinition: WorksheetDefinition, worksheetState: WorksheetState): string {
