@@ -11,10 +11,10 @@ export class Footer extends React.Component {
                     <Row>&nbsp;</Row>
                     <Row>
                         <Col className="text-center" md="12">
-                            <Link to={Hrefs.contact}>Contact</Link>&nbsp;|&nbsp;
+                            <a href={Hrefs.contact}>Contact</a>&nbsp;|&nbsp;
                             <Link to={Hrefs.credits}>Credits</Link>&nbsp;|&nbsp;
                             <Link to={Hrefs.privacy}>Privacy</Link>&nbsp;|&nbsp;
-                            <Link to={Hrefs.gitHub} >GitHub</Link>
+                            <a href={Hrefs.gitHub}>GitHub</a>
                         </Col>
                     </Row>
                     <Row>&nbsp;</Row>
