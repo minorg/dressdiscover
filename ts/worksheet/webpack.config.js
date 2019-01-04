@@ -56,24 +56,25 @@ module.exports = {
         use: [
           // process.env.NODE_ENV !== 'production' ? 'style-loader' : MiniCssExtractPlugin.loader,
           MiniCssExtractPlugin.loader,
-        //   {
-        //   loader: 'style-loader', // inject CSS to page
-        // },
-        {
-          loader: 'css-loader', // translates CSS into CommonJS modules
-        }, {
-          loader: 'postcss-loader', // Run post css actions
-          options: {
-            plugins: function () { // post css plugins, can be exported to postcss.config.js
-              return [
-                require('precss'),
-                require('autoprefixer')
-              ];
+          //   {
+          //   loader: 'style-loader', // inject CSS to page
+          // },
+          {
+            loader: 'css-loader', // translates CSS into CommonJS modules
+          }, {
+            loader: 'postcss-loader', // Run post css actions
+            options: {
+              plugins: function () { // post css plugins, can be exported to postcss.config.js
+                return [
+                  require('precss'),
+                  require('autoprefixer')
+                ];
+              }
             }
+          }, {
+            loader: 'sass-loader' // compiles Sass to CSS
           }
-        }, {
-          loader: 'sass-loader' // compiles Sass to CSS
-        }]
+        ]
       },
       // .ts, .tsx
       {
@@ -84,6 +85,14 @@ module.exports = {
           },
           'ts-loader'
         ].filter(Boolean)
+      },
+      {
+        test: /\.ts$/,
+        enforce: 'pre',
+        use: [{
+          loader: 'tslint-loader',
+          options: { /* Loader options go here */ }
+        }]
       }
     ]
   },

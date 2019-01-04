@@ -8,7 +8,8 @@
             "script": "start",
             "path": "worksheet/",
             "problemMatcher": [
-                "$ts-webpack-watch"
+                "$ts-webpack-watch",
+                "$tslint-webpack-watch"
             ],
             "isBackground": true
         }
