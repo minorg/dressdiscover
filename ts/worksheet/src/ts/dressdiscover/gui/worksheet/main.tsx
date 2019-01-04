@@ -29,11 +29,13 @@ const stores = {
 
 ReactDOM.render(
   <LoggerContext.Provider value={logger}>
-    <StoresProvider {...stores}>
-      <Router history={syncedHistory}>
-        <Application />
-      </Router>
-    </StoresProvider>
-    </LoggerContext.Provider>,
+    <ServicesProvider value={services}>
+      <StoresProvider {...stores}>
+        <Router history={syncedHistory}>
+          <Application />
+        </Router>
+      </StoresProvider>
+    </ServicesProvider>
+  </LoggerContext.Provider>,
   document.getElementById('root')
 );

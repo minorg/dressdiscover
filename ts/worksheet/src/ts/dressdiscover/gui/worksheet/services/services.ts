@@ -12,11 +12,9 @@ import { WorksheetStateCommandService } from 'dressdiscover/api/services/workshe
 import { WorksheetStateQueryService } from 'dressdiscover/api/services/worksheet/worksheet_state_query_service';
 import {
     LocalWorksheetDefinitionQueryService,
-} from 'dressdiscover/gui/worksheet/services/local_worksheet_definition_query_service';
-import {
-    LocalWorksheetStateCommandService,
-} from 'dressdiscover/gui/worksheet/services/local_worksheet_state_command_service';
-import { LocalWorksheetStateQueryService } from 'dressdiscover/gui/worksheet/services/local_worksheet_state_query_service';
+} from 'dressdiscover/gui/worksheet/services/LocalWorksheetDefinitionQueryService';
+import { LocalWorksheetStateCommandService } from 'dressdiscover/gui/worksheet/services/LocalWorksheetStateCommandService';
+import { LocalWorksheetStateQueryService } from 'dressdiscover/gui/worksheet/services/LocalWorksheetStateQueryService';
 
 export class Services {
     readonly worksheetDefinitionQueryService: WorksheetDefinitionQueryService = new LoggingWorksheetDefinitionQueryService(new LocalWorksheetDefinitionQueryService());
