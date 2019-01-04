@@ -82,7 +82,7 @@ export class Privacy extends React.Component {
                                             information.
                         </p>
 
-                                        <p>If you feel that we are not abiding by this privacy policy, you should
+                                        <p>If you feel that we are not abiding by this privacy policy, you should&nbsp;
                             <Link to={Hrefs.contact}>contact us immediately</Link>.</p>
                                     </Container>    </CardBody>
                             </Card>

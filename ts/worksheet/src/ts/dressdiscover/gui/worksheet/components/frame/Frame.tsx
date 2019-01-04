@@ -20,18 +20,20 @@ interface Props {
 
 export class Frame extends React.Component<Props> {
   render() {
+    const breadcrumb = this.props.breadcrumbItems ? (<Breadcrumb className="pl-4">
+      <BreadcrumbItem active={this.props.activeNavItem === ActiveNavbarItem.Home}>
+        <Link to={Hrefs.home}>Home</Link>
+      </BreadcrumbItem>
+      {this.props.breadcrumbItems}
+    </Breadcrumb>) : null;
+
     return (
       <div className="frame" id={this.props.id}>
         <Navbar activeNavItem={this.props.activeNavItem} />
         <h1 className="headline pb-2 pl-4 pt-2">{this.props.headline}</h1>
-        <Breadcrumb className="pl-4">
-          <BreadcrumbItem active={this.props.activeNavItem === ActiveNavbarItem.Home}>
-            <Link to={Hrefs.home}>Home</Link>
-          </BreadcrumbItem>
-          {this.props.breadcrumbItems}
-        </Breadcrumb>
+        {breadcrumb}
         {this.props.children}
-        <Footer/>
+        <Footer />
       </div>
     );
   }

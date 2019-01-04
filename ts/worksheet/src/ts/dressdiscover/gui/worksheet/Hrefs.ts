@@ -1,4 +1,3 @@
-import { WorksheetStateId } from 'dressdiscover/api/models/worksheet/worksheet_state_id';
 import { WorksheetStateMark } from 'dressdiscover/api/models/worksheet/worksheet_state_mark';
 import * as queryString from 'query-string';
 
@@ -12,7 +11,7 @@ export class Hrefs {
   }
 
   static get credits() {
-    return "/#/credits";
+    return "/credits";
   }
 
   static get gitHub() {
@@ -36,15 +35,16 @@ export class Hrefs {
   }
 
   static get privacy() {
-    return "/#/privacy";
+    return "/privacy";
   }
 
   static get root() {
     return '/';
   }
 
-  static state(mark: WorksheetStateMark) {
-    let href = "/#/state/" + encodeURIComponent(mark.worksheetStateId.toString()) + "/";
+  static worksheetState(kwds: { mark: WorksheetStateMark }) {
+    const mark = kwds.mark;
+    let href = "/worksheet/state/" + encodeURIComponent(mark.worksheetStateId.toString()) + "/";
     if (mark.featureSetId) {
       href += encodeURIComponent(mark.featureSetId.toString()) + "/";
       if (mark.featureId) {
@@ -55,9 +55,5 @@ export class Hrefs {
       href += "?" + queryString.stringify({ "review": true });
     }
     return href;
-  }
-
-  static worksheetState(worksheetStateId: WorksheetStateId) {
-    return Hrefs.state(new WorksheetStateMark({ worksheetStateId: worksheetStateId }));
   }
 }

@@ -63,7 +63,7 @@ class Navbar extends React.Component<Props> {
 
     return (
       <div>
-        <BootstrapNavbar className="ml-4 mr-4" color="light" light expand="md">
+        <BootstrapNavbar className="ml-2 mr-2" color="light" light expand="md">
           <NavbarBrand href={Hrefs.home}>DressDiscover Worksheet</NavbarBrand>
           <Nav>
             <NavItem active={this.props.activeNavItem === ActiveNavbarItem.Home}>
