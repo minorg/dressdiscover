@@ -67,7 +67,7 @@ export class WorksheetStart extends React.Component<Props, State> {
                             </Container>
                         </Col>
                     </Row>
-                    {(this.props.worksheetStateStore.worksheetStateIds) ? (
+                    {(this.props.worksheetStateStore.worksheetStateIds && this.props.worksheetStateStore.worksheetStateIds.length) ? (
                         <React.Fragment>
                             <Row className="mb-5"></Row>
                             <Row>
