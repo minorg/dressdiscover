@@ -29,7 +29,7 @@ export class WorksheetStatesTableRow extends React.Component<Props, State> {
 
     onClickCancelButton() {
         this.setState(prevState =>
-            Object.assign({}, prevState, this.START_STATE));
+            Object.assign({}, this.START_STATE));
     }
 
     onChangeNewId(event: any) {
@@ -41,17 +41,21 @@ export class WorksheetStatesTableRow extends React.Component<Props, State> {
         this.setState(prevState => Object.assign({}, prevState, { deleting: true, newId: '', renaming: false }));
     }
 
-    onClickDeleteConfirmButton() {
-        invariant(this.state.deleting);
-        this.props.onDeleteWorksheetState({ id: this.props.worksheetStateId });
+    async onClickDeleteConfirmButton() {
+        invariant(this.state.deleting, "deleting state");
+        await this.props.onDeleteWorksheetState({ id: this.props.worksheetStateId });
+        this.setState(prevState => Object.assign({}, this.START_STATE));
     }
 
     onClickRenameButton() {
-        this.setState(prevState => Object.assign({}, prevState, { deleting: false, newId: '', renaming: true }));
+        this.setState(prevState => Object.assign({}, prevState, { deleting: false, newId: this.props.worksheetStateId.toString(), renaming: true }));
     }
 
     onClickRenameConfirmButton() {
         if (!this.state.newId) {
+            return;
+        } else if (this.state.newId == this.props.worksheetStateId.toString()) {
+            this.setState(prevState => Object.assign({}, this.START_STATE));
             return;
         }
         this.props.onRenameWorksheetState({ oldId: this.props.worksheetStateId, newId: WorksheetStateId.parse(this.state.newId as string) });

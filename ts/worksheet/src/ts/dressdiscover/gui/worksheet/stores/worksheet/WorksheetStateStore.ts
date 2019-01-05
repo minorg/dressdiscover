@@ -23,7 +23,10 @@ export class WorksheetStateStore {
             return;
         }
 
-        self.getWorksheetStateIds();
+        runInAction(() => {
+            self.worksheetStateIds = undefined;
+            self.getWorksheetStateIds();
+        });
     }
 
     @action
@@ -44,6 +47,7 @@ export class WorksheetStateStore {
             });
             return;
         }
+
         runInAction(() => {
             self.worksheetStateIds = worksheetStateIds;
         });
@@ -62,6 +66,9 @@ export class WorksheetStateStore {
             return;
         }
 
-        self.getWorksheetStateIds();
+        runInAction(() => {
+            self.worksheetStateIds = undefined;
+            self.getWorksheetStateIds();
+        });
     }
 }
