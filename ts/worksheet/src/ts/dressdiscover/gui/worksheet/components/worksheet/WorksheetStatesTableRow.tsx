@@ -30,7 +30,8 @@ export class WorksheetStatesTableRow extends React.Component<Props, State> {
     }
 
     onChangeNewId(event: any) {
-        this.setState(prevState => Object.assign({}, prevState, { newId: event.target.value }));
+        const value = event.target.value;
+        this.setState(prevState => Object.assign({}, prevState, { newId: value }));
     }
 
     onClickDeleteButton() {
@@ -54,7 +55,7 @@ export class WorksheetStatesTableRow extends React.Component<Props, State> {
     }
 
     onKeypressNewId(event: any) {
-        if (event.keyCode !== 13) {
+        if (event.charCode !== 13) {
             return false;
         }
         if (this.renameConfirmButtonEnabled) {

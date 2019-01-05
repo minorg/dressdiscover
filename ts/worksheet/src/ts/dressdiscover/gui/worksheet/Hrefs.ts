@@ -42,6 +42,10 @@ export class Hrefs {
     return '/';
   }
 
+  static get worksheetStart() {
+    return "/worksheet/";
+  }
+
   static worksheetState(mark: WorksheetStateMark) {
     let href = "/worksheet/state/" + encodeURIComponent(mark.worksheetStateId.toString()) + "/";
     if (mark.featureSetId) {

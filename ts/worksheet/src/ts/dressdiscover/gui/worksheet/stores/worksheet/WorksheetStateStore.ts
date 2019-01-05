@@ -12,17 +12,18 @@ export class WorksheetStateStore {
 
     @action
     async deleteWorksheetState(kwds: { id: WorksheetStateId }) {
+        const self = this;
         try {
             await this.services.worksheetStateCommandService.deleteWorksheetState(kwds);
         } catch (e) {
-            this.logger.error("error deleting worksheet state: " + e);
+            self.logger.error("error deleting worksheet state: " + e);
             runInAction(() => {
-                this.error = e;
+                self.error = e;
             });
             return;
         }
 
-        this.getWorksheetStateIds();
+        self.getWorksheetStateIds();
     }
 
     @action
@@ -32,33 +33,35 @@ export class WorksheetStateStore {
             return;
         }
 
+        const self = this;
         let worksheetStateIds: WorksheetStateId[];
         try {
             worksheetStateIds = await this.services.worksheetStateQueryService.getWorksheetStateIds();
         } catch (e) {
-            this.logger.error("error getting worksheet state id's: " + e);
+            self.logger.error("error getting worksheet state id's: " + e);
             runInAction(() => {
                 this.error = e;
             });
             return;
         }
         runInAction(() => {
-            this.worksheetStateIds = worksheetStateIds;
+            self.worksheetStateIds = worksheetStateIds;
         });
     }
 
     @action
     async renameWorksheetState(kwds: { newId: WorksheetStateId, oldId: WorksheetStateId }) {
+        const self = this;
         try {
             await this.services.worksheetStateCommandService.renameWorksheetState(kwds);
         } catch (e) {
-            this.logger.error("error renaming worksheet state: " + e);
+            self.logger.error("error renaming worksheet state: " + e);
             runInAction(() => {
-                this.error = e;
+                self.error = e;
             });
             return;
         }
 
-        this.getWorksheetStateIds();
+        self.getWorksheetStateIds();
     }
 }

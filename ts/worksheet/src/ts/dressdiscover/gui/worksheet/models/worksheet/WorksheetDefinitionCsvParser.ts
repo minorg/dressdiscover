@@ -191,7 +191,7 @@ export class WorksheetDefinitionCsvParser {
                         thumbnailUrl: imageThumbnailUrl
                     });
                 } else {
-                    console.warn("feature value row " + (rowI + 2) + " (" + valueId + ") has no image");
+                    // console.warn("feature value row " + (rowI + 2) + " (" + valueId + ") has no image");
                 }
 
                 const value = new WorksheetFeatureValueDefinition({

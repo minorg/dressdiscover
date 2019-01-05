@@ -13,12 +13,11 @@ export class LocalWorksheetDefinitionQueryService implements WorksheetDefinition
     }
 
     constructor() {
-        const csvModulePrefix = "raw-loader!definitions/";
         this._worksheetDefinition = new WorksheetDefinitionValidator().validateWorksheetDefinition(new WorksheetDefinitionCsvParser().parseWorksheetDefinitionCsv({
-            extentsCsv: require(csvModulePrefix + "extents.csv"),
-            featuresCsv: require(csvModulePrefix + "features.csv"),
-            featureSetsCsv: require(csvModulePrefix + "feature_sets.csv"),
-            featureValuesCsv: require(csvModulePrefix + "feature_values.csv")
+            extentsCsv: require("raw-loader!definitions/extents.csv"),
+            featuresCsv: require("raw-loader!definitions/features.csv"),
+            featureSetsCsv: require("raw-loader!definitions/feature_sets.csv"),
+            featureValuesCsv: require("raw-loader!definitions/feature_values.csv")
         }));
         // console.debug("Worksheet definition:\n" + JSON.stringify(this._worksheetDefinition.toThryftJsonObject(), undefined, 4));
     }

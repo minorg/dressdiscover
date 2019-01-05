@@ -1,4 +1,5 @@
 export enum ActiveNavbarItem {
     Home,
-    Login
+    Login,
+    Worksheet
 }
