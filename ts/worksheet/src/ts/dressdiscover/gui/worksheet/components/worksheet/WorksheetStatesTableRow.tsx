@@ -15,18 +15,21 @@ interface Props {
 
 interface State {
     deleting: boolean;
-    newId?: string;
+    newId: string;
     renaming: boolean;
 }
 
 export class WorksheetStatesTableRow extends React.Component<Props, State> {
+    private readonly START_STATE: State = { deleting: false, newId: '', renaming: false };
+
+    constructor(props: Props) {
+        super(props);
+        this.state = this.START_STATE;
+    }
+
     onClickCancelButton() {
         this.setState(prevState =>
-            Object.assign({}, prevState, {
-                deleting: false,
-                newId: undefined,
-                renaming: false
-            }));
+            Object.assign({}, prevState, this.START_STATE));
     }
 
     onChangeNewId(event: any) {
@@ -35,7 +38,7 @@ export class WorksheetStatesTableRow extends React.Component<Props, State> {
     }
 
     onClickDeleteButton() {
-        this.setState(prevState => Object.assign({}, prevState, { deleting: true, renaming: false }));
+        this.setState(prevState => Object.assign({}, prevState, { deleting: true, newId: '', renaming: false }));
     }
 
     onClickDeleteConfirmButton() {
@@ -44,7 +47,7 @@ export class WorksheetStatesTableRow extends React.Component<Props, State> {
     }
 
     onClickRenameButton() {
-        this.setState(prevState => Object.assign({}, prevState, { deleting: false, renaming: true }));
+        this.setState(prevState => Object.assign({}, prevState, { deleting: false, newId: '', renaming: true }));
     }
 
     onClickRenameConfirmButton() {
