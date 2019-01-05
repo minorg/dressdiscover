@@ -8,13 +8,13 @@ interface Props {
 }
 
 interface State {
-    newWorksheetStateId?: string;
+    newWorksheetStateId: string;
 }
 
 export class NewWorksheetCard extends React.Component<Props, State> {
     constructor(props: Props) {
         super(props);
-        this.state = {};
+        this.state = { newWorksheetStateId: '' };
     }
 
     onChangeNewWorksheetStateId(event: any) {
@@ -50,7 +50,7 @@ export class NewWorksheetCard extends React.Component<Props, State> {
                                 <Input autoFocus className="form-control" onChange={this.onChangeNewWorksheetStateId.bind(this)} onKeyPress={this.onKeypressNewWorksheetStateId.bind(this)} placeholder="Object id or accession number (optional)" type="text" value={this.state.newWorksheetStateId} />
                             </Col>
                             <Col xs="2">
-                                <Button color="primary" onClick={this.onSubmit}>Create</Button>
+                                <Button color="primary" onClick={this.onSubmit.bind(this)}>Create</Button>
                             </Col>
                         </Row>
                     </Container>
