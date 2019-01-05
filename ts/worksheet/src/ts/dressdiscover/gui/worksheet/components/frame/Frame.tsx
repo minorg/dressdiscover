@@ -4,6 +4,7 @@ import { Footer } from 'dressdiscover/gui/worksheet/components/footer/Footer';
 import { ActiveNavbarItem } from 'dressdiscover/gui/worksheet/components/navbar/ActiveNavbarItem';
 import Navbar from 'dressdiscover/gui/worksheet/components/navbar/Navbar';
 import { Hrefs } from 'dressdiscover/gui/worksheet/Hrefs';
+import DevTools from 'mobx-react-devtools';
 import * as React from 'react';
 import { ReactNode } from 'react';
 import { Link } from 'react-router-dom';
@@ -34,6 +35,7 @@ export class Frame extends React.Component<Props> {
         {breadcrumb}
         {this.props.children}
         <Footer />
+        <DevTools/>
       </div>
     );
   }
