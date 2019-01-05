@@ -2,6 +2,7 @@ var webpack = require('webpack');
 var path = require('path');
 
 // variables
+var distPath = path.join(__dirname, './wwwroot');
 var isProduction = process.argv.indexOf('-p') >= 0 || process.env.NODE_ENV === 'production';
 var srcPath = path.join(__dirname, './src');
 
@@ -31,7 +32,7 @@ module.exports = {
         secure: false
       }
     },
-    contentBase: srcPath,
+    contentBase: distPath,
     hot: true,
     inline: true,
     historyApiFallback: {
@@ -97,7 +98,7 @@ module.exports = {
     ]
   },
   output: {
-    path: path.join(__dirname, './wwwroot'),
+    path: distPath,
     filename: 'js/dressdiscover-worksheet.js',
     publicPath: '/'
   },

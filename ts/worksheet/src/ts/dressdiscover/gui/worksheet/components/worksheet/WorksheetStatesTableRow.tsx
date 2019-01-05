@@ -86,9 +86,11 @@ export class WorksheetStatesTableRow extends React.Component<Props, State> {
                     ) : (
                             <React.Fragment>
                                 <Link to={Hrefs.worksheetState(new WorksheetStateMark({ worksheetStateId: this.props.worksheetStateId }))} title="Open this worksheet">{this.props.worksheetStateId.toString()}</Link>
-                                <div className={classnames({ "float-right": true, invisible: !this.state.deleting, visible: !!this.state.deleting })}>Delete?</div>
-                                <Button className="confirm-delete-button" color="danger" onClick={this.onClickDeleteConfirmButton.bind(this)} size="sm">Yes</Button>
-                                <Button className="cancel-delete-button" color="default" onClick={this.onClickCancelButton.bind(this)} size="sm">No</Button>
+                                <div className={classnames({ "float-right": true, invisible: !this.state.deleting, visible: !!this.state.deleting })}>
+                                    <span>Delete?</span>
+                                    <Button className="confirm-delete-button" color="danger" onClick={this.onClickDeleteConfirmButton.bind(this)} size="sm">Yes</Button>
+                                    <Button className="cancel-delete-button" color="default" onClick={this.onClickCancelButton.bind(this)} size="sm">No</Button>
+                                </div>
                             </React.Fragment>
                         )}
                 </td>

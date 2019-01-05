@@ -16,9 +16,9 @@ export class WorksheetStatesTable extends React.Component<Props> {
         return (
             <Table className="table table-bordered table-striped w-100">
                 <tbody>
-                    {this.props.worksheetStateStore!.worksheetStateIds.map((worksheetStateId) => {
+                    {this.props.worksheetStateStore!.worksheetStateIds.map(worksheetStateId =>
                         <WorksheetStatesTableRow onDeleteWorksheetState={this.props.worksheetStateStore!.deleteWorksheetState} onRenameWorksheetState={this.props.worksheetStateStore!.renameWorksheetState} worksheetStateId={worksheetStateId}></WorksheetStatesTableRow>
-                    })}
+                    )}
                 </tbody>
             </Table>
         );

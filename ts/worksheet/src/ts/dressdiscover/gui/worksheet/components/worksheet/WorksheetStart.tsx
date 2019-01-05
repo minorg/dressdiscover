@@ -64,19 +64,19 @@ export class WorksheetStart extends React.Component<Props, State> {
                                         <NewWorksheetCard onSubmit={this.onStartNewWorksheet.bind(this)}></NewWorksheetCard>
                                     </Col>
                                 </Row>
+                                {(this.props.worksheetStateStore.worksheetStateIds && this.props.worksheetStateStore.worksheetStateIds.length) ? (
+                                    <React.Fragment>
+                                        <Row className="mb-5"></Row>
+                                        <Row>
+                                            <Col xs="12">
+                                                <WorksheetStatesTable></WorksheetStatesTable>
+                                            </Col>
+                                        </Row>
+                                    </React.Fragment>
+                                ) : null}
                             </Container>
                         </Col>
                     </Row>
-                    {(this.props.worksheetStateStore.worksheetStateIds && this.props.worksheetStateStore.worksheetStateIds.length) ? (
-                        <React.Fragment>
-                            <Row className="mb-5"></Row>
-                            <Row>
-                                <Col xs="12">
-                                    <WorksheetStatesTable></WorksheetStatesTable>
-                                </Col>
-                            </Row>
-                        </React.Fragment>
-                    ) : null}
                 </Container>
             </Frame>
         );
