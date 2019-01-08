@@ -1,0 +1,24 @@
+table.worksheet-states {
+    td {
+        text-align: center;
+        vertical-align: middle;
+    }
+
+    td.id {
+        text-align: left;
+        width: 90%;
+    }
+
+    td.leftmost {
+        border-right: 0;
+    }
+
+    td.inner {
+        border-left: 0;
+        border-right: 0;
+    }
+
+    td.rightmost {
+        border-left: 0;
+    }
+}
