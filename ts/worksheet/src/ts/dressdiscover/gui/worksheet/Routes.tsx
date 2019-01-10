@@ -4,7 +4,10 @@ import { Route, Switch } from 'react-router';
 
 import { Credits } from './components/static/Credits';
 import { Privacy } from './components/static/Privacy';
+import { WorksheetFeatureSetStateComponent } from './components/worksheet/WorksheetFeatureSetStateComponent';
+import { WorksheetFeatureStateComponent } from './components/worksheet/WorksheetFeatureStateComponent';
 import { WorksheetStart } from './components/worksheet/WorksheetStart';
+import { WorksheetStateComponent } from './components/worksheet/WorksheetStateComponent';
 import { Hrefs } from './Hrefs';
 
 export class Routes extends React.Component {
@@ -18,6 +21,9 @@ export class Routes extends React.Component {
         <Route exact path={Hrefs.logoutSuccess} component={Home} />
         <Route exact path={Hrefs.privacy} component={Privacy} />
         <Route exact path={Hrefs.worksheetStart} component={WorksheetStart} />
+        <Route exact path="/worksheet/:worksheetStateId" component={WorksheetStateComponent} />
+        <Route exact path="/worksheet/:worksheetStateId/feature_set/:worksheetFeatureSetId/" component={WorksheetFeatureSetStateComponent}/>
+        <Route exact path="/worksheet/:worksheetStateId/feature_set/:worksheetFeatureSetId/feature/:worksheetFeatureId" component={WorksheetFeatureStateComponent}/>
       </Switch>
     );
   }
