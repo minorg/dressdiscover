@@ -17,12 +17,12 @@ import { Frame } from '../frame/Frame';
 import { ActiveNavbarItem } from '../navbar/ActiveNavbarItem';
 
 
-interface NewWorksheetCardProps {
+interface NewWorksheetStateProps {
     onSubmit: (kwds: { newWorksheetStateId: WorksheetStateId }) => void;
 }
 
-class NewWorksheetCard extends React.Component<NewWorksheetCardProps, { newWorksheetStateId: string; }> {
-    constructor(props: NewWorksheetCardProps) {
+class NewWorksheetState extends React.Component<NewWorksheetStateProps, { newWorksheetStateId: string; }> {
+    constructor(props: NewWorksheetStateProps) {
         super(props);
         this.state = { newWorksheetStateId: '' };
     }
@@ -69,59 +69,22 @@ class NewWorksheetCard extends React.Component<NewWorksheetCardProps, { newWorks
     }
 }
 
-class WorksheetStatesCard extends React.Component {
-    render() {
-        return (
-            <Card>
-                <CardHeader>
-                    <CardTitle className={classnames(["mb-0", "text-center"])}>Existing worksheets</CardTitle>
-                </CardHeader>
-                <CardBody>
-                    <Container fluid>
-                        <Row>
-                            <Col xs="12">
-                                <WorksheetStatesTable></WorksheetStatesTable>
-                            </Col>
-                        </Row>
-                    </Container>
-                </CardBody>
-            </Card>
-        );
-    }
-}
-
-@inject("worksheetStateStore")
-@observer
-class WorksheetStatesTable extends React.Component<{ worksheetStateStore?: WorksheetStateStore }> {
-    render() {
-        return (
-            <Table className="table table-bordered w-100 worksheet-states">
-                <tbody>
-                    {this.props.worksheetStateStore!.worksheetStateIds!.map(worksheetStateId =>
-                        <WorksheetStatesTableRow onDeleteWorksheetState={this.props.worksheetStateStore!.deleteWorksheetState.bind(this.props.worksheetStateStore)} onRenameWorksheetState={this.props.worksheetStateStore!.renameWorksheetState.bind(this.props.worksheetStateStore)} worksheetStateId={worksheetStateId}></WorksheetStatesTableRow>
-                    )}
-                </tbody>
-            </Table>
-        );
-    }
-}
-
-interface WorksheetStatesTableRowProps {
+interface ExistingWorksheetStateProps {
     onDeleteWorksheetState: (kwds: { id: WorksheetStateId }) => void;
     onRenameWorksheetState: (kwds: { oldId: WorksheetStateId, newId: WorksheetStateId }) => void;
     worksheetStateId: WorksheetStateId;
 }
 
-interface WorksheetStatesTableRowState {
+interface ExistingWorksheetStateState {
     deleting: boolean;
     newId: string;
     renaming: boolean;
 }
 
-class WorksheetStatesTableRow extends React.Component<WorksheetStatesTableRowProps, WorksheetStatesTableRowState> {
-    private readonly START_STATE: WorksheetStatesTableRowState = { deleting: false, newId: '', renaming: false };
+class ExistingWorksheetState extends React.Component<ExistingWorksheetStateProps, ExistingWorksheetStateState> {
+    private readonly START_STATE: ExistingWorksheetStateState = { deleting: false, newId: '', renaming: false };
 
-    constructor(props: WorksheetStatesTableRowProps) {
+    constructor(props: ExistingWorksheetStateProps) {
         super(props);
         this.state = this.START_STATE;
     }
@@ -227,6 +190,36 @@ class WorksheetStatesTableRow extends React.Component<WorksheetStatesTableRowPro
     }
 }
 
+@inject("worksheetStateStore")
+@observer
+class ExistingWorksheetStates extends React.Component<{ worksheetStateStore?: WorksheetStateStore }> {
+    render() {
+        return (
+            <Card>
+                <CardHeader>
+                    <CardTitle className={classnames(["mb-0", "text-center"])}>Existing worksheets</CardTitle>
+                </CardHeader>
+                <CardBody>
+                    <Container fluid>
+                        <Row>
+                            <Col xs="12">
+                                <Table className="table table-bordered w-100 worksheet-states">
+                                    <tbody>
+                                        {this.props.worksheetStateStore!.worksheetStateIds!.map(worksheetStateId =>
+                                            <ExistingWorksheetState onDeleteWorksheetState={this.props.worksheetStateStore!.deleteWorksheetState.bind(this.props.worksheetStateStore)} onRenameWorksheetState={this.props.worksheetStateStore!.renameWorksheetState.bind(this.props.worksheetStateStore)} worksheetStateId={worksheetStateId}></ExistingWorksheetState>
+                                        )}
+                                    </tbody>
+                                </Table>
+                            </Col>
+                        </Row>
+                    </Container>
+                </CardBody>
+            </Card>
+        );
+    }
+}
+
+
 interface WorksheetStartProps {
     worksheetStateStore: WorksheetStateStore;
 }
@@ -270,7 +263,7 @@ export class WorksheetStart extends React.Component<WorksheetStartProps, { newWo
                             <Container fluid>
                                 <Row>
                                     <Col xs="12">
-                                        <NewWorksheetCard onSubmit={this.onStartNewWorksheet.bind(this)}></NewWorksheetCard>
+                                        <NewWorksheetState onSubmit={this.onStartNewWorksheet.bind(this)}></NewWorksheetState>
                                     </Col>
                                 </Row>
                                 {(this.props.worksheetStateStore.worksheetStateIds && this.props.worksheetStateStore.worksheetStateIds.length) ? (
@@ -278,7 +271,7 @@ export class WorksheetStart extends React.Component<WorksheetStartProps, { newWo
                                         <Row className="mb-5"></Row>
                                         <Row>
                                             <Col xs="12">
-                                                <WorksheetStatesCard></WorksheetStatesCard>
+                                                <ExistingWorksheetStates></ExistingWorksheetStates>
                                             </Col>
                                         </Row>
                                     </React.Fragment>
