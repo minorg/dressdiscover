@@ -86,14 +86,6 @@ module.exports = {
           },
           'ts-loader'
         ].filter(Boolean)
-      },
-      {
-        test: /\.ts$/,
-        enforce: 'pre',
-        use: [{
-          loader: 'tslint-loader',
-          options: { /* Loader options go here */ }
-        }]
       }
     ]
   },
