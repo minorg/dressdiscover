@@ -8,5 +8,6 @@ interface WorksheetStateComponentProps extends RouteComponentProps<{ worksheetSt
 export class WorksheetStateComponent extends React.Component<WorksheetStateComponentProps> {
     render() {
         const locationParsed = queryString.parse(this.props.location);
+        const review = locationParsed["review"] != null;
     }
 }
