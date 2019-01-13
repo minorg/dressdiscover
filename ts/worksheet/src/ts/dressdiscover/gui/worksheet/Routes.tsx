@@ -22,8 +22,8 @@ export class Routes extends React.Component {
         <Route exact path={Hrefs.privacy} component={Privacy} />
         <Route exact path={Hrefs.worksheetStart} component={WorksheetStart} />
         <Route exact path="/worksheet/:worksheetStateId" component={WorksheetStateComponent} />
-        <Route exact path="/worksheet/:worksheetStateId/feature_set/:worksheetFeatureSetId/" component={WorksheetFeatureSetStateComponent}/>
-        <Route exact path="/worksheet/:worksheetStateId/feature_set/:worksheetFeatureSetId/feature/:worksheetFeatureId" component={WorksheetFeatureStateComponent}/>
+        <Route exact path="/worksheet/:worksheetStateId/feature_set/:featureSetId/" component={WorksheetFeatureSetStateComponent}/>
+        <Route exact path="/worksheet/:worksheetStateId/feature_set/:featureSetId/feature/:featureId" component={WorksheetFeatureStateComponent}/>
       </Switch>
     );
   }

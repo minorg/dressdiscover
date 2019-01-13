@@ -1,3 +1,4 @@
+import { WorksheetState } from 'dressdiscover/api/models/worksheet/worksheet_state';
 import { WorksheetStateId } from 'dressdiscover/api/models/worksheet/worksheet_state_id';
 import { Services } from 'dressdiscover/gui/worksheet/services/Services';
 import { ILogger } from 'dressdiscover/gui/worksheet/util/logging/ILogger';
@@ -8,6 +9,7 @@ export class WorksheetStateStore {
     }
 
     @observable error: Error | undefined;
+    @observable worksheetStatesById: { [index: string]: WorksheetState } = {};
     @observable worksheetStateIds: WorksheetStateId[] | undefined;
 
     @action
@@ -16,35 +18,42 @@ export class WorksheetStateStore {
         try {
             await this.services.worksheetStateCommandService.deleteWorksheetState(kwds);
         } catch (e) {
-            self.logger.error("error deleting worksheet state: " + e);
-            runInAction(() => {
-                self.error = e;
-            });
+            self.setError(e);
             return;
         }
 
         runInAction(() => {
+            self.worksheetStatesById = {};
             self.worksheetStateIds = undefined;
             self.getWorksheetStateIds();
         });
     }
 
     @action
-    async getWorksheetStateIds() {
-        if (this.worksheetStateIds) {
-            this.logger.debug("already have worksheet state IDs");
+    async getWorksheetState(kwds: { id: WorksheetStateId }) {
+        let worksheetState: WorksheetState;
+        const self = this;
+        try {
+            worksheetState = await this.services.worksheetStateQueryService.getWorksheetState(kwds);
+        } catch (e) {
+            self.setError(e);
             return;
         }
+    }
+
+    @action
+    async getWorksheetStateIds() {
+        // if (this.worksheetStateIds) {
+        //     this.logger.debug("already have worksheet state IDs");
+        //     return;
+        // }
 
         const self = this;
         let worksheetStateIds: WorksheetStateId[];
         try {
             worksheetStateIds = await this.services.worksheetStateQueryService.getWorksheetStateIds();
         } catch (e) {
-            self.logger.error("error getting worksheet state id's: " + e);
-            runInAction(() => {
-                this.error = e;
-            });
+            self.setError(e);
             return;
         }
 
@@ -59,16 +68,22 @@ export class WorksheetStateStore {
         try {
             await this.services.worksheetStateCommandService.renameWorksheetState(kwds);
         } catch (e) {
-            self.logger.error("error renaming worksheet state: " + e);
-            runInAction(() => {
-                self.error = e;
-            });
+            self.setError(e);
             return;
         }
 
         runInAction(() => {
+            self.worksheetStatesById = {};
             self.worksheetStateIds = undefined;
             self.getWorksheetStateIds();
+        });
+    }
+
+    private setError(e: Error) {
+        this.logger.error("error making remote call: " + e);
+        const self = this;
+        runInAction(() => {
+            self.error = e;
         });
     }
 }

@@ -8,6 +8,7 @@ import { WorksheetStateStore } from 'dressdiscover/gui/worksheet/stores/workshee
 import * as invariant from 'invariant';
 import { inject, observer } from 'mobx-react';
 import * as React from 'react';
+import * as ReactLoader from 'react-loader';
 import { Redirect } from 'react-router';
 import { Link } from 'react-router-dom';
 import { Button, Card, CardBody, CardHeader, CardTitle, Col, Container, Input, Row, Table } from 'reactstrap';
@@ -243,6 +244,8 @@ export class WorksheetStart extends React.Component<WorksheetStartProps, { newWo
     render() {
         if (this.props.worksheetStateStore.error) {
             return <GenericErrorHandler error={this.props.worksheetStateStore.error}></GenericErrorHandler>;
+        } else if (!this.props.worksheetStateStore.worksheetStateIds) {
+            return <ReactLoader loaded={false} />;
         } else if (this.state.newWorksheetStateId) {
             return <Redirect to={Hrefs.worksheetState(new WorksheetStateMark({ worksheetStateId: this.state.newWorksheetStateId }))}></Redirect>;
         }
