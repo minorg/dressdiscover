@@ -12,6 +12,7 @@ import { WorksheetDefinitionWrapper } from '../../models/worksheet/WorksheetDefi
 import { WorksheetFeatureDefinitionWrapper } from '../../models/worksheet/WorksheetFeatureDefinitionWrapper';
 import { WorksheetFeatureSetDefinitionWrapper } from '../../models/worksheet/WorksheetFeatureSetDefinitionWrapper';
 import { WorksheetFeatureValueDefinitionWrapper } from '../../models/worksheet/WorksheetFeatureValueDefinitionWrapper';
+import { WorksheetDescriptionComponent } from './WorksheetDescriptionComponent';
 
 interface Props {
     featureSetDefinition: WorksheetFeatureSetDefinitionWrapper;
@@ -56,11 +57,22 @@ export class WorksheetFeatureSetStateTable extends React.Component<Props> {
                 </thead>
                 <tbody>
                     {_.map(rows, (row) => {
-                        <tr>
-                            <td className="text-center w-25">
-                                <Link className="btn btn-lg btn-secondary w-100" to={Hrefs.worksheetState(row.featureStateMark)}>{row.featureDefinition.displayName}</Link>
-                            </td>
-                        </tr>
+                        return (
+                            <tr>
+                                <td className="text-center w-25">
+                                    <Link className="btn btn-lg btn-secondary w-100" to={Hrefs.worksheetState(row.featureStateMark)}>{row.featureDefinition.displayName}</Link>
+                                </td>
+                                {this.props.includeFeatureDescriptions ? (
+                                    <td>
+                                        {row.featureDefinition.description ? <WorksheetDescriptionComponent description={row.featureDefinition.description} /> : null}
+                                    </td>) : null}
+                                <td className="align-middle">
+                                    {_.map(row.values, (value) => {
+                                        <span className="border border-info h4 m-2 p-2" data-bind="text: displayName" style={{ borderWidth: "8px !important" }}>{value.displayName}</span>
+                                    })}
+                                </td>
+                            </tr>
+                        );
                     })}
                 </tbody>
             </Table>
