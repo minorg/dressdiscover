@@ -8,7 +8,7 @@ import * as invariant from 'invariant';
 import * as _ from 'lodash';
 import * as React from 'react';
 import { RouteComponentProps } from 'react-router';
-import { Button, Table } from 'reactstrap';
+import { Button, Input, Table } from 'reactstrap';
 import { update } from 'space-lift';
 
 import { WorksheetDefinitionWrapper } from '../../models/worksheet/WorksheetDefinitionWrapper';
@@ -51,15 +51,21 @@ class WorksheetStateReview extends React.Component<WorksheetStateReviewOrStartPr
     }
 }
 
-class WorksheetStateStart extends React.Component<WorksheetStateReviewOrStartProps, { selectedFeatureSetIds: WorksheetFeatureSetId[] }> {
+class WorksheetStateStart extends React.Component<WorksheetStateReviewOrStartProps, { description?: string, selectedFeatureSetIds: WorksheetFeatureSetId[] }> {
     constructor(props: WorksheetStateReviewOrStartProps) {
         super(props);
+        this.onChangeDescription = this.onChangeDescription.bind(this);
         this.onToggleFeatureSet = this.onToggleFeatureSet.bind(this);
         this.state = { selectedFeatureSetIds: [] };
     }
 
     isFeatureSetSelected(featureSetId: WorksheetFeatureSetId): boolean {
         return _.findIndex(this.state.selectedFeatureSetIds, (selected) => selected.equals(featureSetId)) != -1;
+    }
+
+    onChangeDescription(e: any) {
+        const text = e.target.value;
+        this.setState((prevState) => update(prevState, { description: text }));
     }
 
     onToggleFeatureSet(featureSetId: WorksheetFeatureSetId) {
@@ -93,7 +99,7 @@ class WorksheetStateStart extends React.Component<WorksheetStateReviewOrStartPro
                     </thead>
                     <tbody>
                         {_.map(this.props.worksheetDefinition.featureSets, (featureSetDefinition) =>
-                            <tr className={classnames({ "feature-set": true, selected: this.isFeatureSetSelected(featureSetDefinition.id) })}>
+                            <tr className={classnames({ "feature-set": true, selected: this.isFeatureSetSelected(featureSetDefinition.id) })} key={featureSetDefinition.id.toString()}>
                                 <td className="text-center">
                                     <Button active={this.isFeatureSetSelected(featureSetDefinition.id)} color="secondary" onClick={() => this.onToggleFeatureSet(featureSetDefinition.id)} size="lg">{featureSetDefinition.displayName}</Button>
                                     {/* <Input checked={this.isFeatureSetSelected(featureSetDefinition.id)} type="checkbox"></Input> */}
@@ -103,13 +109,18 @@ class WorksheetStateStart extends React.Component<WorksheetStateReviewOrStartPro
                                 </td>
                                 <td className="align-middle">
                                     {_.map(featureSetDefinition.features, (featureDefinition) =>
-                                        <React.Fragment><span data-bind="text: displayName">{featureDefinition.displayName}</span>&nbsp;&nbsp;</React.Fragment>
+                                        <React.Fragment key={featureDefinition.id.toString()}><span data-bind="text: displayName">{featureDefinition.displayName}</span>&nbsp;&nbsp;</React.Fragment>
                                     )}
                                 </td>
                             </tr>
                         )}
                     </tbody>
                 </Table>
+                <br />
+                <hr />
+                <br />
+                <h4>Freetext description</h4>
+                <Input onChange={this.onChangeDescription} placeholder="Freetext description (optional)" rows="8" type="textarea" value={this.state.description} />
             </WorksheetStateFrame>);
     }
 }
