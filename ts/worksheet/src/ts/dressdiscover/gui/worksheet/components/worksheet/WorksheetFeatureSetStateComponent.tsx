@@ -6,5 +6,6 @@ interface WorksheetFeatureSetStateComponentProps extends RouteComponentProps<{ w
 
 export class WorksheetFeatureSetStateComponent extends React.Component<WorksheetFeatureSetStateComponentProps> {
     render() {
+        return (<div/>);
     }
 }
