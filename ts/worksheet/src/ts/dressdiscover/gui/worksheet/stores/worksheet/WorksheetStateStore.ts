@@ -9,8 +9,15 @@ export class WorksheetStateStore {
     }
 
     @observable error: Error | undefined;
-    @observable worksheetStatesById: { [index: string]: WorksheetState } = {};
+    @observable worksheetStatesById: { [index: string]: WorksheetState } | undefined;
     @observable worksheetStateIds: WorksheetStateId[] | undefined;
+
+    @action
+    clear() {
+        this.error = undefined;
+        this.worksheetStatesById = undefined;
+        this.worksheetStateIds = undefined;
+    }
 
     @action
     async deleteWorksheetState(kwds: { id: WorksheetStateId }) {
@@ -22,9 +29,9 @@ export class WorksheetStateStore {
             return;
         }
 
+        this.clear();
+
         runInAction(() => {
-            self.worksheetStatesById = {};
-            self.worksheetStateIds = undefined;
             self.getWorksheetStateIds();
         });
     }
@@ -39,6 +46,13 @@ export class WorksheetStateStore {
             self.setError(e);
             return;
         }
+
+        runInAction(() => {
+            if (!self.worksheetStatesById) {
+                self.worksheetStatesById = {};
+            }
+            self.worksheetStatesById[kwds.id.toString()] = worksheetState;
+        });
     }
 
     @action
@@ -72,9 +86,9 @@ export class WorksheetStateStore {
             return;
         }
 
+        self.clear();
+
         runInAction(() => {
-            self.worksheetStatesById = {};
-            self.worksheetStateIds = undefined;
             self.getWorksheetStateIds();
         });
     }
