@@ -4,7 +4,7 @@ import * as classnames from 'classnames';
 import { WorksheetStateId } from 'dressdiscover/api/models/worksheet/worksheet_state_id';
 import { WorksheetStateMark } from 'dressdiscover/api/models/worksheet/worksheet_state_mark';
 import { GenericErrorHandler } from 'dressdiscover/gui/worksheet/components/error/GenericErrorHandler';
-import { WorksheetStateStore } from 'dressdiscover/gui/worksheet/stores/worksheet/WorksheetStateStore';
+import { WorksheetStore } from 'dressdiscover/gui/worksheet/stores/worksheet/WorksheetStore';
 import * as invariant from 'invariant';
 import { inject, observer } from 'mobx-react';
 import * as React from 'react';
@@ -191,9 +191,9 @@ class ExistingWorksheetState extends React.Component<ExistingWorksheetStateProps
     }
 }
 
-@inject("worksheetStateStore")
+@inject("worksheetStore")
 @observer
-class ExistingWorksheetStates extends React.Component<{ worksheetStateStore?: WorksheetStateStore }> {
+class ExistingWorksheetStates extends React.Component<{ worksheetStore?: WorksheetStore }> {
     render() {
         return (
             <Card>
@@ -206,8 +206,8 @@ class ExistingWorksheetStates extends React.Component<{ worksheetStateStore?: Wo
                             <Col xs="12">
                                 <Table className="table table-bordered w-100 worksheet-states">
                                     <tbody>
-                                        {this.props.worksheetStateStore!.worksheetStateIds!.map(worksheetStateId =>
-                                            <ExistingWorksheetState onDeleteWorksheetState={this.props.worksheetStateStore!.deleteWorksheetState.bind(this.props.worksheetStateStore)} onRenameWorksheetState={this.props.worksheetStateStore!.renameWorksheetState.bind(this.props.worksheetStateStore)} worksheetStateId={worksheetStateId}></ExistingWorksheetState>
+                                        {this.props.worksheetStore!.worksheetStateIds!.map(worksheetStateId =>
+                                            <ExistingWorksheetState onDeleteWorksheetState={this.props.worksheetStore!.deleteWorksheetState.bind(this.props.worksheetStore)} onRenameWorksheetState={this.props.worksheetStore!.renameWorksheetState.bind(this.props.worksheetStore)} worksheetStateId={worksheetStateId}></ExistingWorksheetState>
                                         )}
                                     </tbody>
                                 </Table>
@@ -222,10 +222,10 @@ class ExistingWorksheetStates extends React.Component<{ worksheetStateStore?: Wo
 
 
 interface WorksheetStartProps {
-    worksheetStateStore: WorksheetStateStore;
+    worksheetStore: WorksheetStore;
 }
 
-@inject("worksheetStateStore")
+@inject("worksheetStore")
 @observer
 export class WorksheetStart extends React.Component<WorksheetStartProps, { newWorksheetStateId?: WorksheetStateId }> {
     constructor(props: WorksheetStartProps) {
@@ -234,7 +234,7 @@ export class WorksheetStart extends React.Component<WorksheetStartProps, { newWo
     }
 
     componentDidMount() {
-        this.props.worksheetStateStore.getWorksheetStateIds();
+        this.props.worksheetStore.getWorksheetStateIds();
     }
 
     onStartNewWorksheet(kwds: { newWorksheetStateId: WorksheetStateId }) {
@@ -242,9 +242,9 @@ export class WorksheetStart extends React.Component<WorksheetStartProps, { newWo
     }
 
     render() {
-        if (this.props.worksheetStateStore.error) {
-            return <GenericErrorHandler error={this.props.worksheetStateStore.error}></GenericErrorHandler>;
-        } else if (!this.props.worksheetStateStore.worksheetStateIds) {
+        if (this.props.worksheetStore.error) {
+            return <GenericErrorHandler error={this.props.worksheetStore.error}></GenericErrorHandler>;
+        } else if (!this.props.worksheetStore.worksheetStateIds) {
             return <ReactLoader loaded={false} />;
         } else if (this.state.newWorksheetStateId) {
             return <Redirect to={Hrefs.worksheetState(new WorksheetStateMark({ worksheetStateId: this.state.newWorksheetStateId }))}></Redirect>;
@@ -269,7 +269,7 @@ export class WorksheetStart extends React.Component<WorksheetStartProps, { newWo
                                         <NewWorksheetState onSubmit={this.onStartNewWorksheet.bind(this)}></NewWorksheetState>
                                     </Col>
                                 </Row>
-                                {(this.props.worksheetStateStore.worksheetStateIds && this.props.worksheetStateStore.worksheetStateIds.length) ? (
+                                {(this.props.worksheetStore.worksheetStateIds && this.props.worksheetStore.worksheetStateIds.length) ? (
                                     <React.Fragment>
                                         <Row className="mb-5"></Row>
                                         <Row>

@@ -1,0 +1,10 @@
+@import "dressdiscover/gui/worksheet/custom_bootstrap.scss";
+
+#worksheet-state-start {
+    tr.feature-set.selected {
+        td {
+            border-color: theme-color("primary");
+            border-width: 4px;
+        }
+    }
+}

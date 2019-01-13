@@ -1,22 +1,24 @@
+import { WorksheetDefinition } from 'dressdiscover/api/models/worksheet/worksheet_definition';
 import { WorksheetState } from 'dressdiscover/api/models/worksheet/worksheet_state';
 import { WorksheetStateId } from 'dressdiscover/api/models/worksheet/worksheet_state_id';
 import { Services } from 'dressdiscover/gui/worksheet/services/Services';
 import { ILogger } from 'dressdiscover/gui/worksheet/util/logging/ILogger';
 import { action, observable, runInAction } from 'mobx';
 
-export class WorksheetStateStore {
+import { WorksheetDefinitionWrapper } from '../../models/worksheet/WorksheetDefinitionWrapper';
+
+export class WorksheetStore {
     constructor(private readonly logger: ILogger, private readonly services: Services) {
     }
 
     @observable error: Error | undefined;
+    @observable worksheetDefinition: WorksheetDefinitionWrapper | undefined;
     @observable worksheetStatesById: { [index: string]: WorksheetState } | undefined;
     @observable worksheetStateIds: WorksheetStateId[] | undefined;
 
     @action
-    clear() {
+    clearError() {
         this.error = undefined;
-        this.worksheetStatesById = undefined;
-        this.worksheetStateIds = undefined;
     }
 
     @action
@@ -29,10 +31,31 @@ export class WorksheetStateStore {
             return;
         }
 
-        this.clear();
+        this.clearError();
 
         runInAction(() => {
+            if (this.worksheetStatesById) {
+                delete this.worksheetStatesById[kwds.id.toString()];
+            }
             self.getWorksheetStateIds();
+        });
+    }
+
+    @action
+    async getWorksheetDefinition() {
+        let worksheetDefinition: WorksheetDefinition;
+        const self = this;
+        try {
+            worksheetDefinition = await this.services.worksheetDefinitionQueryService.getWorksheetDefinition();
+        } catch (e) {
+            self.setError(e);
+            return;
+        }
+
+        self.clearError();
+
+        runInAction(() => {
+            this.worksheetDefinition = new WorksheetDefinitionWrapper(worksheetDefinition);
         });
     }
 
@@ -46,6 +69,8 @@ export class WorksheetStateStore {
             self.setError(e);
             return;
         }
+
+        self.clearError();
 
         runInAction(() => {
             if (!self.worksheetStatesById) {
@@ -71,6 +96,8 @@ export class WorksheetStateStore {
             return;
         }
 
+        self.clearError();
+
         runInAction(() => {
             self.worksheetStateIds = worksheetStateIds;
         });
@@ -86,7 +113,7 @@ export class WorksheetStateStore {
             return;
         }
 
-        self.clear();
+        self.clearError();
 
         runInAction(() => {
             self.getWorksheetStateIds();
