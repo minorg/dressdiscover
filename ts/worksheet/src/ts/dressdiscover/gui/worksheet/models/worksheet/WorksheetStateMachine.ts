@@ -4,14 +4,8 @@ import { WorksheetStateMark } from 'dressdiscover/api/models/worksheet/worksheet
 import { WorksheetDefinitionWrapper } from './WorksheetDefinitionWrapper';
 
 export class WorksheetStateMachine {
-    constructor(private readonly worksheetDefinition: WorksheetDefinitionWrapper, readonly worksheetState: WorksheetState) {
-        this.calculateStateMarks();
-    }
-
-    calculateStateMarks() {
+    constructor(worksheetDefinition: WorksheetDefinitionWrapper, worksheetState: WorksheetState) {
         this._stateMarks = [];
-
-        const worksheetState = this.worksheetState;
 
         // First state, always the worksheet start
         const worksheetStateId = worksheetState.id;
@@ -20,7 +14,7 @@ export class WorksheetStateMachine {
         if (worksheetState.featureSets.length > 0) {
             for (let featureSetState of worksheetState.featureSets) {
                 const featureSetId = featureSetState.id;
-                const featureSetDefinition = this.worksheetDefinition.getFeatureSetById(featureSetId);
+                const featureSetDefinition = worksheetDefinition.getFeatureSetById(featureSetId);
 
                 // Feature set start
                 this._stateMarks.push(new WorksheetStateMark({

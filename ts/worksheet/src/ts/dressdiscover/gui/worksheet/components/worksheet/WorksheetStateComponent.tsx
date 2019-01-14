@@ -2,8 +2,6 @@ import './WorksheetStateComponent.scss';
 
 import * as classnames from 'classnames';
 import { WorksheetFeatureSetId } from 'dressdiscover/api/models/worksheet/worksheet_feature_set_id';
-import { WorksheetState } from 'dressdiscover/api/models/worksheet/worksheet_state';
-import { WorksheetStateMark } from 'dressdiscover/api/models/worksheet/worksheet_state_mark';
 import * as invariant from 'invariant';
 import * as _ from 'lodash';
 import * as React from 'react';
@@ -11,7 +9,6 @@ import { RouteComponentProps } from 'react-router';
 import { Button, Input, Table } from 'reactstrap';
 import { update } from 'space-lift';
 
-import { WorksheetDefinitionWrapper } from '../../models/worksheet/WorksheetDefinitionWrapper';
 import { WorksheetDescriptionComponent } from './WorksheetDescriptionComponent';
 import { WorksheetStateFrame } from './WorksheetStateFrame';
 import { WorksheetStateGetter } from './WorksheetStateGetter';
@@ -40,9 +37,7 @@ export class WorksheetStateComponent extends React.Component<RouteComponentProps
 }
 
 interface WorksheetStateReviewOrStartProps {
-    mark: WorksheetStateMark;
-    worksheetDefinition: WorksheetDefinitionWrapper;
-    worksheetState: WorksheetState;
+    worksheetState: WorksheetStateWrapper;
 }
 
 class WorksheetStateReview extends React.Component<WorksheetStateReviewOrStartProps> {
@@ -84,7 +79,6 @@ class WorksheetStateStart extends React.Component<WorksheetStateReviewOrStartPro
         return (
             <WorksheetStateFrame
                 id="worksheet-state-start"
-                mark={this.props.mark}
                 worksheetState={this.props.worksheetState}
             >
                 <h4>Select feature sets</h4>
