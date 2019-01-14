@@ -4,11 +4,14 @@ import { WorksheetStateMark } from 'dressdiscover/api/models/worksheet/worksheet
 import { WorksheetDefinitionWrapper } from './WorksheetDefinitionWrapper';
 
 export class WorksheetStateMachine {
-    constructor(private readonly worksheetDefinition: WorksheetDefinitionWrapper) {
+    constructor(private readonly worksheetDefinition: WorksheetDefinitionWrapper, readonly worksheetState: WorksheetState) {
+        this.calculateStateMarks();
     }
 
-    calculateStateMarks(worksheetState: WorksheetState) {
+    calculateStateMarks() {
         this._stateMarks = [];
+
+        const worksheetState = this.worksheetState;
 
         // First state, always the worksheet start
         const worksheetStateId = worksheetState.id;

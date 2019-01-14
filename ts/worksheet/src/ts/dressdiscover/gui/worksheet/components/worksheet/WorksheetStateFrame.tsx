@@ -3,7 +3,7 @@ import { WorksheetStateMark } from 'dressdiscover/api/models/worksheet/worksheet
 import { ReactNode } from 'react';
 import * as React from 'react';
 import { Link } from 'react-router-dom';
-import { BreadcrumbItem } from 'reactstrap';
+import { BreadcrumbItem, Container } from 'reactstrap';
 
 import { Hrefs } from '../../Hrefs';
 import { Frame } from '../frame/Frame';
@@ -14,6 +14,8 @@ interface Props {
     breadcrumbItems?: ReactNode;
     id: string;
     mark: WorksheetStateMark;
+    nextButtonEnabled: boolean;
+    previousButtonEnabled: boolean;
     worksheetState: WorksheetState;
 }
 
@@ -34,7 +36,9 @@ export class WorksheetStateFrame extends React.Component<Props> {
                 headline={headline}
                 id={this.props.id}
             >
-                {this.props.children}
+                <Container fluid>
+                    {this.props.children}
+                </Container>
             </Frame>);
     }
 }
