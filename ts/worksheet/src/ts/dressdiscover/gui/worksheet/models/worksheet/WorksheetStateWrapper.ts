@@ -65,8 +65,8 @@ export class WorksheetStateWrapper {
         return this.worksheetState.id;
     }
 
-    get progressPercentage(): string {
-        return Math.round(this.currentStateMarkIndex / this.lastStateMarkIndex * 100.0) + '%';
+    get progressPercentage(): number {
+        return Math.round(this.currentStateMarkIndex / this.lastStateMarkIndex * 100.0);
     }
 
     get startStateMark() {
