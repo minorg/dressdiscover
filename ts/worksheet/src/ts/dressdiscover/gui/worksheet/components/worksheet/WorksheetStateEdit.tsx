@@ -1,9 +1,8 @@
-import './WorksheetStateComponent.scss';
+import './WorksheetStateEdit.scss';
 
 import * as classnames from 'classnames';
 import { WorksheetFeatureSetId } from 'dressdiscover/api/models/worksheet/worksheet_feature_set_id';
 import { History } from 'history';
-import * as invariant from 'invariant';
 import * as _ from 'lodash';
 import * as React from 'react';
 import { RouteComponentProps } from 'react-router';
@@ -16,43 +15,27 @@ import { WorksheetStateFrame } from './WorksheetStateFrame';
 import { WorksheetStateGetter } from './WorksheetStateGetter';
 import { WorksheetStateMarkParser } from './WorksheetStateMarkParser';
 
-export class WorksheetStateComponent extends React.Component<RouteComponentProps<WorksheetStateMarkRouteParams>> {
+export class WorksheetStateEdit extends React.Component<RouteComponentProps<WorksheetStateMarkRouteParams>> {
     render() {
-        const mark = WorksheetStateMarkParser.parseRouteComponentProps(this.props);
-        invariant(!mark.featureId, "unexpected feature id");
-        invariant(!mark.featureSetId, "unexpected feature set id");
-
-        const render = (worksheetState: WorksheetStateWrapper) => {
-            const delegateProps: WorksheetStateReviewOrStartProps = { history: this.props.history, worksheetState };
-            if (mark.review) {
-                return <WorksheetStateReview {...delegateProps} />;
-            } else {
-                return <WorksheetStateStart {...delegateProps} />;
-            }
-        };
-
         return (
             <WorksheetStateGetter
-                render={render}
-                worksheetStateMark={mark}
+                render={(worksheetState: WorksheetStateWrapper) => <WorksheetStateEditImpl history={this.props.history} worksheetState={worksheetState} />}
+                worksheetStateMark={WorksheetStateMarkParser.parseRouteComponentProps(this.props)}
             />
         );
     }
 }
 
-interface WorksheetStateReviewOrStartProps {
+interface WorksheetStateEditImplProps {
     history: History;
     worksheetState: WorksheetStateWrapper;
 }
 
-class WorksheetStateReview extends React.Component<WorksheetStateReviewOrStartProps> {
-    render() {
-        return (<div />);
-    }
-}
-
-class WorksheetStateStart extends React.Component<WorksheetStateReviewOrStartProps, { description?: string, selectedFeatureSetIds: WorksheetFeatureSetId[] }> {
-    constructor(props: WorksheetStateReviewOrStartProps) {
+class WorksheetStateEditImpl extends React.Component<WorksheetStateEditImplProps, {
+    description?: string,
+    selectedFeatureSetIds: WorksheetFeatureSetId[]
+}> {
+    constructor(props: WorksheetStateEditImplProps) {
         super(props);
         this.onChangeDescription = this.onChangeDescription.bind(this);
         this.onToggleFeatureSet = this.onToggleFeatureSet.bind(this);
@@ -85,7 +68,7 @@ class WorksheetStateStart extends React.Component<WorksheetStateReviewOrStartPro
         return (
             <WorksheetStateFrame
                 history={this.props.history}
-                id="worksheet-state-start"
+                id="worksheet-state-edit"
                 finishButtonEnabled={false}
                 nextButtonEnabled={this.state.selectedFeatureSetIds.length > 0}
                 previousButtonEnabled={false}

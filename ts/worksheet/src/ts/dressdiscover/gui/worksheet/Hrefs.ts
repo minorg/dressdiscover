@@ -48,9 +48,9 @@ export class Hrefs {
   static worksheetState(mark: WorksheetStateMark) {
     let href = "/worksheet/state/" + encodeURIComponent(mark.worksheetStateId.toString()) + "/";
     if (mark.featureSetId) {
-      href += "/feature_set/" + encodeURIComponent(mark.featureSetId.toString()) + "/";
+      href += "feature_set/" + encodeURIComponent(mark.featureSetId.toString()) + "/";
       if (mark.featureId) {
-        href += "/feature/" + encodeURIComponent(mark.featureId.toString()) + "/";
+        href += "feature/" + encodeURIComponent(mark.featureId.toString()) + "/";
       }
     }
     href += mark.review ? "review" : "edit";
