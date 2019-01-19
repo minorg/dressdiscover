@@ -33,7 +33,7 @@ export class WorksheetStore {
 
         this.clearError();
 
-        runInAction(() => {
+        runInAction("deleteWorksheetState continuation", () => {
             if (this.worksheetStatesById) {
                 delete this.worksheetStatesById[kwds.id.toString()];
             }
@@ -54,7 +54,7 @@ export class WorksheetStore {
 
         self.clearError();
 
-        runInAction(() => {
+        runInAction("getWorksheetDefinition continuation", () => {
             this.worksheetDefinition = new WorksheetDefinitionWrapper(worksheetDefinition);
         });
     }
@@ -72,7 +72,7 @@ export class WorksheetStore {
 
         self.clearError();
 
-        runInAction(() => {
+        runInAction("getWorksheetState continuation", () => {
             if (!self.worksheetStatesById) {
                 self.worksheetStatesById = {};
             }
@@ -98,8 +98,28 @@ export class WorksheetStore {
 
         self.clearError();
 
-        runInAction(() => {
+        runInAction("getWorksheetStateIds continuation", () => {
             self.worksheetStateIds = worksheetStateIds;
+        });
+    }
+
+    @action
+    async putWorksheetState(kwds: { state: WorksheetState }) {
+        const self = this;
+        try {
+            await this.services.worksheetStateCommandService.putWorksheetState(kwds);
+        } catch (e) {
+            self.setError(e);
+            return;
+        }
+
+        self.clearError();
+
+        runInAction("putWorksheetState continuation", () => {
+            if (!self.worksheetStatesById) {
+                self.worksheetStatesById = {};
+            }
+            self.worksheetStatesById[kwds.state.id.toString()] = kwds.state;
         });
     }
 
@@ -115,7 +135,7 @@ export class WorksheetStore {
 
         self.clearError();
 
-        runInAction(() => {
+        runInAction("renameWorksheetState continuation", () => {
             self.getWorksheetStateIds();
         });
     }

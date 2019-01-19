@@ -14,6 +14,7 @@ interface Props {
     children?: ReactNode;
     history: History;
     id: string;
+    finishButtonEnabled?: boolean;
     nextButtonEnabled: boolean;
     previousButtonEnabled: boolean;
     save?: () => void;
@@ -75,6 +76,7 @@ export class WorksheetStateFrame extends React.Component<Props> {
             </BreadcrumbItem>);
         }
 
+        const finishButtonEnabled = typeof(this.props.finishButtonEnabled) !== "undefined" ? this.props.finishButtonEnabled : this.props.nextButtonEnabled;
         const nextPreviousButtons = (
             <Row>
                 <Col xs="12">
@@ -83,7 +85,8 @@ export class WorksheetStateFrame extends React.Component<Props> {
                     </div>
                     <div className="float-right">
                         <Button className={classnames({ invisible: !this.props.nextButtonEnabled, visible: this.props.nextButtonEnabled })} color="primary" size="lg" onClick={this.onClickNextButton}>Next</Button>
-                        <Button className={classnames({ invisible: !this.props.nextButtonEnabled, visible: this.props.nextButtonEnabled })} color="primary" size="lg" onClick={this.onClickFinishButton}>Finish</Button>
+                        &nbsp;
+                        <Button className={classnames({ invisible: !finishButtonEnabled, visible: finishButtonEnabled })} color="primary" size="lg" onClick={this.onClickFinishButton}>Finish</Button>
                     </div>
                 </Col>
             </Row>
@@ -121,10 +124,10 @@ export class WorksheetStateFrame extends React.Component<Props> {
                             {this.props.children}
                         </Col>
                     </Row>
-                    {nextPreviousButtons}
                     <Row>
                         &nbsp;
                     </Row>
+                    {nextPreviousButtons}
                 </Container>
             </Frame>);
     }

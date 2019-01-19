@@ -36,6 +36,6 @@ export class WorksheetStateGetter extends React.Component<Props> {
             return <ReactLoader loaded={false} />;
         }
 
-        return this.props.render(new WorksheetStateWrapper(this.props.worksheetStateMark, worksheetDefinition, worksheetState));
+        return this.props.render(new WorksheetStateWrapper(this.props.worksheetStateMark, worksheetDefinition, worksheetState, this.props.worksheetStore!));
     }
 }

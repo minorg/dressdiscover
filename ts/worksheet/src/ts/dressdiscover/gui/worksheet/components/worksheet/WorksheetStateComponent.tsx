@@ -57,7 +57,7 @@ class WorksheetStateStart extends React.Component<WorksheetStateReviewOrStartPro
         this.onChangeDescription = this.onChangeDescription.bind(this);
         this.onToggleFeatureSet = this.onToggleFeatureSet.bind(this);
         this.save = this.save.bind(this);
-        this.state = { selectedFeatureSetIds: [] };
+        this.state = { description: this.props.worksheetState.text, selectedFeatureSetIds: this.props.worksheetState.selectedFeatureSetIds };
     }
 
     isFeatureSetSelected(featureSetId: WorksheetFeatureSetId): boolean {
@@ -86,8 +86,9 @@ class WorksheetStateStart extends React.Component<WorksheetStateReviewOrStartPro
             <WorksheetStateFrame
                 history={this.props.history}
                 id="worksheet-state-start"
+                finishButtonEnabled={false}
                 nextButtonEnabled={this.state.selectedFeatureSetIds.length > 0}
-                previousButtonEnabled={true}
+                previousButtonEnabled={false}
                 save={this.save}
                 worksheetState={this.props.worksheetState}
             >
@@ -129,5 +130,10 @@ class WorksheetStateStart extends React.Component<WorksheetStateReviewOrStartPro
     }
 
     save() {
+        this.props.worksheetState.selectFeatureSets(this.state.selectedFeatureSetIds);
+        if (this.state.description && this.state.description.trim().length) {
+            this.props.worksheetState.text = this.state.description.trim();
+        }
+        this.props.worksheetState.save();
     }
 }
