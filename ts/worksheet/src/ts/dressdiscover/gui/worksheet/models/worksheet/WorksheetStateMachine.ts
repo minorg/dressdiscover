@@ -29,14 +29,12 @@ export class WorksheetStateMachine {
                     }));
                 }
 
-                if (worksheetState.featureSets.length > 1) {
-                    // Feature set review
-                    this.stateMarks.push(new WorksheetStateMark({
-                        featureSetId,
-                        review: true,
-                        worksheetStateId
-                    }));
-                }
+                // Feature set review
+                this.stateMarks.push(new WorksheetStateMark({
+                    featureSetId,
+                    review: true,
+                    worksheetStateId
+                }));
             }
         }
 
