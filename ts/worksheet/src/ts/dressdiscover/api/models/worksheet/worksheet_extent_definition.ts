@@ -113,7 +113,7 @@ export class WorksheetExtentDefinition {
 
     private static validateDisplayName(displayName: string | undefined): string | undefined {
         if (displayName != null) {
-            if (displayName.trim().length == 0) {
+            if (displayName.trim().length === 0) {
                 throw new RangeError("displayName is blank");
             }
             if (displayName.length < 1) {

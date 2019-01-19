@@ -1,7 +1,10 @@
 {
   "extends": ["tslint:recommended", "tslint-react"],
   "rules": {
-	"interface-name": false,
+  "interface-name": false,
+  "max-classes-per-file": false,
+  "max-line-length": false,
+  "member-ordering": false,
 	"quotemark": false
   }
 }

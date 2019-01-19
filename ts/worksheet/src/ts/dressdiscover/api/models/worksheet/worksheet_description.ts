@@ -86,7 +86,7 @@ export class WorksheetDescription {
         if (text == null) {
             throw new RangeError("text is null or undefined");
         }
-        if (text.trim().length == 0) {
+        if (text.trim().length === 0) {
             throw new RangeError("text is blank");
         }
         if (text.length < 1) {

@@ -109,7 +109,7 @@ export class WorksheetFeatureValueImage {
 
     private static validateFullSizeUrl(fullSizeUrl: string | undefined): string | undefined {
         if (fullSizeUrl != null) {
-            if (fullSizeUrl.trim().length == 0) {
+            if (fullSizeUrl.trim().length === 0) {
                 throw new RangeError("fullSizeUrl is blank");
             }
             if (fullSizeUrl.length < 1) {
@@ -130,7 +130,7 @@ export class WorksheetFeatureValueImage {
         if (thumbnailUrl == null) {
             throw new RangeError("thumbnailUrl is null or undefined");
         }
-        if (thumbnailUrl.trim().length == 0) {
+        if (thumbnailUrl.trim().length === 0) {
             throw new RangeError("thumbnailUrl is blank");
         }
         if (thumbnailUrl.length < 1) {

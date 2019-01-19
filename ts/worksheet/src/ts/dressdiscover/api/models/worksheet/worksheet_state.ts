@@ -118,7 +118,7 @@ export class WorksheetState {
 
     private static validateText(text: string | undefined): string | undefined {
         if (text != null) {
-            if (text.trim().length == 0) {
+            if (text.trim().length === 0) {
                 throw new RangeError("text is blank");
             }
             if (text.length < 1) {

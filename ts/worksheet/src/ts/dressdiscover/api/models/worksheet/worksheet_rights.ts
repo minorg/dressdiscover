@@ -119,7 +119,7 @@ export class WorksheetRights {
         if (author == null) {
             throw new RangeError("author is null or undefined");
         }
-        if (author.trim().length == 0) {
+        if (author.trim().length === 0) {
             throw new RangeError("author is blank");
         }
         if (author.length < 1) {
@@ -132,7 +132,7 @@ export class WorksheetRights {
         if (license == null) {
             throw new RangeError("license is null or undefined");
         }
-        if (license.trim().length == 0) {
+        if (license.trim().length === 0) {
             throw new RangeError("license is blank");
         }
         if (license.length < 1) {
@@ -145,7 +145,7 @@ export class WorksheetRights {
         if (sourceName == null) {
             throw new RangeError("sourceName is null or undefined");
         }
-        if (sourceName.trim().length == 0) {
+        if (sourceName.trim().length === 0) {
             throw new RangeError("sourceName is blank");
         }
         if (sourceName.length < 1) {

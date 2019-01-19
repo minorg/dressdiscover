@@ -73,6 +73,6 @@ export class WorksheetStateWrapper {
         return new WorksheetStateMark({ worksheetStateId: this.currentStateMark.worksheetStateId });
     }
 
-    readonly currentStateMarkIndex: number;
+    public readonly currentStateMarkIndex: number;
     private worksheetStateMachine: WorksheetStateMachine;
 }
