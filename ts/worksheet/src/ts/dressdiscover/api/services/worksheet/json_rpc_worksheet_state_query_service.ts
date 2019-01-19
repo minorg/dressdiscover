@@ -7,25 +7,25 @@ import { WorksheetStateQueryService } from "./worksheet_state_query_service";
 
 export class JsonRpcWorksheetStateQueryService implements WorksheetStateQueryService {
     constructor(kwds: { endpointUrl: string, methodEndpoints?: boolean }) {
-        this._endpointUrl = kwds.endpointUrl;
-        this._methodEndpoints = !!kwds.methodEndpoints;
+        this.endpointUrl = kwds.endpointUrl;
+        this.methodEndpoints = !!kwds.methodEndpoints;
     }
 
-    getWorksheetState(kwds: {id: WorksheetStateId}): Promise<WorksheetState> {
-        const __jsonrpc_params: {[index: string]: any} = {};
-        __jsonrpc_params["id"] = kwds.id.toString();
+    public getWorksheetState(kwds: {id: WorksheetStateId}): Promise<WorksheetState> {
+        const jsonrpcParams: {[index: string]: any} = {};
+        jsonrpcParams.id = kwds.id.toString();
 
         return axios.post(
-            this._endpointUrl + (this._methodEndpoints ? "/get_worksheet_state" : ""),
+            this.endpointUrl + (this.methodEndpoints ? "/get_worksheet_state" : ""),
             {
-                jsonrpc: '2.0',
-                method: 'get_worksheet_state',
-                params: __jsonrpc_params,
-                id: '1234'
+                id: "1234",
+                jsonrpc: "2.0",
+                method: "get_worksheet_state",
+                params: jsonrpcParams,
             },
             {
-                withCredentials: false
-            }
+                withCredentials: false,
+            },
         )
         .then(
             (response) => {
@@ -34,10 +34,10 @@ export class JsonRpcWorksheetStateQueryService implements WorksheetStateQuerySer
                 }
 
                 if (response.data.error["@class"] && response.data.error.data) {
-                    const __error_class = response.data.error["@class"];
-                    if (__error_class == 'dressdiscover.api.services.io_exception.IoException') {
+                    const errorClass = response.data.error["@class"];
+                    if (errorClass === "dressdiscover.api.services.io_exception.IoException") {
                         throw IoException.fromThryftJsonObject(response.data.error.data);
-                    } else if (__error_class == 'dressdiscover.api.services.worksheet.no_such_worksheet_state_exception.NoSuchWorksheetStateException') {
+                    } else if (errorClass === "dressdiscover.api.services.worksheet.no_such_worksheet_state_exception.NoSuchWorksheetStateException") {
                         throw NoSuchWorksheetStateException.fromThryftJsonObject(response.data.error.data);
                     } else {
                         throw new Error(response.data.error.message);
@@ -54,32 +54,32 @@ export class JsonRpcWorksheetStateQueryService implements WorksheetStateQuerySer
                 } else {
                     throw error;
                 }
-            }
+            },
         );
     }
 
-    getWorksheetStateIds(): Promise<WorksheetStateId[]> {
+    public getWorksheetStateIds(): Promise<WorksheetStateId[]> {
         return axios.post(
-            this._endpointUrl + (this._methodEndpoints ? "/get_worksheet_state_ids" : ""),
+            this.endpointUrl + (this.methodEndpoints ? "/get_worksheet_state_ids" : ""),
             {
-                jsonrpc: '2.0',
-                method: 'get_worksheet_state_ids',
+                id: "1234",
+                jsonrpc: "2.0",
+                method: "get_worksheet_state_ids",
                 params: {},
-                id: '1234'
             },
             {
-                withCredentials: false
-            }
+                withCredentials: false,
+            },
         )
         .then(
             (response) => {
                 if (typeof response.data.result !== "undefined") {
-                    return function(json: any[]): WorksheetStateId[] { let sequence: WorksheetStateId[] = []; for (let i = 0; i < json.length; i++) { sequence.push(WorksheetStateId.parse(json[i])); } return sequence; }(response.data.result);
+                    return (response.data.result).map((element: any) => WorksheetStateId.parse(element));
                 }
 
                 if (response.data.error["@class"] && response.data.error.data) {
-                    const __error_class = response.data.error["@class"];
-                    if (__error_class == 'dressdiscover.api.services.io_exception.IoException') {
+                    const errorClass = response.data.error["@class"];
+                    if (errorClass === "dressdiscover.api.services.io_exception.IoException") {
                         throw IoException.fromThryftJsonObject(response.data.error.data);
                     } else {
                         throw new Error(response.data.error.message);
@@ -96,10 +96,10 @@ export class JsonRpcWorksheetStateQueryService implements WorksheetStateQuerySer
                 } else {
                     throw error;
                 }
-            }
+            },
         );
     }
 
-    private readonly _endpointUrl: string;
-    private readonly _methodEndpoints: boolean;
+    private readonly endpointUrl: string;
+    private readonly methodEndpoints: boolean;
 }

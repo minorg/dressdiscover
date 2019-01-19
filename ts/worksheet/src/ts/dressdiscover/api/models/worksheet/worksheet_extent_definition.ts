@@ -3,74 +3,48 @@ import { WorksheetExtentId } from "./worksheet_extent_id";
 
 export class WorksheetExtentDefinition {
     constructor(kwds: {id: WorksheetExtentId, description?: WorksheetDescription, displayName?: string}) {
-        this._id = WorksheetExtentDefinition._validateId(kwds.id);
+        this.idPrivate = WorksheetExtentDefinition.validateId(kwds.id);
         if (kwds.description != null) {
-            this._description = WorksheetExtentDefinition._validateDescription(kwds.description);
+            this.descriptionPrivate = WorksheetExtentDefinition.validateDescription(kwds.description);
         } else {
-            this._description = undefined;
+            this.descriptionPrivate = undefined;
         }
         if (kwds.displayName != null) {
-            this._displayName = WorksheetExtentDefinition._validateDisplayName(kwds.displayName);
+            this.displayNamePrivate = WorksheetExtentDefinition.validateDisplayName(kwds.displayName);
         } else {
-            this._displayName = undefined;
+            this.displayNamePrivate = undefined;
         }
     }
 
     get id(): WorksheetExtentId {
-        return this._id;
+        return this.idPrivate;
     }
 
     set id(id: WorksheetExtentId) {
-        this._id = WorksheetExtentDefinition._validateId(id);
+        this.idPrivate = WorksheetExtentDefinition.validateId(id);
     }
 
     get description(): WorksheetDescription | undefined {
-        return this._description;
+        return this.descriptionPrivate;
     }
 
     set description(description: WorksheetDescription | undefined) {
-        this._description = WorksheetExtentDefinition._validateDescription(description);
+        this.descriptionPrivate = WorksheetExtentDefinition.validateDescription(description);
     }
 
     get displayName(): string | undefined {
-        return this._displayName;
+        return this.displayNamePrivate;
     }
 
     set displayName(displayName: string | undefined) {
-        this._displayName = WorksheetExtentDefinition._validateDisplayName(displayName);
+        this.displayNamePrivate = WorksheetExtentDefinition.validateDisplayName(displayName);
     }
 
-    private static _validateDescription(description: WorksheetDescription | undefined): WorksheetDescription | undefined {
-        if (description != null) {
-
-        }
-        return description;
-    }
-
-    private static _validateDisplayName(displayName: string | undefined): string | undefined {
-        if (displayName != null) {
-            if (displayName.trim().length == 0) {
-                throw new RangeError('displayName is blank');
-            }
-            if (displayName.length < 1) {
-                throw new RangeError("expected len(displayName) to be >= 1, was " + displayName.length);
-            }
-        }
-        return displayName;
-    }
-
-    private static _validateId(id: WorksheetExtentId): WorksheetExtentId {
-        if (id == null) {
-            throw new RangeError('id is null or undefined');
-        }
-        return id;
-    }
-
-    deepCopy(): WorksheetExtentDefinition {
+    public deepCopy(): WorksheetExtentDefinition {
         return new WorksheetExtentDefinition({ id: this.id, description: (this.description ? (this.description.deepCopy()) : undefined), displayName: this.displayName });
     }
 
-    equals(other: WorksheetExtentDefinition): boolean {
+    public equals(other: WorksheetExtentDefinition): boolean {
         if (!(this.id.equals(other.id))) {
             return false;
         }
@@ -86,56 +60,79 @@ export class WorksheetExtentDefinition {
         return true;
     }
 
-    static fromThryftJsonObject(json: any): WorksheetExtentDefinition {
+    public static fromThryftJsonObject(json: any): WorksheetExtentDefinition {
         let id: WorksheetExtentId | undefined;
         let description: WorksheetDescription | undefined;
         let displayName: string | undefined;
-        for (let fieldName in json) {
-            if (fieldName == "id") {
+        for (const fieldName in json) {
+            if (fieldName === "id") {
                 id = WorksheetExtentId.parse(json[fieldName]);
-            } else if (fieldName == "description") {
+            } else if (fieldName === "description") {
                 description = WorksheetDescription.fromThryftJsonObject(json[fieldName]);
-            } else if (fieldName == "display_name") {
+            } else if (fieldName === "display_name") {
                 displayName = json[fieldName];
             }
         }
         if (id == null) {
-            throw new TypeError('id is required');
+            throw new TypeError("id is required");
         }
-        return new WorksheetExtentDefinition({id: id, description: description, displayName: displayName});
+        return new WorksheetExtentDefinition({id, description, displayName});
     }
 
-    toJsonObject(): any {
+    public toJsonObject(): any {
         const json: {[index: string]: any} = {};
-        json["id"] = this.id.toString();
+        json.id = this.id.toString();
         if (this.description != null) {
-            json["description"] = this.description.toJsonObject();
+            json.description = this.description.toJsonObject();
         }
         if (this.displayName != null) {
-            json["display_name"] = this.displayName;
+            json.display_name = this.displayName;
         }
         return json;
     }
 
-    toString(): string {
+    public toString(): string {
         return "WorksheetExtentDefinition(" + JSON.stringify(this.toThryftJsonObject()) + ")";
     }
 
-    toThryftJsonObject(): any {
+    public toThryftJsonObject(): any {
         const json: {[index: string]: any} = {};
-        json["id"] = this.id.toString();
+        json.id = this.id.toString();
         if (this.description != null) {
-            json["description"] = this.description.toThryftJsonObject();
+            json.description = this.description.toThryftJsonObject();
         }
         if (this.displayName != null) {
-            json["display_name"] = this.displayName;
+            json.display_name = this.displayName;
         }
         return json;
     }
 
-    private _description?: WorksheetDescription;
+    private static validateDescription(description: WorksheetDescription | undefined): WorksheetDescription | undefined {
+        return description;
+    }
 
-    private _displayName?: string;
+    private static validateDisplayName(displayName: string | undefined): string | undefined {
+        if (displayName != null) {
+            if (displayName.trim().length == 0) {
+                throw new RangeError("displayName is blank");
+            }
+            if (displayName.length < 1) {
+                throw new RangeError("expected len(displayName) to be >= 1, was " + displayName.length);
+            }
+        }
+        return displayName;
+    }
 
-    private _id: WorksheetExtentId;
+    private static validateId(id: WorksheetExtentId): WorksheetExtentId {
+        if (id == null) {
+            throw new RangeError("id is null or undefined");
+        }
+        return id;
+    }
+
+    private descriptionPrivate?: WorksheetDescription;
+
+    private displayNamePrivate?: string;
+
+    private idPrivate: WorksheetExtentId;
 }

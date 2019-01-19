@@ -5,22 +5,22 @@ import { WorksheetDefinitionQueryService } from "./worksheet_definition_query_se
 
 export class JsonRpcWorksheetDefinitionQueryService implements WorksheetDefinitionQueryService {
     constructor(kwds: { endpointUrl: string, methodEndpoints?: boolean }) {
-        this._endpointUrl = kwds.endpointUrl;
-        this._methodEndpoints = !!kwds.methodEndpoints;
+        this.endpointUrl = kwds.endpointUrl;
+        this.methodEndpoints = !!kwds.methodEndpoints;
     }
 
-    getWorksheetDefinition(): Promise<WorksheetDefinition> {
+    public getWorksheetDefinition(): Promise<WorksheetDefinition> {
         return axios.post(
-            this._endpointUrl + (this._methodEndpoints ? "/get_worksheet_definition" : ""),
+            this.endpointUrl + (this.methodEndpoints ? "/get_worksheet_definition" : ""),
             {
-                jsonrpc: '2.0',
-                method: 'get_worksheet_definition',
+                id: "1234",
+                jsonrpc: "2.0",
+                method: "get_worksheet_definition",
                 params: {},
-                id: '1234'
             },
             {
-                withCredentials: false
-            }
+                withCredentials: false,
+            },
         )
         .then(
             (response) => {
@@ -29,8 +29,8 @@ export class JsonRpcWorksheetDefinitionQueryService implements WorksheetDefiniti
                 }
 
                 if (response.data.error["@class"] && response.data.error.data) {
-                    const __error_class = response.data.error["@class"];
-                    if (__error_class == 'dressdiscover.api.services.io_exception.IoException') {
+                    const errorClass = response.data.error["@class"];
+                    if (errorClass === "dressdiscover.api.services.io_exception.IoException") {
                         throw IoException.fromThryftJsonObject(response.data.error.data);
                     } else {
                         throw new Error(response.data.error.message);
@@ -47,10 +47,10 @@ export class JsonRpcWorksheetDefinitionQueryService implements WorksheetDefiniti
                 } else {
                     throw error;
                 }
-            }
+            },
         );
     }
 
-    private readonly _endpointUrl: string;
-    private readonly _methodEndpoints: boolean;
+    private readonly endpointUrl: string;
+    private readonly methodEndpoints: boolean;
 }

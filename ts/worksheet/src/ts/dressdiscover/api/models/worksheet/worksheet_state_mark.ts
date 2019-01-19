@@ -4,91 +4,61 @@ import { WorksheetStateId } from "./worksheet_state_id";
 
 export class WorksheetStateMark {
     constructor(kwds: {worksheetStateId: WorksheetStateId, featureId?: WorksheetFeatureId, featureSetId?: WorksheetFeatureSetId, review?: boolean}) {
-        this._worksheetStateId = WorksheetStateMark._validateWorksheetStateId(kwds.worksheetStateId);
+        this.worksheetStateIdPrivate = WorksheetStateMark.validateWorksheetStateId(kwds.worksheetStateId);
         if (kwds.featureId != null) {
-            this._featureId = WorksheetStateMark._validateFeatureId(kwds.featureId);
+            this.featureIdPrivate = WorksheetStateMark.validateFeatureId(kwds.featureId);
         } else {
-            this._featureId = undefined;
+            this.featureIdPrivate = undefined;
         }
         if (kwds.featureSetId != null) {
-            this._featureSetId = WorksheetStateMark._validateFeatureSetId(kwds.featureSetId);
+            this.featureSetIdPrivate = WorksheetStateMark.validateFeatureSetId(kwds.featureSetId);
         } else {
-            this._featureSetId = undefined;
+            this.featureSetIdPrivate = undefined;
         }
         if (kwds.review != null) {
-            this._review = WorksheetStateMark._validateReview(kwds.review);
+            this.reviewPrivate = WorksheetStateMark.validateReview(kwds.review);
         } else {
-            this._review = undefined;
+            this.reviewPrivate = undefined;
         }
     }
 
     get worksheetStateId(): WorksheetStateId {
-        return this._worksheetStateId;
+        return this.worksheetStateIdPrivate;
     }
 
     set worksheetStateId(worksheetStateId: WorksheetStateId) {
-        this._worksheetStateId = WorksheetStateMark._validateWorksheetStateId(worksheetStateId);
+        this.worksheetStateIdPrivate = WorksheetStateMark.validateWorksheetStateId(worksheetStateId);
     }
 
     get featureId(): WorksheetFeatureId | undefined {
-        return this._featureId;
+        return this.featureIdPrivate;
     }
 
     set featureId(featureId: WorksheetFeatureId | undefined) {
-        this._featureId = WorksheetStateMark._validateFeatureId(featureId);
+        this.featureIdPrivate = WorksheetStateMark.validateFeatureId(featureId);
     }
 
     get featureSetId(): WorksheetFeatureSetId | undefined {
-        return this._featureSetId;
+        return this.featureSetIdPrivate;
     }
 
     set featureSetId(featureSetId: WorksheetFeatureSetId | undefined) {
-        this._featureSetId = WorksheetStateMark._validateFeatureSetId(featureSetId);
+        this.featureSetIdPrivate = WorksheetStateMark.validateFeatureSetId(featureSetId);
     }
 
     get review(): boolean | undefined {
-        return this._review;
+        return this.reviewPrivate;
     }
 
     set review(review: boolean | undefined) {
-        this._review = WorksheetStateMark._validateReview(review);
+        this.reviewPrivate = WorksheetStateMark.validateReview(review);
     }
 
-    private static _validateFeatureId(featureId: WorksheetFeatureId | undefined): WorksheetFeatureId | undefined {
-        if (featureId != null) {
-
-        }
-        return featureId;
-    }
-
-    private static _validateFeatureSetId(featureSetId: WorksheetFeatureSetId | undefined): WorksheetFeatureSetId | undefined {
-        if (featureSetId != null) {
-
-        }
-        return featureSetId;
-    }
-
-    private static _validateReview(review: boolean | undefined): boolean | undefined {
-        if (review != null) {
-            if (!review) {
-                throw new RangeError('review is false');
-            }
-        }
-        return review;
-    }
-
-    private static _validateWorksheetStateId(worksheetStateId: WorksheetStateId): WorksheetStateId {
-        if (worksheetStateId == null) {
-            throw new RangeError('worksheetStateId is null or undefined');
-        }
-        return worksheetStateId;
-    }
-
-    deepCopy(): WorksheetStateMark {
+    public deepCopy(): WorksheetStateMark {
         return new WorksheetStateMark({ worksheetStateId: this.worksheetStateId, featureId: this.featureId, featureSetId: this.featureSetId, review: this.review });
     }
 
-    equals(other: WorksheetStateMark): boolean {
+    public equals(other: WorksheetStateMark): boolean {
         if (!(this.worksheetStateId.equals(other.worksheetStateId))) {
             return false;
         }
@@ -108,67 +78,91 @@ export class WorksheetStateMark {
         return true;
     }
 
-    static fromThryftJsonObject(json: any): WorksheetStateMark {
+    public static fromThryftJsonObject(json: any): WorksheetStateMark {
         let worksheetStateId: WorksheetStateId | undefined;
         let featureId: WorksheetFeatureId | undefined;
         let featureSetId: WorksheetFeatureSetId | undefined;
         let review: boolean | undefined;
-        for (let fieldName in json) {
-            if (fieldName == "worksheet_state_id") {
+        for (const fieldName in json) {
+            if (fieldName === "worksheet_state_id") {
                 worksheetStateId = WorksheetStateId.parse(json[fieldName]);
-            } else if (fieldName == "feature_id") {
+            } else if (fieldName === "feature_id") {
                 featureId = WorksheetFeatureId.parse(json[fieldName]);
-            } else if (fieldName == "feature_set_id") {
+            } else if (fieldName === "feature_set_id") {
                 featureSetId = WorksheetFeatureSetId.parse(json[fieldName]);
-            } else if (fieldName == "review") {
+            } else if (fieldName === "review") {
                 review = json[fieldName];
             }
         }
         if (worksheetStateId == null) {
-            throw new TypeError('worksheetStateId is required');
+            throw new TypeError("worksheetStateId is required");
         }
-        return new WorksheetStateMark({worksheetStateId: worksheetStateId, featureId: featureId, featureSetId: featureSetId, review: review});
+        return new WorksheetStateMark({worksheetStateId, featureId, featureSetId, review});
     }
 
-    toJsonObject(): any {
+    public toJsonObject(): any {
         const json: {[index: string]: any} = {};
-        json["worksheet_state_id"] = this.worksheetStateId.toString();
+        json.worksheet_state_id = this.worksheetStateId.toString();
         if (this.featureId != null) {
-            json["feature_id"] = this.featureId.toString();
+            json.feature_id = this.featureId.toString();
         }
         if (this.featureSetId != null) {
-            json["feature_set_id"] = this.featureSetId.toString();
+            json.feature_set_id = this.featureSetId.toString();
         }
         if (this.review != null) {
-            json["review"] = this.review;
+            json.review = this.review;
         }
         return json;
     }
 
-    toString(): string {
+    public toString(): string {
         return "WorksheetStateMark(" + JSON.stringify(this.toThryftJsonObject()) + ")";
     }
 
-    toThryftJsonObject(): any {
+    public toThryftJsonObject(): any {
         const json: {[index: string]: any} = {};
-        json["worksheet_state_id"] = this.worksheetStateId.toString();
+        json.worksheet_state_id = this.worksheetStateId.toString();
         if (this.featureId != null) {
-            json["feature_id"] = this.featureId.toString();
+            json.feature_id = this.featureId.toString();
         }
         if (this.featureSetId != null) {
-            json["feature_set_id"] = this.featureSetId.toString();
+            json.feature_set_id = this.featureSetId.toString();
         }
         if (this.review != null) {
-            json["review"] = this.review;
+            json.review = this.review;
         }
         return json;
     }
 
-    private _featureId?: WorksheetFeatureId;
+    private static validateFeatureId(featureId: WorksheetFeatureId | undefined): WorksheetFeatureId | undefined {
+        return featureId;
+    }
 
-    private _featureSetId?: WorksheetFeatureSetId;
+    private static validateFeatureSetId(featureSetId: WorksheetFeatureSetId | undefined): WorksheetFeatureSetId | undefined {
+        return featureSetId;
+    }
 
-    private _review?: boolean;
+    private static validateReview(review: boolean | undefined): boolean | undefined {
+        if (review != null) {
+            if (!review) {
+                throw new RangeError("review is false");
+            }
+        }
+        return review;
+    }
 
-    private _worksheetStateId: WorksheetStateId;
+    private static validateWorksheetStateId(worksheetStateId: WorksheetStateId): WorksheetStateId {
+        if (worksheetStateId == null) {
+            throw new RangeError("worksheetStateId is null or undefined");
+        }
+        return worksheetStateId;
+    }
+
+    private featureIdPrivate?: WorksheetFeatureId;
+
+    private featureSetIdPrivate?: WorksheetFeatureSetId;
+
+    private reviewPrivate?: boolean;
+
+    private worksheetStateIdPrivate: WorksheetStateId;
 }

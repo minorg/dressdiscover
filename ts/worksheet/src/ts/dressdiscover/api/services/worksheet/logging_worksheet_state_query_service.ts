@@ -6,15 +6,15 @@ export class LoggingWorksheetStateQueryService implements WorksheetStateQuerySer
     constructor(private delegate: WorksheetStateQueryService) {
     }
 
-    getWorksheetState(kwds: {id: WorksheetStateId}): Promise<WorksheetState> {
+    public getWorksheetState(kwds: {id: WorksheetStateId}): Promise<WorksheetState> {
         return this.delegate.getWorksheetState({id: kwds.id})
-        .then((__returnValue) => { console.debug("getWorksheetState({", "id: ", kwds.id, "}) -> ", __returnValue); return __returnValue; })
-        .catch((e) => { console.warn("getWorksheetState({", "id: ", kwds.id, "}) -> exception"); console.warn(e); throw e })
+        .then((returnValue) => { console.debug("getWorksheetState({", "id: ", kwds.id, "}) -> ", returnValue); return returnValue; })
+        .catch((e) => { console.warn("getWorksheetState({", "id: ", kwds.id, "}) -> exception"); console.warn(e); throw e; });
     }
 
-    getWorksheetStateIds(): Promise<WorksheetStateId[]> {
+    public getWorksheetStateIds(): Promise<WorksheetStateId[]> {
         return this.delegate.getWorksheetStateIds()
-        .then((__returnValue) => { console.debug("getWorksheetStateIds() -> ", __returnValue); return __returnValue; })
-        .catch((e) => { console.warn("getWorksheetStateIds() -> exception"); console.warn(e); throw e })
+        .then((returnValue) => { console.debug("getWorksheetStateIds() -> ", returnValue); return returnValue; })
+        .catch((e) => { console.warn("getWorksheetStateIds() -> exception"); console.warn(e); throw e; });
     }
 }

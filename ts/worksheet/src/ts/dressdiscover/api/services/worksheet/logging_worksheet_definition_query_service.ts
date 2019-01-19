@@ -5,9 +5,9 @@ export class LoggingWorksheetDefinitionQueryService implements WorksheetDefiniti
     constructor(private delegate: WorksheetDefinitionQueryService) {
     }
 
-    getWorksheetDefinition(): Promise<WorksheetDefinition> {
+    public getWorksheetDefinition(): Promise<WorksheetDefinition> {
         return this.delegate.getWorksheetDefinition()
-        .then((__returnValue) => { console.debug("getWorksheetDefinition() -> ", __returnValue); return __returnValue; })
-        .catch((e) => { console.warn("getWorksheetDefinition() -> exception"); console.warn(e); throw e })
+        .then((returnValue) => { console.debug("getWorksheetDefinition() -> ", returnValue); return returnValue; })
+        .catch((e) => { console.warn("getWorksheetDefinition() -> exception"); console.warn(e); throw e; });
     }
 }

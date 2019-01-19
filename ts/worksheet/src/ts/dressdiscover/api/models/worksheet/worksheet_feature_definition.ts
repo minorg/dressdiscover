@@ -5,120 +5,75 @@ import { WorksheetFeatureValueId } from "./worksheet_feature_value_id";
 
 export class WorksheetFeatureDefinition {
     constructor(kwds: {id: WorksheetFeatureId, valueIds: WorksheetFeatureValueId[], description?: WorksheetDescription, displayName?: string, extentIds?: WorksheetExtentId[]}) {
-        this._id = WorksheetFeatureDefinition._validateId(kwds.id);
-        this._valueIds = WorksheetFeatureDefinition._validateValueIds(kwds.valueIds);
+        this.idPrivate = WorksheetFeatureDefinition.validateId(kwds.id);
+        this.valueIdsPrivate = WorksheetFeatureDefinition.validateValueIds(kwds.valueIds);
         if (kwds.description != null) {
-            this._description = WorksheetFeatureDefinition._validateDescription(kwds.description);
+            this.descriptionPrivate = WorksheetFeatureDefinition.validateDescription(kwds.description);
         } else {
-            this._description = undefined;
+            this.descriptionPrivate = undefined;
         }
         if (kwds.displayName != null) {
-            this._displayName = WorksheetFeatureDefinition._validateDisplayName(kwds.displayName);
+            this.displayNamePrivate = WorksheetFeatureDefinition.validateDisplayName(kwds.displayName);
         } else {
-            this._displayName = undefined;
+            this.displayNamePrivate = undefined;
         }
         if (kwds.extentIds != null) {
-            this._extentIds = WorksheetFeatureDefinition._validateExtentIds(kwds.extentIds);
+            this.extentIdsPrivate = WorksheetFeatureDefinition.validateExtentIds(kwds.extentIds);
         } else {
-            this._extentIds = undefined;
+            this.extentIdsPrivate = undefined;
         }
     }
 
     get id(): WorksheetFeatureId {
-        return this._id;
+        return this.idPrivate;
     }
 
     set id(id: WorksheetFeatureId) {
-        this._id = WorksheetFeatureDefinition._validateId(id);
+        this.idPrivate = WorksheetFeatureDefinition.validateId(id);
     }
 
     get valueIds(): WorksheetFeatureValueId[] {
-        return this._valueIds;
+        return this.valueIdsPrivate;
     }
 
     set valueIds(valueIds: WorksheetFeatureValueId[]) {
-        this._valueIds = WorksheetFeatureDefinition._validateValueIds(valueIds);
+        this.valueIdsPrivate = WorksheetFeatureDefinition.validateValueIds(valueIds);
     }
 
     get description(): WorksheetDescription | undefined {
-        return this._description;
+        return this.descriptionPrivate;
     }
 
     set description(description: WorksheetDescription | undefined) {
-        this._description = WorksheetFeatureDefinition._validateDescription(description);
+        this.descriptionPrivate = WorksheetFeatureDefinition.validateDescription(description);
     }
 
     get displayName(): string | undefined {
-        return this._displayName;
+        return this.displayNamePrivate;
     }
 
     set displayName(displayName: string | undefined) {
-        this._displayName = WorksheetFeatureDefinition._validateDisplayName(displayName);
+        this.displayNamePrivate = WorksheetFeatureDefinition.validateDisplayName(displayName);
     }
 
     get extentIds(): WorksheetExtentId[] | undefined {
-        return this._extentIds;
+        return this.extentIdsPrivate;
     }
 
     set extentIds(extentIds: WorksheetExtentId[] | undefined) {
-        this._extentIds = WorksheetFeatureDefinition._validateExtentIds(extentIds);
+        this.extentIdsPrivate = WorksheetFeatureDefinition.validateExtentIds(extentIds);
     }
 
-    private static _validateDescription(description: WorksheetDescription | undefined): WorksheetDescription | undefined {
-        if (description != null) {
-
-        }
-        return description;
+    public deepCopy(): WorksheetFeatureDefinition {
+        return new WorksheetFeatureDefinition({ id: this.id, valueIds: (this.valueIds).map((value0) => value0), description: (this.description ? (this.description.deepCopy()) : undefined), displayName: this.displayName, extentIds: (this.extentIds ? ((this.extentIds).map((value0) => value0)) : undefined) });
     }
 
-    private static _validateDisplayName(displayName: string | undefined): string | undefined {
-        if (displayName != null) {
-            if (displayName.trim().length == 0) {
-                throw new RangeError('displayName is blank');
-            }
-            if (displayName.length < 1) {
-                throw new RangeError("expected len(displayName) to be >= 1, was " + displayName.length);
-            }
-        }
-        return displayName;
-    }
-
-    private static _validateExtentIds(extentIds: WorksheetExtentId[] | undefined): WorksheetExtentId[] | undefined {
-        if (extentIds != null) {
-            if (extentIds.length < 1) {
-                throw new RangeError("expected len(extentIds) to be >= 1, was " + extentIds.length);
-            }
-        }
-        return extentIds;
-    }
-
-    private static _validateId(id: WorksheetFeatureId): WorksheetFeatureId {
-        if (id == null) {
-            throw new RangeError('id is null or undefined');
-        }
-        return id;
-    }
-
-    private static _validateValueIds(valueIds: WorksheetFeatureValueId[]): WorksheetFeatureValueId[] {
-        if (valueIds == null) {
-            throw new RangeError('valueIds is null or undefined');
-        }
-        if (valueIds.length < 1) {
-            throw new RangeError("expected len(valueIds) to be >= 1, was " + valueIds.length);
-        }
-        return valueIds;
-    }
-
-    deepCopy(): WorksheetFeatureDefinition {
-        return new WorksheetFeatureDefinition({ id: this.id, valueIds: function(__value0: WorksheetFeatureValueId[]) { let __copy0: WorksheetFeatureValueId[] = []; for (let __i0 = 0; __i0 < __value0.length; __i0++) { __copy0.push(__value0[__i0]); } return __copy0; }(this.valueIds), description: (this.description ? (this.description.deepCopy()) : undefined), displayName: this.displayName, extentIds: (this.extentIds ? (function(__value0: WorksheetExtentId[]) { let __copy0: WorksheetExtentId[] = []; for (let __i0 = 0; __i0 < __value0.length; __i0++) { __copy0.push(__value0[__i0]); } return __copy0; }(this.extentIds)) : undefined) });
-    }
-
-    equals(other: WorksheetFeatureDefinition): boolean {
+    public equals(other: WorksheetFeatureDefinition): boolean {
         if (!(this.id.equals(other.id))) {
             return false;
         }
 
-        if (!(function(left: WorksheetFeatureValueId[], right: WorksheetFeatureValueId[]): boolean { if (left.length != right.length) { return false; } for (let elementI = 0; elementI < left.length; elementI++) { if (!(left[elementI].equals(right[elementI]))) { return false; } } return true; }(this.valueIds, other.valueIds))) {
+        if (!(((left: WorksheetFeatureValueId[], right: WorksheetFeatureValueId[]): boolean => { if (left.length !== right.length) { return false; } for (let elementI = 0; elementI < left.length; elementI++) { if (!(left[elementI].equals(right[elementI]))) { return false; } } return true; })(this.valueIds, other.valueIds))) {
             return false;
         }
 
@@ -130,84 +85,126 @@ export class WorksheetFeatureDefinition {
             return false;
         }
 
-        if (!((!((typeof (this.extentIds)) === "undefined") && !((typeof (other.extentIds)) === "undefined")) ? (function(left: WorksheetExtentId[], right: WorksheetExtentId[]): boolean { if (left.length != right.length) { return false; } for (let elementI = 0; elementI < left.length; elementI++) { if (!(left[elementI].equals(right[elementI]))) { return false; } } return true; }((this.extentIds as WorksheetExtentId[]), (other.extentIds as WorksheetExtentId[]))) : (((typeof (this.extentIds)) === "undefined") && ((typeof (other.extentIds)) === "undefined")))) {
+        if (!((!((typeof (this.extentIds)) === "undefined") && !((typeof (other.extentIds)) === "undefined")) ? (((left: WorksheetExtentId[], right: WorksheetExtentId[]): boolean => { if (left.length !== right.length) { return false; } for (let elementI = 0; elementI < left.length; elementI++) { if (!(left[elementI].equals(right[elementI]))) { return false; } } return true; })((this.extentIds as WorksheetExtentId[]), (other.extentIds as WorksheetExtentId[]))) : (((typeof (this.extentIds)) === "undefined") && ((typeof (other.extentIds)) === "undefined")))) {
             return false;
         }
 
         return true;
     }
 
-    static fromThryftJsonObject(json: any): WorksheetFeatureDefinition {
+    public static fromThryftJsonObject(json: any): WorksheetFeatureDefinition {
         let id: WorksheetFeatureId | undefined;
         let valueIds: WorksheetFeatureValueId[] | undefined;
         let description: WorksheetDescription | undefined;
         let displayName: string | undefined;
         let extentIds: WorksheetExtentId[] | undefined;
-        for (let fieldName in json) {
-            if (fieldName == "id") {
+        for (const fieldName in json) {
+            if (fieldName === "id") {
                 id = WorksheetFeatureId.parse(json[fieldName]);
-            } else if (fieldName == "value_ids") {
-                valueIds = function(json: any[]): WorksheetFeatureValueId[] { let sequence: WorksheetFeatureValueId[] = []; for (let i = 0; i < json.length; i++) { sequence.push(WorksheetFeatureValueId.parse(json[i])); } return sequence; }(json[fieldName]);
-            } else if (fieldName == "description") {
+            } else if (fieldName === "value_ids") {
+                valueIds = (json[fieldName]).map((element: any) => WorksheetFeatureValueId.parse(element));
+            } else if (fieldName === "description") {
                 description = WorksheetDescription.fromThryftJsonObject(json[fieldName]);
-            } else if (fieldName == "display_name") {
+            } else if (fieldName === "display_name") {
                 displayName = json[fieldName];
-            } else if (fieldName == "extent_ids") {
-                extentIds = function(json: any[]): WorksheetExtentId[] { let sequence: WorksheetExtentId[] = []; for (let i = 0; i < json.length; i++) { sequence.push(WorksheetExtentId.parse(json[i])); } return sequence; }(json[fieldName]);
+            } else if (fieldName === "extent_ids") {
+                extentIds = (json[fieldName]).map((element: any) => WorksheetExtentId.parse(element));
             }
         }
         if (id == null) {
-            throw new TypeError('id is required');
+            throw new TypeError("id is required");
         }
         if (valueIds == null) {
-            throw new TypeError('valueIds is required');
+            throw new TypeError("valueIds is required");
         }
-        return new WorksheetFeatureDefinition({id: id, valueIds: valueIds, description: description, displayName: displayName, extentIds: extentIds});
+        return new WorksheetFeatureDefinition({id, valueIds, description, displayName, extentIds});
     }
 
-    toJsonObject(): any {
+    public toJsonObject(): any {
         const json: {[index: string]: any} = {};
-        json["id"] = this.id.toString();
-        json["value_ids"] = function (__inArray: WorksheetFeatureValueId[]): any[] { let __outArray: any[] = []; for (let __i = 0; __i < __inArray.length; __i++) { __outArray.push(__inArray[__i].toString()); } return __outArray; }(this.valueIds);
+        json.id = this.id.toString();
+        json.value_ids = (this.valueIds).map((inElement) => inElement.toString());
         if (this.description != null) {
-            json["description"] = this.description.toJsonObject();
+            json.description = this.description.toJsonObject();
         }
         if (this.displayName != null) {
-            json["display_name"] = this.displayName;
+            json.display_name = this.displayName;
         }
         if (this.extentIds != null) {
-            json["extent_ids"] = function (__inArray: WorksheetExtentId[]): any[] { let __outArray: any[] = []; for (let __i = 0; __i < __inArray.length; __i++) { __outArray.push(__inArray[__i].toString()); } return __outArray; }(this.extentIds);
+            json.extent_ids = (this.extentIds).map((inElement) => inElement.toString());
         }
         return json;
     }
 
-    toString(): string {
+    public toString(): string {
         return "WorksheetFeatureDefinition(" + JSON.stringify(this.toThryftJsonObject()) + ")";
     }
 
-    toThryftJsonObject(): any {
+    public toThryftJsonObject(): any {
         const json: {[index: string]: any} = {};
-        json["id"] = this.id.toString();
-        json["value_ids"] = function (__inArray: WorksheetFeatureValueId[]): any[] { let __outArray: any[] = []; for (let __i = 0; __i < __inArray.length; __i++) { __outArray.push(__inArray[__i].toString()); } return __outArray; }(this.valueIds);
+        json.id = this.id.toString();
+        json.value_ids = (this.valueIds).map((inElement) => inElement.toString());
         if (this.description != null) {
-            json["description"] = this.description.toThryftJsonObject();
+            json.description = this.description.toThryftJsonObject();
         }
         if (this.displayName != null) {
-            json["display_name"] = this.displayName;
+            json.display_name = this.displayName;
         }
         if (this.extentIds != null) {
-            json["extent_ids"] = function (__inArray: WorksheetExtentId[]): any[] { let __outArray: any[] = []; for (let __i = 0; __i < __inArray.length; __i++) { __outArray.push(__inArray[__i].toString()); } return __outArray; }(this.extentIds);
+            json.extent_ids = (this.extentIds).map((inElement) => inElement.toString());
         }
         return json;
     }
 
-    private _description?: WorksheetDescription;
+    private static validateDescription(description: WorksheetDescription | undefined): WorksheetDescription | undefined {
+        return description;
+    }
 
-    private _displayName?: string;
+    private static validateDisplayName(displayName: string | undefined): string | undefined {
+        if (displayName != null) {
+            if (displayName.trim().length == 0) {
+                throw new RangeError("displayName is blank");
+            }
+            if (displayName.length < 1) {
+                throw new RangeError("expected len(displayName) to be >= 1, was " + displayName.length);
+            }
+        }
+        return displayName;
+    }
 
-    private _extentIds?: WorksheetExtentId[];
+    private static validateExtentIds(extentIds: WorksheetExtentId[] | undefined): WorksheetExtentId[] | undefined {
+        if (extentIds != null) {
+            if (extentIds.length < 1) {
+                throw new RangeError("expected len(extentIds) to be >= 1, was " + extentIds.length);
+            }
+        }
+        return extentIds;
+    }
 
-    private _id: WorksheetFeatureId;
+    private static validateId(id: WorksheetFeatureId): WorksheetFeatureId {
+        if (id == null) {
+            throw new RangeError("id is null or undefined");
+        }
+        return id;
+    }
 
-    private _valueIds: WorksheetFeatureValueId[];
+    private static validateValueIds(valueIds: WorksheetFeatureValueId[]): WorksheetFeatureValueId[] {
+        if (valueIds == null) {
+            throw new RangeError("valueIds is null or undefined");
+        }
+        if (valueIds.length < 1) {
+            throw new RangeError("expected len(valueIds) to be >= 1, was " + valueIds.length);
+        }
+        return valueIds;
+    }
+
+    private descriptionPrivate?: WorksheetDescription;
+
+    private displayNamePrivate?: string;
+
+    private extentIdsPrivate?: WorksheetExtentId[];
+
+    private idPrivate: WorksheetFeatureId;
+
+    private valueIdsPrivate: WorksheetFeatureValueId[];
 }
