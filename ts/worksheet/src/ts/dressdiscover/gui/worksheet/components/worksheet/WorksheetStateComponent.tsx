@@ -2,6 +2,7 @@ import './WorksheetStateComponent.scss';
 
 import * as classnames from 'classnames';
 import { WorksheetFeatureSetId } from 'dressdiscover/api/models/worksheet/worksheet_feature_set_id';
+import { History } from 'history';
 import * as invariant from 'invariant';
 import * as _ from 'lodash';
 import * as React from 'react';
@@ -22,7 +23,7 @@ export class WorksheetStateComponent extends React.Component<RouteComponentProps
         invariant(!mark.featureSetId, "unexpected feature set id");
 
         const render = (worksheetState: WorksheetStateWrapper) => {
-            const delegateProps: WorksheetStateReviewOrStartProps = { worksheetState };
+            const delegateProps: WorksheetStateReviewOrStartProps = { history: this.props.history, worksheetState };
             if (mark.review) {
                 return <WorksheetStateReview {...delegateProps} />;
             } else {
@@ -40,12 +41,13 @@ export class WorksheetStateComponent extends React.Component<RouteComponentProps
 }
 
 interface WorksheetStateReviewOrStartProps {
+    history: History;
     worksheetState: WorksheetStateWrapper;
 }
 
 class WorksheetStateReview extends React.Component<WorksheetStateReviewOrStartProps> {
     render() {
-        return (<div/>);
+        return (<div />);
     }
 }
 
@@ -54,6 +56,7 @@ class WorksheetStateStart extends React.Component<WorksheetStateReviewOrStartPro
         super(props);
         this.onChangeDescription = this.onChangeDescription.bind(this);
         this.onToggleFeatureSet = this.onToggleFeatureSet.bind(this);
+        this.save = this.save.bind(this);
         this.state = { selectedFeatureSetIds: [] };
     }
 
@@ -81,10 +84,11 @@ class WorksheetStateStart extends React.Component<WorksheetStateReviewOrStartPro
     render() {
         return (
             <WorksheetStateFrame
+                history={this.props.history}
                 id="worksheet-state-start"
-                onClickNextButton={}
                 nextButtonEnabled={this.state.selectedFeatureSetIds.length > 0}
-                previousButtonEnabled={false}
+                previousButtonEnabled={true}
+                save={this.save}
                 worksheetState={this.props.worksheetState}
             >
                 <h4>Select feature sets</h4>
@@ -122,5 +126,8 @@ class WorksheetStateStart extends React.Component<WorksheetStateReviewOrStartPro
                 <h4>Freetext description</h4>
                 <Input onChange={this.onChangeDescription} placeholder="Freetext description (optional)" rows="8" type="textarea" value={this.state.description} />
             </WorksheetStateFrame>);
+    }
+
+    save() {
     }
 }

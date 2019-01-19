@@ -57,8 +57,20 @@ export class WorksheetStateWrapper {
         return this.currentStateMark.featureSetId ? new WorksheetStateMark({ worksheetStateId: this.currentStateMark.worksheetStateId, featureSetId: this.currentStateMark.featureSetId }) : undefined;
     }
 
+    get firstStateMark(): WorksheetStateMark {
+        return this.worksheetStateMachine.firstStateMark;
+    }
+
+    get lastStateMark(): WorksheetStateMark {
+        return this.worksheetStateMachine.lastStateMark;
+    }
+
     get lastStateMarkIndex(): number {
         return this.worksheetStateMachine.length - 1;
+    }
+
+    get nextStateMark(): WorksheetStateMark {
+        return this.worksheetStateMachine.nextStateMark(this.currentStateMark);
     }
 
     get id() {
@@ -69,8 +81,8 @@ export class WorksheetStateWrapper {
         return Math.round(this.currentStateMarkIndex / this.lastStateMarkIndex * 100.0);
     }
 
-    get startStateMark() {
-        return new WorksheetStateMark({ worksheetStateId: this.currentStateMark.worksheetStateId });
+    get previousStateMark(): WorksheetStateMark {
+        return this.worksheetStateMachine.previousStateMark(this.currentStateMark);
     }
 
     readonly currentStateMarkIndex: number;

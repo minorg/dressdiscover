@@ -1,4 +1,5 @@
 import * as classnames from 'classnames';
+import { History } from 'history';
 import { ReactNode } from 'react';
 import * as React from 'react';
 import { Link } from 'react-router-dom';
@@ -11,6 +12,7 @@ import { ActiveNavbarItem } from '../navbar/ActiveNavbarItem';
 
 interface Props {
     children?: ReactNode;
+    history: History;
     id: string;
     nextButtonEnabled: boolean;
     previousButtonEnabled: boolean;
@@ -27,25 +29,38 @@ export class WorksheetStateFrame extends React.Component<Props> {
     }
 
     onClickFinishButton() {
-        // Application.instance.router.goToState(Application.instance.session.worksheetStateMachine.lastStateMark);
+        if (this.props.save) {
+            this.props.save();
+        }
+        this.props.history.push(Hrefs.worksheetState(this.props.worksheetState.lastStateMark));
     }
 
     onClickNextButton() {
-        // Application.instance.router.goToState(Application.instance.session.worksheetStateMachine.nextStateMark(this.currentStateMark));
+        if (this.props.save) {
+            this.props.save();
+        }
+        this.props.history.push(Hrefs.worksheetState(this.props.worksheetState.nextStateMark));
     }
 
     onClickPreviousButton() {
-        // Application.instance.router.goToState(Application.instance.session.worksheetStateMachine.previousStateMark(this.currentStateMark));
+        if (this.props.save) {
+            this.props.save();
+        }
+        if (this.props.worksheetState.currentStateMarkIndex > 0) {
+            this.props.history.push(Hrefs.worksheetState(this.props.worksheetState.previousStateMark));
+        } else {
+            this.props.history.push(Hrefs.worksheetStart);
+        }
     }
 
     render() {
-        const { children, id, worksheetState, ...nextPreviousButtonProps } = this.props;
+        const { worksheetState } = this.props;
 
         const headline = "Worksheet: " + worksheetState.id.toString();
 
         const breadcrumbItems: ReactNode[] = [];
         breadcrumbItems.push(<BreadcrumbItem active={!worksheetState.currentStateMark.featureSetId && !worksheetState.currentStateMark.featureId}>
-            <Link to={Hrefs.worksheetState(worksheetState.startStateMark)}>{headline}</Link>
+            <Link to={Hrefs.worksheetState(worksheetState.firstStateMark)}>{headline}</Link>
         </BreadcrumbItem>);
         const currentFeatureSetStateMark = worksheetState.currentFeatureSetStateMark;
         const currentFeatureStateMark = worksheetState.currentFeatureStateMark;

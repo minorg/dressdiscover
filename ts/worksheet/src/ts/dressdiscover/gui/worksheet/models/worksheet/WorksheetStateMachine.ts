@@ -5,63 +5,55 @@ import { WorksheetDefinitionWrapper } from './WorksheetDefinitionWrapper';
 
 export class WorksheetStateMachine {
     constructor(worksheetDefinition: WorksheetDefinitionWrapper, worksheetState: WorksheetState) {
-        this._stateMarks = [];
-
         // First state, always the worksheet start
         const worksheetStateId = worksheetState.id;
-        this._stateMarks.push(new WorksheetStateMark({ worksheetStateId: worksheetStateId }));
+        this.stateMarks.push(new WorksheetStateMark({ worksheetStateId }));
 
         if (worksheetState.featureSets.length > 0) {
-            for (let featureSetState of worksheetState.featureSets) {
+            for (const featureSetState of worksheetState.featureSets) {
                 const featureSetId = featureSetState.id;
                 const featureSetDefinition = worksheetDefinition.getFeatureSetById(featureSetId);
 
                 // Feature set start
-                this._stateMarks.push(new WorksheetStateMark({
-                    featureSetId: featureSetId,
-                    worksheetStateId: worksheetStateId
+                this.stateMarks.push(new WorksheetStateMark({
+                    featureSetId,
+                    worksheetStateId
                 }));
 
-                for (let featureId of featureSetDefinition.featureIds) {
+                for (const featureId of featureSetDefinition.featureIds) {
                     // Feature start is the same as review
-                    this._stateMarks.push(new WorksheetStateMark({
-                        featureId: featureId,
-                        featureSetId: featureSetId,
-                        worksheetStateId: worksheetStateId
+                    this.stateMarks.push(new WorksheetStateMark({
+                        featureId,
+                        featureSetId,
+                        worksheetStateId
                     }));
                 }
 
                 if (worksheetState.featureSets.length > 1) {
                     // Feature set review
-                    this._stateMarks.push(new WorksheetStateMark({
-                        featureSetId: featureSetId,
+                    this.stateMarks.push(new WorksheetStateMark({
+                        featureSetId,
                         review: true,
-                        worksheetStateId: worksheetStateId
+                        worksheetStateId
                     }));
                 }
             }
         }
 
         // Worksheet review, always the last state
-        this._stateMarks.push(new WorksheetStateMark({
+        this.stateMarks.push(new WorksheetStateMark({
             review: true,
-            worksheetStateId: worksheetStateId
+            worksheetStateId
         }));
     }
 
     get firstStateMark(): WorksheetStateMark {
-        if (this._stateMarks.length == 0) {
-            throw new EvalError();
-        }
-        return this._stateMarks[0];
+        return this.stateMarks[0];
     }
 
     indexOfStateMark(stateMark: WorksheetStateMark): number {
-        if (this._stateMarks.length == 0) {
-            throw new EvalError();
-        }
-        for (let stateMarkI = 0; stateMarkI < this._stateMarks.length; stateMarkI++) {
-            if (this._stateMarks[stateMarkI].equals(stateMark)) {
+        for (let stateMarkI = 0; stateMarkI < this.stateMarks.length; stateMarkI++) {
+            if (this.stateMarks[stateMarkI].equals(stateMark)) {
                 return stateMarkI;
             }
         }
@@ -69,31 +61,28 @@ export class WorksheetStateMachine {
     }
 
     get lastStateMark(): WorksheetStateMark {
-        if (this._stateMarks.length == 0) {
-            throw new EvalError();
-        }
-        return this._stateMarks[this._stateMarks.length - 1];
+        return this.stateMarks[this.stateMarks.length - 1];
     }
 
     get length() {
-        return this._stateMarks.length;
+        return this.stateMarks.length;
     }
 
     nextStateMark(currentStateMark: WorksheetStateMark): WorksheetStateMark {
         const stateMarkI = this.indexOfStateMark(currentStateMark);
-        if (stateMarkI + 1 == this._stateMarks.length) {
+        if (stateMarkI + 1 === this.stateMarks.length) {
             throw new EvalError();
         }
-        return this._stateMarks[stateMarkI + 1];
+        return this.stateMarks[stateMarkI + 1];
     }
 
     previousStateMark(currentStateMark: WorksheetStateMark): WorksheetStateMark {
         const stateMarkI = this.indexOfStateMark(currentStateMark);
-        if (stateMarkI == 0) {
+        if (stateMarkI === 0) {
             throw new EvalError();
         }
-        return this._stateMarks[stateMarkI - 1];
+        return this.stateMarks[stateMarkI - 1];
     }
 
-    private _stateMarks: WorksheetStateMark[] = [];
+    private stateMarks: WorksheetStateMark[] = [];
 }
