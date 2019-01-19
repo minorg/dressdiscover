@@ -10,7 +10,7 @@ import { WorksheetFeatureSetDefinitionWrapper } from './WorksheetFeatureSetDefin
 import { WorksheetStateMachine } from './WorksheetStateMachine';
 
 export class WorksheetStateWrapper {
-    constructor(readonly currentStateMark: WorksheetStateMark, private readonly worksheetDefinition: WorksheetDefinitionWrapper, private readonly worksheetState: WorksheetState) {
+    constructor(readonly currentStateMark: WorksheetStateMark, readonly worksheetDefinition: WorksheetDefinitionWrapper, private readonly worksheetState: WorksheetState) {
         this.worksheetStateMachine = new WorksheetStateMachine(worksheetDefinition, worksheetState);
         this.currentStateMarkIndex = this.worksheetStateMachine.indexOfStateMark(currentStateMark);
     }
@@ -73,6 +73,6 @@ export class WorksheetStateWrapper {
         return new WorksheetStateMark({ worksheetStateId: this.currentStateMark.worksheetStateId });
     }
 
-    public readonly currentStateMarkIndex: number;
+    readonly currentStateMarkIndex: number;
     private worksheetStateMachine: WorksheetStateMachine;
 }

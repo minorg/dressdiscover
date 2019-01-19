@@ -9,6 +9,7 @@ import { RouteComponentProps } from 'react-router';
 import { Button, Input, Table } from 'reactstrap';
 import { update } from 'space-lift';
 
+import { WorksheetStateWrapper } from '../../models/worksheet/WorksheetStateWrapper';
 import { WorksheetDescriptionComponent } from './WorksheetDescriptionComponent';
 import { WorksheetStateFrame } from './WorksheetStateFrame';
 import { WorksheetStateGetter } from './WorksheetStateGetter';
@@ -19,18 +20,20 @@ export class WorksheetStateComponent extends React.Component<RouteComponentProps
         const mark = WorksheetStateMarkParser.parseRouteComponentProps(this.props);
         invariant(!mark.featureId, "unexpected feature id");
         invariant(!mark.featureSetId, "unexpected feature set id");
-        return (
-            <WorksheetStateGetter render={
-                (worksheetDefinition, worksheetState) => {
-                    const delegateProps: WorksheetStateReviewOrStartProps = { mark, worksheetDefinition, worksheetState };
-                    if (mark.review) {
-                        return <WorksheetStateReview {...delegateProps} />
-                    } else {
-                        return <WorksheetStateStart {...delegateProps} />
-                    }
-                }
+
+        const render = (worksheetState: WorksheetStateWrapper) => {
+            const delegateProps: WorksheetStateReviewOrStartProps = { worksheetState };
+            if (mark.review) {
+                return <WorksheetStateReview {...delegateProps} />;
+            } else {
+                return <WorksheetStateStart {...delegateProps} />;
             }
-                worksheetStateId={mark.worksheetStateId}
+        };
+
+        return (
+            <WorksheetStateGetter
+                render={render}
+                worksheetStateMark={mark}
             />
         );
     }
@@ -42,7 +45,7 @@ interface WorksheetStateReviewOrStartProps {
 
 class WorksheetStateReview extends React.Component<WorksheetStateReviewOrStartProps> {
     render() {
-        return (<div></div>);
+        return (<div/>);
     }
 }
 
@@ -55,7 +58,7 @@ class WorksheetStateStart extends React.Component<WorksheetStateReviewOrStartPro
     }
 
     isFeatureSetSelected(featureSetId: WorksheetFeatureSetId): boolean {
-        return _.findIndex(this.state.selectedFeatureSetIds, (selected) => selected.equals(featureSetId)) != -1;
+        return this.state.selectedFeatureSetIds.some((selectedFeatureSetId) => selectedFeatureSetId.equals(featureSetId));
     }
 
     onChangeDescription(e: any) {
@@ -68,7 +71,7 @@ class WorksheetStateStart extends React.Component<WorksheetStateReviewOrStartPro
             (prevState) => {
                 const selectedFeatureSetIds = prevState.selectedFeatureSetIds;
                 const newSelectedFeatureIds = _.filter(selectedFeatureSetIds, (selected) => !selected.equals(featureSetId));
-                if (newSelectedFeatureIds.length == selectedFeatureSetIds.length) {
+                if (newSelectedFeatureIds.length === selectedFeatureSetIds.length) {
                     newSelectedFeatureIds.push(featureSetId);
                 }
                 return update(prevState, { selectedFeatureSetIds: newSelectedFeatureIds });
@@ -79,6 +82,9 @@ class WorksheetStateStart extends React.Component<WorksheetStateReviewOrStartPro
         return (
             <WorksheetStateFrame
                 id="worksheet-state-start"
+                onClickNextButton={}
+                nextButtonEnabled={this.state.selectedFeatureSetIds.length > 0}
+                previousButtonEnabled={false}
                 worksheetState={this.props.worksheetState}
             >
                 <h4>Select feature sets</h4>
@@ -92,7 +98,7 @@ class WorksheetStateStart extends React.Component<WorksheetStateReviewOrStartPro
                         </tr>
                     </thead>
                     <tbody>
-                        {_.map(this.props.worksheetDefinition.featureSets, (featureSetDefinition) =>
+                        {this.props.worksheetState.worksheetDefinition.featureSets.map((featureSetDefinition) =>
                             <tr className={classnames({ "feature-set": true, selected: this.isFeatureSetSelected(featureSetDefinition.id) })} key={featureSetDefinition.id.toString()}>
                                 <td className="text-center">
                                     <Button active={this.isFeatureSetSelected(featureSetDefinition.id)} color="secondary" onClick={() => this.onToggleFeatureSet(featureSetDefinition.id)} size="lg">{featureSetDefinition.displayName}</Button>
@@ -102,7 +108,7 @@ class WorksheetStateStart extends React.Component<WorksheetStateReviewOrStartPro
                                     {featureSetDefinition.description ? <WorksheetDescriptionComponent description={featureSetDefinition.description} /> : null}
                                 </td>
                                 <td className="align-middle">
-                                    {_.map(featureSetDefinition.features, (featureDefinition) =>
+                                    {featureSetDefinition.features.map((featureDefinition) =>
                                         <React.Fragment key={featureDefinition.id.toString()}><span data-bind="text: displayName">{featureDefinition.displayName}</span>&nbsp;&nbsp;</React.Fragment>
                                     )}
                                 </td>

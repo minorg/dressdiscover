@@ -31,7 +31,7 @@ export class Hrefs {
   }
 
   static get logoutSuccess() {
-    return "/logoutSuccess"
+    return "/logoutSuccess";
   }
 
   static get privacy() {
