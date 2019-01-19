@@ -1,5 +1,4 @@
 import { WorksheetStateMark } from 'dressdiscover/api/models/worksheet/worksheet_state_mark';
-import * as queryString from 'query-string';
 
 export class Hrefs {
   static get home() {
@@ -49,14 +48,12 @@ export class Hrefs {
   static worksheetState(mark: WorksheetStateMark) {
     let href = "/worksheet/state/" + encodeURIComponent(mark.worksheetStateId.toString()) + "/";
     if (mark.featureSetId) {
-      href += encodeURIComponent(mark.featureSetId.toString()) + "/";
+      href += "/feature_set/" + encodeURIComponent(mark.featureSetId.toString()) + "/";
       if (mark.featureId) {
-        href += encodeURIComponent(mark.featureId.toString());
+        href += "/feature/" + encodeURIComponent(mark.featureId.toString()) + "/";
       }
     }
-    if (mark.review) {
-      href += "?" + queryString.stringify({ "review": true });
-    }
+    href += mark.review ? "review" : "edit";
     return href;
   }
 }
