@@ -22,15 +22,15 @@ export class WorksheetDefinitionCsvParser {
     }): WorksheetDefinition {
         return new WorksheetDefinition({
             extents: this._parseExtentsCsv(kwds.extentsCsv),
-            features: this._parseFeaturesCsv(kwds.featuresCsv),
             featureSets: this._parseFeatureSetsCsv(kwds.featureSetsCsv),
-            featureValues: this._parseFeatureValuesCsv(kwds.featureValuesCsv)
+            featureValues: this._parseFeatureValuesCsv(kwds.featureValuesCsv),
+            features: this._parseFeaturesCsv(kwds.featuresCsv)
         });
     }
 
     private _parseCsv(csv: string, csvName: string, config?: Papa.ParseConfig) {
         const parsedCsv = Papa.parse(csv, config);
-        for (let error of parsedCsv.errors) {
+        for (const error of parsedCsv.errors) {
             if (error.code === "TooFewFields") {
                 continue;
             }
@@ -40,7 +40,7 @@ export class WorksheetDefinitionCsvParser {
     }
 
     private _parseDescription(row: any) {
-        const descriptionText = row["description_text"];
+        const descriptionText = row.description_text;
         if (!_.isEmpty(descriptionText)) {
             return new WorksheetDescription({
                 rights: this._parseRights("description_", row),
@@ -53,14 +53,14 @@ export class WorksheetDefinitionCsvParser {
 
     private _parseDuplicateColumnRows(duplicateColumnNames: string[], rows: any[]): any[] {
         let header: string[] = [];
-        let outRows: any[] = [];
+        const outRows: any[] = [];
         rows.forEach((row: any[], rowI) => {
-            if (rowI == 0) {
+            if (rowI === 0) {
                 header = row;
                 outRows.push([]);
                 return;
             }
-            let outRow: any = {};
+            const outRow: any = {};
             row.forEach((column, columnI) => {
                 let columnName = header[columnI];
                 if (!_.isUndefined(columnName)) {
@@ -103,8 +103,8 @@ export class WorksheetDefinitionCsvParser {
                 extents.push(
                     new WorksheetExtentDefinition({
                         description: this._parseDescription(row),
-                        displayName: row["display_name"],
-                        id: WorksheetExtentId.parse(row["id"]),
+                        displayName: row.display_name,
+                        id: WorksheetExtentId.parse(row.id),
                     })
                 );
             } catch (e) {
@@ -129,9 +129,9 @@ export class WorksheetDefinitionCsvParser {
             try {
                 features.push(new WorksheetFeatureDefinition({
                     description: this._parseDescription(row),
-                    displayName: row["display_name"],
-                    id: WorksheetFeatureId.parse(row["id"]),
-                    valueIds: _.map(row["value"], (id: string) => WorksheetFeatureValueId.parse(id))
+                    displayName: row.display_name,
+                    id: WorksheetFeatureId.parse(row.id),
+                    valueIds: row.value.map((id: string) => WorksheetFeatureValueId.parse(id))
                 }));
             } catch (e) {
                 if (e instanceof RangeError) {
@@ -155,9 +155,9 @@ export class WorksheetDefinitionCsvParser {
             try {
                 featureSets.push(new WorksheetFeatureSetDefinition({
                     description: this._parseDescription(row),
-                    displayName: row["display_name"],
-                    featureIds: _.map(row["feature"], (id: string) => WorksheetFeatureId.parse(id)),
-                    id: WorksheetFeatureSetId.parse(row["id"])
+                    displayName: row.display_name,
+                    featureIds: row.feature.map((id: string) => WorksheetFeatureId.parse(id)),
+                    id: WorksheetFeatureSetId.parse(row.id)
                 }));
             } catch (e) {
                 if (e instanceof RangeError) {
@@ -179,14 +179,14 @@ export class WorksheetDefinitionCsvParser {
                 return;
             }
 
-            const valueId = row["id"];
+            const valueId = row.id;
 
             try {
-                let image: WorksheetFeatureValueImage | undefined = undefined;
-                const imageThumbnailUrl = row["image_thumbnail_url"];
+                let image: WorksheetFeatureValueImage | undefined;
+                const imageThumbnailUrl = row.image_thumbnail_url;
                 if (!_.isEmpty(imageThumbnailUrl)) {
                     image = new WorksheetFeatureValueImage({
-                        fullSizeUrl: row["image_full_size_url"],
+                        fullSizeUrl: row.image_full_size_url,
                         rights: this._parseRights("image_", row),
                         thumbnailUrl: imageThumbnailUrl
                     });
@@ -196,9 +196,9 @@ export class WorksheetDefinitionCsvParser {
 
                 const value = new WorksheetFeatureValueDefinition({
                     description: this._parseDescription(row),
-                    displayName: row["display_name"],
-                    image: image,
-                    id: WorksheetFeatureValueId.parse(valueId)
+                    displayName: row.display_name,
+                    id: WorksheetFeatureValueId.parse(valueId),
+                    image
                 });
                 values.push(value);
             } catch (e) {
@@ -230,20 +230,19 @@ export class WorksheetDefinitionCsvParser {
     }
 
     private _parseUniqueColumnRows(rows: any[]): any[] {
-        let outRows: any[] = [];
-        for (let row of rows) {
-            let outRow: any = {};
-            for (let columnName in row) {
+        const outRows: any[] = [];
+        for (const row of rows) {
+            const outRow: any = {};
+            _.forOwn(row, (columnValue, columnName) => {
                 columnName = columnName.trim();
-                let columnValue = row[columnName];
                 if (!_.isUndefined(columnValue)) {
                     columnValue = columnValue.trim();
                 }
                 if (_.isEmpty(columnName) || _.isEmpty(columnValue)) {
-                    continue;
+                    return;
                 }
                 outRow[columnName] = columnValue;
-            }
+            });
             outRows.push(outRow);
         }
         return outRows;
