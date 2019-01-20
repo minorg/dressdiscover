@@ -15,6 +15,6 @@ export class WorksheetDescriptionComponent extends React.Component<{ description
             <span>{this.props.description.rights.license}</span>
                 </div>
             </Container>
-        )
+        );
     }
 }

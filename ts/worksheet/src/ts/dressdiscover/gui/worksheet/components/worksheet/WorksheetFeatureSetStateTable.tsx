@@ -22,8 +22,10 @@ interface Props {
 
 export class WorksheetFeatureSetStateTable extends React.Component<Props> {
     render() {
+        const includeFeatureDescriptions = this.props.includeFeatureDescriptions && this.props.featureSetDefinition.features.some((featureDefinition) => !!featureDefinition.description);
+
         const rows = this.props.featureSetDefinition.features.map((featureDefinition) => {
-            const featureState: WorksheetFeatureState | undefined = (this.props.featureSetState) ? this.props.featureSetState.features.find((featureState) => featureState.id.equals(featureDefinition.id)) : undefined;
+            const featureState: WorksheetFeatureState | undefined = (this.props.featureSetState) ? this.props.featureSetState.features.find((checkFeatureState) => checkFeatureState.id.equals(featureDefinition.id)) : undefined;
 
             const featureStateMark = new WorksheetStateMark({
                 featureId: featureDefinition.id,
@@ -39,7 +41,7 @@ export class WorksheetFeatureSetStateTable extends React.Component<Props> {
                 <thead>
                     <tr>
                         <th className="text-center">Feature</th>
-                        {this.props.includeFeatureDescriptions ?
+                        {includeFeatureDescriptions ?
                             (<th className="text-center">Description</th>) : null}
                         <th className="text-center">Value(s)</th>
                     </tr>
@@ -51,7 +53,7 @@ export class WorksheetFeatureSetStateTable extends React.Component<Props> {
                                 <td className="text-center w-25">
                                     <Link className="btn btn-lg btn-secondary w-100" to={Hrefs.worksheetState(row.featureStateMark)}>{row.featureDefinition.displayName}</Link>
                                 </td>
-                                {this.props.includeFeatureDescriptions ? (
+                                {includeFeatureDescriptions ? (
                                     <td>
                                         {row.featureDefinition.description ? <WorksheetDescriptionComponent description={row.featureDefinition.description} /> : null}
                                     </td>) : null}
