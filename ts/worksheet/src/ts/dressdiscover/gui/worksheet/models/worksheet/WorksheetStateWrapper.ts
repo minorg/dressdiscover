@@ -4,7 +4,6 @@ import { WorksheetFeatureState } from 'dressdiscover/api/models/worksheet/worksh
 import { WorksheetState } from 'dressdiscover/api/models/worksheet/worksheet_state';
 import { WorksheetStateMark } from 'dressdiscover/api/models/worksheet/worksheet_state_mark';
 import { WorksheetStore } from 'dressdiscover/gui/worksheet/stores/worksheet/WorksheetStore';
-import * as _ from 'lodash';
 
 import { WorksheetDefinitionWrapper } from './WorksheetDefinitionWrapper';
 import { WorksheetFeatureDefinitionWrapper } from './WorksheetFeatureDefinitionWrapper';
@@ -23,19 +22,17 @@ export class WorksheetStateWrapper {
     }
 
     get currentFeatureDefinition(): WorksheetFeatureDefinitionWrapper | undefined {
-        const currentFeatureState = this.currentFeatureState;
-        if (!currentFeatureState) {
+        if (!this.currentStateMark.featureId) {
             return undefined;
         }
-        return this.worksheetDefinition.getFeatureById(currentFeatureState.id);
+        return this.worksheetDefinition.getFeatureById(this.currentStateMark.featureId);
     }
 
     get currentFeatureSetDefinition(): WorksheetFeatureSetDefinitionWrapper | undefined {
-        const currentFeatureSetState = this.currentFeatureSetState;
-        if (!currentFeatureSetState) {
+        if (!this.currentStateMark.featureSetId) {
             return undefined;
         }
-        return this.worksheetDefinition.getFeatureSetById(currentFeatureSetState.id);
+        return this.worksheetDefinition.getFeatureSetById(this.currentStateMark.featureSetId);
     }
 
     get currentFeatureState(): WorksheetFeatureState | undefined {
@@ -46,7 +43,7 @@ export class WorksheetStateWrapper {
         if (!featureSetState) {
             return undefined;
         }
-        return _.find(featureSetState.features, (featureState) => featureState.id.equals(this.currentStateMark.featureId));
+        return featureSetState.features.find((featureState) => featureState.id.equals(this.currentStateMark.featureId));
     }
 
     get currentFeatureStateMark() {
@@ -57,7 +54,7 @@ export class WorksheetStateWrapper {
         if (!this.currentStateMark.featureSetId) {
             return undefined;
         }
-        return _.find(this.worksheetState.featureSets, (featureSetState) => featureSetState.id.equals(this.currentStateMark.featureSetId));
+        return this.worksheetState.featureSets.find((featureSetState) => featureSetState.id.equals(this.currentStateMark.featureSetId));
     }
 
     get currentFeatureSetStateMark(): WorksheetStateMark | undefined {
