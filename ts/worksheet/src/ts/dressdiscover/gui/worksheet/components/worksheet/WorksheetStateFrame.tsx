@@ -14,7 +14,7 @@ interface Props {
     children?: ReactNode;
     history: History;
     id: string;
-    finishButtonEnabled?: boolean;
+    finishButtonEnabled: boolean;
     nextButtonEnabled: boolean;
     previousButtonEnabled: boolean;
     save?: () => void;
@@ -22,6 +22,12 @@ interface Props {
 }
 
 export class WorksheetStateFrame extends React.Component<Props> {
+    static defaultProps = {
+        finishButtonEnabled: true,
+        nextButtonEnabled: true,
+        previousButtonEnabled: true
+    };
+
     constructor(props: Props) {
         super(props);
         this.onClickFinishButton = this.onClickFinishButton.bind(this);

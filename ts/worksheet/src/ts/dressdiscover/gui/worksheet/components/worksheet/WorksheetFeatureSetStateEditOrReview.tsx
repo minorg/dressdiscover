@@ -23,15 +23,12 @@ export class WorksheetFeatureSetStateEditOrReview extends React.Component<RouteC
 
 class WorksheetFeatureSetStateEditOrReviewImpl extends React.Component<{ history: History, worksheetState: WorksheetStateWrapper }> {
     render() {
-        const worksheetState = this.props.worksheetState;
+        const { worksheetState } = this.props;
         return (
             <WorksheetStateFrame
                 history={this.props.history}
                 id="worksheet-feature-set-state-edit-or-review"
-                finishButtonEnabled={false}
-                nextButtonEnabled={true}
-                previousButtonEnabled={true}
-                worksheetState={this.props.worksheetState}
+                worksheetState={worksheetState}
             >
                 <WorksheetFeatureSetStateTable featureSetDefinition={worksheetState.currentFeatureSetDefinition!} featureSetState={worksheetState.currentFeatureSetState} includeFeatureDescriptions={!worksheetState.currentStateMark.review} worksheetState={worksheetState} />
             </WorksheetStateFrame>);
