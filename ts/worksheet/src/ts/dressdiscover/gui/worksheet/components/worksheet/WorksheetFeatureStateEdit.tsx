@@ -10,7 +10,8 @@ import { WorksheetStateWrapper } from 'dressdiscover/gui/worksheet/models/worksh
 import { History } from 'history';
 import * as React from 'react';
 import { RouteComponentProps } from 'react-router';
-import { Card, Container, Row } from 'reactstrap';
+import { Card, CardBody, Container, Row } from 'reactstrap';
+import CardHeader from 'reactstrap/lib/CardHeader';
 
 export class WorksheetFeatureStateEdit extends React.Component<RouteComponentProps<WorksheetStateMarkRouteParams>> {
     render() {
@@ -122,8 +123,31 @@ class WorksheetFeatureValueStateEdit extends React.Component<WorksheetFeatureVal
     }
 
     render() {
+        const { featureValueDefinition: definition } = this.props;
         return (
             <Card className={classnames({ "mb-4": true, "mr-4": true })} style={{ borderWidth: "8px" }}>
+                <CardHeader>
+                    <a onClick={this.onToggleSelected}>{definition.displayName}</a>
+                </CardHeader>
+                <CardBody style={{ width: "240px" }}>
+                    <figure className="figure">
+                        <a onClick={this.onToggleSelected}>
+                            <img
+                                className="figure-img rounded"
+                                src={definition.image ? definition.image.thumbnailUrl : 'http://via.placeholder.com/200x200?text=Missing%20image'}
+                                style={{ height: "200px", width: "200px" }}
+                            />
+                        </a>
+                        {definition.image ? (
+                            <figcaption className="figure-caption" style={{ fontSize: "xx-small" }}>
+                                Image&nbsp;&copy;
+                                <span>{definition.image.rights.author}</span>
+                                <br />License:&nbsp;
+                                <span >{definition.image.rights.license}</span>
+                            </figcaption>
+                        ) : null}
+                    </figure>
+                </CardBody>
             </Card>
         );
     }
