@@ -78,11 +78,11 @@ export class WorksheetStateFrame extends React.Component<Props> {
         }
         if (currentFeatureStateMark) {
             breadcrumbItems.push(<BreadcrumbItem active={true}>
-                <Link to={Hrefs.worksheetState(currentFeatureStateMark)}>Feature: {worksheetState.currentFeatureDefinition!.displayName}}</Link>
+                <Link to={Hrefs.worksheetState(currentFeatureStateMark)}>Feature: {worksheetState.currentFeatureDefinition!.displayName}</Link>
             </BreadcrumbItem>);
         }
 
-        const finishButtonEnabled = typeof(this.props.finishButtonEnabled) !== "undefined" ? this.props.finishButtonEnabled : this.props.nextButtonEnabled;
+        const finishButtonEnabled = typeof (this.props.finishButtonEnabled) !== "undefined" ? this.props.finishButtonEnabled : this.props.nextButtonEnabled;
         const nextPreviousButtons = (
             <Row>
                 <Col xs="12">
@@ -101,8 +101,8 @@ export class WorksheetStateFrame extends React.Component<Props> {
         let progressBar: ReactNode | null;
         if (worksheetState.lastStateMarkIndex > 0) {
             progressBar = (
-                <Row>
-                    <Progress bar striped max={worksheetState.lastStateMarkIndex} min={0} value={worksheetState.currentStateMarkIndex}></Progress>
+                <Row style={{ height: "20px" }}>
+                    <Progress className="ml-4" bar striped value={worksheetState.progressPercentage}></Progress>
                 </Row>
             );
         } else {
@@ -112,7 +112,7 @@ export class WorksheetStateFrame extends React.Component<Props> {
         return (
             <Frame
                 activeNavItem={ActiveNavbarItem.Worksheet}
-                breadcrumbItems={<React.Fragment>...breadcrumbItems</React.Fragment>}
+                breadcrumbItems={<React.Fragment>{breadcrumbItems}</React.Fragment>}
                 headline={headline}
                 id={this.props.id}
             >
