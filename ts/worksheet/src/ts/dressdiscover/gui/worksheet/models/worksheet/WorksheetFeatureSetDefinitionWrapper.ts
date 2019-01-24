@@ -9,8 +9,8 @@ import {
 export class WorksheetFeatureSetDefinitionWrapper extends AbstractDefinitionWrapper<WorksheetFeatureSetDefinition, WorksheetFeatureSetId> {
     constructor(definition: WorksheetFeatureSetDefinition, root: WorksheetDefinitionWrapper) {
         super(definition);
-        for (let featureId of this.featureIds) {
-            this.features.push(root.getFeatureById(featureId));
+        for (const featureId of this.featureIds) {
+            this.features.push(root.featureById(featureId));
         }
     }
 

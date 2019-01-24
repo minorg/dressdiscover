@@ -75,7 +75,7 @@ class WorksheetFeatureSetStateTableRow {
     constructor(readonly featureDefinition: WorksheetFeatureDefinitionWrapper, readonly featureStateMark: WorksheetStateMark, worksheetDefinition: WorksheetDefinitionWrapper, featureState?: WorksheetFeatureState, ) {
         if (featureState && featureState.selectedValueIds) {
             for (const valueId of featureState.selectedValueIds) {
-                this.values.push(worksheetDefinition.getFeatureValueById(valueId));
+                this.values.push(worksheetDefinition.featureValueById(valueId));
             }
         }
     }

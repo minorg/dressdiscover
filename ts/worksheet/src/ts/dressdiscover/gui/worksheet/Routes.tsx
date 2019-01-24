@@ -8,6 +8,7 @@ import {
 import { WorksheetFeatureStateEdit } from 'dressdiscover/gui/worksheet/components/worksheet/WorksheetFeatureStateEdit';
 import { WorksheetStart } from 'dressdiscover/gui/worksheet/components/worksheet/WorksheetStart';
 import { WorksheetStateEdit } from 'dressdiscover/gui/worksheet/components/worksheet/WorksheetStateEdit';
+import { WorksheetStateReview } from 'dressdiscover/gui/worksheet/components/worksheet/WorksheetStateReview';
 import { Hrefs } from 'dressdiscover/gui/worksheet/Hrefs';
 import * as React from 'react';
 import { Route, Switch } from 'react-router';
@@ -24,7 +25,7 @@ export class Routes extends React.Component {
         <Route exact path={Hrefs.privacy} component={Privacy} />
         <Route exact path={Hrefs.worksheetStart} component={WorksheetStart} />
         <Route exact path="/worksheet/state/:worksheetStateId/edit" component={WorksheetStateEdit} />
-        <Route exact path="/worksheet/state/:worksheetStateId/review" component={NoRoute} />
+        <Route exact path="/worksheet/state/:worksheetStateId/review" component={WorksheetStateReview} />
         <Route exact path="/worksheet/state/:worksheetStateId/feature_set/:featureSetId/edit" component={WorksheetFeatureSetStateEditOrReview}/>
         <Route exact path="/worksheet/state/:worksheetStateId/feature_set/:featureSetId/feature/:featureId/edit" component={WorksheetFeatureStateEdit}/>
         <Route component={NoRoute}/>

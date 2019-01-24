@@ -10,7 +10,7 @@ export class WorksheetFeatureDefinitionWrapper extends AbstractDefinitionWrapper
     constructor(definition: WorksheetFeatureDefinition, root: WorksheetDefinitionWrapper) {
         super(definition);
         for (let valueId of this.valueIds) {
-            this.values.push(root.getFeatureValueById(valueId));
+            this.values.push(root.featureValueById(valueId));
         }
     }
 

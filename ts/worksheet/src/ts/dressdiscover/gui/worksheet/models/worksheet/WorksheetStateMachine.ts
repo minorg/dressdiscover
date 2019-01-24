@@ -12,7 +12,7 @@ export class WorksheetStateMachine {
         if (worksheetState.featureSets.length > 0) {
             for (const featureSetState of worksheetState.featureSets) {
                 const featureSetId = featureSetState.id;
-                const featureSetDefinition = worksheetDefinition.getFeatureSetById(featureSetId);
+                const featureSetDefinition = worksheetDefinition.featureSetById(featureSetId);
 
                 // Feature set start
                 this.stateMarks.push(new WorksheetStateMark({

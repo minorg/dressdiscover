@@ -66,18 +66,18 @@ export class WorksheetStateFrame extends React.Component<Props> {
         const headline = "Worksheet: " + worksheetState.id.toString();
 
         const breadcrumbItems: ReactNode[] = [];
-        breadcrumbItems.push(<BreadcrumbItem active={!worksheetState.currentStateMark.featureSetId && !worksheetState.currentStateMark.featureId}>
+        breadcrumbItems.push(<BreadcrumbItem active={!worksheetState.currentStateMark.featureSetId && !worksheetState.currentStateMark.featureId} key="worksheet-state-mark">
             <Link to={Hrefs.worksheetState(worksheetState.firstStateMark)}>{headline}</Link>
         </BreadcrumbItem>);
         const currentFeatureSetStateMark = worksheetState.currentFeatureSetStateMark;
         const currentFeatureStateMark = worksheetState.currentFeatureStateMark;
         if (currentFeatureSetStateMark) {
-            breadcrumbItems.push(<BreadcrumbItem active={!currentFeatureStateMark}>
+            breadcrumbItems.push(<BreadcrumbItem active={!currentFeatureStateMark} key="feature-set-state-mark">
                 <Link to={Hrefs.worksheetState(currentFeatureSetStateMark)}>Feature Set: {worksheetState.currentFeatureSetDefinition!.displayName}</Link>
             </BreadcrumbItem>);
         }
         if (currentFeatureStateMark) {
-            breadcrumbItems.push(<BreadcrumbItem active={true}>
+            breadcrumbItems.push(<BreadcrumbItem active={true} key="feature-state-mark">
                 <Link to={Hrefs.worksheetState(currentFeatureStateMark)}>Feature: {worksheetState.currentFeatureDefinition!.displayName}</Link>
             </BreadcrumbItem>);
         }

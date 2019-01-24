@@ -28,14 +28,14 @@ export class WorksheetStateWrapper {
         if (!this.currentStateMark.featureId) {
             return undefined;
         }
-        return this.worksheetDefinition.getFeatureById(this.currentStateMark.featureId);
+        return this.worksheetDefinition.featureById(this.currentStateMark.featureId);
     }
 
     get currentFeatureSetDefinition(): WorksheetFeatureSetDefinitionWrapper | undefined {
         if (!this.currentStateMark.featureSetId) {
             return undefined;
         }
-        return this.worksheetDefinition.getFeatureSetById(this.currentStateMark.featureSetId);
+        return this.worksheetDefinition.featureSetById(this.currentStateMark.featureSetId);
     }
 
     get currentFeatureState(): WorksheetFeatureState | undefined {
@@ -62,6 +62,10 @@ export class WorksheetStateWrapper {
 
     get currentFeatureSetStateMark(): WorksheetStateMark | undefined {
         return this.currentStateMark.featureSetId ? new WorksheetStateMark({ worksheetStateId: this.currentStateMark.worksheetStateId, featureSetId: this.currentStateMark.featureSetId }) : undefined;
+    }
+
+    get featureSetStates(): WorksheetFeatureSetState[] {
+        return this.worksheetState.featureSets;
     }
 
     get firstStateMark(): WorksheetStateMark {
