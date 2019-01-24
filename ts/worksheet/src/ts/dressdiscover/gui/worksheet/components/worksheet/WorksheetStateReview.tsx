@@ -32,6 +32,7 @@ class WorksheetStateReviewImpl extends React.Component<WorksheetStateReviewImplP
 
         return (
             <WorksheetStateFrame
+                headline={"Worksheet: " + worksheetState.id.toString()}
                 history={this.props.history}
                 id="worksheet-state-edit"
                 finishButtonEnabled={false}

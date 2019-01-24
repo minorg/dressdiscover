@@ -26,6 +26,7 @@ class WorksheetFeatureSetStateEditOrReviewImpl extends React.Component<{ history
         const { worksheetState } = this.props;
         return (
             <WorksheetStateFrame
+                headline={"Feature Set: " + worksheetState.currentFeatureSetDefinition!.displayName}
                 history={this.props.history}
                 id="worksheet-feature-set-state-edit-or-review"
                 worksheetState={worksheetState}

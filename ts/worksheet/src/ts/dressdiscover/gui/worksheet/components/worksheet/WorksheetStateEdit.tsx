@@ -65,15 +65,17 @@ class WorksheetStateEditImpl extends React.Component<WorksheetStateEditImplProps
     }
 
     render() {
+        const { worksheetState } = this.props;
         return (
             <WorksheetStateFrame
+                headline={"Worksheet: " + worksheetState.id.toString()}
                 history={this.props.history}
                 id="worksheet-state-edit"
                 finishButtonEnabled={false}
                 nextButtonEnabled={this.state.selectedFeatureSetIds.length > 0}
                 previousButtonEnabled={false}
                 save={this.save}
-                worksheetState={this.props.worksheetState}
+                worksheetState={worksheetState}
             >
                 <h4>Select feature sets</h4>
                 <p className="card-text">Select one or more feature sets to describe the object.</p>
@@ -86,7 +88,7 @@ class WorksheetStateEditImpl extends React.Component<WorksheetStateEditImplProps
                         </tr>
                     </thead>
                     <tbody>
-                        {this.props.worksheetState.worksheetDefinition.featureSets.map((featureSetDefinition) =>
+                        {worksheetState.worksheetDefinition.featureSets.map((featureSetDefinition) =>
                             <tr className={classnames({ "feature-set": true, selected: this.isFeatureSetSelected(featureSetDefinition.id) })} key={featureSetDefinition.id.toString()}>
                                 <td className="text-center">
                                     <Button active={this.isFeatureSetSelected(featureSetDefinition.id)} color="secondary" onClick={() => this.onToggleFeatureSet(featureSetDefinition.id)} size="lg">{featureSetDefinition.displayName}</Button>

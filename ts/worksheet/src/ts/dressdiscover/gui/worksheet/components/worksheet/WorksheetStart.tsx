@@ -257,7 +257,6 @@ export class WorksheetStart extends React.Component<WorksheetStartProps, { newWo
                 id="worksheet"
             >
                 <Container fluid>
-                    <Row>&nbsp;</Row>
                     <Row>
                         <Col md="12">
                             <Headline>Worksheet</Headline>

@@ -3,8 +3,8 @@ import './WorksheetStateFrame.scss';
 import * as classnames from 'classnames';
 import { Headline } from 'dressdiscover/gui/worksheet/components/frame/Headline';
 import { History } from 'history';
-import * as React from 'react';
 import { ReactNode } from 'react';
+import * as React from 'react';
 import { Link } from 'react-router-dom';
 import { BreadcrumbItem, Button, Col, Container, Progress, Row } from 'reactstrap';
 import Breadcrumb from 'reactstrap/lib/Breadcrumb';
@@ -16,6 +16,7 @@ import { ActiveNavbarItem } from '../navbar/ActiveNavbarItem';
 
 interface Props {
     children?: ReactNode;
+    headline: string;
     history: History;
     id: string;
     finishButtonEnabled: boolean;
@@ -67,11 +68,9 @@ export class WorksheetStateFrame extends React.Component<Props> {
     render() {
         const { worksheetState } = this.props;
 
-        const headline = "Worksheet: " + worksheetState.id.toString();
-
         const breadcrumbItems: ReactNode[] = [];
         breadcrumbItems.push(<BreadcrumbItem active={!worksheetState.currentStateMark.featureSetId && !worksheetState.currentStateMark.featureId} key="worksheet-state-mark">
-            <Link to={Hrefs.worksheetState(worksheetState.firstStateMark)}>{headline}</Link>
+            <Link to={Hrefs.worksheetState(worksheetState.firstStateMark)}>Worksheet: {worksheetState.id.toString()}</Link>
         </BreadcrumbItem>);
         const currentFeatureSetStateMark = worksheetState.currentFeatureSetStateMark;
         const currentFeatureStateMark = worksheetState.currentFeatureStateMark;
@@ -111,7 +110,7 @@ export class WorksheetStateFrame extends React.Component<Props> {
                 <Container fluid>
                     <Row>
                         <Col md="12">
-                            <Headline>{headline}</Headline>
+                            <Headline>{this.props.headline}</Headline>
                         </Col>
                     </Row>
                     <Row>

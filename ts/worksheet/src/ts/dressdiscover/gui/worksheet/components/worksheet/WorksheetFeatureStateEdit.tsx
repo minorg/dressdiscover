@@ -75,6 +75,7 @@ class WorksheetFeatureStateEditImpl extends React.Component<WorksheetFeatureStat
         const { worksheetState } = this.props;
         return (
             <WorksheetStateFrame
+                headline={"Feature: " + worksheetState.currentFeatureDefinition!.displayName}
                 history={this.props.history}
                 id="worksheet-feature-state-edit"
                 save={this.save}
