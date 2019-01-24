@@ -1,4 +1,5 @@
 import { Frame } from 'dressdiscover/gui/worksheet/components/frame/Frame';
+import { Headline } from 'dressdiscover/gui/worksheet/components/frame/Headline';
 import { ActiveNavbarItem } from 'dressdiscover/gui/worksheet/components/navbar/ActiveNavbarItem';
 import * as React from 'react';
 import { Col, Container, Row } from 'reactstrap';
@@ -10,10 +11,14 @@ export class Credits extends React.Component {
         return (
             <Frame
                 activeNavItem={ActiveNavbarItem.Home}
-                headline="Credits"
                 id="credits"
             >
                 <Container fluid>
+                    <Row>
+                        <Col md="12">
+                            <Headline>Credits</Headline>
+                        </Col>
+                    </Row>
                     <Row />
                     <Row>
                         <Col sm={{ size: 8, offset: 2 }}>

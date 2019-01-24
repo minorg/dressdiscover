@@ -10,7 +10,6 @@ export class Home extends React.Component {
     return (
       <Frame
         activeNavItem={ActiveNavbarItem.Home}
-        headline="Home"
         id="home"
       >
         Welcome to DressDiscover!

@@ -27,6 +27,7 @@ export class Routes extends React.Component {
         <Route exact path="/worksheet/state/:worksheetStateId/edit" component={WorksheetStateEdit} />
         <Route exact path="/worksheet/state/:worksheetStateId/review" component={WorksheetStateReview} />
         <Route exact path="/worksheet/state/:worksheetStateId/feature_set/:featureSetId/edit" component={WorksheetFeatureSetStateEditOrReview}/>
+        <Route exact path="/worksheet/state/:worksheetStateId/feature_set/:featureSetId/review" component={WorksheetFeatureSetStateEditOrReview}/>
         <Route exact path="/worksheet/state/:worksheetStateId/feature_set/:featureSetId/feature/:featureId/edit" component={WorksheetFeatureStateEdit}/>
         <Route component={NoRoute}/>
       </Switch>

@@ -1,9 +1,13 @@
+import './WorksheetStateFrame.scss';
+
 import * as classnames from 'classnames';
+import { Headline } from 'dressdiscover/gui/worksheet/components/frame/Headline';
 import { History } from 'history';
-import { ReactNode } from 'react';
 import * as React from 'react';
+import { ReactNode } from 'react';
 import { Link } from 'react-router-dom';
 import { BreadcrumbItem, Button, Col, Container, Progress, Row } from 'reactstrap';
+import Breadcrumb from 'reactstrap/lib/Breadcrumb';
 
 import { Hrefs } from '../../Hrefs';
 import { WorksheetStateWrapper } from '../../models/worksheet/WorksheetStateWrapper';
@@ -98,26 +102,32 @@ export class WorksheetStateFrame extends React.Component<Props> {
             </Row>
         );
 
-        let progressBar: ReactNode | null;
-        if (worksheetState.lastStateMarkIndex > 0) {
-            progressBar = (
-                <Row style={{ height: "20px" }}>
-                    <Progress className="ml-4" bar striped value={worksheetState.progressPercentage}></Progress>
-                </Row>
-            );
-        } else {
-            progressBar = null;
-        }
-
         return (
             <Frame
                 activeNavItem={ActiveNavbarItem.Worksheet}
-                breadcrumbItems={<React.Fragment>{breadcrumbItems}</React.Fragment>}
-                headline={headline}
+                className="worksheet-state-frame"
                 id={this.props.id}
             >
                 <Container fluid>
-                    {progressBar}
+                    <Row>
+                        <Col md="12">
+                            <Headline>{headline}</Headline>
+                        </Col>
+                    </Row>
+                    <Row>
+                        <Col md="12">
+                        </Col>
+                    </Row>
+                    <Row>
+                        <Col md="12">
+                            <Breadcrumb>
+                                {breadcrumbItems}
+                            </Breadcrumb>
+                            <div className="progress-wrapper">
+                                <Progress className="h-100" bar value={worksheetState.progressPercentage}></Progress>
+                            </div>
+                        </Col>
+                    </Row>
                     <Row>
                         &nbsp;
                     </Row>

@@ -1,4 +1,5 @@
 import { Frame } from 'dressdiscover/gui/worksheet/components/frame/Frame';
+import { Headline } from 'dressdiscover/gui/worksheet/components/frame/Headline';
 import { ActiveNavbarItem } from 'dressdiscover/gui/worksheet/components/navbar/ActiveNavbarItem';
 import { Hrefs } from 'dressdiscover/gui/worksheet/Hrefs';
 import * as React from 'react';
@@ -11,10 +12,14 @@ export class Privacy extends React.Component {
         return (
             <Frame
                 activeNavItem={ActiveNavbarItem.Home}
-                headline="Privacy"
                 id="privacy"
             >
                 <Container fluid>
+                    <Row>
+                        <Col md="12">
+                            <Headline>Privacy</Headline>
+                        </Col>
+                    </Row>
                     <Row />
                     <Row>
                         <Col sm={{ size: 8, offset: 2 }}>

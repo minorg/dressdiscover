@@ -4,6 +4,7 @@ import * as classnames from 'classnames';
 import { WorksheetStateId } from 'dressdiscover/api/models/worksheet/worksheet_state_id';
 import { WorksheetStateMark } from 'dressdiscover/api/models/worksheet/worksheet_state_mark';
 import { GenericErrorHandler } from 'dressdiscover/gui/worksheet/components/error/GenericErrorHandler';
+import { Headline } from 'dressdiscover/gui/worksheet/components/frame/Headline';
 import { WorksheetStore } from 'dressdiscover/gui/worksheet/stores/worksheet/WorksheetStore';
 import * as invariant from 'invariant';
 import { inject, observer } from 'mobx-react';
@@ -253,11 +254,15 @@ export class WorksheetStart extends React.Component<WorksheetStartProps, { newWo
         return (
             <Frame
                 activeNavItem={ActiveNavbarItem.Worksheet}
-                headline="Worksheet"
                 id="worksheet"
             >
                 <Container fluid>
                     <Row>&nbsp;</Row>
+                    <Row>
+                        <Col md="12">
+                            <Headline>Worksheet</Headline>
+                        </Col>
+                    </Row>
                     <Row>
                         <Col className={classnames(["d-lg-block", "d-md-none", "d-sm-none", "d-xs-none", "d-xl-block", "text-center"])} lg={{ offset: 1, size: 4 }} >
                             <img className="img-fluid" src="../img/start.jpg"></img>

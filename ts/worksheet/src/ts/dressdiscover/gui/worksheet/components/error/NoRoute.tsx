@@ -10,8 +10,6 @@ export class NoRoute extends React.Component<RouteComponentProps> {
         return (
             <Frame
                 activeNavItem={ActiveNavbarItem.Home}
-                breadcrumbItems={null}
-                headline="Not Found"
                 id="no-route">
                 <Container fluid>
                     <Row>
