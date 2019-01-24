@@ -1,5 +1,8 @@
 import * as classnames from 'classnames';
 import { WorksheetFeatureValueId } from 'dressdiscover/api/models/worksheet/worksheet_feature_value_id';
+import {
+    WorksheetDescriptionComponent,
+} from 'dressdiscover/gui/worksheet/components/worksheet/WorksheetDescriptionComponent';
 import { WorksheetStateFrame } from 'dressdiscover/gui/worksheet/components/worksheet/WorksheetStateFrame';
 import { WorksheetStateGetter } from 'dressdiscover/gui/worksheet/components/worksheet/WorksheetStateGetter';
 import { WorksheetStateMarkParser } from 'dressdiscover/gui/worksheet/components/worksheet/WorksheetStateMarkParser';
@@ -10,7 +13,7 @@ import { WorksheetStateWrapper } from 'dressdiscover/gui/worksheet/models/worksh
 import { History } from 'history';
 import * as React from 'react';
 import { RouteComponentProps } from 'react-router';
-import { Card, CardBody, Container, Row } from 'reactstrap';
+import { Card, CardBody, Collapse, Container, Row } from 'reactstrap';
 import CardHeader from 'reactstrap/lib/CardHeader';
 
 export class WorksheetFeatureStateEdit extends React.Component<RouteComponentProps<WorksheetStateMarkRouteParams>> {
@@ -111,7 +114,7 @@ class WorksheetFeatureValueStateEdit extends React.Component<WorksheetFeatureVal
         super(props);
         this.onToggleDescription = this.onToggleDescription.bind(this);
         this.onToggleSelected = this.onToggleSelected.bind(this);
-        this.state = { descriptionShown: true };
+        this.state = { descriptionShown: false };
     }
 
     onToggleDescription() {
@@ -125,7 +128,7 @@ class WorksheetFeatureValueStateEdit extends React.Component<WorksheetFeatureVal
     render() {
         const { featureValueDefinition: definition } = this.props;
         return (
-            <Card className={classnames({ "mb-4": true, "mr-4": true })} style={{ borderWidth: "8px" }}>
+            <Card className={classnames({ "border-info": this.props.selected, "mb-4": true, "mr-4": true })} style={{ borderWidth: "8px" }}>
                 <CardHeader>
                     <a onClick={this.onToggleSelected}>{definition.displayName}</a>
                 </CardHeader>
@@ -147,6 +150,20 @@ class WorksheetFeatureValueStateEdit extends React.Component<WorksheetFeatureVal
                             </figcaption>
                         ) : null}
                     </figure>
+                    {definition.description ? (
+                        <div className="card-text">
+                            <a onClick={this.onToggleDescription}>Description</a>
+                            <div className="float-right">
+                                <a onClick={this.onToggleDescription} style={{ textDecoration: "none" }}>
+                                    <i className={classnames({ fas: true, "fa-chevron-down": this.state.descriptionShown, "fa-chevron-right": !this.state.descriptionShown })}></i>
+                                </a>
+                            </div>
+                            <br />
+                            <Collapse isOpen={this.state.descriptionShown}>
+                                <WorksheetDescriptionComponent description={definition.description}></WorksheetDescriptionComponent>
+                            </Collapse>
+                        </div>
+                    ) : null}
                 </CardBody>
             </Card>
         );
