@@ -1,9 +1,12 @@
+import { WorksheetFeatureId } from 'dressdiscover/api/models/worksheet/worksheet_feature_id';
 import { WorksheetFeatureSetId } from 'dressdiscover/api/models/worksheet/worksheet_feature_set_id';
 import { WorksheetFeatureSetState } from 'dressdiscover/api/models/worksheet/worksheet_feature_set_state';
 import { WorksheetFeatureState } from 'dressdiscover/api/models/worksheet/worksheet_feature_state';
+import { WorksheetFeatureValueId } from 'dressdiscover/api/models/worksheet/worksheet_feature_value_id';
 import { WorksheetState } from 'dressdiscover/api/models/worksheet/worksheet_state';
 import { WorksheetStateMark } from 'dressdiscover/api/models/worksheet/worksheet_state_mark';
 import { WorksheetStore } from 'dressdiscover/gui/worksheet/stores/worksheet/WorksheetStore';
+import * as _ from 'lodash';
 
 import { WorksheetDefinitionWrapper } from './WorksheetDefinitionWrapper';
 import { WorksheetFeatureDefinitionWrapper } from './WorksheetFeatureDefinitionWrapper';
@@ -104,6 +107,32 @@ export class WorksheetStateWrapper {
             }
         }
         this.worksheetState.featureSets = selectedFeatureSetStates;
+    }
+
+    selectFeatureValues(featureValueIds: WorksheetFeatureValueId[] | undefined) {
+        let featureState = this.currentFeatureState;
+        let featureSetState = this.currentFeatureSetState;
+
+        if (!_.isEmpty(featureValueIds)) {
+            if (!featureState) {
+                if (!featureSetState) {
+                    console.debug("creating new feature set " + this.currentStateMark.featureSetId);
+                    featureSetState = new WorksheetFeatureSetState({ features: [], id: this.currentStateMark.featureSetId as WorksheetFeatureSetId });
+                    this.worksheetState.featureSets.push(featureSetState);
+                }
+
+                console.debug("creating new feature " + this.currentStateMark.featureId);
+                featureState = new WorksheetFeatureState({ id: this.currentStateMark.featureId as WorksheetFeatureId });
+                featureSetState.features.push(featureState);
+            }
+
+            featureState.selectedValueIds = featureValueIds;
+        } else if (featureState && featureSetState) {
+            // No selected values, remove the feature
+            console.debug("removing empty feature " + this.currentStateMark.featureId);
+            _.remove(featureSetState.features, (feature) => feature.id.equals(this.currentStateMark.featureId));
+            // Don't remove empty feature sets, they're used to indicate which were selected.
+        }
     }
 
     get selectedFeatureSetIds(): WorksheetFeatureSetId[] {
