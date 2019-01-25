@@ -11,6 +11,7 @@ import * as invariant from 'invariant';
 import * as _ from 'lodash';
 import { inject, observer } from 'mobx-react';
 import * as React from 'react';
+import Hammer from 'react-hammerjs';
 import * as ReactLoader from 'react-loader';
 import { Redirect } from 'react-router';
 import { Link } from 'react-router-dom';
@@ -29,6 +30,9 @@ interface NewWorksheetStateProps {
 class NewWorksheetState extends React.Component<NewWorksheetStateProps, { newWorksheetStateId: string; }> {
     constructor(props: NewWorksheetStateProps) {
         super(props);
+        this.onChangeNewWorksheetStateId = this.onChangeNewWorksheetStateId.bind(this);
+        this.onKeypressNewWorksheetStateId = this.onKeypressNewWorksheetStateId.bind(this);
+        this.onSubmit = this.onSubmit.bind(this);
         this.state = { newWorksheetStateId: '' };
     }
 
@@ -62,23 +66,27 @@ class NewWorksheetState extends React.Component<NewWorksheetStateProps, { newWor
 
     render() {
         return (
-            <Card>
-                <CardHeader>
-                    <CardTitle className={classnames(["mb-0", "text-center"])}>Start a new worksheet</CardTitle>
-                </CardHeader>
-                <CardBody>
-                    <Container fluid>
-                        <Row>
-                            <Col xs="10">
-                                <Input autoFocus className="form-control" onChange={this.onChangeNewWorksheetStateId.bind(this)} onKeyPress={this.onKeypressNewWorksheetStateId.bind(this)} placeholder="Object id or accession number (optional)" type="text" value={this.state.newWorksheetStateId} />
-                            </Col>
-                            <Col xs="2">
-                                <Button color="primary" onClick={this.onSubmit.bind(this)}>Create</Button>
-                            </Col>
-                        </Row>
-                    </Container>
-                </CardBody>
-            </Card>);
+            <Hammer onSwipeRight={this.onSubmit}>
+                <div>
+                    <Card>
+                        <CardHeader>
+                            <CardTitle className={classnames(["mb-0", "text-center"])}>Start a new worksheet</CardTitle>
+                        </CardHeader>
+                        <CardBody>
+                            <Container fluid>
+                                <Row>
+                                    <Col xs="10">
+                                        <Input autoFocus className="form-control" onChange={this.onChangeNewWorksheetStateId.bind(this)} onKeyPress={this.onKeypressNewWorksheetStateId.bind(this)} placeholder="Object id or accession number (optional)" type="text" value={this.state.newWorksheetStateId} />
+                                    </Col>
+                                    <Col xs="2">
+                                        <Button color="primary" onClick={this.onSubmit.bind(this)}>Create</Button>
+                                    </Col>
+                                </Row>
+                            </Container>
+                        </CardBody>
+                    </Card>
+                </div>
+            </Hammer>);
     }
 }
 
@@ -99,6 +107,13 @@ class ExistingWorksheetState extends React.Component<ExistingWorksheetStateProps
 
     constructor(props: ExistingWorksheetStateProps) {
         super(props);
+        this.onClickCancelButton = this.onClickCancelButton.bind(this);
+        this.onChangeNewId = this.onChangeNewId.bind(this);
+        this.onClickDeleteButton = this.onClickDeleteButton.bind(this);
+        this.onClickDeleteConfirmButton = this.onClickDeleteConfirmButton.bind(this);
+        this.onClickRenameButton = this.onClickRenameButton.bind(this);
+        this.onClickRenameConfirmButton = this.onClickRenameConfirmButton.bind(this);
+        this.onKeypressNewId = this.onKeypressNewId.bind(this);
         this.state = this.START_STATE;
     }
 
