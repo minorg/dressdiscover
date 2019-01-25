@@ -4,45 +4,8 @@ import { WorksheetStateMark } from 'dressdiscover/api/models/worksheet/worksheet
 import { WorksheetDefinitionWrapper } from './WorksheetDefinitionWrapper';
 
 export class WorksheetStateMachine {
-    constructor(worksheetDefinition: WorksheetDefinitionWrapper, worksheetState: WorksheetState) {
-        // First state, always the worksheet start
-        const worksheetStateId = worksheetState.id;
-        this.stateMarks.push(new WorksheetStateMark({ worksheetStateId }));
-
-        if (worksheetState.featureSets.length > 0) {
-            for (const featureSetState of worksheetState.featureSets) {
-                const featureSetId = featureSetState.id;
-                const featureSetDefinition = worksheetDefinition.featureSetById(featureSetId);
-
-                // Feature set start
-                this.stateMarks.push(new WorksheetStateMark({
-                    featureSetId,
-                    worksheetStateId
-                }));
-
-                for (const featureId of featureSetDefinition.featureIds) {
-                    // Feature start is the same as review
-                    this.stateMarks.push(new WorksheetStateMark({
-                        featureId,
-                        featureSetId,
-                        worksheetStateId
-                    }));
-                }
-
-                // Feature set review
-                this.stateMarks.push(new WorksheetStateMark({
-                    featureSetId,
-                    review: true,
-                    worksheetStateId
-                }));
-            }
-        }
-
-        // Worksheet review, always the last state
-        this.stateMarks.push(new WorksheetStateMark({
-            review: true,
-            worksheetStateId
-        }));
+    constructor(private readonly worksheetDefinition: WorksheetDefinitionWrapper, worksheetState: WorksheetState) {
+        this.recalculateStateMarks(worksheetState);
     }
 
     get firstStateMark(): WorksheetStateMark {
@@ -80,6 +43,49 @@ export class WorksheetStateMachine {
             throw new EvalError();
         }
         return this.stateMarks[stateMarkI - 1];
+    }
+
+    recalculateStateMarks(worksheetState: WorksheetState) {
+        this.stateMarks = [];
+
+        // First state, always the worksheet start
+        const worksheetStateId = worksheetState.id;
+        this.stateMarks.push(new WorksheetStateMark({ worksheetStateId }));
+
+        if (worksheetState.featureSets.length > 0) {
+            for (const featureSetState of worksheetState.featureSets) {
+                const featureSetId = featureSetState.id;
+                const featureSetDefinition = this.worksheetDefinition.featureSetById(featureSetId);
+
+                // Feature set start
+                this.stateMarks.push(new WorksheetStateMark({
+                    featureSetId,
+                    worksheetStateId
+                }));
+
+                for (const featureId of featureSetDefinition.featureIds) {
+                    // Feature start is the same as review
+                    this.stateMarks.push(new WorksheetStateMark({
+                        featureId,
+                        featureSetId,
+                        worksheetStateId
+                    }));
+                }
+
+                // Feature set review
+                this.stateMarks.push(new WorksheetStateMark({
+                    featureSetId,
+                    review: true,
+                    worksheetStateId
+                }));
+            }
+        }
+
+        // Worksheet review, always the last state
+        this.stateMarks.push(new WorksheetStateMark({
+            review: true,
+            worksheetStateId
+        }));
     }
 
     private stateMarks: WorksheetStateMark[] = [];
