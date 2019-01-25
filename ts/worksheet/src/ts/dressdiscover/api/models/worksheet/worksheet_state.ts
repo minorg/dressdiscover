@@ -3,71 +3,45 @@ import { WorksheetStateId } from "./worksheet_state_id";
 
 export class WorksheetState {
     constructor(kwds: {featureSets: WorksheetFeatureSetState[], id: WorksheetStateId, text?: string}) {
-        this._featureSets = WorksheetState._validateFeatureSets(kwds.featureSets);
-        this._id = WorksheetState._validateId(kwds.id);
+        this.featureSetsPrivate = WorksheetState.validateFeatureSets(kwds.featureSets);
+        this.idPrivate = WorksheetState.validateId(kwds.id);
         if (kwds.text != null) {
-            this._text = WorksheetState._validateText(kwds.text);
+            this.textPrivate = WorksheetState.validateText(kwds.text);
         } else {
-            this._text = undefined;
+            this.textPrivate = undefined;
         }
     }
 
     get featureSets(): WorksheetFeatureSetState[] {
-        return this._featureSets;
+        return this.featureSetsPrivate;
     }
 
     set featureSets(featureSets: WorksheetFeatureSetState[]) {
-        this._featureSets = WorksheetState._validateFeatureSets(featureSets);
+        this.featureSetsPrivate = WorksheetState.validateFeatureSets(featureSets);
     }
 
     get id(): WorksheetStateId {
-        return this._id;
+        return this.idPrivate;
     }
 
     set id(id: WorksheetStateId) {
-        this._id = WorksheetState._validateId(id);
+        this.idPrivate = WorksheetState.validateId(id);
     }
 
     get text(): string | undefined {
-        return this._text;
+        return this.textPrivate;
     }
 
     set text(text: string | undefined) {
-        this._text = WorksheetState._validateText(text);
+        this.textPrivate = WorksheetState.validateText(text);
     }
 
-    private static _validateFeatureSets(featureSets: WorksheetFeatureSetState[]): WorksheetFeatureSetState[] {
-        if (featureSets == null) {
-            throw new RangeError('featureSets is null or undefined');
-        }
-        return featureSets;
+    public deepCopy(): WorksheetState {
+        return new WorksheetState({ featureSets: (this.featureSets).map((value0) => value0.deepCopy()), id: this.id, text: this.text });
     }
 
-    private static _validateId(id: WorksheetStateId): WorksheetStateId {
-        if (id == null) {
-            throw new RangeError('id is null or undefined');
-        }
-        return id;
-    }
-
-    private static _validateText(text: string | undefined): string | undefined {
-        if (text != null) {
-            if (text.trim().length == 0) {
-                throw new RangeError('text is blank');
-            }
-            if (text.length < 1) {
-                throw new RangeError("expected len(text) to be >= 1, was " + text.length);
-            }
-        }
-        return text;
-    }
-
-    deepCopy(): WorksheetState {
-        return new WorksheetState({ featureSets: function(__value0: WorksheetFeatureSetState[]) { let __copy0: WorksheetFeatureSetState[] = []; for (let __i0 = 0; __i0 < __value0.length; __i0++) { __copy0.push(__value0[__i0].deepCopy()); } return __copy0; }(this.featureSets), id: this.id, text: this.text });
-    }
-
-    equals(other: WorksheetState): boolean {
-        if (!(function(left: WorksheetFeatureSetState[], right: WorksheetFeatureSetState[]): boolean { if (left.length != right.length) { return false; } for (let elementI = 0; elementI < left.length; elementI++) { if (!(left[elementI].equals(right[elementI]))) { return false; } } return true; }(this.featureSets, other.featureSets))) {
+    public equals(other: WorksheetState): boolean {
+        if (!(((left: WorksheetFeatureSetState[], right: WorksheetFeatureSetState[]): boolean => { if (left.length !== right.length) { return false; } for (let elementI = 0; elementI < left.length; elementI++) { if (!(left[elementI].equals(right[elementI]))) { return false; } } return true; })(this.featureSets, other.featureSets))) {
             return false;
         }
 
@@ -82,55 +56,81 @@ export class WorksheetState {
         return true;
     }
 
-    static fromThryftJsonObject(json: any): WorksheetState {
+    public static fromThryftJsonObject(json: any): WorksheetState {
         let featureSets: WorksheetFeatureSetState[] | undefined;
         let id: WorksheetStateId | undefined;
         let text: string | undefined;
-        for (let fieldName in json) {
-            if (fieldName == "feature_sets") {
-                featureSets = function(json: any[]): WorksheetFeatureSetState[] { let sequence: WorksheetFeatureSetState[] = []; for (let i = 0; i < json.length; i++) { sequence.push(WorksheetFeatureSetState.fromThryftJsonObject(json[i])); } return sequence; }(json[fieldName]);
-            } else if (fieldName == "id") {
+        for (const fieldName in json) {
+            if (fieldName === "feature_sets") {
+                featureSets = (json[fieldName]).map((element: any) => WorksheetFeatureSetState.fromThryftJsonObject(element));
+            } else if (fieldName === "id") {
                 id = WorksheetStateId.parse(json[fieldName]);
-            } else if (fieldName == "text") {
+            } else if (fieldName === "text") {
                 text = json[fieldName];
             }
         }
         if (featureSets == null) {
-            throw new TypeError('featureSets is required');
+            throw new TypeError("featureSets is required");
         }
         if (id == null) {
-            throw new TypeError('id is required');
+            throw new TypeError("id is required");
         }
-        return new WorksheetState({featureSets: featureSets, id: id, text: text});
+        return new WorksheetState({featureSets, id, text});
     }
 
-    toJsonObject(): any {
+    public toJsonObject(): any {
         const json: {[index: string]: any} = {};
-        json["feature_sets"] = function (__inArray: WorksheetFeatureSetState[]): any[] { let __outArray: any[] = []; for (let __i = 0; __i < __inArray.length; __i++) { __outArray.push(__inArray[__i].toJsonObject()); } return __outArray; }(this.featureSets);
-        json["id"] = this.id.toString();
+        json.feature_sets = (this.featureSets).map((inElement) => inElement.toJsonObject());
+        json.id = this.id.toString();
         if (this.text != null) {
-            json["text"] = this.text;
+            json.text = this.text;
         }
         return json;
     }
 
-    toString(): string {
+    public toString(): string {
         return "WorksheetState(" + JSON.stringify(this.toThryftJsonObject()) + ")";
     }
 
-    toThryftJsonObject(): any {
+    public toThryftJsonObject(): any {
         const json: {[index: string]: any} = {};
-        json["feature_sets"] = function (__inArray: WorksheetFeatureSetState[]): any[] { let __outArray: any[] = []; for (let __i = 0; __i < __inArray.length; __i++) { __outArray.push(__inArray[__i].toThryftJsonObject()); } return __outArray; }(this.featureSets);
-        json["id"] = this.id.toString();
+        json.feature_sets = (this.featureSets).map((inElement) => inElement.toThryftJsonObject());
+        json.id = this.id.toString();
         if (this.text != null) {
-            json["text"] = this.text;
+            json.text = this.text;
         }
         return json;
     }
 
-    private _featureSets: WorksheetFeatureSetState[];
+    private static validateFeatureSets(featureSets: WorksheetFeatureSetState[]): WorksheetFeatureSetState[] {
+        if (featureSets == null) {
+            throw new RangeError("featureSets is null or undefined");
+        }
+        return featureSets;
+    }
 
-    private _id: WorksheetStateId;
+    private static validateId(id: WorksheetStateId): WorksheetStateId {
+        if (id == null) {
+            throw new RangeError("id is null or undefined");
+        }
+        return id;
+    }
 
-    private _text?: string;
+    private static validateText(text: string | undefined): string | undefined {
+        if (text != null) {
+            if (text.trim().length === 0) {
+                throw new RangeError("text is blank");
+            }
+            if (text.length < 1) {
+                throw new RangeError("expected len(text) to be >= 1, was " + text.length);
+            }
+        }
+        return text;
+    }
+
+    private featureSetsPrivate: WorksheetFeatureSetState[];
+
+    private idPrivate: WorksheetStateId;
+
+    private textPrivate?: string;
 }

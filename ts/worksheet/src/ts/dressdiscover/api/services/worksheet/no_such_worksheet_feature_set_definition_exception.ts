@@ -2,29 +2,22 @@ import { WorksheetFeatureSetId } from "../../models/worksheet/worksheet_feature_
 
 export class NoSuchWorksheetFeatureSetDefinitionException {
     constructor(kwds: {id: WorksheetFeatureSetId}) {
-        this._id = NoSuchWorksheetFeatureSetDefinitionException._validateId(kwds.id);
+        this.idPrivate = NoSuchWorksheetFeatureSetDefinitionException.validateId(kwds.id);
     }
 
     get id(): WorksheetFeatureSetId {
-        return this._id;
+        return this.idPrivate;
     }
 
     set id(id: WorksheetFeatureSetId) {
-        this._id = NoSuchWorksheetFeatureSetDefinitionException._validateId(id);
+        this.idPrivate = NoSuchWorksheetFeatureSetDefinitionException.validateId(id);
     }
 
-    private static _validateId(id: WorksheetFeatureSetId): WorksheetFeatureSetId {
-        if (id == null) {
-            throw new RangeError('id is null or undefined');
-        }
-        return id;
-    }
-
-    deepCopy(): NoSuchWorksheetFeatureSetDefinitionException {
+    public deepCopy(): NoSuchWorksheetFeatureSetDefinitionException {
         return new NoSuchWorksheetFeatureSetDefinitionException({ id: this.id });
     }
 
-    equals(other: NoSuchWorksheetFeatureSetDefinitionException): boolean {
+    public equals(other: NoSuchWorksheetFeatureSetDefinitionException): boolean {
         if (!(this.id.equals(other.id))) {
             return false;
         }
@@ -32,34 +25,41 @@ export class NoSuchWorksheetFeatureSetDefinitionException {
         return true;
     }
 
-    static fromThryftJsonObject(json: any): NoSuchWorksheetFeatureSetDefinitionException {
+    public static fromThryftJsonObject(json: any): NoSuchWorksheetFeatureSetDefinitionException {
         let id: WorksheetFeatureSetId | undefined;
-        for (let fieldName in json) {
-            if (fieldName == "id") {
+        for (const fieldName in json) {
+            if (fieldName === "id") {
                 id = WorksheetFeatureSetId.parse(json[fieldName]);
             }
         }
         if (id == null) {
-            throw new TypeError('id is required');
+            throw new TypeError("id is required");
         }
-        return new NoSuchWorksheetFeatureSetDefinitionException({id: id});
+        return new NoSuchWorksheetFeatureSetDefinitionException({id});
     }
 
-    toJsonObject(): any {
+    public toJsonObject(): any {
         const json: {[index: string]: any} = {};
-        json["id"] = this.id.toString();
+        json.id = this.id.toString();
         return json;
     }
 
-    toString(): string {
+    public toString(): string {
         return "NoSuchWorksheetFeatureSetDefinitionException(" + JSON.stringify(this.toThryftJsonObject()) + ")";
     }
 
-    toThryftJsonObject(): any {
+    public toThryftJsonObject(): any {
         const json: {[index: string]: any} = {};
-        json["id"] = this.id.toString();
+        json.id = this.id.toString();
         return json;
     }
 
-    private _id: WorksheetFeatureSetId;
+    private static validateId(id: WorksheetFeatureSetId): WorksheetFeatureSetId {
+        if (id == null) {
+            throw new RangeError("id is null or undefined");
+        }
+        return id;
+    }
+
+    private idPrivate: WorksheetFeatureSetId;
 }

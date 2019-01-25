@@ -1,8 +1,8 @@
 import { Frame } from 'dressdiscover/gui/worksheet/components/frame/Frame';
+import { Headline } from 'dressdiscover/gui/worksheet/components/frame/Headline';
 import { ActiveNavbarItem } from 'dressdiscover/gui/worksheet/components/navbar/ActiveNavbarItem';
 import { Hrefs } from 'dressdiscover/gui/worksheet/Hrefs';
 import * as React from 'react';
-import { Link } from 'react-router-dom';
 import { Col, Container, Row } from 'reactstrap';
 import Card from 'reactstrap/lib/Card';
 import CardBody from 'reactstrap/lib/CardBody';
@@ -12,10 +12,14 @@ export class Privacy extends React.Component {
         return (
             <Frame
                 activeNavItem={ActiveNavbarItem.Home}
-                headline="Privacy"
                 id="privacy"
             >
                 <Container fluid>
+                    <Row>
+                        <Col md="12">
+                            <Headline>Privacy</Headline>
+                        </Col>
+                    </Row>
                     <Row />
                     <Row>
                         <Col sm={{ size: 8, offset: 2 }}>
@@ -82,8 +86,8 @@ export class Privacy extends React.Component {
                                             information.
                         </p>
 
-                                        <p>If you feel that we are not abiding by this privacy policy, you should
-                            <Link to={Hrefs.contact}>contact us immediately</Link>.</p>
+                                        <p>If you feel that we are not abiding by this privacy policy, you should&nbsp;
+                            <a href={Hrefs.contact}>contact us immediately</a>.</p>
                                     </Container>    </CardBody>
                             </Card>
                         </Col>

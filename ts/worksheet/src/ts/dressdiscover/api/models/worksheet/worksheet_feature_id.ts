@@ -1,6 +1,6 @@
 export class WorksheetFeatureId {
     public static parse(id: string): WorksheetFeatureId {
-        if (id.trim().length == 0) {
+        if (id.trim().length === 0) {
             throw new RangeError("id is empty");
         }
         return new WorksheetFeatureId(id);
@@ -10,16 +10,16 @@ export class WorksheetFeatureId {
         if (typeof(other) === "undefined") {
             return false;
         }
-        return this._id == other._id;
+        return this.id === other.id;
     }
 
     public toString(): string {
-        return this._id;
+        return this.id;
     }
 
     private constructor(id: string) {
-        this._id = id;
+        this.id = id;
     }
 
-    private _id: string;
+    private id: string;
 }

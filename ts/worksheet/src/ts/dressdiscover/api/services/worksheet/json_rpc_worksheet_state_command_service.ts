@@ -8,25 +8,25 @@ import { WorksheetStateId } from "../../models/worksheet/worksheet_state_id";
 
 export class JsonRpcWorksheetStateCommandService implements WorksheetStateCommandService {
     constructor(kwds: { endpointUrl: string, methodEndpoints?: boolean }) {
-        this._endpointUrl = kwds.endpointUrl;
-        this._methodEndpoints = !!kwds.methodEndpoints;
+        this.endpointUrl = kwds.endpointUrl;
+        this.methodEndpoints = !!kwds.methodEndpoints;
     }
 
-    deleteWorksheetState(kwds: {id: WorksheetStateId}): Promise<void> {
-        const __jsonrpc_params: {[index: string]: any} = {};
-        __jsonrpc_params["id"] = kwds.id.toString();
+    public deleteWorksheetState(kwds: {id: WorksheetStateId}): Promise<void> {
+        const jsonrpcParams: {[index: string]: any} = {};
+        jsonrpcParams.id = kwds.id.toString();
 
         return axios.post(
-            this._endpointUrl + (this._methodEndpoints ? "/delete_worksheet_state" : ""),
+            this.endpointUrl + (this.methodEndpoints ? "/delete_worksheet_state" : ""),
             {
-                jsonrpc: '2.0',
-                method: 'delete_worksheet_state',
-                params: __jsonrpc_params,
-                id: '1234'
+                id: "1234",
+                jsonrpc: "2.0",
+                method: "delete_worksheet_state",
+                params: jsonrpcParams,
             },
             {
-                withCredentials: false
-            }
+                withCredentials: false,
+            },
         )
         .then(
             (response) => {
@@ -35,8 +35,8 @@ export class JsonRpcWorksheetStateCommandService implements WorksheetStateComman
                 }
 
                 if (response.data.error["@class"] && response.data.error.data) {
-                    const __error_class = response.data.error["@class"];
-                    if (__error_class == 'dressdiscover.api.services.io_exception.IoException') {
+                    const errorClass = response.data.error["@class"];
+                    if (errorClass === "dressdiscover.api.services.io_exception.IoException") {
                         throw IoException.fromThryftJsonObject(response.data.error.data);
                     } else {
                         throw new Error(response.data.error.message);
@@ -53,25 +53,25 @@ export class JsonRpcWorksheetStateCommandService implements WorksheetStateComman
                 } else {
                     throw error;
                 }
-            }
+            },
         );
     }
 
-    putWorksheetState(kwds: {state: WorksheetState}): Promise<void> {
-        const __jsonrpc_params: {[index: string]: any} = {};
-        __jsonrpc_params["state"] = kwds.state.toThryftJsonObject();
+    public putWorksheetState(kwds: {state: WorksheetState}): Promise<void> {
+        const jsonrpcParams: {[index: string]: any} = {};
+        jsonrpcParams.state = kwds.state.toThryftJsonObject();
 
         return axios.post(
-            this._endpointUrl + (this._methodEndpoints ? "/put_worksheet_state" : ""),
+            this.endpointUrl + (this.methodEndpoints ? "/put_worksheet_state" : ""),
             {
-                jsonrpc: '2.0',
-                method: 'put_worksheet_state',
-                params: __jsonrpc_params,
-                id: '1234'
+                id: "1234",
+                jsonrpc: "2.0",
+                method: "put_worksheet_state",
+                params: jsonrpcParams,
             },
             {
-                withCredentials: false
-            }
+                withCredentials: false,
+            },
         )
         .then(
             (response) => {
@@ -80,8 +80,8 @@ export class JsonRpcWorksheetStateCommandService implements WorksheetStateComman
                 }
 
                 if (response.data.error["@class"] && response.data.error.data) {
-                    const __error_class = response.data.error["@class"];
-                    if (__error_class == 'dressdiscover.api.services.io_exception.IoException') {
+                    const errorClass = response.data.error["@class"];
+                    if (errorClass === "dressdiscover.api.services.io_exception.IoException") {
                         throw IoException.fromThryftJsonObject(response.data.error.data);
                     } else {
                         throw new Error(response.data.error.message);
@@ -98,26 +98,26 @@ export class JsonRpcWorksheetStateCommandService implements WorksheetStateComman
                 } else {
                     throw error;
                 }
-            }
+            },
         );
     }
 
-    renameWorksheetState(kwds: {newId: WorksheetStateId, oldId: WorksheetStateId}): Promise<void> {
-        const __jsonrpc_params: {[index: string]: any} = {};
-        __jsonrpc_params["new_id"] = kwds.newId.toString();
-        __jsonrpc_params["old_id"] = kwds.oldId.toString();
+    public renameWorksheetState(kwds: {newId: WorksheetStateId, oldId: WorksheetStateId}): Promise<void> {
+        const jsonrpcParams: {[index: string]: any} = {};
+        jsonrpcParams.new_id = kwds.newId.toString();
+        jsonrpcParams.old_id = kwds.oldId.toString();
 
         return axios.post(
-            this._endpointUrl + (this._methodEndpoints ? "/rename_worksheet_state" : ""),
+            this.endpointUrl + (this.methodEndpoints ? "/rename_worksheet_state" : ""),
             {
-                jsonrpc: '2.0',
-                method: 'rename_worksheet_state',
-                params: __jsonrpc_params,
-                id: '1234'
+                id: "1234",
+                jsonrpc: "2.0",
+                method: "rename_worksheet_state",
+                params: jsonrpcParams,
             },
             {
-                withCredentials: false
-            }
+                withCredentials: false,
+            },
         )
         .then(
             (response) => {
@@ -126,12 +126,12 @@ export class JsonRpcWorksheetStateCommandService implements WorksheetStateComman
                 }
 
                 if (response.data.error["@class"] && response.data.error.data) {
-                    const __error_class = response.data.error["@class"];
-                    if (__error_class == 'dressdiscover.api.services.worksheet.duplicate_worksheet_state_exception.DuplicateWorksheetStateException') {
+                    const errorClass = response.data.error["@class"];
+                    if (errorClass === "dressdiscover.api.services.worksheet.duplicate_worksheet_state_exception.DuplicateWorksheetStateException") {
                         throw DuplicateWorksheetStateException.fromThryftJsonObject(response.data.error.data);
-                    } else if (__error_class == 'dressdiscover.api.services.io_exception.IoException') {
+                    } else if (errorClass === "dressdiscover.api.services.io_exception.IoException") {
                         throw IoException.fromThryftJsonObject(response.data.error.data);
-                    } else if (__error_class == 'dressdiscover.api.services.worksheet.no_such_worksheet_state_exception.NoSuchWorksheetStateException') {
+                    } else if (errorClass === "dressdiscover.api.services.worksheet.no_such_worksheet_state_exception.NoSuchWorksheetStateException") {
                         throw NoSuchWorksheetStateException.fromThryftJsonObject(response.data.error.data);
                     } else {
                         throw new Error(response.data.error.message);
@@ -148,10 +148,10 @@ export class JsonRpcWorksheetStateCommandService implements WorksheetStateComman
                 } else {
                     throw error;
                 }
-            }
+            },
         );
     }
 
-    private readonly _endpointUrl: string;
-    private readonly _methodEndpoints: boolean;
+    private readonly endpointUrl: string;
+    private readonly methodEndpoints: boolean;
 }

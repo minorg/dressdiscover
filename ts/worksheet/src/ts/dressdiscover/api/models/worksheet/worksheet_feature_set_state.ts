@@ -3,46 +3,32 @@ import { WorksheetFeatureState } from "./worksheet_feature_state";
 
 export class WorksheetFeatureSetState {
     constructor(kwds: {features: WorksheetFeatureState[], id: WorksheetFeatureSetId}) {
-        this._features = WorksheetFeatureSetState._validateFeatures(kwds.features);
-        this._id = WorksheetFeatureSetState._validateId(kwds.id);
+        this.featuresPrivate = WorksheetFeatureSetState.validateFeatures(kwds.features);
+        this.idPrivate = WorksheetFeatureSetState.validateId(kwds.id);
     }
 
     get features(): WorksheetFeatureState[] {
-        return this._features;
+        return this.featuresPrivate;
     }
 
     set features(features: WorksheetFeatureState[]) {
-        this._features = WorksheetFeatureSetState._validateFeatures(features);
+        this.featuresPrivate = WorksheetFeatureSetState.validateFeatures(features);
     }
 
     get id(): WorksheetFeatureSetId {
-        return this._id;
+        return this.idPrivate;
     }
 
     set id(id: WorksheetFeatureSetId) {
-        this._id = WorksheetFeatureSetState._validateId(id);
+        this.idPrivate = WorksheetFeatureSetState.validateId(id);
     }
 
-    private static _validateFeatures(features: WorksheetFeatureState[]): WorksheetFeatureState[] {
-        if (features == null) {
-            throw new RangeError('features is null or undefined');
-        }
-        return features;
+    public deepCopy(): WorksheetFeatureSetState {
+        return new WorksheetFeatureSetState({ features: (this.features).map((value0) => value0.deepCopy()), id: this.id });
     }
 
-    private static _validateId(id: WorksheetFeatureSetId): WorksheetFeatureSetId {
-        if (id == null) {
-            throw new RangeError('id is null or undefined');
-        }
-        return id;
-    }
-
-    deepCopy(): WorksheetFeatureSetState {
-        return new WorksheetFeatureSetState({ features: function(__value0: WorksheetFeatureState[]) { let __copy0: WorksheetFeatureState[] = []; for (let __i0 = 0; __i0 < __value0.length; __i0++) { __copy0.push(__value0[__i0].deepCopy()); } return __copy0; }(this.features), id: this.id });
-    }
-
-    equals(other: WorksheetFeatureSetState): boolean {
-        if (!(function(left: WorksheetFeatureState[], right: WorksheetFeatureState[]): boolean { if (left.length != right.length) { return false; } for (let elementI = 0; elementI < left.length; elementI++) { if (!(left[elementI].equals(right[elementI]))) { return false; } } return true; }(this.features, other.features))) {
+    public equals(other: WorksheetFeatureSetState): boolean {
+        if (!(((left: WorksheetFeatureState[], right: WorksheetFeatureState[]): boolean => { if (left.length !== right.length) { return false; } for (let elementI = 0; elementI < left.length; elementI++) { if (!(left[elementI].equals(right[elementI]))) { return false; } } return true; })(this.features, other.features))) {
             return false;
         }
 
@@ -53,44 +39,58 @@ export class WorksheetFeatureSetState {
         return true;
     }
 
-    static fromThryftJsonObject(json: any): WorksheetFeatureSetState {
+    public static fromThryftJsonObject(json: any): WorksheetFeatureSetState {
         let features: WorksheetFeatureState[] | undefined;
         let id: WorksheetFeatureSetId | undefined;
-        for (let fieldName in json) {
-            if (fieldName == "features") {
-                features = function(json: any[]): WorksheetFeatureState[] { let sequence: WorksheetFeatureState[] = []; for (let i = 0; i < json.length; i++) { sequence.push(WorksheetFeatureState.fromThryftJsonObject(json[i])); } return sequence; }(json[fieldName]);
-            } else if (fieldName == "id") {
+        for (const fieldName in json) {
+            if (fieldName === "features") {
+                features = (json[fieldName]).map((element: any) => WorksheetFeatureState.fromThryftJsonObject(element));
+            } else if (fieldName === "id") {
                 id = WorksheetFeatureSetId.parse(json[fieldName]);
             }
         }
         if (features == null) {
-            throw new TypeError('features is required');
+            throw new TypeError("features is required");
         }
         if (id == null) {
-            throw new TypeError('id is required');
+            throw new TypeError("id is required");
         }
-        return new WorksheetFeatureSetState({features: features, id: id});
+        return new WorksheetFeatureSetState({features, id});
     }
 
-    toJsonObject(): any {
+    public toJsonObject(): any {
         const json: {[index: string]: any} = {};
-        json["features"] = function (__inArray: WorksheetFeatureState[]): any[] { let __outArray: any[] = []; for (let __i = 0; __i < __inArray.length; __i++) { __outArray.push(__inArray[__i].toJsonObject()); } return __outArray; }(this.features);
-        json["id"] = this.id.toString();
+        json.features = (this.features).map((inElement) => inElement.toJsonObject());
+        json.id = this.id.toString();
         return json;
     }
 
-    toString(): string {
+    public toString(): string {
         return "WorksheetFeatureSetState(" + JSON.stringify(this.toThryftJsonObject()) + ")";
     }
 
-    toThryftJsonObject(): any {
+    public toThryftJsonObject(): any {
         const json: {[index: string]: any} = {};
-        json["features"] = function (__inArray: WorksheetFeatureState[]): any[] { let __outArray: any[] = []; for (let __i = 0; __i < __inArray.length; __i++) { __outArray.push(__inArray[__i].toThryftJsonObject()); } return __outArray; }(this.features);
-        json["id"] = this.id.toString();
+        json.features = (this.features).map((inElement) => inElement.toThryftJsonObject());
+        json.id = this.id.toString();
         return json;
     }
 
-    private _features: WorksheetFeatureState[];
+    private static validateFeatures(features: WorksheetFeatureState[]): WorksheetFeatureState[] {
+        if (features == null) {
+            throw new RangeError("features is null or undefined");
+        }
+        return features;
+    }
 
-    private _id: WorksheetFeatureSetId;
+    private static validateId(id: WorksheetFeatureSetId): WorksheetFeatureSetId {
+        if (id == null) {
+            throw new RangeError("id is null or undefined");
+        }
+        return id;
+    }
+
+    private featuresPrivate: WorksheetFeatureState[];
+
+    private idPrivate: WorksheetFeatureSetId;
 }

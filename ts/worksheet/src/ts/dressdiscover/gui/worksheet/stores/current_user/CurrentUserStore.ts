@@ -3,7 +3,7 @@ import { ILogger } from 'dressdiscover/gui/worksheet/util/logging/ILogger';
 import { action, observable } from 'mobx';
 
 export class CurrentUserStore {
-    constructor(private logger: ILogger) {
+    constructor(private readonly logger: ILogger) {
     }
 
     @observable currentUser: CurrentUser | undefined;
@@ -11,6 +11,7 @@ export class CurrentUserStore {
     @action
     async fetchCurrentUser() {
         if (this.currentUser) {
+            this.logger.debug("already have current user");
             return;
         }
 

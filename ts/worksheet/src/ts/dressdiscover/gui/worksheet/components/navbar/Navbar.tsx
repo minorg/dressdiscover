@@ -3,7 +3,7 @@ import { CurrentUserStore } from 'dressdiscover/gui/worksheet/stores/current_use
 import { inject, observer } from 'mobx-react';
 import * as React from 'react';
 import { Link, RouteComponentProps, withRouter } from 'react-router-dom';
-import { Collapse, Nav, Navbar as BootstrapNavbar, NavbarBrand, NavItem, NavLink } from 'reactstrap';
+import { Nav, Navbar as BootstrapNavbar, NavbarBrand, NavItem, NavLink } from 'reactstrap';
 
 import { ActiveNavbarItem } from './ActiveNavbarItem';
 
@@ -26,8 +26,8 @@ class Navbar extends React.Component<Props> {
 
   render() {
     // const currentUser = this.props.currentUserStore!.currentUser;
-    let authenticatedNavItems: React.ReactNode;
-    let currentUserJsx: React.ReactNode;
+    // let authenticatedNavItems: React.ReactNode;
+    // let currentUserJsx: React.ReactNode;
     // if (currentUser) {
     //   authenticatedNavItems = (
     //     <NavItem active={this.props.activeNavItem === ActiveNavbarItem.Collaboratives}>
@@ -51,19 +51,19 @@ class Navbar extends React.Component<Props> {
     //     </UncontrolledDropdown>
     //   );
     // } else {
-      authenticatedNavItems = null;
-      currentUserJsx = (
-        <NavItem active={this.props.activeNavItem === ActiveNavbarItem.Login}>
-          <NavLink active={this.props.activeNavItem === ActiveNavbarItem.Login} href={Hrefs.login}>
-            Login
-          </NavLink>
-        </NavItem>
-      );
+      // authenticatedNavItems = null;
+      // currentUserJsx = (
+      //   <NavItem active={this.props.activeNavItem === ActiveNavbarItem.Login}>
+      //     <NavLink active={this.props.activeNavItem === ActiveNavbarItem.Login} href={Hrefs.login}>
+      //       Login
+      //     </NavLink>
+      //   </NavItem>
+      // );
     // }
 
     return (
       <div>
-        <BootstrapNavbar className="ml-4 mr-4" color="light" light expand="md">
+        <BootstrapNavbar color="light" light expand="md">
           <NavbarBrand href={Hrefs.home}>DressDiscover Worksheet</NavbarBrand>
           <Nav>
             <NavItem active={this.props.activeNavItem === ActiveNavbarItem.Home}>
@@ -75,13 +75,22 @@ class Navbar extends React.Component<Props> {
                 Home
               </NavLink>
             </NavItem>
-            {authenticatedNavItems}
+            <NavItem active={this.props.activeNavItem === ActiveNavbarItem.Worksheet}>
+              <NavLink
+                active={this.props.activeNavItem === ActiveNavbarItem.Worksheet}
+                tag={Link}
+                to={Hrefs.worksheetStart}
+              >
+                Worksheet
+              </NavLink>
+            </NavItem>
+            {/* {authenticatedNavItems} */}
           </Nav>
-          <Collapse navbar>
+          {/* <Collapse navbar>
             <Nav className="ml-auto" navbar>
               {currentUserJsx}
             </Nav>
-          </Collapse>
+          </Collapse> */}
         </BootstrapNavbar>
       </div>
     );

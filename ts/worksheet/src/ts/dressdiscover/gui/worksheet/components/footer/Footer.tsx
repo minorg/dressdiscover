@@ -8,18 +8,19 @@ export class Footer extends React.Component {
         return (
             <footer>
                 <Container fluid>
+                    <Row>&nbsp;</Row>
                     <Row>
                         <Col className="text-center" md="12">
-                            <Link to={Hrefs.contact}>Contact</Link>&nbsp;|&nbsp;
+                            <a href={Hrefs.contact}>Contact</a>&nbsp;|&nbsp;
                             <Link to={Hrefs.credits}>Credits</Link>&nbsp;|&nbsp;
                             <Link to={Hrefs.privacy}>Privacy</Link>&nbsp;|&nbsp;
-                            <Link to={Hrefs.gitHub} >GitHub</Link>
+                            <a href={Hrefs.gitHub}>GitHub</a>
                         </Col>
                     </Row>
-                    <Row></Row>
+                    <Row>&nbsp;</Row>
                     <Row>
                         <Col className="text-center" md="12">
-                            <p className="muted">&copy; Copyright 2018,
+                            <p className="muted">&copy; Copyright 2018,&nbsp;
                         <a href="https://minorgordon.net">Minor Gordon</a>. All rights reserved</p>
                         </Col>
                     </Row>

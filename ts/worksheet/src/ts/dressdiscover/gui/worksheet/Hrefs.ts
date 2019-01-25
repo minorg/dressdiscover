@@ -1,6 +1,4 @@
-import { WorksheetStateId } from 'dressdiscover/api/models/worksheet/worksheet_state_id';
 import { WorksheetStateMark } from 'dressdiscover/api/models/worksheet/worksheet_state_mark';
-import * as queryString from 'query-string';
 
 export class Hrefs {
   static get home() {
@@ -12,7 +10,7 @@ export class Hrefs {
   }
 
   static get credits() {
-    return "/#/credits";
+    return "/credits";
   }
 
   static get gitHub() {
@@ -32,32 +30,30 @@ export class Hrefs {
   }
 
   static get logoutSuccess() {
-    return "/logoutSuccess"
+    return "/logoutSuccess";
   }
 
   static get privacy() {
-    return "/#/privacy";
+    return "/privacy";
   }
 
   static get root() {
     return '/';
   }
 
-  static state(mark: WorksheetStateMark) {
-    let href = "/#/state/" + encodeURIComponent(mark.worksheetStateId.toString()) + "/";
-    if (mark.featureSetId) {
-      href += encodeURIComponent(mark.featureSetId.toString()) + "/";
-      if (mark.featureId) {
-        href += encodeURIComponent(mark.featureId.toString());
-      }
-    }
-    if (mark.review) {
-      href += "?" + queryString.stringify({ "review": true });
-    }
-    return href;
+  static get worksheetStart() {
+    return "/worksheet/";
   }
 
-  static worksheetState(worksheetStateId: WorksheetStateId) {
-    return Hrefs.state(new WorksheetStateMark({ worksheetStateId: worksheetStateId }));
+  static worksheetState(mark: WorksheetStateMark) {
+    let href = "/worksheet/state/" + encodeURIComponent(mark.worksheetStateId.toString()) + "/";
+    if (mark.featureSetId) {
+      href += "feature_set/" + encodeURIComponent(mark.featureSetId.toString()) + "/";
+      if (mark.featureId) {
+        href += "feature/" + encodeURIComponent(mark.featureId.toString()) + "/";
+      }
+    }
+    href += mark.review ? "review" : "edit";
+    return href;
   }
 }

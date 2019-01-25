@@ -2,6 +2,7 @@ var webpack = require('webpack');
 var path = require('path');
 
 // variables
+var distPath = path.join(__dirname, './wwwroot');
 var isProduction = process.argv.indexOf('-p') >= 0 || process.env.NODE_ENV === 'production';
 var srcPath = path.join(__dirname, './src');
 
@@ -31,7 +32,7 @@ module.exports = {
         secure: false
       }
     },
-    contentBase: srcPath,
+    contentBase: distPath,
     hot: true,
     inline: true,
     historyApiFallback: {
@@ -56,24 +57,25 @@ module.exports = {
         use: [
           // process.env.NODE_ENV !== 'production' ? 'style-loader' : MiniCssExtractPlugin.loader,
           MiniCssExtractPlugin.loader,
-        //   {
-        //   loader: 'style-loader', // inject CSS to page
-        // },
-        {
-          loader: 'css-loader', // translates CSS into CommonJS modules
-        }, {
-          loader: 'postcss-loader', // Run post css actions
-          options: {
-            plugins: function () { // post css plugins, can be exported to postcss.config.js
-              return [
-                require('precss'),
-                require('autoprefixer')
-              ];
+          //   {
+          //   loader: 'style-loader', // inject CSS to page
+          // },
+          {
+            loader: 'css-loader', // translates CSS into CommonJS modules
+          }, {
+            loader: 'postcss-loader', // Run post css actions
+            options: {
+              plugins: function () { // post css plugins, can be exported to postcss.config.js
+                return [
+                  require('precss'),
+                  require('autoprefixer')
+                ];
+              }
             }
+          }, {
+            loader: 'sass-loader' // compiles Sass to CSS
           }
-        }, {
-          loader: 'sass-loader' // compiles Sass to CSS
-        }]
+        ]
       },
       // .ts, .tsx
       {
@@ -88,7 +90,7 @@ module.exports = {
     ]
   },
   output: {
-    path: path.join(__dirname, './wwwroot'),
+    path: distPath,
     filename: 'js/dressdiscover-worksheet.js',
     publicPath: '/'
   },
@@ -113,6 +115,7 @@ module.exports = {
     // (jsnext:main directs not usually distributable es6 format, but es6 sources)
     mainFields: ['module', 'browser', 'main'],
     alias: {
+      definitions: path.resolve(__dirname, 'definitions'),
       dressdiscover: path.resolve(__dirname, 'src/ts/dressdiscover')
     }
   },

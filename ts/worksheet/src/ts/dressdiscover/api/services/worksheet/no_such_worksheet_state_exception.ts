@@ -2,29 +2,22 @@ import { WorksheetStateId } from "../../models/worksheet/worksheet_state_id";
 
 export class NoSuchWorksheetStateException {
     constructor(kwds: {id: WorksheetStateId}) {
-        this._id = NoSuchWorksheetStateException._validateId(kwds.id);
+        this.idPrivate = NoSuchWorksheetStateException.validateId(kwds.id);
     }
 
     get id(): WorksheetStateId {
-        return this._id;
+        return this.idPrivate;
     }
 
     set id(id: WorksheetStateId) {
-        this._id = NoSuchWorksheetStateException._validateId(id);
+        this.idPrivate = NoSuchWorksheetStateException.validateId(id);
     }
 
-    private static _validateId(id: WorksheetStateId): WorksheetStateId {
-        if (id == null) {
-            throw new RangeError('id is null or undefined');
-        }
-        return id;
-    }
-
-    deepCopy(): NoSuchWorksheetStateException {
+    public deepCopy(): NoSuchWorksheetStateException {
         return new NoSuchWorksheetStateException({ id: this.id });
     }
 
-    equals(other: NoSuchWorksheetStateException): boolean {
+    public equals(other: NoSuchWorksheetStateException): boolean {
         if (!(this.id.equals(other.id))) {
             return false;
         }
@@ -32,34 +25,41 @@ export class NoSuchWorksheetStateException {
         return true;
     }
 
-    static fromThryftJsonObject(json: any): NoSuchWorksheetStateException {
+    public static fromThryftJsonObject(json: any): NoSuchWorksheetStateException {
         let id: WorksheetStateId | undefined;
-        for (let fieldName in json) {
-            if (fieldName == "id") {
+        for (const fieldName in json) {
+            if (fieldName === "id") {
                 id = WorksheetStateId.parse(json[fieldName]);
             }
         }
         if (id == null) {
-            throw new TypeError('id is required');
+            throw new TypeError("id is required");
         }
-        return new NoSuchWorksheetStateException({id: id});
+        return new NoSuchWorksheetStateException({id});
     }
 
-    toJsonObject(): any {
+    public toJsonObject(): any {
         const json: {[index: string]: any} = {};
-        json["id"] = this.id.toString();
+        json.id = this.id.toString();
         return json;
     }
 
-    toString(): string {
+    public toString(): string {
         return "NoSuchWorksheetStateException(" + JSON.stringify(this.toThryftJsonObject()) + ")";
     }
 
-    toThryftJsonObject(): any {
+    public toThryftJsonObject(): any {
         const json: {[index: string]: any} = {};
-        json["id"] = this.id.toString();
+        json.id = this.id.toString();
         return json;
     }
 
-    private _id: WorksheetStateId;
+    private static validateId(id: WorksheetStateId): WorksheetStateId {
+        if (id == null) {
+            throw new RangeError("id is null or undefined");
+        }
+        return id;
+    }
+
+    private idPrivate: WorksheetStateId;
 }
