@@ -1,8 +1,7 @@
-import { WorksheetDefinition } from 'dressdiscover/api/models/worksheet/worksheet_definition';
-import { WorksheetState } from 'dressdiscover/api/models/worksheet/worksheet_state';
+import { WorksheetStateWrapper } from 'dressdiscover/gui/worksheet/models/worksheet/WorksheetStateWrapper';
 
 export interface StringExporter {
-    export(worksheetDefinition: WorksheetDefinition, worksheetState: WorksheetState): string;
+    export(worksheetState: WorksheetStateWrapper): string;
 
     readonly fileExtension: string;
     readonly mimeType: string;

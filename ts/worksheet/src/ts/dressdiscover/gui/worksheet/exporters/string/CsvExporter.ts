@@ -1,19 +1,18 @@
-import { WorksheetDefinition } from 'dressdiscover/api/models/worksheet/worksheet_definition';
-import { WorksheetState } from 'dressdiscover/api/models/worksheet/worksheet_state';
 import { StringExporter } from 'dressdiscover/gui/worksheet/exporters/string/StringExporter';
+import { WorksheetStateWrapper } from 'dressdiscover/gui/worksheet/models/worksheet/WorksheetStateWrapper';
 import * as Papa from 'papaparse';
 
 export class CsvExporter implements StringExporter {
-    export(worksheetDefinition: WorksheetDefinition, worksheetState: WorksheetState): string {
+    export(worksheetState: WorksheetStateWrapper): string {
         const rows: string[][] = [];
-        let header = ["id", "feature_set_id", "feature_id", "feature_value_id", "text"];
+        const header = ["id", "feature_set_id", "feature_id", "feature_value_id", "text"];
         rows.push(header);
 
-        for (let featureSetState of worksheetState.featureSets) {
-            for (let featureState of featureSetState.features) {
+        for (const featureSetState of worksheetState.featureSetStates) {
+            for (const featureState of featureSetState.features) {
                 const rowPrefix = [worksheetState.id.toString(), featureSetState.id.toString(), featureState.id.toString()];
                 if (featureState.selectedValueIds) {
-                    for (let selectedValueId of featureState.selectedValueIds) {
+                    for (const selectedValueId of featureState.selectedValueIds) {
                         let row: string[] = [];
                         row = row.concat(rowPrefix);
                         row.push(selectedValueId.toString());

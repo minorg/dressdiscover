@@ -151,6 +151,10 @@ export class WorksheetStateWrapper {
         this.worksheetState.text = text;
     }
 
+    toJsonObject() {
+        return this.worksheetState.toJsonObject();
+    }
+
     readonly currentStateMarkIndex: number;
     private worksheetStateMachine: WorksheetStateMachine;
 }

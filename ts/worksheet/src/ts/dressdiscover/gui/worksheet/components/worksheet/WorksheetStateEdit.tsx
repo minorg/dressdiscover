@@ -71,7 +71,7 @@ class WorksheetStateEditImpl extends React.Component<WorksheetStateEditImplProps
                 headline={"Worksheet: " + worksheetState.id.toString()}
                 history={this.props.history}
                 id="worksheet-state-edit"
-                finishButtonEnabled={false}
+                finishButtonEnabled={this.state.selectedFeatureSetIds.length > 0}
                 nextButtonEnabled={this.state.selectedFeatureSetIds.length > 0}
                 previousButtonEnabled={false}
                 save={this.save}
