@@ -3,8 +3,9 @@ import './WorksheetStateFrame.scss';
 import * as classnames from 'classnames';
 import { Headline } from 'dressdiscover/gui/worksheet/components/frame/Headline';
 import { History } from 'history';
-import { ReactNode } from 'react';
 import * as React from 'react';
+import { ReactNode } from 'react';
+import Hammer from 'react-hammerjs';
 import { Link } from 'react-router-dom';
 import { BreadcrumbItem, Button, Col, Container, Progress, Row } from 'reactstrap';
 import Breadcrumb from 'reactstrap/lib/Breadcrumb';
@@ -38,6 +39,8 @@ export class WorksheetStateFrame extends React.Component<Props> {
         this.onClickFinishButton = this.onClickFinishButton.bind(this);
         this.onClickNextButton = this.onClickNextButton.bind(this);
         this.onClickPreviousButton = this.onClickPreviousButton.bind(this);
+        this.onSwipeLeft = this.onSwipeLeft.bind(this);
+        this.onSwipeRight = this.onSwipeRight.bind(this);
     }
 
     onClickFinishButton() {
@@ -62,6 +65,18 @@ export class WorksheetStateFrame extends React.Component<Props> {
             this.props.history.push(Hrefs.worksheetState(this.props.worksheetState.previousStateMark));
         } else {
             this.props.history.push(Hrefs.worksheetStart);
+        }
+    }
+
+    onSwipeLeft() {
+        if (this.props.previousButtonEnabled) {
+            this.onClickPreviousButton();
+        }
+    }
+
+    onSwipeRight() {
+        if (this.props.nextButtonEnabled) {
+            this.onClickNextButton();
         }
     }
 
@@ -102,48 +117,53 @@ export class WorksheetStateFrame extends React.Component<Props> {
         );
 
         return (
-            <Frame
-                activeNavItem={ActiveNavbarItem.Worksheet}
-                className="worksheet-state-frame"
-                id={this.props.id}
-            >
-                <Container fluid>
-                    <Row>
-                        <Col md="12">
-                            <Headline>{this.props.headline}</Headline>
-                        </Col>
-                    </Row>
-                    <Row>
-                        <Col md="12">
-                        </Col>
-                    </Row>
-                    <Row>
-                        <Col md="12">
-                            <Breadcrumb>
-                                {breadcrumbItems}
-                            </Breadcrumb>
-                            <div className="progress-wrapper">
-                                <Progress className="h-100" bar value={worksheetState.progressPercentage}></Progress>
-                            </div>
-                        </Col>
-                    </Row>
-                    <Row>
-                        &nbsp;
-                    </Row>
-                    {nextPreviousButtons}
-                    <Row>
-                        &nbsp;
-                    </Row>
-                    <Row>
-                        <Col md="12">
-                            {this.props.children}
-                        </Col>
-                    </Row>
-                    <Row>
-                        &nbsp;
-                    </Row>
-                    {nextPreviousButtons}
-                </Container>
-            </Frame>);
+            <Hammer onSwipeLeft={this.onSwipeLeft} onSwipeRight={this.onSwipeRight}>
+                <div>
+                    <Frame
+                        activeNavItem={ActiveNavbarItem.Worksheet}
+                        className="worksheet-state-frame"
+                        id={this.props.id}
+                    >
+                        <Container fluid>
+                            <Row>
+                                <Col md="12">
+                                    <Headline>{this.props.headline}</Headline>
+                                </Col>
+                            </Row>
+                            <Row>
+                                <Col md="12">
+                                </Col>
+                            </Row>
+                            <Row>
+                                <Col md="12">
+                                    <Breadcrumb>
+                                        {breadcrumbItems}
+                                    </Breadcrumb>
+                                    <div className="progress-wrapper">
+                                        <Progress className="h-100" bar value={worksheetState.progressPercentage}></Progress>
+                                    </div>
+                                </Col>
+                            </Row>
+                            <Row>
+                                &nbsp;
+                        </Row>
+                            {nextPreviousButtons}
+                            <Row>
+                                &nbsp;
+                        </Row>
+                            <Row>
+                                <Col md="12">
+                                    {this.props.children}
+                                </Col>
+                            </Row>
+                            <Row>
+                                &nbsp;
+                        </Row>
+                            {nextPreviousButtons}
+                        </Container>
+                    </Frame>
+                </div>
+            </Hammer>
+        );
     }
 }
