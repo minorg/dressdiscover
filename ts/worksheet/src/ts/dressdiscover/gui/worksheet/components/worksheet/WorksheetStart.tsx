@@ -1,12 +1,14 @@
 import './WorksheetStart.scss';
 
 import * as classnames from 'classnames';
+import { WorksheetState } from 'dressdiscover/api/models/worksheet/worksheet_state';
 import { WorksheetStateId } from 'dressdiscover/api/models/worksheet/worksheet_state_id';
 import { WorksheetStateMark } from 'dressdiscover/api/models/worksheet/worksheet_state_mark';
 import { GenericErrorHandler } from 'dressdiscover/gui/worksheet/components/error/GenericErrorHandler';
 import { Headline } from 'dressdiscover/gui/worksheet/components/frame/Headline';
 import { WorksheetStore } from 'dressdiscover/gui/worksheet/stores/worksheet/WorksheetStore';
 import * as invariant from 'invariant';
+import * as _ from 'lodash';
 import { inject, observer } from 'mobx-react';
 import * as React from 'react';
 import * as ReactLoader from 'react-loader';
@@ -20,6 +22,7 @@ import { ActiveNavbarItem } from '../navbar/ActiveNavbarItem';
 
 
 interface NewWorksheetStateProps {
+    existingWorksheetStateIds: WorksheetStateId[];
     onSubmit: (kwds: { newWorksheetStateId: WorksheetStateId }) => void;
 }
 
@@ -29,24 +32,32 @@ class NewWorksheetState extends React.Component<NewWorksheetStateProps, { newWor
         this.state = { newWorksheetStateId: '' };
     }
 
-    onChangeNewWorksheetStateId(event: any) {
+    onChangeNewWorksheetStateId(event: React.ChangeEvent<HTMLInputElement>) {
         const value = event.target.value;
         this.setState((prevState) => Object.assign({}, prevState, { newWorksheetStateId: value }));
     }
 
-    onKeypressNewWorksheetStateId(event: any) {
-        if (event.charCode != 13) {
-            return true;
+    onKeypressNewWorksheetStateId(event: React.KeyboardEvent) {
+        if (event.charCode !== 13) {
+            return;
         }
+        event.stopPropagation();
         this.onSubmit();
-        return false;
     }
 
     onSubmit() {
-        if (!this.state.newWorksheetStateId) {
-            return;
+        let newWorksheetStateIdStem = this.state.newWorksheetStateId;
+        if (!newWorksheetStateIdStem) {
+            const currentDate = new Date();
+            newWorksheetStateIdStem = "New object " + currentDate.getFullYear() + "-" + currentDate.getMonth() + "-" + currentDate.getDay();
         }
-        this.props.onSubmit({ newWorksheetStateId: WorksheetStateId.parse(this.state.newWorksheetStateId) });
+        let newWorksheetStateIdSuffix = 0;
+        let newWorksheetStateId = newWorksheetStateIdStem;
+        while (this.props.existingWorksheetStateIds.some((existingWorksheetStateId) => existingWorksheetStateId.toString() === newWorksheetStateId)) {
+            newWorksheetStateId = newWorksheetStateIdStem + " (" + (++newWorksheetStateIdSuffix) + ")";
+        }
+
+        this.props.onSubmit({ newWorksheetStateId: WorksheetStateId.parse(newWorksheetStateId) });
     }
 
     render() {
@@ -96,7 +107,7 @@ class ExistingWorksheetState extends React.Component<ExistingWorksheetStateProps
             Object.assign({}, this.START_STATE));
     }
 
-    onChangeNewId(event: any) {
+    onChangeNewId(event: React.ChangeEvent<HTMLInputElement>) {
         const value = event.target.value;
         this.setState(prevState => Object.assign({}, prevState, { newId: value }));
     }
@@ -118,23 +129,23 @@ class ExistingWorksheetState extends React.Component<ExistingWorksheetStateProps
     onClickRenameConfirmButton() {
         if (!this.state.newId) {
             return;
-        } else if (this.state.newId == this.props.worksheetStateId.toString()) {
+        } else if (this.state.newId === this.props.worksheetStateId.toString()) {
             this.setState(prevState => Object.assign({}, this.START_STATE));
             return;
         }
         this.props.onRenameWorksheetState({ oldId: this.props.worksheetStateId, newId: WorksheetStateId.parse(this.state.newId as string) });
     }
 
-    onKeypressNewId(event: any) {
+    onKeypressNewId(event: React.KeyboardEvent) {
         if (event.charCode !== 13) {
-            return false;
+            return;
         }
         if (this.renameConfirmButtonEnabled) {
             this.onClickRenameConfirmButton();
         } else {
             this.onClickCancelButton();
         }
-        return false;
+        event.stopPropagation();
     }
 
     get renameConfirmButtonEnabled(): boolean {
@@ -192,9 +203,7 @@ class ExistingWorksheetState extends React.Component<ExistingWorksheetStateProps
     }
 }
 
-@inject("worksheetStore")
-@observer
-class ExistingWorksheetStates extends React.Component<{ worksheetStore?: WorksheetStore }> {
+class ExistingWorksheetStates extends React.Component<{ worksheetStore: WorksheetStore }> {
     render() {
         return (
             <Card>
@@ -208,7 +217,7 @@ class ExistingWorksheetStates extends React.Component<{ worksheetStore?: Workshe
                                 <Table className="table table-bordered w-100 worksheet-states">
                                     <tbody>
                                         {this.props.worksheetStore!.worksheetStateIds!.map(worksheetStateId =>
-                                            <ExistingWorksheetState onDeleteWorksheetState={this.props.worksheetStore!.deleteWorksheetState.bind(this.props.worksheetStore)} onRenameWorksheetState={this.props.worksheetStore!.renameWorksheetState.bind(this.props.worksheetStore)} worksheetStateId={worksheetStateId}></ExistingWorksheetState>
+                                            <ExistingWorksheetState key={worksheetStateId.toString()} onDeleteWorksheetState={this.props.worksheetStore.deleteWorksheetState.bind(this.props.worksheetStore)} onRenameWorksheetState={this.props.worksheetStore!.renameWorksheetState.bind(this.props.worksheetStore)} worksheetStateId={worksheetStateId}></ExistingWorksheetState>
                                         )}
                                     </tbody>
                                 </Table>
@@ -231,6 +240,7 @@ interface WorksheetStartProps {
 export class WorksheetStart extends React.Component<WorksheetStartProps, { newWorksheetStateId?: WorksheetStateId }> {
     constructor(props: WorksheetStartProps) {
         super(props);
+        this.onStartNewWorksheet = this.onStartNewWorksheet.bind(this);
         this.state = {};
     }
 
@@ -238,7 +248,8 @@ export class WorksheetStart extends React.Component<WorksheetStartProps, { newWo
         this.props.worksheetStore.getWorksheetStateIds();
     }
 
-    onStartNewWorksheet(kwds: { newWorksheetStateId: WorksheetStateId }) {
+    async onStartNewWorksheet(kwds: { newWorksheetStateId: WorksheetStateId }) {
+        await this.props.worksheetStore.putWorksheetState({ state: new WorksheetState({ featureSets: [], id: kwds.newWorksheetStateId }) });
         this.setState((prevState) => Object.assign({}, prevState, kwds));
     }
 
@@ -270,15 +281,15 @@ export class WorksheetStart extends React.Component<WorksheetStartProps, { newWo
                             <Container fluid>
                                 <Row>
                                     <Col xs="12">
-                                        <NewWorksheetState onSubmit={this.onStartNewWorksheet.bind(this)}></NewWorksheetState>
+                                        <NewWorksheetState existingWorksheetStateIds={this.props.worksheetStore.worksheetStateIds} onSubmit={this.onStartNewWorksheet}></NewWorksheetState>
                                     </Col>
                                 </Row>
-                                {(this.props.worksheetStore.worksheetStateIds && this.props.worksheetStore.worksheetStateIds.length) ? (
+                                {!_.isEmpty(this.props.worksheetStore.worksheetStateIds) ? (
                                     <React.Fragment>
                                         <Row className="mb-5"></Row>
                                         <Row>
                                             <Col xs="12">
-                                                <ExistingWorksheetStates></ExistingWorksheetStates>
+                                                <ExistingWorksheetStates worksheetStore={this.props.worksheetStore!}></ExistingWorksheetStates>
                                             </Col>
                                         </Row>
                                     </React.Fragment>

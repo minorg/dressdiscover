@@ -99,6 +99,7 @@ class WorksheetFeatureStateEditImpl extends React.Component<WorksheetFeatureStat
     save() {
         this.props.worksheetState.selectFeatureValues(this.state.selectedValueIds);
         this.props.worksheetState.save();
+        this.setState(prevState => ({ selectedValueIds: undefined, text: undefined }));
     }
 }
 
