@@ -38,6 +38,7 @@ class WorksheetStateReviewImpl extends React.Component<WorksheetStateReviewImplP
         this.export = this.export.bind(this);
         this.onChangeFormat = this.onChangeFormat.bind(this);
         this.onClickDownloadButton = this.onClickDownloadButton.bind(this);
+        this.onClickEmailButton = this.onClickEmailButton.bind(this);
         this.state = { selectedFormatIndex: 0 };
     }
 
@@ -78,6 +79,10 @@ class WorksheetStateReviewImpl extends React.Component<WorksheetStateReviewImplP
         }
     }
 
+    onClickEmailButton() {
+        window.open("mailto:?to=&subject=" + encodeURIComponent(this.props.worksheetState.id.toString()) + "&body=" + encodeURIComponent(this.export()));
+    }
+
     render() {
         const { worksheetState } = this.props;
 
@@ -100,7 +105,7 @@ class WorksheetStateReviewImpl extends React.Component<WorksheetStateReviewImplP
                             <Clipboard className="btn btn-secondary" component="a" option-text={this.export}>
                                 Copy
                             </Clipboard>&nbsp;
-                            <Button color="secondary">Email</Button>&nbsp;
+                            <Button color="secondary" onClick={this.onClickEmailButton}>Email</Button>&nbsp;
                             <Button color="secondary" onClick={this.onClickDownloadButton}>Download</Button>&nbsp;
                             <Input onChange={this.onChangeFormat} value={this.state.selectedFormatIndex} type="select">
                                 {this.stringExporters.map((stringExporter, formatIndex) =>
