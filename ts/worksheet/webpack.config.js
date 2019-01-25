@@ -2,11 +2,12 @@ var webpack = require('webpack');
 var path = require('path');
 
 // variables
-var distPath = path.join(__dirname, './wwwroot');
+var distPath = path.join(__dirname, './dist');
 var isProduction = process.argv.indexOf('-p') >= 0 || process.env.NODE_ENV === 'production';
 var srcPath = path.join(__dirname, './src');
 
 // plugins
+var CopyWebpackPlugin = require('copy-webpack-plugin');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 var MiniCssExtractPlugin = require('mini-css-extract-plugin');
 var WebpackCleanupPlugin = require('webpack-cleanup-plugin');
@@ -92,7 +93,7 @@ module.exports = {
   output: {
     path: distPath,
     filename: 'js/dressdiscover-worksheet.js',
-    publicPath: '/'
+    publicPath: ''
   },
   plugins: [
     new webpack.EnvironmentPlugin({
@@ -100,6 +101,10 @@ module.exports = {
       DEBUG: false
     }),
     new WebpackCleanupPlugin(),
+    new CopyWebpackPlugin([{
+      from: 'img',
+      to: path.join(distPath, 'img/')
+    }]),
     new MiniCssExtractPlugin({
       disable: !isProduction,
       filename: 'css/dressdiscover-worksheet.css'
