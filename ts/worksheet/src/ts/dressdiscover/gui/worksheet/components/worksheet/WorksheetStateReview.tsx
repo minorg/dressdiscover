@@ -37,17 +37,45 @@ class WorksheetStateReviewImpl extends React.Component<WorksheetStateReviewImplP
         super(props);
         this.export = this.export.bind(this);
         this.onChangeFormat = this.onChangeFormat.bind(this);
+        this.onClickDownloadButton = this.onClickDownloadButton.bind(this);
         this.state = { selectedFormatIndex: 0 };
     }
 
     export(): string {
-        const stringExporter = this.stringExporters[this.state.selectedFormatIndex];
-        return stringExporter.export(this.props.worksheetState);
+        return this.selectedStringExporter.export(this.props.worksheetState);
     }
 
     onChangeFormat(event: React.ChangeEvent<HTMLInputElement>) {
         const selectedFormatIndex = parseInt(event.target.value, 10);
         this.setState((prevState) => ({ selectedFormatIndex }));
+    }
+
+    onClickDownloadButton(event: React.MouseEvent): void {
+        const content = this.export();
+        const selectedStringExporter = this.selectedStringExporter;
+
+        const a = document.createElement('a')
+        const fileName = this.props.worksheetState.id + '.' + selectedStringExporter.fileExtension;
+        const mimeType = selectedStringExporter.mimeType;
+
+        if (navigator.msSaveBlob) { // IE10
+            if (!navigator.msSaveBlob(new Blob([content], { type: mimeType }), fileName)) {
+                event.stopPropagation();
+            }
+        } else if ('download' in a) { //html5 A[download]
+            a.href = 'data:' + mimeType + ',' + encodeURIComponent(content);
+            a.setAttribute('download', fileName);
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+        } else { //do iframe dataURL download (old ch+FF):
+            const f = document.createElement('iframe');
+            document.body.appendChild(f);
+            f.src = 'data:' + mimeType + ',' + encodeURIComponent(content);
+            setTimeout(() => {
+                document.body.removeChild(f);
+            }, 333);
+        }
     }
 
     render() {
@@ -73,7 +101,7 @@ class WorksheetStateReviewImpl extends React.Component<WorksheetStateReviewImplP
                                 Copy
                             </Clipboard>&nbsp;
                             <Button color="secondary">Email</Button>&nbsp;
-                            <Button color="secondary">Download</Button>&nbsp;
+                            <Button color="secondary" onClick={this.onClickDownloadButton}>Download</Button>&nbsp;
                             <Input onChange={this.onChangeFormat} value={this.state.selectedFormatIndex} type="select">
                                 {this.stringExporters.map((stringExporter, formatIndex) =>
                                     <option key={stringExporter.fileExtension} value={formatIndex.toString()}>{stringExporter.fileExtension.toUpperCase()}</option>
@@ -107,6 +135,10 @@ class WorksheetStateReviewImpl extends React.Component<WorksheetStateReviewImplP
                     </React.Fragment>
                 ) : null}
             </WorksheetStateFrame>);
+    }
+
+    private get selectedStringExporter(): StringExporter {
+        return this.stringExporters[this.state.selectedFormatIndex];
     }
 
     private readonly stringExporters: StringExporter[] = [new CsvExporter(), new JsonExporter()];
