@@ -9,6 +9,7 @@ import Clipboard from 'react-clipboard.js';
 import { RouteComponentProps } from 'react-router';
 import { Button, Form, Input } from 'reactstrap';
 
+import { StringExporter } from '../../exporters/string/StringExporter';
 import { WorksheetStateWrapper } from '../../models/worksheet/WorksheetStateWrapper';
 import { WorksheetStateFrame } from './WorksheetStateFrame';
 import { WorksheetStateGetter } from './WorksheetStateGetter';
@@ -42,7 +43,7 @@ class WorksheetStateReviewImpl extends React.Component<WorksheetStateReviewImplP
     }
 
     export(): string {
-        return this.selectedStringStringExporter.export(this.props.worksheetState);
+        return this.selectedStringExporter.export(this.props.worksheetState);
     }
 
     onChangeFormat(event: React.ChangeEvent<HTMLInputElement>) {
@@ -52,11 +53,11 @@ class WorksheetStateReviewImpl extends React.Component<WorksheetStateReviewImplP
 
     onClickDownloadButton(event: React.MouseEvent): void {
         const content = this.export();
-        const selectedStringStringExporter = this.selectedStringStringExporter;
+        const selectedStringExporter = this.selectedStringExporter;
 
         const a = document.createElement('a')
-        const fileName = this.props.worksheetState.id + '.' + selectedStringStringExporter.fileExtension;
-        const mimeType = selectedStringStringExporter.mimeType;
+        const fileName = this.props.worksheetState.id + '.' + selectedStringExporter.fileExtension;
+        const mimeType = selectedStringExporter.mimeType;
 
         if (navigator.msSaveBlob) { // IE10
             if (!navigator.msSaveBlob(new Blob([content], { type: mimeType }), fileName)) {
@@ -141,9 +142,9 @@ class WorksheetStateReviewImpl extends React.Component<WorksheetStateReviewImplP
             </WorksheetStateFrame>);
     }
 
-    private get selectedStringStringExporter(): StringStringExporter {
+    private get selectedStringExporter(): StringExporter {
         return this.stringStringExporters[this.state.selectedFormatIndex];
     }
 
-    private readonly stringStringExporters: StringStringExporter[] = [new CsvStringExporter(), new JsonStringExporter()];
+    private readonly stringStringExporters: StringExporter[] = [new CsvStringExporter(), new JsonStringExporter()];
 }
