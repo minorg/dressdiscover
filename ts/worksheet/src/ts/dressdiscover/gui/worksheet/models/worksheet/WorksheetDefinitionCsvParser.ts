@@ -45,7 +45,7 @@ export class WorksheetDefinitionCsvParser {
             return new WorksheetDescription({
                 rights: this._parseRights("description_", row),
                 text: descriptionText
-            })
+            });
         } else {
             return undefined;
         }
@@ -76,7 +76,7 @@ export class WorksheetDefinitionCsvParser {
                     return;
                 }
 
-                if (_.indexOf(duplicateColumnNames, columnName) != -1) {
+                if (_.indexOf(duplicateColumnNames, columnName) !== -1) {
                     if (_.isUndefined(outRow[columnName])) {
                         outRow[columnName] = [columnValue];
                     } else {
@@ -93,6 +93,7 @@ export class WorksheetDefinitionCsvParser {
 
     private _parseExtentsCsv(csv: string): WorksheetExtentDefinition[] {
         const extents: WorksheetExtentDefinition[] = [];
+        const extentIds: { [index: string]: boolean } = {};
         const parsedCsv = this._parseCsv(csv, "extents", { header: true });
         const rows = this._parseUniqueColumnRows(parsedCsv.data);
         rows.forEach((row, rowI) => {
@@ -104,7 +105,7 @@ export class WorksheetDefinitionCsvParser {
                     new WorksheetExtentDefinition({
                         description: this._parseDescription(row),
                         displayName: row.display_name,
-                        id: WorksheetExtentId.parse(row.id),
+                        id: WorksheetExtentId.parse(this._validateId(extentIds, row.id)),
                     })
                 );
             } catch (e) {
@@ -120,6 +121,7 @@ export class WorksheetDefinitionCsvParser {
 
     private _parseFeaturesCsv(csv: string): WorksheetFeatureDefinition[] {
         const features: WorksheetFeatureDefinition[] = [];
+        const featureIds: { [index: string]: boolean } = {};
         const parsedCsv = this._parseCsv(csv, "features");
         const rows = this._parseDuplicateColumnRows(["value"], parsedCsv.data);
         rows.forEach((row, rowI) => {
@@ -130,7 +132,7 @@ export class WorksheetDefinitionCsvParser {
                 features.push(new WorksheetFeatureDefinition({
                     description: this._parseDescription(row),
                     displayName: row.display_name,
-                    id: WorksheetFeatureId.parse(row.id),
+                    id: WorksheetFeatureId.parse(this._validateId(featureIds, row.id)),
                     valueIds: row.value.map((id: string) => WorksheetFeatureValueId.parse(id))
                 }));
             } catch (e) {
@@ -146,6 +148,7 @@ export class WorksheetDefinitionCsvParser {
 
     private _parseFeatureSetsCsv(csv: any): WorksheetFeatureSetDefinition[] {
         const featureSets: WorksheetFeatureSetDefinition[] = [];
+        const featureSetIds: { [index: string]: boolean } = {};
         const parsedCsv = this._parseCsv(csv, "feature sets");
         const rows = this._parseDuplicateColumnRows(["feature"], parsedCsv.data);
         rows.forEach((row, rowI) => {
@@ -157,7 +160,7 @@ export class WorksheetDefinitionCsvParser {
                     description: this._parseDescription(row),
                     displayName: row.display_name,
                     featureIds: row.feature.map((id: string) => WorksheetFeatureId.parse(id)),
-                    id: WorksheetFeatureSetId.parse(row.id)
+                    id: WorksheetFeatureSetId.parse(this._validateId(featureSetIds, row.id))
                 }));
             } catch (e) {
                 if (e instanceof RangeError) {
@@ -172,14 +175,15 @@ export class WorksheetDefinitionCsvParser {
 
     private _parseFeatureValuesCsv(csv: string): WorksheetFeatureValueDefinition[] {
         const values: WorksheetFeatureValueDefinition[] = [];
-        const parsedCsv = this._parseCsv(csv, "features", { header: true });;
+        const valueIds: { [index: string]: boolean } = {};
+        const parsedCsv = this._parseCsv(csv, "features", { header: true });
         const rows = this._parseUniqueColumnRows(parsedCsv.data);
         rows.forEach((row, rowI) => {
             if (_.isEmpty(row)) {
                 return;
             }
 
-            const valueId = row.id;
+            const valueId = this._validateId(valueIds, row.id);
 
             try {
                 let image: WorksheetFeatureValueImage | undefined;
@@ -246,5 +250,12 @@ export class WorksheetDefinitionCsvParser {
             outRows.push(outRow);
         }
         return outRows;
+    }
+
+    private _validateId(existingIds: { [index: string]: boolean }, id: string): string {
+        if (existingIds[id]) {
+            throw new RangeError("duplicate id '" + id + "'");
+        }
+        return id;
     }
 }
