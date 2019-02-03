@@ -1,5 +1,5 @@
-import * as React from "react";
-import { Modal, ModalHeader, ModalBody } from "reactstrap";
+import * as React from 'react';
+import { Modal, ModalBody, ModalHeader } from 'reactstrap';
 
 interface Props {
     error: Error;
@@ -14,6 +14,6 @@ export class FatalErrorModal extends React.Component<Props> {
                     <ModalBody>{this.props.error.toString()}</ModalBody>
                 </Modal>
             </div>
-        )
+        );
     }
 }

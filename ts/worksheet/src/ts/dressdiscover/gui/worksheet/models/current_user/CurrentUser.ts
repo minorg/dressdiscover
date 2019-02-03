@@ -1,13 +1,13 @@
 export class CurrentUser {
     constructor(kwds: { email: string, name?: string }) {
         this.email = kwds.email;
-        this._name = kwds.name;
+        this.namePrivate = kwds.name;
     }
 
     get name() {
-        return this._name ? this._name : this.email;
+        return this.namePrivate ? this.namePrivate : this.email;
     }
 
     readonly email: string;
-    private readonly _name?: string;
+    private readonly namePrivate?: string;
 }

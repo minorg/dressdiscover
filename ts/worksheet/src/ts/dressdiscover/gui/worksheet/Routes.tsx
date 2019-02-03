@@ -10,25 +10,64 @@ import { WorksheetStart } from 'dressdiscover/gui/worksheet/components/worksheet
 import { WorksheetStateEdit } from 'dressdiscover/gui/worksheet/components/worksheet/WorksheetStateEdit';
 import { WorksheetStateReview } from 'dressdiscover/gui/worksheet/components/worksheet/WorksheetStateReview';
 import { Hrefs } from 'dressdiscover/gui/worksheet/Hrefs';
+import { inject } from 'mobx-react';
+import * as queryString from 'query-string';
 import * as React from 'react';
-import { Route, Switch } from 'react-router';
+import { Redirect, Route, RouteComponentProps, Switch } from 'react-router';
 
-export class Routes extends React.Component {
+import { FatalErrorModal } from './components/error/FatalErrorModal';
+import { CurrentUserStore } from './stores/current_user/CurrentUserStore';
+
+interface Props {
+  currentUserStore?: CurrentUserStore;
+}
+
+@inject("currentUserStore")
+export class Routes extends React.Component<Props> {
+  constructor(props: Props) {
+    super(props);
+    this.renderLoginRedirect = this.renderLoginRedirect.bind(this);
+    this.renderLogoutRedirect = this.renderLogoutRedirect.bind(this);
+  }
+
   render() {
     return (
       <Switch>
         <Route path={Hrefs.credits} component={Credits} />
         <Route exact path={Hrefs.home} component={Home} />
-        <Route exact path={Hrefs.loginRedirect} component={Home} />
+        <Route exact path={Hrefs.loginRedirect} render={this.renderLoginRedirect} />
+        <Route exact path={Hrefs.logoutRedirect} render={this.renderLogoutRedirect} />
         <Route exact path={Hrefs.privacy} component={Privacy} />
         <Route exact path={Hrefs.worksheetStart} component={WorksheetStart} />
         <Route exact path="/worksheet/state/:worksheetStateId/edit" component={WorksheetStateEdit} />
         <Route exact path="/worksheet/state/:worksheetStateId/review" component={WorksheetStateReview} />
-        <Route exact path="/worksheet/state/:worksheetStateId/feature_set/:featureSetId/edit" component={WorksheetFeatureSetStateEditOrReview}/>
-        <Route exact path="/worksheet/state/:worksheetStateId/feature_set/:featureSetId/review" component={WorksheetFeatureSetStateEditOrReview}/>
-        <Route exact path="/worksheet/state/:worksheetStateId/feature_set/:featureSetId/feature/:featureId/edit" component={WorksheetFeatureStateEdit}/>
-        <Route component={NoRoute}/>
+        <Route exact path="/worksheet/state/:worksheetStateId/feature_set/:featureSetId/edit" component={WorksheetFeatureSetStateEditOrReview} />
+        <Route exact path="/worksheet/state/:worksheetStateId/feature_set/:featureSetId/review" component={WorksheetFeatureSetStateEditOrReview} />
+        <Route exact path="/worksheet/state/:worksheetStateId/feature_set/:featureSetId/feature/:featureId/edit" component={WorksheetFeatureStateEdit} />
+        <Route component={NoRoute} />
       </Switch>
     );
+  }
+
+  renderLoginRedirect(props: RouteComponentProps<any>): React.ReactNode {
+    const parsedQuery = queryString.parse(props.location.search);
+
+    const code = parsedQuery.code;
+    if (code && typeof(code) === "string") {
+      this.props.currentUserStore!.loginUser(code);
+      return <Redirect to={Hrefs.home} />;
+    }
+
+    const error = parsedQuery.error;
+    if (error && typeof (error) === "string") {
+      return <FatalErrorModal error={new Error(error)} />;
+    }
+
+    return <FatalErrorModal error={new Error("login error")}></FatalErrorModal>;
+  }
+
+  renderLogoutRedirect() {
+    this.props.currentUserStore!.logoutCurrentUser();
+    return <Redirect to={Hrefs.home}/>;
   }
 }
