@@ -15,14 +15,14 @@ var WebpackCleanupPlugin = require('webpack-cleanup-plugin');
 module.exports = {
   context: srcPath,
   devServer: {
-    port: 9000,
+    clientLogLevel: 'warning',
+    contentBase: distPath,
+    historyApiFallback: true,
     host: 'localhost',
-    // historyApiFallback: true,
-    // watchOptions: {
-    //   aggregateTimeout: 300,
-    //   poll: 1000
-    // },
+    hot: true,
+    inline: true,
     open: true,
+    port: 9000,
     proxy: {
       "/api": {
         "target": {
@@ -33,14 +33,7 @@ module.exports = {
         secure: false
       }
     },
-    contentBase: distPath,
-    hot: true,
-    inline: true,
-    historyApiFallback: {
-      disableDotRule: true
-    },
-    stats: 'minimal',
-    clientLogLevel: 'warning'
+    stats: 'minimal'
   },
   // https://webpack.js.org/configuration/devtool/
   devtool: isProduction ? 'hidden-source-map' : 'cheap-module-eval-source-map',
