@@ -13,7 +13,6 @@ import { Router } from 'react-router';
 
 import { WorksheetStore } from './stores/worksheet/WorksheetStore';
 
-
 // Logger
 const logger = new ConsoleLogger();
 

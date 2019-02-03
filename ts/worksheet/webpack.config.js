@@ -47,6 +47,10 @@ module.exports = {
       // { test: /\.(a?png|svg)$/, use: 'url-loader?limit=10000' },
       // { test: /\.(jpe?g|gif|bmp|mp3|mp4|ogg|wav|eot|ttf|woff|woff2)$/, use: 'file-loader' },
       {
+        test: /\.json$/,
+        loader: 'json-loader'
+      },
+      {
         test: /\.(scss)$/,
         use: [
           // process.env.NODE_ENV !== 'production' ? 'style-loader' : MiniCssExtractPlugin.loader,

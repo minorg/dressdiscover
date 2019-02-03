@@ -3,8 +3,20 @@ import { CurrentUserStore } from 'dressdiscover/gui/worksheet/stores/current_use
 import { inject, observer } from 'mobx-react';
 import * as React from 'react';
 import { Link, RouteComponentProps, withRouter } from 'react-router-dom';
-import { Nav, Navbar as BootstrapNavbar, NavbarBrand, NavItem, NavLink } from 'reactstrap';
+import {
+  Collapse,
+  DropdownItem,
+  DropdownMenu,
+  DropdownToggle,
+  Nav,
+  Navbar as BootstrapNavbar,
+  NavbarBrand,
+  NavItem,
+  NavLink,
+  UncontrolledDropdown,
+} from 'reactstrap';
 
+import { Environment } from '../../Environment';
 import { ActiveNavbarItem } from './ActiveNavbarItem';
 
 interface Props extends RouteComponentProps {
@@ -15,51 +27,53 @@ interface Props extends RouteComponentProps {
 @inject('currentUserStore')
 @observer
 class Navbar extends React.Component<Props> {
+  constructor(props: Props) {
+    super(props);
+    this.onClickLogout = this.onClickLogout.bind(this);
+  }
+
   // componentDidMount() {
   //   this.props.currentUserStore!.fetchCurrentUser();
   // }
 
   async onClickLogout() {
     // await this.props.currentUserStore!.logoutCurrentUser();
-    this.props.history.push(Hrefs.logoutSuccess);
   }
 
   render() {
-    // const currentUser = this.props.currentUserStore!.currentUser;
-    // let authenticatedNavItems: React.ReactNode;
-    // let currentUserJsx: React.ReactNode;
-    // if (currentUser) {
-    //   authenticatedNavItems = (
-    //     <NavItem active={this.props.activeNavItem === ActiveNavbarItem.Collaboratives}>
-    //       <NavLink
-    //         active={this.props.activeNavItem === ActiveNavbarItem.Collaboratives}
-    //         tag={Link}
-    //         to={Hrefs.collaboratives()}
-    //       >
-    //         Collaboratives
-    //       </NavLink>
-    //     </NavItem>
-    //   );
-    //   currentUserJsx = (
-    //     <UncontrolledDropdown nav inNavbar>
-    //       <DropdownToggle nav caret>
-    //         {currentUser.name}
-    //       </DropdownToggle>
-    //       <DropdownMenu right>
-    //         <DropdownItem onClick={this.onClickLogout.bind(this)}>Logout</DropdownItem>
-    //       </DropdownMenu>
-    //     </UncontrolledDropdown>
-    //   );
-    // } else {
-      // authenticatedNavItems = null;
-      // currentUserJsx = (
-      //   <NavItem active={this.props.activeNavItem === ActiveNavbarItem.Login}>
-      //     <NavLink active={this.props.activeNavItem === ActiveNavbarItem.Login} href={Hrefs.login}>
-      //       Login
-      //     </NavLink>
-      //   </NavItem>
-      // );
-    // }
+    const currentUser = this.props.currentUserStore!.currentUser;
+    let currentUserJsx: React.ReactNode;
+    if (Environment.supportsLogin) {
+      if (currentUser) {
+        currentUserJsx = (
+          <UncontrolledDropdown nav inNavbar>
+            <DropdownToggle nav caret>
+              {currentUser.name}
+            </DropdownToggle>
+            <DropdownMenu right>
+              <DropdownItem onClick={this.onClickLogout}>Logout</DropdownItem>
+            </DropdownMenu>
+          </UncontrolledDropdown>
+        );
+      } else {
+        currentUserJsx = (
+          <NavItem>
+            <NavLink href={Hrefs.login}>
+              Login
+            </NavLink>
+          </NavItem>
+        );
+      }
+      currentUserJsx = (
+        <Collapse navbar>
+          <Nav className="ml-auto" navbar>
+            {currentUserJsx}
+          </Nav>
+        </Collapse>
+      );
+    } else {
+      currentUserJsx = null;
+    }
 
     return (
       <div>
@@ -86,11 +100,7 @@ class Navbar extends React.Component<Props> {
             </NavItem>
             {/* {authenticatedNavItems} */}
           </Nav>
-          {/* <Collapse navbar>
-            <Nav className="ml-auto" navbar>
-              {currentUserJsx}
-            </Nav>
-          </Collapse> */}
+          {currentUserJsx}
         </BootstrapNavbar>
       </div>
     );

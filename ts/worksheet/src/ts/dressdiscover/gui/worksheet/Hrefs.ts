@@ -1,6 +1,10 @@
 import { WorksheetStateMark } from 'dressdiscover/api/models/worksheet/worksheet_state_mark';
 
+import { Secrets } from './Secrets';
+
 export class Hrefs {
+  private static readonly cognitoBaseUrl = "https://dressdiscover.auth.us-east-1.amazoncognito.com";
+
   static get home() {
     return '/';
   }
@@ -18,19 +22,19 @@ export class Hrefs {
   }
 
   static get login() {
-    return '/api/v1/oauth/google';
+    return Hrefs.cognitoBaseUrl + "/login?response_type=code&client_id=" + Secrets.AWS_COGNITO_CLIENT_ID + "&redirect_uri=" + window.location.protocol + "//" + window.location.host + Hrefs.loginRedirect;
   }
 
-  static get loginFailure() {
-    return '/loginFailure';
+  static get loginRedirect() {
+    return '/loginRedirect';
   }
 
-  static get loginSuccess() {
-    return '/loginSuccess';
+  static get logout() {
+    return Hrefs.cognitoBaseUrl + "/logout";
   }
 
-  static get logoutSuccess() {
-    return "/logoutSuccess";
+  static get logoutRedirect() {
+    return "/logoutRedirect";
   }
 
   static get privacy() {

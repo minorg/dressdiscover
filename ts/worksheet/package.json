@@ -22,6 +22,7 @@
     "file-loader": "^1.1.11",
     "html-loader": "^1.0.0-alpha.0",
     "html-webpack-plugin": "^4.0.0-alpha",
+    "json-loader": "0.5.7",
     "mini-css-extract-plugin": "^0.4.0",
     "node-sass": "4.9.3",
     "postcss": "^6.0.22",
@@ -45,6 +46,7 @@
     "webpack-dev-server": "^3.1.4"
   },
   "dependencies": {
+    "aws-sdk": "2.395.0",
     "axios": "0.18.0",
     "bootstrap": "4.2.1",
     "classnames": "2.2.6",

@@ -19,9 +19,7 @@ export class Routes extends React.Component {
       <Switch>
         <Route path={Hrefs.credits} component={Credits} />
         <Route exact path={Hrefs.home} component={Home} />
-        <Route exact path={Hrefs.loginFailure} component={Home} />
-        <Route exact path={Hrefs.loginSuccess} component={Home} />
-        <Route exact path={Hrefs.logoutSuccess} component={Home} />
+        <Route exact path={Hrefs.loginRedirect} component={Home} />
         <Route exact path={Hrefs.privacy} component={Privacy} />
         <Route exact path={Hrefs.worksheetStart} component={WorksheetStart} />
         <Route exact path="/worksheet/state/:worksheetStateId/edit" component={WorksheetStateEdit} />
