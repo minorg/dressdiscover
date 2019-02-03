@@ -13,11 +13,17 @@ export class Application extends React.Component<{}, { gapiLoaded: boolean }> {
 
   componentDidMount() {
     gapi.load("client", () => {
-      gapi.client.load('sheets', 'v4', () => {
-        this.setState((prevState) => ({ gapiLoaded: true }));
+      gapi.client.load('drive', 'v3', () => {
+        gapi.client.load('oauth2', 'v2', () => {
+          gapi.client.load('plus', 'v1', () => {
+            gapi.client.load('sheets', 'v4', () => {
+              this.setState((prevState) => ({ gapiLoaded: true }));
+            });
+          });
+        });
       });
-  });
-}
+    });
+  }
 
   render() {
     if (!this.state.gapiLoaded) {

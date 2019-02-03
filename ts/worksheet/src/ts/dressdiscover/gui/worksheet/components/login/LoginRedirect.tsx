@@ -13,7 +13,7 @@ interface Props extends RouteComponentProps {
 @inject("currentUserStore")
 export class LoginRedirect extends React.Component<Props> {
     render() {
-        const parsedQueryString = queryString.parse(this.props.location.search);
+        const parsedQueryString = queryString.parse(this.props.location.hash.substring(1));
 
         const accessToken = parsedQueryString.access_token;
         if (accessToken && typeof (accessToken) === "string") {
