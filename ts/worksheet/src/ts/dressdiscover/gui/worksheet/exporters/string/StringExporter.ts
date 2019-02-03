@@ -1,8 +1,6 @@
-import { WorksheetStateWrapper } from 'dressdiscover/gui/worksheet/models/worksheet/WorksheetStateWrapper';
+import { Exporter } from '../Exporter';
 
-export interface StringExporter {
-    export(worksheetState: WorksheetStateWrapper): string;
-
+export interface StringExporter extends Exporter<string> {
     readonly fileExtension: string;
     readonly mimeType: string;
 }
