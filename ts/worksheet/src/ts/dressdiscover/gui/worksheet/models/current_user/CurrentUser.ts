@@ -1,6 +1,7 @@
 export class CurrentUser {
-    constructor(kwds: { email: string, name?: string }) {
+    constructor(kwds: { email: string, googleAccessToken: string, name?: string }) {
         this.email = kwds.email;
+        this.googleAccessToken = kwds.googleAccessToken;
         this.namePrivate = kwds.name;
     }
 
@@ -9,5 +10,6 @@ export class CurrentUser {
     }
 
     readonly email: string;
+    readonly googleAccessToken: string;
     private readonly namePrivate?: string;
 }

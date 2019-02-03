@@ -1,10 +1,6 @@
 import { WorksheetStateMark } from 'dressdiscover/api/models/worksheet/worksheet_state_mark';
 
-import { CognitoUserPool } from './CognitoUserPool';
-
 export class Hrefs {
-  private static readonly cognitoBaseUrl = "https://dressdiscover.auth.us-east-1.amazoncognito.com";
-
   static get home() {
     return '/';
   }
@@ -22,7 +18,7 @@ export class Hrefs {
   }
 
   static get login() {
-    return Hrefs.cognitoBaseUrl + "/login?response_type=code&client_id=" + CognitoUserPool.CLIENT_ID + "&redirect_uri=" + window.location.protocol + "//" + window.location.host + Hrefs.loginRedirect;
+    return "/login";
   }
 
   static get loginRedirect() {
@@ -30,11 +26,7 @@ export class Hrefs {
   }
 
   static get logout() {
-    return Hrefs.cognitoBaseUrl + "/logout";
-  }
-
-  static get logoutRedirect() {
-    return "/logoutRedirect";
+    return "/logout";
   }
 
   static get privacy() {

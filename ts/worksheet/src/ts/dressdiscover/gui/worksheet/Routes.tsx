@@ -10,33 +10,22 @@ import { WorksheetStart } from 'dressdiscover/gui/worksheet/components/worksheet
 import { WorksheetStateEdit } from 'dressdiscover/gui/worksheet/components/worksheet/WorksheetStateEdit';
 import { WorksheetStateReview } from 'dressdiscover/gui/worksheet/components/worksheet/WorksheetStateReview';
 import { Hrefs } from 'dressdiscover/gui/worksheet/Hrefs';
-import { inject } from 'mobx-react';
-import * as queryString from 'query-string';
 import * as React from 'react';
-import { Redirect, Route, RouteComponentProps, Switch } from 'react-router';
+import { Route, Switch } from 'react-router';
 
-import { FatalErrorModal } from './components/error/FatalErrorModal';
-import { CurrentUserStore } from './stores/current_user/CurrentUserStore';
+import { Login } from './components/login/Login';
+import { LoginRedirect } from './components/login/LoginRedirect';
+import { Logout } from './components/login/Logout';
 
-interface Props {
-  currentUserStore?: CurrentUserStore;
-}
-
-@inject("currentUserStore")
-export class Routes extends React.Component<Props> {
-  constructor(props: Props) {
-    super(props);
-    this.renderLoginRedirect = this.renderLoginRedirect.bind(this);
-    this.renderLogoutRedirect = this.renderLogoutRedirect.bind(this);
-  }
-
+export class Routes extends React.Component {
   render() {
     return (
       <Switch>
         <Route path={Hrefs.credits} component={Credits} />
         <Route exact path={Hrefs.home} component={Home} />
-        <Route exact path={Hrefs.loginRedirect} render={this.renderLoginRedirect} />
-        <Route exact path={Hrefs.logoutRedirect} render={this.renderLogoutRedirect} />
+        <Route exact path={Hrefs.login} component={Login} />
+        <Route exact path={Hrefs.loginRedirect} component={LoginRedirect} />
+        <Route exact path={Hrefs.logout} component={Logout} />
         <Route exact path={Hrefs.privacy} component={Privacy} />
         <Route exact path={Hrefs.worksheetStart} component={WorksheetStart} />
         <Route exact path="/worksheet/state/:worksheetStateId/edit" component={WorksheetStateEdit} />
@@ -47,27 +36,5 @@ export class Routes extends React.Component<Props> {
         <Route component={NoRoute} />
       </Switch>
     );
-  }
-
-  renderLoginRedirect(props: RouteComponentProps<any>): React.ReactNode {
-    const parsedQuery = queryString.parse(props.location.search);
-
-    const code = parsedQuery.code;
-    if (code && typeof(code) === "string") {
-      this.props.currentUserStore!.loginUser(code);
-      return <Redirect to={Hrefs.home} />;
-    }
-
-    const error = parsedQuery.error;
-    if (error && typeof (error) === "string") {
-      return <FatalErrorModal error={new Error(error)} />;
-    }
-
-    return <FatalErrorModal error={new Error("login error")}></FatalErrorModal>;
-  }
-
-  renderLogoutRedirect() {
-    this.props.currentUserStore!.logoutCurrentUser();
-    return <Redirect to={Hrefs.home}/>;
   }
 }
