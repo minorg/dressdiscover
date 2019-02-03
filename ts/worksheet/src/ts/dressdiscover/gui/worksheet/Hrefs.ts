@@ -18,19 +18,15 @@ export class Hrefs {
   }
 
   static get login() {
-    return '/api/v1/oauth/google';
+    return "/login";
   }
 
-  static get loginFailure() {
-    return '/loginFailure';
+  static get loginRedirect() {
+    return '/loginRedirect';
   }
 
-  static get loginSuccess() {
-    return '/loginSuccess';
-  }
-
-  static get logoutSuccess() {
-    return "/logoutSuccess";
+  static get logout() {
+    return "/logout";
   }
 
   static get privacy() {
