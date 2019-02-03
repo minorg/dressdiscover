@@ -5,6 +5,7 @@ import { Redirect, RouteComponentProps } from 'react-router';
 
 import { Hrefs } from '../../Hrefs';
 import { CurrentUserStore } from '../../stores/current_user/CurrentUserStore';
+import { FatalErrorModal } from '../error/FatalErrorModal';
 
 interface Props extends RouteComponentProps {
     currentUserStore?: CurrentUserStore;
@@ -21,6 +22,13 @@ export class LoginRedirect extends React.Component<Props> {
             return <Redirect to={Hrefs.home}></Redirect>;
         }
 
-        return <div></div>;
+        const onModalExit = () => { this.props.history.push(Hrefs.home); };
+
+        const error = parsedQueryString.error;
+        if (error && typeof (error) === "string") {
+            return <FatalErrorModal error={new Error(error)} onExit={onModalExit}></FatalErrorModal>;
+        }
+
+        return <FatalErrorModal error={new Error("login error")} onExit={onModalExit}></FatalErrorModal>;
     }
 }
