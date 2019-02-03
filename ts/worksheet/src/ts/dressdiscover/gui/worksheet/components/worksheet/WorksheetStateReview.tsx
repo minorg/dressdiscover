@@ -1,9 +1,8 @@
 import {
     WorksheetFeatureSetStateTable,
 } from 'dressdiscover/gui/worksheet/components/worksheet/WorksheetFeatureSetStateTable';
-import { CsvExporter } from 'dressdiscover/gui/worksheet/exporters/string/CsvExporter';
-import { JsonExporter } from 'dressdiscover/gui/worksheet/exporters/string/JsonExporter';
-import { StringExporter } from 'dressdiscover/gui/worksheet/exporters/string/StringExporter';
+import { CsvStringExporter } from 'dressdiscover/gui/worksheet/exporters/string/CsvStringExporter';
+import { JsonStringExporter } from 'dressdiscover/gui/worksheet/exporters/string/JsonStringExporter';
 import { History } from 'history';
 import * as React from 'react';
 import Clipboard from 'react-clipboard.js';
@@ -43,7 +42,7 @@ class WorksheetStateReviewImpl extends React.Component<WorksheetStateReviewImplP
     }
 
     export(): string {
-        return this.selectedStringExporter.export(this.props.worksheetState);
+        return this.selectedStringStringExporter.export(this.props.worksheetState);
     }
 
     onChangeFormat(event: React.ChangeEvent<HTMLInputElement>) {
@@ -53,11 +52,11 @@ class WorksheetStateReviewImpl extends React.Component<WorksheetStateReviewImplP
 
     onClickDownloadButton(event: React.MouseEvent): void {
         const content = this.export();
-        const selectedStringExporter = this.selectedStringExporter;
+        const selectedStringStringExporter = this.selectedStringStringExporter;
 
         const a = document.createElement('a')
-        const fileName = this.props.worksheetState.id + '.' + selectedStringExporter.fileExtension;
-        const mimeType = selectedStringExporter.mimeType;
+        const fileName = this.props.worksheetState.id + '.' + selectedStringStringExporter.fileExtension;
+        const mimeType = selectedStringStringExporter.mimeType;
 
         if (navigator.msSaveBlob) { // IE10
             if (!navigator.msSaveBlob(new Blob([content], { type: mimeType }), fileName)) {
@@ -108,8 +107,8 @@ class WorksheetStateReviewImpl extends React.Component<WorksheetStateReviewImplP
                             <Button color="secondary" onClick={this.onClickEmailButton}>Email</Button>&nbsp;
                             <Button color="secondary" onClick={this.onClickDownloadButton}>Download</Button>&nbsp;
                             <Input onChange={this.onChangeFormat} value={this.state.selectedFormatIndex} type="select">
-                                {this.stringExporters.map((stringExporter, formatIndex) =>
-                                    <option key={stringExporter.fileExtension} value={formatIndex.toString()}>{stringExporter.fileExtension.toUpperCase()}</option>
+                                {this.stringStringExporters.map((stringStringExporter, formatIndex) =>
+                                    <option key={stringStringExporter.fileExtension} value={formatIndex.toString()}>{stringStringExporter.fileExtension.toUpperCase()}</option>
                                 )}
                             </Input>
                         </Form>
@@ -142,9 +141,9 @@ class WorksheetStateReviewImpl extends React.Component<WorksheetStateReviewImplP
             </WorksheetStateFrame>);
     }
 
-    private get selectedStringExporter(): StringExporter {
-        return this.stringExporters[this.state.selectedFormatIndex];
+    private get selectedStringStringExporter(): StringStringExporter {
+        return this.stringStringExporters[this.state.selectedFormatIndex];
     }
 
-    private readonly stringExporters: StringExporter[] = [new CsvExporter(), new JsonExporter()];
+    private readonly stringStringExporters: StringStringExporter[] = [new CsvStringExporter(), new JsonStringExporter()];
 }

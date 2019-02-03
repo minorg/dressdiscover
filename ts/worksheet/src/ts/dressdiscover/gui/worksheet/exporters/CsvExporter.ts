@@ -1,9 +1,8 @@
-import { StringExporter } from 'dressdiscover/gui/worksheet/exporters/string/StringExporter';
-import { WorksheetStateWrapper } from 'dressdiscover/gui/worksheet/models/worksheet/WorksheetStateWrapper';
-import * as Papa from 'papaparse';
+import { WorksheetStateWrapper } from '../models/worksheet/WorksheetStateWrapper';
+import { Exporter } from './Exporter';
 
-export class CsvExporter implements StringExporter {
-    export(worksheetState: WorksheetStateWrapper): string {
+export class CsvExporter implements Exporter<string[][]> {
+    export(worksheetState: WorksheetStateWrapper): string[][] {
         const rows: string[][] = [];
         const header = ["id", "feature_set_id", "feature_id", "feature_value_id", "text"];
         rows.push(header);
@@ -31,14 +30,6 @@ export class CsvExporter implements StringExporter {
             rows.push(row);
         }
 
-        return Papa.unparse(rows);
-    }
-
-    get fileExtension() {
-        return "csv";
-    }
-
-    get mimeType() {
-        return "text/csv";
+        return rows;
     }
 }
