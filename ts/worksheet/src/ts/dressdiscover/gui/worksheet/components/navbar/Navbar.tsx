@@ -41,7 +41,7 @@ class Navbar extends React.Component<Props> {
 
     let currentUserJsx: React.ReactNode;
     if (Environment.supportsLogin) {
-      if (currentUser) {
+      if (currentUser && currentUser.session.isValid()) {
         currentUserJsx = (
           <UncontrolledDropdown nav inNavbar>
             <DropdownToggle nav caret>
