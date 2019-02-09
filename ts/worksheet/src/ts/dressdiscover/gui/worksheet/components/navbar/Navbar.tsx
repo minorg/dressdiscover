@@ -27,15 +27,6 @@ interface Props extends RouteComponentProps {
 @inject('currentUserStore')
 @observer
 class Navbar extends React.Component<Props> {
-  constructor(props: Props) {
-    super(props);
-    this.onClickLogout = this.onClickLogout.bind(this);
-  }
-
-  onClickLogout() {
-    this.props.currentUserStore!.logoutCurrentUser();
-  }
-
   render() {
     const currentUser = this.props.currentUserStore!.currentUser;
 
@@ -48,7 +39,7 @@ class Navbar extends React.Component<Props> {
               {currentUser.name}
             </DropdownToggle>
             <DropdownMenu right>
-              <DropdownItem onClick={this.onClickLogout}>Logout</DropdownItem>
+              <DropdownItem><Link to={Hrefs.logout}>Logout</Link></DropdownItem>
             </DropdownMenu>
           </UncontrolledDropdown>
         );

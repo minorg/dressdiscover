@@ -1,5 +1,6 @@
 import { NoRoute } from 'dressdiscover/gui/worksheet/components/error/NoRoute';
 import { Home } from 'dressdiscover/gui/worksheet/components/home/Home';
+import { LogoutCallback } from 'dressdiscover/gui/worksheet/components/login/LogoutCallback';
 import { Credits } from 'dressdiscover/gui/worksheet/components/static/Credits';
 import { Privacy } from 'dressdiscover/gui/worksheet/components/static/Privacy';
 import {
@@ -26,6 +27,7 @@ export class Routes extends React.Component {
         <Route exact path={Hrefs.login} component={Login} />
         <Route exact path={Hrefs.loginCallback} component={LoginCallback} />
         <Route exact path={Hrefs.logout} component={Logout} />
+        <Route exact path={Hrefs.logoutCallback} component={LogoutCallback} />
         <Route exact path={Hrefs.privacy} component={Privacy} />
         <Route exact path={Hrefs.worksheetStart} component={WorksheetStart} />
         <Route exact path="/worksheet/state/:worksheetStateId/edit" component={WorksheetStateEdit} />

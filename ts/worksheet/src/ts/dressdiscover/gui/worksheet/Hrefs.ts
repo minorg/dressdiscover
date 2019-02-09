@@ -29,6 +29,10 @@ export class Hrefs {
     return "/logout";
   }
 
+  static get logoutCallback() {
+    return "/logoutCallback";
+  }
+
   static get privacy() {
     return "/privacy";
   }

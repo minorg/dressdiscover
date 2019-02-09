@@ -2,6 +2,7 @@ import { Auth0DecodedHash, Auth0Error, WebAuth } from 'auth0-js';
 import { Hrefs } from 'dressdiscover/gui/worksheet/Hrefs';
 import { CurrentUser } from 'dressdiscover/gui/worksheet/models/current_user/CurrentUser';
 import { CurrentUserSession } from 'dressdiscover/gui/worksheet/models/current_user/CurrentUserSession';
+import { ILogger } from 'dressdiscover/gui/worksheet/util/logging/ILogger';
 import * as invariant from 'invariant';
 import { action, observable, runInAction } from 'mobx';
 
@@ -11,7 +12,7 @@ export class CurrentUserStore {
     @observable.ref currentUser?: CurrentUser | null;
     @observable.ref error?: Auth0Error | Error | null;
 
-    constructor() {
+    constructor(private readonly logger: ILogger) {
         this.auth0 = new WebAuth({
             clientID: "m32ET2Qx-y5NEXtgQV9Vffk_5D4j3lrf",
             domain: "dressdiscover.auth0.com",
@@ -23,6 +24,7 @@ export class CurrentUserStore {
         runInAction("construction", () => {
             const hashString = localStorage.getItem(CurrentUserStore.CURRENT_USER_AUTH0_DECODED_HASH_KEY);
             if (hashString) {
+                logger.debug("retrieved current user hash from local storage");
                 this.setCurrentUser(JSON.parse(hashString) as Auth0DecodedHash, false);
             } else {
                 this.clearCurrentUser();
@@ -49,9 +51,7 @@ export class CurrentUserStore {
     }
 
     @action
-    logoutCurrentUser() {
-        this.clearCurrentUser();
-        this.clearError();
+    handleLogoutCallback() {
     }
 
     @action
@@ -90,8 +90,9 @@ export class CurrentUserStore {
             session: currentUserSession
         });
 
-        if (typeof(saveToLocalStorage) === "undefined" || saveToLocalStorage) {
+        if (typeof (saveToLocalStorage) === "undefined" || saveToLocalStorage) {
             localStorage.setItem(CurrentUserStore.CURRENT_USER_AUTH0_DECODED_HASH_KEY, JSON.stringify(authResult));
+            this.logger.debug("set current user hash in local storage");
         }
     }
 
@@ -108,9 +109,17 @@ export class CurrentUserStore {
         this.auth0.authorize();
     }
 
+    @action
+    startLogout() {
+        this.clearCurrentUser();
+        this.clearError();
+        this.auth0.logout({ returnTo: window.location.protocol + "//" + window.location.host + Hrefs.logoutCallback });
+    }
+
     private clearCurrentUser() {
         this.currentUser = null;
         localStorage.removeItem(CurrentUserStore.CURRENT_USER_AUTH0_DECODED_HASH_KEY);
+        this.logger.debug("cleared current user hash from local storage");
     }
 
     private clearError() {
