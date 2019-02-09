@@ -27,7 +27,7 @@ const browserHistory = createBrowserHistory();
 const routerStore = new RouterStore();
 const syncedHistory = syncHistoryWithStore(browserHistory, routerStore);
 const stores = {
-  currentUserStore: new CurrentUserStore(),
+  currentUserStore: new CurrentUserStore(logger),
   routerStore,
   worksheetStore: new WorksheetStore(logger, services)
 };

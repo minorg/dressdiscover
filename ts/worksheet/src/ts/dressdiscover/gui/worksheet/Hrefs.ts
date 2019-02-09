@@ -21,12 +21,16 @@ export class Hrefs {
     return "/login";
   }
 
-  static get loginRedirect() {
-    return '/loginRedirect';
+  static get loginCallback() {
+    return '/loginCallback';
   }
 
   static get logout() {
     return "/logout";
+  }
+
+  static get logoutCallback() {
+    return "/logoutCallback";
   }
 
   static get privacy() {

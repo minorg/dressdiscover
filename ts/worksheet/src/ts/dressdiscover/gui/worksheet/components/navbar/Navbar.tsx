@@ -27,31 +27,19 @@ interface Props extends RouteComponentProps {
 @inject('currentUserStore')
 @observer
 class Navbar extends React.Component<Props> {
-  constructor(props: Props) {
-    super(props);
-    this.onClickLogout = this.onClickLogout.bind(this);
-  }
-
-  // componentDidMount() {
-  //   this.props.currentUserStore!.fetchCurrentUser();
-  // }
-
-  async onClickLogout() {
-    // await this.props.currentUserStore!.logoutCurrentUser();
-  }
-
   render() {
     const currentUser = this.props.currentUserStore!.currentUser;
+
     let currentUserJsx: React.ReactNode;
     if (Environment.supportsLogin) {
-      if (currentUser) {
+      if (currentUser && currentUser.session.isValid()) {
         currentUserJsx = (
           <UncontrolledDropdown nav inNavbar>
             <DropdownToggle nav caret>
               {currentUser.name}
             </DropdownToggle>
             <DropdownMenu right>
-              <DropdownItem onClick={this.onClickLogout}>Logout</DropdownItem>
+              <DropdownItem><Link to={Hrefs.logout}>Logout</Link></DropdownItem>
             </DropdownMenu>
           </UncontrolledDropdown>
         );
