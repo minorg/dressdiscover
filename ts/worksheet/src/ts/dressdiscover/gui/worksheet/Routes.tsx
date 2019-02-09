@@ -14,7 +14,7 @@ import * as React from 'react';
 import { Route, Switch } from 'react-router';
 
 import { Login } from './components/login/Login';
-import { LoginRedirect } from './components/login/LoginRedirect';
+import { LoginCallback } from './components/login/LoginCallback';
 import { Logout } from './components/login/Logout';
 
 export class Routes extends React.Component {
@@ -24,7 +24,7 @@ export class Routes extends React.Component {
         <Route path={Hrefs.credits} component={Credits} />
         <Route exact path={Hrefs.home} component={Home} />
         <Route exact path={Hrefs.login} component={Login} />
-        <Route exact path={Hrefs.loginRedirect} component={LoginRedirect} />
+        <Route exact path={Hrefs.loginCallback} component={LoginCallback} />
         <Route exact path={Hrefs.logout} component={Logout} />
         <Route exact path={Hrefs.privacy} component={Privacy} />
         <Route exact path={Hrefs.worksheetStart} component={WorksheetStart} />

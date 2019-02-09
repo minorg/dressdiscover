@@ -2,7 +2,13 @@ import { CurrentUser } from 'dressdiscover/gui/worksheet/models/current_user/Cur
 import { action, observable, runInAction } from 'mobx';
 
 export class CurrentUserStore {
-    @observable currentUser: CurrentUser | undefined;
+    @observable.ref currentUser?: CurrentUser | null;
+
+    constructor() {
+        runInAction("constructor", () => {
+            this.currentUser = null;
+        });
+    }
 
     @action
     async loginUser(kwds: { googleAccessToken: string }) {
@@ -17,6 +23,6 @@ export class CurrentUserStore {
 
     @action
     logoutCurrentUser() {
-        this.currentUser = undefined;
+        this.currentUser = null;
     }
 }

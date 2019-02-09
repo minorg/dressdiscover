@@ -12,7 +12,7 @@ interface Props extends RouteComponentProps {
 }
 
 @inject("currentUserStore")
-export class LoginRedirect extends React.Component<Props> {
+export class LoginCallback extends React.Component<Props> {
     render() {
         const parsedQueryString = queryString.parse(this.props.location.hash.substring(1));
 
