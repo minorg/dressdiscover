@@ -5,6 +5,10 @@ export class CurrentUserSession {
         this.idToken = kwds.idToken;
     }
 
+    isValid() {
+        return new Date().getTime() < this.expiresAt;
+    }
+
     readonly accessToken: string;
     readonly expiresAt: number;
     readonly idToken: string;

@@ -9,7 +9,6 @@ export class CurrentUserStore {
     private readonly auth0: WebAuth;
 
     @observable.ref currentUser?: CurrentUser | null;
-    @observable.ref currentUserSession?: CurrentUserSession | null;
     @observable.ref error?: Auth0Error | Error | null;
 
     constructor() {
@@ -52,7 +51,6 @@ export class CurrentUserStore {
     @action
     renewCurrentUserSession() {
         invariant(this.currentUser, "expect existing user");
-        invariant(this.currentUserSession, "expect existing session");
 
         this.auth0.checkSession({}, (err, authResult) => {
             if (authResult && authResult.accessToken && authResult.idToken) {
@@ -73,16 +71,17 @@ export class CurrentUserStore {
             return;
         }
 
-        // idTokenPayload has many other fields
-        this.currentUser = new CurrentUser({
-            email: authResult.idTokenPayload.email,
-            name: authResult.idTokenPayload.name
-        });
-
-        this.currentUserSession = new CurrentUserSession({
+        const currentUserSession = new CurrentUserSession({
             accessToken: authResult.accessToken,
             expiresAt: (authResult.expiresIn * 1000) + new Date().getTime(),
             idToken: authResult.idToken
+        });
+
+        // idTokenPayload has many other fields
+        this.currentUser = new CurrentUser({
+            email: authResult.idTokenPayload.email,
+            name: authResult.idTokenPayload.name,
+            session: currentUserSession
         });
     }
 
@@ -101,7 +100,6 @@ export class CurrentUserStore {
 
     private clearCurrentUser() {
         this.currentUser = null;
-        this.currentUserSession = null;
     }
 
     private clearError() {
