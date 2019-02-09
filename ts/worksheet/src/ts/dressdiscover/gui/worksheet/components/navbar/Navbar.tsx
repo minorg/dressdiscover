@@ -38,6 +38,7 @@ class Navbar extends React.Component<Props> {
 
   render() {
     const currentUser = this.props.currentUserStore!.currentUser;
+
     let currentUserJsx: React.ReactNode;
     if (Environment.supportsLogin) {
       if (currentUser) {
