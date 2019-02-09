@@ -8,6 +8,8 @@ import DevTools from 'mobx-react-devtools';
 import * as React from 'react';
 import { ReactNode } from 'react';
 
+declare var DEVELOPMENT: boolean;
+
 interface Props {
   activeNavItem?: ActiveNavbarItem;
   className?: string;
@@ -22,7 +24,7 @@ export class Frame extends React.Component<Props> {
         <Navbar activeNavItem={this.props.activeNavItem} />
         {this.props.children}
         <Footer />
-        <DevTools />
+        {DEVELOPMENT ? <DevTools /> : null}
       </div>
     );
   }

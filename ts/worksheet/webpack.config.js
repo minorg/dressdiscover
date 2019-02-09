@@ -3,7 +3,6 @@ var path = require('path');
 
 // variables
 var distPath = path.join(__dirname, './dist');
-var isProduction = process.argv.indexOf('-p') >= 0 || process.env.NODE_ENV === 'production';
 var srcPath = path.join(__dirname, './src');
 
 // plugins
@@ -12,7 +11,7 @@ var HtmlWebpackPlugin = require('html-webpack-plugin');
 var MiniCssExtractPlugin = require('mini-css-extract-plugin');
 var WebpackCleanupPlugin = require('webpack-cleanup-plugin');
 
-module.exports = {
+module.exports = (env, argv) => ({
   context: srcPath,
   devServer: {
     clientLogLevel: 'warning',
@@ -36,7 +35,7 @@ module.exports = {
     stats: 'minimal'
   },
   // https://webpack.js.org/configuration/devtool/
-  devtool: isProduction ? 'hidden-source-map' : 'cheap-module-eval-source-map',
+  devtool: argv.mode === "production" ? 'hidden-source-map' : 'cheap-module-eval-source-map',
   entry: {
     app: './ts/dressdiscover/gui/worksheet/main.tsx'
   },
@@ -49,11 +48,7 @@ module.exports = {
       {
         test: /\.(scss)$/,
         use: [
-          // process.env.NODE_ENV !== 'production' ? 'style-loader' : MiniCssExtractPlugin.loader,
           MiniCssExtractPlugin.loader,
-          //   {
-          //   loader: 'style-loader', // inject CSS to page
-          // },
           {
             loader: 'css-loader', // translates CSS into CommonJS modules
           }, {
@@ -75,7 +70,7 @@ module.exports = {
       {
         test: /\.tsx?$/,
         use: [
-          !isProduction && {
+          argv.mode !== "production" && {
             loader: 'babel-loader'
           },
           'ts-loader'
@@ -89,22 +84,22 @@ module.exports = {
     publicPath: ''
   },
   plugins: [
-    new webpack.EnvironmentPlugin({
-      NODE_ENV: 'development', // use 'development' unless process.env.NODE_ENV is defined
-      DEBUG: false
-    }),
     new WebpackCleanupPlugin(),
     new CopyWebpackPlugin([{
       from: 'img',
       to: path.join(distPath, 'img/')
     }]),
     new MiniCssExtractPlugin({
-      disable: !isProduction,
+      disable: argv.mode !== "production",
       filename: 'css/dressdiscover-worksheet.css'
     }),
     new HtmlWebpackPlugin({
       hash: true,
       template: 'index.html'
+    }),
+    new webpack.DefinePlugin({
+      DEVELOPMENT: argv.mode === "development",
+      PRODUCTION: argv.mode === "production"
     })
   ],
   resolve: {
@@ -118,4 +113,4 @@ module.exports = {
     }
   },
   target: 'web'
-};
+});
