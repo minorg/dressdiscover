@@ -21,7 +21,13 @@ export class CurrentUserStore {
         });
 
         runInAction("construction", () => {
-            this.clearCurrentUser();
+            const hashString = localStorage.getItem(CurrentUserStore.CURRENT_USER_AUTH0_DECODED_HASH_KEY);
+            if (hashString) {
+                this.setCurrentUser(JSON.parse(hashString) as Auth0DecodedHash, false);
+            } else {
+                this.clearCurrentUser();
+            }
+
             this.clearError();
         });
     }
@@ -35,7 +41,7 @@ export class CurrentUserStore {
 
         this.auth0.parseHash((err, authResult) => {
             if (authResult && authResult.accessToken && authResult.idToken) {
-                this.setCurrentUserSession(authResult);
+                this.setCurrentUser(authResult);
             } else if (err) {
                 this.setError(err);
             }
@@ -55,7 +61,7 @@ export class CurrentUserStore {
         this.auth0.checkSession({}, (err, authResult) => {
             if (authResult && authResult.accessToken && authResult.idToken) {
                 this.clearError();
-                this.setCurrentUserSession(authResult);
+                this.setCurrentUser(authResult);
             } else if (err) {
                 this.clearCurrentUser();
                 this.setError(err);
@@ -64,7 +70,7 @@ export class CurrentUserStore {
     }
 
     @action
-    setCurrentUserSession(authResult: Auth0DecodedHash) {
+    setCurrentUser(authResult: Auth0DecodedHash, saveToLocalStorage?: boolean) {
         if (!authResult.accessToken || !authResult.expiresIn || !authResult.idToken) {
             this.clearCurrentUser();
             this.setError(new Error("authResult has undefined fields"));
@@ -83,6 +89,10 @@ export class CurrentUserStore {
             name: authResult.idTokenPayload.name,
             session: currentUserSession
         });
+
+        if (typeof(saveToLocalStorage) === "undefined" || saveToLocalStorage) {
+            localStorage.setItem(CurrentUserStore.CURRENT_USER_AUTH0_DECODED_HASH_KEY, JSON.stringify(authResult));
+        }
     }
 
     @action
@@ -100,9 +110,12 @@ export class CurrentUserStore {
 
     private clearCurrentUser() {
         this.currentUser = null;
+        localStorage.removeItem(CurrentUserStore.CURRENT_USER_AUTH0_DECODED_HASH_KEY);
     }
 
     private clearError() {
         this.error = null;
     }
+
+    private static readonly CURRENT_USER_AUTH0_DECODED_HASH_KEY = "currentUserAuth0DecodedHash";
 }

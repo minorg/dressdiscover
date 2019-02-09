@@ -32,8 +32,8 @@ class Navbar extends React.Component<Props> {
     this.onClickLogout = this.onClickLogout.bind(this);
   }
 
-  async onClickLogout() {
-    // await this.props.currentUserStore!.logoutCurrentUser();
+  onClickLogout() {
+    this.props.currentUserStore!.logoutCurrentUser();
   }
 
   render() {
