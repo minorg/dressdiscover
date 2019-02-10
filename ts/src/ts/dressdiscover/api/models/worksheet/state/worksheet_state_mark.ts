@@ -1,5 +1,5 @@
-import { WorksheetFeatureId } from "./worksheet_feature_id";
-import { WorksheetFeatureSetId } from "./worksheet_feature_set_id";
+import { WorksheetFeatureId } from "../worksheet_feature_id";
+import { WorksheetFeatureSetId } from "../worksheet_feature_set_id";
 import { WorksheetStateId } from "./worksheet_state_id";
 
 export class WorksheetStateMark {

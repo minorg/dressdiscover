@@ -1,4 +1,4 @@
-import { WorksheetStateId } from "../../models/worksheet/worksheet_state_id";
+import { WorksheetStateId } from "../../../models/worksheet/state/worksheet_state_id";
 
 export class DuplicateWorksheetStateException {
     constructor(kwds: {id: WorksheetStateId}) {

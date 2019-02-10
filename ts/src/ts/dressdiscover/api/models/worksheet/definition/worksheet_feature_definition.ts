@@ -1,37 +1,37 @@
 import { WorksheetDescription } from "./worksheet_description";
-import { WorksheetFeatureId } from "./worksheet_feature_id";
-import { WorksheetFeatureSetId } from "./worksheet_feature_set_id";
+import { WorksheetFeatureId } from "../worksheet_feature_id";
+import { WorksheetFeatureValueId } from "../worksheet_feature_value_id";
 
-export class WorksheetFeatureSetDefinition {
-    constructor(kwds: {featureIds: WorksheetFeatureId[], id: WorksheetFeatureSetId, description?: WorksheetDescription, displayName?: string}) {
-        this.featureIdsPrivate = WorksheetFeatureSetDefinition.validateFeatureIds(kwds.featureIds);
-        this.idPrivate = WorksheetFeatureSetDefinition.validateId(kwds.id);
+export class WorksheetFeatureDefinition {
+    constructor(kwds: {id: WorksheetFeatureId, valueIds: WorksheetFeatureValueId[], description?: WorksheetDescription, displayName?: string}) {
+        this.idPrivate = WorksheetFeatureDefinition.validateId(kwds.id);
+        this.valueIdsPrivate = WorksheetFeatureDefinition.validateValueIds(kwds.valueIds);
         if (kwds.description != null) {
-            this.descriptionPrivate = WorksheetFeatureSetDefinition.validateDescription(kwds.description);
+            this.descriptionPrivate = WorksheetFeatureDefinition.validateDescription(kwds.description);
         } else {
             this.descriptionPrivate = undefined;
         }
         if (kwds.displayName != null) {
-            this.displayNamePrivate = WorksheetFeatureSetDefinition.validateDisplayName(kwds.displayName);
+            this.displayNamePrivate = WorksheetFeatureDefinition.validateDisplayName(kwds.displayName);
         } else {
             this.displayNamePrivate = undefined;
         }
     }
 
-    get featureIds(): WorksheetFeatureId[] {
-        return this.featureIdsPrivate;
-    }
-
-    set featureIds(featureIds: WorksheetFeatureId[]) {
-        this.featureIdsPrivate = WorksheetFeatureSetDefinition.validateFeatureIds(featureIds);
-    }
-
-    get id(): WorksheetFeatureSetId {
+    get id(): WorksheetFeatureId {
         return this.idPrivate;
     }
 
-    set id(id: WorksheetFeatureSetId) {
-        this.idPrivate = WorksheetFeatureSetDefinition.validateId(id);
+    set id(id: WorksheetFeatureId) {
+        this.idPrivate = WorksheetFeatureDefinition.validateId(id);
+    }
+
+    get valueIds(): WorksheetFeatureValueId[] {
+        return this.valueIdsPrivate;
+    }
+
+    set valueIds(valueIds: WorksheetFeatureValueId[]) {
+        this.valueIdsPrivate = WorksheetFeatureDefinition.validateValueIds(valueIds);
     }
 
     get description(): WorksheetDescription | undefined {
@@ -39,7 +39,7 @@ export class WorksheetFeatureSetDefinition {
     }
 
     set description(description: WorksheetDescription | undefined) {
-        this.descriptionPrivate = WorksheetFeatureSetDefinition.validateDescription(description);
+        this.descriptionPrivate = WorksheetFeatureDefinition.validateDescription(description);
     }
 
     get displayName(): string | undefined {
@@ -47,19 +47,19 @@ export class WorksheetFeatureSetDefinition {
     }
 
     set displayName(displayName: string | undefined) {
-        this.displayNamePrivate = WorksheetFeatureSetDefinition.validateDisplayName(displayName);
+        this.displayNamePrivate = WorksheetFeatureDefinition.validateDisplayName(displayName);
     }
 
-    public deepCopy(): WorksheetFeatureSetDefinition {
-        return new WorksheetFeatureSetDefinition({ featureIds: (this.featureIds).map((value0) => value0), id: this.id, description: (this.description ? (this.description.deepCopy()) : undefined), displayName: this.displayName });
+    public deepCopy(): WorksheetFeatureDefinition {
+        return new WorksheetFeatureDefinition({ id: this.id, valueIds: (this.valueIds).map((value0) => value0), description: (this.description ? (this.description.deepCopy()) : undefined), displayName: this.displayName });
     }
 
-    public equals(other: WorksheetFeatureSetDefinition): boolean {
-        if (!(((left: WorksheetFeatureId[], right: WorksheetFeatureId[]): boolean => { if (left.length !== right.length) { return false; } for (let elementI = 0; elementI < left.length; elementI++) { if (!(left[elementI].equals(right[elementI]))) { return false; } } return true; })(this.featureIds, other.featureIds))) {
+    public equals(other: WorksheetFeatureDefinition): boolean {
+        if (!(this.id.equals(other.id))) {
             return false;
         }
 
-        if (!(this.id.equals(other.id))) {
+        if (!(((left: WorksheetFeatureValueId[], right: WorksheetFeatureValueId[]): boolean => { if (left.length !== right.length) { return false; } for (let elementI = 0; elementI < left.length; elementI++) { if (!(left[elementI].equals(right[elementI]))) { return false; } } return true; })(this.valueIds, other.valueIds))) {
             return false;
         }
 
@@ -74,35 +74,35 @@ export class WorksheetFeatureSetDefinition {
         return true;
     }
 
-    public static fromThryftJsonObject(json: any): WorksheetFeatureSetDefinition {
-        let featureIds: WorksheetFeatureId[] | undefined;
-        let id: WorksheetFeatureSetId | undefined;
+    public static fromThryftJsonObject(json: any): WorksheetFeatureDefinition {
+        let id: WorksheetFeatureId | undefined;
+        let valueIds: WorksheetFeatureValueId[] | undefined;
         let description: WorksheetDescription | undefined;
         let displayName: string | undefined;
         for (const fieldName in json) {
-            if (fieldName === "feature_ids") {
-                featureIds = (json[fieldName]).map((element: any) => WorksheetFeatureId.parse(element));
-            } else if (fieldName === "id") {
-                id = WorksheetFeatureSetId.parse(json[fieldName]);
+            if (fieldName === "id") {
+                id = WorksheetFeatureId.parse(json[fieldName]);
+            } else if (fieldName === "value_ids") {
+                valueIds = (json[fieldName]).map((element: any) => WorksheetFeatureValueId.parse(element));
             } else if (fieldName === "description") {
                 description = WorksheetDescription.fromThryftJsonObject(json[fieldName]);
             } else if (fieldName === "display_name") {
                 displayName = json[fieldName];
             }
         }
-        if (featureIds == null) {
-            throw new TypeError("featureIds is required");
-        }
         if (id == null) {
             throw new TypeError("id is required");
         }
-        return new WorksheetFeatureSetDefinition({featureIds, id, description, displayName});
+        if (valueIds == null) {
+            throw new TypeError("valueIds is required");
+        }
+        return new WorksheetFeatureDefinition({id, valueIds, description, displayName});
     }
 
     public toJsonObject(): any {
         const json: {[index: string]: any} = {};
-        json.feature_ids = (this.featureIds).map((inElement) => inElement.toString());
         json.id = this.id.toString();
+        json.value_ids = (this.valueIds).map((inElement) => inElement.toString());
         if (this.description != null) {
             json.description = this.description.toJsonObject();
         }
@@ -113,13 +113,13 @@ export class WorksheetFeatureSetDefinition {
     }
 
     public toString(): string {
-        return "WorksheetFeatureSetDefinition(" + JSON.stringify(this.toThryftJsonObject()) + ")";
+        return "WorksheetFeatureDefinition(" + JSON.stringify(this.toThryftJsonObject()) + ")";
     }
 
     public toThryftJsonObject(): any {
         const json: {[index: string]: any} = {};
-        json.feature_ids = (this.featureIds).map((inElement) => inElement.toString());
         json.id = this.id.toString();
+        json.value_ids = (this.valueIds).map((inElement) => inElement.toString());
         if (this.description != null) {
             json.description = this.description.toThryftJsonObject();
         }
@@ -145,28 +145,28 @@ export class WorksheetFeatureSetDefinition {
         return displayName;
     }
 
-    private static validateFeatureIds(featureIds: WorksheetFeatureId[]): WorksheetFeatureId[] {
-        if (featureIds == null) {
-            throw new RangeError("featureIds is null or undefined");
-        }
-        if (featureIds.length < 1) {
-            throw new RangeError("expected len(featureIds) to be >= 1, was " + featureIds.length);
-        }
-        return featureIds;
-    }
-
-    private static validateId(id: WorksheetFeatureSetId): WorksheetFeatureSetId {
+    private static validateId(id: WorksheetFeatureId): WorksheetFeatureId {
         if (id == null) {
             throw new RangeError("id is null or undefined");
         }
         return id;
     }
 
+    private static validateValueIds(valueIds: WorksheetFeatureValueId[]): WorksheetFeatureValueId[] {
+        if (valueIds == null) {
+            throw new RangeError("valueIds is null or undefined");
+        }
+        if (valueIds.length < 1) {
+            throw new RangeError("expected len(valueIds) to be >= 1, was " + valueIds.length);
+        }
+        return valueIds;
+    }
+
     private descriptionPrivate?: WorksheetDescription;
 
     private displayNamePrivate?: string;
 
-    private featureIdsPrivate: WorksheetFeatureId[];
+    private idPrivate: WorksheetFeatureId;
 
-    private idPrivate: WorksheetFeatureSetId;
+    private valueIdsPrivate: WorksheetFeatureValueId[];
 }

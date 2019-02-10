@@ -1,5 +1,5 @@
-import { WorksheetState } from "../../models/worksheet/worksheet_state";
-import { WorksheetStateId } from "../../models/worksheet/worksheet_state_id";
+import { WorksheetState } from "../../../models/worksheet/state/worksheet_state";
+import { WorksheetStateId } from "../../../models/worksheet/state/worksheet_state_id";
 
 export interface WorksheetStateQueryService {
     /**

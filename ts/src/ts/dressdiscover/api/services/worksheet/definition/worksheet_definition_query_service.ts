@@ -1,4 +1,4 @@
-import { WorksheetDefinition } from "../../models/worksheet/worksheet_definition";
+import { WorksheetDefinition } from "../../../models/worksheet/definition/worksheet_definition";
 
 export interface WorksheetDefinitionQueryService {
     /**

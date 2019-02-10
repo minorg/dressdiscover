@@ -1,5 +1,5 @@
-import { WorksheetFeatureId } from "./worksheet_feature_id";
-import { WorksheetFeatureValueId } from "./worksheet_feature_value_id";
+import { WorksheetFeatureId } from "../worksheet_feature_id";
+import { WorksheetFeatureValueId } from "../worksheet_feature_value_id";
 
 export class WorksheetFeatureState {
     constructor(kwds: {id: WorksheetFeatureId, selectedValueIds?: WorksheetFeatureValueId[], text?: string}) {

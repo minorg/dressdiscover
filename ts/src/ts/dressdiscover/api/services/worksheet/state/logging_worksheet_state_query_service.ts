@@ -1,5 +1,5 @@
-import { WorksheetState } from "../../models/worksheet/worksheet_state";
-import { WorksheetStateId } from "../../models/worksheet/worksheet_state_id";
+import { WorksheetState } from "../../../models/worksheet/state/worksheet_state";
+import { WorksheetStateId } from "../../../models/worksheet/state/worksheet_state_id";
 import { WorksheetStateQueryService } from "./worksheet_state_query_service";
 
 export class LoggingWorksheetStateQueryService implements WorksheetStateQueryService {

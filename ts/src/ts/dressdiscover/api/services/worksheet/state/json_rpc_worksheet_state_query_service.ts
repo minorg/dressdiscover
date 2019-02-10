@@ -1,8 +1,8 @@
 import axios from "axios";
-import { IoException } from "../io_exception";
+import { IoException } from "../../io_exception";
 import { NoSuchWorksheetStateException } from "./no_such_worksheet_state_exception";
-import { WorksheetState } from "../../models/worksheet/worksheet_state";
-import { WorksheetStateId } from "../../models/worksheet/worksheet_state_id";
+import { WorksheetState } from "../../../models/worksheet/state/worksheet_state";
+import { WorksheetStateId } from "../../../models/worksheet/state/worksheet_state_id";
 import { WorksheetStateQueryService } from "./worksheet_state_query_service";
 
 export class JsonRpcWorksheetStateQueryService implements WorksheetStateQueryService {
@@ -37,7 +37,7 @@ export class JsonRpcWorksheetStateQueryService implements WorksheetStateQuerySer
                     const errorClass = response.data.error["@class"];
                     if (errorClass === "dressdiscover.api.services.io_exception.IoException") {
                         throw IoException.fromThryftJsonObject(response.data.error.data);
-                    } else if (errorClass === "dressdiscover.api.services.worksheet.no_such_worksheet_state_exception.NoSuchWorksheetStateException") {
+                    } else if (errorClass === "dressdiscover.api.services.worksheet.state.no_such_worksheet_state_exception.NoSuchWorksheetStateException") {
                         throw NoSuchWorksheetStateException.fromThryftJsonObject(response.data.error.data);
                     } else {
                         throw new Error(response.data.error.message);

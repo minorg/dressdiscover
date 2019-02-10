@@ -1,6 +1,6 @@
-import { WorksheetState } from "../../models/worksheet/worksheet_state";
+import { WorksheetState } from "../../../models/worksheet/state/worksheet_state";
 import { WorksheetStateCommandService } from "./worksheet_state_command_service";
-import { WorksheetStateId } from "../../models/worksheet/worksheet_state_id";
+import { WorksheetStateId } from "../../../models/worksheet/state/worksheet_state_id";
 
 export class LoggingWorksheetStateCommandService implements WorksheetStateCommandService {
     constructor(private delegate: WorksheetStateCommandService) {

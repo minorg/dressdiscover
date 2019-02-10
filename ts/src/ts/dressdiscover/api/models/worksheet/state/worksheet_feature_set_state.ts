@@ -1,4 +1,4 @@
-import { WorksheetFeatureSetId } from "./worksheet_feature_set_id";
+import { WorksheetFeatureSetId } from "../worksheet_feature_set_id";
 import { WorksheetFeatureState } from "./worksheet_feature_state";
 
 export class WorksheetFeatureSetState {

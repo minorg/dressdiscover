@@ -1,4 +1,4 @@
-import { WorksheetDefinition } from "../../models/worksheet/worksheet_definition";
+import { WorksheetDefinition } from "../../../models/worksheet/definition/worksheet_definition";
 import { WorksheetDefinitionQueryService } from "./worksheet_definition_query_service";
 
 export class LoggingWorksheetDefinitionQueryService implements WorksheetDefinitionQueryService {

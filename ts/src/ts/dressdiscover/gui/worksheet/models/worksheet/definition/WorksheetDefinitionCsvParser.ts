@@ -6,12 +6,12 @@ import {
 import {
     WorksheetFeatureValueDefinition,
 } from 'dressdiscover/api/models/worksheet/definition/worksheet_feature_value_definition';
+import { WorksheetFeatureValueImage } from 'dressdiscover/api/models/worksheet/definition/worksheet_feature_value_image';
 import { WorksheetRights } from 'dressdiscover/api/models/worksheet/definition/worksheet_rights';
 import { WorksheetDefinition } from 'dressdiscover/api/models/worksheet/worksheet_definition';
 import { WorksheetFeatureId } from 'dressdiscover/api/models/worksheet/worksheet_feature_id';
 import { WorksheetFeatureSetId } from 'dressdiscover/api/models/worksheet/worksheet_feature_set_id';
 import { WorksheetFeatureValueId } from 'dressdiscover/api/models/worksheet/worksheet_feature_value_id';
-import { WorksheetFeatureValueImage } from 'dressdiscover/api/models/worksheet/worksheet_feature_value_image';
 import * as _ from 'lodash';
 import * as Papa from 'papaparse';
 

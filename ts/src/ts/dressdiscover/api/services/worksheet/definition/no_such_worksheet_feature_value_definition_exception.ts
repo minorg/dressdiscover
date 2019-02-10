@@ -1,4 +1,4 @@
-import { WorksheetFeatureValueId } from "../../models/worksheet/worksheet_feature_value_id";
+import { WorksheetFeatureValueId } from "../../../models/worksheet/worksheet_feature_value_id";
 
 export class NoSuchWorksheetFeatureValueDefinitionException {
     constructor(kwds: {id: WorksheetFeatureValueId}) {

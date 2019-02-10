@@ -1,6 +1,6 @@
 import axios from "axios";
-import { IoException } from "../io_exception";
-import { WorksheetDefinition } from "../../models/worksheet/worksheet_definition";
+import { IoException } from "../../io_exception";
+import { WorksheetDefinition } from "../../../models/worksheet/definition/worksheet_definition";
 import { WorksheetDefinitionQueryService } from "./worksheet_definition_query_service";
 
 export class JsonRpcWorksheetDefinitionQueryService implements WorksheetDefinitionQueryService {

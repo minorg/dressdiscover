@@ -1,10 +1,10 @@
 import axios from "axios";
 import { DuplicateWorksheetStateException } from "./duplicate_worksheet_state_exception";
-import { IoException } from "../io_exception";
+import { IoException } from "../../io_exception";
 import { NoSuchWorksheetStateException } from "./no_such_worksheet_state_exception";
-import { WorksheetState } from "../../models/worksheet/worksheet_state";
+import { WorksheetState } from "../../../models/worksheet/state/worksheet_state";
 import { WorksheetStateCommandService } from "./worksheet_state_command_service";
-import { WorksheetStateId } from "../../models/worksheet/worksheet_state_id";
+import { WorksheetStateId } from "../../../models/worksheet/state/worksheet_state_id";
 
 export class JsonRpcWorksheetStateCommandService implements WorksheetStateCommandService {
     constructor(kwds: { endpointUrl: string, methodEndpoints?: boolean }) {
@@ -127,11 +127,11 @@ export class JsonRpcWorksheetStateCommandService implements WorksheetStateComman
 
                 if (response.data.error["@class"] && response.data.error.data) {
                     const errorClass = response.data.error["@class"];
-                    if (errorClass === "dressdiscover.api.services.worksheet.duplicate_worksheet_state_exception.DuplicateWorksheetStateException") {
+                    if (errorClass === "dressdiscover.api.services.worksheet.state.duplicate_worksheet_state_exception.DuplicateWorksheetStateException") {
                         throw DuplicateWorksheetStateException.fromThryftJsonObject(response.data.error.data);
                     } else if (errorClass === "dressdiscover.api.services.io_exception.IoException") {
                         throw IoException.fromThryftJsonObject(response.data.error.data);
-                    } else if (errorClass === "dressdiscover.api.services.worksheet.no_such_worksheet_state_exception.NoSuchWorksheetStateException") {
+                    } else if (errorClass === "dressdiscover.api.services.worksheet.state.no_such_worksheet_state_exception.NoSuchWorksheetStateException") {
                         throw NoSuchWorksheetStateException.fromThryftJsonObject(response.data.error.data);
                     } else {
                         throw new Error(response.data.error.message);
