@@ -1,4 +1,4 @@
-import { WorksheetStateWrapper } from '../models/worksheet/WorksheetStateWrapper';
+import { WorksheetStateWrapper } from '../models/worksheet/state/WorksheetStateWrapper';
 
 export interface Exporter<T> {
     export(worksheetState: WorksheetStateWrapper): T;

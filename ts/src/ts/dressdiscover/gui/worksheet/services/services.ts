@@ -1,24 +1,26 @@
 ﻿import {
     LoggingWorksheetDefinitionQueryService,
-} from 'dressdiscover/api/services/worksheet/logging_worksheet_definition_query_service';
+} from 'dressdiscover/api/services/worksheet/definition/logging_worksheet_definition_query_service';
+import {
+    WorksheetDefinitionQueryService,
+} from 'dressdiscover/api/services/worksheet/definition/worksheet_definition_query_service';
 import {
     LoggingWorksheetStateCommandService,
-} from 'dressdiscover/api/services/worksheet/logging_worksheet_state_command_service';
+} from 'dressdiscover/api/services/worksheet/state/logging_worksheet_state_command_service';
 import {
     LoggingWorksheetStateQueryService,
-} from 'dressdiscover/api/services/worksheet/logging_worksheet_state_query_service';
-import { WorksheetDefinitionQueryService } from 'dressdiscover/api/services/worksheet/worksheet_definition_query_service';
-import { WorksheetStateCommandService } from 'dressdiscover/api/services/worksheet/worksheet_state_command_service';
-import { WorksheetStateQueryService } from 'dressdiscover/api/services/worksheet/worksheet_state_query_service';
+} from 'dressdiscover/api/services/worksheet/state/logging_worksheet_state_query_service';
+import { WorksheetStateCommandService } from 'dressdiscover/api/services/worksheet/state/worksheet_state_command_service';
+import { WorksheetStateQueryService } from 'dressdiscover/api/services/worksheet/state/worksheet_state_query_service';
 import {
     LocalWorksheetDefinitionQueryService,
-} from 'dressdiscover/gui/worksheet/services/worksheet/LocalWorksheetDefinitionQueryService';
+} from 'dressdiscover/gui/worksheet/services/worksheet/definition/LocalWorksheetDefinitionQueryService';
 import {
     LocalWorksheetStateCommandService,
-} from 'dressdiscover/gui/worksheet/services/worksheet/LocalWorksheetStateCommandService';
+} from 'dressdiscover/gui/worksheet/services/worksheet/state/LocalWorksheetStateCommandService';
 import {
     LocalWorksheetStateQueryService,
-} from 'dressdiscover/gui/worksheet/services/worksheet/LocalWorksheetStateQueryService';
+} from 'dressdiscover/gui/worksheet/services/worksheet/state/LocalWorksheetStateQueryService';
 
 export class Services {
     readonly worksheetDefinitionQueryService: WorksheetDefinitionQueryService = new LoggingWorksheetDefinitionQueryService(new LocalWorksheetDefinitionQueryService());

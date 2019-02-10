@@ -1,9 +1,9 @@
 import './WorksheetStart.scss';
 
 import * as classnames from 'classnames';
-import { WorksheetState } from 'dressdiscover/api/models/worksheet/worksheet_state';
-import { WorksheetStateId } from 'dressdiscover/api/models/worksheet/worksheet_state_id';
-import { WorksheetStateMark } from 'dressdiscover/api/models/worksheet/worksheet_state_mark';
+import { WorksheetState } from 'dressdiscover/api/models/worksheet/state/worksheet_state';
+import { WorksheetStateId } from 'dressdiscover/api/models/worksheet/state/worksheet_state_id';
+import { WorksheetStateMark } from 'dressdiscover/api/models/worksheet/state/worksheet_state_mark';
 import { GenericErrorHandler } from 'dressdiscover/gui/worksheet/components/error/GenericErrorHandler';
 import { Headline } from 'dressdiscover/gui/worksheet/components/frame/Headline';
 import { WorksheetStore } from 'dressdiscover/gui/worksheet/stores/worksheet/WorksheetStore';

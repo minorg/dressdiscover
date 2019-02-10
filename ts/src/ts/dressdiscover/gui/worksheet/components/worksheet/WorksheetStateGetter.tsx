@@ -1,6 +1,6 @@
-import { WorksheetStateMark } from 'dressdiscover/api/models/worksheet/worksheet_state_mark';
+import { WorksheetStateMark } from 'dressdiscover/api/models/worksheet/state/worksheet_state_mark';
 import { GenericErrorHandler } from 'dressdiscover/gui/worksheet/components/error/GenericErrorHandler';
-import { WorksheetStateWrapper } from 'dressdiscover/gui/worksheet/models/worksheet/WorksheetStateWrapper';
+import { WorksheetStateWrapper } from 'dressdiscover/gui/worksheet/models/worksheet/state/WorksheetStateWrapper';
 import { WorksheetStore } from 'dressdiscover/gui/worksheet/stores/worksheet/WorksheetStore';
 import { inject, observer } from 'mobx-react';
 import * as React from 'react';

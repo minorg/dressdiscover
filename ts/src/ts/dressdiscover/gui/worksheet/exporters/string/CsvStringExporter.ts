@@ -1,5 +1,5 @@
 import { StringExporter } from 'dressdiscover/gui/worksheet/exporters/string/StringExporter';
-import { WorksheetStateWrapper } from 'dressdiscover/gui/worksheet/models/worksheet/WorksheetStateWrapper';
+import { WorksheetStateWrapper } from 'dressdiscover/gui/worksheet/models/worksheet/state/WorksheetStateWrapper';
 import * as Papa from 'papaparse';
 
 import { CsvExporter } from '../CsvExporter';
