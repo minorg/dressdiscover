@@ -6,7 +6,6 @@
         {
             "type": "npm",
             "script": "start",
-            "path": "worksheet/",
             "problemMatcher": [
                 "$ts-webpack-watch",
                 "$tslint-webpack-watch"
