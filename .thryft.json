@@ -7,7 +7,7 @@
             "java/lib/src/gen/java/org/dressdiscover",
             "java/server/src/gen/java/org/dressdiscover",
             "py/src/dressdiscover/api",
-            "ts/worksheet/src/ts/dressdiscover/api"
+            "ts/src/ts/dressdiscover/api"
         ],
         "generate": [{
                 "description": "ElasticSearch mappings",
@@ -59,7 +59,7 @@
                 "thrift_include_dirs": ["../thryft-waf/thrift/src"],
                 "thrift_files": "thrift/src/dressdiscover/api/models/worksheet/**/*.thrift",
                 "gen": {
-                    "ts": "ts/worksheet/src/ts"
+                    "ts": "ts/src/ts"
                 }
             },
             {
@@ -71,7 +71,7 @@
                     "thrift/src/dressdiscover/api/services/worksheet/*_exception.thrift"
                 ],
                 "gen": {
-                    "ts": "ts/worksheet/src/ts"
+                    "ts": "ts/src/ts"
                 }
             },
             {
@@ -80,9 +80,9 @@
                 "thrift_include_dirs": ["../thryft-waf/thrift/src"],
                 "thrift_files": "thrift/src/dressdiscover/api/services/worksheet/*_service.thrift",
                 "gen": {
-                    "json_rpc_client_ts": "ts/worksheet/src/ts",
-                    "logging_service_ts": "ts/worksheet/src/ts",
-                    "ts": "ts/worksheet/src/ts"
+                    "json_rpc_client_ts": "ts/src/ts",
+                    "logging_service_ts": "ts/src/ts",
+                    "ts": "ts/src/ts"
                 }
             },
             {
