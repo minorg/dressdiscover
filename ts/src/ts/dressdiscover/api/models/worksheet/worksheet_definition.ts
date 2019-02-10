@@ -1,18 +1,12 @@
-import { WorksheetExtentDefinition } from "./worksheet_extent_definition";
 import { WorksheetFeatureDefinition } from "./worksheet_feature_definition";
 import { WorksheetFeatureSetDefinition } from "./worksheet_feature_set_definition";
 import { WorksheetFeatureValueDefinition } from "./worksheet_feature_value_definition";
 
 export class WorksheetDefinition {
-    constructor(kwds: {featureSets: WorksheetFeatureSetDefinition[], featureValues: WorksheetFeatureValueDefinition[], features: WorksheetFeatureDefinition[], extents?: WorksheetExtentDefinition[]}) {
+    constructor(kwds: {featureSets: WorksheetFeatureSetDefinition[], featureValues: WorksheetFeatureValueDefinition[], features: WorksheetFeatureDefinition[]}) {
         this.featureSetsPrivate = WorksheetDefinition.validateFeatureSets(kwds.featureSets);
         this.featureValuesPrivate = WorksheetDefinition.validateFeatureValues(kwds.featureValues);
         this.featuresPrivate = WorksheetDefinition.validateFeatures(kwds.features);
-        if (kwds.extents != null) {
-            this.extentsPrivate = WorksheetDefinition.validateExtents(kwds.extents);
-        } else {
-            this.extentsPrivate = undefined;
-        }
     }
 
     get featureSets(): WorksheetFeatureSetDefinition[] {
@@ -39,16 +33,8 @@ export class WorksheetDefinition {
         this.featuresPrivate = WorksheetDefinition.validateFeatures(features);
     }
 
-    get extents(): WorksheetExtentDefinition[] | undefined {
-        return this.extentsPrivate;
-    }
-
-    set extents(extents: WorksheetExtentDefinition[] | undefined) {
-        this.extentsPrivate = WorksheetDefinition.validateExtents(extents);
-    }
-
     public deepCopy(): WorksheetDefinition {
-        return new WorksheetDefinition({ featureSets: (this.featureSets).map((value0) => value0.deepCopy()), featureValues: (this.featureValues).map((value0) => value0.deepCopy()), features: (this.features).map((value0) => value0.deepCopy()), extents: (this.extents ? ((this.extents).map((value0) => value0.deepCopy())) : undefined) });
+        return new WorksheetDefinition({ featureSets: (this.featureSets).map((value0) => value0.deepCopy()), featureValues: (this.featureValues).map((value0) => value0.deepCopy()), features: (this.features).map((value0) => value0.deepCopy()) });
     }
 
     public equals(other: WorksheetDefinition): boolean {
@@ -64,10 +50,6 @@ export class WorksheetDefinition {
             return false;
         }
 
-        if (!((!((typeof (this.extents)) === "undefined") && !((typeof (other.extents)) === "undefined")) ? (((left: WorksheetExtentDefinition[], right: WorksheetExtentDefinition[]): boolean => { if (left.length !== right.length) { return false; } for (let elementI = 0; elementI < left.length; elementI++) { if (!(left[elementI].equals(right[elementI]))) { return false; } } return true; })((this.extents as WorksheetExtentDefinition[]), (other.extents as WorksheetExtentDefinition[]))) : (((typeof (this.extents)) === "undefined") && ((typeof (other.extents)) === "undefined")))) {
-            return false;
-        }
-
         return true;
     }
 
@@ -75,7 +57,6 @@ export class WorksheetDefinition {
         let featureSets: WorksheetFeatureSetDefinition[] | undefined;
         let featureValues: WorksheetFeatureValueDefinition[] | undefined;
         let features: WorksheetFeatureDefinition[] | undefined;
-        let extents: WorksheetExtentDefinition[] | undefined;
         for (const fieldName in json) {
             if (fieldName === "feature_sets") {
                 featureSets = (json[fieldName]).map((element: any) => WorksheetFeatureSetDefinition.fromThryftJsonObject(element));
@@ -83,8 +64,6 @@ export class WorksheetDefinition {
                 featureValues = (json[fieldName]).map((element: any) => WorksheetFeatureValueDefinition.fromThryftJsonObject(element));
             } else if (fieldName === "features") {
                 features = (json[fieldName]).map((element: any) => WorksheetFeatureDefinition.fromThryftJsonObject(element));
-            } else if (fieldName === "extents") {
-                extents = (json[fieldName]).map((element: any) => WorksheetExtentDefinition.fromThryftJsonObject(element));
             }
         }
         if (featureSets == null) {
@@ -96,7 +75,7 @@ export class WorksheetDefinition {
         if (features == null) {
             throw new TypeError("features is required");
         }
-        return new WorksheetDefinition({featureSets, featureValues, features, extents});
+        return new WorksheetDefinition({featureSets, featureValues, features});
     }
 
     public toJsonObject(): any {
@@ -104,9 +83,6 @@ export class WorksheetDefinition {
         json.feature_sets = (this.featureSets).map((inElement) => inElement.toJsonObject());
         json.feature_values = (this.featureValues).map((inElement) => inElement.toJsonObject());
         json.features = (this.features).map((inElement) => inElement.toJsonObject());
-        if (this.extents != null) {
-            json.extents = (this.extents).map((inElement) => inElement.toJsonObject());
-        }
         return json;
     }
 
@@ -119,19 +95,7 @@ export class WorksheetDefinition {
         json.feature_sets = (this.featureSets).map((inElement) => inElement.toThryftJsonObject());
         json.feature_values = (this.featureValues).map((inElement) => inElement.toThryftJsonObject());
         json.features = (this.features).map((inElement) => inElement.toThryftJsonObject());
-        if (this.extents != null) {
-            json.extents = (this.extents).map((inElement) => inElement.toThryftJsonObject());
-        }
         return json;
-    }
-
-    private static validateExtents(extents: WorksheetExtentDefinition[] | undefined): WorksheetExtentDefinition[] | undefined {
-        if (extents != null) {
-            if (extents.length < 1) {
-                throw new RangeError("expected len(extents) to be >= 1, was " + extents.length);
-            }
-        }
-        return extents;
     }
 
     private static validateFeatureSets(featureSets: WorksheetFeatureSetDefinition[]): WorksheetFeatureSetDefinition[] {
@@ -163,8 +127,6 @@ export class WorksheetDefinition {
         }
         return features;
     }
-
-    private extentsPrivate?: WorksheetExtentDefinition[];
 
     private featureSetsPrivate: WorksheetFeatureSetDefinition[];
 

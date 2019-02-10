@@ -12,9 +12,6 @@ import {
     NoSuchWorksheetFeatureValueDefinitionException,
 } from 'dressdiscover/api/services/worksheet/no_such_worksheet_feature_value_definition_exception';
 import {
-    WorksheetExtentDefinitionWrapper,
-} from 'dressdiscover/gui/worksheet/models/worksheet/WorksheetExtentDefinitionWrapper';
-import {
     WorksheetFeatureDefinitionWrapper,
 } from 'dressdiscover/gui/worksheet/models/worksheet/WorksheetFeatureDefinitionWrapper';
 import {
@@ -27,11 +24,6 @@ import {
 export class WorksheetDefinitionWrapper {
     constructor(readonly definition: WorksheetDefinition) {
         // Order is important
-        if (definition.extents) {
-            for (const extent of definition.extents) {
-                this.extents.push(new WorksheetExtentDefinitionWrapper(extent));
-            }
-        }
         for (const featureValue of definition.featureValues) {
             this.featureValues.push(new WorksheetFeatureValueDefinitionWrapper(featureValue));
         }
@@ -106,7 +98,6 @@ export class WorksheetDefinitionWrapper {
     //     }
     // }
 
-    readonly extents: WorksheetExtentDefinitionWrapper[] = [];
     readonly featureSets: WorksheetFeatureSetDefinitionWrapper[] = [];
     readonly featureValues: WorksheetFeatureValueDefinitionWrapper[] = [];
     readonly features: WorksheetFeatureDefinitionWrapper[] = [];

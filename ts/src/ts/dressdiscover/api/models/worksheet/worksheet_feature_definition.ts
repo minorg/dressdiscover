@@ -1,10 +1,9 @@
 import { WorksheetDescription } from "./worksheet_description";
-import { WorksheetExtentId } from "./worksheet_extent_id";
 import { WorksheetFeatureId } from "./worksheet_feature_id";
 import { WorksheetFeatureValueId } from "./worksheet_feature_value_id";
 
 export class WorksheetFeatureDefinition {
-    constructor(kwds: {id: WorksheetFeatureId, valueIds: WorksheetFeatureValueId[], description?: WorksheetDescription, displayName?: string, extentIds?: WorksheetExtentId[]}) {
+    constructor(kwds: {id: WorksheetFeatureId, valueIds: WorksheetFeatureValueId[], description?: WorksheetDescription, displayName?: string}) {
         this.idPrivate = WorksheetFeatureDefinition.validateId(kwds.id);
         this.valueIdsPrivate = WorksheetFeatureDefinition.validateValueIds(kwds.valueIds);
         if (kwds.description != null) {
@@ -16,11 +15,6 @@ export class WorksheetFeatureDefinition {
             this.displayNamePrivate = WorksheetFeatureDefinition.validateDisplayName(kwds.displayName);
         } else {
             this.displayNamePrivate = undefined;
-        }
-        if (kwds.extentIds != null) {
-            this.extentIdsPrivate = WorksheetFeatureDefinition.validateExtentIds(kwds.extentIds);
-        } else {
-            this.extentIdsPrivate = undefined;
         }
     }
 
@@ -56,16 +50,8 @@ export class WorksheetFeatureDefinition {
         this.displayNamePrivate = WorksheetFeatureDefinition.validateDisplayName(displayName);
     }
 
-    get extentIds(): WorksheetExtentId[] | undefined {
-        return this.extentIdsPrivate;
-    }
-
-    set extentIds(extentIds: WorksheetExtentId[] | undefined) {
-        this.extentIdsPrivate = WorksheetFeatureDefinition.validateExtentIds(extentIds);
-    }
-
     public deepCopy(): WorksheetFeatureDefinition {
-        return new WorksheetFeatureDefinition({ id: this.id, valueIds: (this.valueIds).map((value0) => value0), description: (this.description ? (this.description.deepCopy()) : undefined), displayName: this.displayName, extentIds: (this.extentIds ? ((this.extentIds).map((value0) => value0)) : undefined) });
+        return new WorksheetFeatureDefinition({ id: this.id, valueIds: (this.valueIds).map((value0) => value0), description: (this.description ? (this.description.deepCopy()) : undefined), displayName: this.displayName });
     }
 
     public equals(other: WorksheetFeatureDefinition): boolean {
@@ -85,10 +71,6 @@ export class WorksheetFeatureDefinition {
             return false;
         }
 
-        if (!((!((typeof (this.extentIds)) === "undefined") && !((typeof (other.extentIds)) === "undefined")) ? (((left: WorksheetExtentId[], right: WorksheetExtentId[]): boolean => { if (left.length !== right.length) { return false; } for (let elementI = 0; elementI < left.length; elementI++) { if (!(left[elementI].equals(right[elementI]))) { return false; } } return true; })((this.extentIds as WorksheetExtentId[]), (other.extentIds as WorksheetExtentId[]))) : (((typeof (this.extentIds)) === "undefined") && ((typeof (other.extentIds)) === "undefined")))) {
-            return false;
-        }
-
         return true;
     }
 
@@ -97,7 +79,6 @@ export class WorksheetFeatureDefinition {
         let valueIds: WorksheetFeatureValueId[] | undefined;
         let description: WorksheetDescription | undefined;
         let displayName: string | undefined;
-        let extentIds: WorksheetExtentId[] | undefined;
         for (const fieldName in json) {
             if (fieldName === "id") {
                 id = WorksheetFeatureId.parse(json[fieldName]);
@@ -107,8 +88,6 @@ export class WorksheetFeatureDefinition {
                 description = WorksheetDescription.fromThryftJsonObject(json[fieldName]);
             } else if (fieldName === "display_name") {
                 displayName = json[fieldName];
-            } else if (fieldName === "extent_ids") {
-                extentIds = (json[fieldName]).map((element: any) => WorksheetExtentId.parse(element));
             }
         }
         if (id == null) {
@@ -117,7 +96,7 @@ export class WorksheetFeatureDefinition {
         if (valueIds == null) {
             throw new TypeError("valueIds is required");
         }
-        return new WorksheetFeatureDefinition({id, valueIds, description, displayName, extentIds});
+        return new WorksheetFeatureDefinition({id, valueIds, description, displayName});
     }
 
     public toJsonObject(): any {
@@ -129,9 +108,6 @@ export class WorksheetFeatureDefinition {
         }
         if (this.displayName != null) {
             json.display_name = this.displayName;
-        }
-        if (this.extentIds != null) {
-            json.extent_ids = (this.extentIds).map((inElement) => inElement.toString());
         }
         return json;
     }
@@ -150,9 +126,6 @@ export class WorksheetFeatureDefinition {
         if (this.displayName != null) {
             json.display_name = this.displayName;
         }
-        if (this.extentIds != null) {
-            json.extent_ids = (this.extentIds).map((inElement) => inElement.toString());
-        }
         return json;
     }
 
@@ -170,15 +143,6 @@ export class WorksheetFeatureDefinition {
             }
         }
         return displayName;
-    }
-
-    private static validateExtentIds(extentIds: WorksheetExtentId[] | undefined): WorksheetExtentId[] | undefined {
-        if (extentIds != null) {
-            if (extentIds.length < 1) {
-                throw new RangeError("expected len(extentIds) to be >= 1, was " + extentIds.length);
-            }
-        }
-        return extentIds;
     }
 
     private static validateId(id: WorksheetFeatureId): WorksheetFeatureId {
@@ -201,8 +165,6 @@ export class WorksheetFeatureDefinition {
     private descriptionPrivate?: WorksheetDescription;
 
     private displayNamePrivate?: string;
-
-    private extentIdsPrivate?: WorksheetExtentId[];
 
     private idPrivate: WorksheetFeatureId;
 
