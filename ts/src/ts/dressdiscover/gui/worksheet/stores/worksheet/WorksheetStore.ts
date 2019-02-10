@@ -1,14 +1,14 @@
 import { WorksheetDefinition } from 'dressdiscover/api/models/worksheet/definition/worksheet_definition';
 import { WorksheetState } from 'dressdiscover/api/models/worksheet/state/worksheet_state';
 import { WorksheetStateId } from 'dressdiscover/api/models/worksheet/state/worksheet_state_id';
-import { Services } from 'dressdiscover/gui/worksheet/services/Services';
+import { CurrentUserStore } from 'dressdiscover/gui/worksheet/stores/current_user/CurrentUserStore';
 import { ILogger } from 'dressdiscover/gui/worksheet/util/logging/ILogger';
 import { action, observable, runInAction } from 'mobx';
 
 import { WorksheetDefinitionWrapper } from '../../models/worksheet/definition/WorksheetDefinitionWrapper';
 
 export class WorksheetStore {
-    constructor(private readonly logger: ILogger, private readonly services: Services) {
+    constructor(private readonly currentUserStore: CurrentUserStore, private readonly logger: ILogger) {
     }
 
     @observable error: Error | undefined;
@@ -25,7 +25,7 @@ export class WorksheetStore {
     async deleteWorksheetState(kwds: { id: WorksheetStateId }) {
         const self = this;
         try {
-            await this.services.worksheetStateCommandService.deleteWorksheetState(kwds);
+            await this.currentUserStore.currentUserServices.worksheetStateCommandService.deleteWorksheetState(kwds);
         } catch (e) {
             self.setError(e);
             return;

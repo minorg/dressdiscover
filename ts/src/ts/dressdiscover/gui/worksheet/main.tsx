@@ -1,5 +1,4 @@
 import { Application } from 'dressdiscover/gui/worksheet/Application';
-import { Services } from 'dressdiscover/gui/worksheet/services/Services';
 import { CurrentUserStore } from 'dressdiscover/gui/worksheet/stores/current_user/CurrentUserStore';
 import { ConsoleLogger } from 'dressdiscover/gui/worksheet/util/logging/ConsoleLogger';
 import { LoggerContext } from 'dressdiscover/gui/worksheet/util/logging/LoggerContext';
@@ -16,20 +15,17 @@ import { WorksheetStore } from './stores/worksheet/WorksheetStore';
 // Logger
 const logger = new ConsoleLogger();
 
-// Services
-const services = new Services();
-
 // mobx global configuration
 mobx.configure({ enforceActions: "always" });
 
-// Router store
-const browserHistory = createBrowserHistory();
+// Stores
+const currentUserStore = new CurrentUserStore(logger);
 const routerStore = new RouterStore();
-const syncedHistory = syncHistoryWithStore(browserHistory, routerStore);
+const syncedHistory = syncHistoryWithStore(createBrowserHistory(), routerStore);
 const stores = {
-  currentUserStore: new CurrentUserStore(logger),
+  currentUserStore: currentUserStore,
   routerStore,
-  worksheetStore: new WorksheetStore(logger, services)
+  worksheetStore: new WorksheetStore(currentUserStore, logger)
 };
 
 ReactDOM.render(

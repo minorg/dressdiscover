@@ -2,9 +2,10 @@ import { Auth0DecodedHash, Auth0Error, WebAuth } from 'auth0-js';
 import { Hrefs } from 'dressdiscover/gui/worksheet/Hrefs';
 import { CurrentUser } from 'dressdiscover/gui/worksheet/models/current_user/CurrentUser';
 import { CurrentUserSession } from 'dressdiscover/gui/worksheet/models/current_user/CurrentUserSession';
+import { DefaultServices } from 'dressdiscover/gui/worksheet/services/DefaultServices';
 import { ILogger } from 'dressdiscover/gui/worksheet/util/logging/ILogger';
 import * as invariant from 'invariant';
-import { action, observable, runInAction } from 'mobx';
+import { action, computed, observable, runInAction } from 'mobx';
 
 export class CurrentUserStore {
     private readonly auth0: WebAuth;
@@ -32,6 +33,15 @@ export class CurrentUserStore {
 
             this.clearError();
         });
+    }
+
+    @computed
+    get currentUserServices() {
+        if (this.currentUser != null) {
+            return this.currentUser.services;
+        } else {
+            return DefaultServices.instance;
+        }
     }
 
     @action

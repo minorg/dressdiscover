@@ -25,7 +25,7 @@ import {
 import { Services } from './Services';
 
 export class DefaultServices implements Services {
-    static readonly instance = new DefaultServices;
+    static readonly instance = new DefaultServices();
 
     readonly worksheetDefinitionQueryService: WorksheetDefinitionQueryService = new LoggingWorksheetDefinitionQueryService(new LocalWorksheetDefinitionQueryService());
     readonly worksheetStateCommandService: WorksheetStateCommandService = new LoggingWorksheetStateCommandService(new LocalWorksheetStateCommandService);
