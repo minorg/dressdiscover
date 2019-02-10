@@ -13,22 +13,22 @@ import {
 import { WorksheetStateCommandService } from 'dressdiscover/api/services/worksheet/state/worksheet_state_command_service';
 import { WorksheetStateQueryService } from 'dressdiscover/api/services/worksheet/state/worksheet_state_query_service';
 import {
-    LocalWorksheetDefinitionQueryService,
-} from 'dressdiscover/gui/worksheet/services/worksheet/definition/LocalWorksheetDefinitionQueryService';
+    BundledWorksheetDefinitionQueryService,
+} from 'dressdiscover/gui/worksheet/services/worksheet/definition/BundledWorksheetDefinitionQueryService';
 import {
-    LocalWorksheetStateCommandService,
-} from 'dressdiscover/gui/worksheet/services/worksheet/state/LocalWorksheetStateCommandService';
+    LocalStorageWorksheetStateCommandService,
+} from 'dressdiscover/gui/worksheet/services/worksheet/state/LocalStorageWorksheetStateCommandService';
 import {
-    LocalWorksheetStateQueryService,
-} from 'dressdiscover/gui/worksheet/services/worksheet/state/LocalWorksheetStateQueryService';
+    LocalStorageWorksheetStateQueryService,
+} from 'dressdiscover/gui/worksheet/services/worksheet/state/LocalStorageWorksheetStateQueryService';
 import { WorksheetStateServices } from 'dressdiscover/gui/worksheet/services/worksheet/state/WorksheetStateServices';
 
 export class Services {
     constructor(kwds?: { worksheetDefinitionQueryService?: WorksheetDefinitionQueryService, worksheetStateServices?: WorksheetStateServices }) {
         kwds = kwds || {};
-        this.worksheetDefinitionQueryService = new LoggingWorksheetDefinitionQueryService(kwds.worksheetDefinitionQueryService || new LocalWorksheetDefinitionQueryService());
-        this.worksheetStateCommandService = new LoggingWorksheetStateCommandService((kwds.worksheetStateServices && kwds.worksheetStateServices.worksheetStateCommandService) || new LocalWorksheetStateCommandService());
-        this.worksheetStateQueryService = new LoggingWorksheetStateQueryService((kwds.worksheetStateServices && kwds.worksheetStateServices.worksheetStateQueryService) || new LocalWorksheetStateQueryService());
+        this.worksheetDefinitionQueryService = new LoggingWorksheetDefinitionQueryService(kwds.worksheetDefinitionQueryService || new BundledWorksheetDefinitionQueryService());
+        this.worksheetStateCommandService = new LoggingWorksheetStateCommandService((kwds.worksheetStateServices && kwds.worksheetStateServices.worksheetStateCommandService) || new LocalStorageWorksheetStateCommandService());
+        this.worksheetStateQueryService = new LoggingWorksheetStateQueryService((kwds.worksheetStateServices && kwds.worksheetStateServices.worksheetStateQueryService) || new LocalStorageWorksheetStateQueryService());
     }
 
     static readonly default = new Services();

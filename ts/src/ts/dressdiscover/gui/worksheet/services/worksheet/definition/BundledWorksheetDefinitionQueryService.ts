@@ -11,7 +11,7 @@ import {
 
 declare function require(moduleName: string): any;
 
-export class LocalWorksheetDefinitionQueryService implements WorksheetDefinitionQueryService {
+export class BundledWorksheetDefinitionQueryService implements WorksheetDefinitionQueryService {
     getWorksheetDefinition(): Promise<WorksheetDefinition> {
         return new Promise((resolve, reject) => {
             resolve(this._worksheetDefinition);

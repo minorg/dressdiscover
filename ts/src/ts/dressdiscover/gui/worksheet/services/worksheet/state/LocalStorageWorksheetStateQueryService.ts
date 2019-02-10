@@ -3,10 +3,10 @@ import { WorksheetStateId } from 'dressdiscover/api/models/worksheet/state/works
 import { NoSuchWorksheetStateException } from 'dressdiscover/api/services/worksheet/state/no_such_worksheet_state_exception';
 import { WorksheetStateQueryService } from 'dressdiscover/api/services/worksheet/state/worksheet_state_query_service';
 
-export class LocalWorksheetStateQueryService implements WorksheetStateQueryService {
+export class LocalStorageWorksheetStateQueryService implements WorksheetStateQueryService {
     getWorksheetState(kwds: { id: WorksheetStateId; }): Promise<WorksheetState> {
         return new Promise((resolve, reject) => {
-            const jsonString = localStorage.getItem(LocalWorksheetStateQueryService.getWorksheetStateItemKey(kwds.id));
+            const jsonString = localStorage.getItem(LocalStorageWorksheetStateQueryService.getWorksheetStateItemKey(kwds.id));
             if (jsonString == null) {
                 reject(new NoSuchWorksheetStateException({ id: kwds.id }));
                 return;
@@ -22,18 +22,18 @@ export class LocalWorksheetStateQueryService implements WorksheetStateQueryServi
             if (key == null) {
                 break;
             }
-            if (!key.match("^" + LocalWorksheetStateQueryService._WORKSHEET_ITEM_KEY_PREFIX)) {
+            if (!key.match("^" + LocalStorageWorksheetStateQueryService._WORKSHEET_ITEM_KEY_PREFIX)) {
                 continue;
-            } else if (key.length == LocalWorksheetStateQueryService._WORKSHEET_ITEM_KEY_PREFIX.length) {
+            } else if (key.length == LocalStorageWorksheetStateQueryService._WORKSHEET_ITEM_KEY_PREFIX.length) {
                 continue;
             }
-            result.push(WorksheetStateId.parse(key.substr(LocalWorksheetStateQueryService._WORKSHEET_ITEM_KEY_PREFIX.length)));
+            result.push(WorksheetStateId.parse(key.substr(LocalStorageWorksheetStateQueryService._WORKSHEET_ITEM_KEY_PREFIX.length)));
         }
         return new Promise((resolve, reject) => resolve(result));
     }
 
     static getWorksheetStateItemKey(id: WorksheetStateId): string {
-        return LocalWorksheetStateQueryService._WORKSHEET_ITEM_KEY_PREFIX + id.toString();
+        return LocalStorageWorksheetStateQueryService._WORKSHEET_ITEM_KEY_PREFIX + id.toString();
     }
 
     private static readonly _WORKSHEET_ITEM_KEY_PREFIX = "worksheet/state/";

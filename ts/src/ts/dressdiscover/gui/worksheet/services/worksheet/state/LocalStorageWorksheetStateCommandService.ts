@@ -6,24 +6,24 @@ import {
 import { NoSuchWorksheetStateException } from 'dressdiscover/api/services/worksheet/state/no_such_worksheet_state_exception';
 import { WorksheetStateCommandService } from 'dressdiscover/api/services/worksheet/state/worksheet_state_command_service';
 import {
-    LocalWorksheetStateQueryService,
-} from 'dressdiscover/gui/worksheet/services/worksheet/state/LocalWorksheetStateQueryService';
+    LocalStorageWorksheetStateQueryService,
+} from 'dressdiscover/gui/worksheet/services/worksheet/state/LocalStorageWorksheetStateQueryService';
 
-export class LocalWorksheetStateCommandService implements WorksheetStateCommandService {
+export class LocalStorageWorksheetStateCommandService implements WorksheetStateCommandService {
     deleteWorksheetState(kwds: { id: WorksheetStateId; }): Promise<void> {
-        localStorage.removeItem(LocalWorksheetStateQueryService.getWorksheetStateItemKey(kwds.id));
+        localStorage.removeItem(LocalStorageWorksheetStateQueryService.getWorksheetStateItemKey(kwds.id));
         return new Promise((resolve, reject) => resolve());
     }
 
     putWorksheetState(kwds: { state: WorksheetState; }): Promise<void> {
-        localStorage.setItem(LocalWorksheetStateQueryService.getWorksheetStateItemKey(kwds.state.id), JSON.stringify(kwds.state.toThryftJsonObject()));
+        localStorage.setItem(LocalStorageWorksheetStateQueryService.getWorksheetStateItemKey(kwds.state.id), JSON.stringify(kwds.state.toThryftJsonObject()));
         return new Promise((resolve, reject) => resolve());
     }
 
     renameWorksheetState(kwds: { newId: WorksheetStateId; oldId: WorksheetStateId; }): Promise<void> {
         return new Promise((resolve, reject) => {
-            const newKey = LocalWorksheetStateQueryService.getWorksheetStateItemKey(kwds.newId);
-            const oldKey = LocalWorksheetStateQueryService.getWorksheetStateItemKey(kwds.oldId);
+            const newKey = LocalStorageWorksheetStateQueryService.getWorksheetStateItemKey(kwds.newId);
+            const oldKey = LocalStorageWorksheetStateQueryService.getWorksheetStateItemKey(kwds.oldId);
 
             if (localStorage.getItem(newKey)) {
                 reject(new DuplicateWorksheetStateException({ id: kwds.newId }));
