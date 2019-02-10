@@ -1,8 +1,8 @@
+import { WorksheetDefinition } from 'dressdiscover/api/models/worksheet/definition/worksheet_definition';
 import { WorksheetFeatureDefinition } from 'dressdiscover/api/models/worksheet/definition/worksheet_feature_definition';
 import {
     WorksheetFeatureValueDefinition,
 } from 'dressdiscover/api/models/worksheet/definition/worksheet_feature_value_definition';
-import { WorksheetDefinition } from 'dressdiscover/api/models/worksheet/worksheet_definition';
 import * as _ from 'lodash';
 
 export class WorksheetDefinitionValidator {

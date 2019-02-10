@@ -1,5 +1,7 @@
-﻿import { WorksheetDefinition } from 'dressdiscover/api/models/worksheet/worksheet_definition';
-import { WorksheetDefinitionQueryService } from 'dressdiscover/api/services/worksheet/worksheet_definition_query_service';
+﻿import { WorksheetDefinition } from 'dressdiscover/api/models/worksheet/definition/worksheet_definition';
+import {
+    WorksheetDefinitionQueryService,
+} from 'dressdiscover/api/services/worksheet/definition/worksheet_definition_query_service';
 import {
     WorksheetDefinitionCsvParser,
 } from 'dressdiscover/gui/worksheet/models/worksheet/definition/WorksheetDefinitionCsvParser';

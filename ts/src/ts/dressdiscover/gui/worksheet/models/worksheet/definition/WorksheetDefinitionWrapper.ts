@@ -1,16 +1,16 @@
-import { WorksheetDefinition } from 'dressdiscover/api/models/worksheet/worksheet_definition';
+import { WorksheetDefinition } from 'dressdiscover/api/models/worksheet/definition/worksheet_definition';
 import { WorksheetFeatureId } from 'dressdiscover/api/models/worksheet/worksheet_feature_id';
 import { WorksheetFeatureSetId } from 'dressdiscover/api/models/worksheet/worksheet_feature_set_id';
 import { WorksheetFeatureValueId } from 'dressdiscover/api/models/worksheet/worksheet_feature_value_id';
 import {
     NoSuchWorksheetFeatureDefinitionException,
-} from 'dressdiscover/api/services/worksheet/no_such_worksheet_feature_definition_exception';
+} from 'dressdiscover/api/services/worksheet/definition/no_such_worksheet_feature_definition_exception';
 import {
     NoSuchWorksheetFeatureSetDefinitionException,
-} from 'dressdiscover/api/services/worksheet/no_such_worksheet_feature_set_definition_exception';
+} from 'dressdiscover/api/services/worksheet/definition/no_such_worksheet_feature_set_definition_exception';
 import {
     NoSuchWorksheetFeatureValueDefinitionException,
-} from 'dressdiscover/api/services/worksheet/no_such_worksheet_feature_value_definition_exception';
+} from 'dressdiscover/api/services/worksheet/definition/no_such_worksheet_feature_value_definition_exception';
 import {
     WorksheetFeatureDefinitionWrapper,
 } from 'dressdiscover/gui/worksheet/models/worksheet/definition/WorksheetFeatureDefinitionWrapper';
