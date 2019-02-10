@@ -14,9 +14,8 @@ export class LocalWorksheetDefinitionQueryService implements WorksheetDefinition
 
     constructor() {
         this._worksheetDefinition = new WorksheetDefinitionValidator().validateWorksheetDefinition(new WorksheetDefinitionCsvParser().parseWorksheetDefinitionCsv({
-            extentsCsv: require("raw-loader!definitions/extents.csv"),
-            featuresCsv: require("raw-loader!definitions/features.csv"),
             featureSetsCsv: require("raw-loader!definitions/feature_sets.csv"),
+            featuresCsv: require("raw-loader!definitions/features.csv"),
             featureValuesCsv: require("raw-loader!definitions/feature_values.csv")
         }));
         // console.debug("Worksheet definition:\n" + JSON.stringify(this._worksheetDefinition.toThryftJsonObject(), undefined, 4));
