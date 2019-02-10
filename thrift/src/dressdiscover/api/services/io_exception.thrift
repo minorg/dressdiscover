@@ -1,4 +1,3 @@
-namespace cs DressDiscover.Api.Services
 namespace * dressdiscover.api.services
 
 include "thryft/waf/api/models/non_blank_string.thrift"
