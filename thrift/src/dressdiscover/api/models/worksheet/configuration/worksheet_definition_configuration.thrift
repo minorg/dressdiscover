@@ -1,4 +1,4 @@
-namespace dressdiscover.api.models.worksheet.configuration
+namespace * dressdiscover.api.models.worksheet.configuration
 
 include "dressdiscover/api/models/worksheet/configuration/bundled_worksheet_definition_configuration.thrift"
 
