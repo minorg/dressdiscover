@@ -25,7 +25,7 @@ export class WorksheetStore {
     async deleteWorksheetState(kwds: { id: WorksheetStateId }) {
         const self = this;
         try {
-            await this.currentUserStore.currentUserServices.worksheetStateCommandService.deleteWorksheetState(kwds);
+            await this.services.worksheetStateCommandService.deleteWorksheetState(kwds);
         } catch (e) {
             self.setError(e);
             return;
@@ -139,6 +139,11 @@ export class WorksheetStore {
             self.getWorksheetStateIds();
         });
     }
+
+    private get services() {
+        return this.currentUserStore.currentUserServices;
+    }
+
 
     private setError(e: Error) {
         this.logger.error("error making remote call: " + e);
