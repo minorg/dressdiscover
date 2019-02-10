@@ -88,7 +88,7 @@ module.exports = (env, argv) => ({
     new CopyWebpackPlugin([{
       from: 'img',
       to: path.join(distPath, 'img/')
-    }]),
+    }, 'google*.html']),
     new MiniCssExtractPlugin({
       disable: argv.mode !== "production",
       filename: 'css/dressdiscover-worksheet.css'

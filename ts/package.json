@@ -1,6 +1,6 @@
 {
   "name": "dressdiscover-worksheet",
-  "version": "3.0.0",
+  "version": "3.0.1",
   "private": true,
   "description": "DressDiscover Worksheet web application",
   "devDependencies": {
@@ -76,7 +76,7 @@
   },
   "license": "GPLv3",
   "scripts": {
-    "start": "webpack-dev-server --mode development --color --hot --info-verbosity verbose --inline",
-    "build": "webpack -p --progress --colors"
+    "start": "webpack-dev-server --mode development --hot --info-verbosity verbose --inline",
+    "build": "webpack --mode production -p"
   }
 }
