@@ -1,10 +1,14 @@
 import { WorksheetFeatureDefinition } from 'dressdiscover/api/models/worksheet/worksheet_feature_definition';
 import { WorksheetFeatureId } from 'dressdiscover/api/models/worksheet/worksheet_feature_id';
-import { AbstractDefinitionWrapper } from 'dressdiscover/gui/worksheet/models/worksheet/AbstractDefinitionWrapper';
-import { WorksheetDefinitionWrapper } from 'dressdiscover/gui/worksheet/models/worksheet/WorksheetDefinitionWrapper';
+import {
+    AbstractDefinitionWrapper,
+} from 'dressdiscover/gui/worksheet/models/worksheet/definition/AbstractDefinitionWrapper';
+import {
+    WorksheetDefinitionWrapper,
+} from 'dressdiscover/gui/worksheet/models/worksheet/definition/WorksheetDefinitionWrapper';
 import {
     WorksheetFeatureValueDefinitionWrapper,
-} from 'dressdiscover/gui/worksheet/models/worksheet/WorksheetFeatureValueDefinitionWrapper';
+} from 'dressdiscover/gui/worksheet/models/worksheet/definition/WorksheetFeatureValueDefinitionWrapper';
 
 export class WorksheetFeatureDefinitionWrapper extends AbstractDefinitionWrapper<WorksheetFeatureDefinition, WorksheetFeatureId> {
     constructor(definition: WorksheetFeatureDefinition, root: WorksheetDefinitionWrapper) {

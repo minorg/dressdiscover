@@ -1,16 +1,20 @@
 import { WorksheetFeatureSetState } from 'dressdiscover/api/models/worksheet/worksheet_feature_set_state';
 import { WorksheetFeatureState } from 'dressdiscover/api/models/worksheet/worksheet_feature_state';
 import { WorksheetStateMark } from 'dressdiscover/api/models/worksheet/worksheet_state_mark';
-import { WorksheetStateWrapper } from 'dressdiscover/gui/worksheet/models/worksheet/WorksheetStateWrapper';
+import { WorksheetStateWrapper } from 'dressdiscover/gui/worksheet/models/worksheet/state/WorksheetStateWrapper';
 import * as React from 'react';
 import { Link } from 'react-router-dom';
 import { Table } from 'reactstrap';
 
 import { Hrefs } from '../../Hrefs';
-import { WorksheetDefinitionWrapper } from '../../models/worksheet/WorksheetDefinitionWrapper';
-import { WorksheetFeatureDefinitionWrapper } from '../../models/worksheet/WorksheetFeatureDefinitionWrapper';
-import { WorksheetFeatureSetDefinitionWrapper } from '../../models/worksheet/WorksheetFeatureSetDefinitionWrapper';
-import { WorksheetFeatureValueDefinitionWrapper } from '../../models/worksheet/WorksheetFeatureValueDefinitionWrapper';
+import { WorksheetDefinitionWrapper } from '../../models/worksheet/definition/WorksheetDefinitionWrapper';
+import { WorksheetFeatureDefinitionWrapper } from '../../models/worksheet/definition/WorksheetFeatureDefinitionWrapper';
+import {
+    WorksheetFeatureSetDefinitionWrapper,
+} from '../../models/worksheet/definition/WorksheetFeatureSetDefinitionWrapper';
+import {
+    WorksheetFeatureValueDefinitionWrapper,
+} from '../../models/worksheet/definition/WorksheetFeatureValueDefinitionWrapper';
 import { WorksheetDescriptionComponent } from './WorksheetDescriptionComponent';
 
 interface Props {

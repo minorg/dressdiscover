@@ -1,7 +1,7 @@
 import { WorksheetState } from 'dressdiscover/api/models/worksheet/worksheet_state';
 import { WorksheetStateMark } from 'dressdiscover/api/models/worksheet/worksheet_state_mark';
 
-import { WorksheetDefinitionWrapper } from './WorksheetDefinitionWrapper';
+import { WorksheetDefinitionWrapper } from '../definition/WorksheetDefinitionWrapper';
 
 export class WorksheetStateMachine {
     constructor(private readonly worksheetDefinition: WorksheetDefinitionWrapper, worksheetState: WorksheetState) {

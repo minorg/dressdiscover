@@ -1,5 +1,5 @@
 import { StringExporter } from 'dressdiscover/gui/worksheet/exporters/string/StringExporter';
-import { WorksheetStateWrapper } from 'dressdiscover/gui/worksheet/models/worksheet/WorksheetStateWrapper';
+import { WorksheetStateWrapper } from 'dressdiscover/gui/worksheet/models/worksheet/state/WorksheetStateWrapper';
 
 export class JsonStringExporter implements StringExporter {
     export(worksheetState: WorksheetStateWrapper): string {

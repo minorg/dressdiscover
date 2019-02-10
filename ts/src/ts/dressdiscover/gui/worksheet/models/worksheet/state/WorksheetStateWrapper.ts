@@ -8,9 +8,9 @@ import { WorksheetStateMark } from 'dressdiscover/api/models/worksheet/worksheet
 import { WorksheetStore } from 'dressdiscover/gui/worksheet/stores/worksheet/WorksheetStore';
 import * as _ from 'lodash';
 
-import { WorksheetDefinitionWrapper } from './WorksheetDefinitionWrapper';
-import { WorksheetFeatureDefinitionWrapper } from './WorksheetFeatureDefinitionWrapper';
-import { WorksheetFeatureSetDefinitionWrapper } from './WorksheetFeatureSetDefinitionWrapper';
+import { WorksheetDefinitionWrapper } from '../definition/WorksheetDefinitionWrapper';
+import { WorksheetFeatureDefinitionWrapper } from '../definition/WorksheetFeatureDefinitionWrapper';
+import { WorksheetFeatureSetDefinitionWrapper } from '../definition/WorksheetFeatureSetDefinitionWrapper';
 import { WorksheetStateMachine } from './WorksheetStateMachine';
 
 export class WorksheetStateWrapper {

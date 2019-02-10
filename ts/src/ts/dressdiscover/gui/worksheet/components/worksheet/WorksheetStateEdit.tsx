@@ -9,7 +9,7 @@ import { RouteComponentProps } from 'react-router';
 import { Button, Input, Table } from 'reactstrap';
 import { update } from 'space-lift';
 
-import { WorksheetStateWrapper } from '../../models/worksheet/WorksheetStateWrapper';
+import { WorksheetStateWrapper } from '../../models/worksheet/state/WorksheetStateWrapper';
 import { WorksheetDescriptionComponent } from './WorksheetDescriptionComponent';
 import { WorksheetStateFrame } from './WorksheetStateFrame';
 import { WorksheetStateGetter } from './WorksheetStateGetter';

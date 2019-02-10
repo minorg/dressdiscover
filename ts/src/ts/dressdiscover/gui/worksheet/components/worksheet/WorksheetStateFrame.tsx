@@ -3,15 +3,15 @@ import './WorksheetStateFrame.scss';
 import * as classnames from 'classnames';
 import { Headline } from 'dressdiscover/gui/worksheet/components/frame/Headline';
 import { History } from 'history';
-import * as React from 'react';
 import { ReactNode } from 'react';
+import * as React from 'react';
 import Hammer from 'react-hammerjs';
 import { Link } from 'react-router-dom';
 import { BreadcrumbItem, Button, Col, Container, Progress, Row } from 'reactstrap';
 import Breadcrumb from 'reactstrap/lib/Breadcrumb';
 
 import { Hrefs } from '../../Hrefs';
-import { WorksheetStateWrapper } from '../../models/worksheet/WorksheetStateWrapper';
+import { WorksheetStateWrapper } from '../../models/worksheet/state/WorksheetStateWrapper';
 import { Frame } from '../frame/Frame';
 import { ActiveNavbarItem } from '../navbar/ActiveNavbarItem';
 

@@ -8,8 +8,8 @@ import { WorksheetStateGetter } from 'dressdiscover/gui/worksheet/components/wor
 import { WorksheetStateMarkParser } from 'dressdiscover/gui/worksheet/components/worksheet/WorksheetStateMarkParser';
 import {
     WorksheetFeatureValueDefinitionWrapper,
-} from 'dressdiscover/gui/worksheet/models/worksheet/WorksheetFeatureValueDefinitionWrapper';
-import { WorksheetStateWrapper } from 'dressdiscover/gui/worksheet/models/worksheet/WorksheetStateWrapper';
+} from 'dressdiscover/gui/worksheet/models/worksheet/definition/WorksheetFeatureValueDefinitionWrapper';
+import { WorksheetStateWrapper } from 'dressdiscover/gui/worksheet/models/worksheet/state/WorksheetStateWrapper';
 import { History } from 'history';
 import * as React from 'react';
 import { RouteComponentProps } from 'react-router';

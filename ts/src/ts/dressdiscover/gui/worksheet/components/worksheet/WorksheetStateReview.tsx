@@ -10,7 +10,7 @@ import { RouteComponentProps } from 'react-router';
 import { Button, Form, Input } from 'reactstrap';
 
 import { StringExporter } from '../../exporters/string/StringExporter';
-import { WorksheetStateWrapper } from '../../models/worksheet/WorksheetStateWrapper';
+import { WorksheetStateWrapper } from '../../models/worksheet/state/WorksheetStateWrapper';
 import { WorksheetStateFrame } from './WorksheetStateFrame';
 import { WorksheetStateGetter } from './WorksheetStateGetter';
 import { WorksheetStateMarkParser } from './WorksheetStateMarkParser';

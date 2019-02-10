@@ -5,7 +5,7 @@ import { Services } from 'dressdiscover/gui/worksheet/services/Services';
 import { ILogger } from 'dressdiscover/gui/worksheet/util/logging/ILogger';
 import { action, observable, runInAction } from 'mobx';
 
-import { WorksheetDefinitionWrapper } from '../../models/worksheet/WorksheetDefinitionWrapper';
+import { WorksheetDefinitionWrapper } from '../../models/worksheet/definition/WorksheetDefinitionWrapper';
 
 export class WorksheetStore {
     constructor(private readonly logger: ILogger, private readonly services: Services) {

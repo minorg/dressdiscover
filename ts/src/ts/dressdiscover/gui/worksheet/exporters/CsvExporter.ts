@@ -1,4 +1,4 @@
-import { WorksheetStateWrapper } from '../models/worksheet/WorksheetStateWrapper';
+import { WorksheetStateWrapper } from '../models/worksheet/state/WorksheetStateWrapper';
 import { Exporter } from './Exporter';
 
 export class CsvExporter implements Exporter<string[][]> {

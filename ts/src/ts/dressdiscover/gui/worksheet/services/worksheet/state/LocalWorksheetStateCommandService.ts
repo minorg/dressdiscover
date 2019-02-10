@@ -5,7 +5,7 @@ import { NoSuchWorksheetStateException } from 'dressdiscover/api/services/worksh
 import { WorksheetStateCommandService } from 'dressdiscover/api/services/worksheet/worksheet_state_command_service';
 import {
     LocalWorksheetStateQueryService,
-} from 'dressdiscover/gui/worksheet/services/worksheet/LocalWorksheetStateQueryService';
+} from 'dressdiscover/gui/worksheet/services/worksheet/state/LocalWorksheetStateQueryService';
 
 export class LocalWorksheetStateCommandService implements WorksheetStateCommandService {
     deleteWorksheetState(kwds: { id: WorksheetStateId; }): Promise<void> {
