@@ -1,6 +1,6 @@
-namespace * dressdiscover.api.models.worksheet
+namespace * dressdiscover.api.models.worksheet.definition
 
-include "dressdiscover/api/models/worksheet/worksheet_rights.thrift"
+include "dressdiscover/api/models/worksheet/definition/worksheet_rights.thrift"
 include "thryft/waf/api/models/non_blank_string.thrift"
 
 struct WorksheetDescription {

@@ -1,10 +1,10 @@
-namespace * dressdiscover.api.services.worksheet
+namespace * dressdiscover.api.services.worksheet.state
 
-include "dressdiscover/api/models/worksheet/worksheet_state.thrift"
-include "dressdiscover/api/models/worksheet/worksheet_state_id.thrift"
+include "dressdiscover/api/models/worksheet/state/worksheet_state.thrift"
+include "dressdiscover/api/models/worksheet/state/worksheet_state_id.thrift"
 include "dressdiscover/api/services/io_exception.thrift"
-include "dressdiscover/api/services/worksheet/duplicate_worksheet_state_exception.thrift"
-include "dressdiscover/api/services/worksheet/no_such_worksheet_state_exception.thrift"
+include "dressdiscover/api/services/worksheet/state/duplicate_worksheet_state_exception.thrift"
+include "dressdiscover/api/services/worksheet/state/no_such_worksheet_state_exception.thrift"
 
 service WorksheetStateCommandService {
     void

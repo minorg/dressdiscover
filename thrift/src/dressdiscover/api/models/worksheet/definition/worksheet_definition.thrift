@@ -1,8 +1,8 @@
 namespace * dressdiscover.api.models.worksheet.definition
 
-include "dressdiscover/api/models/worksheet/worksheet_feature_definition.thrift"
-include "dressdiscover/api/models/worksheet/worksheet_feature_set_definition.thrift"
-include "dressdiscover/api/models/worksheet/worksheet_feature_value_definition.thrift"
+include "dressdiscover/api/models/worksheet/definition/worksheet_feature_definition.thrift"
+include "dressdiscover/api/models/worksheet/definition/worksheet_feature_set_definition.thrift"
+include "dressdiscover/api/models/worksheet/definition/worksheet_feature_value_definition.thrift"
 
 struct WorksheetDefinition {
     // @validation {"minLength": 1}

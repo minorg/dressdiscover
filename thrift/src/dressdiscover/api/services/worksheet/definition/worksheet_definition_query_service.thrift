@@ -1,6 +1,6 @@
-namespace * dressdiscover.api.services.worksheet
+namespace * dressdiscover.api.services.worksheet.definition
 
-include "dressdiscover/api/models/worksheet/worksheet_definition.thrift"
+include "dressdiscover/api/models/worksheet/definition/worksheet_definition.thrift"
 include "dressdiscover/api/services/io_exception.thrift"
 
 service WorksheetDefinitionQueryService {

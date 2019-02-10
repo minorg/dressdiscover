@@ -1,5 +1,5 @@
-﻿import { WorksheetState } from 'dressdiscover/api/models/worksheet/worksheet_state';
-import { WorksheetStateId } from 'dressdiscover/api/models/worksheet/worksheet_state_id';
+﻿import { WorksheetState } from 'dressdiscover/api/models/worksheet/state/worksheet_state';
+import { WorksheetStateId } from 'dressdiscover/api/models/worksheet/state/worksheet_state_id';
 import { NoSuchWorksheetStateException } from 'dressdiscover/api/services/worksheet/no_such_worksheet_state_exception';
 import { WorksheetStateQueryService } from 'dressdiscover/api/services/worksheet/worksheet_state_query_service';
 

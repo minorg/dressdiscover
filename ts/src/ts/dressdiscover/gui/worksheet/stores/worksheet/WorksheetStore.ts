@@ -1,6 +1,6 @@
+import { WorksheetState } from 'dressdiscover/api/models/worksheet/state/worksheet_state';
+import { WorksheetStateId } from 'dressdiscover/api/models/worksheet/state/worksheet_state_id';
 import { WorksheetDefinition } from 'dressdiscover/api/models/worksheet/worksheet_definition';
-import { WorksheetState } from 'dressdiscover/api/models/worksheet/worksheet_state';
-import { WorksheetStateId } from 'dressdiscover/api/models/worksheet/worksheet_state_id';
 import { Services } from 'dressdiscover/gui/worksheet/services/Services';
 import { ILogger } from 'dressdiscover/gui/worksheet/util/logging/ILogger';
 import { action, observable, runInAction } from 'mobx';

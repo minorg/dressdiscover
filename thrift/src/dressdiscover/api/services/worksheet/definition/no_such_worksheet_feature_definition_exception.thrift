@@ -1,4 +1,4 @@
-namespace * dressdiscover.api.services.worksheet
+namespace * dressdiscover.api.services.worksheet.definition
 
 include "dressdiscover/api/models/worksheet/worksheet_feature_id.thrift"
 

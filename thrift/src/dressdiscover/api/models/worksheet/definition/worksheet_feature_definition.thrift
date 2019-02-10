@@ -1,6 +1,6 @@
-namespace * dressdiscover.api.models.worksheet
+namespace * dressdiscover.api.models.worksheet.definition
 
-include "dressdiscover/api/models/worksheet/worksheet_description.thrift"
+include "dressdiscover/api/models/worksheet/definition/worksheet_description.thrift"
 include "dressdiscover/api/models/worksheet/worksheet_feature_id.thrift"
 include "dressdiscover/api/models/worksheet/worksheet_feature_value_id.thrift"
 include "thryft/waf/api/models/non_blank_string.thrift"

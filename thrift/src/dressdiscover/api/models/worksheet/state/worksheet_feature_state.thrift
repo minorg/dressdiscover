@@ -1,4 +1,4 @@
-namespace * dressdiscover.api.models.worksheet
+namespace * dressdiscover.api.models.worksheet.state
 
 include "dressdiscover/api/models/worksheet/worksheet_feature_id.thrift"
 include "dressdiscover/api/models/worksheet/worksheet_feature_value_id.thrift"

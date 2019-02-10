@@ -1,6 +1,6 @@
-namespace * dressdiscover.api.services.worksheet
+namespace * dressdiscover.api.services.worksheet.state
 
-include "dressdiscover/api/models/worksheet/worksheet_state_id.thrift"
+include "dressdiscover/api/models/worksheet/state/worksheet_state_id.thrift"
 
 exception DuplicateWorksheetStateException {
 	worksheet_state_id.WorksheetStateId id;

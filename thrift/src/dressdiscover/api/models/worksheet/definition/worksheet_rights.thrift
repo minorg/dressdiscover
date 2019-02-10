@@ -1,4 +1,4 @@
-namespace * dressdiscover.api.models.worksheet
+namespace * dressdiscover.api.models.worksheet.definition
 
 include "thryft/native/url.thrift"
 include "thryft/waf/api/models/non_blank_string.thrift"

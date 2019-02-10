@@ -1,4 +1,6 @@
-import { WorksheetFeatureSetDefinition } from 'dressdiscover/api/models/worksheet/worksheet_feature_set_definition';
+import {
+    WorksheetFeatureSetDefinition,
+} from 'dressdiscover/api/models/worksheet/definition/worksheet_feature_set_definition';
 import { WorksheetFeatureSetId } from 'dressdiscover/api/models/worksheet/worksheet_feature_set_id';
 import {
     AbstractDefinitionWrapper,
