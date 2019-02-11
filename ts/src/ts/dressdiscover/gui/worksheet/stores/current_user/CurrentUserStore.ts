@@ -1,4 +1,5 @@
 import { Auth0DecodedHash, Auth0Error, WebAuth } from 'auth0-js';
+import { User } from 'dressdiscover/api/models/user/user';
 import { Hrefs } from 'dressdiscover/gui/worksheet/Hrefs';
 import { CurrentUser } from 'dressdiscover/gui/worksheet/models/current_user/CurrentUser';
 import { CurrentUserSession } from 'dressdiscover/gui/worksheet/models/current_user/CurrentUserSession';
@@ -93,10 +94,34 @@ export class CurrentUserStore {
             idToken: authResult.idToken
         });
 
-        // idTokenPayload has many other fields
+        // idTokenPayload:
+        // at_hash: "..."
+        // aud: "..."
+        // email: "..."
+        // email_verified: true
+        // exp: 1549878922
+        // family_name: "..."
+        // given_name: "..."
+        // iat: 123456
+        // iss: "https://dressdiscover.auth0.com/"
+        // locale: "en"
+        // name: "..."
+        // nickname: "..."
+        // nonce: "..."
+        // picture: "https://example.com/photo.jpg"
+        // sub: "..."
+        // updated_at: "2019-02-10T23:55:22.957Z"
         this.currentUser = new CurrentUser({
-            email: authResult.idTokenPayload.email,
-            name: authResult.idTokenPayload.name,
+            delegate: new User({
+                emailAddress: authResult.idTokenPayload.email,
+                emailAddressVerified: authResult.idTokenPayload.email_verified,
+                familyName: authResult.idTokenPayload.family_name,
+                givenName: authResult.idTokenPayload.given_name,
+                locale: authResult.idTokenPayload.locale,
+                name: authResult.idTokenPayload.name,
+                nickname: authResult.idTokenPayload.nickname,
+                pictureUrl: authResult.idTokenPayload.picture
+            }),
             session: currentUserSession
         });
 
