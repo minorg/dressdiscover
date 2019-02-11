@@ -12,30 +12,6 @@ export class WorksheetState {
         }
     }
 
-    get featureSets(): WorksheetFeatureSetState[] {
-        return this.featureSetsPrivate;
-    }
-
-    set featureSets(featureSets: WorksheetFeatureSetState[]) {
-        this.featureSetsPrivate = WorksheetState.validateFeatureSets(featureSets);
-    }
-
-    get id(): WorksheetStateId {
-        return this.idPrivate;
-    }
-
-    set id(id: WorksheetStateId) {
-        this.idPrivate = WorksheetState.validateId(id);
-    }
-
-    get text(): string | undefined {
-        return this.textPrivate;
-    }
-
-    set text(text: string | undefined) {
-        this.textPrivate = WorksheetState.validateText(text);
-    }
-
     public deepCopy(): WorksheetState {
         return new WorksheetState({ featureSets: (this.featureSets).map((value0) => value0.deepCopy()), id: this.id, text: this.text });
     }
@@ -128,9 +104,9 @@ export class WorksheetState {
         return text;
     }
 
-    private featureSetsPrivate: WorksheetFeatureSetState[];
+    public readonly featureSets: WorksheetFeatureSetState[];
 
-    private idPrivate: WorksheetStateId;
+    public readonly id: WorksheetStateId;
 
-    private textPrivate?: string;
+    public readonly text?: string;
 }

@@ -9,30 +9,6 @@ export class WorksheetDefinition {
         this.featuresPrivate = WorksheetDefinition.validateFeatures(kwds.features);
     }
 
-    get featureSets(): WorksheetFeatureSetDefinition[] {
-        return this.featureSetsPrivate;
-    }
-
-    set featureSets(featureSets: WorksheetFeatureSetDefinition[]) {
-        this.featureSetsPrivate = WorksheetDefinition.validateFeatureSets(featureSets);
-    }
-
-    get featureValues(): WorksheetFeatureValueDefinition[] {
-        return this.featureValuesPrivate;
-    }
-
-    set featureValues(featureValues: WorksheetFeatureValueDefinition[]) {
-        this.featureValuesPrivate = WorksheetDefinition.validateFeatureValues(featureValues);
-    }
-
-    get features(): WorksheetFeatureDefinition[] {
-        return this.featuresPrivate;
-    }
-
-    set features(features: WorksheetFeatureDefinition[]) {
-        this.featuresPrivate = WorksheetDefinition.validateFeatures(features);
-    }
-
     public deepCopy(): WorksheetDefinition {
         return new WorksheetDefinition({ featureSets: (this.featureSets).map((value0) => value0.deepCopy()), featureValues: (this.featureValues).map((value0) => value0.deepCopy()), features: (this.features).map((value0) => value0.deepCopy()) });
     }
@@ -128,9 +104,9 @@ export class WorksheetDefinition {
         return features;
     }
 
-    private featureSetsPrivate: WorksheetFeatureSetDefinition[];
+    public readonly featureSets: WorksheetFeatureSetDefinition[];
 
-    private featureValuesPrivate: WorksheetFeatureValueDefinition[];
+    public readonly featureValues: WorksheetFeatureValueDefinition[];
 
-    private featuresPrivate: WorksheetFeatureDefinition[];
+    public readonly features: WorksheetFeatureDefinition[];
 }

@@ -12,14 +12,6 @@ export class UserSettings {
         }
     }
 
-    get worksheetConfiguration(): WorksheetConfiguration | undefined {
-        return this.worksheetConfigurationPrivate;
-    }
-
-    set worksheetConfiguration(worksheetConfiguration: WorksheetConfiguration | undefined) {
-        this.worksheetConfigurationPrivate = UserSettings.validateWorksheetConfiguration(worksheetConfiguration);
-    }
-
     public deepCopy(): UserSettings {
         return new UserSettings({ worksheetConfiguration: (this.worksheetConfiguration ? (this.worksheetConfiguration.deepCopy()) : undefined) });
     }
@@ -67,5 +59,5 @@ export class UserSettings {
         return worksheetConfiguration;
     }
 
-    private worksheetConfigurationPrivate?: WorksheetConfiguration;
+    public readonly worksheetConfiguration?: WorksheetConfiguration;
 }

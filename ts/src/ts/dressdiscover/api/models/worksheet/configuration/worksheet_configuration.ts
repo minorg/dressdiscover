@@ -7,22 +7,6 @@ export class WorksheetConfiguration {
         this.statePrivate = WorksheetConfiguration.validateState(kwds.state);
     }
 
-    get definition(): WorksheetDefinitionConfiguration {
-        return this.definitionPrivate;
-    }
-
-    set definition(definition: WorksheetDefinitionConfiguration) {
-        this.definitionPrivate = WorksheetConfiguration.validateDefinition(definition);
-    }
-
-    get state(): WorksheetStateConfiguration {
-        return this.statePrivate;
-    }
-
-    set state(state: WorksheetStateConfiguration) {
-        this.statePrivate = WorksheetConfiguration.validateState(state);
-    }
-
     public deepCopy(): WorksheetConfiguration {
         return new WorksheetConfiguration({ definition: this.definition.deepCopy(), state: this.state.deepCopy() });
     }
@@ -90,7 +74,7 @@ export class WorksheetConfiguration {
         return state;
     }
 
-    private definitionPrivate: WorksheetDefinitionConfiguration;
+    public readonly definition: WorksheetDefinitionConfiguration;
 
-    private statePrivate: WorksheetStateConfiguration;
+    public readonly state: WorksheetStateConfiguration;
 }

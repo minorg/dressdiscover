@@ -38,76 +38,6 @@ export class User {
         }
     }
 
-    /**
-     * date_time.DateTime ctime;
-     */
-    get emailAddress(): string {
-        return this.emailAddressPrivate;
-    }
-
-    /**
-     * date_time.DateTime ctime;
-     */
-    set emailAddress(emailAddress: string) {
-        this.emailAddressPrivate = User.validateEmailAddress(emailAddress);
-    }
-
-    get emailAddressVerified(): boolean | undefined {
-        return this.emailAddressVerifiedPrivate;
-    }
-
-    set emailAddressVerified(emailAddressVerified: boolean | undefined) {
-        this.emailAddressVerifiedPrivate = User.validateEmailAddressVerified(emailAddressVerified);
-    }
-
-    get familyName(): string | undefined {
-        return this.familyNamePrivate;
-    }
-
-    set familyName(familyName: string | undefined) {
-        this.familyNamePrivate = User.validateFamilyName(familyName);
-    }
-
-    get givenName(): string | undefined {
-        return this.givenNamePrivate;
-    }
-
-    set givenName(givenName: string | undefined) {
-        this.givenNamePrivate = User.validateGivenName(givenName);
-    }
-
-    get locale(): string | undefined {
-        return this.localePrivate;
-    }
-
-    set locale(locale: string | undefined) {
-        this.localePrivate = User.validateLocale(locale);
-    }
-
-    get name(): string | undefined {
-        return this.namePrivate;
-    }
-
-    set name(name: string | undefined) {
-        this.namePrivate = User.validateName(name);
-    }
-
-    get nickname(): string | undefined {
-        return this.nicknamePrivate;
-    }
-
-    set nickname(nickname: string | undefined) {
-        this.nicknamePrivate = User.validateNickname(nickname);
-    }
-
-    get pictureUrl(): string | undefined {
-        return this.pictureUrlPrivate;
-    }
-
-    set pictureUrl(pictureUrl: string | undefined) {
-        this.pictureUrlPrivate = User.validatePictureUrl(pictureUrl);
-    }
-
     public deepCopy(): User {
         return new User({ emailAddress: this.emailAddress, emailAddressVerified: this.emailAddressVerified, familyName: this.familyName, givenName: this.givenName, locale: this.locale, name: this.name, nickname: this.nickname, pictureUrl: this.pictureUrl });
     }
@@ -324,19 +254,19 @@ export class User {
     /**
      * date_time.DateTime ctime;
      */
-    private emailAddressPrivate: string;
+    public readonly emailAddress: string;
 
-    private emailAddressVerifiedPrivate?: boolean;
+    public readonly emailAddressVerified?: boolean;
 
-    private familyNamePrivate?: string;
+    public readonly familyName?: string;
 
-    private givenNamePrivate?: string;
+    public readonly givenName?: string;
 
-    private localePrivate?: string;
+    public readonly locale?: string;
 
-    private namePrivate?: string;
+    public readonly name?: string;
 
-    private nicknamePrivate?: string;
+    public readonly nickname?: string;
 
-    private pictureUrlPrivate?: string;
+    public readonly pictureUrl?: string;
 }

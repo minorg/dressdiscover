@@ -5,14 +5,6 @@ export class NoSuchWorksheetStateException {
         this.idPrivate = NoSuchWorksheetStateException.validateId(kwds.id);
     }
 
-    get id(): WorksheetStateId {
-        return this.idPrivate;
-    }
-
-    set id(id: WorksheetStateId) {
-        this.idPrivate = NoSuchWorksheetStateException.validateId(id);
-    }
-
     public deepCopy(): NoSuchWorksheetStateException {
         return new NoSuchWorksheetStateException({ id: this.id });
     }
@@ -61,5 +53,5 @@ export class NoSuchWorksheetStateException {
         return id;
     }
 
-    private idPrivate: WorksheetStateId;
+    public readonly id: WorksheetStateId;
 }

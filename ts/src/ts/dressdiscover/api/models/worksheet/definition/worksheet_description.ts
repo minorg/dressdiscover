@@ -6,22 +6,6 @@ export class WorksheetDescription {
         this.textPrivate = WorksheetDescription.validateText(kwds.text);
     }
 
-    get rights(): WorksheetRights {
-        return this.rightsPrivate;
-    }
-
-    set rights(rights: WorksheetRights) {
-        this.rightsPrivate = WorksheetDescription.validateRights(rights);
-    }
-
-    get text(): string {
-        return this.textPrivate;
-    }
-
-    set text(text: string) {
-        this.textPrivate = WorksheetDescription.validateText(text);
-    }
-
     public deepCopy(): WorksheetDescription {
         return new WorksheetDescription({ rights: this.rights.deepCopy(), text: this.text });
     }
@@ -95,7 +79,7 @@ export class WorksheetDescription {
         return text;
     }
 
-    private rightsPrivate: WorksheetRights;
+    public readonly rights: WorksheetRights;
 
-    private textPrivate: string;
+    public readonly text: string;
 }

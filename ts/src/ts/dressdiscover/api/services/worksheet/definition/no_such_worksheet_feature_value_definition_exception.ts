@@ -5,14 +5,6 @@ export class NoSuchWorksheetFeatureValueDefinitionException {
         this.idPrivate = NoSuchWorksheetFeatureValueDefinitionException.validateId(kwds.id);
     }
 
-    get id(): WorksheetFeatureValueId {
-        return this.idPrivate;
-    }
-
-    set id(id: WorksheetFeatureValueId) {
-        this.idPrivate = NoSuchWorksheetFeatureValueDefinitionException.validateId(id);
-    }
-
     public deepCopy(): NoSuchWorksheetFeatureValueDefinitionException {
         return new NoSuchWorksheetFeatureValueDefinitionException({ id: this.id });
     }
@@ -61,5 +53,5 @@ export class NoSuchWorksheetFeatureValueDefinitionException {
         return id;
     }
 
-    private idPrivate: WorksheetFeatureValueId;
+    public readonly id: WorksheetFeatureValueId;
 }

@@ -7,22 +7,6 @@ export class WorksheetFeatureSetState {
         this.idPrivate = WorksheetFeatureSetState.validateId(kwds.id);
     }
 
-    get features(): WorksheetFeatureState[] {
-        return this.featuresPrivate;
-    }
-
-    set features(features: WorksheetFeatureState[]) {
-        this.featuresPrivate = WorksheetFeatureSetState.validateFeatures(features);
-    }
-
-    get id(): WorksheetFeatureSetId {
-        return this.idPrivate;
-    }
-
-    set id(id: WorksheetFeatureSetId) {
-        this.idPrivate = WorksheetFeatureSetState.validateId(id);
-    }
-
     public deepCopy(): WorksheetFeatureSetState {
         return new WorksheetFeatureSetState({ features: (this.features).map((value0) => value0.deepCopy()), id: this.id });
     }
@@ -90,7 +74,7 @@ export class WorksheetFeatureSetState {
         return id;
     }
 
-    private featuresPrivate: WorksheetFeatureState[];
+    public readonly features: WorksheetFeatureState[];
 
-    private idPrivate: WorksheetFeatureSetId;
+    public readonly id: WorksheetFeatureSetId;
 }

@@ -5,14 +5,6 @@ export class DuplicateWorksheetStateException {
         this.idPrivate = DuplicateWorksheetStateException.validateId(kwds.id);
     }
 
-    get id(): WorksheetStateId {
-        return this.idPrivate;
-    }
-
-    set id(id: WorksheetStateId) {
-        this.idPrivate = DuplicateWorksheetStateException.validateId(id);
-    }
-
     public deepCopy(): DuplicateWorksheetStateException {
         return new DuplicateWorksheetStateException({ id: this.id });
     }
@@ -61,5 +53,5 @@ export class DuplicateWorksheetStateException {
         return id;
     }
 
-    private idPrivate: WorksheetStateId;
+    public readonly id: WorksheetStateId;
 }

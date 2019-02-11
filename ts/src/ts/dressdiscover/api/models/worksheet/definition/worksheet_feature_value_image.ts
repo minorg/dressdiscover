@@ -11,36 +11,6 @@ export class WorksheetFeatureValueImage {
         }
     }
 
-    get rights(): WorksheetRights {
-        return this.rightsPrivate;
-    }
-
-    set rights(rights: WorksheetRights) {
-        this.rightsPrivate = WorksheetFeatureValueImage.validateRights(rights);
-    }
-
-    /**
-     * Thumbnail and full size URLs can be relative
-     */
-    get thumbnailUrl(): string {
-        return this.thumbnailUrlPrivate;
-    }
-
-    /**
-     * Thumbnail and full size URLs can be relative
-     */
-    set thumbnailUrl(thumbnailUrl: string) {
-        this.thumbnailUrlPrivate = WorksheetFeatureValueImage.validateThumbnailUrl(thumbnailUrl);
-    }
-
-    get fullSizeUrl(): string | undefined {
-        return this.fullSizeUrlPrivate;
-    }
-
-    set fullSizeUrl(fullSizeUrl: string | undefined) {
-        this.fullSizeUrlPrivate = WorksheetFeatureValueImage.validateFullSizeUrl(fullSizeUrl);
-    }
-
     public deepCopy(): WorksheetFeatureValueImage {
         return new WorksheetFeatureValueImage({ rights: this.rights.deepCopy(), thumbnailUrl: this.thumbnailUrl, fullSizeUrl: this.fullSizeUrl });
     }
@@ -139,12 +109,12 @@ export class WorksheetFeatureValueImage {
         return thumbnailUrl;
     }
 
-    private fullSizeUrlPrivate?: string;
+    public readonly fullSizeUrl?: string;
 
-    private rightsPrivate: WorksheetRights;
+    public readonly rights: WorksheetRights;
 
     /**
      * Thumbnail and full size URLs can be relative
      */
-    private thumbnailUrlPrivate: string;
+    public readonly thumbnailUrl: string;
 }

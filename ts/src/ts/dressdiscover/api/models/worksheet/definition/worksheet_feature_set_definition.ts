@@ -18,38 +18,6 @@ export class WorksheetFeatureSetDefinition {
         }
     }
 
-    get featureIds(): WorksheetFeatureId[] {
-        return this.featureIdsPrivate;
-    }
-
-    set featureIds(featureIds: WorksheetFeatureId[]) {
-        this.featureIdsPrivate = WorksheetFeatureSetDefinition.validateFeatureIds(featureIds);
-    }
-
-    get id(): WorksheetFeatureSetId {
-        return this.idPrivate;
-    }
-
-    set id(id: WorksheetFeatureSetId) {
-        this.idPrivate = WorksheetFeatureSetDefinition.validateId(id);
-    }
-
-    get description(): WorksheetDescription | undefined {
-        return this.descriptionPrivate;
-    }
-
-    set description(description: WorksheetDescription | undefined) {
-        this.descriptionPrivate = WorksheetFeatureSetDefinition.validateDescription(description);
-    }
-
-    get displayName(): string | undefined {
-        return this.displayNamePrivate;
-    }
-
-    set displayName(displayName: string | undefined) {
-        this.displayNamePrivate = WorksheetFeatureSetDefinition.validateDisplayName(displayName);
-    }
-
     public deepCopy(): WorksheetFeatureSetDefinition {
         return new WorksheetFeatureSetDefinition({ featureIds: (this.featureIds).map((value0) => value0), id: this.id, description: (this.description ? (this.description.deepCopy()) : undefined), displayName: this.displayName });
     }
@@ -162,11 +130,11 @@ export class WorksheetFeatureSetDefinition {
         return id;
     }
 
-    private descriptionPrivate?: WorksheetDescription;
+    public readonly description?: WorksheetDescription;
 
-    private displayNamePrivate?: string;
+    public readonly displayName?: string;
 
-    private featureIdsPrivate: WorksheetFeatureId[];
+    public readonly featureIds: WorksheetFeatureId[];
 
-    private idPrivate: WorksheetFeatureSetId;
+    public readonly id: WorksheetFeatureSetId;
 }

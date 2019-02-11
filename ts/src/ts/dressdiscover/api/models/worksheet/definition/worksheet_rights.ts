@@ -6,38 +6,6 @@ export class WorksheetRights {
         this.sourceUrlPrivate = WorksheetRights.validateSourceUrl(kwds.sourceUrl);
     }
 
-    get author(): string {
-        return this.authorPrivate;
-    }
-
-    set author(author: string) {
-        this.authorPrivate = WorksheetRights.validateAuthor(author);
-    }
-
-    get license(): string {
-        return this.licensePrivate;
-    }
-
-    set license(license: string) {
-        this.licensePrivate = WorksheetRights.validateLicense(license);
-    }
-
-    get sourceName(): string {
-        return this.sourceNamePrivate;
-    }
-
-    set sourceName(sourceName: string) {
-        this.sourceNamePrivate = WorksheetRights.validateSourceName(sourceName);
-    }
-
-    get sourceUrl(): string {
-        return this.sourceUrlPrivate;
-    }
-
-    set sourceUrl(sourceUrl: string) {
-        this.sourceUrlPrivate = WorksheetRights.validateSourceUrl(sourceUrl);
-    }
-
     public deepCopy(): WorksheetRights {
         return new WorksheetRights({ author: this.author, license: this.license, sourceName: this.sourceName, sourceUrl: this.sourceUrl });
     }
@@ -161,11 +129,11 @@ export class WorksheetRights {
         return sourceUrl;
     }
 
-    private authorPrivate: string;
+    public readonly author: string;
 
-    private licensePrivate: string;
+    public readonly license: string;
 
-    private sourceNamePrivate: string;
+    public readonly sourceName: string;
 
-    private sourceUrlPrivate: string;
+    public readonly sourceUrl: string;
 }

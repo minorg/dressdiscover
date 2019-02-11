@@ -12,14 +12,6 @@ export class WorksheetStateConfiguration {
         }
     }
 
-    get localStorage(): LocalStorageWorksheetStateConfiguration | undefined {
-        return this.localStoragePrivate;
-    }
-
-    set localStorage(localStorage: LocalStorageWorksheetStateConfiguration | undefined) {
-        this.localStoragePrivate = WorksheetStateConfiguration.validateLocalStorage(localStorage);
-    }
-
     public deepCopy(): WorksheetStateConfiguration {
         return new WorksheetStateConfiguration({ localStorage: (this.localStorage ? (this.localStorage.deepCopy()) : undefined) });
     }
@@ -67,5 +59,5 @@ export class WorksheetStateConfiguration {
         return localStorage;
     }
 
-    private localStoragePrivate?: LocalStorageWorksheetStateConfiguration;
+    public readonly localStorage?: LocalStorageWorksheetStateConfiguration;
 }

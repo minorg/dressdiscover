@@ -12,14 +12,6 @@ export class WorksheetDefinitionConfiguration {
         }
     }
 
-    get bundled(): BundledWorksheetDefinitionConfiguration | undefined {
-        return this.bundledPrivate;
-    }
-
-    set bundled(bundled: BundledWorksheetDefinitionConfiguration | undefined) {
-        this.bundledPrivate = WorksheetDefinitionConfiguration.validateBundled(bundled);
-    }
-
     public deepCopy(): WorksheetDefinitionConfiguration {
         return new WorksheetDefinitionConfiguration({ bundled: (this.bundled ? (this.bundled.deepCopy()) : undefined) });
     }
@@ -67,5 +59,5 @@ export class WorksheetDefinitionConfiguration {
         return bundled;
     }
 
-    private bundledPrivate?: BundledWorksheetDefinitionConfiguration;
+    public readonly bundled?: BundledWorksheetDefinitionConfiguration;
 }

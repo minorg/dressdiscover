@@ -16,30 +16,6 @@ export class WorksheetFeatureState {
         }
     }
 
-    get id(): WorksheetFeatureId {
-        return this.idPrivate;
-    }
-
-    set id(id: WorksheetFeatureId) {
-        this.idPrivate = WorksheetFeatureState.validateId(id);
-    }
-
-    get selectedValueIds(): WorksheetFeatureValueId[] | undefined {
-        return this.selectedValueIdsPrivate;
-    }
-
-    set selectedValueIds(selectedValueIds: WorksheetFeatureValueId[] | undefined) {
-        this.selectedValueIdsPrivate = WorksheetFeatureState.validateSelectedValueIds(selectedValueIds);
-    }
-
-    get text(): string | undefined {
-        return this.textPrivate;
-    }
-
-    set text(text: string | undefined) {
-        this.textPrivate = WorksheetFeatureState.validateText(text);
-    }
-
     public deepCopy(): WorksheetFeatureState {
         return new WorksheetFeatureState({ id: this.id, selectedValueIds: (this.selectedValueIds ? ((this.selectedValueIds).map((value0) => value0)) : undefined), text: this.text });
     }
@@ -135,9 +111,9 @@ export class WorksheetFeatureState {
         return text;
     }
 
-    private idPrivate: WorksheetFeatureId;
+    public readonly id: WorksheetFeatureId;
 
-    private selectedValueIdsPrivate?: WorksheetFeatureValueId[];
+    public readonly selectedValueIds?: WorksheetFeatureValueId[];
 
-    private textPrivate?: string;
+    public readonly text?: string;
 }
