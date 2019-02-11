@@ -3,8 +3,8 @@ import './WorksheetStateFrame.scss';
 import * as classnames from 'classnames';
 import { Headline } from 'dressdiscover/gui/worksheet/components/frame/Headline';
 import { History } from 'history';
-import { ReactNode } from 'react';
 import * as React from 'react';
+import { ReactNode } from 'react';
 import Hammer from 'react-hammerjs';
 import { Link } from 'react-router-dom';
 import { BreadcrumbItem, Button, Col, Container, Progress, Row } from 'reactstrap';
@@ -120,7 +120,7 @@ export class WorksheetStateFrame extends React.Component<Props> {
             <Hammer onSwipeLeft={this.onSwipeLeft} onSwipeRight={this.onSwipeRight}>
                 <div>
                     <Frame
-                        activeNavItem={ActiveNavbarItem.Worksheet}
+                        activeNavItem={ActiveNavbarItem.Worksheets}
                         className="worksheet-state-frame"
                         id={this.props.id}
                     >

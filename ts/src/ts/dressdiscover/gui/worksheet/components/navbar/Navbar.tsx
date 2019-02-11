@@ -77,13 +77,13 @@ class Navbar extends React.Component<Props> {
                 Home
               </NavLink>
             </NavItem>
-            <NavItem active={this.props.activeNavItem === ActiveNavbarItem.Worksheet}>
+            <NavItem active={this.props.activeNavItem === ActiveNavbarItem.Worksheets}>
               <NavLink
-                active={this.props.activeNavItem === ActiveNavbarItem.Worksheet}
+                active={this.props.activeNavItem === ActiveNavbarItem.Worksheets}
                 tag={Link}
                 to={Hrefs.worksheetStart}
               >
-                Worksheet
+                Worksheets
               </NavLink>
             </NavItem>
             {/* {authenticatedNavItems} */}

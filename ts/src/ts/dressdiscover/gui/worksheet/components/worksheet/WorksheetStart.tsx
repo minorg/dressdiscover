@@ -279,7 +279,7 @@ export class WorksheetStart extends React.Component<WorksheetStartProps, { newWo
 
         return (
             <Frame
-                activeNavItem={ActiveNavbarItem.Worksheet}
+                activeNavItem={ActiveNavbarItem.Worksheets}
                 id="worksheet"
             >
                 <Container fluid>
