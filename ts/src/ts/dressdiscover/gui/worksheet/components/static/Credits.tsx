@@ -36,7 +36,7 @@ export class Credits extends React.Component {
                                         <p>
                                             <b><a href="https://minorgordon.net">Minor Gordon, Ph.D.</a></b>: full-stack software engineer
                                             <ul>
-                                                <li>Freelance software consultant with 9 years of professional experience in industry</li>
+                                                <li>Freelance software consultant with 10 years of professional experience in industry</li>
                                                 <li>Specializations:
                                                     <ul>
                                                         <li>complex web sites and web applications, such as Notablist.com</li>
