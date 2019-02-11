@@ -4,54 +4,22 @@ import { WorksheetStateId } from "./worksheet_state_id";
 
 export class WorksheetStateMark {
     constructor(kwds: {worksheetStateId: WorksheetStateId, featureId?: WorksheetFeatureId, featureSetId?: WorksheetFeatureSetId, review?: boolean}) {
-        this.worksheetStateIdPrivate = WorksheetStateMark.validateWorksheetStateId(kwds.worksheetStateId);
+        this.worksheetStateId = WorksheetStateMark.validateWorksheetStateId(kwds.worksheetStateId);
         if (kwds.featureId != null) {
-            this.featureIdPrivate = WorksheetStateMark.validateFeatureId(kwds.featureId);
+            this.featureId = WorksheetStateMark.validateFeatureId(kwds.featureId);
         } else {
-            this.featureIdPrivate = undefined;
+            this.featureId = undefined;
         }
         if (kwds.featureSetId != null) {
-            this.featureSetIdPrivate = WorksheetStateMark.validateFeatureSetId(kwds.featureSetId);
+            this.featureSetId = WorksheetStateMark.validateFeatureSetId(kwds.featureSetId);
         } else {
-            this.featureSetIdPrivate = undefined;
+            this.featureSetId = undefined;
         }
         if (kwds.review != null) {
-            this.reviewPrivate = WorksheetStateMark.validateReview(kwds.review);
+            this.review = WorksheetStateMark.validateReview(kwds.review);
         } else {
-            this.reviewPrivate = undefined;
+            this.review = undefined;
         }
-    }
-
-    get worksheetStateId(): WorksheetStateId {
-        return this.worksheetStateIdPrivate;
-    }
-
-    set worksheetStateId(worksheetStateId: WorksheetStateId) {
-        this.worksheetStateIdPrivate = WorksheetStateMark.validateWorksheetStateId(worksheetStateId);
-    }
-
-    get featureId(): WorksheetFeatureId | undefined {
-        return this.featureIdPrivate;
-    }
-
-    set featureId(featureId: WorksheetFeatureId | undefined) {
-        this.featureIdPrivate = WorksheetStateMark.validateFeatureId(featureId);
-    }
-
-    get featureSetId(): WorksheetFeatureSetId | undefined {
-        return this.featureSetIdPrivate;
-    }
-
-    set featureSetId(featureSetId: WorksheetFeatureSetId | undefined) {
-        this.featureSetIdPrivate = WorksheetStateMark.validateFeatureSetId(featureSetId);
-    }
-
-    get review(): boolean | undefined {
-        return this.reviewPrivate;
-    }
-
-    set review(review: boolean | undefined) {
-        this.reviewPrivate = WorksheetStateMark.validateReview(review);
     }
 
     public deepCopy(): WorksheetStateMark {
@@ -158,11 +126,11 @@ export class WorksheetStateMark {
         return worksheetStateId;
     }
 
-    private featureIdPrivate?: WorksheetFeatureId;
+    public readonly featureId?: WorksheetFeatureId;
 
-    private featureSetIdPrivate?: WorksheetFeatureSetId;
+    public readonly featureSetId?: WorksheetFeatureSetId;
 
-    private reviewPrivate?: boolean;
+    public readonly review?: boolean;
 
-    private worksheetStateIdPrivate: WorksheetStateId;
+    public readonly worksheetStateId: WorksheetStateId;
 }

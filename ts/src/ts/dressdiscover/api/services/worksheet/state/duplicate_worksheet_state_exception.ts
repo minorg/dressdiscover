@@ -2,15 +2,7 @@ import { WorksheetStateId } from "../../../models/worksheet/state/worksheet_stat
 
 export class DuplicateWorksheetStateException {
     constructor(kwds: {id: WorksheetStateId}) {
-        this.idPrivate = DuplicateWorksheetStateException.validateId(kwds.id);
-    }
-
-    get id(): WorksheetStateId {
-        return this.idPrivate;
-    }
-
-    set id(id: WorksheetStateId) {
-        this.idPrivate = DuplicateWorksheetStateException.validateId(id);
+        this.id = DuplicateWorksheetStateException.validateId(kwds.id);
     }
 
     public deepCopy(): DuplicateWorksheetStateException {
@@ -61,5 +53,5 @@ export class DuplicateWorksheetStateException {
         return id;
     }
 
-    private idPrivate: WorksheetStateId;
+    public readonly id: WorksheetStateId;
 }

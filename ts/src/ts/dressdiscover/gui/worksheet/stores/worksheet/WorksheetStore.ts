@@ -1,14 +1,14 @@
 import { WorksheetDefinition } from 'dressdiscover/api/models/worksheet/definition/worksheet_definition';
 import { WorksheetState } from 'dressdiscover/api/models/worksheet/state/worksheet_state';
 import { WorksheetStateId } from 'dressdiscover/api/models/worksheet/state/worksheet_state_id';
-import { Services } from 'dressdiscover/gui/worksheet/services/Services';
+import { CurrentUserStore } from 'dressdiscover/gui/worksheet/stores/current_user/CurrentUserStore';
 import { ILogger } from 'dressdiscover/gui/worksheet/util/logging/ILogger';
 import { action, observable, runInAction } from 'mobx';
 
 import { WorksheetDefinitionWrapper } from '../../models/worksheet/definition/WorksheetDefinitionWrapper';
 
 export class WorksheetStore {
-    constructor(private readonly logger: ILogger, private readonly services: Services) {
+    constructor(private readonly currentUserStore: CurrentUserStore, private readonly logger: ILogger) {
     }
 
     @observable error: Error | undefined;
@@ -139,6 +139,11 @@ export class WorksheetStore {
             self.getWorksheetStateIds();
         });
     }
+
+    private get services() {
+        return this.currentUserStore.currentUserServices;
+    }
+
 
     private setError(e: Error) {
         this.logger.error("error making remote call: " + e);

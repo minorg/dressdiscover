@@ -1,17 +1,22 @@
+import { User } from 'dressdiscover/api/models/user/user';
+import { UserSettings } from 'dressdiscover/api/models/user/user_settings';
 import { CurrentUserSession } from 'dressdiscover/gui/worksheet/models/current_user/CurrentUserSession';
+import { Services } from 'dressdiscover/gui/worksheet/services/Services';
 
 export class CurrentUser {
-    constructor(kwds: { email: string, name?: string, session: CurrentUserSession }) {
-        this.email = kwds.email;
-        this.namePrivate = kwds.name;
+    constructor(kwds: { delegate: User, session: CurrentUserSession, settings?: UserSettings }) {
+        this.delegate = kwds.delegate;
+        this.services = Services.default;
         this.session = kwds.session;
+        this.settings = kwds.settings;
     }
 
     get name() {
-        return this.namePrivate ? this.namePrivate : this.email;
+        return this.delegate.name ? this.delegate.name : this.delegate.emailAddress;
     }
 
-    readonly email: string;
-    private readonly namePrivate?: string;
-    session: CurrentUserSession;
+    private readonly delegate: User;
+    readonly services: Services;
+    readonly session: CurrentUserSession;
+    readonly settings?: UserSettings;
 }

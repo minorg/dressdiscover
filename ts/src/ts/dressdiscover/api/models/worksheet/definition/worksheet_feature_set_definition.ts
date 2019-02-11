@@ -4,50 +4,18 @@ import { WorksheetFeatureSetId } from "../worksheet_feature_set_id";
 
 export class WorksheetFeatureSetDefinition {
     constructor(kwds: {featureIds: WorksheetFeatureId[], id: WorksheetFeatureSetId, description?: WorksheetDescription, displayName?: string}) {
-        this.featureIdsPrivate = WorksheetFeatureSetDefinition.validateFeatureIds(kwds.featureIds);
-        this.idPrivate = WorksheetFeatureSetDefinition.validateId(kwds.id);
+        this.featureIds = WorksheetFeatureSetDefinition.validateFeatureIds(kwds.featureIds);
+        this.id = WorksheetFeatureSetDefinition.validateId(kwds.id);
         if (kwds.description != null) {
-            this.descriptionPrivate = WorksheetFeatureSetDefinition.validateDescription(kwds.description);
+            this.description = WorksheetFeatureSetDefinition.validateDescription(kwds.description);
         } else {
-            this.descriptionPrivate = undefined;
+            this.description = undefined;
         }
         if (kwds.displayName != null) {
-            this.displayNamePrivate = WorksheetFeatureSetDefinition.validateDisplayName(kwds.displayName);
+            this.displayName = WorksheetFeatureSetDefinition.validateDisplayName(kwds.displayName);
         } else {
-            this.displayNamePrivate = undefined;
+            this.displayName = undefined;
         }
-    }
-
-    get featureIds(): WorksheetFeatureId[] {
-        return this.featureIdsPrivate;
-    }
-
-    set featureIds(featureIds: WorksheetFeatureId[]) {
-        this.featureIdsPrivate = WorksheetFeatureSetDefinition.validateFeatureIds(featureIds);
-    }
-
-    get id(): WorksheetFeatureSetId {
-        return this.idPrivate;
-    }
-
-    set id(id: WorksheetFeatureSetId) {
-        this.idPrivate = WorksheetFeatureSetDefinition.validateId(id);
-    }
-
-    get description(): WorksheetDescription | undefined {
-        return this.descriptionPrivate;
-    }
-
-    set description(description: WorksheetDescription | undefined) {
-        this.descriptionPrivate = WorksheetFeatureSetDefinition.validateDescription(description);
-    }
-
-    get displayName(): string | undefined {
-        return this.displayNamePrivate;
-    }
-
-    set displayName(displayName: string | undefined) {
-        this.displayNamePrivate = WorksheetFeatureSetDefinition.validateDisplayName(displayName);
     }
 
     public deepCopy(): WorksheetFeatureSetDefinition {
@@ -162,11 +130,11 @@ export class WorksheetFeatureSetDefinition {
         return id;
     }
 
-    private descriptionPrivate?: WorksheetDescription;
+    public readonly description?: WorksheetDescription;
 
-    private displayNamePrivate?: string;
+    public readonly displayName?: string;
 
-    private featureIdsPrivate: WorksheetFeatureId[];
+    public readonly featureIds: WorksheetFeatureId[];
 
-    private idPrivate: WorksheetFeatureSetId;
+    public readonly id: WorksheetFeatureSetId;
 }

@@ -1,14 +1,6 @@
 export class IoException {
     constructor(kwds: {causeMessage: string}) {
-        this.causeMessagePrivate = IoException.validateCauseMessage(kwds.causeMessage);
-    }
-
-    get causeMessage(): string {
-        return this.causeMessagePrivate;
-    }
-
-    set causeMessage(causeMessage: string) {
-        this.causeMessagePrivate = IoException.validateCauseMessage(causeMessage);
+        this.causeMessage = IoException.validateCauseMessage(kwds.causeMessage);
     }
 
     public deepCopy(): IoException {
@@ -65,5 +57,5 @@ export class IoException {
         return causeMessage;
     }
 
-    private causeMessagePrivate: string;
+    public readonly causeMessage: string;
 }

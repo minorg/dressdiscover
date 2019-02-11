@@ -2,24 +2,8 @@ import { WorksheetRights } from "./worksheet_rights";
 
 export class WorksheetDescription {
     constructor(kwds: {rights: WorksheetRights, text: string}) {
-        this.rightsPrivate = WorksheetDescription.validateRights(kwds.rights);
-        this.textPrivate = WorksheetDescription.validateText(kwds.text);
-    }
-
-    get rights(): WorksheetRights {
-        return this.rightsPrivate;
-    }
-
-    set rights(rights: WorksheetRights) {
-        this.rightsPrivate = WorksheetDescription.validateRights(rights);
-    }
-
-    get text(): string {
-        return this.textPrivate;
-    }
-
-    set text(text: string) {
-        this.textPrivate = WorksheetDescription.validateText(text);
+        this.rights = WorksheetDescription.validateRights(kwds.rights);
+        this.text = WorksheetDescription.validateText(kwds.text);
     }
 
     public deepCopy(): WorksheetDescription {
@@ -95,7 +79,7 @@ export class WorksheetDescription {
         return text;
     }
 
-    private rightsPrivate: WorksheetRights;
+    public readonly rights: WorksheetRights;
 
-    private textPrivate: string;
+    public readonly text: string;
 }

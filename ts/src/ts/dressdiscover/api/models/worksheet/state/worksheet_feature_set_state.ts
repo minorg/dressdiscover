@@ -3,24 +3,8 @@ import { WorksheetFeatureState } from "./worksheet_feature_state";
 
 export class WorksheetFeatureSetState {
     constructor(kwds: {features: WorksheetFeatureState[], id: WorksheetFeatureSetId}) {
-        this.featuresPrivate = WorksheetFeatureSetState.validateFeatures(kwds.features);
-        this.idPrivate = WorksheetFeatureSetState.validateId(kwds.id);
-    }
-
-    get features(): WorksheetFeatureState[] {
-        return this.featuresPrivate;
-    }
-
-    set features(features: WorksheetFeatureState[]) {
-        this.featuresPrivate = WorksheetFeatureSetState.validateFeatures(features);
-    }
-
-    get id(): WorksheetFeatureSetId {
-        return this.idPrivate;
-    }
-
-    set id(id: WorksheetFeatureSetId) {
-        this.idPrivate = WorksheetFeatureSetState.validateId(id);
+        this.features = WorksheetFeatureSetState.validateFeatures(kwds.features);
+        this.id = WorksheetFeatureSetState.validateId(kwds.id);
     }
 
     public deepCopy(): WorksheetFeatureSetState {
@@ -90,7 +74,7 @@ export class WorksheetFeatureSetState {
         return id;
     }
 
-    private featuresPrivate: WorksheetFeatureState[];
+    public readonly features: WorksheetFeatureState[];
 
-    private idPrivate: WorksheetFeatureSetId;
+    public readonly id: WorksheetFeatureSetId;
 }

@@ -2,15 +2,7 @@ import { WorksheetFeatureId } from "../../../models/worksheet/worksheet_feature_
 
 export class NoSuchWorksheetFeatureDefinitionException {
     constructor(kwds: {id: WorksheetFeatureId}) {
-        this.idPrivate = NoSuchWorksheetFeatureDefinitionException.validateId(kwds.id);
-    }
-
-    get id(): WorksheetFeatureId {
-        return this.idPrivate;
-    }
-
-    set id(id: WorksheetFeatureId) {
-        this.idPrivate = NoSuchWorksheetFeatureDefinitionException.validateId(id);
+        this.id = NoSuchWorksheetFeatureDefinitionException.validateId(kwds.id);
     }
 
     public deepCopy(): NoSuchWorksheetFeatureDefinitionException {
@@ -61,5 +53,5 @@ export class NoSuchWorksheetFeatureDefinitionException {
         return id;
     }
 
-    private idPrivate: WorksheetFeatureId;
+    public readonly id: WorksheetFeatureId;
 }

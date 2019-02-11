@@ -2,43 +2,13 @@ import { WorksheetRights } from "./worksheet_rights";
 
 export class WorksheetFeatureValueImage {
     constructor(kwds: {rights: WorksheetRights, thumbnailUrl: string, fullSizeUrl?: string}) {
-        this.rightsPrivate = WorksheetFeatureValueImage.validateRights(kwds.rights);
-        this.thumbnailUrlPrivate = WorksheetFeatureValueImage.validateThumbnailUrl(kwds.thumbnailUrl);
+        this.rights = WorksheetFeatureValueImage.validateRights(kwds.rights);
+        this.thumbnailUrl = WorksheetFeatureValueImage.validateThumbnailUrl(kwds.thumbnailUrl);
         if (kwds.fullSizeUrl != null) {
-            this.fullSizeUrlPrivate = WorksheetFeatureValueImage.validateFullSizeUrl(kwds.fullSizeUrl);
+            this.fullSizeUrl = WorksheetFeatureValueImage.validateFullSizeUrl(kwds.fullSizeUrl);
         } else {
-            this.fullSizeUrlPrivate = undefined;
+            this.fullSizeUrl = undefined;
         }
-    }
-
-    get rights(): WorksheetRights {
-        return this.rightsPrivate;
-    }
-
-    set rights(rights: WorksheetRights) {
-        this.rightsPrivate = WorksheetFeatureValueImage.validateRights(rights);
-    }
-
-    /**
-     * Thumbnail and full size URLs can be relative
-     */
-    get thumbnailUrl(): string {
-        return this.thumbnailUrlPrivate;
-    }
-
-    /**
-     * Thumbnail and full size URLs can be relative
-     */
-    set thumbnailUrl(thumbnailUrl: string) {
-        this.thumbnailUrlPrivate = WorksheetFeatureValueImage.validateThumbnailUrl(thumbnailUrl);
-    }
-
-    get fullSizeUrl(): string | undefined {
-        return this.fullSizeUrlPrivate;
-    }
-
-    set fullSizeUrl(fullSizeUrl: string | undefined) {
-        this.fullSizeUrlPrivate = WorksheetFeatureValueImage.validateFullSizeUrl(fullSizeUrl);
     }
 
     public deepCopy(): WorksheetFeatureValueImage {
@@ -139,12 +109,12 @@ export class WorksheetFeatureValueImage {
         return thumbnailUrl;
     }
 
-    private fullSizeUrlPrivate?: string;
+    public readonly fullSizeUrl?: string;
 
-    private rightsPrivate: WorksheetRights;
+    public readonly rights: WorksheetRights;
 
     /**
      * Thumbnail and full size URLs can be relative
      */
-    private thumbnailUrlPrivate: string;
+    public readonly thumbnailUrl: string;
 }
