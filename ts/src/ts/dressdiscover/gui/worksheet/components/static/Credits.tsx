@@ -26,13 +26,25 @@ export class Credits extends React.Component {
                                 <CardBody>
                                     <Container fluid>
                                         <p>
-                                            <h4>Content</h4>
-                                            <a href="http://www.ardenkirkland.com">Arden Kirkland</a>
+                                            <b><a href="https://www.ardenkirkland.com">Arden Kirkland, MSLIS, MFA</a></b>: project manager, domain expert
+                                            <ul>
+                                                <li>Adjunct Instructor for the iSchool at Syracuse University</li>
+                                                <li>Project Manager, focusing on educational engagement with digital collections such as ArtOneida.org, HistoricDress.org, and HVVACC.org (the Hudson Valley Visual Arts Collections Consortium)</li>
+                                                <li>Project Coordinator for the IMLS-funded Design for Learning program - led the development of a series of online modules about online teaching</li>
+                                            </ul>
                                         </p>
-                                        <br />
                                         <p>
-                                            <h4>Development</h4>
-                                            <a href="https://minorgordon.net">Minor Gordon</a>
+                                            <b><a href="https://minorgordon.net">Minor Gordon, Ph.D.</a></b>: full-stack software engineer
+                                            <ul>
+                                                <li>Freelance software consultant with 9 years of professional experience in industry</li>
+                                                <li>Specializations:
+                                                    <ul>
+                                                        <li>complex web sites and web applications, such as Notablist.com</li>
+                                                        <li>software-as-a-service (SaaS) implementations</li>
+                                                        <li>programming tools, such as compilers and runtimes for domain-specific languages</li>
+                                                    </ul>
+                                                </li>
+                                            </ul>
                                         </p>
                                     </Container>
                                 </CardBody>
