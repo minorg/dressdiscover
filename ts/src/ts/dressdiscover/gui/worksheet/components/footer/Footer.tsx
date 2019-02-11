@@ -11,6 +11,7 @@ export class Footer extends React.Component {
                     <Row>&nbsp;</Row>
                     <Row>
                         <Col className="text-center" md="12">
+                            <Link to={Hrefs.about}>About</Link>&nbsp;|&nbsp;
                             <a href={Hrefs.contact}>Contact</a>&nbsp;|&nbsp;
                             <Link to={Hrefs.credits}>Credits</Link>&nbsp;|&nbsp;
                             <Link to={Hrefs.privacy}>Privacy</Link>&nbsp;|&nbsp;
