@@ -3,17 +3,41 @@ import { WorksheetFeatureValueId } from "../worksheet_feature_value_id";
 
 export class WorksheetFeatureState {
     constructor(kwds: {id: WorksheetFeatureId, selectedValueIds?: WorksheetFeatureValueId[], text?: string}) {
-        this.id = WorksheetFeatureState.validateId(kwds.id);
+        this.idPrivate = WorksheetFeatureState.validateId(kwds.id);
         if (kwds.selectedValueIds != null) {
-            this.selectedValueIds = WorksheetFeatureState.validateSelectedValueIds(kwds.selectedValueIds);
+            this.selectedValueIdsPrivate = WorksheetFeatureState.validateSelectedValueIds(kwds.selectedValueIds);
         } else {
-            this.selectedValueIds = undefined;
+            this.selectedValueIdsPrivate = undefined;
         }
         if (kwds.text != null) {
-            this.text = WorksheetFeatureState.validateText(kwds.text);
+            this.textPrivate = WorksheetFeatureState.validateText(kwds.text);
         } else {
-            this.text = undefined;
+            this.textPrivate = undefined;
         }
+    }
+
+    get id(): WorksheetFeatureId {
+        return this.idPrivate;
+    }
+
+    set id(id: WorksheetFeatureId) {
+        this.idPrivate = WorksheetFeatureState.validateId(id);
+    }
+
+    get selectedValueIds(): WorksheetFeatureValueId[] | undefined {
+        return this.selectedValueIdsPrivate;
+    }
+
+    set selectedValueIds(selectedValueIds: WorksheetFeatureValueId[] | undefined) {
+        this.selectedValueIdsPrivate = WorksheetFeatureState.validateSelectedValueIds(selectedValueIds);
+    }
+
+    get text(): string | undefined {
+        return this.textPrivate;
+    }
+
+    set text(text: string | undefined) {
+        this.textPrivate = WorksheetFeatureState.validateText(text);
     }
 
     public deepCopy(): WorksheetFeatureState {
@@ -111,9 +135,9 @@ export class WorksheetFeatureState {
         return text;
     }
 
-    public readonly id: WorksheetFeatureId;
+    private idPrivate: WorksheetFeatureId;
 
-    public readonly selectedValueIds?: WorksheetFeatureValueId[];
+    private selectedValueIdsPrivate?: WorksheetFeatureValueId[];
 
-    public readonly text?: string;
+    private textPrivate?: string;
 }

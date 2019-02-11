@@ -3,13 +3,37 @@ import { WorksheetStateId } from "./worksheet_state_id";
 
 export class WorksheetState {
     constructor(kwds: {featureSets: WorksheetFeatureSetState[], id: WorksheetStateId, text?: string}) {
-        this.featureSets = WorksheetState.validateFeatureSets(kwds.featureSets);
-        this.id = WorksheetState.validateId(kwds.id);
+        this.featureSetsPrivate = WorksheetState.validateFeatureSets(kwds.featureSets);
+        this.idPrivate = WorksheetState.validateId(kwds.id);
         if (kwds.text != null) {
-            this.text = WorksheetState.validateText(kwds.text);
+            this.textPrivate = WorksheetState.validateText(kwds.text);
         } else {
-            this.text = undefined;
+            this.textPrivate = undefined;
         }
+    }
+
+    get featureSets(): WorksheetFeatureSetState[] {
+        return this.featureSetsPrivate;
+    }
+
+    set featureSets(featureSets: WorksheetFeatureSetState[]) {
+        this.featureSetsPrivate = WorksheetState.validateFeatureSets(featureSets);
+    }
+
+    get id(): WorksheetStateId {
+        return this.idPrivate;
+    }
+
+    set id(id: WorksheetStateId) {
+        this.idPrivate = WorksheetState.validateId(id);
+    }
+
+    get text(): string | undefined {
+        return this.textPrivate;
+    }
+
+    set text(text: string | undefined) {
+        this.textPrivate = WorksheetState.validateText(text);
     }
 
     public deepCopy(): WorksheetState {
@@ -104,9 +128,9 @@ export class WorksheetState {
         return text;
     }
 
-    public readonly featureSets: WorksheetFeatureSetState[];
+    private featureSetsPrivate: WorksheetFeatureSetState[];
 
-    public readonly id: WorksheetStateId;
+    private idPrivate: WorksheetStateId;
 
-    public readonly text?: string;
+    private textPrivate?: string;
 }
