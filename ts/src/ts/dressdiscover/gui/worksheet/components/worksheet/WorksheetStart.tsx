@@ -279,7 +279,7 @@ export class WorksheetStart extends React.Component<WorksheetStartProps, { newWo
 
         return (
             <Frame
-                activeNavItem={ActiveNavbarItem.Worksheet}
+                activeNavItem={ActiveNavbarItem.Worksheets}
                 id="worksheet"
             >
                 <Container fluid>
@@ -289,31 +289,40 @@ export class WorksheetStart extends React.Component<WorksheetStartProps, { newWo
                         </Col>
                     </Row>
                     <Row>
-                        <Col className={classnames(["d-lg-block", "d-md-none", "d-sm-none", "d-xs-none", "d-xl-block", "text-center"])} lg={{ offset: 1, size: 4 }} >
-                            <img className="img-fluid" src="../img/start.jpg"></img>
+                        <Col className={classnames(["d-lg-block", "d-md-none", "d-sm-none", "d-xs-none", "d-xl-block"])} lg={{ offset: 1, size: 4 }}>
+                            <p className="lead">The worksheet consists of a series of screens, with different features depending on the type of object. For example, clothing can be described in terms of material, neckline, sleeve type, and so on.</p>
+                            <p>Each feature option is represented by an image in a grid. Each image represents a concept from the Art and Architecture Thesaurus (AAT), Europeana Fashion Thesaurus, or CostumeCore vocabularies, with images primarily from Wikimedia Commons.</p>
+                            <hr />
+                            <br />
+                            <div className="w-100 text-center">
+                                <img className="img-fluid" src="../img/start-cropped.jpg"></img>
+                            </div>
                         </Col>
                         <Col className="text-left" lg="7" xs="12">
                             <Container fluid>
                                 <Row>
                                     <Col xs="12">
                                         <NewWorksheetState existingWorksheetStateIds={this.props.worksheetStore.worksheetStateIds} onSubmit={this.onStartNewWorksheet}></NewWorksheetState>
+                                        <div className="w-100 text-center">
+                                            <p>Select <b>Worksheets</b> from the top navigation to return to this page at any time.</p>
+                                        </div>
                                     </Col>
                                 </Row>
-                                {!_.isEmpty(this.props.worksheetStore.worksheetStateIds) ? (
-                                    <React.Fragment>
-                                        <Row className="mb-5"></Row>
-                                        <Row>
-                                            <Col xs="12">
-                                                <ExistingWorksheetStates worksheetStore={this.props.worksheetStore!}></ExistingWorksheetStates>
-                                            </Col>
-                                        </Row>
-                                    </React.Fragment>
-                                ) : null}
+                                        {!_.isEmpty(this.props.worksheetStore.worksheetStateIds) ? (
+                                            <React.Fragment>
+                                                <Row className="mb-5"></Row>
+                                                <Row>
+                                                    <Col xs="12">
+                                                        <ExistingWorksheetStates worksheetStore={this.props.worksheetStore!}></ExistingWorksheetStates>
+                                                    </Col>
+                                                </Row>
+                                            </React.Fragment>
+                                        ) : null}
                             </Container>
                         </Col>
                     </Row>
                 </Container>
             </Frame>
-        );
-    }
-}
+                    );
+                }
+            }

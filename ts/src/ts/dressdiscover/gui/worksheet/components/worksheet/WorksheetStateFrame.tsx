@@ -120,7 +120,7 @@ export class WorksheetStateFrame extends React.Component<Props> {
             <Hammer onSwipeLeft={this.onSwipeLeft} onSwipeRight={this.onSwipeRight}>
                 <div>
                     <Frame
-                        activeNavItem={ActiveNavbarItem.Worksheet}
+                        activeNavItem={ActiveNavbarItem.Worksheets}
                         className="worksheet-state-frame"
                         id={this.props.id}
                     >

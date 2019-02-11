@@ -1,6 +1,7 @@
 import { NoRoute } from 'dressdiscover/gui/worksheet/components/error/NoRoute';
 import { Home } from 'dressdiscover/gui/worksheet/components/home/Home';
 import { LogoutCallback } from 'dressdiscover/gui/worksheet/components/login/LogoutCallback';
+import { About } from 'dressdiscover/gui/worksheet/components/static/About';
 import { Credits } from 'dressdiscover/gui/worksheet/components/static/Credits';
 import { Privacy } from 'dressdiscover/gui/worksheet/components/static/Privacy';
 import {
@@ -22,7 +23,8 @@ export class Routes extends React.Component {
   render() {
     return (
       <Switch>
-        <Route path={Hrefs.credits} component={Credits} />
+        <Route exact path={Hrefs.about} component={About} />
+        <Route exact path={Hrefs.credits} component={Credits} />
         <Route exact path={Hrefs.home} component={Home} />
         <Route exact path={Hrefs.login} component={Login} />
         <Route exact path={Hrefs.loginCallback} component={LoginCallback} />

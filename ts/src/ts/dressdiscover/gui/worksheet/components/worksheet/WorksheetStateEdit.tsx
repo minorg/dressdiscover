@@ -78,7 +78,7 @@ class WorksheetStateEditImpl extends React.Component<WorksheetStateEditImplProps
                 worksheetState={worksheetState}
             >
                 <h4>Select feature sets</h4>
-                <p className="card-text">Select one or more feature sets to describe the object.</p>
+                <p className="card-text">Select one or more feature sets to describe the object. Currently the feature set for a Dress is the only one available, but more will be added in the future.</p>
                 <Table className="table-bordered">
                     <thead>
                         <tr>

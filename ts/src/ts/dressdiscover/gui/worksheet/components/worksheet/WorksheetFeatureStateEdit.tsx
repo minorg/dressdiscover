@@ -81,6 +81,7 @@ class WorksheetFeatureStateEditImpl extends React.Component<WorksheetFeatureStat
                 save={this.save}
                 worksheetState={worksheetState}
             >
+                <p>Select one or more boxes, then click <b>Next</b> to move to the next feature. Click on the arrow at the bottom right of an image to see the definition and other information.</p>
                 <Container fluid>
                     <Row>
                         {worksheetState.currentFeatureDefinition!.values.map((featureValueDefinition) =>

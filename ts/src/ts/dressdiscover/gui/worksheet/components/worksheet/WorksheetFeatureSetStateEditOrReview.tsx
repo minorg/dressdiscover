@@ -31,6 +31,7 @@ class WorksheetFeatureSetStateEditOrReviewImpl extends React.Component<{ history
                 id="worksheet-feature-set-state-edit-or-review"
                 worksheetState={worksheetState}
             >
+                <p>This is the list of features for this work type. Click on <b>Next</b> to begin entering data for each feature in order, or click on a specific feature to jump to it. You can click on <b>Finish</b> at any time to return to this page and see a summary of your choices.</p>
                 <WorksheetFeatureSetStateTable featureSetDefinition={worksheetState.currentFeatureSetDefinition!} featureSetState={worksheetState.currentFeatureSetState} includeFeatureDescriptions={!worksheetState.currentStateMark.review} worksheetState={worksheetState} />
             </WorksheetStateFrame>);
     }
