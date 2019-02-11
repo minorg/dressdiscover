@@ -27,7 +27,10 @@
                 "thrift_include_dirs": ["../thryft-waf/thrift/src"],
                 "thrift_files": {
                     "include": "thrift/src/dressdiscover/api/**/*.thrift",
-                    "exclude": "thrift/src/dressdiscover/api/**/worksheet/**/*.thrift"
+                    "exclude": [
+                        "thrift/src/dressdiscover/api/**/worksheet/**/*.thrift",
+                        "thrift/src/dressdiscover/api/models/user/user_settings.thrift"
+                    ]
                 },
                 "gen": {
                     "java": {
@@ -57,7 +60,11 @@
                 "description": "api worksheet models",
                 "thrift_root_dir": "thrift/src",
                 "thrift_include_dirs": ["../thryft-waf/thrift/src"],
-                "thrift_files": "thrift/src/dressdiscover/api/models/worksheet/**/*.thrift",
+                "thrift_files": [
+                    "thrift/src/dressdiscover/api/models/worksheet/**/*.thrift",
+                    "thrift/src/dressdiscover/api/models/user/user.thrift",
+                    "thrift/src/dressdiscover/api/models/user/user_settings.thrift"
+                ],
                 "gen": {
                     "ts": "ts/src/ts"
                 }
