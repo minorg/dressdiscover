@@ -1,8 +1,8 @@
 import { WorksheetStateMark } from 'dressdiscover/api/models/worksheet/state/worksheet_state_mark';
 
 export class Hrefs {
-  static get home() {
-    return '/';
+  static get about() {
+    return "/about";
   }
 
   static get contact() {
@@ -15,6 +15,10 @@ export class Hrefs {
 
   static get gitHub() {
     return "https://github.com/minorg/dressdiscover";
+  }
+
+  static get home() {
+    return '/';
   }
 
   static get login() {
