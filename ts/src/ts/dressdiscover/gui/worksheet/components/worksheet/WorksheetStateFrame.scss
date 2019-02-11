@@ -1,4 +1,4 @@
-@import "dressdiscover/gui/worksheet/custom_bootstrap.scss";
+@import "dressdiscover/gui/worksheet/bootstrap_variables.scss";
 
 .worksheet-state-frame {
     ol.breadcrumb {
@@ -6,7 +6,7 @@
     }
 
     .progress-wrapper {
-        background-color: gray("300");
+        background-color: $gray-300;
         height: 20px;
         width: 100%;
     }
