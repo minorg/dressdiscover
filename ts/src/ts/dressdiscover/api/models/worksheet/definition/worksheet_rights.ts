@@ -1,9 +1,9 @@
 export class WorksheetRights {
     constructor(kwds: {author: string, license: string, sourceName: string, sourceUrl: string}) {
-        this.authorPrivate = WorksheetRights.validateAuthor(kwds.author);
-        this.licensePrivate = WorksheetRights.validateLicense(kwds.license);
-        this.sourceNamePrivate = WorksheetRights.validateSourceName(kwds.sourceName);
-        this.sourceUrlPrivate = WorksheetRights.validateSourceUrl(kwds.sourceUrl);
+        this.author = WorksheetRights.validateAuthor(kwds.author);
+        this.license = WorksheetRights.validateLicense(kwds.license);
+        this.sourceName = WorksheetRights.validateSourceName(kwds.sourceName);
+        this.sourceUrl = WorksheetRights.validateSourceUrl(kwds.sourceUrl);
     }
 
     public deepCopy(): WorksheetRights {

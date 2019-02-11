@@ -1,6 +1,6 @@
 export class IoException {
     constructor(kwds: {causeMessage: string}) {
-        this.causeMessagePrivate = IoException.validateCauseMessage(kwds.causeMessage);
+        this.causeMessage = IoException.validateCauseMessage(kwds.causeMessage);
     }
 
     public deepCopy(): IoException {

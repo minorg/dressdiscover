@@ -3,12 +3,12 @@ import { WorksheetStateId } from "./worksheet_state_id";
 
 export class WorksheetState {
     constructor(kwds: {featureSets: WorksheetFeatureSetState[], id: WorksheetStateId, text?: string}) {
-        this.featureSetsPrivate = WorksheetState.validateFeatureSets(kwds.featureSets);
-        this.idPrivate = WorksheetState.validateId(kwds.id);
+        this.featureSets = WorksheetState.validateFeatureSets(kwds.featureSets);
+        this.id = WorksheetState.validateId(kwds.id);
         if (kwds.text != null) {
-            this.textPrivate = WorksheetState.validateText(kwds.text);
+            this.text = WorksheetState.validateText(kwds.text);
         } else {
-            this.textPrivate = undefined;
+            this.text = undefined;
         }
     }
 

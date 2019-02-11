@@ -4,21 +4,21 @@ import { WorksheetStateId } from "./worksheet_state_id";
 
 export class WorksheetStateMark {
     constructor(kwds: {worksheetStateId: WorksheetStateId, featureId?: WorksheetFeatureId, featureSetId?: WorksheetFeatureSetId, review?: boolean}) {
-        this.worksheetStateIdPrivate = WorksheetStateMark.validateWorksheetStateId(kwds.worksheetStateId);
+        this.worksheetStateId = WorksheetStateMark.validateWorksheetStateId(kwds.worksheetStateId);
         if (kwds.featureId != null) {
-            this.featureIdPrivate = WorksheetStateMark.validateFeatureId(kwds.featureId);
+            this.featureId = WorksheetStateMark.validateFeatureId(kwds.featureId);
         } else {
-            this.featureIdPrivate = undefined;
+            this.featureId = undefined;
         }
         if (kwds.featureSetId != null) {
-            this.featureSetIdPrivate = WorksheetStateMark.validateFeatureSetId(kwds.featureSetId);
+            this.featureSetId = WorksheetStateMark.validateFeatureSetId(kwds.featureSetId);
         } else {
-            this.featureSetIdPrivate = undefined;
+            this.featureSetId = undefined;
         }
         if (kwds.review != null) {
-            this.reviewPrivate = WorksheetStateMark.validateReview(kwds.review);
+            this.review = WorksheetStateMark.validateReview(kwds.review);
         } else {
-            this.reviewPrivate = undefined;
+            this.review = undefined;
         }
     }
 

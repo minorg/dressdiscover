@@ -2,7 +2,7 @@ import { WorksheetStateId } from "../../../models/worksheet/state/worksheet_stat
 
 export class NoSuchWorksheetStateException {
     constructor(kwds: {id: WorksheetStateId}) {
-        this.idPrivate = NoSuchWorksheetStateException.validateId(kwds.id);
+        this.id = NoSuchWorksheetStateException.validateId(kwds.id);
     }
 
     public deepCopy(): NoSuchWorksheetStateException {

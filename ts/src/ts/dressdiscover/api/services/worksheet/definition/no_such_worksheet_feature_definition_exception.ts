@@ -2,7 +2,7 @@ import { WorksheetFeatureId } from "../../../models/worksheet/worksheet_feature_
 
 export class NoSuchWorksheetFeatureDefinitionException {
     constructor(kwds: {id: WorksheetFeatureId}) {
-        this.idPrivate = NoSuchWorksheetFeatureDefinitionException.validateId(kwds.id);
+        this.id = NoSuchWorksheetFeatureDefinitionException.validateId(kwds.id);
     }
 
     public deepCopy(): NoSuchWorksheetFeatureDefinitionException {

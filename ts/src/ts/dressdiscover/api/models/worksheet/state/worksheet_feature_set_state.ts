@@ -3,8 +3,8 @@ import { WorksheetFeatureState } from "./worksheet_feature_state";
 
 export class WorksheetFeatureSetState {
     constructor(kwds: {features: WorksheetFeatureState[], id: WorksheetFeatureSetId}) {
-        this.featuresPrivate = WorksheetFeatureSetState.validateFeatures(kwds.features);
-        this.idPrivate = WorksheetFeatureSetState.validateId(kwds.id);
+        this.features = WorksheetFeatureSetState.validateFeatures(kwds.features);
+        this.id = WorksheetFeatureSetState.validateId(kwds.id);
     }
 
     public deepCopy(): WorksheetFeatureSetState {

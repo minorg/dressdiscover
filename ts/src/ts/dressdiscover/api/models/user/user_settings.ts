@@ -6,9 +6,9 @@ export class UserSettings {
             return;
         }
         if (kwds.worksheetConfiguration != null) {
-            this.worksheetConfigurationPrivate = UserSettings.validateWorksheetConfiguration(kwds.worksheetConfiguration);
+            this.worksheetConfiguration = UserSettings.validateWorksheetConfiguration(kwds.worksheetConfiguration);
         } else {
-            this.worksheetConfigurationPrivate = undefined;
+            this.worksheetConfiguration = undefined;
         }
     }
 

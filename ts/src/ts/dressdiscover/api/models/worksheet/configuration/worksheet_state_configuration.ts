@@ -6,9 +6,9 @@ export class WorksheetStateConfiguration {
             return;
         }
         if (kwds.localStorage != null) {
-            this.localStoragePrivate = WorksheetStateConfiguration.validateLocalStorage(kwds.localStorage);
+            this.localStorage = WorksheetStateConfiguration.validateLocalStorage(kwds.localStorage);
         } else {
-            this.localStoragePrivate = undefined;
+            this.localStorage = undefined;
         }
     }
 

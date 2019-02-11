@@ -2,8 +2,8 @@ import { WorksheetRights } from "./worksheet_rights";
 
 export class WorksheetDescription {
     constructor(kwds: {rights: WorksheetRights, text: string}) {
-        this.rightsPrivate = WorksheetDescription.validateRights(kwds.rights);
-        this.textPrivate = WorksheetDescription.validateText(kwds.text);
+        this.rights = WorksheetDescription.validateRights(kwds.rights);
+        this.text = WorksheetDescription.validateText(kwds.text);
     }
 
     public deepCopy(): WorksheetDescription {

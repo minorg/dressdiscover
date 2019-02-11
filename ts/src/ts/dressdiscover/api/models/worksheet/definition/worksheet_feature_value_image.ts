@@ -2,12 +2,12 @@ import { WorksheetRights } from "./worksheet_rights";
 
 export class WorksheetFeatureValueImage {
     constructor(kwds: {rights: WorksheetRights, thumbnailUrl: string, fullSizeUrl?: string}) {
-        this.rightsPrivate = WorksheetFeatureValueImage.validateRights(kwds.rights);
-        this.thumbnailUrlPrivate = WorksheetFeatureValueImage.validateThumbnailUrl(kwds.thumbnailUrl);
+        this.rights = WorksheetFeatureValueImage.validateRights(kwds.rights);
+        this.thumbnailUrl = WorksheetFeatureValueImage.validateThumbnailUrl(kwds.thumbnailUrl);
         if (kwds.fullSizeUrl != null) {
-            this.fullSizeUrlPrivate = WorksheetFeatureValueImage.validateFullSizeUrl(kwds.fullSizeUrl);
+            this.fullSizeUrl = WorksheetFeatureValueImage.validateFullSizeUrl(kwds.fullSizeUrl);
         } else {
-            this.fullSizeUrlPrivate = undefined;
+            this.fullSizeUrl = undefined;
         }
     }
 

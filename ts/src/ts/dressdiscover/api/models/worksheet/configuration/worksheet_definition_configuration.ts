@@ -6,9 +6,9 @@ export class WorksheetDefinitionConfiguration {
             return;
         }
         if (kwds.bundled != null) {
-            this.bundledPrivate = WorksheetDefinitionConfiguration.validateBundled(kwds.bundled);
+            this.bundled = WorksheetDefinitionConfiguration.validateBundled(kwds.bundled);
         } else {
-            this.bundledPrivate = undefined;
+            this.bundled = undefined;
         }
     }
 

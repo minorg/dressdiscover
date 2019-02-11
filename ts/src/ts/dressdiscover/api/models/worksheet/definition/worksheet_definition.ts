@@ -4,9 +4,9 @@ import { WorksheetFeatureValueDefinition } from "./worksheet_feature_value_defin
 
 export class WorksheetDefinition {
     constructor(kwds: {featureSets: WorksheetFeatureSetDefinition[], featureValues: WorksheetFeatureValueDefinition[], features: WorksheetFeatureDefinition[]}) {
-        this.featureSetsPrivate = WorksheetDefinition.validateFeatureSets(kwds.featureSets);
-        this.featureValuesPrivate = WorksheetDefinition.validateFeatureValues(kwds.featureValues);
-        this.featuresPrivate = WorksheetDefinition.validateFeatures(kwds.features);
+        this.featureSets = WorksheetDefinition.validateFeatureSets(kwds.featureSets);
+        this.featureValues = WorksheetDefinition.validateFeatureValues(kwds.featureValues);
+        this.features = WorksheetDefinition.validateFeatures(kwds.features);
     }
 
     public deepCopy(): WorksheetDefinition {

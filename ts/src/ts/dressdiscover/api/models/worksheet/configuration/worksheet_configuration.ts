@@ -3,8 +3,8 @@ import { WorksheetStateConfiguration } from "./worksheet_state_configuration";
 
 export class WorksheetConfiguration {
     constructor(kwds: {definition: WorksheetDefinitionConfiguration, state: WorksheetStateConfiguration}) {
-        this.definitionPrivate = WorksheetConfiguration.validateDefinition(kwds.definition);
-        this.statePrivate = WorksheetConfiguration.validateState(kwds.state);
+        this.definition = WorksheetConfiguration.validateDefinition(kwds.definition);
+        this.state = WorksheetConfiguration.validateState(kwds.state);
     }
 
     public deepCopy(): WorksheetConfiguration {

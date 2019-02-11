@@ -4,17 +4,17 @@ import { WorksheetFeatureValueId } from "../worksheet_feature_value_id";
 
 export class WorksheetFeatureDefinition {
     constructor(kwds: {id: WorksheetFeatureId, valueIds: WorksheetFeatureValueId[], description?: WorksheetDescription, displayName?: string}) {
-        this.idPrivate = WorksheetFeatureDefinition.validateId(kwds.id);
-        this.valueIdsPrivate = WorksheetFeatureDefinition.validateValueIds(kwds.valueIds);
+        this.id = WorksheetFeatureDefinition.validateId(kwds.id);
+        this.valueIds = WorksheetFeatureDefinition.validateValueIds(kwds.valueIds);
         if (kwds.description != null) {
-            this.descriptionPrivate = WorksheetFeatureDefinition.validateDescription(kwds.description);
+            this.description = WorksheetFeatureDefinition.validateDescription(kwds.description);
         } else {
-            this.descriptionPrivate = undefined;
+            this.description = undefined;
         }
         if (kwds.displayName != null) {
-            this.displayNamePrivate = WorksheetFeatureDefinition.validateDisplayName(kwds.displayName);
+            this.displayName = WorksheetFeatureDefinition.validateDisplayName(kwds.displayName);
         } else {
-            this.displayNamePrivate = undefined;
+            this.displayName = undefined;
         }
     }
 

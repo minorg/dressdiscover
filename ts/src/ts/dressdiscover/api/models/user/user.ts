@@ -1,40 +1,40 @@
 export class User {
     constructor(kwds: {emailAddress: string, emailAddressVerified?: boolean, familyName?: string, givenName?: string, locale?: string, name?: string, nickname?: string, pictureUrl?: string}) {
-        this.emailAddressPrivate = User.validateEmailAddress(kwds.emailAddress);
+        this.emailAddress = User.validateEmailAddress(kwds.emailAddress);
         if (kwds.emailAddressVerified != null) {
-            this.emailAddressVerifiedPrivate = User.validateEmailAddressVerified(kwds.emailAddressVerified);
+            this.emailAddressVerified = User.validateEmailAddressVerified(kwds.emailAddressVerified);
         } else {
-            this.emailAddressVerifiedPrivate = undefined;
+            this.emailAddressVerified = undefined;
         }
         if (kwds.familyName != null) {
-            this.familyNamePrivate = User.validateFamilyName(kwds.familyName);
+            this.familyName = User.validateFamilyName(kwds.familyName);
         } else {
-            this.familyNamePrivate = undefined;
+            this.familyName = undefined;
         }
         if (kwds.givenName != null) {
-            this.givenNamePrivate = User.validateGivenName(kwds.givenName);
+            this.givenName = User.validateGivenName(kwds.givenName);
         } else {
-            this.givenNamePrivate = undefined;
+            this.givenName = undefined;
         }
         if (kwds.locale != null) {
-            this.localePrivate = User.validateLocale(kwds.locale);
+            this.locale = User.validateLocale(kwds.locale);
         } else {
-            this.localePrivate = undefined;
+            this.locale = undefined;
         }
         if (kwds.name != null) {
-            this.namePrivate = User.validateName(kwds.name);
+            this.name = User.validateName(kwds.name);
         } else {
-            this.namePrivate = undefined;
+            this.name = undefined;
         }
         if (kwds.nickname != null) {
-            this.nicknamePrivate = User.validateNickname(kwds.nickname);
+            this.nickname = User.validateNickname(kwds.nickname);
         } else {
-            this.nicknamePrivate = undefined;
+            this.nickname = undefined;
         }
         if (kwds.pictureUrl != null) {
-            this.pictureUrlPrivate = User.validatePictureUrl(kwds.pictureUrl);
+            this.pictureUrl = User.validatePictureUrl(kwds.pictureUrl);
         } else {
-            this.pictureUrlPrivate = undefined;
+            this.pictureUrl = undefined;
         }
     }
 
