@@ -1,9 +1,9 @@
-@import "dressdiscover/gui/worksheet/custom_bootstrap.scss";
+@import "dressdiscover/gui/worksheet/bootstrap_variables.scss";
 
 #worksheet-state-edit {
     tr.feature-set.selected {
         td {
-            border-color: theme-color("primary");
+            border-color: $primary;
             border-width: 4px;
         }
     }
