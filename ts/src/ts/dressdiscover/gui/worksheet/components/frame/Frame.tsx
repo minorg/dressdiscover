@@ -4,13 +4,12 @@ import * as classnames from 'classnames';
 import { Footer } from 'dressdiscover/gui/worksheet/components/footer/Footer';
 import { ActiveNavbarItem } from 'dressdiscover/gui/worksheet/components/navbar/ActiveNavbarItem';
 import Navbar from 'dressdiscover/gui/worksheet/components/navbar/Navbar';
+import { Environment } from 'dressdiscover/gui/worksheet/Environment';
 import { CurrentUserStore } from 'dressdiscover/gui/worksheet/stores/current_user/CurrentUserStore';
 import { inject } from 'mobx-react';
 import DevTools from 'mobx-react-devtools';
 import * as React from 'react';
 import { ReactNode } from 'react';
-
-declare var DEVELOPMENT: boolean;
 
 interface Props {
   activeNavItem?: ActiveNavbarItem;
@@ -36,7 +35,7 @@ export class Frame extends React.Component<Props> {
         <Navbar activeNavItem={this.props.activeNavItem} />
         {this.props.children}
         <Footer />
-        {DEVELOPMENT ? <DevTools /> : null}
+        {Environment.development ? <DevTools /> : null}
       </div>
     );
   }
