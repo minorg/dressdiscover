@@ -37,7 +37,7 @@ module.exports = (env, argv) => ({
   // https://webpack.js.org/configuration/devtool/
   devtool: argv.mode === "production" ? 'hidden-source-map' : 'cheap-module-eval-source-map',
   entry: {
-    app: './ts/dressdiscover/gui/worksheet/main.tsx'
+    app: './ts/dressdiscover/gui/main.tsx'
   },
   module: {
     rules: [
