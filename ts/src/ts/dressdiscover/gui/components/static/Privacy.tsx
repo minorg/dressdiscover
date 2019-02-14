@@ -16,7 +16,9 @@ export class Privacy extends React.Component {
             >
                 <Container fluid>
                     <Row>
-                        <Headline>Privacy</Headline>
+                        <Col md="12">
+                            <Headline>Privacy</Headline>
+                        </Col>
                     </Row>
                     <Row />
                     <Row>

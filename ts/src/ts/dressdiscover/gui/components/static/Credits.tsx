@@ -15,7 +15,9 @@ export class Credits extends React.Component {
             >
                 <Container fluid>
                     <Row>
-                        <Headline>Credits</Headline>
+                        <Col md="12">
+                            <Headline>Credits</Headline>
+                        </Col>
                     </Row>
                     <Row />
                     <Row>

@@ -15,7 +15,9 @@ export class About extends React.Component {
             >
                 <Container fluid>
                     <Row>
-                        <Headline>About</Headline>
+                        <Col md="12">
+                            <Headline>About</Headline>
+                        </Col>
                     </Row>
                     <Row />
                     <Row>
