@@ -1,5 +1,6 @@
 import { Auth0DecodedHash, Auth0Error, WebAuth } from 'auth0-js';
 import { User } from 'dressdiscover/api/models/user/user';
+import { UserSettings } from 'dressdiscover/api/models/user/user_settings';
 import { Hrefs } from 'dressdiscover/gui/Hrefs';
 import { CurrentUser } from 'dressdiscover/gui/models/current_user/CurrentUser';
 import { CurrentUserSession } from 'dressdiscover/gui/models/current_user/CurrentUserSession';
@@ -27,7 +28,7 @@ export class CurrentUserStore {
             const hashString = localStorage.getItem(CurrentUserStore.CURRENT_USER_AUTH0_DECODED_HASH_KEY);
             if (hashString) {
                 logger.debug("retrieved current user hash from local storage");
-                this.setCurrentUser(JSON.parse(hashString) as Auth0DecodedHash, false);
+                this.setCurrentUserFromAuthResult(JSON.parse(hashString) as Auth0DecodedHash, false);
             } else {
                 this.clearCurrentUser();
             }
@@ -54,7 +55,7 @@ export class CurrentUserStore {
 
         this.auth0.parseHash((err, authResult) => {
             if (authResult && authResult.accessToken && authResult.idToken) {
-                this.setCurrentUser(authResult);
+                this.setCurrentUserFromAuthResult(authResult);
             } else if (err) {
                 this.setError(err);
             }
@@ -81,7 +82,7 @@ export class CurrentUserStore {
     }
 
     @action
-    setCurrentUser(authResult: Auth0DecodedHash, saveToLocalStorage?: boolean) {
+    setCurrentUserFromAuthResult(authResult: Auth0DecodedHash, saveToLocalStorage?: boolean) {
         if (!authResult.accessToken || !authResult.expiresIn || !authResult.idToken) {
             this.clearCurrentUser();
             this.setError(new Error("authResult has undefined fields"));
@@ -111,7 +112,8 @@ export class CurrentUserStore {
         // picture: "https://example.com/photo.jpg"
         // sub: "..."
         // updated_at: "2019-02-10T23:55:22.957Z"
-        this.currentUser = new CurrentUser({
+        this.setCurrentUser(new CurrentUser({
+            authResult,
             delegate: new User({
                 emailAddress: authResult.idTokenPayload.email,
                 emailAddressVerified: authResult.idTokenPayload.email_verified,
@@ -123,12 +125,14 @@ export class CurrentUserStore {
                 pictureUrl: authResult.idTokenPayload.picture
             }),
             session: currentUserSession
-        });
+        }));
+    }
 
-        if (typeof (saveToLocalStorage) === "undefined" || saveToLocalStorage) {
-            localStorage.setItem(CurrentUserStore.CURRENT_USER_AUTH0_DECODED_HASH_KEY, JSON.stringify(authResult));
-            this.logger.debug("set current user hash in local storage");
-        }
+    @action
+    setCurrentUserSettings(settings?: UserSettings) {
+        const currentUser = this.currentUser;
+        invariant(currentUser, "expected current user to be set");
+        this.setCurrentUser(currentUser!.replaceSettings(settings), true);
     }
 
     @action
@@ -159,6 +163,15 @@ export class CurrentUserStore {
 
     private clearError() {
         this.error = null;
+    }
+
+    private setCurrentUser(currentUser: CurrentUser, saveToLocalStorage?: boolean) {
+        this.currentUser = currentUser;
+
+        if (typeof (saveToLocalStorage) === "undefined" || saveToLocalStorage) {
+            localStorage.setItem(CurrentUserStore.CURRENT_USER_AUTH0_DECODED_HASH_KEY, JSON.stringify(currentUser.authResult));
+            this.logger.debug("set current user hash in local storage");
+        }
     }
 
     private static readonly CURRENT_USER_AUTH0_DECODED_HASH_KEY = "currentUserAuth0DecodedHash";

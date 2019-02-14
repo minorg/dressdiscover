@@ -45,6 +45,10 @@ export class Hrefs {
     return '/';
   }
 
+  static get userSettings() {
+    return "/userSettings";
+  }
+
   static get worksheetStart() {
     return "/worksheet/";
   }

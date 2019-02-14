@@ -4,8 +4,9 @@ import { LogoutCallback } from 'dressdiscover/gui/components/login/LogoutCallbac
 import { About } from 'dressdiscover/gui/components/static/About';
 import { Credits } from 'dressdiscover/gui/components/static/Credits';
 import { Privacy } from 'dressdiscover/gui/components/static/Privacy';
+import { UserSettingsComponent } from 'dressdiscover/gui/components/user/UserSettingsComponent';
 import {
-    WorksheetFeatureSetStateEditOrReview,
+  WorksheetFeatureSetStateEditOrReview,
 } from 'dressdiscover/gui/components/worksheet/state/WorksheetFeatureSetStateEditOrReview';
 import { WorksheetFeatureStateEdit } from 'dressdiscover/gui/components/worksheet/state/WorksheetFeatureStateEdit';
 import { WorksheetStateEdit } from 'dressdiscover/gui/components/worksheet/state/WorksheetStateEdit';
@@ -31,6 +32,7 @@ export class Routes extends React.Component {
         <Route exact path={Hrefs.logout} component={Logout} />
         <Route exact path={Hrefs.logoutCallback} component={LogoutCallback} />
         <Route exact path={Hrefs.privacy} component={Privacy} />
+        <Route exact path={Hrefs.userSettings} component={UserSettingsComponent}></Route>
         <Route exact path={Hrefs.worksheetStart} component={WorksheetStart} />
         <Route exact path="/worksheet/state/:worksheetStateId/edit" component={WorksheetStateEdit} />
         <Route exact path="/worksheet/state/:worksheetStateId/review" component={WorksheetStateReview} />
