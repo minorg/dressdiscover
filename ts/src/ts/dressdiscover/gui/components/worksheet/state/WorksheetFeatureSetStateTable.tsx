@@ -6,15 +6,15 @@ import * as React from 'react';
 import { Link } from 'react-router-dom';
 import { Table } from 'reactstrap';
 
-import { Hrefs } from '../../Hrefs';
-import { WorksheetDefinitionWrapper } from '../../models/worksheet/definition/WorksheetDefinitionWrapper';
-import { WorksheetFeatureDefinitionWrapper } from '../../models/worksheet/definition/WorksheetFeatureDefinitionWrapper';
+import { Hrefs } from '../../../Hrefs';
+import { WorksheetDefinitionWrapper } from '../../../models/worksheet/definition/WorksheetDefinitionWrapper';
+import { WorksheetFeatureDefinitionWrapper } from '../../../models/worksheet/definition/WorksheetFeatureDefinitionWrapper';
 import {
-  WorksheetFeatureSetDefinitionWrapper,
-} from '../../models/worksheet/definition/WorksheetFeatureSetDefinitionWrapper';
+    WorksheetFeatureSetDefinitionWrapper,
+} from '../../../models/worksheet/definition/WorksheetFeatureSetDefinitionWrapper';
 import {
-  WorksheetFeatureValueDefinitionWrapper,
-} from '../../models/worksheet/definition/WorksheetFeatureValueDefinitionWrapper';
+    WorksheetFeatureValueDefinitionWrapper,
+} from '../../../models/worksheet/definition/WorksheetFeatureValueDefinitionWrapper';
 import { WorksheetDescriptionComponent } from './WorksheetDescriptionComponent';
 
 interface Props {

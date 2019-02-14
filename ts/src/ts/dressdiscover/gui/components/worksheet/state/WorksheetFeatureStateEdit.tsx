@@ -1,11 +1,11 @@
 import * as classnames from 'classnames';
 import { WorksheetFeatureValueId } from 'dressdiscover/api/models/worksheet/worksheet_feature_value_id';
-import { WorksheetDescriptionComponent } from 'dressdiscover/gui/components/worksheet/WorksheetDescriptionComponent';
-import { WorksheetStateFrame } from 'dressdiscover/gui/components/worksheet/WorksheetStateFrame';
-import { WorksheetStateGetter } from 'dressdiscover/gui/components/worksheet/WorksheetStateGetter';
-import { WorksheetStateMarkParser } from 'dressdiscover/gui/components/worksheet/WorksheetStateMarkParser';
+import { WorksheetDescriptionComponent } from 'dressdiscover/gui/components/worksheet/state/WorksheetDescriptionComponent';
+import { WorksheetStateFrame } from 'dressdiscover/gui/components/worksheet/state/WorksheetStateFrame';
+import { WorksheetStateGetter } from 'dressdiscover/gui/components/worksheet/state/WorksheetStateGetter';
+import { WorksheetStateMarkParser } from 'dressdiscover/gui/components/worksheet/state/WorksheetStateMarkParser';
 import {
-  WorksheetFeatureValueDefinitionWrapper,
+    WorksheetFeatureValueDefinitionWrapper,
 } from 'dressdiscover/gui/models/worksheet/definition/WorksheetFeatureValueDefinitionWrapper';
 import { WorksheetStateWrapper } from 'dressdiscover/gui/models/worksheet/state/WorksheetStateWrapper';
 import { History } from 'history';

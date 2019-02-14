@@ -1,4 +1,4 @@
-import { StringExporter } from 'dressdiscover/gui/components/worksheet/exporters/string/StringExporter';
+import { StringExporter } from 'dressdiscover/gui/components/worksheet/state/exporters/string/StringExporter';
 import { WorksheetStateWrapper } from 'dressdiscover/gui/models/worksheet/state/WorksheetStateWrapper';
 import * as Papa from 'papaparse';
 

@@ -1,19 +1,18 @@
 import './WorksheetStateFrame.scss';
 
 import * as classnames from 'classnames';
+import { Frame } from 'dressdiscover/gui/components/frame/Frame';
 import { Headline } from 'dressdiscover/gui/components/frame/Headline';
+import { ActiveNavbarItem } from 'dressdiscover/gui/components/navbar/ActiveNavbarItem';
+import { Hrefs } from 'dressdiscover/gui/Hrefs';
+import { WorksheetStateWrapper } from 'dressdiscover/gui/models/worksheet/state/WorksheetStateWrapper';
 import { History } from 'history';
-import * as React from 'react';
 import { ReactNode } from 'react';
+import * as React from 'react';
 import Hammer from 'react-hammerjs';
 import { Link } from 'react-router-dom';
 import { BreadcrumbItem, Button, Col, Container, Progress, Row } from 'reactstrap';
 import Breadcrumb from 'reactstrap/lib/Breadcrumb';
-
-import { Hrefs } from '../../Hrefs';
-import { WorksheetStateWrapper } from '../../models/worksheet/state/WorksheetStateWrapper';
-import { Frame } from '../frame/Frame';
-import { ActiveNavbarItem } from '../navbar/ActiveNavbarItem';
 
 interface Props {
     children?: ReactNode;
