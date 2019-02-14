@@ -1,4 +1,5 @@
-import { WorksheetStateWrapper } from '../models/worksheet/state/WorksheetStateWrapper';
+import { WorksheetStateWrapper } from 'dressdiscover/gui/models/worksheet/state/WorksheetStateWrapper';
+
 import { Exporter } from './Exporter';
 
 export class CsvExporter implements Exporter<string[][]> {

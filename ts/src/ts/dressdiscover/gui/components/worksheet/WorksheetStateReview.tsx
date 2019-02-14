@@ -1,14 +1,14 @@
 import { CsvStringExporter } from 'dressdiscover/gui/components/worksheet/exporters/string/CsvStringExporter';
 import { JsonStringExporter } from 'dressdiscover/gui/components/worksheet/exporters/string/JsonStringExporter';
+import { StringExporter } from 'dressdiscover/gui/components/worksheet/exporters/string/StringExporter';
 import { WorksheetFeatureSetStateTable } from 'dressdiscover/gui/components/worksheet/WorksheetFeatureSetStateTable';
+import { WorksheetStateWrapper } from 'dressdiscover/gui/models/worksheet/state/WorksheetStateWrapper';
 import { History } from 'history';
 import * as React from 'react';
 import Clipboard from 'react-clipboard.js';
 import { RouteComponentProps } from 'react-router';
 import { Button, Form, Input } from 'reactstrap';
 
-import { StringExporter } from '../../exporters/string/StringExporter';
-import { WorksheetStateWrapper } from '../../models/worksheet/state/WorksheetStateWrapper';
 import { WorksheetStateFrame } from './WorksheetStateFrame';
 import { WorksheetStateGetter } from './WorksheetStateGetter';
 import { WorksheetStateMarkParser } from './WorksheetStateMarkParser';
