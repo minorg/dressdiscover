@@ -1,5 +1,6 @@
 import { Auth0DecodedHash, Auth0Error, WebAuth } from 'auth0-js';
 import { User } from 'dressdiscover/api/models/user/user';
+import { UserIdentityProvider } from 'dressdiscover/api/models/user/user_identity_provider';
 import { UserSettings } from 'dressdiscover/api/models/user/user_settings';
 import { Hrefs } from 'dressdiscover/gui/Hrefs';
 import { CurrentUser } from 'dressdiscover/gui/models/current_user/CurrentUser';
@@ -112,6 +113,14 @@ export class CurrentUserStore {
         // picture: "https://example.com/photo.jpg"
         // sub: "..."
         // updated_at: "2019-02-10T23:55:22.957Z"
+        const subSplit = (authResult.idTokenPayload.sub as string).split("|", 2);
+        invariant(subSplit.length === 2, "sub format");
+        const identityProviderString = subSplit[0].toUpperCase().replace("-", "_");
+        const identityProvider = UserIdentityProvider[identityProviderString as keyof typeof UserIdentityProvider];
+        if (typeof(identityProvider) === "undefined") {
+            throw new RangeError("unexpected identity provider " + identityProviderString);
+        }
+
         this.setCurrentUser(new CurrentUser({
             authResult,
             delegate: new User({
@@ -119,6 +128,8 @@ export class CurrentUserStore {
                 emailAddressVerified: authResult.idTokenPayload.email_verified,
                 familyName: authResult.idTokenPayload.family_name,
                 givenName: authResult.idTokenPayload.given_name,
+                identityProvider,
+                identityProviderId: subSplit[1],
                 locale: authResult.idTokenPayload.locale,
                 name: authResult.idTokenPayload.name,
                 nickname: authResult.idTokenPayload.nickname,

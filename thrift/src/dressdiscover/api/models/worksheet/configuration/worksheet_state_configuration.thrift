@@ -1,5 +1,6 @@
 namespace * dressdiscover.api.models.worksheet.configuration
 
+include "dressdiscover/api/models/worksheet/configuration/google_sheets_worksheet_state_configuration.thrift"
 include "dressdiscover/api/models/worksheet/configuration/local_storage_worksheet_state_configuration.thrift"
 
 // @union

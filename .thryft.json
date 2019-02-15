@@ -63,6 +63,7 @@
                 "thrift_files": [
                     "thrift/src/dressdiscover/api/models/worksheet/**/*.thrift",
                     "thrift/src/dressdiscover/api/models/user/user.thrift",
+                    "thrift/src/dressdiscover/api/models/user/user_identity_provider.thrift",
                     "thrift/src/dressdiscover/api/models/user/user_settings.thrift"
                 ],
                 "gen": {

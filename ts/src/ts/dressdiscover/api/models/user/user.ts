@@ -1,6 +1,10 @@
+import { UserIdentityProvider } from "./user_identity_provider";
+
 export class User {
-    constructor(kwds: {emailAddress: string, emailAddressVerified?: boolean, familyName?: string, givenName?: string, locale?: string, name?: string, nickname?: string, pictureUrl?: string}) {
+    constructor(kwds: {emailAddress: string, identityProvider: UserIdentityProvider, identityProviderId: string, emailAddressVerified?: boolean, familyName?: string, givenName?: string, locale?: string, name?: string, nickname?: string, pictureUrl?: string}) {
         this.emailAddress = User.validateEmailAddress(kwds.emailAddress);
+        this.identityProvider = User.validateIdentityProvider(kwds.identityProvider);
+        this.identityProviderId = User.validateIdentityProviderId(kwds.identityProviderId);
         if (kwds.emailAddressVerified != null) {
             this.emailAddressVerified = User.validateEmailAddressVerified(kwds.emailAddressVerified);
         } else {
@@ -39,11 +43,19 @@ export class User {
     }
 
     public deepCopy(): User {
-        return new User({ emailAddress: this.emailAddress, emailAddressVerified: this.emailAddressVerified, familyName: this.familyName, givenName: this.givenName, locale: this.locale, name: this.name, nickname: this.nickname, pictureUrl: this.pictureUrl });
+        return new User({ emailAddress: this.emailAddress, identityProvider: this.identityProvider, identityProviderId: this.identityProviderId, emailAddressVerified: this.emailAddressVerified, familyName: this.familyName, givenName: this.givenName, locale: this.locale, name: this.name, nickname: this.nickname, pictureUrl: this.pictureUrl });
     }
 
     public equals(other: User): boolean {
         if (!(this.emailAddress === other.emailAddress)) {
+            return false;
+        }
+
+        if (!(this.identityProvider === other.identityProvider)) {
+            return false;
+        }
+
+        if (!(this.identityProviderId === other.identityProviderId)) {
             return false;
         }
 
@@ -80,6 +92,8 @@ export class User {
 
     public static fromThryftJsonObject(json: any): User {
         let emailAddress: string | undefined;
+        let identityProvider: UserIdentityProvider | undefined;
+        let identityProviderId: string | undefined;
         let emailAddressVerified: boolean | undefined;
         let familyName: string | undefined;
         let givenName: string | undefined;
@@ -90,6 +104,10 @@ export class User {
         for (const fieldName in json) {
             if (fieldName === "email_address") {
                 emailAddress = json[fieldName];
+            } else if (fieldName === "identity_provider") {
+                identityProvider = (UserIdentityProvider as any)[json[fieldName] as string];
+            } else if (fieldName === "identity_provider_id") {
+                identityProviderId = json[fieldName];
             } else if (fieldName === "email_address_verified") {
                 emailAddressVerified = json[fieldName];
             } else if (fieldName === "family_name") {
@@ -109,12 +127,20 @@ export class User {
         if (emailAddress == null) {
             throw new TypeError("emailAddress is required");
         }
-        return new User({emailAddress, emailAddressVerified, familyName, givenName, locale, name, nickname, pictureUrl});
+        if (identityProvider == null) {
+            throw new TypeError("identityProvider is required");
+        }
+        if (identityProviderId == null) {
+            throw new TypeError("identityProviderId is required");
+        }
+        return new User({emailAddress, identityProvider, identityProviderId, emailAddressVerified, familyName, givenName, locale, name, nickname, pictureUrl});
     }
 
     public toJsonObject(): any {
         const json: {[index: string]: any} = {};
         json.email_address = this.emailAddress;
+        json.identity_provider = UserIdentityProvider[this.identityProvider];
+        json.identity_provider_id = this.identityProviderId;
         if (this.emailAddressVerified != null) {
             json.email_address_verified = this.emailAddressVerified;
         }
@@ -146,6 +172,8 @@ export class User {
     public toThryftJsonObject(): any {
         const json: {[index: string]: any} = {};
         json.email_address = this.emailAddress;
+        json.identity_provider = UserIdentityProvider[this.identityProvider];
+        json.identity_provider_id = this.identityProviderId;
         if (this.emailAddressVerified != null) {
             json.email_address_verified = this.emailAddressVerified;
         }
@@ -211,6 +239,26 @@ export class User {
         return givenName;
     }
 
+    private static validateIdentityProvider(identityProvider: UserIdentityProvider): UserIdentityProvider {
+        if (identityProvider == null) {
+            throw new RangeError("identityProvider is null or undefined");
+        }
+        return identityProvider;
+    }
+
+    private static validateIdentityProviderId(identityProviderId: string): string {
+        if (identityProviderId == null) {
+            throw new RangeError("identityProviderId is null or undefined");
+        }
+        if (identityProviderId.trim().length === 0) {
+            throw new RangeError("identityProviderId is blank");
+        }
+        if (identityProviderId.length < 1) {
+            throw new RangeError("expected len(identityProviderId) to be >= 1, was " + identityProviderId.length);
+        }
+        return identityProviderId;
+    }
+
     private static validateLocale(locale: string | undefined): string | undefined {
         if (locale != null) {
             if (locale.trim().length === 0) {
@@ -261,6 +309,10 @@ export class User {
     public readonly familyName?: string;
 
     public readonly givenName?: string;
+
+    public readonly identityProvider: UserIdentityProvider;
+
+    public readonly identityProviderId: string;
 
     public readonly locale?: string;
 
