@@ -7,6 +7,9 @@ import { WorksheetStateConfiguration } from 'dressdiscover/api/models/worksheet/
 import {
     WorksheetDefinitionConfigurationComponent,
 } from 'dressdiscover/gui/components/worksheet/configuration/WorksheetDefinitionConfigurationComponent';
+import {
+    WorksheetStateConfigurationComponent,
+} from 'dressdiscover/gui/components/worksheet/configuration/WorksheetStateConfigurationComponent';
 import * as React from 'react';
 import { Nav, NavItem, NavLink, TabPane } from 'reactstrap';
 import TabContent from 'reactstrap/lib/TabContent';
@@ -82,7 +85,10 @@ export class WorksheetConfigurationComponent extends React.Component<Props, Stat
                         </WorksheetDefinitionConfigurationComponent>
                     </TabPane>
                     <TabPane tabId={ActiveTab.STATE}>
-                        State tab
+                        <WorksheetStateConfigurationComponent
+                            onChange={this.onChangeWorksheetStateConfiguration}
+                            worksheetStateConfiguration={worksheetConfiguration.state}>
+                        </WorksheetStateConfigurationComponent>
                     </TabPane>
                 </TabContent>
             </div>

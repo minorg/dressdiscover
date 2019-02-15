@@ -12,6 +12,10 @@ interface Props {
     worksheetDefinitionConfiguration: WorksheetDefinitionConfiguration;
 }
 
+enum RadioValue {
+    BUNDLED = "bundled"
+}
+
 export class WorksheetDefinitionConfigurationComponent extends React.Component<Props> {
     constructor(props: Props) {
         super(props);
@@ -20,7 +24,7 @@ export class WorksheetDefinitionConfigurationComponent extends React.Component<P
 
     onChangeType(changeEvent: React.ChangeEvent<HTMLInputElement>) {
         const newValue = changeEvent.target.value;
-        if (newValue === "bundled") {
+        if (newValue === RadioValue.BUNDLED) {
             this.props.onChange(new WorksheetDefinitionConfiguration({ bundled: new BundledWorksheetDefinitionConfiguration() }));
         } else {
             throw new RangeError();
@@ -34,7 +38,7 @@ export class WorksheetDefinitionConfigurationComponent extends React.Component<P
             <Form>
                 <FormGroup check>
                     <Label check>
-                        <Input type="radio" checked={!!worksheetDefinitionConfiguration && !!worksheetDefinitionConfiguration.bundled} onChange={this.onChangeType} name="type" value="bundled" />{' '}Bundled
+                        <Input type="radio" checked={!!worksheetDefinitionConfiguration && !!worksheetDefinitionConfiguration.bundled} onChange={this.onChangeType} name="type" value={RadioValue.BUNDLED} />{' '}Bundled
                     </Label>
                 </FormGroup>
             </Form>
