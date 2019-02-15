@@ -1,4 +1,5 @@
-﻿import {
+﻿import { WorksheetConfiguration } from 'dressdiscover/api/models/worksheet/configuration/worksheet_configuration';
+import {
   LoggingWorksheetDefinitionQueryService,
 } from 'dressdiscover/api/services/worksheet/definition/logging_worksheet_definition_query_service';
 import {
@@ -13,6 +14,9 @@ import {
 import { WorksheetStateCommandService } from 'dressdiscover/api/services/worksheet/state/worksheet_state_command_service';
 import { WorksheetStateQueryService } from 'dressdiscover/api/services/worksheet/state/worksheet_state_query_service';
 import {
+  DefaultWorksheetConfiguration,
+} from 'dressdiscover/gui/models/worksheet/configuration/DefaultWorksheetConfiguration';
+import {
   BundledWorksheetDefinitionQueryService,
 } from 'dressdiscover/gui/services/worksheet/definition/BundledWorksheetDefinitionQueryService';
 import {
@@ -21,19 +25,32 @@ import {
 import {
   LocalStorageWorksheetStateQueryService,
 } from 'dressdiscover/gui/services/worksheet/state/LocalStorageWorksheetStateQueryService';
-import { WorksheetStateServices } from 'dressdiscover/gui/services/worksheet/state/WorksheetStateServices';
 
 export class Services {
-    constructor(kwds?: { worksheetDefinitionQueryService?: WorksheetDefinitionQueryService, worksheetStateServices?: WorksheetStateServices }) {
-        kwds = kwds || {};
-        this.worksheetDefinitionQueryService = new LoggingWorksheetDefinitionQueryService(kwds.worksheetDefinitionQueryService || new BundledWorksheetDefinitionQueryService());
-        this.worksheetStateCommandService = new LoggingWorksheetStateCommandService((kwds.worksheetStateServices && kwds.worksheetStateServices.worksheetStateCommandService) || new LocalStorageWorksheetStateCommandService());
-        this.worksheetStateQueryService = new LoggingWorksheetStateQueryService((kwds.worksheetStateServices && kwds.worksheetStateServices.worksheetStateQueryService) || new LocalStorageWorksheetStateQueryService());
+  constructor(configuration: WorksheetConfiguration) {
+    let worksheetDefinitionQueryService: WorksheetDefinitionQueryService;
+    if (configuration.definition.bundled) {
+      worksheetDefinitionQueryService = new BundledWorksheetDefinitionQueryService();
+    } else {
+      throw new RangeError();
     }
+    this.worksheetDefinitionQueryService = new LoggingWorksheetDefinitionQueryService(worksheetDefinitionQueryService);
 
-    static readonly default = new Services();
+    let worksheetStateCommandService: WorksheetStateCommandService;
+    let worksheetStateQueryService: WorksheetStateQueryService;
+    if (configuration.state.localStorage) {
+      worksheetStateCommandService = new LocalStorageWorksheetStateCommandService();
+      worksheetStateQueryService = new LocalStorageWorksheetStateQueryService();
+    } else {
+      throw new RangeError();
+    }
+    this.worksheetStateCommandService = new LoggingWorksheetStateCommandService(worksheetStateCommandService);
+    this.worksheetStateQueryService = new LoggingWorksheetStateQueryService(worksheetStateQueryService);
+  }
 
-    readonly worksheetDefinitionQueryService: WorksheetDefinitionQueryService;
-    readonly worksheetStateCommandService: WorksheetStateCommandService;
-    readonly worksheetStateQueryService: WorksheetStateQueryService;
+  static readonly default = new Services(DefaultWorksheetConfiguration.instance);
+
+  readonly worksheetDefinitionQueryService: WorksheetDefinitionQueryService;
+  readonly worksheetStateCommandService: WorksheetStateCommandService;
+  readonly worksheetStateQueryService: WorksheetStateQueryService;
 }

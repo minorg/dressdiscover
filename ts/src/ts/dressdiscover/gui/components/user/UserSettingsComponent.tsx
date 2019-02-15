@@ -6,25 +6,52 @@ import {
     WorksheetConfigurationComponent,
 } from 'dressdiscover/gui/components/worksheet/configuration/WorksheetConfigurationComponent';
 import { Hrefs } from 'dressdiscover/gui/Hrefs';
+import {
+    DefaultWorksheetConfiguration,
+} from 'dressdiscover/gui/models/worksheet/configuration/DefaultWorksheetConfiguration';
 import { CurrentUserStore } from 'dressdiscover/gui/stores/current_user/CurrentUserStore';
 import { inject } from 'mobx-react';
 import * as React from 'react';
 import { Redirect } from 'react-router';
-import { Col, Container } from 'reactstrap';
+import { Button, Col, Container, Nav, NavItem, NavLink, TabContent, TabPane } from 'reactstrap';
 import Row from 'reactstrap/lib/Row';
 
+interface Props {
+    currentUserStore: CurrentUserStore;
+}
+
+interface State {
+    unsavedWorksheetConfiguration: WorksheetConfiguration | null;
+}
+
 @inject("currentUserStore")
-export class UserSettingsComponent extends React.Component<{ currentUserStore: CurrentUserStore }> {
+export class UserSettingsComponent extends React.Component<Props, State> {
+    constructor(props: Props) {
+        super(props);
+        this.onChangeWorksheetConfiguration = this.onChangeWorksheetConfiguration.bind(this);
+        this.onClickSaveButton = this.onClickSaveButton.bind(this);
+        this.state = { unsavedWorksheetConfiguration: null };
+    }
+
+    onChangeWorksheetConfiguration(newWorksheetConfiguration: WorksheetConfiguration) {
+        this.setState((prevState) => ({ unsavedWorksheetConfiguration: newWorksheetConfiguration }));
+    }
+
+    onClickSaveButton() {
+        const { unsavedWorksheetConfiguration } = this.state;
+        if (!unsavedWorksheetConfiguration) {
+            return;
+        }
+        this.props.currentUserStore.setCurrentUserSettings(new UserSettings({ worksheetConfiguration: unsavedWorksheetConfiguration }));
+        this.setState((prevState) => ({ unsavedWorksheetConfiguration: null }));
+    }
+
     render() {
         const { currentUserStore } = this.props;
         const currentUser = currentUserStore.currentUser;
         if (!currentUser) {
             return <Redirect to={Hrefs.home}></Redirect>;
         }
-
-        const onChangeWorksheetConfiguration = (newWorksheetConfiguration?: WorksheetConfiguration) => {
-            currentUserStore.setCurrentUserSettings(new UserSettings({ worksheetConfiguration: newWorksheetConfiguration }));
-        };
 
         return (
             <Frame id="user-settings">
@@ -36,13 +63,35 @@ export class UserSettingsComponent extends React.Component<{ currentUserStore: C
                     </Row>
                     <Row>
                         <Col md="12">
-                            <WorksheetConfigurationComponent
-                                onChange={onChangeWorksheetConfiguration}
-                                worksheetConfiguration={currentUser.settings ? currentUser.settings.worksheetConfiguration : undefined}
-                            />
+                            <Nav tabs>
+                                <NavItem>
+                                    <NavLink className="active">
+                                        Worksheet Settings
+                                    </NavLink>
+                                </NavItem>
+                            </Nav>
+                            <br />
+                            <TabContent activeTab="worksheet">
+                                <TabPane tabId="worksheet">
+                                    <WorksheetConfigurationComponent
+                                        onChange={this.onChangeWorksheetConfiguration}
+                                        worksheetConfiguration={(currentUser.settings && currentUser.settings.worksheetConfiguration) ? currentUser.settings.worksheetConfiguration : DefaultWorksheetConfiguration.instance}
+                                    />
+                                </TabPane>
+                            </TabContent>
                         </Col>
                     </Row>
+                    {this.state.unsavedWorksheetConfiguration ?
+                        <React.Fragment>
+                            <hr />
+                            <Row>
+                                <Col md="12">
+                                    <div className="float-left"><Button color="primary" onClick={this.onClickSaveButton} size="lg">Save</Button></div>
+                                </Col>
+                            </Row>
+                        </React.Fragment>
+                        : null}
                 </Container>
-            </Frame>);
+            </Frame >);
     }
 }

@@ -2,13 +2,16 @@ import { Auth0DecodedHash } from 'auth0-js';
 import { User } from 'dressdiscover/api/models/user/user';
 import { UserSettings } from 'dressdiscover/api/models/user/user_settings';
 import { CurrentUserSession } from 'dressdiscover/gui/models/current_user/CurrentUserSession';
+import {
+    DefaultWorksheetConfiguration,
+} from 'dressdiscover/gui/models/worksheet/configuration/DefaultWorksheetConfiguration';
 import { Services } from 'dressdiscover/gui/services/Services';
 
 export class CurrentUser {
     constructor(kwds: { authResult: Auth0DecodedHash, delegate: User, session: CurrentUserSession, settings?: UserSettings }) {
         this.authResult = kwds.authResult;
         this.delegate = kwds.delegate;
-        this.services = Services.default;
+        this.services = new Services((kwds.settings && kwds.settings.worksheetConfiguration) ? kwds.settings.worksheetConfiguration : DefaultWorksheetConfiguration.instance);
         this.session = kwds.session;
         this.settings = kwds.settings;
     }
