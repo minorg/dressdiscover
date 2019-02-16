@@ -28,7 +28,7 @@ export class GoogleSheetsWorksheetStateConfigurationComponent extends React.Comp
     componentDidMount() {
         const { currentUser } = this.props;
         invariant(currentUser.identityProvider === UserIdentityProvider.GOOGLE_OAUTH2, "unexpected identity provider");
-        const accessToken = currentUser.accessToken;
+        const accessToken = currentUser.session.accessToken;
         invariant(accessToken, "no access token set");
 
         gapi.client.setToken({ access_token: accessToken as string });

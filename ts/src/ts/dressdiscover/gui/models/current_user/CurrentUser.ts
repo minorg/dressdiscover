@@ -1,4 +1,5 @@
 import { User } from 'dressdiscover/api/models/user/user';
+import { UserId } from 'dressdiscover/api/models/user/user_id';
 import { UserSettings } from 'dressdiscover/api/models/user/user_settings';
 import { CurrentUserSession } from 'dressdiscover/gui/models/current_user/CurrentUserSession';
 import {
@@ -7,39 +8,34 @@ import {
 import { Services } from 'dressdiscover/gui/services/Services';
 
 export class CurrentUser {
-    constructor(kwds: { delegate: User, session: CurrentUserSession, settings?: UserSettings }) {
+    constructor(kwds: { delegate: User, id: UserId, session: CurrentUserSession, settings?: UserSettings }) {
         this.delegate = kwds.delegate;
+        this.id = kwds.id;
         this.services = new Services((kwds.settings && kwds.settings.worksheetConfiguration) ? kwds.settings.worksheetConfiguration : DefaultWorksheetConfiguration.instance);
         this.session = kwds.session;
         this.settings = kwds.settings;
     }
 
-    static fromJsonObject(json: any) {
-        return new CurrentUser({
-            delegate: User.fromThryftJsonObject(json),
-            session: new CurrentUserSession(json.session),
-            settings: json.settings ? UserSettings.fromThryftJsonObject(json.settings) : undefined
-        });
+    get identityProvider() {
+        return this.delegate.identityProvider;
     }
 
     get name() {
         return this.delegate.name ? this.delegate.name : this.delegate.emailAddress;
     }
 
-    replaceSettings(settings?: UserSettings): CurrentUser {
-        return new CurrentUser({ delegate: this.delegate, session: this.session, settings });
+    replaceSettings(newSettings?: UserSettings) {
+        return new CurrentUser({ delegate: this.delegate, id: this.id, session: this.session, settings: newSettings });
     }
 
     toJsonObject() {
-        const json = this.delegate.toJsonObject();
+        const json = this.delegate.toThryftJsonObject();
         json.session = this.session.toJsonObject();
-        if (this.settings) {
-            json.settings = this.settings.toJsonObject();
-        }
         return json;
     }
 
     private readonly delegate: User;
+    readonly id: UserId;
     readonly services: Services;
     readonly session: CurrentUserSession;
     readonly settings?: UserSettings;

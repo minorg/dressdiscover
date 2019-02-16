@@ -1,4 +1,8 @@
 ﻿import { WorksheetConfiguration } from 'dressdiscover/api/models/worksheet/configuration/worksheet_configuration';
+import { LoggingUserSettingsCommandService } from 'dressdiscover/api/services/user/logging_user_settings_command_service';
+import { LoggingUserSettingsQueryService } from 'dressdiscover/api/services/user/logging_user_settings_query_service';
+import { UserSettingsCommandService } from 'dressdiscover/api/services/user/user_settings_command_service';
+import { UserSettingsQueryService } from 'dressdiscover/api/services/user/user_settings_query_service';
 import {
   LoggingWorksheetDefinitionQueryService,
 } from 'dressdiscover/api/services/worksheet/definition/logging_worksheet_definition_query_service';
@@ -17,6 +21,10 @@ import {
   DefaultWorksheetConfiguration,
 } from 'dressdiscover/gui/models/worksheet/configuration/DefaultWorksheetConfiguration';
 import {
+  LocalStorageUserSettingsCommandService,
+} from 'dressdiscover/gui/services/user/LocalStorageUserSettingsCommandService';
+import { LocalStorageUserSettingsQueryService } from 'dressdiscover/gui/services/user/LocalStorageUserSettingsQueryService';
+import {
   BundledWorksheetDefinitionQueryService,
 } from 'dressdiscover/gui/services/worksheet/definition/BundledWorksheetDefinitionQueryService';
 import {
@@ -28,6 +36,9 @@ import {
 
 export class Services {
   constructor(configuration: WorksheetConfiguration) {
+    this.userSettingsCommandService = new LoggingUserSettingsCommandService(new LocalStorageUserSettingsCommandService());
+    this.userSettingsQueryService = new LoggingUserSettingsQueryService(new LocalStorageUserSettingsQueryService());
+
     let worksheetDefinitionQueryService: WorksheetDefinitionQueryService;
     if (configuration.definition.bundled) {
       worksheetDefinitionQueryService = new BundledWorksheetDefinitionQueryService();
@@ -50,6 +61,8 @@ export class Services {
 
   static readonly default = new Services(DefaultWorksheetConfiguration.instance);
 
+  readonly userSettingsCommandService: UserSettingsCommandService;
+  readonly userSettingsQueryService: UserSettingsQueryService;
   readonly worksheetDefinitionQueryService: WorksheetDefinitionQueryService;
   readonly worksheetStateCommandService: WorksheetStateCommandService;
   readonly worksheetStateQueryService: WorksheetStateQueryService;
