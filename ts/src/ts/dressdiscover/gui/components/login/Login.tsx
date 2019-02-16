@@ -1,4 +1,5 @@
 import { Hrefs } from 'dressdiscover/gui/Hrefs';
+import { Secrets } from 'dressdiscover/gui/Secrets';
 import { CurrentUserStore } from 'dressdiscover/gui/stores/current_user/CurrentUserStore';
 import { inject } from 'mobx-react';
 import * as queryString from 'query-string';
@@ -8,7 +9,8 @@ import * as React from 'react';
 export class Login extends React.Component<{ currentUserStore: CurrentUserStore }> {
     componentDidMount() {
         const query = queryString.stringify({
-            client_id: "768033890505-b9u6s293d52k4f1v4bav9fif7feoe4b4.apps.googleusercontent.com",
+            access_type: "offline",
+            client_id: Secrets.GOOGLE_CLIENT_ID,
             redirect_uri: window.location.protocol + "//" + window.location.host + Hrefs.loginCallback,
             response_type: "token",
             scope: "email openid profile https://www.googleapis.com/auth/drive.file"

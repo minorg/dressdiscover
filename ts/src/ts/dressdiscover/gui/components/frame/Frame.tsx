@@ -23,10 +23,7 @@ interface Props {
 export class Frame extends React.Component<Props> {
   componentDidMount() {
     const { currentUserStore } = this.props;
-    const currentUser = currentUserStore!.currentUser;
-    if (currentUser && !currentUser.session.isValid()) {
-      currentUserStore!.renewCurrentUserSession();
-    }
+    currentUserStore!.checkCurrentUserSession();
   }
 
   render() {

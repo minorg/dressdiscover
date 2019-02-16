@@ -4,14 +4,19 @@ export class CurrentUserSession {
         this.expiresAt = kwds.expiresAt;
     }
 
+    static fromJsonObject(json: any) {
+        return new CurrentUserSession({ accessToken: json.accessToken, expiresAt: new Date(json.expiresAt) });
+    }
+
     isValid() {
-        return new Date() < this.expiresAt;
+        const currentDate = new Date();
+        return currentDate.getTime() < this.expiresAt.getTime();
     }
 
     toJsonObject() {
         return {
             accessToken: this.accessToken,
-            expiresAt: this.expiresAt
+            expiresAt: this.expiresAt.getTime()
         }
     }
 

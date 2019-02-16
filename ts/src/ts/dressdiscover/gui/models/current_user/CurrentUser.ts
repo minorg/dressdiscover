@@ -16,6 +16,13 @@ export class CurrentUser {
         this.settings = kwds.settings;
     }
 
+    static fromJsonObject(json: any) {
+        const delegate = User.fromThryftJsonObject(json);
+        const id = UserId.parse(json.id);
+        const session = CurrentUserSession.fromJsonObject(json.session);
+        return new CurrentUser({ delegate, id, session });
+    }
+
     get identityProvider() {
         return this.delegate.identityProvider;
     }

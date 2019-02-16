@@ -8,7 +8,7 @@ export class LocalStorageUserSettingsQueryService implements UserSettingsQuerySe
 
     getUserSettings(kwds: { id: UserId }): Promise<UserSettings> {
         const key = LocalStorageUserSettingsQueryService.getUserSettingsItemKey(kwds.id);
-        const value = localStorage.get(key);
+        const value = localStorage.getItem(key);
         if (!value) {
             return Promise.reject(new NoSuchUserSettingsException(kwds));
         }

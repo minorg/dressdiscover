@@ -1,3 +1,4 @@
+import * as classnames from 'classnames';
 import { UserIdentityProvider } from 'dressdiscover/api/models/user/user_identity_provider';
 import {
     GoogleSheetsWorksheetStateConfiguration,
@@ -7,6 +8,7 @@ import { CurrentUser } from 'dressdiscover/gui/models/current_user/CurrentUser';
 import * as invariant from 'invariant';
 import * as React from 'react';
 import * as ReactLoader from 'react-loader';
+import { Button, Card, CardBody, CardHeader, CardTitle, Col, Container, Form, Input, Row, Table } from 'reactstrap';
 
 interface Props {
     currentUser: CurrentUser;
@@ -17,11 +19,14 @@ interface Props {
 interface State {
     error?: any;
     existingFiles?: gapi.client.drive.File[];
+    newSheetName?: string;
 }
 
 export class GoogleSheetsWorksheetStateConfigurationComponent extends React.Component<Props, State> {
     constructor(props: Props) {
         super(props);
+        this.onChangeNewSheetName = this.onChangeNewSheetName.bind(this);
+        this.onClickNewSheetButton = this.onClickNewSheetButton.bind(this);
         this.state = {};
     }
 
@@ -42,6 +47,18 @@ export class GoogleSheetsWorksheetStateConfigurationComponent extends React.Comp
             });
     }
 
+    onChangeNewSheetName(changeEvent: React.ChangeEvent<HTMLInputElement>) {
+        const value = changeEvent.target.value;
+        this.setState((prevState) => ({ newSheetName: value }));
+    }
+
+    onClickNewSheetButton() {
+        const { newSheetName } = this.state;
+        if (!newSheetName || !newSheetName.length) {
+            return;
+        }
+    }
+
     render() {
         const { error, existingFiles } = this.state;
         if (error) {
@@ -51,11 +68,42 @@ export class GoogleSheetsWorksheetStateConfigurationComponent extends React.Comp
         }
 
         return (
-            <ul>
-                {existingFiles.map((existingFile) =>
-                    <li key={existingFile.id}>{existingFile.name}</li>
-                )}
-            </ul>
-        )
+            <Container fluid>
+                {existingFiles.length ? (
+                    <Row>
+                        <Col md="12">
+                            <Card>
+                                <CardHeader>
+                                    <CardTitle className={classnames(["mb-0", "text-center"])}>Existing worksheets</CardTitle>
+                                </CardHeader>
+                                <CardBody>
+                                    <Container fluid>
+                                        <Row>
+                                            <Col xs="12">
+                                                <Table className="table table-bordered w-100">
+                                                    <tbody>
+                                                        {existingFiles.map((existingFile) =>
+                                                            <tr key={existingFile.id}><td>{existingFile.name}</td></tr>
+                                                        )}
+                                                    </tbody>
+                                                </Table>
+                                            </Col>
+                                        </Row>
+                                    </Container>
+                                </CardBody>
+                            </Card>
+                        </Col>
+                    </Row>
+                ) : null}
+                <Row>
+                    <Col className="text-center" md="12">
+                        <Form inline>
+                            <Input type="text" onChange={this.onChangeNewSheetName} placeholder="New sheet name" value={this.state.newSheetName}></Input>
+                            <Button color="primary" onClick={this.onClickNewSheetButton}>Create a new Sheet</Button>
+                        </Form>
+                    </Col>
+                </Row>
+            </Container>
+        );
     }
 }

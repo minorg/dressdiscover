@@ -18,7 +18,6 @@ export class CurrentUserStore {
 
     constructor(private readonly logger: ILogger) {
         runInAction("construction", () => {
-            this.clearCurrentUser();
             this.clearError();
             this.setCurrentUserFromLocalStorage();
         });
@@ -34,7 +33,7 @@ export class CurrentUserStore {
     }
 
     @action
-    setCurrentUserSession(currentUserSession: CurrentUserSession) {
+    login(currentUserSession: CurrentUserSession) {
         this.clearError();
         this.clearCurrentUser();
 
@@ -63,12 +62,19 @@ export class CurrentUserStore {
     }
 
     @action
-    handleLogoutCallback() {
+    logout() {
+        this.clearCurrentUser();
     }
 
     @action
-    renewCurrentUserSession() {
-        invariant(this.currentUser, "expect existing user");
+    checkCurrentUserSession() {
+        const currentUser = this.currentUser;
+        if (!currentUser) {
+            return;
+        }
+        if (currentUser.session.isValid()) {
+            return;
+        }
 
         // this.auth0WebAuth.checkSession({}, (err, authResult) => {
         //     if (authResult && authResult.accessToken && authResult.idToken) {
@@ -79,16 +85,6 @@ export class CurrentUserStore {
         //         this.setAuth0Error(err);
         //     }
         // });
-    }
-
-    @action
-    setCurrentUser(currentUser: CurrentUser, saveToLocalStorage?: boolean) {
-        this.currentUser = currentUser;
-
-        if (typeof (saveToLocalStorage) === "undefined" || saveToLocalStorage) {
-            localStorage.setItem(CurrentUserStore.CURRENT_USER_ITEM_KEY, JSON.stringify(currentUser.toJsonObject()));
-            this.logger.debug("set current user hash in local storage");
-        }
     }
 
     @action
@@ -103,49 +99,51 @@ export class CurrentUserStore {
     }
 
     @action
-    setError(error: Error) {
-        this.error = error;
-    }
-
     private clearCurrentUser() {
         this.currentUser = null;
         localStorage.removeItem(CurrentUserStore.CURRENT_USER_ITEM_KEY);
         this.logger.debug("cleared current user hash from local storage");
     }
 
+    @action
     private clearError() {
         this.error = null;
+    }
+
+    @action
+    private setCurrentUser(currentUser: CurrentUser | null, saveToLocalStorage?: boolean) {
+        this.currentUser = currentUser;
+
+        if (currentUser && (typeof (saveToLocalStorage) === "undefined" || saveToLocalStorage)) {
+            localStorage.setItem(CurrentUserStore.CURRENT_USER_ITEM_KEY, JSON.stringify(currentUser.toJsonObject()));
+            this.logger.debug("set current user hash in local storage");
+        }
     }
 
     private setCurrentUserFromLocalStorage() {
         const currentUserString = localStorage.getItem(CurrentUserStore.CURRENT_USER_ITEM_KEY);
         if (!currentUserString) {
+            this.currentUser = null;
             return;
         }
-        const currentUserJson = JSON.parse(currentUserString);
-
-        const currentUser = User.fromThryftJsonObject(currentUserJson);
-        const currentUserId = UserId.parse(currentUserJson.id);
-        const currentUserSession = new CurrentUserSession(currentUserJson.session);
         this.logger.debug("retrieved current user hash from local storage");
+        const currentUser = CurrentUser.fromJsonObject(JSON.parse(currentUserString));
 
-        Services.default.userSettingsQueryService.getUserSettings({ id: currentUserId }).then((userSettings) => {
-            this.setCurrentUser(new CurrentUser({
-                delegate: currentUser,
-                id: currentUserId,
-                session: currentUserSession,
-                settings: userSettings
-            }));
+        const self = this;
+        Services.default.userSettingsQueryService.getUserSettings({ id: currentUser.id }).then((userSettings) => {
+            self.setCurrentUser(currentUser.replaceSettings(userSettings), false);
         }, (reason) => {
             if (reason instanceof NoSuchUserSettingsException) {
-                this.setCurrentUser(new CurrentUser({
-                    delegate: currentUser,
-                    id: currentUserId,
-                    session: currentUserSession
-                }));
+                self.setCurrentUser(currentUser, false);
             } else {
-                this.setError(new Error(reason.toString()));
+                self.setCurrentUser(null, false);
+                self.setError(new Error(reason.toString()));
             }
         });
+    }
+
+    @action
+    private setError(error: Error) {
+        this.error = error;
     }
 }

@@ -13,28 +13,39 @@ interface Props extends RouteComponentProps<any> {
     currentUserStore: CurrentUserStore;
 }
 
+interface State {
+    error?: string;
+}
+
 @inject("currentUserStore")
 @observer
-export class LoginCallback extends React.Component<Props> {
+export class LoginCallback extends React.Component<Props, State> {
+    constructor(props: Props) {
+        super(props);
+        this.state = {};
+    }
+
     componentDidMount() {
         const { currentUserStore } = this.props;
 
         const parsedQueryString = queryString.parse(this.props.location.hash.substring(1));
 
         const accessToken = parsedQueryString.access_token;
-        if (accessToken && typeof (accessToken) === "string") {
-            const expiresIn = parsedQueryString.expires_in;
-            if (expiresIn) {
-                currentUserStore.setCurrentUserSession(new CurrentUserSession({ accessToken, expiresAt: new Date(new Date().getTime() + parseInt(expiresIn as string, 10) * 1000) }));
-                return;
-            }
+        const expiresIn = parsedQueryString.expires_in;
+        // const refreshToken = parsedQueryString.refresh_token;
+        if (accessToken && typeof (accessToken) === "string" && expiresIn) {
+            currentUserStore.login(new CurrentUserSession({
+                accessToken,
+                expiresAt: new Date(new Date().getTime() + parseInt(expiresIn as string, 10) * 1000)
+            }));
+            return;
         }
 
         let error = parsedQueryString.error;
         if (!error || typeof (error) !== "string") {
             error = "Login error";
         }
-        currentUserStore.setError(new Error(error));
+        this.setState((prevState) => { error })
     }
 
     render() {
@@ -42,10 +53,10 @@ export class LoginCallback extends React.Component<Props> {
 
         if (currentUserStore.currentUser) {
             return <Redirect to={Hrefs.home}></Redirect>;
-        } else if (currentUserStore.error) {
-            return <FatalErrorModal error={currentUserStore.error} onExit={() => history.push(Hrefs.home)}></FatalErrorModal>;
+        } else if (currentUserStore.error || this.state.error) {
+            return <FatalErrorModal error={currentUserStore.error ? currentUserStore.error : undefined} message={this.state.error} onExit={() => history.push(Hrefs.home)}></FatalErrorModal>;
         } else {
-            return <ReactLoader loaded={false}/>;
+            return <ReactLoader loaded={false} />;
         }
     }
 }

@@ -10,7 +10,7 @@ export class LogoutCallback extends React.Component<{ currentUserStore: CurrentU
     render() {
         const { currentUserStore } = this.props;
 
-        currentUserStore.handleLogoutCallback();
+        currentUserStore.logout();
 
         return <Redirect to={Hrefs.home}></Redirect>;
     }
