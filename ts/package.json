@@ -4,10 +4,10 @@
   "private": true,
   "description": "DressDiscover Worksheet web application",
   "devDependencies": {
-    "@types/auth0-js": "8.11.11",
     "@types/classnames": "2.2.6",
     "@types/gapi.auth2": "0.0.48",
     "@types/gapi.client.sheets": "4.0.0",
+    "@types/gapi.client.oauth2": "2.0.1",
     "@types/gapi.client.drive": "3.0.2",
     "@types/invariant": "2.2.29",
     "@types/lodash": "4.14.116",
@@ -50,7 +50,6 @@
     "webpack-dev-server": "3.1.14"
   },
   "dependencies": {
-    "auth0-js": "8.11.3",
     "axios": "0.18.0",
     "bootstrap": "4.2.1",
     "bootswatch": "4.2.1",

@@ -1,6 +1,4 @@
-import { Auth0DecodedHash } from 'auth0-js';
 import { User } from 'dressdiscover/api/models/user/user';
-import { UserIdentityProvider } from 'dressdiscover/api/models/user/user_identity_provider';
 import { UserSettings } from 'dressdiscover/api/models/user/user_settings';
 import { CurrentUserSession } from 'dressdiscover/gui/models/current_user/CurrentUserSession';
 import {
@@ -9,20 +7,19 @@ import {
 import { Services } from 'dressdiscover/gui/services/Services';
 
 export class CurrentUser {
-    constructor(kwds: { authResult: Auth0DecodedHash, delegate: User, session: CurrentUserSession, settings?: UserSettings }) {
-        this.authResult = kwds.authResult;
+    constructor(kwds: { delegate: User, session: CurrentUserSession, settings?: UserSettings }) {
         this.delegate = kwds.delegate;
         this.services = new Services((kwds.settings && kwds.settings.worksheetConfiguration) ? kwds.settings.worksheetConfiguration : DefaultWorksheetConfiguration.instance);
         this.session = kwds.session;
         this.settings = kwds.settings;
     }
 
-    get accessToken(): string | undefined {
-        return this.authResult.accessToken;
-    }
-
-    get identityProvider(): UserIdentityProvider {
-        return this.delegate.identityProvider;
+    static fromJsonObject(json: any) {
+        return new CurrentUser({
+            delegate: User.fromThryftJsonObject(json),
+            session: new CurrentUserSession(json.session),
+            settings: json.settings ? UserSettings.fromThryftJsonObject(json.settings) : undefined
+        });
     }
 
     get name() {
@@ -30,10 +27,18 @@ export class CurrentUser {
     }
 
     replaceSettings(settings?: UserSettings): CurrentUser {
-        return new CurrentUser({ authResult: this.authResult, delegate: this.delegate, session: this.session, settings });
+        return new CurrentUser({ delegate: this.delegate, session: this.session, settings });
     }
 
-    readonly authResult: Auth0DecodedHash;
+    toJsonObject() {
+        const json = this.delegate.toJsonObject();
+        json.session = this.session.toJsonObject();
+        if (this.settings) {
+            json.settings = this.settings.toJsonObject();
+        }
+        return json;
+    }
+
     private readonly delegate: User;
     readonly services: Services;
     readonly session: CurrentUserSession;

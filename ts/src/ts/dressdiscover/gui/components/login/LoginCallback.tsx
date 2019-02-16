@@ -1,4 +1,6 @@
+import { CurrentUserSession } from 'dressdiscover/gui/models/current_user/CurrentUserSession';
 import { inject } from 'mobx-react';
+import * as queryString from 'query-string';
 import * as React from 'react';
 import { Redirect, RouteComponentProps } from 'react-router';
 
@@ -12,17 +14,36 @@ interface Props extends RouteComponentProps<any> {
 
 @inject("currentUserStore")
 export class LoginCallback extends React.Component<Props> {
+    componentDidMount() {
+        const { currentUserStore } = this.props;
+
+        const parsedQueryString = queryString.parse(this.props.location.hash.substring(1));
+
+        const accessToken = parsedQueryString.access_token;
+        if (accessToken && typeof (accessToken) === "string") {
+            const expiresIn = parsedQueryString.expires_in;
+            if (expiresIn) {
+                currentUserStore.setCurrentUserSession(new CurrentUserSession({ accessToken, expiresAt: new Date(new Date().getTime() + parseInt(expiresIn as string, 10) * 1000) }));
+                return;
+            }
+        }
+
+        let error = parsedQueryString.error;
+        if (!error || typeof (error) !== "string") {
+            error = "Login error";
+        }
+        currentUserStore.setError(new Error(error));
+    }
+
     render() {
         const { currentUserStore, history } = this.props;
 
-        currentUserStore.handleLoginCallback();
-
-        const auth0Error = currentUserStore.auth0Error;
-        const error = currentUserStore.error;
-        if (error) {
-            return <FatalErrorModal error={error} message={auth0Error ? auth0Error.errorDescription : undefined} onExit={() => { history.push(Hrefs.home); }}></FatalErrorModal>;
+        if (currentUserStore.currentUser) {
+            return <Redirect to={Hrefs.home}></Redirect>;
+        } else if (currentUserStore.error) {
+            return <FatalErrorModal error={currentUserStore.error} onExit={() => history.push(Hrefs.home)}></FatalErrorModal>;
+        } else {
+            throw new EvalError();
         }
-
-        return <Redirect to={Hrefs.home}></Redirect>;
     }
 }

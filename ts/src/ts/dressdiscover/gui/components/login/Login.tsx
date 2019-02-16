@@ -1,11 +1,22 @@
+import { Hrefs } from 'dressdiscover/gui/Hrefs';
 import { CurrentUserStore } from 'dressdiscover/gui/stores/current_user/CurrentUserStore';
 import { inject } from 'mobx-react';
+import * as queryString from 'query-string';
 import * as React from 'react';
 
 @inject("currentUserStore")
 export class Login extends React.Component<{ currentUserStore: CurrentUserStore }> {
     componentDidMount() {
-        this.props.currentUserStore.startLogin();
+        const query = queryString.stringify({
+            client_id: "768033890505-b9u6s293d52k4f1v4bav9fif7feoe4b4.apps.googleusercontent.com",
+            redirect_uri: window.location.protocol + "//" + window.location.host + Hrefs.loginCallback,
+            response_type: "token",
+            scope: "email openid profile https://www.googleapis.com/auth/drive.file"
+        });
+
+        const url = "https://accounts.google.com/o/oauth2/v2/auth?" + query;
+
+        window.location.replace(url);
     }
 
     render() {
