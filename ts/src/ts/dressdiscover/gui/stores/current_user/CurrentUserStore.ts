@@ -40,7 +40,7 @@ export class CurrentUserStore {
 
         gapi.client.setToken({ access_token: currentUserSession.accessToken });
 
-        gapi.client.userinfo.get({}).then(
+        ((gapi.client as any).oauth2.userinfo as gapi.client.oauth2.UserinfoResource).get({}).then(
             (response) => {
                 const result = response.result;
                 this.setCurrentUser(new CurrentUser({
@@ -82,6 +82,16 @@ export class CurrentUserStore {
     }
 
     @action
+    setCurrentUser(currentUser: CurrentUser, saveToLocalStorage?: boolean) {
+        this.currentUser = currentUser;
+
+        if (typeof (saveToLocalStorage) === "undefined" || saveToLocalStorage) {
+            localStorage.setItem(CurrentUserStore.CURRENT_USER_ITEM_KEY, JSON.stringify(currentUser.toJsonObject()));
+            this.logger.debug("set current user hash in local storage");
+        }
+    }
+
+    @action
     setCurrentUserSettings(settings?: UserSettings) {
         const currentUser = this.currentUser;
         invariant(currentUser, "expected current user to be set");
@@ -107,15 +117,6 @@ export class CurrentUserStore {
         this.error = null;
     }
 
-    private setCurrentUser(currentUser: CurrentUser, saveToLocalStorage?: boolean) {
-        this.currentUser = currentUser;
-
-        if (typeof (saveToLocalStorage) === "undefined" || saveToLocalStorage) {
-            localStorage.setItem(CurrentUserStore.CURRENT_USER_ITEM_KEY, JSON.stringify(currentUser.toJsonObject()));
-            this.logger.debug("set current user hash in local storage");
-        }
-    }
-
     private setCurrentUserFromLocalStorage() {
         const currentUserString = localStorage.getItem(CurrentUserStore.CURRENT_USER_ITEM_KEY);
         if (!currentUserString) {
@@ -124,9 +125,9 @@ export class CurrentUserStore {
         const currentUserJson = JSON.parse(currentUserString);
 
         const currentUser = User.fromThryftJsonObject(currentUserJson);
+        const currentUserId = UserId.parse(currentUserJson.id);
         const currentUserSession = new CurrentUserSession(currentUserJson.session);
         this.logger.debug("retrieved current user hash from local storage");
-        const currentUserId = UserId.parse(currentUser.identityProviderId);
 
         Services.default.userSettingsQueryService.getUserSettings({ id: currentUserId }).then((userSettings) => {
             this.setCurrentUser(new CurrentUser({

@@ -2,6 +2,7 @@ import { CurrentUserSession } from 'dressdiscover/gui/models/current_user/Curren
 import { inject } from 'mobx-react';
 import * as queryString from 'query-string';
 import * as React from 'react';
+import * as ReactLoader from 'react-loader';
 import { Redirect, RouteComponentProps } from 'react-router';
 
 import { Hrefs } from '../../Hrefs';
@@ -43,7 +44,7 @@ export class LoginCallback extends React.Component<Props> {
         } else if (currentUserStore.error) {
             return <FatalErrorModal error={currentUserStore.error} onExit={() => history.push(Hrefs.home)}></FatalErrorModal>;
         } else {
-            throw new EvalError();
+            return <ReactLoader loaded={false}/>;
         }
     }
 }

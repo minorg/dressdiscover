@@ -30,6 +30,7 @@ export class CurrentUser {
 
     toJsonObject() {
         const json = this.delegate.toThryftJsonObject();
+        json.id = this.id.toString();
         json.session = this.session.toJsonObject();
         return json;
     }
