@@ -1,5 +1,5 @@
 import { CurrentUserSession } from 'dressdiscover/gui/models/current_user/CurrentUserSession';
-import { inject } from 'mobx-react';
+import { inject, observer } from 'mobx-react';
 import * as queryString from 'query-string';
 import * as React from 'react';
 import * as ReactLoader from 'react-loader';
@@ -14,6 +14,7 @@ interface Props extends RouteComponentProps<any> {
 }
 
 @inject("currentUserStore")
+@observer
 export class LoginCallback extends React.Component<Props> {
     componentDidMount() {
         const { currentUserStore } = this.props;
