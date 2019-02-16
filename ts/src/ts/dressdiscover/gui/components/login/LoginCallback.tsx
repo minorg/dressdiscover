@@ -17,9 +17,10 @@ export class LoginCallback extends React.Component<Props> {
 
         currentUserStore.handleLoginCallback();
 
+        const auth0Error = currentUserStore.auth0Error;
         const error = currentUserStore.error;
         if (error) {
-            return <FatalErrorModal error={new Error(error.toString())} onExit={() => { history.push(Hrefs.home); }}></FatalErrorModal>;
+            return <FatalErrorModal error={error} message={auth0Error ? auth0Error.errorDescription : undefined} onExit={() => { history.push(Hrefs.home); }}></FatalErrorModal>;
         }
 
         return <Redirect to={Hrefs.home}></Redirect>;

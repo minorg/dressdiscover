@@ -1,5 +1,6 @@
 import { Auth0DecodedHash } from 'auth0-js';
 import { User } from 'dressdiscover/api/models/user/user';
+import { UserIdentityProvider } from 'dressdiscover/api/models/user/user_identity_provider';
 import { UserSettings } from 'dressdiscover/api/models/user/user_settings';
 import { CurrentUserSession } from 'dressdiscover/gui/models/current_user/CurrentUserSession';
 import {
@@ -14,6 +15,14 @@ export class CurrentUser {
         this.services = new Services((kwds.settings && kwds.settings.worksheetConfiguration) ? kwds.settings.worksheetConfiguration : DefaultWorksheetConfiguration.instance);
         this.session = kwds.session;
         this.settings = kwds.settings;
+    }
+
+    get accessToken(): string | undefined {
+        return this.authResult.accessToken;
+    }
+
+    get identityProvider(): UserIdentityProvider {
+        return this.delegate.identityProvider;
     }
 
     get name() {

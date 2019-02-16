@@ -1,4 +1,4 @@
-import { Auth0DecodedHash, Auth0Error, WebAuth } from 'auth0-js';
+import { Auth0DecodedHash, Auth0Error, Management, WebAuth } from 'auth0-js';
 import { User } from 'dressdiscover/api/models/user/user';
 import { UserIdentityProvider } from 'dressdiscover/api/models/user/user_identity_provider';
 import { UserSettings } from 'dressdiscover/api/models/user/user_settings';
@@ -11,18 +11,21 @@ import * as invariant from 'invariant';
 import { action, computed, observable, runInAction } from 'mobx';
 
 export class CurrentUserStore {
-    private readonly auth0: WebAuth;
+    private readonly auth0WebAuth: WebAuth;
+    private static readonly CLIENT_ID = "m32ET2Qx-y5NEXtgQV9Vffk_5D4j3lrf";
+    private static readonly DOMAIN = "dressdiscover.auth0.com";
 
+    @observable.ref auth0Error?: Auth0Error | null;
     @observable.ref currentUser?: CurrentUser | null;
-    @observable.ref error?: Auth0Error | Error | null;
+    @observable.ref error?: Error | null;
 
     constructor(private readonly logger: ILogger) {
-        this.auth0 = new WebAuth({
-            clientID: "m32ET2Qx-y5NEXtgQV9Vffk_5D4j3lrf",
-            domain: "dressdiscover.auth0.com",
+        this.auth0WebAuth = new WebAuth({
+            clientID: CurrentUserStore.CLIENT_ID,
+            domain: CurrentUserStore.DOMAIN,
             redirectUri: window.location.protocol + "//" + window.location.host + Hrefs.loginCallback,
             responseType: "token id_token",
-            scope: "email openid profile"
+            scope: "email openid profile read:users read:user_idp_tokens https://www.googleapis.com/auth/drive.file"
         });
 
         runInAction("construction", () => {
@@ -52,14 +55,32 @@ export class CurrentUserStore {
         this.clearError();
         this.clearCurrentUser();
 
-        // gapi.client.setToken({ access_token: kwds.googleAccessToken });
-
-        this.auth0.parseHash((err, authResult) => {
-            if (authResult && authResult.accessToken && authResult.idToken) {
-                this.setCurrentUserFromAuthResult(authResult);
-            } else if (err) {
-                this.setError(err);
+        this.auth0WebAuth.parseHash((parseHashErr, authResult) => {
+            if (parseHashErr) {
+                this.setAuth0Error(parseHashErr);
+                return;
             }
+
+            if (!authResult || !authResult.accessToken || !authResult.idToken) {
+                this.setError(new Error("auth result missing fields"));
+                return;
+            }
+
+            const userId = authResult.idTokenPayload.sub;
+            const auth0Management = new Management({
+                clientId: CurrentUserStore.CLIENT_ID,
+                domain: CurrentUserStore.DOMAIN,
+                token: authResult.accessToken
+            });
+
+            auth0Management.getUser(userId, (getUserErr, result) => {
+                if (getUserErr) {
+                    this.setAuth0Error(getUserErr);
+                    return;
+                }
+                alert(JSON.stringify(result));
+                this.setCurrentUserFromAuthResult(authResult);
+            });
         });
     }
 
@@ -71,13 +92,13 @@ export class CurrentUserStore {
     renewCurrentUserSession() {
         invariant(this.currentUser, "expect existing user");
 
-        this.auth0.checkSession({}, (err, authResult) => {
+        this.auth0WebAuth.checkSession({}, (err, authResult) => {
             if (authResult && authResult.accessToken && authResult.idToken) {
                 this.clearError();
                 this.setCurrentUser(authResult);
             } else if (err) {
                 this.clearCurrentUser();
-                this.setError(err);
+                this.setAuth0Error(err);
             }
         });
     }
@@ -117,7 +138,7 @@ export class CurrentUserStore {
         invariant(subSplit.length === 2, "sub format");
         const identityProviderString = subSplit[0].toUpperCase().replace("-", "_");
         const identityProvider = UserIdentityProvider[identityProviderString as keyof typeof UserIdentityProvider];
-        if (typeof(identityProvider) === "undefined") {
+        if (typeof (identityProvider) === "undefined") {
             throw new RangeError("unexpected identity provider " + identityProviderString);
         }
 
@@ -147,7 +168,12 @@ export class CurrentUserStore {
     }
 
     @action
-    setError(error: Auth0Error | Error) {
+    setAuth0Error(auth0Error: Auth0Error) {
+        this.auth0Error = auth0Error;
+    }
+
+    @action
+    setError(error: Error) {
         this.error = error;
     }
 
@@ -156,14 +182,16 @@ export class CurrentUserStore {
         this.clearCurrentUser();
         this.clearError();
 
-        this.auth0.authorize();
+        this.auth0WebAuth.authorize({
+            accessType: "offline"
+        });
     }
 
     @action
     startLogout() {
         this.clearCurrentUser();
         this.clearError();
-        this.auth0.logout({ returnTo: window.location.protocol + "//" + window.location.host + Hrefs.logoutCallback });
+        this.auth0WebAuth.logout({ returnTo: window.location.protocol + "//" + window.location.host + Hrefs.logoutCallback });
     }
 
     private clearCurrentUser() {
@@ -173,6 +201,7 @@ export class CurrentUserStore {
     }
 
     private clearError() {
+        this.auth0Error = null;
         this.error = null;
     }
 
