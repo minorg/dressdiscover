@@ -76,6 +76,8 @@
                 "thrift_include_dirs": ["../thryft-waf/thrift/src"],
                 "thrift_files": [
                     "thrift/src/dressdiscover/api/services/io_exception.thrift",
+                    "thrift/src/dressdiscover/api/services/user/no_such_user_exception.thrift",
+                    "thrift/src/dressdiscover/api/services/user/no_such_user_settings_exception.thrift",
                     "thrift/src/dressdiscover/api/services/worksheet/**/*_exception.thrift"
                 ],
                 "gen": {
@@ -86,9 +88,12 @@
                 "description": "api worksheet services",
                 "thrift_root_dir": "thrift/src",
                 "thrift_include_dirs": ["../thryft-waf/thrift/src"],
-                "thrift_files": "thrift/src/dressdiscover/api/services/worksheet/**/*_service.thrift",
+                "thrift_files": [
+                    "thrift/src/dressdiscover/api/services/user/user_settings_command_service.thrift",
+                    "thrift/src/dressdiscover/api/services/user/user_settings_query_service.thrift",
+                    "thrift/src/dressdiscover/api/services/worksheet/**/*_service.thrift"
+                ],
                 "gen": {
-                    "json_rpc_client_ts": "ts/src/ts",
                     "logging_service_ts": "ts/src/ts",
                     "ts": "ts/src/ts"
                 }
