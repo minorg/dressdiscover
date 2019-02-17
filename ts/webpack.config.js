@@ -33,6 +33,8 @@ module.exports = (env, argv) => ({
         secure: false
       }
     },
+    // Need this to accept requests through the reverse tunnel.
+    public: "tunnel.minorgordon.net",
     stats: 'minimal'
   },
   // https://webpack.js.org/configuration/devtool/
