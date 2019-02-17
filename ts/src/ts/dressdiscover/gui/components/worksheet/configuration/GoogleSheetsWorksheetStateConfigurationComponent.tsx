@@ -87,18 +87,17 @@ export class GoogleSheetsWorksheetStateConfigurationComponent extends React.Comp
                                             <tbody>
                                                 {existingFiles.map((existingFile) => {
                                                     const selected: boolean = !!googleSheetsWorksheetStateConfiguration && googleSheetsWorksheetStateConfiguration.spreadsheetId === existingFile.id;
-                                                    const style: React.CSSProperties = selected ? { color: "black", fontWeight: "bold" } : {};
+                                                    const tdStyle: React.CSSProperties | undefined = selected ? {borderWidth: "4px"} : undefined;
                                                     return (
                                                         <tr key={existingFile.id}>
-                                                            <td>
+                                                            <td className={classnames({ "border-success": selected })} style={tdStyle}>
                                                                 <Button
+                                                                    className="w-100"
                                                                     color="secondary"
                                                                     onClick={() => this.onClickExistingFile(existingFile)}
-                                                                    style={style}
                                                                 >
                                                                     {existingFile.name}
                                                                 </Button>
-                                                                {selected ? "    (current)" : ""}
                                                             </td>
                                                         </tr>
                                                     );
@@ -116,8 +115,8 @@ export class GoogleSheetsWorksheetStateConfigurationComponent extends React.Comp
                 <Row>
                     <Col className="text-center" md="6">
                         <Form inline>
-                            <Input type="text" onChange={this.onChangeNewSheetName} placeholder="New sheet name" style={{width: "32em"}} value={this.state.newSheetName}></Input>
-                            <Button className="ml-4" color="primary" onClick={this.onClickNewSheetButton}>Create a new Sheet</Button>
+                            <Input type="text" onChange={this.onChangeNewSheetName} placeholder="New sheet name" style={{ width: "32em" }} value={this.state.newSheetName}></Input>
+                            <Button className="ml-4" disabled={!this.state.newSheetName.length} color="primary" onClick={this.onClickNewSheetButton}>Create a new Sheet</Button>
                         </Form>
                     </Col>
                 </Row>
