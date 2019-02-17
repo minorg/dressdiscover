@@ -46,8 +46,8 @@ export class WorksheetStateConfigurationComponent extends React.Component<Props,
 
     onChangeGoogleSheetsWorksheetStateConfiguration(newGoogleSheetsWorksheetStateConfiguration: GoogleSheetsWorksheetStateConfiguration) {
         this.props.onChange(new WorksheetStateConfiguration({ googleSheets: newGoogleSheetsWorksheetStateConfiguration }));
-            // Should propagate back to set selectedType via props.
-        }
+        // Should propagate back to set selectedType via props.
+    }
 
     onChangeWorksheetStateConfigurationType(changeEvent: React.ChangeEvent<HTMLInputElement>) {
         const newValue = changeEvent.target.value;
@@ -88,11 +88,14 @@ export class WorksheetStateConfigurationComponent extends React.Component<Props,
                 </Form>
                 {
                     (googleEnabled && selectedType === WorksheetStateConfigurationType.GOOGLE_SHEETS) ?
-                        <GoogleSheetsWorksheetStateConfigurationComponent
-                            currentUser={currentUser as CurrentUser}
-                            googleSheetsWorksheetStateConfiguration={worksheetStateConfiguration.googleSheets}
-                            onChange={this.onChangeGoogleSheetsWorksheetStateConfiguration}
-                        />
+                        <React.Fragment>
+                            <br />
+                            <GoogleSheetsWorksheetStateConfigurationComponent
+                                currentUser={currentUser as CurrentUser}
+                                googleSheetsWorksheetStateConfiguration={worksheetStateConfiguration.googleSheets}
+                                onChange={this.onChangeGoogleSheetsWorksheetStateConfiguration}
+                            />
+                        </React.Fragment>
                         : null
                 }
             </React.Fragment>

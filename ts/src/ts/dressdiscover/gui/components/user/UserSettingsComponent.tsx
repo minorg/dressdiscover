@@ -21,7 +21,7 @@ interface Props {
 }
 
 interface State {
-    unsavedWorksheetConfiguration: WorksheetConfiguration | null;
+    unsavedWorksheetConfiguration?: WorksheetConfiguration;
 }
 
 @inject("currentUserStore")
@@ -30,7 +30,7 @@ export class UserSettingsComponent extends React.Component<Props, State> {
         super(props);
         this.onChangeWorksheetConfiguration = this.onChangeWorksheetConfiguration.bind(this);
         this.onClickSaveButton = this.onClickSaveButton.bind(this);
-        this.state = { unsavedWorksheetConfiguration: null };
+        this.state = {};
     }
 
     onChangeWorksheetConfiguration(newWorksheetConfiguration: WorksheetConfiguration) {
@@ -43,7 +43,7 @@ export class UserSettingsComponent extends React.Component<Props, State> {
             return;
         }
         this.props.currentUserStore.setCurrentUserSettings(new UserSettings({ worksheetConfiguration: unsavedWorksheetConfiguration }));
-        this.setState((prevState) => ({ unsavedWorksheetConfiguration: null }));
+        this.setState((prevState) => ({ unsavedWorksheetConfiguration: undefined }));
     }
 
     render() {
@@ -51,6 +51,14 @@ export class UserSettingsComponent extends React.Component<Props, State> {
         const currentUser = currentUserStore.currentUser;
         if (!currentUser) {
             return <Redirect to={Hrefs.home}></Redirect>;
+        }
+
+        let { unsavedWorksheetConfiguration: worksheetConfiguration } = this.state;
+        if (!worksheetConfiguration && currentUser.settings) {
+            worksheetConfiguration = currentUser.settings.worksheetConfiguration;
+        }
+        if (!worksheetConfiguration) {
+            worksheetConfiguration = DefaultWorksheetConfiguration.instance;
         }
 
         return (
@@ -75,7 +83,7 @@ export class UserSettingsComponent extends React.Component<Props, State> {
                                 <TabPane tabId="worksheet">
                                     <WorksheetConfigurationComponent
                                         onChange={this.onChangeWorksheetConfiguration}
-                                        worksheetConfiguration={(currentUser.settings && currentUser.settings.worksheetConfiguration) ? currentUser.settings.worksheetConfiguration : DefaultWorksheetConfiguration.instance}
+                                        worksheetConfiguration={worksheetConfiguration}
                                     />
                                 </TabPane>
                             </TabContent>

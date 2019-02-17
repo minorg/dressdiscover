@@ -17,9 +17,9 @@ interface Props {
 }
 
 interface State {
-    error?: any;
+    error?: any | null;
     existingFiles?: gapi.client.drive.File[];
-    newSheetName?: string;
+    newSheetName: string;
 }
 
 export class GoogleSheetsWorksheetStateConfigurationComponent extends React.Component<Props, State> {
@@ -27,10 +27,105 @@ export class GoogleSheetsWorksheetStateConfigurationComponent extends React.Comp
         super(props);
         this.onChangeNewSheetName = this.onChangeNewSheetName.bind(this);
         this.onClickNewSheetButton = this.onClickNewSheetButton.bind(this);
-        this.state = {};
+        this.state = { newSheetName: "" };
     }
 
     componentDidMount() {
+        this.refreshExistingFiles();
+    }
+
+    onClickExistingFile(file: gapi.client.drive.File) {
+        this.props.onChange(new GoogleSheetsWorksheetStateConfiguration({ spreadsheetId: file.id as string }));
+    }
+
+    onChangeNewSheetName(changeEvent: React.ChangeEvent<HTMLInputElement>) {
+        const value = changeEvent.target.value;
+        this.setState((prevState) => ({ newSheetName: value }));
+    }
+
+    onClickNewSheetButton() {
+        const { newSheetName } = this.state;
+        if (!newSheetName || !newSheetName.length) {
+            return;
+        }
+
+        gapi.client.drive.files.create({
+            resource: {
+                mimeType: 'application/vnd.google-apps.spreadsheet',
+                name: newSheetName,
+            }
+        }).then(() => {
+            // Set state synchronously to avoid races with refreshExistingFiles.
+            this.setState({ existingFiles: undefined, newSheetName: "" });
+            this.refreshExistingFiles();
+        }, (reason: any) => {
+            this.setState((prevState) => ({ error: reason }));
+        });
+    }
+
+    render() {
+        const { googleSheetsWorksheetStateConfiguration } = this.props;
+        const { error, existingFiles } = this.state;
+        if (error) {
+            return <FatalErrorModal message={JSON.stringify(error)}></FatalErrorModal>;
+        } else if (!existingFiles) {
+            return <ReactLoader loaded={false}></ReactLoader>;
+        }
+
+        return (
+            <Container fluid>
+                {existingFiles.length ? (
+                    <React.Fragment>
+                        <Row>
+                            <Col md="6">
+                                <Card>
+                                    <CardHeader>
+                                        <CardTitle className={classnames(["mb-0", "text-center"])}>Select an existing Sheet</CardTitle>
+                                    </CardHeader>
+                                    <CardBody>
+                                        <Table className="table table-bordered w-100">
+                                            <tbody>
+                                                {existingFiles.map((existingFile) => {
+                                                    const selected: boolean = !!googleSheetsWorksheetStateConfiguration && googleSheetsWorksheetStateConfiguration.spreadsheetId === existingFile.id;
+                                                    const style: React.CSSProperties = selected ? { color: "black", fontWeight: "bold" } : {};
+                                                    return (
+                                                        <tr key={existingFile.id}>
+                                                            <td>
+                                                                <Button
+                                                                    color="secondary"
+                                                                    onClick={() => this.onClickExistingFile(existingFile)}
+                                                                    style={style}
+                                                                >
+                                                                    {existingFile.name}
+                                                                </Button>
+                                                                {selected ? "    (current)" : ""}
+                                                            </td>
+                                                        </tr>
+                                                    );
+                                                }
+                                                )}
+                                            </tbody>
+                                        </Table>
+                                    </CardBody>
+                                </Card>
+                            </Col>
+                        </Row>
+                        <Row>&nbsp;</Row>
+                    </React.Fragment>
+                ) : null}
+                <Row>
+                    <Col className="text-center" md="6">
+                        <Form inline>
+                            <Input type="text" onChange={this.onChangeNewSheetName} placeholder="New sheet name" style={{width: "32em"}} value={this.state.newSheetName}></Input>
+                            <Button className="ml-4" color="primary" onClick={this.onClickNewSheetButton}>Create a new Sheet</Button>
+                        </Form>
+                    </Col>
+                </Row>
+            </Container>
+        );
+    }
+
+    private refreshExistingFiles() {
         const { currentUser } = this.props;
         invariant(currentUser.identityProvider === UserIdentityProvider.GOOGLE_OAUTH2, "unexpected identity provider");
         const accessToken = currentUser.session.accessToken;
@@ -45,65 +140,5 @@ export class GoogleSheetsWorksheetStateConfigurationComponent extends React.Comp
             }, (reason: any) => {
                 this.setState((prevState) => ({ error: reason }));
             });
-    }
-
-    onChangeNewSheetName(changeEvent: React.ChangeEvent<HTMLInputElement>) {
-        const value = changeEvent.target.value;
-        this.setState((prevState) => ({ newSheetName: value }));
-    }
-
-    onClickNewSheetButton() {
-        const { newSheetName } = this.state;
-        if (!newSheetName || !newSheetName.length) {
-            return;
-        }
-    }
-
-    render() {
-        const { error, existingFiles } = this.state;
-        if (error) {
-            return <FatalErrorModal message={JSON.stringify(error)}></FatalErrorModal>;
-        } else if (!existingFiles) {
-            return <ReactLoader loaded={false}></ReactLoader>;
-        }
-
-        return (
-            <Container fluid>
-                {existingFiles.length ? (
-                    <Row>
-                        <Col md="12">
-                            <Card>
-                                <CardHeader>
-                                    <CardTitle className={classnames(["mb-0", "text-center"])}>Existing worksheets</CardTitle>
-                                </CardHeader>
-                                <CardBody>
-                                    <Container fluid>
-                                        <Row>
-                                            <Col xs="12">
-                                                <Table className="table table-bordered w-100">
-                                                    <tbody>
-                                                        {existingFiles.map((existingFile) =>
-                                                            <tr key={existingFile.id}><td>{existingFile.name}</td></tr>
-                                                        )}
-                                                    </tbody>
-                                                </Table>
-                                            </Col>
-                                        </Row>
-                                    </Container>
-                                </CardBody>
-                            </Card>
-                        </Col>
-                    </Row>
-                ) : null}
-                <Row>
-                    <Col className="text-center" md="12">
-                        <Form inline>
-                            <Input type="text" onChange={this.onChangeNewSheetName} placeholder="New sheet name" value={this.state.newSheetName}></Input>
-                            <Button color="primary" onClick={this.onClickNewSheetButton}>Create a new Sheet</Button>
-                        </Form>
-                    </Col>
-                </Row>
-            </Container>
-        );
     }
 }
