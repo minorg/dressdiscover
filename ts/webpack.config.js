@@ -18,6 +18,7 @@ module.exports = (env, argv) => ({
     contentBase: distPath,
     historyApiFallback: true,
     host: 'localhost',
+    // host: '0.0.0.0',
     hot: true,
     inline: true,
     open: true,
