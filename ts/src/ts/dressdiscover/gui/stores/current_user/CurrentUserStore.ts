@@ -103,6 +103,9 @@ export class CurrentUserStore {
         this.currentUser = null;
         localStorage.removeItem(CurrentUserStore.CURRENT_USER_ITEM_KEY);
         this.logger.debug("cleared current user hash from local storage");
+
+        gapi.client.setToken(null);
+        this.logger.debug("cleared gapi client token");
     }
 
     @action

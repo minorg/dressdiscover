@@ -1,11 +1,9 @@
 import * as classnames from 'classnames';
-import { UserIdentityProvider } from 'dressdiscover/api/models/user/user_identity_provider';
 import {
     GoogleSheetsWorksheetStateConfiguration,
 } from 'dressdiscover/api/models/worksheet/configuration/google_sheets_worksheet_state_configuration';
 import { FatalErrorModal } from 'dressdiscover/gui/components/error/FatalErrorModal';
 import { CurrentUser } from 'dressdiscover/gui/models/current_user/CurrentUser';
-import * as invariant from 'invariant';
 import * as React from 'react';
 import * as ReactLoader from 'react-loader';
 import { Button, Card, CardBody, CardHeader, CardTitle, Col, Container, Form, Input, Row, Table } from 'reactstrap';
@@ -125,12 +123,11 @@ export class GoogleSheetsWorksheetStateConfigurationComponent extends React.Comp
     }
 
     private refreshExistingFiles() {
-        const { currentUser } = this.props;
-        invariant(currentUser.identityProvider === UserIdentityProvider.GOOGLE_OAUTH2, "unexpected identity provider");
-        const accessToken = currentUser.session.accessToken;
-        invariant(accessToken, "no access token set");
-
-        gapi.client.setToken({ access_token: accessToken as string });
+        // Assumes the token has already been set in CurrentUserStore.
+        // const { currentUser } = this.props;
+        // invariant(currentUser.identityProvider === UserIdentityProvider.GOOGLE_OAUTH2, "unexpected identity provider");
+        // const accessToken = currentUser.session.accessToken;
+        // invariant(accessToken, "no access token set");
 
         gapi.client.drive.files.list({})
             .then((response) => {
