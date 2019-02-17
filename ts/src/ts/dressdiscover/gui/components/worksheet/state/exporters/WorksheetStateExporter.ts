@@ -1,5 +1,5 @@
 import { WorksheetStateWrapper } from 'dressdiscover/gui/models/worksheet/state/WorksheetStateWrapper';
 
-export interface Exporter<T> {
+export interface WorksheetStateExporter<T> {
     export(worksheetState: WorksheetStateWrapper): T;
 }

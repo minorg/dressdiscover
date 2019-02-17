@@ -1,7 +1,9 @@
-import { StringExporter } from 'dressdiscover/gui/components/worksheet/state/exporters/string/StringExporter';
+import {
+    StringWorksheetStateExporter,
+} from 'dressdiscover/gui/components/worksheet/state/exporters/string/StringWorksheetStateExporter';
 import { WorksheetStateWrapper } from 'dressdiscover/gui/models/worksheet/state/WorksheetStateWrapper';
 
-export class JsonStringExporter implements StringExporter {
+export class JsonStringWorksheetStateExporter implements StringWorksheetStateExporter {
     export(worksheetState: WorksheetStateWrapper): string {
         return JSON.stringify(worksheetState.toJsonObject(), undefined, 4);
     }

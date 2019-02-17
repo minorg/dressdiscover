@@ -1,10 +1,8 @@
-import { StringExporter } from 'dressdiscover/gui/components/worksheet/state/exporters/string/StringExporter';
+import { CsvWorksheetStateExporter } from 'dressdiscover/gui/components/worksheet/state/exporters/CsvWorksheetStateExporter';
 import { WorksheetStateWrapper } from 'dressdiscover/gui/models/worksheet/state/WorksheetStateWrapper';
 import * as Papa from 'papaparse';
 
-import { CsvExporter } from '../CsvExporter';
-
-export class CsvStringExporter implements StringExporter {
+export class CsvStringWorksheetStateExporter implements StringWorksheetStateExporter {
     export(worksheetState: WorksheetStateWrapper): string {
         return Papa.unparse(this.csvExporter.export(worksheetState));
     }
@@ -17,5 +15,5 @@ export class CsvStringExporter implements StringExporter {
         return "text/csv";
     }
 
-    private readonly csvExporter: CsvExporter = new CsvExporter();
+    private readonly csvExporter: CsvWorksheetStateExporter = new CsvWorksheetStateExporter();
 }

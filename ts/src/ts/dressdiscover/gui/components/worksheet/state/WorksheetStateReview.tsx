@@ -1,6 +1,10 @@
-import { CsvStringExporter } from 'dressdiscover/gui/components/worksheet/state/exporters/string/CsvStringExporter';
-import { JsonStringExporter } from 'dressdiscover/gui/components/worksheet/state/exporters/string/JsonStringExporter';
-import { StringExporter } from 'dressdiscover/gui/components/worksheet/state/exporters/string/StringExporter';
+import {
+    CsvStringExporter,
+} from 'dressdiscover/gui/components/worksheet/state/exporters/string/CsvStringWorksheetStateExporter';
+import {
+    JsonStringExporter,
+} from 'dressdiscover/gui/components/worksheet/state/exporters/string/JsonStringWorksheetStateExporter';
+import { StringExporter } from 'dressdiscover/gui/components/worksheet/state/exporters/string/StringWorksheetStateExporter';
 import { WorksheetFeatureSetStateTable } from 'dressdiscover/gui/components/worksheet/state/WorksheetFeatureSetStateTable';
 import { WorksheetStateWrapper } from 'dressdiscover/gui/models/worksheet/state/WorksheetStateWrapper';
 import { History } from 'history';
@@ -144,5 +148,5 @@ class WorksheetStateReviewImpl extends React.Component<WorksheetStateReviewImplP
         return this.stringStringExporters[this.state.selectedFormatIndex];
     }
 
-    private readonly stringStringExporters: StringExporter[] = [new CsvStringExporter(), new JsonStringExporter()];
+    private readonly stringStringExporters: StringWorksheetStateExporter[] = [new CsvStringExporter(), new JsonStringExporter()];
 }

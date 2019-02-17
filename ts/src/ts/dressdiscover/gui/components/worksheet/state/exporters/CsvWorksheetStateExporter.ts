@@ -1,8 +1,7 @@
+import { WorksheetStateExporter } from 'dressdiscover/gui/components/worksheet/state/exporters/WorksheetStateExporter';
 import { WorksheetStateWrapper } from 'dressdiscover/gui/models/worksheet/state/WorksheetStateWrapper';
 
-import { Exporter } from './Exporter';
-
-export class CsvExporter implements Exporter<string[][]> {
+export class CsvWorksheetStateExporter implements WorksheetStateExporter<string[][]> {
     export(worksheetState: WorksheetStateWrapper): string[][] {
         const rows: string[][] = [];
         const headerRow = ["id"];
