@@ -1,10 +1,14 @@
+import { WorksheetDefinition } from 'dressdiscover/api/models/worksheet/definition/worksheet_definition';
+import { WorksheetState } from 'dressdiscover/api/models/worksheet/state/worksheet_state';
 import { CsvWorksheetStateExporter } from 'dressdiscover/gui/components/worksheet/state/exporters/CsvWorksheetStateExporter';
-import { WorksheetStateWrapper } from 'dressdiscover/gui/models/worksheet/state/WorksheetStateWrapper';
+import {
+    StringWorksheetStateExporter,
+} from 'dressdiscover/gui/components/worksheet/state/exporters/string/StringWorksheetStateExporter';
 import * as Papa from 'papaparse';
 
 export class CsvStringWorksheetStateExporter implements StringWorksheetStateExporter {
-    export(worksheetState: WorksheetStateWrapper): string {
-        return Papa.unparse(this.csvExporter.export(worksheetState));
+    export(worksheetDefinition: WorksheetDefinition, worksheetStates: WorksheetState[]): string {
+        return Papa.unparse(this.csvExporter.export(worksheetDefinition, worksheetStates));
     }
 
     get fileExtension() {

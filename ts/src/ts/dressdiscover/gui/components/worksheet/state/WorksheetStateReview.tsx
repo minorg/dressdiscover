@@ -1,10 +1,12 @@
 import {
-    CsvStringExporter,
+    CsvStringWorksheetStateExporter,
 } from 'dressdiscover/gui/components/worksheet/state/exporters/string/CsvStringWorksheetStateExporter';
 import {
-    JsonStringExporter,
+    JsonStringWorksheetStateExporter,
 } from 'dressdiscover/gui/components/worksheet/state/exporters/string/JsonStringWorksheetStateExporter';
-import { StringExporter } from 'dressdiscover/gui/components/worksheet/state/exporters/string/StringWorksheetStateExporter';
+import {
+    StringWorksheetStateExporter,
+} from 'dressdiscover/gui/components/worksheet/state/exporters/string/StringWorksheetStateExporter';
 import { WorksheetFeatureSetStateTable } from 'dressdiscover/gui/components/worksheet/state/WorksheetFeatureSetStateTable';
 import { WorksheetStateWrapper } from 'dressdiscover/gui/models/worksheet/state/WorksheetStateWrapper';
 import { History } from 'history';
@@ -45,7 +47,7 @@ class WorksheetStateReviewImpl extends React.Component<WorksheetStateReviewImplP
     }
 
     export(): string {
-        return this.selectedStringExporter.export(this.props.worksheetState);
+        return this.selectedStringExporter.export(this.props.worksheetState.worksheetDefinition.definition, [this.props.worksheetState.toWorksheetState()]);
     }
 
     onChangeFormat(event: React.ChangeEvent<HTMLInputElement>) {
@@ -110,7 +112,7 @@ class WorksheetStateReviewImpl extends React.Component<WorksheetStateReviewImplP
                             <Button color="secondary" onClick={this.onClickEmailButton}>Email</Button>&nbsp;
                             <Button color="secondary" onClick={this.onClickDownloadButton}>Download</Button>&nbsp;
                             <Input onChange={this.onChangeFormat} value={this.state.selectedFormatIndex} type="select">
-                                {this.stringStringExporters.map((stringStringExporter, formatIndex) =>
+                                {this.stringExporters.map((stringStringExporter, formatIndex) =>
                                     <option key={stringStringExporter.fileExtension} value={formatIndex.toString()}>{stringStringExporter.fileExtension.toUpperCase()}</option>
                                 )}
                             </Input>
@@ -144,9 +146,9 @@ class WorksheetStateReviewImpl extends React.Component<WorksheetStateReviewImplP
             </WorksheetStateFrame>);
     }
 
-    private get selectedStringExporter(): StringExporter {
-        return this.stringStringExporters[this.state.selectedFormatIndex];
+    private get selectedStringExporter(): StringWorksheetStateExporter {
+        return this.stringExporters[this.state.selectedFormatIndex];
     }
 
-    private readonly stringStringExporters: StringWorksheetStateExporter[] = [new CsvStringExporter(), new JsonStringExporter()];
+    private readonly stringExporters: StringWorksheetStateExporter[] = [new CsvStringWorksheetStateExporter(), new JsonStringWorksheetStateExporter()];
 }
