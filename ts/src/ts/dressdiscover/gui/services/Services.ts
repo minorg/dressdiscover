@@ -28,12 +28,6 @@ import {
   BundledWorksheetDefinitionQueryService,
 } from 'dressdiscover/gui/services/worksheet/definition/BundledWorksheetDefinitionQueryService';
 import {
-  GoogleSheetsWorksheetStateCommandService,
-} from 'dressdiscover/gui/services/worksheet/state/GoogleSheetsStorageWorksheetStateCommandService';
-import {
-  GoogleSheetsWorksheetStateQueryService,
-} from 'dressdiscover/gui/services/worksheet/state/GoogleSheetsWorksheetStateQueryService';
-import {
   LocalStorageWorksheetStateCommandService,
 } from 'dressdiscover/gui/services/worksheet/state/LocalStorageWorksheetStateCommandService';
 import {
@@ -55,10 +49,11 @@ export class Services {
 
     let worksheetStateCommandService: WorksheetStateCommandService;
     let worksheetStateQueryService: WorksheetStateQueryService;
-    if (configuration.state.googleSheets) {
-      worksheetStateCommandService = new GoogleSheetsWorksheetStateCommandService(configuration.state.googleSheets);
-      worksheetStateQueryService = new GoogleSheetsWorksheetStateQueryService(configuration.state.googleSheets);
-    } else if (configuration.state.localStorage) {
+    // if (configuration.state.googleSheets) {
+    //   worksheetStateCommandService = new GoogleSheetsWorksheetStateCommandService(configuration.state.googleSheets);
+    //   worksheetStateQueryService = new GoogleSheetsWorksheetStateQueryService(configuration.state.googleSheets);
+    // } else
+    if (configuration.state.localStorage) {
       worksheetStateCommandService = new LocalStorageWorksheetStateCommandService();
       worksheetStateQueryService = new LocalStorageWorksheetStateQueryService();
     } else {
