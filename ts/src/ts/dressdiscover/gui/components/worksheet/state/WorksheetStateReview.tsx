@@ -47,7 +47,7 @@ class WorksheetStateReviewImpl extends React.Component<WorksheetStateReviewImplP
     }
 
     export(): string {
-        return this.selectedStringExporter.export(this.props.worksheetState.worksheetDefinition.definition, [this.props.worksheetState.toWorksheetState()]);
+        return this.selectedStringExporter.export([this.props.worksheetState.toWorksheetState()]);
     }
 
     onChangeFormat(event: React.ChangeEvent<HTMLInputElement>) {

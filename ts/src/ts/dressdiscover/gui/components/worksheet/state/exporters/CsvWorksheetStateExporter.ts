@@ -1,4 +1,3 @@
-import { WorksheetDefinition } from 'dressdiscover/api/models/worksheet/definition/worksheet_definition';
 import { WorksheetState } from 'dressdiscover/api/models/worksheet/state/worksheet_state';
 import { WorksheetFeatureId } from 'dressdiscover/api/models/worksheet/worksheet_feature_id';
 import { WorksheetFeatureSetId } from 'dressdiscover/api/models/worksheet/worksheet_feature_set_id';
@@ -14,7 +13,7 @@ export class CsvWorksheetStateExporter implements WorksheetStateExporter<string[
         return [WorksheetFeatureSetId.parse(split[0]), WorksheetFeatureId.parse(split[1])];
     }
 
-    export(worksheetDefinition: WorksheetDefinition, worksheetStates: WorksheetState[]): string[][] {
+    export(worksheetStates: WorksheetState[]): string[][] {
         const rows: string[][] = [];
 
         const headerRow = ["id", "description"];
