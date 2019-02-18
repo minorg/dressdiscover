@@ -74,7 +74,14 @@ export class GoogleSheetsWorksheetStateCommandService implements WorksheetStateC
         const spreadsheetId = this.configuration.spreadsheetId;
         const requests: gapi.client.sheets.Request[] = [];
         requests.push({
-            deleteRange: {}
+            deleteRange: {
+                range: {
+                    sheetId: 0,
+                    startColumnIndex: 0,
+                    startRowIndex: 0
+                },
+                shiftDimension: "ROWS"
+            }
         });
         const rows: gapi.client.sheets.RowData[] = [];
         for (const stringRow of stringRows) {
@@ -84,11 +91,15 @@ export class GoogleSheetsWorksheetStateCommandService implements WorksheetStateC
             }
             rows.push({ values });
         }
-        requests.push({ appendCells: { rows } });
+        requests.push({ appendCells: { fields: "*", rows } });
 
         return new Promise((resolve, reject) => {
-            (gapi.client.spreadsheets as any).batchUpdate({ spreadsheetId }, { requests })
-                .then((response: any) => resolve(), (reason: any) => reject(reason));
+            (GoogleSheetsWorksheetStateQueryService.getSpreadsheetsResource() as any).batchUpdate({ spreadsheetId }, { requests })
+                .then(
+                    (response: any) => resolve(),
+                    (reason: any) => {
+                        reject(reason)
+                    });
         });
     }
 

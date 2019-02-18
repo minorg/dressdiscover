@@ -13,6 +13,10 @@ export class GoogleSheetsWorksheetStateQueryService implements WorksheetStateQue
     constructor(private readonly configuration: GoogleSheetsWorksheetStateConfiguration) {
     }
 
+    static getSpreadsheetsResource(): gapi.client.sheets.SpreadsheetsResource {
+        return (gapi.client as any).sheets.spreadsheets;
+    }
+
     static getWorksheetStates(kwds: { spreadsheetId: string }): Promise<WorksheetState[]> {
         const spreadsheetId = kwds.spreadsheetId;
         return new Promise((resolve, reject) => {
@@ -41,14 +45,14 @@ export class GoogleSheetsWorksheetStateQueryService implements WorksheetStateQue
         const spreadsheetId = this.configuration.spreadsheetId;
         return new Promise((resolve, reject) => {
             GoogleSheetsWorksheetStateQueryService.getWorksheetStates({ spreadsheetId }).then((worksheetStates) =>
-                worksheetStates.map((worksheetState) => worksheetState.id),
+                resolve(worksheetStates.map((worksheetState) => worksheetState.id)),
                 (reason: any) => reject(reason));
         });
     }
 
     private static getFirstSheetData(kwds: { spreadsheetId: string }): Promise<string[][]> {
         return new Promise((resolve, reject) => {
-            gapi.client.spreadsheets.get(kwds).then((response) => {
+            GoogleSheetsWorksheetStateQueryService.getSpreadsheetsResource().get(kwds).then((response) => {
                 const sheets = response.result.sheets;
                 if (!sheets || !sheets.length) {
                     resolve([]);
@@ -99,7 +103,7 @@ export class GoogleSheetsWorksheetStateQueryService implements WorksheetStateQue
                 }
                 resolve(stringRows);
             }, (reason: any) => {
-                reject(new IoException(reason.toString()));
+                reject(new IoException({ causeMessage: JSON.stringify(reason) }));
             });
         });
     }
