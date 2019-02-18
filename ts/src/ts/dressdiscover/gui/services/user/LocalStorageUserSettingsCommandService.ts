@@ -6,7 +6,9 @@ import { LocalStorageUserSettingsQueryService } from 'dressdiscover/gui/services
 export class LocalStorageUserSettingsCommandService implements UserSettingsCommandService {
     putUserSettings(kwds: { id: UserId, userSettings: UserSettings }): Promise<void> {
         const key = LocalStorageUserSettingsQueryService.getUserSettingsItemKey(kwds.id);
-        localStorage.setItem(key, JSON.stringify(kwds.userSettings.toThryftJsonObject()));
+        const value = JSON.stringify(kwds.userSettings.toThryftJsonObject());
+        localStorage.setItem(key, value);
+        // console.info("wrote user settings to key=%s, value=%s", key, value);
         return Promise.resolve();
     }
 }
