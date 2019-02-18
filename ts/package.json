@@ -6,9 +6,9 @@
   "devDependencies": {
     "@types/classnames": "2.2.6",
     "@types/gapi.auth2": "0.0.48",
-    "@types/gapi.client.sheets": "4.0.0",
     "@types/gapi.client.oauth2": "2.0.1",
-    "@types/gapi.client.drive": "3.0.2",
+    "@types/gapi.client.drive": "3.0.3",
+    "@types/gapi.client.sheets": "4.0.1",
     "@types/invariant": "2.2.29",
     "@types/lodash": "4.14.116",
     "@types/papaparse": "4.1.33",
