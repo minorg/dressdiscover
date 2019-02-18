@@ -56,6 +56,8 @@ export class CsvWorksheetStateExporter implements WorksheetStateExporter<string[
                 }
                 dataRow.push(featureState.selectedValueIds.map((valueId) => valueId.toString()).join(";"));
             }
+
+            rows.push(dataRow);
         }
 
         return rows;
