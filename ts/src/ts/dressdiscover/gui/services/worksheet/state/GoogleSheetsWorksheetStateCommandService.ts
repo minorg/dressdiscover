@@ -3,6 +3,9 @@
 } from 'dressdiscover/api/models/worksheet/configuration/google_sheets_worksheet_state_configuration';
 import { WorksheetState } from 'dressdiscover/api/models/worksheet/state/worksheet_state';
 import { WorksheetStateId } from 'dressdiscover/api/models/worksheet/state/worksheet_state_id';
+import {
+    WorksheetDefinitionQueryService,
+} from 'dressdiscover/api/services/worksheet/definition/worksheet_definition_query_service';
 import { NoSuchWorksheetStateException } from 'dressdiscover/api/services/worksheet/state/no_such_worksheet_state_exception';
 import { WorksheetStateCommandService } from 'dressdiscover/api/services/worksheet/state/worksheet_state_command_service';
 import { CsvWorksheetStateExporter } from 'dressdiscover/gui/components/worksheet/state/exporters/CsvWorksheetStateExporter';
@@ -11,7 +14,7 @@ import {
 } from 'dressdiscover/gui/services/worksheet/state/GoogleSheetsWorksheetStateQueryService';
 
 export class GoogleSheetsWorksheetStateCommandService implements WorksheetStateCommandService {
-    constructor(private readonly configuration: GoogleSheetsWorksheetStateConfiguration) {
+    constructor(private readonly configuration: GoogleSheetsWorksheetStateConfiguration, private readonly worksheetDefinitionQueryService: WorksheetDefinitionQueryService) {
     }
 
     deleteWorksheetState(kwds: { id: WorksheetStateId; }): Promise<void> {
@@ -104,6 +107,11 @@ export class GoogleSheetsWorksheetStateCommandService implements WorksheetStateC
     }
 
     private replaceWorksheetStates(newWorksheetStates: WorksheetState[]): Promise<void> {
-        return this.replaceFirstSheetData(new CsvWorksheetStateExporter().export(newWorksheetStates));
+        const self = this;
+        return new Promise((resolve, reject) => {
+            this.worksheetDefinitionQueryService.getWorksheetDefinition().then((worksheetDefinition) => {
+                self.replaceFirstSheetData(new CsvWorksheetStateExporter().export(worksheetDefinition, newWorksheetStates)).then(resolve, reject);
+            }, (reason) => reject(reason));
+        });
     }
 }

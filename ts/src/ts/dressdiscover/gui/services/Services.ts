@@ -56,7 +56,7 @@ export class Services {
     let worksheetStateCommandService: WorksheetStateCommandService;
     let worksheetStateQueryService: WorksheetStateQueryService;
     if (configuration.state.googleSheets) {
-      worksheetStateCommandService = new GoogleSheetsWorksheetStateCommandService(configuration.state.googleSheets);
+      worksheetStateCommandService = new GoogleSheetsWorksheetStateCommandService(configuration.state.googleSheets, this.worksheetDefinitionQueryService);
       worksheetStateQueryService = new GoogleSheetsWorksheetStateQueryService(configuration.state.googleSheets);
     } else if (configuration.state.localStorage) {
       worksheetStateCommandService = new LocalStorageWorksheetStateCommandService();

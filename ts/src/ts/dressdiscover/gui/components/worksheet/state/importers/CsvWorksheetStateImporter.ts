@@ -19,8 +19,7 @@ export class CsvWorksheetStateImporter {
         if (headerRow.length < 2) {
             return [];
         }
-        const parsedHeaderColumns: any[] = [];
-        headerRow.slice(2).map((headerColumn) => CsvWorksheetStateExporter.parseFeatureHeader(headerColumn));
+        const parsedHeaderColumns: any[] = headerRow.slice(2).map((headerColumn) => CsvWorksheetStateExporter.parseFeatureHeader(headerColumn));
 
         const worksheetStates: WorksheetState[] = [];
         for (const dataRow of csvRows.slice(1)) {
@@ -47,8 +46,9 @@ export class CsvWorksheetStateImporter {
                 if (!featureSetValueIds[featureSetId.toString()]) {
                     featureSetValueIds[featureSetId.toString()] = {};
                 }
-                featureSetValueIds[featureSetId.toString()][featureId.toString()] = dataColumn.split(";").map((valueId) => WorksheetFeatureValueId.parse(valueId));
+                featureSetValueIds[featureSetId.toString()][featureId.toString()] = dataColumn.length ? dataColumn.split(";").map((valueId) => WorksheetFeatureValueId.parse(valueId)) : [];
             });
+            console.info("Feature set value ids: " + JSON.stringify(featureSetValueIds));
 
             const featureSetStates: WorksheetFeatureSetState[] = [];
             for (const featureSetIdString of _.keys(featureSetValueIds)) {
@@ -57,7 +57,7 @@ export class CsvWorksheetStateImporter {
                 for (const featureIdString of _.keys(featureSetValueIds[featureSetIdString])) {
                     const featureId = WorksheetFeatureId.parse(featureIdString);
                     const selectedValueIds = featureSetValueIds[featureSetIdString][featureIdString];
-                    featureStates.push(new WorksheetFeatureState({ id: featureId, selectedValueIds }));
+                    featureStates.push(new WorksheetFeatureState({ id: featureId, selectedValueIds: selectedValueIds.length ? selectedValueIds : undefined }));
                 }
                 featureSetStates.push(new WorksheetFeatureSetState({ features: featureStates, id: featureSetId }));
             }

@@ -1,3 +1,4 @@
+import { WorksheetDefinition } from 'dressdiscover/api/models/worksheet/definition/worksheet_definition';
 import { WorksheetState } from 'dressdiscover/api/models/worksheet/state/worksheet_state';
 import { WorksheetFeatureId } from 'dressdiscover/api/models/worksheet/worksheet_feature_id';
 import { WorksheetFeatureSetId } from 'dressdiscover/api/models/worksheet/worksheet_feature_set_id';
@@ -13,19 +14,14 @@ export class CsvWorksheetStateExporter implements WorksheetStateExporter<string[
         return [WorksheetFeatureSetId.parse(split[0]), WorksheetFeatureId.parse(split[1])];
     }
 
-    export(worksheetStates: WorksheetState[]): string[][] {
+    export(worksheetDefinition: WorksheetDefinition, worksheetStates: WorksheetState[]): string[][] {
         const rows: string[][] = [];
 
         const headerRow = ["id", "description"];
-        for (const worksheetState of worksheetStates) {
-            for (const featureSetState of worksheetState.featureSets) {
-                for (const featureState of featureSetState.features) {
-                    // Output every feature set and feature state, even if it doesn't have values.
-                    const header = featureSetState.id.toString() + "/" + featureState.id.toString();
-                    if (!headerRow.some((existingHeader) => existingHeader === header)) {
-                        headerRow.push(header);
-                    }
-                }
+        // Output all feature sets and values so they're represented in the CSV.
+        for (const featureSetDefinition of worksheetDefinition.featureSets) {
+            for (const featureId of featureSetDefinition.featureIds) {
+                headerRow.push(featureSetDefinition.id.toString() + "/" + featureId.toString());
             }
         }
         rows.push(headerRow);
