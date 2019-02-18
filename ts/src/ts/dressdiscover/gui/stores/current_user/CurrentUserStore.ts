@@ -34,10 +34,10 @@ export class CurrentUserStore {
 
     @action
     login(currentUserSession: CurrentUserSession) {
-        this.clearError();
         this.clearCurrentUser();
+        this.clearError();
 
-        gapi.client.setToken({ access_token: currentUserSession.accessToken });
+        this.setGapiAccessToken(currentUserSession);
 
         ((gapi.client as any).oauth2.userinfo as gapi.client.oauth2.UserinfoResource).get({}).then(
             (response) => {
@@ -58,7 +58,9 @@ export class CurrentUserStore {
                     session: currentUserSession
                 }));
             },
-            (reason: any) => { this.setError(new Error(reason.toString())); });
+            (reason: any) => {
+                this.setError(new Error(JSON.stringify(reason)));
+            });
     }
 
     @action
@@ -114,13 +116,19 @@ export class CurrentUserStore {
     }
 
     @action
-    private setCurrentUser(currentUser: CurrentUser | null, saveToLocalStorage?: boolean) {
+    private setCurrentUser(currentUser: CurrentUser, saveToLocalStorage?: boolean) {
         this.currentUser = currentUser;
 
-        if (currentUser && (typeof (saveToLocalStorage) === "undefined" || saveToLocalStorage)) {
+        if (typeof (saveToLocalStorage) === "undefined" || saveToLocalStorage) {
             localStorage.setItem(CurrentUserStore.CURRENT_USER_ITEM_KEY, JSON.stringify(currentUser.toJsonObject()));
             this.logger.debug("set current user hash in local storage");
         }
+    }
+
+    @action
+    private setGapiAccessToken(currentUserSession: CurrentUserSession) {
+        gapi.client.setToken({ access_token: currentUserSession.accessToken });
+        this.logger.debug("set gapi access token");
     }
 
     private setCurrentUserFromLocalStorage() {
@@ -132,6 +140,8 @@ export class CurrentUserStore {
         this.logger.debug("retrieved current user hash from local storage");
         const currentUser = CurrentUser.fromJsonObject(JSON.parse(currentUserString));
 
+        // Can't set the gapi access token here, since gapi is probably not loaded yet.
+
         const self = this;
         Services.default.userSettingsQueryService.getUserSettings({ id: currentUser.id }).then((userSettings) => {
             self.setCurrentUser(currentUser.replaceSettings(userSettings), false);
@@ -139,7 +149,9 @@ export class CurrentUserStore {
             if (reason instanceof NoSuchUserSettingsException) {
                 self.setCurrentUser(currentUser, false);
             } else {
-                self.setCurrentUser(null, false);
+                runInAction(() => {
+                    self.currentUser = null;
+                });
                 self.setError(new Error(reason.toString()));
             }
         });
