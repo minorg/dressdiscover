@@ -1,6 +1,7 @@
 ﻿import {
     GoogleSheetsWorksheetStateConfiguration,
 } from 'dressdiscover/api/models/worksheet/configuration/google_sheets_worksheet_state_configuration';
+import { WorksheetState } from 'dressdiscover/api/models/worksheet/state/worksheet_state';
 import { WorksheetStateId } from 'dressdiscover/api/models/worksheet/state/worksheet_state_id';
 import { IoException } from 'dressdiscover/api/services/io_exception';
 import { NoSuchWorksheetStateException } from 'dressdiscover/api/services/worksheet/state/no_such_worksheet_state_exception';
@@ -12,7 +13,40 @@ export class GoogleSheetsWorksheetStateQueryService implements WorksheetStateQue
     constructor(private readonly configuration: GoogleSheetsWorksheetStateConfiguration) {
     }
 
-    static getFirstSheetData(kwds: { spreadsheetId: string }): Promise<string[][]> {
+    static getWorksheetStates(kwds: { spreadsheetId: string }): Promise<WorksheetState[]> {
+        const spreadsheetId = kwds.spreadsheetId;
+        return new Promise((resolve, reject) => {
+            GoogleSheetsWorksheetStateQueryService.getFirstSheetData({ spreadsheetId }).then((stringRows) => {
+                resolve(new CsvWorksheetStateImporter().importCsvRows(stringRows));
+            }, (reason: any) => reject(reason));
+        });
+    }
+
+    getWorksheetState(kwds: { id: WorksheetStateId; }): Promise<WorksheetState> {
+        const spreadsheetId = this.configuration.spreadsheetId;
+        return new Promise((resolve, reject) => {
+            GoogleSheetsWorksheetStateQueryService.getWorksheetStates({ spreadsheetId }).then((worksheetStates) => {
+                for (const worksheetState of worksheetStates) {
+                    if (worksheetState.id.equals(kwds.id)) {
+                        resolve(worksheetState);
+                        return;
+                    }
+                }
+                reject(new NoSuchWorksheetStateException(kwds));
+            }, (reason: any) => reject(reason));
+        });
+    }
+
+    getWorksheetStateIds(): Promise<WorksheetStateId[]> {
+        const spreadsheetId = this.configuration.spreadsheetId;
+        return new Promise((resolve, reject) => {
+            GoogleSheetsWorksheetStateQueryService.getWorksheetStates({ spreadsheetId }).then((worksheetStates) =>
+                worksheetStates.map((worksheetState) => worksheetState.id),
+                (reason: any) => reject(reason));
+        });
+    }
+
+    private static getFirstSheetData(kwds: { spreadsheetId: string }): Promise<string[][]> {
         return new Promise((resolve, reject) => {
             gapi.client.spreadsheets.get(kwds).then((response) => {
                 const sheets = response.result.sheets;
@@ -67,32 +101,6 @@ export class GoogleSheetsWorksheetStateQueryService implements WorksheetStateQue
             }, (reason: any) => {
                 reject(new IoException(reason.toString()));
             });
-        });
-    }
-
-    getWorksheetState(kwds: { id: WorksheetStateId; }): Promise<WorksheetState> {
-        const spreadsheetId = this.configuration.spreadsheetId;
-        return new Promise((resolve, reject) => {
-            GoogleSheetsWorksheetStateQueryService.getFirstSheetData({ spreadsheetId }).then((stringRows) => {
-                const worksheetStates = new CsvWorksheetStateImporter().importCsvRows(stringRows);
-                for (const worksheetState of worksheetStates) {
-                    if (worksheetState.id.equals(kwds.id)) {
-                        resolve(worksheetState);
-                        return;
-                    }
-                }
-                reject(new NoSuchWorksheetStateException(kwds));
-            }, (reason: any) => reject(reason));
-        });
-    }
-
-    getWorksheetStateIds(): Promise<WorksheetStateId[]> {
-        const spreadsheetId = this.configuration.spreadsheetId;
-        return new Promise((resolve, reject) => {
-            GoogleSheetsWorksheetStateQueryService.getFirstSheetData({ spreadsheetId }).then((stringRows) => {
-                const worksheetStates = new CsvWorksheetStateImporter().importCsvRows(stringRows);
-                return worksheetStates.map((worksheetState) => worksheetState.id);
-            }, (reason: any) => reject(reason));
         });
     }
 }
