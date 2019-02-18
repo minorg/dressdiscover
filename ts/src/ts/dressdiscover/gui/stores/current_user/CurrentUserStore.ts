@@ -1,6 +1,8 @@
-import { Auth0DecodedHash, Auth0Error, WebAuth } from 'auth0-js';
 import { User } from 'dressdiscover/api/models/user/user';
-import { Hrefs } from 'dressdiscover/gui/Hrefs';
+import { UserId } from 'dressdiscover/api/models/user/user_id';
+import { UserIdentityProvider } from 'dressdiscover/api/models/user/user_identity_provider';
+import { UserSettings } from 'dressdiscover/api/models/user/user_settings';
+import { NoSuchUserSettingsException } from 'dressdiscover/api/services/user/no_such_user_settings_exception';
 import { CurrentUser } from 'dressdiscover/gui/models/current_user/CurrentUser';
 import { CurrentUserSession } from 'dressdiscover/gui/models/current_user/CurrentUserSession';
 import { Services } from 'dressdiscover/gui/services/Services';
@@ -9,30 +11,15 @@ import * as invariant from 'invariant';
 import { action, computed, observable, runInAction } from 'mobx';
 
 export class CurrentUserStore {
-    private readonly auth0: WebAuth;
+    private static readonly CURRENT_USER_ITEM_KEY = "currentUser";
 
     @observable.ref currentUser?: CurrentUser | null;
-    @observable.ref error?: Auth0Error | Error | null;
+    @observable.ref error?: Error | null;
 
     constructor(private readonly logger: ILogger) {
-        this.auth0 = new WebAuth({
-            clientID: "m32ET2Qx-y5NEXtgQV9Vffk_5D4j3lrf",
-            domain: "dressdiscover.auth0.com",
-            redirectUri: window.location.protocol + "//" + window.location.host + Hrefs.loginCallback,
-            responseType: "token id_token",
-            scope: "email openid profile"
-        });
-
         runInAction("construction", () => {
-            const hashString = localStorage.getItem(CurrentUserStore.CURRENT_USER_AUTH0_DECODED_HASH_KEY);
-            if (hashString) {
-                logger.debug("retrieved current user hash from local storage");
-                this.setCurrentUser(JSON.parse(hashString) as Auth0DecodedHash, false);
-            } else {
-                this.clearCurrentUser();
-            }
-
             this.clearError();
+            this.setCurrentUserFromLocalStorage();
         });
     }
 
@@ -46,120 +33,132 @@ export class CurrentUserStore {
     }
 
     @action
-    handleLoginCallback() {
-        this.clearError();
+    login(currentUserSession: CurrentUserSession) {
         this.clearCurrentUser();
+        this.clearError();
 
-        // gapi.client.setToken({ access_token: kwds.googleAccessToken });
+        this.setGapiAccessToken(currentUserSession);
 
-        this.auth0.parseHash((err, authResult) => {
-            if (authResult && authResult.accessToken && authResult.idToken) {
-                this.setCurrentUser(authResult);
-            } else if (err) {
-                this.setError(err);
-            }
-        });
+        ((gapi.client as any).oauth2.userinfo as gapi.client.oauth2.UserinfoResource).get({}).then(
+            (response) => {
+                const result = response.result;
+                this.setCurrentUser(new CurrentUser({
+                    delegate: new User({
+                        emailAddress: result.email as string,
+                        emailAddressVerified: result.verified_email,
+                        familyName: result.family_name,
+                        givenName: result.given_name,
+                        identityProvider: UserIdentityProvider.GOOGLE_OAUTH2,
+                        identityProviderId: result.id as string,
+                        locale: result.locale,
+                        name: result.name,
+                        pictureUrl: result.picture
+                    }),
+                    id: UserId.parse(result.id as string),
+                    session: currentUserSession
+                }));
+            },
+            (reason: any) => {
+                this.setError(new Error(JSON.stringify(reason)));
+            });
     }
 
     @action
-    handleLogoutCallback() {
+    logout() {
+        this.clearCurrentUser();
     }
 
     @action
-    renewCurrentUserSession() {
-        invariant(this.currentUser, "expect existing user");
-
-        this.auth0.checkSession({}, (err, authResult) => {
-            if (authResult && authResult.accessToken && authResult.idToken) {
-                this.clearError();
-                this.setCurrentUser(authResult);
-            } else if (err) {
-                this.clearCurrentUser();
-                this.setError(err);
-            }
-        });
-    }
-
-    @action
-    setCurrentUser(authResult: Auth0DecodedHash, saveToLocalStorage?: boolean) {
-        if (!authResult.accessToken || !authResult.expiresIn || !authResult.idToken) {
-            this.clearCurrentUser();
-            this.setError(new Error("authResult has undefined fields"));
+    checkCurrentUserSession() {
+        const currentUser = this.currentUser;
+        if (!currentUser) {
+            return;
+        }
+        if (currentUser.session.isValid()) {
             return;
         }
 
-        const currentUserSession = new CurrentUserSession({
-            accessToken: authResult.accessToken,
-            expiresAt: (authResult.expiresIn * 1000) + new Date().getTime(),
-            idToken: authResult.idToken
-        });
+        // this.auth0WebAuth.checkSession({}, (err, authResult) => {
+        //     if (authResult && authResult.accessToken && authResult.idToken) {
+        //         this.clearError();
+        //         this.setCurrentUser(authResult);
+        //     } else if (err) {
+        //         this.clearCurrentUser();
+        //         this.setAuth0Error(err);
+        //     }
+        // });
+    }
 
-        // idTokenPayload:
-        // at_hash: "..."
-        // aud: "..."
-        // email: "..."
-        // email_verified: true
-        // exp: 1549878922
-        // family_name: "..."
-        // given_name: "..."
-        // iat: 123456
-        // iss: "https://dressdiscover.auth0.com/"
-        // locale: "en"
-        // name: "..."
-        // nickname: "..."
-        // nonce: "..."
-        // picture: "https://example.com/photo.jpg"
-        // sub: "..."
-        // updated_at: "2019-02-10T23:55:22.957Z"
-        this.currentUser = new CurrentUser({
-            delegate: new User({
-                emailAddress: authResult.idTokenPayload.email,
-                emailAddressVerified: authResult.idTokenPayload.email_verified,
-                familyName: authResult.idTokenPayload.family_name,
-                givenName: authResult.idTokenPayload.given_name,
-                locale: authResult.idTokenPayload.locale,
-                name: authResult.idTokenPayload.name,
-                nickname: authResult.idTokenPayload.nickname,
-                pictureUrl: authResult.idTokenPayload.picture
-            }),
-            session: currentUserSession
-        });
+    @action
+    setCurrentUserSettings(settings?: UserSettings) {
+        const currentUser = this.currentUser;
+        invariant(currentUser, "expected current user to be set");
+        if (settings) {
+            // Intentionally ignore result.
+            currentUser!.services.userSettingsCommandService.putUserSettings(({ id: currentUser!.id, userSettings: settings }));
+        }
+        this.setCurrentUser(currentUser!.replaceSettings(settings), true);
+    }
+
+    @action
+    private clearCurrentUser() {
+        this.currentUser = null;
+        localStorage.removeItem(CurrentUserStore.CURRENT_USER_ITEM_KEY);
+        this.logger.debug("cleared current user hash from local storage");
+
+        gapi.client.setToken(null);
+        this.logger.debug("cleared gapi client token");
+    }
+
+    @action
+    private clearError() {
+        this.error = null;
+    }
+
+    @action
+    private setCurrentUser(currentUser: CurrentUser, saveToLocalStorage?: boolean) {
+        this.currentUser = currentUser;
 
         if (typeof (saveToLocalStorage) === "undefined" || saveToLocalStorage) {
-            localStorage.setItem(CurrentUserStore.CURRENT_USER_AUTH0_DECODED_HASH_KEY, JSON.stringify(authResult));
+            localStorage.setItem(CurrentUserStore.CURRENT_USER_ITEM_KEY, JSON.stringify(currentUser.toJsonObject()));
             this.logger.debug("set current user hash in local storage");
         }
     }
 
     @action
-    setError(error: Auth0Error | Error) {
+    private setGapiAccessToken(currentUserSession: CurrentUserSession) {
+        gapi.client.setToken({ access_token: currentUserSession.accessToken });
+        this.logger.debug("set gapi access token");
+    }
+
+    private setCurrentUserFromLocalStorage() {
+        const currentUserString = localStorage.getItem(CurrentUserStore.CURRENT_USER_ITEM_KEY);
+        if (!currentUserString) {
+            this.currentUser = null;
+            return;
+        }
+        this.logger.debug("retrieved current user hash from local storage");
+        const currentUser = CurrentUser.fromJsonObject(JSON.parse(currentUserString));
+
+        // Can't set the gapi access token here, since gapi is probably not loaded yet.
+
+        const self = this;
+        Services.default.userSettingsQueryService.getUserSettings({ id: currentUser.id }).then((userSettings) => {
+            self.setCurrentUser(currentUser.replaceSettings(userSettings), false);
+        }, (reason) => {
+            if (reason instanceof NoSuchUserSettingsException) {
+                self.setCurrentUser(currentUser, false);
+            } else {
+                runInAction(() => {
+                    self.currentUser = null;
+                });
+                self.setError(new Error(reason.toString()));
+            }
+        });
+    }
+
+    @action
+    private setError(error: Error) {
         this.error = error;
     }
-
-    @action
-    startLogin() {
-        this.clearCurrentUser();
-        this.clearError();
-
-        this.auth0.authorize();
-    }
-
-    @action
-    startLogout() {
-        this.clearCurrentUser();
-        this.clearError();
-        this.auth0.logout({ returnTo: window.location.protocol + "//" + window.location.host + Hrefs.logoutCallback });
-    }
-
-    private clearCurrentUser() {
-        this.currentUser = null;
-        localStorage.removeItem(CurrentUserStore.CURRENT_USER_AUTH0_DECODED_HASH_KEY);
-        this.logger.debug("cleared current user hash from local storage");
-    }
-
-    private clearError() {
-        this.error = null;
-    }
-
-    private static readonly CURRENT_USER_AUTH0_DECODED_HASH_KEY = "currentUserAuth0DecodedHash";
 }

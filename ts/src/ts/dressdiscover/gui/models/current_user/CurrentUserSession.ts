@@ -1,15 +1,25 @@
 export class CurrentUserSession {
-    constructor(kwds: { accessToken: string, expiresAt: number, idToken: string }) {
+    constructor(kwds: { accessToken: string, expiresAt: Date }) {
         this.accessToken = kwds.accessToken;
         this.expiresAt = kwds.expiresAt;
-        this.idToken = kwds.idToken;
+    }
+
+    static fromJsonObject(json: any) {
+        return new CurrentUserSession({ accessToken: json.accessToken, expiresAt: new Date(json.expiresAt) });
     }
 
     isValid() {
-        return new Date().getTime() < this.expiresAt;
+        const currentDate = new Date();
+        return currentDate.getTime() < this.expiresAt.getTime();
+    }
+
+    toJsonObject() {
+        return {
+            accessToken: this.accessToken,
+            expiresAt: this.expiresAt.getTime()
+        }
     }
 
     readonly accessToken: string;
-    readonly expiresAt: number;
-    readonly idToken: string;
+    readonly expiresAt: Date;
 }

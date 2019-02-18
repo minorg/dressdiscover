@@ -4,6 +4,8 @@ public final class User implements org.thryft.waf.api.models.Model {
     public final static class Builder {
         public Builder() {
             emailAddress = null;
+            identityProvider = null;
+            identityProviderId = null;
             emailAddressVerified = com.google.common.base.Optional.<Boolean> absent();
             familyName = com.google.common.base.Optional.<String> absent();
             givenName = com.google.common.base.Optional.<String> absent();
@@ -15,6 +17,8 @@ public final class User implements org.thryft.waf.api.models.Model {
 
         public Builder(final User other) {
             this.emailAddress = other.getEmailAddress();
+            this.identityProvider = other.getIdentityProvider();
+            this.identityProviderId = other.getIdentityProviderId();
             this.emailAddressVerified = other.getEmailAddressVerified();
             this.familyName = other.getFamilyName();
             this.givenName = other.getGivenName();
@@ -24,14 +28,14 @@ public final class User implements org.thryft.waf.api.models.Model {
             this.pictureUrl = other.getPictureUrl();
         }
 
-        protected User _build(final String emailAddress, final com.google.common.base.Optional<Boolean> emailAddressVerified, final com.google.common.base.Optional<String> familyName, final com.google.common.base.Optional<String> givenName, final com.google.common.base.Optional<String> locale, final com.google.common.base.Optional<String> name, final com.google.common.base.Optional<String> nickname, final com.google.common.base.Optional<org.thryft.native_.Url> pictureUrl) {
-            return new User(emailAddress, emailAddressVerified, familyName, givenName, locale, name, nickname, pictureUrl);
+        protected User _build(final String emailAddress, final org.dressdiscover.api.models.user.UserIdentityProvider identityProvider, final String identityProviderId, final com.google.common.base.Optional<Boolean> emailAddressVerified, final com.google.common.base.Optional<String> familyName, final com.google.common.base.Optional<String> givenName, final com.google.common.base.Optional<String> locale, final com.google.common.base.Optional<String> name, final com.google.common.base.Optional<String> nickname, final com.google.common.base.Optional<org.thryft.native_.Url> pictureUrl) {
+            return new User(emailAddress, identityProvider, identityProviderId, emailAddressVerified, familyName, givenName, locale, name, nickname, pictureUrl);
         }
 
         public User build() {
-            UncheckedValidator.validate(emailAddress, emailAddressVerified, familyName, givenName, locale, name, nickname, pictureUrl);
+            UncheckedValidator.validate(emailAddress, identityProvider, identityProviderId, emailAddressVerified, familyName, givenName, locale, name, nickname, pictureUrl);
 
-            return _build(emailAddress, emailAddressVerified, familyName, givenName, locale, name, nickname, pictureUrl);
+            return _build(emailAddress, identityProvider, identityProviderId, emailAddressVerified, familyName, givenName, locale, name, nickname, pictureUrl);
         }
 
         /**
@@ -51,6 +55,14 @@ public final class User implements org.thryft.waf.api.models.Model {
 
         public final com.google.common.base.Optional<String> getGivenName() {
             return givenName;
+        }
+
+        public final @javax.annotation.Nullable org.dressdiscover.api.models.user.UserIdentityProvider getIdentityProvider() {
+            return identityProvider;
+        }
+
+        public final @javax.annotation.Nullable String getIdentityProviderId() {
+            return identityProviderId;
         }
 
         public final com.google.common.base.Optional<String> getLocale() {
@@ -88,25 +100,27 @@ public final class User implements org.thryft.waf.api.models.Model {
             try {
                 final org.thryft.protocol.ListBegin __list = iprot.readListBegin();
                 emailAddress = iprot.readString();
-                if (__list.getSize() > 1) {
+                identityProvider = iprot.readEnum(org.dressdiscover.api.models.user.UserIdentityProvider.Factory.getInstance());
+                identityProviderId = iprot.readString();
+                if (__list.getSize() > 3) {
                     emailAddressVerified = org.thryft.Optionals.of(iprot.readBool());
                 }
-                if (__list.getSize() > 2) {
+                if (__list.getSize() > 4) {
                     familyName = com.google.common.base.Optional.of(iprot.readString());
                 }
-                if (__list.getSize() > 3) {
+                if (__list.getSize() > 5) {
                     givenName = com.google.common.base.Optional.of(iprot.readString());
                 }
-                if (__list.getSize() > 4) {
+                if (__list.getSize() > 6) {
                     locale = com.google.common.base.Optional.of(iprot.readString());
                 }
-                if (__list.getSize() > 5) {
+                if (__list.getSize() > 7) {
                     name = com.google.common.base.Optional.of(iprot.readString());
                 }
-                if (__list.getSize() > 6) {
+                if (__list.getSize() > 8) {
                     nickname = com.google.common.base.Optional.of(iprot.readString());
                 }
-                if (__list.getSize() > 7) {
+                if (__list.getSize() > 9) {
                     try {
                         pictureUrl = com.google.common.base.Optional.of(org.thryft.native_.Url.parse(iprot.readString()));
                     } catch (final java.lang.IllegalArgumentException e) {
@@ -134,6 +148,14 @@ public final class User implements org.thryft.waf.api.models.Model {
                     switch (ifield.getName()) {
                     case "email_address": {
                         emailAddress = iprot.readString();
+                        break;
+                    }
+                    case "identity_provider": {
+                        identityProvider = iprot.readEnum(org.dressdiscover.api.models.user.UserIdentityProvider.Factory.getInstance());
+                        break;
+                    }
+                    case "identity_provider_id": {
+                        identityProviderId = iprot.readString();
                         break;
                     }
                     case "email_address_verified": {
@@ -198,6 +220,8 @@ public final class User implements org.thryft.waf.api.models.Model {
 
             switch (fieldMetadata) {
             case EMAIL_ADDRESS: setEmailAddress((String)value); return this;
+            case IDENTITY_PROVIDER: setIdentityProvider((org.dressdiscover.api.models.user.UserIdentityProvider)value); return this;
+            case IDENTITY_PROVIDER_ID: setIdentityProviderId((String)value); return this;
             case EMAIL_ADDRESS_VERIFIED: setEmailAddressVerified((Boolean)value); return this;
             case FAMILY_NAME: setFamilyName((String)value); return this;
             case GIVEN_NAME: setGivenName((String)value); return this;
@@ -250,10 +274,24 @@ public final class User implements org.thryft.waf.api.models.Model {
             return setGivenName(com.google.common.base.Optional.fromNullable(givenName));
         }
 
+        public Builder setIdentityProvider(final org.dressdiscover.api.models.user.UserIdentityProvider identityProvider) {
+            UncheckedValidator.validateIdentityProvider(identityProvider);
+            this.identityProvider = identityProvider;
+            return this;
+        }
+
+        public Builder setIdentityProviderId(final String identityProviderId) {
+            UncheckedValidator.validateIdentityProviderId(identityProviderId);
+            this.identityProviderId = identityProviderId;
+            return this;
+        }
+
         public Builder setIfPresent(final User other) {
             com.google.common.base.Preconditions.checkNotNull(other);
 
             setEmailAddress(other.getEmailAddress());
+            setIdentityProvider(other.getIdentityProvider());
+            setIdentityProviderId(other.getIdentityProviderId());
             if (other.getEmailAddressVerified().isPresent()) {
                 setEmailAddressVerified(other.getEmailAddressVerified());
             }
@@ -335,6 +373,8 @@ public final class User implements org.thryft.waf.api.models.Model {
 
             switch (fieldMetadata) {
             case EMAIL_ADDRESS: return unsetEmailAddress();
+            case IDENTITY_PROVIDER: return unsetIdentityProvider();
+            case IDENTITY_PROVIDER_ID: return unsetIdentityProviderId();
             case EMAIL_ADDRESS_VERIFIED: return unsetEmailAddressVerified();
             case FAMILY_NAME: return unsetFamilyName();
             case GIVEN_NAME: return unsetGivenName();
@@ -367,6 +407,16 @@ public final class User implements org.thryft.waf.api.models.Model {
             return this;
         }
 
+        public Builder unsetIdentityProvider() {
+            this.identityProvider = null;
+            return this;
+        }
+
+        public Builder unsetIdentityProviderId() {
+            this.identityProviderId = null;
+            return this;
+        }
+
         public Builder unsetLocale() {
             this.locale = com.google.common.base.Optional.<String> absent();
             return this;
@@ -391,6 +441,8 @@ public final class User implements org.thryft.waf.api.models.Model {
          * date_time.DateTime ctime;
          */
         private @javax.annotation.Nullable String emailAddress;
+        private @javax.annotation.Nullable org.dressdiscover.api.models.user.UserIdentityProvider identityProvider;
+        private @javax.annotation.Nullable String identityProviderId;
         private com.google.common.base.Optional<Boolean> emailAddressVerified;
         private com.google.common.base.Optional<String> familyName;
         private com.google.common.base.Optional<String> givenName;
@@ -432,6 +484,8 @@ public final class User implements org.thryft.waf.api.models.Model {
     @SuppressWarnings("serial")
     public enum FieldMetadata implements org.thryft.CompoundType.FieldMetadata {
         EMAIL_ADDRESS("emailAddress", new com.google.common.reflect.TypeToken<String>() {}, true, (short)0, "email_address", org.thryft.protocol.Type.STRING),
+        IDENTITY_PROVIDER("identityProvider", new com.google.common.reflect.TypeToken<org.dressdiscover.api.models.user.UserIdentityProvider>() {}, true, (short)0, "identity_provider", org.thryft.protocol.Type.STRING),
+        IDENTITY_PROVIDER_ID("identityProviderId", new com.google.common.reflect.TypeToken<String>() {}, true, (short)0, "identity_provider_id", org.thryft.protocol.Type.STRING),
         EMAIL_ADDRESS_VERIFIED("emailAddressVerified", new com.google.common.reflect.TypeToken<Boolean>() {}, false, (short)0, "email_address_verified", org.thryft.protocol.Type.BOOL),
         FAMILY_NAME("familyName", new com.google.common.reflect.TypeToken<String>() {}, false, (short)0, "family_name", org.thryft.protocol.Type.STRING),
         GIVEN_NAME("givenName", new com.google.common.reflect.TypeToken<String>() {}, false, (short)0, "given_name", org.thryft.protocol.Type.STRING),
@@ -483,6 +537,8 @@ public final class User implements org.thryft.waf.api.models.Model {
         public static FieldMetadata valueOfJavaName(final String javaName) {
             switch (javaName) {
             case "emailAddress": return EMAIL_ADDRESS;
+            case "identityProvider": return IDENTITY_PROVIDER;
+            case "identityProviderId": return IDENTITY_PROVIDER_ID;
             case "emailAddressVerified": return EMAIL_ADDRESS_VERIFIED;
             case "familyName": return FAMILY_NAME;
             case "givenName": return GIVEN_NAME;
@@ -498,6 +554,8 @@ public final class User implements org.thryft.waf.api.models.Model {
         public static FieldMetadata valueOfThriftName(final String thriftName) {
             switch (thriftName) {
             case "email_address": return EMAIL_ADDRESS;
+            case "identity_provider": return IDENTITY_PROVIDER;
+            case "identity_provider_id": return IDENTITY_PROVIDER_ID;
             case "email_address_verified": return EMAIL_ADDRESS_VERIFIED;
             case "family_name": return FAMILY_NAME;
             case "given_name": return GIVEN_NAME;
@@ -534,8 +592,10 @@ public final class User implements org.thryft.waf.api.models.Model {
     }
 
     public final static class ReadValidator {
-        public static void validate(final String emailAddress, final com.google.common.base.Optional<Boolean> emailAddressVerified, final com.google.common.base.Optional<String> familyName, final com.google.common.base.Optional<String> givenName, final com.google.common.base.Optional<String> locale, final com.google.common.base.Optional<String> name, final com.google.common.base.Optional<String> nickname, final com.google.common.base.Optional<org.thryft.native_.Url> pictureUrl) throws org.thryft.protocol.InputProtocolException {
+        public static void validate(final String emailAddress, final org.dressdiscover.api.models.user.UserIdentityProvider identityProvider, final String identityProviderId, final com.google.common.base.Optional<Boolean> emailAddressVerified, final com.google.common.base.Optional<String> familyName, final com.google.common.base.Optional<String> givenName, final com.google.common.base.Optional<String> locale, final com.google.common.base.Optional<String> name, final com.google.common.base.Optional<String> nickname, final com.google.common.base.Optional<org.thryft.native_.Url> pictureUrl) throws org.thryft.protocol.InputProtocolException {
             validateEmailAddress(emailAddress);
+            validateIdentityProvider(identityProvider);
+            validateIdentityProviderId(identityProviderId);
             validateEmailAddressVerified(emailAddressVerified);
             validateFamilyName(familyName);
             validateGivenName(givenName);
@@ -566,6 +626,34 @@ public final class User implements org.thryft.waf.api.models.Model {
                 }
                 if (__blank) {
                     throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.EMAIL_ADDRESS, String.format("org.dressdiscover.api.models.user.User: emailAddress: blank '%s' (length=%d)", emailAddress, __strLen));
+                }
+            }
+        }
+
+        public static void validateIdentityProvider(final org.dressdiscover.api.models.user.UserIdentityProvider identityProvider) throws org.thryft.protocol.InputProtocolException {
+            if (identityProvider == null) {
+                throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.IDENTITY_PROVIDER, "org.dressdiscover.api.models.user.User: identityProvider is null");
+            }
+        }
+
+        public static void validateIdentityProviderId(final String identityProviderId) throws org.thryft.protocol.InputProtocolException {
+            if (identityProviderId == null) {
+                throw new org.thryft.protocol.MissingFieldInputProtocolException(FieldMetadata.IDENTITY_PROVIDER_ID, "org.dressdiscover.api.models.user.User: identityProviderId is null");
+            }
+            if (identityProviderId.isEmpty()) {
+                throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.IDENTITY_PROVIDER_ID, "org.dressdiscover.api.models.user.User: identityProviderId: less than min length 1");
+            }
+            {
+                final int __strLen = identityProviderId.length();
+                boolean __blank = true;
+                for (int i = 0; i < __strLen; i++) {
+                    if (!Character.isWhitespace(identityProviderId.charAt(i))) {
+                        __blank = false;
+                        break;
+                    }
+                }
+                if (__blank) {
+                    throw new org.thryft.protocol.InvalidFieldInputProtocolException(FieldMetadata.IDENTITY_PROVIDER_ID, String.format("org.dressdiscover.api.models.user.User: identityProviderId: blank '%s' (length=%d)", identityProviderId, __strLen));
                 }
             }
         }
@@ -704,8 +792,10 @@ public final class User implements org.thryft.waf.api.models.Model {
     }
 
     public final static class UncheckedValidator {
-        public static void validate(final String emailAddress, final com.google.common.base.Optional<Boolean> emailAddressVerified, final com.google.common.base.Optional<String> familyName, final com.google.common.base.Optional<String> givenName, final com.google.common.base.Optional<String> locale, final com.google.common.base.Optional<String> name, final com.google.common.base.Optional<String> nickname, final com.google.common.base.Optional<org.thryft.native_.Url> pictureUrl) {
+        public static void validate(final String emailAddress, final org.dressdiscover.api.models.user.UserIdentityProvider identityProvider, final String identityProviderId, final com.google.common.base.Optional<Boolean> emailAddressVerified, final com.google.common.base.Optional<String> familyName, final com.google.common.base.Optional<String> givenName, final com.google.common.base.Optional<String> locale, final com.google.common.base.Optional<String> name, final com.google.common.base.Optional<String> nickname, final com.google.common.base.Optional<org.thryft.native_.Url> pictureUrl) {
             validateEmailAddress(emailAddress);
+            validateIdentityProvider(identityProvider);
+            validateIdentityProviderId(identityProviderId);
             validateEmailAddressVerified(emailAddressVerified);
             validateFamilyName(familyName);
             validateGivenName(givenName);
@@ -736,6 +826,34 @@ public final class User implements org.thryft.waf.api.models.Model {
                 }
                 if (__blank) {
                     throw new IllegalArgumentException(String.format("org.dressdiscover.api.models.user.User: emailAddress: blank '%s' (length=%d)", emailAddress, __strLen));
+                }
+            }
+        }
+
+        public static void validateIdentityProvider(final org.dressdiscover.api.models.user.UserIdentityProvider identityProvider) {
+            if (identityProvider == null) {
+                throw new NullPointerException("org.dressdiscover.api.models.user.User: identityProvider is null");
+            }
+        }
+
+        public static void validateIdentityProviderId(final String identityProviderId) {
+            if (identityProviderId == null) {
+                throw new NullPointerException("org.dressdiscover.api.models.user.User: identityProviderId is null");
+            }
+            if (identityProviderId.isEmpty()) {
+                throw new IllegalArgumentException("org.dressdiscover.api.models.user.User: identityProviderId: less than min length 1");
+            }
+            {
+                final int __strLen = identityProviderId.length();
+                boolean __blank = true;
+                for (int i = 0; i < __strLen; i++) {
+                    if (!Character.isWhitespace(identityProviderId.charAt(i))) {
+                        __blank = false;
+                        break;
+                    }
+                }
+                if (__blank) {
+                    throw new IllegalArgumentException(String.format("org.dressdiscover.api.models.user.User: identityProviderId: blank '%s' (length=%d)", identityProviderId, __strLen));
                 }
             }
         }
@@ -877,7 +995,7 @@ public final class User implements org.thryft.waf.api.models.Model {
      * Copy constructor
      */
     public User(final User other) {
-        this(other.getEmailAddress(), other.getEmailAddressVerified(), other.getFamilyName(), other.getGivenName(), other.getLocale(), other.getName(), other.getNickname(), other.getPictureUrl());
+        this(other.getEmailAddress(), other.getIdentityProvider(), other.getIdentityProviderId(), other.getEmailAddressVerified(), other.getFamilyName(), other.getGivenName(), other.getLocale(), other.getName(), other.getNickname(), other.getPictureUrl());
     }
 
     /**
@@ -885,8 +1003,10 @@ public final class User implements org.thryft.waf.api.models.Model {
      *
      * All fields should have been validated before calling this.
      */
-    protected User(final String emailAddress, final com.google.common.base.Optional<Boolean> emailAddressVerified, final com.google.common.base.Optional<String> familyName, final com.google.common.base.Optional<String> givenName, final com.google.common.base.Optional<String> locale, final com.google.common.base.Optional<String> name, final com.google.common.base.Optional<String> nickname, final com.google.common.base.Optional<org.thryft.native_.Url> pictureUrl) {
+    protected User(final String emailAddress, final org.dressdiscover.api.models.user.UserIdentityProvider identityProvider, final String identityProviderId, final com.google.common.base.Optional<Boolean> emailAddressVerified, final com.google.common.base.Optional<String> familyName, final com.google.common.base.Optional<String> givenName, final com.google.common.base.Optional<String> locale, final com.google.common.base.Optional<String> name, final com.google.common.base.Optional<String> nickname, final com.google.common.base.Optional<org.thryft.native_.Url> pictureUrl) {
         this.emailAddress = emailAddress;
+        this.identityProvider = identityProvider;
+        this.identityProviderId = identityProviderId;
         this.emailAddressVerified = emailAddressVerified;
         this.familyName = familyName;
         this.givenName = givenName;
@@ -911,15 +1031,15 @@ public final class User implements org.thryft.waf.api.models.Model {
     /**
      * Required factory method
      */
-    public static User create(final String emailAddress) {
-        UncheckedValidator.validate(emailAddress, com.google.common.base.Optional.<Boolean> absent(), com.google.common.base.Optional.<String> absent(), com.google.common.base.Optional.<String> absent(), com.google.common.base.Optional.<String> absent(), com.google.common.base.Optional.<String> absent(), com.google.common.base.Optional.<String> absent(), com.google.common.base.Optional.<org.thryft.native_.Url> absent());
-        return new User(emailAddress, com.google.common.base.Optional.<Boolean> absent(), com.google.common.base.Optional.<String> absent(), com.google.common.base.Optional.<String> absent(), com.google.common.base.Optional.<String> absent(), com.google.common.base.Optional.<String> absent(), com.google.common.base.Optional.<String> absent(), com.google.common.base.Optional.<org.thryft.native_.Url> absent());
+    public static User create(final String emailAddress, final org.dressdiscover.api.models.user.UserIdentityProvider identityProvider, final String identityProviderId) {
+        UncheckedValidator.validate(emailAddress, identityProvider, identityProviderId, com.google.common.base.Optional.<Boolean> absent(), com.google.common.base.Optional.<String> absent(), com.google.common.base.Optional.<String> absent(), com.google.common.base.Optional.<String> absent(), com.google.common.base.Optional.<String> absent(), com.google.common.base.Optional.<String> absent(), com.google.common.base.Optional.<org.thryft.native_.Url> absent());
+        return new User(emailAddress, identityProvider, identityProviderId, com.google.common.base.Optional.<Boolean> absent(), com.google.common.base.Optional.<String> absent(), com.google.common.base.Optional.<String> absent(), com.google.common.base.Optional.<String> absent(), com.google.common.base.Optional.<String> absent(), com.google.common.base.Optional.<String> absent(), com.google.common.base.Optional.<org.thryft.native_.Url> absent());
     }
 
     /**
      * Total Nullable factory method
      */
-    public static User create(final String emailAddress, @javax.annotation.Nullable final Boolean emailAddressVerified, @javax.annotation.Nullable final String familyName, @javax.annotation.Nullable final String givenName, @javax.annotation.Nullable final String locale, @javax.annotation.Nullable final String name, @javax.annotation.Nullable final String nickname, @javax.annotation.Nullable final org.thryft.native_.Url pictureUrl) {
+    public static User create(final String emailAddress, final org.dressdiscover.api.models.user.UserIdentityProvider identityProvider, final String identityProviderId, @javax.annotation.Nullable final Boolean emailAddressVerified, @javax.annotation.Nullable final String familyName, @javax.annotation.Nullable final String givenName, @javax.annotation.Nullable final String locale, @javax.annotation.Nullable final String name, @javax.annotation.Nullable final String nickname, @javax.annotation.Nullable final org.thryft.native_.Url pictureUrl) {
         final com.google.common.base.Optional<Boolean> emailAddressVerifiedOptional = org.thryft.Optionals.fromNullable(emailAddressVerified);
         final com.google.common.base.Optional<String> familyNameOptional = com.google.common.base.Optional.fromNullable(familyName);
         final com.google.common.base.Optional<String> givenNameOptional = com.google.common.base.Optional.fromNullable(givenName);
@@ -927,16 +1047,16 @@ public final class User implements org.thryft.waf.api.models.Model {
         final com.google.common.base.Optional<String> nameOptional = com.google.common.base.Optional.fromNullable(name);
         final com.google.common.base.Optional<String> nicknameOptional = com.google.common.base.Optional.fromNullable(nickname);
         final com.google.common.base.Optional<org.thryft.native_.Url> pictureUrlOptional = com.google.common.base.Optional.fromNullable(pictureUrl);
-        UncheckedValidator.validate(emailAddress, emailAddressVerifiedOptional, familyNameOptional, givenNameOptional, localeOptional, nameOptional, nicknameOptional, pictureUrlOptional);
-        return new User(emailAddress, emailAddressVerifiedOptional, familyNameOptional, givenNameOptional, localeOptional, nameOptional, nicknameOptional, pictureUrlOptional);
+        UncheckedValidator.validate(emailAddress, identityProvider, identityProviderId, emailAddressVerifiedOptional, familyNameOptional, givenNameOptional, localeOptional, nameOptional, nicknameOptional, pictureUrlOptional);
+        return new User(emailAddress, identityProvider, identityProviderId, emailAddressVerifiedOptional, familyNameOptional, givenNameOptional, localeOptional, nameOptional, nicknameOptional, pictureUrlOptional);
     }
 
     /**
      * Optional factory method
      */
-    public static User create(final String emailAddress, final com.google.common.base.Optional<Boolean> emailAddressVerified, final com.google.common.base.Optional<String> familyName, final com.google.common.base.Optional<String> givenName, final com.google.common.base.Optional<String> locale, final com.google.common.base.Optional<String> name, final com.google.common.base.Optional<String> nickname, final com.google.common.base.Optional<org.thryft.native_.Url> pictureUrl) {
-        UncheckedValidator.validate(emailAddress, emailAddressVerified, familyName, givenName, locale, name, nickname, pictureUrl);
-        return new User(emailAddress, emailAddressVerified, familyName, givenName, locale, name, nickname, pictureUrl);
+    public static User create(final String emailAddress, final org.dressdiscover.api.models.user.UserIdentityProvider identityProvider, final String identityProviderId, final com.google.common.base.Optional<Boolean> emailAddressVerified, final com.google.common.base.Optional<String> familyName, final com.google.common.base.Optional<String> givenName, final com.google.common.base.Optional<String> locale, final com.google.common.base.Optional<String> name, final com.google.common.base.Optional<String> nickname, final com.google.common.base.Optional<org.thryft.native_.Url> pictureUrl) {
+        UncheckedValidator.validate(emailAddress, identityProvider, identityProviderId, emailAddressVerified, familyName, givenName, locale, name, nickname, pictureUrl);
+        return new User(emailAddress, identityProvider, identityProviderId, emailAddressVerified, familyName, givenName, locale, name, nickname, pictureUrl);
     }
 
     @Override
@@ -951,6 +1071,14 @@ public final class User implements org.thryft.waf.api.models.Model {
         final User other = (User)otherObject;
 
         if (!(getEmailAddress().equals(other.getEmailAddress()))) {
+            return false;
+        }
+
+        if (!(getIdentityProvider().equals(other.getIdentityProvider()))) {
+            return false;
+        }
+
+        if (!(getIdentityProviderId().equals(other.getIdentityProviderId()))) {
             return false;
         }
 
@@ -1001,6 +1129,8 @@ public final class User implements org.thryft.waf.api.models.Model {
     public java.lang.Object get(final FieldMetadata fieldMetadata) {
         switch (fieldMetadata) {
         case EMAIL_ADDRESS: return getEmailAddress();
+        case IDENTITY_PROVIDER: return getIdentityProvider();
+        case IDENTITY_PROVIDER_ID: return getIdentityProviderId();
         case EMAIL_ADDRESS_VERIFIED: return getEmailAddressVerified();
         case FAMILY_NAME: return getFamilyName();
         case GIVEN_NAME: return getGivenName();
@@ -1032,6 +1162,14 @@ public final class User implements org.thryft.waf.api.models.Model {
         return givenName;
     }
 
+    public final org.dressdiscover.api.models.user.UserIdentityProvider getIdentityProvider() {
+        return identityProvider;
+    }
+
+    public final String getIdentityProviderId() {
+        return identityProviderId;
+    }
+
     public final com.google.common.base.Optional<String> getLocale() {
         return locale;
     }
@@ -1052,6 +1190,8 @@ public final class User implements org.thryft.waf.api.models.Model {
     public int hashCode() {
         int hashCode = 17;
         hashCode = 31 * hashCode + getEmailAddress().hashCode();
+        hashCode = 31 * hashCode + getIdentityProvider().ordinal();
+        hashCode = 31 * hashCode + getIdentityProviderId().hashCode();
         if (getEmailAddressVerified().isPresent()) {
             hashCode = 31 * hashCode + (getEmailAddressVerified().get() ? 1 : 0);
         }
@@ -1093,6 +1233,8 @@ public final class User implements org.thryft.waf.api.models.Model {
 
     public static User readAsList(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
         String emailAddress;
+        org.dressdiscover.api.models.user.UserIdentityProvider identityProvider;
+        String identityProviderId;
         com.google.common.base.Optional<Boolean> emailAddressVerified = com.google.common.base.Optional.<Boolean> absent();
         com.google.common.base.Optional<String> familyName = com.google.common.base.Optional.<String> absent();
         com.google.common.base.Optional<String> givenName = com.google.common.base.Optional.<String> absent();
@@ -1104,25 +1246,27 @@ public final class User implements org.thryft.waf.api.models.Model {
         try {
             final org.thryft.protocol.ListBegin __list = iprot.readListBegin();
             emailAddress = iprot.readString();
-            if (__list.getSize() > 1) {
+            identityProvider = iprot.readEnum(org.dressdiscover.api.models.user.UserIdentityProvider.Factory.getInstance());
+            identityProviderId = iprot.readString();
+            if (__list.getSize() > 3) {
                 emailAddressVerified = org.thryft.Optionals.of(iprot.readBool());
             }
-            if (__list.getSize() > 2) {
+            if (__list.getSize() > 4) {
                 familyName = com.google.common.base.Optional.of(iprot.readString());
             }
-            if (__list.getSize() > 3) {
+            if (__list.getSize() > 5) {
                 givenName = com.google.common.base.Optional.of(iprot.readString());
             }
-            if (__list.getSize() > 4) {
+            if (__list.getSize() > 6) {
                 locale = com.google.common.base.Optional.of(iprot.readString());
             }
-            if (__list.getSize() > 5) {
+            if (__list.getSize() > 7) {
                 name = com.google.common.base.Optional.of(iprot.readString());
             }
-            if (__list.getSize() > 6) {
+            if (__list.getSize() > 8) {
                 nickname = com.google.common.base.Optional.of(iprot.readString());
             }
-            if (__list.getSize() > 7) {
+            if (__list.getSize() > 9) {
                 try {
                     pictureUrl = com.google.common.base.Optional.of(org.thryft.native_.Url.parse(iprot.readString()));
                 } catch (final java.lang.IllegalArgumentException e) {
@@ -1133,9 +1277,9 @@ public final class User implements org.thryft.waf.api.models.Model {
             throw new IllegalStateException(e);
         }
 
-        ReadValidator.validate(emailAddress, emailAddressVerified, familyName, givenName, locale, name, nickname, pictureUrl);
+        ReadValidator.validate(emailAddress, identityProvider, identityProviderId, emailAddressVerified, familyName, givenName, locale, name, nickname, pictureUrl);
 
-        return new User(emailAddress, emailAddressVerified, familyName, givenName, locale, name, nickname, pictureUrl);
+        return new User(emailAddress, identityProvider, identityProviderId, emailAddressVerified, familyName, givenName, locale, name, nickname, pictureUrl);
     }
 
     public static User readAsStruct(final org.thryft.protocol.InputProtocol iprot) throws org.thryft.protocol.InputProtocolException {
@@ -1144,6 +1288,8 @@ public final class User implements org.thryft.waf.api.models.Model {
 
     public static User readAsStruct(final org.thryft.protocol.InputProtocol iprot, final com.google.common.base.Optional<UnknownFieldCallback> unknownFieldCallback) throws org.thryft.protocol.InputProtocolException {
         @javax.annotation.Nullable String emailAddress = null;
+        @javax.annotation.Nullable org.dressdiscover.api.models.user.UserIdentityProvider identityProvider = null;
+        @javax.annotation.Nullable String identityProviderId = null;
         com.google.common.base.Optional<Boolean> emailAddressVerified = com.google.common.base.Optional.<Boolean> absent();
         com.google.common.base.Optional<String> familyName = com.google.common.base.Optional.<String> absent();
         com.google.common.base.Optional<String> givenName = com.google.common.base.Optional.<String> absent();
@@ -1162,6 +1308,14 @@ public final class User implements org.thryft.waf.api.models.Model {
                 switch (ifield.getName()) {
                 case "email_address": {
                     emailAddress = iprot.readString();
+                    break;
+                }
+                case "identity_provider": {
+                    identityProvider = iprot.readEnum(org.dressdiscover.api.models.user.UserIdentityProvider.Factory.getInstance());
+                    break;
+                }
+                case "identity_provider_id": {
+                    identityProviderId = iprot.readString();
                     break;
                 }
                 case "email_address_verified": {
@@ -1208,19 +1362,19 @@ public final class User implements org.thryft.waf.api.models.Model {
             throw new IllegalStateException(e);
         }
 
-        ReadValidator.validate(emailAddress, emailAddressVerified, familyName, givenName, locale, name, nickname, pictureUrl);
+        ReadValidator.validate(emailAddress, identityProvider, identityProviderId, emailAddressVerified, familyName, givenName, locale, name, nickname, pictureUrl);
 
-        return new User(emailAddress, emailAddressVerified, familyName, givenName, locale, name, nickname, pictureUrl);
+        return new User(emailAddress, identityProvider, identityProviderId, emailAddressVerified, familyName, givenName, locale, name, nickname, pictureUrl);
     }
 
     public User replaceEmailAddress(final String emailAddress) {
         UncheckedValidator.validateEmailAddress(emailAddress);
-        return new User(emailAddress, this.emailAddressVerified, this.familyName, this.givenName, this.locale, this.name, this.nickname, this.pictureUrl);
+        return new User(emailAddress, this.identityProvider, this.identityProviderId, this.emailAddressVerified, this.familyName, this.givenName, this.locale, this.name, this.nickname, this.pictureUrl);
     }
 
     public User replaceEmailAddressVerified(final com.google.common.base.Optional<Boolean> emailAddressVerified) {
         UncheckedValidator.validateEmailAddressVerified(emailAddressVerified);
-        return new User(this.emailAddress, emailAddressVerified, this.familyName, this.givenName, this.locale, this.name, this.nickname, this.pictureUrl);
+        return new User(this.emailAddress, this.identityProvider, this.identityProviderId, emailAddressVerified, this.familyName, this.givenName, this.locale, this.name, this.nickname, this.pictureUrl);
     }
 
     public User replaceEmailAddressVerified(@javax.annotation.Nullable final Boolean emailAddressVerified) {
@@ -1233,7 +1387,7 @@ public final class User implements org.thryft.waf.api.models.Model {
 
     public User replaceFamilyName(final com.google.common.base.Optional<String> familyName) {
         UncheckedValidator.validateFamilyName(familyName);
-        return new User(this.emailAddress, this.emailAddressVerified, familyName, this.givenName, this.locale, this.name, this.nickname, this.pictureUrl);
+        return new User(this.emailAddress, this.identityProvider, this.identityProviderId, this.emailAddressVerified, familyName, this.givenName, this.locale, this.name, this.nickname, this.pictureUrl);
     }
 
     public User replaceFamilyName(@javax.annotation.Nullable final String familyName) {
@@ -1242,16 +1396,26 @@ public final class User implements org.thryft.waf.api.models.Model {
 
     public User replaceGivenName(final com.google.common.base.Optional<String> givenName) {
         UncheckedValidator.validateGivenName(givenName);
-        return new User(this.emailAddress, this.emailAddressVerified, this.familyName, givenName, this.locale, this.name, this.nickname, this.pictureUrl);
+        return new User(this.emailAddress, this.identityProvider, this.identityProviderId, this.emailAddressVerified, this.familyName, givenName, this.locale, this.name, this.nickname, this.pictureUrl);
     }
 
     public User replaceGivenName(@javax.annotation.Nullable final String givenName) {
         return replaceGivenName(com.google.common.base.Optional.fromNullable(givenName));
     }
 
+    public User replaceIdentityProvider(final org.dressdiscover.api.models.user.UserIdentityProvider identityProvider) {
+        UncheckedValidator.validateIdentityProvider(identityProvider);
+        return new User(this.emailAddress, identityProvider, this.identityProviderId, this.emailAddressVerified, this.familyName, this.givenName, this.locale, this.name, this.nickname, this.pictureUrl);
+    }
+
+    public User replaceIdentityProviderId(final String identityProviderId) {
+        UncheckedValidator.validateIdentityProviderId(identityProviderId);
+        return new User(this.emailAddress, this.identityProvider, identityProviderId, this.emailAddressVerified, this.familyName, this.givenName, this.locale, this.name, this.nickname, this.pictureUrl);
+    }
+
     public User replaceLocale(final com.google.common.base.Optional<String> locale) {
         UncheckedValidator.validateLocale(locale);
-        return new User(this.emailAddress, this.emailAddressVerified, this.familyName, this.givenName, locale, this.name, this.nickname, this.pictureUrl);
+        return new User(this.emailAddress, this.identityProvider, this.identityProviderId, this.emailAddressVerified, this.familyName, this.givenName, locale, this.name, this.nickname, this.pictureUrl);
     }
 
     public User replaceLocale(@javax.annotation.Nullable final String locale) {
@@ -1260,7 +1424,7 @@ public final class User implements org.thryft.waf.api.models.Model {
 
     public User replaceName(final com.google.common.base.Optional<String> name) {
         UncheckedValidator.validateName(name);
-        return new User(this.emailAddress, this.emailAddressVerified, this.familyName, this.givenName, this.locale, name, this.nickname, this.pictureUrl);
+        return new User(this.emailAddress, this.identityProvider, this.identityProviderId, this.emailAddressVerified, this.familyName, this.givenName, this.locale, name, this.nickname, this.pictureUrl);
     }
 
     public User replaceName(@javax.annotation.Nullable final String name) {
@@ -1269,7 +1433,7 @@ public final class User implements org.thryft.waf.api.models.Model {
 
     public User replaceNickname(final com.google.common.base.Optional<String> nickname) {
         UncheckedValidator.validateNickname(nickname);
-        return new User(this.emailAddress, this.emailAddressVerified, this.familyName, this.givenName, this.locale, this.name, nickname, this.pictureUrl);
+        return new User(this.emailAddress, this.identityProvider, this.identityProviderId, this.emailAddressVerified, this.familyName, this.givenName, this.locale, this.name, nickname, this.pictureUrl);
     }
 
     public User replaceNickname(@javax.annotation.Nullable final String nickname) {
@@ -1278,7 +1442,7 @@ public final class User implements org.thryft.waf.api.models.Model {
 
     public User replacePictureUrl(final com.google.common.base.Optional<org.thryft.native_.Url> pictureUrl) {
         UncheckedValidator.validatePictureUrl(pictureUrl);
-        return new User(this.emailAddress, this.emailAddressVerified, this.familyName, this.givenName, this.locale, this.name, this.nickname, pictureUrl);
+        return new User(this.emailAddress, this.identityProvider, this.identityProviderId, this.emailAddressVerified, this.familyName, this.givenName, this.locale, this.name, this.nickname, pictureUrl);
     }
 
     public User replacePictureUrl(@javax.annotation.Nullable final org.thryft.native_.Url pictureUrl) {
@@ -1287,14 +1451,18 @@ public final class User implements org.thryft.waf.api.models.Model {
 
     @Override
     public String toString() {
-        return com.google.common.base.MoreObjects.toStringHelper(this).omitNullValues().add("email_address", getEmailAddress()).add("email_address_verified", getEmailAddressVerified().orNull()).add("family_name", getFamilyName().orNull()).add("given_name", getGivenName().orNull()).add("locale", getLocale().orNull()).add("name", getName().orNull()).add("nickname", getNickname().orNull()).add("picture_url", getPictureUrl().orNull()).toString();
+        return com.google.common.base.MoreObjects.toStringHelper(this).omitNullValues().add("email_address", getEmailAddress()).add("identity_provider", getIdentityProvider()).add("identity_provider_id", getIdentityProviderId()).add("email_address_verified", getEmailAddressVerified().orNull()).add("family_name", getFamilyName().orNull()).add("given_name", getGivenName().orNull()).add("locale", getLocale().orNull()).add("name", getName().orNull()).add("nickname", getNickname().orNull()).add("picture_url", getPictureUrl().orNull()).toString();
     }
 
     @Override
     public void writeAsList(final org.thryft.protocol.OutputProtocol oprot) throws org.thryft.protocol.OutputProtocolException {
-        oprot.writeListBegin(org.thryft.protocol.Type.VOID_, 8);
+        oprot.writeListBegin(org.thryft.protocol.Type.VOID_, 10);
 
         oprot.writeString(getEmailAddress());
+
+        oprot.writeEnum(getIdentityProvider());
+
+        oprot.writeString(getIdentityProviderId());
 
         if (getEmailAddressVerified().isPresent()) {
             oprot.writeBool(getEmailAddressVerified().get());
@@ -1374,6 +1542,10 @@ public final class User implements org.thryft.waf.api.models.Model {
     public void writeFields(final org.thryft.protocol.OutputProtocol oprot) throws org.thryft.protocol.OutputProtocolException {
         writeEmailAddressField(oprot);
 
+        writeIdentityProviderField(oprot);
+
+        writeIdentityProviderIdField(oprot);
+
         writeEmailAddressVerifiedField(oprot);
 
         writeFamilyNameField(oprot);
@@ -1397,6 +1569,18 @@ public final class User implements org.thryft.waf.api.models.Model {
             oprot.writeString(getGivenName().get());
             oprot.writeFieldEnd();
         }
+    }
+
+    public void writeIdentityProviderField(final org.thryft.protocol.OutputProtocol oprot) throws org.thryft.protocol.OutputProtocolException {
+        oprot.writeFieldBegin(FieldMetadata.IDENTITY_PROVIDER);
+        oprot.writeEnum(getIdentityProvider());
+        oprot.writeFieldEnd();
+    }
+
+    public void writeIdentityProviderIdField(final org.thryft.protocol.OutputProtocol oprot) throws org.thryft.protocol.OutputProtocolException {
+        oprot.writeFieldBegin(FieldMetadata.IDENTITY_PROVIDER_ID);
+        oprot.writeString(getIdentityProviderId());
+        oprot.writeFieldEnd();
     }
 
     public void writeLocaleField(final org.thryft.protocol.OutputProtocol oprot) throws org.thryft.protocol.OutputProtocolException {
@@ -1435,6 +1619,10 @@ public final class User implements org.thryft.waf.api.models.Model {
      * date_time.DateTime ctime;
      */
     private final String emailAddress;
+
+    private final org.dressdiscover.api.models.user.UserIdentityProvider identityProvider;
+
+    private final String identityProviderId;
 
     private final com.google.common.base.Optional<Boolean> emailAddressVerified;
 

@@ -39,6 +39,7 @@ class Navbar extends React.Component<Props> {
               {currentUser.name}
             </DropdownToggle>
             <DropdownMenu right>
+              <DropdownItem><Link to={Hrefs.userSettings}>Settings</Link></DropdownItem>
               <DropdownItem><Link to={Hrefs.logout}>Logout</Link></DropdownItem>
             </DropdownMenu>
           </UncontrolledDropdown>

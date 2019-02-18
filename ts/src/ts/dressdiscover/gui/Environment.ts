@@ -15,6 +15,6 @@ export class Environment {
     }
 
     static get supportsLogin(): boolean {
-        return window.location.hostname.endsWith("dressdiscover.org") || window.location.host === "localhost:9000";
+        return window.location.hostname.endsWith("dressdiscover.org") || window.location.host === "localhost:9000" || window.location.host === "tunnel.minorgordon.net";
     }
 }

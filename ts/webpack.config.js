@@ -18,6 +18,7 @@ module.exports = (env, argv) => ({
     contentBase: distPath,
     historyApiFallback: true,
     host: 'localhost',
+    // host: '0.0.0.0',
     hot: true,
     inline: true,
     open: true,
@@ -32,6 +33,8 @@ module.exports = (env, argv) => ({
         secure: false
       }
     },
+    // Need this to accept requests through the reverse tunnel.
+    public: "tunnel.minorgordon.net",
     stats: 'minimal'
   },
   // https://webpack.js.org/configuration/devtool/
