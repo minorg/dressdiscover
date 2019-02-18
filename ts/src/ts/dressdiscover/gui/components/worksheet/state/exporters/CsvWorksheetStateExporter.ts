@@ -20,10 +20,11 @@ export class CsvWorksheetStateExporter implements WorksheetStateExporter<string[
         for (const worksheetState of worksheetStates) {
             for (const featureSetState of worksheetState.featureSets) {
                 for (const featureState of featureSetState.features) {
-                    if (!featureState.selectedValueIds) {
-                        continue;
+                    // Output every feature set and feature state, even if it doesn't have values.
+                    const header = featureSetState.id.toString() + "/" + featureState.id.toString();
+                    if (!headerRow.some((existingHeader) => existingHeader === header)) {
+                        headerRow.push(header);
                     }
-                    headerRow.push(featureSetState.id.toString() + "/" + featureState.id.toString());
                 }
             }
         }

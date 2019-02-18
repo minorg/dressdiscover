@@ -28,6 +28,9 @@ export class CsvWorksheetStateImporter {
                 continue;
             }
 
+            if (!dataRow[0].length) {
+                continue;
+            }
             const id = WorksheetStateId.parse(dataRow[0]);
 
             let description: string | undefined = dataRow[1];

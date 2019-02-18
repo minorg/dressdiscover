@@ -52,7 +52,7 @@ export class GoogleSheetsWorksheetStateQueryService implements WorksheetStateQue
 
     private static getFirstSheetData(kwds: { spreadsheetId: string }): Promise<string[][]> {
         return new Promise((resolve, reject) => {
-            GoogleSheetsWorksheetStateQueryService.getSpreadsheetsResource().get(kwds).then((response) => {
+            GoogleSheetsWorksheetStateQueryService.getSpreadsheetsResource().get({ includeGridData: true, spreadsheetId: kwds.spreadsheetId }).then((response) => {
                 const sheets = response.result.sheets;
                 if (!sheets || !sheets.length) {
                     resolve([]);
