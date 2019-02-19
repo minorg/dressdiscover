@@ -1,4 +1,4 @@
-export class IoException {
+export class IoException implements Exception {
     constructor(kwds: {causeMessage: string}) {
         this.causeMessage = IoException.validateCauseMessage(kwds.causeMessage);
     }

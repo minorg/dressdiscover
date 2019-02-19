@@ -1,6 +1,6 @@
 import { UserId } from "../../models/user/user_id";
 
-export class NoSuchUserSettingsException {
+export class NoSuchUserSettingsException implements Exception {
     constructor(kwds?: {id?: UserId}) {
         if (!kwds) {
             return;

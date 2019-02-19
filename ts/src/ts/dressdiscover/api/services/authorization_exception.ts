@@ -1,4 +1,4 @@
-export class AuthorizationException {
+export class AuthorizationException implements Exception {
     constructor(kwds: {causeMessage: string}) {
         this.causeMessage = AuthorizationException.validateCauseMessage(kwds.causeMessage);
     }
