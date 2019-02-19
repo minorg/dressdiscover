@@ -6,7 +6,6 @@ import { WorksheetStateId } from 'dressdiscover/api/models/worksheet/state/works
 import { WorksheetStateMark } from 'dressdiscover/api/models/worksheet/state/worksheet_state_mark';
 import { GenericErrorHandler } from 'dressdiscover/gui/components/error/GenericErrorHandler';
 import { Headline } from 'dressdiscover/gui/components/frame/Headline';
-import { WorksheetStore } from 'dressdiscover/gui/stores/worksheet/WorksheetStore';
 import * as invariant from 'invariant';
 import * as _ from 'lodash';
 import { inject, observer } from 'mobx-react';

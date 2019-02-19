@@ -2,8 +2,10 @@ import './WorksheetStateEdit.scss';
 
 import * as classnames from 'classnames';
 import { WorksheetFeatureSetId } from 'dressdiscover/api/models/worksheet/worksheet_feature_set_id';
+import { CurrentUserStore } from 'dressdiscover/gui/stores/current_user/CurrentUserStore';
 import { History } from 'history';
 import * as _ from 'lodash';
+import { inject } from 'mobx-react';
 import * as React from 'react';
 import { RouteComponentProps } from 'react-router';
 import { Button, Input, Table } from 'reactstrap';
@@ -27,10 +29,12 @@ export class WorksheetStateEdit extends React.Component<RouteComponentProps<Work
 }
 
 interface WorksheetStateEditImplProps {
+    currentUserStore?: CurrentUserStore;
     history: History;
     worksheetState: WorksheetStateWrapper;
 }
 
+@inject("currentUserStore")
 class WorksheetStateEditImpl extends React.Component<WorksheetStateEditImplProps, {
     description?: string,
     selectedFeatureSetIds: WorksheetFeatureSetId[]
@@ -115,10 +119,11 @@ class WorksheetStateEditImpl extends React.Component<WorksheetStateEditImplProps
     }
 
     save() {
-        this.props.worksheetState.selectFeatureSets(this.state.selectedFeatureSetIds);
+        const { currentUserStore, worksheetState } = this.props;
+        worksheetState.selectFeatureSets(this.state.selectedFeatureSetIds);
         if (this.state.description && this.state.description.trim().length) {
-            this.props.worksheetState.text = this.state.description.trim();
+            worksheetState.text = this.state.description.trim();
         }
-        this.props.worksheetState.save();
+        currentUserStore!.currentUserServices.worksheetStateCommandService.putWorksheetState({ state: worksheetState.toWorksheetState() });
     }
 }
