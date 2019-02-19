@@ -2,6 +2,7 @@ namespace * dressdiscover.api.services.worksheet.state
 
 include "dressdiscover/api/models/worksheet/state/worksheet_state.thrift"
 include "dressdiscover/api/models/worksheet/state/worksheet_state_id.thrift"
+include "dressdiscover/api/services/authorization_exception.thrift"
 include "dressdiscover/api/services/io_exception.thrift"
 include "dressdiscover/api/services/worksheet/state/no_such_worksheet_state_exception.thrift"
 
@@ -10,13 +11,15 @@ service WorksheetStateQueryService {
     get_worksheet_state(
         worksheet_state_id.WorksheetStateId id
     ) throws (
-        io_exception.IoException e1,
-        no_such_worksheet_state_exception.NoSuchWorksheetStateException e2
+        authorization_exception.AuthorizationException e1,
+        io_exception.IoException e2,
+        no_such_worksheet_state_exception.NoSuchWorksheetStateException e3
     );
 
     list<worksheet_state_id.WorksheetStateId>
     get_worksheet_state_ids(
     ) throws (
-        io_exception.IoException e
+        authorization_exception.AuthorizationException e1,
+        io_exception.IoException e2
     );
 }
