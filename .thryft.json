@@ -76,6 +76,7 @@
                 "thrift_root_dir": "thrift/src",
                 "thrift_include_dirs": ["../thryft-waf/thrift/src"],
                 "thrift_files": [
+                    "thrift/src/dressdiscover/api/services/authentication_exception.thrift",
                     "thrift/src/dressdiscover/api/services/authorization_exception.thrift",
                     "thrift/src/dressdiscover/api/services/io_exception.thrift",
                     "thrift/src/dressdiscover/api/services/user/no_such_user_exception.thrift",
