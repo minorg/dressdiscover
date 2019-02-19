@@ -9,6 +9,7 @@ import {
 import { NoSuchWorksheetStateException } from 'dressdiscover/api/services/worksheet/state/no_such_worksheet_state_exception';
 import { WorksheetStateCommandService } from 'dressdiscover/api/services/worksheet/state/worksheet_state_command_service';
 import { CsvWorksheetStateExporter } from 'dressdiscover/gui/components/worksheet/state/exporters/CsvWorksheetStateExporter';
+import { convertGapiErrorToException } from 'dressdiscover/gui/services/GapiException';
 import {
     GoogleSheetsWorksheetStateQueryService,
 } from 'dressdiscover/gui/services/worksheet/state/GoogleSheetsWorksheetStateQueryService';
@@ -101,7 +102,7 @@ export class GoogleSheetsWorksheetStateCommandService implements WorksheetStateC
                 .then(
                     (response: any) => resolve(),
                     (reason: any) => {
-                        reject(reason)
+                        reject(convertGapiErrorToException(reason))
                     });
         });
     }

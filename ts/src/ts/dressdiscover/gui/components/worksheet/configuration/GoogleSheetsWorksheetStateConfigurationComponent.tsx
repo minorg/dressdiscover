@@ -4,6 +4,7 @@ import {
 } from 'dressdiscover/api/models/worksheet/configuration/google_sheets_worksheet_state_configuration';
 import { FatalErrorModal } from 'dressdiscover/gui/components/error/FatalErrorModal';
 import { CurrentUser } from 'dressdiscover/gui/models/current_user/CurrentUser';
+import { convertGapiErrorToException, GapiException } from 'dressdiscover/gui/services/GapiException';
 import * as React from 'react';
 import * as ReactLoader from 'react-loader';
 import { Button, Card, CardBody, CardHeader, CardTitle, Col, Container, Form, Input, Row, Table } from 'reactstrap';
@@ -15,7 +16,7 @@ interface Props {
 }
 
 interface State {
-    error?: any | null;
+    error?: GapiException;
     existingFiles?: gapi.client.drive.File[];
     newSheetName: string;
 }
@@ -57,7 +58,7 @@ export class GoogleSheetsWorksheetStateConfigurationComponent extends React.Comp
             this.setState({ existingFiles: undefined, newSheetName: "" });
             this.refreshExistingFiles();
         }, (reason: any) => {
-            this.setState((prevState) => ({ error: reason }));
+            this.setState((prevState) => ({ error: convertGapiErrorToException(reason) }));
         });
     }
 
@@ -134,7 +135,7 @@ export class GoogleSheetsWorksheetStateConfigurationComponent extends React.Comp
                 const files = response.result.files;
                 this.setState((prevState) => ({ existingFiles: files ? files : [] }));
             }, (reason: any) => {
-                this.setState((prevState) => ({ error: reason }));
+                this.setState((prevState) => ({ error: convertGapiErrorToException(reason) }));
             });
     }
 }

@@ -5,6 +5,7 @@ import { UserSettings } from 'dressdiscover/api/models/user/user_settings';
 import { NoSuchUserSettingsException } from 'dressdiscover/api/services/user/no_such_user_settings_exception';
 import { CurrentUser } from 'dressdiscover/gui/models/current_user/CurrentUser';
 import { CurrentUserSession } from 'dressdiscover/gui/models/current_user/CurrentUserSession';
+import { convertGapiErrorToException, GapiException } from 'dressdiscover/gui/services/GapiException';
 import { Services } from 'dressdiscover/gui/services/Services';
 import { ILogger } from 'dressdiscover/gui/util/logging/ILogger';
 import * as invariant from 'invariant';
@@ -14,7 +15,7 @@ export class CurrentUserStore {
     private static readonly CURRENT_USER_ITEM_KEY = "currentUser";
 
     @observable.ref currentUser?: CurrentUser | null;
-    @observable.ref error?: Error | null;
+    @observable.ref error?: GapiException | Error | null;
 
     constructor(private readonly logger: ILogger) {
         runInAction("construction", () => {
@@ -59,7 +60,7 @@ export class CurrentUserStore {
                 }));
             },
             (reason: any) => {
-                this.setError(new Error(JSON.stringify(reason)));
+                this.setError(convertGapiErrorToException(reason));
             });
     }
 
@@ -158,7 +159,7 @@ export class CurrentUserStore {
     }
 
     @action
-    private setError(error: Error) {
+    private setError(error: Error | GapiException) {
         this.error = error;
     }
 }
