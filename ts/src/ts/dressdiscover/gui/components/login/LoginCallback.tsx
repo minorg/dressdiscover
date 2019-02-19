@@ -1,3 +1,4 @@
+import { GenericErrorHandler } from 'dressdiscover/gui/components/error/GenericErrorHandler';
 import { CurrentUserSession } from 'dressdiscover/gui/models/current_user/CurrentUserSession';
 import { inject, observer } from 'mobx-react';
 import * as queryString from 'query-string';
@@ -7,7 +8,6 @@ import { Redirect, RouteComponentProps } from 'react-router';
 
 import { Hrefs } from '../../Hrefs';
 import { CurrentUserStore } from '../../stores/current_user/CurrentUserStore';
-import { FatalErrorModal } from '../error/FatalErrorModal';
 
 interface Props extends RouteComponentProps<any> {
     currentUserStore: CurrentUserStore;
@@ -49,17 +49,12 @@ export class LoginCallback extends React.Component<Props, State> {
     }
 
     render() {
-        const { currentUserStore, history } = this.props;
+        const { currentUserStore } = this.props;
 
         if (currentUserStore.currentUser) {
             return <Redirect to={Hrefs.home}></Redirect>;
         } else if (this.state.error || currentUserStore.exception) {
-            const onModalExit = () => history.push(Hrefs.home);
-            if (this.state.error) {
-                return <FatalErrorModal message={this.state.error} onExit={onModalExit}/>;
-            } else if (currentUserStore.exception) {
-                return <FatalErrorModal exception={currentUserStore.exception} onExit={onModalExit} />;
-            }
+            return <GenericErrorHandler exception={currentUserStore.exception} error={this.state.error}></GenericErrorHandler>;
         }
 
         return <ReactLoader loaded={false} />;

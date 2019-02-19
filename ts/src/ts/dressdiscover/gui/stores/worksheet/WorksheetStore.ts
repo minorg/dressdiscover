@@ -11,14 +11,14 @@ export class WorksheetStore {
     constructor(private readonly currentUserStore: CurrentUserStore, private readonly logger: ILogger) {
     }
 
-    @observable error: Exception | undefined;
-    @observable worksheetDefinition: WorksheetDefinitionWrapper | undefined;
-    @observable worksheetStatesById: { [index: string]: WorksheetState } | undefined;
-    @observable worksheetStateIds: WorksheetStateId[] | undefined;
+    @observable exception?: Exception;
+    @observable worksheetDefinition?: WorksheetDefinitionWrapper;
+    @observable worksheetStatesById?: { [index: string]: WorksheetState };
+    @observable worksheetStateIds?: WorksheetStateId[];
 
     @action
-    clearError() {
-        this.error = undefined;
+    clearException() {
+        this.exception = undefined;
     }
 
     @action
@@ -27,11 +27,11 @@ export class WorksheetStore {
         try {
             await this.services.worksheetStateCommandService.deleteWorksheetState(kwds);
         } catch (e) {
-            self.setError(e);
+            self.setException(e);
             return;
         }
 
-        this.clearError();
+        this.clearException();
 
         runInAction("deleteWorksheetState continuation", () => {
             if (this.worksheetStatesById) {
@@ -48,11 +48,11 @@ export class WorksheetStore {
         try {
             worksheetDefinition = await this.services.worksheetDefinitionQueryService.getWorksheetDefinition();
         } catch (e) {
-            self.setError(e);
+            self.setException(e);
             return;
         }
 
-        self.clearError();
+        self.clearException();
 
         runInAction("getWorksheetDefinition continuation", () => {
             this.worksheetDefinition = new WorksheetDefinitionWrapper(worksheetDefinition);
@@ -66,11 +66,11 @@ export class WorksheetStore {
         try {
             worksheetState = await this.services.worksheetStateQueryService.getWorksheetState(kwds);
         } catch (e) {
-            self.setError(e);
+            self.setException(e);
             return;
         }
 
-        self.clearError();
+        self.clearException();
 
         runInAction("getWorksheetState continuation", () => {
             if (!self.worksheetStatesById) {
@@ -92,11 +92,11 @@ export class WorksheetStore {
         try {
             worksheetStateIds = await this.services.worksheetStateQueryService.getWorksheetStateIds();
         } catch (e) {
-            self.setError(e);
+            self.setException(e);
             return;
         }
 
-        self.clearError();
+        self.clearException();
 
         runInAction("getWorksheetStateIds continuation", () => {
             self.worksheetStateIds = worksheetStateIds;
@@ -109,11 +109,11 @@ export class WorksheetStore {
         try {
             await this.services.worksheetStateCommandService.putWorksheetState(kwds);
         } catch (e) {
-            self.setError(e);
+            self.setException(e);
             return;
         }
 
-        self.clearError();
+        self.clearException();
 
         runInAction("putWorksheetState continuation", () => {
             if (!self.worksheetStatesById) {
@@ -129,11 +129,11 @@ export class WorksheetStore {
         try {
             await this.services.worksheetStateCommandService.renameWorksheetState(kwds);
         } catch (e) {
-            self.setError(e);
+            self.setException(e);
             return;
         }
 
-        self.clearError();
+        self.clearException();
 
         runInAction("renameWorksheetState continuation", () => {
             self.getWorksheetStateIds();
@@ -144,11 +144,11 @@ export class WorksheetStore {
         return this.currentUserStore.currentUserServices;
     }
 
-    private setError(e: Error) {
-        this.logger.error("error making remote call: " + e);
+    private setException(e: Exception) {
+        this.logger.error("exception making remote call: " + e);
         const self = this;
         runInAction(() => {
-            self.error = e;
+            self.exception = e;
         });
     }
 }

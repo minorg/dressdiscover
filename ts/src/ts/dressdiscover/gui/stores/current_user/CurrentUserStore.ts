@@ -14,19 +14,18 @@ import { action, computed, observable, runInAction } from 'mobx';
 export class CurrentUserStore {
     private static readonly CURRENT_USER_ITEM_KEY = "currentUser";
 
-    @observable.ref currentUser?: CurrentUser | null;
-    @observable.ref exception?: Exception | null;
+    @observable.ref currentUser?: CurrentUser;
+    @observable.ref exception?: Exception;
 
     constructor(private readonly logger: ILogger) {
         runInAction("construction", () => {
-            this.clearException();
             this.setCurrentUserFromLocalStorage();
         });
     }
 
     @computed
     get currentUserServices() {
-        if (this.currentUser != null) {
+        if (this.currentUser) {
             return this.currentUser.services;
         } else {
             return Services.default;
@@ -103,7 +102,7 @@ export class CurrentUserStore {
 
     @action
     private clearCurrentUser() {
-        this.currentUser = null;
+        this.currentUser = undefined;
         localStorage.removeItem(CurrentUserStore.CURRENT_USER_ITEM_KEY);
         this.logger.debug("cleared current user hash from local storage");
 
@@ -113,7 +112,7 @@ export class CurrentUserStore {
 
     @action
     private clearException() {
-        this.exception = null;
+        this.exception = undefined;
     }
 
     @action
@@ -135,7 +134,7 @@ export class CurrentUserStore {
     private setCurrentUserFromLocalStorage() {
         const currentUserString = localStorage.getItem(CurrentUserStore.CURRENT_USER_ITEM_KEY);
         if (!currentUserString) {
-            this.currentUser = null;
+            this.currentUser = undefined;
             return;
         }
         this.logger.debug("retrieved current user hash from local storage");
@@ -151,7 +150,7 @@ export class CurrentUserStore {
                 self.setCurrentUser(currentUser, false);
             } else {
                 runInAction(() => {
-                    self.currentUser = null;
+                    self.currentUser = undefined;
                 });
                 self.setException(reason);
             }

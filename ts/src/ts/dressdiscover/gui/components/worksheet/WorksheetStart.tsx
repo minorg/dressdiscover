@@ -269,9 +269,11 @@ export class WorksheetStart extends React.Component<WorksheetStartProps, { newWo
     }
 
     render() {
-        if (this.props.worksheetStore.error) {
-            return <GenericErrorHandler error={this.props.worksheetStore.error}></GenericErrorHandler>;
-        } else if (!this.props.worksheetStore.worksheetStateIds) {
+        const { worksheetStore } = this.props;
+
+        if (worksheetStore.exception) {
+            return <GenericErrorHandler exception={worksheetStore.exception}></GenericErrorHandler>;
+        } else if (!worksheetStore.worksheetStateIds) {
             return <ReactLoader loaded={false} />;
         } else if (this.state.newWorksheetStateId) {
             return <Redirect to={Hrefs.worksheetState(new WorksheetStateMark({ worksheetStateId: this.state.newWorksheetStateId }))}></Redirect>;
@@ -302,18 +304,18 @@ export class WorksheetStart extends React.Component<WorksheetStartProps, { newWo
                             <Container fluid>
                                 <Row>
                                     <Col xs="12">
-                                        <NewWorksheetState existingWorksheetStateIds={this.props.worksheetStore.worksheetStateIds} onSubmit={this.onStartNewWorksheet}></NewWorksheetState>
+                                        <NewWorksheetState existingWorksheetStateIds={worksheetStore.worksheetStateIds} onSubmit={this.onStartNewWorksheet}></NewWorksheetState>
                                         <div className="w-100 text-center">
                                             <p>Select <b>Worksheets</b> from the top navigation to return to this page at any time.</p>
                                         </div>
                                     </Col>
                                 </Row>
-                                        {!_.isEmpty(this.props.worksheetStore.worksheetStateIds) ? (
+                                        {!_.isEmpty(worksheetStore.worksheetStateIds) ? (
                                             <React.Fragment>
                                                 <Row className="mb-5"></Row>
                                                 <Row>
                                                     <Col xs="12">
-                                                        <ExistingWorksheetStates worksheetStore={this.props.worksheetStore!}></ExistingWorksheetStates>
+                                                        <ExistingWorksheetStates worksheetStore={worksheetStore!}></ExistingWorksheetStates>
                                                     </Col>
                                                 </Row>
                                             </React.Fragment>
