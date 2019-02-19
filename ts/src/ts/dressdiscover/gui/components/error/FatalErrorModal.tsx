@@ -3,6 +3,7 @@ import { Modal, ModalBody, ModalHeader } from 'reactstrap';
 
 interface Props {
     error?: Error;
+    exception?: Exception;
     message?: string;
     onExit?: () => void;
 }
@@ -13,10 +14,12 @@ export class FatalErrorModal extends React.Component<Props> {
         if (!onExit) {
             onExit = () => { return; };
         }
-        const { error } = this.props;
+        const { error, exception } = this.props;
         if (!message) {
             if (error) {
                 message = error.toString();
+            } else if (exception) {
+                message = exception.toString();
             } else {
                 message = "";
             }

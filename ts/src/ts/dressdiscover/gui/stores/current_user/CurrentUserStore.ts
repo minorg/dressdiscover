@@ -5,7 +5,7 @@ import { UserSettings } from 'dressdiscover/api/models/user/user_settings';
 import { NoSuchUserSettingsException } from 'dressdiscover/api/services/user/no_such_user_settings_exception';
 import { CurrentUser } from 'dressdiscover/gui/models/current_user/CurrentUser';
 import { CurrentUserSession } from 'dressdiscover/gui/models/current_user/CurrentUserSession';
-import { convertGapiErrorToException, GapiException } from 'dressdiscover/gui/services/GapiException';
+import { convertGapiErrorToException } from 'dressdiscover/gui/services/GapiException';
 import { Services } from 'dressdiscover/gui/services/Services';
 import { ILogger } from 'dressdiscover/gui/util/logging/ILogger';
 import * as invariant from 'invariant';
@@ -15,11 +15,11 @@ export class CurrentUserStore {
     private static readonly CURRENT_USER_ITEM_KEY = "currentUser";
 
     @observable.ref currentUser?: CurrentUser | null;
-    @observable.ref error?: GapiException | Error | null;
+    @observable.ref exception?: Exception | null;
 
     constructor(private readonly logger: ILogger) {
         runInAction("construction", () => {
-            this.clearError();
+            this.clearException();
             this.setCurrentUserFromLocalStorage();
         });
     }
@@ -36,7 +36,7 @@ export class CurrentUserStore {
     @action
     login(currentUserSession: CurrentUserSession) {
         this.clearCurrentUser();
-        this.clearError();
+        this.clearException();
 
         this.setGapiAccessToken(currentUserSession);
 
@@ -60,7 +60,7 @@ export class CurrentUserStore {
                 }));
             },
             (reason: any) => {
-                this.setError(convertGapiErrorToException(reason));
+                this.setException(convertGapiErrorToException(reason));
             });
     }
 
@@ -81,11 +81,11 @@ export class CurrentUserStore {
 
         // this.auth0WebAuth.checkSession({}, (err, authResult) => {
         //     if (authResult && authResult.accessToken && authResult.idToken) {
-        //         this.clearError();
+        //         this.clearException();
         //         this.setCurrentUser(authResult);
         //     } else if (err) {
         //         this.clearCurrentUser();
-        //         this.setAuth0Error(err);
+        //         this.setAuth0Exception(err);
         //     }
         // });
     }
@@ -112,8 +112,8 @@ export class CurrentUserStore {
     }
 
     @action
-    private clearError() {
-        this.error = null;
+    private clearException() {
+        this.exception = null;
     }
 
     @action
@@ -146,20 +146,20 @@ export class CurrentUserStore {
         const self = this;
         Services.default.userSettingsQueryService.getUserSettings({ id: currentUser.id }).then((userSettings) => {
             self.setCurrentUser(currentUser.replaceSettings(userSettings), false);
-        }, (reason) => {
+        }, (reason: Exception) => {
             if (reason instanceof NoSuchUserSettingsException) {
                 self.setCurrentUser(currentUser, false);
             } else {
                 runInAction(() => {
                     self.currentUser = null;
                 });
-                self.setError(new Error(reason.toString()));
+                self.setException(reason);
             }
         });
     }
 
     @action
-    private setError(error: Error | GapiException) {
-        this.error = error;
+    private setException(exception: Exception) {
+        this.exception = exception;
     }
 }

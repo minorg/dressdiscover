@@ -11,7 +11,7 @@ export class WorksheetStore {
     constructor(private readonly currentUserStore: CurrentUserStore, private readonly logger: ILogger) {
     }
 
-    @observable error: Error | undefined;
+    @observable error: Exception | undefined;
     @observable worksheetDefinition: WorksheetDefinitionWrapper | undefined;
     @observable worksheetStatesById: { [index: string]: WorksheetState } | undefined;
     @observable worksheetStateIds: WorksheetStateId[] | undefined;
@@ -143,7 +143,6 @@ export class WorksheetStore {
     private get services() {
         return this.currentUserStore.currentUserServices;
     }
-
 
     private setError(e: Error) {
         this.logger.error("error making remote call: " + e);

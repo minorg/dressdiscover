@@ -53,16 +53,15 @@ export class LoginCallback extends React.Component<Props, State> {
 
         if (currentUserStore.currentUser) {
             return <Redirect to={Hrefs.home}></Redirect>;
-        } else if (currentUserStore.error || this.state.error) {
+        } else if (this.state.error || currentUserStore.exception) {
             const onModalExit = () => history.push(Hrefs.home);
-            if (currentUserStore.error) {
-                if (currentUserStore.error instanceof Error) {
-                    return <FatalErrorModal error={currentUserStore.error}/>
-                } else if (currentUserStore.error instanceof GapiException
+            if (this.state.error) {
+                return <FatalErrorModal message={this.state.error} onExit={onModalExit}/>;
+            } else if (currentUserStore.exception) {
+                return <FatalErrorModal exception={currentUserStore.exception} onExit={onModalExit} />;
             }
-            return <FatalErrorModal error={currentUserStore.error ? currentUserStore.error : undefined} message={this.state.error} }></FatalErrorModal>;
-        } else {
-            return <ReactLoader loaded={false} />;
         }
+
+        return <ReactLoader loaded={false} />;
     }
 }
