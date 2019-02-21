@@ -5,13 +5,13 @@ import { About } from 'dressdiscover/gui/components/static/About';
 import { Credits } from 'dressdiscover/gui/components/static/Credits';
 import { Privacy } from 'dressdiscover/gui/components/static/Privacy';
 import { UserSettingsComponent } from 'dressdiscover/gui/components/user/UserSettingsComponent';
+import { WorksheetStart } from 'dressdiscover/gui/components/worksheet/start/WorksheetStart';
 import {
   WorksheetFeatureSetStateEditOrReview,
 } from 'dressdiscover/gui/components/worksheet/state/WorksheetFeatureSetStateEditOrReview';
 import { WorksheetFeatureStateEdit } from 'dressdiscover/gui/components/worksheet/state/WorksheetFeatureStateEdit';
 import { WorksheetStateEdit } from 'dressdiscover/gui/components/worksheet/state/WorksheetStateEdit';
 import { WorksheetStateReview } from 'dressdiscover/gui/components/worksheet/state/WorksheetStateReview';
-import { WorksheetStart } from 'dressdiscover/gui/components/worksheet/WorksheetStart';
 import { Hrefs } from 'dressdiscover/gui/Hrefs';
 import * as React from 'react';
 import { Route, Switch } from 'react-router';
