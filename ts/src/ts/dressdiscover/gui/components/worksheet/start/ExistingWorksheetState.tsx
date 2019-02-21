@@ -2,7 +2,6 @@ import * as classnames from 'classnames';
 import { WorksheetStateId } from 'dressdiscover/api/models/worksheet/state/worksheet_state_id';
 import { WorksheetStateMark } from 'dressdiscover/api/models/worksheet/state/worksheet_state_mark';
 import { Hrefs } from 'dressdiscover/gui/Hrefs';
-import { WorksheetStateWrapper } from 'dressdiscover/gui/models/worksheet/state/WorksheetStateWrapper';
 import * as invariant from 'invariant';
 import * as React from 'react';
 import { Link } from 'react-router-dom';
@@ -15,7 +14,7 @@ export type OnRenameWorksheetStateCallback = (kwds: { oldId: WorksheetStateId, n
 interface Props {
     onDeleteWorksheetState: OnDeleteWorksheetStateCallback;
     onRenameWorksheetState: OnRenameWorksheetStateCallback;
-    worksheetState: WorksheetStateWrapper;
+    worksheetStateId: WorksheetStateId;
 }
 
 interface State {
@@ -66,11 +65,11 @@ export class ExistingWorksheetState extends React.Component<Props, State> {
     onClickRenameConfirmButton() {
         if (!this.state.newId) {
             return;
-        } else if (this.state.newId === this.props.worksheetState.id.toString()) {
+        } else if (this.state.newId === this.props.worksheetStateId.toString()) {
             this.setState(prevState => Object.assign({}, this.START_STATE));
             return;
         }
-        this.props.onRenameWorksheetState({ oldId: this.props.worksheetState.id, newId: WorksheetStateId.parse(this.state.newId as string) });
+        this.props.onRenameWorksheetState({ oldId: this.props.worksheetStateId, newId: WorksheetStateId.parse(this.state.newId as string) });
     }
 
     onKeypressNewId(event: React.KeyboardEvent) {
@@ -90,13 +89,13 @@ export class ExistingWorksheetState extends React.Component<Props, State> {
     }
 
     render() {
-        const { worksheetState } = this.props;
+        const { worksheetStateId } = this.props;
 
         if (this.state.deleting) {
             return (
                 <tr>
                     <td className="id leftmost">
-                        {worksheetState.id.toString()}
+                        {worksheetStateId.toString()}
                     </td>
                     <td className="inner prompt text-danger">
                         <span>Delete?</span>
@@ -127,7 +126,7 @@ export class ExistingWorksheetState extends React.Component<Props, State> {
             return (
                 <tr>
                     <td className="id leftmost">
-                        <Link to={Hrefs.worksheetState(new WorksheetStateMark({ worksheetStateId: this.props.worksheetStateId }))} title="Open this worksheet">{this.props.worksheetStateId.toString()}</Link>
+                        <Link to={Hrefs.worksheetState(new WorksheetStateMark({ worksheetStateId }))} title="Open this worksheet">{worksheetStateId.toString()}</Link>
                     </td>
                     <td className="inner prompt">&nbsp;</td>
                     <td className="delete-button inner">

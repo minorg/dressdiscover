@@ -8,6 +8,8 @@ import { GenericErrorHandler } from 'dressdiscover/gui/components/error/GenericE
 import { Frame } from 'dressdiscover/gui/components/frame/Frame';
 import { Headline } from 'dressdiscover/gui/components/frame/Headline';
 import { ActiveNavbarItem } from 'dressdiscover/gui/components/navbar/ActiveNavbarItem';
+import { ExistingWorksheetStates } from 'dressdiscover/gui/components/worksheet/start/ExistingWorksheetStates';
+import { NewWorksheetState } from 'dressdiscover/gui/components/worksheet/start/NewWorksheetState';
 import { Hrefs } from 'dressdiscover/gui/Hrefs';
 import { CurrentUserStore } from 'dressdiscover/gui/stores/current_user/CurrentUserStore';
 import * as _ from 'lodash';
@@ -21,9 +23,15 @@ interface Props {
     currentUserStore: CurrentUserStore;
 }
 
+interface State {
+    exception?: Exception;
+    existingWorksheetStateIds?: WorksheetStateId[];
+    newWorksheetStateId?: WorksheetStateId;
+}
+
 @inject("currentUserStore")
 @observer
-export class WorksheetStart extends React.Component<Props, { newWorksheetStateId?: WorksheetStateId }> {
+export class WorksheetStart extends React.Component<Props, State> {
     constructor(props: Props) {
         super(props);
         this.onStartNewWorksheet = this.onStartNewWorksheet.bind(this);
@@ -31,23 +39,38 @@ export class WorksheetStart extends React.Component<Props, { newWorksheetStateId
     }
 
     componentDidMount() {
-        this.props.worksheetStore.getWorksheetStateIds();
+        this.getExistingWorksheetStateIds(this.props);
+    }
+
+    componentWillReceiveProps(props: Props) {
+        this.getExistingWorksheetStateIds(props);
+    }
+
+    private async getExistingWorksheetStateIds(props: Props) {
+        const { currentUserStore } = props;
+        const self = this;
+        try {
+            const existingWorksheetStateIds = await currentUserStore.currentUserServices.worksheetStateQueryService.getWorksheetStateIds();
+            this.setState((prevState) => ({ existingWorksheetStateIds }));
+        } catch (e) {
+            self.setState((prevState) => ({ exception: e }));
+        }
     }
 
     async onStartNewWorksheet(kwds: { newWorksheetStateId: WorksheetStateId }) {
-        await this.props.worksheetStore.putWorksheetState({ state: new WorksheetState({ featureSets: [], id: kwds.newWorksheetStateId }) });
+        await this.props.currentUserStore.currentUserServices.worksheetStateCommandService.putWorksheetState({ state: new WorksheetState({ featureSets: [], id: kwds.newWorksheetStateId }) });
         this.setState((prevState) => Object.assign({}, prevState, kwds));
     }
 
     render() {
-        const { worksheetStore } = this.props;
+        const { exception, existingWorksheetStateIds, newWorksheetStateId } = this.state;
 
-        if (worksheetStore.exception) {
-            return <GenericErrorHandler exception={worksheetStore.exception}></GenericErrorHandler>;
-        } else if (!worksheetStore.worksheetStateIds) {
+        if (exception) {
+            return <GenericErrorHandler exception={exception}></GenericErrorHandler>;
+        } else if (!existingWorksheetStateIds) {
             return <ReactLoader loaded={false} />;
-        } else if (this.state.newWorksheetStateId) {
-            return <Redirect to={Hrefs.worksheetState(new WorksheetStateMark({ worksheetStateId: this.state.newWorksheetStateId }))}></Redirect>;
+        } else if (newWorksheetStateId) {
+            return <Redirect to={Hrefs.worksheetState(new WorksheetStateMark({ worksheetStateId: newWorksheetStateId }))}></Redirect>;
         }
 
         return (
@@ -75,18 +98,18 @@ export class WorksheetStart extends React.Component<Props, { newWorksheetStateId
                             <Container fluid>
                                 <Row>
                                     <Col xs="12">
-                                        <NewWorksheetState existingWorksheetStateIds={worksheetStore.worksheetStateIds} onSubmit={this.onStartNewWorksheet}></NewWorksheetState>
+                                        <NewWorksheetState existingWorksheetStateIds={existingWorksheetStateIds} onSubmit={this.onStartNewWorksheet}></NewWorksheetState>
                                         <div className="w-100 text-center">
                                             <p>Select <b>Worksheets</b> from the top navigation to return to this page at any time.</p>
                                         </div>
                                     </Col>
                                 </Row>
-                                {!_.isEmpty(worksheetStore.worksheetStateIds) ? (
+                                {!_.isEmpty(existingWorksheetStateIds) ? (
                                     <React.Fragment>
                                         <Row className="mb-5"></Row>
                                         <Row>
                                             <Col xs="12">
-                                                <ExistingWorksheetStates worksheetStates={worksheetStates}></ExistingWorksheetStates>
+                                                <ExistingWorksheetStates worksheetStateIds={existingWorksheetStateIds}></ExistingWorksheetStates>
                                             </Col>
                                         </Row>
                                     </React.Fragment>

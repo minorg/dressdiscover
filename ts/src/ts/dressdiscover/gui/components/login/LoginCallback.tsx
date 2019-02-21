@@ -45,7 +45,7 @@ export class LoginCallback extends React.Component<Props, State> {
         if (!error || typeof (error) !== "string") {
             error = "Login error";
         }
-        this.setState((prevState) => { error })
+        this.setState((prevState) => ({ error: error as string }));
     }
 
     render() {
