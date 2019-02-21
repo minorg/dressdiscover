@@ -42,7 +42,8 @@ export class CurrentUserStore {
         ((gapi.client as any).oauth2.userinfo as gapi.client.oauth2.UserinfoResource).get({}).then(
             (response) => {
                 const result = response.result;
-                this.setCurrentUser(new CurrentUser({
+
+                const currentUser = new CurrentUser({
                     delegate: new User({
                         emailAddress: result.email as string,
                         emailAddressVerified: result.verified_email,
@@ -56,7 +57,18 @@ export class CurrentUserStore {
                     }),
                     id: UserId.parse(result.id as string),
                     session: currentUserSession
-                }));
+                });
+
+                const self = this;
+                Services.default.userSettingsQueryService.getUserSettings({ id: currentUser.id }).then((userSettings) => {
+                    self.setCurrentUser(currentUser.replaceSettings(userSettings), true);
+                }, (reason: Exception) => {
+                    if (reason instanceof NoSuchUserSettingsException) {
+                        self.setCurrentUser(currentUser, true);
+                    } else {
+                        self.setException(reason);
+                    }
+                });
             },
             (reason: any) => {
                 this.setException(convertGapiErrorToException(reason));
