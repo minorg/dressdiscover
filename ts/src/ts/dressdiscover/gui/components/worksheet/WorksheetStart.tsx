@@ -6,6 +6,7 @@ import { WorksheetStateId } from 'dressdiscover/api/models/worksheet/state/works
 import { WorksheetStateMark } from 'dressdiscover/api/models/worksheet/state/worksheet_state_mark';
 import { GenericErrorHandler } from 'dressdiscover/gui/components/error/GenericErrorHandler';
 import { Headline } from 'dressdiscover/gui/components/frame/Headline';
+import { WorksheetStateWrapper } from 'dressdiscover/gui/models/worksheet/state/WorksheetStateWrapper';
 import * as invariant from 'invariant';
 import * as _ from 'lodash';
 import { inject, observer } from 'mobx-react';
@@ -75,10 +76,10 @@ class NewWorksheetState extends React.Component<NewWorksheetStateProps, { newWor
                             <Container fluid>
                                 <Row>
                                     <Col xs="10">
-                                        <Input autoFocus className="form-control" onChange={this.onChangeNewWorksheetStateId.bind(this)} onKeyPress={this.onKeypressNewWorksheetStateId.bind(this)} placeholder="Object id or accession number (optional)" type="text" value={this.state.newWorksheetStateId} />
+                                        <Input autoFocus className="form-control" onChange={this.onChangeNewWorksheetStateId} onKeyPress={this.onKeypressNewWorksheetStateId} placeholder="Object id or accession number (optional)" type="text" value={this.state.newWorksheetStateId} />
                                     </Col>
                                     <Col xs="2">
-                                        <Button color="primary" onClick={this.onSubmit.bind(this)}>Create</Button>
+                                        <Button color="primary" onClick={this.onSubmit}>Create</Button>
                                     </Col>
                                 </Row>
                             </Container>
@@ -89,10 +90,13 @@ class NewWorksheetState extends React.Component<NewWorksheetStateProps, { newWor
     }
 }
 
+type OnDeleteWorksheetStateCallback = (kwds: { id: WorksheetStateId }) => void;
+type OnRenameWorksheetStateCallback = (kwds: { oldId: WorksheetStateId, newId: WorksheetStateId }) => void;
+
 interface ExistingWorksheetStateProps {
-    onDeleteWorksheetState: (kwds: { id: WorksheetStateId }) => void;
-    onRenameWorksheetState: (kwds: { oldId: WorksheetStateId, newId: WorksheetStateId }) => void;
-    worksheetStateId: WorksheetStateId;
+    onDeleteWorksheetState: OnDeleteWorksheetStateCallback;
+    onRenameWorksheetState: OnRenameWorksheetStateCallback;
+    worksheetState: WorksheetStateWrapper;
 }
 
 interface ExistingWorksheetStateState {
@@ -143,11 +147,11 @@ class ExistingWorksheetState extends React.Component<ExistingWorksheetStateProps
     onClickRenameConfirmButton() {
         if (!this.state.newId) {
             return;
-        } else if (this.state.newId === this.props.worksheetStateId.toString()) {
+        } else if (this.state.newId === this.props.worksheetState.id.toString()) {
             this.setState(prevState => Object.assign({}, this.START_STATE));
             return;
         }
-        this.props.onRenameWorksheetState({ oldId: this.props.worksheetStateId, newId: WorksheetStateId.parse(this.state.newId as string) });
+        this.props.onRenameWorksheetState({ oldId: this.props.worksheetState.id, newId: WorksheetStateId.parse(this.state.newId as string) });
     }
 
     onKeypressNewId(event: React.KeyboardEvent) {
@@ -167,34 +171,36 @@ class ExistingWorksheetState extends React.Component<ExistingWorksheetStateProps
     }
 
     render() {
+        const { worksheetState } = this.props;
+
         if (this.state.deleting) {
             return (
                 <tr>
                     <td className="id leftmost">
-                        {this.props.worksheetStateId.toString()}
+                        {worksheetState.id.toString()}
                     </td>
                     <td className="inner prompt text-danger">
                         <span>Delete?</span>
                     </td>
                     <td className="cancel inner">
-                        <Button className="cancel-delete-button" color="primary" onClick={this.onClickCancelButton.bind(this)} size="sm">No</Button>
+                        <Button className="cancel-delete-button" color="primary" onClick={this.onClickCancelButton} size="sm">No</Button>
                     </td>
                     <td className="confirm rightmost">
-                        <Button className="confirm-delete-button" color="danger" onClick={this.onClickDeleteConfirmButton.bind(this)} size="sm">Yes</Button>
+                        <Button className="confirm-delete-button" color="danger" onClick={this.onClickDeleteConfirmButton} size="sm">Yes</Button>
                     </td>
                 </tr>);
         } else if (this.state.renaming) {
             return (
                 <tr>
                     <td className="id leftmost">
-                        <Input autoFocus className="form-control rename-input w-100" onChange={this.onChangeNewId.bind(this)} onKeyPress={this.onKeypressNewId.bind(this)} placeholder="Rename list" value={this.state.newId} style={{ display: "inline-block", width: 'auto' }} type="text" />
+                        <Input autoFocus className="form-control rename-input w-100" onChange={this.onChangeNewId} onKeyPress={this.onKeypressNewId} placeholder="Rename list" value={this.state.newId} style={{ display: "inline-block", width: 'auto' }} type="text" />
                     </td>
                     <td className="inner prompt">&nbsp;</td>
                     <td className="cancel inner">
-                        <Button className="cancel-rename-button" color="primary" onClick={this.onClickCancelButton.bind(this)}>Cancel</Button>
+                        <Button className="cancel-rename-button" color="primary" onClick={this.onClickCancelButton}>Cancel</Button>
                     </td>
                     <td className="confirm rightmost">
-                        <Button className={classnames({ "confirm-rename-button": true, invisible: !this.renameConfirmButtonEnabled, visible: this.renameConfirmButtonEnabled })} color="danger" onClick={this.onClickRenameConfirmButton.bind(this)}>Confirm</Button>
+                        <Button className={classnames({ "confirm-rename-button": true, invisible: !this.renameConfirmButtonEnabled, visible: this.renameConfirmButtonEnabled })} color="danger" onClick={this.onClickRenameConfirmButton}>Confirm</Button>
                     </td>
                     <td>&nbsp;</td>
                 </tr>);
@@ -206,10 +212,10 @@ class ExistingWorksheetState extends React.Component<ExistingWorksheetStateProps
                     </td>
                     <td className="inner prompt">&nbsp;</td>
                     <td className="delete-button inner">
-                        <Button onClick={this.onClickDeleteButton.bind(this)} title="Delete this worksheet"><i className="fas fa-trash-alt"></i></Button>
+                        <Button onClick={this.onClickDeleteButton} title="Delete this worksheet"><i className="fas fa-trash-alt"></i></Button>
                     </td>
                     <td className="rename-button rightmost">
-                        <Button onClick={this.onClickRenameButton.bind(this)} title="Rename this worksheet"><i className="fas fa-pencil-alt"></i></Button>
+                        <Button onClick={this.onClickRenameButton} title="Rename this worksheet"><i className="fas fa-pencil-alt"></i></Button>
                     </td>
                 </tr>
             );
@@ -217,8 +223,14 @@ class ExistingWorksheetState extends React.Component<ExistingWorksheetStateProps
     }
 }
 
-class ExistingWorksheetStates extends React.Component<{ worksheetStore: WorksheetStore }> {
+class ExistingWorksheetStates extends React.Component<{
+    onDeleteWorksheetState: OnDeleteWorksheetStateCallback;
+    onRenameWorksheetState: OnRenameWorksheetStateCallback;
+    worksheetStates: WorksheetStateWrapper[];
+}> {
     render() {
+        const { existingWorksheetStates, ...passThroughProps } = this.props;
+
         return (
             <Card>
                 <CardHeader>
@@ -230,8 +242,8 @@ class ExistingWorksheetStates extends React.Component<{ worksheetStore: Workshee
                             <Col xs="12">
                                 <Table className="table table-bordered w-100 worksheet-states">
                                     <tbody>
-                                        {this.props.worksheetStore!.worksheetStateIds!.map(worksheetStateId =>
-                                            <ExistingWorksheetState key={worksheetStateId.toString()} onDeleteWorksheetState={this.props.worksheetStore.deleteWorksheetState.bind(this.props.worksheetStore)} onRenameWorksheetState={this.props.worksheetStore!.renameWorksheetState.bind(this.props.worksheetStore)} worksheetStateId={worksheetStateId}></ExistingWorksheetState>
+                                        {existingWorksheetStates.map(worksheetState =>
+                                            <ExistingWorksheetState key={worksheetState.id.toString()} worksheetState={worksheetState} {...passThroughProps}></ExistingWorksheetState>
                                         )}
                                     </tbody>
                                 </Table>
@@ -249,7 +261,7 @@ interface WorksheetStartProps {
     worksheetStore: WorksheetStore;
 }
 
-@inject("worksheetStore")
+@inject("currentUserStore")
 @observer
 export class WorksheetStart extends React.Component<WorksheetStartProps, { newWorksheetStateId?: WorksheetStateId }> {
     constructor(props: WorksheetStartProps) {
@@ -309,21 +321,21 @@ export class WorksheetStart extends React.Component<WorksheetStartProps, { newWo
                                         </div>
                                     </Col>
                                 </Row>
-                                        {!_.isEmpty(worksheetStore.worksheetStateIds) ? (
-                                            <React.Fragment>
-                                                <Row className="mb-5"></Row>
-                                                <Row>
-                                                    <Col xs="12">
-                                                        <ExistingWorksheetStates worksheetStore={worksheetStore!}></ExistingWorksheetStates>
-                                                    </Col>
-                                                </Row>
-                                            </React.Fragment>
-                                        ) : null}
+                                {!_.isEmpty(worksheetStore.worksheetStateIds) ? (
+                                    <React.Fragment>
+                                        <Row className="mb-5"></Row>
+                                        <Row>
+                                            <Col xs="12">
+                                                <ExistingWorksheetStates worksheetStates={worksheetStates}></ExistingWorksheetStates>
+                                            </Col>
+                                        </Row>
+                                    </React.Fragment>
+                                ) : null}
                             </Container>
                         </Col>
                     </Row>
                 </Container>
             </Frame>
-                    );
-                }
-            }
+        );
+    }
+}
