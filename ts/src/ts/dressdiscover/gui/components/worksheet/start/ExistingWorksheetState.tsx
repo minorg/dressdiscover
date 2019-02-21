@@ -10,7 +10,6 @@ import { Button, Input } from 'reactstrap';
 export type OnDeleteWorksheetStateCallback = (kwds: { id: WorksheetStateId }) => void;
 export type OnRenameWorksheetStateCallback = (kwds: { oldId: WorksheetStateId, newId: WorksheetStateId }) => void;
 
-
 interface Props {
     onDeleteWorksheetState: OnDeleteWorksheetStateCallback;
     onRenameWorksheetState: OnRenameWorksheetStateCallback;
@@ -39,34 +38,34 @@ export class ExistingWorksheetState extends React.Component<Props, State> {
     }
 
     onClickCancelButton() {
-        this.setState(prevState =>
+        this.setState((prevState) =>
             Object.assign({}, this.START_STATE));
     }
 
     onChangeNewId(event: React.ChangeEvent<HTMLInputElement>) {
         const value = event.target.value;
-        this.setState(prevState => Object.assign({}, prevState, { newId: value }));
+        this.setState((prevState) => Object.assign({}, prevState, { newId: value }));
     }
 
     onClickDeleteButton() {
-        this.setState(prevState => Object.assign({}, prevState, { deleting: true, newId: '', renaming: false }));
+        this.setState((prevState) => Object.assign({}, prevState, { deleting: true, newId: '', renaming: false }));
     }
 
     async onClickDeleteConfirmButton() {
         invariant(this.state.deleting, "deleting state");
         await this.props.onDeleteWorksheetState({ id: this.props.worksheetStateId });
-        this.setState(prevState => Object.assign({}, this.START_STATE));
+        this.setState((prevState) => Object.assign({}, this.START_STATE));
     }
 
     onClickRenameButton() {
-        this.setState(prevState => Object.assign({}, prevState, { deleting: false, newId: this.props.worksheetStateId.toString(), renaming: true }));
+        this.setState((prevState) => Object.assign({}, prevState, { deleting: false, newId: this.props.worksheetStateId.toString(), renaming: true }));
     }
 
     onClickRenameConfirmButton() {
         if (!this.state.newId) {
             return;
         } else if (this.state.newId === this.props.worksheetStateId.toString()) {
-            this.setState(prevState => Object.assign({}, this.START_STATE));
+            this.setState((prevState) => Object.assign({}, this.START_STATE));
             return;
         }
         this.props.onRenameWorksheetState({ oldId: this.props.worksheetStateId, newId: WorksheetStateId.parse(this.state.newId as string) });

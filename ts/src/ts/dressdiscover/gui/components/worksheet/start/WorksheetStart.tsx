@@ -34,6 +34,8 @@ interface State {
 export class WorksheetStart extends React.Component<Props, State> {
     constructor(props: Props) {
         super(props);
+        this.onDeleteWorksheetState = this.onDeleteWorksheetState.bind(this);
+        this.onRenameWorksheetState = this.onRenameWorksheetState.bind(this);
         this.onStartNewWorksheet = this.onStartNewWorksheet.bind(this);
         this.state = {};
     }
@@ -55,6 +57,16 @@ export class WorksheetStart extends React.Component<Props, State> {
         } catch (e) {
             self.setState((prevState) => ({ exception: e }));
         }
+    }
+
+    async onDeleteWorksheetState(kwds: { id: WorksheetStateId }) {
+        await this.props.currentUserStore.currentUserServices.worksheetStateCommandService.deleteWorksheetState(kwds);
+        this.getExistingWorksheetStateIds(this.props);
+    }
+
+    async onRenameWorksheetState(kwds: { oldId: WorksheetStateId, newId: WorksheetStateId }) {
+        await this.props.currentUserStore.currentUserServices.worksheetStateCommandService.renameWorksheetState(kwds);
+        this.getExistingWorksheetStateIds(this.props);
     }
 
     async onStartNewWorksheet(kwds: { newWorksheetStateId: WorksheetStateId }) {
@@ -109,7 +121,11 @@ export class WorksheetStart extends React.Component<Props, State> {
                                         <Row className="mb-5"></Row>
                                         <Row>
                                             <Col xs="12">
-                                                <ExistingWorksheetStates worksheetStateIds={existingWorksheetStateIds}></ExistingWorksheetStates>
+                                                <ExistingWorksheetStates
+                                                    onDeleteWorksheetState={this.onDeleteWorksheetState}
+                                                    onRenameWorksheetState={this.onRenameWorksheetState}
+                                                    worksheetStateIds={existingWorksheetStateIds}
+                                                />
                                             </Col>
                                         </Row>
                                     </React.Fragment>
