@@ -3,10 +3,10 @@
 } from 'dressdiscover/api/models/worksheet/configuration/google_sheets_worksheet_state_configuration';
 import { WorksheetState } from 'dressdiscover/api/models/worksheet/state/worksheet_state';
 import { WorksheetStateId } from 'dressdiscover/api/models/worksheet/state/worksheet_state_id';
-import { IoException } from 'dressdiscover/api/services/io_exception';
 import { NoSuchWorksheetStateException } from 'dressdiscover/api/services/worksheet/state/no_such_worksheet_state_exception';
 import { WorksheetStateQueryService } from 'dressdiscover/api/services/worksheet/state/worksheet_state_query_service';
 import { CsvWorksheetStateImporter } from 'dressdiscover/gui/components/worksheet/state/importers/CsvWorksheetStateImporter';
+import { convertGapiErrorToException } from 'dressdiscover/gui/services/GapiException';
 import * as _ from 'lodash';
 
 export class GoogleSheetsWorksheetStateQueryService implements WorksheetStateQueryService {
@@ -22,7 +22,7 @@ export class GoogleSheetsWorksheetStateQueryService implements WorksheetStateQue
         return new Promise((resolve, reject) => {
             GoogleSheetsWorksheetStateQueryService.getFirstSheetData({ spreadsheetId }).then((stringRows) => {
                 resolve(new CsvWorksheetStateImporter().importCsvRows(stringRows));
-            }, (reason: any) => reject(reason));
+            }, reject);
         });
     }
 
@@ -37,7 +37,7 @@ export class GoogleSheetsWorksheetStateQueryService implements WorksheetStateQue
                     }
                 }
                 reject(new NoSuchWorksheetStateException(kwds));
-            }, (reason: any) => reject(reason));
+            }, reject);
         });
     }
 
@@ -46,7 +46,7 @@ export class GoogleSheetsWorksheetStateQueryService implements WorksheetStateQue
         return new Promise((resolve, reject) => {
             GoogleSheetsWorksheetStateQueryService.getWorksheetStates({ spreadsheetId }).then((worksheetStates) =>
                 resolve(worksheetStates.map((worksheetState) => worksheetState.id)),
-                (reason: any) => reject(reason));
+                reject);
         });
     }
 
@@ -103,7 +103,7 @@ export class GoogleSheetsWorksheetStateQueryService implements WorksheetStateQue
                 }
                 resolve(stringRows);
             }, (reason: any) => {
-                reject(new IoException({ causeMessage: JSON.stringify(reason) }));
+                reject(convertGapiErrorToException(reason));
             });
         });
     }

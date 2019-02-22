@@ -6,6 +6,7 @@ export interface WorksheetStateQueryService {
      * getWorksheetState
      * @param {WorksheetStateId} id
      * @return {WorksheetState}
+     * @throws {AuthorizationException}
      * @throws {IoException}
      * @throws {NoSuchWorksheetStateException}
      */
@@ -14,6 +15,7 @@ export interface WorksheetStateQueryService {
     /**
      * getWorksheetStateIds
      * @return {WorksheetStateId[]}
+     * @throws {AuthorizationException}
      * @throws {IoException}
      */
     getWorksheetStateIds(): Promise<WorksheetStateId[]>;

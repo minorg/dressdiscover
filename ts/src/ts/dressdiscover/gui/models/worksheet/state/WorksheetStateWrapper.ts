@@ -5,7 +5,6 @@ import { WorksheetStateMark } from 'dressdiscover/api/models/worksheet/state/wor
 import { WorksheetFeatureId } from 'dressdiscover/api/models/worksheet/worksheet_feature_id';
 import { WorksheetFeatureSetId } from 'dressdiscover/api/models/worksheet/worksheet_feature_set_id';
 import { WorksheetFeatureValueId } from 'dressdiscover/api/models/worksheet/worksheet_feature_value_id';
-import { WorksheetStore } from 'dressdiscover/gui/stores/worksheet/WorksheetStore';
 import * as _ from 'lodash';
 
 import { WorksheetDefinitionWrapper } from '../definition/WorksheetDefinitionWrapper';
@@ -17,8 +16,7 @@ export class WorksheetStateWrapper {
     constructor(
         readonly currentStateMark: WorksheetStateMark,
         readonly worksheetDefinition: WorksheetDefinitionWrapper,
-        private readonly worksheetState: WorksheetState,
-        private readonly worksheetStore: WorksheetStore
+        private readonly worksheetState: WorksheetState
     ) {
         this.worksheetStateMachine = new WorksheetStateMachine(worksheetDefinition, worksheetState);
         this.currentStateMarkIndex = this.worksheetStateMachine.indexOfStateMark(currentStateMark);
@@ -94,10 +92,6 @@ export class WorksheetStateWrapper {
 
     get previousStateMark(): WorksheetStateMark {
         return this.worksheetStateMachine.previousStateMark(this.currentStateMark);
-    }
-
-    save() {
-        this.worksheetStore.putWorksheetState({ state: this.worksheetState });
     }
 
     selectFeatureSets(featureSetIds: WorksheetFeatureSetId[]): void {

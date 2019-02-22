@@ -10,8 +10,6 @@ import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import { Router } from 'react-router';
 
-import { WorksheetStore } from './stores/worksheet/WorksheetStore';
-
 // Logger
 const logger = new ConsoleLogger();
 
@@ -23,9 +21,8 @@ const currentUserStore = new CurrentUserStore(logger);
 const routerStore = new RouterStore();
 const syncedHistory = syncHistoryWithStore(createBrowserHistory(), routerStore);
 const stores = {
-  currentUserStore: currentUserStore,
-  routerStore,
-  worksheetStore: new WorksheetStore(currentUserStore, logger)
+  currentUserStore,
+  routerStore
 };
 
 ReactDOM.render(

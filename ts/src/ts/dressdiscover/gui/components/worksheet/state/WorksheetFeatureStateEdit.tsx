@@ -8,7 +8,9 @@ import {
     WorksheetFeatureValueDefinitionWrapper,
 } from 'dressdiscover/gui/models/worksheet/definition/WorksheetFeatureValueDefinitionWrapper';
 import { WorksheetStateWrapper } from 'dressdiscover/gui/models/worksheet/state/WorksheetStateWrapper';
+import { CurrentUserStore } from 'dressdiscover/gui/stores/current_user/CurrentUserStore';
 import { History } from 'history';
+import { inject } from 'mobx-react';
 import * as React from 'react';
 import { RouteComponentProps } from 'react-router';
 import { Card, CardBody, Collapse, Container, Row } from 'reactstrap';
@@ -26,6 +28,7 @@ export class WorksheetFeatureStateEdit extends React.Component<RouteComponentPro
 }
 
 interface WorksheetFeatureStateEditImplProps {
+    currentUserStore?: CurrentUserStore;
     history: History;
     worksheetState: WorksheetStateWrapper;
 }
@@ -35,6 +38,7 @@ interface WorksheetFeatureStateEditImplState {
     text?: string;
 }
 
+@inject("currentUserStore")
 class WorksheetFeatureStateEditImpl extends React.Component<WorksheetFeatureStateEditImplProps, WorksheetFeatureStateEditImplState> {
     constructor(props: WorksheetFeatureStateEditImplProps) {
         super(props);
@@ -96,9 +100,10 @@ class WorksheetFeatureStateEditImpl extends React.Component<WorksheetFeatureStat
     }
 
     save() {
-        this.props.worksheetState.selectFeatureValues(this.state.selectedValueIds);
-        this.props.worksheetState.save();
-        this.setState(prevState => ({ selectedValueIds: undefined, text: undefined }));
+        const { currentUserStore, worksheetState } = this.props;
+        worksheetState.selectFeatureValues(this.state.selectedValueIds);
+        currentUserStore!.currentUserServices.worksheetStateCommandService.putWorksheetState({ state: worksheetState.toWorksheetState() });
+        this.setState((prevState) => ({ selectedValueIds: undefined, text: undefined }));
     }
 }
 

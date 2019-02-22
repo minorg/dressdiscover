@@ -5,6 +5,7 @@ import { UserSettings } from 'dressdiscover/api/models/user/user_settings';
 import { NoSuchUserSettingsException } from 'dressdiscover/api/services/user/no_such_user_settings_exception';
 import { CurrentUser } from 'dressdiscover/gui/models/current_user/CurrentUser';
 import { CurrentUserSession } from 'dressdiscover/gui/models/current_user/CurrentUserSession';
+import { convertGapiErrorToException } from 'dressdiscover/gui/services/GapiException';
 import { Services } from 'dressdiscover/gui/services/Services';
 import { ILogger } from 'dressdiscover/gui/util/logging/ILogger';
 import * as invariant from 'invariant';
@@ -13,19 +14,18 @@ import { action, computed, observable, runInAction } from 'mobx';
 export class CurrentUserStore {
     private static readonly CURRENT_USER_ITEM_KEY = "currentUser";
 
-    @observable.ref currentUser?: CurrentUser | null;
-    @observable.ref error?: Error | null;
+    @observable.ref currentUser?: CurrentUser;
+    @observable.ref exception?: Exception;
 
     constructor(private readonly logger: ILogger) {
         runInAction("construction", () => {
-            this.clearError();
             this.setCurrentUserFromLocalStorage();
         });
     }
 
     @computed
     get currentUserServices() {
-        if (this.currentUser != null) {
+        if (this.currentUser) {
             return this.currentUser.services;
         } else {
             return Services.default;
@@ -35,14 +35,15 @@ export class CurrentUserStore {
     @action
     login(currentUserSession: CurrentUserSession) {
         this.clearCurrentUser();
-        this.clearError();
+        this.clearException();
 
         this.setGapiAccessToken(currentUserSession);
 
         ((gapi.client as any).oauth2.userinfo as gapi.client.oauth2.UserinfoResource).get({}).then(
             (response) => {
                 const result = response.result;
-                this.setCurrentUser(new CurrentUser({
+
+                const currentUser = new CurrentUser({
                     delegate: new User({
                         emailAddress: result.email as string,
                         emailAddressVerified: result.verified_email,
@@ -56,10 +57,21 @@ export class CurrentUserStore {
                     }),
                     id: UserId.parse(result.id as string),
                     session: currentUserSession
-                }));
+                });
+
+                const self = this;
+                Services.default.userSettingsQueryService.getUserSettings({ id: currentUser.id }).then((userSettings) => {
+                    self.setCurrentUser(currentUser.replaceSettings(userSettings), true);
+                }, (reason: Exception) => {
+                    if (reason instanceof NoSuchUserSettingsException) {
+                        self.setCurrentUser(currentUser, true);
+                    } else {
+                        self.setException(reason);
+                    }
+                });
             },
             (reason: any) => {
-                this.setError(new Error(JSON.stringify(reason)));
+                this.setException(convertGapiErrorToException(reason));
             });
     }
 
@@ -80,11 +92,11 @@ export class CurrentUserStore {
 
         // this.auth0WebAuth.checkSession({}, (err, authResult) => {
         //     if (authResult && authResult.accessToken && authResult.idToken) {
-        //         this.clearError();
+        //         this.clearException();
         //         this.setCurrentUser(authResult);
         //     } else if (err) {
         //         this.clearCurrentUser();
-        //         this.setAuth0Error(err);
+        //         this.setAuth0Exception(err);
         //     }
         // });
     }
@@ -102,7 +114,7 @@ export class CurrentUserStore {
 
     @action
     private clearCurrentUser() {
-        this.currentUser = null;
+        this.currentUser = undefined;
         localStorage.removeItem(CurrentUserStore.CURRENT_USER_ITEM_KEY);
         this.logger.debug("cleared current user hash from local storage");
 
@@ -111,8 +123,8 @@ export class CurrentUserStore {
     }
 
     @action
-    private clearError() {
-        this.error = null;
+    private clearException() {
+        this.exception = undefined;
     }
 
     @action
@@ -134,7 +146,7 @@ export class CurrentUserStore {
     private setCurrentUserFromLocalStorage() {
         const currentUserString = localStorage.getItem(CurrentUserStore.CURRENT_USER_ITEM_KEY);
         if (!currentUserString) {
-            this.currentUser = null;
+            this.currentUser = undefined;
             return;
         }
         this.logger.debug("retrieved current user hash from local storage");
@@ -145,20 +157,20 @@ export class CurrentUserStore {
         const self = this;
         Services.default.userSettingsQueryService.getUserSettings({ id: currentUser.id }).then((userSettings) => {
             self.setCurrentUser(currentUser.replaceSettings(userSettings), false);
-        }, (reason) => {
+        }, (reason: Exception) => {
             if (reason instanceof NoSuchUserSettingsException) {
                 self.setCurrentUser(currentUser, false);
             } else {
                 runInAction(() => {
-                    self.currentUser = null;
+                    self.currentUser = undefined;
                 });
-                self.setError(new Error(reason.toString()));
+                self.setException(reason);
             }
         });
     }
 
     @action
-    private setError(error: Error) {
-        this.error = error;
+    private setException(exception: Exception) {
+        this.exception = exception;
     }
 }

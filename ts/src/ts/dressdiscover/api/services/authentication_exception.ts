@@ -1,13 +1,13 @@
-export class IoException implements Exception {
+export class AuthenticationException implements Exception {
     constructor(kwds: {causeMessage: string}) {
-        this.causeMessage = IoException.validateCauseMessage(kwds.causeMessage);
+        this.causeMessage = AuthenticationException.validateCauseMessage(kwds.causeMessage);
     }
 
-    public deepCopy(): IoException {
-        return new IoException({ causeMessage: this.causeMessage });
+    public deepCopy(): AuthenticationException {
+        return new AuthenticationException({ causeMessage: this.causeMessage });
     }
 
-    public equals(other: IoException): boolean {
+    public equals(other: AuthenticationException): boolean {
         if (!(this.causeMessage === other.causeMessage)) {
             return false;
         }
@@ -15,7 +15,7 @@ export class IoException implements Exception {
         return true;
     }
 
-    public static fromThryftJsonObject(json: any): IoException {
+    public static fromThryftJsonObject(json: any): AuthenticationException {
         let causeMessage: string | undefined;
         for (const fieldName in json) {
             if (fieldName === "cause_message") {
@@ -25,7 +25,7 @@ export class IoException implements Exception {
         if (causeMessage == null) {
             throw new TypeError("causeMessage is required");
         }
-        return new IoException({causeMessage});
+        return new AuthenticationException({causeMessage});
     }
 
     public toJsonObject(): any {
@@ -35,7 +35,7 @@ export class IoException implements Exception {
     }
 
     public toString(): string {
-        return "IoException(" + JSON.stringify(this.toThryftJsonObject()) + ")";
+        return "AuthenticationException(" + JSON.stringify(this.toThryftJsonObject()) + ")";
     }
 
     public toThryftJsonObject(): any {

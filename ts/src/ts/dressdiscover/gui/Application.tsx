@@ -3,12 +3,13 @@ import './Application.scss';
 import { FatalErrorModal } from 'dressdiscover/gui/components/error/FatalErrorModal';
 import { Routes } from 'dressdiscover/gui/Routes';
 import { Secrets } from 'dressdiscover/gui/Secrets';
+import { convertGapiErrorToException, GapiException } from 'dressdiscover/gui/services/GapiException';
 import { CurrentUserStore } from 'dressdiscover/gui/stores/current_user/CurrentUserStore';
 import { inject } from 'mobx-react';
 import * as React from 'react';
 
 @inject("currentUserStore")
-export class Application extends React.Component<{ currentUserStore?: CurrentUserStore }, { error?: any, gapiLoaded: boolean }> {
+export class Application extends React.Component<{ currentUserStore?: CurrentUserStore }, { error?: GapiException, gapiLoaded: boolean }> {
   constructor(props: {}) {
     super(props);
     this.state = { gapiLoaded: false };
@@ -28,9 +29,9 @@ export class Application extends React.Component<{ currentUserStore?: CurrentUse
                   // Current user was loaded from cache. Make sure the access token is set here.
                   gapi.client.setToken({ access_token: currentUser.session.accessToken });
                 }
-                this.setState((prevState) => ({ gapiLoaded: true }))
+                this.setState((prevState) => ({ gapiLoaded: true }));
               },
-                (reason: any) => this.setState((prevState) => ({ error: reason }))
+                (reason: any) => this.setState((prevState) => ({ error: convertGapiErrorToException(reason) }))
               )
           });
         });

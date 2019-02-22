@@ -5,6 +5,7 @@ export interface WorksheetStateCommandService {
     /**
      * deleteWorksheetState
      * @param {WorksheetStateId} id
+     * @throws {AuthorizationException}
      * @throws {IoException}
      */
     deleteWorksheetState(kwds: {id: WorksheetStateId}): Promise<void>;
@@ -12,6 +13,7 @@ export interface WorksheetStateCommandService {
     /**
      * putWorksheetState
      * @param {WorksheetState} state
+     * @throws {AuthorizationException}
      * @throws {IoException}
      */
     putWorksheetState(kwds: {state: WorksheetState}): Promise<void>;
@@ -20,6 +22,7 @@ export interface WorksheetStateCommandService {
      * renameWorksheetState
      * @param {WorksheetStateId} new_id
      * @param {WorksheetStateId} old_id
+     * @throws {AuthorizationException}
      * @throws {DuplicateWorksheetStateException}
      * @throws {IoException}
      * @throws {NoSuchWorksheetStateException}
