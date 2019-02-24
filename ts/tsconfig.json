@@ -1,25 +1,23 @@
 {
   "compilerOptions": {
-    "sourceMap": true,
-    "target": "es5",
+    "baseUrl": ".",
+    "declaration": false,
+    "experimentalDecorators": true,
     "jsx": "react",
+    "lib": ["es6", "es7", "dom"],
     "module": "es6",
     "moduleResolution": "node",
-    "experimentalDecorators": true,
-    "declaration": false,
-    "removeComments": true,
     "noImplicitAny": true,
     "noImplicitReturns": true,
     "noUnusedLocals": true,
-    "strict": true,
-    "strictNullChecks": true,
-    "outDir": "build",
-    "lib": ["es6", "es7", "dom"],
-    "baseUrl": ".",
     "paths": {
       "dressdiscover/*": ["src/ts/dressdiscover/*"],
       "node_modules/*": ["node_modules/*"]
-    }
-  },
-  "exclude": ["dist", "build", "node_modules"]
+    },
+    "removeComments": true,
+    "sourceMap": true,
+    "strict": true,
+    "strictNullChecks": true,
+    "target": "es5",
+  }
 }
