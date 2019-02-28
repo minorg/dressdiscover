@@ -1,7 +1,8 @@
+import { WorksheetFeatureValueImageUrl } from "./worksheet_feature_value_image_url";
 import { WorksheetRights } from "./worksheet_rights";
 
 export class WorksheetFeatureValueImage {
-    constructor(kwds: {rights: WorksheetRights, thumbnailUrl: string, fullSizeUrl?: string}) {
+    constructor(kwds: {rights: WorksheetRights, thumbnailUrl: WorksheetFeatureValueImageUrl, fullSizeUrl?: WorksheetFeatureValueImageUrl}) {
         this.rights = WorksheetFeatureValueImage.validateRights(kwds.rights);
         this.thumbnailUrl = WorksheetFeatureValueImage.validateThumbnailUrl(kwds.thumbnailUrl);
         if (kwds.fullSizeUrl != null) {
@@ -12,7 +13,7 @@ export class WorksheetFeatureValueImage {
     }
 
     public deepCopy(): WorksheetFeatureValueImage {
-        return new WorksheetFeatureValueImage({ rights: this.rights.deepCopy(), thumbnailUrl: this.thumbnailUrl, fullSizeUrl: this.fullSizeUrl });
+        return new WorksheetFeatureValueImage({ rights: this.rights.deepCopy(), thumbnailUrl: this.thumbnailUrl.deepCopy(), fullSizeUrl: (this.fullSizeUrl ? (this.fullSizeUrl.deepCopy()) : undefined) });
     }
 
     public equals(other: WorksheetFeatureValueImage): boolean {
@@ -20,11 +21,11 @@ export class WorksheetFeatureValueImage {
             return false;
         }
 
-        if (!(this.thumbnailUrl === other.thumbnailUrl)) {
+        if (!(this.thumbnailUrl.equals(other.thumbnailUrl))) {
             return false;
         }
 
-        if (!((!((typeof (this.fullSizeUrl)) === "undefined") && !((typeof (other.fullSizeUrl)) === "undefined")) ? ((this.fullSizeUrl as string) === (other.fullSizeUrl as string)) : (((typeof (this.fullSizeUrl)) === "undefined") && ((typeof (other.fullSizeUrl)) === "undefined")))) {
+        if (!((!((typeof (this.fullSizeUrl)) === "undefined") && !((typeof (other.fullSizeUrl)) === "undefined")) ? ((this.fullSizeUrl as WorksheetFeatureValueImageUrl).equals((other.fullSizeUrl as WorksheetFeatureValueImageUrl))) : (((typeof (this.fullSizeUrl)) === "undefined") && ((typeof (other.fullSizeUrl)) === "undefined")))) {
             return false;
         }
 
@@ -33,15 +34,15 @@ export class WorksheetFeatureValueImage {
 
     public static fromThryftJsonObject(json: any): WorksheetFeatureValueImage {
         let rights: WorksheetRights | undefined;
-        let thumbnailUrl: string | undefined;
-        let fullSizeUrl: string | undefined;
+        let thumbnailUrl: WorksheetFeatureValueImageUrl | undefined;
+        let fullSizeUrl: WorksheetFeatureValueImageUrl | undefined;
         for (const fieldName in json) {
             if (fieldName === "rights") {
                 rights = WorksheetRights.fromThryftJsonObject(json[fieldName]);
             } else if (fieldName === "thumbnail_url") {
-                thumbnailUrl = json[fieldName];
+                thumbnailUrl = WorksheetFeatureValueImageUrl.fromThryftJsonObject(json[fieldName]);
             } else if (fieldName === "full_size_url") {
-                fullSizeUrl = json[fieldName];
+                fullSizeUrl = WorksheetFeatureValueImageUrl.fromThryftJsonObject(json[fieldName]);
             }
         }
         if (rights == null) {
@@ -56,9 +57,9 @@ export class WorksheetFeatureValueImage {
     public toJsonObject(): any {
         const json: {[index: string]: any} = {};
         json.rights = this.rights.toJsonObject();
-        json.thumbnail_url = this.thumbnailUrl;
+        json.thumbnail_url = this.thumbnailUrl.toJsonObject();
         if (this.fullSizeUrl != null) {
-            json.full_size_url = this.fullSizeUrl;
+            json.full_size_url = this.fullSizeUrl.toJsonObject();
         }
         return json;
     }
@@ -70,22 +71,14 @@ export class WorksheetFeatureValueImage {
     public toThryftJsonObject(): any {
         const json: {[index: string]: any} = {};
         json.rights = this.rights.toThryftJsonObject();
-        json.thumbnail_url = this.thumbnailUrl;
+        json.thumbnail_url = this.thumbnailUrl.toThryftJsonObject();
         if (this.fullSizeUrl != null) {
-            json.full_size_url = this.fullSizeUrl;
+            json.full_size_url = this.fullSizeUrl.toThryftJsonObject();
         }
         return json;
     }
 
-    private static validateFullSizeUrl(fullSizeUrl: string | undefined): string | undefined {
-        if (fullSizeUrl != null) {
-            if (fullSizeUrl.trim().length === 0) {
-                throw new RangeError("fullSizeUrl is blank");
-            }
-            if (fullSizeUrl.length < 1) {
-                throw new RangeError("expected len(fullSizeUrl) to be >= 1, was " + fullSizeUrl.length);
-            }
-        }
+    private static validateFullSizeUrl(fullSizeUrl: WorksheetFeatureValueImageUrl | undefined): WorksheetFeatureValueImageUrl | undefined {
         return fullSizeUrl;
     }
 
@@ -96,25 +89,16 @@ export class WorksheetFeatureValueImage {
         return rights;
     }
 
-    private static validateThumbnailUrl(thumbnailUrl: string): string {
+    private static validateThumbnailUrl(thumbnailUrl: WorksheetFeatureValueImageUrl): WorksheetFeatureValueImageUrl {
         if (thumbnailUrl == null) {
             throw new RangeError("thumbnailUrl is null or undefined");
-        }
-        if (thumbnailUrl.trim().length === 0) {
-            throw new RangeError("thumbnailUrl is blank");
-        }
-        if (thumbnailUrl.length < 1) {
-            throw new RangeError("expected len(thumbnailUrl) to be >= 1, was " + thumbnailUrl.length);
         }
         return thumbnailUrl;
     }
 
-    public readonly fullSizeUrl?: string;
+    public readonly fullSizeUrl?: WorksheetFeatureValueImageUrl;
 
     public readonly rights: WorksheetRights;
 
-    /**
-     * Thumbnail and full size URLs can be relative
-     */
-    public readonly thumbnailUrl: string;
+    public readonly thumbnailUrl: WorksheetFeatureValueImageUrl;
 }

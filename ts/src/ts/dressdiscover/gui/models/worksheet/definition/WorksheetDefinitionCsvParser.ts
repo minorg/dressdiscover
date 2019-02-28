@@ -8,6 +8,9 @@ import {
     WorksheetFeatureValueDefinition,
 } from 'dressdiscover/api/models/worksheet/definition/worksheet_feature_value_definition';
 import { WorksheetFeatureValueImage } from 'dressdiscover/api/models/worksheet/definition/worksheet_feature_value_image';
+import {
+    WorksheetFeatureValueImageUrl,
+} from 'dressdiscover/api/models/worksheet/definition/worksheet_feature_value_image_url';
 import { WorksheetRights } from 'dressdiscover/api/models/worksheet/definition/worksheet_rights';
 import { WorksheetFeatureId } from 'dressdiscover/api/models/worksheet/worksheet_feature_id';
 import { WorksheetFeatureSetId } from 'dressdiscover/api/models/worksheet/worksheet_feature_set_id';
@@ -40,11 +43,11 @@ export class WorksheetDefinitionCsvParser {
     }
 
     private _parseDescription(row: any) {
-        const descriptionText = row.description_text;
-        if (!_.isEmpty(descriptionText)) {
+        const descriptionTextEn = row.description_text_en;
+        if (!_.isEmpty(descriptionTextEn)) {
             return new WorksheetDescription({
                 rights: this._parseRights("description_", row),
-                text: descriptionText
+                textEn: descriptionTextEn
             });
         } else {
             return undefined;
@@ -102,7 +105,7 @@ export class WorksheetDefinitionCsvParser {
             try {
                 features.push(new WorksheetFeatureDefinition({
                     description: this._parseDescription(row),
-                    displayName: row.display_name,
+                    displayNameEn: row.display_name_en,
                     id: WorksheetFeatureId.parse(row.id),
                     valueIds: row.value.map((id: string) => WorksheetFeatureValueId.parse(id))
                 }));
@@ -128,7 +131,7 @@ export class WorksheetDefinitionCsvParser {
             try {
                 featureSets.push(new WorksheetFeatureSetDefinition({
                     description: this._parseDescription(row),
-                    displayName: row.display_name,
+                    displayNameEn: row.display_name_en,
                     featureIds: row.feature.map((id: string) => WorksheetFeatureId.parse(id)),
                     id: WorksheetFeatureSetId.parse(row.id)
                 }));
@@ -156,10 +159,10 @@ export class WorksheetDefinitionCsvParser {
 
             try {
                 let image: WorksheetFeatureValueImage | undefined;
-                const imageThumbnailUrl = row.image_thumbnail_url;
-                if (!_.isEmpty(imageThumbnailUrl)) {
+                const imageThumbnailUrl = this._parseFeatureValueImageUrl("image_thumbnail_", row);
+                if (imageThumbnailUrl) {
                     image = new WorksheetFeatureValueImage({
-                        fullSizeUrl: row.image_full_size_url,
+                        fullSizeUrl: this._parseFeatureValueImageUrl("image_full_size_", row),
                         rights: this._parseRights("image_", row),
                         thumbnailUrl: imageThumbnailUrl
                     });
@@ -169,7 +172,7 @@ export class WorksheetDefinitionCsvParser {
 
                 const value = new WorksheetFeatureValueDefinition({
                     description: this._parseDescription(row),
-                    displayName: row.display_name,
+                    displayNameEn: row.display_name_en,
                     id: WorksheetFeatureValueId.parse(valueId),
                     image
                 });
@@ -183,6 +186,18 @@ export class WorksheetDefinitionCsvParser {
             }
         });
         return values;
+    }
+
+    private _parseFeatureValueImageUrl(prefix: string, row: any): WorksheetFeatureValueImageUrl | undefined {
+        const absolute = row[prefix + "url"];
+        if (!_.isEmpty(absolute)) {
+            return new WorksheetFeatureValueImageUrl({ absolute });
+        }
+        const relative = row[prefix + "rel_path"];
+        if (!_.isEmpty(relative)) {
+            return new WorksheetFeatureValueImageUrl({ relative });
+        }
+        return undefined;
     }
 
     private _parseRights(columnNamePrefix: string, row: any): WorksheetRights {

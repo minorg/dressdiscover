@@ -3,7 +3,8 @@ import { WorksheetFeatureId } from "../worksheet_feature_id";
 import { WorksheetFeatureValueId } from "../worksheet_feature_value_id";
 
 export class WorksheetFeatureDefinition {
-    constructor(kwds: {id: WorksheetFeatureId, valueIds: WorksheetFeatureValueId[], description?: WorksheetDescription, displayName?: string}) {
+    constructor(kwds: {displayNameEn: string, id: WorksheetFeatureId, valueIds: WorksheetFeatureValueId[], description?: WorksheetDescription}) {
+        this.displayNameEn = WorksheetFeatureDefinition.validateDisplayNameEn(kwds.displayNameEn);
         this.id = WorksheetFeatureDefinition.validateId(kwds.id);
         this.valueIds = WorksheetFeatureDefinition.validateValueIds(kwds.valueIds);
         if (kwds.description != null) {
@@ -11,18 +12,17 @@ export class WorksheetFeatureDefinition {
         } else {
             this.description = undefined;
         }
-        if (kwds.displayName != null) {
-            this.displayName = WorksheetFeatureDefinition.validateDisplayName(kwds.displayName);
-        } else {
-            this.displayName = undefined;
-        }
     }
 
     public deepCopy(): WorksheetFeatureDefinition {
-        return new WorksheetFeatureDefinition({ id: this.id, valueIds: (this.valueIds).map((value0) => value0), description: (this.description ? (this.description.deepCopy()) : undefined), displayName: this.displayName });
+        return new WorksheetFeatureDefinition({ displayNameEn: this.displayNameEn, id: this.id, valueIds: (this.valueIds).map((value0) => value0), description: (this.description ? (this.description.deepCopy()) : undefined) });
     }
 
     public equals(other: WorksheetFeatureDefinition): boolean {
+        if (!(this.displayNameEn === other.displayNameEn)) {
+            return false;
+        }
+
         if (!(this.id.equals(other.id))) {
             return false;
         }
@@ -35,28 +35,27 @@ export class WorksheetFeatureDefinition {
             return false;
         }
 
-        if (!((!((typeof (this.displayName)) === "undefined") && !((typeof (other.displayName)) === "undefined")) ? ((this.displayName as string) === (other.displayName as string)) : (((typeof (this.displayName)) === "undefined") && ((typeof (other.displayName)) === "undefined")))) {
-            return false;
-        }
-
         return true;
     }
 
     public static fromThryftJsonObject(json: any): WorksheetFeatureDefinition {
+        let displayNameEn: string | undefined;
         let id: WorksheetFeatureId | undefined;
         let valueIds: WorksheetFeatureValueId[] | undefined;
         let description: WorksheetDescription | undefined;
-        let displayName: string | undefined;
         for (const fieldName in json) {
-            if (fieldName === "id") {
+            if (fieldName === "display_name_en") {
+                displayNameEn = json[fieldName];
+            } else if (fieldName === "id") {
                 id = WorksheetFeatureId.parse(json[fieldName]);
             } else if (fieldName === "value_ids") {
                 valueIds = (json[fieldName]).map((element: any) => WorksheetFeatureValueId.parse(element));
             } else if (fieldName === "description") {
                 description = WorksheetDescription.fromThryftJsonObject(json[fieldName]);
-            } else if (fieldName === "display_name") {
-                displayName = json[fieldName];
             }
+        }
+        if (displayNameEn == null) {
+            throw new TypeError("displayNameEn is required");
         }
         if (id == null) {
             throw new TypeError("id is required");
@@ -64,18 +63,16 @@ export class WorksheetFeatureDefinition {
         if (valueIds == null) {
             throw new TypeError("valueIds is required");
         }
-        return new WorksheetFeatureDefinition({id, valueIds, description, displayName});
+        return new WorksheetFeatureDefinition({displayNameEn, id, valueIds, description});
     }
 
     public toJsonObject(): any {
         const json: {[index: string]: any} = {};
+        json.display_name_en = this.displayNameEn;
         json.id = this.id.toString();
         json.value_ids = (this.valueIds).map((inElement) => inElement.toString());
         if (this.description != null) {
             json.description = this.description.toJsonObject();
-        }
-        if (this.displayName != null) {
-            json.display_name = this.displayName;
         }
         return json;
     }
@@ -86,13 +83,11 @@ export class WorksheetFeatureDefinition {
 
     public toThryftJsonObject(): any {
         const json: {[index: string]: any} = {};
+        json.display_name_en = this.displayNameEn;
         json.id = this.id.toString();
         json.value_ids = (this.valueIds).map((inElement) => inElement.toString());
         if (this.description != null) {
             json.description = this.description.toThryftJsonObject();
-        }
-        if (this.displayName != null) {
-            json.display_name = this.displayName;
         }
         return json;
     }
@@ -101,16 +96,17 @@ export class WorksheetFeatureDefinition {
         return description;
     }
 
-    private static validateDisplayName(displayName: string | undefined): string | undefined {
-        if (displayName != null) {
-            if (displayName.trim().length === 0) {
-                throw new RangeError("displayName is blank");
-            }
-            if (displayName.length < 1) {
-                throw new RangeError("expected len(displayName) to be >= 1, was " + displayName.length);
-            }
+    private static validateDisplayNameEn(displayNameEn: string): string {
+        if (displayNameEn == null) {
+            throw new RangeError("displayNameEn is null or undefined");
         }
-        return displayName;
+        if (displayNameEn.trim().length === 0) {
+            throw new RangeError("displayNameEn is blank");
+        }
+        if (displayNameEn.length < 1) {
+            throw new RangeError("expected len(displayNameEn) to be >= 1, was " + displayNameEn.length);
+        }
+        return displayNameEn;
     }
 
     private static validateId(id: WorksheetFeatureId): WorksheetFeatureId {
@@ -132,7 +128,7 @@ export class WorksheetFeatureDefinition {
 
     public readonly description?: WorksheetDescription;
 
-    public readonly displayName?: string;
+    public readonly displayNameEn: string;
 
     public readonly id: WorksheetFeatureId;
 

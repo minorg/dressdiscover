@@ -1,12 +1,10 @@
 namespace * dressdiscover.api.models.worksheet.definition
 
+include "dressdiscover/api/models/worksheet/definition/worksheet_feature_value_image_url.thrift"
 include "dressdiscover/api/models/worksheet/definition/worksheet_rights.thrift"
 
 struct WorksheetFeatureValueImage {
     worksheet_rights.WorksheetRights rights;
-    // Thumbnail and full size URLs can be relative
-    // @validation {"blank": false, "minLength": 1}
-    string thumbnail_url;
-    // @validation {"blank": false, "minLength": 1}
-    optional string full_size_url;
+    worksheet_feature_value_image_url.WorksheetFeatureValueImageUrl thumbnail_url;
+    optional worksheet_feature_value_image_url.WorksheetFeatureValueImageUrl full_size_url;
 }

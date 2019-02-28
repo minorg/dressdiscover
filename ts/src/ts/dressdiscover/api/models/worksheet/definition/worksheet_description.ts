@@ -1,13 +1,13 @@
 import { WorksheetRights } from "./worksheet_rights";
 
 export class WorksheetDescription {
-    constructor(kwds: {rights: WorksheetRights, text: string}) {
+    constructor(kwds: {rights: WorksheetRights, textEn: string}) {
         this.rights = WorksheetDescription.validateRights(kwds.rights);
-        this.text = WorksheetDescription.validateText(kwds.text);
+        this.textEn = WorksheetDescription.validateTextEn(kwds.textEn);
     }
 
     public deepCopy(): WorksheetDescription {
-        return new WorksheetDescription({ rights: this.rights.deepCopy(), text: this.text });
+        return new WorksheetDescription({ rights: this.rights.deepCopy(), textEn: this.textEn });
     }
 
     public equals(other: WorksheetDescription): boolean {
@@ -15,7 +15,7 @@ export class WorksheetDescription {
             return false;
         }
 
-        if (!(this.text === other.text)) {
+        if (!(this.textEn === other.textEn)) {
             return false;
         }
 
@@ -24,27 +24,27 @@ export class WorksheetDescription {
 
     public static fromThryftJsonObject(json: any): WorksheetDescription {
         let rights: WorksheetRights | undefined;
-        let text: string | undefined;
+        let textEn: string | undefined;
         for (const fieldName in json) {
             if (fieldName === "rights") {
                 rights = WorksheetRights.fromThryftJsonObject(json[fieldName]);
-            } else if (fieldName === "text") {
-                text = json[fieldName];
+            } else if (fieldName === "text_en") {
+                textEn = json[fieldName];
             }
         }
         if (rights == null) {
             throw new TypeError("rights is required");
         }
-        if (text == null) {
-            throw new TypeError("text is required");
+        if (textEn == null) {
+            throw new TypeError("textEn is required");
         }
-        return new WorksheetDescription({rights, text});
+        return new WorksheetDescription({rights, textEn});
     }
 
     public toJsonObject(): any {
         const json: {[index: string]: any} = {};
         json.rights = this.rights.toJsonObject();
-        json.text = this.text;
+        json.text_en = this.textEn;
         return json;
     }
 
@@ -55,7 +55,7 @@ export class WorksheetDescription {
     public toThryftJsonObject(): any {
         const json: {[index: string]: any} = {};
         json.rights = this.rights.toThryftJsonObject();
-        json.text = this.text;
+        json.text_en = this.textEn;
         return json;
     }
 
@@ -66,20 +66,20 @@ export class WorksheetDescription {
         return rights;
     }
 
-    private static validateText(text: string): string {
-        if (text == null) {
-            throw new RangeError("text is null or undefined");
+    private static validateTextEn(textEn: string): string {
+        if (textEn == null) {
+            throw new RangeError("textEn is null or undefined");
         }
-        if (text.trim().length === 0) {
-            throw new RangeError("text is blank");
+        if (textEn.trim().length === 0) {
+            throw new RangeError("textEn is blank");
         }
-        if (text.length < 1) {
-            throw new RangeError("expected len(text) to be >= 1, was " + text.length);
+        if (textEn.length < 1) {
+            throw new RangeError("expected len(textEn) to be >= 1, was " + textEn.length);
         }
-        return text;
+        return textEn;
     }
 
     public readonly rights: WorksheetRights;
 
-    public readonly text: string;
+    public readonly textEn: string;
 }
