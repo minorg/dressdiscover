@@ -6,7 +6,7 @@ export class WorksheetDescriptionComponent extends React.Component<{ description
     render() {
         return (
             <Container fluid>
-                <div style={{ fontSize: "small" }}>{this.props.description.text}</div>
+                <div style={{ fontSize: "small" }}>{this.props.description.textEn}</div>
                 <br />
                 <div style={{ fontSize: "xx-small" }}>
                     Description&nbsp;&copy;&nbsp;

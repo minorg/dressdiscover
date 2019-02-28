@@ -40,11 +40,11 @@ export class WorksheetDefinitionCsvParser {
     }
 
     private _parseDescription(row: any) {
-        const descriptionText = row.description_text;
-        if (!_.isEmpty(descriptionText)) {
+        const descriptionTextEn = row.description_text_en;
+        if (!_.isEmpty(descriptionTextEn)) {
             return new WorksheetDescription({
                 rights: this._parseRights("description_", row),
-                text: descriptionText
+                textEn: descriptionTextEn
             });
         } else {
             return undefined;
@@ -102,7 +102,7 @@ export class WorksheetDefinitionCsvParser {
             try {
                 features.push(new WorksheetFeatureDefinition({
                     description: this._parseDescription(row),
-                    displayName: row.display_name,
+                    displayNameEn: row.display_name_en,
                     id: WorksheetFeatureId.parse(row.id),
                     valueIds: row.value.map((id: string) => WorksheetFeatureValueId.parse(id))
                 }));
@@ -128,7 +128,7 @@ export class WorksheetDefinitionCsvParser {
             try {
                 featureSets.push(new WorksheetFeatureSetDefinition({
                     description: this._parseDescription(row),
-                    displayName: row.display_name,
+                    displayNameEn: row.display_name_en,
                     featureIds: row.feature.map((id: string) => WorksheetFeatureId.parse(id)),
                     id: WorksheetFeatureSetId.parse(row.id)
                 }));
@@ -169,7 +169,7 @@ export class WorksheetDefinitionCsvParser {
 
                 const value = new WorksheetFeatureValueDefinition({
                     description: this._parseDescription(row),
-                    displayName: row.display_name,
+                    displayNameEn: row.display_name_en,
                     id: WorksheetFeatureValueId.parse(valueId),
                     image
                 });
