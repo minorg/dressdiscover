@@ -135,6 +135,19 @@ class WorksheetFeatureValueStateEdit extends React.Component<WorksheetFeatureVal
 
     render() {
         const { featureValueDefinition: definition } = this.props;
+
+        let thumbnailImgSrc: string | undefined;
+        if (definition.image && definition.image.thumbnailUrl) {
+            if (definition.image.thumbnailUrl.absolute) {
+                thumbnailImgSrc = definition.image.thumbnailUrl.absolute;
+            } else if (definition.image.thumbnailUrl.relative) {
+                thumbnailImgSrc = "https://dressdiscover.org/worksheet/" + definition.image.thumbnailUrl.relative;
+            }
+        }
+        if (!thumbnailImgSrc) {
+            thumbnailImgSrc = 'http://via.placeholder.com/200x200?text=Missing%20image';
+        }
+
         return (
             <Card className={classnames({ "border-info": this.props.selected, "mb-4": true, "mr-4": true })} style={{ borderWidth: "8px" }}>
                 <CardHeader>
@@ -145,7 +158,7 @@ class WorksheetFeatureValueStateEdit extends React.Component<WorksheetFeatureVal
                         <a onClick={this.onToggleSelected}>
                             <img
                                 className="figure-img rounded"
-                                src={definition.image ? definition.image.thumbnailUrl : 'http://via.placeholder.com/200x200?text=Missing%20image'}
+                                src={thumbnailImgSrc}
                                 style={{ height: "200px", width: "200px" }}
                             />
                         </a>
