@@ -2,8 +2,8 @@ import { WorksheetDescription } from 'dressdiscover/api/models/worksheet/definit
 
 interface Definition<IdT> {
     description?: WorksheetDescription;
+    displayNameEn: string;
     id: IdT;
-    displayName?: string;
 }
 
 export abstract class AbstractDefinitionWrapper<DefinitionT extends Definition<IdT>, IdT> {
@@ -15,7 +15,7 @@ export abstract class AbstractDefinitionWrapper<DefinitionT extends Definition<I
     }
 
     get displayName() {
-        return this.definition.displayName ? this.definition.displayName : this.definition.id.toString();
+        return this.definition.displayNameEn;
     }
 
     get id() {
