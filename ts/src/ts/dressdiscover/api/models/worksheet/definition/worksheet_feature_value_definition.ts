@@ -3,17 +3,13 @@ import { WorksheetFeatureValueId } from "../worksheet_feature_value_id";
 import { WorksheetFeatureValueImage } from "./worksheet_feature_value_image";
 
 export class WorksheetFeatureValueDefinition {
-    constructor(kwds: {id: WorksheetFeatureValueId, description?: WorksheetDescription, displayName?: string, image?: WorksheetFeatureValueImage}) {
+    constructor(kwds: {displayNameEn: string, id: WorksheetFeatureValueId, description?: WorksheetDescription, image?: WorksheetFeatureValueImage}) {
+        this.displayNameEn = WorksheetFeatureValueDefinition.validateDisplayNameEn(kwds.displayNameEn);
         this.id = WorksheetFeatureValueDefinition.validateId(kwds.id);
         if (kwds.description != null) {
             this.description = WorksheetFeatureValueDefinition.validateDescription(kwds.description);
         } else {
             this.description = undefined;
-        }
-        if (kwds.displayName != null) {
-            this.displayName = WorksheetFeatureValueDefinition.validateDisplayName(kwds.displayName);
-        } else {
-            this.displayName = undefined;
         }
         if (kwds.image != null) {
             this.image = WorksheetFeatureValueDefinition.validateImage(kwds.image);
@@ -23,19 +19,19 @@ export class WorksheetFeatureValueDefinition {
     }
 
     public deepCopy(): WorksheetFeatureValueDefinition {
-        return new WorksheetFeatureValueDefinition({ id: this.id, description: (this.description ? (this.description.deepCopy()) : undefined), displayName: this.displayName, image: (this.image ? (this.image.deepCopy()) : undefined) });
+        return new WorksheetFeatureValueDefinition({ displayNameEn: this.displayNameEn, id: this.id, description: (this.description ? (this.description.deepCopy()) : undefined), image: (this.image ? (this.image.deepCopy()) : undefined) });
     }
 
     public equals(other: WorksheetFeatureValueDefinition): boolean {
+        if (!(this.displayNameEn === other.displayNameEn)) {
+            return false;
+        }
+
         if (!(this.id.equals(other.id))) {
             return false;
         }
 
         if (!((!((typeof (this.description)) === "undefined") && !((typeof (other.description)) === "undefined")) ? ((this.description as WorksheetDescription).equals((other.description as WorksheetDescription))) : (((typeof (this.description)) === "undefined") && ((typeof (other.description)) === "undefined")))) {
-            return false;
-        }
-
-        if (!((!((typeof (this.displayName)) === "undefined") && !((typeof (other.displayName)) === "undefined")) ? ((this.displayName as string) === (other.displayName as string)) : (((typeof (this.displayName)) === "undefined") && ((typeof (other.displayName)) === "undefined")))) {
             return false;
         }
 
@@ -47,35 +43,36 @@ export class WorksheetFeatureValueDefinition {
     }
 
     public static fromThryftJsonObject(json: any): WorksheetFeatureValueDefinition {
+        let displayNameEn: string | undefined;
         let id: WorksheetFeatureValueId | undefined;
         let description: WorksheetDescription | undefined;
-        let displayName: string | undefined;
         let image: WorksheetFeatureValueImage | undefined;
         for (const fieldName in json) {
-            if (fieldName === "id") {
+            if (fieldName === "display_name_en") {
+                displayNameEn = json[fieldName];
+            } else if (fieldName === "id") {
                 id = WorksheetFeatureValueId.parse(json[fieldName]);
             } else if (fieldName === "description") {
                 description = WorksheetDescription.fromThryftJsonObject(json[fieldName]);
-            } else if (fieldName === "display_name") {
-                displayName = json[fieldName];
             } else if (fieldName === "image") {
                 image = WorksheetFeatureValueImage.fromThryftJsonObject(json[fieldName]);
             }
         }
+        if (displayNameEn == null) {
+            throw new TypeError("displayNameEn is required");
+        }
         if (id == null) {
             throw new TypeError("id is required");
         }
-        return new WorksheetFeatureValueDefinition({id, description, displayName, image});
+        return new WorksheetFeatureValueDefinition({displayNameEn, id, description, image});
     }
 
     public toJsonObject(): any {
         const json: {[index: string]: any} = {};
+        json.display_name_en = this.displayNameEn;
         json.id = this.id.toString();
         if (this.description != null) {
             json.description = this.description.toJsonObject();
-        }
-        if (this.displayName != null) {
-            json.display_name = this.displayName;
         }
         if (this.image != null) {
             json.image = this.image.toJsonObject();
@@ -89,12 +86,10 @@ export class WorksheetFeatureValueDefinition {
 
     public toThryftJsonObject(): any {
         const json: {[index: string]: any} = {};
+        json.display_name_en = this.displayNameEn;
         json.id = this.id.toString();
         if (this.description != null) {
             json.description = this.description.toThryftJsonObject();
-        }
-        if (this.displayName != null) {
-            json.display_name = this.displayName;
         }
         if (this.image != null) {
             json.image = this.image.toThryftJsonObject();
@@ -106,16 +101,17 @@ export class WorksheetFeatureValueDefinition {
         return description;
     }
 
-    private static validateDisplayName(displayName: string | undefined): string | undefined {
-        if (displayName != null) {
-            if (displayName.trim().length === 0) {
-                throw new RangeError("displayName is blank");
-            }
-            if (displayName.length < 1) {
-                throw new RangeError("expected len(displayName) to be >= 1, was " + displayName.length);
-            }
+    private static validateDisplayNameEn(displayNameEn: string): string {
+        if (displayNameEn == null) {
+            throw new RangeError("displayNameEn is null or undefined");
         }
-        return displayName;
+        if (displayNameEn.trim().length === 0) {
+            throw new RangeError("displayNameEn is blank");
+        }
+        if (displayNameEn.length < 1) {
+            throw new RangeError("expected len(displayNameEn) to be >= 1, was " + displayNameEn.length);
+        }
+        return displayNameEn;
     }
 
     private static validateId(id: WorksheetFeatureValueId): WorksheetFeatureValueId {
@@ -131,7 +127,7 @@ export class WorksheetFeatureValueDefinition {
 
     public readonly description?: WorksheetDescription;
 
-    public readonly displayName?: string;
+    public readonly displayNameEn: string;
 
     public readonly id: WorksheetFeatureValueId;
 
