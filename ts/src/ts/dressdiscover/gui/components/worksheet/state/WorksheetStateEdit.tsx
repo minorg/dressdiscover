@@ -102,8 +102,8 @@ class WorksheetStateEditImpl extends React.Component<WorksheetStateEditImplProps
                                     {featureSetDefinition.description ? <WorksheetDescriptionComponent description={featureSetDefinition.description} /> : null}
                                 </td>
                                 <td className="align-middle">
-                                    {featureSetDefinition.features.map((featureDefinition) =>
-                                        <React.Fragment key={featureDefinition.id.toString()}><span data-bind="text: displayName">{featureDefinition.displayName}</span>&nbsp;&nbsp;</React.Fragment>
+                                    {featureSetDefinition.features.map((featureDefinition, featureDefinitionIndex) =>
+                                        <React.Fragment key={featureDefinition.id.toString()}><span data-bind="text: displayName" style={{fontWeight: featureDefinitionIndex % 2 === 0 ? "bold" : "normal"}}>{featureDefinition.displayName}</span>{featureDefinitionIndex + 1 < featureSetDefinition.features.length ? "  \u00b7" : null}&nbsp;</React.Fragment>
                                     )}
                                 </td>
                             </tr>
