@@ -16,6 +16,7 @@ export class Home extends React.Component {
           <b>DressDiscover</b> is a suite of web applications for digital collections of historic clothing.
         </p>
         <p>Read more about this project on the <Link to={Hrefs.about}>About</Link> page.</p>
+        <p>Try our visual workflow for describing historic clothing artifacts on the <Link to={Hrefs.worksheetStart}>Worksheets</Link> page.</p>
       </Frame>
     );
   }
