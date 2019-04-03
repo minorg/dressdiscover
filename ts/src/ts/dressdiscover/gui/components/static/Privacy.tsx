@@ -31,11 +31,6 @@ export class Privacy extends React.Component {
                                             solely to information collected by this website.
                     </p>
 
-                                        <h4>Registration</h4>
-                                        <p>In order to use this website, a user must first complete the registration form. During registration a
-                                            user is required to give certain information (such as name and email address). This information is
-                        used to contact you about the products/services on our site in which you have expressed interest.</p>
-
                                         <h4>Information Collection, Use, and Sharing</h4>
                                         <p>We are the sole owners of the information collected on this site. We only have access to/collect information
                                             that you voluntarily give us via email or other direct contact from you. We will not sell or rent
